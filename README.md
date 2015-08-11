@@ -7,6 +7,3 @@ The code is hosted [on SmalltalkHub](http://smalltalkhub.com/#!/~Moose/Moose)
 
 ### Learn more
 Check out [the official webpage of the Moose project](http://moosetechnology.org).
-
-### Contribute
-If you want to report an issue in Moose or one of its subproject, please read [the guidelines](http://www.moosetechnology.org/about/development/reporting)
