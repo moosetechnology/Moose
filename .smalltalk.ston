@@ -1,0 +1,14 @@
+SmalltalkCISpec {
+  #loading : [
+    SCIMetacelloLoadSpec {
+      #configuration : 'Moose',
+      #repository : 'http://smalltalkhub.com/mc/Moose/Moose/main',
+      #load : [ 'default' ],
+      #platforms : [
+        #pharo ]
+    }
+  ],
+  #testing : {
+    #categories : [ 'Moose-Tests-*' ]
+  }
+}
