@@ -3,9 +3,10 @@ SmalltalkCISpec {
     SCIMetacelloLoadSpec {
       #configuration : 'Moose',
       #repository : 'http://smalltalkhub.com/mc/Moose/Moose/main',
-      #load : [ 'development' ],
+      #load : [ 'default' ],
       #platforms : [
-        #pharo ]
+        #pharo ],
+      #version: '6.0-baseline'
     }
   ],
   #testing : {
