@@ -10,6 +10,6 @@ SmalltalkCISpec {
     }
   ],
   #testing : {
-    #categories : [ 'Moose-Tests-*' ]
+    #categories : MooseTestCommandLineHandler new packages
   }
 }
