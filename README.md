@@ -9,4 +9,4 @@ Moose is an open source software. It was started at the Software Composition Gro
 The code is hosted [on SmalltalkHub](http://smalltalkhub.com/#!/~Moose/Moose)
 
 ### Learn more
-Check out [the official webpage of the Moose project](http://moosetechnology.org).
+Check out [the official webpage of the Moose project](http://moosetechnology.org). 
