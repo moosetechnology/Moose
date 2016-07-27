@@ -7,3 +7,8 @@ os:
 
 smalltalk:
   - Pharo-5.0
+
+addons:
+  apt:
+    packages:
+      - libcairo2:i386
