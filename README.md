@@ -10,3 +10,7 @@ The code is hosted [on SmalltalkHub](http://smalltalkhub.com/#!/~Moose/Moose)
 
 ### Learn more
 Check out [the official webpage of the Moose project](http://moosetechnology.org). 
+
+### Famix generators
+- [Java](https://github.com/girba/jdt2famix) 
+- [.NET](http://www.sharpmetrics.net/index.php/famix-generator)
