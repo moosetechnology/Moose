@@ -2,8 +2,9 @@ language: smalltalk
 sudo: false
 
 os:
-  - linux
   - osx
 
-smalltalk:
-  - Pharo-5.0
+matrix:
+  include:
+  - smalltalk: Pharo-6.1
+  - smalltalk: Pharo(64)-6.1
