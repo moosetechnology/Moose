@@ -6,7 +6,7 @@ SmalltalkCISpec {
       #load : [ 'default' ],
       #platforms : [
         #pharo ],
-      #version: '6.0-baseline'
+      #version: '6.1-baseline'
     }
   ],
   #testing : {
