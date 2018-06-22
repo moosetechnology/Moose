@@ -15,30 +15,14 @@ matrix:
 
 
 before_install:
-  - |
-       # Otherwise build on OSX stucks at unknown fingerprint question
-       echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-
-       declare -r SSH_FILE="$(mktemp -u $HOME/.ssh/$GITHUB_SSH_FILE)"
-       # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-       openssl aes-256-cbc \
-         -K $encrypted_dc3d6cd55a6d_key \
-         -iv $encrypted_dc3d6cd55a6d_iv \
-         -in ".travis/github_deploy_key.enc" \
-         -out "$SSH_FILE" -d
-
-       # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-       # Enable SSH authentication
-
-       chmod 600 "$SSH_FILE" \
-         && printf "%s\n" \
-              "Host github.com" \
-              "  IdentityFile $SSH_FILE" \
-              "  LogLevel ERROR" >> ~/.ssh/config
-       cp $SSH_FILE $HOME/.ssh/id_rsa
-       ssh-add $HOME/.ssh/id_rsa
-       ssh-add $SSH_FILE
+  - declare -r SSH_FILE="$(mktemp -u $HOME/.ssh/$GITHUB_SSH_FILE)"
+  - echo $SSH_FILE
+  - openssl aes-256-cbc -K $encrypted_dc3d6cd55a6d_key -iv $encrypted_dc3d6cd55a6d_iv -in .travis/github_deploy_key.enc -out $SSH_FILE -d
+  - chmod 600 $SSH_FILE
+  - echo "\n Host github.com \n  IdentityFile $SSH_FILE \n  LogLevel ERROR" > ~/.ssh/config
+  - cp $SSH_FILE $HOME/.ssh/id_rsa
+  - ssh-add $HOME/.ssh/id_rsa
+  - ssh-add $SSH_FILE
 
 after_success:
   - |
