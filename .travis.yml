@@ -19,7 +19,6 @@ before_install:
   - echo $SSH_FILE
   - openssl aes-256-cbc -K $encrypted_dc3d6cd55a6d_key -iv $encrypted_dc3d6cd55a6d_iv -in .travis/github_deploy_key.enc -out $SSH_FILE -d
   - chmod 600 $SSH_FILE
-  - echo "\n Host github.com \n  IdentityFile $SSH_FILE \n  LogLevel ERROR" > ~/.ssh/config
   - eval "$(ssh-agent -s)"
   - cp $SSH_FILE $HOME/.ssh/id_rsa
   - ssh-add $HOME/.ssh/id_rsa
