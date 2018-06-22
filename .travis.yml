@@ -37,3 +37,24 @@ before_install:
        cp $SSH_FILE $HOME/.ssh/id_rsa
        ssh-add $HOME/.ssh/id_rsa
        ssh-add $SSH_FILE
+
+after_success:
+  - |
+    ls "$SMALLTALK_CI_IMAGE"
+    export PROJECT_NAME="mbc-pia-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
+
+    # customize the name of the build folder
+    export ARTIFACT_DIR="${PROJECT_NAME}"
+    mkdir "$ARTIFACT_DIR"
+    cp "$SMALLTALK_CI_IMAGE" "${ARTIFACT_DIR}/${PROJECT_NAME}-${BITS}.image"
+    cp "$SMALLTALK_CI_CHANGES" "${ARTIFACT_DIR}/${PROJECT_NAME}-${BITS}.changes"
+    export build_zip="${ARTIFACT_DIR}.zip"
+    zip -qr "$build_zip" "$ARTIFACT_DIR"
+    cp $build_zip moose${BITS}.zip
+
+    #upload to sftp server
+    scp $build_zip ubuntu@ec2-35-157-37-37.eu-central-1.compute.amazonaws.com:/var/www/html/moose/
+    scp moose${BITS}.zip ubuntu@ec2-35-157-37-37.eu-central-1.compute.amazonaws.com:/var/www/html/moose/
+
+    #cleanup everything up until last N images
+    ssh ubuntu@ec2-35-157-37-37.eu-central-1.compute.amazonaws.com "ls -1tr /var/www/html/moose/ | head -n -10"
