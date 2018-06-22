@@ -2,7 +2,7 @@ language: smalltalk
 sudo: false
 
 os:
-  - linux
+  - trusty
 
 matrix:
   include:
