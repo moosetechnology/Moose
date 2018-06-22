@@ -23,7 +23,8 @@ before_install:
 
     # Enable SSH authentication
 
-  - chmod 600 "$SSH_FILE" && printf "%s\n" "Host github.com" "  IdentityFile $SSH_FILE" "  LogLevel ERROR" >> ~/.ssh/config
+  - chmod 600 $SSH_FILE
+  - echo "\n Host github.com \n  IdentityFile $SSH_FILE \n  LogLevel ERROR" > ~/.ssh/config
   - cp $SSH_FILE $HOME/.ssh/id_rsa
   - ssh-add $HOME/.ssh/id_rsa
   - ssh-add $SSH_FILE
