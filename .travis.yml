@@ -41,13 +41,13 @@ before_install:
 after_success:
   - |
     ls "$SMALLTALK_CI_IMAGE"
-    export PROJECT_NAME="mbc-pia-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
+    export PROJECT_NAME="moose-${BITS}-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
 
     # customize the name of the build folder
     export ARTIFACT_DIR="${PROJECT_NAME}"
     mkdir "$ARTIFACT_DIR"
-    cp "$SMALLTALK_CI_IMAGE" "${ARTIFACT_DIR}/${PROJECT_NAME}-${BITS}.image"
-    cp "$SMALLTALK_CI_CHANGES" "${ARTIFACT_DIR}/${PROJECT_NAME}-${BITS}.changes"
+    cp "$SMALLTALK_CI_IMAGE" "${ARTIFACT_DIR}/${PROJECT_NAME}.image"
+    cp "$SMALLTALK_CI_CHANGES" "${ARTIFACT_DIR}/${PROJECT_NAME}.changes"
     export build_zip="${ARTIFACT_DIR}.zip"
     zip -qr "$build_zip" "$ARTIFACT_DIR"
     cp $build_zip moose${BITS}.zip
