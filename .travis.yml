@@ -29,7 +29,9 @@ before_install:
 
 after_success:
   - |
-    ls -al
+    ls /home/travis/smalltalkCI-master/_builds
+    ls /home/travis/smalltalkCI-master/
+    pwd
     export PROJECT_NAME="moose-${BITS}-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
 
     # customize the name of the build folder
