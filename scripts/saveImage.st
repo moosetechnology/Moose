@@ -1,0 +1,1 @@
+SmalltalkImage current saveAs: 'beforeTests'.

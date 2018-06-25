@@ -29,7 +29,7 @@ before_install:
 
 after_success:
   - |
-    ls "$SMALLTALK_CI_IMAGE"
+    ls -al
     export PROJECT_NAME="moose-${BITS}-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
 
     # customize the name of the build folder
