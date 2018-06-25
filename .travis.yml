@@ -13,6 +13,9 @@ matrix:
   - smalltalk: Pharo64-6.1
     env: BITS=64
 
+branches:
+  only:
+    - master
 
 before_install:
   - export SSH_FILE="$(mktemp -u $HOME/.ssh/$GITHUB_SSH_FILE)"
