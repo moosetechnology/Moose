@@ -38,8 +38,8 @@ after_success:
     # customize the name of the build folder
     export ARTIFACT_DIR="${PROJECT_NAME}"
     mkdir "$ARTIFACT_DIR"
-    cp "$SAVED_IMAGE" "${ARTIFACT_DIR}/${PROJECT_NAME}.image"
-    cp "$SAVED_CHANGES" "${ARTIFACT_DIR}/${PROJECT_NAME}.changes"
+    cp $SAVED_IMAGE "${ARTIFACT_DIR}/${PROJECT_NAME}.image"
+    cp $SAVED_CHANGES "${ARTIFACT_DIR}/${PROJECT_NAME}.changes"
     export build_zip="${ARTIFACT_DIR}.zip"
     zip -qr "$build_zip" "$ARTIFACT_DIR"
 
