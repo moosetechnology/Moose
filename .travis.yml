@@ -29,8 +29,8 @@ before_install:
 
 after_success:
   - |
-    echo $TRAVIS_BUILD_DIR
-    ls -al $TRAVIS_BUILD_DIR
+    echo $SMALLTALK_CI_BUILD
+    ls -al $SMALLTALK_CI_BUILD
     export SAVED_IMAGE="${TRAVIS_BUILD_DIR}/beforeTests.image"
     export SAVED_CHANGES="${TRAVIS_BUILD_DIR}/beforeTests.changes"
     export PROJECT_NAME="moose-${BITS}-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
