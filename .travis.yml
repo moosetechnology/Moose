@@ -29,16 +29,17 @@ before_install:
 
 after_success:
   - |
-    ls /home/travis/smalltalkCI-master/_builds
-    ls /home/travis/smalltalkCI-master/
-    pwd
+    echo $TRAVIS_BUILD_DIR
+    ls -al $TRAVIS_BUILD_DIR
+    export SAVED_IMAGE="${TRAVIS_BUILD_DIR}/beforeTests.image"
+    export SAVED_CHANGES="${TRAVIS_BUILD_DIR}/beforeTests.changes"
     export PROJECT_NAME="moose-${BITS}-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
 
     # customize the name of the build folder
     export ARTIFACT_DIR="${PROJECT_NAME}"
     mkdir "$ARTIFACT_DIR"
-    cp "$SMALLTALK_CI_IMAGE" "${ARTIFACT_DIR}/${PROJECT_NAME}.image"
-    cp "$SMALLTALK_CI_CHANGES" "${ARTIFACT_DIR}/${PROJECT_NAME}.changes"
+    cp "$SAVED_IMAGE" "${ARTIFACT_DIR}/${PROJECT_NAME}.image"
+    cp "$SAVED_CHANGES" "${ARTIFACT_DIR}/${PROJECT_NAME}.changes"
     export build_zip="${ARTIFACT_DIR}.zip"
     zip -qr "$build_zip" "$ARTIFACT_DIR"
 
