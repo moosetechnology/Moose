@@ -31,8 +31,8 @@ after_success:
   - |
     echo $SMALLTALK_CI_BUILD
     ls -al $SMALLTALK_CI_BUILD
-    export SAVED_IMAGE="${TRAVIS_BUILD_DIR}/beforeTests.image"
-    export SAVED_CHANGES="${TRAVIS_BUILD_DIR}/beforeTests.changes"
+    export SAVED_IMAGE="${SMALLTALK_CI_BUILD}/beforeTests.image"
+    export SAVED_CHANGES="${SMALLTALK_CI_BUILD}/beforeTests.changes"
     export PROJECT_NAME="moose-${BITS}-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
 
     # customize the name of the build folder
