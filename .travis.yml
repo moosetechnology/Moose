@@ -30,7 +30,7 @@ before_install:
 after_success:
   - |
     echo $SMALLTALK_CI_BUILD
-    ls -al $SMALLTALK_CI_BUILD
+    ls -ltr $SMALLTALK_CI_BUILD
     export SAVED_IMAGE="${SMALLTALK_CI_BUILD}/beforeTests.image"
     export SAVED_CHANGES="${SMALLTALK_CI_BUILD}/beforeTests.changes"
     export PROJECT_NAME="moose-${BITS}-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
@@ -38,8 +38,8 @@ after_success:
     # customize the name of the build folder
     export ARTIFACT_DIR="${PROJECT_NAME}"
     mkdir "$ARTIFACT_DIR"
-    cp $SAVED_IMAGE "${ARTIFACT_DIR}/${PROJECT_NAME}.image"
-    cp $SAVED_CHANGES "${ARTIFACT_DIR}/${PROJECT_NAME}.changes"
+    cp $SMALLTALK_CI_IMAGE "${ARTIFACT_DIR}/${PROJECT_NAME}.image"
+    cp $SMALLTALK_CI_CHANGES "${ARTIFACT_DIR}/${PROJECT_NAME}.changes"
     export build_zip="${ARTIFACT_DIR}.zip"
     zip -qr "$build_zip" "$ARTIFACT_DIR"
 
