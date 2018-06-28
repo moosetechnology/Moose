@@ -1,2 +1,1 @@
-SmalltalkImage current saveSession.
-SmalltalkImage current saveAs: 'beforeTests'.
+SmalltalkImage current backupTo: 'beforeTests'.
