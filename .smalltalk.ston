@@ -10,6 +10,8 @@ SmalltalkCISpec {
     #exclude : {
       #classes : [ #GTUnprintableObjectTest, #RTLabelTest, #RTExampleTestCase ]
     },
-    #allTestCases : true
+    #allTestCases : true,
+    #hidePassingTests : true,
+    #serializeError: false
   }
 }
