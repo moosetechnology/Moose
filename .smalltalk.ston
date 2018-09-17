@@ -8,7 +8,7 @@ SmalltalkCISpec {
   ],
   #testing : {
     #exclude : {
-      #classes : [ #GTUnprintableObjectTest, #RTLabelTest, #RTExampleTestCase, #OmDeferrerTest, #SystemDependenciesTest, #STONWriterTests, #STONReaderTests, #FLContextSerializationTest, #STONLargeWriteReadTests, #DateAndTimeTest, #STONWriteAsciiOnlyReadTests, #ProperMethodCategorizationTest, #FAMIXExtensionMetricTest, #STONWritePrettyPrinterReadTests, #ProperlyImplementedClassesTest ]
+      #classes : [ #GTUnprintableObjectTest, #RTLabelTest, #RTExampleTestCase, #OmDeferrerTest, #SystemDependenciesTest, #STONWriterTests, #STONReaderTests, #FLContextSerializationTest, #STONLargeWriteReadTests, #DateAndTimeTest, #STONWriteAsciiOnlyReadTests, #ProperMethodCategorizationTest, #FAMIXExtensionMetricTest, #STONWritePrettyPrinterReadTests, #ProperlyImplementedClassesTest, #STONWriteReadCommentsTests #STONWriteReadTests #TraitFileOutTest #ReleaseTest #DiskFileSystemTest #TestValueWithinFix ]
     },
     #allTestCases : true,
     #hidePassingTests : true,
