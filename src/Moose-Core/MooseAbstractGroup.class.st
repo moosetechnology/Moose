@@ -244,14 +244,14 @@ MooseAbstractGroup >> allModels [
 MooseAbstractGroup >> allNamespaces [
 	
 	<navigation: 'All namespaces'>
-	^self allWithSubTypesOf: FamixTNamespace 
+	^self allWithType: FamixTNamespace 
 ]
 
 { #category : #'Famix-Extensions' }
 MooseAbstractGroup >> allPackages [
 	
 	<navigation: 'All packages'>
-	^self allWithSubTypesOf: FamixTPackage 
+	^self allWithType: FamixTPackage 
 ]
 
 { #category : #'Famix-Java' }
@@ -802,9 +802,7 @@ MooseAbstractGroup >> numberOfLinesOfCode [
 MooseAbstractGroup >> numberOfPackages [
 	<MSEProperty: #numberOfPackages type: #Number>
 	<MSEComment: 'Total number of packages'>
-	^ (self mooseModel isNotNil and: [ self mooseModel isSmalltalk ])
-		ifTrue: [ self privateState propertyAt: #numberOfPackages ifAbsentPut: [ self allPackages size ] ]
-		ifFalse: [ self privateState propertyAt: #numberOfPackages ifAbsentPut: [ self allNamespaces size ] ]
+	^ self privateState propertyAt: #numberOfPackages ifAbsentPut: [ self allPackages size ] 
 ]
 
 { #category : #enumerating }

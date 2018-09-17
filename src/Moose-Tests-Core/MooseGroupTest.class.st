@@ -608,11 +608,11 @@ MooseGroupTest >> testNumberOfPackages [
 	model := MooseModel new.
 	model add: FAMIXPackage new.
 	model add: FAMIXPackage new.
-	self assert: model numberOfPackages equals: 0.
+	self assert: model numberOfPackages equals: 2.
 	model := MooseModel new.
 	model add: FAMIXNamespace new.
 	model add: FAMIXNamespace new.
-	self assert: model numberOfPackages equals: 2
+	self assert: model numberOfPackages equals: 0
 ]
 
 { #category : #tests }
