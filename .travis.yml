@@ -1,58 +1,8 @@
 language: smalltalk
 sudo: false
 
-dist: trusty
-
 os:
   - linux
 
-matrix:
-  include:
-  - smalltalk: Pharo-6.1
-    env: BITS=32
-  - smalltalk: Pharo64-6.1
-    env: BITS=64
-
-branches:
-  only:
-    - master
-
-before_install:
-  - export SSH_FILE="$(mktemp -u $HOME/.ssh/$GITHUB_SSH_FILE)"
-  - echo $SSH_FILE
-  - openssl aes-256-cbc -K $encrypted_dc3d6cd55a6d_key -iv $encrypted_dc3d6cd55a6d_iv -in .travis/github_deploy_key.enc -out $SSH_FILE -d
-  - chmod 600 $SSH_FILE
-  - eval "$(ssh-agent -s)"
-  - cp $SSH_FILE $HOME/.ssh/id_rsa
-  - ssh-add $HOME/.ssh/id_rsa
-  - ssh-add $SSH_FILE
-
-after_success:
-  - |
-    echo $SMALLTALK_CI_BUILD
-    ls -ltr $SMALLTALK_CI_BUILD
-    export SAVED_IMAGE="${SMALLTALK_CI_BUILD}/beforeTests.image"
-    export SAVED_CHANGES="${SMALLTALK_CI_BUILD}/beforeTests.changes"
-    export PROJECT_NAME="moose-${BITS}-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
-
-    # customize the name of the build folder
-    export ARTIFACT_DIR="${PROJECT_NAME}"
-    mkdir "$ARTIFACT_DIR"
-    cp $SMALLTALK_CI_IMAGE "${ARTIFACT_DIR}/${PROJECT_NAME}.image"
-    cp $SMALLTALK_CI_CHANGES "${ARTIFACT_DIR}/${PROJECT_NAME}.changes"
-    export build_zip="${ARTIFACT_DIR}.zip"
-    zip -qr "$build_zip" "$ARTIFACT_DIR"
-
-    # simple name build folder
-    export SIMPLE_PROJECT_NAME="moose${BITS}"
-    export SIMPLE_ARTIFACT_DIR="${SIMPLE_PROJECT_NAME}"
-    mkdir "$SIMPLE_ARTIFACT_DIR"
-    cp "$SMALLTALK_CI_IMAGE" "${SIMPLE_ARTIFACT_DIR}/${SIMPLE_PROJECT_NAME}.image"
-    cp "$SMALLTALK_CI_CHANGES" "${SIMPLE_ARTIFACT_DIR}/${SIMPLE_PROJECT_NAME}.changes"
-    export simple_build_zip="${SIMPLE_ARTIFACT_DIR}.zip"
-    zip -qr "$simple_build_zip" "$SIMPLE_ARTIFACT_DIR"
-
-
-    #upload to sftp server
-    scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $build_zip ubuntu@ec2-35-157-37-37.eu-central-1.compute.amazonaws.com:/var/www/html/moose/
-    scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $simple_build_zip ubuntu@ec2-35-157-37-37.eu-central-1.compute.amazonaws.com:/var/www/html/moose/
+smalltalk:
+  - Pharo-7.0
