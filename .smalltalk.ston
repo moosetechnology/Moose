@@ -7,8 +7,6 @@ SmalltalkCISpec {
     }
   ],
   #testing : {
-    #include : {
-      #projects : [ '*' ]
-    }
+    #allTestCases : true
   }
 }
