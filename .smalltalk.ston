@@ -7,6 +7,9 @@ SmalltalkCISpec {
     }
   ],
   #testing : {
+    #exclude : {
+      #classes : [ #GTUnprintableObjectTest ],
+    },
     #allTestCases : true
   }
 }
