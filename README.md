@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.org/moosetechnology/Moose.svg?branch=master)](https://travis-ci.org/moosetechnology/Moose)
-[![Build status](https://ci.appveyor.com/api/projects/status/nbc9u2020p0m8jp7?svg=true)](https://ci.appveyor.com/project/SergeStinckwich/moose)
  
 Moose is an extensive platform for software and data analysis.
 
