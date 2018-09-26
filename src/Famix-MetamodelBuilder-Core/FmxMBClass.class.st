@@ -115,6 +115,24 @@ FmxMBClass >> as: aTraitOrTraitName property: propertyName [
 	^ aSide.		
 ]
 
+{ #category : #converting }
+FmxMBClass >> asExisting: aTraitOrTraitName [
+
+	| trait |
+	
+	trait := aTraitOrTraitName isString
+		ifTrue: [ self builder ensureTraitNamed: aTraitOrTraitName ]
+		ifFalse: [ aTraitOrTraitName ].
+	self addTraitGeneralization: trait. 
+	
+	^ FmxMBClassAlias new
+		subject: self;
+		trait: trait;
+		yourself.
+		
+	
+]
+
 { #category : #accessing }
 FmxMBClass >> classGeneralization [
 	^ classGeneralization

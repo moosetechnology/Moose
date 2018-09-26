@@ -43,6 +43,16 @@ FmxMBClassAlias >> isMetamodelTrait [
 	^ false
 ]
 
+{ #category : #associations }
+FmxMBClassAlias >> link: propertyName to: aFmxMBBehavior [
+
+	| aRelation |
+	
+	aRelation := trait relations detect: [ :relation | relation side name = propertyName ] ifNone: [ self error: ('No property named {1}' format: propertyName) ].
+	
+	aFmxMBBehavior subclassOf: aRelation oppositeSide relatedClass. 
+]
+
 { #category : #private }
 FmxMBClassAlias >> ownerPropertyName [
 
