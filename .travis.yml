@@ -8,9 +8,9 @@ os:
 
 matrix:
   include:
-  - smalltalk: Pharo-6.1
+  - smalltalk: Pharo-7.0
     env: BITS=32
-  - smalltalk: Pharo64-6.1
+  - smalltalk: Pharo64-7.0
     env: BITS=64
 
 branches:
