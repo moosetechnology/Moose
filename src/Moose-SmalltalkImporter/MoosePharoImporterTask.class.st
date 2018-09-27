@@ -37,7 +37,6 @@ MoosePharoImporterTask >> addClasses: col [
 { #category : #adding }
 MoosePharoImporterTask >> addFromPackage: aRPackage [
 
-	| packageDesc |
 	"late-bound cache initialization for classes"
 	"PackageOrganizerCache default addClassesFromPackage: aPackageInfo.
 	packageDesc := PackageOrganizerCache default packageFor: aPackageInfo."

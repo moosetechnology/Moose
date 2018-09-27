@@ -43,7 +43,7 @@ RTRadar >> onView: aView [
 
 { #category : #hooks }
 RTRadar >> renderIn: aView [
-	| box box2 lupa boundingBox sc |
+	| box box2 lupa sc |
 	lupa := nil.
 	sc := 1.
 	aView addAnimation: (RTNopAnimation new

@@ -394,7 +394,7 @@ FamixMetamodelBuilderTraitTest >> testTraitTestingSelectors [
 { #category : #tests }
 FamixMetamodelBuilderTraitTest >> testUses [
 
-	| behavior tBehavior generatedBehavior generatedTBehavior method |
+	| behavior tBehavior generatedBehavior generatedTBehavior |
 	
 	behavior := builder newClassNamed: #Behavior.	
 	tBehavior := builder newTraitNamed: #TBehavior.

@@ -113,7 +113,7 @@ FMIncrementalMMBuilderTest >> testPragmaAPI [
 { #category : #tests }
 FMIncrementalMMBuilderTest >> testPragmaAPIInheritanceChain [
 
-	| mmodel compoundDesc argsProp numProp numericalMeta expressionMeta simpleMeta |
+	| mmodel expressionMeta simpleMeta |
 	builder pragmaClass: EQExpression.
 	builder pragmaClass: EQOperator.
 	builder pragmaProperty: #op in: EQCompound.

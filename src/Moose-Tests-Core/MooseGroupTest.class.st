@@ -50,7 +50,7 @@ MooseGroupTest >> testAllModelMethod [
 { #category : #tests }
 MooseGroupTest >> testAllSatisfy [
 
-	| t group el1 el2 el3 v |
+	| group el1 el2 el3 |
 	group := MooseGroup new.
 	group add: (el1 := MooseEntity new).
 	group add: (el2 := MooseEntity new).
@@ -83,7 +83,7 @@ MooseGroupTest >> testAllWithTypeAtSetup [
 { #category : #tests }
 MooseGroupTest >> testAnySatisfy [
 
-	| t group el1 el2 el3 v |
+	| group el1 el2 el3 |
 	group := MooseGroup new.
 	group add: (el1 := MooseEntity new).
 	group add: (el2 := MooseEntity new).
@@ -177,7 +177,7 @@ MooseGroupTest >> testCollectGroupType [
 { #category : #tests }
 MooseGroupTest >> testContains [
 
-	| t group el1 el2 el3 v |
+	| t group el1 el2 el3 |
 	t := OrderedCollection new.
 	group := MooseGroup new.
 	group add: (el1 := MooseEntity new).
@@ -318,7 +318,7 @@ MooseGroupTest >> testDoWithIndexAndWithIndexDo [
 
 { #category : #tests }
 MooseGroupTest >> testEntitiesDo [
-	| t group el1 el2 el3 v |
+	| t group el1 el2 el3 |
 	t := OrderedCollection new.
 	group := MooseGroup new.
 	group add: (el1 := MooseEntity new).
@@ -378,7 +378,7 @@ MooseGroupTest >> testEntityUniquelyNamed [
 { #category : #tests }
 MooseGroupTest >> testEnumeration [
 
-	| t group el1 el2 el3 v |
+	| t group el1 el2 el3 |
 	t := OrderedCollection new.
 	group := MooseGroup new.
 	group add: (el1 := MooseEntity new).
@@ -401,7 +401,7 @@ MooseGroupTest >> testExplicitEmptyCreation [
 
 { #category : #tests }
 MooseGroupTest >> testFirst [
-	| t group el1 el2 el3 v |
+	| t group el1 el2 el3 |
 	t := OrderedCollection new.
 	group := MooseGroup new.
 	group add: (el1 := MooseEntity new).
@@ -535,7 +535,7 @@ MooseGroupTest >> testIncludesAllOf [
 
 { #category : #tests }
 MooseGroupTest >> testIndexOf [
-	| group el1 el2 el3 v |
+	| group el1 el2 el3 |
 	group := MooseGroup new.
 	group add: (el1 := MooseEntity new).
 	group add: el1.
@@ -563,7 +563,7 @@ MooseGroupTest >> testIsCollection [
 
 { #category : #tests }
 MooseGroupTest >> testLast [
-	| t group el1 el2 el3 v |
+	| t group el1 el2 el3 |
 	t := OrderedCollection new.
 	group := MooseGroup new.
 	group add: (el1 := MooseEntity new).
@@ -626,7 +626,7 @@ MooseGroupTest >> testObjectAsMooseGroup [
 
 { #category : #tests }
 MooseGroupTest >> testOccurenceOf [
-	| t group el1 el2 el3 v |
+	| t group el1 el2 el3 |
 	t := OrderedCollection new.
 	group := MooseGroup new.
 	group add: (el1 := MooseEntity new).
@@ -648,7 +648,7 @@ MooseGroupTest >> testPrintOn [
 { #category : #tests }
 MooseGroupTest >> testReadStream [
 
-	| group el1 el2 el3 v stream |
+	| group el1 el2 el3 stream |
 	group := MooseGroup new.
 	group add: (el1 := MooseEntity new).
 	group add: el1.
@@ -699,7 +699,7 @@ MooseGroupTest >> testSelect [
 
 { #category : #tests }
 MooseGroupTest >> testSelectEightyCoverForMetric [
-	| top remaining |
+	| top |
 	top := self model allMethods selectEightyCoverForMetric: #numberOfLinesOfCode.
 	self assert: (top notEmpty)
 ]

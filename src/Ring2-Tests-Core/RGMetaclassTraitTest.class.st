@@ -15,7 +15,7 @@ RGMetaclassTraitTest >> behaviorClass [
 { #category : #'as yet unclassified' }
 RGMetaclassTraitTest >> testEnsureProtocol [
 
-	| behavior protocol |
+	| behavior |
 	
 	behavior := self behaviorClass named: #SomeClass.
 	behavior ensureProtocolNamed: #SomeProtocol.

@@ -36,7 +36,7 @@ Object >> magritteActionDescriptions [
 
 { #category : #'*Magritte-Model' }
 Object >> magritteDescription [
-	|basicDescription builders|
+	| basicDescription |
 	basicDescription := self basicMagritteDescription.
 	^basicDescription
 ]

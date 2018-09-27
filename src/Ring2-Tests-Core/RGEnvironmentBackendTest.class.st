@@ -131,7 +131,7 @@ RGEnvironmentBackendTest >> testImplicitEnvironmentContentForClassDefinition [
 { #category : #tests }
 RGEnvironmentBackendTest >> testImplicitEnvironmentContentForMetaclassDefinition [
 	
-	| def def2 env baseClass|
+	| def env baseClass|
 
 	def := RGMetaclass named: #'SomeClass class'.
 	env := def environment.
@@ -158,7 +158,7 @@ RGEnvironmentBackendTest >> testImplicitEnvironmentContentForMetaclassDefinition
 { #category : #tests }
 RGEnvironmentBackendTest >> testImplicitEnvironmentContentForMethodDefinition [
 	
-	| def def2 env |
+	| def env |
 
 	def := RGMethod named: #someMethod.
 	env := def environment.

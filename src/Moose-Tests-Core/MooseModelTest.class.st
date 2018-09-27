@@ -107,7 +107,7 @@ MooseModelTest >> testBookmarkAsRaisesAnnouncement [
 
 { #category : #tests }
 MooseModelTest >> testCacheInvalidationAfterAdd [
-	| entity |
+
 	self assert: model allClasses isEmpty.
 	model add: FAMIXClass new.
 	self assert: model allClasses size equals: 1
@@ -144,7 +144,7 @@ MooseModelTest >> testCacheInvalidationAfterRemove [
 
 { #category : #tests }
 MooseModelTest >> testCollect [
-	| t group el1 el2 el3 v |
+	| t group el1 el2 el3 |
 	t := OrderedCollection new.
 	group := MooseModel new.
 	group add: (el1 := MooseEntity new).
@@ -155,7 +155,7 @@ MooseModelTest >> testCollect [
 
 { #category : #tests }
 MooseModelTest >> testDifference [
-	| t model1 model2 model3 el1 el2 el3 el4 |
+	| t model1 model2 el1 el2 el3 el4 |
 	t := OrderedCollection new.
 	model1 := MooseModel new.
 	model1 add: (el1 := MooseEntity new).
@@ -186,7 +186,7 @@ MooseModelTest >> testDifference [
 
 { #category : #tests }
 MooseModelTest >> testDoSeparatedBy [
-	| t group el1 el2 el3 v |
+	| t group el1 el2 el3 |
 	t := OrderedCollection new.
 	group := MooseModel new.
 	group add: (el1 := MooseEntity new).
@@ -255,7 +255,7 @@ MooseModelTest >> testIncludeElementOfType [
 
 { #category : #tests }
 MooseModelTest >> testIntersect [
-	| model1 model2 model3 el1 el2 el3 el4 |
+	| model1 model2 el1 el2 el3 el4 |
 	model1 := MooseModel new.
 	model1 add: (el1 := MooseEntity new).
 	model1 add: (el2 := MooseEntity new).
@@ -316,7 +316,7 @@ MooseModelTest >> testReject [
 { #category : #tests }
 MooseModelTest >> testRemoveAll [
 
-	| t group el1 el2 el3 v |
+	| group el1 el2 el3 |
 	group := MooseModel new.
 	group add: (el1 := MooseEntity new).
 	group add: (el2 := MooseEntity new).
@@ -328,7 +328,7 @@ MooseModelTest >> testRemoveAll [
 
 { #category : #tests }
 MooseModelTest >> testRemoveAll2 [
-	| t group el1 el2 el3 v |
+	| group el1 el2 el3 |
 	group := MooseModel new.
 	group add: (el1 := MooseEntity new).
 	group add: el1.

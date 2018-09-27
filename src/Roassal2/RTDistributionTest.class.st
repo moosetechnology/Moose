@@ -63,7 +63,7 @@ RTDistributionTest >> testFrequency [
 
 { #category : #tests }
 RTDistributionTest >> testFrequencyOfObjects [
-	| set d f |
+	| set d |
 	set := #(yes yes no maybe no maybe maybe yes no maybe yes maybe).
 	d := RTDistribution on: set.
 	

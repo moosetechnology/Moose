@@ -259,7 +259,7 @@ TRGBehaviorTest >> testNewBehavior [
 { #category : #tests }
 TRGBehaviorTest >> testProtocols [
 
-	| newBehavior newSuperclass |
+	| newBehavior |
 	newBehavior := self behaviorClass unnamed.
 	
 	self assert: newBehavior asYetUnclassifiedProtocolName isSymbol.

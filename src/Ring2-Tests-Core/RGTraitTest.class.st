@@ -25,7 +25,7 @@ RGTraitTest >> testClassSide [
 { #category : #'as yet unclassified' }
 RGTraitTest >> testEnsureProtocol [
 
-	| behavior protocol |
+	| behavior |
 	
 	behavior := self behaviorClass named: #SomeClass.
 	behavior ensureProtocolNamed: #SomeProtocol.

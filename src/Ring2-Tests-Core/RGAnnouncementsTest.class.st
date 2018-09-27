@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 RGAnnouncementsTest >> testAnnouncementTimestamps [
 
-	| env announcements behavior start end |
+	| env announcements start end |
 	
 	start := DateAndTime now.
 	env := RGEnvironment new.

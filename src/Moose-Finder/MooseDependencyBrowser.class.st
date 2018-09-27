@@ -8,7 +8,6 @@ Class {
 MooseDependencyBrowser >> buildBrowser [
 	"self openOn: MooseModel root allModels last"
 
-	| invokedNamespaces allInvokedNamespaces source layoutEdges |
 	browser := GLMTabulator new.
 	browser title: [ :model | 'Dependency Browser on ' , model name ].
 	browser

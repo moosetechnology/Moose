@@ -161,7 +161,6 @@ LANInterface >> contents [
 { #category : #'initialize-release' }
 LANInterface >> initialize [ 
 	 
-	| selectionHolder | 
 	super initialize. 
 	self flag: #commentedForSq.
 	"self nodeList list: DependentList new. 

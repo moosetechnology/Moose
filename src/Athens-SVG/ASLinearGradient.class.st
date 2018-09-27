@@ -18,7 +18,7 @@ ASLinearGradient >> asAthensPaintOn: anAthensCairoCanvas [
 { #category : #operations }
 ASLinearGradient >> fill: aShape on: aCanvas [
 
-	| ramp grad p1 p2 fo |
+	| ramp grad p1 p2 |
 	aCanvas paintTransform restoreAfter: [
 		ramp := self colorRampWithOpacity: aShape fill_opacity * aShape opacity. 
 		p1 := gradientTransform transform: x1@y1.

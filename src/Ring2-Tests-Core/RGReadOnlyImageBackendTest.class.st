@@ -159,7 +159,7 @@ RGReadOnlyImageBackendTest >> testDefinitionsIdentity [
 { #category : #tests }
 RGReadOnlyImageBackendTest >> testEmptyLayout [
 
-	| env layout |
+	| env |
 	
 	env := RGEnvironment new.
 	env backend: (RGReadOnlyImageBackend for: env).

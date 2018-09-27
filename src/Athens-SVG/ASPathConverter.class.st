@@ -317,7 +317,7 @@ ASPathConverter >> m [
 		If a moveto is followed by multiple pairs of coordinates, the subsequent pairs are treated as implicit lineto commands.
 	
 	"
-	| pt reset |
+	| pt |
 
 	pt := self readPoint.
 	pt ifNil: [ self error: 'a point expected following after M/m command'].

@@ -23,7 +23,7 @@ RTBucketColorTest >> testGivenCommandAndCollectionDefault [
 
 { #category : #tests }
 RTBucketColorTest >> testGivenCommandAndCollectionDefault2 [
-	|n elements view defaultPalette|
+	|n elements defaultPalette|
 	n := RTBucketColor numberOfColors: 5 command: #yourself scope: (1 to: 30).
 	elements := (RTBox new size: 20; color: n) elementsOn: (1 to: 30).
 	defaultPalette := n defaultPalette.

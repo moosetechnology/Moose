@@ -181,7 +181,7 @@ RTEdgeDrivenLayout >> isEdgeDrivenLayout [
 
 { #category : #accessing }
 RTEdgeDrivenLayout >> setEdgesFromElements: elements [ 
-	| view |
+
 	elements isEmpty ifTrue: [ ^ self ].
 	
 	^ self

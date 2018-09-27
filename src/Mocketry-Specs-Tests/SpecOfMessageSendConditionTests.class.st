@@ -32,7 +32,7 @@ SpecOfMessageSendConditionTests >> testFailedValidationWithMessageArgs [
 { #category : #tests }
 SpecOfMessageSendConditionTests >> testMatches [
 
-	| flag spec result |
+	| flag spec |
 	spec := SpecOfMessageSendCondition of: [ flag ] by: (Equal to: true).
 	
 	flag := true.

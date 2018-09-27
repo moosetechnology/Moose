@@ -23,7 +23,7 @@ TRGClassDescriptionTest >> testCopyForBehaviorDefinitionForClassDescription [
 { #category : #tests }
 TRGClassDescriptionTest >> testTypes [
 
-	| newBehavior newSuperclass |
+	| newBehavior |
 	newBehavior := self behaviorClass unnamed.
 	
 	self deny: newBehavior isBytes.

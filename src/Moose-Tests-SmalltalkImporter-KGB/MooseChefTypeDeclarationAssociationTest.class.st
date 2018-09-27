@@ -10,7 +10,7 @@ Class {
 { #category : #setup }
 MooseChefTypeDeclarationAssociationTest class >> importModel [ 
 	 
-	| factory p1 p2 c1 c2 c3 m1 m2 m3 m4 a1 a2 |
+	| factory p1 p2 c1 c2 c3 m1 m2 m3 m4 |
 	
 	factory := SmalltalkCompatibilityMetamodelFactory new.
 	

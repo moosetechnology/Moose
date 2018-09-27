@@ -80,7 +80,7 @@ MooseMonticelloImporter >> import [
 MooseMonticelloImporter >> importFileNamed: name [ 
 	"This is a public method. It loads a particular package into the moose model"
 
-	| version definitions visitor progressBar step |
+	| version definitions visitor |
 	self setMooseModel.
 	
 	[ version := self repository versionFromFileNamed: name. ]

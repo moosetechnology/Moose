@@ -349,7 +349,7 @@ RTSVGVisitor >> visitBezierShape: aBezierShape with: aLineDecoration [
 
 { #category : #visitor }
 RTSVGVisitor >> visitBitMapShape: aBitmapShape [
-	| form box svgE|
+
 	"Not supported yet"
 	"form := aBitmapShape form.
 	box := self alignRectangle: (aBitmapShape encompassingRectangle).

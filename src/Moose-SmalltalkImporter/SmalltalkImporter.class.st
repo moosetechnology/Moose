@@ -101,7 +101,7 @@ SmalltalkImporter >> createAnnotationType: aPragmaNode [
 
 { #category : #'private-entity-creation' }
 SmalltalkImporter >> createAttribute: name for: aClass [ 
-	| attribute realName possibleTypes |
+	| attribute realName |
 	realName := self 
 		nameForInstanceVariable: name
 		class: aClass.
@@ -176,7 +176,7 @@ SmalltalkImporter >> createClassVarAttribute: name for: aClass [
 { #category : #'private-entity-creation' }
 SmalltalkImporter >> createGlobalVariable: name value: value [ 
 	 
-	| global declaredType | 
+	| global | 
 	global := globals 
 		at: name 
 		put: self factory globalVariable new. 

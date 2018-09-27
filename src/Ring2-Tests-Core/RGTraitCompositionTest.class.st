@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 RGTraitCompositionTest >> testGlobalVariablesCollection [
 	
-	| globalVariable globalVariable2 traitComposition env transformation1 transformation2 transformation3 |
+	| globalVariable globalVariable2 env |
 
 	env := RGEnvironment new.
 

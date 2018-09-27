@@ -190,8 +190,6 @@ RGBehavior >> addProtocol: aSymbol [
 { #category : #'managing container' }
 RGBehavior >> addoptToParentStub [
 
-	| aPackage |
-	
 	self isRingResolved ifFalse: [ ^ self ].
 
 	super addoptToParentStub.

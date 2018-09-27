@@ -234,7 +234,7 @@ MooseEntityTest >> testMooseModelAccessor [
 
 { #category : #tests }
 MooseEntityTest >> testPrintOnAndPrintString [
-	| entity stream t str ins |
+	| entity stream |
 	entity := MooseEntity new.
 	stream := WriteStream on: String new.
 	entity printOn: stream.

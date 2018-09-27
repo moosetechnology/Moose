@@ -28,7 +28,7 @@ Conforming High-Quality SVG Viewers are required to use at least double-precisio
 Within the SVG DOM, a <number> is represented as a float or an SVGAnimatedNumber.
 "
 	
-	| result char sign esign pos int frac exponent |
+	| result sign esign pos int frac exponent |
 	
 	esign := sign := 1.
 	pos := stream position.

@@ -11,7 +11,7 @@ MooseEntity >> asMooseFinderItemNamed: aString in: aMooseEntity [
 MooseEntity >> bookmarkEntity [
 	<menuItem: 'Bookmark Entity' category: 'Utilities'>
 	
-	| groupName group |
+	| groupName |
 	groupName := UIManager default 
 		request: 'Enter description'
 		initialAnswer: self description.

@@ -49,7 +49,7 @@ RTSVGText >> addMatrix: stream visitor: visitor [
 
 { #category : #adding }
 RTSVGText >> addOn: stream using: aSVGVisitor [
-	| box |
+
 	aSVGVisitor names at: self element put: self id.
 	self openDef: stream.
 	self addPosition: stream.

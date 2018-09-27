@@ -293,7 +293,7 @@ FMMetaRepositoryFilterTest >> testFM3 [
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testFM3Classes [
 	
-	| fm3 names visitor repoFM3 |
+	| fm3 visitor repoFM3 |
 	
 	repoFM3 := FMMetaRepository fm3.
 	visitor := FMMetaRepositoryFilter new

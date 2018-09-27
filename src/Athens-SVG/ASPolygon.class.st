@@ -11,7 +11,7 @@ Class {
 ASPolygon >> points: aString [ 
 
 	"parse polygon points"
-	| pts x y conv stream |
+	| x y conv stream |
 	
 	points := OrderedCollection new.
 	stream := aString readStream.
