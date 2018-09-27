@@ -246,7 +246,7 @@ MooseEntityTest >> testPrintOnAndPrintString [
 MooseEntityTest >> testPrintOnWithError [
 	| entity stream cls |
 	cls := Class new
-		superclass: MooseEntity;
+		basicSuperclass: MooseEntity;
 		setFormat: MooseEntity format;
 		classLayout: MooseEntity classLayout copy;
 		yourself.
