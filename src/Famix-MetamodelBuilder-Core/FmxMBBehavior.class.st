@@ -135,6 +135,10 @@ FmxMBBehavior >> generateNavigationGroups [
 
 	| allNavigationGroups |
 	
+"	hasNavigation ifFalse: [ ^ self ].
+
+	self withNavigation.
+"	
 	allNavigationGroups := self navigationGroups, (self relations flatCollect: [ :relation |
 		relation side navigationGroups ]).
 

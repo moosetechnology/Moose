@@ -133,5 +133,5 @@ FmxMBRelation >> to: aBlock [
 FmxMBRelation >> withNavigation [
 
 	self sides do: [ :aSide |
-		aSide withNavigation ]
+		aSide withNavigationOf: self ]
 ]
