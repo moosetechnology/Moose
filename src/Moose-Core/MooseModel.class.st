@@ -687,7 +687,7 @@ MooseModel >> sourceLanguage [
 	^ sourceLanguage
 		ifNil: [ sourceLanguage := self allSourceLanguages
 				detect: [ :each | each isAttached not ]
-				ifNone: [ FAMIXUnknownSourceLanguage new ] ]
+				ifNone: [ nil ] ]
 ]
 
 { #category : #'Famix-Extensions' }
