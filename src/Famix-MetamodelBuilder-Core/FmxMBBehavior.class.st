@@ -134,6 +134,8 @@ FmxMBBehavior >> generateContainerMethodsIn: aClass [
 FmxMBBehavior >> generateNavigationGroups [
 
 	| allNavigationGroups |
+
+	self halt.
 	
 "	hasNavigation ifFalse: [ ^ self ].
 
