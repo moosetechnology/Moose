@@ -49,3 +49,12 @@ FamixTGlobalVariable >> parentScope: anObject [
 	parentScope := anObject
 
 ]
+
+{ #category : #navigation }
+FamixTGlobalVariable >> parentScopeGroup [
+
+	<generated>
+	<navigation: 'ParentScope'>
+	^ MooseGroup
+			with: (self parentScope)
+]

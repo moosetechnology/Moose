@@ -58,6 +58,15 @@ FamixTAnnotationInstanceAttribute >> parentAnnotationInstance: anObject [
 
 ]
 
+{ #category : #navigation }
+FamixTAnnotationInstanceAttribute >> parentAnnotationInstanceGroup [
+
+	<generated>
+	<navigation: 'ParentAnnotationInstance'>
+	^ MooseGroup
+			with: (self parentAnnotationInstance)
+]
+
 { #category : #accessing }
 FamixTAnnotationInstanceAttribute >> value [
 

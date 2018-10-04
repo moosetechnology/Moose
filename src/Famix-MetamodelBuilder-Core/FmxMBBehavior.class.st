@@ -138,10 +138,9 @@ FmxMBBehavior >> generateNavigationGroups [
 	allNavigationGroups := self navigationGroups, (self relations flatCollect: [ :relation |
 		relation side navigationGroups ]).
 
-	allNavigationGroups do: [ :aGroup |
+	allNavigationGroups do: [ :aGroup | 
 		| sideName |
 		sideName := aGroup entity name.
-		
 		aGroup entity isMany ifTrue: [ 
 			self realClass instanceSide compile: ('{1}
 
