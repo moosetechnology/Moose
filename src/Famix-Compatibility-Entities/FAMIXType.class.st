@@ -78,7 +78,7 @@ FAMIXType >> allAnnotationTypes [
 { #category : #'Famix-Implementation' }
 FAMIXType >> allSuperclassesDo: aBlock [
 	self allSuperclassesWithoutAliasesDo: aBlock.
-	self mooseModel sourceLanguage isC
+	(self mooseModel sourceLanguage notNil and: [self mooseModel sourceLanguage isC])
 		ifTrue: [ self typeAliases do: [ :each | each allSuperclassesWithoutAliasesDo: aBlock ] ]
 ]
 

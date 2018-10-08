@@ -893,14 +893,6 @@ MooseAbstractGroup >> size [
 	^ self entityStorage size
 ]
 
-{ #category : #'Famix-Extensions' }
-MooseAbstractGroup >> storageGroup [
-	
-	<navigation: 'All Entities'>
-	^self entityStorage
-	
-]
-
 { #category : #arithmetic }
 MooseAbstractGroup >> sumNumbers: aBlockClosure [ 
 	^ self entities sumNumbers: aBlockClosure 
