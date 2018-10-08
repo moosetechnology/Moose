@@ -4,7 +4,7 @@ Class {
 	#traits : 'FamixTAttribute + FamixTWithClassScope',
 	#classTraits : 'FamixTAttribute classTrait + FamixTWithClassScope classTrait',
 	#instVars : [
-		'hasClassScope'
+		'#hasClassScope'
 	],
 	#category : #'Famix-Java-Entities-Entities'
 }

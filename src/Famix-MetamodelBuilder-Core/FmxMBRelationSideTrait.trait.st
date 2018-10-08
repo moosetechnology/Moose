@@ -72,7 +72,6 @@ FmxMBRelationSideTrait >> containsMany: aRelationSide [
 	
 	aRelation := self oneToMany: aRelationSide.
 	aRelation right container.
-	aRelation withNavigation.
 			
 	^ aRelation
 	
@@ -85,7 +84,6 @@ FmxMBRelationSideTrait >> containsOne: aRelationSide [
 	
 	aRelation := self oneToOne: aRelationSide.
 	aRelation right container.
-	aRelation withNavigation.
 			
 	^ aRelation
 	
@@ -138,7 +136,6 @@ FmxMBRelationSideTrait >> manyBelongTo: aRelationSide [
 	
 	aRelation := self manyToOne: aRelationSide.
 	aRelation left container.
-	aRelation withNavigation.
 			
 	^ aRelation
 
@@ -182,7 +179,6 @@ FmxMBRelationSideTrait >> oneBelongsTo: aRelationSide [
 	
 	aRelation := self oneToOne: aRelationSide.
 	aRelation left container.
-	aRelation withNavigation.
 			
 	^ aRelation
 

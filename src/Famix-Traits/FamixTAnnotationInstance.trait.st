@@ -58,12 +58,3 @@ FamixTAnnotationInstance >> annotatedEntity: anObject [
 	annotatedEntity := anObject
 
 ]
-
-{ #category : #navigation }
-FamixTAnnotationInstance >> annotatedEntityGroup [
-
-	<generated>
-	<navigation: 'AnnotatedEntity'>
-	^ MooseGroup
-			with: (self annotatedEntity)
-]

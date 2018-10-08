@@ -125,12 +125,3 @@ FamixTType >> typeContainer: anObject [
 	self resetMooseName.
 
 ]
-
-{ #category : #navigation }
-FamixTType >> typeContainerGroup [
-
-	<generated>
-	<navigation: 'TypeContainer'>
-	^ MooseGroup
-			with: (self typeContainer)
-]

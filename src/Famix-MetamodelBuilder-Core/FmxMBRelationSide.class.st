@@ -72,7 +72,6 @@ FmxMBRelationSide >> cardinality: anObject [
 { #category : #properties }
 FmxMBRelationSide >> container [
 	
-	self withNavigationOf: self relation.
 	container := true
 ]
 

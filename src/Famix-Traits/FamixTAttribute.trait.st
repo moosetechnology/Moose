@@ -56,12 +56,3 @@ FamixTAttribute >> parentType: anObject [
 	self resetMooseName.
 
 ]
-
-{ #category : #navigation }
-FamixTAttribute >> parentTypeGroup [
-
-	<generated>
-	<navigation: 'ParentType'>
-	^ MooseGroup
-			with: (self parentType)
-]

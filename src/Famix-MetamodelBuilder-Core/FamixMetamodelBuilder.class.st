@@ -263,8 +263,7 @@ FamixMetamodelBuilder >> generate [
 	self traits do: [ :each | each generate ] displayingProgress: 'generating traits'.
 	self sortedClasses do: [ :each | each generate ] displayingProgress: 'generating classes'.
 
-	self traits do: [ :each | each generateNavigationGroups ] displayingProgress: 'generating navigation groups for traits'.
-	self sortedClasses do: [ :each | each generateNavigationGroups ] displayingProgress: 'generating navigation groups for classes'.
+	self sortedClasses do: [ :each | each generateNavigationGroups ] displayingProgress: 'generating navigation groups'.
 
 	self behaviorsCount > 0
 		ifTrue: [ self generateImportingContext ].

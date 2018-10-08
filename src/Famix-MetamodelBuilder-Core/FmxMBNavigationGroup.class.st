@@ -3,8 +3,7 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'name',
-		'entity',
-		'relation'
+		'entity'
 	],
 	#category : #'Famix-MetamodelBuilder-Core-Implementation'
 }
@@ -27,14 +26,4 @@ FmxMBNavigationGroup >> name [
 { #category : #accessing }
 FmxMBNavigationGroup >> name: anObject [
 	name := anObject
-]
-
-{ #category : #accessing }
-FmxMBNavigationGroup >> relation [
-	^ relation
-]
-
-{ #category : #accessing }
-FmxMBNavigationGroup >> relation: anObject [
-	relation := anObject
 ]

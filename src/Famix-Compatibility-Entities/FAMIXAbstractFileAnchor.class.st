@@ -3,6 +3,10 @@ Class {
 	#superclass : #FAMIXSourceAnchor,
 	#traits : 'FamixTFileAnchor',
 	#classTraits : 'FamixTFileAnchor classTrait',
+	#instVars : [
+		'encoding',
+		'fileName'
+	],
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 

@@ -7,8 +7,7 @@ Class {
 		'builder',
 		'willGenerate',
 		'navigationGroups',
-		'additionalProperties',
-		'hasNavigation'
+		'additionalProperties'
 	],
 	#category : #'Famix-MetamodelBuilder-Core-Implementation'
 }
@@ -48,7 +47,6 @@ FmxMBEntity >> initialize [
 	willGenerate := true.
 	navigationGroups := Set new.
 	additionalProperties := Dictionary new.
-	hasNavigation := true.
 
 ]
 
@@ -89,20 +87,4 @@ FmxMBEntity >> withNavigation [
 		name: self name;
 		entity: self;
 		yourself).
-]
-
-{ #category : #navigation }
-FmxMBEntity >> withNavigationOf: aRelation [
-
-	self navigationGroups add: (FmxMBNavigationGroup new 
-		name: self name;
-		entity: self;
-		relation: aRelation;
-		yourself).
-]
-
-{ #category : #navigation }
-FmxMBEntity >> withoutNavigation [
-
-	hasNavigation := false
 ]

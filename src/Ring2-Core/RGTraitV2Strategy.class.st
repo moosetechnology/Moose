@@ -253,7 +253,7 @@ RGTraitV2Strategy >> definition [
 				crtab;
 				nextPutAll: 'slots: ';
 				nextPutAll: self owner slotDefinitionString].
-		stream cr; tab; nextPutAll: 'package: ';
+		stream cr; tab; nextPutAll: 'category: ';
 				store: self category asString].
 ]
 
@@ -284,7 +284,7 @@ RGTraitV2Strategy >> definitionWithSlots [
 	poolString = '' ifFalse: [
 		aStream cr; tab; nextPutAll: 'poolDictionaries: ';
 			store: poolString].
-	aStream cr; tab; nextPutAll: 'package: ';
+	aStream cr; tab; nextPutAll: 'category: ';
 			store: self category asString.
 
 	self owner superclass ifNil: [ 
