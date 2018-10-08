@@ -3,9 +3,6 @@ Class {
 	#superclass : #FAMIXSourceAnchor,
 	#traits : 'FamixTMultipleFileAnchor',
 	#classTraits : 'FamixTMultipleFileAnchor classTrait',
-	#instVars : [
-		'allFiles'
-	],
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 

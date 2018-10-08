@@ -4,7 +4,7 @@ Class {
 	#traits : 'FamixTMethod + FamixTWithCaughtExceptions + FamixTWithClassScope + FamixTWithDeclaredExceptions + FamixTWithThrownExceptions',
 	#classTraits : 'FamixTMethod classTrait + FamixTWithCaughtExceptions classTrait + FamixTWithClassScope classTrait + FamixTWithDeclaredExceptions classTrait + FamixTWithThrownExceptions classTrait',
 	#classVars : [
-		'#ShouldSearchForSmalltalkCodeInImage'
+		'ShouldSearchForSmalltalkCodeInImage'
 	],
 	#category : #'Famix-Compatibility-Entities-Entities'
 }

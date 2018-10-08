@@ -3,9 +3,6 @@ Class {
 	#superclass : #FamixJavaSourceAnchor,
 	#traits : 'FamixTMultipleFileAnchor',
 	#classTraits : 'FamixTMultipleFileAnchor classTrait',
-	#instVars : [
-		'allFiles'
-	],
 	#category : #'Famix-Java-Entities-Entities'
 }
 
