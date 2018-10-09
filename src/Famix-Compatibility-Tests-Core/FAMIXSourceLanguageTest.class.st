@@ -31,7 +31,7 @@ FAMIXSourceLanguageTest >> testDefaultSourceLanguage [
 
 { #category : #tests }
 FAMIXSourceLanguageTest >> testDefaultUnknownLanguage [
-	self assert: MooseModel new sourceLanguage isUnknown
+	self assert: MooseModel new sourceLanguage isNil
 ]
 
 { #category : #tests }
@@ -59,5 +59,5 @@ FAMIXSourceLanguageTest >> testSourcedEntities [
 	self assert: (model allClasses entityNamed: 'ClassWithSource') declaredSourceLanguage name equals: 'SomeLanguage'.
 	self assert: (model allClasses entityNamed: 'ClassWithSource') declaredSourceLanguage isAttached.
 	self assert: (model allClasses entityNamed: 'ClassWithSource') sourceLanguage name equals: 'SomeLanguage'.
-	self assert: (model allClasses entityNamed: 'ClassWithoutSource') sourceLanguage isUnknown
+	self assert: (model allClasses entityNamed: 'ClassWithoutSource') sourceLanguage isNil
 ]
