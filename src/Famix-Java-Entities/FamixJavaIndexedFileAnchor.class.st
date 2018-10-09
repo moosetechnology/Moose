@@ -3,10 +3,6 @@ Class {
 	#superclass : #FamixJavaAbstractFileAnchor,
 	#traits : 'FamixTIndexedFileNavigation',
 	#classTraits : 'FamixTIndexedFileNavigation classTrait',
-	#instVars : [
-		'endPos',
-		'startPos'
-	],
 	#category : #'Famix-Java-Entities-Entities'
 }
 

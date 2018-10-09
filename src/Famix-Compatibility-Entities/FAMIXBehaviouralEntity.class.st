@@ -41,11 +41,6 @@ FAMIXBehaviouralEntity >> accept: aVisitor [
 	aVisitor visitBehaviouralEntity: self
 ]
 
-{ #category : #accessing }
-FAMIXBehaviouralEntity >> addOutgoingReference: aReference [ 
-	outgoingReferences add: aReference
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXBehaviouralEntity >> clientBehaviours [
 	<MSEProperty: #clientBehaviours type: #FAMIXBehaviouralEntity> <multivalued> <derived>

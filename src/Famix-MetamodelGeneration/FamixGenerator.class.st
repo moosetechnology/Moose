@@ -125,7 +125,8 @@ Class {
 		'tWithMethodsWithModifiersGlue',
 		'tContainingWithStatementsGlue',
 		'tContainingWithInvocationsGlue',
-		'tWithMethodsWithAccessesGlue'
+		'tWithMethodsWithAccessesGlue',
+		'tMultipleFileAnchor'
 	],
 	#category : #'Famix-MetamodelGeneration'
 }
@@ -982,6 +983,13 @@ FamixGenerator >> defineProperties [
 
 	((tWithImmediateSource property: #source type: #String)
 		comment: 'Actual source code of the source entity').
+		
+	((tWithImmediateSource property: #source type: #String)
+		comment: 'Actual source code of the source entity').
+		
+	((tMultipleFileAnchor property: #allFiles type: #FamixTFileAnchor)
+		comment: 'All source code definition files';
+		multivalued).
 ]
 
 { #category : #definition }
@@ -1644,6 +1652,8 @@ FamixGenerator >> defineTraits [
 	tPossibleStub := builder newTraitNamed: #TPossibleStub.
 
 	tWithStatements := builder newTraitNamed: #TWithStatements.
+	
+	tMultipleFileAnchor := builder newTraitNamed: #TMultipleFileAnchor.
 
 	self defineGlueingTraits.
 

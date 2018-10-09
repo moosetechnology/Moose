@@ -1,6 +1,8 @@
 Class {
 	#name : #FamixTest1MultipleFileAnchor,
 	#superclass : #FamixTest1SourceAnchor,
+	#traits : 'FamixTMultipleFileAnchor',
+	#classTraits : 'FamixTMultipleFileAnchor classTrait',
 	#category : #'Famix-Test1-Entities-Entities'
 }
 
@@ -23,7 +25,7 @@ FamixTest1MultipleFileAnchor class >> generatedSlotNames [
 { #category : #generator }
 FamixTest1MultipleFileAnchor class >> generatedTraitNames [
 	<generated>
-	^ #()
+	^ #(FamixTMultipleFileAnchor)
 ]
 
 { #category : #meta }

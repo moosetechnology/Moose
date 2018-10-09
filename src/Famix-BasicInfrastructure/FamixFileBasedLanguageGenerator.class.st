@@ -52,6 +52,7 @@ FamixFileBasedLanguageGenerator >> defineHierarchy [
 	indexedFileAnchor --|> #TIndexedFileNavigation.
 
 	multipleFileAnchor --|> sourceAnchor.
+	multipleFileAnchor --|> #TMultipleFileAnchor.
 
 	sourcedEntity --|> #TWithFiles.
 

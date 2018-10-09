@@ -50,11 +50,6 @@ FamixJavaMethod >> accessedAttributes [
 	^ self queryOutgoingAccesses opposites withinMyClass asSet select: #isAttribute
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaMethod >> addOutgoingReference: aReference [ 
-	outgoingReferences add: aReference
-]
-
 { #category : #accessing }
 FamixJavaMethod >> belongsTo [
 
@@ -376,13 +371,7 @@ FamixJavaMethod >> numberOfConditionals [
 	^ self
 		lookUpPropertyNamed: #numberOfConditionals
 		computedAs: [ 
-			self mooseModel isSmalltalk
-				ifTrue: [ 
-					| parser |
-					parser := RBVisitorForFAMIXMetrics new.
-					parser processMethod: self usingImporter: nil inModel: nil.
-					parser numberOfConditionals ]
-				ifFalse: [ self notExistentMetricValue ] ]
+			self notExistentMetricValue ] 
 ]
 
 { #category : #'as yet unclassified' }
@@ -409,20 +398,6 @@ FamixJavaMethod >> numberOfOutgoingInvocations [
 	^self
 		lookUpPropertyNamed: #numberOfOutgoingInvocations
 		computedAs: [self outgoingInvocations size]
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaMethod >> numberOfStatements [
-	<MSEProperty: #numberOfStatements type: #Number>
-	<MSEComment: 'The number of statements in a method'>
-	^ self
-		lookUpPropertyNamed: #numberOfStatements
-		computedAs: [ self mooseModel isSmalltalk
-				ifTrue: [ | parser |
-					parser := RBVisitorForFAMIXMetrics new.
-					parser processMethod: self usingImporter: nil inModel: nil.
-					parser numberOfStatements ]
-				ifFalse: [ self notExistentMetricValue ] ]
 ]
 
 { #category : #'as yet unclassified' }

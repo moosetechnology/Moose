@@ -3,10 +3,6 @@ Class {
 	#superclass : #FAMIXAbstractFileAnchor,
 	#traits : 'FamixTIndexedFileNavigation',
 	#classTraits : 'FamixTIndexedFileNavigation classTrait',
-	#instVars : [
-		'endPos',
-		'startPos'
-	],
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 

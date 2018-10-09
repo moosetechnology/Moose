@@ -221,6 +221,15 @@ FamixTMethod >> parentType: anObject [
 
 ]
 
+{ #category : #navigation }
+FamixTMethod >> parentTypeGroup [
+
+	<generated>
+	<navigation: 'ParentType'>
+	^ MooseGroup
+			with: (self parentType)
+]
+
 { #category : #testing }
 FamixTMethod >> parentTypeIsStub [
 
