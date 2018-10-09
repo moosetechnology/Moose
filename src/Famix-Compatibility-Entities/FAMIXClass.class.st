@@ -4,7 +4,7 @@ Class {
 	#traits : 'FamixTClass + FamixTLCOMMetrics + FamixTWithExceptions',
 	#classTraits : 'FamixTClass classTrait + FamixTLCOMMetrics classTrait + FamixTWithExceptions classTrait',
 	#instVars : [
-		'#isInterface'
+		'isInterface'
 	],
 	#category : #'Famix-Compatibility-Entities-Entities'
 }

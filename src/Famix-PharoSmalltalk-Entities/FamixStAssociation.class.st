@@ -4,8 +4,8 @@ Class {
 	#traits : 'FamixTAssociation + TAssociationMetaLevelDependency',
 	#classTraits : 'FamixTAssociation classTrait + TAssociationMetaLevelDependency classTrait',
 	#classInstVars : [
-		'#targetTypes',
-		'#sourceTypes'
+		'targetTypes',
+		'sourceTypes'
 	],
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
