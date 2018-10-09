@@ -17,6 +17,8 @@ FmxMBBuilderRelationTest >> checkArrow: aBinarySelector from: cardinality1 to: c
 			tClass := builder newClassNamed: #TClass. 
 			tComment := builder newClassNamed: #TComment ].		
 
+	(tClass property: #property1) perform: aBinarySelector with: (tComment property: #property2).
+	
 	builder generate.
 	
 	generatedTClass := builder testingEnvironment ask classNamed: 'TstTClass'.
