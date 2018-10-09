@@ -590,7 +590,7 @@ MooseGroupTest >> testLast [
 MooseGroupTest >> testMax [
 	| classes |
 	classes := self model allClasses.
-	self assert: (classes max: #numberOfMethods) equals: 33 "was 15 before stateful traits conversion"
+	self assert: (classes max: #numberOfMethods) equals: 32 "was 15 before stateful traits conversion"
 ]
 
 { #category : #tests }
@@ -748,7 +748,7 @@ MooseGroupTest >> testSort [
 MooseGroupTest >> testSum [
 	| classes |
 	classes := self model allClasses.
-	self assert: (classes sumNumbers: #numberOfMethods) equals: 85 "was 54 before traits classes inclusion"
+	self assert: (classes sumNumbers: #numberOfMethods) equals: 84 "was 54 before traits classes inclusion"
 ]
 
 { #category : #tests }
