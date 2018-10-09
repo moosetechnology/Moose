@@ -463,7 +463,7 @@ MooseModel >> intersection: aGroup [
 
 { #category : #'Famix-Extensions' }
 MooseModel >> isSmalltalk [
-	^ self sourceLanguage isSmalltalk
+	^ self sourceLanguage notNil and: [self sourceLanguage isSmalltalk]
 ]
 
 { #category : #accessing }
