@@ -4,7 +4,6 @@ Class {
 	#traits : 'FamixTSourceAnchor + FamixTWithImmediateSource + TDependencyQueries + TEntityMetaLevelDependency',
 	#classTraits : 'FamixTSourceAnchor classTrait + FamixTWithImmediateSource classTrait + TDependencyQueries classTrait + TEntityMetaLevelDependency classTrait',
 	#instVars : [
-		'#element => FMOne type: #FamixTWithSourceAnchor opposite: #sourceAnchor',
 		'#pharoEntity'
 	],
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'

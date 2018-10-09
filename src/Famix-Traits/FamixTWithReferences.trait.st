@@ -29,6 +29,11 @@ FamixTWithReferences classSide >> generatedTraitNames [
 ]
 
 { #category : #accessing }
+FamixTWithReferences >> addOutgoingReference: aReference [ 
+	outgoingReferences add: aReference
+]
+
+{ #category : #accessing }
 FamixTWithReferences >> outgoingReferences [
 
 	<generated>
