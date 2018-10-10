@@ -374,7 +374,7 @@ FMMSEParser >> tFULLNAME [
 	
 	buf reset.
 	[	buf nextPut: char.
-		[ self nextCharIsAlphanumeric ] whileTrue: [ buf nextPut: char ].
+		[ self nextCharIsAlphanumeric or: [ char = $- ] ] whileTrue: [ buf nextPut: char ].
 		$. == char ] whileTrue: 
 			[	buf nextPut: char.
 				(self characterSet isLetter: self next) ifFalse: [^self syntaxError ] ].
