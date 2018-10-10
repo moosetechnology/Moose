@@ -72,7 +72,8 @@ FmxMBRelationSideTrait >> containsMany: aRelationSide [
 	
 	aRelation := self oneToMany: aRelationSide.
 	aRelation right container.
-	aRelation withNavigation.
+	self builder navigationForContainers
+		ifTrue: [ aRelation withNavigation ].
 			
 	^ aRelation
 	
@@ -85,7 +86,8 @@ FmxMBRelationSideTrait >> containsOne: aRelationSide [
 	
 	aRelation := self oneToOne: aRelationSide.
 	aRelation right container.
-	aRelation withNavigation.
+	self builder configuration navigationForContainers
+		ifTrue: [ aRelation withNavigation ].
 			
 	^ aRelation
 	
@@ -138,7 +140,8 @@ FmxMBRelationSideTrait >> manyBelongTo: aRelationSide [
 	
 	aRelation := self manyToOne: aRelationSide.
 	aRelation left container.
-	aRelation withNavigation.
+	self builder configuration navigationForContainers
+		ifTrue: [ aRelation withNavigation ].
 			
 	^ aRelation
 
@@ -154,6 +157,8 @@ FmxMBRelationSideTrait >> manyToMany: aRelationSide [
 	ownSide many.
 	oppositeSide many.
 	aRelation := self relationFrom: ownSide to: oppositeSide.
+	self builder configuration navigationForNonContainers
+		ifTrue: [ aRelation withNavigation ].
 		
 	^ aRelation
 	
@@ -169,6 +174,8 @@ FmxMBRelationSideTrait >> manyToOne: aRelationSide [
 	oppositeSide := aRelationSide asRelationSideNamed: self pluralPropertyName. 	
 	oppositeSide many.
 	aRelation := self relationFrom: ownSide to: oppositeSide.
+	self builder configuration navigationForNonContainers
+		ifTrue: [ aRelation withNavigation ].
 		
 	^ aRelation
 	
@@ -182,7 +189,8 @@ FmxMBRelationSideTrait >> oneBelongsTo: aRelationSide [
 	
 	aRelation := self oneToOne: aRelationSide.
 	aRelation left container.
-	aRelation withNavigation.
+	self builder configuration navigationForContainers
+		ifTrue: [ aRelation withNavigation ].
 			
 	^ aRelation
 
@@ -196,6 +204,8 @@ FmxMBRelationSideTrait >> oneToMany: aRelationSide [
 	oppositeSide := aRelationSide asRelationSideNamed: self singularPropertyName. 	
 	ownSide many.
 	aRelation := self relationFrom: ownSide to: oppositeSide.
+	self builder configuration navigationForNonContainers
+		ifTrue: [ aRelation withNavigation ].
 		
 	^ aRelation
 	
@@ -211,6 +221,8 @@ FmxMBRelationSideTrait >> oneToOne: aRelationSide [
 	oppositeSide := aRelationSide asRelationSideNamed: self propertyName.
 	 	
 	aRelation := self relationFrom: ownSide to: oppositeSide.
+	self builder configuration navigationForNonContainers
+		ifTrue: [ aRelation withNavigation ].
 		
 	^ aRelation
 	

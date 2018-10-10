@@ -12,7 +12,9 @@ Class {
 		'traitTag',
 		'basicSuperclassName',
 		'basicTraitName',
-		'wantsToGenerateImportingContext'
+		'wantsToGenerateImportingContext',
+		'navigationForContainers',
+		'navigationForNonContainers'
 	],
 	#category : #'Famix-MetamodelBuilder-Core-Basic'
 }
@@ -81,8 +83,36 @@ FmxMBConfiguration >> initialize [
 	
 	wantsToGenerateImportingContext := false.
 	
+	navigationForContainers := true.
+	navigationForNonContainers := false.
 	
 	
+	
+]
+
+{ #category : #accessing }
+FmxMBConfiguration >> navigationForContainers [
+
+	"define if navigation methods for Moose Finder should be generated for containment relations"
+	^ navigationForContainers
+]
+
+{ #category : #accessing }
+FmxMBConfiguration >> navigationForContainers: anObject [
+	navigationForContainers := anObject
+]
+
+{ #category : #accessing }
+FmxMBConfiguration >> navigationForNonContainers [
+
+	"define if navigation methods for Moose Finder should be generated for non-containment relations"
+
+	^ navigationForNonContainers
+]
+
+{ #category : #accessing }
+FmxMBConfiguration >> navigationForNonContainers: anObject [
+	navigationForNonContainers := anObject
 ]
 
 { #category : #accessing }
