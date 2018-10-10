@@ -1666,7 +1666,7 @@ FamixGenerator >> initialize [
 	super initialize.
 
 	builder := FamixMetamodelBuilder new.
-	builder 
+	builder configuration 
 		prefix: self prefix;
 		packageName: self packageName.
 

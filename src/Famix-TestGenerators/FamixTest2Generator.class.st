@@ -55,7 +55,7 @@ FamixTest2Generator >> defineHierarchy [
 FamixTest2Generator >> newBuilder [
 
 	^ self builderWithStandardTraits
-		generateImportingContext: true;
+		withImportingContext;
 		yourself
 		
 		

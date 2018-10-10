@@ -92,7 +92,7 @@ FamixMetamodelBuilderClassTest >> testBasicSuperclass [
 	builder newClassNamed: #Comment.	
 	builder generate.
 	generated := builder testingEnvironment ask classNamed: 'TstComment'.
-	self assert: generated superclass name equals: builder defaultBasicSuperclassName.
+	self assert: generated superclass name equals: builder configuration defaultBasicSuperclassName.
 
 ]
 
@@ -106,7 +106,7 @@ FamixMetamodelBuilderClassTest >> testBasicTrait [
 	builder newTraitNamed: #TComment.	
 	builder generate.
 	generated := builder testingEnvironment ask classNamed: 'TstTComment'.
-	self assert: generated superclass name equals: builder defaultBasicTraitName.
+	self assert: generated superclass name equals: builder configuration defaultBasicTraitName.
 
 ]
 
@@ -118,7 +118,7 @@ FamixMetamodelBuilderClassTest >> testBuilderPackageChange [
 	| generated |
 	
 	builder newClassNamed: #Comment.	
-	builder packageName: 'Another'.
+	builder configuration packageName: 'Another'.
 	builder newClassNamed: #Method.	
 	builder generate.
 	generated := builder testingEnvironment ask classNamed: 'TstComment'.
@@ -140,7 +140,7 @@ FamixMetamodelBuilderClassTest >> testBuilderPrefixChange [
 	| generated |
 	
 	builder newClassNamed: #Comment.	
-	builder prefix: 'Another'.
+	builder configuration prefix: 'Another'.
 	builder newClassNamed: #Method.	
 	builder generate.
 	generated := builder testingEnvironment ask classNamed: 'TstComment'.
@@ -176,7 +176,7 @@ FamixMetamodelBuilderClassTest >> testCustomBasicTrait [
 
 	| generated |
 
-	builder basicTraitName: #CustomBasicTrait.	
+	builder configuration basicTraitName: #CustomBasicTrait.	
 	builder newTraitNamed: #TComment.	
 	builder generate.
 	generated := builder testingEnvironment ask classNamed: 'TstTComment'.
@@ -191,7 +191,7 @@ FamixMetamodelBuilderClassTest >> testCustomPackageForUserClasses [
 
 	| generated |
 	
-	builder packageName: 'Custom'.
+	builder configuration packageName: 'Custom'.
 	
 	builder newClassNamed: #Comment.	
 	builder generate.
@@ -208,10 +208,10 @@ FamixMetamodelBuilderClassTest >> testCustomPackageForUserClassesChanged [
 
 	| generated generatedAccess  |
 	
-	builder packageName: 'Custom'.
+	builder configuration packageName: 'Custom'.
 	builder newClassNamed: #Comment.	
 
-	builder packageName: 'Custom2'.
+	builder configuration packageName: 'Custom2'.
 	builder newClassNamed: #Access.	
 
 	builder generate.
@@ -232,7 +232,7 @@ FamixMetamodelBuilderClassTest >> testCustomSuperclass [
 
 	| generated |
 	
-	builder basicSuperclassName: #BasicSuperclass.
+	builder configuration basicSuperclassName: #BasicSuperclass.
 	builder newClassNamed: #Comment.
 	builder generate.
 	generated := builder testingEnvironment ask classNamed: 'TstComment'.
@@ -267,7 +267,7 @@ FamixMetamodelBuilderClassTest >> testDefaultTagForClass [
 	builder generate.
 		
 	generatedTAccess := builder testingEnvironment ask classNamed: #TstTAccess.
-	self assertCollection: generatedTAccess tags hasSameElements: { builder defaultTraitTag }
+	self assertCollection: generatedTAccess tags hasSameElements: { builder configuration defaultTraitTag }
 ]
 
 { #category : #tests }
@@ -486,7 +486,7 @@ FamixMetamodelBuilderClassTest >> testTagForClassFromBuilder [
 	access := builder newClassNamed: #Access.	
 	comment := builder newClassNamed: #Comment.	
 
-	builder classTag: #classes.
+	builder configuration classTag: #classes.
 	comment tag: #support.
 
 	builder generate.
@@ -505,7 +505,7 @@ FamixMetamodelBuilderClassTest >> testTagForTraitFromBuilder [
 	tAccess := builder newTraitNamed: #TAccess.	
 	tComment := builder newTraitNamed: #TComment.	
 
-	builder traitTag: #classes.
+	builder configuration traitTag: #classes.
 	tComment tag: #support.
 
 	builder generate.

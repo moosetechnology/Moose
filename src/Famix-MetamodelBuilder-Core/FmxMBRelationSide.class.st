@@ -47,7 +47,7 @@ FmxMBRelationSide >> asSlot [
 	^ self builder environment 
 		slotNamed: slotName asSymbol 
 		cardinality: self cardinality 
-		type: (self builder prefix, opposite relatedEntityName) asSymbol 
+		type: (self builder configuration prefix, opposite relatedEntityName) asSymbol 
 		opposite: opposite name asSymbol
 
 	

@@ -16,13 +16,13 @@ FmxMBRingEnvironment >> apply [
 { #category : #accessing }
 FmxMBRingEnvironment >> basicSuperclass [
 
-	^ self ringEnvironment ensureClassNamed: self builder basicSuperclassName
+	^ self ringEnvironment ensureClassNamed: self builder configuration basicSuperclassName
 ]
 
 { #category : #accessing }
 FmxMBRingEnvironment >> basicTrait [
 
-	^ self ringEnvironment ensureClassNamed: self builder basicTraitName
+	^ self ringEnvironment ensureClassNamed: self builder configuration basicTraitName
 ]
 
 { #category : #installing }

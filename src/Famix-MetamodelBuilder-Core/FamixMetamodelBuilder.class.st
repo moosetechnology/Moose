@@ -49,20 +49,12 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'environment',
-		'prefix',
-		'packageName',
-		'packageNameForAnnotations',
 		'classes',
 		'traits',
 		'relations',
-		'classTag',
-		'traitTag',
-		'basicSuperclassName',
-		'basicTraitName',
-		'traitsFlattening',
 		'generator',
-		'generateImportingContext',
-		'testingSelectorsMapping'
+		'testingSelectorsMapping',
+		'configuration'
 	],
 	#category : #'Famix-MetamodelBuilder-Core-Basic'
 }
@@ -93,44 +85,10 @@ FamixMetamodelBuilder >> baseImportingContextName [
 	^ #FmxImportingContext
 ]
 
-{ #category : #settings }
-FamixMetamodelBuilder >> basicSuperclassName [
-
-	^ basicSuperclassName ifNil: [ basicSuperclassName := self defaultBasicSuperclassName ]
-]
-
-{ #category : #accessing }
-FamixMetamodelBuilder >> basicSuperclassName: anObject [
-	basicSuperclassName := anObject
-]
-
-{ #category : #settings }
-FamixMetamodelBuilder >> basicTraitName [
-
-	^ basicTraitName ifNil: [ basicTraitName := self defaultBasicTraitName ]
-]
-
-{ #category : #accessing }
-FamixMetamodelBuilder >> basicTraitName: anObject [
-	basicTraitName := anObject
-]
-
 { #category : #accessing }
 FamixMetamodelBuilder >> behaviorsCount [
 
 	^ self traits size + self sortedClasses size
-]
-
-{ #category : #settings }
-FamixMetamodelBuilder >> classTag [
-
-	^ classTag ifNil: [ classTag := self defaultClassTag ]
-]
-
-{ #category : #settings }
-FamixMetamodelBuilder >> classTag: aSymbol [
-
-	classTag := aSymbol
 ]
 
 { #category : #accessing }
@@ -157,6 +115,16 @@ FamixMetamodelBuilder >> classesToGenerate [
 ]
 
 { #category : #accessing }
+FamixMetamodelBuilder >> configuration [
+	^ configuration
+]
+
+{ #category : #accessing }
+FamixMetamodelBuilder >> configuration: anObject [
+	configuration := anObject
+]
+
+{ #category : #accessing }
 FamixMetamodelBuilder >> containerRequirementsOf: aClass [
 
 	|  usedBehaviors |
@@ -166,30 +134,6 @@ FamixMetamodelBuilder >> containerRequirementsOf: aClass [
 		aBehavior isMetamodelTrait
 			ifTrue: [ self classes select: [ :e | e hasTraitGeneralization: aBehavior ]]
 			ifFalse: [ {aBehavior} ]]
-]
-
-{ #category : #'settings - default' }
-FamixMetamodelBuilder >> defaultBasicSuperclassName [
-
-	^ #MooseEntity
-]
-
-{ #category : #'settings - default' }
-FamixMetamodelBuilder >> defaultBasicTraitName [
-
-	^ #Trait
-]
-
-{ #category : #'settings - default' }
-FamixMetamodelBuilder >> defaultClassTag [
-
-	^ #Entities
-]
-
-{ #category : #'settings - default' }
-FamixMetamodelBuilder >> defaultTraitTag [
-
-	^ #Traits
 ]
 
 { #category : #accessing }
@@ -219,7 +163,7 @@ FamixMetamodelBuilder >> ensureClassNamed: aString [
 { #category : #initialization }
 FamixMetamodelBuilder >> ensureLocalTraitNamed: aString [
 
-	^ self traits detect: [ :each | each name = aString and: [each prefix = self prefix]] ifNone: [ self newTraitNamed: aString ]
+	^ self traits detect: [ :each | each name = aString and: [each prefix = self configuration prefix]] ifNone: [ self newTraitNamed: aString ]
 
 ]
 
@@ -292,17 +236,12 @@ FamixMetamodelBuilder >> generateImportingContext [
 
 	| contextClass |
 	
-	self wantsToGenerateImportingContext ifFalse: [ ^ self ].
+	self configuration wantsToGenerateImportingContext ifFalse: [ ^ self ].
 
-	contextClass := self environment createImportingcontextClassNamed: self importingContextName in: self packageName.
+	contextClass := self environment createImportingcontextClassNamed: self importingContextName in: self configuration packageName.
 	
 	self generateShouldImportIn: contextClass.
 	self generateImportIn: contextClass
-]
-
-{ #category : #accessing }
-FamixMetamodelBuilder >> generateImportingContext: anObject [
-	generateImportingContext := anObject
 ]
 
 { #category : #generating }
@@ -336,21 +275,20 @@ FamixMetamodelBuilder >> generator: aGenerator [
 { #category : #accessing }
 FamixMetamodelBuilder >> importingContextName [
 
-	^ (self prefix, 'ImportingContext') asSymbol
+	^ (self configuration prefix, 'ImportingContext') asSymbol
 ]
 
 { #category : #initialization }
 FamixMetamodelBuilder >> initialize [
 
 	environment := FmxMBRealRingEnvironment for: self.
+	
+	configuration := FmxMBConfiguration new.
 
 	classes := OrderedCollection new.
 	traits := OrderedCollection new.
 	relations := OrderedCollection new.
-	testingSelectorsMapping := Set new.
-	
-	generateImportingContext := false.
-	
+	testingSelectorsMapping := Set new.	
 	
 	
 ]
@@ -362,8 +300,8 @@ FamixMetamodelBuilder >> newClass [
 	
 	aClass := FmxMBClass new.
 	aClass builder: self.
-	aClass prefix: self prefix.
-	aClass packageName: self packageName.
+	aClass prefix: self configuration prefix.
+	aClass packageName: self configuration packageName.
 	self classes add: aClass.
 	^ aClass
 	
@@ -408,8 +346,8 @@ FamixMetamodelBuilder >> newTrait [
 	
 	aTrait := FmxMBTrait new.
 	aTrait builder: self.
-	aTrait prefix: self prefix.
-	aTrait packageName: self packageName.
+	aTrait prefix: self configuration prefix.
+	aTrait packageName: self configuration packageName.
 	self traits add: aTrait.
 	^ aTrait
 	
@@ -436,40 +374,10 @@ FamixMetamodelBuilder >> newTraitNamed: aClassName comment: aString [
 	
 ]
 
-{ #category : #accessing }
-FamixMetamodelBuilder >> packageName [
-	^ packageName ifNil: [ packageName := #'FamixMetamodelBulder-Generated' ]
-]
-
-{ #category : #accessing }
-FamixMetamodelBuilder >> packageName: anObject [
-	packageName := anObject
-]
-
-{ #category : #accessing }
-FamixMetamodelBuilder >> packageNameForAnnotations [
-	^ packageNameForAnnotations ifNil: [ self packageName ].
-]
-
-{ #category : #accessing }
-FamixMetamodelBuilder >> packageNameForAnnotations: anObject [
-	packageNameForAnnotations := anObject
-]
-
-{ #category : #accessing }
-FamixMetamodelBuilder >> prefix [
-	^ prefix ifNil: [ prefix := '' ]
-]
-
-{ #category : #accessing }
-FamixMetamodelBuilder >> prefix: anObject [
-	prefix := anObject
-]
-
 { #category : #generating }
 FamixMetamodelBuilder >> registerPackages [
 	
-	self environment registerPackage: self packageName.
+	self environment registerPackage: self configuration packageName.
 	
 ]
 
@@ -493,7 +401,7 @@ FamixMetamodelBuilder >> safeAnnotationPackageName [
 	
 	| aName |
 	
-	aName := self packageNameForAnnotations.
+	aName := self configuration packageNameForAnnotations.
 	
 	^ aName isLiteralSymbol
 		ifTrue: [ ^ '#', aName ]
@@ -532,18 +440,6 @@ FamixMetamodelBuilder >> traitNamed: aTraitName [
 	^ self traits detect: [ :each | each name = aTraitName].
 ]
 
-{ #category : #settings }
-FamixMetamodelBuilder >> traitTag [
-
-	^ traitTag ifNil: [ traitTag := self defaultTraitTag ]
-]
-
-{ #category : #settings }
-FamixMetamodelBuilder >> traitTag: aSymbol [
-
-	traitTag := aSymbol
-]
-
 { #category : #accessing }
 FamixMetamodelBuilder >> traits [
 	^ traits
@@ -556,12 +452,7 @@ FamixMetamodelBuilder >> traitsToGenerate [
 ]
 
 { #category : #accessing }
-FamixMetamodelBuilder >> wantsToGenerateImportingContext [
-	^ generateImportingContext
-]
-
-{ #category : #accessing }
 FamixMetamodelBuilder >> withImportingContext [
 
-	self generateImportingContext: true
+	self configuration wantsToGenerateImportingContext: true
 ]

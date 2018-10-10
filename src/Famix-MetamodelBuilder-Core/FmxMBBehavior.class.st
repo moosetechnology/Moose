@@ -71,7 +71,7 @@ FmxMBBehavior >> canProvidePrimaryContainer [
 { #category : #'settings - default' }
 FmxMBBehavior >> defaultTag [
 
-	^ self builder classTag
+	^ self builder configuration classTag
 ]
 
 { #category : #accessing }

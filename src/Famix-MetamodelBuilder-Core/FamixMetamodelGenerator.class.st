@@ -81,7 +81,7 @@ FamixMetamodelGenerator class >> resetMetamodel [
 { #category : #definition }
 FamixMetamodelGenerator >> adoptBuilder: aBuilder [
 
-	aBuilder 
+	aBuilder configuration 
 		prefix: self prefix;
 		packageName: self packageName;
 		packageNameForAnnotations: self packageNameForAnnotations.
