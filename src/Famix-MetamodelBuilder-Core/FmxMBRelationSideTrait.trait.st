@@ -72,7 +72,7 @@ FmxMBRelationSideTrait >> containsMany: aRelationSide [
 	
 	aRelation := self oneToMany: aRelationSide.
 	aRelation right container.
-	self builder navigationForContainers
+	self builder configuration navigationForContainers
 		ifTrue: [ aRelation withNavigation ].
 			
 	^ aRelation
