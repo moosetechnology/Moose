@@ -164,6 +164,8 @@ FMRepositoryVisitor >> shouldIgnoreProperty: property [
 { #category : #exporting }
 FMRepositoryVisitor >> shouldIgnoreProperty: property withAll: values [
 	
+	values ifNil: [ ^ true ].
+	
 	^ values isEmpty or: [
 		property type == FM3MetaDescription boolean and: [
 			values size == 1 and: [ 
