@@ -13,10 +13,16 @@ Class {
 	#category : #'Famix-MetamodelBuilder-Core-Basic'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixMetamodelGenerator class >> builderWithDefinitions [
 
 	^ self new define builder
+]
+
+{ #category : #'as yet unclassified' }
+FamixMetamodelGenerator class >> generate [
+
+	self new generate
 ]
 
 { #category : #accessing }

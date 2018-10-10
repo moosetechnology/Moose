@@ -20,7 +20,7 @@ FamixTTraitUsage classSide >> annotation [
 FamixTTraitUsage classSide >> generatedSlotNames [
 	<generated>
 	'FamixTTraitUsage class>>#generatedSlotNames'.
-	^ #(user trait)
+	^ #(trait user)
 ]
 
 { #category : #generator }

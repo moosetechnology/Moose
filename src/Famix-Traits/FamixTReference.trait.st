@@ -33,7 +33,7 @@ FamixTReference classSide >> annotation [
 FamixTReference classSide >> generatedSlotNames [
 	<generated>
 	'FamixTReference class>>#generatedSlotNames'.
-	^ #(target source)
+	^ #(source target)
 ]
 
 { #category : #generator }

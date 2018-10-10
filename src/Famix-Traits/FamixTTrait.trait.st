@@ -23,7 +23,7 @@ FamixTTrait classSide >> annotation [
 FamixTTrait classSide >> generatedSlotNames [
 	<generated>
 	'FamixTTrait class>>#generatedSlotNames'.
-	^ #(traitOwner incomingTraitUsages)
+	^ #(incomingTraitUsages traitOwner)
 ]
 
 { #category : #generator }

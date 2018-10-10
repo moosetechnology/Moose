@@ -45,7 +45,7 @@ FamixTFileNavigation classSide >> fileName: aString startLine: anInteger startCo
 FamixTFileNavigation classSide >> generatedSlotNames [
 	<generated>
 	'FamixTFileNavigation class>>#generatedSlotNames'.
-	^ #(startLine startColumn endLine endColumn)
+	^ #(endColumn endLine startColumn startLine)
 ]
 
 { #category : #generator }
