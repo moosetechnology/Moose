@@ -254,7 +254,7 @@ FamixJavaGenerator >> defineHierarchy [
 FamixJavaGenerator >> newBuilder [
 
 	^ self builderWithStandardTraits
-		generateImportingContext: true;
+		withImportingContext;
 		yourself
 		
 		

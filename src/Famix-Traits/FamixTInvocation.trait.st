@@ -33,7 +33,7 @@ FamixTInvocation classSide >> annotation [
 FamixTInvocation classSide >> generatedSlotNames [
 	<generated>
 	'FamixTInvocation class>>#generatedSlotNames'.
-	^ #(sender candidates receiver)
+	^ #(candidates receiver sender)
 ]
 
 { #category : #generator }

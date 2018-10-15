@@ -25,7 +25,7 @@ FamixTScopingEntity classSide >> annotation [
 FamixTScopingEntity classSide >> generatedSlotNames [
 	<generated>
 	'FamixTScopingEntity class>>#generatedSlotNames'.
-	^ #(parentScope childScopes)
+	^ #(childScopes parentScope)
 ]
 
 { #category : #generator }

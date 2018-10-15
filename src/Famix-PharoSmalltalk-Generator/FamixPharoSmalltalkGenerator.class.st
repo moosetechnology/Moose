@@ -199,7 +199,7 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 FamixPharoSmalltalkGenerator >> newBuilder [
 
 	^ self builderWithStandardTraits
-		generateImportingContext: true;
+		withImportingContext;
 		yourself
 		
 		

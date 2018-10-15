@@ -58,7 +58,7 @@ FmxMBTrait >> defaultSuperclass [
 { #category : #'settings-default' }
 FmxMBTrait >> defaultTag [
 
-	^ self builder traitTag
+	^ self builder configuration traitTag
 ]
 
 { #category : #accessing }

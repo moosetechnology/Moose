@@ -34,6 +34,14 @@ FamixTest4Generator class >> prefix [
 ]
 
 { #category : #definition }
+FamixTest4Generator >> adoptBuilder: aBuilder [
+
+	super adoptBuilder: aBuilder.
+
+	aBuilder configuration navigationForNonContainers: true.
+]
+
+{ #category : #definition }
 FamixTest4Generator >> defineClasses [
 
 	super defineClasses.

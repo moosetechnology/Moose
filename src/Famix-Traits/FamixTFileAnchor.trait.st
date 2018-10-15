@@ -24,7 +24,7 @@ FamixTFileAnchor classSide >> annotation [
 FamixTFileAnchor classSide >> generatedSlotNames [
 	<generated>
 	'FamixTFileAnchor class>>#generatedSlotNames'.
-	^ #(encoding correspondingFile fileName)
+	^ #(correspondingFile encoding fileName)
 ]
 
 { #category : #generator }

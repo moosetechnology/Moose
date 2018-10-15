@@ -16,13 +16,13 @@ FmxMBRingEnvironment >> apply [
 { #category : #accessing }
 FmxMBRingEnvironment >> basicSuperclass [
 
-	^ self ringEnvironment ensureClassNamed: self builder basicSuperclassName
+	^ self ringEnvironment ensureClassNamed: self builder configuration basicSuperclassName
 ]
 
 { #category : #accessing }
 FmxMBRingEnvironment >> basicTrait [
 
-	^ self ringEnvironment ensureClassNamed: self builder basicTraitName
+	^ self ringEnvironment ensureClassNamed: self builder configuration basicTraitName
 ]
 
 { #category : #installing }
@@ -167,7 +167,7 @@ FmxMBRingEnvironment >> generateSlotsDescriptionFrom: anRGClass [
 	<generated>
 	''{2}''.
 	^ {1}' format: { 
-		'#(', ((generatedSlots collect: #name) joinUsing: ' '), ')'.
+		'#(', ((generatedSlots collect: #name) sorted joinUsing: ' '), ')'.
 		anRGClass name, ' class>>#generatedSlotNames'. "just to make the AST different to let the QA checks (that prove method repetitions in trait users) pass"
 	 }) classified: 'generator'
 		

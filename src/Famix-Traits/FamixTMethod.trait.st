@@ -30,7 +30,7 @@ FamixTMethod classSide >> annotation [
 FamixTMethod classSide >> generatedSlotNames [
 	<generated>
 	'FamixTMethod class>>#generatedSlotNames'.
-	^ #(category hasClassScope timeStamp parentType kind)
+	^ #(category hasClassScope kind parentType timeStamp)
 ]
 
 { #category : #generator }

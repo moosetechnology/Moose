@@ -222,7 +222,7 @@ FamixMetamodelBuilderTraitTest >> testCustomPackageForUserClasses [
 
 	| simpleClass generated |
 	
-	builder packageName: 'Custom'.
+	builder configuration packageName: 'Custom'.
 	
 	simpleClass := builder newTraitNamed: #TComment.	
 	builder generate.
@@ -237,11 +237,11 @@ FamixMetamodelBuilderTraitTest >> testCustomPackageForUserClassesChanged [
 
 	| simpleClass generated generatedAccess  |
 	
-	builder packageName: 'Custom'.
+	builder configuration packageName: 'Custom'.
 	
 	simpleClass := builder newTraitNamed: #TComment.	
 
-	builder packageName: 'Custom2'.
+	builder configuration packageName: 'Custom2'.
 
 	simpleClass := builder newTraitNamed: #TAccess.	
 

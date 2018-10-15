@@ -30,7 +30,7 @@ FamixTComment classSide >> content: aString [
 FamixTComment classSide >> generatedSlotNames [
 	<generated>
 	'FamixTComment class>>#generatedSlotNames'.
-	^ #(content container)
+	^ #(container content)
 ]
 
 { #category : #generator }

@@ -71,7 +71,7 @@ FmxMBBehavior >> canProvidePrimaryContainer [
 { #category : #'settings - default' }
 FmxMBBehavior >> defaultTag [
 
-	^ self builder classTag
+	^ self builder configuration classTag
 ]
 
 { #category : #accessing }
@@ -123,7 +123,7 @@ FmxMBBehavior >> generateContainerMethodsIn: aClass [
 		flatCollect: #sides) 
 		select: #isContainer.
 	
-	containerSides size > 1 ifTrue: [ self error: aClass name, 'defines more than one primary container: ', ((containerSides collect: #name) sorted joinUsing: ', ') ].
+	containerSides size > 1 ifTrue: [ self error: aClass name, ' defines more than one primary container: ', ((containerSides collect: #name) sorted joinUsing: ', ') ].
 	
 	containerSides do: [ :aSide | aSide generateExtendedContainerMethodsIn: aClass ].
 	

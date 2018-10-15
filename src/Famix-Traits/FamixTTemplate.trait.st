@@ -20,7 +20,7 @@ FamixTTemplate classSide >> annotation [
 FamixTTemplate classSide >> generatedSlotNames [
 	<generated>
 	'FamixTTemplate class>>#generatedSlotNames'.
-	^ #(templateUsers templateOwner)
+	^ #(templateOwner templateUsers)
 ]
 
 { #category : #generator }

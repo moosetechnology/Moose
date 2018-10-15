@@ -31,7 +31,7 @@ FamixTAnnotationInstanceAttribute classSide >> annotation [
 FamixTAnnotationInstanceAttribute classSide >> generatedSlotNames [
 	<generated>
 	'FamixTAnnotationInstanceAttribute class>>#generatedSlotNames'.
-	^ #(value parentAnnotationInstance)
+	^ #(parentAnnotationInstance value)
 ]
 
 { #category : #generator }
