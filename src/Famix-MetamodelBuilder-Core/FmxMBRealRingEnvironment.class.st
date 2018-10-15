@@ -117,6 +117,8 @@ FmxMBRealRingEnvironment >> ensureClassesFrom: anRGEnvironment [
 	
 	resolvedClasses := ringEnvironment ask behaviors select: [ :each | each isRingResolved ].
 	resolvedClasses := resolvedClasses select: [ :each | each superclass isRingResolved ].
+	
+	resolvedClasses ifEmpty: [ ^ self ].
 
 	notSorted := resolvedClasses asOrderedCollection.
 	sorted := OrderedCollection new.
