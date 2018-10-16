@@ -223,6 +223,25 @@ FmxMBClass >> generateMethodsMadeByTraitsFor: aClass [
 ]
 
 { #category : #generating }
+FmxMBClass >> generateRemotes [
+
+	| aClass aClassName |
+	
+	
+	aClassName := self fullName.
+	
+	aClass := self builder environment classNamed: aClassName asSymbol.
+				
+	self realClass: aClass.
+	
+	self generateRemoteAccessors.
+	
+	
+	
+
+]
+
+{ #category : #generating }
 FmxMBClass >> generateRequirementsFor: aClass [
 
 	aClass classSide compile: ('requirements

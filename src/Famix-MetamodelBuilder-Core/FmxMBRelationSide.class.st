@@ -15,7 +15,8 @@ Class {
 		'derived',
 		'source',
 		'target',
-		'subordinate'
+		'subordinate',
+		'generationStrategy'
 	],
 	#category : #'Famix-MetamodelBuilder-Core-Implementation'
 }
@@ -28,6 +29,13 @@ FmxMBRelationSide >> acceptVisitor: aVisitor [
 
 { #category : #converting }
 FmxMBRelationSide >> asRelationSideNamed: aPropertyName [
+
+	"ignore the proposed name"
+	^ self 
+]
+
+{ #category : #converting }
+FmxMBRelationSide >> asRelationSideNamed: aPropertyName withOppositeRemote: aBoolean [ 
 
 	"ignore the proposed name"
 	^ self 
@@ -130,48 +138,25 @@ FmxMBRelationSide >> generateExtendedContainersIn: aClassOrTrait [
 { #category : #generating }
 FmxMBRelationSide >> generateGetterIn: aClassOrTrait [
 
-	| methodSource commentDefinition |
-	
-	commentDefinition := self comment
-		ifNotEmpty: [ '<MSEComment: {1}>' format: { self comment printString } ].
-
-	methodSource := String streamContents: [ :s |
-		s nextPutAll: self name; cr; cr.
-		s tab; nextPutAll: '<generated>'; cr.
-		commentDefinition  
-			ifNotEmpty: [ s tab; nextPutAll: commentDefinition; cr].
-			self isContainer ifTrue: [ 
-				s tab; nextPutAll: '<container>'; cr; cr ].
-			self isDerived ifTrue: [ 
-				s tab; nextPutAll: '<derived>'; cr; cr ].
-			self isSource ifTrue: [ 
-				s tab; nextPutAll: '<source>'; cr; cr ].
-			self isTarget ifTrue: [ 
-				s tab; nextPutAll: '<target>'; cr; cr ].
-		s tab; nextPutAll: '^ ';
-			nextPutAll: self name.].
-		
-	self builder environment compile: methodSource in: aClassOrTrait classified: 'accessing'.	
-	
-
-	
+	^ generationStrategy generateGetterIn: aClassOrTrait for: self
 ]
 
 { #category : #generating }
 FmxMBRelationSide >> generateSetterIn: aClassOrTrait [
 
-	| methodSource |
-	
-	methodSource := String streamContents: [ :s |
-		s nextPutAll: self name; nextPutAll: ': anObject'; cr; cr.
-		s tab; nextPutAll: '<generated>'; cr.
-		(self cardinality = #one)
-			ifTrue: [ s tab; nextPutAll: self name, ' := anObject'; cr ]
-			ifFalse: [ s tab; nextPutAll: self name, ' value: anObject'; cr ] ].
-		
-	self builder environment compile: methodSource in: aClassOrTrait classified: 'accessing'.	
+	self generationStrategy generateSetterIn: aClassOrTrait for: self
 
 	
+]
+
+{ #category : #accessing }
+FmxMBRelationSide >> generationStrategy [
+	^ generationStrategy
+]
+
+{ #category : #accessing }
+FmxMBRelationSide >> generationStrategy: anObject [
+	generationStrategy := anObject
 ]
 
 { #category : #testing }
@@ -191,6 +176,8 @@ FmxMBRelationSide >> initialize [
 	subordinate := false.
 	target := false.
 	source := false.
+	
+	generationStrategy := FmxMBStandardRelationSideGenerationStrategy for: self .
 
 ]
 
@@ -234,6 +221,25 @@ FmxMBRelationSide >> isSubordinate [
 FmxMBRelationSide >> isTarget [
 
 	^ target
+]
+
+{ #category : #converting }
+FmxMBRelationSide >> makeNonremote [
+
+	self generationStrategy: (FmxMBNonremoteRelationSideGenerationStrategy for: self)
+]
+
+{ #category : #converting }
+FmxMBRelationSide >> makeRemote [
+
+	self generationStrategy: (FmxMBRemoteRelationSideGenerationStrategy for: self).
+	self remote: true.
+]
+
+{ #category : #converting }
+FmxMBRelationSide >> makeStandard [
+
+	self generationStrategy: (FmxMBRelationSideGenerationStrategy for: self)
 ]
 
 { #category : #accessing }
@@ -289,6 +295,12 @@ FmxMBRelationSide >> primaryContainer [
 	
 	container := true.
 	additionalProperties at: #primaryContainer put: true
+]
+
+{ #category : #printing }
+FmxMBRelationSide >> producesSlot [
+
+	^ self generationStrategy producesSlot
 ]
 
 { #category : #private }

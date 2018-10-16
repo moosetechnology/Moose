@@ -123,6 +123,23 @@ FmxMBTrait >> generateAnnotationIn: aRealClass as: aName superclass: aSuperclass
 
 ]
 
+{ #category : #generating }
+FmxMBTrait >> generateRemotes [
+
+	| aTrait traitName |
+		
+	traitName := self fullName.
+	
+	aTrait := self builder environment classNamed: traitName asSymbol.
+				
+	self realClass: aTrait.
+
+	self realClass: aTrait.
+	
+	self generateRemoteAccessors.
+
+]
+
 { #category : #accessing }
 FmxMBTrait >> glueingCondition [
 	^ glueingCondition

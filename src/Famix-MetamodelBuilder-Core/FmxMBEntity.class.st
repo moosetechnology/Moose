@@ -8,7 +8,8 @@ Class {
 		'willGenerate',
 		'navigationGroups',
 		'additionalProperties',
-		'hasNavigation'
+		'hasNavigation',
+		'remote'
 	],
 	#category : #'Famix-MetamodelBuilder-Core-Implementation'
 }
@@ -49,7 +50,13 @@ FmxMBEntity >> initialize [
 	navigationGroups := Set new.
 	additionalProperties := Dictionary new.
 	hasNavigation := true.
+	remote := false.
+]
 
+{ #category : #accessing }
+FmxMBEntity >> isRemote [ 
+
+	^ self remote
 ]
 
 { #category : #accessing }
@@ -70,6 +77,16 @@ FmxMBEntity >> navigationGroups [
 { #category : #accessing }
 FmxMBEntity >> navigationGroups: anObject [
 	navigationGroups := anObject
+]
+
+{ #category : #accessing }
+FmxMBEntity >> remote [
+	^ remote
+]
+
+{ #category : #accessing }
+FmxMBEntity >> remote: anObject [
+	remote := anObject
 ]
 
 { #category : #accessing }

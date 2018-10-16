@@ -1,6 +1,9 @@
 Class {
 	#name : #FamixCombinedMetamodelGenerator,
 	#superclass : #FamixMetamodelGenerator,
+	#instVars : [
+		'subbuilders'
+	],
 	#category : #'Famix-MetamodelBuilder-Core-Basic'
 }
 
@@ -23,4 +26,26 @@ FamixCombinedMetamodelGenerator class >> resetMetamodel [
 FamixCombinedMetamodelGenerator class >> submetamodels [ 
 
 	self subclassResponsibility.
+]
+
+{ #category : #definition }
+FamixCombinedMetamodelGenerator >> generateWithoutCleaning [
+
+	self define.
+	self builder generate.
+
+	subbuilders do: #generateRemotes
+]
+
+{ #category : #definition }
+FamixCombinedMetamodelGenerator >> initialize [ 
+	
+	super initialize.
+	
+	subbuilders := Dictionary newFrom: (self class submetamodels collect: [ :each | 
+		| subbuilder |
+		subbuilder := each builderWithDefinitions.
+		builder environment: builder environment.		
+		each prefix -> subbuilder ]).
+	
 ]

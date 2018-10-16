@@ -245,6 +245,15 @@ FamixMetamodelBuilder >> generateImportingContext [
 ]
 
 { #category : #generating }
+FamixMetamodelBuilder >> generateRemotes [
+
+	self traits do: [ :each | each generateRemotes ] displayingProgress: 'generating traits'.
+	self sortedClasses do: [ :each | each generateRemotes ] displayingProgress: 'generating classes'.
+		
+	self apply
+]
+
+{ #category : #generating }
 FamixMetamodelBuilder >> generateShouldImportIn: contextClass [
 
 	| source |

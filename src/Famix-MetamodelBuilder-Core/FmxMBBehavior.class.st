@@ -169,6 +169,14 @@ FmxMBBehavior >> generateNavigationGroups [
 ]
 
 { #category : #generating }
+FmxMBBehavior >> generateRemoteAccessors [
+
+	(self properties select: #remote) do: [ :each |
+		each generateAccessorsIn: self realClass. ]
+
+]
+
+{ #category : #generating }
 FmxMBBehavior >> generateRootMetamodelMethodIn: aClass [ 
 
 	self isRoot ifFalse: [ 
@@ -310,7 +318,7 @@ FmxMBBehavior >> properties [
 FmxMBBehavior >> property: propertyName [
 
 	| aSide |
-
+	
 	self assert: propertyName isString.
 	
 	aSide := FmxMBRelationSide new
@@ -396,7 +404,7 @@ FmxMBBehavior >> slotDefinitions [
 
 	| slotGroups |
 	
-	slotGroups := (self properties collect: [ :property | property asSlot ]) groupedBy: #name.
+	slotGroups := (self properties select: #producesSlot thenCollect: [ :property | property asSlot ]) groupedBy: #name.
 
 	"check that all slots with the same name have the same properties"
 	slotGroups valuesDo: [ :similarSlots |

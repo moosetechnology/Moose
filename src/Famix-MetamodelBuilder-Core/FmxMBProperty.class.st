@@ -48,6 +48,12 @@ FmxMBProperty >> isContainer [
 	^ false
 ]
 
+{ #category : #testing }
+FmxMBProperty >> isRemote [ 
+	
+	^ false
+]
+
 { #category : #printing }
 FmxMBProperty >> printOn: aStream [
 
@@ -59,4 +65,10 @@ FmxMBProperty >> printOn: aStream [
 		nextPutAll: '(';
 		nextPutAll: (self name ifNil: ['']);
 		nextPutAll: ')'
+]
+
+{ #category : #printing }
+FmxMBProperty >> producesSlot [
+
+	^ true
 ]

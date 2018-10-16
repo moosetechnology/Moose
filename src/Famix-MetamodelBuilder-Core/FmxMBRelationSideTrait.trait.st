@@ -152,8 +152,8 @@ FmxMBRelationSideTrait >> manyToMany: aRelationSide [
 
 	| aRelation ownSide oppositeSide  |
 	
-	ownSide := self asRelationSideNamed: aRelationSide pluralPropertyName. 
-	oppositeSide := aRelationSide asRelationSideNamed: self pluralPropertyName. 	
+	ownSide := self asRelationSideNamed: aRelationSide pluralPropertyName.
+	oppositeSide := aRelationSide asRelationSideNamed: self pluralPropertyName.
 	ownSide many.
 	oppositeSide many.
 	aRelation := self relationFrom: ownSide to: oppositeSide.
@@ -170,8 +170,8 @@ FmxMBRelationSideTrait >> manyToOne: aRelationSide [
 
 	| aRelation ownSide oppositeSide  |
 	
-	ownSide := self asRelationSideNamed: aRelationSide singularPropertyName. 
-	oppositeSide := aRelationSide asRelationSideNamed: self pluralPropertyName. 	
+	ownSide := self asRelationSideNamed: aRelationSide singularPropertyName.
+	oppositeSide := aRelationSide asRelationSideNamed: self pluralPropertyName.
 	oppositeSide many.
 	aRelation := self relationFrom: ownSide to: oppositeSide.
 	self builder configuration navigationForNonContainers
@@ -200,8 +200,8 @@ FmxMBRelationSideTrait >> oneBelongsTo: aRelationSide [
 FmxMBRelationSideTrait >> oneToMany: aRelationSide [
 
 	| aRelation ownSide oppositeSide  |
-	ownSide := self asRelationSideNamed: aRelationSide pluralPropertyName. 
-	oppositeSide := aRelationSide asRelationSideNamed: self singularPropertyName. 	
+	ownSide := self asRelationSideNamed: aRelationSide pluralPropertyName.
+	oppositeSide := aRelationSide asRelationSideNamed: self singularPropertyName.
 	ownSide many.
 	aRelation := self relationFrom: ownSide to: oppositeSide.
 	self builder configuration navigationForNonContainers
@@ -217,12 +217,17 @@ FmxMBRelationSideTrait >> oneToOne: aRelationSide [
 
 	| aRelation ownSide oppositeSide  |
 	
-	ownSide := self asRelationSideNamed: aRelationSide propertyName. 
+	ownSide := self asRelationSideNamed: aRelationSide propertyName.
 	oppositeSide := aRelationSide asRelationSideNamed: self propertyName.
 	 	
 	aRelation := self relationFrom: ownSide to: oppositeSide.
 	self builder configuration navigationForNonContainers
 		ifTrue: [ aRelation withNavigation ].
+		
+	self remote ifTrue: [ ownSide makeRemote ].
+	aRelationSide remote ifTrue: [ oppositeSide makeRemote ].
+	(self remote and: [ aRelationSide remote not ]) ifTrue: [ oppositeSide makeNonremote ].
+	(self remote not and: [ aRelationSide remote ]) ifTrue: [ self makeNonremote ].
 		
 	^ aRelation
 	
