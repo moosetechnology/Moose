@@ -604,8 +604,8 @@ BaselineOfMoose >> groups: spec [
 		'Famix-Test3-Tests'
 		'Famix-Test4-Entities'
 		'Famix-Test4-Tests'
-		'Famix-TestsComposedMetamodels'
-		'Famix-TestsComposdMetamodels-Entities'
+		'Famix-TestComposedMetamodel'
+		'Famix-TestComposedMetamodel-Entities'
 		
 	).
 	
