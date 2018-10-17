@@ -89,6 +89,12 @@ FmxMBClassAlias >> relatedEntityName [
 	^ self relatedEntity name
 ]
 
+{ #category : #testing }
+FmxMBClassAlias >> remote [
+
+	^ subject remote
+]
+
 { #category : #'relations - named' }
 FmxMBClassAlias >> singularPropertyName [
 
