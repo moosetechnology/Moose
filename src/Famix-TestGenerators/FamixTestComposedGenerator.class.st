@@ -3,7 +3,11 @@ Class {
 	#superclass : #FamixComposedMetamodelGenerator,
 	#instVars : [
 		'association',
-		'entity'
+		'entity',
+		'customEntity1',
+		'customEntity2',
+		'customEntity3',
+		'customEntity4'
 	],
 	#category : #'Famix-TestGenerators'
 }
@@ -29,7 +33,7 @@ FamixTestComposedGenerator class >> submetamodels [
 { #category : #definition }
 FamixTestComposedGenerator >> define [ 
 
-	| test1Method test2Class |
+	| test1Method test2Class test1Custom1 test1Custom2 test1Custom3 test1Custom4 test2Custom1 test2Custom2 test2Custom3 test2Custom4 |
 	
 	super define.
 	
@@ -38,5 +42,27 @@ FamixTestComposedGenerator >> define [
 	test1Method := self remoteEntity: #Method withPrefix: #FamixTestComposed1.
 	test2Class := self remoteEntity: #Class withPrefix: #FamixTestComposed2.
 	
+	test1Custom1 := self remoteEntity: #CustomEntity1 withPrefix: #FamixTestComposed1.
+	test1Custom2 := self remoteEntity: #CustomEntity2 withPrefix: #FamixTestComposed1.
+	test1Custom3 := self remoteEntity: #CustomEntity3 withPrefix: #FamixTestComposed1.
+	test1Custom4 := self remoteEntity: #CustomEntity4 withPrefix: #FamixTestComposed1.
+
+	test2Custom1 := self remoteEntity: #CustomEntity1 withPrefix: #FamixTestComposed2.
+	test2Custom2 := self remoteEntity: #CustomEntity2 withPrefix: #FamixTestComposed2.
+	test2Custom3 := self remoteEntity: #CustomEntity3 withPrefix: #FamixTestComposed2.
+	test2Custom4 := self remoteEntity: #CustomEntity4 withPrefix: #FamixTestComposed2.
+
+	customEntity1 := builder newClassNamed: #CustomEntity1.
+	customEntity2 := builder newClassNamed: #CustomEntity2.
+	customEntity3 := builder newClassNamed: #CustomEntity3.
+	customEntity4 := builder newClassNamed: #CustomEntity4.
+
 	entity - test1Method.
+
+	customEntity1 - test1Custom1.
+	customEntity2 -* test1Custom2.	
+	customEntity3 *- test1Custom3.	
+	customEntity4 *-* test1Custom4.		
+		
+
 ]

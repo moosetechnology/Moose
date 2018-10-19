@@ -221,7 +221,10 @@ FmxMBTrait >> pluralPropertyName [
 	uncapitalized := (self name withoutPrefix: 'T') uncapitalized.
 	
 	^ (uncapitalized endsWith: 's')
-		ifFalse: [ uncapitalized, 's' ]
+		ifFalse: [ 
+			(uncapitalized endsWith: 'y')
+				ifTrue: [ uncapitalized allButLast, 'ies' ]
+				ifFalse: [ uncapitalized, 's' ]  ]
 		ifTrue: [ uncapitalized, 'es' ]
 ]
 
