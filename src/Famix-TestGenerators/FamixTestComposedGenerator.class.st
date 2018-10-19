@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixTestComposedGenerator,
-	#superclass : #FamixCombinedMetamodelGenerator,
+	#superclass : #FamixComposedMetamodelGenerator,
 	#instVars : [
 		'association',
 		'entity'

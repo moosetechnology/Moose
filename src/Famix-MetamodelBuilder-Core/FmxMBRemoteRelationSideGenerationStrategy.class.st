@@ -13,7 +13,7 @@ FmxMBRemoteRelationSideGenerationStrategy >> category [
 { #category : #printing }
 FmxMBRemoteRelationSideGenerationStrategy >> compileMethod: methodSource for: aRelationSide in: aClassOrTrait [
 		
-	aRelationSide builder environment compile: methodSource in: aClassOrTrait classified: self category package: self relationSide otherSide builder configuration packageName.
+	aRelationSide builder environment compile: methodSource in: aClassOrTrait classified: self category package: self relationSide builder parentBuilderPackageName.
 ]
 
 { #category : #printing }

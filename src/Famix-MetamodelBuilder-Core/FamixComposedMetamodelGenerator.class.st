@@ -1,5 +1,5 @@
 Class {
-	#name : #FamixCombinedMetamodelGenerator,
+	#name : #FamixComposedMetamodelGenerator,
 	#superclass : #FamixMetamodelGenerator,
 	#instVars : [
 		'subbuilders'
@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #accessing }
-FamixCombinedMetamodelGenerator class >> resetMetamodel [
+FamixComposedMetamodelGenerator class >> resetMetamodel [
 
 	| elements |
 	
@@ -23,13 +23,13 @@ FamixCombinedMetamodelGenerator class >> resetMetamodel [
 ]
 
 { #category : #accessing }
-FamixCombinedMetamodelGenerator class >> submetamodels [ 
+FamixComposedMetamodelGenerator class >> submetamodels [ 
 
 	self subclassResponsibility.
 ]
 
 { #category : #definition }
-FamixCombinedMetamodelGenerator >> generateWithoutCleaning [
+FamixComposedMetamodelGenerator >> generateWithoutCleaning [
 
 	self define.
 	self builder generate.
@@ -38,26 +38,27 @@ FamixCombinedMetamodelGenerator >> generateWithoutCleaning [
 ]
 
 { #category : #definition }
-FamixCombinedMetamodelGenerator >> initialize [ 
+FamixComposedMetamodelGenerator >> initialize [ 
 	
 	super initialize.
 	
 	subbuilders := Dictionary newFrom: (self class submetamodels collect: [ :each | 
 		| subbuilder |
 		subbuilder := each builderWithDefinitions.
+		subbuilder parentBuilder: self builder.
 		builder environment: builder environment.		
 		each prefix -> subbuilder ]).
 	
 ]
 
 { #category : #definition }
-FamixCombinedMetamodelGenerator >> remoteEntity: anEntityName from: aPackageName [
+FamixComposedMetamodelGenerator >> remoteEntity: anEntityName from: aPackageName [
 
 	
 ]
 
 { #category : #definition }
-FamixCombinedMetamodelGenerator >> remoteEntity: anEntityName withPrefix: aPrefixName [
+FamixComposedMetamodelGenerator >> remoteEntity: anEntityName withPrefix: aPrefixName [
 
 	| anEntity |
 	

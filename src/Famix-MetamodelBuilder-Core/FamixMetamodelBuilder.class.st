@@ -54,7 +54,8 @@ Class {
 		'relations',
 		'generator',
 		'testingSelectorsMapping',
-		'configuration'
+		'configuration',
+		'parentBuilder'
 	],
 	#category : #'Famix-MetamodelBuilder-Core-Basic'
 }
@@ -383,6 +384,24 @@ FamixMetamodelBuilder >> newTraitNamed: aClassName comment: aString [
 	
 ]
 
+{ #category : #accessing }
+FamixMetamodelBuilder >> parentBuilder [
+	^ parentBuilder
+]
+
+{ #category : #accessing }
+FamixMetamodelBuilder >> parentBuilder: anObject [
+	parentBuilder := anObject
+]
+
+{ #category : #'tests support' }
+FamixMetamodelBuilder >> parentBuilderPackageName [
+
+	"needed to know the package where extension methods of the composed metamodels should be placed"
+
+	^ (parentBuilder ifNil: [ self ]) configuration packageName
+]
+
 { #category : #generating }
 FamixMetamodelBuilder >> registerPackages [
 	
@@ -393,6 +412,11 @@ FamixMetamodelBuilder >> registerPackages [
 { #category : #accessing }
 FamixMetamodelBuilder >> relations [
 	^ relations
+]
+
+{ #category : #accessing }
+FamixMetamodelBuilder >> relations: anObject [
+	relations := anObject
 ]
 
 { #category : #generating }
