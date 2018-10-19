@@ -41,6 +41,23 @@ FamixTestComposedCustomEntity1 class >> requirements [
 ]
 
 { #category : #accessing }
+FamixTestComposedCustomEntity1 >> c21 [
+
+	<generated>
+	<MSEProperty: #c21 type: #Object>
+	^ self privateState attributeAt: #c21 ifAbsent: [ nil ]
+]
+
+{ #category : #accessing }
+FamixTestComposedCustomEntity1 >> c21: anObject [
+
+	<generated>
+	"o-o" (self privateState attributeAt: #c21 ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
+	self privateState attributeAt: #c21 put: anObject.
+	anObject c1: self
+]
+
+{ #category : #accessing }
 FamixTestComposedCustomEntity1 >> customEntity1 [
 
 	<generated>

@@ -41,6 +41,21 @@ FamixTestComposedCustomEntity4 class >> requirements [
 ]
 
 { #category : #accessing }
+FamixTestComposedCustomEntity4 >> c24s [
+
+	<generated>
+	<MSEProperty: #c24s type: #Object>
+	"m-m" ^ self privateState attributeAt: #c24s ifAbsentPut: [ FMMultiMultivalueLink on: self opposite: #c4s ]
+]
+
+{ #category : #accessing }
+FamixTestComposedCustomEntity4 >> c24s: anObject [
+
+	<generated>
+	self c24s value: anObject
+]
+
+{ #category : #accessing }
 FamixTestComposedCustomEntity4 >> customEntity4s [
 
 	<generated>

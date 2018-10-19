@@ -41,6 +41,21 @@ FamixTestComposedCustomEntity3 class >> requirements [
 ]
 
 { #category : #accessing }
+FamixTestComposedCustomEntity3 >> c23 [
+
+	<generated>
+	<MSEProperty: #c23 type: #Object>
+	"m-o" ^ self privateState attributeAt: #c23 ifAbsent: [ nil ]
+]
+
+{ #category : #accessing }
+FamixTestComposedCustomEntity3 >> c23: anObject [
+
+	<generated>
+	"m-o" self privateState attributeAt: #c23 put: (FMMultivalueLink on: self update: #c3s from: self c23 to: anObject).
+]
+
+{ #category : #accessing }
 FamixTestComposedCustomEntity3 >> customEntity3 [
 
 	<generated>

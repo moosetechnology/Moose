@@ -63,6 +63,11 @@ FamixTestComposedGenerator >> define [
 	customEntity2 -* test1Custom2.	
 	customEntity3 *- test1Custom3.	
 	customEntity4 *-* test1Custom4.		
+
+	(customEntity1 property: #c21) - (test2Custom1 property: #c1).
+	(customEntity2 property: #c22s) -* (test2Custom2 property: #c2).
+	(customEntity3 property: #c23)  *- (test2Custom3 property: #c3s).
+	(customEntity4 property: #c24s) *-* (test2Custom4 property: #c4s).
 		
 
 ]
