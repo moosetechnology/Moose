@@ -43,6 +43,12 @@ FmxMBClassAlias >> isMetamodelTrait [
 	^ false
 ]
 
+{ #category : #testing }
+FmxMBClassAlias >> isRemote [
+
+	^ subject isRemote
+]
+
 { #category : #associations }
 FmxMBClassAlias >> link: propertyName to: aFmxMBBehavior [
 
@@ -87,12 +93,6 @@ FmxMBClassAlias >> relatedEntity [
 FmxMBClassAlias >> relatedEntityName [
 
 	^ self relatedEntity name
-]
-
-{ #category : #testing }
-FmxMBClassAlias >> remote [
-
-	^ subject remote
 ]
 
 { #category : #'relations - named' }

@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'model',
 		'remoteMethod',
-		'entity'
+		'entity',
+		'remoteClass'
 	],
 	#category : #'Famix-TestComposedMetamodel'
 }
@@ -17,10 +18,11 @@ FamixTestComposedMetamodels >> setUp [
 	model := MooseModel new.
 	model metamodel: FamixTestComposedGenerator metamodel.
 	
-	remoteMethod := FamixTest1Method new.
+	remoteMethod := FamixTestComposed1Method new.
 	entity := FamixTestComposedEntity new.
+	remoteClass := FamixTestComposed2Class new.
 	
-	model addAll: { remoteMethod. entity }.
+	model addAll: { remoteMethod. entity. remoteClass }.
 	
 	
 ]

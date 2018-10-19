@@ -48,12 +48,6 @@ FmxMBProperty >> isContainer [
 	^ false
 ]
 
-{ #category : #testing }
-FmxMBProperty >> isRemote [ 
-	
-	^ false
-]
-
 { #category : #printing }
 FmxMBProperty >> printOn: aStream [
 

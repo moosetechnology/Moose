@@ -8,7 +8,7 @@ Class {
 FamixTestComposedEntity class >> annotation [
 
 	<MSEClass: #Entity super: #MooseEntity>
-	<package: #'Famix-TestComposed-Entities'>
+	<package: #'Famix-TestComposedMetamodel-Entities'>
 	<generated>
 	^self
 ]
@@ -52,6 +52,7 @@ FamixTestComposedEntity >> method [
 FamixTestComposedEntity >> method: anObject [
 
 	<generated>
+	"o-o" (self privateState attributeAt: #method ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
 	self privateState attributeAt: #method put: anObject.
 	anObject entity: self
 ]

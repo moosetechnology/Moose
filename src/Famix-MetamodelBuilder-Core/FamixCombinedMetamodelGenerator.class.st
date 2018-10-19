@@ -49,3 +49,22 @@ FamixCombinedMetamodelGenerator >> initialize [
 		each prefix -> subbuilder ]).
 	
 ]
+
+{ #category : #definition }
+FamixCombinedMetamodelGenerator >> remoteEntity: anEntityName from: aPackageName [
+
+	
+]
+
+{ #category : #definition }
+FamixCombinedMetamodelGenerator >> remoteEntity: anEntityName withPrefix: aPrefixName [
+
+	| anEntity |
+	
+	anEntity := (subbuilders at: aPrefixName) ensureClassNamed: anEntityName.
+	anEntity isRemote: true.
+	
+	^ anEntity.
+
+	
+]

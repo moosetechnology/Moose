@@ -205,6 +205,12 @@ FmxMBRelationSide >> isOne [
 	^ self cardinality = #one
 ]
 
+{ #category : #testing }
+FmxMBRelationSide >> isRemote [
+
+	^ self relatedClass isRemote
+]
+
 { #category : #properties }
 FmxMBRelationSide >> isSource [
 
@@ -233,7 +239,7 @@ FmxMBRelationSide >> makeNonremote [
 FmxMBRelationSide >> makeRemote [
 
 	self generationStrategy: (FmxMBRemoteRelationSideGenerationStrategy for: self).
-	self remote: true.
+	self isRemote: true.
 ]
 
 { #category : #converting }
@@ -281,13 +287,13 @@ FmxMBRelationSide >> otherSide [
 { #category : #private }
 FmxMBRelationSide >> ownerPropertyName [
 
-	^ self name
+	^ self propertyName
 ]
 
 { #category : #private }
 FmxMBRelationSide >> pluralPropertyName [
 
-	^ self name
+	^ self propertyName
 ]
 
 { #category : #properties }
@@ -306,7 +312,7 @@ FmxMBRelationSide >> producesSlot [
 { #category : #private }
 FmxMBRelationSide >> propertyName [
 
-	^ self name
+	^ self relatedClass propertyName
 ]
 
 { #category : #accessing }
@@ -383,13 +389,15 @@ FmxMBRelationSide >> relationWith: aRelationSide [
 { #category : #'name conversion' }
 FmxMBRelationSide >> singularPropertyName [
 
-	| normalizedName uncapitalized |
+	| normalizedName uncapitalized aName |
 	
-	normalizedName := ((self name size >= 2) 
-		and: [ ((self name first:2) allSatisfy: #isUppercase)
-		and: [ self name beginsWith: 'T' ] ])
-			ifTrue: [ self name withoutPrefix: 'T' ]
-			ifFalse: [ self name ].	
+	aName := self propertyName.
+	
+	normalizedName := ((aName size >= 2) 
+		and: [ ((aName first:2) allSatisfy: #isUppercase)
+		and: [ aName beginsWith: 'T' ] ])
+			ifTrue: [ aName withoutPrefix: 'T' ]
+			ifFalse: [ aName ].	
 	
 	uncapitalized := normalizedName uncapitalized.
 	

@@ -23,19 +23,20 @@ FamixTestComposedGenerator class >> prefix [
 { #category : #accessing }
 FamixTestComposedGenerator class >> submetamodels [
 
-	^ { FamixTest1Generator. FamixTest2Generator }
+	^ { FamixTestComposedSubmetamodel1Generator. FamixTestComposedSubmetamodel2Generator }
 ]
 
 { #category : #definition }
 FamixTestComposedGenerator >> define [ 
 
-	| test1Method |
+	| test1Method test2Class |
+	
 	super define.
 	
 	entity := builder newClassNamed: #Entity.
 	
-	test1Method := (subbuilders at: #FamixTest1) ensureClassNamed: #Method.
-	test1Method remote: true.
+	test1Method := self remoteEntity: #Method withPrefix: #FamixTestComposed1.
+	test2Class := self remoteEntity: #Class withPrefix: #FamixTestComposed2.
 	
-	test1Method - entity.
+	entity - test1Method.
 ]

@@ -171,7 +171,7 @@ FmxMBBehavior >> generateNavigationGroups [
 { #category : #generating }
 FmxMBBehavior >> generateRemoteAccessors [
 
-	(self properties select: #remote) do: [ :each |
+	(self properties select: #isRemote) do: [ :each |
 		each generateAccessorsIn: self realClass. ]
 
 ]

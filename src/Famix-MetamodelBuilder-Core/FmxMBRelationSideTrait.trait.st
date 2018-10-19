@@ -159,6 +159,11 @@ FmxMBRelationSideTrait >> manyToMany: aRelationSide [
 	aRelation := self relationFrom: ownSide to: oppositeSide.
 	self builder configuration navigationForNonContainers
 		ifTrue: [ aRelation withNavigation ].
+
+	self isRemote ifTrue: [ ownSide makeRemote ].
+	aRelationSide isRemote ifTrue: [ oppositeSide makeRemote ].
+	(self isRemote and: [ aRelationSide isRemote not ]) ifTrue: [ oppositeSide makeNonremote ].
+	(self isRemote not and: [ aRelationSide isRemote ]) ifTrue: [ ownSide makeNonremote ].
 		
 	^ aRelation
 	
@@ -176,6 +181,11 @@ FmxMBRelationSideTrait >> manyToOne: aRelationSide [
 	aRelation := self relationFrom: ownSide to: oppositeSide.
 	self builder configuration navigationForNonContainers
 		ifTrue: [ aRelation withNavigation ].
+
+	self isRemote ifTrue: [ ownSide makeRemote ].
+	aRelationSide isRemote ifTrue: [ oppositeSide makeRemote ].
+	(self isRemote and: [ aRelationSide isRemote not ]) ifTrue: [ oppositeSide makeNonremote ].
+	(self isRemote not and: [ aRelationSide isRemote ]) ifTrue: [ ownSide makeNonremote ].
 		
 	^ aRelation
 	
@@ -207,6 +217,11 @@ FmxMBRelationSideTrait >> oneToMany: aRelationSide [
 	self builder configuration navigationForNonContainers
 		ifTrue: [ aRelation withNavigation ].
 		
+	self isRemote ifTrue: [ ownSide makeRemote ].
+	aRelationSide isRemote ifTrue: [ oppositeSide makeRemote ].
+	(self isRemote and: [ aRelationSide isRemote not ]) ifTrue: [ oppositeSide makeNonremote ].
+	(self isRemote not and: [ aRelationSide isRemote ]) ifTrue: [ ownSide makeNonremote ].		
+		
 	^ aRelation
 	
 	
@@ -224,10 +239,10 @@ FmxMBRelationSideTrait >> oneToOne: aRelationSide [
 	self builder configuration navigationForNonContainers
 		ifTrue: [ aRelation withNavigation ].
 		
-	self remote ifTrue: [ ownSide makeRemote ].
-	aRelationSide remote ifTrue: [ oppositeSide makeRemote ].
-	(self remote and: [ aRelationSide remote not ]) ifTrue: [ oppositeSide makeNonremote ].
-	(self remote not and: [ aRelationSide remote ]) ifTrue: [ self makeNonremote ].
+	self isRemote ifTrue: [ ownSide makeRemote ].
+	aRelationSide isRemote ifTrue: [ oppositeSide makeRemote ].
+	(self isRemote and: [ aRelationSide isRemote not ]) ifTrue: [ oppositeSide makeNonremote ].
+	(self isRemote not and: [ aRelationSide isRemote ]) ifTrue: [ ownSide makeNonremote ].
 		
 	^ aRelation
 	
