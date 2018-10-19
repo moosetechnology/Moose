@@ -222,10 +222,10 @@ BaselineOfMoose >> baselineFamixNG: spec [
 		'Famix-Test3-Tests'
 		'Famix-Test4-Entities'
 		'Famix-Test4-Tests'
-		'Famix-TestComposedMetamodel'
-		'Famix-TestComposedMetamodel-Entities'
 		'Famix-TestComposedSubmetamodel1-Entities'
 		'Famix-TestComposedSubmetamodel2-Entities'
+		'Famix-TestComposedMetamodel'
+		'Famix-TestComposedMetamodel-Entities'
 
 	) do: [ :packageName | 
 		spec package: packageName with: [ spec repository: (self url: #all) ]]
