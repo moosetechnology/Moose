@@ -52,7 +52,7 @@ FamixTestComposedEntity >> method [
 FamixTestComposedEntity >> method: anObject [
 
 	<generated>
-	"o-o" (self privateState attributeAt: #method ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
+	(self privateState attributeAt: #method ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
 	self privateState attributeAt: #method put: anObject.
 	anObject entity: self
 ]

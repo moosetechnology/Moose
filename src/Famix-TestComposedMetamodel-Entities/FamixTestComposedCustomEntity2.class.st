@@ -45,14 +45,14 @@ FamixTestComposedCustomEntity2 >> c22s [
 
 	<generated>
 	<MSEProperty: #c22s type: #Object>
-	"o-m" ^ self privateState attributeAt: #c22s ifAbsentPut: [ FMMultivalueLink on: self opposite: #c2: ]
+	^ self privateState attributeAt: #c22s ifAbsentPut: [ FMMultivalueLink on: self opposite: #c2: ]
 ]
 
 { #category : #accessing }
 FamixTestComposedCustomEntity2 >> c22s: anObject [
 
 	<generated>
-	"o-m" self c22s value: anObject
+	self c22s value: anObject
 ]
 
 { #category : #accessing }
@@ -60,12 +60,12 @@ FamixTestComposedCustomEntity2 >> customEntity2s [
 
 	<generated>
 	<MSEProperty: #customEntity2s type: #Object>
-	"o-m" ^ self privateState attributeAt: #customEntity2s ifAbsentPut: [ FMMultivalueLink on: self opposite: #customEntity2: ]
+	^ self privateState attributeAt: #customEntity2s ifAbsentPut: [ FMMultivalueLink on: self opposite: #customEntity2: ]
 ]
 
 { #category : #accessing }
 FamixTestComposedCustomEntity2 >> customEntity2s: anObject [
 
 	<generated>
-	"o-m" self customEntity2s value: anObject
+	self customEntity2s value: anObject
 ]

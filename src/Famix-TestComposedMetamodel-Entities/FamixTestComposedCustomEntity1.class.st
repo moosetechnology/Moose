@@ -52,7 +52,7 @@ FamixTestComposedCustomEntity1 >> c21 [
 FamixTestComposedCustomEntity1 >> c21: anObject [
 
 	<generated>
-	"o-o" (self privateState attributeAt: #c21 ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
+	(self privateState attributeAt: #c21 ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
 	self privateState attributeAt: #c21 put: anObject.
 	anObject c1: self
 ]
@@ -69,7 +69,7 @@ FamixTestComposedCustomEntity1 >> customEntity1 [
 FamixTestComposedCustomEntity1 >> customEntity1: anObject [
 
 	<generated>
-	"o-o" (self privateState attributeAt: #customEntity1 ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
+	(self privateState attributeAt: #customEntity1 ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
 	self privateState attributeAt: #customEntity1 put: anObject.
 	anObject customEntity1: self
 ]

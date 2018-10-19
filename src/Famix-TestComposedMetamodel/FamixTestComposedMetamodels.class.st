@@ -1,3 +1,6 @@
+"
+Test relation types between remote and nonremote entities is composed metamodels
+"
 Class {
 	#name : #FamixTestComposedMetamodels,
 	#superclass : #TestCase,
@@ -57,10 +60,10 @@ FamixTestComposedMetamodels >> setUp [
 { #category : #running }
 FamixTestComposedMetamodels >> testImplicitManyToManyRemote [
 
-	c4 c24s: {c24}.
+	c4 customEntity4s: {c14}.
 	
-	self assertCollection: c4 c24s hasSameElements: {c24}.
-	self assertCollection: c24 c4s hasSameElements: {c4}.
+	self assertCollection: c4 customEntity4s hasSameElements: {c14}.
+	self assertCollection: c14 customEntity4s hasSameElements: {c4}.
 ]
 
 { #category : #running }
@@ -91,6 +94,15 @@ FamixTestComposedMetamodels >> testImplicitOneToOneRemote [
 ]
 
 { #category : #running }
+FamixTestComposedMetamodels >> testManyToManyRemote [
+
+	c4 c24s: {c24}.
+	
+	self assertCollection: c4 c24s hasSameElements: {c24}.
+	self assertCollection: c24 c4s hasSameElements: {c4}.
+]
+
+{ #category : #running }
 FamixTestComposedMetamodels >> testManyToOneRemote [
 
 	c3 c23: c23.
@@ -115,4 +127,40 @@ FamixTestComposedMetamodels >> testOneToOneRemote [
 	
 	self assert: c1 c21 equals: c21.
 	self assert: c21 c1 equals: c1.
+]
+
+{ #category : #running }
+FamixTestComposedMetamodels >> testRemoteManyToManyRemote [
+
+	c14 c24s: {c24}.
+	
+	self assertCollection: c14 c24s hasSameElements: {c24}.
+	self assertCollection: c24 c14s hasSameElements: {c14}.
+]
+
+{ #category : #running }
+FamixTestComposedMetamodels >> testRemoteManyToOneRemote [
+
+	c13 c23: c23.
+	
+	self assert: c13 c23 equals: c23.
+	self assertCollection: c23 c13s hasSameElements: {c13}.
+]
+
+{ #category : #running }
+FamixTestComposedMetamodels >> testRemoteOneToManyRemote [
+
+	c12 c22s: {c22}.
+	
+	self assertCollection: c12 c22s hasSameElements: {c22}.
+	self assert: c22 c12 equals: c12.
+]
+
+{ #category : #running }
+FamixTestComposedMetamodels >> testRemoteOneToOneRemote [
+
+	c11 c21: c21.
+	
+	self assert: c11 c21 equals: c21.
+	self assert: c21 c11 equals: c11.
 ]
