@@ -59,12 +59,6 @@ FmxMBClassAlias >> link: propertyName to: aFmxMBBehavior [
 	aFmxMBBehavior subclassOf: aRelation oppositeSide relatedClass. 
 ]
 
-{ #category : #private }
-FmxMBClassAlias >> ownerPropertyName [
-
-	^ self trait ownerPropertyName
-]
-
 { #category : #'relations - named' }
 FmxMBClassAlias >> pluralPropertyName [
 

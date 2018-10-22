@@ -340,24 +340,6 @@ FamixMetamodelBuilderClassTest >> testMultipleClasses [
 ]
 
 { #category : #'tests - names' }
-FamixMetamodelBuilderClassTest >> testOwnerPropertyName [
-
-	"test if ownerPropertyName is correctly created from a class name"
-
-	| class |
-		
-	class := builder newClassNamed: #Variable.	
-	self assert: class ownerPropertyName equals: 'variableOwner'.
-		
-	class := builder newClassNamed: #Access.	
-	self assert: class ownerPropertyName equals: 'accessOwner'.
-
-	class := builder newClassNamed: #Method.	
-	self assert: class ownerPropertyName equals: 'methodOwner'.
-
-]
-
-{ #category : #'tests - names' }
 FamixMetamodelBuilderClassTest >> testRelatedOwnerTraitName [
 
 	"test if relatedOwnerTraitName is correctly created from a class name"

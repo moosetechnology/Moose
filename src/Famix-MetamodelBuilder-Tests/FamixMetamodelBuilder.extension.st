@@ -1,13 +1,19 @@
 Extension { #name : #FamixMetamodelBuilder }
 
 { #category : #'*Famix-MetamodelBuilder-Tests' }
+FamixMetamodelBuilder >> beForTesting [
+
+	self 	environment: (FmxMBRingEnvironment for: self).
+	self configuration	
+		prefix: 'Tst';
+		packageName: 'Tst'.
+	^ self.
+]
+
+{ #category : #'*Famix-MetamodelBuilder-Tests' }
 FamixMetamodelBuilder class >> forTesting [
 
 	| aBuilder |
-	aBuilder := self new.
-	aBuilder 	environment: (FmxMBRingEnvironment for: aBuilder).
-	aBuilder configuration	
-		prefix: 'Tst';
-		packageName: 'Tst'.
+	aBuilder := self new beForTesting.
 	^ aBuilder.
 ]

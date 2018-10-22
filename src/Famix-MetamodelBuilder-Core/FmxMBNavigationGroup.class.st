@@ -21,11 +21,13 @@ FmxMBNavigationGroup >> entity: anObject [
 
 { #category : #accessing }
 FmxMBNavigationGroup >> name [
+	<ignoreForCoverage>
 	^ name
 ]
 
 { #category : #accessing }
 FmxMBNavigationGroup >> name: anObject [
+	<ignoreForCoverage>
 	name := anObject
 ]
 

@@ -55,7 +55,8 @@ Class {
 		'generator',
 		'testingSelectorsMapping',
 		'configuration',
-		'parentBuilder'
+		'parentBuilder',
+		'subbuilders'
 	],
 	#category : #'Famix-MetamodelBuilder-Core-Basic'
 }
