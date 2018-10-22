@@ -23,6 +23,7 @@ FamixMetamodelGenerator class >> builderWithDefinitions [
 { #category : #'as yet unclassified' }
 FamixMetamodelGenerator class >> generate [
 
+	<ignoreForCoverage>
 	self new generate
 ]
 
@@ -33,6 +34,8 @@ FamixMetamodelGenerator class >> metamodel [
 
 { #category : #accessing }
 FamixMetamodelGenerator class >> metamodel: anObject [
+
+	<ignoreForCoverage>
 	metamodel := anObject
 ]
 
@@ -49,18 +52,21 @@ FamixMetamodelGenerator class >> newRepository [
 { #category : #accessing }
 FamixMetamodelGenerator class >> packageName [
 
+	<ignoreForCoverage>
 	self subclassResponsibility
 ]
 
 { #category : #accessing }
 FamixMetamodelGenerator class >> packageNameForAnnotations [
 
+	<ignoreForCoverage>
 	^ self packageName
 ]
 
 { #category : #accessing }
 FamixMetamodelGenerator class >> prefix [
 
+	<ignoreForCoverage>
 	^ self packageName
 ]
 

@@ -30,6 +30,7 @@ FmxMBBuilderTest >> testChildBuildersGeneration [
 	childBuilder ensureClassNamed: 'ChildEntity'.
 	
 	parentBuilder generate.
+	parentBuilder generateRemotes.
 	
 	environment := parentBuilder environment ringEnvironment.
 	
@@ -223,6 +224,34 @@ FmxMBBuilderTest >> testParentBuilder [
 	childBuilder parentBuilder: parentBuilder.
 	self assert: childBuilder parentBuilderPackageName equals: 'ParentBuilderPackage'
 
+]
+
+{ #category : #tests }
+FmxMBBuilderTest >> testSortedTratis [
+
+	| t1 t2 t3 |
+	
+	t2 := builder ensureTraitNamed: #T2.
+	t1 := builder ensureTraitNamed: #T1.
+	t3 := builder ensureTraitNamed: #T3.
+
+	self assertCollection: builder sortedTraits asArray equals: { t1. t2. t3 }.
+	
+	
+]
+
+{ #category : #tests }
+FmxMBBuilderTest >> testTraitNamed [
+
+	| t c |
+	
+	t := builder ensureTraitNamed: #T1.
+	c := builder ensureClassNamed: #C1.	
+	
+	self assert: (builder traitNamed: #T1) equals: t.
+	self should: [ builder traitNamed: #C1 ] raise: NotFound.
+
+	
 ]
 
 { #category : #tests }

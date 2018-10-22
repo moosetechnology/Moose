@@ -94,6 +94,12 @@ FamixMetamodelBuilder >> behaviorsCount [
 	^ self traits size + self sortedClasses size
 ]
 
+{ #category : #initialization }
+FamixMetamodelBuilder >> classNamed: aClassName [
+
+	^ self classes detect: [ :each | each name = aClassName] ifNone: [ nil ]
+]
+
 { #category : #accessing }
 FamixMetamodelBuilder >> classes [
 	^ classes
@@ -423,6 +429,7 @@ FamixMetamodelBuilder >> relations [
 
 { #category : #accessing }
 FamixMetamodelBuilder >> relations: anObject [
+	<ignoreForCoverage>
 	relations := anObject
 ]
 
