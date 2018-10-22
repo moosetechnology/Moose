@@ -16,16 +16,16 @@ FamixTestComposed1CustomEntity4 >> c24s: anObject [
 ]
 
 { #category : #'*Famix-TestComposedMetamodel-Entities-*Famix-TestComposedSubmetamodel1-Entities' }
-FamixTestComposed1CustomEntity4 >> customEntity4s [
+FamixTestComposed1CustomEntity4 >> customEntities4 [
 
 	<generated>
-	<MSEProperty: #customEntity4s type: #Object>
-	^ self privateState attributeAt: #customEntity4s ifAbsentPut: [ FMMultiMultivalueLink on: self opposite: #customEntity4s ]
+	<MSEProperty: #customEntities4 type: #Object>
+	^ self privateState attributeAt: #customEntities4 ifAbsentPut: [ FMMultiMultivalueLink on: self opposite: #customEntities4 ]
 ]
 
 { #category : #'*Famix-TestComposedMetamodel-Entities-*Famix-TestComposedSubmetamodel1-Entities' }
-FamixTestComposed1CustomEntity4 >> customEntity4s: anObject [
+FamixTestComposed1CustomEntity4 >> customEntities4: anObject [
 
 	<generated>
-	self customEntity4s value: anObject
+	self customEntities4 value: anObject
 ]

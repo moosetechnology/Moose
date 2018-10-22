@@ -5,7 +5,8 @@ Class {
 	#name : #FamixMetamodelGenerator,
 	#superclass : #Object,
 	#instVars : [
-		'builder'
+		'builder',
+		'subbuilders'
 	],
 	#classInstVars : [
 		'metamodel'
@@ -68,7 +69,7 @@ FamixMetamodelGenerator class >> resetMetamodel [
 
 	" self resetMetamodel"
 
-	| classes tower |
+	| classes tower elements |
 
 	FMRelationSlot allSubInstancesDo: #resetMooseProperty.
 
@@ -81,7 +82,18 @@ FamixMetamodelGenerator class >> resetMetamodel [
 	tower := MooseModel metaBuilder: classes.
 	self metamodel: tower metamodel.
 	
+	elements := self submetamodels flatCollect: [ :each | each metamodel elements ].
+
+	elements do: [ :each |
+		metamodel elementNamed: each fullName ifAbsent: [ metamodel add: each ] ].
+		
 	^ metamodel
+]
+
+{ #category : #accessing }
+FamixMetamodelGenerator class >> submetamodels [ 
+
+	^ OrderedCollection new
 ]
 
 { #category : #definition }
@@ -184,6 +196,8 @@ FamixMetamodelGenerator >> generateWithoutCleaning [
 
 	self define.
 	self builder generate.
+	
+	subbuilders do: #generateRemotes
 
 ]
 
@@ -194,6 +208,13 @@ FamixMetamodelGenerator >> initialize [
 	
 	builder := self newBuilder.
 	self adoptBuilder: builder.
+	
+	subbuilders := Dictionary newFrom: (self class submetamodels collect: [ :each | 
+		| subbuilder |
+		subbuilder := each builderWithDefinitions.
+		subbuilder parentBuilder: self builder.
+		builder environment: builder environment.		
+		each prefix -> subbuilder ]).
 
 ]
 
@@ -226,4 +247,15 @@ FamixMetamodelGenerator >> packageNameForAnnotations [
 FamixMetamodelGenerator >> prefix [
 
 	^ self class prefix
+]
+
+{ #category : #'as yet unclassified' }
+FamixMetamodelGenerator >> remoteEntity: anEntityName withPrefix: aPrefixName [ 
+
+	| anEntity |
+	
+	anEntity := (subbuilders at: aPrefixName) ensureClassNamed: anEntityName.
+	anEntity isRemote: true.
+	
+	^ anEntity.
 ]

@@ -67,5 +67,5 @@ FamixTestComposedCustomEntity3 >> customEntity3 [
 FamixTestComposedCustomEntity3 >> customEntity3: anObject [
 
 	<generated>
-	self privateState attributeAt: #customEntity3 put: (FMMultivalueLink on: self update: #customEntity3s from: self customEntity3 to: anObject).
+	self privateState attributeAt: #customEntity3 put: (FMMultivalueLink on: self update: #customEntities3 from: self customEntity3 to: anObject).
 ]

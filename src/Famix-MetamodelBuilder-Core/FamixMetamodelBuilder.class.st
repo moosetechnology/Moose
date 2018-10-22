@@ -63,6 +63,7 @@ Class {
 { #category : #'instance creation' }
 FamixMetamodelBuilder class >> forGenerator: aGenerator [
 
+	<ignoreForCoverage>
 	^ self new
 		generator: aGenerator;
 		yourself.
@@ -71,6 +72,7 @@ FamixMetamodelBuilder class >> forGenerator: aGenerator [
 { #category : #visitor }
 FamixMetamodelBuilder >> acceptVisitor: aVisitor [
 
+	<ignoreForCoverage>
 	^ aVisitor visitBuilder: self.
 ]
 
@@ -122,6 +124,8 @@ FamixMetamodelBuilder >> configuration [
 
 { #category : #accessing }
 FamixMetamodelBuilder >> configuration: anObject [
+
+	<ignoreForCoverage>
 	configuration := anObject
 ]
 
@@ -386,12 +390,15 @@ FamixMetamodelBuilder >> newTraitNamed: aClassName comment: aString [
 
 { #category : #accessing }
 FamixMetamodelBuilder >> parentBuilder [
+	<ignoreForCoverage>
 	^ parentBuilder
 ]
 
 { #category : #accessing }
 FamixMetamodelBuilder >> parentBuilder: anObject [
-	parentBuilder := anObject
+
+	parentBuilder := anObject.
+	self environment: parentBuilder environment
 ]
 
 { #category : #'tests support' }

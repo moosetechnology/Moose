@@ -27,5 +27,5 @@ FamixTestComposed1CustomEntity2 >> customEntity2 [
 FamixTestComposed1CustomEntity2 >> customEntity2: anObject [
 
 	<generated>
-	self privateState attributeAt: #customEntity2 put: (FMMultivalueLink on: self update: #customEntity2s from: self customEntity2 to: anObject).
+	self privateState attributeAt: #customEntity2 put: (FMMultivalueLink on: self update: #customEntities2 from: self customEntity2 to: anObject).
 ]

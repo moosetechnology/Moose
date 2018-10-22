@@ -56,16 +56,16 @@ FamixTestComposedCustomEntity4 >> c24s: anObject [
 ]
 
 { #category : #accessing }
-FamixTestComposedCustomEntity4 >> customEntity4s [
+FamixTestComposedCustomEntity4 >> customEntities4 [
 
 	<generated>
-	<MSEProperty: #customEntity4s type: #Object>
-	^ self privateState attributeAt: #customEntity4s ifAbsentPut: [ FMMultiMultivalueLink on: self opposite: #customEntity4s ]
+	<MSEProperty: #customEntities4 type: #Object>
+	^ self privateState attributeAt: #customEntities4 ifAbsentPut: [ FMMultiMultivalueLink on: self opposite: #customEntities4 ]
 ]
 
 { #category : #accessing }
-FamixTestComposedCustomEntity4 >> customEntity4s: anObject [
+FamixTestComposedCustomEntity4 >> customEntities4: anObject [
 
 	<generated>
-	self customEntity4s value: anObject
+	self customEntities4 value: anObject
 ]

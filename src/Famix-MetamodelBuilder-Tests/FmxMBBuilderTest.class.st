@@ -16,6 +16,44 @@ Class {
 }
 
 { #category : #tests }
+FmxMBBuilderTest >> testChildBuildersGeneration [
+
+	| parentBuilder childBuilder environment |
+	
+	parentBuilder := FamixMetamodelBuilder forTesting.
+	parentBuilder configuration packageName: 'ParentBuilderPackage'.
+	parentBuilder ensureClassNamed: 'ParentEntity'.
+	
+	childBuilder := FamixMetamodelBuilder new.
+	childBuilder parentBuilder: parentBuilder.
+	childBuilder configuration packageName: 'ChildBuilderPackage'.
+	childBuilder ensureClassNamed: 'ChildEntity'.
+	
+	parentBuilder generate.
+	
+	environment := parentBuilder environment ringEnvironment.
+	
+	self assert: (environment ask behaviorNamed: #TstParentEntity) notNil.
+	self assert: (environment ask behaviorNamed: #TstParentEntity) package name equals: 'ParentBuilderPackage'. 
+	self assert: (environment ask behaviorNamed: #TstChildEntity) isNil.
+	
+	
+]
+
+{ #category : #tests }
+FmxMBBuilderTest >> testChildBuildersShareTheSameEnvironment [
+
+	| parentBuilder childBuilder |
+	
+	parentBuilder := FamixMetamodelBuilder new.
+	childBuilder := FamixMetamodelBuilder new.
+	childBuilder parentBuilder: parentBuilder.
+
+	self assert: childBuilder environment equals: parentBuilder environment.
+
+]
+
+{ #category : #tests }
 FmxMBBuilderTest >> testClassesThatDirectlyUse [
 
 	"return only traits that are directly used by the trait"
@@ -169,6 +207,22 @@ FmxMBBuilderTest >> testNewTraitNamedComment [
 	t1 := builder testingEnvironment ask traitNamed: 'TstT1'.
 	self assert: t1 comment content equals: 'comment'
 	
+]
+
+{ #category : #tests }
+FmxMBBuilderTest >> testParentBuilder [
+
+	| parentBuilder childBuilder |
+	
+	parentBuilder := FamixMetamodelBuilder new.
+	childBuilder := FamixMetamodelBuilder new.
+	
+	parentBuilder configuration packageName: 'ParentBuilderPackage'.
+	childBuilder configuration packageName: 'ChildBuilderPackage'.
+	
+	childBuilder parentBuilder: parentBuilder.
+	self assert: childBuilder parentBuilderPackageName equals: 'ParentBuilderPackage'
+
 ]
 
 { #category : #tests }
