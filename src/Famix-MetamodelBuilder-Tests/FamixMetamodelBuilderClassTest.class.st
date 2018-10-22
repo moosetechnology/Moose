@@ -358,24 +358,6 @@ FamixMetamodelBuilderClassTest >> testOwnerPropertyName [
 ]
 
 { #category : #'tests - names' }
-FamixMetamodelBuilderClassTest >> testPluralRelationName [
-
-	"test if pluralRelationName is correctly created from a class name"
-
-	| class |
-		
-	class := builder newClassNamed: #Variable.	
-	self assert: class pluralRelationName equals: 'variables'.
-		
-	class := builder newClassNamed: #Access.	
-	self assert: class pluralRelationName equals: 'accesses'.
-
-	class := builder newClassNamed: #Method.	
-	self assert: class pluralRelationName equals: 'methods'.
-
-]
-
-{ #category : #'tests - names' }
 FamixMetamodelBuilderClassTest >> testRelatedOwnerTraitName [
 
 	"test if relatedOwnerTraitName is correctly created from a class name"

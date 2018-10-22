@@ -87,6 +87,23 @@ FmxMBBehaviorTest >> testCustomTestingSelectorsAtOnce [
 ]
 
 { #category : #tests }
+FmxMBBehaviorTest >> testPluralOf [
+
+	| behavior | 
+	
+	behavior := FmxMBBehavior new.
+	
+	self assert: (behavior pluralOf: 'object') equals: 'objects'.
+	self assert: (behavior pluralOf: 'class') equals: 'classes'.	
+	self assert: (behavior pluralOf: 'entity') equals: 'entities'.	
+
+	self assert: (behavior pluralOf: 'object1') equals: 'objects1'.
+	self assert: (behavior pluralOf: 'class12') equals: 'classes12'.
+	self assert: (behavior pluralOf: 'entity123') equals: 'entities123'.
+
+]
+
+{ #category : #tests }
 FmxMBBehaviorTest >> testTestingSelectors [
 
 	"test automatic generation of testing methods in the entities hierarchy"

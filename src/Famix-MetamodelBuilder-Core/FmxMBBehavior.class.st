@@ -263,31 +263,27 @@ FmxMBBehavior >> packageName: anObject [
 	packageName := anObject
 ]
 
+{ #category : #utility }
+FmxMBBehavior >> pluralOf: aString [
+
+	| stringParts pluralized |
+	
+	stringParts := aString splitOnLastNumber.
+	
+	pluralized := (stringParts first endsWith: 's')
+		ifFalse: [ 
+			(stringParts first endsWith: 'y')
+				ifTrue: [ stringParts first allButLast, 'ies' ]
+				ifFalse: [ stringParts first, 's' ]  ]
+		ifTrue: [ stringParts first, 'es' ].
+		
+	^ pluralized, stringParts second.
+]
+
 { #category : #private }
 FmxMBBehavior >> pluralPropertyName [
 
-	| uncapitalized |
-	
-	uncapitalized := self name uncapitalized.
-	
-	^ (uncapitalized endsWith: 's')
-		ifFalse: [ 
-			(uncapitalized endsWith: 'y')
-				ifTrue: [ uncapitalized allButLast, 'ies' ]
-				ifFalse: [ uncapitalized, 's' ]  ]
-		ifTrue: [ uncapitalized, 'es' ]
-]
-
-{ #category : #accessing }
-FmxMBBehavior >> pluralRelationName [
-	
-	| lowercase |
-	
-	lowercase := self name asLowercase.
-
-	^ (lowercase endsWith: 's')
-		ifFalse: [ lowercase, 's' ]
-		ifTrue: [ lowercase, 'es' ]
+	^ self pluralOf: self name uncapitalized
 ]
 
 { #category : #accessing }
