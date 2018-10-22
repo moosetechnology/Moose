@@ -112,6 +112,13 @@ FamixMetamodelGenerator >> adoptBuilder: aBuilder [
 
 ]
 
+{ #category : #definition }
+FamixMetamodelGenerator >> beForTesting [
+
+	builder environment: (FmxMBRingEnvironment for: builder).
+
+]
+
 { #category : #accessing }
 FamixMetamodelGenerator >> builder [
 	^ builder

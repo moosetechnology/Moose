@@ -58,6 +58,18 @@ FamixTestComposedMetamodels >> setUp [
 ]
 
 { #category : #running }
+FamixTestComposedMetamodels >> testGenerationOfComposedMetamodel [
+
+	| aGenerator env |
+	
+	aGenerator := FamixTestComposedGenerator new beForTesting generate.
+	env := aGenerator builder environment ringEnvironment.
+	
+	self assert: ((((env ask behaviorNamed: #FamixTestComposedCustomEntity1) methodNamed: #customEntity1) sourceCode includesSubstring: 
+'MSEProperty: #customEntity1 type: #Object'))
+]
+
+{ #category : #running }
 FamixTestComposedMetamodels >> testImplicitManyToManyRemote [
 
 	c4 customEntities4: {c14}.
