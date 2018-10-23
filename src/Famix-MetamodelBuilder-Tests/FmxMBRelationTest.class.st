@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 FmxMBRelationTest >> testCardinalityString [
 
-	| tClass tMethod class method relation |
+	| tClass tMethod relation |
 	
 	tClass := builder newTraitNamed: #TClass.
 	tMethod := builder newTraitNamed: #TMethod.
