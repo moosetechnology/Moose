@@ -24,18 +24,12 @@ Class {
 { #category : #visitor }
 FmxMBRelationSide >> acceptVisitor: aVisitor [
 
+	<ignoreForCoverage>
 	^ aVisitor visitRelationSide: self.
 ]
 
 { #category : #converting }
 FmxMBRelationSide >> asRelationSideNamed: aPropertyName [
-
-	"ignore the proposed name"
-	^ self 
-]
-
-{ #category : #converting }
-FmxMBRelationSide >> asRelationSideNamed: aPropertyName withOppositeRemote: aBoolean [ 
 
 	"ignore the proposed name"
 	^ self 
@@ -177,7 +171,7 @@ FmxMBRelationSide >> initialize [
 	target := false.
 	source := false.
 	
-	generationStrategy := FmxMBStandardRelationSideGenerationStrategy for: self .
+	self makeStandard.
 
 ]
 
@@ -245,7 +239,7 @@ FmxMBRelationSide >> makeRemote [
 { #category : #converting }
 FmxMBRelationSide >> makeStandard [
 
-	self generationStrategy: (FmxMBRelationSideGenerationStrategy for: self)
+	self generationStrategy: (FmxMBStandardRelationSideGenerationStrategy for: self)
 ]
 
 { #category : #accessing }

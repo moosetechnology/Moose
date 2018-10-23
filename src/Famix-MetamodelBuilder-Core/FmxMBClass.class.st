@@ -163,6 +163,8 @@ FmxMBClass >> containerProperties [
 { #category : #accessing }
 FmxMBClass >> directlyUses: aTrait [
 
+	self = aTrait ifTrue: [ ^ true ].
+
 	^ self allLocalTraits includes: aTrait
 ]
 
@@ -348,14 +350,6 @@ FmxMBClass >> subclassOf: aClass [
 ]
 
 { #category : #accessing }
-FmxMBClass >> traitNamesFromRelations [
-
-	"returns traits defined by relations"
-
-	^ (self traitsFromRelations collect: #fullName) sorted
-]
-
-{ #category : #accessing }
 FmxMBClass >> traitsFromRelations [
 
 	"returns traits defined by relations"
@@ -369,14 +363,4 @@ FmxMBClass >> usesOnlyTrait: aTrait [
 
  	^ (self traitGeneralizations size = 1) 
 		and: [ self traitGeneralizations first = aTrait ]	
-]
-
-{ #category : #accessing }
-FmxMBClass >> withAllClassGeneralizations [
-
-	"returns all class generalizations of with generalizations of superclasses"
-	
-	^ classGeneralization 
-		ifNil: [ classGeneralization ]
-		ifNotNil: [ {self}, classGeneralization withAllClassGeneralizations ]
 ]

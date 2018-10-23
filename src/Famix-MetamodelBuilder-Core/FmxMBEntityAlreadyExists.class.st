@@ -7,5 +7,7 @@ Class {
 { #category : #accessing }
 FmxMBEntityAlreadyExists >> messageText [
 
+	<ignoreForCoverage>
+
 	^ 'Entity of this name already exists in the metamodel'
 ]

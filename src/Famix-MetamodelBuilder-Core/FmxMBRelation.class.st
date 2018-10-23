@@ -26,11 +26,11 @@ FmxMBRelation >> builder: anObject [
 FmxMBRelation >> cardinalityString [ 
 
 	^ String streamContents: [ :s |
-		self from cardinality = #many 
+		self to cardinality = #many 
 			ifTrue: [ s nextPutAll: '*' ]
 			ifFalse: [ s nextPutAll: '1' ].
 		s nextPutAll: '..'.
-		self to cardinality = #many 
+		self from cardinality = #many 
 			ifTrue: [ s nextPutAll: '*' ]
 			ifFalse: [ s nextPutAll: '1' ] ]
 ]

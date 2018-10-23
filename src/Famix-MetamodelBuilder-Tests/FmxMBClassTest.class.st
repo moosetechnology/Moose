@@ -270,6 +270,29 @@ FmxMBClassTest >> testDefaultTagForClass [
 	self assertCollection: generatedTAccess tags hasSameElements: { builder configuration defaultTraitTag }
 ]
 
+{ #category : #'tests - tags' }
+FmxMBClassTest >> testDirectlyUses [
+
+	| named behavior tNamed tBehavior type |
+
+	named := builder newClassNamed: #Named.	
+	behavior := builder newClassNamed: #Behavior.	
+	type := builder newClassNamed: #Type.	
+	tNamed := builder newTraitNamed: #TNamed.
+	tBehavior := builder newTraitNamed: #TBehavior.
+	
+	behavior --|> named.
+	type --|> named.
+	named --|> tNamed.
+	behavior --|> tBehavior.
+	
+	self assert: (behavior directlyUses: tBehavior).
+	self assert: (named directlyUses: tNamed).
+	self deny: (behavior directlyUses: tNamed).
+	self deny: (type directlyUses: tNamed).
+
+]
+
 { #category : #tests }
 FmxMBClassTest >> testEmptyComment [
 
@@ -298,6 +321,25 @@ FmxMBClassTest >> testHasTraitGeneralization [
 	named subclassOf: tNamed.
 	
 	self assert: (named hasTraitGeneralization: tNamed).
+]
+
+{ #category : #tests }
+FmxMBClassTest >> testIsContainerOfClassThatUses [
+
+	| tMethod method class |
+	
+	tMethod := builder newTraitNamed: #TMethod.
+	
+	class := builder newClassNamed: #Class.    
+	method := builder newClassNamed: #Method.    
+
+	class <>-* method.
+
+	method --|> tMethod.
+	
+	self assert: (class isContainerOfClassThatUses: tMethod).
+	
+	
 ]
 
 { #category : #tests }

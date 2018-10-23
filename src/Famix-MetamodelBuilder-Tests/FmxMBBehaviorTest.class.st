@@ -87,6 +87,16 @@ FmxMBBehaviorTest >> testCustomTestingSelectorsAtOnce [
 ]
 
 { #category : #tests }
+FmxMBBehaviorTest >> testDefaultSuperclass [
+
+	| entity |
+	
+	entity := builder newClassNamed: #Entity.
+	
+	self assert: entity defaultSuperclass name equals: #MooseEntity.
+]
+
+{ #category : #tests }
 FmxMBBehaviorTest >> testMultipleContainers [
 
 	| method package class |
@@ -133,7 +143,7 @@ FmxMBBehaviorTest >> testPrimaryContainerFromTraits [
 	method := builder newClassNamed: #Method.    
 
 	class --|> tWithMethods.
-	method --|> tMethod.
+	tMethod <|-- method.
 	
 	self assert: method primaryContainerProperties size equals: 1.
 	

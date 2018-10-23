@@ -48,6 +48,13 @@ FmxMBBehavior >> addTraitGeneralization: aTrait [
 	^ aTrait
 ]
 
+{ #category : #'as yet unclassified' }
+FmxMBBehavior >> allNavigationGroups [
+
+	^ self navigationGroups, (self relations flatCollect: [ :relation |
+		relation side navigationGroups ]).
+]
+
 { #category : #converting }
 FmxMBBehavior >> as: aTraitOrTraitName property: propertyName comment: aString [
 
@@ -132,8 +139,7 @@ FmxMBBehavior >> generateNavigationGroups [
 
 	| allNavigationGroups |
 
-	allNavigationGroups := self navigationGroups, (self relations flatCollect: [ :relation |
-		relation side navigationGroups ]).
+	allNavigationGroups := self allNavigationGroups.
 
 	allNavigationGroups do: [ :aGroup | 
 		| sideName |
@@ -451,12 +457,6 @@ FmxMBBehavior >> testingSelectors: aCollection [
 FmxMBBehavior >> traitGeneralizations [
 
 	^ traitGeneralizations ifNil: [ traitGeneralizations := OrderedCollection new ]
-]
-
-{ #category : #accessing }
-FmxMBBehavior >> traitNamesFromGeneralizations [
-
-	^ (self traitGeneralizations collect: #fullName) sorted
 ]
 
 { #category : #accessing }
