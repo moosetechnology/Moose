@@ -40,5 +40,20 @@ FmxMBClassAliasTest >> testRelateEntity [
 	alias := class as: #TVariable.
 	
 	self assert: alias relatedEntity isMetamodelTrait.
-	self assert: alias relatedEntityName equals: #TVariable.
+	self assert: alias relatedEntityName equals: #TVariable.	
+		
+	self assert: class relatedEntityName equals: #Variable.
+]
+
+{ #category : #tests }
+FmxMBClassAliasTest >> testSubject [
+
+	| class alias |
+		
+	class := builder newClassNamed: #Variable.	
+	
+	alias := class as: #TVariable.
+	
+	self assert: alias subject equals: class.
+	self assert: class subject equals: class.
 ]

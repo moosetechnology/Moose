@@ -89,7 +89,7 @@ FmxMBBehaviorTest >> testCustomTestingSelectorsAtOnce [
 { #category : #tests }
 FmxMBBehaviorTest >> testMultipleContainers [
 
-	| method package class env |
+	| method package class |
 	
 	package := builder newClassNamed: #Package.    
 	method := builder newClassNamed: #Method.    
@@ -120,10 +120,40 @@ FmxMBBehaviorTest >> testPluralOf [
 ]
 
 { #category : #tests }
+FmxMBBehaviorTest >> testPrimaryContainerFromTraits [
+
+	| tMethod tWithMethods method class env |
+	
+	tMethod := builder newTraitNamed: #TMethod.
+	tWithMethods := builder newTraitNamed: #TWithMethods.
+	
+	tWithMethods <>-* tMethod. 
+
+	class := builder newClassNamed: #Class.    
+	method := builder newClassNamed: #Method.    
+
+	class --|> tWithMethods.
+	method --|> tMethod.
+	
+	self assert: method primaryContainerProperties size equals: 1.
+	
+	builder generate.
+	
+	env := builder environment ringEnvironment.
+	
+	self assert: ((env ask classNamed: #TstClass) methodNamed: 'belongsTo') isNil.
+	self assert: (((env ask classNamed: #TstMethod) methodNamed: 'belongsTo') sourceCode includesSubstring: '^ self withMethods').
+
+]
+
+{ #category : #tests }
 FmxMBBehaviorTest >> testPrimaryContainerWithoutTraits [
 
-	| method package class env |
+	| tMethod tWithMethods method package class env |
 	
+	tWithMethods := builder newTraitNamed: #Package.    
+	tMethod := builder newTraitNamed: #Method.    
+
 	package := builder newClassNamed: #Package.    
 	method := builder newClassNamed: #Method.    
 	class := builder newClassNamed: #Class.    

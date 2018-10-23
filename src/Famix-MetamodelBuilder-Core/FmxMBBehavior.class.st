@@ -197,12 +197,6 @@ FmxMBBehavior >> generateTestingMethodsIn: aClass [
 
 ]
 
-{ #category : #testing }
-FmxMBBehavior >> hasPrimaryContainer [
-
-	^ additionalProperties at: #providesPrimaryContainer ifAbsent: [ false ]
-]
-
 { #category : #accessing }
 FmxMBBehavior >> initialize [
 
