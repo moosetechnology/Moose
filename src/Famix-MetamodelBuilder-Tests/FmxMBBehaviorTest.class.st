@@ -120,37 +120,6 @@ FmxMBBehaviorTest >> testPluralOf [
 ]
 
 { #category : #tests }
-FmxMBBehaviorTest >> testPrimaryContainer [
-
-	| tMethod tPackage tClass method package class env |
-	
-	self skip.
-	
-	tPackage := builder newTraitNamed: #TPackage.    
-	tMethod := builder newTraitNamed: #TMethod.    
-	tClass := builder newTraitNamed: #TClass.    
-
-	(tPackage <>-* tClass). 
-	(tClass <>-* tMethod). 
-	(tPackage <>-* tMethod).
-
-	package := builder newClassNamed: #Package.    
-	method := builder newClassNamed: #Method.    
-	class := builder newClassNamed: #Class.    
-
-	package --|> tPackage.
-	class --|> tClass.
-	method --|> tMethod.
-
-	builder generate.
-	
-	env := builder environment ringEnvironment.
-
-	"self assert: ((env ask classNamed: #TstPackage) methodNamed: 'methodsGroup') isNil.
-	self assert: ((env ask classNamed: #TstMethod) methodNamed: 'packageGroup') isNil."
-]
-
-{ #category : #tests }
 FmxMBBehaviorTest >> testPrimaryContainerWithoutTraits [
 
 	| method package class env |
