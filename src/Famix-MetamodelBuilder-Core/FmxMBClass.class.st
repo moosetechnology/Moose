@@ -14,7 +14,8 @@ Class {
 
 { #category : #visitor }
 FmxMBClass >> acceptVisitor: aVisitor [
-
+	
+	<ignoreForCoverage>
 	^ aVisitor visitClass: self.
 ]
 

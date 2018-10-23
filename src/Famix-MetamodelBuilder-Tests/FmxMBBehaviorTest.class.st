@@ -87,6 +87,22 @@ FmxMBBehaviorTest >> testCustomTestingSelectorsAtOnce [
 ]
 
 { #category : #tests }
+FmxMBBehaviorTest >> testMultipleContainers [
+
+	| method package class env |
+	
+	package := builder newClassNamed: #Package.    
+	method := builder newClassNamed: #Method.    
+	class := builder newClassNamed: #Class.    
+
+	(package <>-* class). 
+	(class <>-* method). 
+	(package <>-* method).
+
+	self assert: method primaryContainerProperties size > 1.
+]
+
+{ #category : #tests }
 FmxMBBehaviorTest >> testPluralOf [
 
 	| behavior | 
@@ -104,6 +120,59 @@ FmxMBBehaviorTest >> testPluralOf [
 ]
 
 { #category : #tests }
+FmxMBBehaviorTest >> testPrimaryContainer [
+
+	| tMethod tPackage tClass method package class env |
+	
+	self skip.
+	
+	tPackage := builder newTraitNamed: #TPackage.    
+	tMethod := builder newTraitNamed: #TMethod.    
+	tClass := builder newTraitNamed: #TClass.    
+
+	(tPackage <>-* tClass). 
+	(tClass <>-* tMethod). 
+	(tPackage <>-* tMethod).
+
+	package := builder newClassNamed: #Package.    
+	method := builder newClassNamed: #Method.    
+	class := builder newClassNamed: #Class.    
+
+	package --|> tPackage.
+	class --|> tClass.
+	method --|> tMethod.
+
+	builder generate.
+	
+	env := builder environment ringEnvironment.
+
+	"self assert: ((env ask classNamed: #TstPackage) methodNamed: 'methodsGroup') isNil.
+	self assert: ((env ask classNamed: #TstMethod) methodNamed: 'packageGroup') isNil."
+]
+
+{ #category : #tests }
+FmxMBBehaviorTest >> testPrimaryContainerWithoutTraits [
+
+	| method package class env |
+	
+	package := builder newClassNamed: #Package.    
+	method := builder newClassNamed: #Method.    
+	class := builder newClassNamed: #Class.    
+
+	(package <>-* class). 
+	(class <>-* method). 
+	(package <>-* method) withoutPrimaryContainer.
+
+	builder generate.
+	
+	env := builder environment ringEnvironment.
+	
+	self assert: ((env ask classNamed: #TstPackage) methodNamed: 'belongsTo') isNil.
+	self assert: (((env ask classNamed: #TstMethod) methodNamed: 'belongsTo') sourceCode includesSubstring: '^ self class').
+	self assert: (((env ask classNamed: #TstClass) methodNamed: 'belongsTo') sourceCode includesSubstring: '^ self package').
+]
+
+{ #category : #tests }
 FmxMBBehaviorTest >> testTestingSelectors [
 
 	"test automatic generation of testing methods in the entities hierarchy"
@@ -116,4 +185,40 @@ FmxMBBehaviorTest >> testTestingSelectors [
 	self assertCollection: simpleClass testingSelectors hasSameElements: #(isComment).
 	
 
+]
+
+{ #category : #tests }
+FmxMBBehaviorTest >> testWithNavigationOf [
+
+	| method package env |
+	
+	package := builder newClassNamed: #Package.    
+	method := builder newClassNamed: #Method.    
+
+	package <>-* method. "with navigation is implicit"
+
+	builder generate.
+	
+	env := builder environment ringEnvironment.
+	
+	self assert: (((env ask classNamed: #TstPackage) methodNamed: 'methodsGroup') sourceCode includesSubstring: '<navigation: ''Methods''>').
+	self assert: (((env ask classNamed: #TstMethod) methodNamed: 'packageGroup') sourceCode includesSubstring: '<navigation: ''Package''>').
+]
+
+{ #category : #tests }
+FmxMBBehaviorTest >> testWithoutNavigation [
+
+	| method package env |
+	
+	package := builder newClassNamed: #Package.    
+	method := builder newClassNamed: #Method.    
+
+	(package <>-* method) withoutNavigation.
+
+	builder generate.
+	
+	env := builder environment ringEnvironment.
+	
+	self assert: ((env ask classNamed: #TstPackage) methodNamed: 'methodsGroup') isNil.
+	self assert: ((env ask classNamed: #TstMethod) methodNamed: 'packageGroup') isNil.
 ]

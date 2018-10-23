@@ -315,6 +315,13 @@ FmxMBRelationSide >> propertyName [
 	^ self relatedClass propertyName
 ]
 
+{ #category : #'as yet unclassified' }
+FmxMBRelationSide >> providesPrimaryContainer [
+
+	^ self additionalProperties at: #providesPrimaryContainer ifAbsent: [ true ]
+	
+]
+
 { #category : #accessing }
 FmxMBRelationSide >> relatedClass [
 	^ relatedClass

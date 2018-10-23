@@ -135,3 +135,16 @@ FmxMBRelation >> withNavigation [
 	self sides do: [ :aSide |
 		aSide withNavigationOf: self ]
 ]
+
+{ #category : #accessing }
+FmxMBRelation >> withoutNavigation [
+
+	self sides do: [ :aSide |
+		aSide withoutNavigation ]
+]
+
+{ #category : #'as yet unclassified' }
+FmxMBRelation >> withoutPrimaryContainer [
+
+	self sides do: [ :aSide | aSide additionalProperties at: #providesPrimaryContainer put: false ]
+]

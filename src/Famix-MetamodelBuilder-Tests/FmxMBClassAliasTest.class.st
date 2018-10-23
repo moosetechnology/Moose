@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 FmxMBClassAliasTest >> testLinkTo [
 
-	| class method package env project bundle |
+	| method package env bundle |
 	
 	builder := FamixGenerator builderWithDefinitions.
 	builder beForTesting.

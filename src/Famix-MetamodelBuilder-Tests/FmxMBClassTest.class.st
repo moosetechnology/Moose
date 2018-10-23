@@ -1,17 +1,17 @@
 Class {
-	#name : #FamixMetamodelBuilderClassTest,
+	#name : #FmxMBClassTest,
 	#superclass : #FmxMBBehaviorTest,
 	#category : #'Famix-MetamodelBuilder-Tests'
 }
 
 { #category : #accessing }
-FamixMetamodelBuilderClassTest >> behaviorClass [
+FmxMBClassTest >> behaviorClass [
 
 	^ FmxMBClass
 ]
 
 { #category : #utilities }
-FamixMetamodelBuilderClassTest >> checkGeneralizationWithAnnotations [
+FmxMBClassTest >> checkGeneralizationWithAnnotations [
 
 	"check if TstClass is correctly created as a subclass of TstBehavior"
 
@@ -28,13 +28,13 @@ FamixMetamodelBuilderClassTest >> checkGeneralizationWithAnnotations [
 ]
 
 { #category : #accessing }
-FamixMetamodelBuilderClassTest >> newEntityNamed: aString [
+FmxMBClassTest >> newEntityNamed: aString [
 
 	^ builder newClassNamed: aString
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderClassTest >> testAs [
+FmxMBClassTest >> testAs [
 
 	"test if #as: creates a trait with correct name and links it to the class"
 
@@ -54,7 +54,7 @@ FamixMetamodelBuilderClassTest >> testAs [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderClassTest >> testAsPropertyComment [
+FmxMBClassTest >> testAsPropertyComment [
 
 	"traits should not be renamed during creation of properties"
 
@@ -83,7 +83,7 @@ FamixMetamodelBuilderClassTest >> testAsPropertyComment [
 ]
 
 { #category : #'tests - settings' }
-FamixMetamodelBuilderClassTest >> testBasicSuperclass [
+FmxMBClassTest >> testBasicSuperclass [
 
 	"check if a new class has correct superclass (the default one)"
 
@@ -97,7 +97,7 @@ FamixMetamodelBuilderClassTest >> testBasicSuperclass [
 ]
 
 { #category : #'tests - settings' }
-FamixMetamodelBuilderClassTest >> testBasicTrait [
+FmxMBClassTest >> testBasicTrait [
 
 	"test if the trits have correct supperclass"
 
@@ -111,7 +111,7 @@ FamixMetamodelBuilderClassTest >> testBasicTrait [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderClassTest >> testBuilderPackageChange [
+FmxMBClassTest >> testBuilderPackageChange [
 	
 	"if we set for a builder a packag name, all newely defined entities should use be assigned to this package. If no explicit package name is set, the default one is used."
 
@@ -133,7 +133,7 @@ FamixMetamodelBuilderClassTest >> testBuilderPackageChange [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderClassTest >> testBuilderPrefixChange [
+FmxMBClassTest >> testBuilderPrefixChange [
 
 	"if we set for a builder a prefix, all newely defined entities should use it. If no explicit prefix is set, the default one is used."
 
@@ -155,7 +155,7 @@ FamixMetamodelBuilderClassTest >> testBuilderPrefixChange [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderClassTest >> testCommentOnTrait [
+FmxMBClassTest >> testCommentOnTrait [
 
 	"test assigning of a comment to a trait"
 
@@ -170,7 +170,7 @@ FamixMetamodelBuilderClassTest >> testCommentOnTrait [
 ]
 
 { #category : #'tests - settings' }
-FamixMetamodelBuilderClassTest >> testCustomBasicTrait [
+FmxMBClassTest >> testCustomBasicTrait [
 
 	"test if #basicTraitName sets the correct superclass of traits"
 
@@ -185,7 +185,7 @@ FamixMetamodelBuilderClassTest >> testCustomBasicTrait [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderClassTest >> testCustomPackageForUserClasses [
+FmxMBClassTest >> testCustomPackageForUserClasses [
 
 	"check if package name can by correctly set to a class"
 
@@ -202,7 +202,7 @@ FamixMetamodelBuilderClassTest >> testCustomPackageForUserClasses [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderClassTest >> testCustomPackageForUserClassesChanged [
+FmxMBClassTest >> testCustomPackageForUserClassesChanged [
 
 	"test correct package assignments to classes"
 
@@ -226,7 +226,7 @@ FamixMetamodelBuilderClassTest >> testCustomPackageForUserClassesChanged [
 ]
 
 { #category : #'tests - settings' }
-FamixMetamodelBuilderClassTest >> testCustomSuperclass [
+FmxMBClassTest >> testCustomSuperclass [
 
 	"test if a custom basic superclass can correctly set"
 
@@ -241,7 +241,7 @@ FamixMetamodelBuilderClassTest >> testCustomSuperclass [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderClassTest >> testDefaultPackageForUserClasses [
+FmxMBClassTest >> testDefaultPackageForUserClasses [
 
 	"test if the default package name is correctly set to classes"
 	
@@ -256,7 +256,7 @@ FamixMetamodelBuilderClassTest >> testDefaultPackageForUserClasses [
 ]
 
 { #category : #'tests - tags' }
-FamixMetamodelBuilderClassTest >> testDefaultTagForClass [
+FmxMBClassTest >> testDefaultTagForClass [
 
 	"test if correct default tag name is assigned to classes"
 
@@ -271,7 +271,7 @@ FamixMetamodelBuilderClassTest >> testDefaultTagForClass [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderClassTest >> testEmptyComment [
+FmxMBClassTest >> testEmptyComment [
 
 	"check that by default classes do not have any class comment"
 	
@@ -284,7 +284,7 @@ FamixMetamodelBuilderClassTest >> testEmptyComment [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderClassTest >> testHasTraitGeneralization [
+FmxMBClassTest >> testHasTraitGeneralization [
 	
 	"test message #hasTraitGeneralization:"	
 	
@@ -301,7 +301,7 @@ FamixMetamodelBuilderClassTest >> testHasTraitGeneralization [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderClassTest >> testMultipleAs [
+FmxMBClassTest >> testMultipleAs [
 
 	"test if we can assign multiple traits to a class using #as: message"
 
@@ -324,7 +324,7 @@ FamixMetamodelBuilderClassTest >> testMultipleAs [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderClassTest >> testMultipleClasses [
+FmxMBClassTest >> testMultipleClasses [
 
 	"trivial test if we can generate several different classes"
 	
@@ -340,7 +340,7 @@ FamixMetamodelBuilderClassTest >> testMultipleClasses [
 ]
 
 { #category : #'tests - names' }
-FamixMetamodelBuilderClassTest >> testRelatedOwnerTraitName [
+FmxMBClassTest >> testRelatedOwnerTraitName [
 
 	"test if relatedOwnerTraitName is correctly created from a class name"
 
@@ -358,7 +358,7 @@ FamixMetamodelBuilderClassTest >> testRelatedOwnerTraitName [
 ]
 
 { #category : #'tests - names' }
-FamixMetamodelBuilderClassTest >> testRelatedTraitName [
+FmxMBClassTest >> testRelatedTraitName [
 
 	"test if a related trait name is correctly generated from a class name"
 
@@ -376,7 +376,7 @@ FamixMetamodelBuilderClassTest >> testRelatedTraitName [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderClassTest >> testSimpleClass [
+FmxMBClassTest >> testSimpleClass [
 
 	"check expected parameters of a newely generated class"
 
@@ -394,7 +394,7 @@ FamixMetamodelBuilderClassTest >> testSimpleClass [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderClassTest >> testSimpleClassAnnotation [
+FmxMBClassTest >> testSimpleClassAnnotation [
 
 	"test correct generation of class annotations"
 
@@ -411,7 +411,7 @@ FamixMetamodelBuilderClassTest >> testSimpleClassAnnotation [
 ]
 
 { #category : #'tests - names' }
-FamixMetamodelBuilderClassTest >> testSingularPropertyName [
+FmxMBClassTest >> testSingularPropertyName [
 
 	"test if singularPropertyName is correctly created from a class name"
 
@@ -429,7 +429,7 @@ FamixMetamodelBuilderClassTest >> testSingularPropertyName [
 ]
 
 { #category : #'tests - tags' }
-FamixMetamodelBuilderClassTest >> testTagForClass [
+FmxMBClassTest >> testTagForClass [
 
 	| access generatedAccess |
 
@@ -443,7 +443,7 @@ FamixMetamodelBuilderClassTest >> testTagForClass [
 ]
 
 { #category : #'tests - tags' }
-FamixMetamodelBuilderClassTest >> testTagForClassFromBuilder [
+FmxMBClassTest >> testTagForClassFromBuilder [
 
 	| access generatedAccess comment generatedComment |
 
@@ -462,7 +462,7 @@ FamixMetamodelBuilderClassTest >> testTagForClassFromBuilder [
 ]
 
 { #category : #'tests - tags' }
-FamixMetamodelBuilderClassTest >> testTagForTraitFromBuilder [
+FmxMBClassTest >> testTagForTraitFromBuilder [
 
 	| tAccess generatedTAccess tComment generatedTComment |
 
@@ -481,7 +481,7 @@ FamixMetamodelBuilderClassTest >> testTagForTraitFromBuilder [
 ]
 
 { #category : #'tests - tags' }
-FamixMetamodelBuilderClassTest >> testTagForTraits [
+FmxMBClassTest >> testTagForTraits [
 
 	| tAccess generatedTAccess |
 
@@ -495,7 +495,7 @@ FamixMetamodelBuilderClassTest >> testTagForTraits [
 ]
 
 { #category : #'tests - tags' }
-FamixMetamodelBuilderClassTest >> testTestingMethods [
+FmxMBClassTest >> testTestingMethods [
 
 	"test messages isMetamodelClass and isMetamodelTrait"
 	
@@ -510,7 +510,7 @@ FamixMetamodelBuilderClassTest >> testTestingMethods [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderClassTest >> testUsesOnlyTrait [
+FmxMBClassTest >> testUsesOnlyTrait [
 	
 	"test message #usesOnlyTrait:"	
 	

@@ -116,16 +116,13 @@ FmxMBBehavior >> generateAnnotationIn: aRealClass as: aName superclass: aSupercl
 { #category : #generating }
 FmxMBBehavior >> generateContainerMethodsIn: aClass [
 
-	| containerSides |
+	| primaryContainerProperties |
 	
-	containerSides := ((self allTraits 
-		select: #canProvidePrimaryContainer)
-		flatCollect: #sides) 
-		select: #isContainer.
+	primaryContainerProperties := self primaryContainerProperties.
+		
+	primaryContainerProperties size > 1 ifTrue: [ self error: aClass name, ' defines more than one primary container: ', ((primaryContainerProperties collect: #name) sorted joinUsing: ', ') ].
 	
-	containerSides size > 1 ifTrue: [ self error: aClass name, ' defines more than one primary container: ', ((containerSides collect: #name) sorted joinUsing: ', ') ].
-	
-	containerSides do: [ :aSide | aSide generateExtendedContainerMethodsIn: aClass ].
+	primaryContainerProperties do: [ :aSide | aSide generateExtendedContainerMethodsIn: aClass ].
 	
 	
 ]
@@ -246,13 +243,6 @@ FmxMBBehavior >> name: anObject [
 	name := anObject
 ]
 
-{ #category : #private }
-FmxMBBehavior >> ownerPropertyName [
-
-	^ self name uncapitalized, 'Owner'.
-	
-]
-
 { #category : #accessing }
 FmxMBBehavior >> packageName [
 	^ packageName
@@ -294,6 +284,21 @@ FmxMBBehavior >> prefix [
 { #category : #accessing }
 FmxMBBehavior >> prefix: anObject [
 	prefix := anObject
+]
+
+{ #category : #generating }
+FmxMBBehavior >> primaryContainerProperties [
+
+	| primaryContainers |
+	
+	primaryContainers := ((self allTraits 
+		select: #canProvidePrimaryContainer)
+		flatCollect: #sides) 
+		select: #isContainer.
+		
+	primaryContainers addAll: ((self properties select: #isContainer) select: #providesPrimaryContainer).
+	
+	^ primaryContainers
 ]
 
 { #category : #generating }
