@@ -316,7 +316,7 @@ FmxMBRelationSide >> relatedClass: anObject [
 { #category : #accessing }
 FmxMBRelationSide >> relatedEntity [
 
-	^ trait ifNil: [ ^ relatedClass ]
+	^ trait ifNil: [ relatedClass ]
 ]
 
 { #category : #accessing }
