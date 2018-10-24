@@ -326,8 +326,7 @@ FmxMBClassTest >> testHasTraitGeneralization [
 { #category : #tests }
 FmxMBClassTest >> testIsContainerOfClassThatUses [
 
-	| tMethod method class |
-	
+	| tMethod class method |
 	tMethod := builder newTraitNamed: #TMethod.
 	
 	class := builder newClassNamed: #Class.    
@@ -338,8 +337,6 @@ FmxMBClassTest >> testIsContainerOfClassThatUses [
 	method --|> tMethod.
 	
 	self assert: (class isContainerOfClassThatUses: tMethod).
-	
-	
 ]
 
 { #category : #tests }

@@ -6,12 +6,11 @@ Class {
 
 { #category : #tests }
 FmxMBRelationTest >> testCardinalityString [
-
-	| tClass tMethod relation |
 	
+	| tClass tMethod relation |
 	tClass := builder newTraitNamed: #TClass.
 	tMethod := builder newTraitNamed: #TMethod.
-	
+
 	relation := (tClass <>-* tMethod).
 	self assert: relation cardinalityString equals: '1..*'.
 	relation := (tClass - tMethod).
