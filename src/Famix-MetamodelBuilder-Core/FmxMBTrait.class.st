@@ -15,6 +15,7 @@ Class {
 { #category : #visitor }
 FmxMBTrait >> acceptVisitor: aVisitor [
 
+	<ignoreForCoverage>
 	^ aVisitor visitTrait: self.
 ]
 
@@ -142,6 +143,8 @@ FmxMBTrait >> generateRemotes [
 
 { #category : #accessing }
 FmxMBTrait >> glueingCondition [
+
+	<ignoreForCoverage>
 	^ glueingCondition
 ]
 
@@ -192,7 +195,8 @@ FmxMBTrait >> initialize [
 
 { #category : #testing }
 FmxMBTrait >> isGlueingTrait [
-
+	
+	<ignoreForCoverage>
 	^ false
 ]
 
@@ -200,17 +204,6 @@ FmxMBTrait >> isGlueingTrait [
 FmxMBTrait >> isMetamodelTrait [
 
 	^ true
-]
-
-{ #category : #'name conversion' }
-FmxMBTrait >> ownerPropertyName [
-	
-	| uncapitalized |
-		
-	uncapitalized := (self name withoutPrefix: 'T') uncapitalized.
-	
-	^ uncapitalized, 'Owner'.
-
 ]
 
 { #category : #'name conversion' }

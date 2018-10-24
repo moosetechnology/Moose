@@ -61,6 +61,7 @@ FmxMBRelationSideTrait >> <>-* aRelationSide [
 { #category : #'relations - named' }
 FmxMBRelationSideTrait >> asRelationSideNamed: aPropertyName [
 
+	<ignoreForCoverage>
 	self explicitRequirement
 	
 ]

@@ -279,22 +279,9 @@ FmxMBRelationSide >> otherSide [
 ]
 
 { #category : #private }
-FmxMBRelationSide >> ownerPropertyName [
-
-	^ self propertyName
-]
-
-{ #category : #private }
 FmxMBRelationSide >> pluralPropertyName [
 
 	^ self propertyName
-]
-
-{ #category : #properties }
-FmxMBRelationSide >> primaryContainer [
-	
-	container := true.
-	additionalProperties at: #primaryContainer put: true
 ]
 
 { #category : #printing }
@@ -366,27 +353,6 @@ FmxMBRelationSide >> relation: anObject [
 	relation := anObject
 ]
 
-{ #category : #private }
-FmxMBRelationSide >> relationWith: aRelationSide [
-
-	| aRelation |
-	
-	aRelation := self builder newRelation
-		side: self;
-		oppositeSide: aRelationSide;
-		builder: self builder;
-		yourself.	
-		
-	self relation: aRelation.	
-	aRelationSide relation: aRelation.
-
-	self relatedClass ifNotNil: [ 
-		self relatedClass addRelation: aRelation with: aRelationSide relatedEntity ].
-	
-	^ aRelation
-
-]
-
 { #category : #'name conversion' }
 FmxMBRelationSide >> singularPropertyName [
 
@@ -456,12 +422,6 @@ FmxMBRelationSide >> trait: anObject [
 		aRelatedEntity removeRelationSide: self ].
 	trait := anObject.
 	trait addRelationSide: self
-]
-
-{ #category : #accessing }
-FmxMBRelationSide >> traitName [
-
-	^ self trait name
 ]
 
 { #category : #accessing }
