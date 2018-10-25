@@ -20,19 +20,6 @@ FmxMBTrait >> acceptVisitor: aVisitor [
 ]
 
 { #category : #accessing }
-FmxMBTrait >> allClassGeneralizations [
-
-	| result c g|
-	result := OrderedCollection new.
-	c := self.
-	[ g := c traitGeneralization. g notNil ] whileTrue: [ 
-		result add: g.
-		c := g ].
-	^ result
-
-]
-
-{ #category : #accessing }
 FmxMBTrait >> allTraitGeneralizations [
 
 	^ (self traitGeneralizations flatCollect: [ :each | {each}, each allTraitGeneralizations ]) asSet.
