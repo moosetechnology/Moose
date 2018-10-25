@@ -97,6 +97,9 @@ FamixMetamodelBuilder >> behaviorsCount [
 { #category : #initialization }
 FamixMetamodelBuilder >> classNamed: aClassName [
 
+	<ignoreForMutations: #(ReplaceDetectIfNoneSecondBlockWithEmptyBlockOperator)>
+	"empty block returns nil anyway"
+
 	^ self classes detect: [ :each | each name = aClassName] ifNone: [ nil ]
 ]
 
@@ -164,6 +167,8 @@ FamixMetamodelBuilder >> ensureClassNamed: aString [
 
 { #category : #initialization }
 FamixMetamodelBuilder >> ensureLocalTraitNamed: aString [
+
+	<ignoreForMutations: #(ReplaceAndWithEqvMutantOperator)>
 
 	^ self traits detect: [ :each | each name = aString and: [each prefix = self configuration prefix]] ifNone: [ self unsafeNewTraitNamed: aString ]
 
@@ -436,13 +441,15 @@ FamixMetamodelBuilder >> safeAnnotationPackageName [
 	aName := self configuration packageNameForAnnotations.
 	
 	^ aName isLiteralSymbol
-		ifTrue: [ ^ '#', aName ]
-		ifFalse: [ ^ '#''', aName, '''' ]
+		ifTrue: [ '#', aName ]
+		ifFalse: [ '#''', aName, '''' ]
 ]
 
 { #category : #accessing }
 FamixMetamodelBuilder >> sortedClasses [
 
+	<ignoreForMutations: #(ReplaceLessOrEqualWithLessMutantOperator)>
+	
 	^ self classes sorted: [ :a :b |
 		a allClassGeneralizations size <= b allClassGeneralizations size ].
 
@@ -450,6 +457,8 @@ FamixMetamodelBuilder >> sortedClasses [
 
 { #category : #accessing }
 FamixMetamodelBuilder >> sortedTraits [
+
+	<ignoreForMutations: #(ReplaceAndWithEqvMutantOperator)>
 
 	^ self traits sorted: [ :a :b | (a allTraitGeneralizations size <= b allTraitGeneralizations size) and: [ a name <= b name]].
 

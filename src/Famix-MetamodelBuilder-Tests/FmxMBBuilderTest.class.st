@@ -138,6 +138,21 @@ FmxMBBuilderTest >> testContainerRequirementsOf [
 ]
 
 { #category : #tests }
+FmxMBBuilderTest >> testContainerRequirementsOfTrait [
+
+	| class tClass method |
+	
+	class := 	builder newClassNamed: #Class.
+	tClass := builder newTraitNamed: #TClass.
+	method := builder newClassNamed: #Method.
+	
+	class --|> tClass.
+	tClass <>-* method.
+
+	self assert: (builder containerRequirementsOf: method) asArray equals: { class }.	
+]
+
+{ #category : #tests }
 FmxMBBuilderTest >> testDoNotGenerateCurrent [
 	
 	builder newClassNamed: #Behavior.	
