@@ -180,6 +180,30 @@ FmxMBBuilderTest >> testEnsureClassNamed [
 ]
 
 { #category : #tests }
+FmxMBBuilderTest >> testEnsureLocalTraitNamed [
+
+	| t0 t1 |
+
+	t0 := builder unsafeNewTraitNamed: #T1.	
+	t0 prefix: 'Another'.
+	t1 := builder unsafeNewTraitNamed: #T1.
+	
+	self assert: (builder ensureLocalTraitNamed: #T1) equals: t1.
+]
+
+{ #category : #tests }
+FmxMBBuilderTest >> testEnsureLocalTraitNamedExisting [
+
+	| aTrait |
+
+	aTrait := builder unsafeNewTraitNamed: #T1.	
+	aTrait prefix: 'Another'.
+
+	self deny: (builder ensureLocalTraitNamed: #T1) equals: aTrait.
+
+]
+
+{ #category : #tests }
 FmxMBBuilderTest >> testEnsureTraitNamed [
 
 	| t1 |
@@ -214,9 +238,12 @@ FmxMBBuilderTest >> testMultipleTraitsCreation [
 { #category : #tests }
 FmxMBBuilderTest >> testNewClassNamedComment [
 
-	| c1 |
+	| c1 aClass |
 	
-	builder newClassNamed: #C1 comment: 'comment'.
+	aClass := builder newClassNamed: #C1 comment: 'comment'.
+	self assert: aClass comment equals: 'comment'.
+	self assert: aClass isMetamodelClass.
+	
 	builder generate.
 	
 	c1 := builder testingEnvironment ask classNamed: 'TstC1'.
@@ -227,9 +254,12 @@ FmxMBBuilderTest >> testNewClassNamedComment [
 { #category : #tests }
 FmxMBBuilderTest >> testNewTraitNamedComment [
 
-	| t1 |
+	| t1 aTrait |
 	
-	builder newTraitNamed: #T1 comment: 'comment'.
+	aTrait := builder newTraitNamed: #T1 comment: 'comment'.
+	self assert: aTrait comment equals: 'comment'.
+	self assert: aTrait isMetamodelTrait.
+	
 	builder generate.
 	
 	t1 := builder testingEnvironment ask traitNamed: 'TstT1'.
@@ -251,6 +281,34 @@ FmxMBBuilderTest >> testParentBuilder [
 	childBuilder parentBuilder: parentBuilder.
 	self assert: childBuilder parentBuilderPackageName equals: 'ParentBuilderPackage'
 
+]
+
+{ #category : #tests }
+FmxMBBuilderTest >> testResolveRequirementsFromContainers [
+
+	| class method function |
+	
+	class := 	builder newClassNamed: #Class.
+	method := builder newClassNamed: #Method.
+	function := builder newClassNamed: #Function.
+	
+	class <>-* method.
+	
+	builder resolveRequirementsFromContainers.
+	
+	self assert: (class requirements) isEmpty.	
+	self assert: (function requirements) isEmpty.
+	self assert: (method requirements) asArray equals: { class }.	
+]
+
+{ #category : #tests }
+FmxMBBuilderTest >> testSafeAnnotationPackageName [
+
+	builder configuration packageName: 'Package'.
+	self assert: builder safeAnnotationPackageName equals: '#Package'.
+
+	builder configuration packageName: 'Package-Core'.
+	self assert: builder safeAnnotationPackageName equals: '#''Package-Core'''.	
 ]
 
 { #category : #tests }

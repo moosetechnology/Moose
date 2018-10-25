@@ -158,38 +158,22 @@ FamixMetamodelBuilder >> doNotGenerateCurrent [
 { #category : #initialization }
 FamixMetamodelBuilder >> ensureClassNamed: aString [
 
-	| candidates |
+	^ self classes detect: [ :each | each name = aString] ifNone: [ self newClassNamed: aString ]
 	
-	candidates := self classes select: [ :each | each name = aString].
-	
-	self assert: (candidates size <= 1).
-	
-	^ (candidates size = 1)
-		ifTrue: [ candidates anyOne ]
-		ifFalse: [ self newClassNamed: aString ]
-	
-
 ]
 
 { #category : #initialization }
 FamixMetamodelBuilder >> ensureLocalTraitNamed: aString [
 
-	^ self traits detect: [ :each | each name = aString and: [each prefix = self configuration prefix]] ifNone: [ self newTraitNamed: aString ]
+	^ self traits detect: [ :each | each name = aString and: [each prefix = self configuration prefix]] ifNone: [ self unsafeNewTraitNamed: aString ]
 
 ]
 
 { #category : #initialization }
 FamixMetamodelBuilder >> ensureTraitNamed: aString [
 
-	| candidates |
-	
-	candidates := self traits select: [ :each | each name = aString].
-	
-	self assert: (candidates size <= 1).
-	
-	^ (candidates size = 1)
-		ifTrue: [ candidates anyOne ]
-		ifFalse: [ self newTraitNamed: aString ]
+	^ self traits detect: [ :each | each name = aString] ifNone: [ self newTraitNamed: aString ]
+
 	
 ]
 
@@ -281,6 +265,7 @@ FamixMetamodelBuilder >> generateShouldImportIn: contextClass [
 
 { #category : #accessing }
 FamixMetamodelBuilder >> generator [
+	<ignoreForCoverage>
 	^ generator
 ]
 
@@ -381,7 +366,7 @@ FamixMetamodelBuilder >> newTraitNamed: aTraitName [
 	candidates := self traits select: [ :each | each name = aTraitName].
 	candidates isEmpty ifFalse: [ FmxMBEntityAlreadyExists signal ].
 
-	^ self newTrait name: aTraitName.
+	^ self unsafeNewTraitNamed: aTraitName
 
 ]
 
@@ -496,6 +481,13 @@ FamixMetamodelBuilder >> traits [
 FamixMetamodelBuilder >> traitsToGenerate [ 
 
 	^ self traits select: #willGenerate
+]
+
+{ #category : #initialization }
+FamixMetamodelBuilder >> unsafeNewTraitNamed: aTraitName [
+
+	^ self newTrait name: aTraitName.
+
 ]
 
 { #category : #accessing }

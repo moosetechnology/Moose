@@ -55,6 +55,37 @@ FmxMBImportingContextTest >> testGeneratedContextClass [
 ]
 
 { #category : #initialization }
+FmxMBImportingContextTest >> testNotGenerated [
+
+	builder := FamixMetamodelBuilder forTesting.
+
+	access := builder newClassNamed: #Access.	
+	variable := builder newClassNamed: #Variable.	
+	method := builder newClassNamed: #Method.	
+		
+	access requires: { method. variable }.
+
+	builder generate.
+		
+	generatedContext := builder testingEnvironment ask classNamed: #TstImportingContext.
+	self assert: generatedContext isNil.
+
+]
+
+{ #category : #initialization }
+FmxMBImportingContextTest >> testNotGeneratedForEmptyBuilder [
+
+	builder := FamixMetamodelBuilder forTesting.
+	builder withImportingContext.
+
+	builder generate.
+		
+	generatedContext := builder testingEnvironment ask classNamed: #TstImportingContext.
+	self assert: generatedContext isNil.
+
+]
+
+{ #category : #initialization }
 FmxMBImportingContextTest >> testRequirements [
 
 	| localMethod |
