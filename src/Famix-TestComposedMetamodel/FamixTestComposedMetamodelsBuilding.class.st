@@ -78,7 +78,6 @@ FamixTestComposedMetamodelsBuilding >> testOneRemoteToOneNonRemote [
 	self assert:  (source includesSubstring: '<MSEProperty: #method type: #Object>').
 	self assert:  (source includesSubstring: 'privateState attributeAt: #method').
 	self assert: generatedMethod package name equals: #TstComposed.
-
 ]
 
 { #category : #running }

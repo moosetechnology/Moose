@@ -55,6 +55,17 @@ FmxMBBuilderTest >> testChildBuildersShareTheSameEnvironment [
 ]
 
 { #category : #tests }
+FmxMBBuilderTest >> testClassNamed [
+
+	| c1 c2 |
+	
+	c1 := builder newClassNamed: 'C1'.
+
+	self assert: (builder classNamed: #C1) equals: c1.
+	self assert: (builder classNamed: #C2) isNil.
+]
+
+{ #category : #tests }
 FmxMBBuilderTest >> testClassesThatDirectlyUse [
 
 	"return only traits that are directly used by the trait"
@@ -224,6 +235,38 @@ FmxMBBuilderTest >> testParentBuilder [
 	childBuilder parentBuilder: parentBuilder.
 	self assert: childBuilder parentBuilderPackageName equals: 'ParentBuilderPackage'
 
+]
+
+{ #category : #tests }
+FmxMBBuilderTest >> testSortedClasses [
+
+	"test class sorting by their hierarchy"
+
+	| c1 c2 c3 |
+	
+	c1 := builder newClassNamed: 'C1'.
+	c2 := builder newClassNamed: 'C2'.
+	c3 := builder newClassNamed: 'C3'.
+	
+	c3 <|-- c1 <|-- c2.
+	
+	self assert: builder sortedClasses asArray equals: { c3. c1. c2 }
+]
+
+{ #category : #tests }
+FmxMBBuilderTest >> testSortedTraits [
+
+	"traits should be sorted by name and by their hierarchy"
+
+	| t1 t2 t3 |
+	
+	t1 := builder newTraitNamed: 'T1'.
+	t2 := builder newTraitNamed: 'T2'.
+	t3 := builder newTraitNamed: 'T3'.
+	
+	t3 <|-- t2.
+	
+	self assert: builder sortedTraits asArray equals: { t1. t3. t2 }
 ]
 
 { #category : #tests }

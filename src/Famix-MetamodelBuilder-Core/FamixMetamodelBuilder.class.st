@@ -466,7 +466,7 @@ FamixMetamodelBuilder >> sortedClasses [
 { #category : #accessing }
 FamixMetamodelBuilder >> sortedTraits [
 
-	^ self traits sorted: [ :a :b | a name <= b name].
+	^ self traits sorted: [ :a :b | (a allTraitGeneralizations size <= b allTraitGeneralizations size) and: [ a name <= b name]].
 
 ]
 
