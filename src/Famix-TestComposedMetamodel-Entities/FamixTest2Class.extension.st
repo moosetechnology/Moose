@@ -1,6 +1,6 @@
 Extension { #name : #FamixTest2Class }
 
-{ #category : #'*Famix-Test1-Entities-*Famix-Test2-Entities' }
+{ #category : #'*Famix-TestComposedMetamodel-Entities' }
 FamixTest2Class >> method [
 
 	<generated>
@@ -8,7 +8,7 @@ FamixTest2Class >> method [
 	^ self privateState attributeAt: #method ifAbsent: [ nil ]
 ]
 
-{ #category : #'*Famix-Test1-Entities-*Famix-Test2-Entities' }
+{ #category : #'*Famix-TestComposedMetamodel-Entities' }
 FamixTest2Class >> method: anObject [
 
 	<generated>
@@ -17,7 +17,7 @@ FamixTest2Class >> method: anObject [
 	anObject class: self
 ]
 
-{ #category : #'*Famix-Test1-Entities-*Famix-Test2-Entities' }
+{ #category : #'*Famix-TestComposedMetamodel-Entities' }
 FamixTest2Class >> remoteClass [
 
 	<generated>
@@ -25,7 +25,7 @@ FamixTest2Class >> remoteClass [
 	^ self privateState attributeAt: #remoteClass ifAbsent: [ nil ]
 ]
 
-{ #category : #'*Famix-Test1-Entities-*Famix-Test2-Entities' }
+{ #category : #'*Famix-TestComposedMetamodel-Entities' }
 FamixTest2Class >> remoteClass: anObject [
 
 	<generated>
@@ -34,7 +34,7 @@ FamixTest2Class >> remoteClass: anObject [
 	anObject remoteClass: self
 ]
 
-{ #category : #'*Famix-Test1-Entities-*Famix-Test2-Entities' }
+{ #category : #'*Famix-TestComposedMetamodel-Entities' }
 FamixTest2Class >> remoteMethods [
 
 	<generated>
@@ -42,7 +42,7 @@ FamixTest2Class >> remoteMethods [
 	"m-m" ^ self privateState attributeAt: #remoteMethods ifAbsentPut: [ FMMultiMultivalueLink on: self opposite: #remoteClasses ]
 ]
 
-{ #category : #'*Famix-Test1-Entities-*Famix-Test2-Entities' }
+{ #category : #'*Famix-TestComposedMetamodel-Entities' }
 FamixTest2Class >> remoteMethods: anObject [
 
 	<generated>
