@@ -55,7 +55,8 @@ FmxMBRingEnvironment >> compile: aSource in: aClass classified: aProtocol packag
 
 	| selector |
 	
-	selector := aClass compile: aSource classified: '*', aPackageName, '-', aProtocol.
+	selector := aClass compile: aSource classified: aProtocol.
+	(aClass methodNamed: selector) package: (aClass environment ensurePackageNamed: aPackageName).
 ]
 
 { #category : #initialization }

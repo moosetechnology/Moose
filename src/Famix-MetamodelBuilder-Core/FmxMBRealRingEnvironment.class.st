@@ -111,6 +111,13 @@ FmxMBRealRingEnvironment >> classVariablesStringFor: realClass [
 ]
 
 { #category : #installing }
+FmxMBRealRingEnvironment >> compile: aSource in: aClass classified: aProtocol package: aPackageName [
+
+	aClass compile: aSource classified: '*', aPackageName, '-', aProtocol.
+
+]
+
+{ #category : #installing }
 FmxMBRealRingEnvironment >> ensureClassesFrom: anRGEnvironment [
 	
 	| resolvedClasses sorted notSorted toMove |
