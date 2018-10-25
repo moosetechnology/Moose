@@ -458,7 +458,7 @@ FamixMetamodelBuilder >> sortedClasses [
 { #category : #accessing }
 FamixMetamodelBuilder >> sortedTraits [
 
-	<ignoreForMutations: #(ReplaceAndWithEqvMutantOperator)>
+	<ignoreForMutations: #(ReplaceAndWithEqvMutantOperator ReplaceLessOrEqualWithLessMutantOperator)>
 
 	^ self traits sorted: [ :a :b | (a allTraitGeneralizations size <= b allTraitGeneralizations size) and: [ a name <= b name]].
 
