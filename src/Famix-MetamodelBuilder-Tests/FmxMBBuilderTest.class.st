@@ -57,7 +57,7 @@ FmxMBBuilderTest >> testChildBuildersShareTheSameEnvironment [
 { #category : #tests }
 FmxMBBuilderTest >> testClassNamed [
 
-	| c1 c2 |
+	| c1 |
 	
 	c1 := builder newClassNamed: 'C1'.
 
@@ -119,6 +119,22 @@ FmxMBBuilderTest >> testClassesThatUse [
 	
 	
 	
+]
+
+{ #category : #tests }
+FmxMBBuilderTest >> testContainerRequirementsOf [
+
+	| class method function |
+	
+	class := 	builder newClassNamed: #Class.
+	method := builder newClassNamed: #Method.
+	function := builder newClassNamed: #Function.
+	
+	class <>-* method.
+	
+	self assert: (builder containerRequirementsOf: class) isEmpty.	
+	self assert: (builder containerRequirementsOf: function) isEmpty.
+	self assert: (builder containerRequirementsOf: method) asArray equals: { class }.	
 ]
 
 { #category : #tests }
