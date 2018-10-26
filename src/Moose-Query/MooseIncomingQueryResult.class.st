@@ -52,3 +52,10 @@ MooseIncomingQueryResult >> targets [
 
 	^ self collectAsSet: #to
 ]
+
+{ #category : #filtering }
+MooseIncomingQueryResult >> withoutSelfLoops [
+	"exclude dependencies which loop back to the receiver"
+
+	^ self rejectDependencies: [ :dep | (self opposite: dep) asCollection anySatisfy: [ :opp | self receiver mooseQueryEqualsTo: opp moduloScope: self receiver class ] ]
+]

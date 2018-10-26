@@ -368,7 +368,7 @@ FamixStMethod >> numberOfStatements: aNumber [
 
 { #category : #'Famix-Extensions-private' }
 FamixStMethod >> outgoingTypeDeclarations [
-	^ self declaredType ifNil: [ {} ] ifNotNil: [ :dt | {(MooseChefTypeDeclarationAssociation newFrom: self to: dt)} ]
+	^ self declaredType ifNil: [ {} ] ifNotNil: [ :dt | {(MooseQueryTypeDeclarationAssociation newFrom: self to: dt)} ]
 ]
 
 { #category : #'Famix-Extensions-metrics-support' }

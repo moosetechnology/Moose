@@ -1,5 +1,5 @@
 Class {
-	#name : #MooseChefTypeDeclarationAssociationTest,
+	#name : #MooseQueryTypeDeclarationAssociationTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'model'
@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #setup }
-MooseChefTypeDeclarationAssociationTest class >> importModel [ 
+MooseQueryTypeDeclarationAssociationTest class >> importModel [ 
 	 
 	| factory p1 p2 c1 c2 c3 m1 m2 m3 m4 |
 	
@@ -68,17 +68,17 @@ MooseChefTypeDeclarationAssociationTest class >> importModel [
 ]
 
 { #category : #accessing }
-MooseChefTypeDeclarationAssociationTest >> model [
+MooseQueryTypeDeclarationAssociationTest >> model [
 	^ model
 ]
 
 { #category : #accessing }
-MooseChefTypeDeclarationAssociationTest >> model: anObject [
+MooseQueryTypeDeclarationAssociationTest >> model: anObject [
 	model := anObject
 ]
 
 { #category : #running }
-MooseChefTypeDeclarationAssociationTest >> setUp [ 
+MooseQueryTypeDeclarationAssociationTest >> setUp [ 
 	 
 	| p1 p2 c1 c2 c3 m1 m2 m3 m4 at1 at2 pr1 pr2 v1 factory |
 		
@@ -196,7 +196,7 @@ MooseChefTypeDeclarationAssociationTest >> setUp [
 ]
 
 { #category : #'famix-class' }
-MooseChefTypeDeclarationAssociationTest >> testFamixClassIncomingTypeDeclarations [
+MooseQueryTypeDeclarationAssociationTest >> testFamixClassIncomingTypeDeclarations [
 	self
 		assert:
 			((self model entityNamed: 'C2') queryIncomingTypeDeclarations
@@ -234,7 +234,7 @@ MooseChefTypeDeclarationAssociationTest >> testFamixClassIncomingTypeDeclaration
 ]
 
 { #category : #'famix-class' }
-MooseChefTypeDeclarationAssociationTest >> testFamixClassOutgoingTypeDeclarations [
+MooseQueryTypeDeclarationAssociationTest >> testFamixClassOutgoingTypeDeclarations [
 	self
 		assert:
 			((self model entityNamed: 'C2') queryOutgoingTypeDeclarations opposites includes: (self model entityNamed: 'C1')).
@@ -255,7 +255,7 @@ MooseChefTypeDeclarationAssociationTest >> testFamixClassOutgoingTypeDeclaration
 ]
 
 { #category : #'famix-class' }
-MooseChefTypeDeclarationAssociationTest >> testFamixClassTypeDeclarationsWithoutSelfLoops [
+MooseQueryTypeDeclarationAssociationTest >> testFamixClassTypeDeclarationsWithoutSelfLoops [
 	self
 		assert:
 			((self model entityNamed: 'C3') queryIncomingTypeDeclarations
@@ -284,13 +284,13 @@ MooseChefTypeDeclarationAssociationTest >> testFamixClassTypeDeclarationsWithout
 ]
 
 { #category : #'famix-method' }
-MooseChefTypeDeclarationAssociationTest >> testFamixMethodIncomingTypeDeclarations [
+MooseQueryTypeDeclarationAssociationTest >> testFamixMethodIncomingTypeDeclarations [
 	self assert: (self model entityNamed: 'C1.m1()') queryIncomingTypeDeclarations size equals: 0.
 	self assert: (self model entityNamed: 'C2.m3(C2,C3)') queryIncomingTypeDeclarations size equals: 0
 ]
 
 { #category : #'famix-method' }
-MooseChefTypeDeclarationAssociationTest >> testFamixMethodOutgoingTypeDeclarations [
+MooseQueryTypeDeclarationAssociationTest >> testFamixMethodOutgoingTypeDeclarations [
 	self assert: (self model entityNamed: 'C2.m2()') queryOutgoingTypeDeclarations opposites size equals: 2.
 	self
 		assert:
@@ -312,7 +312,7 @@ MooseChefTypeDeclarationAssociationTest >> testFamixMethodOutgoingTypeDeclaratio
 ]
 
 { #category : #'famix-method' }
-MooseChefTypeDeclarationAssociationTest >> testFamixMethodTypeDeclarationsWithoutSelfLoops [
+MooseQueryTypeDeclarationAssociationTest >> testFamixMethodTypeDeclarationsWithoutSelfLoops [
 	self
 		assert:
 			(self model entityNamed: 'C1.m1()') queryIncomingTypeDeclarations
@@ -337,7 +337,7 @@ MooseChefTypeDeclarationAssociationTest >> testFamixMethodTypeDeclarationsWithou
 ]
 
 { #category : #'famix-package' }
-MooseChefTypeDeclarationAssociationTest >> testFamixPackageIncomingTypeDeclarations [
+MooseQueryTypeDeclarationAssociationTest >> testFamixPackageIncomingTypeDeclarations [
 	self
 		assert:
 			((self model entityNamed: 'p2') queryIncomingTypeDeclarations
@@ -354,7 +354,7 @@ MooseChefTypeDeclarationAssociationTest >> testFamixPackageIncomingTypeDeclarati
 ]
 
 { #category : #'famix-package' }
-MooseChefTypeDeclarationAssociationTest >> testFamixPackageOutgoingTypeDeclarations [
+MooseQueryTypeDeclarationAssociationTest >> testFamixPackageOutgoingTypeDeclarations [
 	self
 		assert:
 			((self model entityNamed: 'p1') queryOutgoingTypeDeclarations
@@ -371,7 +371,7 @@ MooseChefTypeDeclarationAssociationTest >> testFamixPackageOutgoingTypeDeclarati
 ]
 
 { #category : #'famix-package' }
-MooseChefTypeDeclarationAssociationTest >> testFamixPackageTypeDeclarationsWithoutSelfLoops [
+MooseQueryTypeDeclarationAssociationTest >> testFamixPackageTypeDeclarationsWithoutSelfLoops [
 	self
 		assert:
 			((self model entityNamed: 'p2') queryIncomingTypeDeclarations
