@@ -350,6 +350,21 @@ MooseQueryTest >> testToScope [
 ]
 
 { #category : #tests }
+MooseQueryTest >> testWithAllChildren [
+	self assert: package2 withAllChildren size equals: 8.
+	self assert: class2 withAllChildren size equals: 7.
+	self assert: method2 withAllChildren size equals: 2
+]
+
+{ #category : #tests }
+MooseQueryTest >> testWithAllParents [
+	self assert: package2 withAllParents size equals: 1.
+	self assert: class2 withAllParents size equals: 2.
+	self assert: method2 withAllParents size equals: 3.
+	self assert: var2 withAllParents size equals: 3
+]
+
+{ #category : #tests }
 MooseQueryTest >> testWithScope [
 	self assertCollection: (class1 withScope: FamixTMethod) hasSameElements: {method1}.
 	self
