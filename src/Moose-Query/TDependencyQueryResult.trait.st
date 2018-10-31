@@ -1,5 +1,5 @@
 "
-TDependencyQueryResult is a Trait that provides some common MooseChef selectors to several MooseQueryResult.
+TDependencyQueryResult is a Trait that provides some common MooseQuery selectors to several MooseQueryResult.
 
 For more informations: https://moosequery.ferlicot.fr/
 "

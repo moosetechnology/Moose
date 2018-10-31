@@ -206,7 +206,7 @@ FamixJavaType >> incomingAccessesGroup [
 { #category : #'as yet unclassified' }
 FamixJavaType >> incomingTypeDeclarations [
 
-	^ self structuresWithDeclaredType , self behavioursWithDeclaredType collect: [ :var | MooseChefTypeDeclarationAssociation newFrom: var to: self ]
+	^ self structuresWithDeclaredType , self behavioursWithDeclaredType collect: [ :var | MooseQueryTypeDeclarationAssociation newFrom: var to: self ]
 ]
 
 { #category : #'as yet unclassified' }
