@@ -1,23 +1,23 @@
 Class {
-	#name : #FamixMetamodelBuilderTraitTest,
+	#name : #FmxMBTraitTest,
 	#superclass : #FmxMBBehaviorTest,
 	#category : #'Famix-MetamodelBuilder-Tests'
 }
 
 { #category : #accessing }
-FamixMetamodelBuilderTraitTest >> behaviorClass [
+FmxMBTraitTest >> behaviorClass [
 
 	^ FmxMBTrait
 ]
 
 { #category : #accessing }
-FamixMetamodelBuilderTraitTest >> newEntityNamed: aString [
+FmxMBTraitTest >> newEntityNamed: aString [
 
 	^ builder newTraitNamed: aString
 ]
 
 { #category : #'tests - names' }
-FamixMetamodelBuilderTraitTest >> testAsProperty [
+FmxMBTraitTest >> testAsProperty [
 
 	"traits should not be renamed during creation of properties"
 
@@ -30,7 +30,7 @@ FamixMetamodelBuilderTraitTest >> testAsProperty [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderTraitTest >> testAutogereatedContainsMany [
+FmxMBTraitTest >> testAutogereatedContainsMany [
 
 	| access variable generatedTAccess generatedTVariable |
 	
@@ -53,7 +53,7 @@ FamixMetamodelBuilderTraitTest >> testAutogereatedContainsMany [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderTraitTest >> testAutogereatedContainsOne [
+FmxMBTraitTest >> testAutogereatedContainsOne [
 
 	| access variable generatedTAccess generatedTVariable |
 	
@@ -77,7 +77,7 @@ FamixMetamodelBuilderTraitTest >> testAutogereatedContainsOne [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderTraitTest >> testAutogereatedManyBelongTo [
+FmxMBTraitTest >> testAutogereatedManyBelongTo [
 
 	| access variable generatedTAccess generatedTVariable |
 	
@@ -100,7 +100,7 @@ FamixMetamodelBuilderTraitTest >> testAutogereatedManyBelongTo [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderTraitTest >> testAutogereatedManyToMany [
+FmxMBTraitTest >> testAutogereatedManyToMany [
 
 	| access variable generatedTAccess generatedTVariable |
 	
@@ -124,7 +124,7 @@ FamixMetamodelBuilderTraitTest >> testAutogereatedManyToMany [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderTraitTest >> testAutogereatedManyToOne [
+FmxMBTraitTest >> testAutogereatedManyToOne [
 
 	| access variable generatedTAccess generatedTVariable |
 	
@@ -147,7 +147,7 @@ FamixMetamodelBuilderTraitTest >> testAutogereatedManyToOne [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderTraitTest >> testAutogereatedOneBelongsTo [
+FmxMBTraitTest >> testAutogereatedOneBelongsTo [
 
 	| access variable generatedTAccess generatedTVariable |
 	
@@ -171,7 +171,7 @@ FamixMetamodelBuilderTraitTest >> testAutogereatedOneBelongsTo [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderTraitTest >> testAutogereatedOneToMany [
+FmxMBTraitTest >> testAutogereatedOneToMany [
 
 	| access variable generatedTAccess generatedTVariable |
 	
@@ -194,7 +194,7 @@ FamixMetamodelBuilderTraitTest >> testAutogereatedOneToMany [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderTraitTest >> testAutogereatedOneToOne [
+FmxMBTraitTest >> testAutogereatedOneToOne [
 
 	| access variable generatedTAccess generatedTVariable |
 	
@@ -218,7 +218,7 @@ FamixMetamodelBuilderTraitTest >> testAutogereatedOneToOne [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderTraitTest >> testCustomPackageForUserClasses [
+FmxMBTraitTest >> testCustomPackageForUserClasses [
 
 	| simpleClass generated |
 	
@@ -233,7 +233,7 @@ FamixMetamodelBuilderTraitTest >> testCustomPackageForUserClasses [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderTraitTest >> testCustomPackageForUserClassesChanged [
+FmxMBTraitTest >> testCustomPackageForUserClassesChanged [
 
 	| simpleClass generated generatedAccess  |
 	
@@ -257,7 +257,7 @@ FamixMetamodelBuilderTraitTest >> testCustomPackageForUserClassesChanged [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderTraitTest >> testDefaultPackageForUserClasses [
+FmxMBTraitTest >> testDefaultPackageForUserClasses [
 
 	| simpleClass  userClass |
 	
@@ -270,7 +270,7 @@ FamixMetamodelBuilderTraitTest >> testDefaultPackageForUserClasses [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderTraitTest >> testMultipleTraits [
+FmxMBTraitTest >> testMultipleTraits [
 
 	builder newTraitNamed: #TComment.	
 	builder newTraitNamed: #TMethod.
@@ -284,7 +284,7 @@ FamixMetamodelBuilderTraitTest >> testMultipleTraits [
 ]
 
 { #category : #'tests - names' }
-FamixMetamodelBuilderTraitTest >> testRelatedOwnerTraitName [
+FmxMBTraitTest >> testRelatedOwnerTraitName [
 
 	"test if relatedOwnerTraitName is correctly created from a trait name. It should be the same."
 
@@ -302,7 +302,7 @@ FamixMetamodelBuilderTraitTest >> testRelatedOwnerTraitName [
 ]
 
 { #category : #'tests - names' }
-FamixMetamodelBuilderTraitTest >> testRelatedTraitName [
+FmxMBTraitTest >> testRelatedTraitName [
 
 	"test if a related trait name is correctly generated from a traitName name. It should be the same."
 
@@ -320,7 +320,7 @@ FamixMetamodelBuilderTraitTest >> testRelatedTraitName [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderTraitTest >> testSimpleClassAnnotation [
+FmxMBTraitTest >> testSimpleClassAnnotation [
 
 	| simpleClass generated method |
 		
@@ -337,7 +337,7 @@ FamixMetamodelBuilderTraitTest >> testSimpleClassAnnotation [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderTraitTest >> testSimpleTrait [
+FmxMBTraitTest >> testSimpleTrait [
 
 	| generated |
 	
@@ -353,7 +353,7 @@ FamixMetamodelBuilderTraitTest >> testSimpleTrait [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderTraitTest >> testTestingMethods [
+FmxMBTraitTest >> testTestingMethods [
 
 	"test messages isMetamodelClass and isMetamodelTrait"
 	
@@ -368,7 +368,7 @@ FamixMetamodelBuilderTraitTest >> testTestingMethods [
 ]
 
 { #category : #'tests - names' }
-FamixMetamodelBuilderTraitTest >> testTraitGeneralization [
+FmxMBTraitTest >> testTraitGeneralization [
 
 	| aTrait aClass |
 		
@@ -379,7 +379,7 @@ FamixMetamodelBuilderTraitTest >> testTraitGeneralization [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderTraitTest >> testTraitTestingSelectors [
+FmxMBTraitTest >> testTraitTestingSelectors [
 
 	"test automatic generation of testing methods in the entities hierarchy"
 
@@ -392,7 +392,7 @@ FamixMetamodelBuilderTraitTest >> testTraitTestingSelectors [
 ]
 
 { #category : #tests }
-FamixMetamodelBuilderTraitTest >> testUses [
+FmxMBTraitTest >> testUses [
 
 	| behavior tBehavior generatedBehavior generatedTBehavior |
 	

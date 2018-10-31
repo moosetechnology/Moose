@@ -7,5 +7,7 @@ Class {
 { #category : #accessing }
 FmxMBTraitsGeneralizationError >> messageText [
 
+	<ignoreForCoverage>
+
 	^ 'Traits cannot inherit from classes'
 ]

@@ -7,5 +7,6 @@ Class {
 { #category : #accessing }
 FmxMBTraitRenamingError >> messageText [
 
+	<ignoreForCoverage>
 	^ 'The trait cannot be renamed here'
 ]

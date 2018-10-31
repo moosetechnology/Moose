@@ -61,6 +61,7 @@ FmxMBRelationSideTrait >> <>-* aRelationSide [
 { #category : #'relations - named' }
 FmxMBRelationSideTrait >> asRelationSideNamed: aPropertyName [
 
+	<ignoreForCoverage>
 	self explicitRequirement
 	
 ]
@@ -152,13 +153,18 @@ FmxMBRelationSideTrait >> manyToMany: aRelationSide [
 
 	| aRelation ownSide oppositeSide  |
 	
-	ownSide := self asRelationSideNamed: aRelationSide pluralPropertyName. 
-	oppositeSide := aRelationSide asRelationSideNamed: self pluralPropertyName. 	
+	ownSide := self asRelationSideNamed: aRelationSide pluralPropertyName.
+	oppositeSide := aRelationSide asRelationSideNamed: self pluralPropertyName.
 	ownSide many.
 	oppositeSide many.
 	aRelation := self relationFrom: ownSide to: oppositeSide.
 	self builder configuration navigationForNonContainers
 		ifTrue: [ aRelation withNavigation ].
+
+	self isRemote ifTrue: [ ownSide makeRemote ].
+	aRelationSide isRemote ifTrue: [ oppositeSide makeRemote ].
+	(self isRemote and: [ aRelationSide isRemote not ]) ifTrue: [ oppositeSide makeNonremote ].
+	(self isRemote not and: [ aRelationSide isRemote ]) ifTrue: [ ownSide makeNonremote ].
 		
 	^ aRelation
 	
@@ -170,12 +176,17 @@ FmxMBRelationSideTrait >> manyToOne: aRelationSide [
 
 	| aRelation ownSide oppositeSide  |
 	
-	ownSide := self asRelationSideNamed: aRelationSide singularPropertyName. 
-	oppositeSide := aRelationSide asRelationSideNamed: self pluralPropertyName. 	
+	ownSide := self asRelationSideNamed: aRelationSide singularPropertyName.
+	oppositeSide := aRelationSide asRelationSideNamed: self pluralPropertyName.
 	oppositeSide many.
 	aRelation := self relationFrom: ownSide to: oppositeSide.
 	self builder configuration navigationForNonContainers
 		ifTrue: [ aRelation withNavigation ].
+
+	self isRemote ifTrue: [ ownSide makeRemote ].
+	aRelationSide isRemote ifTrue: [ oppositeSide makeRemote ].
+	(self isRemote and: [ aRelationSide isRemote not ]) ifTrue: [ oppositeSide makeNonremote ].
+	(self isRemote not and: [ aRelationSide isRemote ]) ifTrue: [ ownSide makeNonremote ].
 		
 	^ aRelation
 	
@@ -200,12 +211,17 @@ FmxMBRelationSideTrait >> oneBelongsTo: aRelationSide [
 FmxMBRelationSideTrait >> oneToMany: aRelationSide [
 
 	| aRelation ownSide oppositeSide  |
-	ownSide := self asRelationSideNamed: aRelationSide pluralPropertyName. 
-	oppositeSide := aRelationSide asRelationSideNamed: self singularPropertyName. 	
+	ownSide := self asRelationSideNamed: aRelationSide pluralPropertyName.
+	oppositeSide := aRelationSide asRelationSideNamed: self singularPropertyName.
 	ownSide many.
 	aRelation := self relationFrom: ownSide to: oppositeSide.
 	self builder configuration navigationForNonContainers
 		ifTrue: [ aRelation withNavigation ].
+		
+	self isRemote ifTrue: [ ownSide makeRemote ].
+	aRelationSide isRemote ifTrue: [ oppositeSide makeRemote ].
+	(self isRemote and: [ aRelationSide isRemote not ]) ifTrue: [ oppositeSide makeNonremote ].
+	(self isRemote not and: [ aRelationSide isRemote ]) ifTrue: [ ownSide makeNonremote ].		
 		
 	^ aRelation
 	
@@ -217,12 +233,17 @@ FmxMBRelationSideTrait >> oneToOne: aRelationSide [
 
 	| aRelation ownSide oppositeSide  |
 	
-	ownSide := self asRelationSideNamed: aRelationSide propertyName. 
+	ownSide := self asRelationSideNamed: aRelationSide propertyName.
 	oppositeSide := aRelationSide asRelationSideNamed: self propertyName.
 	 	
 	aRelation := self relationFrom: ownSide to: oppositeSide.
 	self builder configuration navigationForNonContainers
 		ifTrue: [ aRelation withNavigation ].
+		
+	self isRemote ifTrue: [ ownSide makeRemote ].
+	aRelationSide isRemote ifTrue: [ oppositeSide makeRemote ].
+	(self isRemote and: [ aRelationSide isRemote not ]) ifTrue: [ oppositeSide makeNonremote ].
+	(self isRemote not and: [ aRelationSide isRemote ]) ifTrue: [ ownSide makeNonremote ].
 		
 	^ aRelation
 	

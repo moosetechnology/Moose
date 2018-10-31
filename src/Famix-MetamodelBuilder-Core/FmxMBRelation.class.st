@@ -26,11 +26,11 @@ FmxMBRelation >> builder: anObject [
 FmxMBRelation >> cardinalityString [ 
 
 	^ String streamContents: [ :s |
-		self from cardinality = #many 
+		self to cardinality = #many 
 			ifTrue: [ s nextPutAll: '*' ]
 			ifFalse: [ s nextPutAll: '1' ].
 		s nextPutAll: '..'.
-		self to cardinality = #many 
+		self from cardinality = #many 
 			ifTrue: [ s nextPutAll: '*' ]
 			ifFalse: [ s nextPutAll: '1' ] ]
 ]
@@ -134,4 +134,17 @@ FmxMBRelation >> withNavigation [
 
 	self sides do: [ :aSide |
 		aSide withNavigationOf: self ]
+]
+
+{ #category : #accessing }
+FmxMBRelation >> withoutNavigation [
+
+	self sides do: [ :aSide |
+		aSide withoutNavigation ]
+]
+
+{ #category : #'as yet unclassified' }
+FmxMBRelation >> withoutPrimaryContainer [
+
+	self sides do: [ :aSide | aSide additionalProperties at: #providesPrimaryContainer put: false ]
 ]

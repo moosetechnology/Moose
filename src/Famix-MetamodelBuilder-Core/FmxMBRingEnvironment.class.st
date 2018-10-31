@@ -25,6 +25,12 @@ FmxMBRingEnvironment >> basicTrait [
 	^ self ringEnvironment ensureClassNamed: self builder configuration basicTraitName
 ]
 
+{ #category : #initialization }
+FmxMBRingEnvironment >> classNamed: aClassName [
+
+	^ self ringEnvironment ask behaviorNamed: aClassName
+]
+
 { #category : #installing }
 FmxMBRingEnvironment >> cleanClass: realClass [
 
@@ -42,6 +48,15 @@ FmxMBRingEnvironment >> cleanClass: realClass [
 FmxMBRingEnvironment >> compile: aSource in: aClass classified: aProtocol [
 
 	aClass compile: aSource classified: aProtocol.
+]
+
+{ #category : #accessing }
+FmxMBRingEnvironment >> compile: aSource in: aClass classified: aProtocol package: aPackageName [
+
+	| selector |
+	
+	selector := aClass compile: aSource classified: aProtocol.
+	(aClass methodNamed: selector) package: (aClass environment ensurePackageNamed: aPackageName).
 ]
 
 { #category : #initialization }

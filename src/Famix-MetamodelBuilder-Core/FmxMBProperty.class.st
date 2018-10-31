@@ -10,6 +10,7 @@ Class {
 { #category : #accessing }
 FmxMBProperty >> asSlot [
 
+	<ignoreForCoverage>
 	self subclassResponsibility
 ]
 
@@ -27,10 +28,14 @@ FmxMBProperty >> generateExtendedContainersIn: aClassOrTrait [
 
 { #category : #generating }
 FmxMBProperty >> generateGetterIn: aClassOrTrait [
+
+	<ignoreForCoverage>
 ]
 
 { #category : #generating }
 FmxMBProperty >> generateSetterIn: aClassOrTrait [
+
+	<ignoreForCoverage>
 ]
 
 { #category : #accessing }
@@ -59,4 +64,10 @@ FmxMBProperty >> printOn: aStream [
 		nextPutAll: '(';
 		nextPutAll: (self name ifNil: ['']);
 		nextPutAll: ')'
+]
+
+{ #category : #printing }
+FmxMBProperty >> producesSlot [
+
+	^ true
 ]

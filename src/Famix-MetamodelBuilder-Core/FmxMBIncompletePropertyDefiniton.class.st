@@ -10,5 +10,6 @@ Class {
 { #category : #accessing }
 FmxMBIncompletePropertyDefiniton >> messageText [
 
+	<ignoreForCoverage>
 	^ 'Properties need to be part of a relations or have a primitive type'
 ]

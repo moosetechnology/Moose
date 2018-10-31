@@ -14,7 +14,8 @@ Class {
 
 { #category : #visitor }
 FmxMBClass >> acceptVisitor: aVisitor [
-
+	
+	<ignoreForCoverage>
 	^ aVisitor visitClass: self.
 ]
 
@@ -162,6 +163,8 @@ FmxMBClass >> containerProperties [
 { #category : #accessing }
 FmxMBClass >> directlyUses: aTrait [
 
+	self = aTrait ifTrue: [ ^ true ].
+
 	^ self allLocalTraits includes: aTrait
 ]
 
@@ -220,6 +223,25 @@ FmxMBClass >> generateMethodsMadeByTraitsFor: aClass [
 	self allTraits do: [ :aTrait | 
 		(aTrait realClass notNil and: [ aTrait realClass class canUnderstand: #generateMethodsFor:in:])
 			ifTrue: [ aTrait realClass generateMethodsFor: self in: aClass ]]
+]
+
+{ #category : #generating }
+FmxMBClass >> generateRemotes [
+
+	| aClass aClassName |
+	
+	
+	aClassName := self fullName.
+	
+	aClass := self builder environment classNamed: aClassName asSymbol.
+				
+	self realClass: aClass.
+	
+	self generateRemoteAccessors.
+	
+	
+	
+
 ]
 
 { #category : #generating }
@@ -328,14 +350,6 @@ FmxMBClass >> subclassOf: aClass [
 ]
 
 { #category : #accessing }
-FmxMBClass >> traitNamesFromRelations [
-
-	"returns traits defined by relations"
-
-	^ (self traitsFromRelations collect: #fullName) sorted
-]
-
-{ #category : #accessing }
 FmxMBClass >> traitsFromRelations [
 
 	"returns traits defined by relations"
@@ -349,14 +363,4 @@ FmxMBClass >> usesOnlyTrait: aTrait [
 
  	^ (self traitGeneralizations size = 1) 
 		and: [ self traitGeneralizations first = aTrait ]	
-]
-
-{ #category : #accessing }
-FmxMBClass >> withAllClassGeneralizations [
-
-	"returns all class generalizations of with generalizations of superclasses"
-	
-	^ classGeneralization 
-		ifNil: [ classGeneralization ]
-		ifNotNil: [ {self}, classGeneralization withAllClassGeneralizations ]
 ]

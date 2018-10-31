@@ -52,7 +52,8 @@ FamixTest1Method >> belongsTo: anObject [
 ]
 
 { #category : #printing }
-FamixTest1Method >> mooseNameOn: stream [ 
+FamixTest1Method >> mooseNameOn: stream [  
+
 	| parent |
 	parent := self belongsTo.
 	parent ifNotNil: 

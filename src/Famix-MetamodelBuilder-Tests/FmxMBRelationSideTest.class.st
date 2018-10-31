@@ -25,6 +25,40 @@ FmxMBRelationSideTest >> testBasics [
 ]
 
 { #category : #tests }
+FmxMBRelationSideTest >> testContainmentRelations [
+
+	| aClass aTrait relation |
+	
+	aClass := builder newClassNamed: #AClass.
+	aTrait := builder newTraitNamed: #ATrait.
+	
+	relation := aClass <>- aTrait.
+	self assert: relation left isOne.
+	self assert: relation right isOne.
+	self deny: relation left isContainer.
+	self assert: relation right isContainer.
+
+	relation := aClass -<> aTrait.
+	self assert: relation left isOne.
+	self assert: relation right isOne.
+	self assert: relation left isContainer.
+	self deny: relation right isContainer.
+
+	relation := aClass <>-* aTrait.
+	self assert: relation left isMany.
+	self assert: relation right isOne.
+	self deny: relation left isContainer.
+	self assert: relation right isContainer.
+
+	relation := aClass *-<> aTrait.
+	self assert: relation left isOne.
+	self assert: relation right isMany.
+	self assert: relation left isContainer.
+	self deny: relation right isContainer.
+
+]
+
+{ #category : #tests }
 FmxMBRelationSideTest >> testDirections [
 
 	"test setting of a type of the property"
@@ -90,6 +124,12 @@ FmxMBRelationSideTest >> testProperties [
 	self assert: side isTarget.
 	side target: false.
 	self deny: side isTarget.
+
+	self deny: side isSubordinate.
+	side subordinate.
+	self assert: side isSubordinate.
+	side subordinate: false.
+	self deny: side isSubordinate.
 
 	self assert: side isOne.
 	self deny: side isMany.
@@ -168,6 +208,36 @@ FmxMBRelationSideTest >> testRelatedEntity [
 	
 	self assert: relation left relatedEntity equals: aClass.
 	self assert: relation right relatedEntity equals: aTrait.
+
+]
+
+{ #category : #tests }
+FmxMBRelationSideTest >> testRelations [
+
+	| aClass aTrait relation |
+	
+	aClass := builder newClassNamed: #AClass.
+	aTrait := builder newTraitNamed: #ATrait.
+	
+	relation := aClass - aTrait.
+	self assert: relation left isOne.
+	self assert: relation right isOne.
+	self deny: (relation left isContainer | relation left isContainer).
+
+	relation := aClass -* aTrait.
+	self assert: relation left isMany.
+	self assert: relation right isOne.
+	self deny: (relation left isContainer | relation left isContainer).
+	
+	relation := aClass *- aTrait.
+	self assert: relation left isOne.
+	self assert: relation right isMany.
+	self deny: (relation left isContainer | relation left isContainer).
+	
+	relation := aClass *-* aTrait.
+	self assert: relation left isMany.
+	self assert: relation right isMany.
+	self deny: (relation left isContainer | relation left isContainer).
 
 ]
 

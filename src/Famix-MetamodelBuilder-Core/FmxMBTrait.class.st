@@ -15,7 +15,16 @@ Class {
 { #category : #visitor }
 FmxMBTrait >> acceptVisitor: aVisitor [
 
+	<ignoreForCoverage>
 	^ aVisitor visitTrait: self.
+]
+
+{ #category : #accessing }
+FmxMBTrait >> allTraitGeneralizations [
+
+	^ (self traitGeneralizations flatCollect: [ :each | {each}, each allTraitGeneralizations ]) asSet.
+	
+
 ]
 
 { #category : #accessing }
@@ -123,8 +132,27 @@ FmxMBTrait >> generateAnnotationIn: aRealClass as: aName superclass: aSuperclass
 
 ]
 
+{ #category : #generating }
+FmxMBTrait >> generateRemotes [
+
+	| aTrait traitName |
+		
+	traitName := self fullName.
+	
+	aTrait := self builder environment classNamed: traitName asSymbol.
+				
+	self realClass: aTrait.
+
+	self realClass: aTrait.
+	
+	self generateRemoteAccessors.
+
+]
+
 { #category : #accessing }
 FmxMBTrait >> glueingCondition [
+
+	<ignoreForCoverage>
 	^ glueingCondition
 ]
 
@@ -175,7 +203,8 @@ FmxMBTrait >> initialize [
 
 { #category : #testing }
 FmxMBTrait >> isGlueingTrait [
-
+	
+	<ignoreForCoverage>
 	^ false
 ]
 
@@ -186,26 +215,13 @@ FmxMBTrait >> isMetamodelTrait [
 ]
 
 { #category : #'name conversion' }
-FmxMBTrait >> ownerPropertyName [
-	
-	| uncapitalized |
-		
-	uncapitalized := (self name withoutPrefix: 'T') uncapitalized.
-	
-	^ uncapitalized, 'Owner'.
-
-]
-
-{ #category : #'name conversion' }
 FmxMBTrait >> pluralPropertyName [
 
 	| uncapitalized |
 	
 	uncapitalized := (self name withoutPrefix: 'T') uncapitalized.
-	
-	^ (uncapitalized endsWith: 's')
-		ifFalse: [ uncapitalized, 's' ]
-		ifTrue: [ uncapitalized, 'es' ]
+	^ self pluralOf: uncapitalized
+
 ]
 
 { #category : #'name conversion' }

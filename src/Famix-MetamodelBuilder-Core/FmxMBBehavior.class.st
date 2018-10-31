@@ -48,6 +48,13 @@ FmxMBBehavior >> addTraitGeneralization: aTrait [
 	^ aTrait
 ]
 
+{ #category : #'as yet unclassified' }
+FmxMBBehavior >> allNavigationGroups [
+
+	^ self navigationGroups, (self relations flatCollect: [ :relation |
+		relation side navigationGroups ]).
+]
+
 { #category : #converting }
 FmxMBBehavior >> as: aTraitOrTraitName property: propertyName comment: aString [
 
@@ -116,16 +123,13 @@ FmxMBBehavior >> generateAnnotationIn: aRealClass as: aName superclass: aSupercl
 { #category : #generating }
 FmxMBBehavior >> generateContainerMethodsIn: aClass [
 
-	| containerSides |
+	| primaryContainerProperties |
 	
-	containerSides := ((self allTraits 
-		select: #canProvidePrimaryContainer)
-		flatCollect: #sides) 
-		select: #isContainer.
+	primaryContainerProperties := self primaryContainerProperties.
+		
+	primaryContainerProperties size > 1 ifTrue: [ self error: aClass name, ' defines more than one primary container: ', ((primaryContainerProperties collect: #name) sorted joinUsing: ', ') ].
 	
-	containerSides size > 1 ifTrue: [ self error: aClass name, ' defines more than one primary container: ', ((containerSides collect: #name) sorted joinUsing: ', ') ].
-	
-	containerSides do: [ :aSide | aSide generateExtendedContainerMethodsIn: aClass ].
+	primaryContainerProperties do: [ :aSide | aSide generateExtendedContainerMethodsIn: aClass ].
 	
 	
 ]
@@ -135,8 +139,7 @@ FmxMBBehavior >> generateNavigationGroups [
 
 	| allNavigationGroups |
 
-	allNavigationGroups := self navigationGroups, (self relations flatCollect: [ :relation |
-		relation side navigationGroups ]).
+	allNavigationGroups := self allNavigationGroups.
 
 	allNavigationGroups do: [ :aGroup | 
 		| sideName |
@@ -169,6 +172,14 @@ FmxMBBehavior >> generateNavigationGroups [
 ]
 
 { #category : #generating }
+FmxMBBehavior >> generateRemoteAccessors [
+
+	(self properties select: #isRemote) do: [ :each |
+		each generateAccessorsIn: self realClass. ]
+
+]
+
+{ #category : #generating }
 FmxMBBehavior >> generateRootMetamodelMethodIn: aClass [ 
 
 	self isRoot ifFalse: [ 
@@ -190,12 +201,6 @@ FmxMBBehavior >> generateTestingMethodsIn: aClass [
 		classified: #testing. ]
 
 
-]
-
-{ #category : #testing }
-FmxMBBehavior >> hasPrimaryContainer [
-
-	^ additionalProperties at: #providesPrimaryContainer ifAbsent: [ false ]
 ]
 
 { #category : #accessing }
@@ -238,13 +243,6 @@ FmxMBBehavior >> name: anObject [
 	name := anObject
 ]
 
-{ #category : #private }
-FmxMBBehavior >> ownerPropertyName [
-
-	^ self name uncapitalized, 'Owner'.
-	
-]
-
 { #category : #accessing }
 FmxMBBehavior >> packageName [
 	^ packageName
@@ -255,28 +253,27 @@ FmxMBBehavior >> packageName: anObject [
 	packageName := anObject
 ]
 
+{ #category : #utility }
+FmxMBBehavior >> pluralOf: aString [
+
+	| stringParts pluralized |
+	
+	stringParts := aString splitOnLastNumber.
+	
+	pluralized := (stringParts first endsWith: 's')
+		ifFalse: [ 
+			(stringParts first endsWith: 'y')
+				ifTrue: [ stringParts first allButLast, 'ies' ]
+				ifFalse: [ stringParts first, 's' ]  ]
+		ifTrue: [ stringParts first, 'es' ].
+		
+	^ pluralized, stringParts second.
+]
+
 { #category : #private }
 FmxMBBehavior >> pluralPropertyName [
 
-	| uncapitalized |
-	
-	uncapitalized := self name uncapitalized.
-	
-	^ (uncapitalized endsWith: 's')
-		ifFalse: [ uncapitalized, 's' ]
-		ifTrue: [ uncapitalized, 'es' ]
-]
-
-{ #category : #accessing }
-FmxMBBehavior >> pluralRelationName [
-	
-	| lowercase |
-	
-	lowercase := self name asLowercase.
-
-	^ (lowercase endsWith: 's')
-		ifFalse: [ lowercase, 's' ]
-		ifTrue: [ lowercase, 'es' ]
+	^ self pluralOf: self name uncapitalized
 ]
 
 { #category : #accessing }
@@ -287,6 +284,20 @@ FmxMBBehavior >> prefix [
 { #category : #accessing }
 FmxMBBehavior >> prefix: anObject [
 	prefix := anObject
+]
+
+{ #category : #generating }
+FmxMBBehavior >> primaryContainerProperties [
+
+	| primaryContainers |
+	
+	primaryContainers := ((self allTraits copyWithoutAll: self usedTraitsWithoutPrimaryContainers)
+		flatCollect: #sides) 
+		select: #isContainer.
+		
+	primaryContainers addAll: ((self properties select: #isContainer) select: #providesPrimaryContainer).
+	
+	^ primaryContainers
 ]
 
 { #category : #generating }
@@ -310,7 +321,7 @@ FmxMBBehavior >> properties [
 FmxMBBehavior >> property: propertyName [
 
 	| aSide |
-
+	
 	self assert: propertyName isString.
 	
 	aSide := FmxMBRelationSide new
@@ -396,7 +407,7 @@ FmxMBBehavior >> slotDefinitions [
 
 	| slotGroups |
 	
-	slotGroups := (self properties collect: [ :property | property asSlot ]) groupedBy: #name.
+	slotGroups := (self properties select: #producesSlot thenCollect: [ :property | property asSlot ]) groupedBy: #name.
 
 	"check that all slots with the same name have the same properties"
 	slotGroups valuesDo: [ :similarSlots |
@@ -448,9 +459,11 @@ FmxMBBehavior >> traitGeneralizations [
 ]
 
 { #category : #accessing }
-FmxMBBehavior >> traitNamesFromGeneralizations [
+FmxMBBehavior >> usedTraitsWithoutPrimaryContainers [
 
-	^ (self traitGeneralizations collect: #fullName) sorted
+	"all traits that were used without primary container"
+	
+	^ self additionalProperties at: #usedTraitsWithoutPrimaryContainers ifAbsentPut: [ Set new ]
 ]
 
 { #category : #accessing }
@@ -465,7 +478,7 @@ FmxMBBehavior >> usesWithoutPrimaryContainer: aTrait [
 	| traitEntity |
 	
 	traitEntity := self generalization: aTrait.
-	traitEntity additionalProperties at: #providesPrimaryContainer put: false.
+	self usedTraitsWithoutPrimaryContainers add: aTrait.
 	^ traitEntity
 ]
 
