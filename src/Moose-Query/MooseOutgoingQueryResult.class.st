@@ -36,10 +36,3 @@ MooseOutgoingQueryResult >> sources [
 
 	^ self collectAsSet: #from
 ]
-
-{ #category : #filtering }
-MooseOutgoingQueryResult >> withoutSelfLoops [
-	"exclude dependencies which loop back to the receiver"
-
-	^ self rejectDependencies: [ :dep | (self opposite: dep) asCollection anySatisfy: [ :opp | self receiver mooseQueryEqualsTo: opp moduloScope: self receiver class ] ]
-]
