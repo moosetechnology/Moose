@@ -401,23 +401,6 @@ TEntityMetaLevelDependency >> incomingMSEProperties [
 	^ self class incomingMSEProperties 
 ]
 
-{ #category : #'moosechef-scoping-filtering' }
-TEntityMetaLevelDependency >> mooseQueryEqualsTo: anEntity moduloScope: aScope [
-	"checks whether receiver is equal to anEntity at the given scope.
-	  For example, a class could be equal to a method at the packageScope, i.e. they belong to the same package.
-	  When changing scopes, we might get collections and then we check whether it includes the receiver"
-
-	| entityRescoped myselfRescoped |
-	myselfRescoped := self atScope: aScope.
-	(myselfRescoped size = 1) ifTrue: [ myselfRescoped := myselfRescoped anyOne ].
-	myselfRescoped isCollection
-		ifTrue: [ ^ myselfRescoped anySatisfy: [ :myElt | myElt mooseQueryEqualsTo: anEntity moduloScope: aScope ] ]
-		ifFalse: [ entityRescoped := anEntity atScope: aScope.
-			entityRescoped isCollection
-				ifTrue: [ ^ entityRescoped includes: myselfRescoped ]
-				ifFalse: [ ^ entityRescoped == myselfRescoped ] ]
-]
-
 { #category : #accessing }
 TEntityMetaLevelDependency >> outgoingAssociationTypes [
 	^ self class outgoingAssociationTypes
@@ -482,6 +465,20 @@ TEntityMetaLevelDependency >> toScope: aClassFAMIX in: aCollection [
 			| selectors |
 			1 to: (selectors := self childrenSelectors) size do: [ :ind | (self perform: (selectors at: ind)) toScope: aClassFAMIX in: aCollection ] ].
 	^ aCollection
+]
+
+{ #category : #accessing }
+TEntityMetaLevelDependency >> withAllChildren [
+	"I return a collection including me and all my children in the containement tree."
+
+	^ (self allChildren , {self}) asArray
+]
+
+{ #category : #accessing }
+TEntityMetaLevelDependency >> withAllParents [
+	"I return a collection including me and all my parents in the containement tree."
+
+	^ (self allParents , {self}) asArray
 ]
 
 { #category : #scoping }
