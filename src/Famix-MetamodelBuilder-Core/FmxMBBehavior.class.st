@@ -291,8 +291,7 @@ FmxMBBehavior >> primaryContainerProperties [
 
 	| primaryContainers |
 	
-	primaryContainers := ((self allTraits 
-		select: #canProvidePrimaryContainer)
+	primaryContainers := ((self allTraits copyWithoutAll: self usedTraitsWithoutPrimaryContainers)
 		flatCollect: #sides) 
 		select: #isContainer.
 		
@@ -460,6 +459,14 @@ FmxMBBehavior >> traitGeneralizations [
 ]
 
 { #category : #accessing }
+FmxMBBehavior >> usedTraitsWithoutPrimaryContainers [
+
+	"all traits that were used without primary container"
+	
+	^ self additionalProperties at: #usedTraitsWithoutPrimaryContainers ifAbsentPut: [ Set new ]
+]
+
+{ #category : #accessing }
 FmxMBBehavior >> uses: aTrait [
 
 	^ self generalization: aTrait
@@ -471,7 +478,7 @@ FmxMBBehavior >> usesWithoutPrimaryContainer: aTrait [
 	| traitEntity |
 	
 	traitEntity := self generalization: aTrait.
-	traitEntity additionalProperties at: #providesPrimaryContainer put: false.
+	self usedTraitsWithoutPrimaryContainers add: aTrait.
 	^ traitEntity
 ]
 
