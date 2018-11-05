@@ -69,3 +69,87 @@ FamixTestComposedCustomEntity4 >> customEntities4: anObject [
 	<generated>
 	self customEntities4 value: anObject
 ]
+
+{ #category : #testing }
+FamixTestComposedCustomEntity4 >> isAccess [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixTestComposedCustomEntity4 >> isAssociation [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixTestComposedCustomEntity4 >> isAttribute [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixTestComposedCustomEntity4 >> isClass [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixTestComposedCustomEntity4 >> isFunction [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixTestComposedCustomEntity4 >> isInheritance [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixTestComposedCustomEntity4 >> isInvocation [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixTestComposedCustomEntity4 >> isMethod [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixTestComposedCustomEntity4 >> isNamespace [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixTestComposedCustomEntity4 >> isPackage [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixTestComposedCustomEntity4 >> isReference [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixTestComposedCustomEntity4 >> isType [
+
+	<generated>
+	^ false
+]

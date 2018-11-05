@@ -1,6 +1,6 @@
 Extension { #name : #FamixTestComposed2CustomEntity3 }
 
-{ #category : #'*Famix-TestComposedMetamodel-Entities-*Famix-TestComposedSubmetamodel2-Entities' }
+{ #category : #'*Famix-TestComposedMetamodel-Entities-accessing' }
 FamixTestComposed2CustomEntity3 >> c13s [
 
 	<generated>
@@ -8,14 +8,14 @@ FamixTestComposed2CustomEntity3 >> c13s [
 	^ self privateState attributeAt: #c13s ifAbsentPut: [ FMMultivalueLink on: self opposite: #c23: ]
 ]
 
-{ #category : #'*Famix-TestComposedMetamodel-Entities-*Famix-TestComposedSubmetamodel2-Entities' }
+{ #category : #'*Famix-TestComposedMetamodel-Entities-accessing' }
 FamixTestComposed2CustomEntity3 >> c13s: anObject [
 
 	<generated>
 	self c13s value: anObject
 ]
 
-{ #category : #'*Famix-TestComposedMetamodel-Entities-*Famix-TestComposedSubmetamodel2-Entities' }
+{ #category : #'*Famix-TestComposedMetamodel-Entities-accessing' }
 FamixTestComposed2CustomEntity3 >> c3s [
 
 	<generated>
@@ -23,7 +23,7 @@ FamixTestComposed2CustomEntity3 >> c3s [
 	^ self privateState attributeAt: #c3s ifAbsentPut: [ FMMultivalueLink on: self opposite: #c23: ]
 ]
 
-{ #category : #'*Famix-TestComposedMetamodel-Entities-*Famix-TestComposedSubmetamodel2-Entities' }
+{ #category : #'*Famix-TestComposedMetamodel-Entities-accessing' }
 FamixTestComposed2CustomEntity3 >> c3s: anObject [
 
 	<generated>

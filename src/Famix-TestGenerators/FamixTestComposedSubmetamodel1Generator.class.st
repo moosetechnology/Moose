@@ -7,7 +7,8 @@ Class {
 		'customEntity1',
 		'customEntity2',
 		'customEntity3',
-		'customEntity4'
+		'customEntity4',
+		'customEntity5'
 	],
 	#category : #'Famix-TestGenerators'
 }
@@ -38,6 +39,7 @@ FamixTestComposedSubmetamodel1Generator >> defineClasses [
 	customEntity2 := builder newClassNamed: #CustomEntity2.
 	customEntity3 := builder newClassNamed: #CustomEntity3.
 	customEntity4 := builder newClassNamed: #CustomEntity4.
+	customEntity5 := builder newClassNamed: #CustomEntity5.
 
 ]
 
@@ -57,5 +59,9 @@ FamixTestComposedSubmetamodel1Generator >> defineHierarchy [
 	customEntity2 --|> entity.
 	customEntity3 --|> entity.
 	customEntity4 --|> entity.
+	customEntity5 --|> entity.
+	
+	customEntity5 --|> #TEntityMetaLevelDependency.
+
 	
 ]

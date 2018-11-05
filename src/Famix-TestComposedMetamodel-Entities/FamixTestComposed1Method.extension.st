@@ -1,6 +1,6 @@
 Extension { #name : #FamixTestComposed1Method }
 
-{ #category : #'*Famix-TestComposedMetamodel-Entities-*Famix-TestComposedSubmetamodel1-Entities' }
+{ #category : #'*Famix-TestComposedMetamodel-Entities-accessing' }
 FamixTestComposed1Method >> entity [
 
 	<generated>
@@ -8,7 +8,7 @@ FamixTestComposed1Method >> entity [
 	^ self privateState attributeAt: #entity ifAbsent: [ nil ]
 ]
 
-{ #category : #'*Famix-TestComposedMetamodel-Entities-*Famix-TestComposedSubmetamodel1-Entities' }
+{ #category : #'*Famix-TestComposedMetamodel-Entities-accessing' }
 FamixTestComposed1Method >> entity: anObject [
 
 	<generated>
