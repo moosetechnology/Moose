@@ -2,7 +2,10 @@ Class {
 	#name : #FamixTestComposedMetamodelsWithMooseQuery,
 	#superclass : #TestCase,
 	#instVars : [
-		'model',
+		'model1',
+		'metamodel1',
+		'model2',
+		'metamodel2',
 		'association',
 		'c15',
 		'c25'
@@ -15,8 +18,9 @@ FamixTestComposedMetamodelsWithMooseQuery >> setUp [
 
 	super setUp.
 	
-	model := MooseModel new.
-	model metamodel: FamixTestComposedGenerator metamodel.
+	model1 := MooseModel new.
+	metamodel1 := FamixTestComposedGenerator metamodel.
+	model1 metamodel: metamodel1.
 	
 	association := FamixTestComposedAssociation new.
 
@@ -26,8 +30,9 @@ FamixTestComposedMetamodelsWithMooseQuery >> setUp [
 	c15 associations add: association.
 	c25 associations add: association.
 
-	model addAll: { association. c15. c25 }.
+	model1 addAll: { association. c15. c25 }.
 
+	metamodel2 := FamixTestComposedSubmetamodel1Generator metamodel.
 	
 	
 ]

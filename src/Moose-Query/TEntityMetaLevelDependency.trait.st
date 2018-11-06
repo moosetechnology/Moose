@@ -20,29 +20,6 @@ Trait {
 	#category : #'Moose-Query'
 }
 
-{ #category : #accessing }
-TEntityMetaLevelDependency classSide >> allChildrenTypes [
-	^ allChildrenTypes ifNil: [ allChildrenTypes := self privateAllChildrenTypes ]
-]
-
-{ #category : #accessing }
-TEntityMetaLevelDependency classSide >> allIncomingAssociationTypes [
-	"Here we add a cache because this is heavely used in MooseQuery for the navigations."
-
-	^ allIncomingAssociationTypes
-		ifNil: [ allIncomingAssociationTypes := self privateAllIncomingAssociationTypes ]
-]
-
-{ #category : #accessing }
-TEntityMetaLevelDependency classSide >> allOutgoingAssociationTypes [
-	^ self privateAllOutgoingAssociationTypes
-]
-
-{ #category : #accessing }
-TEntityMetaLevelDependency classSide >> allParentTypes [
-	^ allParentTypes ifNil: [ allParentTypes := self privateAllParentTypes ]
-]
-
 { #category : #meta }
 TEntityMetaLevelDependency classSide >> annotation [
 
@@ -50,32 +27,6 @@ TEntityMetaLevelDependency classSide >> annotation [
 	<generated>
 	<package: #'Moose-Query'>
 	^self
-]
-
-{ #category : #'Moose-Query-Extensions' }
-TEntityMetaLevelDependency classSide >> childrenAccessors [
-	self
-		deprecated: 'Use childrenSelectors instead'
-		on: '21 December 2016'
-		in: 'Pharo-6.0-60328-'
-		transformWith: '`@receiver childrenAccessors' -> '`@receiver childrenSelectors'.
-	^ self childrenSelectors
-]
-
-{ #category : #accessing }
-TEntityMetaLevelDependency classSide >> childrenSelectors [
-	^ childrenSelectors ifNil: [ childrenSelectors := self privateChildrenSelectors ]
-]
-
-{ #category : #accessing }
-TEntityMetaLevelDependency classSide >> childrenTypes [
-	^ self privateChildrenTypes
-]
-
-{ #category : #accessing }
-TEntityMetaLevelDependency classSide >> dependencyFM3PropertyDescription [
-	^ self allDeclaredProperties
-		select: [ :e | e hasOpposite and: [ e opposite isSource or: [ e opposite isTarget ] ] ]
 ]
 
 { #category : #generator }
@@ -94,105 +45,37 @@ TEntityMetaLevelDependency classSide >> generatedTraitNames [
 { #category : #accessing }
 TEntityMetaLevelDependency classSide >> incomingAssociationTypes [
 	"Default value"
-
+	"TODO: Clean"
 	^ self privateIncomingAssociationTypes
 ]
 
 { #category : #accessing }
 TEntityMetaLevelDependency classSide >> incomingMSEProperties [
+	"TODO: Clean"
+
 	^ incomingMSEProperties ifNil: [ incomingMSEProperties := self privateIncomingMSEProperties ]
 ]
 
 { #category : #accessing }
-TEntityMetaLevelDependency classSide >> outgoingAssociationTypes [
-	"Here we add a cache because this is heavely used in MooseQuery for the navigations."
-
-	^ outgoingAssociationTypes
-		ifNil: [ outgoingAssociationTypes := self privateOutgoingAssociationTypes ]
-]
-
-{ #category : #accessing }
-TEntityMetaLevelDependency classSide >> outgoingMSEProperties [
-	^ outgoingMSEProperties ifNil: [ outgoingMSEProperties := self privateOutgoingMSEProperties ]
-]
-
-{ #category : #'Moose-Query-Extensions' }
-TEntityMetaLevelDependency classSide >> parentSelectors [
-	^ parentSelectors ifNil: [ parentSelectors := self privateParentSelectors ] 
-]
-
-{ #category : #accessing }
-TEntityMetaLevelDependency classSide >> parentTypes [
-	^ self privateParentTypes 
-]
-
-{ #category : #accessing }
-TEntityMetaLevelDependency classSide >> privateAllChildrenTypes [
-	^ (self childrenTypes withDeepCollect: #childrenTypes as: Set) asOrderedCollection
-]
-
-{ #category : #accessing }
-TEntityMetaLevelDependency classSide >> privateAllIncomingAssociationTypes [
-   ^ ((self allChildrenTypes flatCollectAsSet: [:each | each implementingClassesIn: self metamodel ])
-		flatCollectAsSet: #incomingAssociationTypes)
-       addAll: self incomingAssociationTypes;
-       yourself
-]
-
-{ #category : #accessing }
-TEntityMetaLevelDependency classSide >> privateAllOutgoingAssociationTypes [
-   ^ ((self allChildrenTypes flatCollectAsSet: [:each | each implementingClassesIn: self metamodel ])
-		flatCollectAsSet: #outgoingAssociationTypes)
-       addAll: self outgoingAssociationTypes;
-       yourself
-]
-
-{ #category : #accessing }
-TEntityMetaLevelDependency classSide >> privateAllParentTypes [
-	^ (self parentTypes withDeepCollect: #parentTypes as: Set) asOrderedCollection
-]
-
-{ #category : #accessing }
-TEntityMetaLevelDependency classSide >> privateChildrenSelectors [
-	^ self allDeclaredProperties select: #isChildrenProperty thenCollect: #implementingSelector
-]
-
-{ #category : #accessing }
-TEntityMetaLevelDependency classSide >> privateChildrenTypes [
-	^ ((self allDeclaredProperties select: [ :fm3Prop | fm3Prop isChildrenProperty ])
-		collectAsSet: [ :prop | prop type implementingClass ]) asArray
-]
-
-{ #category : #accessing }
 TEntityMetaLevelDependency classSide >> privateIncomingAssociationTypes [
+	"TODO: Clean"
+
 	^ self incomingMSEProperties collect: [ :d | d type implementingClass ]
 ]
 
 { #category : #accessing }
 TEntityMetaLevelDependency classSide >> privateIncomingMSEProperties [
+	"TODO: Clean"
+
 	^ self dependencyFM3PropertyDescription select: [ :p | p opposite isTarget ]
-]
-
-{ #category : #accessing }
-TEntityMetaLevelDependency classSide >> privateOutgoingAssociationTypes [
-	^ self outgoingMSEProperties collect: [ :d | d type implementingClass ]
-]
-
-{ #category : #accessing }
-TEntityMetaLevelDependency classSide >> privateOutgoingMSEProperties [
-	^ self dependencyFM3PropertyDescription select: [ :p | p opposite isSource ]
-]
-
-{ #category : #accessing }
-TEntityMetaLevelDependency classSide >> privateParentSelectors [
-	^ self allDeclaredProperties select: #isContainer thenCollect: #implementingSelector
 ]
 
 { #category : #accessing }
 TEntityMetaLevelDependency classSide >> privateParentTypes [
 
 	| containerBehaviors metamodelClasses containerUsers |
-	
+	"TODO: Clean"
+
 	containerBehaviors := self mooseDescription allAttributes select: #isContainer thenCollect: [:prop | prop type implementingClass].
 	
 	metamodelClasses := self metamodel classes reject: [ :e | e implementingClass isTrait ].
@@ -254,10 +137,12 @@ TEntityMetaLevelDependency >> allChildren [
 
 { #category : #accessing }
 TEntityMetaLevelDependency >> allChildrenTypes [
-	^ self class allChildrenTypes
+
+	^ self metamodel additionalProperty: #allChildrenTypes for: self class ifAbsentPut: [ self privateAllChildrenTypes ]
+	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 TEntityMetaLevelDependency >> allClients [
 	^ self allClientsAtScope: self class
 ]
@@ -269,17 +154,23 @@ TEntityMetaLevelDependency >> allClientsAtScope: aClass [
 
 { #category : #accessing }
 TEntityMetaLevelDependency >> allIncomingAssociationTypes [
-	^ self class allIncomingAssociationTypes
+
+	^ self metamodel additionalProperty: #allIncomingAssociationTypes for: self class ifAbsentPut: [ self privateAllIncomingAssociationTypes ]
+	
 ]
 
 { #category : #accessing }
 TEntityMetaLevelDependency >> allOutgoingAssociationTypes [
-	^ self class allOutgoingAssociationTypes
+
+	^ self metamodel additionalProperty: #allOutgoingAssociationTypes for: self class ifAbsentPut: [ self privateAllOutgoingAssociationTypes ]
+	
 ]
 
 { #category : #accessing }
 TEntityMetaLevelDependency >> allParentTypes [
-	^ self class allParentTypes
+
+	^ self metamodel additionalProperty: #allParentTypes for: self class ifAbsentPut: [ self privateAllParentTypes ]
+	
 ]
 
 { #category : #accessing }
@@ -289,7 +180,7 @@ TEntityMetaLevelDependency >> allParents [
 	^ self addAllParentsIn: OrderedCollection new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 TEntityMetaLevelDependency >> allProviders [
 	^ self allProvidersAtScope: self class
 ]
@@ -362,43 +253,36 @@ TEntityMetaLevelDependency >> children [
 ]
 
 { #category : #accessing }
-TEntityMetaLevelDependency >> childrenAccessors [
-	self 
-		deprecated: 'Use childrenSelectors instead'
-		on: 	'21 December 2016' 
-		in: 'Pharo-6.0-60328-'
-		transformWith: '`@receiver childrenAccessors' -> '`@receiver childrenSelectors'.
-	^ self childrenSelectors
-]
-
-{ #category : #accessing }
-TEntityMetaLevelDependency >> childrenEntities [
-	self
-		deprecated: 'Use #children instead'
-		on: '19 Septembre 2017'
-		in: 'Moose 6.1'
-		transformWith: '`@receiver childrenEntities' -> '`@receiver children'.
-	^ self children
-]
-
-{ #category : #accessing }
 TEntityMetaLevelDependency >> childrenSelectors [
-	^ self class childrenSelectors
+
+	^ self metamodel additionalProperty: #childrenSelectors for: self class ifAbsentPut: [ self privateChildrenSelectors ]
+	
+]
+
+{ #category : #accessing }
+TEntityMetaLevelDependency >> childrenTypes [
+
+	^ self metamodel additionalProperty: #childrenTypes for: self class ifAbsentPut: [ self privateChildrenTypes ]
 ]
 
 { #category : #accessing }
 TEntityMetaLevelDependency >> dependencyFM3PropertyDescription [
-	^ self class dependencyFM3PropertyDescription
+	^ self allDeclaredProperties
+		select: [ :e | e hasOpposite and: [ e opposite isSource or: [ e opposite isTarget ] ] ]
 ]
 
 { #category : #accessing }
 TEntityMetaLevelDependency >> incomingAssociationTypes [
-	^ self class incomingAssociationTypes
+
+	^ self metamodel additionalProperty: #incomingAssociationTypes for: self class ifAbsentPut: [ self privateIncomingAssociationTypes ]
+	
 ]
 
 { #category : #accessing }
 TEntityMetaLevelDependency >> incomingMSEProperties [
-	^ self class incomingMSEProperties 
+
+	^ self metamodel additionalProperty: #incomingMSEProperties for: self class ifAbsentPut: [ self privateIncomingMSEProperties ]
+	
 ]
 
 { #category : #'moosechef-scoping-filtering' }
@@ -420,42 +304,30 @@ TEntityMetaLevelDependency >> moosechefEqualsTo: anEntity moduloScope: aScope [
 
 { #category : #accessing }
 TEntityMetaLevelDependency >> outgoingAssociationTypes [
-	^ self class outgoingAssociationTypes
+
+	^ self metamodel additionalProperty: #outgoingAssociationTypes for: self class ifAbsentPut: [ self privateOutgoingAssociationTypes ]
+	
 ]
 
 { #category : #accessing }
 TEntityMetaLevelDependency >> outgoingMSEProperties [
-	^ self class outgoingMSEProperties
-]
 
-{ #category : #accessing }
-TEntityMetaLevelDependency >> parentAccessors [
-	self
-		deprecated: 'Use childrenSelectors instead'
-		on: '21 December 2016'
-		in: 'Pharo-6.0-60328-'
-		transformWith: '`@receiver parentAccessors' -> '`@receiver parentSelectors'.
-	^ self parentSelectors
-]
-
-{ #category : #accessing }
-TEntityMetaLevelDependency >> parentEntities [
-	self
-		deprecated: 'Use #parents instead'
-		on: '19 Septembre 2017'
-		in: 'Moose 6.1'
-		transformWith: '`@receiver parentEntities' -> '`@receiver parents'.
-	^ self parents
+	^ self metamodel additionalProperty: #outgoingMSEProperties for: self class ifAbsentPut: [ self privateOutgoingMSEProperties ]
+	
 ]
 
 { #category : #accessing }
 TEntityMetaLevelDependency >> parentSelectors [
-	^ self class parentSelectors
+
+	^ self metamodel additionalProperty: #parentSelectors for: self class ifAbsentPut: [ self privateParentSelectors ]
+	
 ]
 
 { #category : #accessing }
 TEntityMetaLevelDependency >> parentTypes [
-	^ self class parentTypes
+
+	^ self metamodel additionalProperty: #parentTypes for: self class ifAbsentPut: [ self privateParentTypes ]
+	
 ]
 
 { #category : #accessing }
@@ -464,6 +336,89 @@ TEntityMetaLevelDependency >> parents [
 	res := OrderedCollection new.
 	self parentSelectors do: [ :accessor | (self perform: accessor) ifNotNil: [ :r | res addAll: r asCollection ] ].
 	^ res asSet
+]
+
+{ #category : #private }
+TEntityMetaLevelDependency >> privateAllChildrenTypes [
+
+	^ (self childrenTypes withDeepCollect: #childrenTypes as: Set) asOrderedCollection
+]
+
+{ #category : #private }
+TEntityMetaLevelDependency >> privateAllIncomingAssociationTypes [
+   ^ ((self allChildrenTypes flatCollectAsSet: [:each | each implementingClassesIn: self metamodel ])
+		flatCollectAsSet: #incomingAssociationTypes)
+       addAll: self incomingAssociationTypes;
+       yourself
+]
+
+{ #category : #private }
+TEntityMetaLevelDependency >> privateAllOutgoingAssociationTypes [
+   ^ ((self allChildrenTypes flatCollectAsSet: [:each | each implementingClassesIn: self metamodel ])
+		flatCollectAsSet: #outgoingAssociationTypes)
+       addAll: self outgoingAssociationTypes;
+       yourself
+]
+
+{ #category : #private }
+TEntityMetaLevelDependency >> privateAllParentTypes [
+	^ (self parentTypes withDeepCollect: #parentTypes as: Set) asOrderedCollection
+]
+
+{ #category : #private }
+TEntityMetaLevelDependency >> privateChildrenSelectors [
+
+	^ self allDeclaredProperties select: #isChildrenProperty thenCollect: #implementingSelector
+]
+
+{ #category : #private }
+TEntityMetaLevelDependency >> privateChildrenTypes [
+	^ ((self allDeclaredProperties select: [ :fm3Prop | fm3Prop isChildrenProperty ])
+		collectAsSet: [ :prop | prop type implementingClass ]) asArray
+]
+
+{ #category : #private }
+TEntityMetaLevelDependency >> privateIncomingAssociationTypes [
+	^ self incomingMSEProperties collect: [ :d | d type implementingClass ]
+]
+
+{ #category : #private }
+TEntityMetaLevelDependency >> privateIncomingMSEProperties [
+	^ self dependencyFM3PropertyDescription select: [ :p | p opposite isTarget ]
+]
+
+{ #category : #private }
+TEntityMetaLevelDependency >> privateOutgoingAssociationTypes [
+	^ self outgoingMSEProperties collect: [ :d | d type implementingClass ]
+]
+
+{ #category : #private }
+TEntityMetaLevelDependency >> privateOutgoingMSEProperties [
+	^ self dependencyFM3PropertyDescription select: [ :p | p opposite isSource ]
+]
+
+{ #category : #private }
+TEntityMetaLevelDependency >> privateParentSelectors [
+
+	^ self allDeclaredProperties select: #isContainer thenCollect: #implementingSelector
+]
+
+{ #category : #private }
+TEntityMetaLevelDependency >> privateParentTypes [
+
+	| containerBehaviors metamodelClasses containerUsers |
+	
+	containerBehaviors := self mooseDescription allAttributes select: #isContainer thenCollect: [:prop | prop type implementingClass].
+	
+	metamodelClasses := self metamodel classes reject: [ :e | e implementingClass isTrait ].
+	
+	containerUsers := metamodelClasses select: [ :e | 
+		containerBehaviors anySatisfy: [ :t | e implementingClass usesMooseTraitDirectly: t ] ].
+	
+	^ (containerBehaviors, (containerUsers collect: #implementingClass) ) asSet asArray
+	
+
+	
 ]
 
 { #category : #scoping }

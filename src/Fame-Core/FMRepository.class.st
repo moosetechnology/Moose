@@ -32,7 +32,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'elements',
-		'metamodel'
+		'metamodel',
+		'additionalProperties'
 	],
 	#category : #'Fame-Core'
 }
@@ -71,6 +72,36 @@ FMRepository >> addAll: elementCollection [
 	
 	elementCollection do: [ :each |
 		self add: each ]
+]
+
+{ #category : #accessing }
+FMRepository >> additionalProperties [
+
+	^ additionalProperties ifNil: [ additionalProperties := IdentityDictionary new ]
+]
+
+{ #category : #accessing }
+FMRepository >> additionalPropertiesFor: entityClass [
+
+	^ self additionalProperties at: entityClass ifAbsentPut: [ IdentityDictionary new ]
+]
+
+{ #category : #accessing }
+FMRepository >> additionalProperty: aSymbol for: entityClass [
+
+	^ (self additionalPropertiesFor: entityClass) at: aSymbol 
+]
+
+{ #category : #accessing }
+FMRepository >> additionalProperty: aSymbol for: entityClass ifAbsentPut: aBlock [
+
+	^ (self additionalPropertiesFor: entityClass) at: aSymbol ifAbsentPut: aBlock
+]
+
+{ #category : #accessing }
+FMRepository >> additionalProperty: aSymbol for: entityClass put: anObject [
+
+	^ (self additionalPropertiesFor: entityClass) at: aSymbol put: anObject
 ]
 
 { #category : #converting }

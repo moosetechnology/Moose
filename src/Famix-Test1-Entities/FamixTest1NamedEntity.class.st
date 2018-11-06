@@ -15,6 +15,14 @@ FamixTest1NamedEntity class >> annotation [
 	^self
 ]
 
+{ #category : #'as yet unclassified' }
+FamixTest1NamedEntity class >> dependencyFM3PropertyDescription [
+	"TODO: Clean"
+
+	^ self allDeclaredProperties
+		select: [ :e | e hasOpposite and: [ e opposite isSource or: [ e opposite isTarget ] ] ]
+]
+
 { #category : #generator }
 FamixTest1NamedEntity class >> generatedSlotNames [
 	<generated>
@@ -26,6 +34,22 @@ FamixTest1NamedEntity class >> generatedSlotNames [
 FamixTest1NamedEntity class >> generatedTraitNames [
 	<generated>
 	^ #(FamixTNamed TDependencyQueries TEntityMetaLevelDependency)
+]
+
+{ #category : #'as yet unclassified' }
+FamixTest1NamedEntity class >> outgoingAssociationTypes [
+	"Here we add a cache because this is heavely used in MooseQuery for the navigations."
+	"TODO: Clean"
+
+	^ outgoingAssociationTypes
+		ifNil: [ outgoingAssociationTypes := self privateOutgoingAssociationTypes ]
+]
+
+{ #category : #'as yet unclassified' }
+FamixTest1NamedEntity class >> parentTypes [
+	"TODO: Clean"
+
+	^ self privateParentTypes 
 ]
 
 { #category : #meta }
