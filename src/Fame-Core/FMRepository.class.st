@@ -113,6 +113,12 @@ FMRepository >> asMetarepository [
 	^repo
 ]
 
+{ #category : #accessing }
+FMRepository >> cleanAdditionalProperties [
+
+	additionalProperties := IdentityDictionary new
+]
+
 { #category : #private }
 FMRepository >> coerceProperty: propertyOrName receiver: receiver [
 

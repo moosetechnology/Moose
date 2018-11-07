@@ -423,6 +423,15 @@ MooseEntity >> lookUpPropertyNamed: selector computedAs: aBlock [
 	^self privateState cache: selector initializer: aBlock
 ]
 
+{ #category : #accessing }
+MooseEntity >> metamodel [
+
+	^ self privateModelOrNil
+		ifNil: [ super metamodel ]
+		ifNotNil: [ :aModel | aModel metamodel ]
+
+]
+
 { #category : #printing }
 MooseEntity >> mooseDisplayStringOn: stream [
 	self mooseNameOn: stream
@@ -531,6 +540,12 @@ MooseEntity >> printOn: aStream [
 MooseEntity >> privateClearMooseName [
 	" this method causes the cache to fail if called directly. Use resetMooseName instead. "
 	self privateState removeProperty: #mooseName
+]
+
+{ #category : #accessing }
+MooseEntity >> privateModelOrNil [
+
+	^ self privateState attributeAt: #privateModel ifAbsent: [ nil ]
 ]
 
 { #category : #private }
