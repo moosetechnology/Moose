@@ -69,6 +69,13 @@ MooseEntity class >> allDeclaredProperties [
 ]
 
 { #category : #'meta accessing' }
+MooseEntity class >> allDeclaredPropertiesIn: aMetamodel [
+	"All properties described in the metamodel"
+	 
+	^self mooseDescription allAttributes
+]
+
+{ #category : #'meta accessing' }
 MooseEntity class >> allPropertySelectors [
 	"Return a dictionary with all properties of this kind of entity, including metamodel properties, metrics, and navigation groups. Keys are abstract names of properties, values are implementing selectors"
 	
@@ -223,6 +230,13 @@ MooseEntity class >> withMooseSubclasses [
 
 { #category : #'meta information' }
 MooseEntity >> allDeclaredProperties [
+	"All properties described in the metamodel"
+	 
+	^self mooseDescription allAttributes
+]
+
+{ #category : #'meta information' }
+MooseEntity >> allDeclaredPropertiesIn: aMetamodel [
 	"All properties described in the metamodel"
 	 
 	^self mooseDescription allAttributes

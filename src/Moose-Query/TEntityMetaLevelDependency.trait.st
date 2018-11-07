@@ -5,20 +5,36 @@ For more informations: https://moosequery.ferlicot.fr/
 "
 Trait {
 	#name : #TEntityMetaLevelDependency,
-	#classInstVars : [
-		'allChildrenTypes',
-		'allParentTypes',
-		'allIncomingAssociationTypes',
-		'allOutgoingAssociationTypes',
-		'outgoingAssociationTypes',
-		'childrenSelectors',
-		'parentSelectors',
-		'incomingAssociationTypes',
-		'outgoingMSEProperties',
-		'incomingMSEProperties'
-	],
 	#category : #'Moose-Query'
 }
+
+{ #category : #new }
+TEntityMetaLevelDependency classSide >> allChildrenTypesIn: aMetamodel [
+
+	^ aMetamodel additionalProperty: #allChildrenTypes for: self ifAbsentPut: [ self privateAllChildrenTypesIn: aMetamodel ]
+	
+]
+
+{ #category : #accessing }
+TEntityMetaLevelDependency classSide >> allIncomingAssociationTypesIn: aMetamodel [
+
+	^ aMetamodel additionalProperty: #allIncomingAssociationTypes for: self ifAbsentPut: [ self privateAllIncomingAssociationTypesIn: aMetamodel ]
+	
+]
+
+{ #category : #accessing }
+TEntityMetaLevelDependency classSide >> allOutgoingAssociationTypesIn: aMetamodel [
+
+	^ aMetamodel additionalProperty: #allOutgoingAssociationTypes for: self ifAbsentPut: [ self privateAllOutgoingAssociationTypesIn: aMetamodel ]
+	
+]
+
+{ #category : #accessing }
+TEntityMetaLevelDependency classSide >> allParentTypesIn: aMetamodel [
+
+	^ aMetamodel additionalProperty: #allParentTypes for: self ifAbsentPut: [ self privateAllParentTypesIn: aMetamodel ]
+	
+]
 
 { #category : #meta }
 TEntityMetaLevelDependency classSide >> annotation [
@@ -27,6 +43,26 @@ TEntityMetaLevelDependency classSide >> annotation [
 	<generated>
 	<package: #'Moose-Query'>
 	^self
+]
+
+{ #category : #accessing }
+TEntityMetaLevelDependency classSide >> childrenSelectorsIn: aMetamodel [
+
+	^ aMetamodel additionalProperty: #childrenSelectors for: self ifAbsentPut: [ self privateChildrenSelectorsIn: aMetamodel ]
+	
+]
+
+{ #category : #accessing }
+TEntityMetaLevelDependency classSide >> childrenTypesIn: aMetamodel [
+
+	^ aMetamodel additionalProperty: #childrenTypes for: self ifAbsentPut: [ self privateChildrenTypesIn: aMetamodel ]
+	
+]
+
+{ #category : #accessing }
+TEntityMetaLevelDependency classSide >> dependencyFM3PropertyDescriptionIn: aMetamodel [
+	^ (self allDeclaredPropertiesIn: aMetamodel)
+		select: [ :e | e hasOpposite and: [ e opposite isSource or: [ e opposite isTarget ] ] ]
 ]
 
 { #category : #generator }
@@ -43,42 +79,123 @@ TEntityMetaLevelDependency classSide >> generatedTraitNames [
 ]
 
 { #category : #accessing }
-TEntityMetaLevelDependency classSide >> incomingAssociationTypes [
-	"Default value"
-	"TODO: Clean"
-	^ self privateIncomingAssociationTypes
+TEntityMetaLevelDependency classSide >> incomingAssociationTypesIn: aMetamodel [
+
+	^ aMetamodel additionalProperty: #incomingAssociationTypes for: self ifAbsentPut: [ self privateIncomingAssociationTypesIn: aMetamodel ]
+	
 ]
 
 { #category : #accessing }
-TEntityMetaLevelDependency classSide >> incomingMSEProperties [
-	"TODO: Clean"
+TEntityMetaLevelDependency classSide >> incomingMSEPropertiesIn: aMetamodel [
 
-	^ incomingMSEProperties ifNil: [ incomingMSEProperties := self privateIncomingMSEProperties ]
+	^ aMetamodel additionalProperty: #incomingMSEProperties for: self ifAbsentPut: [ self privateIncomingMSEPropertiesIn: aMetamodel ]
+	
 ]
 
 { #category : #accessing }
-TEntityMetaLevelDependency classSide >> privateIncomingAssociationTypes [
-	"TODO: Clean"
+TEntityMetaLevelDependency classSide >> outgoingAssociationTypesIn: aMetamodel [
 
-	^ self incomingMSEProperties collect: [ :d | d type implementingClass ]
+	^ aMetamodel additionalProperty: #outgoingAssociationTypes for: self ifAbsentPut: [ self privateOutgoingAssociationTypesIn: aMetamodel ]
+	
 ]
 
 { #category : #accessing }
-TEntityMetaLevelDependency classSide >> privateIncomingMSEProperties [
-	"TODO: Clean"
+TEntityMetaLevelDependency classSide >> outgoingMSEPropertiesIn: aMetamodel [
 
+	^ aMetamodel additionalProperty: #outgoingMSEProperties for: self ifAbsentPut: [ self privateOutgoingMSEPropertiesIn: aMetamodel ]
+	
+]
+
+{ #category : #accessing }
+TEntityMetaLevelDependency classSide >> parentSelectorsIn: aMetamodel [
+
+	^ aMetamodel additionalProperty: #parentSelectors for: self ifAbsentPut: [ self privateParentSelectorsIn: aMetamodel ]
+	
+]
+
+{ #category : #accessing }
+TEntityMetaLevelDependency classSide >> parentTypesIn: aMetamodel [
+
+	^ aMetamodel additionalProperty: #parentTypes for: self ifAbsentPut: [ self privateParentTypesIn: aMetamodel ]
+	
+]
+
+{ #category : #new }
+TEntityMetaLevelDependency classSide >> privateAllChildrenTypesIn: aMetamodel [
+
+	^ ((self childrenTypesIn: aMetamodel) withDeepCollect: [ :each | each childrenTypesInMetamodel: aMetamodel] as: Set) asOrderedCollection
+]
+
+{ #category : #accessing }
+TEntityMetaLevelDependency classSide >> privateAllIncomingAssociationTypesIn: aMetamodel [
+   ^ (((self allChildrenTypesIn: aMetamodel) flatCollectAsSet: [:each | each implementingClassesIn: aMetamodel ])
+		flatCollectAsSet: [ :each | each incomingAssociationTypesIn: aMetamodel])
+       addAll: (self incomingAssociationTypesIn: aMetamodel);
+       yourself
+]
+
+{ #category : #accessing }
+TEntityMetaLevelDependency classSide >> privateAllOutgoingAssociationTypesIn: aMetamodel [
+   ^ (((self allChildrenTypesIn: aMetamodel) flatCollectAsSet: [:each | each implementingClassesIn: aMetamodel ])
+		flatCollectAsSet: [ :each | each outgoingAssociationTypesIn: aMetamodel])
+       addAll: (self outgoingAssociationTypesIn: aMetamodel);
+       yourself
+]
+
+{ #category : #accessing }
+TEntityMetaLevelDependency classSide >> privateAllParentTypesIn: aMetamodel [
+	^ ((self parentTypesIn: aMetamodel) withDeepCollect: [ :each | each parentTypesIn: aMetamodel] as: Set) asOrderedCollection
+]
+
+{ #category : #accessing }
+TEntityMetaLevelDependency classSide >> privateChildrenSelectorsIn: aMetamodel [
+	^ (self allDeclaredPropertiesIn: aMetamodel) select: #isChildrenProperty thenCollect: #implementingSelector
+]
+
+{ #category : #new }
+TEntityMetaLevelDependency classSide >> privateChildrenTypesIn: aMetamodel [
+	^ (((self allDeclaredPropertiesIn: aMetamodel) select: [ :fm3Prop | fm3Prop isChildrenProperty ])
+		collectAsSet: [ :prop | prop type implementingClass ]) asArray
+]
+
+{ #category : #new }
+TEntityMetaLevelDependency classSide >> privateIncomingAssociationTypesIn: aMetamodel [
+	^ (self incomingMSEPropertiesIn: aMetamodel) collect: [ :d | d type implementingClass ]
+]
+
+{ #category : #new }
+TEntityMetaLevelDependency classSide >> privateIncomingMSEPropertiesIn: aMetamodel [
+	^ (self dependencyFM3PropertyDescriptionIn: aMetamodel) select: [ :p | p opposite isTarget ]
+]
+
+{ #category : #new }
+TEntityMetaLevelDependency classSide >> privateIncomingMSEPropertiesInMetamodel: aMetamodel [
 	^ self dependencyFM3PropertyDescription select: [ :p | p opposite isTarget ]
 ]
 
-{ #category : #accessing }
-TEntityMetaLevelDependency classSide >> privateParentTypes [
+{ #category : #new }
+TEntityMetaLevelDependency classSide >> privateOutgoingAssociationTypesIn: aMetamodel [
+	^ (self outgoingMSEPropertiesIn: aMetamodel) collect: [ :d | d type implementingClass ]
+]
+
+{ #category : #new }
+TEntityMetaLevelDependency classSide >> privateOutgoingMSEPropertiesIn: aMetamodel [
+	^ (self dependencyFM3PropertyDescriptionIn: aMetamodel) select: [ :p | p opposite isSource ]
+]
+
+{ #category : #new }
+TEntityMetaLevelDependency classSide >> privateParentSelectorsIn: aMetamodel [
+	^ (self allDeclaredPropertiesIn: aMetamodel) select: #isContainer thenCollect: #implementingSelector
+]
+
+{ #category : #new }
+TEntityMetaLevelDependency classSide >> privateParentTypesIn: aMetamodel [
 
 	| containerBehaviors metamodelClasses containerUsers |
-	"TODO: Clean"
-
+	
 	containerBehaviors := self mooseDescription allAttributes select: #isContainer thenCollect: [:prop | prop type implementingClass].
 	
-	metamodelClasses := self metamodel classes reject: [ :e | e implementingClass isTrait ].
+	metamodelClasses := aMetamodel classes reject: [ :e | e implementingClass isTrait ].
 	
 	containerUsers := metamodelClasses select: [ :e | 
 		containerBehaviors anySatisfy: [ :t | e implementingClass usesMooseTraitDirectly: t ] ].
@@ -92,7 +209,7 @@ TEntityMetaLevelDependency classSide >> privateParentTypes [
 { #category : #'Moose-Query-Extensions' }
 TEntityMetaLevelDependency classSide >> resetTEntityMetaLevelDependencyCaches [
 
-	childrenSelectors := parentSelectors := allChildrenTypes := allParentTypes := outgoingMSEProperties := incomingMSEProperties := incomingAssociationTypes := outgoingAssociationTypes := allOutgoingAssociationTypes := allIncomingAssociationTypes := nil
+	
 ]
 
 { #category : #private }
@@ -137,9 +254,7 @@ TEntityMetaLevelDependency >> allChildren [
 
 { #category : #accessing }
 TEntityMetaLevelDependency >> allChildrenTypes [
-
-	^ self metamodel additionalProperty: #allChildrenTypes for: self class ifAbsentPut: [ self privateAllChildrenTypes ]
-	
+	^ self class allChildrenTypesIn: self metamodel
 ]
 
 { #category : #accessing }
@@ -155,22 +270,17 @@ TEntityMetaLevelDependency >> allClientsAtScope: aClass [
 { #category : #accessing }
 TEntityMetaLevelDependency >> allIncomingAssociationTypes [
 
-	^ self metamodel additionalProperty: #allIncomingAssociationTypes for: self class ifAbsentPut: [ self privateAllIncomingAssociationTypes ]
-	
+	^ self class allIncomingAssociationTypesIn: self metamodel 
 ]
 
 { #category : #accessing }
 TEntityMetaLevelDependency >> allOutgoingAssociationTypes [
-
-	^ self metamodel additionalProperty: #allOutgoingAssociationTypes for: self class ifAbsentPut: [ self privateAllOutgoingAssociationTypes ]
-	
+	^ self class allOutgoingAssociationTypesIn: self metamodel
 ]
 
 { #category : #accessing }
 TEntityMetaLevelDependency >> allParentTypes [
-
-	^ self metamodel additionalProperty: #allParentTypes for: self class ifAbsentPut: [ self privateAllParentTypes ]
-	
+	^ self class allParentTypesIn: self metamodel
 ]
 
 { #category : #accessing }
@@ -254,9 +364,7 @@ TEntityMetaLevelDependency >> children [
 
 { #category : #accessing }
 TEntityMetaLevelDependency >> childrenSelectors [
-
-	^ self metamodel additionalProperty: #childrenSelectors for: self class ifAbsentPut: [ self privateChildrenSelectors ]
-	
+	^ self class childrenSelectorsIn: self metamodel
 ]
 
 { #category : #accessing }
@@ -267,22 +375,17 @@ TEntityMetaLevelDependency >> childrenTypes [
 
 { #category : #accessing }
 TEntityMetaLevelDependency >> dependencyFM3PropertyDescription [
-	^ self allDeclaredProperties
-		select: [ :e | e hasOpposite and: [ e opposite isSource or: [ e opposite isTarget ] ] ]
+	^ self class dependencyFM3PropertyDescriptionIn: self metamodel
 ]
 
 { #category : #accessing }
 TEntityMetaLevelDependency >> incomingAssociationTypes [
-
-	^ self metamodel additionalProperty: #incomingAssociationTypes for: self class ifAbsentPut: [ self privateIncomingAssociationTypes ]
-	
+	^ self class incomingAssociationTypesIn: self metamodel
 ]
 
 { #category : #accessing }
 TEntityMetaLevelDependency >> incomingMSEProperties [
-
-	^ self metamodel additionalProperty: #incomingMSEProperties for: self class ifAbsentPut: [ self privateIncomingMSEProperties ]
-	
+	^ self class incomingMSEPropertiesIn: self metamodel
 ]
 
 { #category : #'moosechef-scoping-filtering' }
@@ -304,30 +407,22 @@ TEntityMetaLevelDependency >> moosechefEqualsTo: anEntity moduloScope: aScope [
 
 { #category : #accessing }
 TEntityMetaLevelDependency >> outgoingAssociationTypes [
-
-	^ self metamodel additionalProperty: #outgoingAssociationTypes for: self class ifAbsentPut: [ self privateOutgoingAssociationTypes ]
-	
+	^ self class outgoingAssociationTypesIn: self metamodel
 ]
 
 { #category : #accessing }
 TEntityMetaLevelDependency >> outgoingMSEProperties [
-
-	^ self metamodel additionalProperty: #outgoingMSEProperties for: self class ifAbsentPut: [ self privateOutgoingMSEProperties ]
-	
+	^ self class outgoingMSEPropertiesIn: self metamodel
 ]
 
 { #category : #accessing }
 TEntityMetaLevelDependency >> parentSelectors [
-
-	^ self metamodel additionalProperty: #parentSelectors for: self class ifAbsentPut: [ self privateParentSelectors ]
-	
+	^ self class parentSelectorsIn: self metamodel
 ]
 
 { #category : #accessing }
 TEntityMetaLevelDependency >> parentTypes [
-
-	^ self metamodel additionalProperty: #parentTypes for: self class ifAbsentPut: [ self privateParentTypes ]
-	
+	^ self class parentTypesIn: self metamodel
 ]
 
 { #category : #accessing }
@@ -336,89 +431,6 @@ TEntityMetaLevelDependency >> parents [
 	res := OrderedCollection new.
 	self parentSelectors do: [ :accessor | (self perform: accessor) ifNotNil: [ :r | res addAll: r asCollection ] ].
 	^ res asSet
-]
-
-{ #category : #private }
-TEntityMetaLevelDependency >> privateAllChildrenTypes [
-
-	^ (self childrenTypes withDeepCollect: #childrenTypes as: Set) asOrderedCollection
-]
-
-{ #category : #private }
-TEntityMetaLevelDependency >> privateAllIncomingAssociationTypes [
-   ^ ((self allChildrenTypes flatCollectAsSet: [:each | each implementingClassesIn: self metamodel ])
-		flatCollectAsSet: #incomingAssociationTypes)
-       addAll: self incomingAssociationTypes;
-       yourself
-]
-
-{ #category : #private }
-TEntityMetaLevelDependency >> privateAllOutgoingAssociationTypes [
-   ^ ((self allChildrenTypes flatCollectAsSet: [:each | each implementingClassesIn: self metamodel ])
-		flatCollectAsSet: #outgoingAssociationTypes)
-       addAll: self outgoingAssociationTypes;
-       yourself
-]
-
-{ #category : #private }
-TEntityMetaLevelDependency >> privateAllParentTypes [
-	^ (self parentTypes withDeepCollect: #parentTypes as: Set) asOrderedCollection
-]
-
-{ #category : #private }
-TEntityMetaLevelDependency >> privateChildrenSelectors [
-
-	^ self allDeclaredProperties select: #isChildrenProperty thenCollect: #implementingSelector
-]
-
-{ #category : #private }
-TEntityMetaLevelDependency >> privateChildrenTypes [
-	^ ((self allDeclaredProperties select: [ :fm3Prop | fm3Prop isChildrenProperty ])
-		collectAsSet: [ :prop | prop type implementingClass ]) asArray
-]
-
-{ #category : #private }
-TEntityMetaLevelDependency >> privateIncomingAssociationTypes [
-	^ self incomingMSEProperties collect: [ :d | d type implementingClass ]
-]
-
-{ #category : #private }
-TEntityMetaLevelDependency >> privateIncomingMSEProperties [
-	^ self dependencyFM3PropertyDescription select: [ :p | p opposite isTarget ]
-]
-
-{ #category : #private }
-TEntityMetaLevelDependency >> privateOutgoingAssociationTypes [
-	^ self outgoingMSEProperties collect: [ :d | d type implementingClass ]
-]
-
-{ #category : #private }
-TEntityMetaLevelDependency >> privateOutgoingMSEProperties [
-	^ self dependencyFM3PropertyDescription select: [ :p | p opposite isSource ]
-]
-
-{ #category : #private }
-TEntityMetaLevelDependency >> privateParentSelectors [
-
-	^ self allDeclaredProperties select: #isContainer thenCollect: #implementingSelector
-]
-
-{ #category : #private }
-TEntityMetaLevelDependency >> privateParentTypes [
-
-	| containerBehaviors metamodelClasses containerUsers |
-	
-	containerBehaviors := self mooseDescription allAttributes select: #isContainer thenCollect: [:prop | prop type implementingClass].
-	
-	metamodelClasses := self metamodel classes reject: [ :e | e implementingClass isTrait ].
-	
-	containerUsers := metamodelClasses select: [ :e | 
-		containerBehaviors anySatisfy: [ :t | e implementingClass usesMooseTraitDirectly: t ] ].
-	
-	^ (containerBehaviors, (containerUsers collect: #implementingClass) ) asSet asArray
-	
-
-	
 ]
 
 { #category : #scoping }
