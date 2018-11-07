@@ -72,7 +72,7 @@ MooseEntity class >> allDeclaredProperties [
 MooseEntity class >> allDeclaredPropertiesIn: aMetamodel [
 	"All properties described in the metamodel"
 	 
-	^self mooseDescription allAttributes
+	^(self mooseDescriptionIn: aMetamodel) allAttributes
 ]
 
 { #category : #'meta accessing' }
@@ -239,7 +239,7 @@ MooseEntity >> allDeclaredProperties [
 MooseEntity >> allDeclaredPropertiesIn: aMetamodel [
 	"All properties described in the metamodel"
 	 
-	^self mooseDescription allAttributes
+	^(self mooseDescriptionIn: aMetamodel) allAttributes
 ]
 
 { #category : #'meta information' }

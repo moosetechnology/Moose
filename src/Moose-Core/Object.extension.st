@@ -16,6 +16,12 @@ Object >> mooseDescription [
 	^ self class asMooseDescription 
 ]
 
+{ #category : #'*Moose-Core' }
+Object >> mooseDescriptionIn: aMetamodel [
+
+	^ self class asMooseDescriptionIn: aMetamodel 
+]
+
 { #category : #'*moose-core' }
 Object >> mooseDisplayString [
 	^ self

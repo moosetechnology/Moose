@@ -225,6 +225,12 @@ MooseGroup >> mooseDescription [
 	^ self mooseModel metamodel descriptionOf: self class instanceSide  
 ]
 
+{ #category : #accessing }
+MooseGroup >> mooseDescriptionIn: aMetamodel [
+
+	^ aMetamodel descriptionOf: self class instanceSide  
+]
+
 { #category : #printing }
 MooseGroup >> mooseDisplayStringOn: stream [
 	stream 

@@ -169,11 +169,6 @@ TEntityMetaLevelDependency classSide >> privateIncomingMSEPropertiesIn: aMetamod
 ]
 
 { #category : #new }
-TEntityMetaLevelDependency classSide >> privateIncomingMSEPropertiesInMetamodel: aMetamodel [
-	^ self dependencyFM3PropertyDescription select: [ :p | p opposite isTarget ]
-]
-
-{ #category : #new }
 TEntityMetaLevelDependency classSide >> privateOutgoingAssociationTypesIn: aMetamodel [
 	^ (self outgoingMSEPropertiesIn: aMetamodel) collect: [ :d | d type implementingClass ]
 ]
