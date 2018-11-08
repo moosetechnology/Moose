@@ -32,7 +32,7 @@ FamixJavaNamedEntity class >> generatedTraitNames [
 FamixJavaNamedEntity class >> requirements [
 
 	<generated>
-	^ { FamixJavaNamedEntity }
+	^ { FamixJavaPackage }
 ]
 
 { #category : #'Moose-Query' }

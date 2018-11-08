@@ -29,5 +29,5 @@ TOODependencyQueries classSide >> generatedSlotNames [
 { #category : #generator }
 TOODependencyQueries classSide >> generatedTraitNames [
 	<generated>
-	^ #()
+	^ #(TDependencyQueries)
 ]

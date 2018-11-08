@@ -37,7 +37,7 @@ FAMIXNamedEntity class >> generatedTraitNames [
 FAMIXNamedEntity class >> requirements [
 
 	<generated>
-	^ { FAMIXNamedEntity }
+	^ { FAMIXPackage }
 ]
 
 { #category : #'Moose-Query-Extensions' }

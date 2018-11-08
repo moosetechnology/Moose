@@ -32,7 +32,7 @@ FamixStNamedEntity class >> generatedTraitNames [
 FamixStNamedEntity class >> requirements [
 
 	<generated>
-	^ { FamixStNamedEntity }
+	^ { FamixStPackage }
 ]
 
 { #category : #'as yet unclassified' }

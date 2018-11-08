@@ -144,7 +144,7 @@ FmxMBRingEnvironment >> createTraitNamed: traitName slots: slots in: packageName
 { #category : #initialization }
 FmxMBRingEnvironment >> createTraitNamed: traitName uses: traitNames slots: slots in: packageName overwrite: shouldOverwrite [
 
-	| aPackage aTrait existingClass |
+	| aPackage aTrait existingClass composition |
 
 	existingClass := self ringEnvironment ask behaviorNamed: traitName asSymbol.
 	
@@ -154,6 +154,12 @@ FmxMBRingEnvironment >> createTraitNamed: traitName uses: traitNames slots: slot
 	aPackage := self ringEnvironment ensurePackageNamed: packageName.
 	aTrait := ringEnvironment ensureTraitNamed: traitName. 
 	aTrait superclass: self basicTrait.
+	
+	composition := RGTraitComposition parent: aTrait.
+	aTrait traitComposition: composition.
+	traitNames do: [ :each |
+		composition addTransformation: (self ringEnvironment ensureTraitNamed: each) ].	
+	
 	aTrait package: aPackage.
 	aTrait layout makeResolved.
 	slots do: [ :slotInBadEnvironment |
