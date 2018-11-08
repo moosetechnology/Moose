@@ -421,6 +421,12 @@ FM3MetaDescription >> implementingClass [
 	^implementingClass
 ]
 
+{ #category : #private }
+FM3MetaDescription >> implementingClass: aClass [
+	
+	implementingClass := aClass
+]
+
 { #category : #accessing }
 FM3MetaDescription >> inheritsFrom: aClass [
 	self

@@ -85,28 +85,6 @@ FamixCompatibilityGenerator class >> prefix [
 ]
 
 { #category : #accessing }
-FamixCompatibilityGenerator class >> resetMetamodel [
-
-	" self resetMetamodel"
-
-	| classes tower |
-
-	classes := self packageName asPackage definedClasses select: [ :each | each inheritsFrom: MooseEntity ].
-	
-	classes addAll: #'Famix-Traits' asPackage definedClasses.
-	
-	{ Trait. Class. ClassDescription. Behavior. 
-	MooseModel. MooseAbstractGroup. MooseEntity. MooseGroup. FmxImportingContext} 
-		do: [ :each | classes add: each ].
-
-	tower := MooseModel metaBuilder: classes.
-	self metamodel: tower metamodel.
-	^ metamodel
-
-	
-]
-
-{ #category : #accessing }
 FamixCompatibilityGenerator class >> translationDictionary [
 
 	| classNames associations |

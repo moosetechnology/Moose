@@ -40,8 +40,7 @@ FamixTestComposedMetamodelsWithMooseQuery >> setUp [
 { #category : #running }
 FamixTestComposedMetamodelsWithMooseQuery >> testAllIncomingAssociationTypes [
 
-	self skip.
-	self assert: association c15 allIncomingAssociationTypes equals: { FamixTestComposedAssociation }
+	self assertCollection: association c15 allIncomingAssociationTypes hasSameElements: { FamixTestComposedAssociation }
 ]
 
 { #category : #running }

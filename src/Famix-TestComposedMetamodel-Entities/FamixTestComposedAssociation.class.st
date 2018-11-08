@@ -39,6 +39,8 @@ FamixTestComposedAssociation class >> requirements [
 FamixTestComposedAssociation >> c15 [
 
 	<generated>
+	<target>
+
 	<MSEProperty: #c15 type: #Object>
 	^ self privateState attributeAt: #c15 ifAbsent: [ nil ]
 ]
@@ -54,6 +56,8 @@ FamixTestComposedAssociation >> c15: anObject [
 FamixTestComposedAssociation >> c25 [
 
 	<generated>
+	<source>
+
 	<MSEProperty: #c25 type: #Object>
 	^ self privateState attributeAt: #c25 ifAbsent: [ nil ]
 ]

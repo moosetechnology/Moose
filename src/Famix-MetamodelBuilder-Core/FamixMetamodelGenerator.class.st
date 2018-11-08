@@ -15,6 +15,20 @@ Class {
 }
 
 { #category : #accessing }
+FamixMetamodelGenerator class >> basicMetamodelClasses [
+
+	| classes |
+	
+	classes := { Trait. 	Class. ClassDescription. Behavior. MooseModel. MooseAbstractGroup. MooseEntity. MooseGroup. FmxImportingContext. "FamixTSourceLanguage. FamixTWithSourceLanguage"} asOrderedCollection.
+	
+	classes addAll: #'Famix-Traits' asPackage definedClasses.
+	
+	^ classes
+	
+	
+]
+
+{ #category : #accessing }
 FamixMetamodelGenerator class >> builderWithDefinitions [
 
 	^ self new define builder
@@ -37,6 +51,12 @@ FamixMetamodelGenerator class >> metamodel: anObject [
 
 	<ignoreForCoverage>
 	metamodel := anObject
+]
+
+{ #category : #accessing }
+FamixMetamodelGenerator class >> modifyMetamodel: aMetamodel [
+
+	"override this method to do some additional modificatoins of the metamodel"
 ]
 
 { #category : #accessing }
@@ -82,9 +102,9 @@ FamixMetamodelGenerator class >> resetMetamodel [
 	classes := self packageName asPackage definedClasses
 		select: [ :each | each inheritsFrom: MooseEntity ].
 	classes addAll: (self packageName asPackage definedClasses select: #isTrait).
-	classes addAll: #'Famix-Traits' asPackage definedClasses.
-	{ Trait. 	Class. ClassDescription. Behavior. MooseModel. MooseAbstractGroup. MooseEntity. MooseGroup} 
-		do: [ :each | classes add: each ].
+	
+	classes addAll: self basicMetamodelClasses.
+	
 	tower := MooseModel metaBuilder: classes.
 	self metamodel: tower metamodel.
 	
@@ -92,7 +112,9 @@ FamixMetamodelGenerator class >> resetMetamodel [
 
 	elements do: [ :each |
 		metamodel elementNamed: each fullName ifAbsent: [ metamodel add: each ] ].
-		
+	
+	self modifyMetamodel: metamodel.
+	
 	^ metamodel
 ]
 
