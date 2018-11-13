@@ -276,9 +276,18 @@ BaselineOfMoose >> baselineGrease: spec [
 { #category : #baseline }
 BaselineOfMoose >> baselineHashtable: spec [ 
     
-	self defineGroup: #'HashTable-Group' in: spec locatedIn: #HashTable with: #(
+	self defineGroup: #'HashTable-Base' in: spec locatedIn: #HashTable with: #(
 		'Hashtable'
-	) 
+	).
+	
+	self defineGroup: #'HashTable-Tests-Group' in: spec locatedIn: #HashTable with: #(
+		'Hashtable-Tests'
+	).
+	
+	spec group: 'HashTable-Group' with: #(
+		'HashTable-Base'
+		'HashTable-Tests-Group'
+	).
 ]
 
 { #category : #baseline }
@@ -475,7 +484,7 @@ BaselineOfMoose >> groups: spec [
 		'Ring2' 
 		'Grease' 
 		'CollectionExtensions-Group'
-		'HashTable-Group'
+		'HashTable'
 		'StateSpecs-Base'
 		'Fame'
 		'DeepTraverser-Base'
@@ -546,6 +555,7 @@ BaselineOfMoose >> groups: spec [
 		'Famix-Compatibility-Tests-Java'
 		'Famix-Compatibility-Tests-Extensions'
 		'DeepTraverser-Tests-Group'
+		'Hashtable-Tests-Group'
 	).	
 
 	spec group: 'BasicMetamodellingWithRoassal' with: #(

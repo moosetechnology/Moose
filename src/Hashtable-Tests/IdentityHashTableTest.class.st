@@ -5,7 +5,7 @@ Class {
 		'table',
 		'testsize'
 	],
-	#category : #'Hashtable-Test'
+	#category : #'Hashtable-Tests'
 }
 
 { #category : #running }

@@ -1,22 +1,22 @@
 Class {
-	#name : #HashTableTest,
+	#name : #WeakKeyHashTableTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'table',
 		'testsize'
 	],
-	#category : #'Hashtable-Test'
+	#category : #'Hashtable-Tests'
 }
 
 { #category : #running }
-HashTableTest >> setUp [
+WeakKeyHashTableTest >> setUp [
 	super setUp.
-	table := HashTable new.
+	table := WeakKeyHashTable new.
 	testsize := 100.
 ]
 
 { #category : #testing }
-HashTableTest >> testAddAll [
+WeakKeyHashTableTest >> testAddAll [
 	"(self run: #testAddAll)"
 	
 	|  table2 |
@@ -34,7 +34,7 @@ HashTableTest >> testAddAll [
 ]
 
 { #category : #testing }
-HashTableTest >> testAddAssoc [
+WeakKeyHashTableTest >> testAddAssoc [
 	0 to: testsize do: [ :each |
 		self assert: table size = each.
 		table add: each -> each asString ].
@@ -43,7 +43,7 @@ HashTableTest >> testAddAssoc [
 ]
 
 { #category : #testing }
-HashTableTest >> testAddCopy [
+WeakKeyHashTableTest >> testAddCopy [
 	| table2 |
 	0 to: testsize do: [ :each |
 		table add: each -> each asString ].
@@ -54,7 +54,7 @@ HashTableTest >> testAddCopy [
 ]
 
 { #category : #testing }
-HashTableTest >> testAddInteger [
+WeakKeyHashTableTest >> testAddInteger [
 	0 to: testsize do: [ :each |
 		self assert: table size = each.
 		table at: each put: each asString ].
@@ -63,44 +63,26 @@ HashTableTest >> testAddInteger [
 ]
 
 { #category : #testing }
-HashTableTest >> testAddNil [
+WeakKeyHashTableTest >> testAddNil [
 	self deny: (table includesKey: nil).
-	table at: nil put: 'nil'.
-	self assert:(table at: nil) = 'nil'.
-	
-	self assert: (table includesKey: nil).
-	
-	table at: nil put: 'ok'.
-	self assert:(table at: nil) = 'ok'.
-	
-	table removeKey: nil.
-	self deny: (table includesKey: nil).
+	self should: [ table at: nil put: 'nil' ] raise: Error.
+	self deny: (table includesKey: nil) = 'nil'.
 ]
 
 { #category : #testing }
-HashTableTest >> testAddString [
-	0 to: testsize do: [ :each |
-		self assert: table size = each.
-		table at: each asString put: each ].
-	0 to: testsize do: [ :each |
-		self assert: (table at: each asString ) = each ].
-]
-
-{ #category : #testing }
-HashTableTest >> testAssociactionssDo [
+WeakKeyHashTableTest >> testAddString [
 	| keys |
-	keys := (1 to: 100) asOrderedCollection.
+	keys := (0 to: testsize) collect: [ :each | each asString ].
 	keys do: [ :each |
-		table at: each put: each ].
-	table associationsDo: [ :assoc |
-		self assert: assoc key = assoc value.
-		self assert: (keys includes: assoc key).
-		keys remove: assoc key ifAbsent: [ self fail ] ].
-	self assert: keys isEmpty
+		self assert: table size = each asNumber.
+		table at: each put: each asNumber ].
+	keys := (0 to: testsize) collect: [ :each | each asString ].
+	keys do: [ :each |
+		self assert: (table at: each ) = each asNumber ].
 ]
 
 { #category : #testing }
-HashTableTest >> testComma [
+WeakKeyHashTableTest >> testComma [
 	"(self run: #testComma)"
 	
 	| table1 table2 |
@@ -118,7 +100,7 @@ HashTableTest >> testComma [
 ]
 
 { #category : #testing }
-HashTableTest >> testEqualsDictionary [
+WeakKeyHashTableTest >> testEqualsDictionary [
 	| dictionary |
 	dictionary := Dictionary new.
 	0 to: testsize do: [ :each |
@@ -129,7 +111,7 @@ HashTableTest >> testEqualsDictionary [
 ]
 
 { #category : #testing }
-HashTableTest >> testEqualsTransitive [
+WeakKeyHashTableTest >> testEqualsTransitive [
 	| table2 |
 	table2 := table species new.
 	0 to: testsize do: [ :each |
@@ -141,7 +123,7 @@ HashTableTest >> testEqualsTransitive [
 ]
 
 { #category : #testing }
-HashTableTest >> testKeys [
+WeakKeyHashTableTest >> testKeys [
 	| keys |
 	keys := (1 to: 100) asOrderedCollection.
 	keys do: [ :each |
@@ -150,7 +132,7 @@ HashTableTest >> testKeys [
 ]
 
 { #category : #testing }
-HashTableTest >> testKeysAndValuesDo [
+WeakKeyHashTableTest >> testKeysAndValuesDo [
 	| keys |
 	keys := (1 to: 100) asOrderedCollection.
 	keys do: [ :each |
@@ -163,7 +145,7 @@ HashTableTest >> testKeysAndValuesDo [
 ]
 
 { #category : #testing }
-HashTableTest >> testKeysDo [
+WeakKeyHashTableTest >> testKeysDo [
 	| keys |
 	keys := (1 to: 100) asOrderedCollection.
 	keys do: [ :each |
@@ -175,18 +157,7 @@ HashTableTest >> testKeysDo [
 ]
 
 { #category : #testing }
-HashTableTest >> testRemoveFromCopy [
-	| original copy |
-	original := HashTable new.
-	($a to: $z) do: [ :each |
-		original at: each put: each ].
-	copy := original copy.
-	copy removeKey: $b.
-	self assert: (original at: $b) = $b
-]
-
-{ #category : #testing }
-HashTableTest >> testRemoveInteger [
+WeakKeyHashTableTest >> testRemoveInteger [
 	0 to: testsize do: [ :each |
 		self assert: table size = each.
 		table at: each put: each asString ].
@@ -201,13 +172,15 @@ HashTableTest >> testRemoveInteger [
 ]
 
 { #category : #testing }
-HashTableTest >> testRemoveString [
-	0 to: testsize do: [ :each |
-		self assert: table size = each.
-		table at: each asString put: each ].
+WeakKeyHashTableTest >> testRemoveString [
+	| keys |
+	keys := (0 to: testsize) collect: [ :each | each asString ].
+	keys do: [ :each |
+		self assert: table size = each asNumber.
+		table at: each put: each asNumber ].
 	
 	0 to: testsize by: 2 do: [ :each |
-		self assert: (table includesKey: each asString).
+		self assert: (table includesKey: (keys at: each + 1)).
 		table removeKey: each asString.
 		self deny: (table includesKey: each asString) ].
 	
@@ -216,12 +189,14 @@ HashTableTest >> testRemoveString [
 ]
 
 { #category : #testing }
-HashTableTest >> testSize [
+WeakKeyHashTableTest >> testSize [
+	| keys |
+	keys := (1 to: testsize) collect: [ :each | each asString ].
 	self assert: table size = 0.
 	
-	1 to: testsize do: [ :each |		
-		table at: each asString put: each.
-		self assert: table size = each. ].
+	keys do: [ :each |		
+		table at: each put: each asNumber.
+		self assert: table size = each asNumber. ].
 	
 	1 to: testsize do: [ :each |
 		self assert: table size = testsize.
@@ -235,16 +210,16 @@ HashTableTest >> testSize [
 ]
 
 { #category : #testing }
-HashTableTest >> testValues [
+WeakKeyHashTableTest >> testValues [
 	| keys |
-	keys := (1 to: 100) asOrderedCollection.
+	keys := (1 to: 100) asOrderedCollection collect: [ :each | each asString ].
 	keys do: [ :each |
-		table at: each asString put: each ].
-	self assert: table values asArray sort = (1 to: 100) asArray
+		table at: each put: each ].
+	self assert: ((table values collect: [ :each | each asNumber ]) asArray sort = (1 to: 100) asArray)
 ]
 
 { #category : #testing }
-HashTableTest >> testValuesDo [
+WeakKeyHashTableTest >> testValuesDo [
 	| keys |
 	keys := (1 to: 100) asOrderedCollection.
 	keys do: [ :each |
@@ -253,4 +228,26 @@ HashTableTest >> testValuesDo [
 		self assert: (keys includes: each).
 		keys remove: each ifAbsent: [ self fail ] ].
 	self assert: keys isEmpty
+]
+
+{ #category : #testing }
+WeakKeyHashTableTest >> testWeakInstance [
+	| createBlock string |
+	createBlock := [(String new: 3)
+		at: 1 put: $n;
+		at: 2 put: $e;
+		at: 3 put: $w;
+		yourself ].
+	string := createBlock value.
+	
+	table at: string put: true.
+	self assert: (table at: string).
+	self assert: (table at: createBlock value).
+	self assert: table size = 1.
+	string := nil.
+	Smalltalk garbageCollect.
+	
+	string := createBlock value.
+	self deny: (table includesKey: string).
+	self assert: table isEmpty.
 ]

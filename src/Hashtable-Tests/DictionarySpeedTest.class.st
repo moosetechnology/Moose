@@ -5,7 +5,7 @@ Class {
 		'stepsize',
 		'testsize'
 	],
-	#category : #'Hashtable-Test'
+	#category : #'Hashtable-Tests'
 }
 
 { #category : #finding }

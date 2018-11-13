@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'bag'
 	],
-	#category : #'Hashtable-Test'
+	#category : #'Hashtable-Tests'
 }
 
 { #category : #running }
