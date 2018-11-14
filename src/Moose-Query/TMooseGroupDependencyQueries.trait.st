@@ -5,7 +5,7 @@ For more informations: https://moosequery.ferlicot.fr/
 "
 Trait {
 	#name : #TMooseGroupDependencyQueries,
-	#category : #'Moose-Core-Moose-Query'
+	#category : #'Moose-Query'
 }
 
 { #category : #querying }

@@ -43,8 +43,8 @@ BaselineOfMoose >> baseline: spec [
 		self baselineRing2: spec.
 		
 		#(	
-			'Moose-Core'
 			'Moose-Query'
+			'Moose-Core'
 			'Moose-Query-Extensions'
 			'Famix-MetamodelBuilder-Core'
 			'Famix-MetamodelBuilder-Tests'
@@ -480,8 +480,8 @@ BaselineOfMoose >> groups: spec [
 		'Fame'
 		'DeepTraverser-Base'
 
-		'Moose-Query'
 		'Moose-Core'
+		'Moose-Query'
 			
 		'Famix-BasicInfrastructure'
 		'Famix-Support'
