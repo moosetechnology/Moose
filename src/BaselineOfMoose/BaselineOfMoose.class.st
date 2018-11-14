@@ -16,14 +16,9 @@ BaselineOfMoose >> baseline: spec [
 
 	repository := self packageRepositoryURL.
 
-	spec for: #common do: [ 
-		spec preLoadDoIt: #'preload:package:'.
-		spec postLoadDoIt: #'postload:package:'.
+	spec for: #common do: [ 		
 		
-		#(	
-			'Moose-PharoOverrides'
-		) do: [ :packageName | 
-			spec package: packageName with: [ spec repository: (self url: #Moose) ]].		
+		spec package: 'Moose-PharoOverrides'.		
 		
 		self baselineGrease: spec. 
 		self baselineMagritte3: spec.
@@ -33,76 +28,69 @@ BaselineOfMoose >> baseline: spec [
 		self baselineMocketry: spec.
 		self baselineFame: spec.
 
-		#(
-			'GToolkit-Examples' 
-		) do: [ :packageName | 
-			spec package: packageName with: [ spec repository: (self url: #GToolkitExamples) ]].
+		spec package: 'GToolkit-Examples'.
 		
 		self baselineDeepTraverser: spec.
 		self baselineRing2: spec.
 		
-		#(	
-			'Moose-Core'
-			'Moose-Query'
-			'Moose-Query-Extensions'
-			'Famix-MetamodelBuilder-Core'
-			'Famix-MetamodelBuilder-Tests'
+		spec
+			package: 'Moose-Core';
+			package: 'Moose-Query';
+			package: 'Moose-Query-Extensions';
+			package: 'Famix-MetamodelBuilder-Core';
+			package: 'Famix-MetamodelBuilder-Tests';
 			
-			'Famix-MetamodelGeneration'
-			'Famix-Traits'	
+			package: 'Famix-MetamodelGeneration';
+			package: 'Famix-Traits';
 				
-			'Famix-BasicInfrastructure'
+			package: 'Famix-BasicInfrastructure';
 			
-			'Famix-Compatibility-Generator' 
-			'Famix-Compatibility-Entities'
-			'Famix-Compatibility-Groups'	
-		) do: [ :packageName | 
-			spec package: packageName with: [ spec repository: (self url: #Moose) ]].		
+			package: 'Famix-Compatibility-Generator';
+			package: 'Famix-Compatibility-Entities';
+			package: 'Famix-Compatibility-Groups'.
 
 		spec baseline: 'FamixCompatibility' with: [spec repository: repository].
 		
-		#(	
-			'Famix-Extensions'
-			'Moose-GenericImporter'
-			'Famix-Compatibility-Tests-C'
-			'Moose-Query-Extensions'
-			'Moose-SmalltalkImporter'
-			'Moose-MonticelloImporter'
-			'Moose-Tests-Core'
-			'Famix-Compatibility-Tests-Java'
-			'Moose-Tests-SmalltalkImporter-LAN'
-			'Moose-Tests-SmalltalkImporter-Core'
-			'Moose-Tests-SmalltalkImporter-KGB'
-			'Famix-Compatibility-Tests-Core'
-			'Famix-Compatibility-Tests-Extensions'
-			'Moose-TestResources-Reference-Core'
-			'Moose-TestResources-Reference-PackageOne'
-			'Moose-TestResources-Reference-PackageTwo'
-			'Moose-TestResources-LAN'
-			'Moose-TestResources-LCOM'
-			'Moose-TestResources-KGB-P4FullInteracted'
-			'Moose-TestResources-KGB-P6InteractedReferee'
-			'Moose-TestResources-KGB-P5FullReferee'
-			'Moose-TestResources-KGB-P1FullReferencer'
-			'Moose-TestResources-KGB-P2InteractedReferencerReferee'
-			'Moose-TestResources-KGB-P3InteractedReferencer'
-			'Moose-TestResources-KGB-P7ReferencerReferee'
-			'Moose-TestResources-KGB-P8FullReferencer'
-			'Moose-TestResources-KGB-P9FullReferencer'
-			'Moose-TestResources-KGB-P10InteractedReferee'
-			'Moose-TestResources-KGB-P12FullReferencer'
-			'Moose-TestResources-KGB-P11FullReferee' "dependency"
-			'Moose-TestResources-KGB-P13FullReferencer'
-			'Moose-TestResources-KGB-P14FullReferee'
-			'Moose-TestResources-KGB-PExtensions'
-			'Moose-TestResources-PackageBlueprint-P1'
-			'Moose-TestResources-PackageBlueprint-P2'
-			'Moose-TestResources-PackageBlueprint-P3'
-			'Moose-TestResources-PackageBlueprint-P4'
-			'Moose-Tests-MonticelloImporter'
-			'Moose-Query-Test'
-		) do: [ :packageName | 
-			spec package: packageName with: [ spec repository: (self url: #Moose) ]].
+		spec
+			package: 'Famix-Extensions';
+			package: 'Moose-GenericImporter';
+			package: 'Famix-Compatibility-Tests-C';
+			package: 'Moose-Query-Extensions';
+			package: 'Moose-SmalltalkImporter';
+			package: 'Moose-MonticelloImporter';
+			package: 'Moose-Tests-Core';
+			package: 'Famix-Compatibility-Tests-Java';
+			package: 'Moose-Tests-SmalltalkImporter-LAN';
+			package: 'Moose-Tests-SmalltalkImporter-Core';
+			package: 'Moose-Tests-SmalltalkImporter-KGB';
+			package: 'Famix-Compatibility-Tests-Core';
+			package: 'Famix-Compatibility-Tests-Extensions';
+			package: 'Moose-TestResources-Reference-Core';
+			package: 'Moose-TestResources-Reference-PackageOne';
+			package: 'Moose-TestResources-Reference-PackageTwo';
+			package: 'Moose-TestResources-LAN';
+			package: 'Moose-TestResources-LCOM';
+			package: 'Moose-TestResources-KGB-P4FullInteracted';
+			package: 'Moose-TestResources-KGB-P6InteractedReferee';
+			package: 'Moose-TestResources-KGB-P5FullReferee';
+			package: 'Moose-TestResources-KGB-P1FullReferencer';
+			package: 'Moose-TestResources-KGB-P2InteractedReferencerReferee';
+			package: 'Moose-TestResources-KGB-P3InteractedReferencer';
+			package: 'Moose-TestResources-KGB-P7ReferencerReferee';
+			package: 'Moose-TestResources-KGB-P8FullReferencer';
+			package: 'Moose-TestResources-KGB-P9FullReferencer';
+			package: 'Moose-TestResources-KGB-P10InteractedReferee';
+			package: 'Moose-TestResources-KGB-P12FullReferencer';
+			package: 'Moose-TestResources-KGB-P11FullReferee';
+			package: 'Moose-TestResources-KGB-P13FullReferencer';
+			package: 'Moose-TestResources-KGB-P14FullReferee';
+			package: 'Moose-TestResources-KGB-PExtensions';
+			package: 'Moose-TestResources-PackageBlueprint-P1';
+			package: 'Moose-TestResources-PackageBlueprint-P2';
+			package: 'Moose-TestResources-PackageBlueprint-P3';
+			package: 'Moose-TestResources-PackageBlueprint-P4';
+			package: 'Moose-Tests-MonticelloImporter';
+			package: 'Moose-Query-Test'.
 
 		self baselineMetamodelBuilder: spec.
 		self baselineFamixNG: spec.
@@ -118,26 +106,19 @@ BaselineOfMoose >> baseline: spec [
 		self baselineBitmapCharacterSet: spec.
 		self baselineXMLParser: spec.
 
-		#(	
-			'Glamour-Tools'
-			'Glamour-Magritte-Presentations'
-		) do: [ :packageName | 
-			spec package: packageName with: [ spec repository: (self url: #Glamour) ]].
-
-		#(	
-			'Moose-Help'
-		) do: [ :packageName | 
-			spec package: packageName with: [ spec repository: (self url: #Moose) ]].
+		spec
+			package: 'Glamour-Tools';
+			package: 'Glamour-Magritte-Presentations';
+			
+			package: 'Moose-Help'.
 	
 		self baselineMetanool: spec.
 		
-		#(	
-			'Moose-Finder'
-			'Moose-RoassalPaintings'
-			'Moose-Tests-Finder'
-			'Moose-Tests-RoassalPaintings'
-		) do: [ :packageName | 
-			spec package: packageName with: [ spec repository: (self url: #Moose) ]].
+		spec
+			package: 'Moose-Finder';
+			package: 'Moose-RoassalPaintings';
+			package: 'Moose-Tests-Finder';
+			package: 'Moose-Tests-RoassalPaintings'.
 
 	   self groups: spec.
 	]
@@ -146,28 +127,19 @@ BaselineOfMoose >> baseline: spec [
 { #category : #baseline }
 BaselineOfMoose >> baselineAthens: spec [ 
     
-	#(
-		 'Athens-SVG'
-	) do: [ :packageName | 
-		spec package: packageName with: [ spec repository: (self url: #Athens) ]].
-
-
+	spec package: 'Athens-SVG'
 ]
 
 { #category : #baseline }
 BaselineOfMoose >> baselineBitmapCharacterSet: spec [ 
     
-	#(
-		'Collections-BitmapCharacterSet'
-	) do: [ :packageName | 
-		spec package: packageName with: [ spec repository: (self url: #BitmapCharacterSet) ]]
-
+	spec package: 'Collections-BitmapCharacterSet'
 ]
 
 { #category : #baseline }
 BaselineOfMoose >> baselineCollectionExtensions: spec [ 
     
-	self defineGroup: #'CollectionExtensions-Group' in: spec locatedIn: #CollectionExtensions with: #(
+	self defineGroup: #'CollectionExtensions-Group' in: spec with: #(
 		'CollectionExtensions'
 	) 
 ]
@@ -175,11 +147,11 @@ BaselineOfMoose >> baselineCollectionExtensions: spec [
 { #category : #baseline }
 BaselineOfMoose >> baselineDeepTraverser: spec [ 
     
-	self defineGroup: #'DeepTraverser-Base' in: spec locatedIn: #DeepTraverser with: #(
+	self defineGroup: #'DeepTraverser-Base' in: spec with: #(
 		 'DeepTraverser'
 	).
 	
-	self defineGroup: #'DeepTraverser-Tests-Group' in: spec locatedIn: #DeepTraverser with: #(
+	self defineGroup: #'DeepTraverser-Tests-Group' in: spec with: #(
 		 'DeepTraverser-Tests'
 	).
 ]
@@ -187,7 +159,7 @@ BaselineOfMoose >> baselineDeepTraverser: spec [
 { #category : #baseline }
 BaselineOfMoose >> baselineFame: spec [ 
     
-	self defineGroup: #'Fame' in: spec locatedIn: #Fame with: #(
+	self defineGroup: #'Fame' in: spec with: #(
 		'Fame-Core'
 		'Fame-Util'
 		'Fame-ImportExport'
@@ -200,53 +172,43 @@ BaselineOfMoose >> baselineFame: spec [
 { #category : #baseline }
 BaselineOfMoose >> baselineFamixNG: spec [ 
     
-	#(
-		'Famix-Traits'
+	spec
+		package: 'Famix-Traits';
 
-		'Famix-PharoSmalltalk-Generator'
-		'Famix-PharoSmalltalk-Entities'
-		'Famix-PharoSmalltalk-Importer'
+		package: 'Famix-PharoSmalltalk-Generator';
+		package: 'Famix-PharoSmalltalk-Entities';
+		package: 'Famix-PharoSmalltalk-Importer';
 
-		'Famix-Support'
+		package: 'Famix-Support';
 
-		'Famix-Java-Generator'
-		'Famix-Java-Entities'
+		package: 'Famix-Java-Generator';
+		package: 'Famix-Java-Entities';
 
-		'Famix-TestGenerators'
-		'Famix-Test1-Entities'
-		'Famix-Test1-Tests'
-		'Famix-Test2-Entities'
-		'Famix-Test2-Tests'
-		'Famix-Test3-Entities'
-		'Famix-Test3-Tests'
-		'Famix-Test4-Entities'
-		'Famix-Test4-Tests'
-		'Famix-TestComposedSubmetamodel1-Entities'
-		'Famix-TestComposedSubmetamodel2-Entities'
-		'Famix-TestComposedMetamodel'
-		'Famix-TestComposedMetamodel-Entities'
-
-	) do: [ :packageName | 
-		spec package: packageName with: [ spec repository: (self url: #all) ]]
-
-
+		package: 'Famix-TestGenerators';
+		package: 'Famix-Test1-Entities';
+		package: 'Famix-Test1-Tests';
+		package: 'Famix-Test2-Entities';
+		package: 'Famix-Test2-Tests';
+		package: 'Famix-Test3-Entities';
+		package: 'Famix-Test3-Tests';
+		package: 'Famix-Test4-Entities';
+		package: 'Famix-Test4-Tests';
+		package: 'Famix-TestComposedSubmetamodel1-Entities';
+		package: 'Famix-TestComposedSubmetamodel2-Entities';
+		package: 'Famix-TestComposedMetamodel';
+		package: 'Famix-TestComposedMetamodel-Entities'.
 ]
 
 { #category : #baseline }
 BaselineOfMoose >> baselineGeometry: spec [ 
     
-	#(
-		'Geometry'
-	) do: [ :packageName | 
-		spec package: packageName with: [ spec repository: (self url: #Geometry) ]]
-
-
+	spec package: 'Geometry'
 ]
 
 { #category : #baseline }
 BaselineOfMoose >> baselineGhost: spec [ 
     
-	self defineGroup: #Ghost in: spec locatedIn: #Ghost with: #(
+	self defineGroup: #Ghost in: spec with: #(
 		'Ghost-ObjectGhost'
 		'Ghost-ClassGhost'
 		'Ghost-ObjectMutation'
@@ -265,7 +227,7 @@ BaselineOfMoose >> baselineGhost: spec [
 { #category : #baseline }
 BaselineOfMoose >> baselineGrease: spec [ 
    
-	self defineGroup: #Grease in: spec locatedIn: #Grease with: #(
+	self defineGroup: #Grease in: spec with: #(
 		'Grease-Core'
 		'Grease-Pharo30-Core' 
 	).
@@ -275,7 +237,7 @@ BaselineOfMoose >> baselineGrease: spec [
 { #category : #baseline }
 BaselineOfMoose >> baselineHashtable: spec [ 
     
-	self defineGroup: #'HashTable-Group' in: spec locatedIn: #HashTable with: #(
+	self defineGroup: #'HashTable-Group' in: spec with: #(
 		'Hashtable'
 	) 
 ]
@@ -283,40 +245,30 @@ BaselineOfMoose >> baselineHashtable: spec [
 { #category : #baseline }
 BaselineOfMoose >> baselineMagritte3: spec [ 
     
-	#(
-		'Magritte-Model'
-		'Magritte-Pharo3-Model'
-		'Magritte-Morph'
-	) do: [ :packageName | 
-		spec package: packageName with: [ spec repository: (self url: #Magritte3) ]]
-
+	spec
+		package: 'Magritte-Model';
+		package: 'Magritte-Pharo3-Model';
+		package: 'Magritte-Morph'
 ]
 
 { #category : #baseline }
 BaselineOfMoose >> baselineMetamodelBuilder: spec [ 
     
-	#(
-		'Famix-MetamodelBuilder-Core'
-	) do: [ :packageName | 
-		spec package: packageName with: [ spec repository: (self url: #all) ]]
-
+	spec package: 'Famix-MetamodelBuilder-Core'
 ]
 
 { #category : #baseline }
 BaselineOfMoose >> baselineMetanool: spec [ 
     
-	#(
-		'Metanool-Core'
-		'Metanool-Tests-Core'
-	) do: [ :packageName | 
-		spec package: packageName with: [ spec repository: (self url: #Metanool) ]]
-	
+	spec
+		package: 'Metanool-Core';
+		package: 'Metanool-Tests-Core'
 ]
 
 { #category : #baseline }
 BaselineOfMoose >> baselineMocketry: spec [ 
     
-	self defineGroup: #Mocketry in: spec locatedIn: #Mocketry with: #(
+	self defineGroup: #Mocketry in: spec with: #(
 		'Mocketry-Specs'
 		'Mocketry-Domain'
 		'Mocketry-Help'
@@ -328,25 +280,22 @@ BaselineOfMoose >> baselineMocketry: spec [
 { #category : #baseline }
 BaselineOfMoose >> baselineMooseAlgos: spec [ 
     
-	#(
-		'Moose-Tests-Algos-Graph'
-		'Moose-Tests-Algos-InformationRetrieval'
-		'Moose-Algos-FormalConceptAnalysis'
-		'Moose-Tests-Algos-FormalConceptAnalysis'
-		'Moose-Algos-Lattice'
-		'Moose-Tests-Algos-Lattice'
-		'Moose-Algos-LinearAlgebra'
-		'Moose-Tests-Algos-LinearAlgebra'
-		'Moose-Algos-InformationRetrieval'
-	) do: [ :packageName | 
-		spec package: packageName with: [ spec repository: (self url: #MooseAlgos) ]]
-
+	spec
+		package: 'Moose-Tests-Algos-Graph';
+		package: 'Moose-Tests-Algos-InformationRetrieval';
+		package: 'Moose-Algos-FormalConceptAnalysis';
+		package: 'Moose-Tests-Algos-FormalConceptAnalysis';
+		package: 'Moose-Algos-Lattice';
+		package: 'Moose-Tests-Algos-Lattice';
+		package: 'Moose-Algos-LinearAlgebra';
+		package: 'Moose-Tests-Algos-LinearAlgebra';
+		package: 'Moose-Algos-InformationRetrieval'
 ]
 
 { #category : #baseline }
 BaselineOfMoose >> baselineMooseTestResources: spec [ 
     
-	self defineGroup: #MooseTestResources in: spec locatedIn: #Moose with: #(
+	self defineGroup: #MooseTestResources in: spec with: #(
 		'Moose-TestResources-LAN'
 		'Moose-TestResources-Reference-Core'
 		'Moose-TestResources-KGB-P4FullInteracted'
@@ -381,18 +330,13 @@ BaselineOfMoose >> baselineMooseTestResources: spec [
 { #category : #baseline }
 BaselineOfMoose >> baselineOrderPreservingDictionary: spec [ 
     
-	#(
-		'Collections-OrderPreservingDictionary'
-		"'Collections-Tests-OrderPreservingDictionary'"
-	) do: [ :packageName | 
-		spec package: packageName with: [ spec repository: (self url: #OrderPreservingDictionary) ]]
-
+	spec package: 'Collections-OrderPreservingDictionary'
 ]
 
 { #category : #baseline }
 BaselineOfMoose >> baselineRing2: spec [ 
     
-	self defineGroup: #Ring2 in: spec locatedIn: #Ring2 with: #(
+	self defineGroup: #Ring2 in: spec with: #(
 		'Ring2-Core' 
 		'Ring2-TraitsV2Support'
 		'Ring2-Monticello' 
@@ -408,24 +352,21 @@ BaselineOfMoose >> baselineRing2: spec [
 { #category : #baseline }
 BaselineOfMoose >> baselineRoassal2: spec [ 
     
-	#(
-		'Trachel'
-		'Roassal2'
-		'Roassal2GT'
-	) do: [ :packageName | 
-		spec package: packageName with: [ spec repository: (self url: #Roassal2) ]].
-
+	spec
+		package: 'Trachel';
+		package: 'Roassal2';
+		package: 'Roassal2GT'
 ]
 
 { #category : #baseline }
 BaselineOfMoose >> baselineStateSpecs: spec [ 
     
-	self defineGroup: #'StateSpecs-Base' in: spec locatedIn: #StateSpecs with: #(
+	self defineGroup: #'StateSpecs-Base' in: spec with: #(
 		'StateSpecs-Specs'
 		'StateSpecs-DSL-ShouldExpressions'
 	).
 
-	self defineGroup: #'StateSpecs-Additional' in: spec locatedIn: #StateSpecs with: #(
+	self defineGroup: #'StateSpecs-Additional' in: spec with: #(
 		'StateSpecs-DSL-ClassWords'
 		'StateSpecs-Help'
 		'StateSpecs-Specs-Tests'
@@ -437,21 +378,14 @@ BaselineOfMoose >> baselineStateSpecs: spec [
 { #category : #baseline }
 BaselineOfMoose >> baselineXMLParser: spec [ 
     
-	#(
-		'XML-Parser'
-	) do: [ :packageName | 
-		spec package: packageName with: [ spec repository: (self url: #XMLParser) ]]
-
+	spec package: 'XML-Parser'
 ]
 
 { #category : #private }
-BaselineOfMoose >> defineGroup: groupName in: spec locatedIn: location with: packages [
-    
-	packages do: [ :packageName | 
-			spec package: packageName with: [ spec repository: (self url: location) ]].
-		
-	spec group: groupName with: packages.
+BaselineOfMoose >> defineGroup: groupName in: spec with: packages [
 
+	packages do: [ :packageName | spec package: packageName ].
+	spec group: groupName with: packages
 ]
 
 { #category : #baseline }
@@ -603,52 +537,4 @@ BaselineOfMoose >> groups: spec [
 	spec group: 'default' with: #('MooseFinder').
 	
 
-]
-
-{ #category : #accessing }
-BaselineOfMoose >> packageRepository [
-
-	" Tries to determine a repository from which the baseline is being loaded. Useful for 
-	refering other baselines in the same repository. "
-	
-	^ (self class package mcWorkingCopy repositoryGroup repositories reject: [:each | each = MCCacheRepository uniqueInstance]) 
-		ifNotEmpty: [ :repositories | repositories anyOne ]
-		ifEmpty: [ nil ]
-
-
-	
-]
-
-{ #category : #accessing }
-BaselineOfMoose >> packageRepositoryURL [
-
-	" Tries to determine a repository URL from which the baseline is being loaded. Useful for 
-	refering other baselines in the same repository. "
-
-	^ self packageRepository
-		ifNotNil: [ :aRepository | aRepository description ]
-		ifNil: [ '' ]
-
-
-	
-]
-
-{ #category : #actions }
-BaselineOfMoose >> postload: loader package: packageSpec [
-
-]
-
-{ #category : #actions }
-BaselineOfMoose >> preload: loader package: packageSpec [
-
-	
-
-]
-
-{ #category : #private }
-BaselineOfMoose >> url: aDirectoryName [
-    
-	"UGLY HACK"
-
-	^ self class package mcWorkingCopy repositoryGroup repositories last description
 ]
