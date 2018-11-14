@@ -235,15 +235,14 @@ MooseQueryTest >> testExplicitDirectionQueryEquivalentToQueryWithDirectionSymbol
 
 { #category : #tests }
 MooseQueryTest >> testIncomingAssociationTypes [
-	self assert: var2 incomingAssociationTypes equals: {FamixTAccess}.
+	self assertCollection: var2 incomingAssociationTypes hasSameElements: {FamixTAccess}.
 	self
-		assertCollection: (class1 incomingAssociationTypes collect: #name) sorted
-		equals:
-			{#FamixTSuperInheritance.
-			#FamixTReference.
-			#FamixTTraitUsage} sorted.
-	self assert: method1 incomingAssociationTypes equals: {FamixTInvocation}
-
+		assertCollection: class1 incomingAssociationTypes
+		hasSameElements:
+			{FamixTSuperInheritance.
+			FamixTReference.
+			FamixTTraitUsage}.
+	self assertCollection: method1 incomingAssociationTypes hasSameElements: {FamixTInvocation}
 ]
 
 { #category : #tests }
@@ -288,13 +287,13 @@ MooseQueryTest >> testOutgoingAccessesWithANamespaceInANamespace [
 
 { #category : #tests }
 MooseQueryTest >> testOutgoingAssociationTypes [
-	self assert: class1 outgoingAssociationTypes asSet equals: {FamixTSubInheritance} asSet.
+	self assertCollection: class1 outgoingAssociationTypes hasSameElements: {FamixTSubInheritance}.
 	self
-		assert: method1 outgoingAssociationTypes asSet
-		equals:
+		assertCollection: method1 outgoingAssociationTypes
+		hasSameElements:
 			{FamixTInvocation.
 			FamixTReference.
-			FamixTAccess} asSet
+			FamixTAccess}
 ]
 
 { #category : #tests }
@@ -336,9 +335,9 @@ MooseQueryTest >> testQueryWith [
 
 { #category : #tests }
 MooseQueryTest >> testToScope [
-	self assert: (class1 toScope: FAMIXMethod) equals: {method1}.
+	self assertCollection: (class1 toScope: FAMIXMethod) hasSameElements: {method1}.
 	self
-		assertCollection: (class2 toScope: FAMIXAttribute) asSet
+		assertCollection: (class2 toScope: FAMIXAttribute)
 		hasSameElements:
 			{var1.
 			var2}.

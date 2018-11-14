@@ -775,6 +775,13 @@ MooseAbstractGroup >> notEmpty [
 ]
 
 { #category : #accessing }
+MooseAbstractGroup >> numberOfAssociations [
+	<MSEProperty: #numberOfAssociations type: #Number>
+	<MSEComment: 'The total number of associations'>
+	^ (self allWithSubTypesOf: FamixTAssociation) size
+]
+
+{ #category : #accessing }
 MooseAbstractGroup >> numberOfEntities [
 	<MSEProperty: #numberOfEntities type: #Number>
 	<MSEComment: 'The total number of entities (items that are not associations)'>
