@@ -65,6 +65,12 @@ GtExampleWithResult >> gtInspectorSourceIn: composite [
 	self example gtInspectorSourceIn: composite
 ]
 
+{ #category : #ui }
+GtExampleWithResult >> gtSourceFor: aView [
+	<gtView>
+	^ self example gtSourceFor: aView
+]
+
 { #category : #testing }
 GtExampleWithResult >> hasResult [
 	^ result notNil
@@ -95,6 +101,11 @@ GtExampleWithResult >> isFailure [
 { #category : #testing }
 GtExampleWithResult >> isSuccess [
 	^ self hasResult and: [ self result isSuccess ]
+]
+
+{ #category : #accessing }
+GtExampleWithResult >> method [
+	^ self example method
 ]
 
 { #category : #accessing }
@@ -130,7 +141,8 @@ GtExampleWithResult >> resultOrErrorName [
 
 { #category : #public }
 GtExampleWithResult >> run [
-	^ self result: self example run
+	self result: self example run.
+	^ self result.
 ]
 
 { #category : #accessing }

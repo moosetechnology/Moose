@@ -48,7 +48,7 @@ GtExampleTestCase >> run: aResult [
 	[ super run: aResult ] ensure: [ result := nil ]
 ]
 
-{ #category : #running }
+{ #category : #private }
 GtExampleTestCase >> runCase [
 	result ifNil: [ result := self classForTestResult new " fake for debug runner " ].
 	super runCase. 
