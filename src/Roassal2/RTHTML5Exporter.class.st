@@ -575,6 +575,9 @@ var Rectangle = Class.extend({
 	},
 	containsRect: function(rect){
 		return lessEqThan(this.origin, rect.origin) && lessEqThan(rect.corner, this.corner);
+	},
+	intersectLineSegment: function(lineSegment){
+		return lineSegment.intersectRectangle(this);
 	}
 });
 
@@ -1124,55 +1127,38 @@ var RTShorterDistanceAttachPoint = RTAbstractShorterDistanceAttachPoint.extend({
 	},
 });
 
-var RTContinuousAttachPoint = RTAttachPoint.extend({
-	offset: 5,
+var RTBorderAttachPoint = RTAttachPoint.extend({
+	basicEndingPointOf: function(anEdge){
+		return this.basicPointFromToOf(anEdge.to(), anEdge.from(), anEdge);
+	},
+	basicStartingPointOf: function(anEdge){
+		return this.basicPointFromToOf(anEdge.from(), anEdge.to(), anEdge);
+	},
+	basicPointFromToOf: function(fromElement, toElement, anEdge){
+		var source = fromElement.geometry();
+		var target = toElement.geometry();
+		var shift = this.offsetNormalFor(anEdge);
+		var line = new RTLineSegment(source.center(), target.center());
+		shift = product(eq(line.vector(), {x:0, y:0})?
+			{x: -1, y: 0}:
+			normal(line.vector()), shift);
+		line = new RTLineSegment(plus(source.center(), shift), plus(target.center(), shift));
+		return this.borderPointFrom(source, target, line);
+	},
 	offsetNormalFor: function(anEdge){
-		var temp = new RTShorterDistanceWithOffsetAttachPoint();
-		temp.offset = this.offset;
-		return temp.offsetNormalFor(anEdge);
+		return 0;
+	},
+	borderPointFrom: function(source, target, line){
+		var pts = line.intersect(source);
+		if(pts.length == 0) return source.center();
+		var min = pts[0];
+		for(var k=1;k<pts.length;k++){
+			min = min(min, dist(pts[k], line.to()) );
+		}
+		return min;
 	}
 });
 
-var RTRectangleAttachPoint = RTContinuousAttachPoint.extend({
-	basicEndingPointOf: function(anEdge){
-		return this.attachPointFor(anEdge, anEdge.to().encompassingRectangle(), anEdge.from().encompassingRectangle());
-	},
-	basicStartingPointOf: function(anEdge){
-		return this.attachPointFor(anEdge, anEdge.from().encompassingRectangle(), anEdge.to().encompassingRectangle());
-	},
-	attachPointFor: function(anEdge, fromRect, toRect){
-		var offsetShift = this.offsetNormalFor(anEdge),
-			fromPoint = plus(fromRect.center(),offsetShift),
-			toPoint = plus(toRect.center(), offsetShift),
-			minP = null, minV, val;
-		if(fromRect.eq(toRect)) return fromRect.origin;
-		if(fromRect.containsRect(toRect)) return fromRect.pointNearestTo(toPoint);
-		if(toRect.containsRect(fromRect)) return fromRect.pointNearestTo(toRect.pointNearestTo(fromPoint));
-		var intersections = new RTLineSegment(fromPoint, toPoint).intersectRectangle(fromRect);
-		$.each(intersections, function(i, p){
-			if(minP == null) {minP = p; minV = r(p);}
-			else if( (val = r(p)) < minV ){
-				minP = p;
-				minV = val;
-			}
-		} );
-
-		if(minP == null) return fromRect.pointNearestTo(toPoint);
-		return minP;
-	}
-});
-
-var RTCircleAttachPoint = RTContinuousAttachPoint.extend({
-	basicEndingPointOf: function(anEdge){
-		return this.attachPointFor(anEdge, anEdge.to().encompassingRectangle(), anEdge.from().encompassingRectangle());
-	},
-	basicStartingPointOf: function(anEdge){
-		return this.attachPointFor(anEdge, anEdge.from().encompassingRectangle(), anEdge.to().encompassingRectangle());
-	},
-	attachPointFor: function(anEdge, fromRect, toRect){
-
-	}
-});
 var RTLineSegment = Class.extend({
 	from: null,
 	to: null,
@@ -1183,6 +1169,9 @@ var RTLineSegment = Class.extend({
 		this.from = f;
 		this.to = t;
 		return this;
+	},
+	intersect: function(otherShape){
+		return otherShape.intersectLineSegment(this);
 	},
 	intersectHorizontal: function(other){
 		var p = this.intersectHorizontalLine(other);
@@ -1380,6 +1369,8 @@ var TRCanvas = TRAnnouceableObject.extend({
 			this.fixedShapes[k].update();
 	},
 	getShapeById: function (id){
+		var res = this.fixedShapes[id];
+		if(res) return res;
 		return this.shapes[id];
 	},
 	isDragging: function (){
@@ -1673,6 +1664,9 @@ var TRShape = TRAnnouceableObject.extend({
 	pushFront: function(){
 		if(this.path == null) return;
 		this.path.parentNode.appendChild(this.path);
+	},
+	geometry: function(){
+		return this.encompassingRectangle();
 	}
 });
 
@@ -1708,6 +1702,9 @@ var TREllipseShape = TRAbstractBoxShape.extend({
 	resetPath: function (){
 		var r = this.rectangle;
 		$(this.path).attr({rx: r.width()/2, ry: r.height()/2});
+	},
+	geometry: function(){
+		return this.encompassingRectangle();
 	}
 });
 
@@ -1970,6 +1967,7 @@ var TRBezierShape = TRLineShape.extend({
 var TRSimpleArrowShape = TRLineShape.extend({
 	size: null,
 	baseSize: null,
+  percentage: null,
 	init: function(obj){
 		this.id = obj.id;
 		this.fromid = obj.fromid;
@@ -1981,6 +1979,7 @@ var TRSimpleArrowShape = TRLineShape.extend({
 		this.setAttachPoint(obj.ap);
 		this.size = obj.size;
 		this.baseSize = obj.base;
+		this.percentage = obj.percentage;
 	},
 	update: function(){
 		if(this.fromid == this.toid) return;
@@ -1993,10 +1992,11 @@ var TRSimpleArrowShape = TRLineShape.extend({
 		var vector = minus(to, from);
 		var u = normal(vector);
 		var unit = div(vector, r(vector));
-		var middle = minus(to, product(unit, this.size));
+		var endPoint = minus(to, product(vector, (1 - this.percentage)));
+		var middle = minus(endPoint, product(unit, this.size));
 		var left = minus(middle, product(u, base/2));
 		var right = plus(middle, product(u, base/2));
-		var d = "M "+left.x+" "+left.y+" L "+to.x+" "+to.y+" L "+right.x+ " "+right.y;
+		var d = "M "+left.x+" "+left.y+" L "+endPoint.x+" "+endPoint.y+" L "+right.x+ " "+right.y;
 		$(this.path).attr("d", d);
 	}
 });

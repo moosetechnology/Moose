@@ -44,7 +44,7 @@ RTAbstractLine >> + anotherShape [
 	^ RTCompositeShape with: self with: anotherShape instance
 ]
 
-{ #category : #visitor }
+{ #category : #visiting }
 RTAbstractLine >> accept: aVisitor [
 	aVisitor visitLine: self
 ]
@@ -54,13 +54,13 @@ RTAbstractLine >> allowSelfLoop [
 	^ allowSelfLoop
 ]
 
-{ #category : #'attach point' }
+{ #category : #'public - attach point' }
 RTAbstractLine >> attachPoint [
 	"Return the attach point of the line"
 	^ attachPoint
 ]
 
-{ #category : #'attach point' }
+{ #category : #'public - attach point' }
 RTAbstractLine >> attachPoint: aRTAttachPoint [
 	attachPoint := aRTAttachPoint.
 ]
@@ -103,7 +103,7 @@ RTAbstractLine >> elementsOn: v [
 	self error: 'You cannot send #elementsOn: to a line. Create an edge using #edgeFrom:to:'
 ]
 
-{ #category : #'attach point' }
+{ #category : #'public - attach point' }
 RTAbstractLine >> endingPointOf: anEdge [
 	^ attachPoint endingPointOf: anEdge
 ]
@@ -123,12 +123,12 @@ RTAbstractLine >> isSelfLoopAllowedFor: anEdge [
 		ifFalse: [ true].
 ]
 
-{ #category : #configuration }
+{ #category : #'public - configuration' }
 RTAbstractLine >> noSelfLoop [
 	allowSelfLoop := false.
 ]
 
-{ #category : #'attach point' }
+{ #category : #'public - attach point' }
 RTAbstractLine >> startingPointOf: anEdge [
 	^ attachPoint startingPointOf: anEdge
 ]
@@ -172,7 +172,7 @@ RTAbstractLine >> widthFor: anElement [
 	^ width rtValue: anElement
 ]
 
-{ #category : #'attach point' }
+{ #category : #'public - attach point' }
 RTAbstractLine >> withBorderAttachPoint [
 	| ap |
 	ap := RTBorderAttachPoint new.
@@ -180,7 +180,7 @@ RTAbstractLine >> withBorderAttachPoint [
 	^ ap
 ]
 
-{ #category : #'attach point' }
+{ #category : #'public - attach point' }
 RTAbstractLine >> withCenteredAttachPoint [
 	| ap |
 	ap := RTCenteredAttachPoint new.
@@ -200,7 +200,7 @@ RTAbstractLine >> withContinuousRectangleAttachPoint [
 	^ self withBorderAttachPoint
 ]
 
-{ #category : #'attach point' }
+{ #category : #'public - attach point' }
 RTAbstractLine >> withHorizontalAttachPoint [
 	| ap |
 	ap := RTHorizontalAttachPoint new.
@@ -214,12 +214,12 @@ RTAbstractLine >> withOffsetIfMultiple [
 	self attachPoint: RTShorterDistanceWithOffsetAttachPoint new
 ]
 
-{ #category : #configuration }
+{ #category : #'public - configuration' }
 RTAbstractLine >> withSelfLoop [
 	allowSelfLoop := true.
 ]
 
-{ #category : #'attach point' }
+{ #category : #'public - attach point' }
 RTAbstractLine >> withShorterDistanceAttachPoint [
 	| ap |
 	ap := RTBorderAttachPoint new.
@@ -227,7 +227,7 @@ RTAbstractLine >> withShorterDistanceAttachPoint [
 	^ ap.
 ]
 
-{ #category : #'attach point' }
+{ #category : #'public - attach point' }
 RTAbstractLine >> withShorterDistanceAttachPointWithJump [
 	| ap |
 	ap := RTShorterDistanceAttachPoint new.
@@ -235,7 +235,7 @@ RTAbstractLine >> withShorterDistanceAttachPointWithJump [
 	^ ap.
 ]
 
-{ #category : #'attach point' }
+{ #category : #'public - attach point' }
 RTAbstractLine >> withShorterHorizontalAttachPoint [
 	| ap |
 	ap := RTShorterHorizontalDistanceAttachPoint new.
@@ -243,7 +243,7 @@ RTAbstractLine >> withShorterHorizontalAttachPoint [
 	^ ap
 ]
 
-{ #category : #'attach point' }
+{ #category : #'public - attach point' }
 RTAbstractLine >> withShorterVerticalAttachPoint [
 	| ap |
 	ap := RTShorterVerticalDistanceAttachPoint new.
@@ -251,7 +251,7 @@ RTAbstractLine >> withShorterVerticalAttachPoint [
 	^ ap
 ]
 
-{ #category : #'attach point' }
+{ #category : #'public - attach point' }
 RTAbstractLine >> withVerticallAttachPoint [
 	| ap |
 	ap := RTVerticalAttachPoint new.

@@ -39,6 +39,11 @@ RTAbstractArrowedLine >> straight [
 	self line: RTLine new
 ]
 
+{ #category : #hooks }
+RTAbstractArrowedLine >> trachelShapeClass [
+	self subclassResponsibility
+]
+
 { #category : #public }
 RTAbstractArrowedLine >> width: aValue [
 	line width: aValue

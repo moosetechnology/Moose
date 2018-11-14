@@ -225,7 +225,8 @@ RTMetricNormalizerTest >> testDistinctColor [
 	self assert: (v elementsFromModels: #(1 2)) size equals: 4.
 
 	RTGridLayout on: v elements.
-	n := RTMetricNormalizer new
+	n := RTMetricNormalizer new.
+	n
 		view: v;
 		objects: #(1 2);
 		distinctColor. 
@@ -247,6 +248,52 @@ RTMetricNormalizerTest >> testDistinctColor [
 
 	"Elements 1 and 2 have different color"
 	self assert: (v elementFromModel: 1) trachelShape color ~= (v elementFromModel: 2) trachelShape color
+]
+
+{ #category : #'test edges width' }
+RTMetricNormalizerTest >> testEdgesWidth01 [
+
+	| v eb as rel mn trLines |
+	v := RTView new.
+	v addAll: (RTBox elementsOn: #(1 2 3)).
+	eb := RTEdgeBuilder new.
+	eb view: v.
+	
+	as := OrderedCollection new.
+	as add: 1 -> 2.
+	as add: 1 -> 3.
+	as add: 3 -> 1.
+	eb useAssociations: as.
+	
+	rel := Dictionary new.
+	rel at: 1 put: #(2 3 3).
+   rel at: 3 put: #(1 1 1).
+
+	mn := RTMetricNormalizer new.
+	mn elements: v elements.
+	mn normalizeLineWidthBasedOnOccurences: [ :aNumber | rel at: aNumber ].
+	
+	v edges do: #updateShape.
+	"v open delete."
+	
+	self assert: v numberOfEdges equals: 3.
+	trLines := v canvas shapes select: #isLineShape.
+	self assert: trLines size equals: 3.
+	
+	self assert: trLines first element from model equals: 1.
+	self assert: trLines first element to model equals: 2.
+	self assert: trLines first width equals: 0.5.
+	
+	self assert: trLines second element from model equals: 1.
+	self assert: trLines second element to model equals: 3.
+	self assert: trLines second width equals: 15.25.
+
+	self assert: trLines third element from model equals: 3.
+	self assert: trLines third element to model equals: 1.
+	self assert: trLines third width equals: 30.
+
+
+
 ]
 
 { #category : #'test x' }

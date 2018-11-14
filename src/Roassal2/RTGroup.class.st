@@ -294,6 +294,7 @@ RTGroup >> pushBack [
 
 { #category : #actions }
 RTGroup >> pushFront [
+	"Move the shaped objects in front of other elements"
 	self do: #pushFront
 ]
 

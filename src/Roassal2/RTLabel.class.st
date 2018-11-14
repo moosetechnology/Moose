@@ -104,6 +104,11 @@ RTLabel >> textFor: element [
 ]
 
 { #category : #hooks }
+RTLabel >> trachelShapeClass [
+	"cancelled methods. Please check #trachelShapeForMultiLine: and #trachelShapeForOneLine:"
+]
+
+{ #category : #hooks }
 RTLabel >> trachelShapeFor: anElement [
 	| c txt lines    |
 

@@ -83,15 +83,40 @@ RTMetricNormalizer >> distinctColorUsing: aBlockOrSymbol [
 		distinctColorUsing: #package.
 	b	
 	"
-	| normalizer allObjects |
+	"The method return the mapping"
+	^ self distinctColorUsing: aBlockOrSymbol colorPalette: (RTColorPalette qualitative colors: 12 scheme: 'Set3')
+]
+
+{ #category : #'public normalize color' }
+RTMetricNormalizer >> distinctColorUsing: aBlockOrSymbol colorPalette: someColors [
+	"Give a color to each element according to the result of execution the block and symbol on each element.
+
+	For example, the following example paints all the class according to the package the class is in:
+	| b |
+	b := RTMondrian new.
+	b shape circle.
+	b nodes: Collection withAllSubclasses.
+	b edges connectFrom: #superclass.
+	b layout tree.
+	b normalizer
+		normalizeSize: #numberOfMethods;
+		distinctColorUsing: #package.
+	b	
+	"
+	"The method return the mapping"
+	| normalizer allObjects colorMapping |
 	allObjects := elements collect: [ :e | aBlockOrSymbol rtValue: e model ].
 	allObjects removeDuplicates.
 	
 	normalizer := RTMultiLinearColorForIdentity new 
 						objects: allObjects; 
+						colors: someColors;
 						command: aBlockOrSymbol.
 
-	elements do: [ :el | el trachelShape color: (normalizer rtValue: el model) ]
+	elements do: [ :el | el trachelShape color: (normalizer rtValue: el model) ].
+	
+	colorMapping := allObjects collect: [ :obj | obj -> (normalizer colorOf: obj) ].
+	^ colorMapping
 ]
 
 { #category : #'public normalize line width' }
@@ -118,6 +143,7 @@ RTMetricNormalizer >> elements [
 
 { #category : #accessing }
 RTMetricNormalizer >> elements: someElements [
+	"Set the elements to be considered by the metric normalizer"
 	elements := someElements
 ]
 
@@ -548,6 +574,27 @@ RTMetricNormalizer >> normalizeHeight: metricBlock min: min max: max using: tran
 { #category : #'public normalize line width' }
 RTMetricNormalizer >> normalizeLineWidth: metricBlock [
 	"metricBlock is a two arg block that accept the from model and the to model"
+"
+Example:
+
+b := RTMondrian new.
+b shape circle size: 20; color: Color red trans.
+b nodes: RTObject withAllSubclasses.
+
+b shape line color: Color blue trans.
+es := b edges connectToAll: #dependentClasses.
+b layout force charge: -500.
+b normalizer 
+    edges: es;
+    normalizeLineWidth: [ :from :to | 
+        | outgoingRef |
+        outgoingRef := (from methods flatCollect: [ :cm | cm literals select: [ :l | l class == GlobalVariable ] ]) groupedBy: #value.
+        (outgoingRef keys includes: to)
+            ifTrue: [ (outgoingRef at: to) size ]
+            ifFalse: [ 0 ] ] min: 0.2 max: 20.
+b
+
+"
 	^ self normalizeLineWidth: metricBlock min: 0.5 max: 30
 ]
 
@@ -596,6 +643,86 @@ RTMetricNormalizer >> normalizeLineWidth: metricBlock min: min max: max using: t
 		maxValue := maxValue max: t ].
 	
 	^ self normalizeLineWidth: metricBlock min: min max: max minValue: minValue maxValue: maxValue using: transformation
+]
+
+{ #category : #'public normalize line width' }
+RTMetricNormalizer >> normalizeLineWidthBasedOnOccurences: oneArgMetricBlock [
+	"metricBlock is a one-arg block that accept the from model and produces a set of elements.
+	The size of the edges reflects the number of occurences with the 'to model'"
+"
+Example:
+
+paks := RPackageOrganizer default packages select: [ :p | p packageName beginsWith: 'Metacello-' ].
+
+b := RTMondrian new.
+b shape label text: #packageName; color: Color veryVeryDarkGray.
+b interaction highlightEdges: #dependentPackages color: Color red trans.
+b nodes: paks.
+
+b shape line color: Color blue trans.
+b edges 
+	highlightable;
+	connectToAll: #dependentPackages.
+b layout circle.
+
+b normalizer
+	normalizeSize: [ :pak | pak definedClasses size ];
+	normalizeLineWidthBasedOnOccurences: #dependentPackagesWithOccurences.
+b
+
+
+-------
+b := RTMondrian new.
+b shape circle size: 20; color: Color red trans.
+b nodes: RTObject withAllSubclasses.
+
+b shape line color: Color blue trans.
+es := b edges connectToAll: #dependentClasses.
+b layout force charge: -500.
+b normalizer 
+    edges: es;
+    normalizeLineWidthBasedOnOccurences: #dependentClassesWithOccurences
+b
+"
+
+"Here is another example:
+	v := RTView new.
+	v addAll: (RTBox elementsOn: #(1 2 3)) @ RTDraggable @ RTPopup.
+	eb := RTEdgeBuilder new.
+	eb view: v.
+	
+	as := OrderedCollection new.
+	as add: 1 -> 2.
+	as add: 1 -> 3.
+	as add: 3 -> 1.
+	eb shape line color: Color blue trans.
+	eb useAssociations: as.
+	
+	rel := Dictionary new.
+	rel at: 1 put: #(2 3 3).
+   rel at: 3 put: #(1 1 1).
+
+	mn := RTMetricNormalizer new.
+	mn elements: v elements.
+	mn normalizeLineWidthBasedOnOccurences: [ :aNumber | rel at: aNumber ].
+	v"
+
+	| metricBlock d fromElements |
+	d := Dictionary new.
+	fromElements := self edges collect: [ :edge | edge model key ] as: Set.
+	fromElements do: [ :aFromElement |
+		| t |
+		t := (oneArgMetricBlock rtValue: aFromElement) groupedBy: #yourself.
+		t := t associations collect: [ :assoc | assoc key -> assoc value size ].
+		d at: aFromElement put: t ].
+
+	
+	metricBlock := [ :from :to | 
+		| tt |
+      tt := (d at: from) detect: [ :assc | assc key = to ] ifNone: [ #foo -> 0 ].
+		tt value ].
+	
+	^ self normalizeLineWidth: metricBlock min: 0.5 max: 30
 ]
 
 { #category : #'public normalize position' }
