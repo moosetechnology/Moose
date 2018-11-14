@@ -12,11 +12,11 @@ Internal Representation and Key Implementation Points.
 "
 Class {
 	#name : #SpecOfFailed,
-	#superclass : #Error,
+	#superclass : #AssertionFailure,
 	#instVars : [
 		'reason'
 	],
-	#category : 'StateSpecs-Specs'
+	#category : #'StateSpecs-Specs'
 }
 
 { #category : #'instance creation' }
@@ -38,6 +38,11 @@ SpecOfFailed >> allowExtraDebugging [
 { #category : #'private - actions' }
 SpecOfFailed >> defaultAction [
 	^reason debugSpecOver: self
+]
+
+{ #category : #private }
+SpecOfFailed >> defaultResumeValue [
+	^ reason
 ]
 
 { #category : #testing }
