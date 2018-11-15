@@ -7,25 +7,34 @@ Class {
 	#name : #GtExampleGroup,
 	#superclass : #Object,
 	#instVars : [
-		'examples'
+		'announcer'
 	],
 	#category : #'GToolkit-Examples-Core'
 }
 
-{ #category : #examples }
-GtExampleGroup class >> gtExampleEmptyGroup [
-	<gtExample>
-	^ self new examples: #()
-]
-
 { #category : #'instance creation' }
 GtExampleGroup class >> withAll: aCollection [
-	^ self new examples: aCollection
+	^ GtExplicitExampleGroup new examples: aCollection
+]
+
+{ #category : #accessing }
+GtExampleGroup >> announcer [
+	^ announcer
+]
+
+{ #category : #accessing }
+GtExampleGroup >> announcer: anObject [
+	announcer := anObject
 ]
 
 { #category : #enumerating }
 GtExampleGroup >> collect: aBlockClosure [ 
 	^ self examples collect: aBlockClosure
+]
+
+{ #category : #enumerating }
+GtExampleGroup >> detect: aBlockClosure [ 
+	^ self examples detect: aBlockClosure 
 ]
 
 { #category : #enumerating }
@@ -48,12 +57,7 @@ GtExampleGroup >> do: aBlock [
 
 { #category : #accessing }
 GtExampleGroup >> examples [
-	^ examples
-]
-
-{ #category : #accessing }
-GtExampleGroup >> examples: aCollection [
-	examples := aCollection collect: [ :each | each asExampleWithResult ]
+	^ self subclassResponsibility
 ]
 
 { #category : #enumerating }
@@ -137,6 +141,12 @@ GtExampleGroup >> ifEmpty: aBlockClosure [
 	^ self examples ifEmpty: aBlockClosure 
 ]
 
+{ #category : #initialization }
+GtExampleGroup >> initialize [
+	super initialize.
+	announcer := Announcer new
+]
+
 { #category : #testing }
 GtExampleGroup >> isCollection [
 	^ true
@@ -156,9 +166,20 @@ GtExampleGroup >> newRunAllAction [
 							displayingProgress: 'Running examples ...'.
 						wrapper update ]; 
 				shortcut: $R; 
-				showTitle: 'Run all';
+				title: 'Run all';
+				showTitle;
 				iconName: #testGreen;
 				yourself
+]
+
+{ #category : #'accessing - dynamic' }
+GtExampleGroup >> results [
+	^ self collect:  [:example | example run]
+]
+
+{ #category : #'accessing - dynamic' }
+GtExampleGroup >> returnValues [
+	^ self results collect: [:result | result returnValue]
 ]
 
 { #category : #enumerating }

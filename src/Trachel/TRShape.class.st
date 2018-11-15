@@ -22,6 +22,7 @@ TRShape >> accept: aVisitor [
 
 { #category : #actions }
 TRShape >> addedIn: aCanvas [
+	"This method is called whenever the shape is added to the canvas"
 	aCanvas privateAdd: self.
 	self canvas: aCanvas
 ]
@@ -288,6 +289,7 @@ TRShape >> pushBehindAll: manyShapes [
 
 { #category : #actions }
 TRShape >> pushFront [
+	"Move the shaped object in front of other elements"
 	canvas pushFront: self
 	
 	

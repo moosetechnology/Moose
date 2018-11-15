@@ -30,7 +30,7 @@ Class {
 	#category : #'GToolkit-Examples-Core'
 }
 
-{ #category : #comparing }
+{ #category : #testing }
 GtExample >> = anExample [
 	^ self class = anExample class 
 		and: [ self methodClass = anExample methodClass 
@@ -222,7 +222,7 @@ GtExample >> hasValidDependencies [
 			or: [ currentDependencies allSatisfy: #exists ]
 ]
 
-{ #category : #comparing }
+{ #category : #testing }
 GtExample >> hash [
 	^ (self class hash 
 		bitXor: self methodClass hash) 
@@ -415,10 +415,10 @@ GtExample >> propertyAt: aKey put: aValue [
 ]
 
 { #category : #'accessing-dynamic' }
-GtExample >> provider [ 
+GtExample >> provider [
 	^ self methodClass isMeta
-		ifTrue: [ self methodClass theNonMetaClass ]
-		ifFalse: [ self methodClass theNonMetaClass new ]
+		ifTrue: [ self methodClass instanceSide ]
+		ifFalse: [ self methodClass instanceSide new ]
 ]
 
 { #category : #'accessing-dynamic' }

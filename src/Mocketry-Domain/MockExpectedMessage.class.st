@@ -222,3 +222,8 @@ MockExpectedMessage >> willReturnValueFrom: anArray [
 MockExpectedMessage >> willReturnYourself [
 	self will: MockExpectedReceiverReturn new
 ]
+
+{ #category : #actions }
+MockExpectedMessage >> willStubRealResult [
+	self will: MockExpectedMethodResultStub new
+]

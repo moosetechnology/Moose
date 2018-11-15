@@ -31,6 +31,17 @@ RTAbstractWorldMenu class >> createNewSetOfMenuEntriesForInitials: initialLetter
 		classVariableNames: '' category: aCategory.
 ]
 
+{ #category : #public }
+RTAbstractWorldMenu class >> image [
+	^ PNGReadWriter formFromStream: self imageSource base64Decoded readStream. 
+]
+
+{ #category : #public }
+RTAbstractWorldMenu class >> imageSource [
+	self subclassResponsibility 
+
+]
+
 { #category : #'world menu' }
 RTAbstractWorldMenu class >> projectName [
 	^ 'Roassal'

@@ -78,6 +78,11 @@ RTMultiColoredLine >> straight [
 	self block: [ :fromPoint :toPoint | Array with: fromPoint with: toPoint ]
 ]
 
+{ #category : #hooks }
+RTMultiColoredLine >> trachelShapeClass [
+	"not used. Extremities have a dedicated trachel shape"
+]
+
 { #category : #public }
 RTMultiColoredLine >> trachelShapeFor: anEdge [
 	| shape multiShape fromPoint toPoint p |

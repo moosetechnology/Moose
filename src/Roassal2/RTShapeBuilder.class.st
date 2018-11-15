@@ -9,33 +9,33 @@ Class {
 	#category : #'Roassal2-Builder-Common'
 }
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> arc [
 	self shape: RTArc new
 ]
 
-{ #category : #'shape - edges' }
+{ #category : #'public - shape - edges' }
 RTShapeBuilder >> arrowedBezier [
 	self shape: (RTArrowedLine new line: RTBezier3Line new).
 ]
 
-{ #category : #'shape - edges' }
+{ #category : #'public - shape - edges' }
 RTShapeBuilder >> arrowedLine [
 	self shape: RTArrowedLine new
 ]
 
-{ #category : #'shape - attach point on edges' }
+{ #category : #'public - shape - attach point on edges' }
 RTShapeBuilder >> attachPoint: aBlockOrSymbol [
 	aBlockOrSymbol rtValue: shape 
 ]
 
-{ #category : #'shape - edges' }
+{ #category : #'public - shape - edges' }
 RTShapeBuilder >> bezierLineFollowing: aFollowBlock [
 	"aFollowBlock return an element"
 	self shape: (RTBezierLine new follow: aFollowBlock)
 ]
 
-{ #category : #'shape - edges' }
+{ #category : #'public - shape - edges' }
 RTShapeBuilder >> bezierLineUsingObjects: aFollowBlock [
 	"aFollowBlock return an element"
 	| elements |
@@ -46,7 +46,7 @@ RTShapeBuilder >> bezierLineUsingObjects: aFollowBlock [
  
 ]
 
-{ #category : #'shape - edges' }
+{ #category : #'public - shape - edges' }
 RTShapeBuilder >> bezierLineUsingObjects: someObjects inView: view [
 	"some Objects are objects represented in a view"
 	| elements |
@@ -61,12 +61,12 @@ RTShapeBuilder >> borderColor [
 	^ self current borderColor
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> box [
 	self shape: RTBox new
 ]
 
-{ #category : #'shape - attach point on edges' }
+{ #category : #'public - shape - attach point on edges' }
 RTShapeBuilder >> centeredAttachPoint [
 	"Set the vertical attach point for the edges to be built"
 	self attachPoint: #withCenteredAttachPoint
@@ -74,7 +74,7 @@ RTShapeBuilder >> centeredAttachPoint [
 	
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> circle [
 	self shape: RTEllipse new
 ]
@@ -84,7 +84,7 @@ RTShapeBuilder >> color [
 	^ self current color
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> composite: aBlock [
 	| newShape |
 	newShape := RTCompositeShape new.
@@ -97,7 +97,7 @@ RTShapeBuilder >> createdElements [
 	^ createdElements
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> cross [
 	| s |
 	s := RTCompositeShape new.
@@ -113,12 +113,12 @@ RTShapeBuilder >> current [
 	^ shape
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> diamond [
 	shape := RTPolygon diamond
 ]
 
-{ #category : #'shape - edges' }
+{ #category : #'public - shape - edges' }
 RTShapeBuilder >> directedLine [
 	self shape: RTDirectedLine new
 ]
@@ -132,7 +132,7 @@ RTShapeBuilder >> doesNotUnderstand: aMessage [
 		withArguments: aMessage arguments
 ]
 
-{ #category : #'shape - edges' }
+{ #category : #'public - shape - edges' }
 RTShapeBuilder >> doubleArrowedLine [
 	self shape: RTDoubleArrowedLine new
 ]
@@ -158,7 +158,7 @@ RTShapeBuilder >> elementsOn: objects [
 	^ answer
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> ellipse [
 	self shape: RTEllipse new
 ]
@@ -170,7 +170,7 @@ RTShapeBuilder >> ensure: aClassShape [
 		ifFalse: [ self shape: aClassShape new ]
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> extensibleLabel [
 	^ self shape: RTExtensibleLabel new
 ]
@@ -180,7 +180,7 @@ RTShapeBuilder >> fillColor [
 	^ self color
 ]
 
-{ #category : #'text shape' }
+{ #category : #'public - text shape' }
 RTShapeBuilder >> fontSize: aValueOrASymbolOrABlock [
 	"Make sure we have something that this message is meaningful"
 	self assert: [ #(RTLabel #RTCompositeShape) includes: shape class name ].
@@ -189,30 +189,30 @@ RTShapeBuilder >> fontSize: aValueOrASymbolOrABlock [
 	shape class == RTCompositeShape ifTrue: [ (shape allShapes select: [ :s | s class == RTLabel ]) do: [ :s | s height: aValueOrASymbolOrABlock ] ]
 ]
 
-{ #category : #'shape - edges' }
+{ #category : #'public - shape - edges' }
 RTShapeBuilder >> gradientLineFrom: fromColor to: toColor [
 	self shape: (RTGradientColoredLine new colors: (Array with: fromColor with: toColor); 
 							precision: 100; 
 							gradientColorShape)
 ]
 
-{ #category : #testing }
+{ #category : #'public - testing' }
 RTShapeBuilder >> hasSetLineShape [
 	"A bit hackish..."
 	^ (shape isKindOf: RTAbstractLine) or: [ (shape isKindOf: RTCompositeShape) and: [ shape allShapes anyOne isKindOf: RTAbstractLine ] ]
 ]
 
-{ #category : #testing }
+{ #category : #'public - testing' }
 RTShapeBuilder >> hasSetShape [
 	^ shape class ~~ RTNoShape
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> heptagon [
 	shape := RTPolygon heptagon
 ]
 
-{ #category : #'shape - attach point on edges' }
+{ #category : #'public - shape - attach point on edges' }
 RTShapeBuilder >> horizontalAttachPoint [
 	"Set the vertical attach point for the edges to be built"
 	self attachPoint: #withHorizontalAttachPoint
@@ -220,12 +220,12 @@ RTShapeBuilder >> horizontalAttachPoint [
 	
 ]
 
-{ #category : #'shape - edges' }
+{ #category : #'public - shape - edges' }
 RTShapeBuilder >> horizontalBezierLine [
 	self shape: RTBezierLine horizontal
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> if: conditionBlock borderColor: colorBlock [
 	"If conditionBlock is evaluated at true, then colorBlock is used to set the color of the node. Both conditionBlock and colorBlock are evaluated with the model value of the node."
 	| oldBlockOrValue |
@@ -241,8 +241,9 @@ RTShapeBuilder >> if: conditionBlock borderColor: colorBlock [
 
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> if: conditionBlock color: colorBlock [
+	"If conditionBlock is evaluated at true, then colorBlock is used to set the color of the node. Both conditionBlock and colorBlock are evaluated with the model value of the node."
 	| oldBlockOrValue |
 	oldBlockOrValue := self color.
 	^self color: [ :aModel | (conditionBlock rtValue: aModel)
@@ -253,7 +254,7 @@ RTShapeBuilder >> if: conditionBlock color: colorBlock [
 						
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> if: conditionBlock fillColor: colorBlock [
 	"If conditionBlock is evaluated at true, then colorBlock is used to set the color of the node. Both conditionBlock and colorBlock are evaluated with the model value of the node."
 	| oldBlockOrValue |
@@ -269,7 +270,7 @@ RTShapeBuilder >> if: conditionBlock fillColor: colorBlock [
 
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> ifElement: conditionBlock borderColor: colorBlock [
 	"If conditionBlock is evaluated at true, then colorBlock is used to set the color of the node. Both conditionBlock and colorBlock are evaluated with the model value of the node."
 	| oldBlockOrValue |
@@ -285,7 +286,7 @@ RTShapeBuilder >> ifElement: conditionBlock borderColor: colorBlock [
 
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> ifElement: conditionBlock fillColor: colorBlock [
 	"If conditionBlock is evaluated at true, then colorBlock is used to set the color of the node. Both conditionBlock and colorBlock are evaluated with the model value of the node."
 	| oldBlockOrValue |
@@ -308,12 +309,12 @@ RTShapeBuilder >> initialize [
  	shapeInitializer := #yourself
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> label [
 	shape := RTLabel new
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> labeledAs: aBlock [
 	| label oldShape |
 	label := RTLabel new text: aBlock.
@@ -328,7 +329,7 @@ RTShapeBuilder >> labeledAs: aBlock [
 	^ label
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> labeledBox [
 	"
 	A box with a label in it.
@@ -347,7 +348,7 @@ RTShapeBuilder >> labeledBox [
 		 ]
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> labeledBoxUsing: aValueOrABlockOrASymbol [
 	"
 	A box with a label in it.
@@ -375,12 +376,42 @@ b
 		 ]
 ]
 
-{ #category : #'shape - edges' }
+{ #category : #'public - shape - edges' }
 RTShapeBuilder >> line [
 	self shape: RTLine new
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shape - edges' }
+RTShapeBuilder >> lineDualWidth [
+	"This is a particular kind of lines. No repetition are allowed and edges must not be directional. Here is an example:
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+edges := { 1 -> 2 . 1 -> 2 . 1 -> 3 . 5 -> 3 . 1 -> 3 . 1 -> 3 . 3 -> 1 . 5 -> 1 . 5 -> 2 }.
+nodes := ((edges collect: #key), (edges collect: #value)) asSet.
+
+toValue := [ :fromValue | (edges select: [ :assoc | assoc key = fromValue ]) collect: #value as: Set ].
+weightValue := [ :fromValue :toValue | (edges select: [ :assoc | assoc key = fromValue and: [ assoc value = toValue ] ]) size ].
+
+b := RTMondrian new.
+b shape label.
+b nodes: nodes.
+
+b shape lineDualWidth 
+	color: Color blue trans; 
+	withShorterDistanceAttachPoint;
+	widthFrom: [ :anEdge | weightValue value: anEdge from model value: anEdge to model ];
+	widthTo: [ :anEdge | weightValue value: anEdge to model value: anEdge from model ].
+b edges 
+	noRepetition; noBidirectional;
+	connectToAll: [ :fromValue | toValue value: fromValue ].
+b layout force charge: -300.
+b
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+"
+	
+	self shape: RTLineDualWidth new
+]
+
+{ #category : #'public - shapes' }
 RTShapeBuilder >> linearFillColor: block within: groupOfObjects [
 	"Set the linear fill color for the nodes. The gradient goes from white to black. anObject could be a symbol, a block or a value. anObject is evaluated against the model of the node to be paint. aGroup is a collection of the model values. This is where the maximum is looked into."
 	
@@ -393,32 +424,32 @@ RTShapeBuilder >> linearFillColor: block within: groupOfObjects [
 	self current color: [ :v | Color grayScale256: 256 - ((block rtValue: v) max: max in: (1 to: 256)) ]
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> noBorder [
 	self borderColor: Color transparent
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> octagon [
 	shape := RTPolygon octagon
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> orthoHorizontalLine [
-	^ self shape: RTMultiLine new orthoHorizontal 
+	^ self shape: RTStyledMultiLine new orthoHorizontal 
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> orthoVerticalLine [
-	^ self shape: (RTMultiLine new withVerticallAttachPoint; orthoVertical)
+	^ self shape: (RTStyledMultiLine new withVerticallAttachPoint; orthoVertical)
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> pentagon [
 	shape := RTPolygon pentagon
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> rectangle [
 	self box
 ]
@@ -439,7 +470,7 @@ RTShapeBuilder >> resetShape [
 	shape := RTNoShape instance
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> rhomboid [
 	shape := RTPolygon rhomboid
 ]
@@ -476,7 +507,7 @@ RTShapeBuilder >> shapeInitializer: aBlock [
 	shapeInitializer := aBlock
 ]
 
-{ #category : #'shape - attach point on edges' }
+{ #category : #'public - shape - attach point on edges' }
 RTShapeBuilder >> shortestDistanceAttachPoint [
 	"Set the vertical attach point for the edges to be built"
 	self attachPoint: #withShorterDistanceAttachPoint
@@ -485,7 +516,7 @@ RTShapeBuilder >> shortestDistanceAttachPoint [
 	
 ]
 
-{ #category : #'shape - attach point on edges' }
+{ #category : #'public - shape - attach point on edges' }
 RTShapeBuilder >> shortestDistanceAttachPointWithJump [
 	"Set the vertical attach point for the edges to be built"
 	self attachPoint: #withShorterDistanceAttachPointWithJump
@@ -494,32 +525,59 @@ RTShapeBuilder >> shortestDistanceAttachPointWithJump [
 	
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> star [
 	shape := RTPolygon star
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> styledLabel [
 	shape := RTStyledLabel new
 ]
 
-{ #category : #'shapes - texting' }
+{ #category : #'public - shape - edges' }
+RTShapeBuilder >> styledLine [
+	"
+	Set a styled line in the shape builder. A styled line could be dashed, and with different styles.
+	Have a look to RTStyledMultiLine for the complete API.
+	
+	Here is an example:
+-=-=-=
+v := RTView new.
+
+elements := RTEllipse new size: 20; elementsOn: (1 to: 10).
+v addAll: elements.
+
+eb := RTEdgeBuilder new.
+
+eb shape styledLine dashedLine arrowHead.
+
+eb view: v.
+eb connectFrom: [ :value | value // 2 ].
+
+RTTreeLayout on: elements.
+v
+-=-=-=
+	"
+	self shape: RTStyledMultiLine new
+]
+
+{ #category : #'public - shapes - texting' }
 RTShapeBuilder >> text [
 	self shape: RTLabel new
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> triangle [
 	shape := RTPolygon triangle
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> vee [
 	shape := RTPolygon vee
 ]
 
-{ #category : #'shape - attach point on edges' }
+{ #category : #'public - shape - attach point on edges' }
 RTShapeBuilder >> verticalAttachPoint [
 	"Set the vertical attach point for the edges to be built"
 	self attachPoint: #withVerticallAttachPoint
@@ -527,45 +585,45 @@ RTShapeBuilder >> verticalAttachPoint [
 	
 ]
 
-{ #category : #'shape - edges' }
+{ #category : #'public - shape - edges' }
 RTShapeBuilder >> verticalBezierLine [
 	self shape: RTBezierLine vertical
 ]
 
-{ #category : #shapes }
+{ #category : #'public - shapes' }
 RTShapeBuilder >> withBorder [
 	self borderColor: Color black
 ]
 
-{ #category : #'shapes - texting' }
+{ #category : #'public - shapes - texting' }
 RTShapeBuilder >> withText [
 	^ self withText: #yourself
 ]
 
-{ #category : #'shapes - texting' }
+{ #category : #'public - shapes - texting' }
 RTShapeBuilder >> withText: aSymbolOrABlock [
 	shape := shape + (RTLabel new text: aSymbolOrABlock).
 	^ shape
 ]
 
-{ #category : #'shapes - texting' }
+{ #category : #'public - shapes - texting' }
 RTShapeBuilder >> withText: aSymbolOrABlock height: aHeightAsIntegerOrBlock [
 	shape := shape + (RTLabel new height: aHeightAsIntegerOrBlock; text: aSymbolOrABlock).
 	^ shape
 ]
 
-{ #category : #'shapes - texting' }
+{ #category : #'public - shapes - texting' }
 RTShapeBuilder >> withText: aSymbolOrABlock height: aHeightAsIntegerOrBlock color: aColor [
 	shape := shape + (RTLabel new height: aHeightAsIntegerOrBlock; color: aColor; text: aSymbolOrABlock).
 	^ shape
 ]
 
-{ #category : #'shapes - texting' }
+{ #category : #'public - shapes - texting' }
 RTShapeBuilder >> withTextAbove [
 	^ self withTextAbove: #yourself
 ]
 
-{ #category : #'shapes - texting' }
+{ #category : #'public - shapes - texting' }
 RTShapeBuilder >> withTextAbove: aSymbolOrABlock [
 	| newShape |
 	newShape := RTCompositeShape new.
@@ -576,12 +634,12 @@ RTShapeBuilder >> withTextAbove: aSymbolOrABlock [
 	shape := newShape.
 ]
 
-{ #category : #'text shape' }
+{ #category : #'public - text shape' }
 RTShapeBuilder >> withTextBelow [
 	^ self withTextBelow: #yourself
 ]
 
-{ #category : #'text shape' }
+{ #category : #'public - text shape' }
 RTShapeBuilder >> withTextBelow: aSymbolOrABlock [
 	| newShape |
 	newShape := RTCompositeShape new.
@@ -592,19 +650,19 @@ RTShapeBuilder >> withTextBelow: aSymbolOrABlock [
 	shape := newShape.
 ]
 
-{ #category : #'shapes - texting' }
+{ #category : #'public - shapes - texting' }
 RTShapeBuilder >> withTextColor: aColorOrABlock [
 	"Set the color of the text. Should be used only with a composite Shape"
 	self assert: [ shape class == RTCompositeShape ] description: 'This method should be used only if a text has been added to a box or an ellipse'.
 	(shape shapesInstancesOf: RTLabel) do: [ :l | l color: aColorOrABlock ]
 ]
 
-{ #category : #'shapes - texting' }
+{ #category : #'public - shapes - texting' }
 RTShapeBuilder >> withTextOnTheLeft [
 	^ self withTextOnTheLeft: #yourself
 ]
 
-{ #category : #'shapes - texting' }
+{ #category : #'public - shapes - texting' }
 RTShapeBuilder >> withTextOnTheLeft: aSymbolOrABlock [
 	| newShape |
 	newShape := RTCompositeShape new.
@@ -615,12 +673,12 @@ RTShapeBuilder >> withTextOnTheLeft: aSymbolOrABlock [
 	shape := newShape.
 ]
 
-{ #category : #'shapes - texting' }
+{ #category : #'public - shapes - texting' }
 RTShapeBuilder >> withTextOnTheRight [
 	^ self withTextOnTheRight: #yourself
 ]
 
-{ #category : #'shapes - texting' }
+{ #category : #'public - shapes - texting' }
 RTShapeBuilder >> withTextOnTheRight: aSymbolOrABlock [
 	| newShape |
 	newShape := RTCompositeShape new.

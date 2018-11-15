@@ -117,6 +117,26 @@ RTLegendBuilderTest >> testNumberOfElements [
 ]
 
 { #category : #tests }
+RTLegendBuilderTest >> testPolymorphicViewArrows [
+
+	
+	| lb view canvas |
+	lb := RTLegendBuilder new.
+	lb setAsFixed.
+	lb addText: 'System complexity view'.
+	lb addRectanglePolymetricWidth: 'number of methods' height: 'Line of code' box: 'a Pharo class'.
+	lb addColorFadingFrom: Color black to: Color red text: 'number of lines of code'.
+	lb build.
+	
+	view := lb view.
+	self assert: (view elements select: [ :el | el trachelShape isNotFixed ]) isEmpty.
+	self assert: (view edges select: [ :el | el trachelShape isNotFixed ]) isEmpty.
+	
+	canvas := view canvas.
+	self assert: canvas numberOfShapes equals: 0
+]
+
+{ #category : #tests }
 RTLegendBuilderTest >> testRight [
 
 	| view element lb |

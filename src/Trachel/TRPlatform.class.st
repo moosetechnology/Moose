@@ -13,9 +13,13 @@ Class {
 { #category : #default }
 TRPlatform class >> current [
 	current isClass ifTrue: [ current := nil ].
-	^ current ifNil: [ 
-		current := self subclasses detect: [ :any | any isActivePlatform ].
-		current := current new. ].
+	^ current ifNil: [ | sub |
+		sub := self subclasses.
+		sub size = 0 
+			ifTrue: [ nil ]
+			ifFalse: [ 
+				current := self subclasses detect: [ :any | any isActivePlatform ].
+				current := current new ]].
 ]
 
 { #category : #testing }

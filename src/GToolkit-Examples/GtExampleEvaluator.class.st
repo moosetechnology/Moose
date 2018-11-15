@@ -106,7 +106,8 @@ GtExampleEvaluator >> providerFor: anExampleOrExampleMethod [
 GtExampleEvaluator >> result [
 	self do: [ result := self value ] 
 		on: GtExampleResult signalableExceptions
-		do: [ :anException | 
+		do: [ :anException |
+			anException freeze. 
 			result := (self newResultFor: self example) 
 				returnValue: nil;
 				exampleException: anException ].

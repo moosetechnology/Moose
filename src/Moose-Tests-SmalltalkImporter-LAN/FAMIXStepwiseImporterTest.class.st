@@ -7,6 +7,11 @@ Class {
 	#category : #'Moose-Tests-SmalltalkImporter-LAN'
 }
 
+{ #category : #accessing }
+FAMIXStepwiseImporterTest >> defaultTimeLimit [
+	^ 30 seconds
+]
+
 { #category : #tests }
 FAMIXStepwiseImporterTest >> testCheckFormalParameterIsCreated [
 	"self debug: #testCheckFormalParameterIsCreated"

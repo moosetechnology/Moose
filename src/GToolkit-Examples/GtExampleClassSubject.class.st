@@ -39,7 +39,7 @@ GtExampleClassSubject class >> fromMetaClassNamed: aString [
 		yourself
 ]
 
-{ #category : #comparing }
+{ #category : #testing }
 GtExampleClassSubject >> = anExampleSubject [
 	^ self class = anExampleSubject class
 		and: [ self theClassName = anExampleSubject theClassName ]
@@ -71,7 +71,7 @@ GtExampleClassSubject >> hasLiteralThorough: aLiteral [
 			and: [ self theClass = aLiteral ] ]
 ]
 
-{ #category : #comparing }
+{ #category : #testing }
 GtExampleClassSubject >> hash [
 	^ self class hash
 		bitXor: self theClassName hash

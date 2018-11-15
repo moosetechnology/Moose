@@ -1,7 +1,6 @@
 Extension { #name : #ZnEncodedStream }
 
-{ #category : #'*Fame-Core' }
+{ #category : #'*Fame-ImportExport' }
 ZnEncodedStream >> localName [
-
-	^ self asString
+	^ self wrappedStream localName
 ]

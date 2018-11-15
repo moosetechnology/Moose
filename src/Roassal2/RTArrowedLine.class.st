@@ -83,6 +83,11 @@ RTArrowedLine >> simple [
 	self head: RTSimpleArrowHead new
 ]
 
+{ #category : #hooks }
+RTArrowedLine >> trachelShapeClass [
+	"not used. Extremities have a dedicated trachel shape"
+]
+
 { #category : #public }
 RTArrowedLine >> trachelShapeFor: anEdge [
 	| lineTrachelShape headTrachelShape |

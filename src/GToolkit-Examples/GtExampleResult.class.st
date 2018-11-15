@@ -140,6 +140,13 @@ GtExampleResult >> returnValue: anObject [
 	returnValue := anObject
 ]
 
+{ #category : #accessing }
+GtExampleResult >> returnValueOrExampleException [
+	^ self hasException 
+		ifTrue: [ self exampleException ] 
+		ifFalse: [ self returnValue ]
+]
+
 { #category : #actions }
 GtExampleResult >> run [
 	^ self example run

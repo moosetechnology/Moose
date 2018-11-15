@@ -12,7 +12,7 @@ Class {
 
 { #category : #converters }
 GtExampleMethodIcon class >> convertFromBase64String: aString [
-	^ Form fromBinaryStream: (aString base64Decoded readStream )
+	^ Form fromBinaryStream: (Base64MimeConverter mimeDecodeToBytes: aString readStream)
 ]
 
 { #category : #converters }
