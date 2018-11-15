@@ -15,11 +15,6 @@ A RTTransitivelyHighlightable highlight all connected elements (either incoming 
 Class {
 	#name : #RTTransitivelyHighlightable,
 	#superclass : #RTHighlightable,
-	#instVars : [
-		'getConnectedElementBlock',
-		'edgeColor',
-		'getConnectedEdgesBlock'
-	],
 	#category : #'Roassal2-Interactions'
 }
 

@@ -74,6 +74,11 @@ RTDoubleArrowedLine >> simple [
 	self headEnd attachPoint inverted.
 ]
 
+{ #category : #hooks }
+RTDoubleArrowedLine >> trachelShapeClass [
+	"not used. Extremities have a dedicated trachel shape"
+]
+
 { #category : #public }
 RTDoubleArrowedLine >> trachelShapeFor: anEdge [
 	| lineTrachelShape headStartTrachelShape headEndTrachelShape |

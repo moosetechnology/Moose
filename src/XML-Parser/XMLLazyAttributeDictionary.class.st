@@ -248,7 +248,7 @@ XMLLazyAttributeDictionary >> copiedAttributeDictionary [
 
 { #category : #copying }
 XMLLazyAttributeDictionary >> copyEmpty [
-	"Squeak and GS don't have Collection>>#copyEmpty:, so it is
+	"Squeak and GS don't have Collection>>#copyEmpty, so it is
 	reimplemented for portability"
 	^ self species new
 ]

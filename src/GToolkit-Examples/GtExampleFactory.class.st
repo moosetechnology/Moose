@@ -61,10 +61,11 @@ GtExampleFactory >> defaultExampleClass [
 ]
 
 { #category : #'accessing-defaults' }
-GtExampleFactory >> defaultProviderFor: aCompiledMethod [ 
+GtExampleFactory >> defaultProviderFor: aCompiledMethod [
 	^ aCompiledMethod methodClass isMeta
-		ifTrue: [ aCompiledMethod methodClass theNonMetaClass ]
-		ifFalse: [ aCompiledMethod methodClass theNonMetaClass new " WARNING: not all classes support this -> override this using: #provider: " ] 
+		ifTrue: [ aCompiledMethod methodClass instanceSide ]
+		ifFalse:
+			[ aCompiledMethod methodClass instanceSide new	" WARNING: not all classes support this -> override this using: #provider: " ]
 ]
 
 { #category : #private }
@@ -95,13 +96,12 @@ GtExampleFactory >> exampleMethod: aCompiledMethod do: aBlock [
 
 { #category : #private }
 GtExampleFactory >> exampleMethodsDo: aBlock [
-	self sourceClass theNonMetaClass methods
+	self sourceClass instanceSide methods
 		select: [ :each | self isExampleMethod: each ]
 		thenDo: aBlock.
-	self sourceClass theMetaClass methods
+	self sourceClass classSide methods
 		select: [ :each | self isExampleMethod: each ]
-		thenDo: aBlock.
-		
+		thenDo: aBlock
 ]
 
 { #category : #private }

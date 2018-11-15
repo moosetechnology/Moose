@@ -251,12 +251,6 @@ FmxMBRelationSideTrait >> oneToOne: aRelationSide [
 ]
 
 { #category : #private }
-FmxMBRelationSideTrait >> ownerPropertyName [
-
-	^ self explicitRequirement
-]
-
-{ #category : #private }
 FmxMBRelationSideTrait >> pluralPropertyName [
 
 	self explicitRequirement

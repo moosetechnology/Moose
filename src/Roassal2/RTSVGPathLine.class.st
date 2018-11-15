@@ -51,13 +51,13 @@ RTSVGPathLine >> trachelShapeClass [
 RTSVGPathLine >> trachelShapeFor: anEdge [
 	| trachelShape |
 	trachelShape := self trachelShapeClass new.
-	trachelShape from: (attachPoint startingPointOf: anEdge) to: (attachPoint endingPointOf: anEdge).
 	self updateFor: anEdge trachelShape: trachelShape.
 	^ trachelShape
 ]
 
 { #category : #rendering }
 RTSVGPathLine >> updateFor: edge trachelShape: trachelShape [
+	trachelShape from: (attachPoint startingPointOf: edge) to: (attachPoint endingPointOf: edge).
 	trachelShape resetPath.
 	trachelShape strokePaint: (self colorFor: edge).
 	trachelShape width: (self widthFor: edge).

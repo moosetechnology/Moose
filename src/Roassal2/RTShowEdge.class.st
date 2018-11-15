@@ -45,7 +45,14 @@ RTShowEdge >> accept: aVisitor with: args [
 
 { #category : #accessing }
 RTShowEdge >> color: aColorOrABlock [
+	"Set the color of the edge to be added. The argument is a one-arg block, taking an association as argument, the key and value of the associations are model objects."
 	self shape color: aColorOrABlock
+]
+
+{ #category : #accessing }
+RTShowEdge >> colorElement: aColorOrABlock [
+	"Set the color of the edge to be added. The argument is a one-arg block, taking an association as argument, the key and value of the associations are elements."
+	self shape colorElement: aColorOrABlock
 ]
 
 { #category : #public }

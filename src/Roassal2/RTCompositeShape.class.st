@@ -98,6 +98,7 @@ RTCompositeShape >> alignRight [
 
 { #category : #'public - layout' }
 RTCompositeShape >> allOfSameSize [
+	"Make all the added shape of the same size"
 	"Can be called before or after adding the shapes
 	
 	Example:
@@ -117,6 +118,20 @@ RTCompositeShape >> allOfSameSize [
 
 { #category : #'public - layout' }
 RTCompositeShape >> allOfSameSizeWithPadding [
+	"Make all the added shape of the same size, allow for a padding"
+	
+"
+v := RTView new.
+shape := RTCompositeShape new.
+shape add: RTBox new.
+shape add: RTLabel new.
+shape allOfSameSizeWithPadding.
+labels := shape elementsOn: #('Hello' 'Gutten Morgen' 'Hola').
+v addAll: labels.
+RTVerticalLineLayout on: labels.
+RTAlignment new elements: labels; right. 
+v
+"
 	shapeFraming := #allOfSameSizeWithPadding
 ]
 

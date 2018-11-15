@@ -54,9 +54,33 @@ RTPopupTest >> test [
 ]
 
 { #category : #tests }
+RTPopupTest >> testBackgroundColor [
+
+	| v e background |
+	v := RTView new.
+	e := RTBox elementOn: 'Hello'.
+	e @ (RTPopup new backgroundColor: Color red).
+	v add: e.
+	self assert: v numberOfElements equals: 1.
+	
+	e announce: TRMouseEnter new.
+	self assert: v numberOfElements equals: 3.
+	self assert: v canvas shapes size equals: 1.
+	self assert: v canvas fixedShapes size equals: 2.
+	
+	background := v canvas fixedShapes first.
+	self assert: background class equals: TRBoxShape.
+]
+
+{ #category : #tests }
+RTPopupTest >> testBackgroundColor02 [
+	self assert: (RTPopup new backgroundColor: Color red; backgroundColor) equals: Color red
+]
+
+{ #category : #tests }
 RTPopupTest >> testBorderColor [
 
-	
+	self assert: (RTPopup new borderColor: Color red; borderColor) equals: Color red
 ]
 
 { #category : #tests }
@@ -64,6 +88,26 @@ RTPopupTest >> testHasBorder [
 
 	self deny: RTPopup new hasBorder.
 	self assert: (RTPopup new borderColor: Color black; hasBorder).
+]
+
+{ #category : #tests }
+RTPopupTest >> testNamedBackgroundGroup [
+	| v |
+	v := RTView new.
+	v addAll: (RTBox new elementsOn: (1 to: 100)).
+	v elements
+		@
+			(RTPopup new
+				namedBackground: Color black
+				group: [ :group :element | 
+					group
+						add:
+							(RTLabel new
+								color: Color red;
+								elementOn: 'x * x = ' , (element model * element model) asString);
+						yourself ]).
+	RTGridLayout on: v elements.
+	v elements do: [ :el | el announce: TRMouseEnter new ]
 ]
 
 { #category : #tests }
@@ -140,6 +184,69 @@ RTPopupTest >> testPopupView02 [
 	Smalltalk garbageCollect.
 	RTPopup removeLastPopup.
 	self assert: b view numberOfElements equals: 1.
+]
+
+{ #category : #tests }
+RTPopupTest >> testSimpleText [
+
+	| v |
+	v := RTView new.
+	v addAll: (RTBox new elementsOn: (1 to: 100)).
+
+	v elements @ (RTPopup new simpleText: [ :nb | 'hello ', nb asString ]).
+	RTGridLayout on: v elements.
+	
+	v elements do: [ :el | el announce: TRMouseEnter new ].
+	self assert: v elements size equals: 101.
+
+]
+
+{ #category : #tests }
+RTPopupTest >> testTextColor [
+
+	| v e label |
+	v := RTView new.
+	e := RTBox elementOn: 'Hello'.
+	e @ (RTPopup new textColor: Color red).
+	v add: e.
+	self assert: v numberOfElements equals: 1.
+	
+	e announce: TRMouseEnter new.
+	self assert: v numberOfElements equals: 3.
+	self assert: v canvas shapes size equals: 1.
+	self assert: v canvas fixedShapes size equals: 2.
+	
+	label := v canvas fixedShapes last.
+	self assert: label class equals: TRLabelShape.
+	self assert: label color equals: Color red.
+]
+
+{ #category : #tests }
+RTPopupTest >> testTextColor02 [
+
+	self assert: (RTPopup new textColor: Color red; textColor) equals: Color red
+]
+
+{ #category : #tests }
+RTPopupTest >> testTextHeight [
+
+	| v e |
+	v := RTView new.
+	e := RTBox elementOn: 'Hello'.
+	e @ (RTPopup new textHeight: 30).
+	v add: e.
+	
+	e announce: TRMouseEnter new.
+
+
+]
+
+{ #category : #tests }
+RTPopupTest >> testTextHeight2 [
+
+	self assert: (RTPopup new textHeight rtValue: 42) equals: RTPopup new defaultTextHeight.
+	self assert: (RTPopup new textHeight rtValue: nil) equals: RTPopup new defaultTextHeight.
+
 ]
 
 { #category : #'multi lines' }

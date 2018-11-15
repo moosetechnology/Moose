@@ -272,6 +272,9 @@ RTLegendBuilder >> renderIn: aView [
 		ifTrue: [ | els |
 			els := aView elements
 				copyWithoutAll: elementsInTheViewWithoutTheLegend.
+				
+			"We need to consider the edges as well"
+			els := els, (els flatCollect: #outgoingEdges).
 			els do: [ :e | e trachelShape setAsFixed ].
 			TRConstraint
 				stickAtTheBottomOfTheWindow: legendElement trachelShape ]

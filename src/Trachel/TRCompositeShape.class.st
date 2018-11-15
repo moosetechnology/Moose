@@ -324,6 +324,7 @@ TRCompositeShape >> pushBack [
 
 { #category : #actions }
 TRCompositeShape >> pushFront [
+	"Move the shaped object in front of other elements"
 	self shapesDo: #pushFront
 ]
 
