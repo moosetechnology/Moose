@@ -125,6 +125,7 @@ PPCompositeParserTest >> setUp [
 
 { #category : #running }
 PPCompositeParserTest >> tearDown [
+	parser := result := nil.
 	super tearDown.
-	parser := result := nil
+
 ]

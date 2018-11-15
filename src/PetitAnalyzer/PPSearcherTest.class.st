@@ -9,6 +9,7 @@ Class {
 
 { #category : #running }
 PPSearcherTest >> setUp [
+	super setUp.
 	searcher := PPSearcher new
 ]
 

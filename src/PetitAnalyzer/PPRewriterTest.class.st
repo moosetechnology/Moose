@@ -9,6 +9,7 @@ Class {
 
 { #category : #running }
 PPRewriterTest >> setUp [
+	super setUp.
 	rewriter := PPRewriter new
 ]
 
