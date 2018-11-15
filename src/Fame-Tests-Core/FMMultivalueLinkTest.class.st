@@ -62,7 +62,7 @@ FMMultivalueLinkTest >> testFM3Classes [
 
 { #category : #'running collection' }
 FMMultivalueLinkTest >> testIntersection [
-	[FM3MetaDescription new attributes intersection: #()] should not signal: Error
+	[FM3MetaDescription new attributes intersection: #()] should not raise: Error
 ]
 
 { #category : #running }
@@ -170,7 +170,7 @@ FMMultivalueLinkTest >> testPropertyPackage [
 
 { #category : #'running collection' }
 FMMultivalueLinkTest >> testUnion [
-	[FM3MetaDescription new attributes union: #()] should not signal: Error
+	[FM3MetaDescription new attributes union: #()] should not raise: Error
 ]
 
 { #category : #running }

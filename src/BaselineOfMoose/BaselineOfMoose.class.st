@@ -29,7 +29,6 @@ BaselineOfMoose >> baseline: spec [
 		self baselineMagritte3: spec.
 		self baselineHashtable: spec.
 		self baselineStateSpecs: spec.
-		self baselinePhexample: spec.
 		self baselineGhost: spec.
 		self baselineMocketry: spec.
 		self baselineFame: spec.
@@ -391,17 +390,6 @@ BaselineOfMoose >> baselineOrderPreservingDictionary: spec [
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselinePhexample: spec [ 
-    
-	spec package: 'Phexample'.
-	#(
-		 'Phexample'
-	) do: [ :packageName | 
-		spec package: packageName with: [ spec repository: (self url: #Phexample) ]]
-
-]
-
-{ #category : #baseline }
 BaselineOfMoose >> baselineRing2: spec [ 
     
 	self defineGroup: #Ring2 in: spec locatedIn: #Ring2 with: #(
@@ -491,7 +479,6 @@ BaselineOfMoose >> groups: spec [
 		'Moose-Query-Extensions'
 		'Moose-Query-Test'
 		'Moose-GenericImporter'
-		'Phexample'
 			
 		'Famix-MetamodelGeneration'
 		'Famix-Traits'
