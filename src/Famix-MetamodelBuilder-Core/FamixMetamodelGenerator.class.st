@@ -15,17 +15,16 @@ Class {
 }
 
 { #category : #accessing }
+FamixMetamodelGenerator class >> basicFamixTraits [
+
+	^ #'Famix-Traits' asPackage definedClasses.
+	
+]
+
+{ #category : #accessing }
 FamixMetamodelGenerator class >> basicMetamodelClasses [
 
-	| classes |
-	
-	classes := { Trait. 	Class. ClassDescription. Behavior. MooseModel. MooseAbstractGroup. MooseEntity. MooseGroup. FmxImportingContext. "FamixTSourceLanguage. FamixTWithSourceLanguage"} asOrderedCollection.
-	
-	classes addAll: #'Famix-Traits' asPackage definedClasses.
-	
-	^ classes
-	
-	
+	^ { Trait. 	Class. ClassDescription. Behavior. MooseModel. MooseAbstractGroup. MooseEntity. MooseGroup. FmxImportingContext. FamixTSourceLanguage. FamixTWithSourceLanguage} asOrderedCollection.
 ]
 
 { #category : #accessing }

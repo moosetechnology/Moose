@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixTestComposed2CustomEntity5,
 	#superclass : #FamixTestComposed2Entity,
-	#traits : 'TEntityMetaLevelDependency',
-	#classTraits : 'TEntityMetaLevelDependency classTrait',
+	#traits : 'TDependencyQueries + TEntityMetaLevelDependency',
+	#classTraits : 'TDependencyQueries classTrait + TEntityMetaLevelDependency classTrait',
 	#category : #'Famix-TestComposedSubmetamodel2-Entities-Entities'
 }
 
@@ -25,7 +25,7 @@ FamixTestComposed2CustomEntity5 class >> generatedSlotNames [
 { #category : #generator }
 FamixTestComposed2CustomEntity5 class >> generatedTraitNames [
 	<generated>
-	^ #(TEntityMetaLevelDependency)
+	^ #(TDependencyQueries TEntityMetaLevelDependency)
 ]
 
 { #category : #meta }

@@ -14,6 +14,19 @@ Class {
 	#category : #'Famix-BasicInfrastructure'
 }
 
+{ #category : #accessing }
+FamixBasicInfrastructureGenerator class >> basicMetamodelClasses [
+
+	| classes |
+	
+	classes := super basicMetamodelClasses.	
+	classes addAll: self basicFamixTraits.
+	
+	^ classes
+	
+	
+]
+
 { #category : #definition }
 FamixBasicInfrastructureGenerator >> defineClasses [
 
