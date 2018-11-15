@@ -20,7 +20,7 @@ MalCamelcaseScanner class >> bible [
 		allTerms
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #running }
 MalCamelcaseScanner >> onStream: input [
 
 	super onStream: input.
@@ -66,13 +66,11 @@ MalCamelcaseScanner >> xLowercaseWord [
 
 { #category : #private }
 MalCamelcaseScanner >> xUppercaseWord [
-
-	[	|peek|
-		peek := stream peek.
-		next isLetter and: [peek == nil or: [peek isLowercase not]]
-	] whileTrue: [
-		buffer nextPut: next.
-		 next := stream informationRetrievalNext ]
+	[ | peek |
+	peek := stream peek.
+	next isLetter and: [ peek isNil or: [ peek isLowercase not ] ] ]
+		whileTrue: [ buffer nextPut: next.
+			next := stream informationRetrievalNext ]
 ]
 
 { #category : #private }

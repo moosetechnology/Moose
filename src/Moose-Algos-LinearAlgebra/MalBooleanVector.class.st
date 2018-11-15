@@ -28,10 +28,9 @@ MalBooleanVector >> at: index [
 
 { #category : #accessing }
 MalBooleanVector >> at: index put: boolean [
-	
-	^boolean
-		ifTrue: [bits := bits maskSet: 1 << (index - 1)]
-		ifFalse: [bits := bits maskClear: 1 << (index - 1)]
+	^ bits := boolean
+		ifTrue: [ bits maskSet: 1 << (index - 1) ]
+		ifFalse: [ bits maskClear: 1 << (index - 1) ]
 ]
 
 { #category : #private }

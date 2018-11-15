@@ -13,17 +13,14 @@ Class {
 
 { #category : #'instance creation' }
 MalNameMapping class >> new [
-
-	^(super new)
-		initialize;
+	^ super new
 		forEquality;
 		yourself
 ]
 
 { #category : #'instance creation' }
 MalNameMapping class >> newUsing: aComparisonBlock [
-	
-	^(super new)
+	^ self new
 		initialize;
 		setComparisonBlock: aComparisonBlock;
 		yourself
@@ -32,7 +29,7 @@ MalNameMapping class >> newUsing: aComparisonBlock [
 { #category : #adding }
 MalNameMapping >> add: name [
 	
-	(self includesName: name) ifTrue: [Error raise].
+	(self includesName: name) ifTrue: [self error].
 	names addLast: name.
 	^self size
 ]
@@ -70,7 +67,7 @@ MalNameMapping >> forIdentity [
 { #category : #testing }
 MalNameMapping >> includesName: name [
 	
-	^names contains: [:each | comparisonBlock value: each value: name]
+	^names anySatisfy: [:each | comparisonBlock value: each value: name]
 ]
 
 { #category : #'initialize-release' }

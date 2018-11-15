@@ -14,7 +14,7 @@ MalEndOfStream >> defaultAction [
 	^ nil
 ]
 
-{ #category : #description }
+{ #category : #private }
 MalEndOfStream >> isResumable [
 	"EndOfStream is resumable, so ReadStream>>next can answer."
 

@@ -89,10 +89,9 @@ MalAccumulator >> accumulate: aValue [
 
 { #category : #accumulate }
 MalAccumulator >> accumulate: aValue withIndex: anIndex [
-	
 	size := size + 1.
-	^(value = (value := accumulateBlock value: value value: aValue))
-		ifFalse: [index := anIndex]
+	^ value = (value := accumulateBlock value: value value: aValue)
+		ifFalse: [ index := anIndex ]
 ]
 
 { #category : #accumulate }
@@ -164,22 +163,6 @@ MalAccumulator >> merge: anAccumulator [
 		withIndex: anAccumulator index
 ]
 
-{ #category : #printing }
-MalAccumulator >> printOn: stream [
-	
-	| method |
-	method := accumulateBlock method outerMethod.
-	stream
-		nextPutAll:
-				(method mclass == MalAccumulator class
-						ifTrue: [method selector]
-						ifFalse: ['custom']);
-		space;
-		nextPut: $=;
-		space;
-		print: value
-]
-
 { #category : #'initialize-release' }
 MalAccumulator >> resetValue: aValue [
 	
@@ -196,9 +179,8 @@ MalAccumulator >> setAccumulateBlock: aBlock [
 
 { #category : #'initialize-release' }
 MalAccumulator >> setValue: aValue [
-	
 	size := 0.
-	^value := value
+	^ value
 ]
 
 { #category : #accessing }

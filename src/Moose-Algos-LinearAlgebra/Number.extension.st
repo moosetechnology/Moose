@@ -143,42 +143,36 @@ Number class >> readSmalltalkAndCFloat: integerPart from: aStream [
 	den := 1.
 	coercionClass := Integer.
 	(aStream peekFor: $.)
-		ifTrue: [ 
-			"<integer>.<fraction>"
+		ifTrue: [ "<integer>.<fraction>"
 			(aStream atEnd not and: [ aStream peek isDigit ])
-				ifTrue: [ 
-					| atEnd |
+				ifTrue: [ | atEnd |
 					coercionClass := Float.
-					[ (atEnd := aStream atEnd) or: [ (digit := aStream next) isDigit not ] ]
-						whileFalse: [ 
-							num := num * 10 + digit digitValue.
+					[ (atEnd := aStream atEnd)
+						or: [ (digit := aStream next) isDigit not ] ]
+						whileFalse: [ num := num * 10 + digit digitValue.
 							precision := precision + 1 ].
 					den := 10 ** precision.
 					atEnd
 						ifFalse: [ aStream skip: -1 ] ]
-				ifFalse: [ 
-					"oops - just <integer>."
-					"un-gobble the period"
-					aStream skip: -1 ] ].
+				ifFalse:
+					[ "oops - just <integer>." "un-gobble the period" aStream skip: -1 ] ].
 	eChar := aStream peek.
 	eChar
 		ifNil: [ possibleCoercionClass := nil ]
-		ifNotNil: [ 
-			"SystemUtils isVW20LanguageCompatible ifTrue: [eChar := eChar asLowercase]."
+		ifNotNil:
+			[ "SystemUtils isVW20LanguageCompatible ifTrue: [eChar := eChar asLowercase]."
 			possibleCoercionClass := self chooseFloatRepresentationFor: eChar.
-			possibleCoercionClass == nil
+			possibleCoercionClass isNil
 				ifFalse: [ aStream next ] ].
 	exp := nil.
 	possibleCoercionClass == nil
-		ifFalse: [ 
-			coercionClass := possibleCoercionClass.
+		ifFalse: [ coercionClass := possibleCoercionClass.
 			endOfNumber := aStream position.
 			(aStream peekFor: $+)
 				ifTrue: [ aStream next ].
 			neg := aStream peekFor: $-.
 			((digit := aStream peek) notNil and: [ digit isDigit ])
-				ifTrue: [ 
-					exp := self readIntegerFrom: aStream radix: 10.
+				ifTrue: [ exp := self readIntegerFrom: aStream radix: 10.
 					neg
 						ifTrue: [ exp := exp negated ] ]
 				ifFalse: [ aStream position: endOfNumber ] ].

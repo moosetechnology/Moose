@@ -10,6 +10,15 @@ Class {
 	#category : #'Moose-Algos-LinearAlgebra'
 }
 
+{ #category : #private }
+MalRowMatrix class >> onRows: rowCollection [
+	| new |
+	new := self basicNew.
+	new rows: rowCollection asArray.
+	[ new checkInvariant ] assert.
+	^ new
+]
+
 { #category : #accessing }
 MalRowMatrix >> at: row and: column [
 	
@@ -68,4 +77,9 @@ MalRowMatrix >> rowSize [
 MalRowMatrix >> rows [
 	
 	^rows
+]
+
+{ #category : #accessing }
+MalRowMatrix >> rows: anObject [
+	rows := anObject
 ]

@@ -55,7 +55,7 @@ MalTermScanner >> atEnd [
 	^term isNil
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MalTermScanner >> initialize [
 	
 	buffer := String new writeStream

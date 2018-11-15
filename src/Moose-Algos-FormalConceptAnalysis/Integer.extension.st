@@ -22,8 +22,8 @@ Integer >> cardinality [
 Integer >> copyUpToPlusIndex: index [
 
 	| bit mask |
-	bit := Integer maskBit: index.
-	mask := Integer maskTrue: index - 1.
+	bit :=  self class maskBit: index.
+	mask :=  self class maskTrue: index - 1.
 	^(self bitAnd: mask) maskSet: bit
 ]
 
@@ -45,6 +45,6 @@ Integer >> upToPlusIndex: index isLargerThan: extent [
 	| mask |
 	^1 == (self bitAt: index) and: [
 		0 == (extent bitAt: index) and: [
-			mask := Integer maskTrue: index - 1.
+			mask := self class maskTrue: index - 1.
 			(self bitAnd: mask) = (extent bitAnd: mask) ]]
 ]

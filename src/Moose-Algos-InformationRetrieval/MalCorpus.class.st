@@ -20,7 +20,7 @@ MalCorpus class >> deer90 [
 	| data corpus |
 	data := #(#(#c1 'Human machine interface for Lab ABC computer applications') #(#c2 'A survey of user opinion of computer system response time') #(#c3 'The EPS user interface management system') #(#c4 'System and human system engineering testing of EPS') #(#c5 'Relation of user-perceived response time to error measurement') #(#m1 'The generation of random, binary, unordered trees') #(#m2 'The intersection graph of paths in trees') #(#m3 'Graph minors IV: Widths of trees and well-quasi-ordering') #(#m4 'Graph minors: A survey')).
 
-	corpus := MalCorpus new.
+	corpus := self new.
 	data do: [:each |
 		corpus addDocument: each first with: (MalTerms fromString: each last)].
 	^corpus
@@ -71,12 +71,10 @@ MalCorpus >> addFolder: aFoldername [
 
 { #category : #adding }
 MalCorpus >> addSimpleDocument: aSimpleDocument [
-	
 	| terms |
 	terms := MalTerms new.
-	aSimpleDocument termBag
-		valuesAndCountsDo:
-			[:value :count | terms add: value withOccurrences: count].
+	aSimpleDocument terms asBag valuesAndCounts
+		keysAndValuesDo: [ :value :count | terms add: value withOccurrences: count ].
 	self addDocument: aSimpleDocument with: terms
 ]
 
@@ -88,8 +86,7 @@ MalCorpus >> atDocument: anObject [
 
 { #category : #adding }
 MalCorpus >> atDocument: anObject add: terms [
-	
-	(documents at: anObject) addAll: terms
+	(self atDocument: anObject) addAll: terms
 ]
 
 { #category : #enumerating }
@@ -109,7 +106,7 @@ MalCorpus >> documents [
 	^documents keys
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MalCorpus >> initialize [
 	
 	documents := Dictionary new

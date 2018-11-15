@@ -54,7 +54,7 @@ MalFCAElement >> setBit: crossingElement [
 	bits := bits maskSet: crossingElement mask
 ]
 
-{ #category : #accessing }
+{ #category : #evaluating }
 MalFCAElement >> value [
 	
 	^value

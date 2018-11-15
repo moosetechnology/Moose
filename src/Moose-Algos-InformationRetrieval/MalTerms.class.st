@@ -45,13 +45,10 @@ MalTerms class >> fromFile: aFile [
 
 { #category : #'instance creation' }
 MalTerms class >> fromString: aString [
-
 	| scanner |
-	scanner := (MalTermScanner new)	..
-	scanner onString: aString.	
-	^ scanner allTerms.
-			
-		
+	scanner := MalTermScanner new.
+	scanner onString: aString.
+	^ scanner allTerms
 ]
 
 { #category : #examples }
@@ -101,15 +98,14 @@ MalTerms >> distinctSize [
 
 { #category : #accessing }
 MalTerms >> fastSize [
-	
-	^size ifNil: [size := super size]
+	^ size ifNil: [ size := self size ]
 ]
 
 { #category : #converting }
 MalTerms >> normalized [
 	
 	| newTerms sum length |
-	newTerms := MalTerms new: contents size.
+	newTerms := self class new: contents size.
 	sum := 0.
 	contents do: [:count | sum := sum + (count * count)].
 	length := sum sqrt.
@@ -136,7 +132,7 @@ MalTerms >> removeHapaxes [
 MalTerms >> removeRareTerms: occurrence [
 	
 	| newTerms |
-	newTerms := MalTerms new: contents capacity.
+	newTerms := self class new: contents capacity.
 	self withCountDo: [:term :count | 
 		count > occurrence
 			ifTrue: [newTerms add: (MalStemmer stem: term) withOccurrences: count]].
@@ -145,8 +141,7 @@ MalTerms >> removeRareTerms: occurrence [
 
 { #category : #removing }
 MalTerms >> removeStopwords [
-
-	^self removeStopwords:  MalStopwords English
+	^ self removeStopwords: MalStopwords English
 ]
 
 { #category : #removing }
@@ -160,7 +155,7 @@ MalTerms >> removeStopwords: stopwords [
 MalTerms >> stemAll [
 	
 	| newTerms |
-	newTerms := MalTerms new: contents capacity.
+	newTerms := self class new: contents capacity.
 	self
 		withCountDo:
 			[:term :count | 

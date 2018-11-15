@@ -106,25 +106,6 @@ Collection >> selectAsSet: aBlock [
 ]
 
 { #category : #'*CollectionExtensions' }
-Collection >> shuffle [
-	"Swaps the receiver's elements at random."
-
-	self shuffle: (self size * self size log) asInteger
-]
-
-{ #category : #'*CollectionExtensions' }
-Collection >> shuffle: times [
-	"Swaps random elements of the receiver."
-
-	| size random |
-	size := self size.
-	random := Random new.
-	times timesRepeat: [ 
-		self swap: (random next * size) floor + 1 with: (random next * size) floor + 1 
-	].
-]
-
-{ #category : #'*CollectionExtensions' }
 Collection >> sortAscending: aBlockWithOneArgument [
 	^ self sorted: [ :x :y |
 		(aBlockWithOneArgument value: x) < (aBlockWithOneArgument value: y) ]

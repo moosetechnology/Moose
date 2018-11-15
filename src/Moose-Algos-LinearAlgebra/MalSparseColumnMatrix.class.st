@@ -7,18 +7,6 @@ Class {
 	#category : #'Moose-Algos-LinearAlgebra'
 }
 
-{ #category : #'instance creation' }
-MalSparseColumnMatrix class >> onColumns: columnCollection [
-	
-	| new |
-	new := self basicNew.
-	new
-		instVarNamed: 'columns'
-		put: columnCollection asArray.
-	[new checkInvariant] assert.
-	^new
-]
-
 { #category : #private }
 MalSparseColumnMatrix class >> vectorSpecies [
 	

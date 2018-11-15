@@ -12,17 +12,8 @@ Class {
 }
 
 { #category : #'instance creation' }
-MalNumberMapping class >> new [
-	
-	^(super new)
-		initialize;
-		yourself
-]
-
-{ #category : #'instance creation' }
 MalNumberMapping class >> new: aSize [
-	
-	^(super new)
+	^ self new
 		setSize: aSize;
 		yourself
 ]
@@ -39,7 +30,7 @@ MalNumberMapping >> add: index [
 	
 	index > self lastIndex
 		ifTrue: [forth changeSizeTo: index]
-		ifFalse: [(self includesIndex: index) ifTrue: [Error raiseRequest]].
+		ifFalse: [(self includesIndex: index) ifTrue: [self error]].
 	back add: index.
 	forth
 		at: index

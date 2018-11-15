@@ -15,7 +15,7 @@ Class {
 { #category : #'instance creation' }
 MalMatrixPath class >> column: columnIndex on: matrix [
 	
-	^(super new: matrix rowSize)
+	^(self new: matrix rowSize)
 		setMatrix: matrix;
 		setMapBlock: [:index | index @ columnIndex];
 		yourself
@@ -25,7 +25,7 @@ MalMatrixPath class >> column: columnIndex on: matrix [
 MalMatrixPath class >> diagonalOn: matrix [
 	
 	[matrix isSquare] assert.
-	^(super new: matrix columnSize)
+	^(self new: matrix columnSize)
 		setMatrix: matrix;
 		setMapBlock: [:index | index @ index];
 		yourself
@@ -34,7 +34,7 @@ MalMatrixPath class >> diagonalOn: matrix [
 { #category : #'instance creation' }
 MalMatrixPath class >> row: rowIndex on: matrix [
 	
-	^(super new: matrix columnSize)
+	^(self new: matrix columnSize)
 		setMatrix: matrix;
 		setMapBlock: [:index | rowIndex @ index];
 		yourself

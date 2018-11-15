@@ -11,19 +11,19 @@ Class {
 	#category : #'Moose-Algos-LinearAlgebra'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 MalUnlimited class >> negative [
 
 	^Negative ifNil: [Negative := super new initializeWith: false]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 MalUnlimited class >> new [
 
 	^self positive
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 MalUnlimited class >> positive [
 
 	^Positive ifNil: [Positive := super new initializeWith: true ]
@@ -42,19 +42,16 @@ MalUnlimited >> = aMagnitude [
 	^self == aMagnitude
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #converting }
 MalUnlimited >> adaptToNumber: rcvr andSend: selector [
-
-	selector = #< ifTrue:[
-		self positive 
-		ifTrue: [ ^ true ]
-		ifFalse: [ ^false ].
-		].
-	selector = #> ifTrue: [
-		self positive 
-		ifTrue: [ ^ false ]
-		ifFalse: [ ^true ].
-		].
+	selector = #<
+		ifTrue: [ self positive
+				ifTrue: [ ^ true ]
+				ifFalse: [ ^ false ] ].
+	selector = #>
+		ifTrue: [ self positive
+				ifTrue: [ ^ false ]
+				ifFalse: [ ^ true ] ]
 ]
 
 { #category : #comparing }
@@ -65,14 +62,14 @@ MalUnlimited >> hash [
 		ifFalse: [ 16rBFFF ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 MalUnlimited >> initializeWith: isPositive [
 
 	positive := isPositive.
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #arithmetic }
 MalUnlimited >> negated [
 
 	^self positive 
@@ -80,13 +77,13 @@ MalUnlimited >> negated [
 		ifFalse: [ self class positive ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 MalUnlimited >> negative [
 
 	^positive not
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 MalUnlimited >> positive [
 
 	^positive

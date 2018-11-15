@@ -42,27 +42,12 @@ MalMatrix class >> new: numberOrPoint withAll: value [
 
 { #category : #'instance creation' }
 MalMatrix class >> readFromDenseText: aStream [
-	
-	| m n matrix tmp |
+	| m n matrix |
 	m := Integer readFrom: aStream skipSeparators.
 	n := Integer readFrom: aStream skipSeparators.
 	matrix := self rows: m columns: n.
-	1
-		to: m
-		do:
-			[:row | 
-			1
-				to: n
-				do:
-					[:column | 
-					matrix
-						at: row
-						and: column
-						"put: (tmp := (Number readSmalltalkAndCSyntaxFrom: aStream skipSeparators))."
-						put: (tmp := (Number readFrom: aStream skipSeparators)).
-						
-						]].
-	^matrix
+	1 to: m do: [ :row | 1 to: n do: [ :column | matrix at: row and: column put: (Number readFrom: aStream skipSeparators) ] ].
+	^ matrix
 ]
 
 { #category : #'instance creation' }
@@ -110,18 +95,13 @@ MalMatrix class >> rows: m columns: n withAll: value [
 
 { #category : #private }
 MalMatrix class >> switch: anObject caseMatrix: matrixBlock caseNestedCollection: nestedColletionBlock caseCollection: collectionBlock default: defaultBlock [
+	(anObject isKindOf: MalMatrix) ifTrue: [ ^ matrixBlock value ].
 	
-	(anObject isKindOf: MalMatrix) ifTrue: [^matrixBlock value].
-	(anObject isKindOf: Collection)
-		ifTrue:
-			[(anObject isEmpty not
-				and:
-					[anObject
-						allSatisfy:
-							[:each | (each isKindOf: Collection) and: [each size = anObject first size]]])
-				ifTrue: [^nestedColletionBlock value]
-				ifFalse: [^collectionBlock value]].
-	^defaultBlock value
+	anObject isCollection
+		ifTrue: [ (anObject isNotEmpty and: [ anObject allSatisfy: [ :each | each isCollection and: [ each size = anObject first size ] ] ])
+				ifTrue: [ ^ nestedColletionBlock value ]
+				ifFalse: [ ^ collectionBlock value ] ].
+	^ defaultBlock value
 ]
 
 { #category : #'constants access' }
@@ -375,7 +355,7 @@ MalMatrix >> atAllPut: object [
 						ifTrue:
 							[[object first size = self rowSize] assert.
 							self putWithIndices: [:row :column | (object at: column) at: row]]
-						ifFalse: [Error raise]]]
+						ifFalse: [self error]]]
 		caseCollection:
 			[| stream |
 			[object size = (self rowSize * self columnSize)] assert.
@@ -717,20 +697,18 @@ MalMatrix >> last [
 
 { #category : #private }
 MalMatrix >> noMatchError [
-	
-	Error raise
+	self error: 'No match'
 ]
 
 { #category : #private }
 MalMatrix >> noModificationError [
-	
-	Error raise
+	self error: 'No modification'
 ]
 
 { #category : #printing }
 MalMatrix >> printOn: aStream [
 	"Append to the argument aStream a sequence of characters that identifies the matrix."
-	
+
 	| tooMany |
 	tooMany := aStream position + 5000.
 	aStream
@@ -740,20 +718,19 @@ MalMatrix >> printOn: aStream [
 		space;
 		nextPut: $(.
 	(1 to: self rowSize)
-		do:
-			[:row | 
+		do: [ :row | 
 			aStream nextPut: $(.
 			(1 to: self columnSize)
-				do:
-					[:column | 
+				do: [ :column | 
 					aStream position > tooMany
-						ifTrue:
-							[aStream nextPutAll: (#etc << #dialogs >> '...etc...') asString , '))'.
-							^self].
-					aStream print: (self at: row and: column)]
-				separatedBy: [aStream space].
-			aStream nextPut: $)]
-		separatedBy: [aStream space].
+						ifTrue: [ aStream
+								nextPutAll: (#etc << #dialogs >> '...etc...') asString;
+								nextPutAll: '))'.
+							^ self ].
+					aStream print: (self at: row and: column) ]
+				separatedBy: [ aStream space ].
+			aStream nextPut: $) ]
+		separatedBy: [ aStream space ].
 	aStream nextPut: $)
 ]
 

@@ -114,35 +114,27 @@ MalPorterStemmer >> step1a [
 
 { #category : #'private-algorithm' }
 MalPorterStemmer >> step1b [
-	"comment stating purpose of message"
-	
 	(self endsWith: 'eed')
-		ifTrue:
-			[cursor >= r1 ifTrue: [self setSuffix: 'ee'].
-			^nil].
-	(((self endsWith: 'ed') or: [self endsWith: 'ing'])
-		and: [self stemIncludesVowel])
-		ifTrue:
-			[self removeSuffix.
-			#(#(#at #ate) #(#bl #ble) #(#iz #ize))
-				do:
-					[:rule | 
-					(self endsWith: rule first)
-						ifTrue:
-							[self setSuffix: rule last.
-							^nil]].
-			cursor := string size.
-			(self stemEndsWithDoubleConsonant
-				and:
-					[(string at: cursor) ~~ $s
-						and: [(string at: cursor) ~~ $z and: [(string at: cursor) ~~ $l]]])
-				ifTrue:
-					[string := string
-						copyFrom: 1
-						to: string size - 1.
-					^nil].
-			(cursor = r1 and: [self stemEndsWithConsonantVowelConsonant])
-				ifTrue: [self setSuffix: 'e']]
+		ifTrue: [ cursor >= r1
+				ifTrue: [ self setSuffix: 'ee' ].
+			^ nil ].
+	(((self endsWith: 'ed') or: [ self endsWith: 'ing' ])
+		and: [ self stemIncludesVowel ])
+		ifFalse: [ ^ self ].
+	self removeSuffix.
+	#(#(#at #ate) #(#bl #ble) #(#iz #ize))
+		do: [ :rule | 
+			(self endsWith: rule first)
+				ifTrue: [ self setSuffix: rule last.
+					^ nil ] ].
+	cursor := string size.
+	(self stemEndsWithDoubleConsonant
+		and: [ (string at: cursor) ~~ $s
+				and: [ (string at: cursor) ~~ $z and: [ (string at: cursor) ~~ $l ] ] ])
+		ifTrue: [ string := string copyFrom: 1 to: string size - 1.
+			^ nil ].
+	(cursor = r1 and: [ self stemEndsWithConsonantVowelConsonant ])
+		ifTrue: [ self setSuffix: 'e' ]
 ]
 
 { #category : #'private-algorithm' }
@@ -186,37 +178,31 @@ MalPorterStemmer >> step4 [
 	#(#ement #ance #ence #able #ible #ment)
 		do: [ :rule | 
 			(self endsWith: rule)
-				ifTrue: [ 
-					cursor >= r2
+				ifTrue: [ cursor >= r2
 						ifTrue: [ self removeSuffix ].
 					^ nil ] ].
 	((self endsWith: 'ion') and: [ cursor >= r2 ])
-		ifTrue: [ 
-			((string at: cursor) == $s or: [ (string at: cursor) == $t ])
-				ifTrue: [ 
-					self removeSuffix.
+		ifTrue: [ (#($s $t) anySatisfy: [ :each | (string at: cursor) = each ])
+				ifTrue: [ self removeSuffix.
 					^ nil ] ].
 	#(#ant #ent #ism #ate #iti #ous #ive #ize #al #er #ic #ou)
 		do: [ :rule | 
 			(self endsWith: rule)
-				ifTrue: [ 
-					cursor >= r2
+				ifTrue: [ cursor >= r2
 						ifTrue: [ self removeSuffix ].
 					^ nil ] ]
 ]
 
 { #category : #'private-algorithm' }
 MalPorterStemmer >> step5a [
-	
 	cursor := string size - 1.
 	(string last == $e
-		and:
-			[string size > r2
-				or:
-					[string size > r1 and: [self stemEndsWithConsonantVowelConsonant not]]])
-		ifTrue:
-			[self removeSuffix.
-			^nil]
+		and: [ string size > r2
+				or: [ string size > r1
+						and: [ self stemEndsWithConsonantVowelConsonant not ] ] ])
+		ifFalse: [ ^ self ].
+	self removeSuffix.
+	^ nil
 ]
 
 { #category : #'private-algorithm' }

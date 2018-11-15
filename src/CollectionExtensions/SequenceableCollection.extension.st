@@ -99,6 +99,12 @@ SequenceableCollection >> runsSatisfying: testBlock do: enumerationBlock [
 ]
 
 { #category : #'*CollectionExtensions' }
+SequenceableCollection >> shuffle: times [
+	self deprecated: 'Use #shuffleBy: that is includes in Pharo by default.' transformWith: '`@receiver shuffle: `@statements' -> '`@receiver shuffleBy: `@statements'.
+	self shuffleBy: times
+]
+
+{ #category : #'*CollectionExtensions' }
 SequenceableCollection >> sliceFrom: startIndex [
 
 	"Answers a copy of a subset of the receiver, starting from element at start index 
