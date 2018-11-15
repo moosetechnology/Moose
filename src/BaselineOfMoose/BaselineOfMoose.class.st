@@ -34,8 +34,8 @@ BaselineOfMoose >> baseline: spec [
 		self baselineRing2: spec.
 		
 		spec
-			package: 'Moose-Core';
 			package: 'Moose-Query';
+			package: 'Moose-Core';
 			package: 'Moose-Query-Extensions';
 			package: 'Famix-MetamodelBuilder-Core';
 			package: 'Famix-MetamodelBuilder-Tests';
@@ -402,8 +402,8 @@ BaselineOfMoose >> groups: spec [
 		'Fame'
 		'DeepTraverser-Base'
 
-		'Moose-Query'
 		'Moose-Core'
+		'Moose-Query'
 			
 		'Famix-BasicInfrastructure'
 		'Famix-Support'

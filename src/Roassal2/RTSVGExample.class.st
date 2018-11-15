@@ -905,8 +905,8 @@ wR/8IPhB8Ac/CH4Q/MEPgh8Ef/CD4AfBH/wg+CMv/wPUXzVRy2qRJgAAAABJRU5ErkJggg=='
 
 { #category : #basic }
 RTSVGExample >> theWorld [
-	<gtExample>
-	<iconSelectorBase64: #theWorldIcon>
+"	<gtExample>
+	<iconSelectorBase64: #theWorldIcon>"
 	
 	"
 	self new theWorld

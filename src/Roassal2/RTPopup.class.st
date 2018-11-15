@@ -59,7 +59,8 @@ Class {
 		'alphaPopupBackground',
 		'backgroundColor',
 		'borderColor',
-		'hasBorder'
+		'hasBorder',
+		'textHeight'
 	],
 	#category : #'Roassal2-Interactions'
 }
@@ -130,6 +131,18 @@ RTPopup >> backgroundColor [
 
 { #category : #accessing }
 RTPopup >> backgroundColor: aColor [
+	"Set the color background of the popup.
+For example
+
+v := RTView new.
+v addAll: (RTBox new elementsOn: (1 to: 100)).
+
+v elements @ (RTPopup new backgroundColor: Color green).
+RTGridLayout on: v elements.
+v elements do: [ :el | el announce: TRMouseEnter new ].
+v
+	
+	"
 	backgroundColor := aColor
 ]
 
@@ -192,6 +205,12 @@ RTPopup >> createElementFor: element [
 ]
 
 { #category : #initialization }
+RTPopup >> defaultTextHeight [
+	"size of popup"
+	^ 9
+]
+
+{ #category : #initialization }
 RTPopup >> getNewPopupFor: element [
 	| popupGroup |
 	popupGroup := self createPopupFor: element.
@@ -218,10 +237,11 @@ RTPopup >> initialize [
 	super initialize.
 	self text: #yourself.
 	textColor := Color black.
-	alphaPopupBackground := 0.4.
-	backgroundColor := Color gray alpha: 0.8.
+	alphaPopupBackground := 0.9.
+	backgroundColor := Color gray.
 	borderColor := Color gray alpha: 0.5.
-	hasBorder := false
+	hasBorder := false.
+	self textHeight: [ :x | self defaultTextHeight ]
 ]
 
 { #category : #public }
@@ -248,11 +268,34 @@ RTPopup >> named: aOneArgBlock background: aColor group: aTwoArgBlock [
 RTPopup >> namedBackground: aColor group: aTwoArgBlock [
 	"aTwoArgBlock has to follow the pattern [ :group :element |  ... ]
 	group is an empty group. You need to add what you want to be displayed in the popup. el is the element on which the mouse is above."
+
+"
+v := RTView new.
+v addAll: (RTBox new elementsOn: (1 to: 100)).
+
+v elements @ (RTPopup new namedBackground: Color black group: [:group :element | group add: (RTLabel new color: Color red; elementOn: 'x * x = ', (element model * element model) asString); yourself ]).
+RTGridLayout on: v elements.
+v elements do: [ :el | el announce: TRMouseEnter new ].
+
+	v
+"
+
 	^ self named: #yourself background: aColor group: aTwoArgBlock
 ]
 
 { #category : #public }
 RTPopup >> simpleText: aOneArgBlock [
+	"Define a simple textual popup, without background"
+	
+"For example:
+
+v := RTView new.
+v addAll: (RTBox new elementsOn: (1 to: 100)).
+
+v elements @ (RTPopup new simpleText: [ :nb | 'hello ', nb asString ]).
+RTGridLayout on: v elements.
+v
+"
 	self group: [ :group :element | 
 		group add: 
 			(RTLabel new 
@@ -311,10 +354,21 @@ RTPopup >> textElement: aOneArgBlock [
 		
 		lbl := (RTLabel new 
 				color: textColor;
-				height: [:x | 9];
+				height: textHeight;
 				text: (aOneArgBlock rtValue: element) asString) element.
 		RTNest new centerOn: backRectangle elements: (Array with: lbl).
 		group add: backRectangle; add: lbl
 		] 
 
+]
+
+{ #category : #accessing }
+RTPopup >> textHeight [
+	^ textHeight
+]
+
+{ #category : #accessing }
+RTPopup >> textHeight: numberOrSymbolOrBlock [
+	"Set the height, in pixel, of the text displayed in the popup"
+	textHeight := numberOrSymbolOrBlock
 ]

@@ -29,7 +29,8 @@ Class {
 		'shouldNotBeUsedInLayout',
 		'createdEdges',
 		'viewHasBeenManuallySet',
-		'actions'
+		'actions',
+		'beDirectional'
 	],
 	#category : #'Roassal2-Builder-Common'
 }
@@ -37,6 +38,12 @@ Class {
 { #category : #'public repetition' }
 RTEdgeBuilder >> allowRepetition [
 	allowRepetition := true
+]
+
+{ #category : #'public - configuration' }
+RTEdgeBuilder >> beDirectional [
+	"When edges are created, this allow for having edges going from A to B, and from B to A"
+	beDirectional := true
 ]
 
 { #category : #public }
@@ -114,6 +121,7 @@ RTEdgeBuilder >> connectToAll: aBlockOrASymbol [
 
 { #category : #'private - utility' }
 RTEdgeBuilder >> createEdgeIfNecessaryFrom: fromElement to: toElement [
+	"This is a private method. Create, if necessary, an edge between two elements"
 	(self shouldCreateEdgeFrom: fromElement to: toElement)
 		ifTrue: [ createdEdges add: (self edgeFrom: fromElement to: toElement) ]
 ]
@@ -194,7 +202,17 @@ RTEdgeBuilder >> initialize [
 	"The view has to be explicitely set by the end-user"
 	viewHasBeenManuallySet := false.
 	
-	actions := OrderedCollection new
+	actions := OrderedCollection new.
+	
+	"We could have edges from A to B, and from B to A"
+	self beDirectional
+]
+
+{ #category : #testing }
+RTEdgeBuilder >> isBidirectional [
+	"Return true or false, indicating whether the edge builder is bidirectional or not (i.e., if 
+	edges from A to B, __and__ B to A can be created"
+	^ beDirectional 
 ]
 
 { #category : #accessing }
@@ -318,7 +336,13 @@ RTEdgeBuilder >> moveBehindIfNecessary: someEdges [
 	someEdges pushBack
 ]
 
-{ #category : #initialization }
+{ #category : #'public - configuration' }
+RTEdgeBuilder >> noBidirectional [
+	"When edges are created, this does not allow for having edges going from A to B, and from B to A. Only A to B, __OR__, B to A is created"
+	beDirectional := false
+]
+
+{ #category : #'public - configuration' }
 RTEdgeBuilder >> noRepetition [
 	"
 	Avoid having more than one edge between two elements
@@ -338,6 +362,25 @@ RTEdgeBuilder >> noRepetition [
 
 { #category : #'public - configuration' }
 RTEdgeBuilder >> notUseInLayout [
+	"Indicate that the edges should not be used in the layout.
+The following example shows that the layout is driven only by the red lines, and not the blue ones:
+
+b := RTMondrian new.
+b nodes: RTShape withAllSubclasses.
+
+b shape line color: Color red trans.
+b edges connectFrom: #superclass.
+
+b shape line color: Color blue trans.
+b edges
+	notUseInLayout;
+	connectToAll: #dependentClasses.
+
+b layout tree.
+b
+
+	
+	"
 	shouldNotBeUsedInLayout := false
 ]
 
@@ -374,6 +417,7 @@ RTEdgeBuilder >> shouldCreateEdgeFrom: fromElement to: toElement [
 	"Return true if an edge has to be created"
 	fromElement == toElement ifTrue: [ ^ false ].
 	(fromElement isNil or: [ toElement isNil ]) ifTrue: [ ^ false ].
+	beDirectional ifFalse: [ ^ (toElement isDirectlyConnectedTo: fromElement) not ].
 	allowRepetition ifFalse: [ ^ fromElement outgoingEdges noneSatisfy: [ :edge | edge to == toElement ] ].
 	^ true
 ]

@@ -103,7 +103,7 @@ RTSVGVisitor2Test >> testVisitArrowShape [
 		{type: "box", id: "1", w: 5, h: 5, color: {r:223,g:223,b:223}, ints: [], matrix:{shx: 0,shy: 0,sx: 1,sy: 1,x: 0,y: 0}}, 
 		{id: "2", type:"multi", shapes:[
 		{type: "line", id: "3",fromid:''0'',toid:''1'',color: {r:223,g:223,b:223},  width: 1,ap: new RTCenteredAttachPoint(false)},
-		{type: "simplearrow", id: "4", fromid: ''0'', toid: ''1'',color: {r:223,g:223,b:223},  width: 1, size: 10,ap: new RTCenteredAttachPoint(false), base: 10},], offsets: [{x: 0, y: 0},{x: 0, y: 0},]},
+		{type: "simplearrow", id: "4", fromid: ''0'', toid: ''1'',color: {r:223,g:223,b:223},  width: 1, size: 10, percentage: 1,ap: new RTCenteredAttachPoint(false), base: 10},], offsets: [{x: 0, y: 0},{x: 0, y: 0},]},
 	];
 	mamani.addShapes(shapes);
 '

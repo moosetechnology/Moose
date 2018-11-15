@@ -25,6 +25,7 @@ RTCubeHelix class >> hueShift: hueShift rotations: rotations saturation: saturat
 { #category : #'class initialization' }
 RTCubeHelix class >> initialize [
 	" self initialize "
+	TRPlatform current ifNil: [ ^ self ].
 	Coefficients := TRPlatform current matrixClass rows: 3 columns: 2 contents: #(
 		-0.14861	1.78277
 		-0.29227	-0.90649

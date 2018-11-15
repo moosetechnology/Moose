@@ -111,7 +111,7 @@ RTShapedObject >> pushBack [
 
 { #category : #actions }
 RTShapedObject >> pushFront [
-	"Move the shaped object front"
+	"Move the shaped object in front of other elements"
 	self trachelShape pushFront
 ]
 

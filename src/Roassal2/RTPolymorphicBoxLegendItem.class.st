@@ -55,8 +55,6 @@ RTPolymorphicBoxLegendItem >> execute [
 	g add: boxDescriptionLabel.
 	RTConstraint move: boxDescriptionLabel onTheRightOf: box.
 	
-	
-
 	TRConstraint move: widthDescriptionElement between: ext1 and: ext2.
 	widthDescriptionElement translateBy: 0 @ (widthDescriptionElement extent y / -2 - 3).
 	ext1 := lineExtremityShape element.

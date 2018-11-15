@@ -196,3 +196,84 @@ RTPalette class >> c9 [
 		with: (Color r: 152 g: 201 b: 163 range: 255)
 		with: (Color r: 119 g: 191 b: 163 range: 255)
 ]
+
+{ #category : #'from Stephen Few' }
+RTPalette class >> darkBright [
+	"Palette from Stephen Few, from Show me your numbers book"
+	
+	"
+	b := RTMondrian new.
+	b shape box width: 80; height: 30; color: #yourself.
+	b nodes: RTPalette darkBright.
+	b layout verticalLine; gapSize: 0.
+	b
+	"
+	
+	| r |
+	r := OrderedCollection new.
+	r add: (Color red: 0 green: 0 blue: 0).
+	r add: (Color red: 38 green: 93 blue: 171).
+	r add: (Color red: 223 green: 92 blue: 36).
+	r add: (Color red: 5 green: 151 blue: 72).
+	r add: (Color red: 229 green: 18 blue: 111).
+	r add: (Color red: 157 green: 114 blue: 42).
+	r add: (Color red: 123 green: 58 blue: 150).
+	r add: (Color red: 199 green: 180 blue: 46).
+	r add: (Color red: 203 green: 32 blue: 39).
+	^ r asArray
+
+]
+
+{ #category : #'from Stephen Few' }
+RTPalette class >> light [
+	"Palette from Stephen Few, from Show me your numbers book"
+	
+	"
+	b := RTMondrian new.
+	b shape box width: 80; height: 30; color: #yourself.
+	b nodes: RTPalette light.
+	b layout verticalLine; gapSize: 0.
+	b
+	"
+	
+	| r |
+	r := OrderedCollection new.
+	r add: (Color red: 140 green: 140 blue: 140).
+	r add: (Color red: 136 green: 189 blue: 230).
+	r add: (Color red: 251 green: 178 blue: 88).
+	r add: (Color red: 144 green: 205 blue: 151).
+	r add: (Color red: 246 green: 170 blue: 201).
+	r add: (Color red: 191 green: 165 blue: 84).
+	r add: (Color red: 188 green: 153 blue: 199).
+	r add: (Color red: 237 green: 221 blue: 70).
+	r add: (Color red: 240 green: 126 blue: 110).
+	^ r asArray
+
+]
+
+{ #category : #'from Stephen Few' }
+RTPalette class >> medium [
+	"Palette from Stephen Few, from Show me your numbers book"
+	
+	"
+	b := RTMondrian new.
+	b shape box width: 80; height: 30; color: #yourself.
+	b nodes: RTPalette medium.
+	b layout verticalLine; gapSize: 0.
+	b
+	"
+	
+	| r |
+	r := OrderedCollection new.
+	r add: (Color red: 77 green: 77 blue: 77).
+	r add: (Color red: 93 green: 165 blue: 218).
+	r add: (Color red: 250 green: 164 blue: 58).
+	r add: (Color red: 96 green: 189 blue: 104).
+	r add: (Color red: 241 green: 124 blue: 176).
+	r add: (Color red: 178 green: 145 blue: 47).
+	r add: (Color red: 178 green: 118 blue: 178).
+	r add: (Color red: 222 green: 207 blue: 63).
+	r add: (Color red: 241 green: 88 blue: 84).
+	^ r asArray
+
+]

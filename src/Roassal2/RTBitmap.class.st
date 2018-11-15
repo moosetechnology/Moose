@@ -18,6 +18,16 @@ Here is an example:
 
 	v open
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+Another example:
+=-=-=-=
+	| v s |
+	v := RTView new.
+	s := RTBitmap new.
+	s form: RTIcon roassal.
+	v add: s element.
+	^ v
+-=-=--=
 "
 Class {
 	#name : #RTBitmap,

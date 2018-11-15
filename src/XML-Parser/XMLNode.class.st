@@ -74,8 +74,10 @@ XMLNode >> ancestorNodesDo: aBlock [
 
 { #category : #converting }
 XMLNode >> asString [
-	"don't assume Object>>#asString is defined, for portability"
-	^ self printString
+	"Returns the full, untruncated XML source string, unlike #printString,
+	which may truncate long printed representations"
+	
+	^ String streamContents: [:stream | self printOn: stream]
 ]
 
 { #category : #testing }

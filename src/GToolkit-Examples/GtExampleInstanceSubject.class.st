@@ -17,7 +17,7 @@ GtExampleInstanceSubject class >> fromObject: anObject [
 		yourself
 ]
 
-{ #category : #comparing }
+{ #category : #testing }
 GtExampleInstanceSubject >> = anExampleSubject [
 	^ self class = anExampleSubject class
 		and: [ self instance = anExampleSubject instance ]
@@ -42,7 +42,7 @@ GtExampleInstanceSubject >> hasLiteralThorough: aLiteral [
 				or: [ 	method hasLiteralThorough: aLiteral ] ] ]
 ]
 
-{ #category : #comparing }
+{ #category : #testing }
 GtExampleInstanceSubject >> hash [
 	^ self class hash
 		bitXor: self instance hash

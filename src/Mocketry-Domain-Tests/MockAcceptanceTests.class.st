@@ -683,6 +683,20 @@ MockAcceptanceTests >> testStubbingRealObjectShouldRespectPerform [
 ]
 
 { #category : #tests }
+MockAcceptanceTests >> testStubbingRealObjectShouldReturnRealClass [
+
+	| object actual |
+	object := 0@0.
+	object stub.
+
+	actual := object class.
+	actual should be: Point.
+	self assert: (object isKindOf: Point).
+	object should beInstanceOf: Point.
+	object should beKindOf: Point.
+]
+
+{ #category : #tests }
 MockAcceptanceTests >> testSyncMessageExpectation [
 
 	| raised |
@@ -1254,4 +1268,19 @@ MockAcceptanceTests >> testWillReturnReceiverFromMessage [
 	actual := mock someMessage.
 	
 	actual should be: mock
+]
+
+{ #category : #tests }
+MockAcceptanceTests >> testWillStubRealResult [
+
+	| actual rect |
+	rect := 0@0 corner: 2@4.
+	rect stub center willStubRealResult.
+	
+	actual := rect center.
+	actual hasGHMutation should be: true.
+	actual should equal: 1@2.
+	
+	(Instance of: Point) stub angle willReturn: #constAngle.
+	actual angle should be: #constAngle
 ]

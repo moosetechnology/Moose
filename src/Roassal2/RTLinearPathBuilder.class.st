@@ -7,7 +7,7 @@ Class {
 	#category : #'Roassal2-Experimental'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #public }
 RTLinearPathBuilder >> interpolate: points [
 	| first str point |
 	first := true.

@@ -95,6 +95,46 @@ RTInteractionBuilder >> highlightColored: aColorOrAOneArgBlockOrSymbol [
 ]
 
 { #category : #'public - events-registering' }
+RTInteractionBuilder >> highlightEdges: aBlock [
+	"Highlight the elements for which the model is given by 'aBlock rtValue: element model', where 'element' is the current element
+	
+	aBlock takes as input an object and return a collection of objects.
+	"
+	
+	"
+	Example:
+b := RTMondrian new.
+b interaction highlightEdges: [ :v | Array with: v - 1 with: v with: v + 1 ].
+b nodes: (1 to: 11).
+b layout grid.
+b edges connectToAll: [ :v | Array with: v - 1 with: v with: v + 1 ].
+b 
+	
+	"
+	interactions add: [ :element | element @ (RTHighlightable new shouldHighlightEdges; edgeColor: Color red) ]
+]
+
+{ #category : #'public - events-registering' }
+RTInteractionBuilder >> highlightEdges: aBlock color: aColor [
+	"Highlight the elements for which the model is given by 'aBlock rtValue: element model', where 'element' is the current element
+	
+	aBlock takes as input an object and return a collection of objects.
+	"
+	
+	"
+	Example:
+b := RTMondrian new.
+b interaction highlightEdges: [ :v | Array with: v - 1 with: v with: v + 1 ].
+b nodes: (1 to: 11).
+b layout grid.
+b edges connectToAll: [ :v | Array with: v - 1 with: v with: v + 1 ].
+b 
+	
+	"
+	interactions add: [ :element | element @ (RTHighlightable new shouldHighlightEdges; edgeColor: aColor) ]
+]
+
+{ #category : #'public - events-registering' }
 RTInteractionBuilder >> highlightElements: elementsOrABlock [
 	"Highlight the elements, elementsOrABlock may either be a block (which takes as argument the selected element and return a list of elements"
 	interactions add: [ :element | element @ (RTHighlightable highlightElements: (elementsOrABlock rtValue: element model)) ]
@@ -226,7 +266,14 @@ RTInteractionBuilder >> popupText: aBlock [
 ]
 
 { #category : #'public - events-registering' }
+RTInteractionBuilder >> popupText: aBlock backgroundColor: aColorBlock [
+	"Define a popup with a color background, no alpha color is used"
+	self addExclusiveInteraction: (RTPopup new text: aBlock; alphaPopupBackground: 1.0; backgroundColor: aColorBlock)
+]
+
+{ #category : #'public - events-registering' }
 RTInteractionBuilder >> popupText: aBlock color: aColorBlock [
+	"Define a popup, with a color as the text"
 	self addExclusiveInteraction: (RTPopup new text: aBlock; textColor: aColorBlock)
 ]
 

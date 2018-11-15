@@ -58,19 +58,17 @@ SUVORK5CYII='
 
 { #category : #sources }
 RTBoxPlotExample >> exampleBoxPlot2 [
-
-| b createList r |
-r := Random new.
-createList := [ :size :d1 :d2 | (1 to: size) collect: [ :i | d1 + (r next * (d2-d1))] ].
-
-b := RTGrapher new.
-(1 to: 10) do: [ :i | | ds |
-	ds := RTBoxPlotDataSet new.
-	ds points: (createList value: 20 value: 0 value: 20).
-	b add: ds.].
-b build.
-^ b view.
- 
+	| b createList r |
+	r := Random new.
+	createList := [ :size :d1 :d2 | (1 to: size) collect: [ :i | d1 + (r next * (d2 - d1)) ] ].
+	b := RTGrapher new.
+	(1 to: 10)
+		do: [ :i | 
+			| ds |
+			ds := RTBoxPlotDataSet new.
+			ds points: (createList value: 20 value: 0 value: 20).
+			b add: ds ].
+	^ b
 ]
 
 { #category : #icons }
@@ -262,17 +260,15 @@ DwTf8IHgA8E3fCD4QPANHwg+EHwzyv4HUxntoerK5gkAAAAASUVORK5CYII='
 
 { #category : #sources }
 RTBoxPlotExample >> exampleMethodDistribution [
-
-| b ds |
-b := RTGrapher new.
-b extent: 400 @ 200.
-RTShape withAllSubclasses do: [ :cls |
-	ds := RTBoxPlotDataSet new.
-	ds points: (cls rtmethods collect: #numberOfLinesOfCode).
-	b add: ds.
-].
-b build.
-^ b view
+	| b ds |
+	b := RTGrapher new.
+	b extent: 400 @ 200.
+	RTShape withAllSubclasses
+		do: [ :cls | 
+			ds := RTBoxPlotDataSet new.
+			ds points: (cls rtmethods collect: #numberOfLinesOfCode).
+			b add: ds ].
+	^ b
 ]
 
 { #category : #icons }

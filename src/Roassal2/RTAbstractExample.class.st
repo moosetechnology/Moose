@@ -43,7 +43,7 @@ RTAbstractExample class >> createIcon [
 	| memFile |
 	memFile := FileSystem memory / 'icon.png'.
 	PNGReadWriter putForm: Form fromUser onStream: memFile writeStream binary.
-	(Base64MimeConverter mimeEncode: memFile readStream binary) contents inspect
+	memFile readStream binary base64Decoded contents inspect
 ]
 
 { #category : #announcement }
@@ -63,7 +63,7 @@ RTAbstractExample class >> runningAllExamples [
 	
 	| examples result w |
 	w := '/tmp/result.txt' asFileReference writeStream.
-	self allSubclasses do: [ :cls |
+	self withAllSubclasses do: [ :cls |
 		examples := cls selectors select: [ :k |( k beginsWith: 'example')  and: [ (k endsWith: 'Icon') not ] ].
 		examples do: [ :k | 
 			w nextPutAll: 'About to run ', cls name, '>>', k, ' ...'.
@@ -97,30 +97,32 @@ RTAbstractExample >> installOn: aView [
 { #category : #installing }
 RTAbstractExample >> installTitle: aTitle code: sourceCode [
 	"SourceCode should be a complete example, executable within a workspace"
-	
-	| viewOrBuilder canvas icon64Mime stream window | 
-	viewOrBuilder := ( self class compiler evaluate: sourceCode).
+
+	| viewOrBuilder canvas icon64Mime stream window |
+	viewOrBuilder := OpalCompiler new
+		source: sourceCode;
+		evaluate.
 	window := viewOrBuilder open.
-	viewOrBuilder class == RTView 
+	viewOrBuilder class == RTView
 		ifTrue: [ canvas := viewOrBuilder canvas ]
 		ifFalse: [ canvas := viewOrBuilder view canvas ].
-	
-	canvas morph ifNil: [ self error: 'You have forgotten to open the view!' ].
-	
-	(self class methodDict includesKey: ('example', aTitle) asSymbol)
+	canvas morph
+		ifNil: [ self error: 'You have forgotten to open the view!' ].
+	(self class methodDict includesKey: ('example' , aTitle) asSymbol)
 		ifTrue: [ self error: 'Title already used. Proceed to override' ].
-	
-	self class compile: 'example', aTitle, String cr, sourceCode classified: 'sources'.
-	
+	self class
+		compile: 'example' , aTitle , String cr , sourceCode
+		classified: 'sources'.
 	stream := WriteStream on: ByteArray new.
 	TRPlatform current pngReadWriterClass
 		putForm: (canvas morph imageForm scaledToSize: 100 @ 100)
 		onStream: stream.
-	icon64Mime := (TRPlatform current mimeEncode: stream contents readStream) contents.
-	self class 
-		compile: 'example', aTitle, 'Icon', String cr, '	^ ''', icon64Mime, '''' 
+	icon64Mime := (TRPlatform current
+		mimeEncode: stream contents readStream) contents.
+	self class
+		compile: 'example' , aTitle , 'Icon' , String cr , '	^ ''' , icon64Mime , ''''
 		classified: 'icons'.
-	window delete.
+	window delete
 ]
 
 { #category : #installing }

@@ -249,7 +249,7 @@ RTTreeMapBuilder >> translateElementsVertically: row in: container [
 	currentPoint := container origin.
 	row do: [ :each | 
 		each translateBy: currentPoint+(each extent/2).
-		currentPoint := currentPoint + (0@(each height))]
+		currentPoint := currentPoint + (0@(each height)) ]
 ]
 
 { #category : #customizing }

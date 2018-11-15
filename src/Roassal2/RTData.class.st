@@ -51,7 +51,8 @@ Class {
 		'lineBuilder',
 		'shouldConnect',
 		'interaction',
-		'shouldHaveBars'
+		'shouldHaveBars',
+		'sampling'
 	],
 	#category : #'Roassal2-Builder-Grapher-Core'
 }
@@ -123,6 +124,28 @@ RTData >> executeUserDeclaredActions [
 ]
 
 { #category : #accessing }
+RTData >> getSamplingIfNecessaryOf: objects [
+	"Return a sampling of the objects if necessary. Consider: 
+	
+	d := RTData new.
+	d samplingIfMoreThan: 100.
+	d points: (1 to: 1000).
+	d y: #yourself.
+	g := RTGrapher new.
+	g add: d.
+	g
+	"
+	^ sampling
+		ifNil: [ objects ]
+		ifNotNil: [ | r indexes |
+			r := Random seed: 42.
+			indexes := (1 to: sampling)
+				collect: [ :i | (1 to: objects size) atRandom: r ].
+			(indexes asSet sortedAs: #yourself)
+				collect: [ :in | objects at: in ] ]
+]
+
+{ #category : #accessing }
 RTData >> getValuesX [
 	^ elements collect: x
 ]
@@ -177,8 +200,7 @@ RTData >> initialize [
 	self resetShapeBuilderForLine.
 	self resetInteractionBuilder.
 	shouldConnect := false.
-	shouldHaveBars := false.
-
+	shouldHaveBars := false. 
 ]
 
 { #category : #accessing }
@@ -270,7 +292,10 @@ RTData >> points [
 RTData >> points: objects [
 	"This is an essential method.
 	Return the elements that have been added."
-	elements := dotBuilder elementsOn: objects.
+
+	| objectsToConsider |
+	objectsToConsider := self getSamplingIfNecessaryOf: objects.
+	elements := dotBuilder elementsOn: objectsToConsider.
 	^ elements
 ]
 
@@ -402,6 +427,17 @@ RTData >> resetShapeBuilderForDot [
 { #category : #initialization }
 RTData >> resetShapeBuilderForLine [
 	lineBuilder := RTShapeBuilder new
+]
+
+{ #category : #'public - configuration' }
+RTData >> samplingIfMoreThan: aThreshold [
+	"This method is useful in case there are many elements to be visualized.
+	If the number of objects provided to #points: is greater than aThreshold, then 
+	aThreshold elements are picked from the objects.
+	
+	This coudl be improved. For example, different strategies to do the sampling can be envisioned.
+	"
+	sampling := aThreshold
 ]
 
 { #category : #hooks }

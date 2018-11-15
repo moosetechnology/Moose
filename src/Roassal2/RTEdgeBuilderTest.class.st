@@ -334,6 +334,36 @@ RTEdgeBuilderTest >> testObjects03 [
 ]
 
 { #category : #tests }
+RTEdgeBuilderTest >> testShouldAllowBidirection [
+
+	self assert: view numberOfEdges equals: 0.
+	self assert: b isBidirectional.
+	b view: view.
+	b noBidirectional.
+	b objects: #(1 2).
+	b useAssociations: (Array with: 1 -> 2 with: 2 -> 1 ).
+	self deny: b isBidirectional. 
+	
+	elements := view elementsFromModels: #(1 2).
+	self assert: elements size equals: 2.
+	self assert: (b shouldCreateEdgeFrom: elements first to: elements second).
+	
+	self assert: view numberOfEdges equals: 1.
+	self assert: view edges anyOne from model equals: 1.
+	self assert: view edges anyOne to model equals: 2.
+]
+
+{ #category : #tests }
+RTEdgeBuilderTest >> testShouldNotAllowBidirection [
+
+	self assert: view numberOfEdges equals: 0.
+	b view: view.
+	b objects: #(1 2).
+	b useAssociations: (Array with: 1 -> 2 with: 2 -> 1).
+	self assert: view numberOfEdges equals: 2.
+]
+
+{ #category : #tests }
 RTEdgeBuilderTest >> testSimple [
 
 	RTEdgeBuilder new

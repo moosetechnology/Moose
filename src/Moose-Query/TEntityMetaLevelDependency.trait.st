@@ -387,6 +387,11 @@ TEntityMetaLevelDependency >> childrenSelectors [
 ]
 
 { #category : #accessing }
+TEntityMetaLevelDependency >> childrenTypes [
+	^ self class childrenTypes
+]
+
+{ #category : #accessing }
 TEntityMetaLevelDependency >> dependencyFM3PropertyDescription [
 	^ self class dependencyFM3PropertyDescription
 ]
