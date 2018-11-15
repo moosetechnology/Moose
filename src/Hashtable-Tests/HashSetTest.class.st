@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'set'
 	],
-	#category : #'Hashtable-Test'
+	#category : #'Hashtable-Tests'
 }
 
 { #category : #'as yet unclassified' }
