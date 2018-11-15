@@ -4,3 +4,8 @@ Extension { #name : #PPNotParser }
 PPNotParser >> firstSets: aFirstDictionary into: aSet [
 	
 ]
+
+{ #category : #'*PetitAnalyzer' }
+PPNotParser >> isFirstSetTerminal [
+	^ true
+]

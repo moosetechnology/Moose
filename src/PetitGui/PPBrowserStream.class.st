@@ -154,6 +154,19 @@ PPBrowserStream >> positions [
 	^ positions
 ]
 
+{ #category : #'private building' }
+PPBrowserStream >> progressIn: composite [
+	<gtInspectorPresentationOrder: 30>
+	composite morph 
+		title: 'Progress';
+		display: [:result :sample :stream :parser  | 
+			| morph |
+			morph := ScrollPane new.
+			morph color: Color white.
+			morph scroller addMorph: self asPositionMorph.
+			morph ]
+]
+
 { #category : #positioning }
 PPBrowserStream >> reset [
 	super reset.
@@ -171,7 +184,6 @@ PPBrowserStream >> stamps [
 PPBrowserStream >> step [
 	positions addLast: position.
 	stamps addLast: Time millisecondClockValue.
-	"This hack removed to do not introduce new dependency"
 	"(thisContext findContextSuchThat: [ :ctxt | ctxt receiver isKindOf: PPSea ])
 		ifNotNil: [ :aContext | parsers addLast: aContext receiver ]."
 ]
