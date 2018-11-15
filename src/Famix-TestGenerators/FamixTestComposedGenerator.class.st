@@ -19,7 +19,7 @@ FamixTestComposedGenerator class >> modifyMetamodel: aMetamodel [
 	
 	super modifyMetamodel: aMetamodel.
 	
-"	p1 := (aMetamodel descriptionOf: (Smalltalk globals at: #FamixTestComposed1CustomEntity5)) attributeNamed: #associations.
+	p1 := (aMetamodel descriptionOf: (Smalltalk globals at: #FamixTestComposed1CustomEntity5)) attributeNamed: #associations.
 	p2 := (aMetamodel descriptionOf: (Smalltalk globals at: #FamixTestComposedAssociation)) attributeNamed: #c15.
 	p1 opposite: p2.
 	p2 opposite: p1.	
@@ -32,7 +32,7 @@ FamixTestComposedGenerator class >> modifyMetamodel: aMetamodel [
 	p2 opposite: p1.	
 	p1 type implementingClass: (Smalltalk globals at: #FamixTestComposed2CustomEntity5).	
 	p2 type implementingClass: (Smalltalk globals at: #FamixTestComposedAssociation).
-"
+
 ]
 
 { #category : #accessing }
