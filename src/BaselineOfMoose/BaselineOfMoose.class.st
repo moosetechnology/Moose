@@ -237,7 +237,7 @@ BaselineOfMoose >> baselineGrease: spec [
 { #category : #baseline }
 BaselineOfMoose >> baselineHashtable: spec [ 
     
-	self defineGroup: #'HashTable-Group' in: spec with: #(
+	self defineGroup: #'HashTable' in: spec with: #(
 		'Hashtable'
 	).
 	
