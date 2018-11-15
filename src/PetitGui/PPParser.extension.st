@@ -212,6 +212,18 @@ PPParser >> namedParsersDo: aBlock seen: aSet [
 ]
 
 { #category : #'*PetitGui' }
+PPParser >> newColumnMorph [
+	^ AlignmentMorph newColumn
+		cellPositioning: #topLeft;
+		color: Color transparent;
+		listCentering: #topLeft;
+		vResizing: #shrinkWrap;
+		hResizing: #shrinkWrap;
+		layoutInset: 0;
+		yourself
+]
+
+{ #category : #'*PetitGui' }
 PPParser >> newRowMorph [
 	^ AlignmentMorph newRow
 		cellPositioning: #topLeft;
