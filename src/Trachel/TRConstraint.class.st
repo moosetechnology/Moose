@@ -52,7 +52,7 @@ TRConstraint class >> alignFromRight: shapes [
 { #category : #'public - aligning' }
 TRConstraint class >> alignFromTop: shapes [
 	| topMostElement |
-	self deprecated: 'Please, use RTAlignement instead'.
+	
 	shapes ifEmpty: [ ^ self ].
 	topMostElement := shapes inject: shapes anyOne into: [ :maxS :s | 
 								maxS encompassingRectangle topLeft y <= s encompassingRectangle topLeft y
@@ -540,7 +540,7 @@ TRConstraint class >> use: aShape alignFromRight: shapes [
 { #category : #'public - aligning' }
 TRConstraint class >> use: aShape alignFromTop: shapes [
 	| topY newY |
-	self deprecated: 'Please, use RTAlignement instead'.
+	
 	topY := aShape encompassingRectangle topCenter y.
 	shapes do: [ :s |
 		newY := topY + (s encompassingRectangle height / 2).

@@ -73,7 +73,7 @@ FAMIXStructuralEntity >> namespaceScope [
 
 { #category : #'as yet unclassified' }
 FAMIXStructuralEntity >> outgoingTypeDeclarations [
-	^ self declaredType ifNil: [ {} ] ifNotNil: [ :dt | {(MooseChefTypeDeclarationAssociation newFrom: self to: dt)} ]
+	^ self declaredType ifNil: [ {} ] ifNotNil: [ :dt | {(MooseQueryTypeDeclarationAssociation newFrom: self to: dt)} ]
 ]
 
 { #category : #'moosechef-scoping-filtering' }

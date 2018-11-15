@@ -52,7 +52,7 @@ FM3MetaDescription class >> booleanClass [
 
 	| class |
 	class := Class new.
-	class basicSuperclass: self.
+	self setSuperclassClassOf: class.
 	class setFormat: self format.
 	class methodDict: MethodDictionary new.
 	class methodDict at: #isPrimitive put: (self methodNamed: #anonymousReturnTrue).
@@ -98,7 +98,7 @@ FM3MetaDescription class >> numberClass [
 
 	| class |
 	class := Class new.
-	class basicSuperclass: self.
+	self setSuperclassClassOf: class.
 	class setFormat: self format.
 	class methodDict: MethodDictionary new.
 	class methodDict at: #isPrimitive put: (self methodNamed: #anonymousReturnTrue).
@@ -123,7 +123,7 @@ FM3MetaDescription class >> objectClass [
 
 	| class |
 	class := Class new.
-	class basicSuperclass: self.
+	self setSuperclassClassOf: class.
 	class setFormat: self format.
 	class methodDict: MethodDictionary new.
 	class methodDict at: #isRoot put: (self  methodNamed: #anonymousReturnTrue).
@@ -142,6 +142,15 @@ FM3MetaDescription class >> privateOnlyCallMeIfYourAreBDFLOrSystemAdminFromHellF
 	boolean := nil.
 ]
 
+{ #category : #'private-anonymous classes' }
+FM3MetaDescription class >> setSuperclassClassOf: class [
+	"This method is an hack I do to correct a change in Pharo 7 since Moose will soon get a new stable version with the project MooseNG."
+
+	SystemVersion current major < 7
+		ifTrue: [ class superclass: self ]
+		ifFalse: [ class basicSuperclass: self ]
+]
+
 { #category : #constants }
 FM3MetaDescription class >> string [
 
@@ -158,7 +167,7 @@ FM3MetaDescription class >> stringClass [
 
 	| class |
 	class := Class new.
-	class basicSuperclass: self.
+	self setSuperclassClassOf: class.
 	class setFormat: self format.
 	class methodDict: MethodDictionary new.
 	class methodDict at: #isPrimitive put: (self methodNamed: #anonymousReturnTrue).

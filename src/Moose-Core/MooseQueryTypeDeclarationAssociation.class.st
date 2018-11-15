@@ -1,12 +1,12 @@
 "
-MooseChefInstanciationAssociation is a fake FamixAssociation to handle Instanciations between FamixStructuralEntities and their FamixType in MooseChef (MooseIncoming/OutgoingQueryResult)
+MooseQueryInstanciationAssociation is a fake FamixAssociation to handle Instanciations between FamixStructuralEntities and their FamixType in MooseQuery (MooseIncoming/OutgoingQueryResult)
 
 Instance Variables:
 	from	the Famixentity that is typed
 	to	      the FamixType
 "
 Class {
-	#name : #MooseChefTypeDeclarationAssociation,
+	#name : #MooseQueryTypeDeclarationAssociation,
 	#superclass : #Object,
 	#instVars : [
 		'from',
@@ -16,7 +16,7 @@ Class {
 }
 
 { #category : #'instance creation' }
-MooseChefTypeDeclarationAssociation class >> newFrom: varOrBehavior to: aType [
+MooseQueryTypeDeclarationAssociation class >> newFrom: varOrBehavior to: aType [
 	"some syntactic sugar"
 
 	^ self new
@@ -26,23 +26,23 @@ MooseChefTypeDeclarationAssociation class >> newFrom: varOrBehavior to: aType [
 ]
 
 { #category : #converting }
-MooseChefTypeDeclarationAssociation >> asString [
+MooseQueryTypeDeclarationAssociation >> asString [
 
 	^ self from asString , ' -> ' , self to asString
 ]
 
 { #category : #accessing }
-MooseChefTypeDeclarationAssociation >> from [
+MooseQueryTypeDeclarationAssociation >> from [
 	^ from
 ]
 
 { #category : #accessing }
-MooseChefTypeDeclarationAssociation >> from: anObject [
+MooseQueryTypeDeclarationAssociation >> from: anObject [
 	from := anObject
 ]
 
 { #category : #converting }
-MooseChefTypeDeclarationAssociation >> printOn: aStream [
+MooseQueryTypeDeclarationAssociation >> printOn: aStream [
 
 	aStream nextPutAll: self from asString.
 	aStream nextPutAll: ' -> '.
@@ -50,11 +50,11 @@ MooseChefTypeDeclarationAssociation >> printOn: aStream [
 ]
 
 { #category : #accessing }
-MooseChefTypeDeclarationAssociation >> to [
+MooseQueryTypeDeclarationAssociation >> to [
 	^ to
 ]
 
 { #category : #accessing }
-MooseChefTypeDeclarationAssociation >> to: anObject [
+MooseQueryTypeDeclarationAssociation >> to: anObject [
 	to := anObject
 ]

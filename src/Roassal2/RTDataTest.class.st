@@ -183,6 +183,19 @@ RTDataTest >> testNoDot [
 	self assert: b view numberOfEdges equals: 2
 ]
 
+{ #category : #'test - sampling' }
+RTDataTest >> testNoSample01 [
+
+	| d g |
+	d := RTData new.
+	d points: (1 to: 1000).
+	d y: #yourself.
+	g := RTGrapher new.
+	g add: d.
+	
+	self assert: d elements size equals: 1000
+]
+
 { #category : #tests }
 RTDataTest >> testNonTrivialGraph [
 
@@ -198,6 +211,30 @@ RTDataTest >> testNonTrivialGraph [
 	grapher axisX; axisY.
 	grapher build
 	
+]
+
+{ #category : #'test - sampling' }
+RTDataTest >> testSample01 [
+
+	| d g elementsThatAreSampled previous |
+	d := RTData new.
+	d samplingIfMoreThan: 100.
+	d points: (1 to: 1000).
+	d y: #yourself.
+	g := RTGrapher new.
+	g add: d.
+	
+	self assert: d elements size <= 100.
+	
+	elementsThatAreSampled := d elements collect: #model.
+	
+	"We assert that the order is still the same"
+	previous := -1.
+	elementsThatAreSampled do: [ :o | 
+		self assert: o > previous.
+		previous := o
+		 ]
+	 
 ]
 
 { #category : #tests }

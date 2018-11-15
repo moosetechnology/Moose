@@ -356,6 +356,7 @@ MooseEntity >> gtDisplayOn: aStream [
 MooseEntity >> handleFameProperty: aSymbol value: anObject [
 	
 	| value |
+	super handleFameProperty: aSymbol value: anObject.
 	value := (anObject isCollection and: [anObject size = 1]) ifTrue: [anObject anyOne] ifFalse: [anObject].
 	self propertyNamed: aSymbol put: value
 ]

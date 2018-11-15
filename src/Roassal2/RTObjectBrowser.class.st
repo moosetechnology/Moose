@@ -1,5 +1,15 @@
 "
-I am a simple builder of interactive view that allows you to inspect and navigate an  object.
+I am a simple builder of interactive view that allows you to inspect and navigate an object.
+
+Here is an example:
+-=-=
+	| b v |
+	b := RTObjectBrowser new.
+	v := RTView new.
+	v addElement: RTBox element.
+	b object: v.
+	b
+-=-=-=
 "
 Class {
 	#name : #RTObjectBrowser,

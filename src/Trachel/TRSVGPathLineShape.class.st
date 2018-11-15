@@ -23,6 +23,11 @@ TRSVGPathLineShape >> encompassingRectangle [
 ]
 
 { #category : #accessing }
+TRSVGPathLineShape >> from [
+	^ from
+]
+
+{ #category : #accessing }
 TRSVGPathLineShape >> from: aPoint [
 	from := aPoint
 ]
@@ -38,6 +43,11 @@ TRSVGPathLineShape >> svgPath: aString [
 	| converter |
 	converter := ASPathConverter new stream: aString readStream.
 	pathCommands := converter convertPathData
+]
+
+{ #category : #accessing }
+TRSVGPathLineShape >> to [
+	^ to
 ]
 
 { #category : #accessing }

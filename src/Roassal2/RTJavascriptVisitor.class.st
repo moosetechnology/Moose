@@ -218,7 +218,7 @@ RTJavascriptVisitor >> visitArrowHeadShape: arrowShape [
 		nextPutAll: (self number: arrowShape width);
 		nextPutAll: ', size: ';
 		nextPutAll: (self number: arrowShape mySize).
-	self visitAttachPoint: e.
+	self visitAttachPoint: e trShape: arrowShape.
 	stream 
 		nextPutAll: ', base: ';
 		nextPutAll: (self number: arrowShape baseSize);
@@ -233,37 +233,56 @@ RTJavascriptVisitor >> visitArrowShape: arrowShape [
 	e := arrowShape element.
 	stream nextPutAll: '
 		{type: "simplearrow", id: "';
-		nextPutAll: (self nameFor: arrowShape);
-		nextPutAll: ('", fromid: <1p>, toid: <2p>,' 
-		expandMacrosWith:  (self nameFor: e from trachelShape) with: (self nameFor: e to trachelShape) ).
+		nextPutAll: (self nameFor: arrowShape).
+	stream 
+		nextPutAll: '", fromid: ''';
+		nextPutAll: (self nameFor: e from trachelShape);
+		nextPutAll: ''', toid: ''';
+		nextPutAll: (self nameFor: e to trachelShape);
+		nextPutAll: ''','.
+		
 	self addColor: arrowShape strokePaint.
 	stream
 		nextPutAll: ' width: ';
 		nextPutAll: (self number: arrowShape width);
 		nextPutAll: ', size: ';
-		nextPutAll: (self number: arrowShape mySize).
-	self visitAttachPoint: e.
+		nextPutAll: (self number: arrowShape mySize);
+		nextPutAll: ', percentage: ';
+		nextPutAll: (self number: arrowShape percentage).
+	self visitAttachPoint: e trShape: arrowShape.
 	stream 
 		nextPutAll: ', base: ';
 	 	nextPutAll: (self number: arrowShape baseSize);
 		nextPutAll: '},'.
-	
 ]
 
 { #category : #visitor }
 RTJavascriptVisitor >> visitAttachPoint: element [
+	self visitAttachPoint: element index: 1
+]
+
+{ #category : #visitor }
+RTJavascriptVisitor >> visitAttachPoint: element index: index [
 	| ap |
 	element ifNil: [ 
 		^ stream nextPutAll: ',ap:RTCenteredAttachPoint' ].
 	ap := element shape class = RTCompositeShape 
-		ifTrue: [ element shape allShapes first ] 
-		ifFalse: [ element shape ].
+		ifTrue: [ element shape allShapes at: index ] 
+		ifFalse: [ "Too ugly but work for this special case"
+			(element shape class = RTDoubleArrowedLine and: [index = 3])
+				ifTrue: [ element shape headEnd ]
+			 	ifFalse: [ element shape ] ].
 	stream nextPutAll: ',ap: new ';
 		nextPutAll: ap attachPoint class name;
 		nextPutAll: '(';
 		nextPutAll: ap attachPoint isInverted asString;
 		nextPutAll: ')'.
 	
+]
+
+{ #category : #visitor }
+RTJavascriptVisitor >> visitAttachPoint: element trShape: shape [
+	self visitAttachPoint: element index: (element trachelShape shapes indexOf: shape)
 ]
 
 { #category : #visitor }
@@ -542,7 +561,9 @@ RTJavascriptVisitor >> visitMultiCompositeShape: aShape [
 		{id: "';
 		nextPutAll: (self nameFor: aShape);
 		nextPutAll: '", type:"multi", shapes:['.
-	aShape shapes do: [ :s| s accept: self].
+	aShape shapes do: [ :s| 
+		s element: aShape element.
+		s accept: self].
 	stream nextPutAll: '], offsets: ['.
 	aShape offsets do: [ :o | 
 		stream nextPutAll: '{x: ';

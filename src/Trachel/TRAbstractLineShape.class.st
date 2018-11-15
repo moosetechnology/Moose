@@ -26,10 +26,12 @@ TRAbstractLineShape >> strokePaint: aColor [
 
 { #category : #accessing }
 TRAbstractLineShape >> width [
+	"Return the width of the line, in pixels"
 	^ width
 ]
 
 { #category : #accessing }
 TRAbstractLineShape >> width: aNumber [
+	"Set the width of the line, in pixels"
 	width := aNumber
 ]

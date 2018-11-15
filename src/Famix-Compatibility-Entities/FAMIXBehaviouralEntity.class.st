@@ -241,7 +241,7 @@ FAMIXBehaviouralEntity >> numberOfStatements [
 
 { #category : #'moosequery-queries-outgoing' }
 FAMIXBehaviouralEntity >> outgoingTypeDeclarations [
-	^ self declaredType ifNil: [ {} ] ifNotNil: [ :dt | {(MooseChefTypeDeclarationAssociation newFrom: self to: dt)} ]
+	^ self declaredType ifNil: [ {} ] ifNotNil: [ :dt | {(MooseQueryTypeDeclarationAssociation newFrom: self to: dt)} ]
 ]
 
 { #category : #'Famix-Extensions' }

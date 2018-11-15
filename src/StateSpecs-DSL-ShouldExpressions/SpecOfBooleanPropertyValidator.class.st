@@ -36,7 +36,7 @@ SpecOfBooleanPropertyValidator >> doesNotUnderstand: aMessage [
 	spec := SpecOfBooleanProperty fromMessage: aMessage.
 	spec denial: withNegation.
 
-	self validatePropertyBy: spec
+	^ self validatePropertyBy: spec
 ]
 
 { #category : #initialization }
@@ -59,7 +59,7 @@ SpecOfBooleanPropertyValidator >> subject: anObject [
 { #category : #validation }
 SpecOfBooleanPropertyValidator >> validatePropertyBy: aSpecOfBooleanProperty [
 
-	(aSpecOfBooleanProperty validate: subject) raise
+	^ (aSpecOfBooleanProperty validate: subject) raise
 ]
 
 { #category : #accessing }

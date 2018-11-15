@@ -22,6 +22,23 @@ RTMultiLinearColorForIdentityTest >> testBasic [
 ]
 
 { #category : #tests }
+RTMultiLinearColorForIdentityTest >> testColorOfObject [
+
+	| n s elements |
+	n := RTMultiLinearColorForIdentity new 
+				command: #first; 
+				objects: #(#c1 #c2 #c3 #c4 #c5);
+				yourself.
+	s := RTBox new color: n.
+	elements := s elementsOn: #(#(c1) #(c2) #(c3) #(c4) #(c5)).
+	RTGridLayout on: elements.
+	RTView new add: elements.
+	
+	self assert: (n colorOf: #c1) equals: (elements first trachelShape color).
+	self assert: (n colorOf: #c5) equals: (elements last trachelShape color).
+]
+
+{ #category : #tests }
 RTMultiLinearColorForIdentityTest >> testDefaultColor [
 
 	| v wordsToHighlight normalizer shape strings es |

@@ -7,12 +7,12 @@ Class {
 	#category : #'Roassal2-Experimental'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 RTLinearClosedPathBuilder >> closed [
 	^ true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #public }
 RTLinearClosedPathBuilder >> interpolate: points [
 	^ (RTLinearPathBuilder new interpolate: points),'Z'.
 ]

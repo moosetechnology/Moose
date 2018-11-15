@@ -20,7 +20,7 @@ CompiledMethod >> gtExamples [
 
 { #category : #'*GToolkit-Examples-Core' }
 CompiledMethod >> gtExamplesFactory [
-	^ self methodClass theNonMetaClass gtExamplesFactory
+	^ self methodClass instanceSide gtExamplesFactory
 ]
 
 { #category : #'*GToolkit-Examples-Core' }

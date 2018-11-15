@@ -12,6 +12,14 @@ Class {
 	#category : #'Roassal2-Builder-CircularMap'
 }
 
+{ #category : #'instance creation' }
+RTVector class >> x: x y: y z: z [
+	self new
+		x: x;
+		y: y;
+		z: z.
+]
+
 { #category : #arithmetic }
 RTVector >> - w [
 	| inst |

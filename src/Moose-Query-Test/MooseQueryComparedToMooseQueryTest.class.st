@@ -1,11 +1,11 @@
 Class {
-	#name : #MooseQueryComparedToMooseChefTest,
+	#name : #MooseQueryComparedToMooseQueryTest,
 	#superclass : #MooseQueryTest,
 	#category : #'Moose-Query-Test'
 }
 
 { #category : #tests }
-MooseQueryComparedToMooseChefTest >> testIncomingAccesses [
+MooseQueryComparedToMooseQueryTest >> testIncomingAccesses [
 	self
 		assert: (package2 queryIncoming: FamixTAccess) asSet
 		equals:
@@ -36,7 +36,7 @@ MooseQueryComparedToMooseChefTest >> testIncomingAccesses [
 ]
 
 { #category : #tests }
-MooseQueryComparedToMooseChefTest >> testIncomingInheritances [
+MooseQueryComparedToMooseQueryTest >> testIncomingInheritances [
 	self
 		assert: (class2 queryIncoming: FamixTSuperInheritance) asSet
 		equals: (class2 createIncomingQueryResultWith: class2 subInheritances) asSet.
@@ -50,7 +50,7 @@ MooseQueryComparedToMooseChefTest >> testIncomingInheritances [
 ]
 
 { #category : #tests }
-MooseQueryComparedToMooseChefTest >> testIncomingInvocations [
+MooseQueryComparedToMooseQueryTest >> testIncomingInvocations [
 	"queryIncoming: is equivalent to query: #in with:"
 
 	self
@@ -69,7 +69,7 @@ MooseQueryComparedToMooseChefTest >> testIncomingInvocations [
 ]
 
 { #category : #tests }
-MooseQueryComparedToMooseChefTest >> testIncomingReferences [
+MooseQueryComparedToMooseQueryTest >> testIncomingReferences [
 	self
 		assert: (package2 queryIncoming: FamixTReference) asSet
 		equals:
@@ -95,7 +95,7 @@ MooseQueryComparedToMooseChefTest >> testIncomingReferences [
 ]
 
 { #category : #tests }
-MooseQueryComparedToMooseChefTest >> testOutgoingAccesses [
+MooseQueryComparedToMooseQueryTest >> testOutgoingAccesses [
 	self
 		assert: (package2 queryOutgoing: FamixTAccess) asSet
 		equals: (package2 createOutgoingQueryResultWith: (package2 methods flatCollect: [ :m | m accesses ])) asSet.
@@ -111,7 +111,7 @@ MooseQueryComparedToMooseChefTest >> testOutgoingAccesses [
 ]
 
 { #category : #tests }
-MooseQueryComparedToMooseChefTest >> testOutgoingInheritances [
+MooseQueryComparedToMooseQueryTest >> testOutgoingInheritances [
 	self
 		assert: (class1 queryOutgoing: FamixTSubInheritance) asSet
 		equals: (class1 createOutgoingQueryResultWith: class1 superInheritances) asSet.
@@ -122,7 +122,7 @@ MooseQueryComparedToMooseChefTest >> testOutgoingInheritances [
 ]
 
 { #category : #tests }
-MooseQueryComparedToMooseChefTest >> testOutgoingInvocations [
+MooseQueryComparedToMooseQueryTest >> testOutgoingInvocations [
 	self assert: (method2 queryOutgoing: FamixTInvocation) asSet equals: (method2 createOutgoingQueryResultWith: method2 outgoingInvocations) asSet.
 	self assert: (class2 queryOutgoing: FamixTInvocation) asSet equals: (class2 createOutgoingQueryResultWith: (class2 methods flatCollect: [ :m | m outgoingInvocations ])) asSet.
 	self assert: (package2 queryOutgoing: FamixTInvocation) asSet equals: (package2 createOutgoingQueryResultWith: (package2 methods flatCollect: [ :m | m outgoingInvocations ])) asSet.
@@ -130,7 +130,7 @@ MooseQueryComparedToMooseChefTest >> testOutgoingInvocations [
 ]
 
 { #category : #tests }
-MooseQueryComparedToMooseChefTest >> testOutgoingReferences [
+MooseQueryComparedToMooseQueryTest >> testOutgoingReferences [
 	self
 		assert: (package1 queryOutgoing: FamixTReference) asSet
 		equals:
