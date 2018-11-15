@@ -30,7 +30,7 @@ Class {
 	#category : #'GToolkit-Examples-Core'
 }
 
-{ #category : #testing }
+{ #category : #comparing }
 GtExample >> = anExample [
 	^ self class = anExample class 
 		and: [ self methodClass = anExample methodClass 
@@ -222,7 +222,7 @@ GtExample >> hasValidDependencies [
 			or: [ currentDependencies allSatisfy: #exists ]
 ]
 
-{ #category : #testing }
+{ #category : #comparing }
 GtExample >> hash [
 	^ (self class hash 
 		bitXor: self methodClass hash) 

@@ -16,7 +16,7 @@ GtExampleSubject class >> isAbstract [
 	^ self == GtExampleSubject
 ]
 
-{ #category : #testing }
+{ #category : #comparing }
 GtExampleSubject >> = anExampleSubject [
 	^ self subclassResponsibility
 ]
@@ -42,7 +42,7 @@ GtExampleSubject >> gtExamplesSubjects [
 	^ { self }
 ]
 
-{ #category : #testing }
+{ #category : #comparing }
 GtExampleSubject >> hash [
 	^ self subclassResponsibility
 ]

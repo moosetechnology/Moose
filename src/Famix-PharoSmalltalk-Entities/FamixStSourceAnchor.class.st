@@ -51,11 +51,6 @@ FamixStSourceAnchor class >> resetMooseQueryCaches [
 
 ]
 
-{ #category : #'as yet unclassified' }
-FamixStSourceAnchor >> childrenTypes [
-	^ self class childrenTypes
-]
-
 { #category : #initialization }
 FamixStSourceAnchor >> initialize [
 	super initialize.
