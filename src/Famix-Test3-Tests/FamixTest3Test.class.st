@@ -38,6 +38,7 @@ FamixTest3Test >> setUp [
 	super setUp.
 
 	model := MooseModel new.
+	model metamodel: FamixTest3Class metamodel.
 	c1 := FamixTest3Class named: 'Class1'.
 	c2 := FamixTest3Class named: 'Class2'.
 	

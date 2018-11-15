@@ -1,6 +1,6 @@
 Extension { #name : #FamixTestComposed1CustomEntity1 }
 
-{ #category : #'*Famix-TestComposedMetamodel-Entities-*Famix-TestComposedSubmetamodel1-Entities' }
+{ #category : #'*Famix-TestComposedMetamodel-Entities-accessing' }
 FamixTestComposed1CustomEntity1 >> c21 [
 
 	<generated>
@@ -8,7 +8,7 @@ FamixTestComposed1CustomEntity1 >> c21 [
 	^ self privateState attributeAt: #c21 ifAbsent: [ nil ]
 ]
 
-{ #category : #'*Famix-TestComposedMetamodel-Entities-*Famix-TestComposedSubmetamodel1-Entities' }
+{ #category : #'*Famix-TestComposedMetamodel-Entities-accessing' }
 FamixTestComposed1CustomEntity1 >> c21: anObject [
 
 	<generated>
@@ -17,7 +17,7 @@ FamixTestComposed1CustomEntity1 >> c21: anObject [
 	anObject c11: self
 ]
 
-{ #category : #'*Famix-TestComposedMetamodel-Entities-*Famix-TestComposedSubmetamodel1-Entities' }
+{ #category : #'*Famix-TestComposedMetamodel-Entities-accessing' }
 FamixTestComposed1CustomEntity1 >> customEntity1 [
 
 	<generated>
@@ -25,7 +25,7 @@ FamixTestComposed1CustomEntity1 >> customEntity1 [
 	^ self privateState attributeAt: #customEntity1 ifAbsent: [ nil ]
 ]
 
-{ #category : #'*Famix-TestComposedMetamodel-Entities-*Famix-TestComposedSubmetamodel1-Entities' }
+{ #category : #'*Famix-TestComposedMetamodel-Entities-accessing' }
 FamixTestComposed1CustomEntity1 >> customEntity1: anObject [
 
 	<generated>

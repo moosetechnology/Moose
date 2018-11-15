@@ -23,6 +23,12 @@ Object >> isFM3Property [
 	^false
 ]
 
+{ #category : #'*Fame-Util' }
+Object >> metamodel [
+
+	^ self class metamodel
+]
+
 { #category : #'*fame-util' }
 Object >> mmGetProperty: aFM3PropertyDescription [
 	"Get instance value for a property. Override if you want to handle the property by yourself"

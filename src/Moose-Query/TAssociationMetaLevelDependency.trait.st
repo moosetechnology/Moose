@@ -5,10 +5,6 @@ For more informations: https://moosequery.ferlicot.fr/
 "
 Trait {
 	#name : #TAssociationMetaLevelDependency,
-	#classInstVars : [
-		'targetTypes',
-		'sourceTypes'
-	],
 	#category : #'Moose-Query'
 }
 
@@ -22,10 +18,10 @@ TAssociationMetaLevelDependency classSide >> annotation [
 ]
 
 { #category : #accessing }
-TAssociationMetaLevelDependency classSide >> dependencyFM3PropertyDescription [
+TAssociationMetaLevelDependency classSide >> dependencyFM3PropertyDescriptionIn: aMetamodel [
 	"Return all the properties corresponding to the source or the target of the association"
 
-	^ self allDeclaredProperties select: [ :e | e isSource or: [ e isTarget ] ]
+	^ (self allDeclaredPropertiesIn: aMetamodel) select: [ :e | e isSource or: [ e isTarget ] ]
 ]
 
 { #category : #generator }
@@ -41,63 +37,45 @@ TAssociationMetaLevelDependency classSide >> generatedTraitNames [
 	^ #()
 ]
 
-{ #category : #deprecated }
-TAssociationMetaLevelDependency classSide >> possibleSourceClasses [
-	self 
-		deprecated: 'Use sourceTypes instead'
-		on: '23 January 2018' 
-		in: 'Moose6.1'
-		transformWith: '`@receiver possibleSourceClasses' -> '`@receiver sourceTypes'.
-	^ self sourceTypes
-]
-
-{ #category : #deprecated }
-TAssociationMetaLevelDependency classSide >> possibleTargetClasses [
-	self 
-		deprecated: 'Use targetTypes instead'
-		on: '23 January 2018' 
-		in: 'Moose6.1'
-		transformWith: '`@receiver possibleTargetClasses' -> '`@receiver targetTypes'.
-	^ self targetTypes
-]
-
 { #category : #private }
-TAssociationMetaLevelDependency classSide >> privateSourceTypes [
+TAssociationMetaLevelDependency classSide >> privateSourceTypesIn: aMetamodel [
 	"I return the classes that could be my source"
 
-	^ self dependencyFM3PropertyDescription select: #isSource thenCollect: [ :each | each type implementingClass ]
+	^ (self dependencyFM3PropertyDescriptionIn: aMetamodel) select: #isSource thenCollect: [ :each | each type implementingClass ]
 ]
 
 { #category : #private }
-TAssociationMetaLevelDependency classSide >> privateTargetTypes [
+TAssociationMetaLevelDependency classSide >> privateTargetTypesIn: aMetamodel [
 	"I return the classes that could be my target"
 
-	^ self dependencyFM3PropertyDescription select: #isTarget thenCollect: [ :each | each type implementingClass ]
+	^ (self dependencyFM3PropertyDescriptionIn: aMetamodel) select: #isTarget thenCollect: [ :each | each type implementingClass ]
 ]
 
 { #category : #accessing }
-TAssociationMetaLevelDependency classSide >> sourceTypes [
-	^ sourceTypes
-		ifNil: [ sourceTypes := self privateSourceTypes ]
+TAssociationMetaLevelDependency classSide >> sourceTypesIn: aMetamodel [
+
+	^ aMetamodel additionalProperty: #sourceTypes for: self ifAbsentPut: [ self privateSourceTypesIn: aMetamodel ]
+
 ]
 
 { #category : #accessing }
-TAssociationMetaLevelDependency classSide >> targetTypes [
-	^ targetTypes
-		ifNil: [ targetTypes := self privateTargetTypes ]
+TAssociationMetaLevelDependency classSide >> targetTypesIn: aMetamodel [
+
+	^ aMetamodel additionalProperty: #targetTypes for: self ifAbsentPut: [ self privateTargetTypesIn: aMetamodel ]
+
 ]
 
 { #category : #accessing }
 TAssociationMetaLevelDependency >> dependencyFM3PropertyDescription [
-	^ self class dependencyFM3PropertyDescription
+	^ self class dependencyFM3PropertyDescriptionIn: self metamodel
 ]
 
 { #category : #accessing }
 TAssociationMetaLevelDependency >> sourceTypes [
-	^ self class sourceTypes
+	^ self class sourceTypesIn: self metamodel
 ]
 
 { #category : #accessing }
 TAssociationMetaLevelDependency >> targetTypes [
-	^ self class targetTypes
+	^ self class targetTypesIn: self metamodel
 ]

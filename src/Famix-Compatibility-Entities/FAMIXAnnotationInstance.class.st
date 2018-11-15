@@ -28,16 +28,6 @@ FAMIXAnnotationInstance class >> generatedTraitNames [
 	^ #(FamixTAnnotationInstance FamixTTypedAnnotationInstance FamixTWithAnnotationInstanceAttributes TDependencyQueries TEntityMetaLevelDependency)
 ]
 
-{ #category : #'Moose-Query-Extensions' }
-FAMIXAnnotationInstance class >> parentSelector [
-	self 
-		deprecated: 'Use parentSelectors instead'
-		on: 	'21 December 2016' 
-		in: 'Pharo-6.0-60328-'
-		transformWith: '`@receiver parentSelector' -> '`@receiver parentSelectors'.
-	^ self parentSelectors
-]
-
 { #category : #meta }
 FAMIXAnnotationInstance class >> requirements [
 

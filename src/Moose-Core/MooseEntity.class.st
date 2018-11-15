@@ -69,6 +69,13 @@ MooseEntity class >> allDeclaredProperties [
 ]
 
 { #category : #'meta accessing' }
+MooseEntity class >> allDeclaredPropertiesIn: aMetamodel [
+	"All properties described in the metamodel"
+	 
+	^(self mooseDescriptionIn: aMetamodel) allAttributes
+]
+
+{ #category : #'meta accessing' }
 MooseEntity class >> allPropertySelectors [
 	"Return a dictionary with all properties of this kind of entity, including metamodel properties, metrics, and navigation groups. Keys are abstract names of properties, values are implementing selectors"
 	
@@ -226,6 +233,13 @@ MooseEntity >> allDeclaredProperties [
 	"All properties described in the metamodel"
 	 
 	^self mooseDescription allAttributes
+]
+
+{ #category : #'meta information' }
+MooseEntity >> allDeclaredPropertiesIn: aMetamodel [
+	"All properties described in the metamodel"
+	 
+	^(self mooseDescriptionIn: aMetamodel) allAttributes
 ]
 
 { #category : #'meta information' }
@@ -410,6 +424,15 @@ MooseEntity >> lookUpPropertyNamed: selector computedAs: aBlock [
 	^self privateState cache: selector initializer: aBlock
 ]
 
+{ #category : #accessing }
+MooseEntity >> metamodel [
+
+	^ self privateModelOrNil
+		ifNil: [ super metamodel ]
+		ifNotNil: [ :aModel | aModel metamodel ]
+
+]
+
 { #category : #printing }
 MooseEntity >> mooseDisplayStringOn: stream [
 	self mooseNameOn: stream
@@ -518,6 +541,12 @@ MooseEntity >> printOn: aStream [
 MooseEntity >> privateClearMooseName [
 	" this method causes the cache to fail if called directly. Use resetMooseName instead. "
 	self privateState removeProperty: #mooseName
+]
+
+{ #category : #accessing }
+MooseEntity >> privateModelOrNil [
+
+	^ self privateState attributeAt: #privateModel ifAbsent: [ nil ]
 ]
 
 { #category : #private }

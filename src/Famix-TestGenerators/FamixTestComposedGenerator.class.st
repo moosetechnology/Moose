@@ -13,6 +13,29 @@ Class {
 }
 
 { #category : #accessing }
+FamixTestComposedGenerator class >> modifyMetamodel: aMetamodel [
+
+	| p1 p2 |
+	
+	super modifyMetamodel: aMetamodel.
+	
+	p1 := (aMetamodel descriptionOf: (Smalltalk globals at: #FamixTestComposed1CustomEntity5)) attributeNamed: #associations.
+	p2 := (aMetamodel descriptionOf: (Smalltalk globals at: #FamixTestComposedAssociation)) attributeNamed: #c15.
+	p1 opposite: p2.
+	p2 opposite: p1.	
+	p1 type implementingClass: (Smalltalk globals at: #FamixTestComposed1CustomEntity5).	
+	p2 type implementingClass: (Smalltalk globals at: #FamixTestComposedAssociation).
+
+	p1 := (aMetamodel descriptionOf: (Smalltalk globals at: #FamixTestComposed2CustomEntity5)) attributeNamed: #associations.
+	p2 := (aMetamodel descriptionOf: (Smalltalk globals at: #FamixTestComposedAssociation)) attributeNamed: #c25.
+	p1 opposite: p2.
+	p2 opposite: p1.	
+	p1 type implementingClass: (Smalltalk globals at: #FamixTestComposed2CustomEntity5).	
+	p2 type implementingClass: (Smalltalk globals at: #FamixTestComposedAssociation).
+
+]
+
+{ #category : #accessing }
 FamixTestComposedGenerator class >> packageName [ 
 
 	^ 'Famix-TestComposedMetamodel-Entities'
@@ -33,7 +56,7 @@ FamixTestComposedGenerator class >> submetamodels [
 { #category : #definition }
 FamixTestComposedGenerator >> define [ 
 
-	| test1Method test2Class test1Custom1 test1Custom2 test1Custom3 test1Custom4 test2Custom1 test2Custom2 test2Custom3 test2Custom4 |
+	| test1Method test2Class test1Custom1 test1Custom2 test1Custom3 test1Custom4 test2Custom1 test2Custom2 test2Custom3 test2Custom4 test1Custom5 test2Custom5 |
 	
 	super define.
 	
@@ -74,6 +97,31 @@ FamixTestComposedGenerator >> define [
 	(test1Custom3 property: #c23)  *- (test2Custom3 property: #c13s).
 	(test1Custom4 property: #c24s) *-* (test2Custom4 property: #c14s).
 
+	association := builder newClassNamed: #Association.
+	association --|> entity.
+	association --|> #TAssociationMetaLevelDependency.
+
+	test1Custom5 := self remoteEntity: #CustomEntity5 withPrefix: #FamixTestComposed1.
+	test2Custom5 := self remoteEntity: #CustomEntity5 withPrefix: #FamixTestComposed2.
+	(test1Custom5 property: #associations) -* ((association property: #c15) target).
+	((association property: #c25) source) *- (test2Custom5 property: #associations).	
+	
+
 		
 
+]
+
+{ #category : #definition }
+FamixTestComposedGenerator >> newBuilder [
+
+	| mqBuilder |
+
+	mqBuilder := FamixMooseQueryGenerator builderWithDefinitions.
+
+	self adoptBuilder: mqBuilder.
+
+	^ mqBuilder
+		doNotGenerateCurrent;
+		generator: self;
+		yourself.
 ]

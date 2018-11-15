@@ -504,6 +504,12 @@ MooseModel >> mooseDescription [
 	^ self metamodel descriptionOf: self class instanceSide
 ]
 
+{ #category : #accessing }
+MooseModel >> mooseDescriptionIn: aMetamodel [
+
+	^ aMetamodel descriptionOf: self class instanceSide
+]
+
 { #category : #printing }
 MooseModel >> mooseDisplayStringOn: stream [
 	stream nextPutAll: self name
