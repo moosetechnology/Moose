@@ -119,6 +119,8 @@ BaselineOfMoose >> baseline: spec [
 			package: 'Moose-RoassalPaintings';
 			package: 'Moose-Tests-Finder';
 			package: 'Moose-Tests-RoassalPaintings'.
+			
+		self baselinePetitParser: spec.
 
 	   self groups: spec.
 	]
@@ -334,6 +336,18 @@ BaselineOfMoose >> baselineOrderPreservingDictionary: spec [
 ]
 
 { #category : #baseline }
+BaselineOfMoose >> baselinePetitParser: spec [ 
+    
+	self defineGroup: #'PetitParser-Group' in: spec with: #(
+		'PetitParser' 
+		'PetitTests' 
+		'PetitAnalyzer'
+		'PetitGui'
+	).
+
+]
+
+{ #category : #baseline }
 BaselineOfMoose >> baselineRing2: spec [ 
     
 	self defineGroup: #Ring2 in: spec with: #(
@@ -531,10 +545,14 @@ BaselineOfMoose >> groups: spec [
 		'Famix-TestComposedMetamodel-Entities'
 		'Famix-TestComposedSubmetamodel1-Entities'
 		'Famix-TestComposedSubmetamodel2-Entities'
-		
 	).
-	
-	spec group: 'default' with: #('MooseFinder').
+
+	spec group: 'Parsing' with: #(
+		'MooseFinder'
+		'PetitParser-Group'
+	).
+		
+	spec group: 'default' with: #('Parsing').
 	
 
 ]
