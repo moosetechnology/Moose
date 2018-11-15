@@ -281,15 +281,15 @@ BaselineOfMoose >> baselineMocketry: spec [
 BaselineOfMoose >> baselineMooseAlgos: spec [ 
     
 	spec
-		package: 'Moose-Tests-Algos-Graph';
-		package: 'Moose-Tests-Algos-InformationRetrieval';
+		package: 'Moose-Algos-Graph-Tests';
 		package: 'Moose-Algos-FormalConceptAnalysis';
-		package: 'Moose-Tests-Algos-FormalConceptAnalysis';
+		package: 'Moose-Algos-FormalConceptAnalysis-Tests';
 		package: 'Moose-Algos-Lattice';
-		package: 'Moose-Tests-Algos-Lattice';
+		package: 'Moose-Algos-Lattice-Tests';
 		package: 'Moose-Algos-LinearAlgebra';
-		package: 'Moose-Tests-Algos-LinearAlgebra';
-		package: 'Moose-Algos-InformationRetrieval'
+		package: 'Moose-Algos-LinearAlgebra-Tests';
+		package: 'Moose-Algos-InformationRetrieval';
+		package: 'Moose-Algos-InformationRetrieval-Tests'
 ]
 
 { #category : #baseline }
@@ -493,20 +493,20 @@ BaselineOfMoose >> groups: spec [
 		'Metanool-Tests-Core'			
 		'Glamour-Magritte-Presentations'
 		'Moose-Algos-Lattice'
-		'Moose-Tests-Algos-Graph'
+		'Moose-Algos-Graph-Tests'
 		'Moose-Algos-FormalConceptAnalysis'
 		'Moose-Algos-InformationRetrieval'
 		'Moose-Algos-LinearAlgebra'
-		'Moose-Tests-Algos-FormalConceptAnalysis'
-		'Moose-Tests-Algos-LinearAlgebra'
+		'Moose-Algos-FormalConceptAnalysis-Tests'
+		'Moose-Algos-LinearAlgebra-Tests'
 		'Moose-RoassalPaintings'
 		'Moose-Help'
 		'Moose-Finder'
 		
 		'Moose-Tests-RoassalPaintings'
 		'Moose-Tests-Finder'
-		'Moose-Tests-Algos-Lattice'
-		'Moose-Tests-Algos-InformationRetrieval'
+		'Moose-Algos-Lattice-Tests'
+		'Moose-Algos-InformationRetrieval-Tests'
 
 		'Moose-MonticelloImporter'
 		'Moose-Tests-MonticelloImporter'

@@ -85,25 +85,16 @@ MalGermanStemmer >> performStemming: aString [
 
 { #category : #'private-algorithm' }
 MalGermanStemmer >> preprocessing [
-	
 	string := string copyReplaceAll: #ß with: #ss.
-	2
-		to: string size - 1
-		do:
-			[:index | 
-			(((string at: index) == $u or: [(string at: index) == $y])
-				and: [(self isVowelAt: index - 1) and: [self isVowelAt: index + 1]])
-				ifTrue:
-					[string
-						at: index
-						put: (string at: index) asUppercase]]
+	2 to: string size - 1 do: [ :index | 
+		((#($u $y) anySatisfy: [ :each | (string at: index) = each ]) and: [ (self isVowelAt: index - 1) and: [ self isVowelAt: index + 1 ] ])
+			ifTrue: [ string at: index put: (string at: index) asUppercase ] ]
 ]
 
 { #category : #'private-algorithm' }
 MalGermanStemmer >> setMarks [
-	
 	super setMarks.
-	r1 < 3 ifTrue: [r1 := 3]
+	r1 := r1 max: 3
 ]
 
 { #category : #'private-algorithm' }
@@ -166,19 +157,13 @@ MalGermanStemmer >> step3 [
 { #category : #'private-algorithm' }
 MalGermanStemmer >> toLowercase [
 	"Converts the current string to lowercase (reimplemented here for performance reasons)."
-	
+
 	| copy |
 	copy := string copy.
-	1
-		to: string size
-		do:
-			[:index | 
-			| code |
-			code := (string at: index) asInteger.
-			(65 <= code and: [code <= 90])
-				ifTrue:
-					[copy
-						at: index
-						put: (Character value: code + 32)]].
+	1 to: string size do: [ :index | 
+		| code |
+		code := (string at: index) asInteger.
+		(code between: 65 and: 90)
+			ifTrue: [ copy at: index put: (Character value: code + 32) ] ].
 	string := copy
 ]

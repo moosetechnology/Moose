@@ -17,9 +17,3 @@ Integer >> maskSet: t1 [
 
 	^ self bitOr: t1.
 ]
-
-{ #category : #'*Moose-Algos-LinearAlgebra' }
-Integer class >> zero [
-	^ 0. 
-	
-]

@@ -111,7 +111,7 @@ MalMatrixCoercion >> with: matrix affect: aBlock [
 			[number := aBlock
 				value: number
 				value: matrix asNumber]
-		caseMatrix: [Error raise]
+		caseMatrix: [self error]
 ]
 
 { #category : #enumerating }

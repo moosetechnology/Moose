@@ -9,12 +9,11 @@ Class {
 	#category : #'Moose-Algos-Lattice'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 MalLatticeNode class >> withNew: concept [
-	| latticeNode |
-	latticeNode := MalLatticeNode with: concept .
-	latticeNode concept: concept.
-	^latticeNode
+	^ (self with: concept)
+		concept: concept;
+		yourself
 ]
 
 { #category : #ancestorsLabel }
@@ -131,7 +130,7 @@ MalLatticeNode >> myAttribLabel [
 		
 ]
 
-{ #category : #accessing }
+{ #category : #printing }
 MalLatticeNode >> printString [
 	^self labels first printString, self labels last printString
 ]

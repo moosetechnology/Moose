@@ -190,14 +190,9 @@ MalVector >> at: index put: aNumber [
 
 { #category : #accessing }
 MalVector >> atAllPut: collection [
-	
-	(collection isKindOf: Collection)
-		
-		ifTrue:
-			[self
-				with: collection
-				affect: [:a :b | b]]
-		ifFalse: [super atAllPut: collection]
+	collection isCollection
+		ifTrue: [ self with: collection affect: [ :a :b | b ] ]
+		ifFalse: [ super atAllPut: collection ]
 ]
 
 { #category : #coercing }
@@ -304,27 +299,12 @@ MalVector >> dist: aVector [
 ]
 
 { #category : #enumerating }
-MalVector >> do: aBlock [
-	"Evaluate aBlock with each of the receiver's elements as the argument."
-	
-	1
-		to: self size
-		do: [:index | aBlock value: (self at: index)]
-]
-
-{ #category : #enumerating }
 MalVector >> doSparseWithIndex: aBlock [
 	
 	self
 		doWithIndex:
 			[:each :index | each isZero ifFalse: [aBlock value: each value: index]].
 	^self
-]
-
-{ #category : #'double dispatching' }
-MalVector >> doesNotUnderstand: aMessage [
-	
-	^super doesNotUnderstand: aMessage
 ]
 
 { #category : #'vector functions' }
@@ -346,17 +326,9 @@ MalVector >> generality [
 	^210
 ]
 
-{ #category : #testing }
-MalVector >> hasSize: size [
-	
-	^self size = size
-]
-
 { #category : #comparing }
 MalVector >> hash [
-	
-	^(self size hash bitXor: (self at: 1) hash)
-		bitXor: (self at: self size) hash
+	^ (self size hash bitXor: (self at: 1) hash) bitXor: (self at: self size) hash
 ]
 
 { #category : #'initialize-release' }
@@ -392,10 +364,14 @@ MalVector >> negated [
 	^self collect: #negated
 ]
 
+{ #category : #enumerating }
+MalVector >> noMatchError [
+	self error: 'No match'
+]
+
 { #category : #private }
 MalVector >> noModificationError [
-	
-	Error raise
+	self error: 'No modification'
 ]
 
 { #category : #'vector functions' }

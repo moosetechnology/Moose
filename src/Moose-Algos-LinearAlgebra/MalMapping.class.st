@@ -7,12 +7,6 @@ Class {
 	#category : #'Moose-Algos-LinearAlgebra'
 }
 
-{ #category : #adding }
-MalMapping >> add: newObject [
-	
-	self subclassResponsibility
-]
-
 { #category : #accessing }
 MalMapping >> at: name [
 	
@@ -63,7 +57,7 @@ MalMapping >> convertCollection: aSequencableCollection [
 { #category : #application }
 MalMapping >> convertMatrixColumnwise: aMatrix [
 	
-	^aMatrix species withMatrix: (MalMappedMatrix on: aMatrix columnMap: self)
+	^aMatrix species withAll: (MalMappedMatrix on: aMatrix columnMap: self)
 ]
 
 { #category : #application }
@@ -75,7 +69,7 @@ MalMapping >> convertMatrixRowwise: aMatrix [
 { #category : #application }
 MalMapping >> convertSquareMatrix: aMatrix [
 	
-	^aMatrix species withMatrix: (MalMappedMatrix on: aMatrix map: self)
+	^aMatrix species withAll: (MalMappedMatrix on: aMatrix map: self)
 ]
 
 { #category : #converting }
@@ -96,12 +90,6 @@ MalMapping >> deriveWithNames: names [
 	derivate setParent: self.
 	names do: [:name | derivate add: (self keyForName: name)].
 	^derivate
-]
-
-{ #category : #enumerating }
-MalMapping >> do: aBlock [
-	
-	self subclassResponsibility
 ]
 
 { #category : #testing }

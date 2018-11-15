@@ -10,6 +10,15 @@ Class {
 	#category : #'Moose-Algos-LinearAlgebra'
 }
 
+{ #category : #'instance creation' }
+MalColumnMatrix class >> onColumns: columnCollection [
+	| new |
+	new := self basicNew.
+	new columns: columnCollection asArray.
+	[ new checkInvariant ] assert.
+	^ new
+]
+
 { #category : #accessing }
 MalColumnMatrix >> at: row and: column [
 	
@@ -47,6 +56,11 @@ MalColumnMatrix >> columnSize [
 MalColumnMatrix >> columns [
 	
 	^columns
+]
+
+{ #category : #accessing }
+MalColumnMatrix >> columns: anObject [
+	columns := anObject
 ]
 
 { #category : #'initialize-release' }

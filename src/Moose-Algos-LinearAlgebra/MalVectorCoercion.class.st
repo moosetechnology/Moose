@@ -95,7 +95,7 @@ MalVectorCoercion >> with: vector affect: aBlock [
 			[number := aBlock
 				value: number
 				value: vector asNumber]
-		caseVector: [Error raise]
+		caseVector: [self error]
 ]
 
 { #category : #enumerating }

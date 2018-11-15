@@ -40,11 +40,9 @@ Class {
 
 { #category : #'initialize-release' }
 ModuleIdentification class >> on: lattice [
-	
-	| identifier |
-	identifier := ModuleIdentification new.
-	identifier lattice: lattice.
-	^ identifier computeModules.
+	^ self new
+		lattice: lattice;
+		computeModules
 ]
 
 { #category : #'middle-phase' }
@@ -197,22 +195,16 @@ ModuleIdentification >> removeFalseCandidates: descNodes [
 { #category : #'start-phase' }
 ModuleIdentification >> startAlgo [
 	"The method takes each node and analyzes its descendants for possible module identification. It found, the module is added to the list moduleNodes of the class and the nodes in the module are removed from the list of nodes to be considered. The algorithm is then restarted on rest of the nodes."
-	
-	1 to: (nodesToConsider size) 
-		do: [:n | 
-				((nodesToConsider at:n) descendants size > 1)
-				ifTrue: [
-					
-					(self analyzeDescendantsOf: (nodesToConsider at:n))
-					ifTrue: [
-							self moduleNodes: self candidate.
-							nodesToConsider removeAllSuchThat: [:each | self candidate includes: each].
+
+	nodesToConsider
+		do: [ :n | 
+			n descendants size > 1
+				ifTrue: [ (self analyzeDescendantsOf: n)
+						ifTrue: [ self moduleNodes: self candidate.
+							nodesToConsider removeAllSuchThat: [ :each | self candidate includes: each ].
 							self flushCandidate.
-							^ true.			
-						]	
-				]   
-		].
-	^ false.
+							^ true ] ] ].
+	^ false
 ]
 
 { #category : #'middle-phase' }
@@ -222,7 +214,7 @@ ModuleIdentification >> treatNextLevel: aCollection [
 	aCollection ifEmpty: [ ^ false ].
 	aCollection
 		do: [ :each | 
-			(self candidate includesAllOf: (self allAncestors: each))
+			(self candidate includesAll: (self allAncestors: each))
 				ifFalse: [ nodesToConsider addAll: self candidate.
 					self flushCandidate.
 					^ false ] ].

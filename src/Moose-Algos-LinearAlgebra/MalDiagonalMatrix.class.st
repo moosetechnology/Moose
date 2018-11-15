@@ -49,22 +49,10 @@ MalDiagonalMatrix >> checkInvariant [
 	^partialColumns isCollection	"(DiagonalMatrix new: 10) checkInvariant"
 ]
 
-{ #category : #accessing }
-MalDiagonalMatrix >> columnSize [
-	
-	^partialColumns size
-]
-
 { #category : #'initialize-release' }
 MalDiagonalMatrix >> initializeRows: m columns: n [
 	
 	m = n ifFalse: [Array new noMatchError].
 	partialColumns := Array new: m.
 	^self
-]
-
-{ #category : #accessing }
-MalDiagonalMatrix >> rowSize [
-	
-	^partialColumns size
 ]

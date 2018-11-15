@@ -36,43 +36,37 @@ Class {
 
 { #category : #'as yet unclassified' }
 MalLatticePatterns class >> on: aLattice [
-	| patterns |
-	patterns := MalLatticePatterns new.
-	patterns lattice: aLattice.
-	^patterns
-
+	^ self new
+		lattice: aLattice;
+		yourself
 ]
 
 { #category : #complex }
 MalLatticePatterns >> IsHorizontalDecomposition [
-	| nodes |
-	nodes := self lattice top descendants.
-	1 to: nodes size - 1 do: [ :n | 
-		n + 1 to: nodes size do: [ :m | 
-			((nodes at: n) hasDescendant: (nodes at: m))
-				ifFalse: [ (((nodes at: n) allDescendants: self lattice bottom) anySatisfy: [ :each | ((nodes at: m) allDescendants: self lattice bottom) includes: each ])
-						ifFalse: [ ^ true ] ] ] ].
-	^ false
+	self deprecated: 'Use #isHorizontalDecomposition instead' transformWith: '`@receiver IsHorizontalDecomposition' -> '`@receiver isHorizontalDecomposition'.
+	self isHorizontalDecomposition
 ]
 
 { #category : #complex }
-MalLatticePatterns >> IsSubConceptSpecialization: aNode [
-	^ (self lattice bottom = aNode and: [ self isFull: aNode ]) or: [ (self isGrey: aNode) or: [ self isFull: aNode ] ]
+MalLatticePatterns >> IsSubConceptSpecialization: arg [
+	self deprecated: 'Use #isSubConceptSpecialization: instead' transformWith: '`@receiver IsSubConceptSpecialization: `@statements' -> '`@receiver isSubConceptSpecialization: `@statements'.
+	self isSubConceptSpecialization: arg
 ]
 
 { #category : #complex }
-MalLatticePatterns >> IsSuperConceptSpecialization: aNode [
-	^ (self lattice top = aNode and: [ self isFull: aNode ]) or: [ (self isBlack: aNode) or: [ self isFull: aNode ] ]
+MalLatticePatterns >> IsSuperConceptSpecialization: arg [
+	self deprecated: 'Use #isSuperConceptSpecialization: instead' transformWith: '`@receiver IsSuperConceptSpecialization: `@statements' -> '`@receiver isSuperConceptSpecialization: `@statements'.
+	self isSuperConceptSpecialization: arg
 ]
 
 { #category : #nodes }
 MalLatticePatterns >> black [
-	^lattice nodes select:[:aNode | aNode labels first size = 0 and: [ aNode labels last size ~= 0]]
+	^ lattice nodes select: [ :aNode | aNode labels first isEmpty and: [ aNode labels last isNotEmpty ] ]
 ]
 
 { #category : #nodes }
 MalLatticePatterns >> empty [
-	^lattice nodes select:[:aNode | aNode labels first size = 0 and: [ aNode labels second size = 0]]
+	^ lattice nodes select: [ :aNode | aNode labels first isEmpty and: [ aNode labels second isEmpty ] ]
 ]
 
 { #category : #nodes }
@@ -82,62 +76,69 @@ MalLatticePatterns >> full [
 
 { #category : #nodes }
 MalLatticePatterns >> grey [
-	^lattice nodes select:[:aNode | aNode labels first size ~= 0 and: [ aNode labels second size = 0]]
+	^ lattice nodes select: [ :aNode | aNode labels first isNotEmpty and: [ aNode labels second isEmpty ] ]
 ]
 
 { #category : #complex }
 MalLatticePatterns >> hDNodeSize [
 	"we still do not know how to compute the number of nodes in the horizontal decomposition. This method was a first effort but does not return the correct results."
-	
-	
-	| nodes hdNodes totalNodes|
+
+	| nodes hdNodes totalNodes |
 	totalNodes := 0.
 	hdNodes := OrderedCollection new.
 	nodes := self lattice top descendants.
-	1 to: (nodes size) 
-		do: [:n | 
-			|currentNode nodeTemp |
-			
-			currentNode := nodes at: n.
-			
-			nodeTemp := nodes flatCollect: [:aNode | (aNode ~=currentNode) ifTrue: [aNode allDescendants: self lattice bottom ] ifFalse: [#()]].
-			(nodeTemp anySatisfy: [ :each | 
-				(currentNode allDescendants: self lattice bottom) includes: each])
-				ifFalse: [(hdNodes includes: currentNode) ifFalse: [hdNodes add: currentNode. totalNodes := totalNodes + (currentNode allDescendants: self lattice bottom) size]]].
-	^totalNodes.
-
+	nodes
+		do: [ :node | 
+			| currentNode nodeTemp |
+			currentNode := node.
+			nodeTemp := nodes
+				flatCollect: [ :aNode | 
+					aNode ~= currentNode
+						ifTrue: [ aNode allDescendants: self lattice bottom ]
+						ifFalse: [ #() ] ].
+			(nodeTemp anySatisfy: [ :each | (currentNode allDescendants: self lattice bottom) includes: each ])
+				ifFalse: [ (hdNodes includes: currentNode)
+						ifFalse: [ hdNodes add: currentNode.
+							totalNodes := totalNodes + (currentNode allDescendants: self lattice bottom) size ] ] ].
+	^ totalNodes
 ]
 
 { #category : #complex }
 MalLatticePatterns >> horizontalDecomposition [
 	"computes the horizontal decompositon of a lattice by looking at the descendants of the top node. From those descendants (first level nodes in the lattice), it sees that two nodes do not have overlapping descendants)"
-	
+
 	| nodes sum hdNodes |
 	sum := 0.
 	hdNodes := OrderedCollection new.
 	nodes := self lattice top descendants.
-	1 to: (nodes size) 
-		do: [:n | 
-			|currentNode nodeTemp |
-			
-			currentNode := nodes at: n.
-			
-			nodeTemp := nodes flatCollect: [:aNode | (aNode ~=currentNode) ifTrue: [aNode allDescendants: self lattice bottom ] ifFalse: [#()]].
-			(nodeTemp anySatisfy: [ :each | 
-				(currentNode allDescendants: self lattice bottom) includes: each])
-				ifFalse: [(hdNodes includes: currentNode) ifFalse: [sum:= sum + 1. hdNodes add: currentNode.]]].
-	^sum.
-
+	nodes
+		do: [ :node | 
+			| currentNode nodeTemp |
+			currentNode := node.
+			nodeTemp := nodes
+				flatCollect: [ :aNode | 
+					aNode ~= currentNode
+						ifTrue: [ aNode allDescendants: self lattice bottom ]
+						ifFalse: [ #() ] ].
+			(nodeTemp anySatisfy: [ :each | (currentNode allDescendants: self lattice bottom) includes: each ])
+				ifFalse: [ (hdNodes includes: currentNode)
+						ifFalse: [ sum := sum + 1.
+							hdNodes add: currentNode ] ] ].
+	^ sum
 ]
 
 { #category : #complex }
 MalLatticePatterns >> irreducibleSpecialization [
-	
 	| dict |
 	dict := Dictionary new.
-	self lattice nodes do: [:aNode | (self IsSuperConceptSpecialization: aNode) ifTrue: [aNode descendants do:[:aDes | (self IsSubConceptSpecialization: aDes) ifTrue: [dict at: aNode put: aDes] ] ]].
-	^dict 
-		
+	self lattice nodes
+		do: [ :aNode | 
+			(self isSuperConceptSpecialization: aNode)
+				ifTrue: [ aNode descendants
+						do: [ :aDes | 
+							(self isSubConceptSpecialization: aDes)
+								ifTrue: [ dict at: aNode put: aDes ] ] ] ].
+	^ dict
 ]
 
 { #category : #nodes }
@@ -181,6 +182,28 @@ MalLatticePatterns >> isFull: aNode [
 { #category : #nodes }
 MalLatticePatterns >> isGrey: aNode [
 	^self grey includes: aNode
+]
+
+{ #category : #complex }
+MalLatticePatterns >> isHorizontalDecomposition [
+	| nodes |
+	nodes := self lattice top descendants.
+	1 to: nodes size - 1 do: [ :n | 
+		n + 1 to: nodes size do: [ :m | 
+			((nodes at: n) hasDescendant: (nodes at: m))
+				ifFalse: [ (((nodes at: n) allDescendants: self lattice bottom) anySatisfy: [ :each | ((nodes at: m) allDescendants: self lattice bottom) includes: each ])
+						ifFalse: [ ^ true ] ] ] ].
+	^ false
+]
+
+{ #category : #complex }
+MalLatticePatterns >> isSubConceptSpecialization: aNode [
+	^ (self lattice bottom = aNode and: [ self isFull: aNode ]) or: [ (self isGrey: aNode) or: [ self isFull: aNode ] ]
+]
+
+{ #category : #complex }
+MalLatticePatterns >> isSuperConceptSpecialization: aNode [
+	^ (self lattice top = aNode and: [ self isFull: aNode ]) or: [ (self isBlack: aNode) or: [ self isFull: aNode ] ]
 ]
 
 { #category : #top }

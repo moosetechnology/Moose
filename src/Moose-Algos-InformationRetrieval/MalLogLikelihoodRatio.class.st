@@ -42,7 +42,7 @@ MalLogLikelihoodRatio >> computeAll [
 	| comparison |
 	comparison := (terms1 asSet union: terms2 asSet) asArray
 		collect: [:each | each -> (self computeLogLR: each)].
-	^(comparison sorted: #value asSortBlock) reversed
+	^(comparison sorted: #value asSortFunction) reversed
 ]
 
 { #category : #accessing }
@@ -51,7 +51,7 @@ MalLogLikelihoodRatio >> computeAllOfTerms1 [
 	| comparison |
 	comparison := terms1 asSet asArray
 		collect: [:each | each -> (self computeLogLR: each)].
-	^(comparison sorted: #value asSortBlock) reversed
+	^(comparison sorted: #value asSortFunction) reversed
 ]
 
 { #category : #computing }

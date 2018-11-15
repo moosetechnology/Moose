@@ -48,9 +48,9 @@ MalStopwords class >> englishStopwordString [
 
 { #category : #'instance creation' }
 MalStopwords class >> fromString: stopwords [
+	"We cannot use #withAll: here"
 	
-	^ super new addAll: (stopwords runsFailing: #isSeparator).
-	"^self withAll: (stopwords runsFailing: #isSeparator)"
+	^ self new addAll: (stopwords runsFailing: #isSeparator).
 ]
 
 { #category : #constants }
@@ -89,7 +89,7 @@ MalStopwords >> add: aString [
 	^aString
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #action }
 MalStopwords >> changeSizeTo: size [
 	"Become larger. Typically, a subclass has to override this if the subclass
 	adds instance variables."
@@ -107,11 +107,9 @@ MalStopwords >> do: aBlock [
 
 { #category : #testing }
 MalStopwords >> includes: aString [
-	
 	| size |
 	size := aString size.
-	^(size > 0 and: [size <= array size])
-		and: [(array at: size) includes: aString]
+	^ size > 0 and: [ size <= array size and: [ (array at: size) includes: aString ] ]
 ]
 
 { #category : #printing }

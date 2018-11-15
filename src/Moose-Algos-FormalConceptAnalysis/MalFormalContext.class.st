@@ -14,32 +14,24 @@ Class {
 
 { #category : #examples }
 MalFormalContext class >> classHierarchy [
-	
-	^self classHierarchy: Smalltalk allClasses
+	^ self classHierarchy: Smalltalk globals allClasses
 ]
 
 { #category : #examples }
 MalFormalContext class >> classHierarchy: classes [
-	
-	| fca |
-	fca := MalFormalContext new.
-	fca
-		with: classes
-		using: #yourself
-		using: [:each | each allSelectors "\"difference: Object allSelectors].
-	^fca
+	^ self new
+		with: classes using: #yourself using: [ :each | each allSelectors difference: Object allSelectors ];
+		yourself
 ]
 
 { #category : #examples }
 MalFormalContext class >> classHierarchyCollection [
-	
-	^self classHierarchy: Collection withAllSubclasses.
+	^ self classHierarchy: Collection withAllSubclasses
 ]
 
 { #category : #examples }
 MalFormalContext class >> classHierarchyInt [
-	
-	^self classHierarchy: Integer withAllSubclasses.
+	^ self classHierarchy: Integer withAllSubclasses
 ]
 
 { #category : #examples }
@@ -50,7 +42,7 @@ MalFormalContext class >> mammals [
 	data := #(#(#ostrich #(#walks #laysEggs #featheres #warmblooded)) #(#mosquito #(#laysEggs #flies #small)) #(#vulture #(#laysEggs #featheres #warmblooded #flies)) #(#horse #(#walks #warmblooded #suckles)) #(#bat #(#warmblooded #flies #small #suckles)) #(#frog #(#quacks #laysEggs #small)) #(#dove #(#laysEggs #featheres #warmblooded #flies #small)) #(#crocodile #(#walks #laysEggs)) #(#robin #(#laysEggs #featheres #warmblooded #flies #sings #small)) #(#platypus #(#walks #laysEggs #warmblooded #suckles))).
 	names := #(#robin #dove #vulture #ostrich #bat #horse #platypus #crocodile #frog #mosquito).
 	names := String withAll: (names collect: #first).
-	fca := MalFormalContext new.
+	fca := self new.
 	fca with: data using: #first using: #last.
 	^fca
 ]
@@ -61,7 +53,7 @@ MalFormalContext class >> mammals2 [
 	
 	| data fca |
 	data := #(#(#Cat #(#fourlegs #hair)) #(#Dog #(#fourlegs #hair)) #(#Dolphin #(#smart #marine)) #(#Gibbon #(#hair #smart #thumbed)) #(#Man #(#smart #thumbed)) #(#Whale #(#smart #marine))).
-	fca := MalFormalContext new.
+	fca := self new.
 	fca with: data using: #first using: #last.
 	^fca
 ]
@@ -72,7 +64,7 @@ MalFormalContext class >> mammals3 [
 	
 	| data fca |
 	data := #(#(#Cat #(#fourlegs #hair)) #(#Dog #(#fourlegs #hair)) #(#Dolphin #(#smart #marine)) #(#Gibbon #(#hair #smart #thumbed)) #(#Man #(#smart #thumbed)) #(#Whale #(#smart #marine)) #(#SuperMan #(#hair #smart #thumbed #marine #fourlegs))).
-	fca := MalFormalContext new.
+	fca := self new.
 	fca with: data using: #first using: #last.
 	^fca
 ]
@@ -84,7 +76,7 @@ MalFormalContext class >> mammals4 [
 	
 	| data fca |
 	data := #(#(#Cat #(#fourlegs #hair)) #(#Dog #(#fourlegs #hair #hair)) #(#Dolphin #(#smart #marine #hair)) #(#Gibbon #(#hair #smart #thumbed #hair)) #(#Man #(#smart #thumbed #hair)) #(#Whale #(#smart #marine #hair))).
-	fca := MalFormalContext new.
+	fca := self new.
 	fca with: data using: #first using: #last.
 	^fca
 ]
