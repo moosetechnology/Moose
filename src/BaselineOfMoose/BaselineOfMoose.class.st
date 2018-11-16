@@ -122,6 +122,7 @@ BaselineOfMoose >> baseline: spec [
 			
 		self baselinePetitParser: spec.
 		self baselineNeoCSV: spec.
+		self baselineSmaCC: spec.
 
 	   self groups: spec.
 	]
