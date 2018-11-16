@@ -36,22 +36,6 @@ FamixTest1NamedEntity class >> generatedTraitNames [
 	^ #(FamixTNamed TDependencyQueries TEntityMetaLevelDependency)
 ]
 
-{ #category : #'as yet unclassified' }
-FamixTest1NamedEntity class >> outgoingAssociationTypes [
-	"Here we add a cache because this is heavely used in MooseQuery for the navigations."
-	"TODO: Clean"
-
-	^ outgoingAssociationTypes
-		ifNil: [ outgoingAssociationTypes := self privateOutgoingAssociationTypes ]
-]
-
-{ #category : #'as yet unclassified' }
-FamixTest1NamedEntity class >> parentTypes [
-	"TODO: Clean"
-
-	^ self privateParentTypes 
-]
-
 { #category : #meta }
 FamixTest1NamedEntity class >> requirements [
 

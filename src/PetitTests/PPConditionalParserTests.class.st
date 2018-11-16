@@ -12,7 +12,7 @@ PPConditionalParserTests >> context [
 	^ context
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #running }
 PPConditionalParserTests >> setUp [
 	super setUp.
 	context := PPContext new

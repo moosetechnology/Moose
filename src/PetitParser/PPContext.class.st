@@ -188,7 +188,7 @@ PPContext >> position: anInteger [
 	^ stream position: anInteger
 ]
 
-{ #category : #initialization }
+{ #category : #copying }
 PPContext >> postCopy [
 	super postCopy.
 	globals := globals copy.

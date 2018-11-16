@@ -12,7 +12,7 @@ PPContextTest >> context [
 	^ PPContext new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #running }
 PPContextTest >> setUp [
 	super setUp.
 	context := self context.
