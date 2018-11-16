@@ -384,6 +384,51 @@ BaselineOfMoose >> baselineRoassal2: spec [
 ]
 
 { #category : #baseline }
+BaselineOfMoose >> baselineSmaCC: spec [ 
+    
+	"
+	https://github.com/j-brant/SmaCC
+	git@github.com:j-brant/SmaCC.git
+	branch: Pharo7
+	"
+
+	self defineGroup: #'SmaCC-Group' in: spec with: #(
+		'SmaCC_Runtime'
+		'SmaCC_GLR_Runtime'
+		'SmaCC_Source_Editing'
+		'SmaCC_Rewrite_Engine'
+		
+		'SmaCC_Antlr_Parser'
+		'SmaCC_CSV_Parser'
+		'SmaCC_CSharp'
+		'SmaCC_C_Parser'
+		'SmaCC_Delphi'
+		'SmaCC_Delphi_Forms'
+		'SmaCC_Generic_Smalltalk_Parser'
+		'SmaCC_Grammar_Parser'
+		'SmaCC_Java'
+		'SmaCC_Javascript_Parser'
+		'SmaCC_Line_Parser'
+		'SmaCC_Smalltalk_Parser'
+		'SmaCC_Source_Editing'
+		'SmaCC_Swift'
+
+		'SmaCC_Development'
+		'SmaCC_Debugging_Support'
+		
+		'SmaCC_Parse_Tree_Comparison'
+		'SmaCC_Tests'
+		'SmaCC_Development_UI'
+		'SmaCC_Rewrite_Engine_Tests'
+		
+		'SmaCC_Rewrite_Engine_Command_Line'
+		'SmaCC_Rewrite_Engine_UI'
+		'SmaCC_Rewrite_Server'
+		'SmaCC_Rewrite_Server_Worker'
+	).
+]
+
+{ #category : #baseline }
 BaselineOfMoose >> baselineStateSpecs: spec [ 
     
 	self defineGroup: #'StateSpecs-Base' in: spec with: #(
@@ -562,6 +607,7 @@ BaselineOfMoose >> groups: spec [
 		'MooseFinder'
 		'PetitParser-Group'
 		'NeoCSV-Group'
+		'SmaCC-Group'
 	).
 		
 	spec group: 'default' with: #('Parsing').
