@@ -78,8 +78,6 @@ RTTransitivelyTHighlightableTest >> testBasicWithCycleAndEdgeHighlighting [
 
 	| v eb element allShapes int |
 	
-	self skip. "randomly failing"
-	
 	v := RTView new.
 	v addAll: (RTBox elementsOn: (1 to: 3)).
 	RTGridLayout on: v elements.

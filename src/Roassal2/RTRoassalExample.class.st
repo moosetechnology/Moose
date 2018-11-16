@@ -1368,38 +1368,6 @@ qhkZiSuX+j9SKMZYbOrRmQAAAABJRU5ErkJggg=='
 ]
 
 { #category : #sources }
-RTRoassalExample >> exampleBitmap [
-
-	| v s |
-	v := RTView new.
-	s := RTBitmap new.
-	s form: RTIcon roassal.
-	v add: s element.
-	^ v
-]
-
-{ #category : #icons }
-RTRoassalExample >> exampleBitmapIcon [
-	^ 'iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAADKUlEQVR4XuXZzSu0URyH8clL
-NvK2UFbKQrGwtreyEBtRdnb+DCmxICkriewoG1aUslI0ZjE0qxlqzDQLJU0z8jpf928O5vHM
-jCzmnh7PddUdc8+Z0vl03+eeIyDx+5cK8KeAD8KPD8IH4ccH4YPw44PwQfjxQfgg/Pgg/Pgg
-fBB+fBA+CD8+CB+EHx+ED8KPD8KPD8IH4ccH4YPw44PwQfjxQfgg/Pgg/PggfBB+fBA+CD8+
-CB+EHx+ED8KPD8LvvwB5eJBOT6WNDWlpSVpZkfb2pHSaD1K1cjlpe1vq6fH+6oA7Ghultjap
-vr5wbmzMjeWD+NjRkdTU5CZ8aEg6Ppaen7+OsXN1dW7M3Fz+VNq7YpLJpDf0mQ9SsdbW3CT3
-9krxuLS/L83Ofj92cDCPEQwGdXZ2plAo5F00OT5IRW5TNsHDw+713V3h1lSqnR333uRk/sow
-DDsMhg9SKZC+vsLrqys34XZrKtXIiHv/5EQvLy/5K8MwotEoH6RiPT4Wfp+edhM+Olo8bmHB
-vbe8/OV0IpHgL+q+NTHhJt3WkGzWPe6urkrd3VJXl3R+XvQRu3XxQfyqocGB2HeQjo7CenJw
-UPYjfBC/F3g77PeZGamz073e2uKDVL1YrPgJa3fXvW5v54NUvfl5N/nj41/Pt7a685ubfJCq
-NjXlJt6etP7M9rDsfG2tlMkU3eb4IH71sS3ifbcoqr/fvWdryu2t9PQkDQzwQaqyoJfKHoFb
-Wgpj7Fhf59+yfOvy0k1yTU35MXa7svXFrpbDQ/4a4muLiw6kufn9y/ujUqmU92+Rh28/duft
-ff2mbZPfA3J/L11fv9+9cp+7uPbT9qxKdXNz8znu4uKCv5flVxnv1vSxi2tHzPt+Eve25f8+
-IpEIf7e3Wp17e1Y2yeFwuOyYrLfQ2xg7rt+vLj6Ij72+vv7g4Sz3o3F8EH58ED4IPz4IH4Qf
-H4QPwo8Pwgfhxwfhxwfhg/Djg/BB+PFB+CD8+CB8EH58EH58ED4IPz4IH4QfH4QPwo8Pwgfh
-xwfhxwfhg/Djg/BB+PFB+CD8+CB8EH58EH58ED4IPz7Ib+0NJ43wr9GLX5MAAAAASUVORK5C
-YII='
-]
-
-{ #category : #sources }
 RTRoassalExample >> exampleBlinking [
 
 | classes v shape es labels |
@@ -3829,60 +3797,6 @@ QKAAvsTtAo5+QBqkwcFBw3f+AEN5oxDlRz8gvaxliaZF3g79uXnzUxne1xYg5Dz3ZSDQH2Ka
 TiNpEk0ZASMxIGnZmJso29BP5GaUC8lHGQOSpRKm/j1IMrmFx0Iqk2ZOpKw/C2l3IsEbLovQ
 YspR1kqYIdU29VMOQBDmvVr+R63amwUQ/TkXawQkrVxFnXX89AMyQkmleQCjjIQ0YtqXUtyU
 oxsYGDDUj924caN+wEfoL7ER7ik9wKZxAAAAAElFTkSuQmCC'
-]
-
-{ #category : #sources }
-RTRoassalExample >> exampleFonts [
-
-	"
-	self new exampleFonts
-	"
-| v fontNames shape es |
-v := RTView new.
-fontNames := TRPlatform current fontListStrings allButFirst.
-
-shape := RTLabel new fontName: #yourself; text: #yourself.
-
-es := shape elementsOn: fontNames.
-es @ RTPopup.
-
-v addAll: es.
-RTVerticalLineLayout on: v elements.
-
-	^ v
-]
-
-{ #category : #icons }
-RTRoassalExample >> exampleFontsIcon [
-	^ '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
-QmCC'
 ]
 
 { #category : #sources }
