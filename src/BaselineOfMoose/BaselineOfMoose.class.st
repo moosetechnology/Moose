@@ -397,7 +397,7 @@ BaselineOfMoose >> baselineRoassal2: spec [
 
 { #category : #baseline }
 BaselineOfMoose >> baselineRoelTyper: spec [
-	self defineGroup: #RoelTyper in: spec with: #('RoelTyper' 'RoelTyper-Tests')
+	self defineGroup: #'RoelTyper-Group' in: spec with: #('RoelTyper' 'RoelTyper-Tests')
 ]
 
 { #category : #baseline }
@@ -546,7 +546,7 @@ BaselineOfMoose >> groups: spec [
 		'Moose-Tests-SmalltalkImporter-KGB'
 		'Moose-TestResources-KGB-PExtensions'
 			
-		'RoelTyper'
+		'RoelTyper-Group'
 		'Moose-GenericImporter'
 		'Moose-SmalltalkImporter'
 		'Moose-Tests-Core'
