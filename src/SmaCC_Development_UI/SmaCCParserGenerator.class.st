@@ -45,6 +45,7 @@ SmaCCParserGenerator class >> menuCommandOn: aBuilder [
 	(aBuilder item: #'SmaCC Parser Generator')
 		parent: #Tools;
 		order: 490.1;
+		help: 'SmaCC Parser Generator Tool';
 		action: [ self open ]
 ]
 
