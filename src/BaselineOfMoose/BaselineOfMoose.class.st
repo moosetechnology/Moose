@@ -121,6 +121,7 @@ BaselineOfMoose >> baseline: spec [
 			package: 'Moose-Tests-RoassalPaintings'.
 			
 		self baselinePetitParser: spec.
+		self baselineNeoCSV: spec.
 
 	   self groups: spec.
 	]
@@ -334,6 +335,16 @@ BaselineOfMoose >> baselineMooseTestResources: spec [
 		'Moose-Tests-SmalltalkImporter-LAN'
 		'Moose-Tests-SmalltalkImporter-KGB'
 		'Moose-TestResources-KGB-PExtensions'
+	).
+
+]
+
+{ #category : #baseline }
+BaselineOfMoose >> baselineNeoCSV: spec [ 
+    
+	self defineGroup: #'NeoCSV-Group' in: spec with: #(
+		'Neo-CSV-Core' 
+		'Neo-CSV-Tests' 
 	).
 
 ]
@@ -560,6 +571,7 @@ BaselineOfMoose >> groups: spec [
 	spec group: 'Parsing' with: #(
 		'MooseFinder'
 		'PetitParser-Group'
+		'NeoCSV-Group'
 	).
 		
 	spec group: 'default' with: #('Parsing').
