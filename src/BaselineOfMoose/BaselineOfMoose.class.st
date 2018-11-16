@@ -51,6 +51,8 @@ BaselineOfMoose >> baseline: spec [
 
 		spec baseline: 'FamixCompatibility' with: [spec repository: repository].
 		
+		self baselineRoelTyper: spec.
+		
 		spec
 			package: 'Famix-Extensions';
 			package: 'Moose-GenericImporter';
@@ -394,6 +396,11 @@ BaselineOfMoose >> baselineRoassal2: spec [
 ]
 
 { #category : #baseline }
+BaselineOfMoose >> baselineRoelTyper: spec [
+	self defineGroup: #RoelTyper in: spec with: #('RoelTyper' 'RoelTyper-Tests')
+]
+
+{ #category : #baseline }
 BaselineOfMoose >> baselineSmaCC: spec [ 
     
 	"
@@ -539,6 +546,7 @@ BaselineOfMoose >> groups: spec [
 		'Moose-Tests-SmalltalkImporter-KGB'
 		'Moose-TestResources-KGB-PExtensions'
 			
+		'RoelTyper'
 		'Moose-GenericImporter'
 		'Moose-SmalltalkImporter'
 		'Moose-Tests-Core'

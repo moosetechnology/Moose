@@ -70,12 +70,12 @@ AbstractCandidateListOperator >> computeCandidateListFor: anInvocation withRecei
 ]
 
 { #category : #running }
-AbstractCandidateListOperator >> computeInstanceVariableCandidateListFor: anInvocation [ 
-	 
+AbstractCandidateListOperator >> computeInstanceVariableCandidateListFor: anInvocation [
+
 	| roelTyperResult allCandidates classContainingInvocation instVarSymbol |
 	classContainingInvocation := Smalltalk at: (anInvocation receiver belongsTo name).
 	instVarSymbol := anInvocation receiver name.
-	roelTyperResult := Dictionary new. "RoelTyper disabled". 
+	roelTyperResult := (TypeCollector typeInstvar: instVarSymbol ofClassWithLookup: classContainingInvocation) types.
 	"roelTyperResult := (TypeCollector typeInstvar: instVarSymbol ofClass: (self containerOf: instVarSymbol asString startingAt: classContainingInvocation )) assignments. "
 	
 	allCandidates := self allCandidatesFor: anInvocation .
@@ -91,6 +91,33 @@ AbstractCandidateListOperator >> computeInstanceVariableCandidateListFor: anInvo
 	
 	
 	^ roelTyperResult 
+]
+
+{ #category : #running }
+AbstractCandidateListOperator >> computeTemporaryVariableCandidateListFor: anInvocation [ 
+	 "For now, I am call by noone because I am a work in progress."
+	| roelTyperResult allCandidates classContainingInvocation tmpVarSymbol methodSelector compiledMethod key types |
+	classContainingInvocation := Smalltalk at: (anInvocation receiver belongsTo belongsTo  name).
+	tmpVarSymbol := anInvocation receiver name.
+	methodSelector := anInvocation receiver belongsTo name.
+	compiledMethod := classContainingInvocation methodDict at: methodSelector.
+	roelTyperResult := (TypeCollector typeTmpsIn: compiledMethod  ofClass:  classContainingInvocation ) . 
+	key := roelTyperResult keys detect: [:each | each = tmpVarSymbol asString].
+	types := (roelTyperResult at: key) types.
+	
+	allCandidates := self allCandidatesFor: anInvocation .
+	
+	types isEmpty
+	 	ifTrue: [
+			anInvocation candidates: (self allCandidatesFor: anInvocation ).				
+		]
+		ifFalse: [
+			allCandidates := allCandidates select: [:each | types includes: each belongsTo name].
+			anInvocation candidates: allCandidates .
+		].
+	
+	
+	^ types 
 ]
 
 { #category : #accessing }
