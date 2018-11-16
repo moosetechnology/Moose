@@ -188,18 +188,6 @@ RTAbstractLine >> withCenteredAttachPoint [
 	^ ap
 ]
 
-{ #category : #'attach point' }
-RTAbstractLine >> withContinuousCircleAttachPoint [
-	self deprecated: 'Use #withBorderAttachPoint instead.'.
-	^ self withBorderAttachPoint
-]
-
-{ #category : #'attach point' }
-RTAbstractLine >> withContinuousRectangleAttachPoint [
-	self deprecated: 'Use #withBorderAttachPoint instead.'.
-	^ self withBorderAttachPoint
-]
-
 { #category : #'public - attach point' }
 RTAbstractLine >> withHorizontalAttachPoint [
 	| ap |
