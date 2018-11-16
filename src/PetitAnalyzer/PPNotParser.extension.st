@@ -1,6 +1,6 @@
 Extension { #name : #PPNotParser }
 
-{ #category : #'*petitanalyzer-private' }
+{ #category : #'*PetitAnalyzer' }
 PPNotParser >> firstSets: aFirstDictionary into: aSet [
 	
 ]

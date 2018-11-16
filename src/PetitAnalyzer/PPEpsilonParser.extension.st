@@ -1,6 +1,6 @@
 Extension { #name : #PPEpsilonParser }
 
-{ #category : #'*petitanalyzer-testing' }
+{ #category : #'*PetitAnalyzer' }
 PPEpsilonParser >> isNullable [
 	^ true
 ]

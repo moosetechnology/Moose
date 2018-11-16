@@ -1,6 +1,6 @@
 Extension { #name : #PPOptionalParser }
 
-{ #category : #'*petitgui-mondrian' }
+{ #category : #'*PetitGui' }
 PPOptionalParser >> visualizationGraphType [
 	^ '?'
 ]

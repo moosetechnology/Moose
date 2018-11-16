@@ -1,6 +1,6 @@
 Extension { #name : #PPParser }
 
-{ #category : #'*petitanalyzer-named' }
+{ #category : #'*PetitAnalyzer' }
 PPParser >> allNamedParsers [
 	"Answer all the named parse nodes of the receiver."
 
@@ -40,7 +40,7 @@ PPParser >> copyInContext: aDictionary seen: aSeenDictionary [
 	^ copy
 ]
 
-{ #category : #'*petitanalyzer-querying' }
+{ #category : #'*PetitAnalyzer' }
 PPParser >> cycleSet [
 	"Answer a set of all nodes that are within one or more cycles of left-recursion. This is generally not a problem if at least one of the nodes is memoized, but it might make the grammar very inefficient and should be avoided if possible."
 	

@@ -65,7 +65,7 @@ PPParser >> example [
 PPParser >> exampleOn: aStream [
 ]
 
-{ #category : #'*petitgui' }
+{ #category : #'*PetitGui' }
 PPParser >> gtAllParsersIn: composite [
 	<gtInspectorPresentationOrder: 50>
 
@@ -77,7 +77,7 @@ PPParser >> gtAllParsersIn: composite [
 		].
 ]
 
-{ #category : #'*petitgui' }
+{ #category : #'*PetitGui' }
 PPParser class >> gtExampleCharactersParser [
 	<gtExample>
 	<label: 'Characters parser'>
@@ -85,7 +85,7 @@ PPParser class >> gtExampleCharactersParser [
 	^ ($a to: $z) asParser
 ]
 
-{ #category : #'*petitgui' }
+{ #category : #'*PetitGui' }
 PPParser class >> gtExampleEmptyParser [
 	<gtExample>
 	<label: 'Empty parser'>
@@ -93,7 +93,7 @@ PPParser class >> gtExampleEmptyParser [
 	^ self new
 ]
 
-{ #category : #'*petitgui' }
+{ #category : #'*PetitGui' }
 PPParser >> gtInspectorParserInspectorIn: composite [
 	<gtInspectorPresentationOrder: 30>
 	composite custom: (
@@ -102,7 +102,7 @@ PPParser >> gtInspectorParserInspectorIn: composite [
 			startOn: self)
 ]
 
-{ #category : #'*petitgui' }
+{ #category : #'*PetitGui' }
 PPParser >> gtNamedTreeViewIn: composite [
 	<gtInspectorPresentationOrder: 40>
 
@@ -113,7 +113,7 @@ PPParser >> gtNamedTreeViewIn: composite [
 		shouldExpandToLevel: 3
 ]
 
-{ #category : #'*petitgui' }
+{ #category : #'*PetitGui' }
 PPParser >> gtTreeViewIn: composite [
 	<gtInspectorPresentationOrder: 40>
 

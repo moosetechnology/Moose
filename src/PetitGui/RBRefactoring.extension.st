@@ -1,6 +1,6 @@
 Extension { #name : #RBRefactoring }
 
-{ #category : #'*petitgui-utilities' }
+{ #category : #'*PetitGui' }
 RBRefactoring >> checkCompositeParser: aClass [
 	^ (RBCondition isMetaclass: aClass) not
 	"&  RBCondition isSubclass: class of: self compositeParserClass"

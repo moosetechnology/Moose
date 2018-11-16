@@ -1,6 +1,6 @@
 Extension { #name : #UndefinedObject }
 
-{ #category : #'*petitparser-converting' }
+{ #category : #'*PetitParser' }
 UndefinedObject >> asParser [
 	"Answer a parser that succeeds and does not consume anything."
 	

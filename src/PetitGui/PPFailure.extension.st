@@ -1,6 +1,6 @@
 Extension { #name : #PPFailure }
 
-{ #category : #'*petitgui' }
+{ #category : #'*PetitGui' }
 PPFailure >> debugResult [
 	context ifNil: [ ^ nil ].
 	context root ifNil: [ ^ nil ].
@@ -8,7 +8,7 @@ PPFailure >> debugResult [
 	^ context root enableDebug parse: context stream reset
 ]
 
-{ #category : #'*petitgui' }
+{ #category : #'*PetitGui' }
 PPFailure >> gtDebugView: composite [
 	<gtInspectorPresentationOrder: 40>
 
@@ -45,7 +45,7 @@ PPFailure >> gtDebugView: composite [
 	browser startOn: self
 ]
 
-{ #category : #'*petitgui' }
+{ #category : #'*PetitGui' }
 PPFailure class >> gtExampleEmptyMessage [
 	<gtExample>
 	<label: 'Failure: empty'>
@@ -53,7 +53,7 @@ PPFailure class >> gtExampleEmptyMessage [
 	^ self message: ''
 ]
 
-{ #category : #'*petitgui' }
+{ #category : #'*PetitGui' }
 PPFailure class >> gtExampleNumberExpected [
 	<gtExample>
 	<label: 'Failure: Number expected'>
@@ -61,7 +61,7 @@ PPFailure class >> gtExampleNumberExpected [
 	^ #digit asParser plus parse: 'a'
 ]
 
-{ #category : #'*petitgui' }
+{ #category : #'*PetitGui' }
 PPFailure >> sampleIn: composite [
 
 	(composite text)
@@ -70,7 +70,7 @@ PPFailure >> sampleIn: composite [
 		allowNil.
 ]
 
-{ #category : #'*petitgui' }
+{ #category : #'*PetitGui' }
 PPFailure >> treeViewIn: composite [
 	composite tree
 		title: 'Execution Traces';

@@ -1,6 +1,6 @@
 Extension { #name : #Stream }
 
-{ #category : #'*petitparser-core-converting' }
+{ #category : #'*PetitParser' }
 Stream >> asPetitStream [
 	^ self contents asPetitStream
 ]

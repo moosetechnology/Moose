@@ -1,6 +1,6 @@
 Extension { #name : #PPCompositeParser }
 
-{ #category : #'*petitgui-debug' }
+{ #category : #'*PetitGui' }
 PPCompositeParser class >> debug: anObject [
 	^ self debug: anObject startingAt: self startSymbol
 ]

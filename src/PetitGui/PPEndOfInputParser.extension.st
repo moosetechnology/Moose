@@ -1,6 +1,6 @@
 Extension { #name : #PPEndOfInputParser }
 
-{ #category : #'*petitgui-accessing' }
+{ #category : #'*PetitGui' }
 PPEndOfInputParser >> displayDescription [
 	^ 'end of input'
 ]

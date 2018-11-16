@@ -1,18 +1,18 @@
 Extension { #name : #PPParserDebuggerResult }
 
-{ #category : #'*petitgui' }
+{ #category : #'*PetitGui' }
 PPParserDebuggerResult >> findStream [
 	
 	stream ifNil: [ ^ parent ifNotNil: [ parent findStream ] ].
 	^ stream
 ]
 
-{ #category : #'*petitgui' }
+{ #category : #'*PetitGui' }
 PPParserDebuggerResult >> findStreamContents [
 	^ (self findStream ifNotNil: [ :s | s contents ]) ifNil: [ '' ]
 ]
 
-{ #category : #'*petitgui' }
+{ #category : #'*PetitGui' }
 PPParserDebuggerResult >> gtDebugView: composite [
 	<gtInspectorPresentationOrder: 40>
 
@@ -44,7 +44,7 @@ PPParserDebuggerResult >> gtDebugView: composite [
 	browser startOn: self
 ]
 
-{ #category : #'*petitgui' }
+{ #category : #'*PetitGui' }
 PPParserDebuggerResult class >> gtExampleAlmostArithmetic [
 	<gtExample>
 	<label: 'Incomplete arithmetic expression'>
@@ -54,7 +54,7 @@ PPParserDebuggerResult class >> gtExampleAlmostArithmetic [
 		with: PPArithmeticParser new
 ]
 
-{ #category : #'*petitgui' }
+{ #category : #'*PetitGui' }
 PPParserDebuggerResult class >> gtExampleArithmetic [
 	<gtExample>
 	<label: 'Arithmetic expression'>
@@ -64,7 +64,7 @@ PPParserDebuggerResult class >> gtExampleArithmetic [
 		with: PPArithmeticParser new
 ]
 
-{ #category : #'*petitgui' }
+{ #category : #'*PetitGui' }
 PPParserDebuggerResult class >> gtExampleNoNumber [
 	<gtExample>
 	<label: 'Result with #Number expected, but #String given'>
@@ -74,7 +74,7 @@ PPParserDebuggerResult class >> gtExampleNoNumber [
 		with: (PPArithmeticParser new productionAt: #number)
 ]
 
-{ #category : #'*petitgui' }
+{ #category : #'*PetitGui' }
 PPParserDebuggerResult class >> gtExampleNumber [
 	<gtExample>
 	<label: 'Result with #Number'>
@@ -84,7 +84,7 @@ PPParserDebuggerResult class >> gtExampleNumber [
 		with: (PPArithmeticParser new productionAt: #number)
 ]
 
-{ #category : #'*petitgui' }
+{ #category : #'*PetitGui' }
 PPParserDebuggerResult >> sampleIn: composite [
 
 	(composite text)
@@ -93,19 +93,19 @@ PPParserDebuggerResult >> sampleIn: composite [
 		allowNil.
 ]
 
-{ #category : #'*petitgui' }
+{ #category : #'*PetitGui' }
 PPParserDebuggerResult >> stream [
 	
 	^ stream
 ]
 
-{ #category : #'*petitgui' }
+{ #category : #'*PetitGui' }
 PPParserDebuggerResult >> stream: anObject [
 	
 	stream := anObject
 ]
 
-{ #category : #'*petitgui' }
+{ #category : #'*PetitGui' }
 PPParserDebuggerResult >> treeViewIn: composite [
 	composite tree
 		title: 'Execution Traces';

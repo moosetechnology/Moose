@@ -7,7 +7,7 @@ Object >> asParser [
 	^ PPPredicateObjectParser expect: self
 ]
 
-{ #category : #'*petitparser-core-testing' }
+{ #category : #'*PetitParser' }
 Object >> isPetitFailure [
 	^ false
 ]
