@@ -39,6 +39,7 @@ PPBrowser class >> menuCommandOn: aBuilder [
 	(aBuilder item: self label)
 		parent: #Tools;
 		icon: self icon;
+		help: 'PetitParser Browser';
 		action: [ self open ]
 ]
 
