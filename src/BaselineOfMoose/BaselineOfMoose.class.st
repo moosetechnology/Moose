@@ -307,7 +307,16 @@ BaselineOfMoose >> baselineMooseAlgos: spec [
 		package: 'Moose-Algos-LinearAlgebra';
 		package: 'Moose-Algos-LinearAlgebra-Tests';
 		package: 'Moose-Algos-InformationRetrieval';
-		package: 'Moose-Algos-InformationRetrieval-Tests'
+		package: 'Moose-Algos-InformationRetrieval-Tests'.
+		
+	self defineGroup: #'MooseAlgos-Additions' in: spec with: #(
+		'Moose-Algos-Clustering'
+		'Moose-Algos-HierarchicalGraph'
+		'Moose-Algos-Kontractor'
+		'Moose-Algos-Clustering-Tests'
+		'Moose-Algos-HierarchicalGraph-Tests'
+		'Moose-Algos-Kontractor-Tests'
+	).
 ]
 
 { #category : #baseline }
@@ -642,6 +651,7 @@ BaselineOfMoose >> groups: spec [
 		'Parsing'
 		'XMLWriter-Group'
 		'DeepTraverser-Examples-Group'
+		'MooseAlgos-Additions'
 	).
 		
 	spec group: 'default' with: #('AdditionalTools').
