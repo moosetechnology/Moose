@@ -1380,7 +1380,7 @@ XMLWriterTest >> testFormattingElementDeclarations [
 
 { #category : #tests }
 XMLWriterTest >> testFormattingEntityDelcarations [
-	| formatter writer xmlDeclarationWriter doctypeWriter firstDeclarationWriter secondDeclarationWriter thirdDeclarationWriter fourthDeclarationWriter |
+	| formatter writer doctypeWriter firstDeclarationWriter secondDeclarationWriter thirdDeclarationWriter fourthDeclarationWriter |
 
 	formatter := XMLWriterRecordingFormatterProxy new.
 	(writer := XMLWriter new) formatter: formatter.
