@@ -123,6 +123,7 @@ BaselineOfMoose >> baseline: spec [
 		self baselinePetitParser: spec.
 		self baselineNeoCSV: spec.
 		self baselineSmaCC: spec.
+		self baselineXMLWriter: spec.
 
 	   self groups: spec.
 	]
@@ -461,6 +462,18 @@ BaselineOfMoose >> baselineXMLParser: spec [
 	spec package: 'XML-Parser'
 ]
 
+{ #category : #baseline }
+BaselineOfMoose >> baselineXMLWriter: spec [ 
+
+	self defineGroup: #'XMLWriter-Group' in: spec with: #(
+		'XML-Writer-Core'
+		'XML-Writer-Tests'
+		'XML-Tests-Parser'
+		'Collections-Tests-OrderPreservingDictionary'
+		'XML-ParserGTExtensions'
+	).
+]
+
 { #category : #private }
 BaselineOfMoose >> defineGroup: groupName in: spec with: packages [
 
@@ -620,8 +633,13 @@ BaselineOfMoose >> groups: spec [
 		'NeoCSV-Group'
 		'SmaCC-Group'
 	).
+	
+	spec group: 'AdditionalTools' with: #(
+		'Parsing'
+		'XMLWriter-Group'
+	).
 		
-	spec group: 'default' with: #('Parsing').
+	spec group: 'default' with: #('AdditionalTools').
 	
 
 ]
