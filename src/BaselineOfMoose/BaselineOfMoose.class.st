@@ -159,6 +159,10 @@ BaselineOfMoose >> baselineDeepTraverser: spec [
 	self defineGroup: #'DeepTraverser-Tests-Group' in: spec with: #(
 		 'DeepTraverser-Tests'
 	).
+	
+	self defineGroup: #'DeepTraverser-Examples-Group' in: spec with: #(
+		 'DeepTraverser-Examples'
+	).
 ]
 
 { #category : #baseline }
@@ -637,6 +641,7 @@ BaselineOfMoose >> groups: spec [
 	spec group: 'AdditionalTools' with: #(
 		'Parsing'
 		'XMLWriter-Group'
+		'DeepTraverser-Examples-Group'
 	).
 		
 	spec group: 'default' with: #('AdditionalTools').
