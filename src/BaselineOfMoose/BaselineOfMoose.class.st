@@ -470,7 +470,7 @@ BaselineOfMoose >> baselineXMLWriter: spec [
 		'XML-Writer-Tests'
 		'XML-Tests-Parser'
 		'Collections-Tests-OrderPreservingDictionary'
-		'XML-ParserGTExtensions'
+		'XML-Parser-GTExtensions'
 	).
 ]
 
