@@ -125,6 +125,7 @@ BaselineOfMoose >> baseline: spec [
 		self baselineSmaCC: spec.
 		self baselineXMLWriter: spec.
 		self baselineMerlin: spec.
+		self baselineDistributionMap: spec.
 
 	   self groups: spec.
 	]
@@ -163,6 +164,15 @@ BaselineOfMoose >> baselineDeepTraverser: spec [
 	
 	self defineGroup: #'DeepTraverser-Examples-Group' in: spec with: #(
 		 'DeepTraverser-Examples'
+	).
+]
+
+{ #category : #baseline }
+BaselineOfMoose >> baselineDistributionMap: spec [ 
+
+	self defineGroup: #'DistributionMap-Group' in: spec with: #(
+		'Moose-DistributionMap'
+		'Moose-Tests-DistributionMap'
 	).
 ]
 
