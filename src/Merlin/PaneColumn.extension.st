@@ -1,18 +1,18 @@
 Extension { #name : #PaneColumn }
 
-{ #category : #'*Merlin-Rendering' }
+{ #category : #'Merlin' }
 PaneColumn >> merlinMorphWidget [
 
 	^ nil
 ]
 
-{ #category : #'*Merlin-Rendering' }
+{ #category : #'Merlin' }
 PaneColumn >> merlinRendering [
 
 	^ self renderer merlinColumnRenderingFor: self
 ]
 
-{ #category : #'*Merlin-Rendering' }
+{ #category : #'*Merlin' }
 PaneColumn >> renderOnMerlinRenderer: aMerlinRenderer [
 
 	^ aMerlinRenderer renderColumn: self

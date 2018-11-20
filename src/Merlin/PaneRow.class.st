@@ -47,7 +47,7 @@ PaneRow >> columnAt: anInteger [
 	^ self subComponentAt: anInteger
 ]
 
-{ #category : #'*Merlin-Rendering' }
+{ #category : #'rendering' }
 PaneRow >> merlinRendering [
 
 	^ self renderer merlinRowRenderingFor: self
@@ -59,7 +59,7 @@ PaneRow >> removeColumnAt: anInteger [
 	^ self removeSubComponentAt: anInteger
 ]
 
-{ #category : #'*Merlin-Rendering' }
+{ #category : #'rendering' }
 PaneRow >> renderOnMerlinRenderer: aMerlinRenderer [
 
 	^ aMerlinRenderer renderRow: self
