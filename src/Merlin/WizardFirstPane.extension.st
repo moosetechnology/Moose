@@ -1,6 +1,6 @@
 Extension { #name : #WizardFirstPane }
 
-{ #category : #'*merlin-rendering' }
+{ #category : #'*Merlin' }
 WizardFirstPane >> merlinSpecificRenderer [ 
 
 	^ MerlinMorphicFirstPaneRenderer new 
