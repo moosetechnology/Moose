@@ -332,7 +332,7 @@ MerlinMorphWidget >> newText: aStringOrText [
 MerlinMorphWidget >> newTextEditorFor: aModel getText: getSel setText: setSel [
 	"Answer a text editor for the given model."
 
-	^ (PluggableTextEditorMorph new)
+	^ (RubTextEditor new)
 		on: aModel
 			text: getSel
 			accept: setSel

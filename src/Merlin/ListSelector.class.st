@@ -170,7 +170,7 @@ ListSelector >> newAddButton [
 	"return the button that will be used to add a package from the packagesList to the selectionList. While no item is selected in the packagesList, this button is disable "
 	
 
-	addButton := PluggableButtonMorphPlus
+	addButton := PluggableButtonMorph
 			on: self getState: nil action: #updateWhenAddingItem.
 	addButton label: '>>>'.
 	addButton disable.
@@ -191,7 +191,7 @@ ListSelector >> newRemoveButton [
 	"return the button that will be used to remove a package from the selectionList to the packagesList. While no item is selected in the selectionList, this button is disable "
 	
 
-	removeButton := PluggableButtonMorphPlus
+	removeButton := PluggableButtonMorph
 			on: self getState: nil action: #updateWhenRemovingItem.
 	removeButton label: '<<<'.
 	removeButton disable.

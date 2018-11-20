@@ -46,7 +46,7 @@ XMLHighlightDefaults class >> resetDefaults [
 { #category : #private }
 XMLHighlightDefaults class >> textColorForShoutProperty: aShoutProperty [
 	^ TextColor color:
-		(((SHTextStylerST80 new attributesFor: aShoutProperty)
+		(((SHRBTextStyler new attributesFor: aShoutProperty)
 			detect: [:each | each respondsTo: #color]
 			ifNone: [^ nil]) color)
 ]

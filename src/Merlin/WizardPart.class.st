@@ -227,7 +227,7 @@ WizardPart >> newButtonNamed: aString withAction: selector [
 	"use this method to create a new classic button that will execute the method designed by selector when clicked. The method selector must be defined and implemented in the subclass"
 	
 	| button |
-	button := PluggableButtonMorphPlus on: self getState: nil action: selector.
+	button := PluggableButtonMorph on: self getState: nil action: selector.
 	button label: aString.
 	^button
 ]
@@ -239,7 +239,7 @@ WizardPart >> newButtonNamed: aString withAction: selector andArguments: aCollec
 	<lint: 'Methods implemented but not sent' rationale: 'method provided  to the user of the library' author: 'cyrille.delaunay'>
 	
 	| button |
-	button := PluggableButtonMorphPlus on: self getState: nil action: selector.
+	button := PluggableButtonMorph on: self getState: nil action: selector.
 	button label: aString.
 	button arguments: aCollectionOfArguments .
 	^button
@@ -425,7 +425,7 @@ WizardPart >> newText: aStringOrText [
 WizardPart >> newTextEditorFor: aModel getText: getSel setText: setSel [
 	"Answer a text editor for the given model."
 
-	^ (PluggableTextEditorMorph new)
+	^ (RubTextEditor new)
 		on: aModel
 			text: getSel
 			accept: setSel
