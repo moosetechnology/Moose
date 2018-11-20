@@ -73,7 +73,7 @@ MerlinExamples class >> branchesExampleUsing: aMerlinRenderer [
 { #category : #'basic examples' }
 MerlinExamples class >> buttonPartUsing: aMerlinRenderer [
 
-	| wizardControl  wizardPane1  dropListPart listPart buttonPart |
+	| wizardControl  wizardPane1 listPart buttonPart |
 	wizardControl := WizardControl new.
 	wizardControl renderer: aMerlinRenderer.
 	wizardPane1 := WizardSinglePane new.
@@ -114,7 +114,7 @@ MerlinExamples class >> chooseFilePart [
 MerlinExamples class >> chooseFilePartUsing: aMerlinRenderer [
 	"self chooseFilePart"
 
-	| wizardControl  wizardPane1  dropListPart checkboxPart textFieldPart compositePart |
+	| wizardControl  wizardPane1 checkboxPart |
 	wizardControl := WizardControl new.
 	wizardControl renderer: aMerlinRenderer.
 	wizardPane1 := WizardSinglePane new.
@@ -495,7 +495,7 @@ MerlinExamples class >> multiCheckBoxesPart [
 MerlinExamples class >> multiCheckBoxesPartUsing: aRendrer [
 	"self multiCheckBoxesPart"
 
-	| wizardControl  wizardPane1 wizardPane2  checkboxesPart textFieldPart textPart |
+	| wizardControl  wizardPane1 wizardPane2  checkboxesPart textPart |
 	wizardControl := WizardControl new.
 	wizardControl renderer: aRendrer.
 	wizardPane1 := WizardFirstPane new.
@@ -541,7 +541,7 @@ MerlinExamples class >> multiCheckBoxesPartWithCallback [
 MerlinExamples class >> multiCheckBoxesPartWithCallbackUsing: aRenderer [
 	"self multiCheckBoxesPartWithCallback"
 
-	| wizardControl  wizardPane1 wizardPane2  checkboxesPart textFieldPart textPart |
+	| wizardControl  wizardPane1 checkboxesPart |
 	wizardControl := WizardControl new.
 	wizardPane1 := WizardSinglePane new.
 	
@@ -583,7 +583,7 @@ MerlinExamples class >> multiDependentCheckboxesPart [
 MerlinExamples class >> multiDependentCheckboxesPartUsing: aRenderer [
 	"self multiDependentCheckboxesPart"
 
-	| wizardControl  wizardPane1 wizardPane2  checkboxesPart textFieldPart textPart |
+	| wizardControl  wizardPane1 checkboxesPart |
 	wizardControl := WizardControl new.
 	wizardControl renderer: aRenderer.
 	wizardPane1 := WizardSinglePane new.
@@ -618,7 +618,7 @@ MerlinExamples class >> multiDependentCheckboxesWithCallbackPart [
 MerlinExamples class >> multiDependentCheckboxesWithCallbackPartUsing: aRenderer [
 	"self multiDependentCheckboxesWithCallbackPart"
 
-	| wizardControl  wizardPane1 wizardPane2  checkboxesPart textFieldPart textPart listPart |
+	| wizardControl  wizardPane1 wizardPane2  checkboxesPart listPart |
 	wizardControl := WizardControl new.
 	wizardControl renderer: aRenderer.
 	wizardPane1 := WizardFirstPane new.
@@ -1123,7 +1123,7 @@ MerlinExamples class >> radioButtonsPartUsing: aRenderer [
 MerlinExamples class >> textEditorUsing: aMerlinRenderer [
 	"self itemsSelectorPart"
 
-	| wizardControl  wizardPane1 wizardPane2  textEditorPart |
+	| wizardControl  wizardPane1 textEditorPart |
 	wizardControl := WizardControl new.
 	wizardControl renderer: aMerlinRenderer.
 	wizardPane1 := WizardSinglePane new.
@@ -1162,7 +1162,7 @@ MerlinExamples class >> usingCallbackAndRefreshAndBlockAsDefaultValue [
 MerlinExamples class >> usingCallbackAndRefreshAndBlockAsDefaultValueUsing: aRenderer [
 	"self usingCallbackAndRefreshAndBlockAsDefaultValue"
 
-	| wizardControl  wizardPane1  firstDropListPartPart secondDropListPart |
+	| wizardControl  wizardPane1  firstDropListPartPart |
 	wizardControl := WizardControl new.
 	wizardControl renderer: aRenderer.
 	wizardPane1 := WizardSinglePane new.
@@ -1195,7 +1195,7 @@ MerlinExamples class >> usingCallbackAndRefreshAndBlockAsDefaultValueUsing: aRen
 MerlinExamples class >> usingCallbackAndRefreshUsing: aRenderer [
 	"self usingCallbackAndRefresh"
 
-	| wizardControl  wizardPane1  firstDropListPartPart secondDropListPart |
+	| wizardControl  wizardPane1  firstDropListPartPart |
 	wizardControl := WizardControl new.
 	wizardControl renderer: aRenderer.
 	wizardPane1 := WizardSinglePane new.

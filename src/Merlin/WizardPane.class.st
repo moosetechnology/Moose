@@ -715,7 +715,7 @@ WizardPane >> testOpen [
 { #category : #'accessing - main pane line' }
 WizardPane >> unassociatePart: aWizardPart [
 
-	|associatedInformation requiredInformation|
+	|associatedInformation |
 	associatedInformation := partsAndInformationsAssociated at: aWizardPart.
  	partsAndRequiredInformations removeKey: aWizardPart ifAbsent: [].
 	partsAndInformationsAssociated removeKey: aWizardPart.

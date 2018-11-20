@@ -168,7 +168,7 @@ DistributionMap >> orderColorMap [
 { #category : #'dendrogram clustering' }
 DistributionMap >> orderParts: aCollectionOfParts [
 
-	| vectors engine clusters partVectors |
+	| engine partVectors |
 	aCollectionOfParts ifEmpty: [^aCollectionOfParts].
 	partVectors :=  aCollectionOfParts  collect: [:eachPart |
 		MalSimilarityItem with: eachPart

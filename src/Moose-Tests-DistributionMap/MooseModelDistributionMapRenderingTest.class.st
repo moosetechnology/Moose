@@ -9,7 +9,8 @@ Class {
 
 { #category : #running }
 MooseModelDistributionMapRenderingTest >> tearDown [
-	window ifNotNil: [ window delete. window := nil ]
+	window ifNotNil: [ window delete. window := nil ].
+	super tearDown.
 ]
 
 { #category : #tests }

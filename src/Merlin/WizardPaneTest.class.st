@@ -15,6 +15,9 @@ Class {
 { #category : #running }
 WizardPaneTest >> setUp [
 	| wizardPane1 wizardPane2 firstCheckBoxPart secondCheckBoxPart |
+	
+	super setUp.
+	
 	wizardControl := MockWizardControl new.
 	wizardPane1 := WizardFirstPane new.
 	wizardPane2 := WizardLastPane new.

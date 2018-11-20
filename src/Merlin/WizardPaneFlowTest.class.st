@@ -10,7 +10,7 @@ Class {
 { #category : #tests }
 WizardPaneFlowTest >> testWizardMiddlePaneFlow [
 
-	|wizardControl wizardPane1 wizardPane2 wizardPane3 firstDropListPart wizardText wizardLabel firstListPart listPartSelectedValue|
+	|wizardControl wizardPane1 wizardPane2 wizardPane3 firstDropListPart firstListPart listPartSelectedValue|
 	wizardControl := MockWizardControl new.
 	wizardPane1 := WizardFirstPane new.
 	wizardPane2 := WizardMiddlePane new.
@@ -56,7 +56,7 @@ WizardPaneFlowTest >> testWizardMiddlePaneFlow [
 { #category : #tests }
 WizardPaneFlowTest >> testWizardPanesFlow [
 
-	|wizardControl wizardPane1 wizardPane2 firstDropListPartPart wizardText wizardLabel |
+	|wizardControl wizardPane1 wizardPane2 firstDropListPartPart wizardLabel |
 	wizardControl := MockWizardControl new.
 	wizardPane1 := WizardFirstPane new.
 	wizardPane2 := WizardLastPane new.
@@ -91,7 +91,7 @@ WizardPaneFlowTest >> testWizardPanesFlow [
 { #category : #tests }
 WizardPaneFlowTest >> testWizardPanesSecondValueFlow [
 
-	|wizardControl wizardPane1 wizardPane2 firstDropListPartPart wizardText wizardLabel secondDropListPart|
+	|wizardControl wizardPane1 wizardPane2 firstDropListPartPart wizardLabel secondDropListPart|
 	wizardControl := MockWizardControl new.
 	wizardPane1 := WizardFirstPane new.
 	wizardPane2 := WizardLastPane new.

@@ -467,7 +467,7 @@ MultiSelectionListSelector >> updateWhenAddingItem [
 MultiSelectionListSelector >> updateWhenRemovingItem [
 
 	"we remove the selected item from the selection list : "
-	| list package tmpPackagesList selectedItems tmpSelectionList tmpList |
+	| selectedItems tmpSelectionList tmpList |
 	selectedItems := self selectionListSelectedItems.
 	tmpSelectionList := self selectionList.
 	tmpSelectionList removeAll: selectedItems.

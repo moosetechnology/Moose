@@ -199,7 +199,7 @@ OpenDistributionMapWizard >> propertyValueMapperPartFromIndex: index [
 { #category : #'accessing - map parameters' }
 OpenDistributionMapWizard >> propertyValuesMap [
 	
-	| block result prop |
+	| result |
 	result := Dictionary new.
 	1 to: (self wizardInformations at: #numberOfProperties) do: [:int |
 		|blockString propertyValueId|
