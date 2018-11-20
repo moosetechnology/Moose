@@ -124,6 +124,7 @@ BaselineOfMoose >> baseline: spec [
 		self baselineNeoCSV: spec.
 		self baselineSmaCC: spec.
 		self baselineXMLWriter: spec.
+		self baselineMerlin: spec.
 
 	   self groups: spec.
 	]
@@ -267,6 +268,14 @@ BaselineOfMoose >> baselineMagritte3: spec [
 		package: 'Magritte-Model';
 		package: 'Magritte-Pharo3-Model';
 		package: 'Magritte-Morph'
+]
+
+{ #category : #baseline }
+BaselineOfMoose >> baselineMerlin: spec [ 
+
+	self defineGroup: #'Merlin-Group' in: spec with: #(
+		'Merlin'
+	).
 ]
 
 { #category : #baseline }
@@ -652,6 +661,7 @@ BaselineOfMoose >> groups: spec [
 		'XMLWriter-Group'
 		'DeepTraverser-Examples-Group'
 		'MooseAlgos-Additions'
+		'Merlin-Group'
 	).
 		
 	spec group: 'default' with: #('AdditionalTools').
