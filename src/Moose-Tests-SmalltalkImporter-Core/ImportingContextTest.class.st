@@ -19,6 +19,16 @@ ImportingContextTest >> testAllDependentsOf [
 ]
 
 { #category : #tests }
+ImportingContextTest >> testShouldComputeTypeOfAttributes [
+	| context |
+
+	context :=MooseImportingContext new.
+	self deny: (context shouldComputeTypeOfAttributes).
+	context computeTypeOfAttributes.
+	self assert: (context shouldComputeTypeOfAttributes).
+]
+
+{ #category : #tests }
 ImportingContextTest >> testShouldImportAllTheRest [
 	| context |
 
