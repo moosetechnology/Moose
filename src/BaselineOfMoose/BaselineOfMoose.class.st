@@ -397,7 +397,7 @@ BaselineOfMoose >> baselineRoassal2: spec [
 
 { #category : #baseline }
 BaselineOfMoose >> baselineRoelTyper: spec [
-	self defineGroup: #'RoelTyper-Group' in: spec with: #('RoelTyper' 'RoelTyper-Tests')
+	self defineGroup: #'RoelTyper-Group' in: spec with: #('RoelTyper' 'RoelTyper')
 ]
 
 { #category : #baseline }
