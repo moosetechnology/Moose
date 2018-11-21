@@ -40,7 +40,33 @@ FamixTestComposedMetamodelsWithMooseQuery >> setUp [
 { #category : #running }
 FamixTestComposedMetamodelsWithMooseQuery >> testAllIncomingAssociationTypes [
 
-	self assertCollection: association c15 allIncomingAssociationTypes hasSameElements: { FamixTestComposedAssociation }
+	self assertCollection: c15 allIncomingAssociationTypes hasSameElements: { FamixTestComposedAssociation }.
+	
+	self assert: c25 allIncomingAssociationTypes isEmpty
+]
+
+{ #category : #running }
+FamixTestComposedMetamodelsWithMooseQuery >> testAllOutgoingAssociationTypes [
+
+	self assert: c15 allOutgoingAssociationTypes isEmpty.
+
+	self assertCollection: c25 allOutgoingAssociationTypes hasSameElements: { FamixTestComposedAssociation }.
+	
+
+]
+
+{ #category : #running }
+FamixTestComposedMetamodelsWithMooseQuery >> testQueries [
+
+	self assertCollection: (c15 queryAll: #in) hasSameElements: { association }.
+	self assert: (c25 queryAll: #in) isEmpty.
+	
+	self assert: (c15 queryAll: #out) isEmpty.
+	self assertCollection: (c25 queryAll: #out) hasSameElements: { association }.
+
+	self assertCollection: (c15 queryAll: #in) opposites hasSameElements: { c25 }.
+	self assertCollection: (c25 queryAll: #out) opposites hasSameElements: { c15 }.
+
 ]
 
 { #category : #running }

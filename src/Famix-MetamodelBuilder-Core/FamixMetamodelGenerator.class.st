@@ -33,6 +33,37 @@ FamixMetamodelGenerator class >> builderWithDefinitions [
 	^ self new define builder
 ]
 
+{ #category : #accessing }
+FamixMetamodelGenerator class >> fixRemoteMetamodelRelationsIn: aMetamodel [
+
+	"Description of relations that are created between composed meta-models are not 
+	correct because they are created only from the information that the describing 
+	method provide. It needs to be fixed using the information that the builder 
+	provides."
+
+	| remoteRelations aBuilder |
+	
+	aBuilder := self builderWithDefinitions.
+	remoteRelations := aBuilder relations select: [ :aRelation | aRelation sides anySatisfy: #isRemote ].
+	
+	remoteRelations do: [ :aRelation |
+		| class1 class2 property1 property2 |
+		
+		class1 := Smalltalk globals at: aRelation side relatedEntity fullName.
+		class2 := Smalltalk globals at: aRelation oppositeSide relatedEntity fullName.
+			
+		property1 := (aMetamodel descriptionOf: class1) attributeNamed: aRelation side name.
+		property2 := (aMetamodel descriptionOf: class2) attributeNamed: aRelation oppositeSide name.
+		property1 opposite: property2.
+		property2 opposite: property1.
+		property1 type setImplementingClass: class2.	
+		property2 type setImplementingClass: class1.
+	]
+	
+
+
+]
+
 { #category : #'as yet unclassified' }
 FamixMetamodelGenerator class >> generate [
 
@@ -290,6 +321,7 @@ FamixMetamodelGenerator >> remoteEntity: anEntityName withPrefix: aPrefixName [
 	
 	anEntity := (subbuilders at: aPrefixName) ensureClassNamed: anEntityName.
 	anEntity isRemote: true.
+	anEntity remoteBuilder: builder.
 	
 	^ anEntity.
 ]

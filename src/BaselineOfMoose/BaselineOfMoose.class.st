@@ -509,8 +509,8 @@ BaselineOfMoose >> baselineXMLWriter: spec [
 	self defineGroup: #'XMLWriter-Group' in: spec with: #(
 		'XML-Writer-Core'
 		'XML-Writer-Tests'
-		'XML-Tests-Parser'
 		'Collections-Tests-OrderPreservingDictionary'
+		'XML-Tests-Parser'
 		'XML-Parser-GTExtensions'
 	).
 ]

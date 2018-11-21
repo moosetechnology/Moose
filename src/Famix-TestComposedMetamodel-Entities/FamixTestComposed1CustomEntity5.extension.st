@@ -5,6 +5,7 @@ FamixTestComposed1CustomEntity5 >> associations [
 
 	<generated>
 	<MSEProperty: #associations type: #Object>
+	<package: #'Famix-TestComposedMetamodel-Entities'>
 	^ self privateState attributeAt: #associations ifAbsentPut: [ FMMultivalueLink on: self opposite: #c15: ]
 ]
 

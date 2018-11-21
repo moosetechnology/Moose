@@ -68,3 +68,27 @@ FamixTestComposedAssociation >> c25: anObject [
 	<generated>
 	self privateState attributeAt: #c25 put: (FMMultivalueLink on: self update: #associations from: self c25 to: anObject).
 ]
+
+{ #category : #accessing }
+FamixTestComposedAssociation >> from [
+
+	^ self c25
+]
+
+{ #category : #accessing }
+FamixTestComposedAssociation >> from: anObject [
+
+	^ self c25: anObject
+]
+
+{ #category : #accessing }
+FamixTestComposedAssociation >> to [
+
+	^ self c15
+]
+
+{ #category : #accessing }
+FamixTestComposedAssociation >> to: anObject [
+
+	^ self c15: anObject
+]

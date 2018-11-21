@@ -93,6 +93,18 @@ FmxMBEntity >> navigationGroups: anObject [
 ]
 
 { #category : #accessing }
+FmxMBEntity >> remoteBuilder [
+
+	^ self additionalProperties at: #remoteBuilder ifAbsent: [ nil ]
+]
+
+{ #category : #accessing }
+FmxMBEntity >> remoteBuilder: aRemoteBuilder [
+
+	self additionalProperties at: #remoteBuilder put: aRemoteBuilder
+]
+
+{ #category : #accessing }
 FmxMBEntity >> willGenerate [
 	^ willGenerate
 ]
