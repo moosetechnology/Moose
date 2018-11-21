@@ -353,6 +353,12 @@ FmxMBRelationSide >> relation: anObject [
 	relation := anObject
 ]
 
+{ #category : #accessing }
+FmxMBRelationSide >> remoteBuilderDo: aBlock [
+
+	self relatedEntity additionalProperties at: #remoteBuilder ifPresent: aBlock
+]
+
 { #category : #'name conversion' }
 FmxMBRelationSide >> singularPropertyName [
 

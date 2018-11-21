@@ -321,7 +321,7 @@ FamixMetamodelGenerator >> remoteEntity: anEntityName withPrefix: aPrefixName [
 	
 	anEntity := (subbuilders at: aPrefixName) ensureClassNamed: anEntityName.
 	anEntity isRemote: true.
-	anEntity additionalProperties at: #remoteBuilder put: builder.
+	anEntity remoteBuilder: builder.
 	
 	^ anEntity.
 ]

@@ -5,6 +5,7 @@ FamixTestComposed1Method >> entity [
 
 	<generated>
 	<MSEProperty: #entity type: #Object>
+	<package: #'Famix-TestComposedMetamodel-Entities'>
 	^ self privateState attributeAt: #entity ifAbsent: [ nil ]
 ]
 

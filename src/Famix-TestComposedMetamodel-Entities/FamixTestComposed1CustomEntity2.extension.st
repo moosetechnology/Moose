@@ -5,6 +5,7 @@ FamixTestComposed1CustomEntity2 >> c22s [
 
 	<generated>
 	<MSEProperty: #c22s type: #Object>
+	<package: #'Famix-TestComposedMetamodel-Entities'>
 	^ self privateState attributeAt: #c22s ifAbsentPut: [ FMMultivalueLink on: self opposite: #c12: ]
 ]
 
@@ -20,6 +21,7 @@ FamixTestComposed1CustomEntity2 >> customEntity2 [
 
 	<generated>
 	<MSEProperty: #customEntity2 type: #Object>
+	<package: #'Famix-TestComposedMetamodel-Entities'>
 	^ self privateState attributeAt: #customEntity2 ifAbsent: [ nil ]
 ]
 

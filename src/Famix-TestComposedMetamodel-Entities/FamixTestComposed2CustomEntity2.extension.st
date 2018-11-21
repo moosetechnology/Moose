@@ -5,6 +5,7 @@ FamixTestComposed2CustomEntity2 >> c12 [
 
 	<generated>
 	<MSEProperty: #c12 type: #Object>
+	<package: #'Famix-TestComposedMetamodel-Entities'>
 	^ self privateState attributeAt: #c12 ifAbsent: [ nil ]
 ]
 
@@ -20,6 +21,7 @@ FamixTestComposed2CustomEntity2 >> c2 [
 
 	<generated>
 	<MSEProperty: #c2 type: #Object>
+	<package: #'Famix-TestComposedMetamodel-Entities'>
 	^ self privateState attributeAt: #c2 ifAbsent: [ nil ]
 ]
 

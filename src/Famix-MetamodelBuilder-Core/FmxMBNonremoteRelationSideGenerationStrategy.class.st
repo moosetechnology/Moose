@@ -9,6 +9,10 @@ FmxMBNonremoteRelationSideGenerationStrategy >> generateGetterCoreIn: aClassOrTr
 
 	aStream tab; nextPutAll: ('<MSEProperty: #{1} type: #Object>' format: {aRelationSide name}).
 	aStream cr.
+	
+	aRelationSide remoteBuilderDo: [ :aRemoteBuilder |
+		aStream tab; nextPutAll: ('<package: #''{1}''>' format: {aRemoteBuilder generator packageName}).
+		aStream cr ].
 
 	((aRelationSide cardinality = #one) and: [ aRelationSide otherSide cardinality = #one ])
 		ifTrue: [ 
