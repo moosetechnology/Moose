@@ -682,6 +682,8 @@ BaselineOfMoose >> groups: spec [
 		'DeepTraverser-Examples-Group'
 		'MooseAlgos-Additions'
 		'Merlin-Group'
+		'Moose-DistributionMap'
+		'Moose-Tests-DistributionMap'
 	).
 		
 	spec group: 'default' with: #('AdditionalTools').
