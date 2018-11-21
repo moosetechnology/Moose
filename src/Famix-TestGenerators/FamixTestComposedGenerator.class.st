@@ -15,23 +15,28 @@ Class {
 { #category : #accessing }
 FamixTestComposedGenerator class >> modifyMetamodel: aMetamodel [
 
-	| p1 p2 |
+	| aBuilder remoteRelations|
 	
 	super modifyMetamodel: aMetamodel.
 	
-	p1 := (aMetamodel descriptionOf: (Smalltalk globals at: #FamixTestComposed1CustomEntity5)) attributeNamed: #associations.
-	p2 := (aMetamodel descriptionOf: (Smalltalk globals at: #FamixTestComposedAssociation)) attributeNamed: #c15.
-	p1 opposite: p2.
-	p2 opposite: p1.	
-	p1 type implementingClass: (Smalltalk globals at: #FamixTestComposed1CustomEntity5).	
-	p2 type implementingClass: (Smalltalk globals at: #FamixTestComposedAssociation).
+	aBuilder := self builderWithDefinitions.
+	remoteRelations := aBuilder relations select: [ :aRelation | aRelation sides anySatisfy: #isRemote ].
+	
+	remoteRelations do: [ :aRelation |
+		| class1 class2 property1 property2 |
+		
+		class1 := Smalltalk globals at: aRelation side relatedEntity fullName.
+		class2 := Smalltalk globals at: aRelation oppositeSide relatedEntity fullName.
+			
+		property1 := (aMetamodel descriptionOf: class1) attributeNamed: aRelation side name.
+		property2 := (aMetamodel descriptionOf: class2) attributeNamed: aRelation oppositeSide name.
+		property1 opposite: property2.
+		property2 opposite: property1.
+		property1 type setImplementingClass: class2.	
+		property2 type setImplementingClass: class1.
+	]
+	
 
-	p1 := (aMetamodel descriptionOf: (Smalltalk globals at: #FamixTestComposed2CustomEntity5)) attributeNamed: #associations.
-	p2 := (aMetamodel descriptionOf: (Smalltalk globals at: #FamixTestComposedAssociation)) attributeNamed: #c25.
-	p1 opposite: p2.
-	p2 opposite: p1.	
-	p1 type implementingClass: (Smalltalk globals at: #FamixTestComposed2CustomEntity5).	
-	p2 type implementingClass: (Smalltalk globals at: #FamixTestComposedAssociation).
 
 ]
 
