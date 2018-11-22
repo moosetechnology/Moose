@@ -1,6 +1,6 @@
 Extension { #name : #Pragma }
 
-{ #category : #'*fame-util' }
+{ #category : #'*Fame-SmalltalkBinding' }
 Pragma class >> inMethod: compiledMethod named: keyword [
 
 	| all keywords selection |

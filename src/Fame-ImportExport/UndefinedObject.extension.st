@@ -1,11 +1,11 @@
 Extension { #name : #UndefinedObject }
 
-{ #category : #'*Fame-Util' }
+{ #category : #'*Fame-ImportExport' }
 UndefinedObject >> charCode [
 	^ Float infinity
 ]
 
-{ #category : #'*Fame-Util' }
+{ #category : #'*Fame-ImportExport' }
 UndefinedObject >> isMSESeparator [
 	^false
 ]

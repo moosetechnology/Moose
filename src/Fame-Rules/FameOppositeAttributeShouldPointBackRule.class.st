@@ -1,7 +1,7 @@
 Class {
 	#name : #FameOppositeAttributeShouldPointBackRule,
 	#superclass : #RBBlockLintRule,
-	#category : #'Fame-Util'
+	#category : #'Fame-Rules'
 }
 
 { #category : #accessing }

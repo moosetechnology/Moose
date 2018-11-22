@@ -185,11 +185,11 @@ BaselineOfMoose >> baselineFame: spec [
     
 	self defineGroup: #'Fame' in: spec with: #(
 		'Fame-Core'
-		'Fame-Util'
 		'Fame-ImportExport'
 		'Fame-SmalltalkBinding'
 		'Fame-Example'
 		'Fame-Tests-Core'
+		'Fame-Rules'
 	) 
 ]
 
