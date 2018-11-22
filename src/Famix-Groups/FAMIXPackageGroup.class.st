@@ -4,7 +4,7 @@ FAMIXPackageGroup is a MooseGroup containing only FAMIX enities of type FAMIXPac
 Class {
 	#name : #FAMIXPackageGroup,
 	#superclass : #MooseGroup,
-	#category : #'Famix-Compatibility-Groups'
+	#category : #'Famix-Groups'
 }
 
 { #category : #meta }

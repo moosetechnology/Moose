@@ -46,9 +46,9 @@ BaselineOfMoose >> baseline: spec [
 			package: 'Famix-BasicInfrastructure';
 			package: 'Famix-Smalltalk-Utils';
 			
+			package: 'Famix-Groups';
 			package: 'Famix-Compatibility-Generator';
-			package: 'Famix-Compatibility-Entities';
-			package: 'Famix-Compatibility-Groups'.
+			package: 'Famix-Compatibility-Entities'.
 
 		spec baseline: 'FamixCompatibility' with: [spec repository: repository].
 		
@@ -554,9 +554,9 @@ BaselineOfMoose >> groups: spec [
 		'Famix-Traits'
 		
 		'Famix-Smalltalk-Utils'
+		'Famix-Groups'
 		'Famix-Compatibility-Generator' 
 		'Famix-Compatibility-Entities'
-		'Famix-Compatibility-Groups'
 			
 		'Famix-Extensions'
 	).

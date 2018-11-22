@@ -1,6 +1,6 @@
 Extension { #name : #MooseAbstractGroup }
 
-{ #category : #'*Famix-Compatibility-Groups' }
+{ #category : #'*Famix-Groups' }
 MooseAbstractGroup >> allModelTypes [
 	<navigation: 'All model types'>
 
