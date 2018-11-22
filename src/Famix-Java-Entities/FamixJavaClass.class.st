@@ -146,14 +146,6 @@ FamixJavaClass >> selectWithinYourScope: aMooseQueryResult [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaClass >> smalltalkClass [ 
-	"Returns the associated smalltalk class if it exist in the system."
-	
-	^ FAMIXNameResolver smalltalkClassFromFamixClassName: 
-			self name  ifAbsent: [nil] 
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaClass >> structuralChildren [
 	^ (OrderedCollection withAll: self methods), self attributes
 ]

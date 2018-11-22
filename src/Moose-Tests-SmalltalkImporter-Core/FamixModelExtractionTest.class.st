@@ -30,15 +30,15 @@ Class {
 
 { #category : #auxiliary }
 FamixModelExtractionTest >> assignAttributes [
-	nodeName := FAMIXNameResolver 
+	nodeName := FamixSmalltalkNameResolver 
 		mooseNameForAttributeNamed: #name
 		class: mseNodeClassName
 		classSide: false.
-	nextNode := FAMIXNameResolver 
+	nextNode := FamixSmalltalkNameResolver 
 		mooseNameForAttributeNamed: #nextNode
 		class: mseNodeClassName
 		classSide: false.
-	serverType := FAMIXNameResolver 
+	serverType := FamixSmalltalkNameResolver 
 		mooseNameForAttributeNamed: #serverType
 		class: mseOutputServerClassName
 		classSide: false
@@ -54,63 +54,63 @@ FamixModelExtractionTest >> assignClasses [
 
 { #category : #auxiliary }
 FamixModelExtractionTest >> assignMethods [
-	methodWithEmptyBodyNodeName := FAMIXNameResolver 
+	methodWithEmptyBodyNodeName := FamixSmalltalkNameResolver 
 				uniqueNameForMethodWithSmalltalkSelector: #methodWithEmptyBody
 				hasClassScope: false
 				class: mseNodeClassName.
-	outputServerName := FAMIXNameResolver 
+	outputServerName := FamixSmalltalkNameResolver 
 				uniqueNameForMethodWithSmalltalkSelector: #output:
 				hasClassScope: false
 				class: mseOutputServerClassName.
-	acceptServerName := FAMIXNameResolver 
+	acceptServerName := FamixSmalltalkNameResolver 
 				uniqueNameForMethodWithSmalltalkSelector: #accept:
 				hasClassScope: false
 				class: mseOutputServerClassName.
-	acceptNodeName := FAMIXNameResolver 
+	acceptNodeName := FamixSmalltalkNameResolver 
 				uniqueNameForMethodWithSmalltalkSelector: #accept:
 				hasClassScope: false
 				class: mseNodeClassName.
-	canOutputServerName := FAMIXNameResolver 
+	canOutputServerName := FamixSmalltalkNameResolver 
 				uniqueNameForMethodWithSmalltalkSelector: #canOutput
 				hasClassScope: false
 				class: mseOutputServerClassName.
-	canOutputNodeName := FAMIXNameResolver 
+	canOutputNodeName := FamixSmalltalkNameResolver 
 				uniqueNameForMethodWithSmalltalkSelector: #canOutput
 				hasClassScope: false
 				class: mseNodeClassName.
-	nameNodeName := FAMIXNameResolver 
+	nameNodeName := FamixSmalltalkNameResolver 
 				uniqueNameForMethodWithSmalltalkSelector: #name
 				hasClassScope: false
 				class: mseNodeClassName.
-	nameNodeNameColon := FAMIXNameResolver 
+	nameNodeNameColon := FamixSmalltalkNameResolver 
 				uniqueNameForMethodWithSmalltalkSelector: #name:
 				hasClassScope: false
 				class: mseNodeClassName.
-	nextNodeName := FAMIXNameResolver 
+	nextNodeName := FamixSmalltalkNameResolver 
 				uniqueNameForMethodWithSmalltalkSelector: #nextNode
 				hasClassScope: false
 				class: mseNodeClassName.
-	nextNodeNameColon := FAMIXNameResolver 
+	nextNodeNameColon := FamixSmalltalkNameResolver 
 				uniqueNameForMethodWithSmalltalkSelector: #nextNode:
 				hasClassScope: false
 				class: mseNodeClassName.
-	initializeNodeName := FAMIXNameResolver 
+	initializeNodeName := FamixSmalltalkNameResolver 
 				uniqueNameForMethodWithSmalltalkSelector: #initialize
 				hasClassScope: false
 				class: mseNodeClassName.
-	printOnNodeName := FAMIXNameResolver 
+	printOnNodeName := FamixSmalltalkNameResolver 
 				uniqueNameForMethodWithSmalltalkSelector: #printOn:
 				hasClassScope: false
 				class: mseNodeClassName.
-	sendNodeName := FAMIXNameResolver 
+	sendNodeName := FamixSmalltalkNameResolver 
 				uniqueNameForMethodWithSmalltalkSelector: #send:
 				hasClassScope: false
 				class: mseNodeClassName.
-	canOriginateNodeName := FAMIXNameResolver 
+	canOriginateNodeName := FamixSmalltalkNameResolver 
 				uniqueNameForMethodWithSmalltalkSelector: #canOriginate
 				hasClassScope: false
 				class: mseNodeClassName.
-	newNodeClassName := FAMIXNameResolver 
+	newNodeClassName := FamixSmalltalkNameResolver 
 				uniqueNameForMethodWithSmalltalkSelector: #new
 				hasClassScope: true
 				class: mseNodeClassName.
@@ -293,7 +293,7 @@ FamixModelExtractionTest >> testModelDoesNotContainDuplicateSharedVars [
 FamixModelExtractionTest >> testNameAndUniqueNameForNotNamed [
 
 	| mseMethod mseMethodName |
-	mseMethodName := FAMIXNameResolver 
+	mseMethodName := FamixSmalltalkNameResolver 
 				uniqueNameForMethodWithSmalltalkSelector: #printOn:
 				hasClassScope: false
 				class: LANNode mooseName.

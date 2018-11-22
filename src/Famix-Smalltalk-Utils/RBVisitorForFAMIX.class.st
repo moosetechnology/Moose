@@ -7,7 +7,7 @@ Class {
 		'importer',
 		'targetModel'
 	],
-	#category : #'Famix-Utils'
+	#category : #'Famix-Smalltalk-Utils'
 }
 
 { #category : #public }
@@ -105,7 +105,7 @@ RBVisitorForFAMIX >> processMethod: aMethodEntity usingImporter: anImporter inMo
 { #category : #'private-accessing' }
 RBVisitorForFAMIX >> stClass [
 	stClass isNil ifTrue: [
-		stClass := FAMIXNameResolver 
+		stClass := FamixSmalltalkNameResolver 
 			smalltalkClassFromFamixClassName: self classNameFromMethod
 			ifAbsent: [nil] ].
 	^ stClass
