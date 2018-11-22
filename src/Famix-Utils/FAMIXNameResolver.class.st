@@ -9,18 +9,6 @@ FAMIXNameResolver class >> classAttributeSeparator [
 	^'.'
 ]
 
-{ #category : #'naming conventions' }
-FAMIXNameResolver class >> demoosifyGlobal: aString [
-	^aString copyUpTo: $-
-]
-
-{ #category : #'language independent unique naming' }
-FAMIXNameResolver class >> isCorrectFullClassName: aClassName [
-	^(aClassName reverse
-		indexOfSubCollection: self FAMIX2NamespaceSeparator
-		startingAt: 1) > 0
-]
-
 { #category : #private }
 FAMIXNameResolver class >> methodAndVariableSeparator [
 	^'.'
@@ -43,16 +31,6 @@ FAMIXNameResolver class >> mooseNameForSharedAttributeNamed: anAttributeName cla
 		
 ]
 
-{ #category : #'naming conventions' }
-FAMIXNameResolver class >> moosifyGlobal: aString [
-	^aString , self prefixForGlobalVariable
-]
-
-{ #category : #private }
-FAMIXNameResolver class >> prefixForGlobalVariable [
-	^'-Global'
-]
-
 { #category : #'language independent unique naming' }
 FAMIXNameResolver class >> uniqueNameForClassNamed: aClassName scope: uniqueParentNamespaceOrNil [
 	"Given ***FAMIX2 compliant**** names for the elements return a FAMIX2 Compliant uniqueName a SYMBOL"
@@ -62,30 +40,6 @@ FAMIXNameResolver class >> uniqueNameForClassNamed: aClassName scope: uniquePare
 		ifFalse:
 			[(uniqueParentNamespaceOrNil asString , self famixNamespaceSeparator
 				, aClassName) asSymbol]
-]
-
-{ #category : #'language independent unique naming' }
-FAMIXNameResolver class >> uniqueNameForFunctionSignature: aFuncSignature scope: scopeQualifierOrNil [
-	"Given ***FAMIX2 compliant**** names for the elements return a FAMIX2 Compliant uniqueName a SYMBOL"
-
-	^(scopeQualifierOrNil isNil or: [scopeQualifierOrNil isEmpty])
-		ifTrue: [aFuncSignature asSymbol]
-		ifFalse:
-			[(scopeQualifierOrNil name asString , self famixNamespaceSeparator
-				, aFuncSignature) asSymbol]
-]
-
-{ #category : #'language independent unique naming' }
-FAMIXNameResolver class >> uniqueNameForGlobalVariableNamed: aVarName scope: scopeQualifierOrNil [
-	"Given ***FAMIX2 compliant**** names for the elements return a FAMIX2 Compliant uniqueName a SYMBOL"
-
-	"Note that the problem in VW is that global variable and namespace can have the same name"
-
-	^scopeQualifierOrNil isNil
-		ifTrue: [(self moosifyGlobal: aVarName) asSymbol]
-		ifFalse:
-			[(scopeQualifierOrNil asString , self famixNamespaceSeparator , self
-				moosifyGlobal: aVarName) asSymbol]
 ]
 
 { #category : #'language independent unique naming' }
