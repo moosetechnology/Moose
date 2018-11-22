@@ -187,12 +187,6 @@ MooseEntityTest >> testLocalMooseModel [
 ]
 
 { #category : #tests }
-MooseEntityTest >> testMooseFinderNavigationIn [
-
-	self shouldnt: [MooseEntity new mooseFinderNavigationIn: GLMCompositePresentation new] raise: Error
-]
-
-{ #category : #tests }
 MooseEntityTest >> testMooseIcon [
 	self assert: FAMIXEntity new mooseIcon isForm
 ]
