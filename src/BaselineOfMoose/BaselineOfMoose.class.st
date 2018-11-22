@@ -55,7 +55,6 @@ BaselineOfMoose >> baseline: spec [
 		self baselineRoelTyper: spec.
 		
 		spec
-			package: 'Famix-Extensions';
 			package: 'Moose-GenericImporter';
 			package: 'Famix-Compatibility-Tests-C';
 			package: 'Moose-Query-Extensions';
@@ -557,8 +556,6 @@ BaselineOfMoose >> groups: spec [
 		'Famix-Compatibility-Generator' 
 		'Famix-Compatibility-Entities'
 		'Famix-Compatibility-Groups'
-			
-		'Famix-Extensions'
 	).
 	
 	spec group: 'BasicTests' with: #(

@@ -195,16 +195,6 @@ FAMIXType >> viewHierarchyOn: view [
 
 ]
 
-{ #category : #'*Moose-RoassalPaintings-Support' }
-FAMIXType >> viewTypeNestingGraphOn: view [
-	| visitor |
-	visitor := FAMIXAttributesGraphTraverser new .
-	self accept: visitor.
-	view nodes: visitor value graph nodes.
-	view edges: visitor value graph nodes from: #yourself toAll: #nextNodes.
-	view horizontalDominanceTreeLayout
-]
-
 { #category : #'*Moose-RoassalPaintings' }
 FAMIXType >> viewUML [
 	<menuItem: 'UML class diagram' category: 'Visualize'> 
