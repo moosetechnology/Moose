@@ -1,7 +1,7 @@
 Class {
 	#name : #FAMIXFolderGroup,
 	#superclass : #MooseGroup,
-	#category : #'Famix-Compatibility-Groups'
+	#category : #'Famix-Groups'
 }
 
 { #category : #meta }

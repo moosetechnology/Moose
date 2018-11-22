@@ -4,7 +4,7 @@ FAMIXAnnotationInstanceGroup is a MooseGroup containing only FAMIX enities of ty
 Class {
 	#name : #FAMIXAnnotationInstanceGroup,
 	#superclass : #MooseGroup,
-	#category : #'Famix-Compatibility-Groups'
+	#category : #'Famix-Groups'
 }
 
 { #category : #meta }
