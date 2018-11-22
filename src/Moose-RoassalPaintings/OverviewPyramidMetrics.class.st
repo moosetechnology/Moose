@@ -12,7 +12,7 @@ Class {
 		'andc',
 		'ahh'
 	],
-	#category : #'Famix-Extensions'
+	#category : #'Moose-RoassalPaintings'
 }
 
 { #category : #'instance creation' }
