@@ -51,7 +51,7 @@ FamixReferenceModelImporterTest >> testAbstractMethodAnnotation [
 	self assert: method hasClassScope not.
 	self
 		assert: method signature
-		equals: (FAMIXNameResolver signatureFromSmalltalkSelectorOn: #sendingSubclassResponsibility).
+		equals: (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: #sendingSubclassResponsibility).
 	self assert: method isPublic.
 	self assert: method isAbstract.
 	fmClass := self model entityNamed: definingClassName.
@@ -143,7 +143,7 @@ FamixReferenceModelImporterTest >> testAccessingNamespace2 [
 	| definingClassName accessDefinition methodUniqueName methodName |
 	definingClassName := 'Smalltalk::TheRoot' mooseName.
 	methodName := #accessingGlobalVariableHavingNamespaceName.
-	methodUniqueName := FAMIXNameResolver
+	methodUniqueName := FamixSmalltalkNameResolver
 		uniqueNameForMethodWithSmalltalkSelector: methodName
 		hasClassScope: false
 		class: definingClassName.
@@ -300,7 +300,7 @@ FamixReferenceModelImporterTest >> testClassMethodAnnotation [
 	| definingClassName methodUniqueName method methodName |
 	definingClassName := SubRootLevelOne class mooseName.
 	methodName := #accessSharedVariableOfSuperClassClassSide.
-	methodUniqueName := FAMIXNameResolver
+	methodUniqueName := FamixSmalltalkNameResolver
 		uniqueNameForMethodWithSmalltalkSelector: methodName
 		hasClassScope: false
 		class: definingClassName.
@@ -347,7 +347,7 @@ FamixReferenceModelImporterTest >> testClassSelfSend [
 	callingMethodUniqueName := (TheRoot class >> #classSend) mooseName.
 	invocations := self model allInvocations
 		select: [ :invocation | 
-			invocation signature = (FAMIXNameResolver signatureFromSmalltalkSelectorOn: calleeMethodName)
+			invocation signature = (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: calleeMethodName)
 				and: [ invocation sender mooseName = callingMethodUniqueName ] ].
 	self assert: invocations size equals: 1.
 	self assert: invocations first receiver mooseName equals: #Smalltalk::Object_class
@@ -380,7 +380,7 @@ FamixReferenceModelImporterTest >> testConstantMethodAnnotation [
 	self assert: method isNil not.
 	self assert: method belongsTo equals: (self model entityNamed: TheRoot mooseName).
 	self assert: method hasClassScope not.
-	self assert: method signature equals: (FAMIXNameResolver signatureFromSmalltalkSelectorOn: methodName).
+	self assert: method signature equals: (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: methodName).
 	self assert: method isPublic.
 	self assert: method isConstant
 ]
@@ -534,7 +534,7 @@ FamixReferenceModelImporterTest >> testGetterMethod [
 	method := self model entityNamed: methodUniqueName.
 	self assert: method isNil not.
 	self assert: method hasClassScope not.
-	self assert: method signature equals: (FAMIXNameResolver signatureFromSmalltalkSelectorOn: methodName).
+	self assert: method signature equals: (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: methodName).
 	self assert: method isPublic.
 	self assert: method isPureAccessor.
 	self assert: method isGetter
@@ -557,7 +557,7 @@ FamixReferenceModelImporterTest >> testImplicitVariableReified [
 
 	| implicitVariableName implicitVariable |
 	implicitVariableName := 'self'.
-	implicitVariableName := FAMIXNameResolver 
+	implicitVariableName := FamixSmalltalkNameResolver 
 				uniqueNameForImplicitVariableNamed: implicitVariableName
 				scope: referenceModelTheRootName,'.singleSelfSend()' .
 	implicitVariable := self model entityNamed: implicitVariableName.
@@ -613,7 +613,7 @@ FamixReferenceModelImporterTest >> testInstVariableAccessTwiceTheSameVariable [
 FamixReferenceModelImporterTest >> testInstanceVariableReified [
 	| instVarName instVarUniqueName instVar |
 	instVarName := 'k'.
-	instVarUniqueName := FAMIXNameResolver 
+	instVarUniqueName := FamixSmalltalkNameResolver 
 				mooseNameForAttributeNamed: instVarName
 				class: referenceModelSubRootLevelOneName
 				classSide: false.
@@ -629,12 +629,12 @@ FamixReferenceModelImporterTest >> testLocalVariableReified [
 	"self debug: #testLocalVariableReified"
 
 	| methodName localVariableName localVariable |
-	methodName := FAMIXNameResolver 
+	methodName := FamixSmalltalkNameResolver 
 				uniqueNameForMethodWithSmalltalkSelector: 'assigningLocalVariable'
 				hasClassScope: false
 				class: referenceModelTheRootName.
 	localVariableName := 'tmp'.
-	localVariableName := FAMIXNameResolver 
+	localVariableName := FamixSmalltalkNameResolver 
 				uniqueNameForLocalVariableNamed: localVariableName
 				belongsTo: methodName.
 	localVariable := self model entityNamed: localVariableName.
@@ -661,7 +661,7 @@ FamixReferenceModelImporterTest >> testMethodAnnotation [
 	| definingClassName methodUniqueName method methodName |
 	definingClassName := #Smalltalk::SubRootLevelOne.
 	methodName := #accessSuperclassInstVar.
-	methodUniqueName := FAMIXNameResolver
+	methodUniqueName := FamixSmalltalkNameResolver
 		uniqueNameForMethodWithSmalltalkSelector: methodName
 		hasClassScope: false
 		class: definingClassName.
@@ -678,7 +678,7 @@ FamixReferenceModelImporterTest >> testMethodReification [
 
 	| methodUniqueName method methodName |
 	methodName := #accessSuperclassInstVar.
-	methodUniqueName := FAMIXNameResolver
+	methodUniqueName := FamixSmalltalkNameResolver
 		uniqueNameForMethodWithSmalltalkSelector: methodName
 		hasClassScope: false
 		class: referenceModelSubRootLevelOneName.
@@ -686,15 +686,15 @@ FamixReferenceModelImporterTest >> testMethodReification [
 	self assert: method isNil not.
 	self assert: method belongsTo equals: (self model entityNamed: referenceModelSubRootLevelOneName).
 	self assert: method hasClassScope not.
-	self assert: method signature equals: (FAMIXNameResolver signatureFromSmalltalkSelectorOn: #accessSuperclassInstVar).
+	self assert: method signature equals: (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: #accessSuperclassInstVar).
 	self assert: method isPublic
 ]
 
 { #category : #'reference model reification' }
 FamixReferenceModelImporterTest >> testNameResolverNamespaceName [
 	"self debug: #testNameResolverNamespaceName"
-	self assert: ((FAMIXNameResolver uniqueNameForNamespaceNamed: #ReferenceModel scope: #'SCG::Moose') == #'SCG::Moose::ReferenceModel').
-	self assert: ((FAMIXNameResolver uniqueNameForNamespaceNamed: #Moose scope: #SCG) ==  #'SCG::Moose')
+	self assert: ((FamixSmalltalkNameResolver uniqueNameForNamespaceNamed: #ReferenceModel scope: #'SCG::Moose') == #'SCG::Moose::ReferenceModel').
+	self assert: ((FamixSmalltalkNameResolver uniqueNameForNamespaceNamed: #Moose scope: #SCG) ==  #'SCG::Moose')
 ]
 
 { #category : #'reference model reification' }
@@ -705,7 +705,7 @@ FamixReferenceModelImporterTest >> testOutOfModelInheritedInstanceVariableReifie
 
 	| instVarName instVarUniqueName instVar |
 	instVarName := 'dependents'.
-	instVarUniqueName := FAMIXNameResolver mooseNameForAttributeNamed: instVarName class: Model mooseName classSide: false.
+	instVarUniqueName := FamixSmalltalkNameResolver mooseNameForAttributeNamed: instVarName class: Model mooseName classSide: false.
 	instVar := self model entityNamed: instVarUniqueName.
 	self assert: instVar hasClassScope not.
 	self assert: instVar isProtected.
@@ -719,7 +719,7 @@ FamixReferenceModelImporterTest >> testReadAndWrite [
 	definingClassName := SubRootLevelOne mooseName.
 	methodName := #accessTwiceTheSameVariableReadAndWrite.
 	methodUniqueName := (SubRootLevelOne >> methodName) mooseName.
-	instVarUniqueName := FAMIXNameResolver
+	instVarUniqueName := FamixSmalltalkNameResolver
 		mooseNameForAttributeNamed: attributeName
 		class: definingClassName
 		classSide: false.
@@ -772,7 +772,7 @@ FamixReferenceModelImporterTest >> testSetterMethod [
 	self assert: method isNil not.
 	self assert: method belongsTo equals: (self model entityNamed: TheRoot mooseName).
 	self assert: method hasClassScope not.
-	self assert: method signature equals: (FAMIXNameResolver signatureFromSmalltalkSelectorOn: methodName).
+	self assert: method signature equals: (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: methodName).
 	self assert: method isPublic.
 	self assert: method isPureAccessor.
 	self assert: method isSetter
@@ -805,7 +805,7 @@ FamixReferenceModelImporterTest >> testSingleSelfSend [
 	callingMethodUniqueName := (TheRoot >> #singleSelfSend) mooseName.
 	invocations := self model allInvocations
 		select: [ :invocation | 
-			invocation signature = (FAMIXNameResolver signatureFromSmalltalkSelectorOn: calleeMethodName)
+			invocation signature = (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: calleeMethodName)
 				and: [ invocation sender mooseName = callingMethodUniqueName ] ].
 	self assert: invocations size equals: 1
 ]
@@ -823,7 +823,7 @@ FamixReferenceModelImporterTest >> testSingleSelfSendOnClassSide [
 	callingMethodUniqueName := (TheRoot class >> #singleSelfSendOnClassSide) mooseName.
 	invocations := self model allInvocations
 		select: [ :invocation | 
-			invocation signature = (FAMIXNameResolver signatureFromSmalltalkSelectorOn: calleeMethodName)
+			invocation signature = (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: calleeMethodName)
 				and: [ invocation sender mooseName = callingMethodUniqueName ] ].
 	self assert: invocations size equals: 1.
 	self assert: invocations first receiver mooseName equals: #'Smalltalk::TheRoot_class.singleSelfSendOnClassSide().self'
@@ -843,7 +843,7 @@ FamixReferenceModelImporterTest >> testSingleSelfSendWithReturn [
 	callingMethodUniqueName := (TheRoot >> #returningSingleSelfSend) mooseName.
 	invocations := self model allInvocations
 		select: [ :invocation | 
-			invocation signature = (FAMIXNameResolver signatureFromSmalltalkSelectorOn: calleeMethodName)
+			invocation signature = (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: calleeMethodName)
 				and: [ invocation sender mooseName = callingMethodUniqueName ] ].
 	self assert: invocations size equals: 1
 ]
@@ -854,7 +854,7 @@ FamixReferenceModelImporterTest >> testStubInstanceVariableReified [
 	
 	| instVarName instVarUniqueName instVar |
 	instVarName := #dependents.
-	instVarUniqueName := FAMIXNameResolver 
+	instVarUniqueName := FamixSmalltalkNameResolver 
 				mooseNameForAttributeNamed: instVarName
 				class: Model mooseName
 				classSide: false.
@@ -885,7 +885,7 @@ FamixReferenceModelImporterTest >> testStubSharedVariableReified [
 	| definingClassName classVarName classVarUniqueName classVar |
 	definingClassName := Object mooseName.
 	classVarName := #DependentsFields.
-	classVarUniqueName := FAMIXNameResolver
+	classVarUniqueName := FamixSmalltalkNameResolver
 		mooseNameForAttributeNamed: classVarName
 		class: definingClassName
 		classSide: false.
@@ -988,7 +988,7 @@ FamixReferenceModelImporterTest >> testaccessSharedVariableFromTheInstanceSide [
 	definingClassName := TheRoot mooseName.
 	classNameWhereAccess := TheRoot mooseName.
 	methodName := (TheRoot >> #accessSharedVariableFromTheInstanceSide) mooseName.
-	classVarUniqueName := FAMIXNameResolver mooseNameForSharedAttributeNamed: attributeName class: definingClassName.
+	classVarUniqueName := FamixSmalltalkNameResolver mooseNameForSharedAttributeNamed: attributeName class: definingClassName.
 	accessDefinition := self model allAccesses
 		select: [ :acc | acc variable mooseName = classVarUniqueName and: [ acc accessor mooseName = methodName ] ].
 	self assert: accessDefinition size equals: 1.
@@ -1043,7 +1043,7 @@ FamixReferenceModelImporterTest >> testaccessSharedVariableOfSuperclassInstanceS
 	classNameWhereAccess := SubRootLevelOne mooseName.
 	methodName := #accessSharedVariableOfSuperclassInstanceSide.
 	methodUniqueName := (SubRootLevelOne >> methodName) mooseName.
-	instVarUniqueName := FAMIXNameResolver
+	instVarUniqueName := FamixSmalltalkNameResolver
 		mooseNameForAttributeNamed: attributeName
 		class: definingClassName
 		classSide: false.

@@ -103,7 +103,7 @@ SmalltalkCompatibilityMetamodelFactory >> method [
 { #category : #accessing }
 SmalltalkCompatibilityMetamodelFactory >> nameResolver [
 
-	^ FAMIXNameResolver
+	^ FamixSmalltalkNameResolver
 ]
 
 { #category : #accessing }

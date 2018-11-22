@@ -1,21 +1,21 @@
 Class {
-	#name : #FAMIXNameResolver,
+	#name : #FamixSmalltalkNameResolver,
 	#superclass : #Object,
-	#category : #'Famix-Utils'
+	#category : #'Famix-Smalltalk-Utils'
 }
 
 { #category : #private }
-FAMIXNameResolver class >> classAttributeSeparator [
+FamixSmalltalkNameResolver class >> classAttributeSeparator [
 	^'.'
 ]
 
 { #category : #'naming conventions' }
-FAMIXNameResolver class >> famixNamespaceSeparator [
+FamixSmalltalkNameResolver class >> famixNamespaceSeparator [
 	^'::'
 ]
 
 { #category : #'getting classes' }
-FAMIXNameResolver class >> findClassNamedOrNilFromFullName: stClassFullNameSymbol [
+FamixSmalltalkNameResolver class >> findClassNamedOrNilFromFullName: stClassFullNameSymbol [
 	"returns the class whose name is aClassFullNameSymbol. 
 	aClassFullNameSymbol should smalltalk and not moose related.and should not represent a metaclass"
 
@@ -23,19 +23,19 @@ FAMIXNameResolver class >> findClassNamedOrNilFromFullName: stClassFullNameSymbo
 ]
 
 { #category : #private }
-FAMIXNameResolver class >> metaclassTag [
+FamixSmalltalkNameResolver class >> metaclassTag [
 	"The meta class tag used in FAMIX2."
 
 	^'_class'
 ]
 
 { #category : #private }
-FAMIXNameResolver class >> methodAndVariableSeparator [
+FamixSmalltalkNameResolver class >> methodAndVariableSeparator [
 	^'.'
 ]
 
 { #category : #'new naming conventions' }
-FAMIXNameResolver class >> mooseNameForAttributeNamed: anAttributeName class: aClassName classSide: aBoolean [
+FamixSmalltalkNameResolver class >> mooseNameForAttributeNamed: anAttributeName class: aClassName classSide: aBoolean [
 	"Given ***FAMIX2 compliant**** names for the elements return a FAMIX2 Compliant uniqueName a SYMBOL"
 
 	 aBoolean 
@@ -44,7 +44,7 @@ FAMIXNameResolver class >> mooseNameForAttributeNamed: anAttributeName class: aC
 ]
 
 { #category : #'new naming conventions' }
-FAMIXNameResolver class >> mooseNameForSharedAttributeNamed: anAttributeName class: aClassName [
+FamixSmalltalkNameResolver class >> mooseNameForSharedAttributeNamed: anAttributeName class: aClassName [
 	"Given ***FAMIX2 compliant**** names for the elements return a FAMIX2 Compliant uniqueName a SYMBOL"
 
 	  ^(aClassName, self classAttributeSeparator , anAttributeName) asSymbol
@@ -52,7 +52,7 @@ FAMIXNameResolver class >> mooseNameForSharedAttributeNamed: anAttributeName cla
 ]
 
 { #category : #'naming conventions' }
-FAMIXNameResolver class >> moosify: aString [
+FamixSmalltalkNameResolver class >> moosify: aString [
 
 	^aString
 		copyReplaceAll: self smalltalkNamespaceSeparator
@@ -60,7 +60,7 @@ FAMIXNameResolver class >> moosify: aString [
 ]
 
 { #category : #naming }
-FAMIXNameResolver class >> signatureFromSmalltalkSelectorOn: aName [
+FamixSmalltalkNameResolver class >> signatureFromSmalltalkSelectorOn: aName [
 	"self signatureFromSmalltalkSelector: #new"
 
 	"self signatureFromSmalltalkSelector: #new:"
@@ -87,7 +87,7 @@ FAMIXNameResolver class >> signatureFromSmalltalkSelectorOn: aName [
 ]
 
 { #category : #'naming conventions' }
-FAMIXNameResolver class >> smalltalkClassFromFamixClassName: aFAMIXName ifAbsent: aBlock [
+FamixSmalltalkNameResolver class >> smalltalkClassFromFamixClassName: aFAMIXName ifAbsent: aBlock [
 	"Given the FAMIX2 name for a class (for a meta class or not): return 
 	that Smalltalk class."
 
@@ -104,7 +104,7 @@ FAMIXNameResolver class >> smalltalkClassFromFamixClassName: aFAMIXName ifAbsent
 ]
 
 { #category : #'naming conventions' }
-FAMIXNameResolver class >> smalltalkClassNameFromFamixClassName: aFAMIXName [
+FamixSmalltalkNameResolver class >> smalltalkClassNameFromFamixClassName: aFAMIXName [
 	"Given the FAMIX2 name for a class (for a meta class or not): return the Smalltalk name."
 
 	| isMetaclass index |
@@ -122,19 +122,19 @@ FAMIXNameResolver class >> smalltalkClassNameFromFamixClassName: aFAMIXName [
 ]
 
 { #category : #'naming conventions' }
-FAMIXNameResolver class >> smalltalkNamespaceSeparator [
+FamixSmalltalkNameResolver class >> smalltalkNamespaceSeparator [
 	^'.'
 ]
 
 { #category : #private }
-FAMIXNameResolver class >> stMetaclassTag [
+FamixSmalltalkNameResolver class >> stMetaclassTag [
 	"The meta class tag used in SmalltLK."
 
 	^' class'
 ]
 
 { #category : #'language independent unique naming' }
-FAMIXNameResolver class >> uniqueNameForClassNamed: aClassName scope: uniqueParentNamespaceOrNil [
+FamixSmalltalkNameResolver class >> uniqueNameForClassNamed: aClassName scope: uniqueParentNamespaceOrNil [
 	"Given ***FAMIX2 compliant**** names for the elements return a FAMIX2 Compliant uniqueName a SYMBOL"
 
 	^uniqueParentNamespaceOrNil isNil
@@ -145,7 +145,7 @@ FAMIXNameResolver class >> uniqueNameForClassNamed: aClassName scope: uniquePare
 ]
 
 { #category : #'language independent unique naming' }
-FAMIXNameResolver class >> uniqueNameForImplicitVariableNamed: aVarName scope: scopeQualifierOrNil [
+FamixSmalltalkNameResolver class >> uniqueNameForImplicitVariableNamed: aVarName scope: scopeQualifierOrNil [
 	"Given ***FAMIX2 compliant**** names for the elements return a FAMIX2 Compliant uniqueName a SYMBOL"
 
 	^(scopeQualifierOrNil isNil or: [scopeQualifierOrNil isEmpty])
@@ -156,7 +156,7 @@ FAMIXNameResolver class >> uniqueNameForImplicitVariableNamed: aVarName scope: s
 ]
 
 { #category : #'language independent unique naming' }
-FAMIXNameResolver class >> uniqueNameForLocalVariableNamed: aVariableName belongsTo: aBehaviourName [
+FamixSmalltalkNameResolver class >> uniqueNameForLocalVariableNamed: aVariableName belongsTo: aBehaviourName [
 	"Given ***FAMIX2 compliant**** names for the elements return a FAMIX2 Compliant uniqueName a SYMBOL"
 
 	^(aBehaviourName , self methodAndVariableSeparator , aVariableName)
@@ -164,7 +164,7 @@ FAMIXNameResolver class >> uniqueNameForLocalVariableNamed: aVariableName belong
 ]
 
 { #category : #'language independent unique naming' }
-FAMIXNameResolver class >> uniqueNameForMethodSignature: aMethodSignature hasClassScope: aBooleanOrNil class: aClassName [
+FamixSmalltalkNameResolver class >> uniqueNameForMethodSignature: aMethodSignature hasClassScope: aBooleanOrNil class: aClassName [
 	"Given ***FAMIX2 compliant**** names for the elements return a FAMIX2 Compliant uniqueName a SYMBOL"
 
 	^(aClassName , self methodAndVariableSeparator , aMethodSignature)
@@ -172,7 +172,7 @@ FAMIXNameResolver class >> uniqueNameForMethodSignature: aMethodSignature hasCla
 ]
 
 { #category : #'language independent unique naming' }
-FAMIXNameResolver class >> uniqueNameForMethodWithSmalltalkSelector: aSymbol hasClassScope: aBooleanOrNil class: aClassName [
+FamixSmalltalkNameResolver class >> uniqueNameForMethodWithSmalltalkSelector: aSymbol hasClassScope: aBooleanOrNil class: aClassName [
 	"Given ***FAMIX2 compliant**** names for the elements return a FAMIX2 Compliant uniqueName a SYMBOL"
 
 	^self
@@ -183,7 +183,7 @@ FAMIXNameResolver class >> uniqueNameForMethodWithSmalltalkSelector: aSymbol has
 ]
 
 { #category : #'language independent unique naming' }
-FAMIXNameResolver class >> uniqueNameForNamespaceNamed: aNamespaceName scope: uniqueParentNamespaceName [
+FamixSmalltalkNameResolver class >> uniqueNameForNamespaceNamed: aNamespaceName scope: uniqueParentNamespaceName [
 	"Given ***FAMIX2 compliant**** names for the elements return a FAMIX2 Compliant uniqueName a SYMBOL"
 
 	^(uniqueParentNamespaceName isNil or: [uniqueParentNamespaceName isEmpty])

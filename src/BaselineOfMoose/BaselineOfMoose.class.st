@@ -44,7 +44,7 @@ BaselineOfMoose >> baseline: spec [
 			package: 'Famix-Traits';
 				
 			package: 'Famix-BasicInfrastructure';
-			package: 'Famix-Utils';
+			package: 'Famix-Smalltalk-Utils';
 			
 			package: 'Famix-Compatibility-Generator';
 			package: 'Famix-Compatibility-Entities';
@@ -62,7 +62,7 @@ BaselineOfMoose >> baseline: spec [
 			package: 'Moose-SmalltalkImporter';
 			package: 'Moose-MonticelloImporter';
 			package: 'Moose-Tests-Core';
-			package: 'Famix-Utils-Tests';
+			package: 'Famix-Smalltalk-Utils-Tests';
 			package: 'Famix-Compatibility-Tests-Java';
 			package: 'Moose-Tests-SmalltalkImporter-LAN';
 			package: 'Moose-Tests-SmalltalkImporter-Core';
@@ -553,7 +553,7 @@ BaselineOfMoose >> groups: spec [
 		'Famix-MetamodelGeneration'
 		'Famix-Traits'
 		
-		'Famix-Utils'
+		'Famix-Smalltalk-Utils'
 		'Famix-Compatibility-Generator' 
 		'Famix-Compatibility-Entities'
 		'Famix-Compatibility-Groups'
@@ -563,7 +563,7 @@ BaselineOfMoose >> groups: spec [
 	
 	spec group: 'BasicTests' with: #(
 		'Famix-MetamodelBuilder-Tests'
-		'Famix-Utils-Tests'
+		'Famix-Smalltalk-Utils-Tests'
 
 		'StateSpecs-Additional'
 		'Ghost'

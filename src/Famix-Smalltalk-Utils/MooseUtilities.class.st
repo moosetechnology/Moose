@@ -1,7 +1,7 @@
 Class {
 	#name : #MooseUtilities,
-	#superclass : #FAMIXNameResolver,
-	#category : #'Famix-Utils'
+	#superclass : #FamixSmalltalkNameResolver,
+	#category : #'Famix-Smalltalk-Utils'
 }
 
 { #category : #deprecation }

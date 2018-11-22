@@ -108,24 +108,6 @@ FamixJavaMethod >> clientPackages [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaMethod >> compiledMethod [
-	"Return the compiled method associated to the receiver or nil"
-	
-	^ self smalltalkClass  compiledMethodAt: self name asSymbol
-	
-	
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaMethod >> computeNumberOfLinesOfCodeIfSmalltalk [
-	| parser |
-	
-	parser := RBVisitorForFAMIXMetrics new.
-	parser processMethod: self usingImporter: nil inModel: nil.
-	^ parser numberOfLinesOfCode
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaMethod >> copyFrom: anEntity within: aVisitor [
 
 	super copyFrom: anEntity within: aVisitor.

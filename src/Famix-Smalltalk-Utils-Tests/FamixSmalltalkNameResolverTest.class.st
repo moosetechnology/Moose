@@ -1,34 +1,34 @@
 Class {
-	#name : #FAMIXNameResolverTest,
+	#name : #FamixSmalltalkNameResolverTest,
 	#superclass : #TestCase,
-	#category : #'Famix-Utils-Tests'
+	#category : #'Famix-Smalltalk-Utils-Tests'
 }
 
 { #category : #helpers }
-FAMIXNameResolverTest >> actualClass [
-	^ FAMIXNameResolver
+FamixSmalltalkNameResolverTest >> actualClass [
+	^ FamixSmalltalkNameResolver
 ]
 
 { #category : #tests }
-FAMIXNameResolverTest >> testFamixFullClassNameForSmalltalkClass [
+FamixSmalltalkNameResolverTest >> testFamixFullClassNameForSmalltalkClass [
 	self assert: self class name equals: (self actualClass moosify: self class name) asSymbol.
 	self assert: self class class mooseName equals: ('Smalltalk::' , (self actualClass moosify: self class name) , self actualClass metaclassTag) asSymbol
 ]
 
 { #category : #tests }
-FAMIXNameResolverTest >> testFindClassNamed [
+FamixSmalltalkNameResolverTest >> testFindClassNamed [
 	self assert: (self actualClass findClassNamedOrNilFromFullName: #Object) equals: Object.
 	self assert: (self actualClass findClassNamedOrNilFromFullName: #ObjectAbsent) isNil
 ]
 
 { #category : #tests }
-FAMIXNameResolverTest >> testFindClassNamedOrNil [
+FamixSmalltalkNameResolverTest >> testFindClassNamedOrNil [
 	self assert: (self actualClass findClassNamedOrNilFromFullName: Model name) equals: Model.
 	self assert: (self actualClass findClassNamedOrNilFromFullName: (self actualClass name , self actualClass metaclassTag) asSymbol) isNil
 ]
 
 { #category : #tests }
-FAMIXNameResolverTest >> testGroupedBy [
+FamixSmalltalkNameResolverTest >> testGroupedBy [
 	| res |
 	res := #(1 2 3 4 5) groupedBy: [ :each | each odd ].
 	self assert: (res at: true) equals: #(1 3 5).
@@ -36,13 +36,13 @@ FAMIXNameResolverTest >> testGroupedBy [
 ]
 
 { #category : #tests }
-FAMIXNameResolverTest >> testResolvingName [
+FamixSmalltalkNameResolverTest >> testResolvingName [
 	self assert: (self actualClass smalltalkClassFromFamixClassName: #Object ifAbsent: [  ]) equals: Object.
 	self assert: (self actualClass smalltalkClassFromFamixClassName: #FooBarZorkAbsent ifAbsent: [ 10 ]) == 10
 ]
 
 { #category : #tests }
-FAMIXNameResolverTest >> testSmalltalkNameFromFAMIXNAme [
+FamixSmalltalkNameResolverTest >> testSmalltalkNameFromFAMIXNAme [
 	self assert: (self actualClass smalltalkClassNameFromFamixClassName: #Object) equals: #Object.
 	self assert: (self actualClass smalltalkClassNameFromFamixClassName: #FooBarZorkAbsent) equals: #FooBarZorkAbsent.
 	self assert: (self actualClass smalltalkClassNameFromFamixClassName: #M::FooBarZorkAbsent) equals: #FooBarZorkAbsent
