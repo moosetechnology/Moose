@@ -9,7 +9,7 @@ Class {
 		'char',
 		'startLine'
 	],
-	#category : #'Famix-Compatibility-Groups'
+	#category : #'Famix-Groups'
 }
 
 { #category : #reading }

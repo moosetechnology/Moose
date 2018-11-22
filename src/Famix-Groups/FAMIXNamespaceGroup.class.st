@@ -4,7 +4,7 @@ FAMIXNamespaceGroup is a MooseGroup containing only FAMIX enities of type FAMIXN
 Class {
 	#name : #FAMIXNamespaceGroup,
 	#superclass : #MooseGroup,
-	#category : #'Famix-Compatibility-Groups'
+	#category : #'Famix-Groups'
 }
 
 { #category : #meta }
