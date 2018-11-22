@@ -202,8 +202,6 @@ BaselineOfMoose >> baselineFamixNG: spec [
 		package: 'Famix-PharoSmalltalk-Entities';
 		package: 'Famix-PharoSmalltalk-Importer';
 
-		package: 'Famix-Support';
-
 		package: 'Famix-Java-Generator';
 		package: 'Famix-Java-Entities';
 
@@ -541,8 +539,6 @@ BaselineOfMoose >> groups: spec [
 		'Moose-Query'
 			
 		'Famix-BasicInfrastructure'
-		'Famix-Support'
-
 		'Famix-MetamodelBuilder-Core'
 			
 		'Moose-Query-Extensions'
