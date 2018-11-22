@@ -1,6 +1,6 @@
 Extension { #name : #String }
 
-{ #category : #'*fame-util' }
+{ #category : #'*Fame-ImportExport' }
 String >> fm3PrintOn: stream [
 	stream nextPut: $'.
 	self do: [ :char |

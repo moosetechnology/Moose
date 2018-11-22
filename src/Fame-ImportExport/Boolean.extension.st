@@ -1,6 +1,6 @@
 Extension { #name : #Boolean }
 
-{ #category : #'*fame-util' }
+{ #category : #'*Fame-ImportExport' }
 Boolean >> fm3PrintOn: stream [
 	self printOn: stream
 ]

@@ -1,6 +1,6 @@
 Extension { #name : #Float }
 
-{ #category : #'*fame-util' }
+{ #category : #'*Fame-ImportExport' }
 Float >> fm3PrintOn: stream [
 	self printOn: stream
 ]

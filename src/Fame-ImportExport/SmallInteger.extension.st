@@ -1,6 +1,6 @@
 Extension { #name : #SmallInteger }
 
-{ #category : #'*fame-util' }
+{ #category : #'*Fame-ImportExport' }
 SmallInteger >> fm3PrintOn: stream [
 	self printOn: stream
 ]

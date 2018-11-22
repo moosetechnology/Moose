@@ -125,6 +125,13 @@ FMAbstractCodeGenerator >> compileInitialize: attributesString [
 
 ]
 
+{ #category : #utils }
+FMAbstractCodeGenerator >> createRBModel [
+	^RBNamespace new
+		name: 'Fame-Generated';
+		yourself
+]
+
 { #category : #accessing }
 FMAbstractCodeGenerator >> defaultCategory [
 	^defaultCategory
@@ -167,7 +174,7 @@ FMAbstractCodeGenerator >> ensureClass: fameClass superclass: rbSuperclass [
 
 { #category : #'initialize-release' }
 FMAbstractCodeGenerator >> initialize [
-	model := FMUtil default createRBModel.
+	model := self createRBModel.
 	self classNamePrefix: ''.
 	self defaultSuperclass: Object.	
 	self skipDerivedMethods: false.
@@ -225,9 +232,8 @@ FMAbstractCodeGenerator >> previewChanges [
 
 { #category : #accessing }
 FMAbstractCodeGenerator >> previewChangesIfShiftPressed [
-	FMUtil default squeakDo: [
-		InputEventSensor default shiftPressed
-			ifTrue: [ (ChangesBrowser changes: self model changes changes) openWithSpec ]].
+	InputEventSensor default shiftPressed
+		ifTrue: [ (ChangesBrowser changes: self model changes changes) openWithSpec ].
 ]
 
 { #category : #accessing }
