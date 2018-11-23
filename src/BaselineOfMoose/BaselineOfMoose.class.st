@@ -319,6 +319,7 @@ BaselineOfMoose >> baselineMocketry: spec [
 BaselineOfMoose >> baselineMooseAlgos: spec [ 
     
 	spec
+		package: 'Moose-Algos-Graph';
 		package: 'Moose-Algos-Graph-Tests';
 		package: 'Moose-Algos-FormalConceptAnalysis';
 		package: 'Moose-Algos-FormalConceptAnalysis-Tests';
