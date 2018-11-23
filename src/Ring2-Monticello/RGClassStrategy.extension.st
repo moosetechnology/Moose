@@ -4,18 +4,18 @@ Extension { #name : #RGClassStrategy }
 RGClassStrategy >> asMCDefinition [
 
 	^ MCClassDefinition 
-		name: self name
-		superclassName: (self superclass ifNil: [ 'nil' ] ifNotNil: [ :aSuperclass | aSuperclass name ])
+		name: self owner name
+		superclassName: (self owner superclass ifNil: [ 'nil' ] ifNotNil: [ :aSuperclass | aSuperclass name ])
 		traitComposition: self owner traitCompositionString 
 		classTraitComposition: self owner metaclass traitCompositionString
-		category: self category 
+		category: self owner category 
 		instVarNames: self instVarNames
-		classVarNames: self classVarNames
-		poolDictionaryNames: self sharedPoolNames
-		classInstVarNames: self metaclass instVarNames
+		classVarNames: self owner classVarNames
+		poolDictionaryNames: self owner sharedPoolNames
+		classInstVarNames: self owner metaclass instVarNames
 		type: self mcType
-		comment: self comment content
-		commentStamp: self comment stamp
+		comment: self owner comment content
+		commentStamp: self owner comment stamp
 ]
 
 { #category : #'*Ring2-Monticello' }

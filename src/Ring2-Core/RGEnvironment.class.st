@@ -394,7 +394,7 @@ RGEnvironment >> ensureMetaclass: aProposedName [
 		(each propertyNamed: #Metaclass ifAbsent: [ false ]) ] ifNone: [ nil ].
 	aMetaclass ifNotNil: [ ^ aMetaclass ].
 
-	aMetaclass := self ensureClassNamed: #Metaclass.	
+	aMetaclass := self ensureClassNamed: aProposedName.	
 	
 	aMetaclass propertyNamed: #Metaclass put: true.	
 	
