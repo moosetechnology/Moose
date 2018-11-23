@@ -411,7 +411,7 @@ FmxMBBehavior >> slotDefinitions [
 
 	"check that all slots with the same name have the same properties"
 	slotGroups valuesDo: [ :similarSlots |
-		self assert: (similarSlots collect: #name) asSet size equals: 1. ].
+		self assert: (similarSlots collect: #name) asSet size = 1. ].
 		
 	^ slotGroups values collect: [ :each | each anyOne ].
 
