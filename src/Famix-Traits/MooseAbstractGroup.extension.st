@@ -212,13 +212,6 @@ MooseAbstractGroup >> allParameters [
 ]
 
 { #category : #'*Famix-Traits' }
-MooseAbstractGroup >> allPrimitiveTypes [
-	
-	<navigation: 'All primitive types'>
-	^(self allWithType: FAMIXPrimitiveType) sorted: [:a :b | a name < b name]; yourself
-]
-
-{ #category : #'*Famix-Traits' }
 MooseAbstractGroup >> allReferences [
 	
 	<navigation: 'All references'>
