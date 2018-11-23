@@ -80,6 +80,25 @@ MooseFinderTest >> tearDown [
 ]
 
 { #category : #tests }
+MooseFinderTest >> testAsMooseFinderItemNamed [
+	| entity1 entity2 model2 |
+	entity1 := FAMIXType new.
+	entity1 name: 'hello'.
+	entity2 := FAMIXType new.
+	entity2 name: 'hello2'.
+	model := MooseModel new.
+	model
+		addAll:
+			{entity1.
+			entity2}.
+	self assert: (model asMooseFinderItemNamed: 'bouba' in: model) == model.
+	model2 := entity1 asMooseFinderItemNamed: 'bouba' in: model.
+	self assert: model2 class == FAMIXTypeGroup.
+	self assert: model2 name equals: 'Bouba: hello'.
+	self assert: model2 entities asArray equals: {entity1}
+]
+
+{ #category : #tests }
 MooseFinderTest >> testDelete [
 
 	"Raise an error since it is not in the root"
@@ -93,6 +112,17 @@ MooseFinderTest >> testDelete [
 	[model delete] valueSupplyingAnswer: {'Are you sure to want to delete ', model mooseName printString, '?' . true}.
 	self deny: (MooseModel root includes: model).
 
+]
+
+{ #category : #tests }
+MooseFinderTest >> testIcon [
+	self assert: MooseGroup new mooseIcon isForm
+]
+
+{ #category : #tests }
+MooseFinderTest >> testIcons [
+	#(#mooseNavigation #mooseSearch #famixNamespaceGroup #mooseImportMse #mooseSourceTextPartial #mooseAdd #famixClass #mooseCancel #famixInterface #famixAnnotationType #famixNamespace #mooseImportFuel #mooseProperties #mooseIcon #famixAttributeGroup #famixFunctionGroup #famixMethodGroup #mooseInspect #mooseSourceText #mooseDSM #mooseMetamodelGroup #icons #mooseRemove #famixPackageGroup #mooseSystemComplexity #famixMethod #mooseCycles #mooseMetamodelEntity #resetIcons #famixAttribute #famixFunction #mooseEvaluator #famixPackage #famixInterfaceGroup #mooseBlueprint #mooseAccept #mooseList #famixAnnotationTypeGroup #famixClassGroup #mooseDependencies #mooseImportSmalltalk)
+		do: [ :k | self shouldnt: [ MooseIcons perform: k ] raise: Error ]
 ]
 
 { #category : #tests }
@@ -138,4 +168,22 @@ MooseFinderTest >> testMenuEntriesForPackages [
 	"this test is failing randomly depending on order of other tests"
 
 	self assertAllActionsOf: model allPackages
+]
+
+{ #category : #tests }
+MooseFinderTest >> testMooseIcon [
+	self assert: FAMIXEntity new mooseIcon isForm
+]
+
+{ #category : #tests }
+MooseFinderTest >> testProperty [
+	| entity |
+	entity := FAMIXEntity new.
+	self assert: entity properties isEmpty.
+	self assert: (entity propertyNamed: #aKey ifNil: [ 10 ]) equals: 10.
+	entity propertyNamed: #aKey ifAbsentPut: 20.
+	self assert: (entity propertyNamed: #aKey ifNil: [ 10 ]) equals: 20.
+	self deny: entity properties isEmpty.
+	self assert: entity complexPropertyPragmas isEmpty.
+	self assert: entity notExistentMetricValue equals: -1
 ]

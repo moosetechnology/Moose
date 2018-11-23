@@ -519,11 +519,6 @@ MooseGroupTest >> testHeterogeneousGroupType [
 ]
 
 { #category : #tests }
-MooseGroupTest >> testIcon [
-	self assert: MooseGroup new mooseIcon isForm
-]
-
-{ #category : #tests }
 MooseGroupTest >> testIncludes [
 	self assert:	(self model allClasses includes: self model allClasses first)
 ]
