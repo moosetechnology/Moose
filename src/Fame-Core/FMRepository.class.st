@@ -50,16 +50,6 @@ FMRepository class >> with: aMetamodel [
 	^self basicNew initialize: aMetamodel
 ]
 
-{ #category : #streaming }
-FMRepository >> accept: aParseClient [
-
-	| visitor |
-	visitor := FMRepositoryVisitor new.
-	visitor model: self.
-	visitor printer: aParseClient.
-	visitor run.
-]
-
 { #category : #adding }
 FMRepository >> add: element [
 	
@@ -226,16 +216,6 @@ FMRepository >> deepRemove: element [
 	self postRemove: element.
 ]
 
-{ #category : #adding }
-FMRepository >> document: scriptBlock [
-	| importer builder |
-	importer := FMImporter new.
-	importer repository: self.
-	builder := self builderClass new.
-	builder client: importer.
-	builder document: scriptBlock
-]
-
 { #category : #accessing }
 FMRepository >> elements [
 	^elements asArray
@@ -249,52 +229,10 @@ FMRepository >> exportOn: aStream [
 	self accept: printer.
 ]
 
-{ #category : #streaming }
-FMRepository >> exportString [
-
-	| printer |
-	printer := FMMSEPrinter new onString.	
-	self accept: printer.
-	^printer stream contents
-]
-
 { #category : #'accessing-meta' }
 FMRepository >> get: propertyOrName element: element [ 
 
 	^(self coerceProperty: propertyOrName receiver: element) getFrom: element
-]
-
-{ #category : #ui }
-FMRepository >> gtExportAction [
-	<gtInspectorAction>
-	^ GLMGenericAction new
-		action: [ 
-			| fileReference |
-			fileReference := UITheme builder fileSave: 'Specify MSE file' extensions: #('mse').
-			fileReference ifNotNil: [ 
-				fileReference writeStreamDo: [ :s | self exportOn: s ].
-				Notification signal: 'Save successful!' ] ];
-		icon: (Smalltalk ui icons iconNamed: #glamorousSave);
-		title: 'Export to MSE'
-	
-]
-
-{ #category : #streaming }
-FMRepository >> importStream: aReadStream [
-
-	| importer |
-	importer := FMImporter new.
-	importer repository: self.
-	importer stream: aReadStream.
-	importer run.
-	self updateCache.	
-]
-
-{ #category : #streaming }
-FMRepository >> importString: mseString [
-
-	self importStream: mseString readStream.
-
 ]
 
 { #category : #testing }
