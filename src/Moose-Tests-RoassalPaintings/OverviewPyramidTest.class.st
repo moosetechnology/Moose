@@ -7,7 +7,13 @@ Class {
 	#category : #'Moose-Tests-RoassalPaintings-OverviewPyramid'
 }
 
-{ #category : #tests }
+{ #category : #helpers }
+OverviewPyramidTest >> model [
+	" to debug and avoid caching behavior: LANPackageTestResource reset."
+	^ LANPackageTestResource current model 
+]
+
+{ #category : #helpers }
 OverviewPyramidTest >> prepareAnyMooseModel [
 
 	| model importer models |
@@ -29,4 +35,9 @@ OverviewPyramidTest >> testOpen [
 	| model |
 	model := self prepareAnyMooseModel.
 	self shouldnt: (OverviewPyramid on: model) open delete raise: Error.
+]
+
+{ #category : #tests }
+OverviewPyramidTest >> testoverviewPyramidMetrics [
+	self assert: (self model overviewPyramidMetrics isKindOf: OverviewPyramidMetrics)
 ]
