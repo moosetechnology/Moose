@@ -1,30 +1,6 @@
 Extension { #name : #RGBehavior }
 
 { #category : #'*Calypso-Ring2' }
-RGBehavior >> >> aSymbol [
-
-	^ self methodNamed: aSymbol
-]
-
-{ #category : #'*Calypso-Ring2' }
-RGBehavior >> allSelectorsWithout: behaviors [
-	"Returns all the selectors of the receiver and its superclasses, except the ones define in behaviors"
-
-	| selectors |
-	selectors := IdentitySet new.
-	self withAllSuperclassesDo: [ :class | 
-			(behaviors includes: class)
-				ifFalse: [ selectors addAll: class selectors ] ].
-	^ selectors
-]
-
-{ #category : #'*Calypso-Ring2' }
-RGBehavior >> allSuperclassesDo: aBlock [
-
-	^ self allSuperclasses do: aBlock
-]
-
-{ #category : #'*Calypso-Ring2' }
 RGBehavior >> calypsoEnvironmentType [
 	^ClyClass
 ]
@@ -39,51 +15,6 @@ RGBehavior >> canUnderstand: selector [
 			ifTrue: [ ^ true ] ].
 
 	^ self methods anySatisfy: [ :method | method name = selector ].
-]
-
-{ #category : #'*Calypso-Ring2' }
-RGBehavior >> compile: aString classified: aCategory [ 
-
-	^ self compile: aString classified: aCategory notifying: nil
-]
-
-{ #category : #'*Calypso-Ring2' }
-RGBehavior >> compile: aString classified: aCategory notifying: aController [
-
-	| parseTree ast selector newMethod | 
-	
-	parseTree := (RBParser 
-		parseMethod: aString
-		onError: [ :msg :pos | ^ nil ]) methodClass: self.
-		
-	ast :=  parseTree doSemanticAnalysisIn: self.  
-	
-	selector := ast selector.
-	newMethod := self ensureLocalMethodNamed: selector.
-	newMethod sourceCode: aString.
-	aCategory ifNotNil: [ 
-		newMethod tagWith: aCategory ].
-	
-	^ selector.
-
-]
-
-{ #category : #'*Calypso-Ring2' }
-RGBehavior >> compile: code notifying: requestor [ 
-
-	| parseTree ast aMethod |
-	
-	parseTree := (RBParser 
-		parseMethod: code 
-		onError: [ :msg :pos | "TODO:" ^ nil ]) methodClass: self.
-	
-	ast := parseTree doSemanticAnalysisIn: self.
-
-	aMethod := self ensureLocalMethodNamed: ast selector.
-	aMethod sourceCode: code.
-	
-	^ aMethod selector
-	
 ]
 
 { #category : #'*Calypso-Ring2' }
@@ -116,22 +47,6 @@ RGBehavior >> includesVariablesAffectedByModificationOf: modifiedClass [
 	self isRootInEnvironment ifTrue: [ ^false ].
 	
 	^self superclass includesVariablesAffectedByModificationOf: modifiedClass
-]
-
-{ #category : #'*Calypso-Ring2' }
-RGBehavior >> isClassSide [
-	^self == self classSide
-]
-
-{ #category : #'*Calypso-Ring2' }
-RGBehavior >> isDefinedInPackage: aPackage [
-
-	^ self package = aPackage
-]
-
-{ #category : #'*Calypso-Ring2' }
-RGBehavior >> isInstanceSide [
-	^self isClassSide not
 ]
 
 { #category : #'*Calypso-Ring2' }
@@ -198,41 +113,8 @@ RGBehavior >> subclassDefinerClass [
 ]
 
 { #category : #'*Calypso-Ring2' }
-RGBehavior >> subclassesDo: aBlock [ 
-	"Evaluate the argument, aBlock, for each of the receiver's immediate subclasses."
-	
-	self subclasses do: aBlock
-]
-
-{ #category : #'*Calypso-Ring2' }
 RGBehavior >> traitCompositionIncludes: aTrait [
 	^self == aTrait or: 
 		[self hasTraitComposition and: 
 			[self traitComposition allTraits includes: aTrait]]
-]
-
-{ #category : #'*Calypso-Ring2' }
-RGBehavior >> traits [
-
-	^ self traitComposition traits
-]
-
-{ #category : #'*Calypso-Ring2' }
-RGBehavior >> withAllSuperclasses [
-	"Answer an OrderedCollection of the receiver and the receiver's 
-	superclasses. The first element is the receiver, 
-	followed by its superclass; the last element is Object."
-
-	| temp |
-	temp := self allSuperclasses.
-	temp addFirst: self.
-	^ temp
-]
-
-{ #category : #'*Calypso-Ring2' }
-RGBehavior >> withAllSuperclassesDo: aBlock [ 
-	"Evaluate the argument, aBlock, for each of the receiver's superclasses."
-	aBlock value: self.
-	((self superclass == nil) or: [ self superclass == self ])
-		ifFalse: [self superclass withAllSuperclassesDo: aBlock]
 ]

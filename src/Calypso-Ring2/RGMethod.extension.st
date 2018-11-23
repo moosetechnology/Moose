@@ -43,6 +43,11 @@ RGMethod >> isDefinedInPackage: aPackage [
 ]
 
 { #category : #'*Calypso-Ring2' }
+RGMethod >> isInstalled [ 
+	^ true
+]
+
+{ #category : #'*Calypso-Ring2' }
 RGMethod >> literalAt: anIndex [
 
 	^ self ast literals at: anIndex
