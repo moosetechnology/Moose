@@ -43,3 +43,11 @@ FamixTWithSourceLanguage >> declaredSourceLanguage: anObject [
 	declaredSourceLanguage := anObject
 
 ]
+
+{ #category : #accessing }
+FamixTWithSourceLanguage >> sourceLanguageOr: unknownSourceLanguageClass [
+	^ self declaredSourceLanguage ifNil: [
+		self mooseModel 
+			ifNil: [ unknownSourceLanguageClass new ] 
+			ifNotNil: [ self mooseModel sourceLanguage ] ]
+]
