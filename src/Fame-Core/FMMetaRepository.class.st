@@ -83,11 +83,6 @@ FMMetaRepository >> at: aString [
 	
 ]
 
-{ #category : #private }
-FMMetaRepository >> builderClass [
-	^FMMetamodelBuilder 
-]
-
 { #category : #accessing }
 FMMetaRepository >> classes [
 
@@ -214,7 +209,7 @@ FMMetaRepository >> gtSpotterClassesFor: aStep [
 		filter: GTFilterSubstring
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #ui }
 FMMetaRepository >> gtSpotterPackagesFor: aStep [
 	<spotterOrder: 20>
 	aStep listProcessor
