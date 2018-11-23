@@ -85,25 +85,6 @@ MooseEntityTest >> testAnnotation [
 ]
 
 { #category : #tests }
-MooseEntityTest >> testAsMooseFinderItemNamed [
-	| entity1 entity2 model model2 |
-	entity1 := FAMIXType new.
-	entity1 name: 'hello'.
-	entity2 := FAMIXType new.
-	entity2 name: 'hello2'.
-	model := MooseModel new.
-	model
-		addAll:
-			{entity1.
-			entity2}.
-	self assert: (model asMooseFinderItemNamed: 'bouba' in: model) == model.
-	model2 := entity1 asMooseFinderItemNamed: 'bouba' in: model.
-	self assert: model2 class == FAMIXTypeGroup.
-	self assert: model2 name equals: 'Bouba: hello'.
-	self assert: model2 entities asArray equals: {entity1}
-]
-
-{ #category : #tests }
 MooseEntityTest >> testBookmark [
 	| entity model bookmark |
 	model := MooseModel new.
@@ -184,11 +165,6 @@ MooseEntityTest >> testLocalMooseModel [
 
 	model := MooseModel new.
 	self assert: (model localMooseModel == model)
-]
-
-{ #category : #tests }
-MooseEntityTest >> testMooseIcon [
-	self assert: FAMIXEntity new mooseIcon isForm
 ]
 
 { #category : #tests }
@@ -286,19 +262,6 @@ MooseEntityTest >> testPrivateStateMutator [
 	entity privateState: mooseState.
 	self assert: (entity privateState == mooseState).
 
-]
-
-{ #category : #tests }
-MooseEntityTest >> testProperty [
-	| entity |
-	entity := FAMIXEntity new.
-	self assert: entity properties isEmpty.
-	self assert: (entity propertyNamed: #aKey ifNil: [ 10 ]) equals: 10.
-	entity propertyNamed: #aKey ifAbsentPut: 20.
-	self assert: (entity propertyNamed: #aKey ifNil: [ 10 ]) equals: 20.
-	self deny: entity properties isEmpty.
-	self assert: entity complexPropertyPragmas isEmpty.
-	self assert: entity notExistentMetricValue equals: -1
 ]
 
 { #category : #tests }

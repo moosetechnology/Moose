@@ -62,7 +62,7 @@ FamixJavaComment >> copyFrom: anEntity within: aVisitor [
 { #category : #'as yet unclassified' }
 FamixJavaComment >> gtDisplayOn: aStream [
 	| preview |
-	preview := self sourceText truncate: 10.
+	preview := self sourceText truncateWithElipsisTo: 10.
 	preview := preview copyReplaceAll: (String with: Character cr with: Character lf) with: ' '.	
 	preview := preview copyReplaceAll: (String with: Character cr) with: ' '.	
 	preview := preview copyReplaceAll: (String with: Character lf) with: ' '.
