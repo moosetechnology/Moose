@@ -129,6 +129,7 @@ BaselineOfMoose >> baseline: spec [
 		self baselineXMLWriter: spec.
 		self baselineMerlin: spec.
 		self baselineDistributionMap: spec.
+		self baselineWizard: spec.
 
 	   self groups: spec.
 	]
@@ -497,6 +498,14 @@ BaselineOfMoose >> baselineStateSpecs: spec [
 ]
 
 { #category : #baseline }
+BaselineOfMoose >> baselineWizard: spec [ 
+
+	self defineGroup: #'Wizard-Group' in: spec with: #(
+		'Moose-Wizard'
+	).
+]
+
+{ #category : #baseline }
 BaselineOfMoose >> baselineXMLParser: spec [ 
     
 	spec package: 'XML-Parser'
@@ -681,6 +690,7 @@ BaselineOfMoose >> groups: spec [
 		'Merlin-Group'
 		'Moose-DistributionMap'
 		'Moose-Tests-DistributionMap'
+		'Wizard-Group'
 	).
 		
 	spec group: 'default' with: #('AdditionalTools').
