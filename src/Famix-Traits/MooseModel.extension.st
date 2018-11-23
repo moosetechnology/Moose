@@ -80,15 +80,3 @@ MooseModel >> numberOfModelMethods [
 		lookUpPropertyNamed: #numberOfModelMethods
 		computedAs: [ self allModelMethods size ]
 ]
-
-{ #category : #'*Famix-Traits' }
-MooseModel >> unknownFAMIXNamespace [
-	^ self allNamespaces
-		detect: [ :each | each mooseName = #unknownNamespace ]
-		ifNone: [ self
-				add:
-					(FAMIXNamespace new
-						name: 'unknownNamespace';
-						isStub: true;
-						yourself) ]
-]

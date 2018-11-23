@@ -41,12 +41,12 @@ BaselineOfMoose >> baseline: spec [
 			package: 'Famix-MetamodelBuilder-Tests';
 			
 			package: 'Famix-MetamodelGeneration';
+			package: 'Famix-Groups';
 			package: 'Famix-Traits';
 				
 			package: 'Famix-BasicInfrastructure';
 			package: 'Famix-Smalltalk-Utils';
 			
-			package: 'Famix-Groups';
 			package: 'Famix-Compatibility-Generator';
 			package: 'Famix-Compatibility-Entities'.
 

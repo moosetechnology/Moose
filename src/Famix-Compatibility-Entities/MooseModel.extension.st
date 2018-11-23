@@ -71,3 +71,15 @@ MooseModel >> unknownFAMIXClass [
 					yourself)
 		]
 ]
+
+{ #category : #'*Famix-Compatibility-Entities' }
+MooseModel >> unknownFAMIXNamespace [
+	^ self allNamespaces
+		detect: [ :each | each mooseName = #unknownNamespace ]
+		ifNone: [ self
+				add:
+					(FAMIXNamespace new
+						name: 'unknownNamespace';
+						isStub: true;
+						yourself) ]
+]
