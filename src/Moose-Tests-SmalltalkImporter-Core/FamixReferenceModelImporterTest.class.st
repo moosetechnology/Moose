@@ -452,7 +452,7 @@ FamixReferenceModelImporterTest >> testExtensionPackage [
 	| normalClass extendedClass extensionPackage externalExtendedClass |
 	extensionPackage := self model allPackages entityNamed: #'Moose-TestResources-Reference-PackageTwo'.
 	extendedClass := self model entityNamed: SubRootModelTwo mooseName.
-	externalExtendedClass := self model entityNamed: FamixReferenceModelNamespaceTestResource mooseName.
+	externalExtendedClass := self model entityNamed: ExternalReferenceClass mooseName.
 	normalClass := self model entityNamed: SubRootModelThree mooseName.
 	self assert: (extensionPackage classes includes: normalClass).
 	self deny: (extensionPackage classes includes: extendedClass).
@@ -469,7 +469,7 @@ FamixReferenceModelImporterTest >> testExtensionPackage [
 		assert:
 			(extensionPackage extensionMethods
 				includes:
-					(self model entityNamed: (FamixReferenceModelNamespaceTestResource >> #externalClassExtensionForTest) mooseName)).
+					(self model entityNamed: (ExternalReferenceClass >> #externalClassExtensionForTest) mooseName)).
 	self
 		assert:
 			(extensionPackage extensionMethods includes: (self model entityNamed: (SubRootModelTwo >> #extendedMethodOne) mooseName))
@@ -508,12 +508,12 @@ FamixReferenceModelImporterTest >> testExternalExtension [
 	| extensionPackage externalExtendedClass |
 	
 	extensionPackage := self model entityNamed: #'Moose-TestResources-Reference-PackageTwo'.
-	externalExtendedClass := self model entityNamed: FamixReferenceModelNamespaceTestResource mooseName.
+	externalExtendedClass := self model entityNamed: ExternalReferenceClass mooseName.
 
 	self assert: (externalExtendedClass isStub).
 	self deny: (extensionPackage classes includes: externalExtendedClass).
 	self assert: (extensionPackage extensionMethods includes:
-		(self model entityNamed: (FamixReferenceModelNamespaceTestResource>>#externalClassExtensionForTest) mooseName)).
+		(self model entityNamed: (ExternalReferenceClass>>#externalClassExtensionForTest) mooseName)).
 
 ]
 
