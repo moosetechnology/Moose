@@ -364,6 +364,23 @@ FAMIXMethod >> numberOfInvokedMethods [
 	^ self privateState propertyAt: #numberOfInvokedMethods ifAbsentPut: [self invokedMethods size]
 ]
 
+{ #category : #'Famix-Extensions' }
+FAMIXMethod >> numberOfMessageSends [
+	<MSEProperty: #numberOfMessageSends type: #Number>
+	<derived>
+	<MSEComment: 'The number of message from a method'>
+	^ self
+		lookUpPropertyNamed: #numberOfMessageSends
+		computedAs: [ 
+			self mooseModel isSmalltalk
+				ifTrue: [ 
+					| parser |
+					parser := RBVisitorForFAMIXMetrics new.
+					parser processMethod: self usingImporter: nil inModel: nil.
+					parser numberOfMessageSends ]
+				ifFalse: [ self notExistentMetricValue ] ]
+]
+
 { #category : #'Famix-Implementation' }
 FAMIXMethod >> overridesMethod [
 	^ self belongsTo superclassHierarchy collect: [ :each | each implementationOf: self signature ] thenSelect: #isNotNil
