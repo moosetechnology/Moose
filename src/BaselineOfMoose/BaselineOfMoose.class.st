@@ -68,6 +68,7 @@ BaselineOfMoose >> baseline: spec [
 			package: 'Moose-Tests-SmalltalkImporter-KGB';
 			package: 'Famix-Compatibility-Tests-Core';
 			package: 'Famix-Compatibility-Tests-Extensions';
+			package: 'Moose-TestResources-Reference-External';
 			package: 'Moose-TestResources-Reference-Core';
 			package: 'Moose-TestResources-Reference-PackageOne';
 			package: 'Moose-TestResources-Reference-PackageTwo';
@@ -573,7 +574,10 @@ BaselineOfMoose >> groups: spec [
 		'Mocketry'
 			
 		'Moose-TestResources-LAN'
+		'Moose-TestResources-Reference-External'
 		'Moose-TestResources-Reference-Core'
+		'Moose-TestResources-Reference-PackageOne'
+		'Moose-TestResources-Reference-PackageTwo'
 		'Moose-TestResources-KGB-P4FullInteracted'
 		'Moose-TestResources-KGB-P6InteractedReferee'
 		'Moose-TestResources-KGB-P5FullReferee'
@@ -593,9 +597,7 @@ BaselineOfMoose >> groups: spec [
 		'Moose-TestResources-PackageBlueprint-P2'
 		'Moose-TestResources-PackageBlueprint-P3'
 		'Moose-TestResources-PackageBlueprint-P4'
-		'Moose-TestResources-Reference-PackageOne'
 		'Moose-Tests-SmalltalkImporter-Core'
-		'Moose-TestResources-Reference-PackageTwo'
 		'Moose-Tests-SmalltalkImporter-LAN'
 		'Moose-Tests-SmalltalkImporter-KGB'
 		'Moose-TestResources-KGB-PExtensions'
