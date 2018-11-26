@@ -4,6 +4,13 @@ Class {
 	#category : #'Fame-ImportExport'
 }
 
+{ #category : #'instance creation' }
+FMMSEPrinter class >> on: aStream [
+	^ self new
+		stream: aStream;
+		yourself
+]
+
 { #category : #parsing }
 FMMSEPrinter >> beginAttribute: name [
 
