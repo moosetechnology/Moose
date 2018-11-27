@@ -21,6 +21,11 @@ FMRepository >> document: scriptBlock [
 ]
 
 { #category : #'*Fame-ImportExport' }
+FMRepository >> exportOn: aStream [
+	self accept: (FMMSEPrinter on: aStream)
+]
+
+{ #category : #'*Fame-ImportExport' }
 FMRepository >> exportString [
 
 	| printer |

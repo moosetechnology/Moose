@@ -94,15 +94,6 @@ FMRepository >> additionalProperty: aSymbol for: entityClass put: anObject [
 	^ (self additionalPropertiesFor: entityClass) at: aSymbol put: anObject
 ]
 
-{ #category : #converting }
-FMRepository >> asMetarepository [
-
-	| repo |
-	repo := FMMetaRepository with: FMMetaRepository fm3.
-	repo addAll: elements.
-	^repo
-]
-
 { #category : #accessing }
 FMRepository >> cleanAdditionalProperties [
 
@@ -219,14 +210,6 @@ FMRepository >> deepRemove: element [
 { #category : #accessing }
 FMRepository >> elements [
 	^elements asArray
-]
-
-{ #category : #streaming }
-FMRepository >> exportOn: aStream [
-
-	| printer |
-	printer := FMMSEPrinter new stream: aStream.
-	self accept: printer.
 ]
 
 { #category : #'accessing-meta' }

@@ -30,18 +30,6 @@ Class {
 	#category : #'Fame-Core'
 }
 
-{ #category : #'instance creation' }
-FMMetaRepository class >> fm3 [
-	| builder repo |
-	"Again, no singeltons please!"
-	builder := FMPragmaProcessor new.
-	builder buildFM3.
-	repo := self basicNew.
-	repo initialize: repo.
-	repo addAll: builder elements.
-	^ repo
-]
-
 { #category : #examples }
 FMMetaRepository class >> gtExampleBasic [
 	<gtExample>
@@ -51,28 +39,6 @@ FMMetaRepository class >> gtExampleBasic [
 { #category : #'instance creation' }
 FMMetaRepository class >> reset [
 	self error: 'I am a smell, no static state please!'
-]
-
-{ #category : #adding }
-FMMetaRepository >> addSmalltalkClasses: classes [ 
-	| builder |
-	builder := FMPragmaProcessor new.
-	builder queue: classes.
-	builder run.
-	self addAll: builder elements
-]
-
-{ #category : #adding }
-FMMetaRepository >> addSmalltalkNamespace: pattern [ 
-	| classes |
-	classes := Object withAllSubclasses select: 
-		[ :each | 
-		(each isKindOf: Metaclass) not and: 
-			[ each name size > pattern size and: 
-				[ (each name at: pattern size + 1) isUppercase and: [ (each name 
-					copyFrom: 1
-					to: pattern size) = pattern ] ] ] ].
-	self addSmalltalkClasses: classes
 ]
 
 { #category : #accessing }
