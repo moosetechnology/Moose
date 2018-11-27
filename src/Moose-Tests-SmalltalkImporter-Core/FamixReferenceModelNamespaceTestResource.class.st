@@ -9,6 +9,7 @@ FamixReferenceModelNamespaceTestResource >> importModel [
 	
 	MoosePharoImporterTask new
 		importerClass: SmalltalkImporter;
+		factory: SmalltalkCompatibilityMetamodelFactory;
 		model: model;
 		doNotRunCandidateOperator;
 		addFromPackageNamed: #'Moose-TestResources-Reference-Core';
