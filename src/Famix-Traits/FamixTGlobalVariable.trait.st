@@ -19,6 +19,14 @@ FamixTGlobalVariable classSide >> annotation [
 	^self
 ]
 
+{ #category : #groups }
+FamixTGlobalVariable classSide >> famixTGlobalVariableRelatedGroup [
+
+	<mooseGroup>
+	
+	^ FAMIXGlobalVariableGroup
+]
+
 { #category : #generator }
 FamixTGlobalVariable classSide >> generatedSlotNames [
 	<generated>

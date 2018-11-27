@@ -9,7 +9,8 @@ Class {
 	#name : #MooseImportingTask,
 	#superclass : #MooseAbstractImporter,
 	#instVars : [
-		'importerClass'
+		'importerClass',
+		'factory'
 	],
 	#category : #'Moose-SmalltalkImporter'
 }
@@ -18,6 +19,16 @@ Class {
 MooseImportingTask >> defaultImporterClass [
 	"By default the class responsible for the extraction of model from Smalltalk code is SmalltalkImporter."
 	^ SmalltalkImporter
+]
+
+{ #category : #accessing }
+MooseImportingTask >> factory [
+	^ factory
+]
+
+{ #category : #accessing }
+MooseImportingTask >> factory: anObject [
+	factory := anObject
 ]
 
 { #category : #accessing }

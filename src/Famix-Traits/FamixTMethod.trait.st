@@ -26,6 +26,14 @@ FamixTMethod classSide >> annotation [
 	^self
 ]
 
+{ #category : #groups }
+FamixTMethod classSide >> famixTMethodRelatedGroup [
+
+	<mooseGroup>
+	
+	^ FAMIXMethodGroup
+]
+
 { #category : #generator }
 FamixTMethod classSide >> generatedSlotNames [
 	<generated>

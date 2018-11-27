@@ -18,6 +18,14 @@ FamixTFolder classSide >> annotation [
 	^self
 ]
 
+{ #category : #groups }
+FamixTFolder classSide >> famixTFolderRelatedGroup [
+
+	<mooseGroup>
+	
+	^ FAMIXFolderGroup
+]
+
 { #category : #generator }
 FamixTFolder classSide >> generatedSlotNames [
 	<generated>
