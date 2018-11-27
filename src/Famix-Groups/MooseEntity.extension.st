@@ -9,7 +9,7 @@ MooseEntity class >> relatedGroupType [
 	type, the most specialize one selected."
 
 	| definingMethods selectedMethod |
-	definingMethods := (FAMIXClass class allMethods select: [ :each | each hasPragmaNamed: #mooseGroup ]).
+	definingMethods := (self class allMethods select: [ :each | each hasPragmaNamed: #mooseGroup ]).
 	definingMethods ifEmpty: [ ^ MooseGroup ].
 	selectedMethod := definingMethods detectMax: [ :each | each methodClass withAllSuperclasses size ].
 
