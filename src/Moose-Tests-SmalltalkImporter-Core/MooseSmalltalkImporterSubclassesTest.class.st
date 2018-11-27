@@ -36,6 +36,7 @@ MooseSmalltalkImporterSubclassesTest >> setUp [
 	model sourceLanguage: FAMIXSmalltalkSourceLanguage new.
 	pharoImporterTask := MoosePharoImporterTask new
 		importerClass: SmalltalkImporter;
+		factory: SmalltalkCompatibilityMetamodelFactory;
 		doNotRunCandidateOperator; 
 		importingContext: (MooseImportingContext new 
 										importPackage;

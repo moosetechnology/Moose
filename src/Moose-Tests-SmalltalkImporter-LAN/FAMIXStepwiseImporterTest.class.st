@@ -19,6 +19,7 @@ FAMIXStepwiseImporterTest >> testCheckFormalParameterIsCreated [
 	| importTask importer mseFormalParameter model |
 	model := MooseModel new.
 	importTask := MoosePharoImporterTask new.
+	importTask factory: SmalltalkCompatibilityMetamodelFactory.
 	importTask importerClass: SmalltalkImporter.
 	importTask
 		importingContext:
@@ -42,6 +43,7 @@ FAMIXStepwiseImporterTest >> testCheckSelfIsCreated [
 	| importTask importer model mseSelf |
 	model := MooseModel new.
 	importTask := MoosePharoImporterTask new.
+	importTask factory: SmalltalkCompatibilityMetamodelFactory.
 	importTask importerClass: SmalltalkImporter.
 	importTask
 		importingContext:
@@ -66,6 +68,7 @@ FAMIXStepwiseImporterTest >> testClassVariable [
 	model := MooseModel new.
 	model name: 'Morphic'.
 	importer := MoosePharoImporterTask new.
+	importer factory: SmalltalkCompatibilityMetamodelFactory.
 	importer importingContext mergeClassAndMetaclass.
 	importer runCandidateOperator.
 	importer model: model; addFromPackagesNamed: (MooseScripts packageNamesFor: 'Morphic*'); runWithProgress.
@@ -191,6 +194,7 @@ FAMIXStepwiseImporterTest >> testImportLANPackage [
 	model := MooseModel new.	
 	MoosePharoImporterTask new
 		importerClass: SmalltalkImporter;
+		factory: SmalltalkCompatibilityMetamodelFactory;
 		doNotRunCandidateOperator; 
 		importingContext: (MooseImportingContext new importClass; importPackage; yourself);
 		model: model;
@@ -247,6 +251,7 @@ FAMIXStepwiseImporterTest >> testImportNamespace [
 	model := MooseModel new.
 	MoosePharoImporterTask new
 		importerClass: SmalltalkImporter;
+		factory: SmalltalkCompatibilityMetamodelFactory;
 		doNotRunCandidateOperator;
 		importingContext:
 				(MooseImportingContext new

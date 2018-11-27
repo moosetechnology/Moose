@@ -34,3 +34,9 @@ FamixStAccess class >> requirements [
 	<generated>
 	^ {  }
 ]
+
+{ #category : #printing }
+FamixStAccess >> printOn: aStream [
+	super printOn: aStream.
+	aStream nextPutAll: ' (Access)'
+]
