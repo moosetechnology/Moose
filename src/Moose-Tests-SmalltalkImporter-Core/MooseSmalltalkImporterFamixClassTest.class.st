@@ -10,6 +10,7 @@ MooseSmalltalkImporterFamixClassTest >> testIsSUnitTestCase [
 	mooseModel := MooseModel new.
 	MoosePharoImporterTask new
 		importerClass: SmalltalkImporter;
+		factory: SmalltalkCompatibilityMetamodelFactory;
 		model: mooseModel;
 		addClasses: (OrderedCollection with: self class);
 		run;

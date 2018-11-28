@@ -40,6 +40,7 @@ LANSmalltalkAccessTest >> testWhenMergingClassAndMetaclassAccessWorks [
 	| model importer |
 	model := MooseModel new.
 	importer := MoosePharoImporterTask new.
+	importer factory: SmalltalkCompatibilityMetamodelFactory.
 	importer importerClass: SmalltalkImporter.
 	importer importingContext mergeClassAndMetaclass.
 	importer model: model.

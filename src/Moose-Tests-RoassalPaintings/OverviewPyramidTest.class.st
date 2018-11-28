@@ -23,6 +23,7 @@ OverviewPyramidTest >> prepareAnyMooseModel [
 	model := MooseModel new.
 	model name: 'AST'.
 	importer := MoosePharoImporterTask new.
+	importer factory: SmalltalkCompatibilityMetamodelFactory.
 	importer importingContext mergeClassAndMetaclass.
 	importer runCandidateOperator.
 	importer model: model; addFromPackagesNamed: (MooseScripts packageNamesFor: 'AST*'); runWithProgress.
