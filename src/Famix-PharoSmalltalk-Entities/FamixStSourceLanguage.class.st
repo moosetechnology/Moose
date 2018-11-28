@@ -39,3 +39,12 @@ FamixStSourceLanguage class >> requirements [
 FamixStSourceLanguage >> isSmalltalk [
 	^ false
 ]
+
+{ #category : #testing }
+FamixStSourceLanguage >> name [
+
+	<MSEProperty: #name type: #String> <derived>
+	<MSEComment: 'The name of the language that is not modeled explicitly.'>
+	
+	^ 'Smalltalk'
+]
