@@ -48,13 +48,6 @@ FamixTAssociation classSide >> generatedTraitNames [
 	^ #()
 ]
 
-{ #category : #printing }
-FamixTAssociation >> gtDisplayOn: aStream [
-	self from gtDisplayOn: aStream.
-	aStream nextPutAll: ' -> '.
-	self to gtDisplayOn: aStream	
-]
-
 { #category : #testing }
 FamixTAssociation >> isAssociation [
 

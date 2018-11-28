@@ -38,3 +38,10 @@ FamixStAssociation class >> requirements [
 	<generated>
 	^ {  }
 ]
+
+{ #category : #printing }
+FamixStAssociation >> gtDisplayOn: aStream [
+	self from gtDisplayOn: aStream.
+	aStream nextPutAll: ' -> '.
+	self to gtDisplayOn: aStream	
+]
