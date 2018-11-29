@@ -10,6 +10,7 @@ MooseSmalltalkImporterRoelTyperTest >> testASTCore [
 	model := MooseModel new.
 	self timeLimit: 60 seconds.
 	importer := MoosePharoImporterTask new.
+	importer factory: SmalltalkCompatibilityMetamodelFactory.
 	importer importingContext
 		mergeClassAndMetaclass;
 		computeTypeOfAttributes.

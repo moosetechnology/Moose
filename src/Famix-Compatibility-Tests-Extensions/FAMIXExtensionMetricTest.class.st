@@ -49,6 +49,7 @@ FAMIXExtensionMetricTest >> importClasses [
 FAMIXExtensionMetricTest >> importModels [
 
 	MoosePharoImporterTask new
+		factory: SmalltalkCompatibilityMetamodelFactory;
 		importerClass: SmalltalkImporter;
 		model: model1;
 		addFromPackageNamed: #'Moose-TestResources-KGB-P1FullReferencer';
@@ -56,6 +57,7 @@ FAMIXExtensionMetricTest >> importModels [
 		run.
 		
 	MoosePharoImporterTask new
+		factory: SmalltalkCompatibilityMetamodelFactory;
 		importerClass: SmalltalkImporter;
 		model: model2;
 		addFromPackageNamed: #'Moose-TestResources-PackageBlueprint-P1';
@@ -65,6 +67,7 @@ FAMIXExtensionMetricTest >> importModels [
 		run.
 	
 	MoosePharoImporterTask new
+		factory: SmalltalkCompatibilityMetamodelFactory;
 		importerClass: SmalltalkImporter;
 		doNotRunCandidateOperator; 
 		model: lcomModel;

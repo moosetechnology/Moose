@@ -34,6 +34,7 @@ MooseCompositeImporterTask >> basicRun [
 	| importerTask importer |
 	"importerTask applies an import filter definition (context) on a set of classes (allClasses) and yields elements"
 	importerTask := MooseImportClassesTask new importerClass: importerClass.
+	importerTask factory: factory new.
 	importerTask importingContext: importingContext.
 	importerTask addAll: self allClasses.
 	importerTask addAllExtensions: self allClassExtensions.

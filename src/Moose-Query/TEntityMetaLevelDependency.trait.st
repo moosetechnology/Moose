@@ -61,6 +61,8 @@ TEntityMetaLevelDependency classSide >> childrenTypesIn: aMetamodel [
 
 { #category : #accessing }
 TEntityMetaLevelDependency classSide >> dependencyFM3PropertyDescriptionIn: aMetamodel [
+
+	aMetamodel ifNil: [ ^ OrderedCollection new ].
 	^ (self allDeclaredPropertiesIn: aMetamodel)
 		select: [ :e | e hasOpposite and: [ e opposite isSource or: [ e opposite isTarget ] ] ]
 ]
@@ -366,11 +368,6 @@ TEntityMetaLevelDependency >> childrenSelectors [
 TEntityMetaLevelDependency >> childrenTypes [
 
 	^ self metamodel additionalProperty: #childrenTypes for: self class ifAbsentPut: [ self privateChildrenTypes ]
-]
-
-{ #category : #accessing }
-TEntityMetaLevelDependency >> childrenTypes [
-	^ self class childrenTypes
 ]
 
 { #category : #accessing }

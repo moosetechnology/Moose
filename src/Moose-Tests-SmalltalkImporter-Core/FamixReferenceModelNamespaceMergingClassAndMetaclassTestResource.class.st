@@ -9,6 +9,7 @@ FamixReferenceModelNamespaceMergingClassAndMetaclassTestResource >> importModel 
 	
 	| importer | 
 	importer := MoosePharoImporterTask new.
+	importer factory: SmalltalkCompatibilityMetamodelFactory.
 	importer importingContext mergeClassAndMetaclass.
 	importer importerClass: SmalltalkImporter.
 	importer doNotRunCandidateOperator.

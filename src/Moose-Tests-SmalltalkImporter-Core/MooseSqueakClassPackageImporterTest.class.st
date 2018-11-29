@@ -48,6 +48,7 @@ MooseSqueakClassPackageImporterTest >> testImportClassUsingAddCategory [
 	model := MooseModel new.
 	importer := MoosePharoImporterTask new
 		model: model;
+		factory: SmalltalkCompatibilityMetamodelFactory;
 		importingContext: MooseImportingContext new importClass.
 	importer addFromPackage: (RPackageOrganizer default packageNamed: #'Moose-TestResources-LAN').
 	importer run.
@@ -62,6 +63,7 @@ MooseSqueakClassPackageImporterTest >> testImportClassUsingAddClass [
 	model := MooseModel new.
 	importer := MoosePharoImporterTask new
 		model: model;
+		factory: SmalltalkCompatibilityMetamodelFactory;
 		importingContext: MooseImportingContext new importClass.
 	importer addClass: LANNode.
 	importer run.
@@ -76,6 +78,7 @@ MooseSqueakClassPackageImporterTest >> testImportClassUsingAddPackage [
 	model := MooseModel new.
 	importer := MoosePharoImporterTask new
 		model: model;
+		factory: SmalltalkCompatibilityMetamodelFactory;
 		importingContext: MooseImportingContext new importClass.
 	importer addFromPackage: (RPackage organizer packageNamed: #'Moose-TestResources-LAN').
 	importer run.
@@ -93,6 +96,7 @@ MooseSqueakClassPackageImporterTest >> testImportClassUsingAddPackageNamed [
 	importer := MoosePharoImporterTask new.
 	importer
 		model: model;
+		factory: SmalltalkCompatibilityMetamodelFactory;
 		importingContext: MooseImportingContext new importClass.
 	importer addFromPackageNamed: 'Moose-TestResources-LAN'.
 	importer run.

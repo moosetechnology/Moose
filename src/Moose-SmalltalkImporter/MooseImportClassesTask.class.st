@@ -48,6 +48,7 @@ MooseImportClassesTask >> basicRun [
 	 
 	| importer | 
 	importer := importerClass new importingContext: importingContext. 
+	importer factory: factory new.
 	self classes 
 		do: 
 			[:class |  

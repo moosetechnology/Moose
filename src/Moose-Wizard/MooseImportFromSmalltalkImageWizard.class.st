@@ -8,7 +8,8 @@ Class {
 	#name : #MooseImportFromSmalltalkImageWizard,
 	#superclass : #WizardControl,
 	#instVars : [
-		'mooseModel'
+		'mooseModel',
+		'metamodelList'
 	],
 	#category : #'Moose-Wizard'
 }
@@ -23,9 +24,15 @@ MooseImportFromSmalltalkImageWizard >> buildMooseWizardControl [
 { #category : #'initialize-release' }
 MooseImportFromSmalltalkImageWizard >> buildMooseWizardModelAttributes [
 
-	| lastPane modelNameTextField mergeClassesCheckbox importSubclassesCheckbox computeAttributesCheckbox importerList importerAttributes strategyDropList |
+	| lastPane modelNameTextField mergeClassesCheckbox importSubclassesCheckbox computeAttributesCheckbox importerList importerAttributes strategyDropList metamodelFactoryList |
 	lastPane := WizardLastPane new.
 	
+	metamodelFactoryList := DropListPart new
+		list: (self listOfMetamodelFactories collect: #name);
+		defaultValue: 1;
+		inGroupboxNamed: 'Metamodel factory';
+		yourself.
+		
 	modelNameTextField := TextFieldPart new 
 		inGroupboxNamed: 'Type the name of the model'; 
 		defaultValue: 'MooseModel'.
@@ -62,6 +69,9 @@ MooseImportFromSmalltalkImageWizard >> buildMooseWizardModelAttributes [
 	lastPane 
 		addPart: modelNameTextField
 		associatedTo: #modelName.
+	lastPane 
+		addPart: metamodelFactoryList
+		associatedTo: #metamodelFactory.
 	lastPane 
 		addPart: mergeClassesCheckbox
 		associatedTo: #mergeClassMetaclass.
@@ -215,6 +225,12 @@ MooseImportFromSmalltalkImageWizard >> listOfInvocationStrategies [
 ]
 
 { #category : #accessing }
+MooseImportFromSmalltalkImageWizard >> listOfMetamodelFactories [
+
+	^ { SmalltalkMetamodelFactory. SmalltalkCompatibilityMetamodelFactory }
+]
+
+{ #category : #accessing }
 MooseImportFromSmalltalkImageWizard >> mooseModel [ 
 
 	^ mooseModel 
@@ -250,8 +266,9 @@ MooseImportFromSmalltalkImageWizard >> performTerminateButtonAction [
 MooseImportFromSmalltalkImageWizard >> validateImportation [
 	"final action when the user click on the button ok:
 	open a corresponding mooseFinder"
-	| importer selectedPackages |
-	
+	| importer selectedPackages factory |
+
+	factory := Smalltalk at: (wizardInformations at: #metamodelFactory).
 	
 	selectedPackages := wizardInformations at: #packagesSelected.
 	
@@ -268,7 +285,8 @@ MooseImportFromSmalltalkImageWizard >> validateImportation [
 		importingContext: self createImportingContext;
 		model: mooseModel;
 		addFromPackagesNamed: selectedPackages;
-		candidateClass: self candidateListOperatorClass ;
+		candidateClass: self candidateListOperatorClass;
+		factory: factory;		
 		runWithProgress.
 
 	mooseModel install.

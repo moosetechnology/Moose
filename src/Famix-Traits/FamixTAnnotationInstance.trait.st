@@ -28,6 +28,14 @@ FamixTAnnotationInstance classSide >> annotation [
 	^self
 ]
 
+{ #category : #groups }
+FamixTAnnotationInstance classSide >> famixTAnnotationInstanceRelatedGroup [
+
+	<mooseGroup>
+	
+	^ FAMIXAnnotationInstanceGroup
+]
+
 { #category : #generator }
 FamixTAnnotationInstance classSide >> generatedSlotNames [
 	<generated>

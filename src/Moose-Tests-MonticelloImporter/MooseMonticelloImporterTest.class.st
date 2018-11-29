@@ -21,6 +21,7 @@ MooseMonticelloImporterTest >> packageToTest [
 MooseMonticelloImporterTest >> setUp [
 	super setUp.
 	importer := MooseMonticelloCacheImporter new.
+	importer factory: SmalltalkCompatibilityMetamodelFactory new.
 	self settingUpTestPackageIfNecessary
 ]
 

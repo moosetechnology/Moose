@@ -66,13 +66,6 @@ FamixJavaAssociation >> from [
 	^ self subclassResponsibility
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaAssociation >> gtDisplayOn: aStream [
-	self from gtDisplayOn: aStream.
-	aStream nextPutAll: ' -> '.
-	self to gtDisplayOn: aStream	
-]
-
 { #category : #accessing }
 FamixJavaAssociation >> previous: anAssociation [
 	| old |

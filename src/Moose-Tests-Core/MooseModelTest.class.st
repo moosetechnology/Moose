@@ -10,12 +10,6 @@ Class {
 	#category : #'Moose-Tests-Core'
 }
 
-{ #category : #util }
-MooseModelTest >> model [
-	" to debug and avoid caching behavior: LANPackageTestResource reset."
-	^ LANPackageTestResource current model 
-]
-
 { #category : #running }
 MooseModelTest >> setUp [
 	super setUp.
@@ -41,28 +35,6 @@ MooseModelTest >> testAddAnnouncement [
 
 	model add: entity.
 	self assert: announcedEntity == entity.
-]
-
-{ #category : #tests }
-MooseModelTest >> testAddingAndRemoving [
-	| nbOfInstancesOriginal newModel nbOfInstancesBefore nbOfInstancesAfter |
-	self timeLimit: 60 seconds.
-	self flag: 'This is a weird test as it fails sporadically'.
-	10 timesRepeat: [ Smalltalk garbageCollect ].
-	Object new.
-	self assert: MooseModel root ~= nil.
-	nbOfInstancesOriginal := MooseModel allInstances size.
-	newModel := MooseModel new.
-	newModel install.
-	self assert: (MooseModel root includes: newModel).
-	nbOfInstancesBefore := MooseModel allInstances size.
-	self assert: nbOfInstancesBefore equals: nbOfInstancesOriginal + 1.
-	newModel removeFromModel.
-	newModel := nil.
-	10 timesRepeat: [ Smalltalk garbageCollect ].
-	Object new.
-	nbOfInstancesAfter := MooseModel allInstances size.
-	self assert: nbOfInstancesAfter equals: nbOfInstancesOriginal
 ]
 
 { #category : #tests }
@@ -245,12 +217,6 @@ MooseModelTest >> testExportMetamodelTo [
 	stream := WriteStream on: String new.
 	self shouldnt: [MooseModel exportMetamodelTo: stream]  raise: Error.
 	self deny: stream isEmpty
-]
-
-{ #category : #tests }
-MooseModelTest >> testIncludeElementOfType [
-	self assert: (self model includesElementsOfType: FamixTClass).
-	self deny: (self model includesElementsOfType: SmallInteger)
 ]
 
 { #category : #tests }

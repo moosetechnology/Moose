@@ -21,6 +21,7 @@ TAssociationMetaLevelDependency classSide >> annotation [
 TAssociationMetaLevelDependency classSide >> dependencyFM3PropertyDescriptionIn: aMetamodel [
 	"Return all the properties corresponding to the source or the target of the association"
 
+	aMetamodel ifNil: [ ^ OrderedCollection new ].
 	^ (self allDeclaredPropertiesIn: aMetamodel) select: [ :e | e isSource or: [ e isTarget ] ]
 ]
 

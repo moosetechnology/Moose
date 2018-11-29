@@ -22,6 +22,14 @@ FamixTType classSide >> annotation [
 	^self
 ]
 
+{ #category : #groups }
+FamixTType classSide >> famixTTypeRelatedGroup [
+
+	<mooseGroup>
+	
+	^ FAMIXTypeGroup
+]
+
 { #category : #generator }
 FamixTType classSide >> generatedSlotNames [
 	<generated>

@@ -38,3 +38,26 @@ FamixStAssociation class >> requirements [
 	<generated>
 	^ {  }
 ]
+
+{ #category : #printing }
+FamixStAssociation >> from [
+
+	<MSEProperty: #from type: #FamixTNamed> <derived>
+	<MSEComment: 'Generic accessor to the entity originating the association. Refined by subclasses'>
+	^ self subclassResponsibility
+]
+
+{ #category : #printing }
+FamixStAssociation >> gtDisplayOn: aStream [
+	self from gtDisplayOn: aStream.
+	aStream nextPutAll: ' -> '.
+	self to gtDisplayOn: aStream	
+]
+
+{ #category : #printing }
+FamixStAssociation >> to [
+
+	<MSEProperty: #to type: #FamixTNamed> <derived>
+	<MSEComment: 'Generic accessor to the target entity of the association'>
+	^ self subclassResponsibility
+]

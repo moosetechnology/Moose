@@ -19,6 +19,7 @@ FAMIXStepwiseImporterTest >> testCheckFormalParameterIsCreated [
 	| importTask importer mseFormalParameter model |
 	model := MooseModel new.
 	importTask := MoosePharoImporterTask new.
+	importTask factory: SmalltalkCompatibilityMetamodelFactory.
 	importTask importerClass: SmalltalkImporter.
 	importTask
 		importingContext:
@@ -42,6 +43,7 @@ FAMIXStepwiseImporterTest >> testCheckSelfIsCreated [
 	| importTask importer model mseSelf |
 	model := MooseModel new.
 	importTask := MoosePharoImporterTask new.
+	importTask factory: SmalltalkCompatibilityMetamodelFactory.
 	importTask importerClass: SmalltalkImporter.
 	importTask
 		importingContext:
@@ -66,6 +68,7 @@ FAMIXStepwiseImporterTest >> testClassVariable [
 	model := MooseModel new.
 	model name: 'Morphic'.
 	importer := MoosePharoImporterTask new.
+	importer factory: SmalltalkCompatibilityMetamodelFactory.
 	importer importingContext mergeClassAndMetaclass.
 	importer runCandidateOperator.
 	importer model: model; addFromPackagesNamed: (MooseScripts packageNamesFor: 'Morphic*'); runWithProgress.
@@ -79,6 +82,7 @@ FAMIXStepwiseImporterTest >> testImportAttribute [
 
 	| importTask importer nodeClass |
 	importTask := MooseImportClassesTask new.
+	importTask factory: SmalltalkCompatibilityMetamodelFactory.
 	importTask importerClass: SmalltalkImporter.
 	importTask
 		importingContext:
@@ -101,6 +105,7 @@ FAMIXStepwiseImporterTest >> testImportAttributeAccesses [
 
 	| importTask importer nodeClass attr |
 	importTask := MooseImportClassesTask new.
+	importTask factory: SmalltalkCompatibilityMetamodelFactory.
 	importTask importerClass: SmalltalkImporter.
 	importTask
 		importingContext:
@@ -125,6 +130,7 @@ FAMIXStepwiseImporterTest >> testImportClassAndAttributeAndMergeItsMetaclass [
 
 	| importTask importer nodeClass |
 	importTask := MooseImportClassesTask new.
+	importTask factory: SmalltalkCompatibilityMetamodelFactory.
 	importTask importerClass: SmalltalkImporter.
 	importTask
 		importingContext:
@@ -145,6 +151,7 @@ FAMIXStepwiseImporterTest >> testImportClassAndInheritance [
 
 	| importTask importer importedClasses |
 	importTask := MooseImportClassesTask new.
+	importTask factory: SmalltalkCompatibilityMetamodelFactory.
 	importTask importerClass: SmalltalkImporter.
 	importTask
 		importingContext:
@@ -168,6 +175,7 @@ FAMIXStepwiseImporterTest >> testImportClassAndMethodAndMergeItsMetaclass [
 
 	| importTask importer importedMethods |
 	importTask := MooseImportClassesTask new.
+	importTask factory: SmalltalkCompatibilityMetamodelFactory.
 	importTask importerClass: SmalltalkImporter.
 	importTask
 		importingContext:
@@ -191,6 +199,7 @@ FAMIXStepwiseImporterTest >> testImportLANPackage [
 	model := MooseModel new.	
 	MoosePharoImporterTask new
 		importerClass: SmalltalkImporter;
+		factory: SmalltalkCompatibilityMetamodelFactory;
 		doNotRunCandidateOperator; 
 		importingContext: (MooseImportingContext new importClass; importPackage; yourself);
 		model: model;
@@ -213,6 +222,7 @@ FAMIXStepwiseImporterTest >> testImportMethodBody [
 
 	| importTask importer context importedClasses famixClassNode nextNodeMethod nameMethod xFormalParameter |
 	importTask := MooseImportClassesTask new.
+	importTask factory: SmalltalkCompatibilityMetamodelFactory.
 	context := MooseImportingContext new
 		importArgument;
 		mergeClassAndMetaclass;
@@ -247,6 +257,7 @@ FAMIXStepwiseImporterTest >> testImportNamespace [
 	model := MooseModel new.
 	MoosePharoImporterTask new
 		importerClass: SmalltalkImporter;
+		factory: SmalltalkCompatibilityMetamodelFactory;
 		doNotRunCandidateOperator;
 		importingContext:
 				(MooseImportingContext new
@@ -268,6 +279,7 @@ FAMIXStepwiseImporterTest >> testImportOneClassAndItsMetaclass [
 
 	| importTask importer importedClasses |
 	importTask := MooseImportClassesTask new.
+	importTask factory: SmalltalkCompatibilityMetamodelFactory.
 	importTask importerClass: SmalltalkImporter.
 	importTask importingContext: MooseImportingContext new importClass.
 	importTask addClass: LANNode.
@@ -284,6 +296,7 @@ FAMIXStepwiseImporterTest >> testImportOneClassAndMergeItsMetaclass [
 
 	| importTask importer importedClasses |
 	importTask := MooseImportClassesTask new.
+	importTask factory: SmalltalkCompatibilityMetamodelFactory.
 	importTask importerClass: SmalltalkImporter.
 	importTask
 		importingContext:
@@ -305,6 +318,7 @@ FAMIXStepwiseImporterTest >> testImportOneClassAndMethodAndMergeItsMetaclass [
 
 	| importTask importer importedMethods |
 	importTask := MooseImportClassesTask new.
+	importTask factory: SmalltalkCompatibilityMetamodelFactory.
 	importTask importerClass: SmalltalkImporter.
 	importTask
 		importingContext:
@@ -326,6 +340,7 @@ FAMIXStepwiseImporterTest >> testImportOneClassAndOneAttributeAndMergeItsMetacla
 
 	| importTask importer nodeClass |
 	importTask := MooseImportClassesTask new.
+	importTask factory: SmalltalkCompatibilityMetamodelFactory.
 	importTask importerClass: SmalltalkImporter.
 	importTask
 		importingContext:

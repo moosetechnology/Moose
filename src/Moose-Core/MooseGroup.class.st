@@ -44,9 +44,8 @@ MooseGroup class >> with: anEntity withDescription: aDescription [
 { #category : #'instance creation' }
 MooseGroup class >> withAll: collection [
 	^ self = MooseGroup
-		ifTrue: [ | wantedClass wantedType |
-			wantedType := (collection commonSuperclass name , 'Group') asSymbol.
-			wantedClass := self allSubclasses detect: [ :each | each name = wantedType ] ifNone: [ MooseGroup ].
+		ifTrue: [ | wantedClass |
+			wantedClass := collection commonSuperclass relatedGroupType.
 			self withKnownType: wantedClass withAll: collection ]
 		ifFalse: [ self withKnownType: self withAll: collection ]
 ]
