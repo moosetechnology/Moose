@@ -1,7 +1,7 @@
 Class {
 	#name : #CESequenceableCollectionExtensionTest,
 	#superclass : #TestCase,
-	#category : #CollectionExtensions
+	#category : #'CollectionExtensions-Tests'
 }
 
 { #category : #tests }

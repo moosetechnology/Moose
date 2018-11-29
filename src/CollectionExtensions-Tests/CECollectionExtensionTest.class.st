@@ -1,7 +1,7 @@
 Class {
 	#name : #CECollectionExtensionTest,
 	#superclass : #TestCase,
-	#category : #CollectionExtensions
+	#category : #'CollectionExtensions-Tests'
 }
 
 { #category : #conversion }
