@@ -253,6 +253,14 @@ FamixStType >> lookUp: aMethodSignature [
 	^searchedM
 ]
 
+{ #category : #accessing }
+FamixStType >> methods [
+
+	"only for compatibility with some tools (RTUMLClassBuilder"
+
+	^ Set new
+]
+
 { #category : #adding }
 FamixStType >> mooseNameOn: aStream [ 
 	| parent |

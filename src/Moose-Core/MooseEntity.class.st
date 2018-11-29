@@ -72,7 +72,11 @@ MooseEntity class >> allDeclaredProperties [
 MooseEntity class >> allDeclaredPropertiesIn: aMetamodel [
 	"All properties described in the metamodel"
 	 
-	^(self mooseDescriptionIn: aMetamodel) allAttributes
+	| aDescription |
+	aMetamodel ifNil: [ ^ OrderedCollection new ].
+	aDescription := self mooseDescriptionIn: aMetamodel.
+	^ aDescription ifNil: [ OrderedCollection new ] 
+		ifNotNil: [ aDescription allAttributes ]
 ]
 
 { #category : #'meta accessing' }
@@ -239,7 +243,11 @@ MooseEntity >> allDeclaredProperties [
 MooseEntity >> allDeclaredPropertiesIn: aMetamodel [
 	"All properties described in the metamodel"
 	 
-	^(self mooseDescriptionIn: aMetamodel) allAttributes
+	| aDescription |
+	aMetamodel ifNil: [ ^ OrderedCollection new ].
+	aDescription := self mooseDescriptionIn: aMetamodel.
+	^ aDescription ifNil: [ OrderedCollection new ] 
+		ifNotNil: [ aDescription allAttributes ]
 ]
 
 { #category : #'meta information' }

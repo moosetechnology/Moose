@@ -168,7 +168,7 @@ MooseEntity >> navigationItemsFromAttributes [
 	
 	entity := self mooseInterestingEntity.
 	attrs := entity mooseDescription allAttributes reject: [ :attribute | attribute type isPrimitive ].
-	assocs := attrs collect: [ :anAttribute | anAttribute name -> ([entity perform: anAttribute name asSymbol] ifError: [ nil ]) ].
+	assocs := attrs collect: [ :anAttribute | anAttribute name -> (entity perform: anAttribute compiledMethod selector) ].
 	
 	"filter out nils and empty collections, sort"
 	result := (assocs
