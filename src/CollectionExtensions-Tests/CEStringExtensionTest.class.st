@@ -1,7 +1,7 @@
 Class {
 	#name : #CEStringExtensionTest,
 	#superclass : #TestCase,
-	#category : #CollectionExtensions
+	#category : #'CollectionExtensions-Tests'
 }
 
 { #category : #tests }

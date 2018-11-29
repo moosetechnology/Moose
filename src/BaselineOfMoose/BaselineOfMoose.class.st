@@ -153,7 +153,11 @@ BaselineOfMoose >> baselineCollectionExtensions: spec [
     
 	self defineGroup: #'CollectionExtensions-Group' in: spec with: #(
 		'CollectionExtensions'
-	) 
+	).
+	
+	self defineGroup: #'CollectionExtensions-Tests-Group' in: spec with: #(
+		'CollectionExtensions-Tests'	
+	).
 ]
 
 { #category : #baseline }
@@ -612,6 +616,7 @@ BaselineOfMoose >> groups: spec [
 		'Famix-Compatibility-Tests-Extensions'
 		'DeepTraverser-Tests-Group'
 		'HashTable-Tests-Group'
+		'CollectionExtensions-Tests-Group'
 	).	
 
 	spec group: 'BasicMetamodellingWithRoassal' with: #(
