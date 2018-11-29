@@ -1,6 +1,15 @@
 Extension { #name : #MooseModel }
 
 { #category : #'*Famix-Traits' }
+MooseModel >> allModelEntities [
+	<navigation: 'All model entities'>
+
+	^ self wantsAllEntitiesNavigation 
+		ifTrue: [ self entityStorage elements ]
+		ifFalse: [ nil ] "will be hidden by default"
+]
+
+{ #category : #'*Famix-Traits' }
 MooseModel >> allSourceLanguages [
 
 	^ self allWithType: FamixTSourceLanguage.

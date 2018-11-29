@@ -96,6 +96,12 @@ FamixCompatibilityGenerator class >> translationDictionary [
 	^ Dictionary newFrom: associations.	
 ]
 
+{ #category : #accessing }
+FamixCompatibilityGenerator class >> wantsAllEntitiesNavigation [
+
+	^ false
+]
+
 { #category : #initialization }
 FamixCompatibilityGenerator >> defineClasses [
 

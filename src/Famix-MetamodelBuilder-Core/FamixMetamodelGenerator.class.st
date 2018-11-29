@@ -145,6 +145,8 @@ FamixMetamodelGenerator class >> resetMetamodel [
 	
 	self modifyMetamodel: metamodel.
 	
+	metamodel additionalProperties at: #wantsAllEntitiesNavigation put: self wantsAllEntitiesNavigation.
+	
 	^ metamodel
 ]
 
@@ -152,6 +154,14 @@ FamixMetamodelGenerator class >> resetMetamodel [
 FamixMetamodelGenerator class >> submetamodels [ 
 
 	^ OrderedCollection new
+]
+
+{ #category : #accessing }
+FamixMetamodelGenerator class >> wantsAllEntitiesNavigation [
+
+	"I want to display all model entities in the navigation by default"
+
+	^ true
 ]
 
 { #category : #definition }

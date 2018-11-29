@@ -617,3 +617,10 @@ MooseModel >> union: aGroup [
 	result description: self description , '  and ' , aGroup description. 
 	^result
 ]
+
+{ #category : #testing }
+MooseModel >> wantsAllEntitiesNavigation [
+
+	^ self propertyNamed: #wantsAllEntitiesNavigation ifAbsent: [ 
+		self metamodel metamodel additionalProperties at: #wantsAllEntitiesNavigation ifAbsent: [ true ] ]
+]
