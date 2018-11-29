@@ -160,6 +160,72 @@ MooseEntity >> mooseSpecificSpotterProcessorsFor: aSpotterStep [
 ]
 
 { #category : #'*Moose-Finder' }
+MooseEntity >> navigationItemsFromAttributes [
+	| entity assocs attrs result |
+	
+	"returns associations in form name->object for navigation entities obtained from
+	the the meta-model attributes of the item"
+	
+	entity := self mooseInterestingEntity.
+	attrs := entity mooseDescription allAttributes reject: [ :attribute | attribute type isPrimitive ].
+	assocs := attrs collect: [ :anAttribute | anAttribute name -> ([entity perform: anAttribute name asSymbol] ifError: [ nil ]) ].
+	
+	"filter out nils and empty collections, sort"
+	result := (assocs
+		reject: [ :association | 
+			association value isNil
+				or: [ association value isCollection and: [ association value isEmpty ] ] ])
+		sorted: [ :a :b | 
+			a key asLowercase asString
+				< b key asLowercase asString ].
+	^ result
+
+]
+
+{ #category : #'*Moose-Finder' }
+MooseEntity >> navigationItemsFromPragmas [
+	| entity assocs pragmaValueAssociations |
+	
+	"returns associations in form name->object for navigation entities obtained from
+	the pragma #navigation:"
+	
+	entity := self mooseInterestingEntity.
+	pragmaValueAssociations := entity navigationPragmas
+		collect: [ :pragma | 
+			(pragma argumentAt: 1)
+				->
+					([self mooseInterestingEntity perform: pragma methodSelector] ifError: [nil])
+						mooseInterestingEntity ].
+					
+	"filter out nils and empty collections, sort"
+	assocs := (pragmaValueAssociations
+		reject: [ :association | 
+			association value isNil
+				or: [ association value isCollection and: [ association value isEmpty ] ] ])
+		sorted: [ :a :b | 
+			a key asLowercase asString
+				< b key asLowercase asString ].
+	^ assocs
+
+]
+
+{ #category : #'*Moose-Finder' }
+MooseEntity >> navigationPragmas [
+	| navProps |
+	self mooseDescription
+		ifNil: [ Error
+				signal:
+					'Moose description are not initialized. Have you refreshed the meta-model? (e.g., MooseModel resetMeta)' ].
+	navProps := (Pragma
+		allNamed: #navigation:
+		from: self class
+		to: MooseEntity)
+		sorted: [ :a :b | (a argumentAt: 1) < (b argumentAt: 1) ].
+		
+	^ navProps asOrderedCollection.
+]
+
+{ #category : #'*Moose-Finder' }
 MooseEntity >> openInEasel [
 
 	^ self openInGlamorousRoassalEasel

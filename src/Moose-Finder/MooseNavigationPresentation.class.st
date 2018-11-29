@@ -21,22 +21,15 @@ MooseNavigationPresentation >> compose [
 
 { #category : #private }
 MooseNavigationPresentation >> displayFor: anObject [
-	| entity pragmaValueAssociations |
-	entity := anObject mooseInterestingEntity.
-	pragmaValueAssociations := entity complexPropertyPragmas
-		collect: [ :pragma | 
-			pragma
-				->
-					([anObject mooseInterestingEntity perform: pragma methodSelector] ifError: [nil])
-						mooseInterestingEntity ].
-	^ (pragmaValueAssociations
-		reject: [ :association | 
-			association value isNil
-				or:
-					[ association value isCollection and: [ association value isEmpty ] ] ])
-		sorted: [ :a :b | 
-			(a key argumentAt: 1) asLowercase asString
-				< (b key argumentAt: 1) asLowercase asString ]
+	| anEntity items |
+	
+	anEntity := anObject mooseInterestingEntity.
+	
+	items := anEntity navigationItemsFromPragmas.
+	items addAll: anEntity navigationItemsFromAttributes.
+	
+	^ items
+	
 ]
 
 { #category : #private }
@@ -55,6 +48,6 @@ MooseNavigationPresentation >> dynamicActionsIn: list [
 
 { #category : #private }
 MooseNavigationPresentation >> formatFor: each [
-	^ (' ' join: ((each key argumentAt: 1) piecesCutWhereCamelCase collect: #capitalized)) , ' - '
+	^ (' ' join: ((each key) piecesCutWhereCamelCase collect: #capitalized)) , ' - '
 		, (each value gtDisplayString contractTo: 50)
 ]
