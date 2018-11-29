@@ -1,7 +1,7 @@
 Class {
 	#name : #MoosePropertyGroupTest,
 	#superclass : #TestCase,
-	#category : #'Moose-Tests-Core'
+	#category : #'Moose-Tests-SmalltalkImporter-LAN'
 }
 
 { #category : #utility }

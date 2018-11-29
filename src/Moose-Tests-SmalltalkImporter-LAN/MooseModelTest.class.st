@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'model'
 	],
-	#category : #'Moose-Tests-Core'
+	#category : #'Moose-Tests-SmalltalkImporter-LAN'
 }
 
 { #category : #util }

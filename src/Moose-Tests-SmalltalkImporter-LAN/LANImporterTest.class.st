@@ -167,6 +167,18 @@ LANImporterTest >> testCorrectnessOfImport [
 	self assert: (outputServerSubclasses includes: printServerName)
 ]
 
+{ #category : #tests }
+LANImporterTest >> testEntityUniquelyNamed [
+	
+	| classes |
+	classes := self model allClasses.
+	self
+		assert: (classes entityNamed: LANNode mooseName) isNil not.
+	self
+		assert:
+			(classes entityNamed: LANNode class mooseName) isNil not
+]
+
 { #category : #errors }
 LANImporterTest >> testHierarchyRoot [ 
 	self assert: (self model entityNamed: LANNode mooseName) isHierarchyRoot. 
@@ -297,6 +309,16 @@ LANImporterTest >> testMinimalStateofEntity [
 	node := self model entityNamed: LANNode mooseName.
 	self assert: (node subInheritances at: 1) mooseModel equals: self model.
 	self assert: (node superInheritances at: 1) mooseModel equals: self model
+]
+
+{ #category : #tests }
+LANImporterTest >> testMooseName [
+	"self debug: #testMooseName"
+
+	self assert: LANNode mooseName equals: #Smalltalk::LANNode.
+	self assert: 'Smalltalk::LANNode' mooseName equals: #Smalltalk::LANNode.
+	self assert: LANNode class mooseName equals: #Smalltalk::LANNode_class	"we could also  test here that all the famix entities  understand mooseName but for that we should create model so
+	this is done in LANTest "
 ]
 
 { #category : #tests }
