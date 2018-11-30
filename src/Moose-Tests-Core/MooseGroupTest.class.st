@@ -4,21 +4,13 @@ Class {
 	#category : #'Moose-Tests-Core'
 }
 
-{ #category : #utility }
-MooseGroupTest >> model [
-	" to debug and avoid caching behavior: LANPackageTestResource reset."
-	"^ LANPackageTestResource current model ."
-	
-	^ nil
-]
-
 { #category : #tests }
 MooseGroupTest >> testAddLast [
-	| group el1 el2 el3 |
+	| group |
 	group := MooseGroup new.
-	group addLast: (el1 := MooseEntity new).
-	group addLast: (el2 := MooseEntity new).
-	group addLast: (el3 := MooseEntity new).
+	group addLast: MooseEntity new.
+	group addLast: MooseEntity new.
+	group addLast: MooseEntity new.
 	self assert: (group allSatisfy: [ :c | c class == MooseEntity ]).
 	self deny: (group allSatisfy: [ :c | c = 10 ])
 ]
@@ -36,11 +28,11 @@ MooseGroupTest >> testAllModelMethod [
 { #category : #tests }
 MooseGroupTest >> testAllSatisfy [
 
-	| group el1 el2 el3 |
+	| group |
 	group := MooseGroup new.
-	group add: (el1 := MooseEntity new).
-	group add: (el2 := MooseEntity new).
-	group add: (el3 := MooseEntity new).
+	group add: MooseEntity new.
+	group add: MooseEntity new.
+	group add: MooseEntity new.
 
 	self assert: (group allSatisfy: [ :c | c class == MooseEntity ] ).
 	self deny: (group allSatisfy: [ :c | c = 10 ] ).
@@ -69,11 +61,11 @@ MooseGroupTest >> testAllWithTypeAtSetup [
 { #category : #tests }
 MooseGroupTest >> testAnySatisfy [
 
-	| group el1 el2 el3 |
+	| group |
 	group := MooseGroup new.
-	group add: (el1 := MooseEntity new).
-	group add: (el2 := MooseEntity new).
-	group add: (el3 := MooseEntity new).
+	group add: MooseEntity new.
+	group add: MooseEntity new.
+	group add: MooseEntity new.
 
 	self assert: (group anySatisfy: [ :c | c class == MooseEntity ] ).
 	self deny: (group anySatisfy: [ :c | c = 10 ] ).
@@ -124,29 +116,25 @@ MooseGroupTest >> testAverage [
 
 { #category : #tests }
 MooseGroupTest >> testCollect [
-	| t group el1 el2 el3 |
-	t := OrderedCollection new.
+	| group |
 	group := MooseGroup new.
-	group add: (el1 := MooseEntity new).
-	group add: (el2 := MooseEntity new).
-	group add: (el3 := MooseEntity new).
+	group add: MooseEntity new.
+	group add: MooseEntity new.
+	group add: MooseEntity new.
 	self assert: (group collect: #name) entities asArray equals: #(#noname #noname #noname)
 ]
 
 { #category : #tests }
 MooseGroupTest >> testContains [
-
-	| t group el1 el2 el3 |
-	t := OrderedCollection new.
+	| group el1 el2 |
 	group := MooseGroup new.
 	group add: (el1 := MooseEntity new).
 	group add: (el2 := MooseEntity new).
-	group add: (el3 := MooseEntity new).
+	group add: MooseEntity new.
 
-	self assert: (group contains: [:el| el1== el]).
-	self assert: (group contains: [:el| el2== el]).
-	self deny: (group contains: [:el| 100 == el]).
-
+	self assert: (group anySatisfy: [ :el | el1 == el ]).
+	self assert: (group anySatisfy: [ :el | el2 == el ]).
+	self deny: (group anySatisfy: [ :el | 100 == el ])
 ]
 
 { #category : #tests }
@@ -175,16 +163,14 @@ MooseGroupTest >> testDefaultStorage [
 
 { #category : #tests }
 MooseGroupTest >> testDetect [
-
-	| t group el1 el2 el3 v |
-	t := OrderedCollection new.
+	| group el1 v |
 	group := MooseGroup new.
 	group add: (el1 := MooseEntity new).
-	group add: (el2 := MooseEntity new).
-	group add: (el3 := MooseEntity new).
-
+	group add: MooseEntity new.
+	group add: MooseEntity new.
+	
 	v := group detect: [ :el | el == el1 ].
-	self assert: (v == el1)
+	self assert: v == el1
 ]
 
 { #category : #tests }
@@ -252,12 +238,12 @@ MooseGroupTest >> testDoWithIndex [
 MooseGroupTest >> testDoWithIndexAndWithIndexDo [
 	"Isn't that odd? Legacy method?"
 
-	| t group el1 el2 el3 |
+	| t group |
 	t := OrderedCollection new.
 	group := MooseGroup new.
-	group add: (el1 := MooseEntity new).
-	group add: (el2 := MooseEntity new).
-	group add: (el3 := MooseEntity new).
+	group add: MooseEntity new.
+	group add: MooseEntity new.
+	group add: MooseEntity new.
 	self
 		assert:
 			(group
@@ -334,8 +320,7 @@ MooseGroupTest >> testExplicitEmptyCreation [
 
 { #category : #tests }
 MooseGroupTest >> testFirst [
-	| t group el1 el2 el3 |
-	t := OrderedCollection new.
+	| group el1 el2 el3 |
 	group := MooseGroup new.
 	group add: (el1 := MooseEntity new).
 	group add: el1.
@@ -411,8 +396,7 @@ MooseGroupTest >> testIsCollection [
 
 { #category : #tests }
 MooseGroupTest >> testLast [
-	| t group el1 el2 el3 |
-	t := OrderedCollection new.
+	| group el1 el2 el3 |
 	group := MooseGroup new.
 	group add: (el1 := MooseEntity new).
 	group add: el1.
@@ -460,13 +444,12 @@ MooseGroupTest >> testObjectAsMooseGroup [
 
 { #category : #tests }
 MooseGroupTest >> testOccurenceOf [
-	| t group el1 el2 el3 |
-	t := OrderedCollection new.
+	| group el1 el2 |
 	group := MooseGroup new.
 	group add: (el1 := MooseEntity new).
 	group add: el1.
 	group add: (el2 := MooseEntity new).
-	group add: (el3 := MooseEntity new).
+	group add: MooseEntity new.
 	self assert: (group occurrencesOf: el1) equals: 2.
 	self assert: (group occurrencesOf: el2) equals: 1.
 	self assert: (group occurrencesOf: MooseEntity new) isZero
@@ -512,12 +495,11 @@ MooseGroupTest >> testReject [
 
 { #category : #tests }
 MooseGroupTest >> testSelect [
-	| t group el1 el2 el3 v |
-	t := OrderedCollection new.
+	| group el1 v |
 	group := MooseGroup new.
 	group add: (el1 := MooseEntity new).
-	group add: (el2 := MooseEntity new).
-	group add: (el3 := MooseEntity new).
+	group add: MooseEntity new.
+	group add: MooseEntity new.
 	v := group select: [ :el | el == el1 ].
 	self assert: v size equals: 1.
 	self assert: v first == el1.
@@ -534,8 +516,7 @@ MooseGroupTest >> testSort [
 
 { #category : #tests }
 MooseGroupTest >> testUnion [
-	| t group1 group2 group3 el1 el2 el3 el4 |
-	t := OrderedCollection new.
+	| group1 group2 group3 el1 el2 el3 el4 |
 	group1 := MooseGroup new.
 	group1 add: (el1 := MooseEntity new).
 	group1 add: (el2 := MooseEntity new).
