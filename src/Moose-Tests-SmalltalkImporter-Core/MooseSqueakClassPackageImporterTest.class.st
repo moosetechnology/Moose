@@ -10,8 +10,7 @@ MooseSqueakClassPackageImporterTest >> numberOfClassesIn: categories [
 	"SIMD 23/11/2009: We reject trait as entities to importer for now."
 	^ (SystemOrganization categories select: [ :each | categories anySatisfy: [:c | c match: each]]) 
 		inject: 0
-		into: [ :sum :each | sum + ((SystemOrganization classesInCategory: each)
-																		reject: [:cls | cls isTrait]) size ]
+		into: [ :sum :each | sum + (SystemOrganization classesInCategory: each) size ]
 ]
 
 { #category : #'testing collecting classes' }
@@ -84,7 +83,7 @@ MooseSqueakClassPackageImporterTest >> testImportClassUsingAddPackage [
 	importer run.
 	self
 		assert: model allClasses size
-		equals: 2 * (RPackage organizer packageNamed: #'Moose-TestResources-LAN') regularClasses size
+		equals: 2 * (RPackage organizer packageNamed: #'Moose-TestResources-LAN') definedClasses size
 ]
 
 { #category : #'test importing' }
@@ -102,5 +101,5 @@ MooseSqueakClassPackageImporterTest >> testImportClassUsingAddPackageNamed [
 	importer run.
 	self
 		assert: model allClasses size
-		equals: 2 * (RPackage organizer packageNamed: #'Moose-TestResources-LAN') regularClasses size
+		equals: 2 * (RPackage organizer packageNamed: #'Moose-TestResources-LAN') definedClasses size
 ]

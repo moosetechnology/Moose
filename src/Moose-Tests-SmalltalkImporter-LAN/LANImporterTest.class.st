@@ -123,7 +123,7 @@ LANImporterTest >> testCommonSuperClasses [
 	self
 		assert:
 			(self model allPackages entityNamed: #'Moose-TestResources-LAN') localClassesGroup commonExternalSuperclasses size
-		equals: 11
+		equals: 12
 ]
 
 { #category : #tests }
@@ -291,7 +291,7 @@ LANImporterTest >> testIsClassAbstract [
 LANImporterTest >> testLonely [
 	| lonely |
 	lonely := self model allModelClasses select: [ :each | each isLonelyWithin: self model allModelClasses ].
-	self assert: lonely size equals: 6
+	self assert: lonely size equals: 8
 ]
 
 { #category : #errors }
@@ -401,7 +401,7 @@ LANImporterTest >> testPackageReification [
 	self model allClasses do: [ :each | self assert: (each parentPackage usesTrait: FamixTPackage) ].
 	self model allPackages
 		do: [ :each | each localClasses do: [ :eachClass | self assert: eachClass parentPackage equals: each ] ].
-	self assert: (self model allPackages entityNamed: #'Moose-TestResources-LAN') localClasses size equals: 20
+	self assert: (self model allPackages entityNamed: #'Moose-TestResources-LAN') localClasses size equals: 22
 ]
 
 { #category : #tests }
@@ -426,7 +426,7 @@ LANImporterTest >> testStubClassesCreation [
 	self deny: (self model entityNamed: LANNode mooseName) isStub.
 	self assert: (self model entityNamed: #Smalltalk::Object) isStub.
 	self deny: (self model entityNamed: #Smalltalk::LANFileServer_class) isStub.
-	self assert: (self model allClasses select: [ :each | each isStub not ]) size equals: 20
+	self assert: (self model allClasses select: [ :each | each isStub not ]) size equals: 22
 ]
 
 { #category : #errors }

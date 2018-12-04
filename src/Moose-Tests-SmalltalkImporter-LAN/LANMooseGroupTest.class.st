@@ -219,5 +219,5 @@ LANMooseGroupTest >> testSelectTopTwentyForMetric [
 LANMooseGroupTest >> testSum [
 	| classes |
 	classes := self model allClasses.
-	self assert: (classes sumNumbers: #numberOfMethods) equals: 84 "was 54 before traits classes inclusion"
+	self assert: (classes sumNumbers: #numberOfMethods) equals: 112 "was 54 before traits classes inclusion"
 ]
