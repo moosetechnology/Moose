@@ -3,7 +3,7 @@ An OverviewPyramidTest is a test class for testing the behavior of OverviewPyram
 "
 Class {
 	#name : #OverviewPyramidTest,
-	#superclass : #TestCase,
+	#superclass : #MooseTestWithSmalltalkDependency,
 	#category : #'Moose-Tests-RoassalPaintings-OverviewPyramid'
 }
 
@@ -22,8 +22,7 @@ OverviewPyramidTest >> prepareAnyMooseModel [
 	models notEmpty ifTrue: [ ^ models anyOne ].
 	model := MooseModel new.
 	model name: 'AST'.
-	importer := MoosePharoImporterTask new.
-	importer factory: SmalltalkCompatibilityMetamodelFactory.
+	importer := self newPharoImporterTask.
 	importer importingContext mergeClassAndMetaclass.
 	importer runCandidateOperator.
 	importer model: model; addFromPackagesNamed: (MooseScripts packageNamesFor: 'AST*'); runWithProgress.

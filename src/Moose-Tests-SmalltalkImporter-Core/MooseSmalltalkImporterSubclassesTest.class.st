@@ -1,6 +1,6 @@
 Class {
 	#name : #MooseSmalltalkImporterSubclassesTest,
-	#superclass : #TestCase,
+	#superclass : #MooseTestWithSmalltalkDependency,
 	#instVars : [
 		'model',
 		'pharoImporterTask'
@@ -34,9 +34,8 @@ MooseSmalltalkImporterSubclassesTest >> setUp [
 	model := MooseModel new.	
 	model name: 'Test'.
 	model sourceLanguage: FAMIXSmalltalkSourceLanguage new.
-	pharoImporterTask := MoosePharoImporterTask new
+	pharoImporterTask := self newPharoImporterTask
 		importerClass: SmalltalkImporter;
-		factory: SmalltalkCompatibilityMetamodelFactory;
 		doNotRunCandidateOperator; 
 		importingContext: (MooseImportingContext new 
 										importPackage;

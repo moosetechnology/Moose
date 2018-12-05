@@ -1,6 +1,6 @@
 Class {
 	#name : #MooseMonticelloImporterTest,
-	#superclass : #TestCase,
+	#superclass : #MooseTestWithSmalltalkDependency,
 	#instVars : [
 		'importer'
 	],
@@ -21,7 +21,7 @@ MooseMonticelloImporterTest >> packageToTest [
 MooseMonticelloImporterTest >> setUp [
 	super setUp.
 	importer := MooseMonticelloCacheImporter new.
-	importer factory: SmalltalkCompatibilityMetamodelFactory new.
+	importer factory: self metamodelFactory new.
 	self settingUpTestPackageIfNecessary
 ]
 
