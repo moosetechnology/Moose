@@ -7,7 +7,7 @@ Class {
 { #category : #'as yet unclassified' }
 SmalltalkCompatibilityMetamodelFactory >> anchor [
 
-	^ self entityNamed: #PharoAnchor
+	^ FAMIXPharoAnchor
 ]
 
 { #category : #'as yet unclassified' }

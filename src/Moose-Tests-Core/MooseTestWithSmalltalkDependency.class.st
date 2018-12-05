@@ -7,8 +7,8 @@ Class {
 { #category : #'as yet unclassified' }
 MooseTestWithSmalltalkDependency >> metamodelFactory [
 
-"	^ SmalltalkCompatibilityMetamodelFactory"
-	^ SmalltalkMetamodelFactory 
+	^ SmalltalkCompatibilityMetamodelFactory
+
 ]
 
 { #category : #'as yet unclassified' }
