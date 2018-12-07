@@ -274,11 +274,11 @@ FmxMBPlantTextVisitor >> writeRelations [
 
 	relations do: [ :relation | 
 		stream 
-			nextPutAll: (self ensureBehaviorNameFor: relation from trait);
+			nextPutAll: (self ensureBehaviorNameFor: relation from relatedEntity);
 			nextPutAll:  ' "';
-			nextPutAll: relation from name; 
+			nextPutAll: relation to name; 
 			space; 
-			nextPutAll: relation shortCardinalityString; 
+			nextPutAll: relation oppositeRelation shortCardinalityString; 
 			space; 
 			nextPutAll: '"'.
 		
@@ -298,12 +298,12 @@ FmxMBPlantTextVisitor >> writeRelations [
 		
 		stream 
 			nextPutAll: '"';
-			nextPutAll: relation to name;
+			nextPutAll: relation from name;
 			space; 
-			nextPutAll: relation oppositeRelation shortCardinalityString;
+			nextPutAll: relation shortCardinalityString;
 			space;
 			nextPutAll: '" ';
-			nextPutAll: (self ensureBehaviorNameFor: relation to trait); 
+			nextPutAll: (self ensureBehaviorNameFor: relation to relatedEntity); 
 			cr]
 	
 ]
