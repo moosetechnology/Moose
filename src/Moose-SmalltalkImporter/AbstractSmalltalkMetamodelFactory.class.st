@@ -1,7 +1,7 @@
 Class {
 	#name : #AbstractSmalltalkMetamodelFactory,
 	#superclass : #FamixBasicInfrastructureMetamodelFactory,
-	#category : #'Famix-PharoSmalltalk-Importer'
+	#category : #'Moose-SmalltalkImporter'
 }
 
 { #category : #accessing }
