@@ -1,6 +1,6 @@
 Class {
 	#name : #FAMIXStepwiseImporterTest,
-	#superclass : #TestCase,
+	#superclass : #MooseTestWithSmalltalkDependency,
 	#classInstVars : [
 		'aVariable'
 	],
@@ -18,8 +18,7 @@ FAMIXStepwiseImporterTest >> testCheckFormalParameterIsCreated [
 
 	| importTask importer mseFormalParameter model |
 	model := MooseModel new.
-	importTask := MoosePharoImporterTask new.
-	importTask factory: SmalltalkCompatibilityMetamodelFactory.
+	importTask := self newPharoImporterTask.
 	importTask importerClass: SmalltalkImporter.
 	importTask
 		importingContext:
@@ -42,8 +41,7 @@ FAMIXStepwiseImporterTest >> testCheckSelfIsCreated [
 
 	| importTask importer model mseSelf |
 	model := MooseModel new.
-	importTask := MoosePharoImporterTask new.
-	importTask factory: SmalltalkCompatibilityMetamodelFactory.
+	importTask := self newPharoImporterTask.
 	importTask importerClass: SmalltalkImporter.
 	importTask
 		importingContext:
@@ -67,8 +65,7 @@ FAMIXStepwiseImporterTest >> testClassVariable [
 	self timeLimit: 60 seconds.
 	model := MooseModel new.
 	model name: 'Morphic'.
-	importer := MoosePharoImporterTask new.
-	importer factory: SmalltalkCompatibilityMetamodelFactory.
+	importer := self newPharoImporterTask.
 	importer importingContext mergeClassAndMetaclass.
 	importer runCandidateOperator.
 	importer model: model; addFromPackagesNamed: (MooseScripts packageNamesFor: 'Morphic*'); runWithProgress.
@@ -81,8 +78,7 @@ FAMIXStepwiseImporterTest >> testImportAttribute [
 	"self debug: #testImportAttribute"
 
 	| importTask importer nodeClass |
-	importTask := MooseImportClassesTask new.
-	importTask factory: SmalltalkCompatibilityMetamodelFactory.
+	importTask := self newImportClassesTask.
 	importTask importerClass: SmalltalkImporter.
 	importTask
 		importingContext:
@@ -104,8 +100,7 @@ FAMIXStepwiseImporterTest >> testImportAttributeAccesses [
 	"self debug: #testImportAttributeAccesses"
 
 	| importTask importer nodeClass attr |
-	importTask := MooseImportClassesTask new.
-	importTask factory: SmalltalkCompatibilityMetamodelFactory.
+	importTask := self newImportClassesTask.
 	importTask importerClass: SmalltalkImporter.
 	importTask
 		importingContext:
@@ -129,8 +124,7 @@ FAMIXStepwiseImporterTest >> testImportClassAndAttributeAndMergeItsMetaclass [
 	"self debug: #testImportClassAndAttributeAndMergeItsMetaclass"
 
 	| importTask importer nodeClass |
-	importTask := MooseImportClassesTask new.
-	importTask factory: SmalltalkCompatibilityMetamodelFactory.
+	importTask := self newImportClassesTask.
 	importTask importerClass: SmalltalkImporter.
 	importTask
 		importingContext:
@@ -150,8 +144,7 @@ FAMIXStepwiseImporterTest >> testImportClassAndInheritance [
 	"self debug: #testImportClassAndInheritance"
 
 	| importTask importer importedClasses |
-	importTask := MooseImportClassesTask new.
-	importTask factory: SmalltalkCompatibilityMetamodelFactory.
+	importTask := self newImportClassesTask.
 	importTask importerClass: SmalltalkImporter.
 	importTask
 		importingContext:
@@ -174,8 +167,7 @@ FAMIXStepwiseImporterTest >> testImportClassAndMethodAndMergeItsMetaclass [
 	"self debug: #testImportClassAndMethodAndMergeItsMetaclass"
 
 	| importTask importer importedMethods |
-	importTask := MooseImportClassesTask new.
-	importTask factory: SmalltalkCompatibilityMetamodelFactory.
+	importTask := self newImportClassesTask.
 	importTask importerClass: SmalltalkImporter.
 	importTask
 		importingContext:
@@ -197,9 +189,8 @@ FAMIXStepwiseImporterTest >> testImportLANPackage [
 	
 	| model class package |
 	model := MooseModel new.	
-	MoosePharoImporterTask new
+	self newPharoImporterTask
 		importerClass: SmalltalkImporter;
-		factory: SmalltalkCompatibilityMetamodelFactory;
 		doNotRunCandidateOperator; 
 		importingContext: (MooseImportingContext new importClass; importPackage; yourself);
 		model: model;
@@ -221,8 +212,7 @@ FAMIXStepwiseImporterTest >> testImportMethodBody [
 	"self debug: #testImportMethodBody"
 
 	| importTask importer context importedClasses famixClassNode nextNodeMethod nameMethod xFormalParameter |
-	importTask := MooseImportClassesTask new.
-	importTask factory: SmalltalkCompatibilityMetamodelFactory.
+	importTask := self newImportClassesTask.
 	context := MooseImportingContext new
 		importArgument;
 		mergeClassAndMetaclass;
@@ -255,9 +245,8 @@ FAMIXStepwiseImporterTest >> testImportNamespace [
 
 	| model nap |
 	model := MooseModel new.
-	MoosePharoImporterTask new
+	self newPharoImporterTask
 		importerClass: SmalltalkImporter;
-		factory: SmalltalkCompatibilityMetamodelFactory;
 		doNotRunCandidateOperator;
 		importingContext:
 				(MooseImportingContext new
@@ -278,8 +267,7 @@ FAMIXStepwiseImporterTest >> testImportOneClassAndItsMetaclass [
 	"self debug: #testImportOneClassAndItsMetaclass"
 
 	| importTask importer importedClasses |
-	importTask := MooseImportClassesTask new.
-	importTask factory: SmalltalkCompatibilityMetamodelFactory.
+	importTask := self newImportClassesTask.
 	importTask importerClass: SmalltalkImporter.
 	importTask importingContext: MooseImportingContext new importClass.
 	importTask addClass: LANNode.
@@ -295,8 +283,7 @@ FAMIXStepwiseImporterTest >> testImportOneClassAndMergeItsMetaclass [
 	"self debug: #testImportOneClassAndMergeItsMetaclass"
 
 	| importTask importer importedClasses |
-	importTask := MooseImportClassesTask new.
-	importTask factory: SmalltalkCompatibilityMetamodelFactory.
+	importTask := self newImportClassesTask.
 	importTask importerClass: SmalltalkImporter.
 	importTask
 		importingContext:
@@ -317,8 +304,7 @@ FAMIXStepwiseImporterTest >> testImportOneClassAndMethodAndMergeItsMetaclass [
 	"self debug: #testImportOneClassAndMethodAndMergeItsMetaclass"
 
 	| importTask importer importedMethods |
-	importTask := MooseImportClassesTask new.
-	importTask factory: SmalltalkCompatibilityMetamodelFactory.
+	importTask := self newImportClassesTask.
 	importTask importerClass: SmalltalkImporter.
 	importTask
 		importingContext:
@@ -339,8 +325,7 @@ FAMIXStepwiseImporterTest >> testImportOneClassAndOneAttributeAndMergeItsMetacla
 	"self debug: #testImportOneClassAndOneAttributeAndMergeItsMetaclass"
 
 	| importTask importer nodeClass |
-	importTask := MooseImportClassesTask new.
-	importTask factory: SmalltalkCompatibilityMetamodelFactory.
+	importTask := self newImportClassesTask.
 	importTask importerClass: SmalltalkImporter.
 	importTask
 		importingContext:

@@ -1,15 +1,14 @@
 Class {
 	#name : #FamixReferenceModelNamespaceTestResource,
-	#superclass : #MooseModelTestResource,
+	#superclass : #MooseModelTestResourceWithSmalltalkDependency,
 	#category : #'Moose-Tests-SmalltalkImporter-Core'
 }
 
 { #category : #setup }
 FamixReferenceModelNamespaceTestResource >> importModel [
 	
-	MoosePharoImporterTask new
+	self newPharoImporterTask
 		importerClass: SmalltalkImporter;
-		factory: SmalltalkCompatibilityMetamodelFactory;
 		model: model;
 		doNotRunCandidateOperator;
 		addFromPackageNamed: #'Moose-TestResources-Reference-Core';

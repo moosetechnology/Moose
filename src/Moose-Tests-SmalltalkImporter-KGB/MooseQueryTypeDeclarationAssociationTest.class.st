@@ -1,6 +1,6 @@
 Class {
 	#name : #MooseQueryTypeDeclarationAssociationTest,
-	#superclass : #TestCase,
+	#superclass : #MooseTestWithSmalltalkDependency,
 	#instVars : [
 		'model'
 	],
@@ -12,7 +12,7 @@ MooseQueryTypeDeclarationAssociationTest class >> importModel [
 	 
 	| factory p1 p2 c1 c2 c3 m1 m2 m3 m4 |
 	
-	factory := SmalltalkCompatibilityMetamodelFactory new.
+	factory := self metamodelFactory.
 	
 	p1 := factory package new name: 'p1' ; yourself.
 	p2 := factory package new name: 'p2' ; yourself.
@@ -84,7 +84,7 @@ MooseQueryTypeDeclarationAssociationTest >> setUp [
 		
 	super setUp.
 	
-	factory := SmalltalkCompatibilityMetamodelFactory new.
+	factory := self metamodelFactory new.
 	
 	p1 := factory package new name: 'p1' ; stub: true ; yourself.
 	p2 := factory package new name: 'p2' ; stub: true ; yourself.

@@ -1,6 +1,6 @@
 Class {
 	#name : #MooseSmalltalkImporterFamixClassTest,
-	#superclass : #TestCase,
+	#superclass : #MooseTestWithSmalltalkDependency,
 	#category : #'Moose-Tests-SmalltalkImporter-Core'
 }
 
@@ -8,9 +8,8 @@ Class {
 MooseSmalltalkImporterFamixClassTest >> testIsSUnitTestCase [
 	| mooseModel |
 	mooseModel := MooseModel new.
-	MoosePharoImporterTask new
+	self newPharoImporterTask 
 		importerClass: SmalltalkImporter;
-		factory: SmalltalkCompatibilityMetamodelFactory;
 		model: mooseModel;
 		addClasses: (OrderedCollection with: self class);
 		run;

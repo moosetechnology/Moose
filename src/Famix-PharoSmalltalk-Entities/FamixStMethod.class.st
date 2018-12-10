@@ -172,9 +172,7 @@ FamixStMethod >> isCalledInternally [
 
 { #category : #'Famix-Extensions-metrics-support' }
 FamixStMethod >> isInitializer [
-	^ self mooseModel isSmalltalk
-		ifTrue: [ (('*initialize*' match: self category) or: [ '*initialize*' match: self name ]) or: [ self isConstructor ] ]
-		ifFalse: [ self isConstructor ]
+	^ (('*initialize*' match: self category) or: [ '*initialize*' match: self name ]) or: [ self isConstructor ] 
 ]
 
 { #category : #'Famix-Extensions-metrics-support' }
@@ -397,7 +395,7 @@ FamixStMethod >> smalltalkClass [
 { #category : #'Famix-Extensions-metrics-support' }
 FamixStMethod >> sourceText [
 	self flag: 'This code should be delegated to the FAMIXPharoAnchor'.
-	^ (self sourceLanguage isSmalltalk and: [ self class shouldSearchForSmalltalkCodeInImage ])
+	^ self class shouldSearchForSmalltalkCodeInImage
 		ifTrue: [ [ | class |
 			"take the normal class"
 			class := Smalltalk at: self parentType instanceSide name asSymbol.

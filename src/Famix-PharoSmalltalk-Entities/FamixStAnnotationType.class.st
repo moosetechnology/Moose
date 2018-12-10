@@ -50,3 +50,15 @@ FamixStAnnotationType >> belongsTo: anObject [
 	self annotationTypesContainer: anObject
 
 ]
+
+{ #category : #compatibility }
+FamixStAnnotationType >> directSubclasses [
+
+	^ OrderedCollection new.
+]
+
+{ #category : #compatibility }
+FamixStAnnotationType >> hierarchyNestingLevel [ 
+
+	^ 1
+]
