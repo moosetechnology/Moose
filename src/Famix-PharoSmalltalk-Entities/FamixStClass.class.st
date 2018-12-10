@@ -89,6 +89,6 @@ FamixStClass >> smalltalkClass [
 FamixStClass >> sourceText [
 	self flag: 'This code should be delegated to the FAMIXPharoAnchor'.
 	 ^ self smalltalkClass 
-		ifNotNil: [ :aClass | TonelWriter sourceCodeOf: aClass ] 
-		ifNil: [ super sourceText ]
+        ifNotNil: [ :aClass | TonelWriter sourceCodeOf: aClass ] 
+        ifNil: [ super sourceText ]
 ]

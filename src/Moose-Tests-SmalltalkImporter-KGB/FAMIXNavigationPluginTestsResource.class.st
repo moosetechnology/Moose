@@ -1,6 +1,6 @@
 Class {
 	#name : #FAMIXNavigationPluginTestsResource,
-	#superclass : #MooseModelTestResource,
+	#superclass : #MooseModelTestResourceWithSmalltalkDependency,
 	#category : #'Moose-Tests-SmalltalkImporter-KGB'
 }
 
@@ -16,10 +16,9 @@ FAMIXNavigationPluginTestsResource >> getMethod: methodNameString from: aFAMIXCl
 { #category : #'MooseKGB-TestFamix3-hook' }
 FAMIXNavigationPluginTestsResource >> importModel [ 
 
-	| factory importer classes namespaces | 
+	| importer classes namespaces | 
 	
-	factory := SmalltalkCompatibilityMetamodelFactory new.
-	
+
 	classes := #( #( #'M1P1C1FullReferencerOutSide' #'M1P2C2ReferencerOutSideRefereeInSide'
 					#'M1P2C3ReferencerInSideRefereeOutSide'
 					#'M1P2C4FullRefereeInSide'
@@ -42,20 +41,20 @@ FAMIXNavigationPluginTestsResource >> importModel [
 	"classesN7" #( #'M7P13C21FullReferencerOutSide'
 					#'M7P14C22FullRefereeOutSide' ) ).
 
+	importer := self newPharoImporterTask. 
+
 	namespaces := #( 'Model1InteractedReferencerReferee'
 		'Model2FullReferee'
 		'Model3ReferencerReferee' 
 		'Model4FullReferencer'
 		'Model5InteractedReferencer'
 		'Model6InteractedReferee'
-		 'Model7FullInteracted' ) collect: [ :each | factory namespace new name: each ].
+		 'Model7FullInteracted' ) collect: [ :each | importer factory new namespace new name: each ].
 	
-	importer := MoosePharoImporterTask new. 
 	importer importingContext mergeClassAndMetaclass. 
 	importer candidateClass: CandidateListOperator.
 	importer importerClass: SmalltalkImporter.
 	importer model: model; 
-		factory: factory class;
 		addFromPackagesMatching: [:p | 'Moose-TestResources-KGB-*' match: p name];
 		run.
 	

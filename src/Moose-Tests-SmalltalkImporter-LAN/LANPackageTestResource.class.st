@@ -1,15 +1,14 @@
 Class {
 	#name : #LANPackageTestResource,
-	#superclass : #MooseModelTestResource,
+	#superclass : #MooseModelTestResourceWithSmalltalkDependency,
 	#category : #'Moose-Tests-SmalltalkImporter-LAN'
 }
 
 { #category : #hook }
 LANPackageTestResource >> importModel [
 
-	MoosePharoImporterTask new
+	self newPharoImporterTask
 		importerClass: SmalltalkImporter;
-		factory: SmalltalkCompatibilityMetamodelFactory;
 		model: model;
 		addFromPackageNamed: #'Moose-TestResources-LAN';
 		run;
