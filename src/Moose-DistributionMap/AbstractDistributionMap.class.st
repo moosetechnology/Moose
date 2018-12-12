@@ -132,21 +132,21 @@ AbstractDistributionMap >> renderOn: view [
 	| parts partElements shape |
 	parts := self orderParts: self parts.
 	shape := RTCompositeShape new.
-	shape add: (RTLabel new text: #mooseName; height: 10).
+	shape add: (RTLabel new text: (self elementTitleBlock); height: 10; color: Color black).
 	shape add: (RTBox new color: Color transparent; borderColor: Color gray).
 	partElements := shape elementsOn: parts.
 	partElements do: [ :each |
 		| elements |
 		view add: each.
-		elements := self renderElementsFrom: each model on: view. 
+		elements := self renderElementsFrom: each model on: view.
 		view addAll: elements.
 		RTGridLayout on: elements.
 		RTNest new
 			on: each
-			inShape: #second 
-			nest: elements.	 ].
+			inShape: #second
+			nest: elements.	].
 	RTGridLayout on: partElements.
-	partElements @ RTDraggable	
+	partElements @ RTDraggable
 ]
 
 { #category : #rendering }
