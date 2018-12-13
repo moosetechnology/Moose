@@ -88,9 +88,7 @@ FamixStClass >> smalltalkClass [
 { #category : #'Famix-Implementation' }
 FamixStClass >> sourceText [
 	self flag: 'This code should be delegated to the FAMIXPharoAnchor'.
-	^ 	self mooseName, 
-				Character cr asSymbol asString, 
-				(Character cr asSymbol asString join: (self attributes collect: #name)), 
-				Character cr asSymbol asString, 
-				(Character cr asSymbol asString join: (self methods collect: [:each | Character cr asSymbol asString, each sourceText])).
+	 ^ self smalltalkClass 
+        ifNotNil: [ :aClass | TonelWriter sourceCodeOf: aClass ] 
+        ifNil: [ super sourceText ]
 ]
