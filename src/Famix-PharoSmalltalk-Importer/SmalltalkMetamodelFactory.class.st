@@ -7,5 +7,5 @@ Class {
 { #category : #'as yet unclassified' }
 SmalltalkMetamodelFactory >> defaultMetamodelClass [
 
-	^ FamixCompatibilityGenerator
+	^ FamixPharoSmalltalkGenerator 
 ]
