@@ -42,6 +42,12 @@ MooseEntity >> complexPropertyPragmas [
 ]
 
 { #category : #'*Moose-Finder' }
+MooseEntity >> customNavigationItems [
+
+	^ {  }
+]
+
+{ #category : #'*Moose-Finder' }
 MooseEntity >> gtInspectorActionOpenInMoose [
 	<gtInspectorAction>
 	^ GLMGenericAction new

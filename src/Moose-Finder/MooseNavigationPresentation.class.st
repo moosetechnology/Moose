@@ -27,6 +27,7 @@ MooseNavigationPresentation >> displayFor: anObject [
 	
 	items := anEntity navigationItemsFromPragmas.
 	items addAll: anEntity navigationItemsFromAttributes.
+	items addAll: anEntity customNavigationItems.
 	
 	^ items
 	

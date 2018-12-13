@@ -7,6 +7,22 @@ MooseAbstractGroup >> asMooseFinderItemNamed: aString in: aMooseEntity [
 ]
 
 { #category : #'*moose-finder' }
+MooseAbstractGroup >> customNavigationItems [
+
+	| classes result | 
+	
+	classes := self metamodel allImplementingClasses select: [ :each | each inheritsFrom: MooseEntity].
+	
+	result := OrderedCollection new.
+	classes do: [ :each |
+		| aGroup |
+		aGroup := self allWithType: each.
+		aGroup isEmpty ifFalse: [ 
+			result add: (('All ', each name) -> (self allWithType: each)) ]].
+	^ result
+]
+
+{ #category : #'*moose-finder' }
 MooseAbstractGroup >> gtDisplayOn: aStream [ 
 	super gtDisplayOn: aStream.
 	aStream nextPut: $(. 
