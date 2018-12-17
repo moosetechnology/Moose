@@ -85,14 +85,14 @@ TRMorph >> drawOn: aCanvas [
 			translateBy: (self extent / 2) asFloatPoint;
 			    scaleBy: trachelCanvas camera scale asFloat;
 			translateBy: trachelCanvas camera position negated asFloatPoint.
-		trachelCanvas shapes do: [ :trachelShape |
-			trachelShape drawOn: cs.
+		trachelCanvas shapesDo: [ :trachelShape |
+			trachelShape isMarkedAsVisible ifTrue: [ trachelShape drawOn: cs ].
 		].
 	
 		"We display the elements that are _NOT_ subject to the camera"
 		cs pathTransform loadIdentity scaleBy: 1.001.
-		trachelCanvas fixedShapes do: [ :trachelShape |
-			trachelShape drawOn: cs.
+		trachelCanvas fixedShapesDo: [ :trachelShape |
+			trachelShape isMarkedAsVisible ifTrue: [ trachelShape drawOn: cs ].
 		].
 	].
 	"aCanvas translucentImage: surface asForm at: self bounds origin."

@@ -189,6 +189,7 @@ RTShapedObject >> updatePosition [
 
 { #category : #rendering }
 RTShapedObject >> updateShape [
+	"The graphical properties of myself are updated by the shape"
 	shape updateFor: self
 ]
 

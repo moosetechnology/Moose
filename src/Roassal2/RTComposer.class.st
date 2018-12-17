@@ -88,6 +88,26 @@ RTComposer >> group: aName [
 	mapping at: aName put: group.
 ]
 
+{ #category : #utility }
+RTComposer >> groupWithoutNest: group [
+	| copy toDelete |
+	copy := group copy.
+	toDelete := Set new.
+	group do: [ :e | 
+		| nest |
+		nest := nil.
+		nest := [ :el | 
+			el nestedElements do: [ :e3 | 
+				e3 isCollection
+					ifTrue: [ toDelete addAll: (e3 collect: [ :x | nest value: x. x ]) ]
+					ifFalse: [ nest value: e3. toDelete add: e ] ] ].
+			nest value: e.
+			(e attributes includesKey: #RTLabelledLabel)
+				ifTrue: [ toDelete add: (e attributes at: #RTLabelledLabel) ] ].
+	toDelete do: [ :e | copy remove: e ifAbsent: [  ] ].
+	^ copy
+]
+
 { #category : #initialization }
 RTComposer >> initialize [
 	super initialize.
@@ -103,7 +123,7 @@ RTComposer >> initialize [
 { #category : #'public-layout' }
 RTComposer >> layout: aLayout [
 	"Layout all the group of elements"
-	aLayout on: groups.
+	aLayout on: (groups collect: [ :g | self groupWithoutNest: g ]).
 
 ]
 
@@ -111,8 +131,8 @@ RTComposer >> layout: aLayout [
 RTComposer >> move: name1 above: name2 [
 	
 	| g1 g2 |
-	g1 := mapping at: name1. 
-	g2 := mapping at: name2.
+	g1 := self groupWithoutNest: (mapping at: name1). 
+	g2 := self groupWithoutNest: (mapping at: name2).
 	TRConstraint move: g1 above: g2.
 	g1 translateBy: 0 @ gap negated
 ]
@@ -121,8 +141,8 @@ RTComposer >> move: name1 above: name2 [
 RTComposer >> move: name1 below: name2 [
 	
 	| g1 g2 |
-	g1 := mapping at: name1. 
-	g2 := mapping at: name2.
+	g1 := self groupWithoutNest: (mapping at: name1). 
+	g2 := self groupWithoutNest: (mapping at: name2).
 	TRConstraint move: g1 below: g2.
 	g1 translateBy: 0 @ gap
 ]
@@ -131,8 +151,8 @@ RTComposer >> move: name1 below: name2 [
 RTComposer >> move: name1 belowAlignFromLeft: name2 [
 	
 	| g1 g2 |
-	g1 := mapping at: name1. 
-	g2 := mapping at: name2.
+	g1 := self groupWithoutNest: (mapping at: name1). 
+	g2 := self groupWithoutNest: (mapping at: name2).
 	TRConstraint move: g1 belowAlignFromLeft: g2 gap: gap.
 ]
 
@@ -140,8 +160,8 @@ RTComposer >> move: name1 belowAlignFromLeft: name2 [
 RTComposer >> move: name1 onTheLeftOf: name2 [
 	
 	| g1 g2 |
-	g1 := mapping at: name1. 
-	g2 := mapping at: name2.
+	g1 := self groupWithoutNest: (mapping at: name1). 
+	g2 := self groupWithoutNest: (mapping at: name2).
 	TRConstraint move: g1 onTheLeftOf: g2.
 	g1 translateBy: gap negated @ 0
 ]
@@ -150,8 +170,8 @@ RTComposer >> move: name1 onTheLeftOf: name2 [
 RTComposer >> move: name1 onTheRightBelowOf: name2 [
 	
 	| g1 g2 |
-	g1 := mapping at: name1. 
-	g2 := mapping at: name2.
+	g1 := self groupWithoutNest: (mapping at: name1). 
+	g2 := self groupWithoutNest: (mapping at: name2).
 	TRConstraint move: g1 onTheRightBelowOf: g2.
 	g1 translateBy: 0 @ gap
 ]
@@ -160,8 +180,8 @@ RTComposer >> move: name1 onTheRightBelowOf: name2 [
 RTComposer >> move: name1 onTheRightOf: name2 [
 	
 	| g1 g2 |
-	g1 := mapping at: name1. 
-	g2 := mapping at: name2.
+	g1 := self groupWithoutNest: (mapping at: name1). 
+	g2 := self groupWithoutNest: (mapping at: name2).
 	RTConstraint move: g1 onTheRightOf: g2.
 	g1 translateBy: gap @ 0
 ]

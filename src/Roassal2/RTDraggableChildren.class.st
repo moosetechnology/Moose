@@ -1,5 +1,22 @@
 "
 A RTDraggableChildren makes an element draggable. When dragged, children of the elements are also being dragged.
+
+Here is an example:
+-=-=-=
+| v es |
+v := RTView new.
+v @ RTDraggableView.
+
+es := RTLabel elementsOn: (1 to: 40).
+v addAll: es.
+RTEdgeBuilder new
+	view: v;
+	elements: es;
+	connectFrom: [ :aValue | aValue // 2 ].
+RTClusterLayout on: es.
+es @ RTDraggableChildren.
+^ v
+-=-=-=
 "
 Class {
 	#name : #RTDraggableChildren,
@@ -9,6 +26,11 @@ Class {
 
 { #category : #hooks }
 RTDraggableChildren >> initializeElement: element [
+	"This method is the main method called whenever the interaction is applied. It simply obtains the recursive children.
+	Note that the interaction correctly handle cycles.
+	
+	In case the shift key is pressed, the interaction has no effect"
+	
 	| recursiveGetChildren dragElements |
 	
 	dragElements := nil.

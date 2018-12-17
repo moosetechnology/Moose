@@ -1,5 +1,32 @@
 "
 I hide the dataset when the associated legend entry has been clicked on.
+For example:
+-=-=-=-=-=-=-=-=-=-=
+g := RTGrapher new.
+d := RTData new.
+d label: 'Collection code'.
+d interaction toggleDataset.
+d dotShape color: Color red trans.
+d points: (Collection withAllSubclasses).
+d x: #numberOfLinesOfCode.
+d y: #numberOfMethods.
+g add: d.
+
+d := RTData new.
+d interaction toggleDataset.
+d label: 'Roassal code'.
+d dotShape color: Color blue trans.
+d points: (RTObject withAllSubclasses).
+d x: #numberOfLinesOfCode.
+d y: #numberOfMethods.
+g add: d.
+
+g axisX noDecimal; title: 'Number of lines of code'; withThousandsSeparator.
+g axisY noDecimal; title: 'Number of Methods'.
+
+g legend addText: 'Collection vs Roassal code base'.
+g
+-=-=-=-=-=-=-=-=-=-=
 "
 Class {
 	#name : #RTDataToggleInteraction,
@@ -11,17 +38,17 @@ Class {
 	#category : #'Roassal2-Builder-Grapher-Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 RTDataToggleInteraction >> dataset: aDataset [
 	dataset := aDataset
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #hooks }
 RTDataToggleInteraction >> initializeElement: element [
 	"Do nothing. Initialization happens only after #legendElements have been assigned."
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 RTDataToggleInteraction >> initializeLegendElement [
 	legendElements
 		when: TRMouseLeftClick
@@ -37,7 +64,7 @@ RTDataToggleInteraction >> initializeLegendElement [
 					dataset builder view signalUpdate ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 RTDataToggleInteraction >> legendElements: aCollection [
 	legendElements := aCollection.
 	self initializeLegendElement
