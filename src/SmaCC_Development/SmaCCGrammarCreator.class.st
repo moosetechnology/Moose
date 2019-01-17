@@ -220,6 +220,8 @@ SmaCCGrammarCreator >> visitFlagDirective: aFlagDirective [
 		ifTrue: [ ^ grammar ignoreCase: true ].
 	name = 'annotate_tokens'
 		ifTrue: [ ^ grammar annotateTokens: true ].
+	name = 'lr1'
+		ifTrue: [ ^ grammar type: #LR1 ].
 	self reportErrorMessage: 'Unknown directive' on: aFlagDirective typeToken
 ]
 

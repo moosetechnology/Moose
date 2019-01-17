@@ -10,7 +10,6 @@ Class {
 		'testModel',
 		'parserClassName',
 		'scannerClassName',
-		'type',
 		'allowUnicode',
 		'codeGeneratorType',
 		'savedDefinition',
@@ -44,8 +43,7 @@ SmaCCParserGenerator class >> menuCommandOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #'SmaCC Parser Generator')
 		parent: #Tools;
-		order: 490.1;
-		help: 'SmaCC Parser Generator Tool';
+		order: 0.55;
 		action: [ self open ]
 ]
 
@@ -79,7 +77,7 @@ SmaCCParserGenerator >> codeGeneratorClasses [
 
 { #category : #actions }
 SmaCCParserGenerator >> compile [
-	^ self compile: type
+	^self compile: #LALR1
 ]
 
 { #category : #private }
@@ -162,7 +160,7 @@ SmaCCParserGenerator >> definitionTab [
 	^ self newTab
 		closeable: false;
 		label: 'Definition';
-		presenter: definitionModel;
+		model: definitionModel;
 		yourself
 ]
 
@@ -178,7 +176,7 @@ SmaCCParserGenerator >> displayError: aString at: position [
 
 { #category : #initialization }
 SmaCCParserGenerator >> fileMenu [
-	^ MenuPresenter new
+	^ MenuModel new
 		addGroup: [ :group | 
 			group
 				addItem: [ :item | 
@@ -218,7 +216,6 @@ SmaCCParserGenerator >> findParserClass [
 { #category : #initialization }
 SmaCCParserGenerator >> initialize [
 	allowUnicode := false.
-	type := #LALR1.
 	parserClassName := ''.
 	scannerClassName := ''.
 	codeGeneratorType := #Smalltalk.
@@ -231,7 +228,7 @@ SmaCCParserGenerator >> initialize [
 
 { #category : #initialization }
 SmaCCParserGenerator >> initializeMenubar [
-	menu := MenuPresenter new
+	menu := MenuModel new
 		addGroup: [ :group | 
 			group
 				addItem: [ :item | 
@@ -250,7 +247,7 @@ SmaCCParserGenerator >> initializeMenubar [
 
 { #category : #initialization }
 SmaCCParserGenerator >> initializeTabModel [
-	tabModel := self instantiate: SmaCCTabManagerPresenter.
+	tabModel := self instantiate: SmaCCTabManagerModel.
 	tabModel
 		addTab: self definitionTab;
 		addTab: self messagesTab;
@@ -265,16 +262,6 @@ SmaCCParserGenerator >> initializeWidgets [
 	self initializeMenubar.
 	self updateOptionsMenu.
 	self updateViewMenu
-]
-
-{ #category : #testing }
-SmaCCParserGenerator >> isLALR1 [
-	^ type = #LALR1
-]
-
-{ #category : #testing }
-SmaCCParserGenerator >> isLR1 [
-	^ type = #LR1
 ]
 
 { #category : #private }
@@ -299,7 +286,7 @@ SmaCCParserGenerator >> itemSetsTab [
 	^ self newTab
 		closeable: false;
 		label: 'Item Sets';
-		presenter: itemSetsModel;
+		model: itemSetsModel;
 		yourself
 ]
 
@@ -330,13 +317,13 @@ SmaCCParserGenerator >> messagesTab [
 	^ self newTab
 		closeable: false;
 		label: 'Messages';
-		presenter: messagesModel;
+		model: messagesModel;
 		yourself
 ]
 
 { #category : #initialization }
 SmaCCParserGenerator >> optionsMenu [
-	^ MenuPresenter new
+	^ MenuModel new
 		addGroup: [ :group | 
 			group
 				addItem: [ :item | 
@@ -364,21 +351,7 @@ SmaCCParserGenerator >> optionsMenu [
 					item
 						autoRefresh: true;
 						name: 'Optimize Transition Table';
-						action: [ self toggleOptimizeTransitionTable ] ] ];
-		addGroup: [ :group | 
-			group
-				addItem: [ :item | 
-					menuItems at: #setLALR1 put: item.
-					item
-						autoRefresh: true;
-						name: 'LALR(1)';
-						action: [ self setLALR1 ] ];
-				addItem: [ :item | 
-					menuItems at: #setLR1 put: item.
-					item
-						autoRefresh: true;
-						name: 'LR(1)';
-						action: [ self setLR1 ] ] ]
+						action: [ self toggleOptimizeTransitionTable ] ] ]
 ]
 
 { #category : #actions }
@@ -448,18 +421,6 @@ SmaCCParserGenerator >> setCodeGenerator: aSymbol [
 ]
 
 { #category : #actions }
-SmaCCParserGenerator >> setLALR1 [
-	type := #LALR1.
-	self updateOptionsMenu
-]
-
-{ #category : #actions }
-SmaCCParserGenerator >> setLR1 [
-	type := #LR1.
-	self updateOptionsMenu
-]
-
-{ #category : #actions }
 SmaCCParserGenerator >> setParserClass [
 	| name |
 	name := UIManager default request: 'Enter parser class name:' initialAnswer: self parserClassName.
@@ -494,7 +455,7 @@ SmaCCParserGenerator >> symbolsTab [
 	^ self newTab
 		closeable: false;
 		label: 'Symbols';
-		presenter: symbolsModel;
+		model: symbolsModel;
 		yourself
 ]
 
@@ -523,7 +484,7 @@ SmaCCParserGenerator >> testTab [
 	^ self newTab
 		closeable: false;
 		label: 'Test';
-		presenter: testModel;
+		model: testModel;
 		yourself
 ]
 
@@ -545,11 +506,6 @@ SmaCCParserGenerator >> title [
 SmaCCParserGenerator >> toggleOptimizeTransitionTable [
 	SmaCCGrammarCompiler toggleOptimizeTransitionTable.
 	self updateOptionsMenu
-]
-
-{ #category : #actions }
-SmaCCParserGenerator >> type [
-	^ type
 ]
 
 { #category : #private }
@@ -597,9 +553,7 @@ SmaCCParserGenerator >> updateOptionsMenu [
 						ifTrue: [ '' ]
 						ifFalse: [ ' (' , parserClassName , ')' ]) , '...'.
 	self updateMenuItem: #useUnicode checked: self isUnicode.
-	self updateMenuItem: #optimizeTransitionTable checked: SmaCCGrammarCompiler optimizeTransitionTable.
-	self updateMenuItem: #setLALR1 checked: self isLALR1.
-	self updateMenuItem: #setLR1 checked: self isLR1
+	self updateMenuItem: #optimizeTransitionTable checked: SmaCCGrammarCompiler optimizeTransitionTable
 ]
 
 { #category : #private }
@@ -636,7 +590,7 @@ SmaCCParserGenerator >> viewItemSetsClicked [
 
 { #category : #initialization }
 SmaCCParserGenerator >> viewMenu [
-	^ MenuPresenter new
+	^ MenuModel new
 		addGroup: [ :group | 
 			group
 				addItem: [ :item | 

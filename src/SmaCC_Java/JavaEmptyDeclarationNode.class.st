@@ -1,6 +1,6 @@
 Class {
 	#name : #JavaEmptyDeclarationNode,
-	#superclass : #JavaDeclarationNode,
+	#superclass : #JavaProgramNode,
 	#instVars : [
 		'semicolon'
 	],

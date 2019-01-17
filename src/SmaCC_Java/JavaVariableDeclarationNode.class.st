@@ -1,6 +1,6 @@
 Class {
 	#name : #JavaVariableDeclarationNode,
-	#superclass : #JavaDeclarationNode,
+	#superclass : #JavaProgramNode,
 	#instVars : [
 		'variable'
 	],

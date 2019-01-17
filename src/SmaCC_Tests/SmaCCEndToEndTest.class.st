@@ -82,7 +82,7 @@ SmaCCEndToEndTest >> scannerClass [
 	^ self lookupType: #TestScanner
 ]
 
-{ #category : #running }
+{ #category : #private }
 SmaCCEndToEndTest >> setUp [
 	super setUp.
 	SmaCCCodeGenerator reset.
@@ -102,7 +102,7 @@ SmaCCEndToEndTest >> supportsUnicodeStrings [
 		do: [ :ex | ex return: false ]
 ]
 
-{ #category : #running }
+{ #category : #private }
 SmaCCEndToEndTest >> tearDown [
 	self removeNewClasses.
 	super tearDown
@@ -1105,6 +1105,43 @@ SmaCCEndToEndTest >> testLALRErrorHandler [
 	self
 		should: [ self parserClass parse: 'a b ] a  ]' ]
 		raise: SmaCCParserError
+]
+
+{ #category : #tests }
+SmaCCEndToEndTest >> testLR1 [
+	| parserCompiler definitionString |
+	definitionString := 'S : a E c { 1 }
+    | a F d { 2 }
+    | b F c { 3 }
+    | b E d { 4 }
+;
+E : e ;
+F : e ;
+a : "a";
+b : "b";
+c : "c";
+d : "d";
+e : "e";'.
+	(parserCompiler := SmaCCGrammarCompiler new) codeGenerator defaultCategory: self class category.
+	parserCompiler buildDefinition: '%lr1; ' , definitionString.
+	self
+		assert:
+			([ parserCompiler compileInto: 'TestScanner' andParser: 'TestParser'.
+			true ]
+				on: SmaCCCompilationNotification
+				do: [ :ex | ex return: false ]).
+	self assert: (self parserClass parse: 'aec') = 1.
+	self assert: (self parserClass parse: 'aed') = 2.
+	self assert: (self parserClass parse: 'bec') = 3.
+	self assert: (self parserClass parse: 'bed') = 4.
+	(parserCompiler := SmaCCGrammarCompiler new) codeGenerator defaultCategory: self class category.
+	parserCompiler buildDefinition: definitionString.
+	self
+		assert:
+			([ parserCompiler compileInto: 'TestScanner' andParser: 'TestParser'.
+			false ]
+				on: SmaCCCompilationNotification
+				do: [ :ex | ex return: true ])
 ]
 
 { #category : #'tests-parse tree creation' }
