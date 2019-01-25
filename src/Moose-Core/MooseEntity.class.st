@@ -169,6 +169,13 @@ MooseEntity class >> implementingClassesIn: aMetamodel [
 	^ { self }
 ]
 
+{ #category : #'as yet unclassified' }
+MooseEntity class >> inheritsFromType: aClassFAMIX [
+	^ ({self} , self usedStatefulTraits
+		flatCollect: #withAllSuperclasses
+		as: Set) includes: aClassFAMIX
+]
+
 { #category : #constants }
 MooseEntity class >> mooseDev [ 
 	"Answer the email address of the Moose mailinglist." 
