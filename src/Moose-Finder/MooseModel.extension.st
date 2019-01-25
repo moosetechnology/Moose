@@ -112,12 +112,14 @@ MooseModel >> importFileStructure [
 
 { #category : #'*Moose-Finder' }
 MooseModel >> importFromMSE [
-	| stream |
-	stream := UITheme builder fileOpen: 'Import model from MSE file' extensions: #('mse').
-	stream
-		ifNotNil: [ 
-			self name: (stream localName copyUpToLast: Path extensionDelimiter).	"name without extension"
+	| file |
+	file := UIManager default chooseExistingFileReference: 'Import model from MSE file' extensions: #('mse') path: FileLocator home.
+	file
+		ifNotNil: [
+			| stream | 
+			stream := file readStream.
 			self importFromMSEStream: stream.
+			self name: (file basenameWithoutExtension).
 			stream close ]
 ]
 
