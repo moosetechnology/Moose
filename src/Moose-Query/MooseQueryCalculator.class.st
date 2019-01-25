@@ -75,7 +75,7 @@ MooseQueryCalculator >> hasLocal: aFAMIXClassAssociation for: anEntity [
 		(anEntity perform: (properties at: ind) name)
 			ifNotNil: [ :coll | 
 				coll asCollection
-							do: [ :each | (each isOfType: aFAMIXClassAssociation) and: [ self flag: 'todo'. true ]  ] ] ].
+							do: [ :each | (each isOfType: aFAMIXClassAssociation) ifTrue: [ ^ true ] ] ] ].
 	^ false
 ]
 
