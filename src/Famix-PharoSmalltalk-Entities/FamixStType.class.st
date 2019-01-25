@@ -87,6 +87,11 @@ FamixStType >> container [
 ]
 
 { #category : #adding }
+FamixStType >> entityHasIncomingTypeDeclarations [
+	^ (self structuresWithDeclaredType , self behavioursWithDeclaredType) isNotEmpty
+]
+
+{ #category : #adding }
 FamixStType >> extendedInPackages [
 
 	^ self privateState cacheAt: #extendedInPackages

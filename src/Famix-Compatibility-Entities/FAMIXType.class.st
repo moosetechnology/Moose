@@ -160,6 +160,11 @@ FAMIXType >> copyFrom: anEntity within: aVisitor [
 
 ]
 
+{ #category : #'moosequery-queries-incoming' }
+FAMIXType >> entityHasIncomingTypeDeclarations [
+	^ (self structuresWithDeclaredType , self behavioursWithDeclaredType) isNotEmpty
+]
+
 { #category : #'Famix-Smalltalk' }
 FAMIXType >> extendedInPackages [
 
