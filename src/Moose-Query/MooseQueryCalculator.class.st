@@ -119,6 +119,25 @@ MooseQueryCalculator >> queryLocal: aFAMIXClassAssociation for: anEntity in: aCo
 	^ aCollection
 ]
 
+{ #category : #query }
+MooseQueryCalculator >> source: aFAMIXClassAssociation for: anEntity [ 
+	^ self strategy
+		queryResultOn: anEntity
+		with: (self source: aFAMIXClassAssociation for: anEntity in: OrderedCollection new) asSet
+]
+
+{ #category : #query }
+MooseQueryCalculator >> source: aFAMIXClassAssociation for: anEntity in: aCollection [
+	| selectors |
+	self sourceLocal: aFAMIXClassAssociation for: anEntity in: aCollection.
+	1 to: (selectors := anEntity childrenSelectors) size do: [ :index | 
+		(anEntity perform: (selectors at: index))
+			ifNotNil: [ :children | 
+				| coll |
+				1 to: (coll := children asCollection) size do: [ :i | self through: aFAMIXClassAssociation for: (coll at: i) in: aCollection ] ] ].
+	^ aCollection
+]
+
 { #category : #accessing }
 MooseQueryCalculator >> strategy [
 	^ strategy
@@ -145,6 +164,38 @@ MooseQueryCalculator >> through: aFAMIXClassAssociation for: anEntity in: aColle
 			ifNotNil: [ :children | 
 				| coll |
 				1 to: (coll := children asCollection) size do: [ :i | self through: aFAMIXClassAssociation for: (coll at: i) in: aCollection ] ] ].
+	^ aCollection
+]
+
+{ #category : #query }
+MooseQueryCalculator >> throughAllFor: anEntity [
+	^ self strategy queryResultOn: anEntity with: (self throughAllFor: anEntity in: OrderedCollection new) asSet
+]
+
+{ #category : #query }
+MooseQueryCalculator >> throughAllFor: anEntity in: aCollection [
+	| selectors |
+	self throughAllLocalFor: anEntity in: aCollection.
+	"Instead of #to:do: we could just use #do: but this implementation is much faster. Maybe sista will remove the needs of the todo later."
+	1 to: (selectors := anEntity childrenSelectors) size do: [ :index | 
+		(anEntity perform: (selectors at: index))
+			ifNotNil: [ :children | 
+				| coll |
+				1 to: (coll := children asCollection) size do: [ :i | self throughAllFor: (coll at: i) in: aCollection ] ] ].
+	^ aCollection
+]
+
+{ #category : #query }
+MooseQueryCalculator >> throughAllLocalFor: anEntity [
+
+	^ self strategy queryResultOn: anEntity with: (self throughAllLocalFor: anEntity in: OrderedCollection new) asSet
+]
+
+{ #category : #query }
+MooseQueryCalculator >> throughAllLocalFor: anEntity in: aCollection [
+	| properties |
+	"Instead of #to:do: we could just use #do: but this implementation is much faster. Maybe sista will remove the needs of the todo later."
+	1 to: (properties := self strategy msePropertiesOf: anEntity) size do: [ :ind | (anEntity perform: (properties at: ind) name) ifNotNil: [ :coll | aCollection addAll: (coll asCollection collect: [ :each | each perform: self strategy symbolToCollectEntities ]) ] ].
 	^ aCollection
 ]
 

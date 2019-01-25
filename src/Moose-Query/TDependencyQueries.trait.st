@@ -357,6 +357,18 @@ TDependencyQueries >> sourceThrough: aFAMIXClassAssociation [
 ]
 
 { #category : #'moosequery-queries-generic' }
+TDependencyQueries >> sourceThroughAll [
+	"Query all the incoming associations of the receiver and its children.
+
+	Example:
+		aFAMIXClass queryAllIncoming.
+			--> Will return a MooseIncomingQueryResult containing the FAMIXAssociation having aFAMIXClass or its children as target
+	"
+
+	^ (MooseQueryCalculator strategy: MooseQueryIncomingDirectionStrategy) throughAllFor: self
+]
+
+{ #category : #'moosequery-queries-generic' }
 TDependencyQueries >> targetThrough: aFAMIXClassAssociation [
 	"Collect the target of the FAMIXClassAssociation class for the receiver and its children.
 	
@@ -366,4 +378,28 @@ TDependencyQueries >> targetThrough: aFAMIXClassAssociation [
 	"
 
 	^ (MooseQueryCalculator strategy: MooseQueryOutgoingDirectionStrategy) through: aFAMIXClassAssociation for: self
+]
+
+{ #category : #'moosequery-queries-generic' }
+TDependencyQueries >> throughAllFrom [
+	"Query all the incoming associations of the receiver and its children.
+
+	Example:
+		aFAMIXClass queryAllIncoming.
+			--> Will return a MooseIncomingQueryResult containing the FAMIXAssociation having aFAMIXClass or its children as target
+	"
+
+	^ (MooseQueryCalculator strategy: MooseQueryIncomingDirectionStrategy) throughAllFor: self
+]
+
+{ #category : #'moosequery-queries-generic' }
+TDependencyQueries >> throughAllTo [
+	"Query all the incoming associations of the receiver and its children.
+
+	Example:
+		aFAMIXClass queryAllIncoming.
+			--> Will return a MooseIncomingQueryResult containing the FAMIXAssociation having aFAMIXClass or its children as target
+	"
+
+	^ (MooseQueryCalculator strategy: MooseQueryOutgoingDirectionStrategy) throughAllFor: self
 ]

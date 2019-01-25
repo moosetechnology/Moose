@@ -107,6 +107,18 @@ FAMIXNamedEntity >> stubFormattedName [
 		ifFalse: [ Text fromString: self name ] 
 ]
 
+{ #category : #'moosequery-queries-generic' }
+FAMIXNamedEntity >> throughAllFrom [
+	"Query all the incoming associations of the receiver and its children.
+
+	Example:
+		aFAMIXClass queryAllIncoming.
+			--> Will return a MooseIncomingQueryResult containing the FAMIXAssociation having aFAMIXClass or its children as target
+	"
+
+	^ (MooseQueryCalculator strategy: MooseQueryIncomingDirectionStrategy) throughAllFor: self
+]
+
 { #category : #'moosechef-scoping-filtering' }
 FAMIXNamedEntity >> typeScope [
 	"Empty default scope"
