@@ -63,6 +63,11 @@ MooseQueryCalculator >> has: aFAMIXClassAssociation for: anEntity [
 ]
 
 { #category : #query }
+MooseQueryCalculator >> hasFor: anEntity [
+	^ self has: self strategy for: anEntity 
+]
+
+{ #category : #query }
 MooseQueryCalculator >> hasLocal: aFAMIXClassAssociation for: anEntity [
 	"The goal here is to get all the entity's direct associations of the class in parameter. This will not check the associations of the entity's children."
 
@@ -77,6 +82,11 @@ MooseQueryCalculator >> hasLocal: aFAMIXClassAssociation for: anEntity [
 				coll asCollection
 							do: [ :each | (each isOfType: aFAMIXClassAssociation) ifTrue: [ ^ true ] ] ] ].
 	^ false
+]
+
+{ #category : #query }
+MooseQueryCalculator >> hasLocalFor: anEntity [
+	^ self hasLocal: self strategy for: anEntity 
 ]
 
 { #category : #query }

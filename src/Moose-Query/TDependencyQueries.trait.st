@@ -105,6 +105,20 @@ TDependencyQueries >> createOutgoingQueryResultWith: aCollection [
 ]
 
 { #category : #'moosequery-queries-generic' }
+TDependencyQueries >> has: anInOutSymbol [
+	"Check the incoming or outgoing associations of the receiver or its children.
+
+	Example:
+		aFAMIXClass has: #in.
+			--> Will return trye if aFAMIXMethod has the incoming FAMIXAssociation 
+		aFAMIXMethod has: #out.
+			--> Will return true if aFAMIXMethod has the outgoing FAMIXAssociation
+	"
+
+	^ (MooseQueryCalculator direction: anInOutSymbol) hasFor: self
+]
+
+{ #category : #'moosequery-queries-generic' }
 TDependencyQueries >> has: anInOutSymbol with: aFAMIXClassAssociation [
 	"Query all the incoming or outgoing associations of the FAMIXClassAssociation class for the receiver and its children.
 
@@ -116,6 +130,18 @@ TDependencyQueries >> has: anInOutSymbol with: aFAMIXClassAssociation [
 	"
 
 	^ (MooseQueryCalculator direction: anInOutSymbol) has: aFAMIXClassAssociation for: self
+]
+
+{ #category : #'moosequery-queries-generic' }
+TDependencyQueries >> hasIncoming [
+	"Checks for incoming associations of the receiver and its children.
+
+	Example:
+		aFAMIXClass hasIncoming.
+			--> --> Will return true if the receiver or its children have incoming associations
+	"
+	
+	^ (MooseQueryCalculator strategy: MooseQueryIncomingDirectionStrategy) hasFor: self
 ]
 
 { #category : #'moosequery-queries-generic' }
@@ -131,6 +157,39 @@ TDependencyQueries >> hasIncoming: aFAMIXClassAssociation [
 ]
 
 { #category : #'moosequery-queries-generic' }
+TDependencyQueries >> hasIncomingDependencies [
+	"Associations + typeDeclaractions"
+
+	^ self hasIncoming or: [ self hasIncomingTypeDeclaration ]
+]
+
+{ #category : #'moosequery-queries-generic' }
+TDependencyQueries >> hasLocal: anInOutSymbol [
+	"Check the incoming or outgoing associations of the receiver.
+
+	Example:
+		aFAMIXClass hasLocal: #in.
+			--> Will return trye if aFAMIXMethod has the incoming FAMIXAssociation 
+		aFAMIXMethod hasLocal: #out.
+			--> Will return true if aFAMIXMethod has the outgoing FAMIXAssociation
+	"
+ 
+	^ (MooseQueryCalculator direction: anInOutSymbol) hasLocalFor: self
+]
+
+{ #category : #'moosequery-queries-generic' }
+TDependencyQueries >> hasLocalIncoming [
+	"Check the incoming or outgoing associations of the receiver.
+
+	Example:
+		aFAMIXClass hasLocalIncoming
+			--> Will return true if aFAMIXMethod has the incoming FAMIXAssociation 
+			"
+ 
+	^ (MooseQueryCalculator direction: MooseQueryIncomingDirectionStrategy) hasLocalFor: self
+]
+
+{ #category : #'moosequery-queries-generic' }
 TDependencyQueries >> hasLocalIncoming: aFAMIXClassAssociation [
 	"Checks for incoming associations of the FAMIXClassAssociation class for the receiver
 	
@@ -140,6 +199,18 @@ TDependencyQueries >> hasLocalIncoming: aFAMIXClassAssociation [
 	"
 
 	^ (MooseQueryCalculator strategy: MooseQueryIncomingDirectionStrategy) hasLocal: aFAMIXClassAssociation for: self
+]
+
+{ #category : #'moosequery-queries-generic' }
+TDependencyQueries >> hasLocalOutgoing [
+	"Checks for outgoing associations of the receiver.
+	
+	Example:
+		aFAMIXClass hasOutgoing
+			--> Will return true if the receiver has outgoingInvocation.
+	"
+
+	^ (MooseQueryCalculator strategy: MooseQueryOutgoingDirectionStrategy) hasLocalFor: self
 ]
 
 { #category : #'moosequery-queries-generic' }
@@ -155,6 +226,18 @@ TDependencyQueries >> hasLocalOutgoing: aFAMIXClassAssociation [
 ]
 
 { #category : #'moosequery-queries-generic' }
+TDependencyQueries >> hasOutgoing [
+	"Checks for outgoing associations of the receiver and its children.
+
+	Example:
+		aFAMIXClass hasOutgoing.
+			--> --> Will return true if the receiver or its children have outgoing associations
+	"
+	
+	^ (MooseQueryCalculator strategy: MooseQueryOutgoingDirectionStrategy) hasFor: self
+]
+
+{ #category : #'moosequery-queries-generic' }
 TDependencyQueries >> hasOutgoing: aFAMIXClassAssociation [
 	"Checks for outgoing associations of the FAMIXClassAssociation class for the receiver and its children.
 	
@@ -164,6 +247,18 @@ TDependencyQueries >> hasOutgoing: aFAMIXClassAssociation [
 	"
 
 	^ (MooseQueryCalculator strategy: MooseQueryOutgoingDirectionStrategy) has: aFAMIXClassAssociation for: self
+]
+
+{ #category : #'moosequery-queries-generic' }
+TDependencyQueries >> hasOutgoingDependencies [
+	"Associations + typeDeclaractions"
+
+	^ self hasOutgoing or: [ self hasOutgoingTypeDeclaration ]
+]
+
+{ #category : #'moosequery-queries-generic' }
+TDependencyQueries >> hasOutgoingTypeDeclaration [
+	
 ]
 
 { #category : #'moosequery-queries-incoming' }
