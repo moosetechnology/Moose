@@ -250,6 +250,22 @@ MooseQueryTest >> testHasIncomingInvocation [
 ]
 
 { #category : #tests }
+MooseQueryTest >> testHasLocalIncomingInvocation [
+
+	self assert: (method2 hasLocalIncoming: FamixTInvocation).
+	self deny: (class2 hasLocalIncoming: FamixTInvocation).
+	self deny: (package2 hasLocalIncoming: FamixTInvocation).
+]
+
+{ #category : #tests }
+MooseQueryTest >> testHasLocalOutgoingInvocation [
+
+	self assert: (method2 hasLocalOutgoing: FamixTInvocation).
+	self deny: (class2 hasLocalOutgoing: FamixTInvocation).
+	self deny: (package2 hasLocalOutgoing: FamixTInvocation).
+]
+
+{ #category : #tests }
 MooseQueryTest >> testHasNotIncomingInvocation [
 	"hasIncoming: is equivalent to has: #in with:"
 
