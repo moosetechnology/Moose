@@ -8,6 +8,50 @@ Class {
 }
 
 { #category : #tests }
+RTHighlightableTest >> testArrowedLine [
+	| v es previousColor trachelShape trachelShapecolor previousColorHead head line |
+	v := RTView new.
+	es := RTEllipse elementsOn: (1 to: 2).
+	es @ RTDraggable.
+	es do: [ :e | e color: Color red ].
+	v addAll: es.
+	RTEdgeBuilder new
+		view: v;
+		shape:
+			(RTArrowedLine new
+				head:
+					(RTFilledArrow asHead
+						size: 60;
+						width: 1);
+				width: 1;
+				attachPoint: (RTBorderAttachPoint new offset: 9);
+				yourself);
+		moveBehind;
+		connectFrom: [ :vv | vv // 2 ].
+	es
+		@
+			(RTHighlightable new
+				edgeColor: Color blue;
+				yourself).
+	RTOptimizedForceBasedLayout new on: es.
+	
+	trachelShape := v edges anyOne trachelShape.
+	previousColor := trachelShape color.
+	head := trachelShape shapes second.
+	line := trachelShape shapes first.
+	es first announce: TRMouseEnter new.
+	self assert: trachelShape color equals: Color blue.
+	self assert: head color equals: Color blue.
+	self assert: line color equals: Color blue.
+	es first announce: TRMouseLeave new.
+	self assert: trachelShape color equals: previousColor.
+	self assert: head color equals: previousColor.
+	self assert: line color equals: previousColor.
+
+	
+]
+
+{ #category : #tests }
 RTHighlightableTest >> testBasic [
 	box := (RTBox new color: Color green) element.
 	self assert: (box shape colorFor: box) = Color green.
@@ -160,6 +204,19 @@ RTHighlightableTest >> testMultipleElementsDoHighlight [
 	h doUnhighlight: box1.
 	self assert: box1 trachelShape color = Color green.
 	self assert: box2 trachelShape color = Color red
+]
+
+{ #category : #'tests push edges front' }
+RTHighlightableTest >> testPushEdgeFront [
+	| b |
+	b := RTMondrian new.
+	b interaction highlightEdges: #dependentClasses.
+	b shape circle.
+	b nodes: (Collection withAllSubclasses).
+	b edges moveBehind; connectToAll: #dependentClasses.
+"	b normalizer normalizeSize: #numberOfMethods; normalizeColor: #numberOfMethods."
+	b layout force.
+	b build
 ]
 
 { #category : #tests }

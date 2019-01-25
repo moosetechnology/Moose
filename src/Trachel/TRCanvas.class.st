@@ -284,6 +284,11 @@ TRCanvas >> fixedShapes [
 	^ fixedShapes
 ]
 
+{ #category : #accessing }
+TRCanvas >> fixedShapesDo: aOneArgBlock [
+	fixedShapes do: aOneArgBlock
+]
+
 { #category : #actions }
 TRCanvas >> focusOnCenterScaled [
 	^ self camera focusOnCenterScaled: self extent * 0.9
@@ -615,8 +620,14 @@ TRCanvas >> shapeWithActionForPositionInPixels: position [
 
 { #category : #accessing }
 TRCanvas >> shapes [
-	"Return the list of shapes"
+	"Return the shapes"
 	^ shapes asArray
+]
+
+{ #category : #accessing }
+TRCanvas >> shapesDo: aOneArgBlock [
+	"Return the shapes"
+	shapes do: aOneArgBlock
 ]
 
 { #category : #updating }

@@ -21,22 +21,13 @@ b
 "
 Class {
 	#name : #RTHighlightElementsInView,
-	#superclass : #RTAbstractInteractionView,
+	#superclass : #RTAbstractHighlightElementsInView,
 	#instVars : [
-		'view',
 		'colorIndex',
 		'transparency'
 	],
 	#category : #'Roassal2-Interactions'
 }
-
-{ #category : #initialization }
-RTHighlightElementsInView >> askForPattern [
-	^ TRPlatform current
-		dialogRequest:
-			'Enter a regular expression (leave empty to remove all previous selection)'
-		initialAnswer: '*aPattern*'
-]
 
 { #category : #initialization }
 RTHighlightElementsInView >> currentColor [
@@ -50,11 +41,6 @@ RTHighlightElementsInView >> currentColor [
 { #category : #initialization }
 RTHighlightElementsInView >> getColorIndex [
 	^ view attributeAt: #RTHighlightElementsInView ifAbsentPut: [ 1 ]
-]
-
-{ #category : #initialization }
-RTHighlightElementsInView >> getRelevantElementsFor: string [
-	^ view elements select: [ :e | string match: e model printString ]
 ]
 
 { #category : #initialization }
@@ -85,7 +71,7 @@ RTHighlightElementsInView >> initialize [
 { #category : #initialization }
 RTHighlightElementsInView >> initializeElement: aView [
 	| string |
-	view := aView.
+	super initializeElement: aView.
 	view
 		addMenu: 'Highlight'
 		callback: [ string := self askForPattern.

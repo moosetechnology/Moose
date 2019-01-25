@@ -484,7 +484,10 @@ function lessThan(a, b){
 function transposed(p){
 	return {x: p.y, y: p.x};
 }
-
+function distanceTo(a, b){
+  var dx = b.x - a.x, dy = b.y - a.y;
+  return Math.sqrt(dx*dx + dy * dy);
+}
 /*roassal/pharo classes*/
 var Rectangle = Class.extend({
 	origin: null,
@@ -726,8 +729,12 @@ var RTZoomableView = TRInteraction.extend({
 		canvas.whenDo(TRMouseWheelEvent, function(e){
 			var s = canvas.camera.scale;
 			var dist = minus(e.position, negated(canvas.camera.position));
-			if(e.direction == "up"){s *= 1.25; dist = product(dist, -0.2);}
-			if(e.direction == "down"){s *=0.8; dist = product(dist, 0.25);}
+			if(e.direction == "up")
+        if(s * 1.25 <= 10){ s *= 1.25; dist = product(dist, -0.2);}
+        else return;
+			if(e.direction == "down")
+        if( s * 0.8 >= 0.1){s *=0.8; dist = product(dist, 0.25);}
+        else return;
 			canvas.camera.scale=s;
 			canvas.camera.translateBy(dist);
 		});
@@ -888,15 +895,31 @@ var RTHighlightable = RTAbstractHighlightable.extend({
 	init:function(obj){
 		this.color = obj.color;
 		this.ides = obj.ides;
+    this.ecolor = obj.ecolor;
+    this.edges = obj.edges;
 	},
 	doHighlightShape: function(s){
-		s.ocolor=s.color;
-		s.setColor(this.color);
+    this.setColor(s, this.color);
+    if(!this.ecolor) return;
+    for(var k=0; k < this.edges.length; k++){
+      var ed = s.canvas.getShapeById(this.edges[k]);
+      this.setColor(ed, this.ecolor);
+    }
 	},
+  setColor: function(s, color){
+    s.ocolor=s.getColor();
+		s.setColor(color);
+  },
 	doUnhighlightShape: function(s){
-		if(s.ocolor == null) return;
-		s.setColor(s.ocolor);
+		if(!s.ocolor) return;
+    this.setColor(s, s.ocolor);
 		s.ocolor = null;
+    if(!this.ecolor) return;
+    for(var k=0; k < this.edges.length; k++){
+      var ed = s.canvas.getShapeById(this.edges[k]);
+      this.setColor(ed, ed.ocolor);
+      ed.ocolor = null;
+    }
 	}
 });
 
@@ -1302,7 +1325,7 @@ var TRCanvas = TRAnnouceableObject.extend({
 		this.definedShapes = {"ellipse": TREllipseShape, "box": TRBoxShape, "line": TRLineShape,
 		"label": TRLabelShape, "bitmap": TRBitmapShape, "multi": TRMultiCompositeShape,
 		"path": TRSVGPath, "arc": TRArcShape, "polygon": TRPolygonShape, "simplearrow": TRSimpleArrowShape,
-		"headarrow": TREmptyHeadArrowShape, "bezier": TRBezierShape};
+		"headarrow": TREmptyHeadArrowShape, "bezier": TRBezierShape, "svgline": TRDualLineWidth};
 		var self = this;
 		$(this.svg).
 			mousedown(function (e){self.mousedown(e)}).
@@ -1617,13 +1640,19 @@ var TRShape = TRAnnouceableObject.extend({
 		if(this.path != null) this.canvas.canvas.appendChild(this.path);
 	},
 	setColor: function(c){
-		if(c == null) return;
+		this.setFillColor(c);
+	},
+  getColor: function(){
+    return this.color;
+  },
+  setFillColor: function(c){
+    if(c == null) return;
 		this.color = c;
 		if(c.r == undefined) $(this.path).css("fill", c);
 		else $(this.path).css("fill", "rgb("+c.r+","+c.g+"," +c.b+")");
 		if(c.a == null)	c.a = 1;
 		$(this.path).css("fill-opacity", c.a);
-	},
+  },
 	setStrokeColor: function(c){
 		this.strokeColor = c;
 		if(c.r == null) $(this.path).css("stroke", c);
@@ -1754,6 +1783,12 @@ var TRMultiCompositeShape = TRShape.extend({
 		this.offsets = obj.offsets;
 		this.ap = obj.ap;
 	},
+  setColor: function(c){
+    if(this.shapes) this.shapes[0].setColor(c);
+  },
+  getColor: function(){
+    return this.shapes[0].getColor();
+  },
 	encompassingRectangle: function(){
 		var s = this.shapes;
 		var r = s[0].encompassingRectangle();
@@ -1864,11 +1899,7 @@ var TRLineShape = TRAbstractBoxShape.extend({
 		this.attachPoint = ap;
 	},
 	setColor: function(c){
-		this.color = c;
-		$(this.path).css("stroke","rgb("+c.r+","+c.g+"," +c.b+")");
-		if(c.a != null){
-			$(this.path).css("opacity", c.a);
-		}
+		this.setStrokeColor(c);
 	},
 	setWidth: function(w){
 		this.width = w;
@@ -1963,7 +1994,65 @@ var TRBezierShape = TRLineShape.extend({
 		return this.canvas.getShapeById(id).position();
 	}
 });
-
+var TRDualLineWidth = TRLineShape.extend({
+	init: function (obj){
+    this._super(obj);
+    this.path = createSVG("path");
+    this.widthFrom = obj.widthFrom;
+    this.widthTo = obj.widthTo;
+  },
+  setColor: function(c){
+    this.setFillColor(c);
+  },
+  update: function (){
+    var from = this.from();
+    var to = this.to();
+    if(from == null || to == null) return;
+    if(to instanceof TRShape){
+			from = this.attachPoint.startingPointOf(this);
+			to = this.attachPoint.endingPointOf(this);
+		}
+    var d = "", e = 0.001, w1 = this.widthTo, w2 = this.widthFrom, t, first;
+    w1 = w1.max(e);
+    w2 = w2.max(e);
+    var dist = distanceTo(from, to).max(e);
+    z = (w1 + w2)/2.
+    if(z > dist){
+      t = dist / (z + z* 0.1);
+      w1 = w1 * t;
+      w2 = w2 * t;
+    }
+    function point(p){
+      d = d+ p.x+ " "+p.y+ " ";
+    }
+    function side(vector, end, size){
+      var u, left, right, unit, middle, l, ri, us;
+      u = normal(vector);
+      unit = div(vector, r(vector).max(0.001));
+      us = product(u,size);
+      middle = minus(end, product(unit, size ) );
+      left = minus(middle, us);
+      l = minus(end, us);
+      right = plus(middle, us);
+      ri = plus(end, us);
+      d = d + (first?"M":"L");
+      point(left);
+      d = d+"C";
+      point(left);
+      point(l);
+      point(end);
+      d = d+"C";
+      point(end);
+      point(ri);
+      point(right);
+    }
+    first = 1;
+    side(minus(to, from), to, w1/2 );
+    first = 0;
+    side(minus(from, to),from, w2/2);
+    $(this.path).attr("d", d+"Z");
+  },
+});
 var TRSimpleArrowShape = TRLineShape.extend({
 	size: null,
 	baseSize: null,
@@ -2033,12 +2122,7 @@ var TREmptyHeadArrowShape = TRLineShape.extend({
 		$(this.path).attr("d", d);
 	},
 	setColor: function(c){
-		if(c == null) return;
-		this.color = c;
-		if(c.r == undefined) $(this.path).css("fill", c);
-		else $(this.path).css("fill", "rgb("+c.r+","+c.g+"," +c.b+")");
-		if(c.a == null)	c.a = 1;
-		$(this.path).css("fill-opacity", c.a);
+		this.setFillColor(c);
 	},
 	setStrokeColor: function(c){
 		this.strokeColor = c;

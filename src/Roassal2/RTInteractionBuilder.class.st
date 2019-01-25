@@ -78,12 +78,35 @@ RTInteractionBuilder >> hasInteractionOfType: cls [
 
 { #category : #public }
 RTInteractionBuilder >> highlight [
+	"Make elements highlighted when the mouse goes over. Blue is the default color
+	
+For example:
+-=-=-=
+b := RTMondrian new.
+b interaction highlight.
+b shape label.
+b nodes: (1 to: 9).
+b layout grid.
+b
+-=-=-=	
+	"
 	self highlightColored: Color blue
 ]
 
 { #category : #public }
 RTInteractionBuilder >> highlightColored: aColorOrAOneArgBlockOrSymbol [
+	"Make elements highlighted when the mouse goes over. The color is provided as argument
 	
+For example:
+-=-=-=
+b := RTMondrian new.
+b interaction highlightColored: Color red.
+b shape label.
+b nodes: (1 to: 9).
+b layout grid.
+b
+-=-=-=	
+	"
 	self when: TRMouseEnter do: [ :event | 
 		RTBlink 
 			highlight: event element
@@ -111,7 +134,7 @@ b edges connectToAll: [ :v | Array with: v - 1 with: v with: v + 1 ].
 b 
 	
 	"
-	interactions add: [ :element | element @ (RTHighlightable new shouldHighlightEdges; edgeColor: Color red) ]
+	interactions add: [ :element | element @ (RTHighlightable new shouldHighlightEdges; pushFrontEdges; edgeColor: Color red) ]
 ]
 
 { #category : #'public - events-registering' }
@@ -218,7 +241,14 @@ RTInteractionBuilder >> interactionOfType: cls [
 
 { #category : #public }
 RTInteractionBuilder >> item: aTitle action: aBlockOrSymbol [
+	"Run on an element"
 	interactions add: [ :element | element @ (RTMenuActivable new item: aTitle asString action: [ aBlockOrSymbol rtValue: element model ]) ]
+]
+
+{ #category : #public }
+RTInteractionBuilder >> item: aTitle actionElement: aBlockOrSymbol [
+	"Run on an element"
+	interactions add: [ :element | element @ (RTMenuActivable new item: aTitle asString action: [ aBlockOrSymbol rtValue: element ]) ]
 ]
 
 { #category : #public }

@@ -86,7 +86,7 @@ RTUMLClassBuilder >> buildEdges [
 	eb view: view.
 	eb objects: classes.
 	eb shape shape: lineShape shape.
-	[eb connectFrom: self superclass] ifError: [  ].
+	eb connectFrom: self superclass.
 	"eb connectFrom: self superclass to: #yourself."
 	
 	eb := RTEdgeBuilder new.
@@ -109,12 +109,11 @@ RTUMLClassBuilder >> buildSchema: aView [
 		clh := group encompassingRectangle height.
 			
 		label := self attributeShape shape.
-		(object respondsTo: #attributes) ifTrue: [ 
-			(attributes := self attributesOf: object) do: [ :attribute |
-				| lab |
-				lab := label elementOn: attribute.
-				(lab notNil and: [ lab trachelShape text trimmed notEmpty ])
-					ifTrue: [ group add: lab ] ] ].
+		(attributes := self attributesOf: object) do: [ :attribute |
+			| lab |
+			lab := label elementOn: attribute.
+			(lab notNil and: [ lab trachelShape text trimmed notEmpty ])
+				ifTrue: [ group add: lab ] ].
 		RTVerticalLineLayout new gapSize: 0; on: group.
 		r := group encompassingRectangle.
 		h := r height.
@@ -142,15 +141,14 @@ RTUMLClassBuilder >> buildSchema: aView [
 			group add: e1; add: e2; add: l. ].
 		headerline := [ line value: (r left@ clh) value: (r right@ clh)  ].
 		midline := [ line value: (r left@h) value: (r right@h)  ].
-		attributes ifNotNil: [ 
-			attributes isEmpty 
-				ifTrue: [ 
-					methods isEmpty ifTrue: [  ]
-						ifFalse: [ headerline value. ] ]
-				ifFalse: [  
-					headerline value.
-					methods isEmpty ifTrue: [  ]
-						ifFalse: [ midline value ]  ] ].
+		attributes isEmpty 
+			ifTrue: [ 
+				methods isEmpty ifTrue: [  ]
+					ifFalse: [ headerline value. ] ]
+			ifFalse: [  
+				headerline value.
+				methods isEmpty ifTrue: [  ]
+					ifFalse: [ midline value ]  ].
 		
 		RTNest new on: box nest: group.
 	

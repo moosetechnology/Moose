@@ -122,28 +122,24 @@ RTLineDualWidth >> pathFor: anEdge and: trachelShape [
 				nextPutAll: p y asFloat asString;
 				space ].
 			side := [ :vector :end :size | 
-			| left right u unit middle l r |
-			u := vector normal.
-			unit := vector / (vector r max: 0.001).
-			middle := end - (unit * size).
-			left := middle - (u * size).
-			l := end - (u * size).
-			right := middle + (u * size).
-			r := end + (u * size).
-			s
-				nextPutAll:
-					(first
-						ifTrue: [ 'M ' ]
-						ifFalse: [ 'L' ]).
-			point value: left.
-			s nextPutAll: 'C '.
-			point value: left.
-			point value: l.
-			point value: end.
-			s nextPutAll: 'C '.
-			point value: end.
-			point value: r.
-			point value: right. ].
+				| left right u unit middle l r |
+				u := vector normal.
+				unit := vector / (vector r max: 0.001).
+				middle := end - (unit * size).
+				left := middle - (u * size).
+				l := end - (u * size).
+				right := middle + (u * size).
+				r := end + (u * size).
+				s nextPutAll: (first ifTrue: [ 'M ' ] ifFalse: [ 'L' ]).
+				point value: left.
+				s nextPutAll: 'C '.
+				point value: left.
+				point value: l.
+				point value: end.
+				s nextPutAll: 'C '.
+				point value: end.
+				point value: r.
+				point value: right. ].
 			"this creates the line"
 			first := true.
 			side value: to - from value: to value: w1 / 2.
@@ -164,9 +160,19 @@ RTLineDualWidth >> updateFor: edge trachelShape: trachelShape [
 ]
 
 { #category : #initialization }
+RTLineDualWidth >> widthFrom [
+	^ widthFrom
+]
+
+{ #category : #initialization }
 RTLineDualWidth >> widthFrom: aNumber [
 	widthFrom := aNumber
 	
+]
+
+{ #category : #initialization }
+RTLineDualWidth >> widthTo [
+	^ widthTo
 ]
 
 { #category : #initialization }

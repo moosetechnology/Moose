@@ -9,6 +9,11 @@ Class {
 	#category : #'Trachel-Shapes'
 }
 
+{ #category : #visitor }
+TRSVGPathLineShape >> accept: visitor [
+	visitor visitSVGPathLine: self
+]
+
 { #category : #private }
 TRSVGPathLineShape >> computePath [
 	path := self athensCanvas

@@ -57,6 +57,15 @@ TRCompositeShape >> addedIn: aCanvas atIndex: index [
 ]
 
 { #category : #'public - layout' }
+TRCompositeShape >> alignCenter [
+	" Layout the shapes centered "
+
+	RTAlignment new elements: self shapes; center.
+	shapeAndOffsets do: [ :tuple | tuple at: 2 put: tuple first position ].
+	self resetInnerShapes
+]
+
+{ #category : #'public - layout' }
 TRCompositeShape >> alignRight [
 	"Layout the shapes horizontally"
 

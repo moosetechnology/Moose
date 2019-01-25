@@ -118,6 +118,101 @@ RTComposerTest >> testGroup02 [
 ]
 
 { #category : #tests }
+RTComposerTest >> testLayoutOnNestingElements [
+	| lb rectangles |
+	
+	rectangles :=  #(a b) collect: [ :each |
+		lb := RTLegendBuilder new.
+		lb view: composer view.
+		lb build.
+		composer group: each.
+		(composer getGroup: each) encompassingRectangle ].
+	composer layout: RTGridLayout new.
+	#(a b) doWithIndex: [ :each :index | | group rec1 rec2 |
+		group := composer getGroup: each.
+		rec1 := group encompassingRectangle.
+		rec2 := rectangles at: index.
+		self assert: rec1 extent equals: rec2 extent.
+		self assert: rec1 equals: group first encompassingRectangle.
+		 ].
+	
+]
+
+{ #category : #tests }
+RTComposerTest >> testLayoutOnNestingElementsAndLabeledShapes [
+	| classesToAnalyze c b es r1 r2 |
+	classesToAnalyze := TRShape withAllSubclasses.
+	c := RTComposer new.
+	c gap: 35.
+	b := RTPieBuilder new.
+	b view: c view.
+	b interaction popup.
+	b objects: classesToAnalyze.
+	es := b slice: #numberOfLinesOfCode.
+	b normalizer
+		elements: es;
+		distinctColor.
+	b build.
+	c group: #pie.
+	b := RTMondrian new.
+	b view: c view.
+	b shape circle
+		withTextAbove: #name;
+		if: [ :cls | cls numberOfMethods > 10 ] fillColor: Color red.
+	b nodes: classesToAnalyze.
+	b edges connectFrom: #superclass.
+	b normalizer
+		normalizeSize: #numberOfLinesOfCode
+		min: 5
+		max: 15
+		using: #sqrt.
+	b layout horizontalTree.
+	b build.
+	c group: #hierarchy.
+	r1 := (c getGroup: #hierarchy) encompassingRectangle.
+	b := RTLegendBuilder new.
+	b view: c view.
+	b addText: 'Classes'.
+	b build.
+	c group: #legend.
+	c layout: RTGridLayout new.
+	
+	r2 := (c getGroup: #hierarchy) encompassingRectangle.
+	self assert: (r1 extent - r2 extent) < (0.001 @ 0.001) 
+]
+
+{ #category : #tests }
+RTComposerTest >> testMovingNestingElements [
+	| lb rectangles assertPosition |
+	
+	rectangles :=  #(a b) collect: [ :each |
+		lb := RTLegendBuilder new.
+		lb view: composer view.
+		lb build.
+		composer group: each.
+		(composer getGroup: each) encompassingRectangle ].
+	
+	assertPosition := [ 
+	#(a b) doWithIndex: [ :each :index | | group rec1 rec2 |
+		group := composer getGroup: each.
+		rec1 := group encompassingRectangle.
+		rec2 := rectangles at: index.
+		self assert: rec1 extent equals: rec2 extent.
+		self assert: rec1 equals: group first encompassingRectangle.
+		 ] ].
+	composer move: #a above: #b. 
+	assertPosition value.
+	composer move: #a below: #b. 
+	assertPosition value.
+	composer move: #a belowAlignFromLeft: #b. 
+	assertPosition value.
+	composer move: #a onTheLeftOf: #b. 
+	assertPosition value.
+	composer move: #a onTheRightOf: #b. 
+	assertPosition value.
+]
+
+{ #category : #tests }
 RTComposerTest >> testOnTheLeftOf [
 	| e1 e2 |
 	e1 := RTBox element.

@@ -37,8 +37,9 @@ RTAreaDecorator >> points: pts [
 { #category : #rendering }
 RTAreaDecorator >> render [
 	| svg path t |
-	svg := TRSVGPath new.
-	svg color: color.
+	svg := RTSVGPath new
+		color: color;
+		borderWidth: 0.
 	t := builder getPixelPositionOf: 0@0.
 	path := String new writeStream.
 	path 
@@ -63,6 +64,6 @@ RTAreaDecorator >> render [
 		nextPutAll: t y asFloat asString;
 		nextPutAll: 'Z'.
 	svg path: path contents.
-	builder view canvas addShape: svg.
+	builder view add: svg element.
 	
 ]

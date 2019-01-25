@@ -669,6 +669,32 @@ RTMondrianTest >> testSourceError [
 ]
 
 { #category : #'tests - edges' }
+RTMondrianTest >> testUseAssociation [
+
+	| result |
+	b := RTMondrian new.
+	b nodes: #(1 2).
+	result := b edges useAssociation: 1 -> 2.
+	b build.
+	
+	self assert: b view numberOfEdges equals: 1.
+	self assert: result class == RTEdge.
+]
+
+{ #category : #'tests - edges' }
+RTMondrianTest >> testUseAssociation2 [
+
+	| result |
+	b := RTMondrian new.
+	b nodes: #(1 2).
+	result := b edges useAssociation: 1 -> 10.
+	b build.
+	
+	self assert: b view numberOfEdges equals: 0.
+	self assert: result isNil
+]
+
+{ #category : #'tests - edges' }
 RTMondrianTest >> testUseAssociationsWithError [
 
 	b := RTMondrian new.
