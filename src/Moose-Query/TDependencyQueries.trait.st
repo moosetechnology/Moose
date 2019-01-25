@@ -343,3 +343,27 @@ TDependencyQueries >> queryOutgoingTypeDeclarationsIn: aCollection [
 	aCollection addAll: self outgoingTypeDeclarations.
 	^ aCollection
 ]
+
+{ #category : #'moosequery-queries-generic' }
+TDependencyQueries >> sourceThrough: aFAMIXClassAssociation [
+	"Collect the source of the FAMIXClassAssociation class for the receiver and its children.
+	
+	Example:
+		aFAMIXClass sourceThrough: FAMIXReference.
+			--> Will return a MooseIncomingQueryResult containing the methods having aFAMIXClass or its children as source
+	"
+
+	^ (MooseQueryCalculator strategy: MooseQueryIncomingDirectionStrategy) through: aFAMIXClassAssociation for: self
+]
+
+{ #category : #'moosequery-queries-generic' }
+TDependencyQueries >> targetThrough: aFAMIXClassAssociation [
+	"Collect the target of the FAMIXClassAssociation class for the receiver and its children.
+	
+	Example:
+		aFAMIXMethod sourceThrough: FAMIXReference.
+			--> Will return a MooseIncomingQueryResult containing the class having aFAMIXClass or its children as target
+	"
+
+	^ (MooseQueryCalculator strategy: MooseQueryOutgoingDirectionStrategy) through: aFAMIXClassAssociation for: self
+]
