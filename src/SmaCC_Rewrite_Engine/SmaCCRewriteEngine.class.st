@@ -49,16 +49,6 @@ SmaCCRewriteEngine >> finished [
 		ifTrue: [ self rewriteRule clearLocalVariablesIn: contextClass ]
 ]
 
-{ #category : #accessing }
-SmaCCRewriteEngine >> ignoreFile [
-	^ self propertyAt: #ignoreFile ifAbsent: [ false ]
-]
-
-{ #category : #accessing }
-SmaCCRewriteEngine >> ignoreFile: aBoolean [
-	^ self propertyAt: #ignoreFile put: aBoolean
-]
-
 { #category : #'initialize-release' }
 SmaCCRewriteEngine >> initialize [
 	super initialize.

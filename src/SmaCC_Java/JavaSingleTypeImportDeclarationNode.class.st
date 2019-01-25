@@ -1,6 +1,6 @@
 Class {
 	#name : #JavaSingleTypeImportDeclarationNode,
-	#superclass : #JavaDeclarationNode,
+	#superclass : #JavaProgramNode,
 	#instVars : [
 		'importToken',
 		'staticToken',

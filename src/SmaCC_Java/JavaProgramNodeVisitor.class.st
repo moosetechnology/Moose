@@ -6,7 +6,7 @@ Class {
 
 { #category : #generated }
 JavaProgramNodeVisitor >> visitAbstractMethodDeclaration: anAbstractMethodDeclaration [
-	^ self visitDeclaration: anAbstractMethodDeclaration
+	^ self visitProgram: anAbstractMethodDeclaration
 ]
 
 { #category : #generated }
@@ -116,7 +116,7 @@ JavaProgramNodeVisitor >> visitCharacterLiteral: aCharacterLiteral [
 
 { #category : #generated }
 JavaProgramNodeVisitor >> visitClassDeclaration: aClassDeclaration [
-	^ self visitDeclaration: aClassDeclaration
+	^ self visitProgram: aClassDeclaration
 ]
 
 { #category : #generated }
@@ -141,17 +141,12 @@ JavaProgramNodeVisitor >> visitConstructorBody: aConstructorBody [
 
 { #category : #generated }
 JavaProgramNodeVisitor >> visitConstructorDeclaration: aConstructorDeclaration [
-	^ self visitDeclaration: aConstructorDeclaration
+	^ self visitProgram: aConstructorDeclaration
 ]
 
 { #category : #generated }
 JavaProgramNodeVisitor >> visitContinueStatement: aContinueStatement [
 	^ self visitStatement: aContinueStatement
-]
-
-{ #category : #generated }
-JavaProgramNodeVisitor >> visitDeclaration: aDeclaration [
-	^ self visitProgram: aDeclaration
 ]
 
 { #category : #generated }
@@ -186,7 +181,7 @@ JavaProgramNodeVisitor >> visitElementValuePair: anElementValuePair [
 
 { #category : #generated }
 JavaProgramNodeVisitor >> visitEmptyDeclaration: anEmptyDeclaration [
-	^ self visitDeclaration: anEmptyDeclaration
+	^ self visitProgram: anEmptyDeclaration
 ]
 
 { #category : #generated }
@@ -206,7 +201,7 @@ JavaProgramNodeVisitor >> visitEnumConstant: anEnumConstant [
 
 { #category : #generated }
 JavaProgramNodeVisitor >> visitEnumDeclaration: anEnumDeclaration [
-	^ self visitDeclaration: anEnumDeclaration
+	^ self visitProgram: anEnumDeclaration
 ]
 
 { #category : #generated }
@@ -226,7 +221,7 @@ JavaProgramNodeVisitor >> visitFieldAccess: aFieldAccess [
 
 { #category : #generated }
 JavaProgramNodeVisitor >> visitFieldDeclaration: aFieldDeclaration [
-	^ self visitDeclaration: aFieldDeclaration
+	^ self visitProgram: aFieldDeclaration
 ]
 
 { #category : #generated }
@@ -301,7 +296,7 @@ JavaProgramNodeVisitor >> visitLiteral: aLiteral [
 
 { #category : #generated }
 JavaProgramNodeVisitor >> visitLocalVariableDeclaration: aLocalVariableDeclaration [
-	^ self visitDeclaration: aLocalVariableDeclaration
+	^ self visitProgram: aLocalVariableDeclaration
 ]
 
 { #category : #generated }
@@ -316,7 +311,7 @@ JavaProgramNodeVisitor >> visitLongType: aLongType [
 
 { #category : #generated }
 JavaProgramNodeVisitor >> visitMethodDeclaration: aMethodDeclaration [
-	^ self visitDeclaration: aMethodDeclaration
+	^ self visitProgram: aMethodDeclaration
 ]
 
 { #category : #generated }
@@ -366,7 +361,7 @@ JavaProgramNodeVisitor >> visitNull: aNull [
 
 { #category : #generated }
 JavaProgramNodeVisitor >> visitPackageDeclaration: aPackageDeclaration [
-	^ self visitDeclaration: aPackageDeclaration
+	^ self visitProgram: aPackageDeclaration
 ]
 
 { #category : #generated }
@@ -431,7 +426,7 @@ JavaProgramNodeVisitor >> visitShortType: aShortType [
 
 { #category : #generated }
 JavaProgramNodeVisitor >> visitSingleTypeImportDeclaration: aSingleTypeImportDeclaration [
-	^ self visitDeclaration: aSingleTypeImportDeclaration
+	^ self visitProgram: aSingleTypeImportDeclaration
 ]
 
 { #category : #generated }
@@ -562,7 +557,7 @@ JavaProgramNodeVisitor >> visitVariableArgumentParameter: aVariableArgumentParam
 
 { #category : #generated }
 JavaProgramNodeVisitor >> visitVariableDeclaration: aVariableDeclaration [
-	^ self visitDeclaration: aVariableDeclaration
+	^ self visitProgram: aVariableDeclaration
 ]
 
 { #category : #generated }

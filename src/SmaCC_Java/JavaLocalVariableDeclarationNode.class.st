@@ -1,6 +1,6 @@
 Class {
 	#name : #JavaLocalVariableDeclarationNode,
-	#superclass : #JavaDeclarationNode,
+	#superclass : #JavaProgramNode,
 	#instVars : [
 		'modifiers',
 		'type',

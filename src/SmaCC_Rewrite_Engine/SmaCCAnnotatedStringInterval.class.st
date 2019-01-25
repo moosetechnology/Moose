@@ -39,7 +39,7 @@ SmaCCAnnotatedStringInterval >> canBeMergedWith: nextSmaCCStringInterval [
 	^ false
 ]
 
-{ #category : #copying }
+{ #category : #testing }
 SmaCCAnnotatedStringInterval >> postCopy [
 	super postCopy.
 	annotations := annotations copy
