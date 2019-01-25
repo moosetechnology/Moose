@@ -307,7 +307,7 @@ MooseQueryTest >> testHasNotIncomingInvocation [
 ]
 
 { #category : #tests }
-MooseQueryTest >> testHasNotLocalIncomint [
+MooseQueryTest >> testHasNotLocalIncoming [
 	self deny: isolatedMethod hasLocalIncoming.
 	self deny: isolatedClass hasLocalIncoming.
 	self deny: isolatedPackage hasLocalIncoming
