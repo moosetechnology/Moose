@@ -234,6 +234,16 @@ MooseQueryTest >> testExplicitDirectionQueryEquivalentToQueryWithDirectionSymbol
 ]
 
 { #category : #tests }
+MooseQueryTest >> testHasOutgoingInvocation [
+	"queryOutgoing: is equivalent to query: #out with:"
+
+	self assert: (method1 hasOutgoing: FamixTInvocation).
+	self assert: (method1 has: #out with: FamixTInvocation).
+	self assert: (class2 hasOutgoing: FamixTInvocation).
+	self assert: (class2 has: #out with: FamixTInvocation)
+]
+
+{ #category : #tests }
 MooseQueryTest >> testIncomingAssociationTypes [
 	self assertCollection: var2 incomingAssociationTypes hasSameElements: {FamixTAccess}.
 	self

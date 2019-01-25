@@ -104,6 +104,18 @@ TDependencyQueries >> createOutgoingQueryResultWith: aCollection [
 	^ MooseOutgoingQueryResult on: self withAll: aCollection
 ]
 
+{ #category : #'moosequery-queries-generic' }
+TDependencyQueries >> hasOutgoing: aFAMIXClassAssociation [
+	"Query all the outgoing associations of the FAMIXClassAssociation class for the receiver and its children.
+	
+	Example:
+		aFAMIXClass queryOutgoing: FAMIXInheritance.
+			--> Will return a MooseOutgoingQueryResult containing the FAMIXInheritance associations having aFAMIXClass or its children as source
+	"
+
+	^ (MooseQueryCalculator strategy: MooseQueryOutgoingDirectionStrategy) has: aFAMIXClassAssociation for: self
+]
+
 { #category : #'moosequery-queries-incoming' }
 TDependencyQueries >> incomingTypeDeclarations [
 	"Should return the incoming type declarations of the entity as MooseQueryTypeDeclarationAssociation.
