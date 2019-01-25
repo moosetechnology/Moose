@@ -240,6 +240,13 @@ MooseQueryTest >> testExplicitDirectionQueryEquivalentToQueryWithDirectionSymbol
 ]
 
 { #category : #tests }
+MooseQueryTest >> testHasIncoming [
+
+	self assert: (method2 hasIncoming).
+	self assert: (class2 hasIncoming).
+]
+
+{ #category : #tests }
 MooseQueryTest >> testHasIncomingInvocation [
 	"queryIncoming: is equivalent to query: #in with:"
 
@@ -247,6 +254,14 @@ MooseQueryTest >> testHasIncomingInvocation [
 	self assert: (method2 has: #in with: FamixTInvocation).
 	self assert: (class2 hasIncoming: FamixTInvocation).
 	self assert: (class2 has: #in with: FamixTInvocation).
+]
+
+{ #category : #tests }
+MooseQueryTest >> testHasLocalIncoming [
+
+	self assert: (method2 hasLocalIncoming).
+	self deny: (class1 hasLocalIncoming).
+	self deny: (package2 hasLocalIncoming).
 ]
 
 { #category : #tests }
@@ -258,11 +273,25 @@ MooseQueryTest >> testHasLocalIncomingInvocation [
 ]
 
 { #category : #tests }
+MooseQueryTest >> testHasLocalOutgoing [
+	self assert: method2 hasLocalOutgoing.
+	self deny: class2 hasLocalOutgoing.
+	self deny: package2 hasLocalOutgoing
+]
+
+{ #category : #tests }
 MooseQueryTest >> testHasLocalOutgoingInvocation [
 
 	self assert: (method2 hasLocalOutgoing: FamixTInvocation).
 	self deny: (class2 hasLocalOutgoing: FamixTInvocation).
 	self deny: (package2 hasLocalOutgoing: FamixTInvocation).
+]
+
+{ #category : #tests }
+MooseQueryTest >> testHasNotIncoming [
+	self deny: isolatedMethod hasIncoming.
+	self deny: isolatedClass hasIncoming.
+	self deny: isolatedPackage hasIncoming
 ]
 
 { #category : #tests }
@@ -278,6 +307,27 @@ MooseQueryTest >> testHasNotIncomingInvocation [
 ]
 
 { #category : #tests }
+MooseQueryTest >> testHasNotLocalIncomint [
+	self deny: isolatedMethod hasLocalIncoming.
+	self deny: isolatedClass hasLocalIncoming.
+	self deny: isolatedPackage hasLocalIncoming
+]
+
+{ #category : #tests }
+MooseQueryTest >> testHasNotLocalOutgoing [
+	self deny: isolatedMethod hasLocalOutgoing.
+	self deny: isolatedClass hasLocalOutgoing.
+	self deny: isolatedPackage hasLocalOutgoing
+]
+
+{ #category : #tests }
+MooseQueryTest >> testHasNotOutgoing [
+	self deny: isolatedMethod hasOutgoing.
+	self deny: isolatedClass hasOutgoing.
+	self deny: isolatedPackage hasOutgoing
+]
+
+{ #category : #tests }
 MooseQueryTest >> testHasNotOutgoingInvocation [
 	"hasOutgoing: is equivalent to has: #out with:"
 
@@ -287,6 +337,13 @@ MooseQueryTest >> testHasNotOutgoingInvocation [
 	self deny: (isolatedClass has: #out with: FamixTInvocation).
 	self deny: (isolatedPackage hasOutgoing: FamixTInvocation).
 	self deny: (isolatedPackage has: #out with: FamixTInvocation)
+]
+
+{ #category : #tests }
+MooseQueryTest >> testHasOutgoing [
+
+	self assert: (method2 hasOutgoing).
+	self assert: (class2 hasOutgoing).
 ]
 
 { #category : #tests }

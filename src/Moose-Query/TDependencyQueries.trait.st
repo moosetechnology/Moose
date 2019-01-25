@@ -186,7 +186,7 @@ TDependencyQueries >> hasLocalIncoming [
 			--> Will return true if aFAMIXMethod has the incoming FAMIXAssociation 
 			"
  
-	^ (MooseQueryCalculator direction: MooseQueryIncomingDirectionStrategy) hasLocalFor: self
+	^ (MooseQueryCalculator strategy: MooseQueryIncomingDirectionStrategy) hasLocalFor: self
 ]
 
 { #category : #'moosequery-queries-generic' }
