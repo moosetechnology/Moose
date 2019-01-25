@@ -21,7 +21,10 @@ Class {
 		'namespace',
 		'var3',
 		'ref1',
-		'methodExt'
+		'methodExt',
+		'isolatedPackage',
+		'isolatedClass',
+		'isolatedMethod'
 	],
 	#category : #'Moose-Query-Test'
 }
@@ -37,13 +40,16 @@ MooseQueryTest >> setUp [
 	model := MooseModel new.
 	package1 := FAMIXPackage new name: 'package1' ; mooseModel: model.
 	package2 := FAMIXPackage new name: 'package2' ; mooseModel: model.
+	isolatedPackage := FAMIXPackage new name: 'isolatedPackage' ; mooseModel: model.
 	namespace := FAMIXNamespace new name: 'Smalltalk' ; mooseModel: model.
 	class1 := FAMIXClass new name: 'class1' ; parentPackage: package1 ; container: namespace ; mooseModel: model.
 	class2 := FAMIXClass new name: 'class2' ; parentPackage: package2 ; mooseModel: model.
+	isolatedClass := FAMIXClass new name: 'isolatedClass' ; parentPackage: isolatedPackage ; mooseModel: model.
 	inh := FAMIXInheritance new subclass: class1 ; superclass: class2 ; mooseModel: model.
 	method1 := FAMIXMethod new name: 'method1' ; parentType: class1 ; mooseModel: model.
 	method2 := FAMIXMethod new name: 'method2' ; parentType: class2 ; mooseModel: model.
 	method3 := FAMIXMethod new name: 'method3' ; parentType: class2 ; mooseModel: model.
+	isolatedMethod := FAMIXMethod new name: 'isolatedMethod' ; parentType: isolatedClass ; mooseModel: model.
 	methodExt := FAMIXMethod new name: 'methodExt' ; parentType: class2 ; parentPackage: package1 ; mooseModel: model.
 	var1 := FAMIXAttribute new name: 'var1' ; parentType: class2 ; declaredType: class1 ; mooseModel: model.
 	var2 := FAMIXAttribute new name: 'var2' ; parentType: class2 ; mooseModel: model.
@@ -231,6 +237,40 @@ MooseQueryTest >> testExplicitDirectionQueryEquivalentToQueryWithDirectionSymbol
 	self
 		assert: (class2 queryOutgoing: FAMIXInvocation)
 		equals: (class2 query: #out with: FAMIXInvocation)
+]
+
+{ #category : #tests }
+MooseQueryTest >> testHasIncomingInvocation [
+	"queryIncoming: is equivalent to query: #in with:"
+
+	self assert: (method2 hasIncoming: FamixTInvocation).
+	self assert: (method2 has: #in with: FamixTInvocation).
+	self assert: (class2 hasIncoming: FamixTInvocation).
+	self assert: (class2 has: #in with: FamixTInvocation).
+]
+
+{ #category : #tests }
+MooseQueryTest >> testHasNotIncomingInvocation [
+	"hasIncoming: is equivalent to has: #in with:"
+
+	self deny: (isolatedMethod hasIncoming: FamixTInvocation).
+	self deny: (isolatedMethod has: #in with: FamixTInvocation).
+	self deny: (isolatedClass hasIncoming: FamixTInvocation).
+	self deny: (isolatedClass has: #in with: FamixTInvocation).
+	self deny: (isolatedPackage hasIncoming: FamixTInvocation).
+	self deny: (isolatedPackage has: #in with: FamixTInvocation)
+]
+
+{ #category : #tests }
+MooseQueryTest >> testHasNotOutgoingInvocation [
+	"hasOutgoing: is equivalent to has: #out with:"
+
+	self deny: (isolatedMethod hasOutgoing: FamixTInvocation).
+	self deny: (isolatedMethod has: #out with: FamixTInvocation).
+	self deny: (isolatedClass hasOutgoing: FamixTInvocation).
+	self deny: (isolatedClass has: #out with: FamixTInvocation).
+	self deny: (isolatedPackage hasOutgoing: FamixTInvocation).
+	self deny: (isolatedPackage has: #out with: FamixTInvocation)
 ]
 
 { #category : #tests }
