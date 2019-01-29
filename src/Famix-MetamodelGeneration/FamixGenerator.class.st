@@ -921,7 +921,8 @@ FamixGenerator >> defineGlueingTraits [
 
 	tContainingWithInvocationsGlue := builder newTraitNamed: #TContainingWithInvocationsGlue.
 	tContainingWithInvocationsGlue glueingCondition: [ :aClass | 
-		aClass isContainerOfClassThatUses: tWithInvocations ].
+		(aClass isContainerOfClassThatUses: tWithInvocations)
+			and: [ (aClass directlyUses: tInvocable) not ] ].
 
 
 ]
