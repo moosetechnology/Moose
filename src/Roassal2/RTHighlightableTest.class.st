@@ -9,7 +9,7 @@ Class {
 
 { #category : #tests }
 RTHighlightableTest >> testArrowedLine [
-	| v es previousColor trachelShape trachelShapecolor previousColorHead head line |
+	| v es previousColor trachelShape head line |
 	v := RTView new.
 	es := RTEllipse elementsOn: (1 to: 2).
 	es @ RTDraggable.

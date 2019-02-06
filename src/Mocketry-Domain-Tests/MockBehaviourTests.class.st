@@ -199,7 +199,7 @@ MockBehaviourTests >> testCurrentBehaviourShouldNotChangeInsideSingleTest [
 { #category : #tests }
 MockBehaviourTests >> testCurrentBehaviourWhenDefaultEnvironment [
 
-	| behaviour2 defaultEnv |
+	| behaviour2 |
 	[DefaultExecutionEnvironment beActive.	
 	behaviour := MockCurrentBehaviour value.
 	behaviour should not be: nil.
@@ -229,7 +229,7 @@ MockBehaviourTests >> testCurrentMetaLevelWhenThereIsNoTestForCurrentEnvironment
 { #category : #tests }
 MockBehaviourTests >> testCurrentMetaLevelWhenThereIsTestForCurrentEnvironment [
 
-	| metaLevel env |
+	| metaLevel |
 	metaLevel := behaviour currentMetaLevel.
 	
 	metaLevel should be: GHMetaLevel empty
