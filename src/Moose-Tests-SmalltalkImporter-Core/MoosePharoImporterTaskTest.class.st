@@ -13,3 +13,12 @@ MoosePharoImporterTaskTest >> testDefaultImporterClass [
 MoosePharoImporterTaskTest >> testDefaultModel [
 	self assert: (MoosePharoImporterTask new model isKindOf: MooseModel)
 ]
+
+{ #category : #tests }
+MoosePharoImporterTaskTest >> testImportedModelHasSmalltalkMetamodel [
+	| model |
+	model := MoosePharoImporterTask new factory: SmalltalkMetamodelFactory; addFromPackageNamed: 'Moose-Tests-SmalltalkImporter-Core'; basicRun .
+	self assert: model metamodel equals: FamixPharoSmalltalkGenerator metamodel.
+	model := MoosePharoImporterTask new factory: SmalltalkCompatibilityMetamodelFactory; addFromPackageNamed: 'Moose-Tests-SmalltalkImporter-Core'; basicRun .
+	self assert: model metamodel equals: FamixPharoSmalltalkGenerator metamodel
+]
