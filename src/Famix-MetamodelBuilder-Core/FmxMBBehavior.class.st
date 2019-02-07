@@ -361,7 +361,7 @@ FmxMBBehavior >> propertyName [
 { #category : #accessing }
 FmxMBBehavior >> realClass [
 
-	^ realClass ifNil: [ Smalltalk at: self fullName  ]
+	^ realClass ifNil: [ self builder environment ringEnvironment ensureClassNamed: (self fullName)  ]
 ]
 
 { #category : #accessing }
