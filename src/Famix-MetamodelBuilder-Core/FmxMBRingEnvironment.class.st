@@ -70,7 +70,7 @@ FmxMBRingEnvironment >> createClassNamed: aClassName superclass: aSuperclass tra
 		ifTrue: [ ^ existingClass ].
 		
 	aClass := self ringEnvironment ensureClassNamed: aClassName.
-	aClass superclass: aSuperclass.
+	aClass superclass: (self ringEnvironment ensureClassNamed: aSuperclass name).
 
 	composition := RGTraitComposition parent: aClass.
 	aClass traitComposition: composition.
