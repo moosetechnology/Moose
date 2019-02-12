@@ -233,7 +233,7 @@ FmxMBClass >> generateRemotes [
 	
 	aClassName := self fullName.
 	
-	aClass := Smalltalk at: aClassName asSymbol.
+	aClass := self class environment at: aClassName asSymbol ifAbsent: [ self builder environment classNamed: aClassName asSymbol ].
 	
 	self realClass: aClass.
 	
