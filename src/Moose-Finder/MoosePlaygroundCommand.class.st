@@ -24,7 +24,7 @@ MoosePlaygroundCommand >> initialize [
 MoosePlaygroundCommand >> newAcceptButtonFor: aPlayPage [
 	^ self newActionButton
 		hintTitle: 'Accept';
-		hintText: 'load saved page into playground';
+		hintText: 'add model in the playground';
 		icon: (self iconNamed: #glamorousAccept);
 		action: [ :b | 
 			self remove.
@@ -50,7 +50,7 @@ MoosePlaygroundCommand >> newActionButton [
 MoosePlaygroundCommand >> newEmptyText [
 
 	^ GLMLabelBrick new
-			text: 'No saved pages';
+			text: 'No models loaded';
 			hSpaceFill;
 			textPosition: #center;
 			padding: self themer bindingThemer emptyTextPadding;

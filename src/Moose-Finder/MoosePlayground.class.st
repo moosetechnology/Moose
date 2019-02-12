@@ -54,7 +54,7 @@ MoosePlayground >> compose [
 					(self codeIn: composite)
 						title: 'Playground';
 						titleIcon: MooseIcons mooseEvaluator;
-						addAction:
+					addAction:
 					(GLMPopupAction new
 						action: [ :text :page :popup | 
 							MoosePlaygroundCommand new
@@ -70,7 +70,7 @@ MoosePlayground >> compose [
 												, String crlf , text entity content.
 									text update ];
 								yourself ];
-						iconName: #glamorousMore;
+						icon: MooseIcons mooseMetamodelGroup;
 						title: 'Model installed';
 						yourself).
 					self modelsIn: composite.
