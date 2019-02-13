@@ -31,7 +31,8 @@ RTPopupTest >> setUp [
 { #category : #running }
 RTPopupTest >> tearDown [
 
-	RTAbstractPopup withAllSubclassesDo: [ :c | c resetLastPopup ]
+	RTAbstractPopup withAllSubclassesDo: [ :c | c resetLastPopup ].
+	super tearDown
 ]
 
 { #category : #tests }
