@@ -23,41 +23,67 @@ MoosePlayground class >> menuCommandOn: aBuilder [
 { #category : #building }
 MoosePlayground >> compose [
 	self title: 'Moose Playground'.
-	self act: [:b | b update] icon: GLMUIThemeExtraIcons glamorousRefresh entitled: 'Update'.
-	self act: [:b | 
-		HelpBrowser open selectTopicSatisfying: [:each |
-			each owner notNil and:  [
-			(each owner key = GTPlaygroundHelp key) and: [
-				each title = 'Overview' ] ] ] ] 
-		icon: GLMUIThemeExtraIcons glamorousHelp 
+	self
+		act: [ :b | b update ]
+		icon: GLMUIThemeExtraIcons glamorousRefresh
+		entitled: 'Update'.
+	self
+		act: [ :b | 
+			HelpBrowser open
+				selectTopicSatisfying: [ :each | 
+					each owner notNil
+						and: [ each owner key = GTPlaygroundHelp key
+								and: [ each title = 'Overview' ] ] ] ]
+		icon: GLMUIThemeExtraIcons glamorousHelp
 		entitled: 'Help'.
-		
-	self act: [ :b | 
-			SettingBrowser new 
-				changePackageSet: { (RPackageOrganizer default packageNamed: 'GT-Playground') }; 
-				open; 
-				expandAll ] 
+	self
+		act: [ :b | 
+			SettingBrowser new
+				changePackageSet: {(RPackageOrganizer default packageNamed: 'GT-Playground')};
+				open;
+				expandAll ]
 		icon: (Smalltalk ui icons iconNamed: #smallCogInitialState)
 		entitled: 'Global Setting'.
-		
-	self custom:
+	self
+		custom:
 			(GTInspector new
-				noTitle; 
+				noTitle;
 				noActions;
 				wantsAutomaticRefresh: true;
-				showFirst: [ :composite |
-					(self codeIn: composite) title: 'Playground'; titleIcon: MooseIcons mooseEvaluator.
+				showFirst: [ :composite | 
+					(self codeIn: composite)
+						title: 'Playground';
+						titleIcon: MooseIcons mooseEvaluator;
+					addAction:
+					(GLMPopupAction new
+						action: [ :text :page :popup | 
+							MoosePlaygroundCommand new
+								on: MooseModel;
+								when: #pageAccepted
+									do: [ :aMooseModel | 
+									| position |
+									MooseModel root indexOf: aMooseModel.
+									text entity
+										saveContent:
+											'model := MooseModel root at: '
+												, (MooseModel root indexOf: aMooseModel) asString , '.'
+												, String crlf , text entity content.
+									text update ];
+								yourself ];
+						icon: MooseIcons mooseMetamodelGroup;
+						title: 'Model installed';
+						yourself).
 					self modelsIn: composite.
-					(FileSystem workingDirectory gtInspectorItemsIn: composite) title: 'Current directory'; titleIcon: MooseIcons mooseFolder. ];
-				yourself);
-		when: GLMBrowserClosing do: [ :ann |
-			self actOnBrowserClosing: ann ].
-	
-	GTInspector isStepRefreshEnabled ifTrue: [
-		self wantsAutomaticRefresh: true.
-		self wantsSteps: true.
-		self stepTime: GTInspector stepRefreshRate ]
-	
+					(FileSystem workingDirectory gtInspectorItemsIn: composite)
+						title: 'Current directory';
+						titleIcon: MooseIcons mooseFolder ];
+				 yourself);
+		when: GLMBrowserClosing
+			do: [ :ann | self actOnBrowserClosing: ann ].
+	GTInspector isStepRefreshEnabled
+		ifTrue: [ self wantsAutomaticRefresh: true.
+			self wantsSteps: true.
+			self stepTime: GTInspector stepRefreshRate ]
 ]
 
 { #category : #building }
