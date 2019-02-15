@@ -149,6 +149,12 @@ FMMultivalueLink >> remove: anElement ifAbsent: exceptionBlock [
 	^anElement
 ]
 
+{ #category : #removing }
+FMMultivalueLink >> removeAll [
+	values reversed
+		do: [ :anElement | anElement perform: opposite with: nil ]
+]
+
 { #category : #'accessing-computed' }
 FMMultivalueLink >> second [
 	^ self at: 2

@@ -42,6 +42,12 @@ FMMultiMultivalueLink >> remove: anElement ifAbsent: exceptionBlock [
 	^anElement
 ]
 
+{ #category : #removing }
+FMMultiMultivalueLink >> removeAll [
+	values reversed
+		do: [ :anElement | (anElement perform: opposite) remove: owner ]
+]
+
 { #category : #private }
 FMMultiMultivalueLink >> with: element opposite: oppositeSelector [
 	self assert: oppositeSelector numArgs = 0.
