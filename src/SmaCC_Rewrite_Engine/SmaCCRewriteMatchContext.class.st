@@ -373,6 +373,16 @@ SmaCCRewriteMatchContext >> hasChildAtStartOf: anObject [
 	^ self hasChild: anObject position: #startPosition
 ]
 
+{ #category : #accessing }
+SmaCCRewriteMatchContext >> ignoreFile [
+	^ rewriteEngine ignoreFile
+]
+
+{ #category : #accessing }
+SmaCCRewriteMatchContext >> ignoreFile: aBoolean [
+	^ rewriteEngine ignoreFile: aBoolean
+]
+
 { #category : #'accessing-properites' }
 SmaCCRewriteMatchContext >> initializeGlobalProperty: aSymbol withValueFrom: aBlock [
 	(self class classPool at: aSymbol ifAbsent: [ nil ]) == SmaCCRewriteMatchContext uninitializedValue

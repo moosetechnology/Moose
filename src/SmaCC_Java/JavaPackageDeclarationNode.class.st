@@ -1,6 +1,6 @@
 Class {
 	#name : #JavaPackageDeclarationNode,
-	#superclass : #JavaProgramNode,
+	#superclass : #JavaDeclarationNode,
 	#instVars : [
 		'annotations',
 		'packageToken',

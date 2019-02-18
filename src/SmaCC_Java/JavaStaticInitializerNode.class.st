@@ -1,9 +1,8 @@
 Class {
 	#name : #JavaStaticInitializerNode,
-	#superclass : #JavaProgramNode,
+	#superclass : #JavaInitializerNode,
 	#instVars : [
-		'staticToken',
-		'block'
+		'staticToken'
 	],
 	#category : #'SmaCC_Java'
 }
@@ -11,25 +10,6 @@ Class {
 { #category : #generated }
 JavaStaticInitializerNode >> acceptVisitor: aProgramVisitor [
 	^ aProgramVisitor visitStaticInitializer: self
-]
-
-{ #category : #generated }
-JavaStaticInitializerNode >> block [
-	^ block
-]
-
-{ #category : #generated }
-JavaStaticInitializerNode >> block: aJavaBlockNode [
-	self block notNil
-		ifTrue: [ self block parent: nil ].
-	block := aJavaBlockNode.
-	self block notNil
-		ifTrue: [ self block parent: self ]
-]
-
-{ #category : #generated }
-JavaStaticInitializerNode >> nodeVariables [
-	^ #(#block)
 ]
 
 { #category : #generated }

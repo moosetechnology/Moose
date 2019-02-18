@@ -120,7 +120,11 @@ SmaCCRewriteTypeMatch >> nodeClass: aClass [
 
 { #category : #saving }
 SmaCCRewriteTypeMatch >> saveOn: aStream [
-	aStream nextPutAll: nodeClass name.
+	aStream
+		nextPutAll:
+			(nodeClass isNil
+				ifTrue: [ 'nil' ]
+				ifFalse: [ nodeClass name ]).
 	(code isNil or: [ code isEmpty ])
 		ifTrue: [ ^ self ].
 	aStream

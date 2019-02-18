@@ -1,6 +1,6 @@
 Class {
 	#name : #JavaConstructorDeclarationNode,
-	#superclass : #JavaProgramNode,
+	#superclass : #JavaDeclarationNode,
 	#instVars : [
 		'modifiers',
 		'typeParameters',
@@ -26,10 +26,10 @@ JavaConstructorDeclarationNode >> body [
 ]
 
 { #category : #generated }
-JavaConstructorDeclarationNode >> body: aJavaConstructorBodyNode [
+JavaConstructorDeclarationNode >> body: aJavaBlockNode [
 	self body notNil
 		ifTrue: [ self body parent: nil ].
-	body := aJavaConstructorBodyNode.
+	body := aJavaBlockNode.
 	self body notNil
 		ifTrue: [ self body parent: self ]
 ]

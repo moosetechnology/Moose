@@ -95,7 +95,7 @@ SmaCCError >> nodesDo: nodeBlock andTokensDo: tokenBlock includeErrors: aBoolean
 		ifFalse: [ ^ self ].
 	self
 		errorComponentsDo: [ :each | 
-			(nodeBlock notNil and: [ each isKindOf: SmaCCNode ])
+			(nodeBlock notNil and: [ each isKindOf: SmaCCParseNode ])
 				ifTrue: [ nodeBlock value: each ].
 			(tokenBlock notNil and: [ each isKindOf: SmaCCToken ])
 				ifTrue: [ tokenBlock value: each ] ]

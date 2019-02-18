@@ -1,6 +1,6 @@
 Class {
 	#name : #JavaFieldDeclarationNode,
-	#superclass : #JavaProgramNode,
+	#superclass : #JavaDeclarationNode,
 	#instVars : [
 		'modifiers',
 		'type',

@@ -1,6 +1,6 @@
 Class {
 	#name : #JavaSuperConstructorInvocationNode,
-	#superclass : #JavaProgramNode,
+	#superclass : #JavaStatementNode,
 	#instVars : [
 		'superToken',
 		'leftParen',
