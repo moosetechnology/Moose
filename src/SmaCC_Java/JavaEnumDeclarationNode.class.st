@@ -1,6 +1,6 @@
 Class {
 	#name : #JavaEnumDeclarationNode,
-	#superclass : #JavaProgramNode,
+	#superclass : #JavaDeclarationNode,
 	#instVars : [
 		'modifiers',
 		'enumToken',

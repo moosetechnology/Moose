@@ -51,7 +51,7 @@ SmaCCRewriteEngineCommandLineHandler >> finished: aSmaCCRewriteResult [
 			aSmaCCRewriteResult transformation notNil
 				ifTrue: [ self stderr
 						nextPut: $(;
-						nextPutAll: aSmaCCRewriteResult transformation;
+						nextPutAll: aSmaCCRewriteResult transformation displayString;
 						nextPut: $) ].
 			self stderr
 				nextPutAll: ': ';

@@ -1,9 +1,8 @@
 Class {
 	#name : #JavaUnaryNotNode,
-	#superclass : #JavaExpressionNode,
+	#superclass : #JavaUnaryExpressionNode,
 	#instVars : [
-		'bang',
-		'expression'
+		'bang'
 	],
 	#category : #'SmaCC_Java'
 }
@@ -21,25 +20,6 @@ JavaUnaryNotNode >> bang [
 { #category : #generated }
 JavaUnaryNotNode >> bang: aSmaCCToken [
 	bang := aSmaCCToken
-]
-
-{ #category : #generated }
-JavaUnaryNotNode >> expression [
-	^ expression
-]
-
-{ #category : #generated }
-JavaUnaryNotNode >> expression: aJavaExpressionNode [
-	self expression notNil
-		ifTrue: [ self expression parent: nil ].
-	expression := aJavaExpressionNode.
-	self expression notNil
-		ifTrue: [ self expression parent: self ]
-]
-
-{ #category : #generated }
-JavaUnaryNotNode >> nodeVariables [
-	^ #(#expression)
 ]
 
 { #category : #generated }

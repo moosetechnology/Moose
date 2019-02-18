@@ -1,9 +1,8 @@
 Class {
 	#name : #JavaUnaryBitInvertNode,
-	#superclass : #JavaExpressionNode,
+	#superclass : #JavaUnaryExpressionNode,
 	#instVars : [
-		'tilde',
-		'expression'
+		'tilde'
 	],
 	#category : #'SmaCC_Java'
 }
@@ -11,25 +10,6 @@ Class {
 { #category : #generated }
 JavaUnaryBitInvertNode >> acceptVisitor: aProgramVisitor [
 	^ aProgramVisitor visitUnaryBitInvert: self
-]
-
-{ #category : #generated }
-JavaUnaryBitInvertNode >> expression [
-	^ expression
-]
-
-{ #category : #generated }
-JavaUnaryBitInvertNode >> expression: aJavaExpressionNode [
-	self expression notNil
-		ifTrue: [ self expression parent: nil ].
-	expression := aJavaExpressionNode.
-	self expression notNil
-		ifTrue: [ self expression parent: self ]
-]
-
-{ #category : #generated }
-JavaUnaryBitInvertNode >> nodeVariables [
-	^ #(#expression)
 ]
 
 { #category : #generated }

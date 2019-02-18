@@ -18,10 +18,10 @@ JavaClassTypeNode >> name [
 ]
 
 { #category : #generated }
-JavaClassTypeNode >> name: aJavaProgramNode [
+JavaClassTypeNode >> name: aJavaTypeNameNode [
 	self name notNil
 		ifTrue: [ self name parent: nil ].
-	name := aJavaProgramNode.
+	name := aJavaTypeNameNode.
 	self name notNil
 		ifTrue: [ self name parent: self ]
 ]

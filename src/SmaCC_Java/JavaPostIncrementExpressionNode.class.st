@@ -1,8 +1,7 @@
 Class {
 	#name : #JavaPostIncrementExpressionNode,
-	#superclass : #JavaExpressionNode,
+	#superclass : #JavaUnaryExpressionNode,
 	#instVars : [
-		'expression',
 		'plusPlus'
 	],
 	#category : #'SmaCC_Java'
@@ -11,25 +10,6 @@ Class {
 { #category : #generated }
 JavaPostIncrementExpressionNode >> acceptVisitor: aProgramVisitor [
 	^ aProgramVisitor visitPostIncrementExpression: self
-]
-
-{ #category : #generated }
-JavaPostIncrementExpressionNode >> expression [
-	^ expression
-]
-
-{ #category : #generated }
-JavaPostIncrementExpressionNode >> expression: aJavaExpressionNode [
-	self expression notNil
-		ifTrue: [ self expression parent: nil ].
-	expression := aJavaExpressionNode.
-	self expression notNil
-		ifTrue: [ self expression parent: self ]
-]
-
-{ #category : #generated }
-JavaPostIncrementExpressionNode >> nodeVariables [
-	^ #(#expression)
 ]
 
 { #category : #generated }

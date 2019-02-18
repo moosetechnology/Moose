@@ -1,11 +1,10 @@
 Class {
 	#name : #JavaCastExpressionNode,
-	#superclass : #JavaExpressionNode,
+	#superclass : #JavaUnaryExpressionNode,
 	#instVars : [
 		'leftParen',
 		'type',
 		'rightParen',
-		'expression',
 		'ampToken',
 		'interfaceType'
 	],
@@ -25,20 +24,6 @@ JavaCastExpressionNode >> ampToken [
 { #category : #generated }
 JavaCastExpressionNode >> ampToken: aSmaCCToken [
 	ampToken := aSmaCCToken
-]
-
-{ #category : #generated }
-JavaCastExpressionNode >> expression [
-	^ expression
-]
-
-{ #category : #generated }
-JavaCastExpressionNode >> expression: aJavaExpressionNode [
-	self expression notNil
-		ifTrue: [ self expression parent: nil ].
-	expression := aJavaExpressionNode.
-	self expression notNil
-		ifTrue: [ self expression parent: self ]
 ]
 
 { #category : #generated }
@@ -72,7 +57,7 @@ JavaCastExpressionNode >> leftParen: aSmaCCToken [
 
 { #category : #generated }
 JavaCastExpressionNode >> nodeVariables [
-	^ #(#type #expression #interfaceType)
+	^ #(#type #interfaceType #expression)
 ]
 
 { #category : #generated }

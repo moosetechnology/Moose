@@ -43,7 +43,8 @@ SmaCCParserGenerator class >> menuCommandOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #'SmaCC Parser Generator')
 		parent: #Tools;
-		order: 0.55;
+		order: 490.1;
+		help: 'SmaCC Parser Generator Tool';
 		action: [ self open ]
 ]
 
@@ -160,7 +161,7 @@ SmaCCParserGenerator >> definitionTab [
 	^ self newTab
 		closeable: false;
 		label: 'Definition';
-		model: definitionModel;
+		presenter: definitionModel;
 		yourself
 ]
 
@@ -176,7 +177,7 @@ SmaCCParserGenerator >> displayError: aString at: position [
 
 { #category : #initialization }
 SmaCCParserGenerator >> fileMenu [
-	^ MenuModel new
+	^ MenuPresenter new
 		addGroup: [ :group | 
 			group
 				addItem: [ :item | 
@@ -228,7 +229,7 @@ SmaCCParserGenerator >> initialize [
 
 { #category : #initialization }
 SmaCCParserGenerator >> initializeMenubar [
-	menu := MenuModel new
+	menu := MenuPresenter new
 		addGroup: [ :group | 
 			group
 				addItem: [ :item | 
@@ -247,7 +248,7 @@ SmaCCParserGenerator >> initializeMenubar [
 
 { #category : #initialization }
 SmaCCParserGenerator >> initializeTabModel [
-	tabModel := self instantiate: SmaCCTabManagerModel.
+	tabModel := self instantiate: SmaCCTabManagerPresenter.
 	tabModel
 		addTab: self definitionTab;
 		addTab: self messagesTab;
@@ -286,7 +287,7 @@ SmaCCParserGenerator >> itemSetsTab [
 	^ self newTab
 		closeable: false;
 		label: 'Item Sets';
-		model: itemSetsModel;
+		presenter: itemSetsModel;
 		yourself
 ]
 
@@ -317,13 +318,13 @@ SmaCCParserGenerator >> messagesTab [
 	^ self newTab
 		closeable: false;
 		label: 'Messages';
-		model: messagesModel;
+		presenter: messagesModel;
 		yourself
 ]
 
 { #category : #initialization }
 SmaCCParserGenerator >> optionsMenu [
-	^ MenuModel new
+	^ MenuPresenter new
 		addGroup: [ :group | 
 			group
 				addItem: [ :item | 
@@ -455,7 +456,7 @@ SmaCCParserGenerator >> symbolsTab [
 	^ self newTab
 		closeable: false;
 		label: 'Symbols';
-		model: symbolsModel;
+		presenter: symbolsModel;
 		yourself
 ]
 
@@ -484,7 +485,7 @@ SmaCCParserGenerator >> testTab [
 	^ self newTab
 		closeable: false;
 		label: 'Test';
-		model: testModel;
+		presenter: testModel;
 		yourself
 ]
 
@@ -590,7 +591,7 @@ SmaCCParserGenerator >> viewItemSetsClicked [
 
 { #category : #initialization }
 SmaCCParserGenerator >> viewMenu [
-	^ MenuModel new
+	^ MenuPresenter new
 		addGroup: [ :group | 
 			group
 				addItem: [ :item | 

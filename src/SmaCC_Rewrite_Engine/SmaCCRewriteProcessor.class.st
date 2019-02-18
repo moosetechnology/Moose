@@ -177,7 +177,8 @@ SmaCCRewriteProcessor >> processFile: aString usingResult: aSmaCCRewriteResult [
 		do: [ :ex | 
 			| frame node |
 			frame := thisContext.
-			[ frame isNil or: [ (frame receiver isKindOf: SmaCCRewrite) and: [ frame method selector = #performOn:continuation: ] ] ] whileFalse: [ frame := frame sender ].
+			[ frame isNil or: [ (frame receiver isKindOf: SmaCCRewrite) and: [ frame method selector = #performOn:continuation: ] ] ]
+				whileFalse: [ frame := frame sender ].
 			frame notNil
 				ifTrue: [ node := frame tempAt: 1.
 					aSmaCCRewriteResult
@@ -198,7 +199,8 @@ SmaCCRewriteProcessor >> processFile: aString usingResult: aSmaCCRewriteResult [
 					((self engine outputDirectory isEmpty or: [ self engine outputDirectory last = FileSystem disk delimiter ])
 						ifTrue: [ '' ]
 						ifFalse: [ String with: FileSystem disk delimiter ]) , self engine outputFilename.
-			self saveOutput: output in: filename.
+			self engine ignoreFile
+				ifFalse: [ self saveOutput: output in: filename ].
 			self engine additionalFiles keysAndValuesDo: [ :file :text | self saveOutput: text in: file ] ].
 	self engine finished.
 	aSmaCCRewriteResult class == SmaCCRewriteResult

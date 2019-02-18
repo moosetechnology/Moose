@@ -82,7 +82,7 @@ SmaCCEndToEndTest >> scannerClass [
 	^ self lookupType: #TestScanner
 ]
 
-{ #category : #private }
+{ #category : #running }
 SmaCCEndToEndTest >> setUp [
 	super setUp.
 	SmaCCCodeGenerator reset.
@@ -102,7 +102,7 @@ SmaCCEndToEndTest >> supportsUnicodeStrings [
 		do: [ :ex | ex return: false ]
 ]
 
-{ #category : #private }
+{ #category : #running }
 SmaCCEndToEndTest >> tearDown [
 	self removeNewClasses.
 	super tearDown
