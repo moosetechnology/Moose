@@ -106,16 +106,14 @@ MooseQueryCalculator >> queryLocal: aFAMIXClassAssociation for: anEntity [
 { #category : #query }
 MooseQueryCalculator >> queryLocal: aFAMIXClassAssociation for: anEntity in: aCollection [
 	"The goal here is to get all the entity's direct associations of the class in parameter. This will not check the associations of the entity's children."
-	
+
 	"Note: Maybe adding a guard to check if the entity can have associations of this class could improve the perf. Currently it is not the case because there is not enough association. Maybe it could be the case in the futur, like with a PostgreSQL model."
-	
+
 	| properties |
 	"Instead of #to:do: we could just use #do: but this implementation is much faster. Maybe sista will remove the needs of the todo later."
-
-	properties := (self strategy msePropertiesOf: anEntity) select: [:each |  aFAMIXClassAssociation inheritsFromType: each type implementingClass].
-	
-	
-	1 to: properties size do: [ :ind | (anEntity perform: (properties at: ind) name) ifNotNil: [ :coll | aCollection addAll: (coll asCollection select: [ :each | each isOfType: aFAMIXClassAssociation ]) ] ].
+	1 to: (properties := self strategy msePropertiesOf: anEntity) size do: [ :ind | 
+		(anEntity perform: (properties at: ind) name)
+			ifNotNil: [ :coll | aCollection addAll: (coll asCollection select: [ :each | each isKindOf: aFAMIXClassAssociation ]) ] ].
 	^ aCollection
 ]
 
