@@ -28,3 +28,11 @@ RGGlobalVariableTest >> testNewGlobalVariable [
 
 	
 ]
+
+{ #category : #tests }
+RGGlobalVariableTest >> testResolvingConsistency [
+
+	| anObject |
+	anObject := RGGlobalVariable unnamed.
+	self checkClassesConsistency: anObject and: anObject makeResolved
+]

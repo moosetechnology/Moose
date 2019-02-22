@@ -62,6 +62,14 @@ RGTraitCompositionTest >> testNewTraitComposition [
 ]
 
 { #category : #tests }
+RGTraitCompositionTest >> testResolvingConsistency [
+
+	| anObject |
+	anObject := RGTraitComposition unnamed.
+	self checkClassesConsistency: anObject and: anObject makeResolved
+]
+
+{ #category : #tests }
 RGTraitCompositionTest >> testTransformationsCollection [
 	
 	| traitComposition env transformation1 transformation2 transformation3 |

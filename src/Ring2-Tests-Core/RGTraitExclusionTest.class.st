@@ -124,6 +124,14 @@ RGTraitExclusionTest >> testNewTraitExlusion [
 ]
 
 { #category : #tests }
+RGTraitExclusionTest >> testResolvingConsistency [
+
+	| anObject |
+	anObject := RGTraitExclusion unnamed.
+	self checkClassesConsistency: anObject and: anObject makeResolved
+]
+
+{ #category : #tests }
 RGTraitExclusionTest >> testUsedTraits [
 
 	| traitExclusion trait usedTraits | 

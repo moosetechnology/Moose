@@ -22,6 +22,13 @@ RGSlot >> defaultParentStub [
 	^ self defaultFixedLayoutStub
 ]
 
+{ #category : #accessing }
+RGSlot >> definitionString [
+
+	^ String streamContents: [ :aStream |
+		aStream nextPutAll: '#'; nextPutAll: self name]
+]
+
 { #category : #'testing types' }
 RGSlot >> isSlot [
 

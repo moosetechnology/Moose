@@ -31,6 +31,12 @@ Object >> isRingResolved [
 ]
 
 { #category : #'*Ring2-Core' }
+Object >> markAsRingResolved [
+
+	"do nothing"
+]
+
+{ #category : #'*Ring2-Core' }
 Object >> orDefaultForUnresolved [
 
 	^ self

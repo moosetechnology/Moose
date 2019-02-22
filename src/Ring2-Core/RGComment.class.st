@@ -117,9 +117,9 @@ RGComment >> makeResolved [
 
 	super makeResolved.
 	
-	content := self content.
-	author := self author.
-	time := self time.
+	content := self content markAsRingResolved.
+	author := self author markAsRingResolved.
+	time := self time markAsRingResolved.
 ]
 
 { #category : #printing }

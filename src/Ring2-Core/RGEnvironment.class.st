@@ -154,7 +154,9 @@ RGEnvironment >> cleanSuperclassesOfMetaclasses [
 	 
 	self ask behaviorsDo: [ :each | 
 		(each isMetaclass and: [ each superclass isRingResolved not ])
-			ifTrue: [ each superclass: each baseClass superclass metaclass] ].
+			ifTrue: [ 
+				each baseClass superclass ifNotNil: [ 
+					each superclass: each baseClass superclass metaclass] ] ].
 
 ]
 
@@ -630,6 +632,18 @@ RGEnvironment >> initializeUnresolved [
 RGEnvironment >> isEnvironment [
 
 	^ true
+]
+
+{ #category : #resolving }
+RGEnvironment >> makeResolved [
+
+	super makeResolved.
+	
+	behaviors := self ask behaviors markAsRingResolved.
+	packages := self ask packages markAsRingResolved.
+	globalVariables := self ask globalVariables markAsRingResolved.
+	
+
 ]
 
 { #category : #accessing }

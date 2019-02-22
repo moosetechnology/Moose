@@ -150,7 +150,7 @@ RGTraitV2DescriptionStrategy >> makeResolved [
 
 	super makeResolved. 
 	
-	layout := self layout makeResolved.
+	layout := self layout makeResolved markAsRingResolved.
 
 ]
 

@@ -29,7 +29,9 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'environment',
-		'name'
+		'name',
+		'packageOrganizer',
+		'projectManager'
 	],
 	#category : #'Calypso-Ring2'
 }
@@ -106,6 +108,7 @@ ClyRing2Environment >> initialize [
 	super initialize.
 	
 	environment := RGEnvironment new.
+	projectManager := ClyProjectManagerRegistry new
 ]
 
 { #category : #accessing }
@@ -118,10 +121,30 @@ ClyRing2Environment >> name: anObject [
 	name := anObject
 ]
 
+{ #category : #accessing }
+ClyRing2Environment >> packageOrganizer [
+	^ packageOrganizer
+]
+
+{ #category : #accessing }
+ClyRing2Environment >> packageOrganizer: anObject [
+	packageOrganizer := anObject
+]
+
 { #category : #initialization }
 ClyRing2Environment >> packages [
 
 	^ environment ask packages
+]
+
+{ #category : #accessing }
+ClyRing2Environment >> projectManager [
+	^ projectManager
+]
+
+{ #category : #accessing }
+ClyRing2Environment >> projectManager: anObject [
+	projectManager := anObject
 ]
 
 { #category : #initialization }

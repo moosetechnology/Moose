@@ -242,9 +242,9 @@ RGPackageDefinition >> makeResolved [
 
 	super makeResolved.
 	
-	definedBehaviors := self definedBehaviors.
-	extensionMethods := self extensionMethods.
-	tagsForClasses := self tagsForClasses.
+	definedBehaviors := self definedBehaviors markAsRingResolved.
+	extensionMethods := self extensionMethods markAsRingResolved.
+	tagsForClasses := self tagsForClasses markAsRingResolved.
 
 ]
 

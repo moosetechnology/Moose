@@ -309,7 +309,7 @@ RGClassStrategy >> definitionWithSlots [
 	poolString = '' ifFalse: [
 		aStream cr; tab; nextPutAll: 'poolDictionaries: ';
 			store: poolString].
-	aStream cr; tab; nextPutAll: 'category: ';
+	aStream cr; tab; nextPutAll: 'package: ';
 			store: self category asString.
 
 	self owner superclass ifNil: [ 
@@ -375,16 +375,16 @@ RGClassStrategy >> makeResolved [
 
 	
 	"try to set the correct name before resolving of it"
-	((self owner hasResolvedName not) and: [ self owner metaclass isRingResolved and: [ self metaclass hasResolvedName ] ]) ifTrue: [ 
+	((self owner hasResolvedName not) and: [ self owner metaclass isRingResolved and: [ self owner metaclass hasResolvedName ] ]) ifTrue: [ 
 		self owner pvtName: (self owner metaclass name withoutSuffix: ' class') asSymbol.
 		 ].
 	
 	super makeResolved.
 	
-	comment := self comment.
-	classVariables := self classVariables.
-	package := self package.
-	sharedPools := self sharedPools.
+	comment := self comment markAsRingResolved.
+	classVariables := self classVariables markAsRingResolved.
+	package := self package markAsRingResolved.
+	sharedPools := self sharedPools markAsRingResolved.
 
 ]
 

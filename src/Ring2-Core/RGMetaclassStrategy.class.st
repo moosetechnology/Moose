@@ -111,6 +111,12 @@ RGMetaclassStrategy >> initialize [
 ]
 
 { #category : #'private - backend access' }
+RGMetaclassStrategy >> innerBindingOf: varName [
+
+	^self instanceSide innerBindingOf: varName
+]
+
+{ #category : #'private - backend access' }
 RGMetaclassStrategy >> instanceSide [
 	^ self baseClass 
 ]
@@ -141,7 +147,7 @@ RGMetaclassStrategy >> makeResolved [
 		self owner pvtName: (self baseClass name, ' class') asSymbol.
 		 ].
 	
-	super makeResolved.
+	super makeResolved markAsRingResolved.
 	
 	baseClass := self baseClass.
 ]

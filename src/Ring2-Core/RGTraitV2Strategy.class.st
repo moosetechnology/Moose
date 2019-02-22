@@ -356,10 +356,11 @@ RGTraitV2Strategy >> makeResolved [
 	
 	super makeResolved.
 	
-	comment := self comment.
-	classVariables := self classVariables.
-	package := self package.
-	sharedPools := self sharedPools.
+	classTrait := self classTrait markAsRingResolved.
+	comment := self comment markAsRingResolved.
+	classVariables := self classVariables markAsRingResolved.
+	package := self package markAsRingResolved.
+	sharedPools := self sharedPools markAsRingResolved.
 
 ]
 

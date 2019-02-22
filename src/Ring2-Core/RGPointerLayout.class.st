@@ -75,7 +75,7 @@ RGPointerLayout >> makeResolved [
 
 	super makeResolved.
 	
-	slots := self slots asOrderedCollection.
+	slots := self slots asOrderedCollection markAsRingResolved.
 
 ]
 
