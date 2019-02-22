@@ -1,6 +1,6 @@
 Extension { #name : #Magnitude }
 
-{ #category : #'*Roassal2' }
+{ #category : #'*Roassal2-Core' }
 Magnitude >> max: max in: anInterval [ 
 	"
 	(0 max: 20 in: (1 to: 10)) == 1
@@ -13,7 +13,7 @@ Magnitude >> max: max in: anInterval [
 	^ self min: 0 max: max in: anInterval
 ]
 
-{ #category : #'*Roassal2' }
+{ #category : #'*Roassal2-Core' }
 Magnitude >> min: min max: max in: anInterval [ 
 	"
 	(0 max: 20 in: (1 to: 10)) == 1

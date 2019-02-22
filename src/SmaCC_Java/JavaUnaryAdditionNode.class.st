@@ -1,9 +1,8 @@
 Class {
 	#name : #JavaUnaryAdditionNode,
-	#superclass : #JavaExpressionNode,
+	#superclass : #JavaUnaryExpressionNode,
 	#instVars : [
-		'plus',
-		'expression'
+		'plus'
 	],
 	#category : #'SmaCC_Java'
 }
@@ -11,25 +10,6 @@ Class {
 { #category : #generated }
 JavaUnaryAdditionNode >> acceptVisitor: aProgramVisitor [
 	^ aProgramVisitor visitUnaryAddition: self
-]
-
-{ #category : #generated }
-JavaUnaryAdditionNode >> expression [
-	^ expression
-]
-
-{ #category : #generated }
-JavaUnaryAdditionNode >> expression: aJavaExpressionNode [
-	self expression notNil
-		ifTrue: [ self expression parent: nil ].
-	expression := aJavaExpressionNode.
-	self expression notNil
-		ifTrue: [ self expression parent: self ]
-]
-
-{ #category : #generated }
-JavaUnaryAdditionNode >> nodeVariables [
-	^ #(#expression)
 ]
 
 { #category : #generated }

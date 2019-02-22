@@ -233,8 +233,8 @@ FmxMBClass >> generateRemotes [
 	
 	aClassName := self fullName.
 	
-	aClass := self builder environment classNamed: aClassName asSymbol.
-				
+	aClass := self class environment at: aClassName asSymbol ifAbsent: [ self builder environment classNamed: aClassName asSymbol ].
+	
 	self realClass: aClass.
 	
 	self generateRemoteAccessors.

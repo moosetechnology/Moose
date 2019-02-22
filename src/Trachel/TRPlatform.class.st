@@ -162,7 +162,7 @@ TRPlatform >> formClass [
 { #category : #public }
 TRPlatform >> formFromStream: aStream [
 	"return a form or visual component from a image stream"
-	^ self formClass fromBinaryStream: (aStream contents base64Decoded readStream )
+	^ self formClass fromBinaryStream: (self mimeDecodeToBytes: aStream)
 ]
 
 { #category : #fonts }

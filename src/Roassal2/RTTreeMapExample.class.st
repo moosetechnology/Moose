@@ -238,6 +238,93 @@ DAYD854hH4R/yeKD8EH4IHwQPggfhB98ED4IH4QPwgfhg/BB+CB8ED4IH4QPwgfhBx+ED8IH
 4YPwQfggP4lPMH/VCMYIisUAAAAASUVORK5CYII='
 ]
 
+{ #category : #sources }
+RTTreeMapExample >> exampleWithLabelsInside [
+| b label shape |
+b := RTTreeMapBuilder new.
+b
+    extent: 800@800;
+    leafWeight: #linesOfCode;
+    explore: SequenceableCollection
+        using: [:cls | | subclasses  |
+            subclasses := cls subclasses sorted: [ :x :y| 
+                x linesOfCode < y linesOfCode ].
+            subclasses .
+            ];
+    depthShadedBorder.
+
+shape := RTLabel new.
+
+
+b build.
+b elements 
+    select: [ :el | (el attributes at: #elements) isEmpty ]
+    thenDo: [ :el | 
+        label := shape elementOn: el model.
+        label trachelShape scaleBy: el extent x /label extent x.
+        
+        (RTConstraint movable: label fix: el)
+                inner; stick.
+            b view add: label ].
+^ b view
+]
+
+{ #category : #icons }
+RTTreeMapExample >> exampleWithLabelsInsideIcon [
+	^ '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
+AElFTkSuQmCC'
+]
+
 { #category : #accessing }
 RTTreeMapExample >> label [
 	^ 'Tree map'

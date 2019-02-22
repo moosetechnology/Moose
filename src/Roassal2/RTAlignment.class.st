@@ -32,6 +32,19 @@ RTAlignment >> alignFromBottomUsing: anElement [
 ]
 
 { #category : #public }
+RTAlignment >> alignFromCenterUsing: anElement [
+	| topX newX topY newY |
+	
+	topX := anElement encompassingRectangle center x.
+	topY := anElement encompassingRectangle center y.	
+	elements do: [ :s |
+		newX := topX + (s encompassingRectangle width / 2).
+		newY := topY + (s encompassingRectangle height / 2).		
+		s translateTo: newX @ newY
+	]
+]
+
+{ #category : #public }
 RTAlignment >> alignFromLeftUsing: anElement [
 	| topX newX |
 	topX := anElement encompassingRectangle topLeft x.
@@ -73,6 +86,21 @@ RTAlignment >> bottomMostElement [
 	^ elements inject: elements first into: [ :maxS :s | 
 			maxS encompassingRectangle top <= s encompassingRectangle top
 					ifTrue: [ s ] ifFalse: [ maxS ] ] 
+]
+
+{ #category : #public }
+RTAlignment >> center [
+	self hasElement ifFalse: [ ^ self ].
+	self alignFromCenterUsing: self centerMostElement
+]
+
+{ #category : #public }
+RTAlignment >> centerMostElement [
+
+	fixedElement ifNotNil: [ ^ fixedElement ].
+	^ elements inject: elements first into: [ :maxS :s | 
+			maxS encompassingRectangle center <= s encompassingRectangle center
+					ifTrue: [ s ] ifFalse: [ maxS ] ]
 ]
 
 { #category : #testing }

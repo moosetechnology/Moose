@@ -118,7 +118,15 @@ TRLabelShape >> extent: newExtent [
 
 { #category : #accessing }
 TRLabelShape >> font [
+	"Return the raw font used by Smalltalk"
 	^ font
+]
+
+{ #category : #accessing }
+TRLabelShape >> font: aRawFont [
+	"Set the raw font to the label. If this method is used, then the font lookup will not happen"
+	font := aRawFont.
+	self resetCache.
 ]
 
 { #category : #accessing }
@@ -211,14 +219,14 @@ TRLabelShape >> text: aText on: aPosition [
 { #category : #private }
 TRLabelShape >> textHeight [
 	"without any transformation"
-	^ cachedHeight ifNil: [ cachedHeight := font height ]
+	^ cachedHeight ifNil: [ [cachedHeight := font height] on: Error do: [ :ex | cachedHeight := 10 ] ]
 ]
 
 { #category : #private }
 TRLabelShape >> textWidth [
 	"without any transformation"
 	"font widthOfString: is a really expensive operation, so we cache it"
-	^ cachedWidth ifNil: [ cachedWidth := font widthOfString: text ]
+	^ cachedWidth ifNil: [ [ cachedWidth := font widthOfString: text ] on: Error do: [ :ex | cachedWidth := 5 ] ]
 ]
 
 { #category : #public }
@@ -239,5 +247,6 @@ TRLabelShape >> width [
 
 { #category : #'managing font' }
 TRLabelShape >> widthOfText: aString fontSize: aNumber [
-	^ (self getFontForSize: aNumber) widthOfString: aString
+	^ font widthOfString: aString
+	"^ (self getFontForSize: aNumber) widthOfString: aString"
 ]

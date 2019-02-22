@@ -571,8 +571,12 @@ RTEdgeBuilder >> toObjects: someObjectsOrABlock [
 { #category : #'public associations' }
 RTEdgeBuilder >> useAssociation: assoc [
 	"assoc have to be between model objects"
+	| result |
 	self assert: [ assoc isKindOf: Association ] description: 'Please, provide an association instead'.
-	self useAssociations: (Array with: assoc)
+	
+	result := self useAssociations: (Array with: assoc).
+	result ifEmpty: [ ^ nil ].
+	^ result first
 ]
 
 { #category : #'public associations' }

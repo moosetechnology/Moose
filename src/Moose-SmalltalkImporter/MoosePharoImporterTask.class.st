@@ -99,6 +99,7 @@ MoosePharoImporterTask >> basicRun [
 	"CandidateListOperator populates a Moose model with (binary) element relations like: methodA invokes methodB"
 	candidateOperator ifTrue: [(self candidateClass runOn: self model importer: importer) runSelector: runSelector].
 	self model sourceLanguage: importer factory sourceLanguage new.
+	self model metamodel: FamixPharoSmalltalkGenerator metamodel.
 	^ self model
 ]
 

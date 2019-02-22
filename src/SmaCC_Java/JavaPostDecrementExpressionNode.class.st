@@ -1,8 +1,7 @@
 Class {
 	#name : #JavaPostDecrementExpressionNode,
-	#superclass : #JavaExpressionNode,
+	#superclass : #JavaUnaryExpressionNode,
 	#instVars : [
-		'expression',
 		'minusMinus'
 	],
 	#category : #'SmaCC_Java'
@@ -14,20 +13,6 @@ JavaPostDecrementExpressionNode >> acceptVisitor: aProgramVisitor [
 ]
 
 { #category : #generated }
-JavaPostDecrementExpressionNode >> expression [
-	^ expression
-]
-
-{ #category : #generated }
-JavaPostDecrementExpressionNode >> expression: aJavaExpressionNode [
-	self expression notNil
-		ifTrue: [ self expression parent: nil ].
-	expression := aJavaExpressionNode.
-	self expression notNil
-		ifTrue: [ self expression parent: self ]
-]
-
-{ #category : #generated }
 JavaPostDecrementExpressionNode >> minusMinus [
 	^ minusMinus
 ]
@@ -35,11 +20,6 @@ JavaPostDecrementExpressionNode >> minusMinus [
 { #category : #generated }
 JavaPostDecrementExpressionNode >> minusMinus: aSmaCCToken [
 	minusMinus := aSmaCCToken
-]
-
-{ #category : #generated }
-JavaPostDecrementExpressionNode >> nodeVariables [
-	^ #(#expression)
 ]
 
 { #category : #generated }

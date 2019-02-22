@@ -1,20 +1,20 @@
 Extension { #name : #ClassDescription }
 
-{ #category : #'*Roassal2' }
+{ #category : #'*Roassal2-Core' }
 ClassDescription >> ageInDays [
 	"Return the number of days the class exists"
 	self numberOfMethods isZero ifTrue: [ ^ 0 ].
 	^ (TRPlatform current dateAndTimeClass now - self oldestMethod date) asDays
 ]
 
-{ #category : #'*Roassal2' }
+{ #category : #'*Roassal2-Core' }
 ClassDescription >> ageInDaysRounded [
 	"Return the number of days the class exists"
 
 	^ self ageInDays rounded
 ]
 
-{ #category : #'*Roassal2' }
+{ #category : #'*Roassal2-Core' }
 ClassDescription >> commonSuperclassWith: aClass [
 	"
 	Metaclass commonSuperclassWith: Class
@@ -35,7 +35,7 @@ ClassDescription >> commonSuperclassWith: aClass [
 		ifFalse: [ t2 last ]
 ]
 
-{ #category : #'*Roassal2' }
+{ #category : #'*Roassal2-Core' }
 ClassDescription >> computeOldestMethod [
 	| d m |
 	d := TRPlatform current dateAndTimeClass now.
@@ -44,7 +44,7 @@ ClassDescription >> computeOldestMethod [
 	^ m
 ]
 
-{ #category : #'*Roassal2' }
+{ #category : #'*Roassal2-Core' }
 ClassDescription >> computeYoungestMethod [
 	| d m ms aMethod |
 	ms := self methods, self class methods.
@@ -56,7 +56,7 @@ ClassDescription >> computeYoungestMethod [
 	^ m
 ]
 
-{ #category : #'*Roassal2' }
+{ #category : #'*Roassal2-Core' }
 ClassDescription >> gotMethodOnDay: dayAsNumber [
 	"Return true if a method has been defined on dayAsNumber.
 	Always returns true for dayAsNumber = 0"
@@ -66,13 +66,13 @@ ClassDescription >> gotMethodOnDay: dayAsNumber [
 
 ]
 
-{ #category : #'*Roassal2' }
+{ #category : #'*Roassal2-Core' }
 ClassDescription >> hasAnyMethodProducedAfterDay: aNumberOfDays [
 	^ self methods anySatisfy: [ :cm | cm livingInDays = aNumberOfDays ]
 
 ]
 
-{ #category : #'*Roassal2' }
+{ #category : #'*Roassal2-Core' }
 ClassDescription >> isReferencedBy: aClass [ 
 	"
 	Return true or false on whether the class receiver is referenced by aClass
@@ -82,18 +82,18 @@ ClassDescription >> isReferencedBy: aClass [
 	^ aClass dependentClasses includes: self 
 ]
 
-{ #category : #'*Roassal2' }
+{ #category : #'*Roassal2-Core' }
 ClassDescription >> livingInDays [
 	self numberOfMethods isZero ifTrue: [ ^ 0 ].
 	^ (TRPlatform current dateAndTimeClass now - self oldestMethod date) asDays
 ]
 
-{ #category : #'*Roassal2' }
+{ #category : #'*Roassal2-Core' }
 ClassDescription >> numberOfSubclasses [
 	^ self allSubclasses size
 ]
 
-{ #category : #'*Roassal2' }
+{ #category : #'*Roassal2-Core' }
 ClassDescription >> oldestMethod [
 	"We pick a method, and put the cache in it"
 	| aMethod |
@@ -106,13 +106,13 @@ ClassDescription >> oldestMethod [
 
 ]
 
-{ #category : #'*Roassal2' }
+{ #category : #'*Roassal2-Core' }
 ClassDescription >> rtmethods [
 	"This method is useful to have examples working on VisualWorks"
 	^ self methods
 ]
 
-{ #category : #'*Roassal2' }
+{ #category : #'*Roassal2-Core' }
 ClassDescription >> youngestMethod [
 	"We pick a method, and put the cache in it"
 	| aMethod |

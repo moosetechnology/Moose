@@ -77,7 +77,6 @@ RTTransitivelyTHighlightableTest >> testBasicWithCycle [
 RTTransitivelyTHighlightableTest >> testBasicWithCycleAndEdgeHighlighting [
 
 	| v eb element allShapes int |
-	
 	v := RTView new.
 	v addAll: (RTBox elementsOn: (1 to: 3)).
 	RTGridLayout on: v elements.
@@ -106,4 +105,13 @@ RTTransitivelyTHighlightableTest >> testShouldNotHighlightEdges [
 	self assert: RTTransitivelyHighlightable new edgeColor isNil.
 	self assert: RTTransitivelyHighlightable new shouldNotHighlightEdges.
 	self assert: (RTTransitivelyHighlightable new edgeColor: Color red; shouldHighlightEdges).
+]
+
+{ #category : #tests }
+RTTransitivelyTHighlightableTest >> testUnhighlightEdge [
+
+	| anEdge |
+	anEdge := RTEdge new.
+	RTTransitivelyHighlightable new doUnhighlightElement: anEdge.
+	RTTransitivelyHighlightable new edgeColor: Color red; doUnhighlightElement: anEdge.
 ]

@@ -91,7 +91,7 @@ JavaProgramNodeVisitor >> visitByteType: aByteType [
 
 { #category : #generated }
 JavaProgramNodeVisitor >> visitCastExpression: aCastExpression [
-	^ self visitExpression: aCastExpression
+	^ self visitUnaryExpression: aCastExpression
 ]
 
 { #category : #generated }
@@ -120,8 +120,8 @@ JavaProgramNodeVisitor >> visitClassDeclaration: aClassDeclaration [
 ]
 
 { #category : #generated }
-JavaProgramNodeVisitor >> visitClassProperty: aClassProperty [
-	^ self visitExpression: aClassProperty
+JavaProgramNodeVisitor >> visitClassExpression: aClassExpression [
+	^ self visitExpression: aClassExpression
 ]
 
 { #category : #generated }
@@ -132,11 +132,6 @@ JavaProgramNodeVisitor >> visitClassType: aClassType [
 { #category : #generated }
 JavaProgramNodeVisitor >> visitConditionalExpression: aConditionalExpression [
 	^ self visitExpression: aConditionalExpression
-]
-
-{ #category : #generated }
-JavaProgramNodeVisitor >> visitConstructorBody: aConstructorBody [
-	^ self visitProgram: aConstructorBody
 ]
 
 { #category : #generated }
@@ -270,6 +265,11 @@ JavaProgramNodeVisitor >> visitInitializedVariableDeclaration: anInitializedVari
 ]
 
 { #category : #generated }
+JavaProgramNodeVisitor >> visitInitializer: anInitializer [
+	^ self visitProgram: anInitializer
+]
+
+{ #category : #generated }
 JavaProgramNodeVisitor >> visitIntType: anIntType [
 	^ self visitPrimitiveType: anIntType
 ]
@@ -280,8 +280,8 @@ JavaProgramNodeVisitor >> visitIntegerLiteral: anIntegerLiteral [
 ]
 
 { #category : #generated }
-JavaProgramNodeVisitor >> visitInterface: anInterface [
-	^ self visitProgram: anInterface
+JavaProgramNodeVisitor >> visitInterfaceDeclaration: anInterfaceDeclaration [
+	^ self visitDeclaration: anInterfaceDeclaration
 ]
 
 { #category : #generated }
@@ -365,6 +365,11 @@ JavaProgramNodeVisitor >> visitNull: aNull [
 ]
 
 { #category : #generated }
+JavaProgramNodeVisitor >> visitOuterThis: anOuterThis [
+	^ self visitExpression: anOuterThis
+]
+
+{ #category : #generated }
 JavaProgramNodeVisitor >> visitPackageDeclaration: aPackageDeclaration [
 	^ self visitDeclaration: aPackageDeclaration
 ]
@@ -376,22 +381,22 @@ JavaProgramNodeVisitor >> visitParameter: aParameter [
 
 { #category : #generated }
 JavaProgramNodeVisitor >> visitPostDecrementExpression: aPostDecrementExpression [
-	^ self visitExpression: aPostDecrementExpression
+	^ self visitUnaryExpression: aPostDecrementExpression
 ]
 
 { #category : #generated }
 JavaProgramNodeVisitor >> visitPostIncrementExpression: aPostIncrementExpression [
-	^ self visitExpression: aPostIncrementExpression
+	^ self visitUnaryExpression: aPostIncrementExpression
 ]
 
 { #category : #generated }
 JavaProgramNodeVisitor >> visitPreDecrementExpression: aPreDecrementExpression [
-	^ self visitExpression: aPreDecrementExpression
+	^ self visitUnaryExpression: aPreDecrementExpression
 ]
 
 { #category : #generated }
 JavaProgramNodeVisitor >> visitPreIncrementExpression: aPreIncrementExpression [
-	^ self visitExpression: aPreIncrementExpression
+	^ self visitUnaryExpression: aPreIncrementExpression
 ]
 
 { #category : #generated }
@@ -416,7 +421,7 @@ JavaProgramNodeVisitor >> visitQualifiedName: aQualifiedName [
 
 { #category : #generated }
 JavaProgramNodeVisitor >> visitQualifiedTypeName: aQualifiedTypeName [
-	^ self visitProgram: aQualifiedTypeName
+	^ self visitTypeName: aQualifiedTypeName
 ]
 
 { #category : #generated }
@@ -446,7 +451,7 @@ JavaProgramNodeVisitor >> visitStatementExpressionList: aStatementExpressionList
 
 { #category : #generated }
 JavaProgramNodeVisitor >> visitStaticInitializer: aStaticInitializer [
-	^ self visitProgram: aStaticInitializer
+	^ self visitInitializer: aStaticInitializer
 ]
 
 { #category : #generated }
@@ -456,7 +461,7 @@ JavaProgramNodeVisitor >> visitStringLiteral: aStringLiteral [
 
 { #category : #generated }
 JavaProgramNodeVisitor >> visitSuperConstructorInvocation: aSuperConstructorInvocation [
-	^ self visitProgram: aSuperConstructorInvocation
+	^ self visitStatement: aSuperConstructorInvocation
 ]
 
 { #category : #generated }
@@ -486,7 +491,7 @@ JavaProgramNodeVisitor >> visitSynchronizedStatement: aSynchronizedStatement [
 
 { #category : #generated }
 JavaProgramNodeVisitor >> visitThisConstructorInvocation: aThisConstructorInvocation [
-	^ self visitProgram: aThisConstructorInvocation
+	^ self visitStatement: aThisConstructorInvocation
 ]
 
 { #category : #generated }
@@ -537,22 +542,27 @@ JavaProgramNodeVisitor >> visitTypeParameters: aTypeParameters [
 
 { #category : #generated }
 JavaProgramNodeVisitor >> visitUnaryAddition: anUnaryAddition [
-	^ self visitExpression: anUnaryAddition
+	^ self visitUnaryExpression: anUnaryAddition
 ]
 
 { #category : #generated }
 JavaProgramNodeVisitor >> visitUnaryBitInvert: anUnaryBitInvert [
-	^ self visitExpression: anUnaryBitInvert
+	^ self visitUnaryExpression: anUnaryBitInvert
+]
+
+{ #category : #generated }
+JavaProgramNodeVisitor >> visitUnaryExpression: anUnaryExpression [
+	^ self visitExpression: anUnaryExpression
 ]
 
 { #category : #generated }
 JavaProgramNodeVisitor >> visitUnaryNot: anUnaryNot [
-	^ self visitExpression: anUnaryNot
+	^ self visitUnaryExpression: anUnaryNot
 ]
 
 { #category : #generated }
 JavaProgramNodeVisitor >> visitUnarySubtraction: anUnarySubtraction [
-	^ self visitExpression: anUnarySubtraction
+	^ self visitUnaryExpression: anUnarySubtraction
 ]
 
 { #category : #generated }

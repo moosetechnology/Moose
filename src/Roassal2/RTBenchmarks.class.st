@@ -94,3 +94,18 @@ RTBenchmarks >> bench05 [
 	b build.
 	b view ] bench
 ]
+
+{ #category : #benchmarking }
+RTBenchmarks >> bench06 [
+	"Simple benchamark for rendering"
+	"
+	self new bench06 
+	" 
+
+	^ [ | b |
+		b := RTMondrian new.
+		b nodes: (1 to: 100000).
+		b layout grid.
+		b build.
+		b view canvas buildMorph drawOnMockCanvas ] bench
+]

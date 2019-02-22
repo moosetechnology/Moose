@@ -1,6 +1,19 @@
 "
 A RTHighlightable changes color of elements which should be highlighted.
 
+Example using Mondrian:
+-=-=-=-=-=-=-=-=-=
+b := RTMondrian new.
+b view @ RTZoomableView .
+b interaction highlightEdges: #dependentClasses.
+b shape circle.
+b nodes: (Collection withAllSubclasses).
+b edges moveBehind; connectToAll: #dependentClasses.
+b normalizer normalizeSize: #numberOfMethods; normalizeColor: #numberOfMethods.
+b layout force.
+
+b
+-=-=-=-=-=-=-=-=-=
 "
 Class {
 	#name : #RTHighlightable,
@@ -9,7 +22,8 @@ Class {
 		'color',
 		'edgeColor',
 		'getConnectedEdgesBlock',
-		'getConnectedElementBlock'
+		'getConnectedElementBlock',
+		'shouldPushFrontEdges'
 	],
 	#category : #'Roassal2-Interactions'
 }
@@ -33,7 +47,7 @@ RTHighlightable >> color [
 
 { #category : #accessing }
 RTHighlightable >> color: aColor [
-	"Set the color used for the highlighting"
+	"Set the color used for the highlighting for the elements"
 	color := aColor
 ]
 
@@ -42,7 +56,8 @@ RTHighlightable >> doHighlightEdge: anEdge [
 	"Highlight a particular element."
 	"There is duplication of code with #doHighlightElement: Maybe we can avoid this in the future"
 	self recordElement: anEdge.
-	anEdge trachelShape color: (self highlightEdgeColorFor: anEdge).
+	anEdge trachelShape allColor: (self highlightEdgeColorFor: anEdge).
+	shouldPushFrontEdges ifTrue: [ anEdge pushFront ].
 	anEdge view ifNotNil: [ anEdge view signalUpdate ].
 ]
 
@@ -58,6 +73,19 @@ RTHighlightable >> doHighlightElement: anElement [
 ]
 
 { #category : #actions }
+RTHighlightable >> doUnhighlightEdge: anEdge [
+	"Unhighlight an Edge.
+	This method works only for edges"
+	(anEdge attributes includesKey: #originalColor)
+		ifFalse: [ ^ self ].
+	anEdge trachelShape allColor: (anEdge attributes at: #originalColor).
+	anEdge attributes removeKey: #originalColor.
+	anEdge view ifNotNil: [ anEdge view signalUpdate ].
+	shouldPushFrontEdges ifTrue: [ anEdge pushBack ].
+
+]
+
+{ #category : #actions }
 RTHighlightable >> doUnhighlightElement: anElementOrEdge [
 	"Unhighlight a particular element.
 	This method also works for edges"
@@ -69,7 +97,7 @@ RTHighlightable >> doUnhighlightElement: anElementOrEdge [
 	
 	"Highlight edges if necessary"
 	anElementOrEdge isEdge ifTrue: [ ^ self ].
-	self shouldHighlightEdges ifTrue: [ (getConnectedEdgesBlock rtValue: anElementOrEdge) do: [ :anEdge | self doUnhighlightElement: anEdge ] ]
+	self shouldHighlightEdges ifTrue: [ (getConnectedEdgesBlock rtValue: anElementOrEdge) do: [ :anEdge | self doUnhighlightEdge: anEdge ] ]
 ]
 
 { #category : #accessing }
@@ -82,6 +110,46 @@ RTHighlightable >> edgeColor [
 RTHighlightable >> edgeColor: aColorOrOneArgBlock [
 	"Argument can either be a color, or a one argument block, which will take the edge as argument when evaluated. In that case, the block should return a color"
 	edgeColor := aColorOrOneArgBlock
+]
+
+{ #category : #'public - configuration' }
+RTHighlightable >> focusOnIncomingAndOutgoingElements [
+	"Recursively highlights elements reaching out incoming edges
+	
+	Here is an example:
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+v := RTView new.
+es := RTEllipse elementsOn: (1 to: 4).
+es @ RTDraggable.
+es do: [ :e | e color: Color red ].
+v addAll: es.
+
+RTEdgeBuilder new
+    view: v;
+    shape: (RTArrowedLine new 
+        head: (RTFilledNarrowArrow asHead size: 4; width: 0.5); 
+        width: 0.5;
+        attachPoint: (RTBorderAttachPoint new offset: 9);
+        yourself);
+    moveBehind;
+    connectFrom: [ :vv | vv - 1 ].
+
+es do: [ :anElement |
+	anElement @ (RTHighlightable new focusOnIncomingAndOutgoingElements; 
+		edgeColor: [ :edge | (edge from == anElement) 
+									ifTrue: [ Color blue ] 
+									ifFalse: [ Color green ] ]; yourself) ].
+
+
+RTOptimizedForceBasedLayout new on: es.
+
+v
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	"
+	
+	getConnectedEdgesBlock := [ :anElement | anElement outgoingEdges , anElement incomingEdges ].
+	self getConnectedElementBlock: [ :e | (getConnectedEdgesBlock rtValue: e) collect: #from ].
+
 ]
 
 { #category : #'public - configuration' }
@@ -161,6 +229,13 @@ RTHighlightable >> initialize [
 	"Per default, edges should not be highlighted"
 	edgeColor := nil.
 	self focusOnOutgoingElements.
+	shouldPushFrontEdges := false.
+]
+
+{ #category : #'public - configuration' }
+RTHighlightable >> pushFrontEdges [
+	"Make highlighted edges pushed to front"
+	shouldPushFrontEdges := true.
 ]
 
 { #category : #actions }
@@ -180,4 +255,9 @@ RTHighlightable >> shouldHighlightEdges [
 RTHighlightable >> shouldNotHighlightEdges [
 	"Return true if edges should not be highlighted"
 	^ self shouldHighlightEdges not
+]
+
+{ #category : #'public - testing' }
+RTHighlightable >> shouldPushFrontEdges [
+	shouldPushFrontEdges := true.
 ]

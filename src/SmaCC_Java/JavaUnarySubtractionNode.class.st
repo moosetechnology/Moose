@@ -1,9 +1,8 @@
 Class {
 	#name : #JavaUnarySubtractionNode,
-	#superclass : #JavaExpressionNode,
+	#superclass : #JavaUnaryExpressionNode,
 	#instVars : [
-		'minus',
-		'expression'
+		'minus'
 	],
 	#category : #'SmaCC_Java'
 }
@@ -14,20 +13,6 @@ JavaUnarySubtractionNode >> acceptVisitor: aProgramVisitor [
 ]
 
 { #category : #generated }
-JavaUnarySubtractionNode >> expression [
-	^ expression
-]
-
-{ #category : #generated }
-JavaUnarySubtractionNode >> expression: aJavaExpressionNode [
-	self expression notNil
-		ifTrue: [ self expression parent: nil ].
-	expression := aJavaExpressionNode.
-	self expression notNil
-		ifTrue: [ self expression parent: self ]
-]
-
-{ #category : #generated }
 JavaUnarySubtractionNode >> minus [
 	^ minus
 ]
@@ -35,11 +20,6 @@ JavaUnarySubtractionNode >> minus [
 { #category : #generated }
 JavaUnarySubtractionNode >> minus: aSmaCCToken [
 	minus := aSmaCCToken
-]
-
-{ #category : #generated }
-JavaUnarySubtractionNode >> nodeVariables [
-	^ #(#expression)
 ]
 
 { #category : #generated }

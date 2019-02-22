@@ -52,7 +52,7 @@ RTView >> spotterPreviewIn: aComposite [
 	
 ]
 
-{ #category : #'*Roassal2GT-Spotter' }
+{ #category : #'*Roassal2GT' }
 RTView >> spotterShapesFor: aStep [
 	<spotterOrder: 10>
 	^ aStep listProcessor
@@ -60,8 +60,8 @@ RTView >> spotterShapesFor: aStep [
 		candidatesLimit: 5;
 		allCandidates: [ self elements asOrderedCollection ];
 		itemName: [ :each | 
-			each gtDisplayString, 
-			' [', each shape class name, '] - ', 
+			"each gtDisplayString, 
+			' [', each shape class name, '] - ', "
 			each model gtDisplayString ];
 		filter: GTFilterSubstring;
 		wantsToDisplayOnEmptyQuery: true

@@ -147,12 +147,14 @@ SmaCCParser class >> parseFile: aString [
 SmaCCParser class >> parseFile: aString encoding: encodingString [
 	^ aString asFileReference
 		readStreamDo: [ :stream | 
+			| contents |
 			self setEncoding: encodingString on: stream.
-			(self parseStream: stream startingAt: self defaultStartingState)
+			contents := stream contents.
+			(self parse: contents startingAt: self defaultStartingState)
 				ifNotNil: [ :each | 
 					(each isKindOf: SmaCCParseNode)
 						ifTrue: [ stream position: 0.
-							each completeSource: stream contents.
+							each completeSource: contents.
 							each filename: aString ] ] ]
 ]
 

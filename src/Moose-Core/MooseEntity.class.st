@@ -448,6 +448,12 @@ MooseEntity >> metamodel [
 
 ]
 
+{ #category : #accessing }
+MooseEntity >> mooseDescription [
+
+	^ self mooseModel ifNotNil: [:mooseModel | mooseModel metamodel descriptionOf: self class instanceSide ] ifNil: [ super mooseDescription ]  
+]
+
 { #category : #printing }
 MooseEntity >> mooseDisplayStringOn: stream [
 	self mooseNameOn: stream

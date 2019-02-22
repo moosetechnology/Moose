@@ -52,6 +52,10 @@ RTAnnounceableObject >> announcer: anAnnouncer [
 
 { #category : #attributes }
 RTAnnounceableObject >> attributeAt: aKey [
+	"Obtain an attribute to the element. For example: 
+		RTElement new attributeAt: #magic put: 42; attributeAt: #magic
+		RTEdge new attributeAt: #magic put: 42; attributeAt: #magic
+	"
 	^ self attributes at: aKey
 ]
 
@@ -69,6 +73,10 @@ RTAnnounceableObject >> attributeAt: aKey ifAbsentPut: aBlockClosure [
 
 { #category : #attributes }
 RTAnnounceableObject >> attributeAt: aKey put: value [
+	"Set an attribute to the element. For example: 
+		RTElement new attributeAt: #magic put: 42; yourself
+		RTEdge new attributeAt: #magic put: 42; yourself
+	"
 	^ self attributes at: aKey put: value
 ]
 

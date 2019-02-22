@@ -446,3 +446,16 @@ TRShapeTest >> testScaleSVG [
 	self assert: rectangle width * 2.0 equals: scaledRectangle width.
 	self assert: rectangle height * 2.0 equals: scaledRectangle height.
 ]
+
+{ #category : #visible }
+TRShapeTest >> testVisible [
+	| b |
+	b := TRBoxShape new.
+	self assert: b isMarkedAsVisible.
+	
+	b hide.
+	self deny: b isMarkedAsVisible.
+	
+	b show.
+	self assert: b isMarkedAsVisible.
+]

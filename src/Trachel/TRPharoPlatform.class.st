@@ -20,7 +20,7 @@ TRPharoPlatform >> affineTransformClass [
 
 { #category : #public }
 TRPharoPlatform >> browseClass: aClass [
-	^ Smalltalk tools browser openOnClass: aClass
+	^ Nautilus openOnClass: aClass
 	
 ]
 

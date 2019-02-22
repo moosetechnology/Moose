@@ -607,6 +607,12 @@ RTShapeBuilder >> withText: aSymbolOrABlock [
 ]
 
 { #category : #'public - shapes - texting' }
+RTShapeBuilder >> withText: aSymbolOrABlock color: aColor [
+	shape := shape + (RTLabel new color: aColor; text: aSymbolOrABlock).
+	^ shape
+]
+
+{ #category : #'public - shapes - texting' }
 RTShapeBuilder >> withText: aSymbolOrABlock height: aHeightAsIntegerOrBlock [
 	shape := shape + (RTLabel new height: aHeightAsIntegerOrBlock; text: aSymbolOrABlock).
 	^ shape

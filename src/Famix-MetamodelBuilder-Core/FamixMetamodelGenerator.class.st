@@ -135,6 +135,8 @@ FamixMetamodelGenerator class >> resetMetamodel [
 	
 	classes addAll: self basicMetamodelClasses.
 	
+	classes addAll: (self submetamodels flatCollect: [:submetamodel | submetamodel metamodel classes collect: #implementingClass.]).
+	
 	tower := MooseModel metaBuilder: classes.
 	self metamodel: tower metamodel.
 	

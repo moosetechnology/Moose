@@ -26,10 +26,10 @@ JavaConstructorDeclarationNode >> body [
 ]
 
 { #category : #generated }
-JavaConstructorDeclarationNode >> body: aJavaConstructorBodyNode [
+JavaConstructorDeclarationNode >> body: aJavaBlockNode [
 	self body notNil
 		ifTrue: [ self body parent: nil ].
-	body := aJavaConstructorBodyNode.
+	body := aJavaBlockNode.
 	self body notNil
 		ifTrue: [ self body parent: self ]
 ]

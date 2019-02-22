@@ -24,6 +24,7 @@ RTNopAnimation >> blockToExecute [
 
 { #category : #accessing }
 RTNopAnimation >> blockToExecute: aZeroArgBlock [
+	"The argument block is executed at each screen refresh"
 	blockToExecute := aZeroArgBlock
 ]
 

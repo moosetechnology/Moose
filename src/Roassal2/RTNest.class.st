@@ -149,6 +149,7 @@ RTNest >> isCompositeAndHasLabel: backElement [
 
 { #category : #accessing }
 RTNest >> layout [
+	"Return the layout object used to layout the element before doing the nesting"
 	^ layout
 ]
 

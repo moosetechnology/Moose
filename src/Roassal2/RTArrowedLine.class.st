@@ -110,6 +110,13 @@ RTArrowedLine >> updateFor: edge trachelShape: trachelShape [
 	head updateFor: edge trachelShape: edge trachelShape shapes second
 ]
 
+{ #category : #public }
+RTArrowedLine >> widthElement: aBlockOrValue [
+	"Set the width of the shape"
+	super widthElement: aBlockOrValue.
+	"head size: aBlockOrValue"
+]
+
 { #category : #accessing }
 RTArrowedLine >> withOffset [
 	self headOffset: 0.7

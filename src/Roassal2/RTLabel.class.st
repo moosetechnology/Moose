@@ -1,6 +1,6 @@
 "
 A RTLabel is a shape to describe textual shape.
-
+-=-=-=-=
 | v shape es |
 v := RTView new.
 shape := RTLabel new text: [ :c | 'Class ', c name ].
@@ -8,6 +8,20 @@ es := shape elementsOn: Collection withAllSubclasses.
 RTGridLayout on: es.
 v addAll: es.
 v open
+-=-=-=-=
+
+Raw font may also be provided:
+-=-=-=-=
+v := RTView new.
+
+('/Library/Fonts/' asFileReference children first: 15) do: [ :fr |
+    rawFont := FreeTypeFont fromFile: fr fullName pointSize: 10 index: 0.
+    v add: (RTLabel new height: 4; rawFont: rawFont; elementOn: fr basename) ].
+
+RTVerticalLineLayout on: v elements.
+v @ RTDraggableView.
+v
+-=-=-=-=
 "
 Class {
 	#name : #RTLabel,
@@ -15,15 +29,29 @@ Class {
 	#instVars : [
 		'text',
 		'height',
-		'fontName'
+		'fontName',
+		'rawFont'
 	],
 	#category : #'Roassal2-Shapes'
 }
 
 { #category : #configuration }
 RTLabel class >> defaultColor [
-
+	"Set the default color of RTLabel"
 	^ Color gray
+]
+
+{ #category : #public }
+RTLabel class >> defaultFontName [
+	"Return the default font name in Roassal"
+	^ TRLabelShape defaultFamilyFontName
+ 
+]
+
+{ #category : #public }
+RTLabel class >> defaultFontSize [
+	"Return the default font size in Roassal"
+	^ TRLabelShape defaultFontSize
 ]
 
 { #category : #public }
@@ -82,8 +110,33 @@ RTLabel >> heightFor: element [
 RTLabel >> initialize [
 	super initialize.
 	text := self defaultText.
-	height := TRLabelShape defaultFontSize.
-	fontName := TRLabelShape defaultFamilyFontName
+	height := self class defaultFontSize.
+	fontName := self class defaultFontName
+]
+
+{ #category : #accessing }
+RTLabel >> rawFont [
+	"Return the raw font used by the label. If not explictely set, then it returns null"
+	^ rawFont 
+]
+
+{ #category : #accessing }
+RTLabel >> rawFont: aRawFont [
+	"Set the raw font. In such a case, the lookup does not happen. For example:
+	
+-=-=-=-=
+v := RTView new.
+
+('/Library/Fonts/' asFileReference children first: 15) do: [ :fr |
+    rawFont := FreeTypeFont fromFile: fr fullName pointSize: 10 index: 0.
+    v add: (RTLabel new height: 4; rawFont: rawFont; elementOn: fr basename) ].
+
+RTVerticalLineLayout on: v elements.
+v @ RTDraggableView.
+v
+-=-=-=-=
+	"
+	rawFont := aRawFont
 ]
 
 { #category : #accessing }
@@ -161,10 +214,15 @@ RTLabel >> trachelShapeForOneLine: anElement [
 	|  shape |	
 	shape := TRLabelShape new.
 	shape text: (self textFor: anElement);
-			color: (self colorFor: anElement);
-			position: anElement position;
-			fontSize: (self heightFor: anElement);
-			fontName: (self fontNameFor: anElement).
+				color: (self colorFor: anElement);
+				position: anElement position.
+	rawFont ifNil: [
+		shape
+				fontSize: (self heightFor: anElement);
+				fontName: (self fontNameFor: anElement) ].
+	rawFont ifNotNil: [ 
+		shape font: rawFont
+		 ].
 	^ shape
 ]
 

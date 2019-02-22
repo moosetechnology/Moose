@@ -382,11 +382,14 @@ RTJavascriptVisitor >> visitDiamondShape: diamondShape [
 
 { #category : #'visitor-interactions' }
 RTJavascriptVisitor >> visitDraggableInteraction: anInteraction with: anObject [
-	| list trachelBlock nest |
+	| list nest |
 	list := OrderedCollection new.
 	(anObject attributes includesKey: #RTLabelledLabel) ifTrue: [  
 		list add: (anObject attributes at: #RTLabelledLabel).
 	].
+	((anObject shape class = RTCompositeShape) 
+	and: [ anObject shape automaticallyUpdateLayout ]) ifTrue: [ 
+		list addAll: anObject trachelShape shapes ].
 	nest := nil.
 	nest := [ :ob | 
 		(ob attributes includesKey: #nestedElements) ifTrue: [ 
@@ -397,17 +400,19 @@ RTJavascriptVisitor >> visitDraggableInteraction: anInteraction with: anObject [
 		].
 	nest value: anObject.
 	
-	trachelBlock := [ :e|	(e isKindOf: TRShape) ifTrue: [ e ] ifFalse: [ e trachelShape ] ].
-	list addAll: (anInteraction groupToDrag collect: trachelBlock).
-	list isEmpty ifTrue: [ self visitInteraction: anInteraction with: anObject ]
-	ifFalse: [
-		stream nextPutAll: 'new RTDraggable(['.
-		list do: [ :e | 
-			stream nextPutAll: '"';
-				nextPutAll: (self nameFor:e);
-				nextPutAll: '", ' ].
-			stream nextPutAll: '])'.
-	]
+	list addAll: (anInteraction groupToDrag collect: [ :e|	
+			(e isKindOf: TRShape) 
+				ifTrue: [ e ] 
+				ifFalse: [ e trachelShape ] ] ).
+	list isEmpty 
+		ifTrue: [ self visitInteraction: anInteraction with: anObject ]
+		ifFalse: [
+			stream nextPutAll: 'new RTDraggable(['.
+			list do: [ :e | 
+				stream nextPutAll: '"';
+					nextPutAll: (self nameFor:e);
+					nextPutAll: '", ' ].
+			stream nextPutAll: '])' ]
 	
 ]
 
@@ -448,16 +453,28 @@ RTJavascriptVisitor >> visitGroup: aRTGroup [
 
 { #category : #'visitor-interactions' }
 RTJavascriptVisitor >> visitHightlightableInteraction: anInt with: el [
+	| add |
 	stream nextPutAll: 'new RTHighlightable({'.
 	self addColor: anInt highlightedColor.
-	stream nextPutAll: 'ides: ['.
-		((anInt highlightElements) rtValue: el) 
-		do: [ :e |
+	add := [ :list |
+		list do: [ :e |
 			stream 
 				nextPutAll: '"';
 				nextPutAll: (self nameFor: e trachelShape);
-				nextPutAll: '",' ].
-		stream nextPutAll: ']})'.
+				nextPutAll: '",'  ] ].
+	stream nextPutAll: 'ides: ['.
+	add value: ((anInt highlightElements) rtValue: el).
+	stream nextPutAll: ']'.
+	anInt shouldHighlightEdges ifTrue: [ 
+		stream nextPutAll: ', ecolor: '.
+		self addColorBase: anInt edgeColor.
+		stream nextPutAll: ', edges: ['.
+		add value: ((anInt getConnectedEdgesBlock) rtValue: el).
+		stream nextPutAll: ']'. ].
+	stream nextPutAll: '})'.
+	
+
+
 ]
 
 { #category : #'visitor-interactions' }
@@ -561,6 +578,11 @@ RTJavascriptVisitor >> visitMultiCompositeShape: aShape [
 		{id: "';
 		nextPutAll: (self nameFor: aShape);
 		nextPutAll: '", type:"multi", shapes:['.
+	"aShape element ifNotNil: [ 
+		aShape element shape automaticallyUpdateLayout ifTrue: [ 
+			(aShape element attributes includesKey: #nestedElements) ifTrue: [ 
+				self halt.
+				(aShape element attributes at: #nestedElements) addAll: aShape shapes ] ] ]."
 	aShape shapes do: [ :s| 
 		s element: aShape element.
 		s accept: self].
@@ -658,6 +680,36 @@ RTJavascriptVisitor >> visitSVGPath: aSVGPath [
 	self addColor: c.
 	self addInteractions: aSVGPath element.
 	self addMatrix: aSVGPath matrix.
+]
+
+{ #category : #visitor }
+RTJavascriptVisitor >> visitSVGPathLine: shape [
+	| e f t|
+	e := shape element.
+	e ifNil: [ 
+		f := self pointToString: shape from.
+		t := self pointToString: shape to
+	 ] ifNotNil: [
+		f := '"',(self nameFor: e from trachelShape),'"'.
+		t := '"',(self nameFor: e to trachelShape),'"' ].
+	stream 
+		nextPutAll: '{type:"svgline", id: "';
+		nextPutAll: (self nameFor: shape);
+		nextPutAll: '", fromid: ';
+		nextPutAll: f;
+		nextPutAll: ', toid: ';
+		nextPutAll: t;
+		nextPutAll: ', '.
+	self addColor: shape color.
+	(e notNil and: [e shape class = RTLineDualWidth]) ifTrue: [ 
+		stream 
+			nextPutAll: ' widthFrom: ';
+			nextPutAll: (self number: (e shape widthFrom rtValue: e));
+			nextPutAll: ', widthTo: ';
+			nextPutAll: (self number: (e shape widthTo rtValue: e)) ].
+	self visitAttachPoint: e.
+	stream nextPutAll: '},'
+	
 ]
 
 { #category : #visitor }

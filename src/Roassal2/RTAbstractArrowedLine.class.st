@@ -45,8 +45,16 @@ RTAbstractArrowedLine >> trachelShapeClass [
 ]
 
 { #category : #public }
-RTAbstractArrowedLine >> width: aValue [
-	line width: aValue
+RTAbstractArrowedLine >> width: aBlockOrValue [
+	super width: aBlockOrValue.
+	"line width: aBlockOrValue"
+]
+
+{ #category : #public }
+RTAbstractArrowedLine >> widthElement: aBlockOrValue [
+	"Set the width of the shape"
+	super widthElement: aBlockOrValue.
+	line widthElement: aBlockOrValue
 ]
 
 { #category : #public }
