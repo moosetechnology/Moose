@@ -63,6 +63,14 @@ RGBehaviorTest >> testBehaviorWithProtocols [
 ]
 
 { #category : #tests }
+RGBehaviorTest >> testResolvingConsistency [
+
+	| anObject |
+	anObject := RGClass unnamed.
+	self checkClassesConsistency: anObject and: anObject makeResolved
+]
+
+{ #category : #tests }
 RGBehaviorTest >> testSiblings [
 	| newBehavior |
 	

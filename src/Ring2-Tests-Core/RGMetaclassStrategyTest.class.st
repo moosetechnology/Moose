@@ -77,6 +77,14 @@ RGMetaclassStrategyTest >> testKind [
 ]
 
 { #category : #tests }
+RGMetaclassStrategyTest >> testResolvingConsistency [
+
+	| anObject |
+	anObject := RGMetaclass unnamed behaviorStrategy.
+	self checkClassesConsistency: anObject and: anObject makeResolved
+]
+
+{ #category : #tests }
 RGMetaclassStrategyTest >> testSetBaseClass [
 
 	| env class1 class2 |

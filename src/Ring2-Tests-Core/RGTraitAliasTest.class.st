@@ -79,6 +79,14 @@ RGTraitAliasTest >> testNewTraitAlias [
 ]
 
 { #category : #tests }
+RGTraitAliasTest >> testResolvingConsistency [
+
+	| anObject |
+	anObject := RGTraitAlias unnamed.
+	self checkClassesConsistency: anObject and: anObject makeResolved
+]
+
+{ #category : #tests }
 RGTraitAliasTest >> testUsedTraits [
 
 	| traitAlias trait usedTraits | 

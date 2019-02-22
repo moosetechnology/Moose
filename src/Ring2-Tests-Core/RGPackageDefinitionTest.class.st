@@ -210,6 +210,14 @@ RGPackageDefinitionTest >> testPrinting [
 	
 ]
 
+{ #category : #testing }
+RGPackageDefinitionTest >> testResolvingConsistency [
+
+	| anObject |
+	anObject := RGPackageDefinition unnamed.
+	self checkClassesConsistency: anObject and: anObject makeResolved
+]
+
 { #category : #'tests - new' }
 RGPackageDefinitionTest >> testStubPackage [
 	| env package package2 |

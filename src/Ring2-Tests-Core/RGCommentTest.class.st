@@ -89,6 +89,14 @@ RGCommentTest >> testNewComment [
 ]
 
 { #category : #tests }
+RGCommentTest >> testResolvingConsistency [
+
+	| anObject |
+	anObject := RGComment unnamed.
+	self checkClassesConsistency: anObject and: anObject makeResolved
+]
+
+{ #category : #tests }
 RGCommentTest >> testTransformations [
 	| comment time |
 	

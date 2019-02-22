@@ -77,7 +77,6 @@ Class {
 	#name : #RGMethod,
 	#superclass : #RGElement,
 	#instVars : [
-		'protocol',
 		'sourceCode',
 		'package',
 		'author',
@@ -137,12 +136,27 @@ RGMethod >> category [
 	^ self protocol
 ]
 
+{ #category : #private }
+RGMethod >> changeProtocolDuring: aBlock [
+
+	| oldProtocol |
+	
+	oldProtocol := self protocol.
+	aBlock value.
+	self announce: (MethodRecategorized method: self oldProtocol: oldProtocol)
+]
+
 { #category : #'accessing - backend' }
 RGMethod >> cleanTags [
 
+	self changeProtocolDuring: [ 
+		self cleanTagsWithoutAnnouncemnt ]
+]
+
+{ #category : #'accessing - backend' }
+RGMethod >> cleanTagsWithoutAnnouncemnt [ 
+
 	self backend forMethod cleanMethodTagsFor: self.
-	
-	"todo: announce"
 ]
 
 { #category : #accessing }
@@ -254,12 +268,11 @@ RGMethod >> makeResolved [
 
 	super makeResolved.
 	
-	protocol := self protocol.
-	sourceCode := self sourceCode.
-	package := self package.	
-	author := self author.	
-	time := self time.	
-	tags := self tags.
+	sourceCode := self sourceCode markAsRingResolved.
+	package := self package markAsRingResolved.	
+	author := self author markAsRingResolved.	
+	time := self time markAsRingResolved.	
+	tags := self tags markAsRingResolved.
 ]
 
 { #category : #'queries - class' }
@@ -322,9 +335,7 @@ RGMethod >> protocol [
 { #category : #'accessing - backend' }
 RGMethod >> protocol: aSymbol [
 
-	"for compatiblity with the old protocols"
-
-	self cleanTags.
+	self cleanTagsWithoutAnnouncemnt.
 	self tagWith: aSymbol.
 	
 	
@@ -370,7 +381,6 @@ RGMethod >> pvtPackage: anRGPackageDefinition [
 RGMethod >> pvtResolvableProperties [
 
 	^ super pvtResolvableProperties, { 
-		#protocol -> protocol. 
 		#sourceCode -> sourceCode. 
 		#package -> package. 
 		#author -> author. 
@@ -488,11 +498,11 @@ RGMethod >> sourceCodeForNoSource [
 { #category : #'accessing - backend' }
 RGMethod >> tagWith: aSymbol [ 
 
-	self backend forMethod tagMethod: self with: aSymbol.
-	
-	self parent addMethodTag: aSymbol.
-	
-	"todo:announce"
+	self changeProtocolDuring: [ 
+		self backend forMethod tagMethod: self with: aSymbol.
+		self parent addMethodTag: aSymbol.
+	]
+
 ]
 
 { #category : #'accessing - model' }

@@ -41,3 +41,11 @@ RGClassVariableTest >> testNewClassVariable [
 	self assert: (classVariable isClassVariable).	
 	
 ]
+
+{ #category : #tests }
+RGClassVariableTest >> testResolvingConsistency [
+
+	| anObject |
+	anObject := RGClassVariable unnamed.
+	self checkClassesConsistency: anObject and: anObject makeResolved
+]

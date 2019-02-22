@@ -53,7 +53,7 @@ RGTraitTransformation >> makeResolved [
 
 	super makeResolved.
 	
-	subject := self subject.
+	subject := self subject markAsRingResolved.
 
 ]
 

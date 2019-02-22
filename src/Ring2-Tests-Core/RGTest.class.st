@@ -4,6 +4,17 @@ Class {
 	#category : #'Ring2-Tests-Core'
 }
 
+{ #category : #tests }
+RGTest >> checkClassesConsistency: object1 and: object2 [
+
+	"check if instance variables have the same types (after sending of #value)"
+
+	self assert: (object1 class instVarNames collect: [ :var | 
+		var -> (object1 instVarNamed: var) value class ]) 
+		equals: (object2 class instVarNames collect: [ :var | 
+		var -> (object2 instVarNamed: var) value class ]) 
+]
+
 { #category : #utilities }
 RGTest >> checkHierarchyConsistencyOf: anRGClass [
 

@@ -563,7 +563,7 @@ Ring2ChunkImporterTest >> testStandardMethod [
 	self assert: class isClass.
 	self assert: method notNil.
 	self assert: method isRingResolved.
-	self assert: (method hasResolvedAll: #(name protocol sourceCode author time)).
+	self assert: (method hasResolvedAll: #(name sourceCode author time tags)).
 	
 	self assert: method name equals: #someMethod.
 	self assert: method protocol equals: 'some protocol'.
@@ -591,7 +591,7 @@ Ring2ChunkImporterTest >> testStandardMethodInExistingClass [
 	self assert: class isClass.
 	self assert: method notNil.
 	self assert: method isRingResolved.
-	self assert: (method hasResolvedAll: #(name protocol sourceCode author time)).
+	self assert: (method hasResolvedAll: #(name sourceCode author time tags)).
 	
 	self assert: method name equals: #someMethod.
 	self assert: method protocol equals: 'some protocol'.
@@ -620,7 +620,7 @@ Ring2ChunkImporterTest >> testStandardMethodInExistingMetaclassTrait [
 	self assert: (trait isMetaclassTrait).
 	self assert: method notNil.
 	self assert: method isRingResolved.
-	self assert: (method hasResolvedAll: #(name protocol sourceCode author time)).
+	self assert: (method hasResolvedAll: #(name sourceCode author time tags)).
 	
 	self assert: method name equals: #someMethod.
 	self assert: method protocol equals: 'some protocol'.
@@ -649,7 +649,7 @@ Ring2ChunkImporterTest >> testStandardMethodInExistingTrait [
 	self assert: (trait isTrait and: [trait isMetaclassTrait not]).
 	self assert: method notNil.
 	self assert: method isRingResolved.
-	self assert: (method hasResolvedAll: #(name protocol sourceCode author time)).
+	self assert: (method hasResolvedAll: #(name sourceCode author time tags)).
 	
 	self assert: method name equals: #someMethod.
 	self assert: method protocol equals: 'some protocol'.

@@ -19,3 +19,11 @@ RGPoolVariableTest >> testPoolVariableImplicitEnvironment [
 	
 
 ]
+
+{ #category : #tests }
+RGPoolVariableTest >> testResolvingConsistency [
+
+	| anObject |
+	anObject := RGPoolVariable unnamed.
+	self checkClassesConsistency: anObject and: anObject makeResolved
+]
