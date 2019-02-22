@@ -65,7 +65,7 @@ MoosePlayground >> compose [
 									MooseModel root indexOf: aMooseModel.
 									text entity
 										saveContent:
-											'model := MooseModel root at: '
+											aMooseModel name uncapitalized, ' := MooseModel root at: '
 												, (MooseModel root indexOf: aMooseModel) asString , '.'
 												, String crlf , text entity content.
 									text update ];
