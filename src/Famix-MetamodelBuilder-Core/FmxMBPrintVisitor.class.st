@@ -1,3 +1,12 @@
+"
+I'm a visitor for instances of #FamixMetamodelGenerator and subclasses.
+
+I just visit each node in the builder, and print it on the Transcript.
+
+see FmxMBVisitor to see how to use me.
+
+
+"
 Class {
 	#name : #FmxMBPrintVisitor,
 	#superclass : #FmxMBVisitor,
