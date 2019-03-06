@@ -11,7 +11,7 @@ matrix:
   includes:
     - smalltalk: Pharo64-7.0
     - smalltalk: Pharo64-7.0
+      env: BUILD_NAME=PharoWithAllTests64-7.0
       smalltalk_config: .withPharoTests.ston
   allow_failures:
-    - smalltalk: Pharo64-7.0
-      smalltalk_config: .withPharoTests.ston
+    - smalltalk_config: .withPharoTests.ston
