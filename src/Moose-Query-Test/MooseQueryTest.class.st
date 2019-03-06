@@ -63,6 +63,19 @@ MooseQueryTest >> setUp [
 ]
 
 { #category : #tests }
+MooseQueryTest >> testAllAtAnyScope [
+	self assertCollection: (class1 allAtAnyScope: {FAMIXClass}) hasSameElements: {class1}.
+	self assertCollection: (class1 allAtAnyScope: {FAMIXPackage}) hasSameElements: {package1}.
+	self assertCollection: (class1 allAtAnyScope: {FAMIXClass . FAMIXPackage}) hasSameElements: {class1. package1}.
+	self assertCollection: (class1 allAtAnyScope: {FAMIXMethod}) hasSameElements: {}.
+	self assertCollection: (class1 allAtAnyScope: {FamixTClass}) hasSameElements: {class1}.
+	self assertCollection: (class1 allAtAnyScope: {FamixTPackage}) hasSameElements: {package1}.
+	self assertCollection: (class1 allAtAnyScope: {FamixTClass . FamixTPackage}) hasSameElements: {class1. package1}.
+	self assertCollection: (class1 allAtAnyScope: {FamixTMethod}) hasSameElements: {}.
+	self assertCollection: (methodExt allAtAnyScope: {FAMIXPackage}) hasSameElements: {package1. package2}.
+]
+
+{ #category : #tests }
 MooseQueryTest >> testAllAtScope [
 	| package3 |
 	self assertCollection: (class1 allAtScope: FamixTClass) hasSameElements: {class1}.
@@ -185,6 +198,19 @@ MooseQueryTest >> testAllWithScope [
 			{package1.
 			package3.
 			namespace}
+]
+
+{ #category : #tests }
+MooseQueryTest >> testAtAnyScope [
+	self assertCollection: (class1 atAnyScope: {FAMIXClass}) hasSameElements: {class1}.
+	self assertCollection: (class1 atAnyScope: {FAMIXPackage}) hasSameElements: {package1}.
+	self assertCollection: (class1 atAnyScope: {FAMIXClass . FAMIXPackage}) hasSameElements: {class1}.
+	self assertCollection: (class1 atAnyScope: {FAMIXMethod}) hasSameElements: {}.
+	self assertCollection: (class1 atAnyScope: {FamixTClass}) hasSameElements: {class1}.
+	self assertCollection: (class1 atAnyScope: {FamixTPackage}) hasSameElements: {package1}.
+	self assertCollection: (class1 atAnyScope: {FamixTClass . FamixTPackage}) hasSameElements: {class1}.
+	self assertCollection: (class1 atAnyScope: {FamixTMethod}) hasSameElements: {}.
+	self assertCollection: (methodExt atAnyScope: {FAMIXPackage}) hasSameElements: {package1. package2}.
 ]
 
 { #category : #tests }

@@ -224,6 +224,24 @@ TEntityMetaLevelDependency >> addAllParentsIn: aCollection [
 ]
 
 { #category : #scoping }
+TEntityMetaLevelDependency >> allAtAnyScope: aCollectionOfFamixClasses [
+	"I am used to return all the encountered entities (recursively) at matching one of the class scope given as parameter that are up in the containment tree of the metamodel"
+
+	^ (self allAtAnyScope: aCollectionOfFamixClasses in: OrderedCollection new) asSet asArray
+]
+
+{ #category : #private }
+TEntityMetaLevelDependency >> allAtAnyScope: aCollectionOfFamixClass in: aCollection [
+	| selectors |
+	(aCollectionOfFamixClass anySatisfy: [ :aClassFamix | (self isOfType: aClassFamix)]) ifTrue: [ aCollection add: self ].	
+	
+	"The content of this block could be much more readable with #do: but we do this solution for performances... We need this method to be really really performant."
+	1 to: (selectors := self parentSelectors) size do: [ :ind | (self perform: (selectors at: ind)) allAtAnyScope: aCollectionOfFamixClass in: aCollection ].
+	
+	^ aCollection
+]
+
+{ #category : #scoping }
 TEntityMetaLevelDependency >> allAtScope: aClassFAMIX [
 	"I am used to return all the entities at a given famix class scope that are up in the containment tree of the metamodel on multiple levels."
 
@@ -330,6 +348,23 @@ TEntityMetaLevelDependency >> allWithScope: aClassFAMIX in: aCollection [
 
 	self allParentTypes detect: [ :class | aClassFAMIX = class or: [ aClassFAMIX inheritsFrom: class ] ] ifFound: [ self allAtScope: aClassFAMIX in: aCollection ].
 	self allChildrenTypes detect: [ :class | aClassFAMIX = class or: [ aClassFAMIX inheritsFrom: class ] ] ifFound: [ self allToScope: aClassFAMIX in: aCollection ].
+	^ aCollection
+]
+
+{ #category : #scoping }
+TEntityMetaLevelDependency >> atAnyScope: aCollectionOfFamixClasses [
+	"I am used to return all the first encountered entities at matching one of the class scope given as parameter that are up in the containment tree of the metamodel"
+
+	^ (self atAnyScope: aCollectionOfFamixClasses in: OrderedCollection new) asSet asArray
+]
+
+{ #category : #private }
+TEntityMetaLevelDependency >> atAnyScope: aCollectionOfFamixScopes in: aCollection [
+	(aCollectionOfFamixScopes anySatisfy: [ :aClassFAMIX | self isOfType: aClassFAMIX ])
+		ifTrue: [ aCollection add: self ]
+		ifFalse: [ "The content of this block could be much more readable with #do: but we do this solution for performances... We need this method to be really really performant."
+			| selectors |
+			1 to: (selectors := self parentSelectors) size do: [ :ind | (self perform: (selectors at: ind)) atAnyScope: aCollectionOfFamixScopes in: aCollection ] ].
 	^ aCollection
 ]
 
