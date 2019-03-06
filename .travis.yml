@@ -6,3 +6,12 @@ os:
 
 smalltalk:
   - Pharo64-7.0
+
+matrix:
+  includes:
+    - smalltalk: Pharo64-7.0
+    - smalltalk: Pharo64-7.0
+      smalltalk_config: .withPharoTests.ston
+  allow_failures:
+    - smalltalk: Pharo64-7.0
+      smalltalk_config: .withPharoTests.ston
