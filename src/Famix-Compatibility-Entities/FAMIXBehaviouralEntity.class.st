@@ -105,6 +105,11 @@ FAMIXBehaviouralEntity >> cyclomaticComplexity: aNumber [
 	self privateState propertyAt: #cyclomaticComplexity put: aNumber
 ]
 
+{ #category : #'moosequery-queries-outgoing' }
+FAMIXBehaviouralEntity >> entityHasOutgoingTypeDeclarations [
+	^ self declaredType isNotNil
+]
+
 { #category : #'Famix-Extensions' }
 FAMIXBehaviouralEntity >> hasEmptyBody [
 	"Copied from FAMIX2.

@@ -196,6 +196,30 @@ MooseQueryTypeDeclarationAssociationTest >> setUp [
 ]
 
 { #category : #'famix-class' }
+MooseQueryTypeDeclarationAssociationTest >> testFamixClassHasIncomingTypeDeclarations [
+	self assert: (self model entityNamed: 'C2') hasIncomingTypeDeclarations.
+	self
+		assert: (self model entityNamed: 'C3') hasIncomingTypeDeclarations
+]
+
+{ #category : #'famix-class' }
+MooseQueryTypeDeclarationAssociationTest >> testFamixClassHasOutgoingTypeDeclarations [
+	self
+		assert:
+			(self model entityNamed: 'C2') hasOutgoingTypeDeclarations .
+	self
+		assert:
+			(self model entityNamed: 'C3') hasOutgoingTypeDeclarations.
+]
+
+{ #category : #'famix-class' }
+MooseQueryTypeDeclarationAssociationTest >> testFamixClassHasTypeDeclarationsWithoutSelfLoops [
+	self assert: (self model entityNamed: 'C3') hasOutgoingTypeDeclarations.
+	self
+		assert: (self model entityNamed: 'C3') hasOutgoingTypeDeclarations
+]
+
+{ #category : #'famix-class' }
 MooseQueryTypeDeclarationAssociationTest >> testFamixClassIncomingTypeDeclarations [
 	self
 		assert:
@@ -284,6 +308,37 @@ MooseQueryTypeDeclarationAssociationTest >> testFamixClassTypeDeclarationsWithou
 ]
 
 { #category : #'famix-method' }
+MooseQueryTypeDeclarationAssociationTest >> testFamixMethodHasIncomingTypeDeclarations [
+	self
+		deny: (self model entityNamed: 'C1.m1()') hasIncomingTypeDeclarations.
+	self
+		deny:
+			(self model entityNamed: 'C2.m3(C2,C3)') hasIncomingTypeDeclarations
+			
+]
+
+{ #category : #'famix-method' }
+MooseQueryTypeDeclarationAssociationTest >> testFamixMethodHasOutgoingTypeDeclarations [
+	self
+		assert: (self model entityNamed: 'C2.m2()') hasOutgoingTypeDeclarations.
+	
+	self
+		assert:
+			(self model entityNamed: 'C2.m3(C2,C3)') hasOutgoingTypeDeclarations
+]
+
+{ #category : #'famix-method' }
+MooseQueryTypeDeclarationAssociationTest >> testFamixMethodHasTypeDeclarationsWithoutSelfLoops [
+	self
+		deny:
+			(self model entityNamed: 'C1.m1()') hasIncomingTypeDeclarations.
+	self
+		assert:
+			(self model entityNamed: 'C2.m3(C2,C3)')
+				hasOutgoingTypeDeclarations 
+]
+
+{ #category : #'famix-method' }
 MooseQueryTypeDeclarationAssociationTest >> testFamixMethodIncomingTypeDeclarations [
 	self assert: (self model entityNamed: 'C1.m1()') queryIncomingTypeDeclarations size equals: 0.
 	self assert: (self model entityNamed: 'C2.m3(C2,C3)') queryIncomingTypeDeclarations size equals: 0
@@ -334,6 +389,29 @@ MooseQueryTypeDeclarationAssociationTest >> testFamixMethodTypeDeclarationsWitho
 			(((self model entityNamed: 'C2.m3(C2,C3)')
 				queryOutgoingTypeDeclarations withoutSelfLoops atScope: FamixTType)
 				includes: (self model entityNamed: 'C3'))
+]
+
+{ #category : #'famix-package' }
+MooseQueryTypeDeclarationAssociationTest >> testFamixPackageHasIncomingTypeDeclarations [
+	self
+		assert:
+			(self model entityNamed: 'p2') hasIncomingTypeDeclarations
+]
+
+{ #category : #'famix-package' }
+MooseQueryTypeDeclarationAssociationTest >> testFamixPackageHasOutgoingTypeDeclarations [
+	self
+		assert:
+			(self model entityNamed: 'p1') hasOutgoingTypeDeclarations
+]
+
+{ #category : #'famix-package' }
+MooseQueryTypeDeclarationAssociationTest >> testFamixPackageHasTypeDeclarationsWithoutSelfLoops [
+	self
+		assert: (self model entityNamed: 'p2') hasIncomingTypeDeclarations.
+		self
+		assert:
+			(self model entityNamed: 'p1') hasOutgoingTypeDeclarations
 ]
 
 { #category : #'famix-package' }

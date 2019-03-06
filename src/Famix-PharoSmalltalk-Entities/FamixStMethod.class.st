@@ -115,6 +115,11 @@ FamixStMethod >> cyclomaticComplexity [
 ]
 
 { #category : #'Famix-Extensions-private' }
+FamixStMethod >> entityHasOutgoingTypeDeclarations [
+	^ self declaredType isNotNil
+]
+
+{ #category : #'Famix-Extensions-private' }
 FamixStMethod >> hasEmptyBody [
 	"Copied from FAMIX2.
 	 The closest we can get in FAMIX2 to determine if a body is empty is to check if the method

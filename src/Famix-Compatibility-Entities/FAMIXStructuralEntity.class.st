@@ -55,6 +55,11 @@ FAMIXStructuralEntity >> copyFrom: anEntity within: aVisitor [
 
 ]
 
+{ #category : #'as yet unclassified' }
+FAMIXStructuralEntity >> entityHasOutgoingTypeDeclarations [
+	^ self declaredType isNotNil
+]
+
 { #category : #'Famix-Extensions' }
 FAMIXStructuralEntity >> hasDeclaredType [
 	^ self declaredType notNil

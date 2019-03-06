@@ -35,6 +35,11 @@ FamixStStructuralEntity class >> requirements [
 	^ {  }
 ]
 
+{ #category : #'Famix-Implementation' }
+FamixStStructuralEntity >> entityHasOutgoingTypeDeclarations [
+	^ self declaredType isNotNil
+]
+
 { #category : #testing }
 FamixStStructuralEntity >> isSharedVariable [
 

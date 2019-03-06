@@ -135,6 +135,11 @@ FamixJavaType >> copyFrom: anEntity within: aVisitor [
 ]
 
 { #category : #'as yet unclassified' }
+FamixJavaType >> entityHasIncomingTypeDeclarations [
+	^ (self structuresWithDeclaredType , self behavioursWithDeclaredType) isNotEmpty
+]
+
+{ #category : #'as yet unclassified' }
 FamixJavaType >> extendedInPackages [
 
 	^ self privateState cacheAt: #extendedInPackages
