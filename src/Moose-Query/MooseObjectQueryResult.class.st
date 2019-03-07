@@ -8,8 +8,18 @@ Class {
 }
 
 { #category : #filtering }
+MooseObjectQueryResult >> allAtAnyScope: aCollectionOfFamixClasses [
+	^ self newObjectResultWith: (self storage inject: OrderedCollection new into: [ :res :entity | entity allAtAnyScope: aCollectionOfFamixClasses in: res ]) asSet
+]
+
+{ #category : #filtering }
 MooseObjectQueryResult >> allAtScope: aClassFamix [
 	^ self newObjectResultWith: (self storage inject: OrderedCollection new into: [ :res :entity | entity allAtScope: aClassFamix in: res ]) asSet
+]
+
+{ #category : #filtering }
+MooseObjectQueryResult >> allToAnyScope: aCollectionOfFamixClasses [
+	^ self newObjectResultWith: (self storage inject: OrderedCollection new into: [ :res :entity | entity allToAnyScope: aCollectionOfFamixClasses in: res ]) asSet
 ]
 
 { #category : #filtering }
@@ -18,8 +28,18 @@ MooseObjectQueryResult >> allToScope: aClassFamix [
 ]
 
 { #category : #filtering }
+MooseObjectQueryResult >> allWithAnyScope: aCollectionOfFamixClasses [
+	^ self newObjectResultWith: (self storage inject: OrderedCollection new into: [ :res :entity | entity allWithAnyScope: aCollectionOfFamixClasses in: res ]) asSet
+]
+
+{ #category : #filtering }
 MooseObjectQueryResult >> allWithScope: aClassFamix [
 	^ self newObjectResultWith: (self storage inject: OrderedCollection new into: [ :res :entity | entity allWithScope: aClassFamix in: res ]) asSet
+]
+
+{ #category : #filtering }
+MooseObjectQueryResult >> atAnyScope: aCollectionOfFamixClasses [
+	^ self newObjectResultWith: (self storage inject: OrderedCollection new into: [ :res :entity | entity atAnyScope: aCollectionOfFamixClasses in: res ]) asSet
 ]
 
 { #category : #filtering }
@@ -53,8 +73,18 @@ MooseObjectQueryResult >> primCollectAtScope: aScopeSymbol [
 ]
 
 { #category : #filtering }
+MooseObjectQueryResult >> toAnyScope: aCollectionOfFamixClasses [
+	^ self newObjectResultWith: (self storage inject: OrderedCollection new into: [ :res :entity | entity toAnyScope: aCollectionOfFamixClasses in: res ]) asSet
+]
+
+{ #category : #filtering }
 MooseObjectQueryResult >> toScope: aClassFamix [
 	^ self newObjectResultWith: (self storage inject: OrderedCollection new into: [ :res :entity | entity toScope: aClassFamix in: res ]) asSet
+]
+
+{ #category : #filtering }
+MooseObjectQueryResult >> withAnyScope: aCollectionOfFamixClasses [
+	^ self newObjectResultWith: (self storage inject: OrderedCollection new into: [ :res :entity | entity withAnyScope: aCollectionOfFamixClasses in: res ]) asSet
 ]
 
 { #category : #filtering }

@@ -31,6 +31,11 @@ TDependencyQueryResult classSide >> generatedTraitNames [
 ]
 
 { #category : #filtering }
+TDependencyQueryResult >> allAtAnyScope: aCollectionOfFamixClasses [
+	^ self newObjectResultWith: (self storage inject: OrderedCollection new into: [ :res :dep | (self opposite: dep) allAtAnyScope: aCollectionOfFamixClasses in: res ]) asSet
+]
+
+{ #category : #filtering }
 TDependencyQueryResult >> allAtScope: aClassFamix [
 	^ self newObjectResultWith: (self storage inject: OrderedCollection new into: [ :res :dep | (self opposite: dep) allAtScope: aClassFamix in: res ]) asSet
 ]
@@ -46,8 +51,18 @@ TDependencyQueryResult >> allToScope: aClassFamix [
 ]
 
 { #category : #filtering }
+TDependencyQueryResult >> allWithAnyScope: aCollectionOfFamixClasses [
+	^ self newObjectResultWith: (self storage inject: OrderedCollection new into: [ :res :dep | (self opposite: dep) allWithAnyScope: aCollectionOfFamixClasses in: res ]) asSet
+]
+
+{ #category : #filtering }
 TDependencyQueryResult >> allWithScope: aClassFamix [
 	^ self newObjectResultWith: (self storage inject: OrderedCollection new into: [ :res :dep | (self opposite: dep) allWithScope: aClassFamix in: res ]) asSet
+]
+
+{ #category : #filtering }
+TDependencyQueryResult >> atAnyScope: aCollectionOfFamixClasses [
+	^ self newObjectResultWith: (self storage inject: OrderedCollection new into: [ :res :dep | (self opposite: dep) atAnyScope: aCollectionOfFamixClasses in: res ]) asSet
 ]
 
 { #category : #filtering }
@@ -144,8 +159,18 @@ TDependencyQueryResult >> sourceMethods [
 ]
 
 { #category : #filtering }
+TDependencyQueryResult >> toAnyScope: aCollectionOfFamixClasses [
+	^ self newObjectResultWith: (self storage inject: OrderedCollection new into: [ :res :dep | (self opposite: dep) toAnyScope: aCollectionOfFamixClasses in: res ]) asSet
+]
+
+{ #category : #filtering }
 TDependencyQueryResult >> toScope: aClassFamix [
 	^ self newObjectResultWith: (self storage inject: OrderedCollection new into: [ :res :dep | (self opposite: dep) toScope: aClassFamix in: res ]) asSet
+]
+
+{ #category : #filtering }
+TDependencyQueryResult >> withAnyScope: aCollectionOfFamixClasses [
+	^ self newObjectResultWith: (self storage inject: OrderedCollection new into: [ :res :dep | (self opposite: dep) withAnyScope: aCollectionOfFamixClasses in: res ]) asSet
 ]
 
 { #category : #filtering }
