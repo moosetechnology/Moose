@@ -231,13 +231,13 @@ TEntityMetaLevelDependency >> allAtAnyScope: aCollectionOfFamixClasses [
 ]
 
 { #category : #private }
-TEntityMetaLevelDependency >> allAtAnyScope: aCollectionOfFamixClass in: aCollection [
+TEntityMetaLevelDependency >> allAtAnyScope: aCollectionOfFamixClasses in: aCollection [
 	| selectors |
-	(aCollectionOfFamixClass anySatisfy: [ :aClassFamix | (self isOfType: aClassFamix)]) ifTrue: [ aCollection add: self ].	
-	
+	(aCollectionOfFamixClasses anySatisfy: [ :aFAMIXClass | self isOfType: aFAMIXClass ]) ifTrue: [ aCollection add: self ].
+
 	"The content of this block could be much more readable with #do: but we do this solution for performances... We need this method to be really really performant."
-	1 to: (selectors := self parentSelectors) size do: [ :ind | (self perform: (selectors at: ind)) allAtAnyScope: aCollectionOfFamixClass in: aCollection ].
-	
+	1 to: (selectors := self parentSelectors) size do: [ :ind | (self perform: (selectors at: ind)) allAtAnyScope: aCollectionOfFamixClasses in: aCollection ].
+
 	^ aCollection
 ]
 
@@ -313,6 +313,24 @@ TEntityMetaLevelDependency >> allProviders [
 { #category : #accessing }
 TEntityMetaLevelDependency >> allProvidersAtScope: aClass [
 	^ (self queryOutgoingDependencies atScope: aClass withNonMatchingEntitiesDo: [ :entities :res | entities ifNotNil: [ res addAll: entities asCollection ] ]) withoutSelfLoops
+]
+
+{ #category : #scoping }
+TEntityMetaLevelDependency >> allToAnyScope: aCollectionOfFamixClasses [
+	"I am used to return all the encountered entities (recursively) at matching one of the class scope given as parameter that are down in the containment tree of the metamodel"
+
+	^ (self allToAnyScope: aCollectionOfFamixClasses in: OrderedCollection new) asSet asArray
+]
+
+{ #category : #private }
+TEntityMetaLevelDependency >> allToAnyScope: aCollectionOfFamixClasses in: aCollection [
+	| selectors |
+	(aCollectionOfFamixClasses anySatisfy: [ :aFAMIXClass | self isOfType: aFAMIXClass ]) ifTrue: [ aCollection add: self ].
+
+	"The content of this block could be much more readable with #do: but we do this solution for performances... We need this method to be really really performant."
+	1 to: (selectors := self childrenSelectors) size do: [ :ind | (self perform: (selectors at: ind)) allToAnyScope: aCollectionOfFamixClasses in: aCollection ].
+
+	^ aCollection
 ]
 
 { #category : #scoping }
@@ -446,6 +464,23 @@ TEntityMetaLevelDependency >> parents [
 	res := OrderedCollection new.
 	self parentSelectors do: [ :accessor | (self perform: accessor) ifNotNil: [ :r | res addAll: r asCollection ] ].
 	^ res asSet
+]
+
+{ #category : #scoping }
+TEntityMetaLevelDependency >> toAnyScope: aCollectionOfFamixClasses [
+	"I am used to return all the first encountered entities at matching one of the class scope given as parameter that are down in the containment tree of the metamodel"
+
+	^ (self toAnyScope: aCollectionOfFamixClasses in: OrderedCollection new) asSet asArray
+]
+
+{ #category : #private }
+TEntityMetaLevelDependency >> toAnyScope: aCollectionOfFamixClasses in: aCollection [
+	(aCollectionOfFamixClasses anySatisfy: [ :aFAMIXClass | self isOfType: aFAMIXClass ])
+		ifTrue: [ aCollection add: self ]
+		ifFalse: [ "The content of this block could be much more readable with #do: but we do this solution for performances... We need this method to be really really performant."
+			| selectors |
+			1 to: (selectors := self childrenSelectors) size do: [ :ind | (self perform: (selectors at: ind)) toAnyScope: aCollectionOfFamixClasses in: aCollection ] ].
+	^ aCollection
 ]
 
 { #category : #scoping }
