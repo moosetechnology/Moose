@@ -155,6 +155,14 @@ MooseQueryTest >> testAllToScope [
 ]
 
 { #category : #tests }
+MooseQueryTest >> testAllWithAnyScope [
+	self assertCollection: (class2 allWithAnyScope: {FamixTMethod . FamixTAttribute}) hasSameElements: {method2 . method3 . var1 . var2 . methodExt}.
+	self assertCollection: (class2 allWithAnyScope: {FamixTClass . FamixTPackage}) hasSameElements: {class2. package2}.
+	self assertCollection: (class2 allWithAnyScope: {FamixTMethod . FamixTAttribute . FamixTPackage}) hasSameElements: {method2 . method3 . var1 . var2 . methodExt . package2}.
+	self assertCollection: (class2 allWithAnyScope: {FamixTMethod . FAMIXStructuralEntity . FamixTPackage}) hasSameElements: {method2 . method3 . var1 . var2 . methodExt . package2 . localVariable}
+]
+
+{ #category : #tests }
 MooseQueryTest >> testAllWithScope [
 	| package3 class3 |
 	self assertCollection: (class1 allWithScope: FamixTMethod) hasSameElements: {method1}.
@@ -509,6 +517,14 @@ MooseQueryTest >> testWithAllParents [
 	self assert: class2 withAllParents size equals: 2.
 	self assert: method2 withAllParents size equals: 3.
 	self assert: var2 withAllParents size equals: 3
+]
+
+{ #category : #tests }
+MooseQueryTest >> testWithAnyScope [
+	self assertCollection: (class2 withAnyScope: {FamixTMethod . FamixTAttribute}) hasSameElements: {method2 . method3 . var1 . var2 . methodExt}.
+	self assertCollection: (class2 withAnyScope: {FamixTClass . FamixTPackage}) hasSameElements: {class2}.
+	self assertCollection: (class2 withAnyScope: {FamixTMethod . FamixTAttribute . FamixTPackage}) hasSameElements: {method2 . method3 . var1 . var2 . methodExt . package2}.
+	self assertCollection: (class2 withAnyScope: {FamixTMethod . FAMIXStructuralEntity . FamixTPackage}) hasSameElements: {method2 . method3 . var1 . var2 . methodExt . package2}
 ]
 
 { #category : #tests }
