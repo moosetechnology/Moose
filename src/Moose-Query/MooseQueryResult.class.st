@@ -72,17 +72,6 @@ MooseQueryResult >> collect: aBlock [
 		yourself
 ]
 
-{ #category : #scoping }
-MooseQueryResult >> collectAtScope: aScopeSymbol [
-	| basicResult noNilResult | 
-	self deprecated: 'Use #atScope: aClass instead' on: '19/05/2016' in: 'Moose6.1'.
-	basicResult := self primCollectAtScope: aScopeSymbol.
-	"we can get nil in results when the wanted scope does not make
-	sense for an entity. So, we reject the nils"
-	noNilResult := basicResult reject: [:each | each isNil].
-	^ self newObjectResultWith: (noNilResult asSet)
-]
-
 { #category : #enumerating }
 MooseQueryResult >> do: aBlock [
 	"Evaluate aBlock with each of the receiver's elements as the argument."
@@ -153,12 +142,6 @@ MooseQueryResult >> outOfNamespace: aFAMIXNamespace [
 
 { #category : #filtering }
 MooseQueryResult >> outOfPackage: aFAMIXPackage [ 
-	self subclassResponsibility 
-]
-
-{ #category : #scoping }
-MooseQueryResult >> primCollectAtScope: aScopeSymbol [
-	self deprecated: 'This method is part of the old query system. Now instead of #collectAtScope: aSymbol you should use #atScope: aClass.' on: '19/05/2016' in: 'Moose6.1'.
 	self subclassResponsibility 
 ]
 

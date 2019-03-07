@@ -32,7 +32,7 @@ TOODependencyQueries classSide >> generatedTraitNames [
 	^ #(TDependencyQueries)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 TOODependencyQueries >> hasIncomingTypeDeclaration [
 	"This method could be more readable but it needs to be really performant"
 
@@ -45,14 +45,14 @@ TOODependencyQueries >> hasIncomingTypeDeclaration [
 	 ^ self entityHasIncomingTypeDeclarations.
 ]
 
-{ #category : #'moosequery-queries-generic' }
+{ #category : #testing }
 TOODependencyQueries >> hasOutgoingDependencies [
 	"Associations + typeDeclaractions"
 
 	^ self hasOutgoing or: [ self hasOutgoingTypeDeclarations ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 TOODependencyQueries >> hasOutgoingTypeDeclaration [
 	"This method could be more readable but it needs to be really performant"
 
