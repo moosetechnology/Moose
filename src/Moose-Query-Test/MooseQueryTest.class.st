@@ -19,12 +19,12 @@ Class {
 		'var1',
 		'acc1',
 		'namespace',
-		'var3',
 		'ref1',
 		'methodExt',
 		'isolatedPackage',
 		'isolatedClass',
-		'isolatedMethod'
+		'isolatedMethod',
+		'localVariable'
 	],
 	#category : #'Moose-Query-Test'
 }
@@ -53,13 +53,26 @@ MooseQueryTest >> setUp [
 	methodExt := FAMIXMethod new name: 'methodExt' ; parentType: class2 ; parentPackage: package1 ; mooseModel: model.
 	var1 := FAMIXAttribute new name: 'var1' ; parentType: class2 ; declaredType: class1 ; mooseModel: model.
 	var2 := FAMIXAttribute new name: 'var2' ; parentType: class2 ; mooseModel: model.
-	var3 := FAMIXLocalVariable new name: 'var3' ; parentBehaviouralEntity: method2 ; declaredType: class1 ; mooseModel: model.
+	localVariable := FAMIXLocalVariable new name: 'var3' ; parentBehaviouralEntity: method2 ; declaredType: class1 ; mooseModel: model.
 	access := FAMIXAccess new accessor: method1 ; variable: var2 ; mooseModel: model.
 	acc1 := FAMIXAccess new accessor: method2 ; variable: var1 ; mooseModel: model.
 	inv1 := FAMIXInvocation new sender: method1 ; addCandidate: method2 ; receiver: var2 ; mooseModel: model.
 	inv2 := FAMIXInvocation new sender: method2 ; addCandidate: method2 ; receiver: var2 ; mooseModel: model.
 	inv3 := FAMIXInvocation new sender: method3 ; addCandidate: method2 ; receiver: var2 ; mooseModel: model.
 	ref1 := FAMIXReference new source: method1 ; target: class2 ; mooseModel: model.
+]
+
+{ #category : #tests }
+MooseQueryTest >> testAllAtAnyScope [
+	self assertCollection: (class1 allAtAnyScope: {FAMIXClass}) hasSameElements: {class1}.
+	self assertCollection: (class1 allAtAnyScope: {FAMIXPackage}) hasSameElements: {package1}.
+	self assertCollection: (class1 allAtAnyScope: {FAMIXClass . FAMIXPackage}) hasSameElements: {class1. package1}.
+	self assertCollection: (class1 allAtAnyScope: {FAMIXMethod}) hasSameElements: {}.
+	self assertCollection: (class1 allAtAnyScope: {FamixTClass}) hasSameElements: {class1}.
+	self assertCollection: (class1 allAtAnyScope: {FamixTPackage}) hasSameElements: {package1}.
+	self assertCollection: (class1 allAtAnyScope: {FamixTClass . FamixTPackage}) hasSameElements: {class1. package1}.
+	self assertCollection: (class1 allAtAnyScope: {FamixTMethod}) hasSameElements: {}.
+	self assertCollection: (methodExt allAtAnyScope: {FAMIXPackage}) hasSameElements: {package1. package2}.
 ]
 
 { #category : #tests }
@@ -118,29 +131,35 @@ MooseQueryTest >> testAllParents [
 ]
 
 { #category : #tests }
+MooseQueryTest >> testAllToAnyScope [
+	self assertCollection: (class2 allToAnyScope: {FAMIXMethod . FAMIXAttribute}) hasSameElements: {method2 . method3 . methodExt . var1 . var2}.
+	self assertCollection: (class2 allToAnyScope: {FAMIXMethod . FAMIXLocalVariable}) hasSameElements: {method2 . method3 . methodExt . localVariable}.
+	self assertCollection: (class2 allToAnyScope: {FAMIXMethod . FAMIXStructuralEntity}) hasSameElements: {method2 . method3 . methodExt . var1 . var2 . localVariable}.
+	self assertCollection: (class2 allToAnyScope: {FAMIXClass . FAMIXMethod}) hasSameElements: {class2 . method2 . method3 . methodExt}.
+	self assertCollection: (method1 allToAnyScope: {FAMIXClass . FAMIXPackage}) hasSameElements: {}
+]
+
+{ #category : #tests }
 MooseQueryTest >> testAllToScope [
 	| class3 |
 	self assertCollection: (class1 allToScope: FamixTMethod) hasSameElements: {method1}.
-	self
-		assertCollection: (class2 allToScope: FamixTAttribute)
-		hasSameElements:
-			{var1.
-			var2}.
+	self assertCollection: (class2 allToScope: FamixTAttribute) hasSameElements: {var1 . var2}.
+	self assertCollection: (class2 allToScope: FAMIXStructuralEntity) hasSameElements: {var1 . var2 . localVariable}.
 	self assertCollection: (package1 allToScope: FamixTClass) hasSameElements: {class1}.
 	class3 := FAMIXClass new
 		name: 'class3';
 		container: class1;
 		mooseModel: model.
-	self
-		assertCollection: (class1 allToScope: FamixTClass)
-		hasSameElements:
-			{class1.
-			class3}.
-	self
-		assertCollection: (package1 allToScope: FamixTClass)
-		hasSameElements:
-			{class1.
-			class3}
+	self assertCollection: (class1 allToScope: FamixTClass) hasSameElements: {class1 . class3}.
+	self assertCollection: (package1 allToScope: FamixTClass) hasSameElements: {class1 . class3}
+]
+
+{ #category : #tests }
+MooseQueryTest >> testAllWithAnyScope [
+	self assertCollection: (class2 allWithAnyScope: {FamixTMethod . FamixTAttribute}) hasSameElements: {method2 . method3 . var1 . var2 . methodExt}.
+	self assertCollection: (class2 allWithAnyScope: {FamixTClass . FamixTPackage}) hasSameElements: {class2. package2}.
+	self assertCollection: (class2 allWithAnyScope: {FamixTMethod . FamixTAttribute . FamixTPackage}) hasSameElements: {method2 . method3 . var1 . var2 . methodExt . package2}.
+	self assertCollection: (class2 allWithAnyScope: {FamixTMethod . FAMIXStructuralEntity . FamixTPackage}) hasSameElements: {method2 . method3 . var1 . var2 . methodExt . package2 . localVariable}
 ]
 
 { #category : #tests }
@@ -185,6 +204,19 @@ MooseQueryTest >> testAllWithScope [
 			{package1.
 			package3.
 			namespace}
+]
+
+{ #category : #tests }
+MooseQueryTest >> testAtAnyScope [
+	self assertCollection: (class1 atAnyScope: {FAMIXClass}) hasSameElements: {class1}.
+	self assertCollection: (class1 atAnyScope: {FAMIXPackage}) hasSameElements: {package1}.
+	self assertCollection: (class1 atAnyScope: {FAMIXClass . FAMIXPackage}) hasSameElements: {class1}.
+	self assertCollection: (class1 atAnyScope: {FAMIXMethod}) hasSameElements: {}.
+	self assertCollection: (class1 atAnyScope: {FamixTClass}) hasSameElements: {class1}.
+	self assertCollection: (class1 atAnyScope: {FamixTPackage}) hasSameElements: {package1}.
+	self assertCollection: (class1 atAnyScope: {FamixTClass . FamixTPackage}) hasSameElements: {class1}.
+	self assertCollection: (class1 atAnyScope: {FamixTMethod}) hasSameElements: {}.
+	self assertCollection: (methodExt atAnyScope: {FAMIXPackage}) hasSameElements: {package1. package2}.
 ]
 
 { #category : #tests }
@@ -457,18 +489,19 @@ MooseQueryTest >> testQueryWith [
 ]
 
 { #category : #tests }
+MooseQueryTest >> testToAnyScope [
+	self assertCollection: (class2 toAnyScope: {FAMIXMethod . FAMIXAttribute}) hasSameElements: {method2 . method3 . methodExt . var1 . var2}.
+	self assertCollection: (class2 toAnyScope: {FAMIXMethod . FAMIXStructuralEntity}) hasSameElements: {method2 . method3 . methodExt . var1 . var2}.
+	self assertCollection: (class2 toAnyScope: {FAMIXClass . FAMIXMethod}) hasSameElements: {class2}.
+	self assertCollection: (method1 toAnyScope: {FAMIXClass . FAMIXPackage}) hasSameElements: {}
+]
+
+{ #category : #tests }
 MooseQueryTest >> testToScope [
 	self assertCollection: (class1 toScope: FAMIXMethod) hasSameElements: {method1}.
-	self
-		assertCollection: (class2 toScope: FAMIXAttribute)
-		hasSameElements:
-			{var1.
-			var2}.
-	self
-		assertCollection: (package1 toScope: FAMIXMethod)
-		hasSameElements:
-			{method1.
-			methodExt}
+	self assertCollection: (class2 toScope: FAMIXAttribute) hasSameElements: {var1 . var2}.
+	self assertCollection: (class2 toScope: FAMIXStructuralEntity) hasSameElements: {var1 . var2. localVariable}.
+	self assertCollection: (package1 toScope: FAMIXMethod) hasSameElements: {method1 . methodExt}
 ]
 
 { #category : #tests }
@@ -484,6 +517,14 @@ MooseQueryTest >> testWithAllParents [
 	self assert: class2 withAllParents size equals: 2.
 	self assert: method2 withAllParents size equals: 3.
 	self assert: var2 withAllParents size equals: 3
+]
+
+{ #category : #tests }
+MooseQueryTest >> testWithAnyScope [
+	self assertCollection: (class2 withAnyScope: {FamixTMethod . FamixTAttribute}) hasSameElements: {method2 . method3 . var1 . var2 . methodExt}.
+	self assertCollection: (class2 withAnyScope: {FamixTClass . FamixTPackage}) hasSameElements: {class2}.
+	self assertCollection: (class2 withAnyScope: {FamixTMethod . FamixTAttribute . FamixTPackage}) hasSameElements: {method2 . method3 . var1 . var2 . methodExt . package2}.
+	self assertCollection: (class2 withAnyScope: {FamixTMethod . FAMIXStructuralEntity . FamixTPackage}) hasSameElements: {method2 . method3 . var1 . var2 . methodExt . package2}
 ]
 
 { #category : #tests }
