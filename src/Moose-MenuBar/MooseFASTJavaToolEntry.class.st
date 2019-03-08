@@ -8,7 +8,7 @@ Class {
 MooseFASTJavaToolEntry >> execute [
 	Metacello new
 		baseline: 'FASTJava';
-		repository: 'github://moosetechnology/FAST-Java' , self version, '/src';
+		repository: 'github://moosetechnology/FAST-Java:' , self version, '/src';
 		load
 ]
 
