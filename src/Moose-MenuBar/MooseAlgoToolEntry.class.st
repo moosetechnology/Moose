@@ -8,7 +8,7 @@ Class {
 MooseAlgoToolEntry >> execute [
 	Metacello new
 		baseline: 'SmaCC';
-		repository: 'github://jmoosetechnology/MooseAlgos:' , self version, '/src';
+		repository: 'github://moosetechnology/MooseAlgos:' , self version, '/src';
 		load
 ]
 
