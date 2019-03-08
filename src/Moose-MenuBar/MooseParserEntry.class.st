@@ -1,28 +1,22 @@
 Class {
-	#name : #MooseAbstractInstallToolEntry,
-	#superclass : #MooseAbstractMenuEntry,
+	#name : #MooseParserEntry,
+	#superclass : #MooseAbstractInstallToolEntry,
 	#category : #'Moose-MenuBar'
 }
 
-{ #category : #'world menu' }
-MooseAbstractInstallToolEntry class >> allToolClasses [
-	^ self subclasses reject: #isCategory
-]
-
-{ #category : #testing }
-MooseAbstractInstallToolEntry class >> isCategory [
-	^ false
+{ #category : #execution }
+MooseParserEntry class >> isCategory [
+	^ self name = #MooseParserEntry
 ]
 
 { #category : #'world menu' }
-MooseAbstractInstallToolEntry class >> menuCommandOn: aBuilder [
+MooseParserEntry class >> menuCommandOn: aBuilder [
 	<worldMenu>
 	| b |
 	b := ((aBuilder
 		item: self menuConfigurationSymbol;
 		order: 15;
-		parent: #Moose) icon: MooseIcons mooseIcon)
-		withSeparatorAfter;
+		parent: super menuConfigurationSymbol) icon: MooseIcons mooseIcon)
 		yourself.
 	b
 		with: [ self allToolClasses
@@ -37,6 +31,11 @@ MooseAbstractInstallToolEntry class >> menuCommandOn: aBuilder [
 ]
 
 { #category : #'world menu' }
-MooseAbstractInstallToolEntry class >> menuConfigurationSymbol [
-	^ #'Mosse Tools'
+MooseParserEntry class >> menuConfigurationSymbol [
+	^ #'Moose Parser'
+]
+
+{ #category : #execution }
+MooseParserEntry >> label [
+	^ 'Parser'
 ]

@@ -1,6 +1,6 @@
 Class {
 	#name : #MooseFASTToolEntry,
-	#superclass : #MooseAbstractInstallToolEntry,
+	#superclass : #MooseASTEntry,
 	#category : #'Moose-MenuBar'
 }
 

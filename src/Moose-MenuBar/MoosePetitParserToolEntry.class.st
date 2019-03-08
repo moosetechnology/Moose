@@ -1,6 +1,6 @@
 Class {
 	#name : #MoosePetitParserToolEntry,
-	#superclass : #MooseAbstractInstallToolEntry,
+	#superclass : #MooseParserEntry,
 	#category : #'Moose-MenuBar'
 }
 
