@@ -22,7 +22,7 @@ MooseASTEntry class >> menuCommandOn: aBuilder [
 		with: [ self allToolClasses
 						do: [ :cls | 
 							(aBuilder item: cls new label)
-								order: 15;
+								order: 20;
 								parent: self menuConfigurationSymbol;
 								label: 'Load ', cls new label;
 								help:'Load ', cls new label;

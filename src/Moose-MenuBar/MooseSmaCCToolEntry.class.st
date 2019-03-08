@@ -8,7 +8,7 @@ Class {
 MooseSmaCCToolEntry >> execute [
 	Metacello new
 		baseline: 'SmaCC';
-		repository: 'github://j-brant/SmaCC' , self version, '/src';
+		repository: 'github://j-brant/SmaCC:' , self version, '/src';
 		load
 ]
 
