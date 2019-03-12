@@ -132,7 +132,7 @@ RTExampleSelection >> matchesQuery: aSetOfNames [
 { #category : #public }
 RTExampleSelection >> playgroundSourceCode [ 
 	" this is really ugly - we would like to perfectly preserve the original format including comments BUT with pragmas stripped - is there a better way ? original code below "
-	^ self method parseTree body formattedCodeWithMaxLineLength: 999
+	^ self method parseTree body formattedCode
 	"
 	| sourceCode firstLine sourceCodeWithoutFirstLine |
 	sourceCode := self method sourceCode.
