@@ -118,6 +118,11 @@ FamixJavaMethod >> copyFrom: anEntity within: aVisitor [
 ]
 
 { #category : #'as yet unclassified' }
+FamixJavaMethod >> entityHasOutgoingTypeDeclarations [
+	^ self declaredType isNotNil
+]
+
+{ #category : #'as yet unclassified' }
 FamixJavaMethod >> hasEmptyBody [
 	"Copied from FAMIX2.
 	 The closest we can get in FAMIX2 to determine if a body is empty is to check if the method

@@ -19,9 +19,12 @@ Class {
 		'var1',
 		'acc1',
 		'namespace',
-		'var3',
 		'ref1',
-		'methodExt'
+		'methodExt',
+		'isolatedPackage',
+		'isolatedClass',
+		'isolatedMethod',
+		'localVariable'
 	],
 	#category : #'Moose-Query-Test'
 }
@@ -37,23 +40,39 @@ MooseQueryTest >> setUp [
 	model := MooseModel new.
 	package1 := FAMIXPackage new name: 'package1' ; mooseModel: model.
 	package2 := FAMIXPackage new name: 'package2' ; mooseModel: model.
+	isolatedPackage := FAMIXPackage new name: 'isolatedPackage' ; mooseModel: model.
 	namespace := FAMIXNamespace new name: 'Smalltalk' ; mooseModel: model.
 	class1 := FAMIXClass new name: 'class1' ; parentPackage: package1 ; container: namespace ; mooseModel: model.
 	class2 := FAMIXClass new name: 'class2' ; parentPackage: package2 ; mooseModel: model.
+	isolatedClass := FAMIXClass new name: 'isolatedClass' ; parentPackage: isolatedPackage ; mooseModel: model.
 	inh := FAMIXInheritance new subclass: class1 ; superclass: class2 ; mooseModel: model.
 	method1 := FAMIXMethod new name: 'method1' ; parentType: class1 ; mooseModel: model.
 	method2 := FAMIXMethod new name: 'method2' ; parentType: class2 ; mooseModel: model.
 	method3 := FAMIXMethod new name: 'method3' ; parentType: class2 ; mooseModel: model.
+	isolatedMethod := FAMIXMethod new name: 'isolatedMethod' ; parentType: isolatedClass ; mooseModel: model.
 	methodExt := FAMIXMethod new name: 'methodExt' ; parentType: class2 ; parentPackage: package1 ; mooseModel: model.
 	var1 := FAMIXAttribute new name: 'var1' ; parentType: class2 ; declaredType: class1 ; mooseModel: model.
 	var2 := FAMIXAttribute new name: 'var2' ; parentType: class2 ; mooseModel: model.
-	var3 := FAMIXLocalVariable new name: 'var3' ; parentBehaviouralEntity: method2 ; declaredType: class1 ; mooseModel: model.
+	localVariable := FAMIXLocalVariable new name: 'var3' ; parentBehaviouralEntity: method2 ; declaredType: class1 ; mooseModel: model.
 	access := FAMIXAccess new accessor: method1 ; variable: var2 ; mooseModel: model.
 	acc1 := FAMIXAccess new accessor: method2 ; variable: var1 ; mooseModel: model.
 	inv1 := FAMIXInvocation new sender: method1 ; addCandidate: method2 ; receiver: var2 ; mooseModel: model.
 	inv2 := FAMIXInvocation new sender: method2 ; addCandidate: method2 ; receiver: var2 ; mooseModel: model.
 	inv3 := FAMIXInvocation new sender: method3 ; addCandidate: method2 ; receiver: var2 ; mooseModel: model.
 	ref1 := FAMIXReference new source: method1 ; target: class2 ; mooseModel: model.
+]
+
+{ #category : #tests }
+MooseQueryTest >> testAllAtAnyScope [
+	self assertCollection: (class1 allAtAnyScope: {FAMIXClass}) hasSameElements: {class1}.
+	self assertCollection: (class1 allAtAnyScope: {FAMIXPackage}) hasSameElements: {package1}.
+	self assertCollection: (class1 allAtAnyScope: {FAMIXClass . FAMIXPackage}) hasSameElements: {class1. package1}.
+	self assertCollection: (class1 allAtAnyScope: {FAMIXMethod}) hasSameElements: {}.
+	self assertCollection: (class1 allAtAnyScope: {FamixTClass}) hasSameElements: {class1}.
+	self assertCollection: (class1 allAtAnyScope: {FamixTPackage}) hasSameElements: {package1}.
+	self assertCollection: (class1 allAtAnyScope: {FamixTClass . FamixTPackage}) hasSameElements: {class1. package1}.
+	self assertCollection: (class1 allAtAnyScope: {FamixTMethod}) hasSameElements: {}.
+	self assertCollection: (methodExt allAtAnyScope: {FAMIXPackage}) hasSameElements: {package1. package2}.
 ]
 
 { #category : #tests }
@@ -112,29 +131,35 @@ MooseQueryTest >> testAllParents [
 ]
 
 { #category : #tests }
+MooseQueryTest >> testAllToAnyScope [
+	self assertCollection: (class2 allToAnyScope: {FAMIXMethod . FAMIXAttribute}) hasSameElements: {method2 . method3 . methodExt . var1 . var2}.
+	self assertCollection: (class2 allToAnyScope: {FAMIXMethod . FAMIXLocalVariable}) hasSameElements: {method2 . method3 . methodExt . localVariable}.
+	self assertCollection: (class2 allToAnyScope: {FAMIXMethod . FAMIXStructuralEntity}) hasSameElements: {method2 . method3 . methodExt . var1 . var2 . localVariable}.
+	self assertCollection: (class2 allToAnyScope: {FAMIXClass . FAMIXMethod}) hasSameElements: {class2 . method2 . method3 . methodExt}.
+	self assertCollection: (method1 allToAnyScope: {FAMIXClass . FAMIXPackage}) hasSameElements: {}
+]
+
+{ #category : #tests }
 MooseQueryTest >> testAllToScope [
 	| class3 |
 	self assertCollection: (class1 allToScope: FamixTMethod) hasSameElements: {method1}.
-	self
-		assertCollection: (class2 allToScope: FamixTAttribute)
-		hasSameElements:
-			{var1.
-			var2}.
+	self assertCollection: (class2 allToScope: FamixTAttribute) hasSameElements: {var1 . var2}.
+	self assertCollection: (class2 allToScope: FAMIXStructuralEntity) hasSameElements: {var1 . var2 . localVariable}.
 	self assertCollection: (package1 allToScope: FamixTClass) hasSameElements: {class1}.
 	class3 := FAMIXClass new
 		name: 'class3';
 		container: class1;
 		mooseModel: model.
-	self
-		assertCollection: (class1 allToScope: FamixTClass)
-		hasSameElements:
-			{class1.
-			class3}.
-	self
-		assertCollection: (package1 allToScope: FamixTClass)
-		hasSameElements:
-			{class1.
-			class3}
+	self assertCollection: (class1 allToScope: FamixTClass) hasSameElements: {class1 . class3}.
+	self assertCollection: (package1 allToScope: FamixTClass) hasSameElements: {class1 . class3}
+]
+
+{ #category : #tests }
+MooseQueryTest >> testAllWithAnyScope [
+	self assertCollection: (class2 allWithAnyScope: {FamixTMethod . FamixTAttribute}) hasSameElements: {method2 . method3 . var1 . var2 . methodExt}.
+	self assertCollection: (class2 allWithAnyScope: {FamixTClass . FamixTPackage}) hasSameElements: {class2. package2}.
+	self assertCollection: (class2 allWithAnyScope: {FamixTMethod . FamixTAttribute . FamixTPackage}) hasSameElements: {method2 . method3 . var1 . var2 . methodExt . package2}.
+	self assertCollection: (class2 allWithAnyScope: {FamixTMethod . FAMIXStructuralEntity . FamixTPackage}) hasSameElements: {method2 . method3 . var1 . var2 . methodExt . package2 . localVariable}
 ]
 
 { #category : #tests }
@@ -179,6 +204,19 @@ MooseQueryTest >> testAllWithScope [
 			{package1.
 			package3.
 			namespace}
+]
+
+{ #category : #tests }
+MooseQueryTest >> testAtAnyScope [
+	self assertCollection: (class1 atAnyScope: {FAMIXClass}) hasSameElements: {class1}.
+	self assertCollection: (class1 atAnyScope: {FAMIXPackage}) hasSameElements: {package1}.
+	self assertCollection: (class1 atAnyScope: {FAMIXClass . FAMIXPackage}) hasSameElements: {class1}.
+	self assertCollection: (class1 atAnyScope: {FAMIXMethod}) hasSameElements: {}.
+	self assertCollection: (class1 atAnyScope: {FamixTClass}) hasSameElements: {class1}.
+	self assertCollection: (class1 atAnyScope: {FamixTPackage}) hasSameElements: {package1}.
+	self assertCollection: (class1 atAnyScope: {FamixTClass . FamixTPackage}) hasSameElements: {class1}.
+	self assertCollection: (class1 atAnyScope: {FamixTMethod}) hasSameElements: {}.
+	self assertCollection: (methodExt atAnyScope: {FAMIXPackage}) hasSameElements: {package1. package2}.
 ]
 
 { #category : #tests }
@@ -231,6 +269,123 @@ MooseQueryTest >> testExplicitDirectionQueryEquivalentToQueryWithDirectionSymbol
 	self
 		assert: (class2 queryOutgoing: FAMIXInvocation)
 		equals: (class2 query: #out with: FAMIXInvocation)
+]
+
+{ #category : #tests }
+MooseQueryTest >> testHasIncoming [
+
+	self assert: (method2 hasIncoming).
+	self assert: (class2 hasIncoming).
+]
+
+{ #category : #tests }
+MooseQueryTest >> testHasIncomingInvocation [
+	"queryIncoming: is equivalent to query: #in with:"
+
+	self assert: (method2 hasIncoming: FamixTInvocation).
+	self assert: (method2 has: #in with: FamixTInvocation).
+	self assert: (class2 hasIncoming: FamixTInvocation).
+	self assert: (class2 has: #in with: FamixTInvocation).
+]
+
+{ #category : #tests }
+MooseQueryTest >> testHasLocalIncoming [
+
+	self assert: (method2 hasLocalIncoming).
+	self deny: (class1 hasLocalIncoming).
+	self deny: (package2 hasLocalIncoming).
+]
+
+{ #category : #tests }
+MooseQueryTest >> testHasLocalIncomingInvocation [
+
+	self assert: (method2 hasLocalIncoming: FamixTInvocation).
+	self deny: (class2 hasLocalIncoming: FamixTInvocation).
+	self deny: (package2 hasLocalIncoming: FamixTInvocation).
+]
+
+{ #category : #tests }
+MooseQueryTest >> testHasLocalOutgoing [
+	self assert: method2 hasLocalOutgoing.
+	self deny: class2 hasLocalOutgoing.
+	self deny: package2 hasLocalOutgoing
+]
+
+{ #category : #tests }
+MooseQueryTest >> testHasLocalOutgoingInvocation [
+
+	self assert: (method2 hasLocalOutgoing: FamixTInvocation).
+	self deny: (class2 hasLocalOutgoing: FamixTInvocation).
+	self deny: (package2 hasLocalOutgoing: FamixTInvocation).
+]
+
+{ #category : #tests }
+MooseQueryTest >> testHasNotIncoming [
+	self deny: isolatedMethod hasIncoming.
+	self deny: isolatedClass hasIncoming.
+	self deny: isolatedPackage hasIncoming
+]
+
+{ #category : #tests }
+MooseQueryTest >> testHasNotIncomingInvocation [
+	"hasIncoming: is equivalent to has: #in with:"
+
+	self deny: (isolatedMethod hasIncoming: FamixTInvocation).
+	self deny: (isolatedMethod has: #in with: FamixTInvocation).
+	self deny: (isolatedClass hasIncoming: FamixTInvocation).
+	self deny: (isolatedClass has: #in with: FamixTInvocation).
+	self deny: (isolatedPackage hasIncoming: FamixTInvocation).
+	self deny: (isolatedPackage has: #in with: FamixTInvocation)
+]
+
+{ #category : #tests }
+MooseQueryTest >> testHasNotLocalIncoming [
+	self deny: isolatedMethod hasLocalIncoming.
+	self deny: isolatedClass hasLocalIncoming.
+	self deny: isolatedPackage hasLocalIncoming
+]
+
+{ #category : #tests }
+MooseQueryTest >> testHasNotLocalOutgoing [
+	self deny: isolatedMethod hasLocalOutgoing.
+	self deny: isolatedClass hasLocalOutgoing.
+	self deny: isolatedPackage hasLocalOutgoing
+]
+
+{ #category : #tests }
+MooseQueryTest >> testHasNotOutgoing [
+	self deny: isolatedMethod hasOutgoing.
+	self deny: isolatedClass hasOutgoing.
+	self deny: isolatedPackage hasOutgoing
+]
+
+{ #category : #tests }
+MooseQueryTest >> testHasNotOutgoingInvocation [
+	"hasOutgoing: is equivalent to has: #out with:"
+
+	self deny: (isolatedMethod hasOutgoing: FamixTInvocation).
+	self deny: (isolatedMethod has: #out with: FamixTInvocation).
+	self deny: (isolatedClass hasOutgoing: FamixTInvocation).
+	self deny: (isolatedClass has: #out with: FamixTInvocation).
+	self deny: (isolatedPackage hasOutgoing: FamixTInvocation).
+	self deny: (isolatedPackage has: #out with: FamixTInvocation)
+]
+
+{ #category : #tests }
+MooseQueryTest >> testHasOutgoing [
+
+	self assert: (method2 hasOutgoing).
+	self assert: (class2 hasOutgoing).
+]
+
+{ #category : #tests }
+MooseQueryTest >> testHasOutgoingInvocation [
+	"queryOutgoing: is equivalent to query: #out with:"
+
+	self assert: (method1 hasOutgoing: FamixTInvocation).
+	self assert: (method1 has: #out with: FamixTInvocation).
+	self assert: (class2 hasOutgoing: FamixTInvocation).
+	self assert: (class2 has: #out with: FamixTInvocation)
 ]
 
 { #category : #tests }
@@ -334,6 +489,14 @@ MooseQueryTest >> testQueryWith [
 ]
 
 { #category : #tests }
+MooseQueryTest >> testToAnyScope [
+	self assertCollection: (class2 toAnyScope: {FAMIXMethod . FAMIXAttribute}) hasSameElements: {method2 . method3 . methodExt . var1 . var2}.
+	self assertCollection: (class2 toAnyScope: {FAMIXMethod . FAMIXStructuralEntity}) hasSameElements: {method2 . method3 . methodExt . var1 . var2}.
+	self assertCollection: (class2 toAnyScope: {FAMIXClass . FAMIXMethod}) hasSameElements: {class2}.
+	self assertCollection: (method1 toAnyScope: {FAMIXClass . FAMIXPackage}) hasSameElements: {}
+]
+
+{ #category : #tests }
 MooseQueryTest >> testSourceThroughAll [
 	self assertCollection: (method2 throughAllFrom) storage flattened hasSameElements: {method2 . method1 . method3}.
 	self assertCollection: (class2 throughAllFrom) storage flattened hasSameElements:  {method2 . method1 . method3 . class1}
@@ -379,16 +542,9 @@ MooseQueryTest >> testThroughAllFrom [
 { #category : #tests }
 MooseQueryTest >> testToScope [
 	self assertCollection: (class1 toScope: FAMIXMethod) hasSameElements: {method1}.
-	self
-		assertCollection: (class2 toScope: FAMIXAttribute)
-		hasSameElements:
-			{var1.
-			var2}.
-	self
-		assertCollection: (package1 toScope: FAMIXMethod)
-		hasSameElements:
-			{method1.
-			methodExt}
+	self assertCollection: (class2 toScope: FAMIXAttribute) hasSameElements: {var1 . var2}.
+	self assertCollection: (class2 toScope: FAMIXStructuralEntity) hasSameElements: {var1 . var2. localVariable}.
+	self assertCollection: (package1 toScope: FAMIXMethod) hasSameElements: {method1 . methodExt}
 ]
 
 { #category : #tests }
@@ -404,6 +560,14 @@ MooseQueryTest >> testWithAllParents [
 	self assert: class2 withAllParents size equals: 2.
 	self assert: method2 withAllParents size equals: 3.
 	self assert: var2 withAllParents size equals: 3
+]
+
+{ #category : #tests }
+MooseQueryTest >> testWithAnyScope [
+	self assertCollection: (class2 withAnyScope: {FamixTMethod . FamixTAttribute}) hasSameElements: {method2 . method3 . var1 . var2 . methodExt}.
+	self assertCollection: (class2 withAnyScope: {FamixTClass . FamixTPackage}) hasSameElements: {class2}.
+	self assertCollection: (class2 withAnyScope: {FamixTMethod . FamixTAttribute . FamixTPackage}) hasSameElements: {method2 . method3 . var1 . var2 . methodExt . package2}.
+	self assertCollection: (class2 withAnyScope: {FamixTMethod . FAMIXStructuralEntity . FamixTPackage}) hasSameElements: {method2 . method3 . var1 . var2 . methodExt . package2}
 ]
 
 { #category : #tests }

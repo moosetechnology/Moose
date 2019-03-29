@@ -26,3 +26,11 @@ RGMetaclassTraitStrategyTest >> testKind [
 	self assert: strategy isMetaclassTraitStrategy.
 	
 ]
+
+{ #category : #tests }
+RGMetaclassTraitStrategyTest >> testResolvingConsistency [
+
+	| anObject |
+	anObject := RGMetaclassTrait unnamed behaviorStrategy.
+	self checkClassesConsistency: anObject and: anObject makeResolved
+]

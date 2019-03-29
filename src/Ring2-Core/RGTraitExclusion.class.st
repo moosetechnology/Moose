@@ -71,7 +71,7 @@ RGTraitExclusion >> makeResolved [
 
 	super makeResolved.
 	
-	exclusions := self exclusions.
+	exclusions := self exclusions markAsRingResolved.
 
 ]
 

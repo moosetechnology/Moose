@@ -1,7 +1,17 @@
 Extension { #name : #UndefinedObject }
 
 { #category : #'*Moose-Query' }
+UndefinedObject >> allAtAnyScope: aCollectionOfFamixClasses in: aCollection [
+	^ aCollection
+]
+
+{ #category : #'*Moose-Query' }
 UndefinedObject >> allAtScope: aFAMIXScope in: aCollection [
+	^ aCollection
+]
+
+{ #category : #'*Moose-Query' }
+UndefinedObject >> allToAnyScope: aCollectionOfFamixClasses in: aCollection [
 	^ aCollection
 ]
 
@@ -16,7 +26,17 @@ UndefinedObject >> allWithScope: aFAMIXScope in: aCollection [
 ]
 
 { #category : #'*Moose-Query' }
+UndefinedObject >> atAnyScope: aCollectionOfFamixScope in: aCollection [
+	^ aCollection
+]
+
+{ #category : #'*Moose-Query' }
 UndefinedObject >> atScope: aFAMIXScope in: aCollection [
+	^ aCollection
+]
+
+{ #category : #'*Moose-Query' }
+UndefinedObject >> toAnyScope: aCollectionOfFamixClasses in: aCollection [
 	^ aCollection
 ]
 

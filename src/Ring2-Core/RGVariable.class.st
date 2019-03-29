@@ -7,6 +7,16 @@ Class {
 	#category : #'Ring2-Core-Kernel'
 }
 
+{ #category : #accessing }
+RGVariable >> definitionString [
+	"non special globals are defined by the symbol"
+	^self isSpecial
+		ifTrue: [ String streamContents: [ :aStream |
+			aStream nextPutAll: '#'; nextPutAll: self name]]
+		ifFalse: [self name printString]
+
+]
+
 { #category : #testing }
 RGVariable >> isClassInstanceVariable [
 

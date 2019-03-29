@@ -80,6 +80,14 @@ RGTraitStrategyTest >> testKind [
 ]
 
 { #category : #tests }
+RGTraitStrategyTest >> testResolvingConsistency [
+
+	| anObject |
+	anObject := RGTrait unnamed behaviorStrategy.
+	self checkClassesConsistency: anObject and: anObject makeResolved
+]
+
+{ #category : #tests }
 RGTraitStrategyTest >> testSharedPoolNames [
 
 	| anRGBehavior |

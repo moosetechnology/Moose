@@ -43,7 +43,19 @@ MooseQueryResult >> add: newObject [
 ]
 
 { #category : #scoping }
+MooseQueryResult >> allAtAnyScope: aSymbol [
+
+	^ self subclassResponsibility
+]
+
+{ #category : #scoping }
 MooseQueryResult >> allAtScope: aSymbol [
+
+	^ self subclassResponsibility
+]
+
+{ #category : #scoping }
+MooseQueryResult >> allToAnyScope: aSymbol [
 
 	^ self subclassResponsibility
 ]
@@ -55,7 +67,18 @@ MooseQueryResult >> allToScope: aSymbol [
 ]
 
 { #category : #scoping }
+MooseQueryResult >> allWithAnyScope: aSymbol [
+	^ self subclassResponsibility
+]
+
+{ #category : #scoping }
 MooseQueryResult >> allWithScope: aSymbol [
+	^ self subclassResponsibility
+]
+
+{ #category : #scoping }
+MooseQueryResult >> atAnyScope: aSymbol [
+
 	^ self subclassResponsibility
 ]
 
@@ -70,17 +93,6 @@ MooseQueryResult >> collect: aBlock [
 	^ (super collect: aBlock)
 		receiver: self receiver;
 		yourself
-]
-
-{ #category : #scoping }
-MooseQueryResult >> collectAtScope: aScopeSymbol [
-	| basicResult noNilResult | 
-	self deprecated: 'Use #atScope: aClass instead' on: '19/05/2016' in: 'Moose6.1'.
-	basicResult := self primCollectAtScope: aScopeSymbol.
-	"we can get nil in results when the wanted scope does not make
-	sense for an entity. So, we reject the nils"
-	noNilResult := basicResult reject: [:each | each isNil].
-	^ self newObjectResultWith: (noNilResult asSet)
 ]
 
 { #category : #enumerating }
@@ -156,12 +168,6 @@ MooseQueryResult >> outOfPackage: aFAMIXPackage [
 	self subclassResponsibility 
 ]
 
-{ #category : #scoping }
-MooseQueryResult >> primCollectAtScope: aScopeSymbol [
-	self deprecated: 'This method is part of the old query system. Now instead of #collectAtScope: aSymbol you should use #atScope: aClass.' on: '19/05/2016' in: 'Moose6.1'.
-	self subclassResponsibility 
-]
-
 { #category : #accessing }
 MooseQueryResult >> receiver [
 	^ receiver
@@ -209,6 +215,12 @@ MooseQueryResult >> storage: aCollection [
 ]
 
 { #category : #scoping }
+MooseQueryResult >> toAnyScope: aSymbol [
+
+	^ self subclassResponsibility
+]
+
+{ #category : #scoping }
 MooseQueryResult >> toScope: aSymbol [
 
 	^ self subclassResponsibility
@@ -222,6 +234,11 @@ MooseQueryResult >> union: aCollection [
 	set := self asSet addAll: aCollection; yourself.
 	
 	 ^ self class on: (self receiver) withAll: set
+]
+
+{ #category : #scoping }
+MooseQueryResult >> withAnyScope: aSymbol [
+	^ self subclassResponsibility
 ]
 
 { #category : #scoping }

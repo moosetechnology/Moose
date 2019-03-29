@@ -84,17 +84,6 @@ TDependencyQueries classSide >> generatedTraitNames [
 ]
 
 { #category : #'moosequery-queries-generic' }
-TDependencyQueries >> createFromTo: anInOutSymbol [
-	self
-		deprecated:
-			'CyrilFerlicot 25/04/2017: I think this method is not used anymore. If I am wrong the senders should be changed to use a MooseQueryAbstractDirectionStrategy. You''ll have to implement a new method on it and it will use dispatch instead of condition.'.
-	^ anInOutSymbol = #in
-		ifTrue: [ #from ]
-		ifFalse: [ anInOutSymbol = #out
-				ifTrue: [ #to ] ]
-]
-
-{ #category : #'moosequery-queries-generic' }
 TDependencyQueries >> createIncomingQueryResultWith: aCollection [
 	^ MooseIncomingQueryResult on: self withAll: aCollection
 ]
@@ -102,6 +91,194 @@ TDependencyQueries >> createIncomingQueryResultWith: aCollection [
 { #category : #'moosequery-queries-generic' }
 TDependencyQueries >> createOutgoingQueryResultWith: aCollection [
 	^ MooseOutgoingQueryResult on: self withAll: aCollection
+]
+
+{ #category : #'moosequery-queries-incoming' }
+TDependencyQueries >> entityHasIncomingTypeDeclarations [
+	^ false
+]
+
+{ #category : #'moosequery-queries-generic' }
+TDependencyQueries >> entityHasOutgoingTypeDeclarations [
+	^ false
+]
+
+{ #category : #'moosequery-queries-generic' }
+TDependencyQueries >> has: anInOutSymbol [
+	"Check the incoming or outgoing associations of the receiver or its children.
+
+	Example:
+		aFAMIXClass has: #in.
+			--> Will return trye if aFAMIXMethod has the incoming FAMIXAssociation 
+		aFAMIXMethod has: #out.
+			--> Will return true if aFAMIXMethod has the outgoing FAMIXAssociation
+	"
+
+	^ (MooseQueryCalculator direction: anInOutSymbol) hasFor: self
+]
+
+{ #category : #'moosequery-queries-generic' }
+TDependencyQueries >> has: anInOutSymbol with: aFAMIXClassAssociation [
+	"Query all the incoming or outgoing associations of the FAMIXClassAssociation class for the receiver and its children.
+
+	Example:
+		aFAMIXClass query: #in with: FAMIXInheritance.
+			--> Will return a MooseIncomingQueryResult containing the FAMIXInheritance associations having aFAMIXClass or its children as target
+		aFAMIXMethod query: #out with: FAMIXAccess.
+			--> Will return a MooseOutgoingQueryResult containing the FAMIXAccess associations having aFAMIXMethod or its children as source
+	"
+
+	^ (MooseQueryCalculator direction: anInOutSymbol) has: aFAMIXClassAssociation for: self
+]
+
+{ #category : #'moosequery-queries-generic' }
+TDependencyQueries >> hasIncoming [
+	"Checks for incoming associations of the receiver and its children.
+
+	Example:
+		aFAMIXClass hasIncoming.
+			--> --> Will return true if the receiver or its children have incoming associations
+	"
+	
+	^ (MooseQueryCalculator strategy: MooseQueryIncomingDirectionStrategy) hasFor: self
+]
+
+{ #category : #'moosequery-queries-generic' }
+TDependencyQueries >> hasIncoming: aFAMIXClassAssociation [
+	"Checks for incoming associations of the FAMIXClassAssociation class for the receiver and its children.
+	
+	Example:
+		aFAMIXClass hasIncoming: FAMIXInheritance.
+			--> Will return true if aFAMIXClassAssociation has incoming associations of the FAMIXClassAssociation class for the receiver or its children.
+	"
+
+	^ (MooseQueryCalculator strategy: MooseQueryIncomingDirectionStrategy) has: aFAMIXClassAssociation for: self
+]
+
+{ #category : #'moosequery-queries-generic' }
+TDependencyQueries >> hasIncomingDependencies [
+	"Associations + typeDeclaractions"
+
+	^ self hasIncoming or: [ self hasIncomingTypeDeclarations ]
+]
+
+{ #category : #'moosequery-queries-generic' }
+TDependencyQueries >> hasIncomingTypeDeclarations [
+	"This method could be more readable but it needs to be really performant"
+
+	| selectors |
+	1 to: (selectors := self childrenSelectors) size do: [ :index | 
+		(self perform: (selectors at: index))
+			ifNotNil: [ :children | 
+				| coll |
+				1 to: (coll := children asCollection) size do: [ :i | ((coll at: i) hasIncomingTypeDeclarations) ifTrue: [ ^ true ]  ] ] ].
+	 ^ self entityHasIncomingTypeDeclarations.
+]
+
+{ #category : #'moosequery-queries-generic' }
+TDependencyQueries >> hasLocal: anInOutSymbol [
+	"Check the incoming or outgoing associations of the receiver.
+
+	Example:
+		aFAMIXClass hasLocal: #in.
+			--> Will return trye if aFAMIXMethod has the incoming FAMIXAssociation 
+		aFAMIXMethod hasLocal: #out.
+			--> Will return true if aFAMIXMethod has the outgoing FAMIXAssociation
+	"
+ 
+	^ (MooseQueryCalculator direction: anInOutSymbol) hasLocalFor: self
+]
+
+{ #category : #'moosequery-queries-generic' }
+TDependencyQueries >> hasLocalIncoming [
+	"Check the incoming or outgoing associations of the receiver.
+
+	Example:
+		aFAMIXClass hasLocalIncoming
+			--> Will return true if aFAMIXMethod has the incoming FAMIXAssociation 
+			"
+ 
+	^ (MooseQueryCalculator strategy: MooseQueryIncomingDirectionStrategy) hasLocalFor: self
+]
+
+{ #category : #'moosequery-queries-generic' }
+TDependencyQueries >> hasLocalIncoming: aFAMIXClassAssociation [
+	"Checks for incoming associations of the FAMIXClassAssociation class for the receiver
+	
+	Example:
+		aFAMIXClass hasIncoming: FAMIXInheritance.
+			--> Will return true if aFAMIXClassAssociation has incoming associations of the FAMIXClassAssociation class for the receiver.
+	"
+
+	^ (MooseQueryCalculator strategy: MooseQueryIncomingDirectionStrategy) hasLocal: aFAMIXClassAssociation for: self
+]
+
+{ #category : #'moosequery-queries-generic' }
+TDependencyQueries >> hasLocalOutgoing [
+	"Checks for outgoing associations of the receiver.
+	
+	Example:
+		aFAMIXClass hasOutgoing
+			--> Will return true if the receiver has outgoingInvocation.
+	"
+
+	^ (MooseQueryCalculator strategy: MooseQueryOutgoingDirectionStrategy) hasLocalFor: self
+]
+
+{ #category : #'moosequery-queries-generic' }
+TDependencyQueries >> hasLocalOutgoing: aFAMIXClassAssociation [
+	"Checks for outgoing associations of the FAMIXClassAssociation class for the receiver.
+	
+	Example:
+		aFAMIXClass hasIncoming: FAMIXInheritance.
+			--> Will return true if aFAMIXClassAssociation has incoming associations of the FAMIXClassAssociation class for the receiver.
+	"
+
+	^ (MooseQueryCalculator strategy: MooseQueryOutgoingDirectionStrategy) hasLocal: aFAMIXClassAssociation for: self
+]
+
+{ #category : #'moosequery-queries-generic' }
+TDependencyQueries >> hasOutgoing [
+	"Checks for outgoing associations of the receiver and its children.
+
+	Example:
+		aFAMIXClass hasOutgoing.
+			--> --> Will return true if the receiver or its children have outgoing associations
+	"
+	
+	^ (MooseQueryCalculator strategy: MooseQueryOutgoingDirectionStrategy) hasFor: self
+]
+
+{ #category : #'moosequery-queries-generic' }
+TDependencyQueries >> hasOutgoing: aFAMIXClassAssociation [
+	"Checks for outgoing associations of the FAMIXClassAssociation class for the receiver and its children.
+	
+	Example:
+		aFAMIXClass hasOutgoing: FAMIXInheritance.
+			--> Will return true if aFAMIXClassAssociation has outgoing associations of the FAMIXClassAssociation class for the receiver or its children.
+	"
+
+	^ (MooseQueryCalculator strategy: MooseQueryOutgoingDirectionStrategy) has: aFAMIXClassAssociation for: self
+]
+
+{ #category : #'moosequery-queries-generic' }
+TDependencyQueries >> hasOutgoingDependencies [
+	"Associations + typeDeclaractions"
+
+	^ self hasOutgoing or: [ self hasOutgoingTypeDeclarations ]
+]
+
+{ #category : #'moosequery-queries-generic' }
+TDependencyQueries >> hasOutgoingTypeDeclarations [
+	"This method could be more readable but it needs to be really performant"
+
+	| selectors |
+	1 to: (selectors := self childrenSelectors) size do: [ :index | 
+		(self perform: (selectors at: index))
+			ifNotNil: [ :children | 
+				| coll |
+				1 to: (coll := children asCollection) size do: [ :i | ((coll at: i) hasOutgoingTypeDeclarations) ifTrue: [ ^ true ]  ] ] ].
+	 ^ self entityHasOutgoingTypeDeclarations.
 ]
 
 { #category : #'moosequery-queries-incoming' }

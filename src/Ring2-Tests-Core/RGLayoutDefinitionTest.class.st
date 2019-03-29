@@ -133,3 +133,11 @@ RGLayoutDefinitionTest >> testNewLayouts [
 		self assert: (layout allSlots isEmpty).
 		self assert: (layout instVarNames isEmpty). ]
 ]
+
+{ #category : #tests }
+RGLayoutDefinitionTest >> testResolvingConsistency [
+
+	| anObject |
+	anObject := RGPointerLayout unnamed.
+	self checkClassesConsistency: anObject and: anObject makeResolved
+]

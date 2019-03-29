@@ -70,7 +70,7 @@ RGTraitAlias >> makeResolved [
 
 	super makeResolved.
 	
-	aliases := self aliases.
+	aliases := self aliases markAsRingResolved.
 
 ]
 

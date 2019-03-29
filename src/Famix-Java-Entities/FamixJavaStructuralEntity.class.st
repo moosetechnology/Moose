@@ -56,6 +56,11 @@ FamixJavaStructuralEntity >> copyFrom: anEntity within: aVisitor [
 ]
 
 { #category : #'as yet unclassified' }
+FamixJavaStructuralEntity >> entityHasOutgoingTypeDeclarations [
+	^ self declaredType isNotNil
+]
+
+{ #category : #'as yet unclassified' }
 FamixJavaStructuralEntity >> hasDeclaredType [
 	^ self declaredType notNil
 ]

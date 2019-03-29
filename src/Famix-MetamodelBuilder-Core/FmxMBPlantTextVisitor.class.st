@@ -1,6 +1,12 @@
 "
-b := FamixTestCompatibilityGenerator builderWithDefinitions.
-v := FamixMetamodelBuilderPlantTextVisitor new.
+I implement a Metamodel generator visitor, aiming to give a UML code usable with plantUML (http://plantuml.com).
+
+I accumulate in a stream the content you'll have to put in a file and run through plantUml.
+
+subclass #MetamodelGenerator , and try me! (print the last line)
+
+b :=  aMetamodelGeneratorSubClass builderWithDefinitions.
+v :=  FmxMBPlantTextVisitor new.
 b acceptVisitor: v.
 v contents
 

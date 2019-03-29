@@ -16,6 +16,22 @@ RGSlotTest >> testNewSlot [
 ]
 
 { #category : #tests }
+RGSlotTest >> testResolvingConsistency [
+
+	| anObject |
+	anObject := RGInstanceVariableSlot unnamed.
+	self checkClassesConsistency: anObject and: anObject makeResolved
+]
+
+{ #category : #tests }
+RGSlotTest >> testResolvingConsistencyUnknown [
+
+	| anObject |
+	anObject := RGUnknownSlot unnamed.
+	self checkClassesConsistency: anObject and: anObject makeResolved
+]
+
+{ #category : #tests }
 RGSlotTest >> testSlotsImplicitEnvironment [
 
 	| layout |

@@ -68,7 +68,7 @@ RGTraitComposition >> makeResolved [
 
 	super makeResolved.
 	
-	transformations := self transformations.
+	transformations := self transformations markAsRingResolved.
 
 ]
 

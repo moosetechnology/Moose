@@ -189,6 +189,14 @@ RGMethodTest >> testRemovePackage [
 ]
 
 { #category : #tests }
+RGMethodTest >> testResolvingConsistency [
+
+	| anObject |
+	anObject := RGMethod unnamed.
+	self checkClassesConsistency: anObject and: anObject makeResolved
+]
+
+{ #category : #tests }
 RGMethodTest >> testSourceCode [
 	
 	| method source |

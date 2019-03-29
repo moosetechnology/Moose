@@ -45,6 +45,70 @@ MooseQueryCalculator class >> strategy: aStrategy [
 ]
 
 { #category : #query }
+MooseQueryCalculator >> has: aFAMIXClassAssociation for: anEntity [
+	"I know that we could use #do: here, but this algo takes too long on big model, so this is a speed up while the sista vm is not ready for production"
+
+	| selectors |
+	(self hasLocal: aFAMIXClassAssociation for: anEntity)
+		"End condition"
+		ifTrue: [ ^ true ].
+	1 to: (selectors := anEntity childrenSelectors) size do: [ :index | 
+		(anEntity perform: (selectors at: index))
+			ifNotNil: [ :children | 
+				| coll |
+				1 to: (coll := children asCollection) size do: [ :i | 
+					(self has: aFAMIXClassAssociation for: (coll at: i))
+						ifTrue: [ ^ true ] ] ] ].
+	^ false
+]
+
+{ #category : #query }
+MooseQueryCalculator >> hasFor: anEntity [
+	| selectors |
+	(self hasLocalFor: anEntity) ifTrue: [ ^ true ].
+	"Instead of #to:do: we could just use #do: but this implementation is much faster. Maybe sista will remove the needs of the todo later."
+	1 to: (selectors := anEntity childrenSelectors) size do: [ :index | 
+		(anEntity perform: (selectors at: index))
+			ifNotNil: [ :children | 
+				| coll |
+				1 to: (coll := children asCollection) size do: [ :i | (self hasFor: (coll at: i)) ifTrue: [ ^ true ] ] ] ].
+	^ false
+]
+
+{ #category : #query }
+MooseQueryCalculator >> hasLocal: aFAMIXClassAssociation for: anEntity [
+	"The goal here is to get all the entity's direct associations of the class in parameter. This will not check the associations of the entity's children."
+
+	"Note: Maybe adding a guard to check if the entity can have associations of this class could improve the perf. Currently it is not the case because there is not enough association. Maybe it could be the case in the futur, like with a PostgreSQL model."
+
+	| properties |
+	"Instead of #to:do: we could just use #do: but this implementation is much faster. Maybe sista will remove the needs of the todo later."
+	1 to: (properties := self strategy msePropertiesOf: anEntity) size
+	do: [ :ind | 
+		(anEntity perform: (properties at: ind) name)
+			ifNotNil: [ :coll | 
+				coll asCollection
+							do: [ :each | (each isOfType: aFAMIXClassAssociation) ifTrue: [ ^ true ] ] ] ].
+	^ false
+]
+
+{ #category : #query }
+MooseQueryCalculator >> hasLocalFor: anEntity [
+	"The goal here is to get all the entity's direct associations of the class in parameter. This will not check the associations of the entity's children."
+
+	"Note: Maybe adding a guard to check if the entity can have associations of this class could improve the perf. Currently it is not the case because there is not enough association. Maybe it could be the case in the futur, like with a PostgreSQL model."
+
+	| properties |
+	"Instead of #to:do: we could just use #do: but this implementation is much faster. Maybe sista will remove the needs of the todo later."
+	1 to: (properties := self strategy msePropertiesOf: anEntity) size
+	do: [ :ind | 
+		(anEntity perform: (properties at: ind) name)
+			ifNotNil: [ :coll | 
+				 ^ coll asCollection isNotEmpty ] ].
+	^ false
+]
+
+{ #category : #query }
 MooseQueryCalculator >> query: aFAMIXClassAssociation for: anEntity [
 	^ self strategy
 		queryResultOn: anEntity

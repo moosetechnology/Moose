@@ -285,6 +285,7 @@ RGBehaviorStrategyUser >> layout: anRGLayout [
 RGBehaviorStrategyUser >> makeResolved [
 
 	self behaviorStrategy makeResolved.
+	super makeResolved.
 
 ]
 

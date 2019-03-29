@@ -1,9 +1,6 @@
 Class {
 	#name : #RGTraitDescriptionStrategy,
 	#superclass : #RGBehaviorStrategy,
-	#instVars : [
-		'baseTrait'
-	],
 	#category : #'Ring2-Core-Kernel'
 }
 

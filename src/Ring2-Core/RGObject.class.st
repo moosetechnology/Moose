@@ -469,9 +469,16 @@ RGObject >> isVariableDefinition [
 { #category : #resolving }
 RGObject >> makeResolved [
 
+	self markAsRingResolved.
+	
+	name := self name markAsRingResolved.
+]
+
+{ #category : #resolving }
+RGObject >> markAsRingResolved [
+
 	self propertyNamed: #resolved put: true.
 	
-	name := self name.
 ]
 
 { #category : #accessing }

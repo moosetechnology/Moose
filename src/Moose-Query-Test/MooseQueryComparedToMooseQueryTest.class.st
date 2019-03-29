@@ -32,7 +32,7 @@ MooseQueryComparedToMooseQueryTest >> testIncomingAccesses [
 					((method2 parameters flatCollect: #incomingAccesses) asOrderedCollection
 						addAll: (method2 localVariables flatCollect: #incomingAccesses);
 						yourself)) asSet.
-	self assert: (var3 queryIncoming: FAMIXAccess) asSet equals: var3 incomingAccesses asSet
+	self assert: (localVariable queryIncoming: FAMIXAccess) asSet equals: localVariable incomingAccesses asSet
 ]
 
 { #category : #tests }

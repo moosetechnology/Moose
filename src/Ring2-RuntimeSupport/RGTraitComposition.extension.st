@@ -1,6 +1,6 @@
 Extension { #name : #RGTraitComposition }
 
-{ #category : #'*Calypso-Ring2' }
+{ #category : #'*Ring2-RuntimeSupport' }
 RGTraitComposition >> allTraits [
 
 	^self traits flatCollect: [:trait |

@@ -144,6 +144,14 @@ RGClassStrategyTest >> testPackage [
 ]
 
 { #category : #tests }
+RGClassStrategyTest >> testResolvingConsistency [
+
+	| anObject |
+	anObject := RGClass unnamed behaviorStrategy.
+	self checkClassesConsistency: anObject and: anObject makeResolved
+]
+
+{ #category : #tests }
 RGClassStrategyTest >> testStoreString [
 
 	| anRGBehavior |

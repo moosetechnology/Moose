@@ -43,6 +43,19 @@ RGMetaclassTraitTest >> testImplicitConversionFromClass [
 ]
 
 { #category : #tests }
+RGMetaclassTraitTest >> testImplicitConversionFromClassProperties [
+
+	| env entity |
+	
+	env := RGEnvironment new.
+	entity := env ensureClassNamed: #SomeTrait.	
+	entity := env ensureTraitNamed: #'SomeTrait'.
+	self assert: entity classTrait isTrait.
+	self assert: entity classTrait baseTrait equals: entity.
+
+]
+
+{ #category : #tests }
 RGMetaclassTraitTest >> testMetaclassTraitImplicitEnvironment [
 
 	| trait |
