@@ -44,7 +44,7 @@ FamixStContainerEntity >> numberOfChildren [
 	^ self children size
 ]
 
-{ #category : #'moosequery-queries-generic' }
+{ #category : #'as yet unclassified' }
 FamixStContainerEntity >> throughAllFrom [
 	"Query all the incoming associations of the receiver and its children.
 
