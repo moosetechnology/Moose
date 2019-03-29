@@ -83,7 +83,7 @@ FAMIXContainerEntity >> numberOfChildren [
 	^ self children size
 ]
 
-{ #category : #'moosequery-queries-generic' }
+{ #category : #'as yet unclassified' }
 FAMIXContainerEntity >> throughAllFrom [
 	"Query all the incoming associations of the receiver and its children.
 
