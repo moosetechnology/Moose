@@ -74,8 +74,26 @@ MooseGroupTest >> testAnySatisfy [
 { #category : #tests }
 MooseGroupTest >> testAsMooseGroup [
 	| group |
+	group := #(1 2 3) asMooseGroup.
+	self assert: (group isKindOf: MooseGroup).
+	self assert: group size equals: 3
+]
+
+{ #category : #tests }
+MooseGroupTest >> testAsMooseGroupDoNotCopy [
+	| group |
 	group := MooseGroup new.
 	self assert: group asMooseGroup == group
+]
+
+{ #category : #tests }
+MooseGroupTest >> testAsMooseGroupWithClasses [
+	"Non regression test of issue https://github.com/moosetechnology/Moose/issues/1486"
+
+	| group |
+	self shouldnt: [ group := {Object} asMooseGroup ] raise: Error.
+	self assert: group size equals: 1.
+	self assert: group anyOne equals: Object
 ]
 
 { #category : #tests }
