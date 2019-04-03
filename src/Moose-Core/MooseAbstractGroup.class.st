@@ -205,9 +205,9 @@ MooseAbstractGroup >> detect: aBlock ifNone: anotherBlock [
 	^self entities detect: aBlock ifNone: anotherBlock
 ]
 
-{ #category : #'set operations' }
-MooseAbstractGroup >> difference: aGroup [ 
-	self subclassResponsibility
+{ #category : #'entity collection' }
+MooseAbstractGroup >> difference: aCollection [
+	^ self species withAll: (self entities difference: aCollection)
 ]
 
 { #category : #enumerating }
@@ -420,9 +420,9 @@ MooseAbstractGroup >> intersect: aGroup [
 	^ self intersection: aGroup 
 ]
 
-{ #category : #'set operations' }
-MooseAbstractGroup >> intersection: aGroup [ 
-	self subclassResponsibility
+{ #category : #'entity collection' }
+MooseAbstractGroup >> intersection: aCollection [
+	^ self species withAll: (self entities intersection: aCollection)
 ]
 
 { #category : #testing }
@@ -604,15 +604,9 @@ MooseAbstractGroup >> third [
 	^self entities third
 ]
 
-{ #category : #'set operations' }
-MooseAbstractGroup >> union: aGroup [ 
-
-	self subclassResponsibility
-
-	"| result | 
-	result := MooseGroup withAll: (self entities asSet union: aGroup entities asSet). 
-	result description: self description , '  and ' , aGroup description. 
-	^result"
+{ #category : #'entity collection' }
+MooseAbstractGroup >> union: aCollection [
+	^ self species withAll: (self entities union: aCollection)
 ]
 
 { #category : #enumerating }

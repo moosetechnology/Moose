@@ -135,15 +135,6 @@ MooseGroup >> copyFrom: startIndex to: endIndex [
 	^ result	
 ]
 
-{ #category : #'set operations' }
-MooseGroup >> difference: aGroup [ 
-	 
-	| result | 
-	result := self class withAll: (self entities difference: aGroup entities). 
-	result description: self description , '  subtracted with ' , aGroup description. 
-	^result
-]
-
 { #category : #'public interface' }
 MooseGroup >> distributionOverAGroupOfGroups: aGroupOfGroups [ 
 	 
@@ -191,15 +182,6 @@ MooseGroup >> initialize: capacity [
 { #category : #'initialize-release' }
 MooseGroup >> initializeWithAll: aCollection [
 	self entityStorage addAll: aCollection.
-]
-
-{ #category : #'set operations' }
-MooseGroup >> intersection: aGroup [ 
-	 
-	| result | 
-	result := self class withAll: (self entities intersection: aGroup entities). 
-	result description: self description , '  intersected with ' , aGroup description. 
-	^result
 ]
 
 { #category : #'public interface' }
@@ -400,15 +382,6 @@ MooseGroup >> sumOfPropertyNamed: aPropertyName [
 					(each 
 						propertyNamed: aPropertyName 
 						ifNil: [0])]
-]
-
-{ #category : #'set operations' }
-MooseGroup >> union: aGroup [ 
-	 
-	| result | 
-	result := self class withAll: (self entities asSet union: aGroup entities asSet). 
-	result description: self description , '  and ' , aGroup description. 
-	^result
 ]
 
 { #category : #private }
