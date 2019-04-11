@@ -133,7 +133,12 @@ BaselineOfMoose >> baseline: spec [
 		self baselineWizard: spec.
 
 	   self groups: spec.
-	]
+	].
+	
+	spec for: #'pharo7.x' do: [
+		spec
+			package: 'Famix-MetamodelBuilder-Core' with: [ spec includes: #('Famix-MetamodelBuilder-Core-Pharo7') ];
+			package: 'Famix-MetamodelBuilder-Core-Pharo7' ]
 ]
 
 { #category : #baseline }
@@ -299,11 +304,6 @@ BaselineOfMoose >> baselineMerlin: spec [
 BaselineOfMoose >> baselineMetamodelBuilder: spec [ 
     
 	spec package: 'Famix-MetamodelBuilder-Core'.
-	spec
-				for: #'pharo7.x'
-				do: [ spec
-					package: 'Famix-MetamodelBuilder-Core' with: [ spec includes: #('Famix-MetamodelBuilder-Core-Pharo7') ];
-					package: 'Famix-MetamodelBuilder-Core-Pharo7' ].
 ]
 
 { #category : #baseline }
