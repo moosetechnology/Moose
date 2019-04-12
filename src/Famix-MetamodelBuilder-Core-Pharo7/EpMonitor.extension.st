@@ -6,3 +6,17 @@ EpMonitor class >> disableDuring: aBlock [
 	
 	self current disableDuring: aBlock
 ]
+
+{ #category : #'*Famix-MetamodelBuilder-Core-Pharo7' }
+EpMonitor >> disableDuring: aBlock [
+	"Disable all logging during the execution of a block.
+	
+	Example:
+		EpMonitor current disableDuring: [ self generateApplicationTemplate ]"
+
+	| currentStatus |
+	currentStatus := self isEnabled.
+	self disable.
+	[ aBlock value ]
+		ensure: [ self enabled: currentStatus ]
+]
