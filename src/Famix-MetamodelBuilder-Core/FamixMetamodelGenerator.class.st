@@ -240,20 +240,18 @@ FamixMetamodelGenerator >> generate [
 
 { #category : #generation }
 FamixMetamodelGenerator >> generateWithCleaning [
-
-	self cleanPackage.
-	self define.
-	self builder generate.
+	EpMonitor
+		disableDuring: [ self cleanPackage.
+			self define.
+			self builder generate ]
 ]
 
 { #category : #generation }
 FamixMetamodelGenerator >> generateWithoutCleaning [
-
-	self define.
-	self builder generate.
-	
-	subbuilders do: #generateRemotes
-
+	EpMonitor
+		disableDuring: [ self define.
+			self builder generate.
+			subbuilders do: #generateRemotes ]
 ]
 
 { #category : #definition }
