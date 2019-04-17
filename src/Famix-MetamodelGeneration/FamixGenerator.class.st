@@ -1103,7 +1103,7 @@ FamixGenerator >> defineRelations [
 
 	((tFile property: #entities)
 			comment: 'List of entities defined in the file')
-		*-
+		*-*
 	((tWithFiles property: #containerFiles)
 			comment: 'List of files containing the entity').
 
