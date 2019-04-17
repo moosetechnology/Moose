@@ -2,7 +2,8 @@ Class {
 	#name : #MooseMonticelloImporterTest,
 	#superclass : #MooseTestWithSmalltalkDependency,
 	#instVars : [
-		'importer'
+		'importer',
+		'packageShouldBeRemoveAtTheEnd'
 	],
 	#category : #'Moose-Tests-MonticelloImporter'
 }
@@ -10,6 +11,11 @@ Class {
 { #category : #accessing }
 MooseMonticelloImporterTest class >> resources [
 	^ Array with: GoferResource
+]
+
+{ #category : #running }
+MooseMonticelloImporterTest >> initialize [
+	packageShouldBeRemoveAtTheEnd := false
 ]
 
 { #category : #running }
@@ -31,6 +37,7 @@ MooseMonticelloImporterTest >> settingUpTestPackageIfNecessary [
 	(MooseMonticelloCacheImporter new fileNames includes: self packageToTest)
 		ifFalse: [ 
 			| cls1 cls2 workingCopy |
+			packageShouldBeRemoveAtTheEnd := true.
 			cls1 := Object subclass: #Class1ForMonticelloCacheImporter
 				instanceVariableNames: ''
 				classVariableNames: ''
@@ -52,6 +59,14 @@ MooseMonticelloImporterTest >> settingUpTestPackageIfNecessary [
 			cls2 removeFromSystem.
 
 		]
+]
+
+{ #category : #running }
+MooseMonticelloImporterTest >> tearDown [
+	packageShouldBeRemoveAtTheEnd
+		ifTrue: [ (self packageToTest asPackageIfAbsent: [ nil ])
+				ifNotNil: [ :aPackage | aPackage removeFromSystem ] ].
+	super tearDown
 ]
 
 { #category : #tests }
