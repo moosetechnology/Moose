@@ -8,137 +8,131 @@ Class {
 }
 
 { #category : #baseline }
-BaselineOfMoose >> baseline: spec [ 
-    
-	<baseline> 
-       
+BaselineOfMoose >> baseline: spec [
+	<baseline>
 	| repository |
-
 	repository := self packageRepositoryURL.
 
-	spec for: #common do: [ 		
-		
-		spec package: 'Moose-PharoOverrides'.		
-		
-		self baselineGrease: spec. 
-		self baselineMagritte3: spec.
-		self baselineHashtable: spec.
-		self baselineStateSpecs: spec.
-		self baselineGhost: spec.
-		self baselineMocketry: spec.
-		self baselineFame: spec.
+	spec
+		for: #common
+		do: [ spec package: 'Moose-PharoOverrides'.
 
-		spec package: 'GToolkit-Examples'.
-		
-		self baselineDeepTraverser: spec.
-		self baselineRing2: spec.
-		
-		spec
-			package: 'Moose-Query';
-			package: 'Moose-Core';
-			package: 'Moose-Query-Extensions';
-			package: 'Famix-MetamodelBuilder-Core';
-			package: 'Famix-MetamodelBuilder-Tests';
-			
-			package: 'Famix-MetamodelGeneration';
-			package: 'Famix-Groups';
-			package: 'Famix-Traits';
-				
-			package: 'Famix-BasicInfrastructure';
-			package: 'Famix-Smalltalk-Utils';
-			
-			package: 'Famix-Compatibility-Generator';
-			package: 'Famix-Compatibility-Entities'.
+			self baselineGrease: spec.
+			self baselineMagritte3: spec.
+			self baselineHashtable: spec.
+			self baselineStateSpecs: spec.
+			self baselineGhost: spec.
+			self baselineMocketry: spec.
+			self baselineFame: spec.
 
-		spec baseline: 'FamixCompatibility' with: [spec repository: repository].
-		
-		self baselineRoelTyper: spec.
-		
-		spec
-			package: 'Moose-GenericImporter';
-			package: 'Famix-Compatibility-Tests-C';
-			package: 'Moose-Query-Extensions';
-			package: 'Moose-SmalltalkImporter';
-			package: 'Moose-MonticelloImporter';
-			package: 'Moose-Tests-Core';
-			package: 'Famix-Smalltalk-Utils-Tests';
-			package: 'Famix-Compatibility-Tests-Java';
-			package: 'Moose-Tests-SmalltalkImporter-LAN';
-			package: 'Moose-Tests-SmalltalkImporter-Core';
-			package: 'Moose-Tests-SmalltalkImporter-KGB';
-			package: 'Famix-Compatibility-Tests-Core';
-			package: 'Famix-Compatibility-Tests-Extensions';
-			package: 'Moose-TestResources-Reference-External';
-			package: 'Moose-TestResources-Reference-Core';
-			package: 'Moose-TestResources-Reference-PackageOne';
-			package: 'Moose-TestResources-Reference-PackageTwo';
-			package: 'Moose-TestResources-LAN';
-			package: 'Moose-TestResources-LCOM';
-			package: 'Moose-TestResources-KGB-P4FullInteracted';
-			package: 'Moose-TestResources-KGB-P6InteractedReferee';
-			package: 'Moose-TestResources-KGB-P5FullReferee';
-			package: 'Moose-TestResources-KGB-P1FullReferencer';
-			package: 'Moose-TestResources-KGB-P2InteractedReferencerReferee';
-			package: 'Moose-TestResources-KGB-P3InteractedReferencer';
-			package: 'Moose-TestResources-KGB-P7ReferencerReferee';
-			package: 'Moose-TestResources-KGB-P8FullReferencer';
-			package: 'Moose-TestResources-KGB-P9FullReferencer';
-			package: 'Moose-TestResources-KGB-P10InteractedReferee';
-			package: 'Moose-TestResources-KGB-P12FullReferencer';
-			package: 'Moose-TestResources-KGB-P11FullReferee';
-			package: 'Moose-TestResources-KGB-P13FullReferencer';
-			package: 'Moose-TestResources-KGB-P14FullReferee';
-			package: 'Moose-TestResources-KGB-PExtensions';
-			package: 'Moose-TestResources-PackageBlueprint-P1';
-			package: 'Moose-TestResources-PackageBlueprint-P2';
-			package: 'Moose-TestResources-PackageBlueprint-P3';
-			package: 'Moose-TestResources-PackageBlueprint-P4';
-			package: 'Moose-Tests-MonticelloImporter';
-			package: 'Moose-Query-Test'.
+			spec package: 'GToolkit-Examples'.
 
-		self baselineMetamodelBuilder: spec.
-		self baselineFamixNG: spec.
+			self baselineDeepTraverser: spec.
+			self baselineRing2: spec.
 
-		self baselineGeometry: spec.
-		self baselineAthens: spec.
-		self baselineRoassal2: spec.
+			spec
+				package: 'Moose-Query';
+				package: 'Moose-Core';
+				package: 'Moose-Query-Extensions';
+				package: 'Famix-MetamodelBuilder-Core';
+				package: 'Famix-MetamodelBuilder-Tests';
+				package: 'Famix-MetamodelGeneration';
+				package: 'Famix-Groups';
+				package: 'Famix-Groups-Tests';
+				package: 'Famix-Traits';
+				package: 'Famix-BasicInfrastructure';
+				package: 'Famix-Smalltalk-Utils';
+				package: 'Famix-Compatibility-Generator';
+				package: 'Famix-Compatibility-Entities'.
 
-		self baselineMooseAlgos: spec.
+			spec baseline: 'FamixCompatibility' with: [ spec repository: repository ].
 
-		self baselineOrderPreservingDictionary: spec.
-		self baselineCollectionExtensions: spec.
-		self baselineBitmapCharacterSet: spec.
-		self baselineXMLParser: spec.
+			self baselineRoelTyper: spec.
 
-		spec
-			package: 'Glamour-Tools';
-			package: 'Glamour-Magritte-Presentations';
-			
-			package: 'Moose-Help'.
-	
-		self baselineMetanool: spec.
-		
-		spec
-			package: 'Moose-Finder';
-			package: 'Moose-RoassalPaintings';
-			package: 'Moose-Tests-Finder';
-			package: 'Moose-Tests-RoassalPaintings'.
-			
-		self baselinePetitParser: spec.
-		self baselineNeoCSV: spec.
-		self baselineSmaCC: spec.
-		self baselineXMLWriter: spec.
-		self baselineMerlin: spec.
-		self baselineDistributionMap: spec.
-		self baselineWizard: spec.
+			spec
+				package: 'Moose-GenericImporter';
+				package: 'Famix-Compatibility-Tests-C';
+				package: 'Moose-Query-Extensions';
+				package: 'Moose-SmalltalkImporter';
+				package: 'Moose-MonticelloImporter';
+				package: 'Moose-Tests-Core';
+				package: 'Famix-Smalltalk-Utils-Tests';
+				package: 'Famix-Compatibility-Tests-Java';
+				package: 'Moose-Tests-SmalltalkImporter-LAN';
+				package: 'Moose-Tests-SmalltalkImporter-Core';
+				package: 'Moose-Tests-SmalltalkImporter-KGB';
+				package: 'Famix-Compatibility-Tests-Core';
+				package: 'Famix-Compatibility-Tests-Extensions';
+				package: 'Moose-TestResources-Reference-External';
+				package: 'Moose-TestResources-Reference-Core';
+				package: 'Moose-TestResources-Reference-PackageOne';
+				package: 'Moose-TestResources-Reference-PackageTwo';
+				package: 'Moose-TestResources-LAN';
+				package: 'Moose-TestResources-LCOM';
+				package: 'Moose-TestResources-KGB-P4FullInteracted';
+				package: 'Moose-TestResources-KGB-P6InteractedReferee';
+				package: 'Moose-TestResources-KGB-P5FullReferee';
+				package: 'Moose-TestResources-KGB-P1FullReferencer';
+				package: 'Moose-TestResources-KGB-P2InteractedReferencerReferee';
+				package: 'Moose-TestResources-KGB-P3InteractedReferencer';
+				package: 'Moose-TestResources-KGB-P7ReferencerReferee';
+				package: 'Moose-TestResources-KGB-P8FullReferencer';
+				package: 'Moose-TestResources-KGB-P9FullReferencer';
+				package: 'Moose-TestResources-KGB-P10InteractedReferee';
+				package: 'Moose-TestResources-KGB-P12FullReferencer';
+				package: 'Moose-TestResources-KGB-P11FullReferee';
+				package: 'Moose-TestResources-KGB-P13FullReferencer';
+				package: 'Moose-TestResources-KGB-P14FullReferee';
+				package: 'Moose-TestResources-KGB-PExtensions';
+				package: 'Moose-TestResources-PackageBlueprint-P1';
+				package: 'Moose-TestResources-PackageBlueprint-P2';
+				package: 'Moose-TestResources-PackageBlueprint-P3';
+				package: 'Moose-TestResources-PackageBlueprint-P4';
+				package: 'Moose-Tests-MonticelloImporter';
+				package: 'Moose-Query-Test'.
 
-	   self groups: spec.
-	].
-	
-	spec for: #'pharo7.x' do: [
-		spec
-			package: 'Famix-MetamodelBuilder-Core' with: [ spec includes: #('Famix-MetamodelBuilder-Core-Pharo7') ];
-			package: 'Famix-MetamodelBuilder-Core-Pharo7' ]
+			self baselineMetamodelBuilder: spec.
+			self baselineFamixNG: spec.
+
+			self baselineGeometry: spec.
+			self baselineAthens: spec.
+			self baselineRoassal2: spec.
+
+			self baselineMooseAlgos: spec.
+
+			self baselineOrderPreservingDictionary: spec.
+			self baselineCollectionExtensions: spec.
+			self baselineBitmapCharacterSet: spec.
+			self baselineXMLParser: spec.
+
+			spec
+				package: 'Glamour-Tools';
+				package: 'Glamour-Magritte-Presentations';
+				package: 'Moose-Help'.
+
+			self baselineMetanool: spec.
+
+			spec
+				package: 'Moose-Finder';
+				package: 'Moose-RoassalPaintings';
+				package: 'Moose-Tests-Finder';
+				package: 'Moose-Tests-RoassalPaintings'.
+
+			self baselinePetitParser: spec.
+			self baselineNeoCSV: spec.
+			self baselineSmaCC: spec.
+			self baselineXMLWriter: spec.
+			self baselineMerlin: spec.
+			self baselineDistributionMap: spec.
+			self baselineWizard: spec.
+
+			self groups: spec ].
+
+	spec
+		for: #'pharo7.x'
+		do: [ spec
+				package: 'Famix-MetamodelBuilder-Core' with: [ spec includes: #('Famix-MetamodelBuilder-Core-Pharo7') ];
+				package: 'Famix-MetamodelBuilder-Core-Pharo7' ]
 ]
 
 { #category : #baseline }
