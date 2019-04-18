@@ -54,6 +54,12 @@ MooseMonticelloImporterTest >> settingUpTestPackageIfNecessary [
 		]
 ]
 
+{ #category : #running }
+MooseMonticelloImporterTest >> tearDown [
+	(self packageToTest asPackageIfAbsent: [ nil ]) ifNotNil: [ :aPackage | aPackage removeFromSystem ].
+	super tearDown
+]
+
 { #category : #tests }
 MooseMonticelloImporterTest >> testAssertion [
 
