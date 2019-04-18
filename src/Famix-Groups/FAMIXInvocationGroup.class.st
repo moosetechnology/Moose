@@ -13,24 +13,13 @@ FAMIXInvocationGroup class >> annotation [
 
 { #category : #export }
 FAMIXInvocationGroup >> exportToCsvStream: stream [
-	stream 
-		nextPutAll: 'FromNamespace,FromClass,FromMethod,ToNamespace,ToClass,ToMethod';
-		cr.
-	self 
-		do: [ :inv |
-			stream 
-				nextPutAll: '"';
-				nextPutAll: inv from namespaceScope mooseName;
-				nextPutAll: '","';
-				nextPutAll: inv from typeScope name;
-				nextPutAll: '","';
-				nextPutAll: inv from signature;
-				nextPutAll: '","';
-				nextPutAll: inv anyCandidate namespaceScope mooseName;
-				nextPutAll: '","';
-				nextPutAll: inv anyCandidate typeScope name;
-				nextPutAll: '","';
-				nextPutAll: inv anyCandidate signature;
-				nextPutAll: '"' ]
-		separatedBy: [ stream cr ]
+	(NeoCSVWriter on: stream)
+		fieldWriter: #raw;
+		lineEndConvention: #cr;
+		nextPut: #('FromNamespace' 'FromClass' 'FromMethod' 'ToNamespace' 'ToClass' 'ToMethod');
+		fieldWriter: #quoted;
+		addFields:
+			{[ :inv | inv from namespaceScope mooseName ] . [ :inv | inv from typeScope name ] . [ :inv | inv from signature ] . [ :inv | inv anyCandidate namespaceScope mooseName ].
+			[ :inv | inv anyCandidate typeScope name ] . [ :inv | inv anyCandidate signature ]};
+		nextPutAll: self
 ]
