@@ -16,9 +16,9 @@ Metacello new
 Check out [the official webpage of the Moose project](http://moosetechnology.org). 
 
 ### Famix generators
-- [Java](https://github.com/girba/jdt2famix) 
+- [Java](https://github.com/feenkcom/jdt2famix) 
+- [C#](https://github.com/feenkcom/roslyn2famix) 
 - [.NET](http://www.sharpmetrics.net/index.php/famix-generator)
 - [SAP](https://github.com/RainerWinkler/Moose-FAMIX-SAP-Extractor)
 - [Fortran](https://github.com/NicolasAnquetil/VerveineF.git)
 - [C/C++](https://github.com/Synectique/VerveineC-Cpp.git)
-
