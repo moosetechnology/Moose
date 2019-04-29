@@ -37,7 +37,8 @@ FamixTClassHierarchyNavigation >> addedMethods [
 { #category : #enumerating }
 FamixTClassHierarchyNavigation >> allSubclassesDo: aBlock [
 	self allSubclassesWithoutAliasesDo: aBlock.
-	self typeAliases do: [ :each | each allSubclassesWithoutAliasesDo: aBlock ]
+	self flag: 'Manage typeAlias in C metamodel'
+	"self typeAliases do: [ :each | each allSubclassesWithoutAliasesDo: aBlock ]"
 ]
 
 { #category : #enumerating }
@@ -367,8 +368,9 @@ FamixTClassHierarchyNavigation >> totalNumberOfChildren: aNumber [
 FamixTClassHierarchyNavigation >> withSubclassHierarchy [
 	^ self subclassHierarchy 
 		addFirst: self realType;
-		addAll: self realType allTypeAliases;
-		yourself
+		flag: 'Manage TypeAlias for C metamodel';
+		"addAll: self realType allTypeAliases;"
+		yourself.
 ]
 
 { #category : #'Famix-Implementation' }

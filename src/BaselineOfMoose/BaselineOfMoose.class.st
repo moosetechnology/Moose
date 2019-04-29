@@ -206,6 +206,7 @@ BaselineOfMoose >> baselineFamixNG: spec [
 		package: 'Famix-PharoSmalltalk-Generator';
 		package: 'Famix-PharoSmalltalk-Entities';
 		package: 'Famix-PharoSmalltalk-Importer';
+		package: 'Famix-PharoSmalltalk-Tests';
 
 		package: 'Famix-Java-Generator';
 		package: 'Famix-Java-Entities';

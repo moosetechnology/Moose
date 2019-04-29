@@ -85,6 +85,7 @@ MooseMonticelloImporterTest >> testAssertion [
 MooseMonticelloImporterTest >> testImporting [
 	| mooseModel noStubClasses allClasses objectClass class1 classWithIncomingAccess |
 	mooseModel := importer importLastVersionOf: self packageToTest.
+	mooseModel metamodel: FamixPharoSmalltalkGenerator metamodel.
 	allClasses := mooseModel allClasses.
 	self assert: mooseModel class == MooseModel.
 	noStubClasses := allClasses reject: #isStub.

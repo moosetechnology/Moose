@@ -305,7 +305,7 @@ FamixReferenceModelImporterTest >> testClassMethodAnnotation [
 		hasClassScope: false
 		class: definingClassName.
 	method := self model entityNamed: methodUniqueName.
-	self assert: method category equals: #'accessing superclassinstance on class side'
+	self assert: method protocol equals: #'accessing superclassinstance on class side'
 ]
 
 { #category : #'new tests' }
@@ -667,7 +667,7 @@ FamixReferenceModelImporterTest >> testMethodAnnotation [
 		class: definingClassName.
 	method := self model entityNamed: methodUniqueName ifAbsent: [ nil ].
 	self assert: method name equals: #accessSuperclassInstVar.
-	self assert: method category equals: #accessingSuperclassInstVar
+	self assert: method protocol equals: #accessingSuperclassInstVar
 ]
 
 { #category : #'reference model reification' }

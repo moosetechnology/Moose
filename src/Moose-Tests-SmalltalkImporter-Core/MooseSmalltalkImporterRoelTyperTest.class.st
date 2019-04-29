@@ -11,8 +11,8 @@ MooseSmalltalkImporterRoelTyperTest >> testASTCore [
 	self timeLimit: 60 seconds.
 	importer := self newPharoImporterTask.
 	importer importingContext
-		mergeClassAndMetaclass;
-		computeTypeOfAttributes.
+		mergeClassAndMetaclass";
+		computeTypeOfAttributes".
 	importer runCandidateOperator.
 	self
 		shouldnt: [ importer

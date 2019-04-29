@@ -48,8 +48,14 @@ Object >> mooseFinderEvaluatorIn: composite [
 			entitled: 'Do it and go'
 			with: [ :text :entity1 | 
 				text selectLine.
-				GTSnippets snippetAt: self mooseInterestingEntity class put: text text asString.
-				Smalltalk compiler evaluate: text selectedText for: self mooseInterestingEntity logged: false ]
+				GTSnippets
+					snippetAt: self mooseInterestingEntity class
+					put: text text asString.
+				Smalltalk compiler
+					source: text selectedText;
+					logged: false;
+					receiver: self mooseInterestingEntity;
+					evaluate ]
 ]
 
 { #category : #'*Moose-Finder' }

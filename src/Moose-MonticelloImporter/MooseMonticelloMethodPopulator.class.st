@@ -119,7 +119,7 @@ MooseMonticelloMethodPopulator >> setInfoOn: famixMethod withSource: sourceAsStr
 { #category : #visiting }
 MooseMonticelloMethodPopulator >> visitMethodDefinition: definition [ 
 	| famixMethod classOnWhichItIsDefined |
-	famixMethod := FAMIXMethod new.
+	famixMethod := FamixStMethod new.
 	famixMethod name: definition selector.
 	famixMethod signature: definition selector.
 	famixMethod isClassSide: definition classIsMeta.

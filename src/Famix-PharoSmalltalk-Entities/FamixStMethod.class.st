@@ -69,15 +69,6 @@ FamixStMethod >> belongsTo: anObject [
 ]
 
 { #category : #'Famix-Extensions-metrics-support' }
-FamixStMethod >> category [
-	<MSEProperty: #category type: #String>
-	<MSEComment: 'Category of the method'>
-	<package: 'Smalltalk'>
-	
-	^ self privateState attributeAt: #category ifAbsentPut: [ nil ]
-]
-
-{ #category : #'Famix-Extensions-metrics-support' }
 FamixStMethod >> category: aString [
 
 	self privateState attributeAt: #category put: aString
@@ -96,11 +87,7 @@ FamixStMethod >> compiledMethod [
 
 { #category : #'Famix-Extensions-private' }
 FamixStMethod >> computeNumberOfLinesOfCodeIfSmalltalk [
-	| parser |
-	
-	parser := RBVisitorForFAMIXMetrics new.
-	parser processMethod: self usingImporter: nil inModel: nil.
-	^ parser numberOfLinesOfCode
+	^self sourceText lineCount.
 ]
 
 { #category : #'Famix-Extensions-private' }
@@ -155,7 +142,7 @@ FamixStMethod >> hierarchyNestingLevel: aNumber [
 { #category : #'Famix-Extensions-metrics-support' }
 FamixStMethod >> initialize [
 	super initialize.
-	hasClassScope := false
+	isClassSide := false
 ]
 
 { #category : #'Famix-Extensions' }
@@ -180,7 +167,7 @@ FamixStMethod >> isCalledInternally [
 
 { #category : #'Famix-Extensions-metrics-support' }
 FamixStMethod >> isInitializer [
-	^ (('*initialize*' match: self category) or: [ '*initialize*' match: self name ]) or: [ self isConstructor ] 
+	^ (('*initialize*' match: self protocol) or: [ '*initialize*' match: self name ]) or: [ self isConstructor ] 
 ]
 
 { #category : #'Famix-Extensions-metrics-support' }
