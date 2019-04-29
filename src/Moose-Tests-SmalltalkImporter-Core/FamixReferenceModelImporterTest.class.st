@@ -48,7 +48,7 @@ FamixReferenceModelImporterTest >> testAbstractMethodAnnotation [
 	method := self model entityNamed: methodName.
 	self assert: method isNil not.
 	self assert: method belongsTo equals: (self model entityNamed: TheRoot mooseName).
-	self assert: method hasClassScope not.
+	self assert: method isClassSide not.
 	self
 		assert: method signature
 		equals: (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: #sendingSubclassResponsibility).
@@ -379,7 +379,7 @@ FamixReferenceModelImporterTest >> testConstantMethodAnnotation [
 	method := self model entityNamed: methodUniqueName.
 	self assert: method isNil not.
 	self assert: method belongsTo equals: (self model entityNamed: TheRoot mooseName).
-	self assert: method hasClassScope not.
+	self assert: method isClassSide not.
 	self assert: method signature equals: (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: methodName).
 	self assert: method isPublic.
 	self assert: method isConstant
@@ -533,7 +533,7 @@ FamixReferenceModelImporterTest >> testGetterMethod [
 	methodUniqueName := (TheRoot >> methodName) mooseName.
 	method := self model entityNamed: methodUniqueName.
 	self assert: method isNil not.
-	self assert: method hasClassScope not.
+	self assert: method isClassSide not.
 	self assert: method signature equals: (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: methodName).
 	self assert: method isPublic.
 	self assert: method isPureAccessor.
@@ -685,7 +685,7 @@ FamixReferenceModelImporterTest >> testMethodReification [
 	method := self model entityNamed: methodUniqueName.
 	self assert: method isNil not.
 	self assert: method belongsTo equals: (self model entityNamed: referenceModelSubRootLevelOneName).
-	self assert: method hasClassScope not.
+	self assert: method isClassSide not.
 	self assert: method signature equals: (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: #accessSuperclassInstVar).
 	self assert: method isPublic
 ]
@@ -771,7 +771,7 @@ FamixReferenceModelImporterTest >> testSetterMethod [
 	method := self model entityNamed: methodUniqueName.
 	self assert: method isNil not.
 	self assert: method belongsTo equals: (self model entityNamed: TheRoot mooseName).
-	self assert: method hasClassScope not.
+	self assert: method isClassSide not.
 	self assert: method signature equals: (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: methodName).
 	self assert: method isPublic.
 	self assert: method isPureAccessor.
