@@ -206,6 +206,13 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 
 ]
 
+{ #category : #definition }
+FamixPharoSmalltalkGenerator >> defineProperties [
+	super defineProperties.
+	((method property: #protocol type: #String)
+		comment: 'Protocol of the method').
+]
+
 { #category : #initialization }
 FamixPharoSmalltalkGenerator >> newBuilder [
 

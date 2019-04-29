@@ -31,7 +31,7 @@ RBVisitorForFAMIX >> compiledMethod [
 	| selector mooseEntity realSTClass |
 	mooseEntity := self methodEntity. 
 	selector := mooseEntity name.
-	realSTClass := (mooseEntity hasClassScope and: [self stClass class ~= TraitedMetaclass])
+	realSTClass := (mooseEntity isClassSide and: [self stClass class ~= TraitedMetaclass])
 		ifTrue: [self stClass class]
 		ifFalse: [self stClass].
 	^ realSTClass compiledMethodAt: selector ifAbsent:[ ]

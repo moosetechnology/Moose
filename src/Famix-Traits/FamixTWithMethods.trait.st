@@ -49,11 +49,6 @@ FamixTWithMethods >> methods: anObject [
 
 ]
 
-{ #category : #enumeration }
-FamixTWithMethods >> methodsDo: aBlock [
-	self methods do: aBlock
-]
-
 { #category : #accessing }
 FamixTWithMethods >> methodsGroup [
 	<navigation: 'Methods'>

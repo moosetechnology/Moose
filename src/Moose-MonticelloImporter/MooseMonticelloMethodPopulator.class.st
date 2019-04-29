@@ -122,7 +122,7 @@ MooseMonticelloMethodPopulator >> visitMethodDefinition: definition [
 	famixMethod := FAMIXMethod new.
 	famixMethod name: definition selector.
 	famixMethod signature: definition selector.
-	famixMethod hasClassScope: definition classIsMeta.
+	famixMethod isClassSide: definition classIsMeta.
 	"note that maybe the class does not exist yet, this happens if the method is an extension"
 	classOnWhichItIsDefined := importer ensureClassNamed: definition className.
 	classOnWhichItIsDefined addMethod: famixMethod.

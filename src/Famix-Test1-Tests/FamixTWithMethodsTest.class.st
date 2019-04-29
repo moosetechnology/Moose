@@ -71,15 +71,6 @@ FamixTWithMethodsTest >> testMethods [
 ]
 
 { #category : #tests }
-FamixTWithMethodsTest >> testMethodsDo [
-	
-	| aCollection |
-	aCollection := Set new.
-	c2 methodsDo: [ :each | aCollection add: each ].
-	self assertCollection: aCollection hasSameElements: { m2. m3 }
-]
-
-{ #category : #tests }
 FamixTWithMethodsTest >> testMethodsGroup [
 	
 	| group | 
@@ -123,16 +114,6 @@ FamixTWithMethodsTest >> testNumberOfMessageSends [
 	self assert: c1 numberOfMessageSends equals: model notExistentMetricValue.
 	c1 numberOfMessageSends: 100.
 	self assert: c1 numberOfMessageSends equals: 100.
-
-]
-
-{ #category : #tests }
-FamixTWithMethodsTest >> testNumberOfMethodProtocols [
-
-	m1 category: #accessing.
-	self assert: c1 numberOfMethodProtocols equals: 1.
-	c1 numberOfMethodProtocols: 100.
-	self assert: c1 numberOfMethodProtocols equals: 100.
 
 ]
 

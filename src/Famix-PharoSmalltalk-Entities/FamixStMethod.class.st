@@ -3,6 +3,9 @@ Class {
 	#superclass : #FamixStContainerEntity,
 	#traits : 'FamixTInvocable + FamixTMethod + FamixTTypedStructure + FamixTWithAccesses + FamixTWithClassScope + FamixTWithImplicitVariables + FamixTWithInvocations + FamixTWithLocalVariables + FamixTWithParameters + FamixTWithReferences + FamixTWithSignature',
 	#classTraits : 'FamixTInvocable classTrait + FamixTMethod classTrait + FamixTTypedStructure classTrait + FamixTWithAccesses classTrait + FamixTWithClassScope classTrait + FamixTWithImplicitVariables classTrait + FamixTWithInvocations classTrait + FamixTWithLocalVariables classTrait + FamixTWithParameters classTrait + FamixTWithReferences classTrait + FamixTWithSignature classTrait',
+	#instVars : [
+		'#protocol'
+	],
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 
@@ -19,7 +22,7 @@ FamixStMethod class >> annotation [
 FamixStMethod class >> generatedSlotNames [
 	<generated>
 	'FamixStMethod class>>#generatedSlotNames'.
-	^ #()
+	^ #(protocol)
 ]
 
 { #category : #generator }
@@ -386,13 +389,30 @@ FamixStMethod >> packageScope [
 	]
 ]
 
+{ #category : #accessing }
+FamixStMethod >> protocol [
+
+	<MSEProperty: #protocol type: #String>
+	<generated>
+	<MSEComment: 'Protocol of the method'>
+	^ protocol
+]
+
+{ #category : #accessing }
+FamixStMethod >> protocol: anObject [
+
+	<generated>
+	protocol := anObject
+
+]
+
 { #category : #'Famix-Extensions-metrics-support' }
 FamixStMethod >> smalltalkClass [ 
 	"Return the smalltalk class associated with the receiver. Note that it may be different than doing self parentType because the class and metaclass can be merged."
 	
 	^   ('*_class' match: self parentType name)
 			ifTrue: [self parentType smalltalkClass]
-			ifFalse: [self hasClassScope 
+			ifFalse: [self isClassSide 
 							ifTrue: [self parentType smalltalkClass class]
 							ifFalse: [self parentType smalltalkClass]]
 ]

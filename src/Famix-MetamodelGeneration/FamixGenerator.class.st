@@ -950,14 +950,12 @@ FamixGenerator >> defineProperties [
 		comment: 'Generic container for language dependent modifiers.';
 		multivalued).
 
-	((tMethod property: #timeStamp type: #String)
-		comment: 'TimeStamp of the method with author and time of the last change').
-	((tMethod property: #category type: #String) "FIX - custom, own trait?"
-		comment: 'Category of the method').
 	((tMethod property: #kind type: #String) 
 		comment: 'Tag indicating a setter, getter, constant, constructor, or abstract method').
-	((tMethod property: #hasClassScope type: #Boolean) 
+	((tMethod property: #isClassSide type: #Boolean) 
 		comment: 'True if class-side method').
+	((tMethod property: #isAbstract type: #Boolean) 
+		comment: 'True if abstract method').
 
 	((tWithSignature property: #signature type: #String)
 		comment: 'Signature of the message being sent').

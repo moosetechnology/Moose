@@ -56,15 +56,6 @@ FamixTMethodTest >> testBelongsTo [
 ]
 
 { #category : #tests }
-FamixTMethodTest >> testCategory [
-
-	self assert: m1 category isNil.
-	m1 category: 'accessing'.
-	self assert: m1 category equals: 'accessing'.
-
-]
-
-{ #category : #tests }
 FamixTMethodTest >> testComputeNumberOfLinesOfCode [
 
 	| withoutSource |
@@ -86,14 +77,6 @@ FamixTMethodTest >> testCyclomaticComplexity [
 ]
 
 { #category : #tests }
-FamixTMethodTest >> testHasClassScope [
-
-	m1 hasClassScope: true.
-	self assert: m1 hasClassScope.
-
-]
-
-{ #category : #tests }
 FamixTMethodTest >> testIsClass [
 
 	self assert: c1 isClass. 	
@@ -102,6 +85,14 @@ FamixTMethodTest >> testIsClass [
 	self deny: m2 isClass.
 	self deny: anchor1 isClass.
 	self deny: anchor2 isClass.
+]
+
+{ #category : #tests }
+FamixTMethodTest >> testIsClassSide [
+
+	m1 isClassSide: true.
+	self assert: m1 isClassSide .
+
 ]
 
 { #category : #tests }
@@ -210,13 +201,4 @@ FamixTMethodTest >> testRelations [
 	self assertCollection: c2 methods hasSameElements:  { m2. m3 }.
 	self assertCollection: m1 parentType equals: c1.
 	self assertCollection: m2 parentType equals: c2.
-]
-
-{ #category : #tests }
-FamixTMethodTest >> testTimeStamp [
-
-	self assert: m1 timeStamp isNil.
-	m1 timeStamp: 'stamp'.
-	self assert: m1 timeStamp equals: 'stamp'.
-
 ]
