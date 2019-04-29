@@ -227,13 +227,13 @@ FMPragmaProcessor >> processClass: aClass ifPragmaAbsent: anErrorBlock [
 FMPragmaProcessor >> processCompiledMethod: aMethod [
 	| pragma prop method |
 	method := aMethod.
-	
+
 	"If the method is a reflective method we need to ensure it is compiled and use its compiled method.
 	A refelctive method is for exemple a method created via a metalink and that was never executed."
 	(aMethod isKindOf: ReflectiveMethod)
 		ifTrue: [ aMethod compileAndInstallCompiledMethod.
 			method := aMethod compiledMethod ].
-		
+
 	method isCompiledMethod should beTrue.
 	pragma := Pragma inMethod: method named: #(#MSEProperty:type:opposite: #MSEProperty:type:).
 	pragma ifNil: [ ^ self ].
@@ -260,7 +260,7 @@ FMPragmaProcessor >> processCompiledMethod: aMethod [
 				assert: prop isContainer not
 				description: 'It is not possible to have <multivalue> and <container> on the same method. container represents a aggregation UML link that is incompatible with the multivalue kind of the link'.
 			prop isMultivalued: true ].
-	(Pragma inMethod: method named: #key:) ifNotNil: [ prop key: ((Pragma inMethod: method named: #key:) argumentAt: 1) ].
+	(Pragma inMethod: method named: #key:) ifNotNil: [ :p | prop key: (p argumentAt: 1) ].
 	elements add: prop
 ]
 
