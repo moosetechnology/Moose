@@ -38,7 +38,7 @@ FamixTWithMethodsWithAccessesGlue >> tightClassCohesion [
 			tcc := 0.
 			accessDictionary := Dictionary new.
 			self
-				methodsDo: [ :eachMethod | 
+				methods do: [ :eachMethod | 
 					eachMethod accesses
 						do: [ :eachAccess | 
 							| var |

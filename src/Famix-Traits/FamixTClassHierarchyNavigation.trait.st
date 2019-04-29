@@ -125,7 +125,7 @@ FamixTClassHierarchyNavigation >> inheritedMethods [
 	| inheritedMethods |
 	inheritedMethods := OrderedCollection new.
 	self allSuperclassesDo: [:each | 
-			each methodsDo: [:method | 
+			each methods do: [:method | 
 				method isPrivate not ifTrue: [inheritedMethods add: method]]].
 	^inheritedMethods
 ]
@@ -135,7 +135,7 @@ FamixTClassHierarchyNavigation >> inheritedSignatures [
 	| inheritedSignatures |
 	inheritedSignatures := Set new.
 	self superclassHierarchy do: [:each | 
-			each methodsDo: [:method | 
+			each methods do: [:method | 
 				method isPrivate not ifTrue: [inheritedSignatures add: method signature]]].
 	^ inheritedSignatures
 ]
@@ -145,7 +145,7 @@ FamixTClassHierarchyNavigation >> inheritedSignaturesToMethod [
 	| inheritedSignaturesToMethod |
 	inheritedSignaturesToMethod := Dictionary new.
 	self allSuperclassesDo: [:each | 
-			each methodsDo: [:method | 
+			each methods do: [:method | 
 				method isPrivate ifFalse: [
 					inheritedSignaturesToMethod at: method signature ifAbsentPut: [method]]]].
 	^ inheritedSignaturesToMethod

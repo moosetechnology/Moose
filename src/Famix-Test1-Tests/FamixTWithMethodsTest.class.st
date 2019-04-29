@@ -71,15 +71,6 @@ FamixTWithMethodsTest >> testMethods [
 ]
 
 { #category : #tests }
-FamixTWithMethodsTest >> testMethodsDo [
-	
-	| aCollection |
-	aCollection := Set new.
-	c2 methodsDo: [ :each | aCollection add: each ].
-	self assertCollection: aCollection hasSameElements: { m2. m3 }
-]
-
-{ #category : #tests }
 FamixTWithMethodsTest >> testMethodsGroup [
 	
 	| group | 
