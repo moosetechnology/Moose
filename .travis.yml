@@ -14,3 +14,12 @@ smalltalk_config:
 matrix:
   allow_failures:
     - smalltalk_config: .withPharoTests.ston
+    - smalltalk: Pharo32-8.0
+      smalltalk_config: .smalltalk.ston
+    - smalltalk: Pharo64-8.0
+      smalltalk_config: .smalltalk.ston
+  include:
+    - smalltalk: Pharo32-8.0
+      smalltalk_config: .smalltalk.ston
+    - smalltalk: Pharo64-8.0
+      smalltalk_config: .smalltalk.ston
