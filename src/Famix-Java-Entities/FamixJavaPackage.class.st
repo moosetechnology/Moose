@@ -431,7 +431,7 @@ FamixJavaPackage >> numberOfLinesOfCode [
 	^self
 		lookUpPropertyNamed: #numberOfLinesOfCode
 		computedAs: [
-			self methods inject: 0 into: [ :sum :each | sum + each numberOfLinesOfCode ] ]
+			self childEntities inject: 0 into: [ :sum :each | sum + each numberOfLinesOfCode ] ]
 ]
 
 { #category : #'as yet unclassified' }
