@@ -24,7 +24,7 @@ FamixMetamodelGenerator class >> basicFamixTraits [
 { #category : #accessing }
 FamixMetamodelGenerator class >> basicMetamodelClasses [
 
-	^ ({ Trait. 	Class. ClassDescription. Behavior. MooseEntity. FmxImportingContext. FamixTSourceLanguage. FamixTWithSourceLanguage}, MooseAbstractGroup withAllSubclasses) asOrderedCollection.
+	^ ({ Trait. 	Class. Behavior. MooseEntity. FmxImportingContext. FamixTSourceLanguage. FamixTWithSourceLanguage}, MooseAbstractGroup withAllSubclasses) asOrderedCollection.
 ]
 
 { #category : #accessing }
