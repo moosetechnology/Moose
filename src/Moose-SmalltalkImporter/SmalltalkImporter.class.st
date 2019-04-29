@@ -207,7 +207,7 @@ SmalltalkImporter >> createMethod: aCompiledMethod [
 		do: [ :aRPackage | 
 			(aCompiledMethod isExtensionInPackage: aRPackage)
 				ifTrue: [ method parentPackage: (self ensurePackage: aRPackage) ] ].
-	method hasClassScope: aCompiledMethod methodClass isMeta.
+	method isClassSide: aCompiledMethod methodClass isMeta.
 	method
 		category:
 			(aCompiledMethod methodClass organization

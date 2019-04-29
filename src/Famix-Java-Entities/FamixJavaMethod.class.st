@@ -66,7 +66,7 @@ FamixJavaMethod >> belongsTo: anObject [
 
 ]
 
-{ #category : #accessing }
+{ #category : #'as yet unclassified' }
 FamixJavaMethod >> category [
 	<MSEProperty: #category type: #String>
 	<MSEComment: 'Category of the method'>

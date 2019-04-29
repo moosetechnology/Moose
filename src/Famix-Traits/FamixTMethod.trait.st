@@ -6,13 +6,11 @@ A FAMIXMethod is always contained in a parentType.
 Trait {
 	#name : #FamixTMethod,
 	#instVars : [
-		'#category',
-		'#hasClassScope',
 		'#isAbstract',
+		'#isClassSide',
 		'#isPublic',
 		'#kind',
-		'#parentType => FMOne type: #FamixTWithMethods opposite: #methods',
-		'#timeStamp'
+		'#parentType => FMOne type: #FamixTWithMethods opposite: #methods'
 	],
 	#category : #'Famix-Traits-Method'
 }
@@ -38,30 +36,13 @@ FamixTMethod classSide >> famixTMethodRelatedGroup [
 FamixTMethod classSide >> generatedSlotNames [
 	<generated>
 	'FamixTMethod class>>#generatedSlotNames'.
-	^ #(category hasClassScope kind parentType timeStamp)
+	^ #(isAbstract isClassSide kind parentType)
 ]
 
 { #category : #generator }
 FamixTMethod classSide >> generatedTraitNames [
 	<generated>
 	^ #()
-]
-
-{ #category : #accessing }
-FamixTMethod >> category [
-
-	<MSEProperty: #category type: #String>
-	<generated>
-	<MSEComment: 'Category of the method'>
-	^ category
-]
-
-{ #category : #accessing }
-FamixTMethod >> category: anObject [
-
-	<generated>
-	category := anObject
-
 ]
 
 { #category : #'Famix-Implementation' }
@@ -89,19 +70,36 @@ FamixTMethod >> cyclomaticComplexity: aNumber [
 ]
 
 { #category : #accessing }
-FamixTMethod >> hasClassScope [
+FamixTMethod >> isAbstract [
 
-	<MSEProperty: #hasClassScope type: #Boolean>
+	<MSEProperty: #isAbstract type: #Boolean>
 	<generated>
-	<MSEComment: 'True if class-side method'>
-	^ hasClassScope
+	<MSEComment: 'True if abstract method'>
+	^ isAbstract
 ]
 
 { #category : #accessing }
-FamixTMethod >> hasClassScope: anObject [
+FamixTMethod >> isAbstract: anObject [
 
 	<generated>
-	hasClassScope := anObject
+	isAbstract := anObject
+
+]
+
+{ #category : #accessing }
+FamixTMethod >> isClassSide [
+
+	<MSEProperty: #isClassSide type: #Boolean>
+	<generated>
+	<MSEComment: 'True if class-side method'>
+	^ isClassSide
+]
+
+{ #category : #accessing }
+FamixTMethod >> isClassSide: anObject [
+
+	<generated>
+	isClassSide := anObject
 
 ]
 
@@ -242,21 +240,4 @@ FamixTMethod >> parentTypeGroup [
 FamixTMethod >> parentTypeIsStub [
 
 	^ self parentType ifNotNil: [ :e | e isStub ] ifNil: [ true ]
-]
-
-{ #category : #accessing }
-FamixTMethod >> timeStamp [
-
-	<MSEProperty: #timeStamp type: #String>
-	<generated>
-	<MSEComment: 'TimeStamp of the method with author and time of the last change'>
-	^ timeStamp
-]
-
-{ #category : #accessing }
-FamixTMethod >> timeStamp: anObject [
-
-	<generated>
-	timeStamp := anObject
-
 ]

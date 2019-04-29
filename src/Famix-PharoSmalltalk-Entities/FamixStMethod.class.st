@@ -3,6 +3,9 @@ Class {
 	#superclass : #FamixStContainerEntity,
 	#traits : 'FamixTInvocable + FamixTMethod + FamixTTypedStructure + FamixTWithAccesses + FamixTWithClassScope + FamixTWithImplicitVariables + FamixTWithInvocations + FamixTWithLocalVariables + FamixTWithParameters + FamixTWithReferences + FamixTWithSignature',
 	#classTraits : 'FamixTInvocable classTrait + FamixTMethod classTrait + FamixTTypedStructure classTrait + FamixTWithAccesses classTrait + FamixTWithClassScope classTrait + FamixTWithImplicitVariables classTrait + FamixTWithInvocations classTrait + FamixTWithLocalVariables classTrait + FamixTWithParameters classTrait + FamixTWithReferences classTrait + FamixTWithSignature classTrait',
+	#instVars : [
+		'#protocol'
+	],
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 
@@ -19,7 +22,7 @@ FamixStMethod class >> annotation [
 FamixStMethod class >> generatedSlotNames [
 	<generated>
 	'FamixStMethod class>>#generatedSlotNames'.
-	^ #()
+	^ #(protocol)
 ]
 
 { #category : #generator }
@@ -384,6 +387,23 @@ FamixStMethod >> packageScope [
 			ifTrue:[nil]
 			ifFalse:[cl packageScope]
 	]
+]
+
+{ #category : #accessing }
+FamixStMethod >> protocol [
+
+	<MSEProperty: #protocol type: #String>
+	<generated>
+	<MSEComment: 'Protocol of the method'>
+	^ protocol
+]
+
+{ #category : #accessing }
+FamixStMethod >> protocol: anObject [
+
+	<generated>
+	protocol := anObject
+
 ]
 
 { #category : #'Famix-Extensions-metrics-support' }

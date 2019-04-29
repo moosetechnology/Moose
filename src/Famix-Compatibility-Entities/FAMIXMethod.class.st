@@ -453,7 +453,7 @@ FAMIXMethod >> smalltalkClass [
 	
 	^   ('*_class' match: self parentType name)
 			ifTrue: [self parentType smalltalkClass]
-			ifFalse: [self hasClassScope 
+			ifFalse: [self isClassSide 
 							ifTrue: [self parentType smalltalkClass class]
 							ifFalse: [self parentType smalltalkClass]]
 ]
