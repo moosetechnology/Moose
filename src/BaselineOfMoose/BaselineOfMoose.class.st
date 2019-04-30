@@ -49,7 +49,7 @@ BaselineOfMoose >> baseline: spec [
 
 			spec baseline: 'FamixCompatibility' with: [ spec repository: repository ].
 
-			self baselineRoelTyper: spec.
+			spec baseline: 'RoelTyper' with: [ spec repository: repository ].
 
 			spec
 				package: 'Moose-GenericImporter';
@@ -437,11 +437,6 @@ BaselineOfMoose >> baselineRoassal2: spec [
 		package: 'Trachel';
 		package: 'Roassal2';
 		package: 'Roassal2GT'
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineRoelTyper: spec [
-	self defineGroup: #'RoelTyper-Group' in: spec with: #('RoelTyper' 'RoelTyper')
 ]
 
 { #category : #baseline }
