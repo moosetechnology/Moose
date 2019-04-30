@@ -17,6 +17,7 @@ BaselineOfMoose >> baseline: spec [
 		for: #'pharo7.x'
 		do: [ self baselineRing2ForPharo7: spec.
 			self commonBaselineSpec: spec repository: repository.
+
 			spec
 				package: 'Famix-MetamodelBuilder-Core'
 					with: [ spec includes: #('Famix-MetamodelBuilder-Core-Pharo7') ];
@@ -652,9 +653,6 @@ BaselineOfMoose >> groups: spec [
 		'Moose-Tests-Finder'
 		'Moose-Algos-Lattice-Tests'
 		'Moose-Algos-InformationRetrieval-Tests'
-
-		'Moose-MonticelloImporter'
-		'Moose-Tests-MonticelloImporter'
 		
 		'Famix-PharoSmalltalk-Generator'
 		'Famix-PharoSmalltalk-Entities'
