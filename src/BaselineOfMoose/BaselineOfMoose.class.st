@@ -202,6 +202,7 @@ BaselineOfMoose >> baselineFamixNG: spec [
     
 	spec
 		package: 'Famix-Traits';
+		package: 'Famix-Traits-Extensions' with: [ spec requires: #('Famix-Traits') ] ;
 
 		package: 'Famix-PharoSmalltalk-Generator';
 		package: 'Famix-PharoSmalltalk-Entities';
