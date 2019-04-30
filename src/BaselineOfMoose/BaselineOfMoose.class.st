@@ -36,7 +36,7 @@ BaselineOfMoose >> baseline: spec [
 				package: 'Moose-Query';
 				package: 'Moose-Core';
 				package: 'Moose-Query-Extensions';
-				package: 'Famix-MetamodelBuilder-Core';
+				package: 'Famix-MetamodelBuilder-Core' with: [ spec requires: #('Ring2') ];
 				package: 'Famix-MetamodelBuilder-Tests';
 				package: 'Famix-MetamodelGeneration';
 				package: 'Famix-Groups';
