@@ -13,6 +13,9 @@ BaselineOfMoose >> baseline: spec [
 	| repository |
 	repository := self packageRepositoryURL.
 
+	spec for: #'pharo7.x' with: [ self baselineRing2ForPharo7: spec ].
+	spec for: #'pharo8.x' with: [ self baselineRing2: spec ].
+	
 	spec
 		for: #common
 		do: [ spec package: 'Moose-PharoOverrides'.
@@ -28,7 +31,6 @@ BaselineOfMoose >> baseline: spec [
 			spec package: 'GToolkit-Examples'.
 
 			self baselineDeepTraverser: spec.
-			self baselineRing2: spec.
 
 			spec
 				package: 'Moose-Query';
@@ -411,19 +413,21 @@ BaselineOfMoose >> baselinePetitParser: spec [
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineRing2: spec [ 
-    
-	self defineGroup: #Ring2 in: spec with: #(
-		'Ring2-Core' 
-		'Ring2-TraitsV2Support'
-		'Ring2-Monticello' 
-		'Ring2-ChunkImporter'
-		'Ring2-Tests-Core' 
-		'Ring2-Tests-Monticello' 
-		'Ring2-Tests-ChunkImporter' 
-		'Ring2-RuntimeSupport' 
-		'Calypso-Ring2').
+BaselineOfMoose >> baselineRing2: spec [
+	spec
+		baseline: 'Ring2'
+		with: [ spec
+				loads: 'runtimeSupport';
+				repository: 'github://pavel-krivanek/Ring2:RGPackageRenamed/src' ]
+]
 
+{ #category : #baseline }
+BaselineOfMoose >> baselineRing2ForPharo7: spec [
+	spec
+		baseline: 'Ring2'
+		with: [ spec
+				loads: 'runtimeSupport';
+				repository: 'github://pavel-krivanek/Ring2:v1.2.0/src' ]
 ]
 
 { #category : #baseline }
