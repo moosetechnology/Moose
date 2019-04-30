@@ -54,7 +54,6 @@ BaselineOfMoose >> baseline: spec [
 				package: 'Famix-Compatibility-Tests-C';
 				package: 'Moose-Query-Extensions';
 				package: 'Moose-SmalltalkImporter';
-				package: 'Moose-MonticelloImporter';
 				package: 'Moose-Tests-Core';
 				package: 'Famix-Smalltalk-Utils-Tests';
 				package: 'Famix-Compatibility-Tests-Java';
@@ -88,7 +87,6 @@ BaselineOfMoose >> baseline: spec [
 				package: 'Moose-TestResources-PackageBlueprint-P2';
 				package: 'Moose-TestResources-PackageBlueprint-P3';
 				package: 'Moose-TestResources-PackageBlueprint-P4';
-				package: 'Moose-Tests-MonticelloImporter';
 				package: 'Moose-Query-Test'.
 
 			self baselineMetamodelBuilder: spec.
@@ -656,9 +654,6 @@ BaselineOfMoose >> groups: spec [
 		'Moose-Tests-Finder'
 		'Moose-Algos-Lattice-Tests'
 		'Moose-Algos-InformationRetrieval-Tests'
-
-		'Moose-MonticelloImporter'
-		'Moose-Tests-MonticelloImporter'
 		
 		'Famix-PharoSmalltalk-Generator'
 		'Famix-PharoSmalltalk-Entities'
