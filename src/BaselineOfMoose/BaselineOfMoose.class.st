@@ -603,8 +603,8 @@ BaselineOfMoose >> groups: spec [
 		'Moose-Tests-SmalltalkImporter-LAN'
 		'Moose-Tests-SmalltalkImporter-KGB'
 		'Moose-TestResources-KGB-PExtensions'
-			
-		'RoelTyper-Group'
+		
+		'RoelTyper'
 		'Moose-GenericImporter'
 		'Moose-SmalltalkImporter'
 		'Moose-Tests-Core'
