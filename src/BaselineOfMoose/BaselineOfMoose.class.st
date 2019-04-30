@@ -13,8 +13,8 @@ BaselineOfMoose >> baseline: spec [
 	| repository |
 	repository := self packageRepositoryURL.
 
-	spec for: #'pharo7.x' with: [ self baselineRing2ForPharo7: spec ].
-	spec for: #'pharo8.x' with: [ self baselineRing2: spec ].
+	spec for: #'pharo7.x' do: [ self baselineRing2ForPharo7: spec ].
+	spec for: #'pharo8.x' do: [ self baselineRing2: spec ].
 	
 	spec
 		for: #common
