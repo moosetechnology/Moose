@@ -562,6 +562,7 @@ BaselineOfMoose >> groups: spec [
 		
 		'Famix-Smalltalk-Utils'
 		'Famix-Groups'
+		'Famix-Groups-Tests'
 		'Famix-Compatibility-Generator' 
 		'Famix-Compatibility-Entities'
 	).
@@ -658,6 +659,7 @@ BaselineOfMoose >> groups: spec [
 		'Famix-PharoSmalltalk-Generator'
 		'Famix-PharoSmalltalk-Entities'
 		'Famix-PharoSmalltalk-Importer'
+		'Famix-PharoSmalltalk-Tests'
 		
 		'Famix-Java-Generator'
 		'Famix-Java-Entities'
