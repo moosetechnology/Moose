@@ -53,7 +53,6 @@ FAMIXNavigationPluginTestsResource >> importModel [
 	
 	importer importingContext mergeClassAndMetaclass. 
 	importer candidateClass: CandidateListOperator.
-	importer importerClass: SmalltalkImporter.
 	importer model: model; 
 		addFromPackagesMatching: [:p | 'Moose-TestResources-KGB-*' match: p name];
 		run.

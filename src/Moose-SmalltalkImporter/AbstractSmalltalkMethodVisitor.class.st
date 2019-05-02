@@ -100,9 +100,9 @@ AbstractSmalltalkMethodVisitor >> matchConstant: aMethodNode [
 { #category : #'method-classifying' }
 AbstractSmalltalkMethodVisitor >> matchConstructor: aMethodNode [ 
 	 
-	famixMethod category notNil 
+	famixMethod protocol notNil 
 		ifTrue: 
-			[('*instance*creation*' match: famixMethod category asLowercase) 
+			[('*instance*creation*' match: famixMethod protocol asLowercase) 
 				ifTrue: [famixMethod kind: #constructor]]
 ]
 

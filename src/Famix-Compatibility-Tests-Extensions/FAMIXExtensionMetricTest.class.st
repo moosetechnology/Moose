@@ -44,14 +44,14 @@ FAMIXExtensionMetricTest >> importClasses [
 FAMIXExtensionMetricTest >> importModels [
 
 	self newPharoImporterTask
-		importerClass: SmalltalkImporter;
+		importerClass: SmalltalkCompatibilityImporter;
 		model: model1;
 		addFromPackageNamed: #'Moose-TestResources-KGB-P1FullReferencer';
 		addFromPackageNamed: #'Moose-TestResources-KGB-P2InteractedReferencerReferee';
 		run.
 		
 	self newPharoImporterTask
-		importerClass: SmalltalkImporter;
+		importerClass: SmalltalkCompatibilityImporter;
 		model: model2;
 		addFromPackageNamed: #'Moose-TestResources-PackageBlueprint-P1';
 		addFromPackageNamed: #'Moose-TestResources-PackageBlueprint-P2';
@@ -60,7 +60,7 @@ FAMIXExtensionMetricTest >> importModels [
 		run.
 	
 	self newPharoImporterTask
-		importerClass: SmalltalkImporter;
+		importerClass: SmalltalkCompatibilityImporter;
 		doNotRunCandidateOperator; 
 		model: lcomModel;
 		addFromPackageNamed: #'Moose-TestResources-LCOM';

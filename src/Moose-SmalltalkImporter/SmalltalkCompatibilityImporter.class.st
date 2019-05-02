@@ -211,7 +211,7 @@ SmalltalkCompatibilityImporter >> createMethod: aCompiledMethod [
 	method isPublic: true.
 	importingContext shouldImportMethodBody
 		ifTrue: [ | visitor |
-			visitor := SmalltalkMethodVisitor on: self.
+			visitor := SmalltalkCompatibilityMethodVisitor on: self.
 			visitor runWith: aCompiledMethod and: method ].
 	anchor := self factory anchor new
 		element: method;
