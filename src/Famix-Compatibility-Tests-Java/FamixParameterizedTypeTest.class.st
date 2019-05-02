@@ -13,7 +13,8 @@ FamixParameterizedTypeTest >> setUp [
 	super setUp.
 	MooseModel resetMeta.
 	model := MooseModel new.
-	
+	Transcript crShow: 'TESTtestArgumentTypes before properties -> '.
+	model metamodel properties collect: #asString thenDo: [:string |Transcript crShow: string].
 	model importFromMSEStream: '(
 		(FAMIX.Namespace (id: 1) (name ''NamespaceA''))
 		(FAMIX.Class (id: 2) (name ''ClassA''))
