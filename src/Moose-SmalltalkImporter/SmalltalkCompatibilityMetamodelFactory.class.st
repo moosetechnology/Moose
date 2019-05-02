@@ -13,11 +13,11 @@ SmalltalkCompatibilityMetamodelFactory >> anchor [
 { #category : #'as yet unclassified' }
 SmalltalkCompatibilityMetamodelFactory >> defaultMetamodelClass [
 
-	^ FamixCompatibilityGenerator 
+	^ FamixPharoSmalltalkGenerator 
 ]
 
 { #category : #'as yet unclassified' }
 SmalltalkCompatibilityMetamodelFactory >> sourceLanguage [
 
-	^ FamixPharoSmalltalkGenerator
+	^ FAMIXSmalltalkSourceLanguage
 ]
