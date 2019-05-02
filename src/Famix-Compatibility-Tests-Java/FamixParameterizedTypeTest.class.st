@@ -51,7 +51,11 @@ FamixParameterizedTypeTest >> testArgumentTypes [
 	parameterizableClassA := (model entities select: [ :each | each name = 'ParameterizableClassA' ]) at: 1.
 	typeB := (model entities select: [ :each | each name = 'TypeB' ]) at: 1.
 	typeC := (model entities select: [ :each | each name = 'TypeC' ]) at: 1.
+	
 	Transcript crShow: 'TESTtestArgumentTypes -> ', (model allAttributes flatCollect: #asString).
+	Transcript crShow: 'TESTtestArgumentTypes properties -> '.
+	model allAttributes first metamodel properties collect: #asString thenDo: [:string |Transcript crShow: string].
+	
 	fmxEntity := model allAttributes entityNamed: #'ClassA.attributeA1'.
 	declaredType := fmxEntity declaredType.
 	self assert: declaredType equals: parameterizedTypeA.
