@@ -96,7 +96,7 @@ BaselineOfMoose >> baselineFamixNG: spec [
     
 	spec
 		package: 'Famix-Traits';
-		package: 'Famix-Traits-Extensions' with: [ spec requires: #('Famix-Traits') ] ;
+		package: 'Famix-Traits-Extensions';
 
 		package: 'Famix-PharoSmalltalk-Generator';
 		package: 'Famix-PharoSmalltalk-Entities';
@@ -442,8 +442,6 @@ BaselineOfMoose >> commonBaselineSpec: spec repository: repository [
 		package: 'Famix-MetamodelGeneration';
 		package: 'Famix-Groups';
 		package: 'Famix-Groups-Tests';
-		package: 'Famix-Traits';
-		package: 'Famix-Traits-Extensions';
 		package: 'Famix-BasicInfrastructure';
 		package: 'Famix-Smalltalk-Utils';
 		package: 'Famix-Compatibility-Generator';
