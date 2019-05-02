@@ -53,6 +53,7 @@ FamixParameterizedTypeTest >> testArgumentTypes [
 	typeC := (model entities select: [ :each | each name = 'TypeC' ]) at: 1.
 	
 	Transcript crShow: 'TESTtestArgumentTypes -> ', (model allAttributes flatCollect: #asString).
+	Transcript crShow: 'TESTtestArgumentTypes belongsTo -> ', (model allAttributes first belongsTo asString).
 	Transcript crShow: 'TESTtestArgumentTypes properties -> '.
 	model allAttributes first metamodel properties collect: #asString thenDo: [:string |Transcript crShow: string].
 	
