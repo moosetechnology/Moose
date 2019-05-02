@@ -40,7 +40,7 @@ MooseScripts class >> createLightModelForMorphic [
 	model := MooseModel new.
 	model name: 'lightMorphic'.
 	importer := MoosePharoImporterTask new.
-	importer factory: SmalltalkCompatibilityMetamodelFactory.
+	importer factory: SmalltalkMetamodelFactory.
 	importer importingContext: (MooseImportingContext new 
 									importClassMethodInheritanceAttribute; 
 									importPackage;
@@ -66,7 +66,7 @@ MooseScripts class >> createLightModelForNetwork [
 	model := MooseModel new.
 	model name: 'lightNetwork'.
 	importer := MoosePharoImporterTask new.
-	importer factory: SmalltalkCompatibilityMetamodelFactory.
+	importer factory: SmalltalkMetamodelFactory.
 	importer importingContext: (MooseImportingContext new 
 									importClassMethodInheritanceAttribute; 
 									importPackage;
