@@ -194,7 +194,6 @@ MooseQueryTypeDeclarationAssociationTest >> setUp [
 		yourself).
 	
 	self model metamodel: FamixPharoSmalltalkGenerator metamodel.
-
 ]
 
 { #category : #'famix-class' }

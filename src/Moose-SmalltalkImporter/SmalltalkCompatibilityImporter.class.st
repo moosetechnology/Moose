@@ -1,9 +1,5 @@
-"
-I'm responsible for creating Famix model out of Smalltalk code.
-I'm mainly invoked by the MooseImportClassesTask
-"
 Class {
-	#name : #SmalltalkImporter,
+	#name : #SmalltalkCompatibilityImporter,
 	#superclass : #MooseAbstractImporter,
 	#instVars : [
 		'methods',
@@ -21,25 +17,25 @@ Class {
 }
 
 { #category : #constant }
-SmalltalkImporter class >> CIVString [
+SmalltalkCompatibilityImporter class >> CIVString [
 
 	^ 'CIV#'
 ]
 
 { #category : #'private accessing' }
-SmalltalkImporter >> CIVString [
+SmalltalkCompatibilityImporter >> CIVString [
 
 	^ self class CIVString
 ]
 
 { #category : #'private accessing' }
-SmalltalkImporter >> addEntity: value [ 
+SmalltalkCompatibilityImporter >> addEntity: value [ 
 	 
 	^others add: value
 ]
 
 { #category : #enumerating }
-SmalltalkImporter >> allElements [ 
+SmalltalkCompatibilityImporter >> allElements [ 
 	 
 	| stream | 
 	stream := (OrderedCollection new: self size) writeStream. 
@@ -54,7 +50,7 @@ SmalltalkImporter >> allElements [
 ]
 
 { #category : #'private-entity-creation' }
-SmalltalkImporter >> basicClassCreation: aClass [
+SmalltalkCompatibilityImporter >> basicClassCreation: aClass [
 	| class anchor |
 	class := classes at: aClass put: self factory classEntity new.
 	class name: (aClass name replaceAll: Character space with: $_).
@@ -71,18 +67,18 @@ SmalltalkImporter >> basicClassCreation: aClass [
 ]
 
 { #category : #'private utils' }
-SmalltalkImporter >> checkAbstractClass: class [ 
+SmalltalkCompatibilityImporter >> checkAbstractClass: class [ 
 	(class methods contains: [ :each | each isAbstract ]) ifTrue: [ class isAbstract: true ]
 ]
 
 { #category : #'private accessing' }
-SmalltalkImporter >> classes [
+SmalltalkCompatibilityImporter >> classes [
 	
 	^ classes
 ]
 
 { #category : #'private-entity-creation' }
-SmalltalkImporter >> createAnnotationType: aPragmaNode [ 
+SmalltalkCompatibilityImporter >> createAnnotationType: aPragmaNode [ 
 	| pragmaAnnotationType |
 	pragmaAnnotationType := annotationTypes
 		at: aPragmaNode selector
@@ -100,7 +96,7 @@ SmalltalkImporter >> createAnnotationType: aPragmaNode [
 ]
 
 { #category : #'private-entity-creation' }
-SmalltalkImporter >> createAttribute: name for: aClass [
+SmalltalkCompatibilityImporter >> createAttribute: name for: aClass [
 	| attribute realName possibleTypes |
 	realName := self nameForInstanceVariable: name class: aClass.
 	attribute := (self scopeOfClass: aClass)
@@ -125,7 +121,7 @@ SmalltalkImporter >> createAttribute: name for: aClass [
 ]
 
 { #category : #'private-entity-creation' }
-SmalltalkImporter >> createClass: aClass [ 
+SmalltalkCompatibilityImporter >> createClass: aClass [ 
 	| class inheritance |
 	
 	importingContext shouldMergeClassAndMetaclass 
@@ -162,7 +158,7 @@ SmalltalkImporter >> createClass: aClass [
 ]
 
 { #category : #'private-entity-creation' }
-SmalltalkImporter >> createClassVarAttribute: name for: aClass [
+SmalltalkCompatibilityImporter >> createClassVarAttribute: name for: aClass [
 	"a classVar always belongs to the base class"
 
 	| attribute |
@@ -179,7 +175,7 @@ SmalltalkImporter >> createClassVarAttribute: name for: aClass [
 ]
 
 { #category : #'private-entity-creation' }
-SmalltalkImporter >> createGlobalVariable: name value: value [ 
+SmalltalkCompatibilityImporter >> createGlobalVariable: name value: value [ 
 	 
 	| global | 
 	global := globals 
@@ -191,7 +187,7 @@ SmalltalkImporter >> createGlobalVariable: name value: value [
 ]
 
 { #category : #'private-entity-creation' }
-SmalltalkImporter >> createMethod: aCompiledMethod [
+SmalltalkCompatibilityImporter >> createMethod: aCompiledMethod [
 	| method thisClass anchor |
 	method := methods at: aCompiledMethod put: self factory method new.
 	method name: aCompiledMethod selector.
@@ -227,7 +223,7 @@ SmalltalkImporter >> createMethod: aCompiledMethod [
 ]
 
 { #category : #'private-entity-creation' }
-SmalltalkImporter >> createNamespace: aNamespace [ 
+SmalltalkCompatibilityImporter >> createNamespace: aNamespace [ 
 	
 	| namespace |
 	namespace := namespaces
@@ -238,7 +234,7 @@ SmalltalkImporter >> createNamespace: aNamespace [
 ]
 
 { #category : #'private-entity-creation' }
-SmalltalkImporter >> createPackage: aPackageModel [
+SmalltalkCompatibilityImporter >> createPackage: aPackageModel [
 	
 	| package |
 	package := packages
@@ -250,7 +246,7 @@ SmalltalkImporter >> createPackage: aPackageModel [
 ]
 
 { #category : #'private-entity-creation' }
-SmalltalkImporter >> createSpecialVariable: name forClass: aClass [
+SmalltalkCompatibilityImporter >> createSpecialVariable: name forClass: aClass [
 
 	| attribute |
 	attribute := (self scopeOfClass: aClass) at: name bind: self factory implicitVariable new.
@@ -260,7 +256,7 @@ SmalltalkImporter >> createSpecialVariable: name forClass: aClass [
 ]
 
 { #category : #'private-entity-creation' }
-SmalltalkImporter >> createSpecialVariable: name forFamixMethod: aFamixMethod [
+SmalltalkCompatibilityImporter >> createSpecialVariable: name forFamixMethod: aFamixMethod [
 
 	| attribute |
 	attribute := "(self scopeOfClass: aClass) at: name bind:" self factory implicitVariable new.
@@ -270,7 +266,7 @@ SmalltalkImporter >> createSpecialVariable: name forFamixMethod: aFamixMethod [
 ]
 
 { #category : #'private-entity-creation' }
-SmalltalkImporter >> createUnknownVariable: name [
+SmalltalkCompatibilityImporter >> createUnknownVariable: name [
 
 	| unknown |
 	unknown := globals
@@ -281,7 +277,7 @@ SmalltalkImporter >> createUnknownVariable: name [
 ]
 
 { #category : #enumerating }
-SmalltalkImporter >> do: aBlock [ 
+SmalltalkCompatibilityImporter >> do: aBlock [ 
 	 
 	others do: aBlock. 
 	methods do: aBlock. 
@@ -304,7 +300,7 @@ SmalltalkImporter >> do: aBlock [
 ]
 
 { #category : #'public-entity-creation' }
-SmalltalkImporter >> ensureAnnotationType: aPragmaNode [
+SmalltalkCompatibilityImporter >> ensureAnnotationType: aPragmaNode [
 	 
 	^annotationTypes 
 		at: aPragmaNode selector
@@ -312,7 +308,7 @@ SmalltalkImporter >> ensureAnnotationType: aPragmaNode [
 ]
 
 { #category : #'public-entity-creation' }
-SmalltalkImporter >> ensureAttribute: name for: aClass [ 
+SmalltalkCompatibilityImporter >> ensureAttribute: name for: aClass [ 
 	 
 	^(self scopeOfClass: aClass) 
 		at: (self nameForInstanceVariable: name class: aClass) 
@@ -320,7 +316,7 @@ SmalltalkImporter >> ensureAttribute: name for: aClass [
 ]
 
 { #category : #'public-entity-creation' }
-SmalltalkImporter >> ensureClass: aClass [ 
+SmalltalkCompatibilityImporter >> ensureClass: aClass [ 
 	"aClass is aSmalltalk. This method returns a FAMIXClass" 
 	 
 	^classes 
@@ -329,7 +325,7 @@ SmalltalkImporter >> ensureClass: aClass [
 ]
 
 { #category : #'public-entity-creation' }
-SmalltalkImporter >> ensureClassVarAttribute: name for: aClass [
+SmalltalkCompatibilityImporter >> ensureClassVarAttribute: name for: aClass [
 
 
 	^(self scopeOfClass: aClass)
@@ -341,7 +337,7 @@ SmalltalkImporter >> ensureClassVarAttribute: name for: aClass [
 ]
 
 { #category : #'public-entity-creation' }
-SmalltalkImporter >> ensureGlobalVariable: name value: value [ 
+SmalltalkCompatibilityImporter >> ensureGlobalVariable: name value: value [ 
 	 
 	^globals 
 		at: name 
@@ -349,7 +345,7 @@ SmalltalkImporter >> ensureGlobalVariable: name value: value [
 ]
 
 { #category : #'public-entity-creation' }
-SmalltalkImporter >> ensureImplicitVariable: name inClass: aClass [
+SmalltalkCompatibilityImporter >> ensureImplicitVariable: name inClass: aClass [
 	
 	^(self scopeOfClass: aClass)
 		at: name
@@ -360,7 +356,7 @@ SmalltalkImporter >> ensureImplicitVariable: name inClass: aClass [
 ]
 
 { #category : #'public-entity-creation' }
-SmalltalkImporter >> ensureImplicitVariable: name inFamixMethod: aFAMIXMethod [
+SmalltalkCompatibilityImporter >> ensureImplicitVariable: name inFamixMethod: aFAMIXMethod [
 	
 	"^ others detect: [:aFamixEntity |
 		aFamixEntity mooseName = (aFAMIXMethod mooseName,'.',name) asSymbol
@@ -374,7 +370,7 @@ SmalltalkImporter >> ensureImplicitVariable: name inFamixMethod: aFAMIXMethod [
 ]
 
 { #category : #'public-entity-creation' }
-SmalltalkImporter >> ensureMethod: aCompiledMethod [ 
+SmalltalkCompatibilityImporter >> ensureMethod: aCompiledMethod [ 
 	 
 	^methods 
 		at: aCompiledMethod 
@@ -382,12 +378,12 @@ SmalltalkImporter >> ensureMethod: aCompiledMethod [
 ]
 
 { #category : #'public-entity-creation' }
-SmalltalkImporter >> ensureNamespace: aNamespace [
+SmalltalkCompatibilityImporter >> ensureNamespace: aNamespace [
 	^ namespaces at: aNamespace asString asSymbol ifAbsent: [ self createNamespace: aNamespace ]
 ]
 
 { #category : #'public-entity-creation' }
-SmalltalkImporter >> ensurePackage: aPackageModel [ 
+SmalltalkCompatibilityImporter >> ensurePackage: aPackageModel [ 
 	 
 	^packages 
 		at: aPackageModel 
@@ -395,7 +391,7 @@ SmalltalkImporter >> ensurePackage: aPackageModel [
 ]
 
 { #category : #'public-entity-creation' }
-SmalltalkImporter >> ensureUnknownVariable: name [
+SmalltalkCompatibilityImporter >> ensureUnknownVariable: name [
 	
 	^globals
 		at: name
@@ -403,25 +399,25 @@ SmalltalkImporter >> ensureUnknownVariable: name [
 ]
 
 { #category : #accessing }
-SmalltalkImporter >> factory [
+SmalltalkCompatibilityImporter >> factory [
 
 	^ factory
 ]
 
 { #category : #accessing }
-SmalltalkImporter >> factory: anObject [
+SmalltalkCompatibilityImporter >> factory: anObject [
 	factory := anObject
 ]
 
 { #category : #accessing }
-SmalltalkImporter >> famixClasses [
+SmalltalkCompatibilityImporter >> famixClasses [
 	"I return the Famix classes created by this importer. These classes might merge Smalltalk classes and metaclasses."
 	
 	^ classes values asSet
 ]
 
 { #category : #importing }
-SmalltalkImporter >> importClass: aClass [ 
+SmalltalkCompatibilityImporter >> importClass: aClass [ 
 	 
 	| class comment | 
 	importingContext shouldImportClass 
@@ -447,7 +443,7 @@ SmalltalkImporter >> importClass: aClass [
 ]
 
 { #category : #importing }
-SmalltalkImporter >> importClassExtension: aClassExtension [ 
+SmalltalkCompatibilityImporter >> importClassExtension: aClassExtension [ 
 	 
 	| method | 
 	importingContext shouldImportClassExtension ifTrue: [
@@ -458,7 +454,7 @@ SmalltalkImporter >> importClassExtension: aClassExtension [
 ]
 
 { #category : #'initialize-release' }
-SmalltalkImporter >> initialize [ 
+SmalltalkCompatibilityImporter >> initialize [ 
 	super initialize. 
 	methods := IdentityDictionary new. 
 	classes := IdentityDictionary new. 
@@ -472,13 +468,13 @@ SmalltalkImporter >> initialize [
 ]
 
 { #category : #'private accessing' }
-SmalltalkImporter >> methods [
+SmalltalkCompatibilityImporter >> methods [
 	
 	^ methods
 ]
 
 { #category : #'private utils' }
-SmalltalkImporter >> nameForInstanceVariable: name class: aClass [
+SmalltalkCompatibilityImporter >> nameForInstanceVariable: name class: aClass [
 	
     (importingContext shouldMergeClassAndMetaclass) 
 		and: [aClass isMeta ifTrue: [ ^ self CIVString, name]].
@@ -488,13 +484,13 @@ SmalltalkImporter >> nameForInstanceVariable: name class: aClass [
 ]
 
 { #category : #'private-entity-creation' }
-SmalltalkImporter >> scopeOfClass: aClass [
+SmalltalkCompatibilityImporter >> scopeOfClass: aClass [
 	aClass ifNil: [ ^ nil ].
 	^ scopes at: aClass ifAbsentPut: [ SmalltalkScope extend: (self scopeOfClass: aClass superclass) ]
 ]
 
 { #category : #accessing }
-SmalltalkImporter >> size [ 
+SmalltalkCompatibilityImporter >> size [ 
 	 
 	^(scopes sumNumbers: #size) + others size + methods size + self famixClasses size 
 		+ packages size + namespaces size + globals size

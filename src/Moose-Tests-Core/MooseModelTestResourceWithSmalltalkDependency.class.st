@@ -26,7 +26,7 @@ MooseModelTestResourceWithSmalltalkDependency >> newPharoImporterTask [
 	
 	| importer |
 
-	importer := MoosePharoImporterTask new.
+	importer := MooseSmalltalkCompatibilityImporterTask new.
 	importer factory: self metamodelFactory.
 
 	^ importer
