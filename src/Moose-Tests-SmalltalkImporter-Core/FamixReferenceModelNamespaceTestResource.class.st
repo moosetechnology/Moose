@@ -17,3 +17,20 @@ FamixReferenceModelNamespaceTestResource >> importModel [
 		run;
 		yourself  
 ]
+
+{ #category : #setup }
+FamixReferenceModelNamespaceTestResource >> metamodelFactory [
+
+	^ SmalltalkMetamodelFactory
+]
+
+{ #category : #setup }
+FamixReferenceModelNamespaceTestResource >> newPharoImporterTask [
+	
+	| importer |
+
+	importer := MoosePharoImporterTask new.
+	importer factory: self metamodelFactory.
+
+	^ importer
+]

@@ -13,8 +13,7 @@ FamixParameterizedTypeTest >> setUp [
 	super setUp.
 	MooseModel resetMeta.
 	model := MooseModel new.
-	Transcript crShow: 'TESTtestArgumentTypes before properties -> '.
-	model metamodel properties collect: #asString thenDo: [:string |Transcript crShow: string].
+	
 	model importFromMSEStream: '(
 		(FAMIX.Namespace (id: 1) (name ''NamespaceA''))
 		(FAMIX.Class (id: 2) (name ''ClassA''))
@@ -52,12 +51,6 @@ FamixParameterizedTypeTest >> testArgumentTypes [
 	parameterizableClassA := (model entities select: [ :each | each name = 'ParameterizableClassA' ]) at: 1.
 	typeB := (model entities select: [ :each | each name = 'TypeB' ]) at: 1.
 	typeC := (model entities select: [ :each | each name = 'TypeC' ]) at: 1.
-	
-	Transcript crShow: 'TESTtestArgumentTypes -> ', (model allAttributes flatCollect: #asString).
-	Transcript crShow: 'TESTtestArgumentTypes belongsTo -> ', (model allAttributes first belongsTo asString).
-	Transcript crShow: 'TESTtestArgumentTypes properties -> '.
-	model allAttributes first metamodel properties collect: #asString thenDo: [:string |Transcript crShow: string].
-	
 	fmxEntity := model allAttributes entityNamed: #'ClassA.attributeA1'.
 	declaredType := fmxEntity declaredType.
 	self assert: declaredType equals: parameterizedTypeA.

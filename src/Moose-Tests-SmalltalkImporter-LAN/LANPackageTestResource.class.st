@@ -14,3 +14,20 @@ LANPackageTestResource >> importModel [
 		run;
 		yourself
 ]
+
+{ #category : #'as yet unclassified' }
+LANPackageTestResource >> metamodelFactory [
+
+	^ SmalltalkMetamodelFactory
+]
+
+{ #category : #'as yet unclassified' }
+LANPackageTestResource >> newPharoImporterTask [
+	
+	| importer |
+
+	importer := MoosePharoImporterTask new.
+	importer factory: self metamodelFactory.
+
+	^ importer
+]

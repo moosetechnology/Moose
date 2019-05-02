@@ -69,3 +69,20 @@ FAMIXNavigationPluginTestsResource >> importModel [
 			"(model entityNamed: #Smalltalk) types remove:(model entityNamed: each)."
 		] ]
 ]
+
+{ #category : #'MooseKGB-TestFamix3-util' }
+FAMIXNavigationPluginTestsResource >> metamodelFactory [
+
+	^ SmalltalkMetamodelFactory
+]
+
+{ #category : #'MooseKGB-TestFamix3-hook' }
+FAMIXNavigationPluginTestsResource >> newPharoImporterTask [
+	
+	| importer |
+
+	importer := MoosePharoImporterTask new.
+	importer factory: self metamodelFactory.
+
+	^ importer
+]

@@ -7,7 +7,7 @@ Class {
 { #category : #'as yet unclassified' }
 MooseModelTestResourceWithSmalltalkDependency >> metamodelFactory [
 
-	^ SmalltalkMetamodelFactory
+	^ SmalltalkCompatibilityMetamodelFactory
 ]
 
 { #category : #'as yet unclassified' }
@@ -26,7 +26,7 @@ MooseModelTestResourceWithSmalltalkDependency >> newPharoImporterTask [
 	
 	| importer |
 
-	importer := MoosePharoImporterTask new.
+	importer := MooseSmalltalkCompatibilityImporterTask new.
 	importer factory: self metamodelFactory.
 
 	^ importer
