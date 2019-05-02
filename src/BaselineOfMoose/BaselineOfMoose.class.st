@@ -26,9 +26,9 @@ BaselineOfMoose >> baseline: spec [
 		for: #'pharo8.x'
 		do: [ self baselineRing2: spec.
 			self commonBaselineSpec: spec repository: repository.
-			spec package: 'Roassal2GT' with: [ spec includes: #('Glamour-Browsers-Pharo8' 'Glamour-Morphic-Rendered-Pharo8') ].
+			spec package: 'Roassal2GT' with: [ spec includes: #('Glamour-Browsers-Pharo8' 'Glamour-Morphic-Renderer-Pharo8') ].
 			spec package: 'Glamour-Browsers-Pharo8'.
-			spec package: 'Glamour-Morphic-Rendered-Pharo8' ]
+			spec package: 'Glamour-Morphic-Renderer-Pharo8' ]
 ]
 
 { #category : #baseline }
