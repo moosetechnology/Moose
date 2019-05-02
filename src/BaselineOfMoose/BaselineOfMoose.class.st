@@ -565,6 +565,7 @@ BaselineOfMoose >> groups: spec [
 	spec group: 'BasicTests' with: #(
 		'Famix-MetamodelBuilder-Tests'
 		'Famix-Smalltalk-Utils-Tests'
+		'Famix-Groups-Tests'
 
 		'StateSpecs-Additional'
 		'Ghost'
