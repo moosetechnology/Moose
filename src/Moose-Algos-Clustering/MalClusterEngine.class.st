@@ -1,4 +1,15 @@
 "
+I am the cluster engine. I do hierarchical clustering. I allow one to compute the dendrogram.
+
+One can configure myself to change the way I compute distance between clusters. For example, #singleLinkage message sets myself to use the minimum distance between 2 points belonging to 2 clusters for which one need to compute the distance.
+
+To try you can run:
+[[[
+	MalClusterEngine with: vectorsOfData using: blockComputingDistanceBetweenTwoVectors
+]]]
+
+By default, I use squared euclidean distance.
+
 Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment.
 "
 Class {
