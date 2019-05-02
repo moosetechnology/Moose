@@ -19,5 +19,5 @@ SmalltalkCompatibilityMetamodelFactory >> defaultMetamodelClass [
 { #category : #'as yet unclassified' }
 SmalltalkCompatibilityMetamodelFactory >> sourceLanguage [
 
-	^ FAMIXSmalltalkSourceLanguage
+	^ FamixPharoSmalltalkGenerator
 ]
