@@ -72,7 +72,7 @@ SpecOfObjectProperty >> parentMessage: anObject [
 { #category : #printing }
 SpecOfObjectProperty >> printOn: aStream [
 
-	aStream << '"' << value << '" from ' << self stringForSpecTitle
+	aStream << '"' << value asString << '" from ' << self stringForSpecTitle
 ]
 
 { #category : #printing }

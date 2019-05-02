@@ -23,7 +23,9 @@ RTSVGExporterTest >> testEmpty [
 	
 	| v str |
 	v := RTView new.
-
+	"use a White theme for the test"
+	v canvas theme: TRWhiteSolarizedTheme new.
+	
 	str := WriteStream on: String new.
 	RTSVGExporter new view: v; exportOnStream: str.
 	self assert: str contents equals: '<svg  xmlns="http://www.w3.org/2000/svg" width="3px" height="3px" style="background-color: rgba(256,256,256,1.0);float:left" 
