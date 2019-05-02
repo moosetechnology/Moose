@@ -12,21 +12,21 @@ BaselineOfMoose >> baseline: spec [
 	<baseline>
 	| repository |
 	repository := self packageRepositoryURL.
-	
+
 	spec
 		for: #'pharo7.x'
 		do: [ self baselineRing2ForPharo7: spec.
 			self commonBaselineSpec: spec repository: repository.
 
 			spec
-				package: 'Famix-MetamodelBuilder-Core'
-					with: [ spec includes: #('Famix-MetamodelBuilder-Core-Pharo7') ];
+				package: 'Famix-MetamodelBuilder-Core' with: [ spec includes: #('Famix-MetamodelBuilder-Core-Pharo7') ];
 				package: 'Famix-MetamodelBuilder-Core-Pharo7' ].
-			
+
 	spec
 		for: #'pharo8.x'
 		do: [ self baselineRing2: spec.
-			self commonBaselineSpec: spec repository: repository ]
+			self commonBaselineSpec: spec repository: repository.
+			spec package: 'Roassal2GT' with: [ spec includes: #('Gamours-Browser-Pharo8' 'Glamour-Morphic-Rendered-Pharo8') ] ]
 ]
 
 { #category : #baseline }
