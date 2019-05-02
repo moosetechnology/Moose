@@ -20,7 +20,7 @@ FamixTCohesionCouplingMetrics >> afferentCoupling [
 	<derived>
 	<MSEComment:
 		'Afferent Coupling of a namespace Afferent is the number of classes that depend upon this namespace'>
-	^ (self queryAllIncoming atScope: FamixTPackageable) outOfMyPackage size
+	^ ((self queryAllIncoming outOfMyPackage atScope: FamixTType) collect: [ :e | e isClassSide ifTrue: [ e instanceSide ] ifFalse: [ e ] ]) asSet  size
 ]
 
 { #category : #'*Famix-Traits-Extensions' }
@@ -46,7 +46,8 @@ FamixTCohesionCouplingMetrics >> efferentCoupling [
 	<MSEProperty: #efferentCoupling type: #Number>
 	<derived>
 	<MSEComment: 'Efferent Coupling of a package'>
-	^ ((self queryAllOutgoing outOfMyPackage atScope: FamixTPackageable)) size
+
+	^ ((self queryAllOutgoing outOfMyPackage atScope: FamixTType) collect: [ :e | e isClassSide ifTrue: [ e instanceSide ] ifFalse: [ e ] ] ) asSet size
 ]
 
 { #category : #'*Famix-Traits-Extensions' }
@@ -63,4 +64,22 @@ FamixTCohesionCouplingMetrics >> instability [
 	afferentCoupling := self afferentCoupling.
 	(efferentCoupling + afferentCoupling) == 0 ifTrue: [^ nil].
 	^ efferentCoupling / (efferentCoupling + afferentCoupling)
+]
+
+{ #category : #'*Famix-Traits-Extensions' }
+FamixTCohesionCouplingMetrics >> martinCohesion [
+	"Computing cohesion as described by Robert C. Martin"
+
+	<MSEProperty: #martinCohesion type: #Number>
+	<derived>
+	<MSEComment: 'Cohesion as defined by Robert C. Martin.'>
+	| intraConnectivities myClasses |
+	myClasses := self childEntities select: #isClass.
+	myClasses := (myClasses union: (myClasses flatCollect: [ :c | c allRecursiveTypes ])) select: [ :c | c isInstanceSide ].
+	myClasses size == 0
+		ifTrue: [ ^ nil ].
+	intraConnectivities := (myClasses collect: [ :c | (c queryOutgoingDependencies atScope: FamixTType) withoutSelfLoops withinMyNamespace ])
+		inject: 0
+		into: [ :subTotal :each | subTotal + (each select: [ :c | c isInstanceSide ]) size ].
+	^ ((intraConnectivities + 1) / myClasses size) asFloat
 ]

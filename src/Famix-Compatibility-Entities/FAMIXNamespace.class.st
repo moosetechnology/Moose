@@ -36,20 +36,6 @@ FAMIXNamespace class >> requirements [
 ]
 
 { #category : #'Famix-Extensions-metrics' }
-FAMIXNamespace >> abstractness [
-	"Abstractness is the ratio between the number of abstract classes and the total number of classes in a package, in the range [0, 1]. 0 means the package is fully concrete, 1 it is fully abstract."
-	<MSEProperty: #abstractness type: #Number>
-	<derived>
-	<MSEComment: 'Abstractness of a namespace'>
-
-	| nsClasses |
-	nsClasses := self allClasses select: [:c | c isInstanceSide].
-	(nsClasses size == 0) ifTrue: [^nil].
-	
-	^ (nsClasses select: [:c | c isAbstract]) size / (nsClasses size) asFloat
-]
-
-{ #category : #'Famix-Extensions-metrics' }
 FAMIXNamespace >> abstractness: aNumber [
 
 	self privateState propertyAt: #abstractness put: aNumber
@@ -59,14 +45,6 @@ FAMIXNamespace >> abstractness: aNumber [
 FAMIXNamespace >> accept: aVisitor [
 
 	aVisitor visitNamespace: self
-]
-
-{ #category : #'Famix-Extensions-metrics' }
-FAMIXNamespace >> afferentCoupling [
-	<MSEProperty: #afferentCoupling type: #Number>
-	<derived>
-	<MSEComment: 'Afferent Coupling of a namespace Afferent is the number of classes that depend upon this namespace'>
-	^ ((self queryAllIncoming atScope: FamixTType) outOfMyNamespace select: [ :c | c isInstanceSide ]) size
 ]
 
 { #category : #'Famix-Extensions-metrics' }
@@ -196,36 +174,9 @@ FAMIXNamespace >> distance: aNumber [
 ]
 
 { #category : #'Famix-Extensions-metrics' }
-FAMIXNamespace >> efferentCoupling [
-	"Efferent coupling for a module is the number of classes it depends upon"
-
-	<MSEProperty: #efferentCoupling type: #Number>
-	<derived>
-	<MSEComment:
-		'Efferent coupling for a module is the number of classes it depends upon'>
-	^ ((self queryOutgoingDependencies outOfMyNamespace
-		atScope: FamixTType) select: [ :c | c isInstanceSide ]) size
-]
-
-{ #category : #'Famix-Extensions-metrics' }
 FAMIXNamespace >> efferentCoupling: aNumber [
 
 	self privateState propertyAt: #efferentCoupling put: aNumber
-]
-
-{ #category : #'Famix-Extensions-metrics' }
-FAMIXNamespace >> instability [
-	"I =	Ce(P)/(Ce(P)+Ca(P)), in the range [0, 1]. 0 means package is maximally stable (i.e., no dependency to other packages and can not change without big consequences), 1 means it is unstable."
-	<MSEProperty: #instability type: #Number>
-	<derived>
-	<MSEComment: 'Instability of a namespace'>
-	
-	| efferentCoupling afferentCoupling |
-	
-	efferentCoupling := self efferentCoupling.
-	afferentCoupling := self afferentCoupling.
-	(efferentCoupling + afferentCoupling) == 0 ifTrue: [^ nil].
-	^ efferentCoupling / (efferentCoupling + afferentCoupling) asFloat
 ]
 
 { #category : #'Famix-Extensions-metrics' }
@@ -237,24 +188,6 @@ FAMIXNamespace >> instability: aNumber [
 { #category : #'Famix-Implementation' }
 FAMIXNamespace >> isNamespace [
 	^ true
-]
-
-{ #category : #'Famix-Extensions-metrics' }
-FAMIXNamespace >> martinCohesion [
-	"Computing cohesion as described by Robert C. Martin"
-
-	<MSEProperty: #martinCohesion type: #Number>
-	<derived>
-	<MSEComment: 'Cohesion as defined by Robert C. Martin.'>
-	| intraConnectivities myClasses |
-	myClasses := self classes.
-	myClasses := (myClasses union: (myClasses flatCollect: [ :c | c allRecursiveTypes ])) select: [ :c | c isInstanceSide ].
-	myClasses size == 0
-		ifTrue: [ ^ nil ].
-	intraConnectivities := (myClasses collect: [ :c | (c queryOutgoingDependencies atScope: FamixTType) withoutSelfLoops withinMyNamespace ])
-		inject: 0
-		into: [ :subTotal :each | subTotal + (each select: [ :c | c isInstanceSide ]) size ].
-	^ ((intraConnectivities + 1) / myClasses size) asFloat
 ]
 
 { #category : #'Famix-Implementation' }

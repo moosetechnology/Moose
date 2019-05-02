@@ -312,6 +312,7 @@ FamixCompatibilityGenerator >> defineHierarchy [
 
 	package --|> scopingEntity.
 	package --|> #TPackage.
+	package --|> #TCohesionCouplingMetrics.
 
 	parameter --|> structuralEntity.
 	parameter --|> #TParameter.

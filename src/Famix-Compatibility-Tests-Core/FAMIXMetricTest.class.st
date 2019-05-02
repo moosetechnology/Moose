@@ -19,6 +19,7 @@ FAMIXMetricTest >> model [
 
 { #category : #testing }
 FAMIXMetricTest >> testAllNamespaceMetrics [
+self skip.
 	self assertNoErrorForAllMetricsOf: (FAMIXNamespace new name: 'namespace')
 ]
 
