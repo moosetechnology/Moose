@@ -521,6 +521,7 @@ BaselineOfMoose >> commonBaselineSpec: spec repository: repository [
 	self baselineMerlin: spec.
 	self baselineDistributionMap: spec.
 	self baselineWizard: spec.
+	spec package: 'Moose-MenuBar'.
 	^ self groups: spec
 ]
 
@@ -683,6 +684,10 @@ BaselineOfMoose >> groups: spec [
 		'SmaCC-Group'
 	).
 	
+	spec group: 'IDE' with: #(
+		'Moose-MenuBar'
+	).
+	
 	spec group: 'AdditionalTools' with: #(
 		'Parsing'
 		'XMLWriter-Group'
@@ -692,6 +697,7 @@ BaselineOfMoose >> groups: spec [
 		'Moose-DistributionMap'
 		'Moose-Tests-DistributionMap'
 		'Wizard-Group'
+		'IDE'
 	).
 		
 	spec group: 'default' with: #('AdditionalTools').
