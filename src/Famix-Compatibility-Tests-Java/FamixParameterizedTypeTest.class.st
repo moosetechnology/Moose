@@ -45,6 +45,7 @@ FamixParameterizedTypeTest >> setUp [
 { #category : #tests }
 FamixParameterizedTypeTest >> testArgumentTypes [
 	| fmxEntity fmxMethod declaredType typeB typeC parameterizedTypeA parameterizedTypeB parameterizableClassA |
+	self assert: model size equals: 18.
 	parameterizedTypeB := model allParameterizedTypes entityNamed: #'ParameterizableClassA<TypeB,TypeC>'.
 	parameterizedTypeA := model allParameterizedTypes entityNamed: #'ParameterizableClassA<TypeB>'.
 	parameterizableClassA := (model entities select: [ :each | each name = 'ParameterizableClassA' ]) at: 1.
