@@ -443,6 +443,7 @@ BaselineOfMoose >> commonBaselineSpec: spec repository: repository [
 		package: 'Famix-Groups';
 		package: 'Famix-Groups-Tests';
 		package: 'Famix-Traits';
+		package: 'Famix-Traits-Extensions';
 		package: 'Famix-BasicInfrastructure';
 		package: 'Famix-Smalltalk-Utils';
 		package: 'Famix-Compatibility-Generator';
@@ -557,6 +558,7 @@ BaselineOfMoose >> groups: spec [
 			
 		'Famix-MetamodelGeneration'
 		'Famix-Traits'
+		'Famix-Traits-Extensions'
 		
 		'Famix-Smalltalk-Utils'
 		'Famix-Groups'
