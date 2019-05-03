@@ -55,19 +55,6 @@ BaselineOfMoose >> baselineDistributionMap: spec [
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineFame: spec [ 
-    
-	self defineGroup: #'Fame' in: spec with: #(
-		'Fame-Core'
-		'Fame-ImportExport'
-		'Fame-SmalltalkBinding'
-		'Fame-Example'
-		'Fame-Tests-Core'
-		'Fame-Rules'
-	) 
-]
-
-{ #category : #baseline }
 BaselineOfMoose >> baselineFamixNG: spec [ 
     
 	spec
@@ -275,12 +262,9 @@ BaselineOfMoose >> commonBaselineSpec: spec [
 	spec package: 'Moose-PharoOverrides'.
 	self baselineGrease: spec.
 	self baselineMagritte3: spec.
-	
-	self
-		hashtable: spec;
-		mocketry: spec.
 
-	self baselineFame: spec.
+	self fame: spec.
+
 	spec package: 'GToolkit-Examples'.
 	
 	self deepTraverser: spec.
@@ -373,6 +357,11 @@ BaselineOfMoose >> defineGroup: groupName in: spec with: packages [
 	spec group: groupName with: packages
 ]
 
+{ #category : #dependencies }
+BaselineOfMoose >> fame: spec [
+	spec baseline: 'Fame' with: [ spec repository: repository ]
+]
+
 { #category : #baseline }
 BaselineOfMoose >> groups: spec [ 
     
@@ -381,7 +370,6 @@ BaselineOfMoose >> groups: spec [
 
 		'Ring2' 
 		'Grease' 
-		'Hashtable'
 		'Fame'
 		'DeepTraverser'
 
@@ -408,8 +396,6 @@ BaselineOfMoose >> groups: spec [
 		'Famix-MetamodelBuilder-Tests'
 		'Famix-Smalltalk-Utils-Tests'
 		'Famix-Groups-Tests'
-
-		'Mocketry'
 			
 		'Moose-TestResources-LAN'
 		'ReferenceTestResources'
@@ -510,18 +496,8 @@ BaselineOfMoose >> groups: spec [
 ]
 
 { #category : #dependencies }
-BaselineOfMoose >> hashtable: spec [
-	spec baseline: 'Hashtable' with: [ spec repository: repository ]
-]
-
-{ #category : #dependencies }
 BaselineOfMoose >> kgbTestResources: spec [
 	spec baseline: 'KGBTestResources' with: [ spec repository: repository ]
-]
-
-{ #category : #dependencies }
-BaselineOfMoose >> mocketry: spec [
-	spec baseline: 'Mocketry' with: [ spec repository: repository ]
 ]
 
 { #category : #dependencies }
