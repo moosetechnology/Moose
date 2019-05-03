@@ -143,18 +143,6 @@ BaselineOfMoose >> baselineMetanool: spec [
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineMocketry: spec [ 
-    
-	self defineGroup: #Mocketry in: spec with: #(
-		'Mocketry-Specs'
-		'Mocketry-Domain'
-		'Mocketry-Help'
-		'Mocketry-Specs-Tests'
-		'Mocketry-Domain-Tests'
-	)
-]
-
-{ #category : #baseline }
 BaselineOfMoose >> baselineNeoCSV: spec [ 
     
 	self defineGroup: #'NeoCSV-Group' in: spec with: #(
@@ -290,9 +278,8 @@ BaselineOfMoose >> commonBaselineSpec: spec [
 	
 	self
 		hashtable: spec;
-		ghost: spec.
-		
-	self baselineMocketry: spec.
+		mocketry: spec.
+
 	self baselineFame: spec.
 	spec package: 'GToolkit-Examples'.
 	
@@ -386,11 +373,6 @@ BaselineOfMoose >> defineGroup: groupName in: spec with: packages [
 	spec group: groupName with: packages
 ]
 
-{ #category : #dependencies }
-BaselineOfMoose >> ghost: spec [
-	spec baseline: 'Ghost' with: [ spec repository: repository ]
-]
-
 { #category : #baseline }
 BaselineOfMoose >> groups: spec [ 
     
@@ -427,7 +409,6 @@ BaselineOfMoose >> groups: spec [
 		'Famix-Smalltalk-Utils-Tests'
 		'Famix-Groups-Tests'
 
-		'Ghost'
 		'Mocketry'
 			
 		'Moose-TestResources-LAN'
@@ -536,6 +517,11 @@ BaselineOfMoose >> hashtable: spec [
 { #category : #dependencies }
 BaselineOfMoose >> kgbTestResources: spec [
 	spec baseline: 'KGBTestResources' with: [ spec repository: repository ]
+]
+
+{ #category : #dependencies }
+BaselineOfMoose >> mocketry: spec [
+	spec baseline: 'Mocketry' with: [ spec repository: repository ]
 ]
 
 { #category : #dependencies }
