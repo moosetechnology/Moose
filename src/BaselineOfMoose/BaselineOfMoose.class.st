@@ -46,22 +46,6 @@ BaselineOfMoose >> baselineBitmapCharacterSet: spec [
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineDeepTraverser: spec [ 
-    
-	self defineGroup: #'DeepTraverser-Base' in: spec with: #(
-		 'DeepTraverser'
-	).
-	
-	self defineGroup: #'DeepTraverser-Tests-Group' in: spec with: #(
-		 'DeepTraverser-Tests'
-	).
-	
-	self defineGroup: #'DeepTraverser-Examples-Group' in: spec with: #(
-		 'DeepTraverser-Examples'
-	).
-]
-
-{ #category : #baseline }
 BaselineOfMoose >> baselineDistributionMap: spec [ 
 
 	self defineGroup: #'DistributionMap-Group' in: spec with: #(
@@ -347,7 +331,9 @@ BaselineOfMoose >> commonBaselineSpec: spec [
 	self baselineMocketry: spec.
 	self baselineFame: spec.
 	spec package: 'GToolkit-Examples'.
-	self baselineDeepTraverser: spec.
+	
+	self deepTraverser: spec.
+	
 	spec
 		package: 'Moose-Query';
 		package: 'Moose-Core';
@@ -424,6 +410,11 @@ BaselineOfMoose >> commonBaselineSpec: spec [
 	^ self groups: spec
 ]
 
+{ #category : #dependencies }
+BaselineOfMoose >> deepTraverser: spec [
+	spec baseline: 'DeepTraverser' with: [ spec repository: repository ]
+]
+
 { #category : #private }
 BaselineOfMoose >> defineGroup: groupName in: spec with: packages [
 
@@ -439,10 +430,10 @@ BaselineOfMoose >> groups: spec [
 
 		'Ring2' 
 		'Grease' 
-		'HashTable'
+		'Hashtable'
 		'StateSpecs-Base'
 		'Fame'
-		'DeepTraverser-Base'
+		'DeepTraverser'
 
 		'Moose-Core'
 		'Moose-Query'
@@ -489,7 +480,6 @@ BaselineOfMoose >> groups: spec [
 		'Famix-Compatibility-Tests-C'
 		'Famix-Compatibility-Tests-Java'
 		'Famix-Compatibility-Tests-Extensions'
-		'DeepTraverser-Tests-Group'
 	).	
 
 	spec group: 'BasicMetamodellingWithRoassal' with: #(
