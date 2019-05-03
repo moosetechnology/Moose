@@ -121,6 +121,19 @@ SpecOfBlockFailureTests >> testShouldPassInternalSpecFailedErrorByDefault [
 ]
 
 { #category : #tests }
+SpecOfBlockFailureTests >> testSucceedValidationShouldKeepSignaledFailure [
+	| spec result expectedError |
+	expectedError := Error new messageText: 'test error'.
+	
+	spec := SpecOfBlockFailure requiredFailure: Any.	
+	
+	result := spec validate: [ expectedError signal].
+	
+	self assert: result isSuccess.
+	self assert: result signaledFailure == expectedError
+]
+
+{ #category : #tests }
 SpecOfBlockFailureTests >> testSucceedValidationWithExplicitFailureSpec [
 	| spec result expectedError |
 	expectedError := Error new messageText: 'test error'.
@@ -151,8 +164,7 @@ SpecOfBlockFailureTests >> testValidationOfBlockFailedByAnotherError [
 	result := spec validate: [ error signal].
 	
 	self assert: result isFailure.
-	self assert: result description equals: 'Got "', error stringForSpecValidation ,'" but it should be an instance of ZeroDivide'.
-	
+	self assert: result description equals: 'Got "', error stringForSpecValidation ,'" but it should be a kind of ZeroDivide'
 ]
 
 { #category : #tests }
@@ -163,7 +175,7 @@ SpecOfBlockFailureTests >> testValidationOfNotFailedBlock [
 	result := spec validate: [ 'blockBody' ].
 	
 	self assert: result isFailure.
-	self assert: result description equals: 'Got no failures but should be an instance of ZeroDivide'
+	self assert: result description equals: 'Got no failures but should be a kind of ZeroDivide'
 ]
 
 { #category : #tests }

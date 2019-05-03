@@ -18,7 +18,7 @@ By default I implement special logic to catch unexpected exceptions and return i
 This code will not show debugger at point of SubscriptOutOfBounds error.  But it will show that specification is failed and SubscriptOutOfBounds was thrown instead of ZeroDivide. Pressing proceed in debugger will move it to original failure. 
 
 To disable this behaviour I have variable shouldPassUnexpectedFailure.
-Also I have array of special failures which should be always passed without validation logic. It is Halt, MessageNotUnderstood and SpecOfFailed. Usually this errorrs should be thrown immediatly in debugger. 
+Also I have array of special failures which should be always passed without validation logic. It is Halt, MessageNotUnderstood and SpecOfFailed. Usually this errors should be thrown immediatly in debugger. 
 
 	[ 1 someMessage ] should raise: Error
 
@@ -27,8 +27,18 @@ But if errors are explicitly expected failures then they will be checked by vali
 
 	[ 1 someMessage ] should raise: MessageNotUnderstood 
 
-This code will not openes debugger because validation is succeed.
+This code will not open debugger because validation is succeed.
 
+In addition I return special success validation result (SpecOfFailureValidationSuccess) which holds signaled exception instance: 
+
+	errorValidation := [ self error: 'my test error' ] should fail.
+	errorValidation signaledFailure ""==> Error: my test error""
+
+It allows to perform additional validation over caught failure: 
+
+	errorValidation should beInstanceOf: Error.
+	errorValidation where description should includesSubstring: 'my test'.
+	
 Internal Representation and Key Implementation Points.
 
     Instance Variables
@@ -123,7 +133,7 @@ SpecOfBlockFailure >> shouldPassUnexpectedFailures: anObject [
 SpecOfBlockFailure >> specForFailure: exceptionClassOrSpec [
 
 	^exceptionClassOrSpec isClass & (exceptionClassOrSpec ~= Any)
-		ifTrue: [ SpecOfObjectClass requiredClass: exceptionClassOrSpec ]
+		ifTrue: [ SpecOfObjectSuperclass requiredClass: exceptionClassOrSpec ]
 		ifFalse: [ exceptionClassOrSpec asStateSpec ]
 ]
 
@@ -142,7 +152,7 @@ SpecOfBlockFailure >> validate: aBlock [
 				result := requiredFailure validate: ex.
 			
 				result isSuccess 
-					ifTrue: [ result ] 
+					ifTrue: [ SpecOfFailureValidationSuccess with: ex ] 
 					ifFalse: [ 
 						shouldPassUnexpectedFailures
 							ifTrue: [ ex pass ]

@@ -11,7 +11,7 @@ Interval >> checkStateSpecsEqualityTo: anotherCollection [
 { #category : #'*StateSpecs-Specs' }
 Interval >> checkStateSpecsOrderedEqualityTo: anotherCollection [
 
-	^self checkStateSpecsOrderedEqualityTo: anotherCollection
+	^self checkStateSpecsEqualityTo: anotherCollection
 ]
 
 { #category : #'*StateSpecs-Specs' }
