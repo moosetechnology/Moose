@@ -490,7 +490,6 @@ BaselineOfMoose >> groups: spec [
 		'Famix-Compatibility-Tests-Java'
 		'Famix-Compatibility-Tests-Extensions'
 		'DeepTraverser-Tests-Group'
-		'HashTable-Tests-Group'
 	).	
 
 	spec group: 'BasicMetamodellingWithRoassal' with: #(
