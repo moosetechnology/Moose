@@ -402,7 +402,9 @@ BaselineOfMoose >> commonBaselineSpec: spec [
 		package: 'Moose-TestResources-LAN';
 		package: 'Moose-TestResources-LCOM'.
 		
-	self kgbTestResources: spec.
+	self
+		kgbTestResources: spec;
+		packageBlueprintTestResources: spec.
 		
 	spec
 		package: 'Moose-TestResources-PackageBlueprint-P1';
@@ -499,10 +501,7 @@ BaselineOfMoose >> groups: spec [
 		'Moose-TestResources-Reference-PackageTwo'
 		'KGBTestResources'
 		'Moose-TestResources-LCOM'
-		'Moose-TestResources-PackageBlueprint-P1'
-		'Moose-TestResources-PackageBlueprint-P2'
-		'Moose-TestResources-PackageBlueprint-P3'
-		'Moose-TestResources-PackageBlueprint-P4'
+		'PackageBlueprintTestResources'
 		'Moose-Tests-SmalltalkImporter-Core'
 		'Moose-Tests-SmalltalkImporter-LAN'
 		'Moose-Tests-SmalltalkImporter-KGB'
@@ -607,6 +606,11 @@ BaselineOfMoose >> kgbTestResources: spec [
 { #category : #dependencies }
 BaselineOfMoose >> mooseAlgos: spec [
 	spec baseline: 'MooseAlgos' with: [ spec repository: repository ]
+]
+
+{ #category : #dependencies }
+BaselineOfMoose >> packageBlueprintTestResources: spec [
+	spec baseline: 'PackageBlueprintTestResources' with: [ spec repository: repository ]
 ]
 
 { #category : #accessing }
