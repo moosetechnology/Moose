@@ -207,41 +207,6 @@ BaselineOfMoose >> baselineMocketry: spec [
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineMooseTestResources: spec [ 
-    
-	self defineGroup: #MooseTestResources in: spec with: #(
-		'Moose-TestResources-LAN'
-		'Moose-TestResources-Reference-Core'
-		'Moose-TestResources-KGB-P4FullInteracted'
-		'Moose-TestResources-KGB-P6InteractedReferee'
-		'Moose-TestResources-KGB-P5FullReferee'
-		'Moose-TestResources-KGB-P7ReferencerReferee'
-		'Moose-TestResources-KGB-P2InteractedReferencerReferee'
-		'Moose-TestResources-KGB-P1FullReferencer'
-		'Moose-TestResources-KGB-P3InteractedReferencer'
-		'Moose-TestResources-KGB-P8FullReferencer'
-		'Moose-TestResources-KGB-P9FullReferencer'
-		'Moose-TestResources-KGB-P10InteractedReferee'
-		'Moose-TestResources-KGB-P11FullReferee'
-		'Moose-TestResources-KGB-P12FullReferencer'
-		'Moose-TestResources-KGB-P13FullReferencer'
-		'Moose-TestResources-KGB-P14FullReferee'
-		'Moose-TestResources-LCOM'
-		'Moose-TestResources-PackageBlueprint-P1'
-		'Moose-TestResources-PackageBlueprint-P2'
-		'Moose-TestResources-PackageBlueprint-P3'
-		'Moose-TestResources-PackageBlueprint-P4'
-		'Moose-TestResources-Reference-PackageOne'
-		'Moose-Tests-SmalltalkImporter-Core'
-		'Moose-TestResources-Reference-PackageTwo'
-		'Moose-Tests-SmalltalkImporter-LAN'
-		'Moose-Tests-SmalltalkImporter-KGB'
-		'Moose-TestResources-KGB-PExtensions'
-	).
-
-]
-
-{ #category : #baseline }
 BaselineOfMoose >> baselineNeoCSV: spec [ 
     
 	self defineGroup: #'NeoCSV-Group' in: spec with: #(
@@ -435,22 +400,11 @@ BaselineOfMoose >> commonBaselineSpec: spec [
 		package: 'Moose-TestResources-Reference-PackageOne';
 		package: 'Moose-TestResources-Reference-PackageTwo';
 		package: 'Moose-TestResources-LAN';
-		package: 'Moose-TestResources-LCOM';
-		package: 'Moose-TestResources-KGB-P4FullInteracted';
-		package: 'Moose-TestResources-KGB-P6InteractedReferee';
-		package: 'Moose-TestResources-KGB-P5FullReferee';
-		package: 'Moose-TestResources-KGB-P1FullReferencer';
-		package: 'Moose-TestResources-KGB-P2InteractedReferencerReferee';
-		package: 'Moose-TestResources-KGB-P3InteractedReferencer';
-		package: 'Moose-TestResources-KGB-P7ReferencerReferee';
-		package: 'Moose-TestResources-KGB-P8FullReferencer';
-		package: 'Moose-TestResources-KGB-P9FullReferencer';
-		package: 'Moose-TestResources-KGB-P10InteractedReferee';
-		package: 'Moose-TestResources-KGB-P12FullReferencer';
-		package: 'Moose-TestResources-KGB-P11FullReferee';
-		package: 'Moose-TestResources-KGB-P13FullReferencer';
-		package: 'Moose-TestResources-KGB-P14FullReferee';
-		package: 'Moose-TestResources-KGB-PExtensions';
+		package: 'Moose-TestResources-LCOM'.
+		
+	self kgbTestResources: spec.
+		
+	self
 		package: 'Moose-TestResources-PackageBlueprint-P1';
 		package: 'Moose-TestResources-PackageBlueprint-P2';
 		package: 'Moose-TestResources-PackageBlueprint-P3';
@@ -543,20 +497,7 @@ BaselineOfMoose >> groups: spec [
 		'Moose-TestResources-Reference-Core'
 		'Moose-TestResources-Reference-PackageOne'
 		'Moose-TestResources-Reference-PackageTwo'
-		'Moose-TestResources-KGB-P4FullInteracted'
-		'Moose-TestResources-KGB-P6InteractedReferee'
-		'Moose-TestResources-KGB-P5FullReferee'
-		'Moose-TestResources-KGB-P7ReferencerReferee'
-		'Moose-TestResources-KGB-P2InteractedReferencerReferee'
-		'Moose-TestResources-KGB-P1FullReferencer'
-		'Moose-TestResources-KGB-P3InteractedReferencer'
-		'Moose-TestResources-KGB-P8FullReferencer'
-		'Moose-TestResources-KGB-P9FullReferencer'
-		'Moose-TestResources-KGB-P10InteractedReferee'
-		'Moose-TestResources-KGB-P11FullReferee'
-		'Moose-TestResources-KGB-P12FullReferencer'
-		'Moose-TestResources-KGB-P13FullReferencer'
-		'Moose-TestResources-KGB-P14FullReferee'
+		'KGBTestResources'
 		'Moose-TestResources-LCOM'
 		'Moose-TestResources-PackageBlueprint-P1'
 		'Moose-TestResources-PackageBlueprint-P2'
@@ -565,7 +506,6 @@ BaselineOfMoose >> groups: spec [
 		'Moose-Tests-SmalltalkImporter-Core'
 		'Moose-Tests-SmalltalkImporter-LAN'
 		'Moose-Tests-SmalltalkImporter-KGB'
-		'Moose-TestResources-KGB-PExtensions'
 		
 		'RoelTyper'
 		'Moose-GenericImporter'
@@ -657,6 +597,11 @@ BaselineOfMoose >> groups: spec [
 	spec group: 'default' with: #('AdditionalTools').
 	
 
+]
+
+{ #category : #dependencies }
+BaselineOfMoose >> kgbTestResources: spec [
+	spec baseline: 'KGBTestResources' with: [ spec repository: repository ]
 ]
 
 { #category : #dependencies }
