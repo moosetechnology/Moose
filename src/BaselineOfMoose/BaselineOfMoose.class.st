@@ -276,23 +276,6 @@ BaselineOfMoose >> baselineSmaCC: spec [
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineStateSpecs: spec [ 
-    
-	self defineGroup: #'StateSpecs-Base' in: spec with: #(
-		'StateSpecs-Specs'
-		'StateSpecs-DSL-ShouldExpressions'
-	).
-
-	self defineGroup: #'StateSpecs-Additional' in: spec with: #(
-		'StateSpecs-DSL-ClassWords'
-		'StateSpecs-Help'
-		'StateSpecs-Specs-Tests'
-		'StateSpecs-DSL-ShouldExpressions-Tests'
-		'StateSpecs-DSL-ClassWords-Tests'
-	)
-]
-
-{ #category : #baseline }
 BaselineOfMoose >> baselineWizard: spec [ 
 
 	self defineGroup: #'Wizard-Group' in: spec with: #(
@@ -324,9 +307,10 @@ BaselineOfMoose >> commonBaselineSpec: spec [
 	self baselineGrease: spec.
 	self baselineMagritte3: spec.
 	
-	self hashtable: spec.
-	
-	self baselineStateSpecs: spec.
+	self
+		hashtable: spec;
+		stateSpecs: spec.
+
 	self baselineGhost: spec.
 	self baselineMocketry: spec.
 	self baselineFame: spec.
@@ -431,7 +415,7 @@ BaselineOfMoose >> groups: spec [
 		'Ring2' 
 		'Grease' 
 		'Hashtable'
-		'StateSpecs-Base'
+		'StateSpecs'
 		'Fame'
 		'DeepTraverser'
 
@@ -459,7 +443,6 @@ BaselineOfMoose >> groups: spec [
 		'Famix-Smalltalk-Utils-Tests'
 		'Famix-Groups-Tests'
 
-		'StateSpecs-Additional'
 		'Ghost'
 		'Mocketry'
 			
@@ -549,7 +532,6 @@ BaselineOfMoose >> groups: spec [
 	spec group: 'AdditionalTools' with: #(
 		'Parsing'
 		'XMLWriter-Group'
-		'DeepTraverser-Examples-Group'
 		'Merlin-Group'
 		'Moose-DistributionMap'
 		'Moose-Tests-DistributionMap'
@@ -598,4 +580,9 @@ BaselineOfMoose >> referenceTestResources: spec [
 { #category : #dependencies }
 BaselineOfMoose >> roelTyper: spec [
 	spec baseline: 'RoelTyper' with: [ spec repository: repository ]
+]
+
+{ #category : #dependencies }
+BaselineOfMoose >> stateSpecs: spec [
+	spec baseline: 'StateSpecs' with: [ spec repository: repository ]
 ]
