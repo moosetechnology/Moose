@@ -130,16 +130,6 @@ BaselineOfMoose >> baselineMetanool: spec [
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineNeoCSV: spec [ 
-    
-	self defineGroup: #'NeoCSV-Group' in: spec with: #(
-		'Neo-CSV-Core' 
-		'Neo-CSV-Tests' 
-	).
-
-]
-
-{ #category : #baseline }
 BaselineOfMoose >> baselineOrderPreservingDictionary: spec [ 
     
 	spec package: 'Collections-OrderPreservingDictionary'
@@ -335,7 +325,9 @@ BaselineOfMoose >> commonBaselineSpec: spec [
 		package: 'Moose-Tests-Finder';
 		package: 'Moose-Tests-RoassalPaintings'.
 	self baselinePetitParser: spec.
-	self baselineNeoCSV: spec.
+	
+	self neoCSV: spec.
+	
 	self baselineSmaCC: spec.
 	self baselineXMLWriter: spec.
 	self baselineMerlin: spec.
@@ -472,7 +464,7 @@ BaselineOfMoose >> groups: spec [
 	spec group: 'Parsing' with: #(
 		'MooseFinder'
 		'PetitParser-Group'
-		'NeoCSV-Group'
+		'NeoCSV'
 		'SmaCC-Group'
 	).
 	
@@ -503,6 +495,11 @@ BaselineOfMoose >> kgbTestResources: spec [
 { #category : #dependencies }
 BaselineOfMoose >> mooseAlgos: spec [
 	spec baseline: 'MooseAlgos' with: [ spec repository: repository ]
+]
+
+{ #category : #dependencies }
+BaselineOfMoose >> neoCSV: spec [
+	spec baseline: 'NeoCSV' with: [ spec repository: repository ]
 ]
 
 { #category : #dependencies }
