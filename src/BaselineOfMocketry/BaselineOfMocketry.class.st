@@ -10,6 +10,9 @@ Class {
 { #category : #baselines }
 BaselineOfMocketry >> baseline: spec [
 	<baseline>
+	
+	repository := self packageRepositoryURL.
+	
 	spec
 		for: #common
 		do: [ self
