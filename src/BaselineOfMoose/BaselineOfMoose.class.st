@@ -102,25 +102,6 @@ BaselineOfMoose >> baselineGeometry: spec [
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineGhost: spec [ 
-    
-	self defineGroup: #Ghost in: spec with: #(
-		'Ghost-ObjectGhost'
-		'Ghost-ClassGhost'
-		'Ghost-ObjectMutation'
-		'Ghost-ObjectGhost-Tests'
-		'Ghost-GTSupport'
-		'Ghost-StateSpecsSupport'
-		'Ghost-StateSpecsSupport-Tests'
-		'Ghost-ClassGhost-Tests'
-		'Ghost-ObjectMutation-Tests'
-	)
-	
-
-
-]
-
-{ #category : #baseline }
 BaselineOfMoose >> baselineGrease: spec [ 
    
 	self defineGroup: #Grease in: spec with: #(
@@ -309,9 +290,8 @@ BaselineOfMoose >> commonBaselineSpec: spec [
 	
 	self
 		hashtable: spec;
-		stateSpecs: spec.
-
-	self baselineGhost: spec.
+		ghost: spec.
+		
 	self baselineMocketry: spec.
 	self baselineFame: spec.
 	spec package: 'GToolkit-Examples'.
@@ -406,6 +386,11 @@ BaselineOfMoose >> defineGroup: groupName in: spec with: packages [
 	spec group: groupName with: packages
 ]
 
+{ #category : #dependencies }
+BaselineOfMoose >> ghost: spec [
+	spec baseline: 'Ghost' with: [ spec repository: repository ]
+]
+
 { #category : #baseline }
 BaselineOfMoose >> groups: spec [ 
     
@@ -415,7 +400,6 @@ BaselineOfMoose >> groups: spec [
 		'Ring2' 
 		'Grease' 
 		'Hashtable'
-		'StateSpecs'
 		'Fame'
 		'DeepTraverser'
 
@@ -580,9 +564,4 @@ BaselineOfMoose >> referenceTestResources: spec [
 { #category : #dependencies }
 BaselineOfMoose >> roelTyper: spec [
 	spec baseline: 'RoelTyper' with: [ spec repository: repository ]
-]
-
-{ #category : #dependencies }
-BaselineOfMoose >> stateSpecs: spec [
-	spec baseline: 'StateSpecs' with: [ spec repository: repository ]
 ]
