@@ -151,24 +151,6 @@ BaselineOfMoose >> baselinePetitParser: spec [
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineRing2: spec [
-	spec
-		baseline: 'Ring2'
-		with: [ spec
-				loads: 'runtimeSupport';
-				repository: 'github://pavel-krivanek/Ring2:RGPackageRenamed/src' ]
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineRing2ForPharo7: spec [
-	spec
-		baseline: 'Ring2'
-		with: [ spec
-				loads: 'runtimeSupport';
-				repository: 'github://pavel-krivanek/Ring2:v1.2.0/src' ]
-]
-
-{ #category : #baseline }
 BaselineOfMoose >> baselineRoassal2: spec [ 
     
 	spec
