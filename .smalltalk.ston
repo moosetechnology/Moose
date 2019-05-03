@@ -4,5 +4,10 @@ SmalltalkCISpec {
       #baseline : 'Moose',
       #directory : 'src'
     }
-  ]
+  ],
+  #testing : {
+    #include : {
+      #projects : [ 'BaselineOfFamix', 'BaselineOfFame', 'BaselineOfMocketry', 'BaselineOfStateSpecs', 'BaselineOfNeoCSV', 'BaselineOfDeepTraverser', 'BaselineOfGhost', 'BaselineOfHashtable', 'BaselineOfKGBTestResources', 'BaselineOfMooseAlgos', 'BaselineOfPackageBlueprintTestResources', 'BaselineOfReferenceTestResources', 'BaselineOfRoelTyper', 'BaselineOfCollectionExtensions' ]
+    }
+  }
 }
