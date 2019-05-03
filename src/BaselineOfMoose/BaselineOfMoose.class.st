@@ -4,19 +4,21 @@ rce: 22987863
 Class {
 	#name : #BaselineOfMoose,
 	#superclass : #BaselineOf,
+	#instVars : [
+		'repository'
+	],
 	#category : #BaselineOfMoose
 }
 
 { #category : #baseline }
 BaselineOfMoose >> baseline: spec [
 	<baseline>
-	| repository |
 	repository := self packageRepositoryURL.
 
 	spec
 		for: #'pharo7.x'
 		do: [ self baselineRing2ForPharo7: spec.
-			self commonBaselineSpec: spec repository: repository.
+			self commonBaselineSpec: spec.
 
 			spec
 				package: 'Famix-MetamodelBuilder-Core' with: [ spec includes: #('Famix-MetamodelBuilder-Core-Pharo7') ];
@@ -25,7 +27,7 @@ BaselineOfMoose >> baseline: spec [
 	spec
 		for: #'pharo8.x'
 		do: [ self baselineRing2: spec.
-			self commonBaselineSpec: spec repository: repository.
+			self commonBaselineSpec: spec.
 			spec package: 'Roassal2GT' with: [ spec includes: #('Glamour-Browsers-Pharo8' 'Glamour-Morphic-Renderer-Pharo8') ].
 			spec package: 'Glamour-Browsers-Pharo8'.
 			spec package: 'Glamour-Morphic-Renderer-Pharo8' ]
@@ -41,18 +43,6 @@ BaselineOfMoose >> baselineAthens: spec [
 BaselineOfMoose >> baselineBitmapCharacterSet: spec [ 
     
 	spec package: 'Collections-BitmapCharacterSet'
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineCollectionExtensions: spec [ 
-    
-	self defineGroup: #'CollectionExtensions-Group' in: spec with: #(
-		'CollectionExtensions'
-	).
-	
-	self defineGroup: #'CollectionExtensions-Tests-Group' in: spec with: #(
-		'CollectionExtensions-Tests'	
-	).
 ]
 
 { #category : #baseline }
@@ -214,31 +204,6 @@ BaselineOfMoose >> baselineMocketry: spec [
 		'Mocketry-Specs-Tests'
 		'Mocketry-Domain-Tests'
 	)
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineMooseAlgos: spec [ 
-    
-	spec
-		package: 'Moose-Algos-Graph';
-		package: 'Moose-Algos-Graph-Tests';
-		package: 'Moose-Algos-FormalConceptAnalysis';
-		package: 'Moose-Algos-FormalConceptAnalysis-Tests';
-		package: 'Moose-Algos-Lattice';
-		package: 'Moose-Algos-Lattice-Tests';
-		package: 'Moose-Algos-LinearAlgebra';
-		package: 'Moose-Algos-LinearAlgebra-Tests';
-		package: 'Moose-Algos-InformationRetrieval';
-		package: 'Moose-Algos-InformationRetrieval-Tests'.
-		
-	self defineGroup: #'MooseAlgos-Additions' in: spec with: #(
-		'Moose-Algos-Clustering'
-		'Moose-Algos-HierarchicalGraph'
-		'Moose-Algos-Kontractor'
-		'Moose-Algos-Clustering-Tests'
-		'Moose-Algos-HierarchicalGraph-Tests'
-		'Moose-Algos-Kontractor-Tests'
-	).
 ]
 
 { #category : #baseline }
@@ -422,7 +387,7 @@ BaselineOfMoose >> baselineXMLWriter: spec [
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> commonBaselineSpec: spec repository: repository [
+BaselineOfMoose >> commonBaselineSpec: spec [
 	spec package: 'Moose-PharoOverrides'.
 	self baselineGrease: spec.
 	self baselineMagritte3: spec.
@@ -447,12 +412,10 @@ BaselineOfMoose >> commonBaselineSpec: spec repository: repository [
 		package: 'Famix-Smalltalk-Utils';
 		package: 'Famix-Compatibility-Generator';
 		package: 'Famix-Compatibility-Entities'.
-	spec
-		baseline: 'FamixCompatibility'
-		with: [ spec repository: repository ].
-    
-	spec baseline: 'RoelTyper' with: [ spec repository: repository ].
-  
+	spec baseline: 'FamixCompatibility' with: [ spec repository: repository ].
+
+	self roelTyper: spec.
+
 	spec
 		package: 'Moose-GenericImporter';
 		package: 'Famix-Compatibility-Tests-C';
@@ -499,9 +462,11 @@ BaselineOfMoose >> commonBaselineSpec: spec repository: repository [
 	self baselineGeometry: spec.
 	self baselineAthens: spec.
 	self baselineRoassal2: spec.
-	self baselineMooseAlgos: spec.
+	
+	self mooseAlgos: spec.
+	
 	self baselineOrderPreservingDictionary: spec.
-	self baselineCollectionExtensions: spec.
+
 	self baselineBitmapCharacterSet: spec.
 	self baselineXMLParser: spec.
 	spec
@@ -540,7 +505,6 @@ BaselineOfMoose >> groups: spec [
 
 		'Ring2' 
 		'Grease' 
-		'CollectionExtensions-Group'
 		'HashTable'
 		'StateSpecs-Base'
 		'Fame'
@@ -613,7 +577,6 @@ BaselineOfMoose >> groups: spec [
 		'Famix-Compatibility-Tests-Extensions'
 		'DeepTraverser-Tests-Group'
 		'HashTable-Tests-Group'
-		'CollectionExtensions-Tests-Group'
 	).	
 
 	spec group: 'BasicMetamodellingWithRoassal' with: #(
@@ -639,21 +602,13 @@ BaselineOfMoose >> groups: spec [
 		'Metanool-Core'
 		'Metanool-Tests-Core'			
 		'Glamour-Magritte-Presentations'
-		'Moose-Algos-Lattice'
-		'Moose-Algos-Graph-Tests'
-		'Moose-Algos-FormalConceptAnalysis'
-		'Moose-Algos-InformationRetrieval'
-		'Moose-Algos-LinearAlgebra'
-		'Moose-Algos-FormalConceptAnalysis-Tests'
-		'Moose-Algos-LinearAlgebra-Tests'
+		'MooseAlgos'
 		'Moose-RoassalPaintings'
 		'Moose-Help'
 		'Moose-Finder'
 		
 		'Moose-Tests-RoassalPaintings'
 		'Moose-Tests-Finder'
-		'Moose-Algos-Lattice-Tests'
-		'Moose-Algos-InformationRetrieval-Tests'
 		
 		'Famix-PharoSmalltalk-Generator'
 		'Famix-PharoSmalltalk-Entities'
@@ -692,7 +647,6 @@ BaselineOfMoose >> groups: spec [
 		'Parsing'
 		'XMLWriter-Group'
 		'DeepTraverser-Examples-Group'
-		'MooseAlgos-Additions'
 		'Merlin-Group'
 		'Moose-DistributionMap'
 		'Moose-Tests-DistributionMap'
@@ -705,10 +659,20 @@ BaselineOfMoose >> groups: spec [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #dependencies }
+BaselineOfMoose >> mooseAlgos: spec [
+	spec baseline: 'MooseAlgos' with: [ spec repository: repository ]
+]
+
+{ #category : #accessing }
 BaselineOfMoose >> packageRepositoryURL [
 	^ super packageRepositoryURL
 		ifEmpty: [ | packageName |
 			packageName := self class package name.
 			'tonel://' , (IceRepository registry detect: [ :repo | repo workingCopy packageNames includes: packageName ] ifFound: [ :repo | repo location pathString , '/' , repo subdirectory ] ifNone: [ '' ]) ]
+]
+
+{ #category : #dependencies }
+BaselineOfMoose >> roelTyper: spec [
+	spec baseline: 'RoelTyper' with: [ spec repository: repository ]
 ]
