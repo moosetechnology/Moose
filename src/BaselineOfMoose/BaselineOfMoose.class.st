@@ -404,7 +404,7 @@ BaselineOfMoose >> commonBaselineSpec: spec [
 		
 	self kgbTestResources: spec.
 		
-	self
+	spec
 		package: 'Moose-TestResources-PackageBlueprint-P1';
 		package: 'Moose-TestResources-PackageBlueprint-P2';
 		package: 'Moose-TestResources-PackageBlueprint-P3';
