@@ -395,22 +395,15 @@ BaselineOfMoose >> commonBaselineSpec: spec [
 		package: 'Moose-Tests-SmalltalkImporter-KGB';
 		package: 'Famix-Compatibility-Tests-Core';
 		package: 'Famix-Compatibility-Tests-Extensions';
-		package: 'Moose-TestResources-Reference-External';
-		package: 'Moose-TestResources-Reference-Core';
-		package: 'Moose-TestResources-Reference-PackageOne';
-		package: 'Moose-TestResources-Reference-PackageTwo';
 		package: 'Moose-TestResources-LAN';
 		package: 'Moose-TestResources-LCOM'.
 		
 	self
+		referenceTestResources: spec;
 		kgbTestResources: spec;
 		packageBlueprintTestResources: spec.
 		
 	spec
-		package: 'Moose-TestResources-PackageBlueprint-P1';
-		package: 'Moose-TestResources-PackageBlueprint-P2';
-		package: 'Moose-TestResources-PackageBlueprint-P3';
-		package: 'Moose-TestResources-PackageBlueprint-P4';
 		package: 'Moose-Tests-MonticelloImporter';
 		package: 'Moose-Query-Test'.
 	self baselineMetamodelBuilder: spec.
@@ -495,10 +488,7 @@ BaselineOfMoose >> groups: spec [
 		'Mocketry'
 			
 		'Moose-TestResources-LAN'
-		'Moose-TestResources-Reference-External'
-		'Moose-TestResources-Reference-Core'
-		'Moose-TestResources-Reference-PackageOne'
-		'Moose-TestResources-Reference-PackageTwo'
+		'ReferenceTestResources'
 		'KGBTestResources'
 		'Moose-TestResources-LCOM'
 		'PackageBlueprintTestResources'
@@ -619,6 +609,11 @@ BaselineOfMoose >> packageRepositoryURL [
 		ifEmpty: [ | packageName |
 			packageName := self class package name.
 			'tonel://' , (IceRepository registry detect: [ :repo | repo workingCopy packageNames includes: packageName ] ifFound: [ :repo | repo location pathString , '/' , repo subdirectory ] ifNone: [ '' ]) ]
+]
+
+{ #category : #dependencies }
+BaselineOfMoose >> referenceTestResources: spec [
+	spec baseline: 'ReferenceTestResources' with: [ spec repository: repository ]
 ]
 
 { #category : #dependencies }
