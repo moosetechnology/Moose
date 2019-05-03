@@ -147,23 +147,6 @@ BaselineOfMoose >> baselineGrease: spec [
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineHashtable: spec [ 
-    
-	self defineGroup: #'HashTable' in: spec with: #(
-		'Hashtable'
-	).
-	
-	self defineGroup: #'HashTable-Tests-Group' in: spec with: #(
-		'Hashtable-Tests'
-	).
-	
-	spec group: 'HashTable-Group' with: #(
-		'HashTable-Base'
-		'HashTable-Tests-Group'
-	).
-]
-
-{ #category : #baseline }
 BaselineOfMoose >> baselineMagritte3: spec [ 
     
 	spec
@@ -356,7 +339,9 @@ BaselineOfMoose >> commonBaselineSpec: spec [
 	spec package: 'Moose-PharoOverrides'.
 	self baselineGrease: spec.
 	self baselineMagritte3: spec.
-	self baselineHashtable: spec.
+	
+	self hashtable: spec.
+	
 	self baselineStateSpecs: spec.
 	self baselineGhost: spec.
 	self baselineMocketry: spec.
@@ -586,6 +571,11 @@ BaselineOfMoose >> groups: spec [
 	spec group: 'default' with: #('AdditionalTools').
 	
 
+]
+
+{ #category : #dependencies }
+BaselineOfMoose >> hashtable: spec [
+	spec baseline: 'Hashtable' with: [ spec repository: repository ]
 ]
 
 { #category : #dependencies }
