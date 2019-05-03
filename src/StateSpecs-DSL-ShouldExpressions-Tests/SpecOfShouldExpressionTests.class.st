@@ -305,9 +305,16 @@ SpecOfShouldExpressionTests >> testPropertyWithBooleanSubPropertyValidationWhenS
 { #category : #tests }
 SpecOfShouldExpressionTests >> testRaisingExeption [
 	self shouldnt: [[1 / 0] should raise: ZeroDivide] raise: SpecOfFailed.
-	self should: [[1 / 0] should raise: Error] raise: SpecOfFailed.
+	self shouldnt: [[1 / 0] should raise: Error] raise: SpecOfFailed.
+	self should: [[1 / 0] should raise: (Instance of: Error)] raise: SpecOfFailed.
 	self should: [[1 / 3] should raise: ZeroDivide] raise: SpecOfFailed.
+	
 	self shouldnt: [[1 / 0] should fail] raise: SpecOfFailed. 
+	self shouldnt: [ | error |
+		error := [self error: 'you can validate signaled error after should'] should fail.
+		error should beInstanceOf: Error.
+		error where description should includeSubstring: 'can validate'] raise: SpecOfFailed.
+	
 	self should: [[1 / 3] should fail] raise: SpecOfFailed.
 	self shouldnt: [[1 / 1] should not raise: ZeroDivide] raise: SpecOfFailed.
 	self should: [[1 / 0] should not raise: ZeroDivide] raise: SpecOfFailed.
@@ -336,12 +343,11 @@ SpecOfShouldExpressionTests >> testReturningValidationResults [
 	] on: SpecOfFailed do: #resume.
 
 	results size should be: 5.
-	(results at: 1) should be isSuccess.
-	(results at: 2) should be isFailure.
-	(results at: 3) should be isSuccess.
-	(results at: 4) should be isSuccess.
-	(results at: 5) should be isSuccess
-
+	self assert: (results at: 1) isSuccess.
+	self assert: (results at: 2) isFailure.
+	self assert: (results at: 3) isSuccess.
+	self assert: (results at: 4) isSuccess.
+	self assert: (results at: 5) isSuccess
 ]
 
 { #category : #tests }
