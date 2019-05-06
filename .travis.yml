@@ -31,4 +31,4 @@ after_success:
 
 branches:
   except:
-- /^(?i:continuous)$/
+    - /^(?i:continuous)$/
