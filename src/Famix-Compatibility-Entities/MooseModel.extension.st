@@ -54,8 +54,9 @@ MooseModel class >> resetMeta [
 	FAMIXNamedEntity resetMSEProperties.
 	
 	metaTower := nil.
-	^self meta
 	
+	FamixCompatibilityGenerator metamodel: nil.
+	^self meta
 ]
 
 { #category : #'*Famix-Compatibility-Entities' }
