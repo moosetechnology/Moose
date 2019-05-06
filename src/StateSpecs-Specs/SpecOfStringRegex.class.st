@@ -7,7 +7,7 @@ I describe strings which match particular regex expression.
 Class {
 	#name : #SpecOfStringRegex,
 	#superclass : #SpecOfString,
-	#category : 'StateSpecs-Specs'
+	#category : #'StateSpecs-Specs'
 }
 
 { #category : #testing }

@@ -10,7 +10,7 @@ My instances can be created by
 Class {
 	#name : #SpecOfIdentity,
 	#superclass : #SpecOfObjectValue,
-	#category : 'StateSpecs-Specs'
+	#category : #'StateSpecs-Specs'
 }
 
 { #category : #accessing }

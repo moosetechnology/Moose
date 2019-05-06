@@ -19,7 +19,7 @@ Class {
 		'subject',
 		'withNegation'
 	],
-	#category : 'StateSpecs-DSL-ShouldExpressions'
+	#category : #'StateSpecs-DSL-ShouldExpressions'
 }
 
 { #category : #'instance creation' }

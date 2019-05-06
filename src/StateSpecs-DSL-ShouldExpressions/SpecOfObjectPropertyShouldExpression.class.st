@@ -15,7 +15,7 @@ Internal Representation and Key Implementation Points.
 Class {
 	#name : #SpecOfObjectPropertyShouldExpression,
 	#superclass : #SpecOfShouldExpression,
-	#category : 'StateSpecs-DSL-ShouldExpressions'
+	#category : #'StateSpecs-DSL-ShouldExpressions'
 }
 
 { #category : #expressions }

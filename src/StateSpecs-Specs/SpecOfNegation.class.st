@@ -8,7 +8,7 @@ I can be created by:
 Class {
 	#name : #SpecOfNegation,
 	#superclass : #SpecOfComplexState,
-	#category : 'StateSpecs-Specs'
+	#category : #'StateSpecs-Specs'
 }
 
 { #category : #testing }

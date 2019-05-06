@@ -7,7 +7,7 @@ I describe strings which begin with particular substring.
 Class {
 	#name : #SpecOfStringBeginning,
 	#superclass : #SpecOfString,
-	#category : 'StateSpecs-Specs'
+	#category : #'StateSpecs-Specs'
 }
 
 { #category : #testing }

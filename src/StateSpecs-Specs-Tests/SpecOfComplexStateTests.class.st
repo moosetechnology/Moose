@@ -1,7 +1,7 @@
 Class {
 	#name : #SpecOfComplexStateTests,
 	#superclass : #TestCase,
-	#category : 'StateSpecs-Specs-Tests'
+	#category : #'StateSpecs-Specs-Tests'
 }
 
 { #category : #tests }

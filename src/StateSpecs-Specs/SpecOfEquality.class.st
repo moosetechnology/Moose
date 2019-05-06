@@ -16,7 +16,7 @@ I use special message to compared objects:
 Class {
 	#name : #SpecOfEquality,
 	#superclass : #SpecOfObjectValue,
-	#category : 'StateSpecs-Specs'
+	#category : #'StateSpecs-Specs'
 }
 
 { #category : #converting }

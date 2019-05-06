@@ -15,7 +15,7 @@ Collection items compared by
 Class {
 	#name : #SpecOfCollectionOrderedEquality,
 	#superclass : #SpecOfObjectValue,
-	#category : 'StateSpecs-Specs'
+	#category : #'StateSpecs-Specs'
 }
 
 { #category : #testing }

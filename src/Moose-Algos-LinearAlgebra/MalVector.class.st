@@ -215,7 +215,7 @@ MalVector >> copyEmpty: size [
 
 { #category : #'vector functions' }
 MalVector >> cosine: aVector [
-	
+	"I compute a metric describing the similarity between two vectors."
 	^self unitVector dotProduct: aVector unitVector
 ]
 
@@ -289,7 +289,7 @@ MalVector >> differenceFromVector: aVector [
 
 { #category : #'vector functions' }
 MalVector >> dist: aVector [
-	
+	"Computes squared euclidean distance between myself and aVector provided as argument."
 	| sum |
 	sum := 0.
 	self
@@ -309,7 +309,7 @@ MalVector >> doSparseWithIndex: aBlock [
 
 { #category : #'vector functions' }
 MalVector >> dotProduct: aVector [
-	"comment stating purpose of message"
+	"I compute the dot product (also called the inner product)."
 	
 	| sum |
 	(aVector hasSize: self size) ifFalse: [^self noMatchError].
@@ -623,7 +623,7 @@ MalVector >> sumFromVector: aVector [
 
 { #category : #'vector functions' }
 MalVector >> unitVector [
-	"comment stating purpose of message"
+	"Returns a new MalVector which represents the unit vector (a vector of length one) except in the special case where the vector answers true to #isZero."
 	
 	self isZero ifTrue: [^self].
 	^self / self length

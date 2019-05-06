@@ -12,5 +12,15 @@ smalltalk_config:
   - .withPharoTests.ston
 
 matrix:
+  fast_finish: true
   allow_failures:
     - smalltalk_config: .withPharoTests.ston
+    - smalltalk: Pharo32-8.0
+      smalltalk_config: .smalltalk.ston
+    - smalltalk: Pharo64-8.0
+      smalltalk_config: .smalltalk.ston
+  include:
+    - smalltalk: Pharo32-8.0
+      smalltalk_config: .smalltalk.ston
+    - smalltalk: Pharo64-8.0
+      smalltalk_config: .smalltalk.ston
