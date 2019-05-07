@@ -1,7 +1,7 @@
 Class {
 	#name : #SpecOfShouldExpressionTests,
 	#superclass : #TestCase,
-	#category : 'StateSpecs-DSL-ShouldExpressions-Tests'
+	#category : #'StateSpecs-DSL-ShouldExpressions-Tests'
 }
 
 { #category : #tests }

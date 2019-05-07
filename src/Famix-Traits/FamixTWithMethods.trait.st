@@ -150,7 +150,7 @@ FamixTWithMethods >> numberOfMethodProtocols [
 	
 	^self
 		lookUpPropertyNamed: #numberOfMethodProtocols
-		computedAs: [((self methods collect: [:each | each category]) reject: #isNil) asSet size]
+		computedAs: [((self methods collect: [:each | each protocol]) reject: #isNil) asSet size]
 ]
 
 { #category : #metrics }

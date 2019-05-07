@@ -192,6 +192,8 @@ MooseQueryTypeDeclarationAssociationTest >> setUp [
 		add: pr1 ;
 		add: pr2 ;
 		yourself).
+	
+	self model metamodel: FamixPharoSmalltalkGenerator metamodel.
 
 ]
 

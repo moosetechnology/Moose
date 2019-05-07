@@ -188,8 +188,8 @@ LANImporterTest >> testHierarchyRoot [
 
 { #category : #tests }
 LANImporterTest >> testImportCategory [
-	self assert: (self model entityNamed: #'Smalltalk::LANInterface.cancel()') category equals: #actions.
-	self assert: (self model entityNamed: #'Smalltalk::LANInterface.addressee()') category equals: #aspects
+	self assert: (self model entityNamed: #'Smalltalk::LANInterface.cancel()') protocol equals: #actions.
+	self assert: (self model entityNamed: #'Smalltalk::LANInterface.addressee()') protocol equals: #aspects
 ]
 
 { #category : #tests }

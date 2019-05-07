@@ -209,11 +209,10 @@ SmalltalkImporter >> createMethod: aCompiledMethod [
 				ifTrue: [ method parentPackage: (self ensurePackage: aRPackage) ] ].
 	method isClassSide: aCompiledMethod methodClass isMeta.
 	method
-		category:
+		protocol:
 			(aCompiledMethod methodClass organization
 				categoryOfElement: aCompiledMethod selector).
 	method isPublic: true.
-	method timeStamp: aCompiledMethod timeStamp.
 	importingContext shouldImportMethodBody
 		ifTrue: [ | visitor |
 			visitor := SmalltalkMethodVisitor on: self.
@@ -411,7 +410,6 @@ SmalltalkImporter >> factory [
 
 { #category : #accessing }
 SmalltalkImporter >> factory: anObject [
-
 	factory := anObject
 ]
 

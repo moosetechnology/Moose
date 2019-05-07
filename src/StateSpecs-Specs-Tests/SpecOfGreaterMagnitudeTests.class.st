@@ -1,7 +1,7 @@
 Class {
 	#name : #SpecOfGreaterMagnitudeTests,
 	#superclass : #TestCase,
-	#category : 'StateSpecs-Specs-Tests'
+	#category : #'StateSpecs-Specs-Tests'
 }
 
 { #category : #testing }

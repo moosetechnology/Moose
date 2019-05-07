@@ -73,6 +73,7 @@ FamixPropertiesTest >> testClassAttributes [
 
 { #category : #testing }
 FamixPropertiesTest >> testClassCategories [
+"1halt."
 	self assert: (self nodeClass propertyNamed: #numberOfMethodProtocols) equals: 6.
 	self assert: self nodeClass numberOfMethodProtocols equals: 6
 ]

@@ -13,7 +13,7 @@ Class {
 	#instVars : [
 		'errorValidationResult'
 	],
-	#category : 'StateSpecs-Specs'
+	#category : #'StateSpecs-Specs'
 }
 
 { #category : #'instance creation' }

@@ -28,7 +28,7 @@ Class {
 	#instVars : [
 		'requiredItem'
 	],
-	#category : 'StateSpecs-Specs'
+	#category : #'StateSpecs-Specs'
 }
 
 { #category : #'instance creation' }

@@ -22,7 +22,7 @@ Class {
 	#instVars : [
 		'caseSensitive'
 	],
-	#category : 'StateSpecs-Specs'
+	#category : #'StateSpecs-Specs'
 }
 
 { #category : #'instance creation' }

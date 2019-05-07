@@ -8,7 +8,7 @@ I should be used directly as class to successfully validate any object.
 Class {
 	#name : #Any,
 	#superclass : #Object,
-	#category : 'StateSpecs-Specs'
+	#category : #'StateSpecs-Specs'
 }
 
 { #category : #converting }

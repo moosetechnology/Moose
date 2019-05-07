@@ -24,3 +24,12 @@ matrix:
       smalltalk_config: .smalltalk.ston
     - smalltalk: Pharo64-8.0
       smalltalk_config: .smalltalk.ston
+
+after_success:
+  - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
+  - bash upload.sh Pharo.image Pharo.changes
+
+branches:
+  except:
+    - /^(?i:continuous)$/
+

@@ -31,7 +31,7 @@ Class {
 	#classVars : [
 		'CurrentExpressionsClass'
 	],
-	#category : 'StateSpecs-DSL-ShouldExpressions'
+	#category : #'StateSpecs-DSL-ShouldExpressions'
 }
 
 { #category : #accessing }

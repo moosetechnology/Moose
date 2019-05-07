@@ -45,15 +45,6 @@ FamixTMethod classSide >> generatedTraitNames [
 	^ #()
 ]
 
-{ #category : #'Famix-Implementation' }
-FamixTMethod >> computeNumberOfLinesOfCode [
-	self hasSourceAnchor 
-		ifTrue: [ ^ self sourceAnchor lineCount ].
-	^ (self sourceText = '')
-			ifTrue: [ self notExistentMetricValue ]
-			ifFalse: [ self sourceText lineCount ]
-]
-
 { #category : #metrics }
 FamixTMethod >> cyclomaticComplexity [
 	<MSEProperty: #cyclomaticComplexity type: #Number>
@@ -176,21 +167,6 @@ FamixTMethod >> kind: anObject [
 	<generated>
 	kind := anObject
 
-]
-
-{ #category : #'Famix-Implementation' }
-FamixTMethod >> numberOfLinesOfCode [
-	<MSEProperty: #numberOfLinesOfCode type: #Number>
-	<MSEComment: 'The number of lines of code in a method.'>
-	^ self
-		lookUpPropertyNamed: #numberOfLinesOfCode
-		computedAs: [ self computeNumberOfLinesOfCode ]
-]
-
-{ #category : #'Famix-Implementation' }
-FamixTMethod >> numberOfLinesOfCode: aNumber [
-
-	self privateState propertyAt: #numberOfLinesOfCode put: aNumber
 ]
 
 { #category : #metrics }

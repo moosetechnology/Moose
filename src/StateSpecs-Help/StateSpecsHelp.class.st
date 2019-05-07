@@ -1,7 +1,7 @@
 Class {
 	#name : #StateSpecsHelp,
 	#superclass : #CustomHelp,
-	#category : 'StateSpecs-Help'
+	#category : #'StateSpecs-Help'
 }
 
 { #category : #accessing }

@@ -388,10 +388,10 @@ MooseGroup >> sumOfPropertyNamed: aPropertyName [
 MooseGroup >> updateTypeAccordingToEntities [
 	| common wantedType class |
 	common := self commonEntitiesClass.
-	wantedType := (common name, 'Group') asSymbol.
+	wantedType := common relatedGroupType.
 	self name = wantedType ifTrue: [ ^ self ].
 	class := MooseAbstractGroup allSubclasses 
-		detect: [ :each | each name == wantedType ]
+		detect: [ :each | each name == wantedType name ]
 		ifNone: [ ^ self changeTypeToDefaultType ].
 	self changeTypeTo: class
 ]
