@@ -41,7 +41,7 @@ MooseNavigationPresentation >> dynamicActionsIn: list [
 				action: [ :x | 
 					Smalltalk tools browser
 						openOnClass: list rawSelection key methodClass
-						selector: list rawSelection key methodSelector ];
+						selector: list rawSelection key methodSelector];
 				title: 'Browse the method implementing the navigation';
 				category: 'Utilities');
 		yourself
@@ -49,6 +49,5 @@ MooseNavigationPresentation >> dynamicActionsIn: list [
 
 { #category : #private }
 MooseNavigationPresentation >> formatFor: each [
-	^ (' ' join: ((each key) piecesCutWhereCamelCase collect: #capitalized)) , ' - '
-		, (each value gtDisplayString contractTo: 50)
+	^ each formatForNavigationPresentation
 ]

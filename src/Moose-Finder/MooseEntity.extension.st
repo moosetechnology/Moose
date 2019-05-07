@@ -48,6 +48,11 @@ MooseEntity >> customNavigationItems [
 ]
 
 { #category : #'*Moose-Finder' }
+MooseEntity class >> formatForNavigationPresentation [
+	^ 'All ', self name, ' - '
+]
+
+{ #category : #'*Moose-Finder' }
 MooseEntity >> gtInspectorActionOpenInMoose [
 	<gtInspectorAction>
 	^ GLMGenericAction new
@@ -174,7 +179,7 @@ MooseEntity >> navigationItemsFromAttributes [
 	
 	entity := self mooseInterestingEntity.
 	attrs := entity mooseDescription allAttributes reject: [ :attribute | attribute type isPrimitive ].
-	assocs := attrs collect: [ :anAttribute | anAttribute name -> (entity perform: anAttribute compiledMethod selector) ].
+	assocs := attrs collect: [ :anAttribute | anAttribute -> (entity perform: anAttribute compiledMethod selector) ].
 	
 	"filter out nils and empty collections, sort"
 	result := (assocs
@@ -198,7 +203,7 @@ MooseEntity >> navigationItemsFromPragmas [
 	entity := self mooseInterestingEntity.
 	pragmaValueAssociations := entity navigationPragmas
 		collect: [ :pragma | 
-			(pragma argumentAt: 1)
+			pragma
 				->
 					([self mooseInterestingEntity perform: pragma methodSelector] ifError: [nil])
 						mooseInterestingEntity ].
@@ -209,8 +214,8 @@ MooseEntity >> navigationItemsFromPragmas [
 			association value isNil
 				or: [ association value isCollection and: [ association value isEmpty ] ] ])
 		sorted: [ :a :b | 
-			a key asLowercase asString
-				< b key asLowercase asString ].
+			(a key argumentAt: 1) asLowercase asString
+				< (b key argumentAt: 1) asLowercase asString ].
 	^ assocs
 
 ]

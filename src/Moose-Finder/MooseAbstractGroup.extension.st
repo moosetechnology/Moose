@@ -18,7 +18,7 @@ MooseAbstractGroup >> customNavigationItems [
 		| aGroup |
 		aGroup := self allWithType: each.
 		aGroup isEmpty ifFalse: [ 
-			result add: (('All ', each name) -> (self allWithType: each)) ]].
+			result add: (each -> (self allWithType: each)) ]].
 	^ result
 ]
 
