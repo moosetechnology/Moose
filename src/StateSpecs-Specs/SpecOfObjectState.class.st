@@ -51,7 +51,7 @@ Class {
 		'title',
 		'failureDescription'
 	],
-	#category : 'StateSpecs-Specs'
+	#category : #'StateSpecs-Specs'
 }
 
 { #category : #'specs composition' }

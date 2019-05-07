@@ -8,7 +8,7 @@ I can be created by | message to spec:
 Class {
 	#name : #SpecOfOrDisjunction,
 	#superclass : #SpecOfComplexState,
-	#category : 'StateSpecs-Specs'
+	#category : #'StateSpecs-Specs'
 }
 
 { #category : #testing }

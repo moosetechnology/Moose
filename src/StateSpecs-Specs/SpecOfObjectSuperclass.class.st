@@ -6,7 +6,7 @@ I describe all objects which are kind of particular class.
 Class {
 	#name : #SpecOfObjectSuperclass,
 	#superclass : #SpecOfObjectRelationship,
-	#category : 'StateSpecs-Specs'
+	#category : #'StateSpecs-Specs'
 }
 
 { #category : #testing }

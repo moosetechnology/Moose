@@ -10,7 +10,7 @@ My instances can be created by
 Class {
 	#name : #SpecOfLesserMagnitude,
 	#superclass : #SpecOfMagnitudeOrder,
-	#category : 'StateSpecs-Specs'
+	#category : #'StateSpecs-Specs'
 }
 
 { #category : #testing }

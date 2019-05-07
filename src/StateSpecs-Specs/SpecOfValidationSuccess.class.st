@@ -8,7 +8,7 @@ My superclass define singleton for me
 Class {
 	#name : #SpecOfValidationSuccess,
 	#superclass : #SpecOfValidationResult,
-	#category : 'StateSpecs-Specs'
+	#category : #'StateSpecs-Specs'
 }
 
 { #category : #testing }

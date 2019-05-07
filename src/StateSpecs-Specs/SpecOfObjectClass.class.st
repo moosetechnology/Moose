@@ -6,7 +6,7 @@ I describe all objects of particular class.
 Class {
 	#name : #SpecOfObjectClass,
 	#superclass : #SpecOfObjectRelationship,
-	#category : 'StateSpecs-Specs'
+	#category : #'StateSpecs-Specs'
 }
 
 { #category : #testing }

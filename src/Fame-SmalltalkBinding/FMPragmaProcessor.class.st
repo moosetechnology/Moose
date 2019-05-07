@@ -225,37 +225,42 @@ FMPragmaProcessor >> processClass: aClass ifPragmaAbsent: anErrorBlock [
 
 { #category : #private }
 FMPragmaProcessor >> processCompiledMethod: aMethod [
-	| pragma prop |
-	aMethod isCompiledMethod should beTrue.
-	pragma := Pragma inMethod: aMethod named: #(#MSEProperty:type:opposite: #MSEProperty:type:).
+	| pragma prop method |
+	method := aMethod.
+
+	"If the method is a reflective method we need to ensure it is compiled and use its compiled method.
+	A refelctive method is for exemple a method created via a metalink and that was never executed."
+	(aMethod isKindOf: ReflectiveMethod)
+		ifTrue: [ aMethod compileAndInstallCompiledMethod.
+			method := aMethod compiledMethod ].
+
+	method isCompiledMethod should beTrue.
+	pragma := Pragma inMethod: method named: #(#MSEProperty:type:opposite: #MSEProperty:type:).
 	pragma ifNil: [ ^ self ].
 	prop := FM3PropertyDescription new.
-	(Pragma inMethod: aMethod named: #package:)
+	(Pragma inMethod: method named: #package:)
 		ifNotNil: [ :p | 
 			| packageName |
 			packageName := p argumentAt: 1.
-			(self allowPackageNamed: packageName)
-				ifFalse: [ ^ self ].
+			(self allowPackageNamed: packageName) ifFalse: [ ^ self ].
 			packPropDict at: prop put: packageName ].
 	"we check the package first because if we do not want to load it,
 		we ignore the whole property"
 	prop name: (pragma argumentAt: 1) asString.
 	typeDict at: prop put: (pragma argumentAt: 2).
-	mmClassDict at: prop put: aMethod methodClass.
-	prop setImplementingSelector: aMethod selector.
-	pragma keyword = #MSEProperty:type:opposite:
-		ifTrue: [ oppositeDict at: prop put: (pragma argumentAt: 3) ].
-	(Pragma inMethod: aMethod named: #container) ifNotNil: [ prop isContainer: true ].
-	(Pragma inMethod: aMethod named: #derived) ifNotNil: [ prop isDerived: true ].
-	(Pragma inMethod: aMethod named: #source) ifNotNil: [ prop isSource: true ].
-	(Pragma inMethod: aMethod named: #target) ifNotNil: [ prop isTarget: true ].
-	(Pragma inMethod: aMethod named: #multivalued)
-		ifNotNil: [self
-						assert: prop isContainer not
-						description: 'It is not possible to have <multivalue> and <container> on the same method. container represents a aggregation UML link that is incompatible with the multivalue kind of the link' .
+	mmClassDict at: prop put: method methodClass.
+	prop setImplementingSelector: method selector.
+	pragma keyword = #MSEProperty:type:opposite: ifTrue: [ oppositeDict at: prop put: (pragma argumentAt: 3) ].
+	(Pragma inMethod: method named: #container) ifNotNil: [ prop isContainer: true ].
+	(Pragma inMethod: method named: #derived) ifNotNil: [ prop isDerived: true ].
+	(Pragma inMethod: method named: #source) ifNotNil: [ prop isSource: true ].
+	(Pragma inMethod: method named: #target) ifNotNil: [ prop isTarget: true ].
+	(Pragma inMethod: method named: #multivalued)
+		ifNotNil: [ self
+				assert: prop isContainer not
+				description: 'It is not possible to have <multivalue> and <container> on the same method. container represents a aggregation UML link that is incompatible with the multivalue kind of the link'.
 			prop isMultivalued: true ].
-	(Pragma inMethod: aMethod named: #key:)
-		ifNotNil: [ prop key: ((Pragma inMethod: aMethod named: #key:) argumentAt: 1) ].
+	(Pragma inMethod: method named: #key:) ifNotNil: [ :p | prop key: (p argumentAt: 1) ].
 	elements add: prop
 ]
 

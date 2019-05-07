@@ -11,7 +11,7 @@ And then for any message I perform validation. Only different from my superclass
 Class {
 	#name : #SpecOfBooleanSubPropertyValidator,
 	#superclass : #SpecOfBooleanPropertyValidator,
-	#category : 'StateSpecs-DSL-ShouldExpressions'
+	#category : #'StateSpecs-DSL-ShouldExpressions'
 }
 
 { #category : #validation }

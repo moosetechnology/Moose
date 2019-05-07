@@ -9,7 +9,7 @@ Class {
 
 { #category : #'vector functions' }
 MalSimilarityItem >> dist: anItem [
-	
+	"I define the distance between myself and anItem as the opposite of the cosine similarity."
 	^1 - (self vector cosine: anItem vector)
 ]
 

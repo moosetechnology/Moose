@@ -17,7 +17,7 @@ Class {
 	#instVars : [
 		'property'
 	],
-	#category : 'StateSpecs-DSL-ShouldExpressions'
+	#category : #'StateSpecs-DSL-ShouldExpressions'
 }
 
 { #category : #'instance creation' }

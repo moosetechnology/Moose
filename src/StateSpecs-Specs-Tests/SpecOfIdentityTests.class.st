@@ -1,7 +1,7 @@
 Class {
 	#name : #SpecOfIdentityTests,
 	#superclass : #TestCase,
-	#category : 'StateSpecs-Specs-Tests'
+	#category : #'StateSpecs-Specs-Tests'
 }
 
 { #category : #tests }

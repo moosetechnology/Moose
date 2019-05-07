@@ -7,7 +7,7 @@ I describe strings which end with particular substring.
 Class {
 	#name : #SpecOfStringEnding,
 	#superclass : #SpecOfString,
-	#category : 'StateSpecs-Specs'
+	#category : #'StateSpecs-Specs'
 }
 
 { #category : #testing }

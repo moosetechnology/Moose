@@ -17,7 +17,7 @@ Class {
 	#instVars : [
 		'specs'
 	],
-	#category : 'StateSpecs-Specs'
+	#category : #'StateSpecs-Specs'
 }
 
 { #category : #'instance creation' }
