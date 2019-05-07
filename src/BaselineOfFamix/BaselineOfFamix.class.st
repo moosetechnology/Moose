@@ -41,6 +41,7 @@ BaselineOfFamix >> baseline: spec [
 				package: 'Famix-Groups' with: [ spec requires: #('Moose-Core' 'NeoCSV') ];
 				package: 'Famix-Traits' with: [ spec requires: #('Famix-Groups' 'Moose-Core') ];
 				package: 'Famix-Traits-Extensions' with: [ spec requires: #('Famix-Traits') ];
+
 				package: 'Famix-MetamodelBuilder-Core' with: [ spec requires: #('Famix-Traits') ];
 				package: 'Famix-MetamodelGeneration' with: [ spec requires: #('Famix-MetamodelBuilder-Core') ];
 				package: 'Famix-BasicInfrastructure' with: [ spec requires: #('Famix-MetamodelBuilder-Core') ];
@@ -53,6 +54,7 @@ BaselineOfFamix >> baseline: spec [
 				package: 'Famix-PharoSmalltalk-Entities' with: [ spec requires: #('Famix-MetamodelBuilder-Core' 'Famix-Smalltalk-Utils' 'Famix-Traits') ];
 				package: 'Famix-PharoSmalltalk-Importer' with: [ spec requires: #('Famix-PharoSmalltalk-Entities' 'Moose-SmalltalkImporter') ];
 				package: 'Famix-PharoSmalltalk-Tests' with: [ spec requires: #('Famix-PharoSmalltalk-Entities' 'Famix-Test1-Entities' 'Moose-Core') ];
+
 				package: 'Famix-Java-Generator' with: [ spec requires: #('Basic') ];
 				package: 'Famix-Java-Entities' with: [ spec requires: #('Famix-MetamodelBuilder-Core' 'Famix-Traits') ];
 				package: 'Moose-TestResources-LAN';
