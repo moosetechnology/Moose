@@ -26,9 +26,8 @@ matrix:
       smalltalk_config: .smalltalk.ston
 
 after_success:
-  - ls
   - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
-  - bash upload.sh Pharo.image Pharo.changes
+  - bash upload.sh /home/travis/smalltalkCI-master/_builds/TravisCI.image /home/travis/smalltalkCI-master/_builds/TravisCI.changes
 
 branches:
   except:
