@@ -49,5 +49,5 @@ MooseNavigationPresentation >> dynamicActionsIn: list [
 
 { #category : #private }
 MooseNavigationPresentation >> formatFor: each [
-	^ each formatForNavigationPresentation
+	^ each key formatForNavigationPresentation
 ]

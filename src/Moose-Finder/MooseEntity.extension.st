@@ -186,9 +186,9 @@ MooseEntity >> navigationItemsFromAttributes [
 		reject: [ :association | 
 			association value isNil
 				or: [ association value isCollection and: [ association value isEmpty ] ] ])
-		sorted: [ :a :b | 
-			a key asLowercase asString
-				< b key asLowercase asString ].
+		sorted: [ :a :b |
+			a key formatForNavigationPresentation asLowercase asString
+				< b key formatForNavigationPresentation asLowercase asString ].
 	^ result
 
 ]
