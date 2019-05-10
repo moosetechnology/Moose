@@ -8,11 +8,17 @@ Class {
 }
 
 { #category : #'world menu' }
+MoosePlayground class >> initialize [
+	Smalltalk tools workspaceTool: self
+]
+
+{ #category : #'world menu' }
 MoosePlayground class >> menuCommandOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #'Moose Playground')
 		order: 1.0; 
 		parent: #Moose;
+		keyText: 'o, w';
 		label: 'Moose Playground';
 		help: 'Plaground enhanced for usage in Moose';
 		icon: (MooseIcons mooseIcon scaledToSize: 16@16);
