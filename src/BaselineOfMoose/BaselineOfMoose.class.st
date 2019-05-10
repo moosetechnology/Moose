@@ -291,6 +291,7 @@ BaselineOfMoose >> groups: spec [
 	
 	spec group: 'IDE' with: #(
 		'Moose-MenuBar'
+		'Moose-Configuration'
 	).
 	
 	spec group: 'AdditionalTools' with: #(
