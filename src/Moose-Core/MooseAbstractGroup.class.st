@@ -67,7 +67,7 @@ MooseAbstractGroup >> allWithSubTypesOf: aSmalltalkClass [
 
 { #category : #groups }
 MooseAbstractGroup >> allWithSubTypesOf: aSmalltalkClass ofGroupClass:  aGroupSmalltalkClass [
-	^ self privateState cacheAt: aSmalltalkClass
+	^ self privateState cacheAt: 'sub', aSmalltalkClass className
 		ifAbsentPut: [
 			aGroupSmalltalkClass 
 				withAll: (aSmalltalkClass withMooseSubclasses flatCollect: [:each |
