@@ -52,7 +52,11 @@ BaselineOfMoose >> baseline: spec [
 			self baselineMerlin: spec.
 			self baselineDistributionMap: spec.
 			self baselineWizard: spec.
+			
+			"Package for the Moose IDE configuration"
 			spec package: 'Moose-MenuBar'.
+			spec package: 'Moose-Configuration'.
+			
 			self groups: spec ].
 
 	spec
@@ -291,6 +295,7 @@ BaselineOfMoose >> groups: spec [
 	
 	spec group: 'IDE' with: #(
 		'Moose-MenuBar'
+		'Moose-Configuration'
 	).
 	
 	spec group: 'AdditionalTools' with: #(
