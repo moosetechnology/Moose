@@ -389,9 +389,10 @@ FamixTClassHierarchyNavigation >> withSubclassesDo: aBlock [
 
 { #category : #'Famix-Implementation' }
 FamixTClassHierarchyNavigation >> withSuperclassHierarchy [
+	self flag: #'We should add something to handle the typeAliases in C++, etc.'.
 	^ self realType superclassHierarchy 
-		addFirst: self realType; 
-		addAll: self realType allTypeAliases;
+		addFirst: self realType;
+		"addAll: self realType allTypeAliases;"
 		yourself
 ]
 

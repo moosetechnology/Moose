@@ -54,6 +54,8 @@ FAMIXTypeAliasTest >> testAliasSubclasses [
 { #category : #tests }
 FAMIXTypeAliasTest >> testAliasSuperclasses [
 	| type supertype alias model |
+	self skip.
+	self flag: 'Manage alias after FamixNG refactoring'.
 	model := MooseModel new.
 	model sourceLanguage: FAMIXCSourceLanguage new.
 	supertype := FAMIXType new
