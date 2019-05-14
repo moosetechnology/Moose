@@ -42,12 +42,6 @@ FamixJavaStructuralEntity >> accept: aVisitor [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaStructuralEntity >> accessors [
-	<MSEProperty: #accessors type: #FamixJavaMethod> <multivalued> <derived>
-	^ (self incomingAccesses collectAsSet: [ :each | each accessor ]) asMooseGroup
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaStructuralEntity >> copyFrom: anEntity within: aVisitor [
 
 	super copyFrom: anEntity within: aVisitor.
