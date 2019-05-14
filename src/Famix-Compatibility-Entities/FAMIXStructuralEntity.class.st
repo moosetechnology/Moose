@@ -41,12 +41,6 @@ FAMIXStructuralEntity >> accept: aVisitor [
 	aVisitor visitStructuralEntity: self
 ]
 
-{ #category : #accessing }
-FAMIXStructuralEntity >> accessors [
-	<MSEProperty: #accessors type: #FAMIXBehaviouralEntity> <multivalued> <derived>
-	^ (self incomingAccesses collectAsSet: [ :each | each accessor ]) asMooseGroup
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXStructuralEntity >> copyFrom: anEntity within: aVisitor [
 
