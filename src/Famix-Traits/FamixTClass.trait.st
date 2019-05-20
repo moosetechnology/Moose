@@ -48,21 +48,6 @@ FamixTClass >> isClass [
 ]
 
 { #category : #testing }
-FamixTClass >> isInterface [
-
-	<MSEProperty: #isInterface type: #Boolean>
-	<MSEComment: 'This is a boolean flag used to distinguish between classes with implementation and interfaces'>
-
-	^ self privateState attributeAt: #isInterface ifAbsent: [ false ]
-]
-
-{ #category : #testing }
-FamixTClass >> isInterface: aBoolean [
-
-	^ self privateState attributeAt: #isInterface put: true
-]
-
-{ #category : #testing }
 FamixTClass >> isTestCase [
 
 	<MSEProperty: #isTestCase type: #Boolean>

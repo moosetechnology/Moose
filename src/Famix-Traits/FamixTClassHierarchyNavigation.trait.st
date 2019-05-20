@@ -49,7 +49,8 @@ FamixTClassHierarchyNavigation >> allSubclassesWithoutAliasesDo: aBlock [
 
 { #category : #enumerating }
 FamixTClassHierarchyNavigation >> allSuperclassesDo: aBlock [
-	self allSuperclassesWithoutAliasesDo: aBlock.
+	self superInheritances do: [:each | aBlock value: each superclass].
+	self superInheritances do: [:each | each superclass allSuperclassesDo: aBlock]
 
 ]
 
@@ -61,14 +62,8 @@ FamixTClassHierarchyNavigation >> allSuperclassesWithoutAliasesDo: aBlock [
 
 { #category : #enumerating }
 FamixTClassHierarchyNavigation >> anySuperclass [
-	"Mircea: this used to return interfaces too. fixed now. 
-	also added superclass that does the same thing"
 
-	self
-		allSuperclassesDo: [ :each | 
-			each isInterface
-				ifFalse: [ ^ each ] ].
-	^ nil
+	self superInheritances ifEmpty: [ ^nil ] ifNotEmpty: [^ self superInheritances any superclass]. 
 ]
 
 { #category : #enumerating }

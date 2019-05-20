@@ -56,7 +56,8 @@ FamixTClassTest >> testIsClass [
 
 { #category : #tests }
 FamixTClassTest >> testIsInterface [
-
+	self skip.
+	"isInterface is no more in the TClass traits since in some languages as Smalltalk, there is no interface"
 	self deny: c1 isInterface.
 	c1 isInterface: true.
 	self assert: c1 isInterface.

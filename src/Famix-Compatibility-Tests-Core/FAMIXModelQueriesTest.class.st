@@ -48,7 +48,7 @@ FAMIXModelQueriesTest >> testAllClasses [
 
 { #category : #'as yet unclassified' }
 FAMIXModelQueriesTest >> testAllModelClasses [
-	self assert: model allModelClasses size equals: 1
+	self assert: model allModelPureClasses size equals: 1
 ]
 
 { #category : #'as yet unclassified' }
