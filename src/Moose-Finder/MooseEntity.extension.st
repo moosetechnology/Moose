@@ -23,7 +23,7 @@ MooseEntity >> bookmarkEntity [
 MooseEntity >> complexPropertyPragmas [
 	| navProps definedProps |
 	self mooseDescription
-		ifNil: [ Error
+		ifNil: [ NotInitializedMooseDescriptionError
 				signal:
 					'Moose description are not initialized. Have you refreshed the meta-model? (e.g., MooseModel resetMeta)' ].
 	navProps := (Pragma
@@ -55,6 +55,11 @@ MooseEntity class >> formatForNavigationPresentation [
 { #category : #'*Moose-Finder' }
 MooseEntity >> gtInspectorActionOpenInMoose [
 	<gtInspectorAction>
+	self mooseDescription
+		ifNil: [ ^ GLMGenericAction new
+				action: [ self inform: 'Moose description not initialized' ];
+				icon: (Smalltalk ui icons iconNamed: #error);
+				title: 'Moose description not initialized' ].
 	^ GLMGenericAction new
 		action: [ self openInMoose ];
 		icon: MooseIcons mooseIcon asGrayScaleWithAlpha;
@@ -64,6 +69,8 @@ MooseEntity >> gtInspectorActionOpenInMoose [
 { #category : #'*Moose-Finder' }
 MooseEntity >> gtInspectorPresentationsIn: composite inContext: aGTInspector [
 	| pragmas |
+	self mooseDescription ifNil: [ super gtInspectorPresentationsIn: composite inContext: aGTInspector.
+		^ self ].
 	pragmas := Pragma
 		allNamed: #moosePresentationOrder:
 		from: self mooseInterestingEntity class
@@ -118,6 +125,7 @@ MooseEntity >> mooseFinderMetanoolIn: composite [
 { #category : #'*Moose-Finder' }
 MooseEntity >> mooseFinderNavigationIn: composite [
 	<moosePresentationOrder: 1>
+	self mooseDescription ifNil: [ ^ composite custom: GLMCompositePresentation new].
 	composite custom: MooseNavigationPresentation new
 ]
 
@@ -224,7 +232,7 @@ MooseEntity >> navigationItemsFromPragmas [
 MooseEntity >> navigationPragmas [
 	| navProps |
 	self mooseDescription
-		ifNil: [ Error
+		ifNil: [ NotInitializedMooseDescriptionError
 				signal:
 					'Moose description are not initialized. Have you refreshed the meta-model? (e.g., MooseModel resetMeta)' ].
 	navProps := (Pragma
@@ -259,5 +267,5 @@ MooseEntity >> openInGlamorousEditor [
 { #category : #'*Moose-Finder' }
 MooseEntity >> spotterProcessorsFor: aSpotterStep [
 	super spotterProcessorsFor: aSpotterStep.
-	self mooseSpecificSpotterProcessorsFor: aSpotterStep
+	[ self mooseSpecificSpotterProcessorsFor: aSpotterStep ] on: NotInitializedMooseDescriptionError do: [ Transcript crLog: 'The entity description is not present in its moose model metamodel' ]
 ]
