@@ -27,7 +27,7 @@ FmxMBBuilderRelationTest >> checkArrow: aBinarySelector from: cardinality1 to: c
 	self assert: generatedTClass slots size equals: 1.
 	self assert: generatedTClass slots first name equals: #property1.
 	self assert: generatedTClass slots first expression equals: cardinality1, ' type: #TstTComment opposite: #property2'.
-	self assertCollection: (generatedTClass instanceSide selectors copyWithoutAll: { #property1Group. #property2Group. #belongsTo. #belongsTo:}) hasSameElements: #(property1 property1:).
+	self assertCollection: (generatedTClass instanceSide selectors copyWithoutAll: { #addProperty1:. #property1Group. #property2Group. #belongsTo. #belongsTo:}) hasSameElements: #(property1 property1:).
 	hasContainer := (generatedTClass methodNamed: #property1) sourceCode includesSubstring: '<container>'.
 	containerFrom 
 		ifTrue: [ self assert: hasContainer ]
@@ -36,7 +36,7 @@ FmxMBBuilderRelationTest >> checkArrow: aBinarySelector from: cardinality1 to: c
 	self assert: generatedTComment slots size equals: 1.
 	self assert: generatedTComment slots first name equals: #property2.
 	self assert: generatedTComment slots first expression equals: cardinality2, ' type: #TstTClass opposite: #property1'.
-	self assertCollection: (generatedTComment instanceSide selectors copyWithoutAll: { #property1Group. #property2Group. #belongsTo. #belongsTo:}) hasSameElements: #(property2 property2:).
+	self assertCollection: (generatedTComment instanceSide selectors copyWithoutAll: { #addProperty2:. #property1Group. #property2Group. #belongsTo. #belongsTo:}) hasSameElements: #(property2 property2:).
 	hasContainer := (generatedTComment methodNamed: #property2) sourceCode includesSubstring: '<container>'.
 	containerTo
 		ifTrue: [ self assert: hasContainer ]
