@@ -6,7 +6,7 @@ Class {
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 
-{ #category : #meta }
+{ #category : #'as yet unclassified' }
 FAMIXPackage class >> annotation [
 
 	<MSEClass: #Package super: #FAMIXScopingEntity>
@@ -15,14 +15,14 @@ FAMIXPackage class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
+{ #category : #'as yet unclassified' }
 FAMIXPackage class >> generatedSlotNames [
 	<generated>
 	'FAMIXPackage class>>#generatedSlotNames'.
 	^ #()
 ]
 
-{ #category : #generator }
+{ #category : #'as yet unclassified' }
 FAMIXPackage class >> generatedTraitNames [
 	<generated>
 	^ #(FamixTCohesionCouplingMetrics FamixTPackage FamixTPackageWithClassesGlue)

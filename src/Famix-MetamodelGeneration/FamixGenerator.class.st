@@ -896,9 +896,6 @@ FamixGenerator >> defineGlueingTraits [
 	tPackageWithClassesGlue := builder newTraitNamed: #TPackageWithClassesGlue.
 	tPackageWithClassesGlue glues: tPackage with: tWithClasses.
 
-	tLCOMMetrics := builder newTraitNamed: #TLCOMMetrics.
-	tLCOMMetrics glues: tClass with: tWithMethods.
-
 	tClassWithInvocationsGlue := builder newTraitNamed: #TClassWithInvocationsGlue.
 	tClassWithInvocationsGlue glues: tClass with: tWithInvocations.
 	

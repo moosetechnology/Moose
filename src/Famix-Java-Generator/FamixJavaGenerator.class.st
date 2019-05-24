@@ -159,6 +159,7 @@ FamixJavaGenerator >> defineHierarchy [
 	class --|> type.
 	class --|> #TWithExceptions.
 	class --|> #TClass.
+	class --|> #TLCOMMetrics.
 
 	containerEntity --|> namedEntity.
 	containerEntity --|> #TWithTypes.
@@ -240,10 +241,6 @@ FamixJavaGenerator >> defineHierarchy [
 	type --|> #TReferenceable.
 	type --|> #TWithTypedStructures.
 	type --|> #TWithTypeAliases.
-	type --|> #TWithMethods.
-	type --|> #TWithSuperInheritances.
-	type --|> #TWithSubInheritances.
-	type --|> #TWithAttributes.
 	type --|> #TParameterizedTypeUser.
 	type --|> #TClassHierarchyNavigation. 
 

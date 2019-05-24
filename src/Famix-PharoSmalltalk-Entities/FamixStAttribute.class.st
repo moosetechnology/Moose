@@ -35,7 +35,7 @@ FamixStAttribute class >> generatedTraitNames [
 FamixStAttribute class >> requirements [
 
 	<generated>
-	^ { FamixStType }
+	^ {  }
 ]
 
 { #category : #'Famix-Implementation' }

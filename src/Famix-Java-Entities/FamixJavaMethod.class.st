@@ -32,7 +32,7 @@ FamixJavaMethod class >> generatedTraitNames [
 FamixJavaMethod class >> requirements [
 
 	<generated>
-	^ { FamixJavaType }
+	^ {  }
 ]
 
 { #category : #'as yet unclassified' }

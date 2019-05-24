@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaType,
 	#superclass : #FamixJavaContainerEntity,
-	#traits : 'FamixTClassHierarchyNavigation + FamixTContainingWithInvocationsGlue + FamixTContainingWithStatementsGlue + FamixTParameterizedTypeUser + FamixTReferenceable + FamixTType + FamixTWithAttributes + FamixTWithMethods + FamixTWithMethodsWithAccessesGlue + FamixTWithMethodsWithModifiersGlue + FamixTWithSubInheritances + FamixTWithSuperInheritances + FamixTWithTypeAliases + FamixTWithTypedStructures',
-	#classTraits : 'FamixTClassHierarchyNavigation classTrait + FamixTContainingWithInvocationsGlue classTrait + FamixTContainingWithStatementsGlue classTrait + FamixTParameterizedTypeUser classTrait + FamixTReferenceable classTrait + FamixTType classTrait + FamixTWithAttributes classTrait + FamixTWithMethods classTrait + FamixTWithMethodsWithAccessesGlue classTrait + FamixTWithMethodsWithModifiersGlue classTrait + FamixTWithSubInheritances classTrait + FamixTWithSuperInheritances classTrait + FamixTWithTypeAliases classTrait + FamixTWithTypedStructures classTrait',
+	#traits : 'FamixTClassHierarchyNavigation + FamixTParameterizedTypeUser + FamixTReferenceable + FamixTType + FamixTWithTypeAliases + FamixTWithTypedStructures',
+	#classTraits : 'FamixTClassHierarchyNavigation classTrait + FamixTParameterizedTypeUser classTrait + FamixTReferenceable classTrait + FamixTType classTrait + FamixTWithTypeAliases classTrait + FamixTWithTypedStructures classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
@@ -25,7 +25,7 @@ FamixJavaType class >> generatedSlotNames [
 { #category : #generator }
 FamixJavaType class >> generatedTraitNames [
 	<generated>
-	^ #(FamixTClassHierarchyNavigation FamixTContainingWithInvocationsGlue FamixTContainingWithStatementsGlue FamixTParameterizedTypeUser FamixTReferenceable FamixTType FamixTWithAttributes FamixTWithMethods FamixTWithMethodsWithAccessesGlue FamixTWithMethodsWithModifiersGlue FamixTWithSubInheritances FamixTWithSuperInheritances FamixTWithTypeAliases FamixTWithTypedStructures)
+	^ #(FamixTClassHierarchyNavigation FamixTParameterizedTypeUser FamixTReferenceable FamixTType FamixTWithTypeAliases FamixTWithTypedStructures)
 ]
 
 { #category : #meta }

@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixStClass,
 	#superclass : #FamixStType,
-	#traits : 'FamixTClass + FamixTClassHierarchyNavigation + FamixTContainingWithInvocationsGlue + FamixTLCOMMetrics + FamixTWithExceptions + FamixTWithMethods + FamixTWithMethodsWithAccessesGlue + FamixTWithMethodsWithModifiersGlue + FamixTWithSubInheritances + FamixTWithSuperInheritances',
-	#classTraits : 'FamixTClass classTrait + FamixTClassHierarchyNavigation classTrait + FamixTContainingWithInvocationsGlue classTrait + FamixTLCOMMetrics classTrait + FamixTWithExceptions classTrait + FamixTWithMethods classTrait + FamixTWithMethodsWithAccessesGlue classTrait + FamixTWithMethodsWithModifiersGlue classTrait + FamixTWithSubInheritances classTrait + FamixTWithSuperInheritances classTrait',
+	#traits : 'FamixTClass + FamixTClassHierarchyNavigation + FamixTWithExceptions',
+	#classTraits : 'FamixTClass classTrait + FamixTClassHierarchyNavigation classTrait + FamixTWithExceptions classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 
@@ -25,7 +25,7 @@ FamixStClass class >> generatedSlotNames [
 { #category : #generator }
 FamixStClass class >> generatedTraitNames [
 	<generated>
-	^ #(FamixTClass FamixTClassHierarchyNavigation FamixTContainingWithInvocationsGlue FamixTLCOMMetrics FamixTWithExceptions FamixTWithMethods FamixTWithMethodsWithAccessesGlue FamixTWithMethodsWithModifiersGlue FamixTWithSubInheritances FamixTWithSuperInheritances)
+	^ #(FamixTClass FamixTClassHierarchyNavigation FamixTWithExceptions)
 ]
 
 { #category : #meta }

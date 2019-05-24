@@ -35,7 +35,7 @@ FamixStMethod class >> generatedTraitNames [
 FamixStMethod class >> requirements [
 
 	<generated>
-	^ { FamixStClass }
+	^ {  }
 ]
 
 { #category : #meta }

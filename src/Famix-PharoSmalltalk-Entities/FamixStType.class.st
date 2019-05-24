@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixStType,
 	#superclass : #FamixStContainerEntity,
-	#traits : 'FamixTReferenceable + FamixTType + FamixTWithAttributes + FamixTWithTypedStructures',
-	#classTraits : 'FamixTReferenceable classTrait + FamixTType classTrait + FamixTWithAttributes classTrait + FamixTWithTypedStructures classTrait',
+	#traits : 'FamixTReferenceable + FamixTType + FamixTWithTypedStructures',
+	#classTraits : 'FamixTReferenceable classTrait + FamixTType classTrait + FamixTWithTypedStructures classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 
@@ -25,7 +25,7 @@ FamixStType class >> generatedSlotNames [
 { #category : #generator }
 FamixStType class >> generatedTraitNames [
 	<generated>
-	^ #(FamixTReferenceable FamixTType FamixTWithAttributes FamixTWithTypedStructures)
+	^ #(FamixTReferenceable FamixTType FamixTWithTypedStructures)
 ]
 
 { #category : #meta }

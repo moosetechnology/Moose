@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaClass,
 	#superclass : #FamixJavaType,
-	#traits : 'FamixTClass + FamixTLCOMMetrics + FamixTWithExceptions',
-	#classTraits : 'FamixTClass classTrait + FamixTLCOMMetrics classTrait + FamixTWithExceptions classTrait',
+	#traits : 'FamixJavaTLCOMMetrics + FamixTClass + FamixTWithExceptions',
+	#classTraits : 'FamixJavaTLCOMMetrics classTrait + FamixTClass classTrait + FamixTWithExceptions classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
@@ -25,7 +25,7 @@ FamixJavaClass class >> generatedSlotNames [
 { #category : #generator }
 FamixJavaClass class >> generatedTraitNames [
 	<generated>
-	^ #(FamixTClass FamixTLCOMMetrics FamixTWithExceptions)
+	^ #(FamixJavaTLCOMMetrics FamixTClass FamixTWithExceptions)
 ]
 
 { #category : #meta }
