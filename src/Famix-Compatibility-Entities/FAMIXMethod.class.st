@@ -188,7 +188,7 @@ FAMIXMethod >> implementMethod [
 { #category : #initialization }
 FAMIXMethod >> initialize [
 	super initialize.
-	hasClassScope := false
+	isClassSide := false
 ]
 
 { #category : #'Famix-Java' }
