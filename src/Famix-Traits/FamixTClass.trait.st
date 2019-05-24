@@ -7,6 +7,8 @@ A class is typically scoped in a namespace. To model nested or anonymous classes
 "
 Trait {
 	#name : #FamixTClass,
+	#traits : 'FamixTWithMethods + FamixTWithSubInheritances + FamixTWithSuperInheritances + FamixTWithAttributes + FamixTLCOMMetrics',
+	#classTraits : 'FamixTWithMethods classTrait + FamixTWithSubInheritances classTrait + FamixTWithSuperInheritances classTrait + FamixTWithAttributes classTrait + FamixTLCOMMetrics classTrait',
 	#category : #'Famix-Traits-Class'
 }
 

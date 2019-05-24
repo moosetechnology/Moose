@@ -72,7 +72,6 @@ FMRepository >> additionalProperties [
 
 { #category : #accessing }
 FMRepository >> additionalPropertiesFor: entityClass [
-
 	^ self additionalProperties at: entityClass ifAbsentPut: [ IdentityDictionary new ]
 ]
 

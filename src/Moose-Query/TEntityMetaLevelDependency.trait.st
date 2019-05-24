@@ -124,7 +124,6 @@ TEntityMetaLevelDependency classSide >> parentTypesIn: aMetamodel [
 
 { #category : #new }
 TEntityMetaLevelDependency classSide >> privateAllChildrenTypesIn: aMetamodel [
-
 	^ ((self childrenTypesIn: aMetamodel) withDeepCollect: [ :each | each childrenTypesInMetamodel: aMetamodel] as: Set) asOrderedCollection
 ]
 

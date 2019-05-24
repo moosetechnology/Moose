@@ -98,8 +98,8 @@ TEntityMetaLevelDependencyTest >> testAllChildren [
 { #category : #tests }
 TEntityMetaLevelDependencyTest >> testAllChildrenTypes [
 
-	self assertCollection: c1 allChildrenTypes hasSameElements: { FamixTMethod }.
-	self assertCollection: c2 allChildrenTypes hasSameElements: { FamixTMethod }.
+	self assertCollection: c1 allChildrenTypes hasSameElements: { FamixTMethod. FamixTAttribute  }.
+	self assertCollection: c2 allChildrenTypes hasSameElements: { FamixTMethod. FamixTAttribute }.
 	self assertCollection: m1 allChildrenTypes hasSameElements: { }.
 	self assert: anchor1 allChildrenTypes isEmpty.
 ]
@@ -107,15 +107,15 @@ TEntityMetaLevelDependencyTest >> testAllChildrenTypes [
 { #category : #tests }
 TEntityMetaLevelDependencyTest >> testAllIncomingAssociationTypes [
 
-	"just smoke test, we have no associations in this testing meta-model"
-	self assert: c1 allIncomingAssociationTypes isEmpty
+	
+	self assertCollection: c1 allIncomingAssociationTypes  hasSameElements:  { FamixTSuperInheritance }
 ]
 
 { #category : #tests }
 TEntityMetaLevelDependencyTest >> testAllOutgoingAssociationTypes [
 
-	"just smoke test, we have no associations in this testing meta-model"
-	self assert: c1 allOutgoingAssociationTypes isEmpty
+	
+	self assertCollection: c1 allOutgoingAssociationTypes hasSameElements: { FamixTSubInheritance }
 ]
 
 { #category : #tests }
@@ -205,8 +205,8 @@ TEntityMetaLevelDependencyTest >> testChildren [
 TEntityMetaLevelDependencyTest >> testChildrenSelectors [
 
 	self assertCollection: m1 childrenSelectors hasSameElements: { }.
-	self assertCollection: c1 childrenSelectors hasSameElements: { #methods }.
-	self assertCollection: c2 childrenSelectors hasSameElements: { #methods}.
+	self assertCollection: c1 childrenSelectors hasSameElements: { #methods . #attributes}.
+	self assertCollection: c2 childrenSelectors hasSameElements: { #methods . #attributes}.
 	self assertCollection: anchor1 childrenSelectors hasSameElements: { }.
 	
 
@@ -215,29 +215,25 @@ TEntityMetaLevelDependencyTest >> testChildrenSelectors [
 { #category : #tests }
 TEntityMetaLevelDependencyTest >> testIncomingAssociationTypes [
 
-	"just smoke test, we have no associations in this testing meta-model"
-	self assert: c1 incomingAssociationTypes isEmpty
+	self assertCollection: c1 allIncomingAssociationTypes  hasSameElements:  { FamixTSuperInheritance }
 ]
 
 { #category : #tests }
 TEntityMetaLevelDependencyTest >> testIncomingMSEProperties [
 
-	"just smoke test, we have no associations in this testing meta-model"
-	self assert: c1 incomingMSEProperties isEmpty
+	self assertCollection: c1 allIncomingAssociationTypes  hasSameElements:  { FamixTSuperInheritance }
 ]
 
 { #category : #tests }
 TEntityMetaLevelDependencyTest >> testOutgoingAssociationTypes [
 
-	"just smoke test, we have no associations in this testing meta-model"
-	self assert: c1 outgoingAssociationTypes isEmpty
+	self assertCollection: c1 allOutgoingAssociationTypes hasSameElements: { FamixTSubInheritance }
 ]
 
 { #category : #tests }
 TEntityMetaLevelDependencyTest >> testOutgoingMSEProperties [
 
-	"just smoke test, we have no associations in this testing meta-model"
-	self assert: c1 outgoingMSEProperties isEmpty
+	self assertCollection: c1 allOutgoingAssociationTypes hasSameElements: { FamixTSubInheritance }
 ]
 
 { #category : #tests }
