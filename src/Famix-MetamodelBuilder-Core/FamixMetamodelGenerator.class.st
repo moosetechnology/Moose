@@ -243,7 +243,8 @@ FamixMetamodelGenerator >> generateWithCleaning [
 	EpMonitor
 		disableDuring: [ self cleanPackage.
 			self define.
-			self builder generate ]
+			self builder generate.
+			subbuilders do: #generateRemotes ]
 ]
 
 { #category : #generation }
