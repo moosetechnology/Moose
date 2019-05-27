@@ -17,7 +17,7 @@ BaselineOfMoose >> baseline: spec [
 
 	spec
 		for: #common
-		do: [ spec package: 'Moose-PharoOverrides'.
+		do: [
 			self baselineGrease: spec.
 			self baselineMagritte3: spec.
 
@@ -250,8 +250,6 @@ BaselineOfMoose >> famix: spec [
 BaselineOfMoose >> groups: spec [ 
     
 	spec group: 'BasicMetamodelling' with: #(
-		'Moose-PharoOverrides'
-
 		'Grease'
 		'Famix'
 	).
