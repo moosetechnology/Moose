@@ -25,3 +25,8 @@ BaselineOfDeepTraverser >> baseline: spec [
 				group: 'Examples' with: #('DeepTraverser-Examples');
 				group: 'Tests' with: #('DeepTraverser-Tests') ]
 ]
+
+{ #category : #accessing }
+BaselineOfDeepTraverser >> projectClass [
+	^ MetacelloCypressBaselineProject
+]

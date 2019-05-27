@@ -23,3 +23,8 @@ BaselineOfReferenceTestResources >> baseline: spec [
 				package: 'Moose-TestResources-Reference-PackageOne' with: [ spec requires: #('Moose-TestResources-Reference-Core') ];
 				package: 'Moose-TestResources-Reference-PackageTwo' with: [ spec requires: #('Moose-TestResources-Reference-PackageOne' 'Moose-TestResources-Reference-External') ] ]
 ]
+
+{ #category : #accessing }
+BaselineOfReferenceTestResources >> projectClass [
+	^ MetacelloCypressBaselineProject
+]

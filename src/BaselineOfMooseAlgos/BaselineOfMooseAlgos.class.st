@@ -62,3 +62,8 @@ BaselineOfMooseAlgos >> packageRepositoryURL [
 			packageName := self class package name.
 			'tonel://' , (IceRepository registry detect: [ :repo | repo workingCopy packageNames includes: packageName ] ifFound: [ :repo | repo location pathString , '/' , repo subdirectory ] ifNone: [ '' ]) ]
 ]
+
+{ #category : #accessing }
+BaselineOfMooseAlgos >> projectClass [
+	^ MetacelloCypressBaselineProject
+]

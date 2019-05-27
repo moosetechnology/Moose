@@ -164,6 +164,11 @@ BaselineOfFamix >> packageRepositoryURL [
 			'tonel://' , (IceRepository registry detect: [ :repo | repo workingCopy packageNames includes: packageName ] ifFound: [ :repo | repo location pathString , '/' , repo subdirectory ] ifNone: [ '' ]) ]
 ]
 
+{ #category : #accessing }
+BaselineOfFamix >> projectClass [
+	^ MetacelloCypressBaselineProject
+]
+
 { #category : #dependencies }
 BaselineOfFamix >> referenceTestResources: spec [
 	spec baseline: 'ReferenceTestResources' with: [ spec repository: repository ]

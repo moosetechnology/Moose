@@ -23,3 +23,8 @@ BaselineOfHashtable >> baseline: spec [
 				group: 'Core' with: #('Hashtable');
 				group: 'Tests' with: #('Hashtable-Tests') ]
 ]
+
+{ #category : #accessing }
+BaselineOfHashtable >> projectClass [
+	^ MetacelloCypressBaselineProject
+]

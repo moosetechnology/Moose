@@ -23,3 +23,8 @@ BaselineOfRoelTyper >> baseline: spec [
 				group: 'Core' with: #('RoelTyper');
 				group: 'Tests' with: #('RoelTyper-Tests') ]
 ]
+
+{ #category : #accessing }
+BaselineOfRoelTyper >> projectClass [
+	^ MetacelloCypressBaselineProject
+]

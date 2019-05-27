@@ -48,6 +48,11 @@ BaselineOfMocketry >> packageRepositoryURL [
 			'tonel://' , (IceRepository registry detect: [ :repo | repo workingCopy packageNames includes: packageName ] ifFound: [ :repo | repo location pathString , '/' , repo subdirectory ] ifNone: [ '' ]) ]
 ]
 
+{ #category : #accessing }
+BaselineOfMocketry >> projectClass [
+	^ MetacelloCypressBaselineProject
+]
+
 { #category : #baselines }
 BaselineOfMocketry >> stateSpec: spec [
 	spec baseline: 'StateSpecs' with: [ spec repository: repository ]

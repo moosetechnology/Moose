@@ -264,7 +264,8 @@ FamixMetamodelGenerator >> generateWithCleaning [
 		disableDuring: [ self cleanPackage.
 			self define.
 			self defineMooseModel.
-			self builder generate ]
+			self builder generate.
+			subbuilders do: #generateRemotes ]
 ]
 
 { #category : #generation }
