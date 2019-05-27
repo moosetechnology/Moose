@@ -15,14 +15,6 @@ FamixTest1NamedEntity class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
-FamixTest1NamedEntity class >> dependencyFM3PropertyDescription [
-	"TODO: Clean"
-
-	^ self allDeclaredProperties
-		select: [ :e | e hasOpposite and: [ e opposite isSource or: [ e opposite isTarget ] ] ]
-]
-
 { #category : #generator }
 FamixTest1NamedEntity class >> generatedSlotNames [
 	<generated>

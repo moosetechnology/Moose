@@ -219,6 +219,25 @@ FamixMetamodelGenerator >> defineClasses [
 FamixMetamodelGenerator >> defineHierarchy [
 ]
 
+{ #category : #generation }
+FamixMetamodelGenerator >> defineMooseModel [
+	| mooseModel |
+	mooseModel := 
+	self builder environment
+		createClassNamed: self mooseModelName
+		superclass: MooseModel
+		traitNames: #()
+		slots: #()
+		in: self packageName
+		overwrite: true.
+	mooseModel
+		compile: 'initialize
+		<generated>
+		super initialize.
+		self metamodel: ' , self class name , ' metamodel'
+		classified: 'initialization'
+]
+
 { #category : #definition }
 FamixMetamodelGenerator >> defineProperties [
 ]
@@ -240,9 +259,11 @@ FamixMetamodelGenerator >> generate [
 
 { #category : #generation }
 FamixMetamodelGenerator >> generateWithCleaning [
+	self flag: 'should call "subbuilders do: #generateRemotes." ?'.
 	EpMonitor
 		disableDuring: [ self cleanPackage.
 			self define.
+			self defineMooseModel.
 			self builder generate ]
 ]
 
@@ -250,6 +271,7 @@ FamixMetamodelGenerator >> generateWithCleaning [
 FamixMetamodelGenerator >> generateWithoutCleaning [
 	EpMonitor
 		disableDuring: [ self define.
+			self defineMooseModel.
 			self builder generate.
 			subbuilders do: #generateRemotes ]
 ]
@@ -269,6 +291,11 @@ FamixMetamodelGenerator >> initialize [
 		builder environment: builder environment.		
 		each prefix -> subbuilder ]).
 
+]
+
+{ #category : #accessing }
+FamixMetamodelGenerator >> mooseModelName [
+	^ self prefix , 'MooseModel'
 ]
 
 { #category : #definition }

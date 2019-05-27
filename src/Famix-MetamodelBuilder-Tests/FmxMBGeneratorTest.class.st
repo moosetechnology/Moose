@@ -12,6 +12,33 @@ FmxMBGeneratorTest >> testBuilderWithDefinitions [
 ]
 
 { #category : #tests }
+FmxMBGeneratorTest >> testGenerateMooseModelSubclass [
+
+	FamixTest1Generator new generateWithCleaning.
+	self assert: ('Famix-Test1-Entities' asPackage definedClasses anySatisfy: [ :c | c superclass = MooseModel]).
+	self assert: ('Famix-Test1-Entities' asPackage definedClasses anySatisfy: [ :c | c name = 'FamixTest1MooseModel'])
+]
+
+{ #category : #tests }
+FmxMBGeneratorTest >> testMooseModelSubclassHasInitialize [
+	| mooseModel |
+	FamixTest1Generator new generateWithCleaning.
+	mooseModel := 'FamixTest1MooseModel' asClass.
+	self
+		assert: (mooseModel methods anySatisfy: [ :m | m selector = 'initialize' ])
+]
+
+{ #category : #tests }
+FmxMBGeneratorTest >> testMooseModelSubclassHasMetaModel [
+	| mooseModel |
+	FamixTest1Generator new generateWithCleaning.
+	mooseModel := 'FamixTest1MooseModel' asClass new.
+	self
+		assert: mooseModel metamodel
+		equals: FamixTest1Generator metamodel
+]
+
+{ #category : #tests }
 FmxMBGeneratorTest >> testNewRepository [
 
 	| repository |
