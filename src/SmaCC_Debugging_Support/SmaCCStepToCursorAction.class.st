@@ -1,7 +1,7 @@
 Class {
 	#name : #SmaCCStepToCursorAction,
 	#superclass : #SmaCCScannerStepToAction,
-	#category : #'SmaCC_Debugging_Support'
+	#category : #'SmaCC_Debugging_Support-Debugger'
 }
 
 { #category : #registration }

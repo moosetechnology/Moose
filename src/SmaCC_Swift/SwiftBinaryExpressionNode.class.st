@@ -153,7 +153,7 @@ SwiftBinaryExpressionNode >> compositeNodeVariables [
 
 { #category : #generated }
 SwiftBinaryExpressionNode >> compositeTokenVariables [
-	^ #(#identifierTokens #lessThanTokens #commaTokens #greaterThanTokens #integer_literalTokens #floating_point_literalTokens #full_string_literalTokens #leftBracketTokens #rightBracketTokens #colonTokens #selfTokens #periodTokens #initTokens #leftBraceTokens #leftParenTokens #rightParenTokens #inoutTokens #letTokens #_Tokens #rightBraceTokens #operatorTokens #minusGreaterThanTokens #questionMarkTokens #bangTokens #protocolTokens #typeTokens #periodPeriodPeriodTokens #equalTokens #varTokens #dynamicTypeTokens)
+	^ #(#identifierTokens #lessThanTokens #commaTokens #greaterThanTokens #integer_literalTokens #floating_point_literalTokens #full_string_literalTokens #leftBracketTokens #rightBracketTokens #colonTokens #selfTokens #periodTokens #initTokens #leftBraceTokens #leftParenTokens #rightParenTokens #inoutTokens #letTokens #_Tokens #minusGreaterThanTokens #questionMarkTokens #bangTokens #protocolTokens #typeTokens #periodPeriodPeriodTokens #equalTokens #varTokens #rightBraceTokens #operatorTokens #dynamicTypeTokens)
 ]
 
 { #category : #generated }
@@ -271,8 +271,6 @@ SwiftBinaryExpressionNode >> initialize [
 	inoutTokens := OrderedCollection new: 2.
 	letTokens := OrderedCollection new: 2.
 	_Tokens := OrderedCollection new: 2.
-	rightBraceTokens := OrderedCollection new: 2.
-	operatorTokens := OrderedCollection new: 2.
 	minusGreaterThanTokens := OrderedCollection new: 2.
 	questionMarkTokens := OrderedCollection new: 2.
 	bangTokens := OrderedCollection new: 2.
@@ -281,6 +279,8 @@ SwiftBinaryExpressionNode >> initialize [
 	periodPeriodPeriodTokens := OrderedCollection new: 2.
 	equalTokens := OrderedCollection new: 2.
 	varTokens := OrderedCollection new: 2.
+	rightBraceTokens := OrderedCollection new: 2.
+	operatorTokens := OrderedCollection new: 2.
 	statements := OrderedCollection new: 2.
 	dynamicTypeTokens := OrderedCollection new: 2.
 	operators := OrderedCollection new: 2.

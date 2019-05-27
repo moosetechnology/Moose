@@ -145,10 +145,17 @@ SmaCCParser class >> parseFile: aString [
 
 { #category : #parsing }
 SmaCCParser class >> parseFile: aString encoding: encodingString [
-	^ aString asFileReference
+	| encoding fileRef |
+	fileRef := aString asFileReference.
+	encoding := encodingString
+		ifNil: [ [ fileRef
+				binaryReadStreamDo: [ :in | (ZnCharacterEncoder detectEncoding: in upToEnd) identifier ] ]
+				on: ZnCharacterEncodingError
+				do: [ nil ] ].
+	^ fileRef
 		readStreamDo: [ :stream | 
 			| contents |
-			self setEncoding: encodingString on: stream.
+			self setEncoding: encoding on: stream.
 			contents := stream contents.
 			(self parse: contents startingAt: self defaultStartingState)
 				ifNotNil: [ :each | 
@@ -236,6 +243,14 @@ SmaCCParser class >> setEncoding: aString on: aStream [
 { #category : #encoding }
 SmaCCParser class >> setEncodingOn: aStream [
 	self setEncoding: nil on: aStream
+]
+
+{ #category : #accessing }
+SmaCCParser class >> startingStateNames [
+	^ ((self class allSelectors
+		select: [ :each | each beginsWith: 'startingStateFor' ])
+		collect: [ :each | each asString copyFrom: 17 to: each size ])
+		asSortedCollection
 ]
 
 { #category : #accessing }
@@ -437,6 +452,11 @@ SmaCCParser >> dismissStackTopForErrorRecovery: anInteger [
 	^ stackContents
 ]
 
+{ #category : #private }
+SmaCCParser >> dismissToken [
+	currentToken := nil
+]
+
 { #category : #accessing }
 SmaCCParser >> emptySymbolTokenId [
 	^ scanner emptySymbolTokenId
@@ -582,10 +602,12 @@ SmaCCParser >> performParsingLoop [
 ]
 
 { #category : #private }
-SmaCCParser >> performReduceMethod: aSymbol with: items [
-	^ aSymbol last == $:
-		ifTrue: [ self perform: aSymbol with: items ]
-		ifFalse: [ self perform: aSymbol ]
+SmaCCParser >> performReduceEntry: entryArray with: items [
+	| symbol |
+	symbol := entryArray at: 3.
+	^ symbol last == $:
+		ifTrue: [ self perform: symbol with: items ]
+		ifFalse: [ self perform: symbol ]
 ]
 
 { #category : #private }
@@ -610,12 +632,10 @@ SmaCCParser >> reduce: anInteger [
 	| reduceEntry items size |
 	reduceEntry := self reduceTable at: anInteger.
 	items := Array new: (size := reduceEntry at: 2).
-	size to: 1 by: -1 do:
-		[ :i | 
+	size to: 1 by: -1 do: [ :i | 
 		items at: i put: self popNodeStack.
 		stateStack removeLast ].
-	nodeStack
-		addLast: (self performReduceMethod: (reduceEntry at: 3) with: items).
+	nodeStack addLast: (self performReduceEntry: reduceEntry with: items).
 	stateStack
 		addLast: ((self actionFor: (reduceEntry at: 1)) bitShift: -2)
 ]

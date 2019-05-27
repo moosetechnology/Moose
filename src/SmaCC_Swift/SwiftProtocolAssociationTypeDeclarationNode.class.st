@@ -79,7 +79,7 @@ SwiftProtocolAssociationTypeDeclarationNode >> commaTokens: anOrderedCollection 
 
 { #category : #generated }
 SwiftProtocolAssociationTypeDeclarationNode >> compositeTokenVariables [
-	^ #(#identifierTokens #colonTokens #lessThanTokens #commaTokens #greaterThanTokens #periodTokens #leftBracketTokens #rightBracketTokens #minusGreaterThanTokens #leftParenTokens #rightParenTokens #questionMarkTokens #bangTokens #protocolTokens #typeTokens #periodPeriodPeriodTokens #_Tokens #inoutTokens #leftBraceTokens #rightBraceTokens #integer_literalTokens #floating_point_literalTokens #full_string_literalTokens #operatorTokens)
+	^ #(#identifierTokens #colonTokens #lessThanTokens #greaterThanTokens #periodTokens #commaTokens #leftBracketTokens #rightBracketTokens #minusGreaterThanTokens #leftParenTokens #rightParenTokens #questionMarkTokens #bangTokens #protocolTokens #typeTokens #periodPeriodPeriodTokens #_Tokens #inoutTokens #leftBraceTokens #rightBraceTokens #integer_literalTokens #floating_point_literalTokens #full_string_literalTokens #operatorTokens)
 ]
 
 { #category : #generated }
@@ -138,9 +138,9 @@ SwiftProtocolAssociationTypeDeclarationNode >> initialize [
 	identifierTokens := OrderedCollection new: 2.
 	colonTokens := OrderedCollection new: 2.
 	lessThanTokens := OrderedCollection new: 2.
-	commaTokens := OrderedCollection new: 2.
 	greaterThanTokens := OrderedCollection new: 2.
 	periodTokens := OrderedCollection new: 2.
+	commaTokens := OrderedCollection new: 2.
 	leftBracketTokens := OrderedCollection new: 2.
 	rightBracketTokens := OrderedCollection new: 2.
 	minusGreaterThanTokens := OrderedCollection new: 2.

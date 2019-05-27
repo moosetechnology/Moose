@@ -32,12 +32,12 @@ JavaScanner >> UNSIGNED_RIGHT_SHIFTId [
 
 { #category : #generated }
 JavaScanner >> emptySymbolTokenId [
-	^ 327
+	^ 295
 ]
 
 { #category : #generated }
 JavaScanner >> errorTokenId [
-	^ 328
+	^ 296
 ]
 
 { #category : #generated }

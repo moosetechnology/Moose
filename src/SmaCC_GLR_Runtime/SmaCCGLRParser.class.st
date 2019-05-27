@@ -281,6 +281,25 @@ SmaCCGLRParser >> parseAll: aBoolean [
 ]
 
 { #category : #private }
+SmaCCGLRParser >> parseCurrentToken [
+	| actions action isAccept |
+	[ actions := self actionsForCurrentToken.
+	actions isEmpty
+		ifTrue: [ isAccept := false.
+			self killState
+				ifFalse: [ ^ currentToken := nil ] ]
+		ifFalse:
+			[ 2 to: actions size do: [ :i | self splitWithAction: (actions at: i) ].
+			action := actions first.
+			isAccept := action = self acceptAction.
+			isAccept
+				ifFalse: [ self performAction: action ] ].
+	isAccept or: [ currentToken isNil ] ] whileFalse.
+	action = self acceptAction
+		ifTrue: [ currentState markAccepted ]
+]
+
+{ #category : #private }
 SmaCCGLRParser >> performParsingLoop [
 	| result |
 	self setStartingStatesIfNone.
@@ -302,7 +321,6 @@ SmaCCGLRParser >> performParsingLoop [
 
 { #category : #private }
 SmaCCGLRParser >> performParsingStep [
-	| actions action isAccept |
 	currentState isAccepted
 		ifTrue: [ ^ self ].
 	self restoreState: currentState.
@@ -310,30 +328,17 @@ SmaCCGLRParser >> performParsingStep [
 		ifTrue: [ ^ self processEOFToken ].
 	currentToken isPattern
 		ifTrue: [ ^ self splitForPatternToken ].
-	[ actions := self actionsForCurrentToken.
-	actions isEmpty
-		ifTrue: [ isAccept := false.
-			self killState
-				ifFalse: [ ^ currentToken := nil ] ]
-		ifFalse: [ 2 to: actions size do: [ :i | self splitWithAction: (actions at: i) ].
-			action := actions first.
-			isAccept := action = self acceptAction.
-			isAccept
-				ifFalse: [ self performAction: action ] ].
-	isAccept or: [ currentToken isNil ] ] whileFalse.
-	action = self acceptAction
-		ifTrue: [ currentState markAccepted ]
+	self parseCurrentToken
 ]
 
 { #category : #private }
-SmaCCGLRParser >> performReduceMethod: aSymbol with: items [
-	^ (states size = 1 or: [ parseAll ])
+SmaCCGLRParser >> performReduceEntry: entryArray with: items [
+	^ (states size = 1
+		or: [ parseAll or: [ entryArray at: 5 ifAbsent: [ false ] ] ])
 		ifTrue:
 			[ 1 to: items size do: [ :i | items at: i put: ((items at: i) performOnSmaCCParser: self) ].
-			super performReduceMethod: aSymbol with: items ]
-		ifFalse: [ SmaCCDeferredReduceAction
-				selector: aSymbol
-				arguments: items ]
+			super performReduceEntry: entryArray with: items ]
+		ifFalse: [ SmaCCDeferredReduceAction entry: entryArray arguments: items ]
 ]
 
 { #category : #private }
@@ -386,12 +391,10 @@ SmaCCGLRParser >> reduce: anInteger [
 	nodeStack size < size
 		ifTrue: [ self killState.
 			^ currentToken := nil ].
-	size to: 1 by: -1 do:
-		[ :i | 
+	size to: 1 by: -1 do: [ :i | 
 		items at: i put: self popNodeStack.
 		stateStack removeLast ].
-	nodeStack
-		addLast: (self performReduceMethod: (reduceEntry at: 3) with: items).
+	nodeStack addLast: (self performReduceEntry: reduceEntry with: items).
 	stateStack
 		addLast: ((self actionFor: (reduceEntry at: 1)) bitShift: -2)
 ]

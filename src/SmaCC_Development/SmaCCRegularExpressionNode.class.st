@@ -22,7 +22,7 @@ Class {
 		'position',
 		'states'
 	],
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-Regular Expressions'
 }
 
 { #category : #constructing }

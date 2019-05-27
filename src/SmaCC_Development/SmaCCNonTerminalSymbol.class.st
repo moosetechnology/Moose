@@ -5,7 +5,7 @@ Class {
 		'productions',
 		'position'
 	],
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-Model'
 }
 
 { #category : #accessing }
@@ -82,6 +82,11 @@ SmaCCNonTerminalSymbol >> returnsSingleVariable [
 { #category : #testing }
 SmaCCNonTerminalSymbol >> returnsVariableCollection [
 	^ productions anySatisfy: [ :each | each returnsVariableCollection ]
+]
+
+{ #category : #accessing }
+SmaCCNonTerminalSymbol >> ruleNumber [
+	^ position ifNil: [ 0 ]
 ]
 
 { #category : #accessing }

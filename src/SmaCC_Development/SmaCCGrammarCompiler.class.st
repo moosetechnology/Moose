@@ -15,7 +15,7 @@ Class {
 	#classVars : [
 		'OptimizeTransitionTable'
 	],
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-Compiler'
 }
 
 { #category : #accessing }
@@ -304,12 +304,15 @@ SmaCCGrammarCompiler >> optimizedShiftFrom: row to: stateIndex inTable: anArray 
 	(action bitAnd: 2r11) = SmaCCReduceAction id
 		ifFalse: [ ^ nil ].
 	reduceEntry := reduceTable at: (action bitShift: -2).
-	reduceEntry last = #liftFirstValue:
+	(reduceEntry at: 3) = #liftFirstValue:
 		ifFalse: [ ^ nil ].
 	(reduceEntry at: 2) = 1
 		ifFalse: [ ^ nil ].
 	otherAction := row at: reduceEntry first.
-	^ (self optimizedShiftFrom: row to: (otherAction bitShift: -2) inTable: anArray) ifNil: [ otherAction ]
+	^ (self
+		optimizedShiftFrom: row
+		to: (otherAction bitShift: -2)
+		inTable: anArray) ifNil: [ otherAction ]
 ]
 
 { #category : #accessing }
@@ -332,10 +335,11 @@ SmaCCGrammarCompiler >> reduceTable [
 { #category : #'reduction table' }
 SmaCCGrammarCompiler >> reduceTableIndexFor: aSmaCCReduceAction [
 	| value |
-	value := Array
-		with: (scannerCompiler symbols indexOf: aSmaCCReduceAction symbol)
-		with: aSmaCCReduceAction rhs size
-		with: (self codeGenerator compileSourceFor: aSmaCCReduceAction).
+	value := {(scannerCompiler symbols indexOf: aSmaCCReduceAction symbol).
+	aSmaCCReduceAction rhs size.
+	(self codeGenerator compileSourceFor: aSmaCCReduceAction).
+	aSmaCCReduceAction rhs ruleNumber.
+	aSmaCCReduceAction rhs reduceCode isImmediate}.
 	^ reduceTable
 		indexOf: value
 		ifAbsent: [ reduceTable

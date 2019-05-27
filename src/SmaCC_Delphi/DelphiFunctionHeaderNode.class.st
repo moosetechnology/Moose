@@ -61,8 +61,8 @@ DelphiFunctionHeaderNode >> ignoredCompositeTokenVariables [
 { #category : #'generated-initialize-release' }
 DelphiFunctionHeaderNode >> initialize [
 	super initialize.
-	arguments := OrderedCollection new: 2.
 	semicolons := OrderedCollection new: 2.
+	arguments := OrderedCollection new: 2.
 ]
 
 { #category : #generated }

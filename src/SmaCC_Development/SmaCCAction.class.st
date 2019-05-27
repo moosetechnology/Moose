@@ -13,7 +13,7 @@ Subclasses must implement the following messages:
 Class {
 	#name : #SmaCCAction,
 	#superclass : #Object,
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-Actions'
 }
 
 { #category : #comparing }

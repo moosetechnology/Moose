@@ -24,6 +24,11 @@ SmaCCAssociativeDirectiveNode >> initialize [
 	symbols := OrderedCollection new: 2.
 ]
 
+{ #category : #testing }
+SmaCCAssociativeDirectiveNode >> isAssociativeDirective [
+	^ true
+]
+
 { #category : #generated }
 SmaCCAssociativeDirectiveNode >> symbols [
 	^ symbols

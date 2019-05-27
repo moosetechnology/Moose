@@ -12,7 +12,7 @@ Class {
 		'classDefinition',
 		'index'
 	],
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-Compilation Model'
 }
 
 { #category : #comparing }

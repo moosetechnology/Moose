@@ -5,7 +5,7 @@ Class {
 		'matchResult',
 		'node'
 	],
-	#category : #'SmaCC_Debugging_Support'
+	#category : #'SmaCC_Debugging_Support-Pattern Matching'
 }
 
 { #category : #'instance creation' }

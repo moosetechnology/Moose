@@ -6,7 +6,7 @@ Class {
 		'nfa',
 		'actionMap'
 	],
-	#category : #'SmaCC_Debugging_Support'
+	#category : #'SmaCC_Debugging_Support-Simulation'
 }
 
 { #category : #examples }
@@ -56,6 +56,18 @@ SmaCCRegexSimulator >> grammar: aSmaCCGrammarDefinitionNode [
 ]
 
 { #category : #private }
+SmaCCRegexSimulator >> mapNodesToActionsFor: aNode [
+	aNode
+		allNodesDo: [ :each | 
+			(each isKindOf: SmaCCTokenRegexNode)
+				ifTrue: [ (aNode topParent tokenNamed: each name value)
+						ifNotNil: [ :token | self mapNodesToActionsFor: token ] ].
+			actionMap add: each.
+			each regularExpression
+				ifNotNil: [ :re | re action: actionMap size ] ]
+]
+
+{ #category : #private }
 SmaCCRegexSimulator >> matchedNodesFrom: stateCollection [
 	| indices |
 	indices := IdentitySet new.
@@ -98,10 +110,8 @@ SmaCCRegexSimulator >> tokenName: aString [
 	[ regex := SmaCCSequenceRENode nodes: {node regularExpression}.
 	actionMap add: node.
 	regex action: 1.
-	node
-		allNodesDo: [ :each | 
-			actionMap add: each.
-			each regularExpression ifNotNil: [ :re | re action: actionMap size ] ].
+	self mapNodesToActionsFor: node.
 	nfa := regex asNFA ]
-		ensure: [ grammar withAllNodesDo: [ :each | each removeAttributeNamed: #regularExpression ] ]
+		ensure: [ grammar
+				withAllNodesDo: [ :each | each removeAttributeNamed: #regularExpression ] ]
 ]

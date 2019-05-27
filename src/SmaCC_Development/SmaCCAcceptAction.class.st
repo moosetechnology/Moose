@@ -6,7 +6,7 @@ SmaCCAcceptAction represents the LR accept action.
 Class {
 	#name : #SmaCCAcceptAction,
 	#superclass : #SmaCCPrimitiveAction,
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-Actions'
 }
 
 { #category : #accessing }

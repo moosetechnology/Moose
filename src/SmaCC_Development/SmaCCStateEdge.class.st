@@ -4,7 +4,7 @@ SmaCCStateEdge is a SmaCCEdge on states (that are represented by symbols) in the
 Class {
 	#name : #SmaCCStateEdge,
 	#superclass : #SmaCCEdge,
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-DFA/NFA'
 }
 
 { #category : #comparing }

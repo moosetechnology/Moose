@@ -23,6 +23,11 @@ SmaCCDirectiveNode >> directiveStartToken: aSmaCCToken [
 	directiveStartToken := aSmaCCToken
 ]
 
+{ #category : #testing }
+SmaCCDirectiveNode >> isDirective [
+	^ true
+]
+
 { #category : #generated }
 SmaCCDirectiveNode >> semicolon [
 	^ semicolon

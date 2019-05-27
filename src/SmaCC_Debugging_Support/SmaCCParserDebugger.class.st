@@ -7,7 +7,7 @@ Class {
 	#classInstVars : [
 		'availableAutomatically'
 	],
-	#category : #'SmaCC_Debugging_Support'
+	#category : #'SmaCC_Debugging_Support-Debugger'
 }
 
 { #category : #accessing }
@@ -214,14 +214,18 @@ SmaCCParserDebugger >> glrParserStates [
 { #category : #private }
 SmaCCParserDebugger >> inputSelectionInterval [
 	| context receiver |
-	context := self session context findContextSuchThat: [ :each | (each receiver isKindOf: SmaCCScanner) or: [ each receiver isKindOf: SmaCCParser ] ].
+	context := self session context
+		findContextSuchThat: [ :each | 
+			(each receiver isKindOf: SmaCCScanner)
+				or: [ each receiver isKindOf: SmaCCParser ] ].
 	context isNil
 		ifTrue: [ ^ 1 to: 0 ].
 	receiver := context receiver.
 	^ (receiver isKindOf: SmaCCParser)
-		ifTrue: [ (receiver currentToken isNil or: [ receiver currentToken startPosition isNil ])
+		ifTrue: [ (receiver currentToken isNil
+				or: [ receiver currentToken startPosition isNil ])
 				ifTrue: [ self scanner position + 1 to: self scanner position ]
-				ifFalse: [ receiver currentToken startPosition to: receiver currentToken stopPosition ] ]
+				ifFalse: [ receiver currentToken sourceInterval ] ]
 		ifFalse: [ self scanner debugStart + 1 to: self scanner position ]
 ]
 
@@ -254,7 +258,7 @@ SmaCCParserDebugger >> parserStack [
 	items := OrderedCollection new.
 	1 to: states size - 1 do: [ :i | items addFirst: (Array with: (self symbolForTransitionFrom: (states at: i) to: (states at: i + 1)) with: (nodes at: i)) ].
 	context := self session context
-		findContextSuchThat: [ :each | (each receiver isKindOf: SmaCCParser) and: [ each selector = #performReduceMethod:with: ] ].
+		findContextSuchThat: [ :each | (each receiver isKindOf: SmaCCParser) and: [ each selector = #performReduceEntry:with: ] ].
 	context notNil
 		ifTrue: [ items add: #('' '').
 			reduceContext := context findContextSuchThat: [ :each | (each receiver isKindOf: SmaCCParser) and: [ each selector = #reduce: ] ].
@@ -357,11 +361,12 @@ SmaCCParserDebugger >> tokenIntervalFor: anObject [
 					interval isNil
 						ifTrue: [ interval := newInterval ]
 						ifFalse: [ newInterval notNil
-								ifTrue: [ interval := (interval first min: newInterval first) to: (interval last max: newInterval last) ] ] ].
+								ifTrue:
+									[ interval := (interval first min: newInterval first) to: (interval last max: newInterval last) ] ] ].
 			^ interval ].
 	(anObject isKindOf: SmaCCToken)
 		ifTrue: [ (anObject startPosition notNil and: [ anObject startPosition > 0 ])
-				ifTrue: [ ^ anObject startPosition to: anObject stopPosition ] ].
+				ifTrue: [ ^ anObject sourceInterval ] ].
 	(anObject isKindOf: SmaCCParseNode)
 		ifTrue: [ | start end tokens |
 			start := SmallInteger maxVal.

@@ -27,7 +27,7 @@ Class {
 		'TokenNameBlock',
 		'TokenNameMap'
 	],
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-Model'
 }
 
 { #category : #accessing }
@@ -213,13 +213,7 @@ SmaCCGrammar >> allStartingSymbols [
 	startingSymbols remove: default symbol ifAbsent: [  ].
 	startingSymbols := startingSymbols
 		collect:
-			[ :each | 
-			(self newStartingSymbolNamed: each name)
-				addProduction:
-					(self newRHS
-						add: each;
-						yourself);
-				yourself ].
+			[ :each | self createStartingSymbolFor: each ].
 	startingSymbols addFirst: default.
 	^ startingSymbols
 ]
@@ -277,6 +271,16 @@ SmaCCGrammar >> codeGenerator [
 SmaCCGrammar >> codeGenerator: aSmaCCCodeGenerator [
 	codeGenerator := aSmaCCCodeGenerator.
 	aSmaCCCodeGenerator grammar: self
+]
+
+{ #category : #accessing }
+SmaCCGrammar >> createStartingSymbolFor: smaccSymbol [
+	^ (self newStartingSymbolNamed: smaccSymbol name)
+		addProduction:
+			(self newRHS
+				add: smaccSymbol;
+				yourself);
+		yourself
 ]
 
 { #category : #accessing }
@@ -597,6 +601,11 @@ SmaCCGrammar >> suffix [
 { #category : #'initialize-release' }
 SmaCCGrammar >> suffix: aString [
 	suffix := aString
+]
+
+{ #category : #accessing }
+SmaCCGrammar >> symbolNamed: aString [
+	^self findSymbolNamed: aString ifAbsent: [ nil ]
 ]
 
 { #category : #private }
