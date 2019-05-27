@@ -19,3 +19,8 @@ BaselineOfPackageBlueprintTestResources >> baseline: spec [
 				package: 'Moose-TestResources-PackageBlueprint-P3';
 				package: 'Moose-TestResources-PackageBlueprint-P4' with: [ spec requires: #('Moose-TestResources-PackageBlueprint-P3') ] ]
 ]
+
+{ #category : #accessing }
+BaselineOfPackageBlueprintTestResources >> projectClass [
+	^ MetacelloCypressBaselineProject
+]

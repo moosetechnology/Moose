@@ -23,3 +23,8 @@ BaselineOfStateSpecs >> baseline: spec [
 				group: 'Help' with: #('StateSpecs-Help');
 				group: 'Tests' with: #('StateSpecs-Specs-Tests' 'StateSpecs-DSL-ShouldExpressions-Tests' 'StateSpecs-DSL-ClassWords-Tests') ]
 ]
+
+{ #category : #accessing }
+BaselineOfStateSpecs >> projectClass [
+	^ MetacelloCypressBaselineProject
+]

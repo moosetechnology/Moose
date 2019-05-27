@@ -20,3 +20,8 @@ BaselineOfCollectionExtensions >> baseline: spec [
 				group: 'Core' with: #('CollectionExtensions');
 				group: 'Tests' with: #('CollectionExtensions-Tests') ]
 ]
+
+{ #category : #accessing }
+BaselineOfCollectionExtensions >> projectClass [
+	^ MetacelloCypressBaselineProject
+]
