@@ -58,6 +58,11 @@ BaselineOfFame >> packageRepositoryURL [
 			'tonel://' , (IceRepository registry detect: [ :repo | repo workingCopy packageNames includes: packageName ] ifFound: [ :repo | repo location pathString , '/' , repo subdirectory ] ifNone: [ '' ]) ]
 ]
 
+{ #category : #accessing }
+BaselineOfFame >> projectClass [
+	^ MetacelloCypressBaselineProject
+]
+
 { #category : #dependencies }
 BaselineOfFame >> stateSpecs: spec [
 	spec baseline: 'StateSpecs' with: [ spec repository: repository ]

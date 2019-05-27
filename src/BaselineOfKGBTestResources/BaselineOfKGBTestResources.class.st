@@ -38,3 +38,8 @@ BaselineOfKGBTestResources >> project [
 		loadType: #atomic;
 		yourself
 ]
+
+{ #category : #accessing }
+BaselineOfKGBTestResources >> projectClass [
+	^ MetacelloCypressBaselineProject
+]
