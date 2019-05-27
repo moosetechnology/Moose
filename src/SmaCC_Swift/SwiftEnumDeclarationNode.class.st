@@ -147,7 +147,7 @@ SwiftEnumDeclarationNode >> compositeNodeVariables [
 
 { #category : #generated }
 SwiftEnumDeclarationNode >> compositeTokenVariables [
-	^ #(#_Tokens #identifierTokens #leftParenTokens #rightParenTokens #leftBracketTokens #rightBracketTokens #leftBraceTokens #rightBraceTokens #integer_literalTokens #floating_point_literalTokens #full_string_literalTokens #operatorTokens #lessThanTokens #colonTokens #commaTokens #greaterThanTokens #periodTokens #protocolTokens #whereTokens #equalEqualTokens #importTokens #typealiasTokens #structTokens #classTokens #enumTokens #varTokens #funcTokens #mutatingTokens #nonmutatingTokens #overrideTokens #staticTokens #unownedTokens #unownedLeftParensafeRightParenTokens #unownedLeftParenunsafeRightParenTokens #weakTokens #letTokens #minusGreaterThanTokens #questionMarkTokens #bangTokens #typeTokens #getTokens #setTokens #equalTokens #willSetTokens #didSetTokens #convenienceTokens #initTokens #inoutTokens #periodPeriodPeriodTokens #deinitTokens #extensionTokens #subscriptTokens #caseTokens)
+	^ #(#_Tokens #identifierTokens #leftParenTokens #rightParenTokens #leftBracketTokens #rightBracketTokens #leftBraceTokens #rightBraceTokens #integer_literalTokens #floating_point_literalTokens #full_string_literalTokens #operatorTokens #lessThanTokens #colonTokens #commaTokens #greaterThanTokens #periodTokens #protocolTokens #whereTokens #equalEqualTokens #importTokens #typealiasTokens #structTokens #classTokens #enumTokens #varTokens #funcTokens #mutatingTokens #nonmutatingTokens #overrideTokens #staticTokens #unownedTokens #unownedLeftParensafeRightParenTokens #unownedLeftParenunsafeRightParenTokens #weakTokens #letTokens #minusGreaterThanTokens #questionMarkTokens #bangTokens #typeTokens #getTokens #setTokens #equalTokens #willSetTokens #didSetTokens #periodPeriodPeriodTokens #convenienceTokens #initTokens #inoutTokens #deinitTokens #extensionTokens #subscriptTokens #caseTokens)
 ]
 
 { #category : #generated }
@@ -385,11 +385,11 @@ SwiftEnumDeclarationNode >> initialize [
 	expressions := OrderedCollection new: 2.
 	willSetTokens := OrderedCollection new: 2.
 	didSetTokens := OrderedCollection new: 2.
+	periodPeriodPeriodTokens := OrderedCollection new: 2.
 	declarations := OrderedCollection new: 2.
 	convenienceTokens := OrderedCollection new: 2.
 	initTokens := OrderedCollection new: 2.
 	inoutTokens := OrderedCollection new: 2.
-	periodPeriodPeriodTokens := OrderedCollection new: 2.
 	deinitTokens := OrderedCollection new: 2.
 	extensionTokens := OrderedCollection new: 2.
 	subscriptTokens := OrderedCollection new: 2.

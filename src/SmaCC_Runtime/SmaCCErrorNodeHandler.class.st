@@ -53,7 +53,7 @@ SmaCCErrorNodeHandler >> findErrorHandlerIfNoneUseErrorNumber: anInteger [
 	self stateStack addLast: newState.
 	self nodeStack
 		addLast:
-			(SmaCCError new
+			(SmaCCErrorNode new
 				stackContents: stackContents;
 				dismissedTokens: dismissedTokens;
 				errorToken: startingErrorToken;
@@ -82,7 +82,7 @@ SmaCCErrorNodeHandler >> finishErrorParse: errorToken dismissed: dismissedTokens
 						self stateStack addLast: each.
 						self nodeStack
 							addLast:
-								(SmaCCError new
+								(SmaCCErrorNode new
 									stackContents: stackContents;
 									dismissedTokens: dismissedTokens;
 									errorToken: errorToken;

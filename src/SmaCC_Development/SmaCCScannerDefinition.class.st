@@ -6,7 +6,7 @@ Class {
 		'states',
 		'excludeStates'
 	],
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-Model'
 }
 
 { #category : #accessing }

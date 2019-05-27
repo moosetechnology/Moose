@@ -102,7 +102,7 @@ SwiftSubscriptDeclarationNode >> compositeNodeVariables [
 
 { #category : #generated }
 SwiftSubscriptDeclarationNode >> compositeTokenVariables [
-	^ #(#_Tokens #identifierTokens #leftParenTokens #rightParenTokens #inoutTokens #letTokens #colonTokens #leftBracketTokens #rightBracketTokens #minusGreaterThanTokens #lessThanTokens #greaterThanTokens #periodTokens #questionMarkTokens #bangTokens #protocolTokens #commaTokens #typeTokens #equalTokens #varTokens #periodPeriodPeriodTokens #leftBraceTokens #rightBraceTokens #integer_literalTokens #floating_point_literalTokens #full_string_literalTokens #operatorTokens)
+	^ #(#_Tokens #identifierTokens #leftParenTokens #rightParenTokens #leftBracketTokens #rightBracketTokens #leftBraceTokens #rightBraceTokens #integer_literalTokens #floating_point_literalTokens #full_string_literalTokens #operatorTokens #inoutTokens #letTokens #colonTokens #minusGreaterThanTokens #periodTokens #questionMarkTokens #bangTokens #protocolTokens #lessThanTokens #greaterThanTokens #typeTokens #commaTokens #equalTokens #varTokens #periodPeriodPeriodTokens)
 ]
 
 { #category : #generated }
@@ -182,30 +182,30 @@ SwiftSubscriptDeclarationNode >> initialize [
 	identifierTokens := OrderedCollection new: 2.
 	leftParenTokens := OrderedCollection new: 2.
 	rightParenTokens := OrderedCollection new: 2.
-	inoutTokens := OrderedCollection new: 2.
-	letTokens := OrderedCollection new: 2.
-	colonTokens := OrderedCollection new: 2.
 	leftBracketTokens := OrderedCollection new: 2.
 	rightBracketTokens := OrderedCollection new: 2.
-	minusGreaterThanTokens := OrderedCollection new: 2.
-	lessThanTokens := OrderedCollection new: 2.
-	greaterThanTokens := OrderedCollection new: 2.
-	periodTokens := OrderedCollection new: 2.
-	questionMarkTokens := OrderedCollection new: 2.
-	bangTokens := OrderedCollection new: 2.
-	protocolTokens := OrderedCollection new: 2.
-	commaTokens := OrderedCollection new: 2.
-	typeTokens := OrderedCollection new: 2.
-	equalTokens := OrderedCollection new: 2.
-	expressions := OrderedCollection new: 2.
-	varTokens := OrderedCollection new: 2.
-	periodPeriodPeriodTokens := OrderedCollection new: 2.
 	leftBraceTokens := OrderedCollection new: 2.
 	rightBraceTokens := OrderedCollection new: 2.
 	integer_literalTokens := OrderedCollection new: 2.
 	floating_point_literalTokens := OrderedCollection new: 2.
 	full_string_literalTokens := OrderedCollection new: 2.
 	operatorTokens := OrderedCollection new: 2.
+	inoutTokens := OrderedCollection new: 2.
+	letTokens := OrderedCollection new: 2.
+	colonTokens := OrderedCollection new: 2.
+	minusGreaterThanTokens := OrderedCollection new: 2.
+	periodTokens := OrderedCollection new: 2.
+	questionMarkTokens := OrderedCollection new: 2.
+	bangTokens := OrderedCollection new: 2.
+	protocolTokens := OrderedCollection new: 2.
+	lessThanTokens := OrderedCollection new: 2.
+	greaterThanTokens := OrderedCollection new: 2.
+	typeTokens := OrderedCollection new: 2.
+	commaTokens := OrderedCollection new: 2.
+	equalTokens := OrderedCollection new: 2.
+	expressions := OrderedCollection new: 2.
+	varTokens := OrderedCollection new: 2.
+	periodPeriodPeriodTokens := OrderedCollection new: 2.
 	blocks := OrderedCollection new: 2.
 ]
 

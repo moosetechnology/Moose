@@ -11,19 +11,19 @@ Class {
 		'reductions',
 		'parser'
 	],
-	#category : #'SmaCC_Debugging_Support'
+	#category : #'SmaCC_Debugging_Support-Roassal'
 }
 
 { #category : #inspecting }
 SmaCCGraphNode class >> gtExampleSmaCCGraphNode [
 	<gtExample>
 	<label: 'SmaCCGraphNode'>
-	
 	| parser |
-	
 	parser := SmaCCDefinitionParser new.
-	
-	^ SmaCCGraphNode named: '' state: parser class defaultStartingState parser: parser
+	^ SmaCCGraphNode
+		named: ''
+		state: parser class defaultStartingState
+		parser: parser
 ]
 
 { #category : #'instance creation' }
@@ -109,6 +109,8 @@ SmaCCGraphNode >> followed: aSmaCCGraphNode [
 { #category : #inspecting }
 SmaCCGraphNode >> gtGraphInspectorViewIn: composite [
 	<gtInspectorPresentationOrder: 20>
+	(composite respondsTo: #roassal2)
+		ifFalse: [ ^ self ].
 	composite roassal2
 		title: 'Graph';
 		initializeView: [ parser roassalViewForStack: self stack ]

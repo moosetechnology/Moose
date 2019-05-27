@@ -65,6 +65,11 @@ SmaCCProductionRuleNode >> initialize [
 	expressions := OrderedCollection new: 2.
 ]
 
+{ #category : #testing }
+SmaCCProductionRuleNode >> isProductionRule [
+	^ true
+]
+
 { #category : #generated }
 SmaCCProductionRuleNode >> name [
 	^ name

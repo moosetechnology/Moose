@@ -33,7 +33,7 @@ JavaInterfaceDeclarationNode >> commas: anOrderedCollection [
 
 { #category : #generated }
 JavaInterfaceDeclarationNode >> compositeNodeVariables [
-	^ #(#modifiers #interfaceTypes #declarations)
+	^ #(#declarations #interfaceTypes #modifiers)
 ]
 
 { #category : #generated }
@@ -71,10 +71,10 @@ JavaInterfaceDeclarationNode >> ignoredTokenVariables [
 { #category : #'generated-initialize-release' }
 JavaInterfaceDeclarationNode >> initialize [
 	super initialize.
-	modifiers := OrderedCollection new: 2.
+	declarations := OrderedCollection new: 2.
 	interfaceTypes := OrderedCollection new: 2.
 	commas := OrderedCollection new: 2.
-	declarations := OrderedCollection new: 2.
+	modifiers := OrderedCollection new: 2.
 ]
 
 { #category : #generated }

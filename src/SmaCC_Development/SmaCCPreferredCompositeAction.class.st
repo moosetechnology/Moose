@@ -12,7 +12,7 @@ Class {
 	#instVars : [
 		'preferredAction'
 	],
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-Actions'
 }
 
 { #category : #'error handling' }

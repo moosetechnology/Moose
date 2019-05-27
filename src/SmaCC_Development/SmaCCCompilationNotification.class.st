@@ -4,5 +4,5 @@ SmaCCCompilationNotification is a Notification that is signaled when a problem o
 Class {
 	#name : #SmaCCCompilationNotification,
 	#superclass : #Notification,
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-Compiler'
 }

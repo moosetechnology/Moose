@@ -20,7 +20,7 @@ Class {
 	#classInstVars : [
 		'keywords'
 	],
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-Compiler'
 }
 
 { #category : #accessing }
@@ -196,12 +196,10 @@ SmaCCSmalltalkCodeGenerator >> addVariable: aSmaCCVariableDefinition forDefiniti
 SmaCCSmalltalkCodeGenerator >> basicCompileSourceFor: aSmaCCReduceAction [
 	| parseTree rewriter methodName existing |
 	parseTree := RBParser
-		parseExpression: aSmaCCReduceAction rhs reduceAction source.
+		parseExpression: aSmaCCReduceAction rhs reduceCode source.
 	(parseTree isLiteralNode
-		and:
-			[ parseTree value isSymbol
-				and:
-					[ parseTree value numArgs <= 1
+		and: [ parseTree value isSymbol
+				and: [ parseTree value numArgs <= 1
 						and: [ self parserClass definesMethod: parseTree value ] ] ])
 		ifTrue: [ ^ parseTree value ].
 	rewriter := self parseTreeRewriterFor: aSmaCCReduceAction rhs.
@@ -213,8 +211,8 @@ SmaCCSmalltalkCodeGenerator >> basicCompileSourceFor: aSmaCCReduceAction [
 			(aSmaCCReduceAction symbol positionOf: aSmaCCReduceAction rhs)
 				printString , ':') asSymbol.
 	parseTree isSequence
-		ifFalse: [ parseTree := RBSequenceNode
-				statements: (Array with: parseTree) ].
+		ifFalse:
+			[ parseTree := RBSequenceNode statements: (Array with: parseTree) ].
 	parseTree := RBMethodNode
 		selector: methodName
 		arguments: (Array with: (RBVariableNode named: 'nodes'))
@@ -238,45 +236,36 @@ SmaCCSmalltalkCodeGenerator >> changes [
 SmaCCSmalltalkCodeGenerator >> closestIsExpressionsFor: aSmaCCCharacterEdge seen: aCollection [
 	| expressions |
 	expressions := OrderedCollection new.
-	isExpressions
-		keysAndValuesDo:
-			[ :string :selector | 
+	self isExpressions
+		keysAndValuesDo: [ :string :selector | 
 			| isInString |
 			isInString := false.
 			((string
-				allSatisfy:
-					[ :each | 
+				allSatisfy: [ :each | 
 					(aSmaCCCharacterEdge transitionObjects includes: each)
 						ifTrue: [ isInString := true ]
 						ifFalse: [ aCollection includes: each ] ]) and: [ isInString ])
 				ifTrue: [ expressions add: selector ] ].
 	(expressions isEmpty
-		or:
-			[ (self minMaxPairsFor: aSmaCCCharacterEdge without: expressions) size
+		or: [ (self minMaxPairsFor: aSmaCCCharacterEdge without: expressions) size
 				> (self minMaxPairsFor: aSmaCCCharacterEdge without: #()) size ])
 		ifTrue: [ ^ #() ].
 	expressions size > 1
-		ifTrue:
-			[ | strings newExpressions |
+		ifTrue: [ | strings newExpressions |
 			strings := expressions
-				collect:
-					[ :each | 
+				collect: [ :each | 
 					each
 						->
-							((isExpressions keyAtValue: each)
+							((self isExpressions keyAtValue: each)
 								select: [ :char | aSmaCCCharacterEdge transitionObjects includes: char ]) ].
 			strings := strings
-				asSortedCollection:
-					[ :a :b | 
+				asSortedCollection: [ :a :b | 
 					a value size > b value size
-						or:
-							[ a value size = b value size
-								and:
-									[ (isExpressions keyAtValue: a key) size
-										< (isExpressions keyAtValue: b key) size ] ] ].
+						or: [ a value size = b value size
+								and: [ (self isExpressions keyAtValue: a key) size
+										< (self isExpressions keyAtValue: b key) size ] ] ].
 			newExpressions := OrderedCollection with: strings first.
-			2 to: strings size do:
-				[ :i | 
+			2 to: strings size do: [ :i | 
 				| left |
 				left := (strings at: i) value.
 				newExpressions
@@ -673,7 +662,6 @@ SmaCCSmalltalkCodeGenerator >> initialize [
 	model := RBNamespace new
 		name: 'Compile Scanner/Parser';
 		yourself.
-	self initializeIsExpressions.
 	parseTreeCache := Dictionary new
 ]
 
@@ -684,6 +672,13 @@ SmaCCSmalltalkCodeGenerator >> initializeIsExpressions [
 	expressions := SmaCCGrammar isExpressionMap.
 	(expressions keys asSortedCollection: [ :a :b | a size > b size or: [ a size = b size and: [ a > b ] ] ])
 		do: [ :key | isExpressions at: (expressions at: key) put: key ]
+]
+
+{ #category : #private }
+SmaCCSmalltalkCodeGenerator >> isExpressions [
+	isExpressions isNil
+		ifTrue: [ self initializeIsExpressions ].
+	^ isExpressions
 ]
 
 { #category : #private }
@@ -918,8 +913,7 @@ SmaCCSmalltalkCodeGenerator >> parserParseTreeFor: aSelector [
 
 { #category : #'code generation templates' }
 SmaCCSmalltalkCodeGenerator >> reduceAction: anArray [
-	^ '#(' , anArray first storeString , ' '
-		, (anArray at: 2) storeString , ' ' , anArray last storeString , ')'
+	^ anArray storeString
 ]
 
 { #category : #compiling }
