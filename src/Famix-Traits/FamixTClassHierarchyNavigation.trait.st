@@ -62,8 +62,9 @@ FamixTClassHierarchyNavigation >> allSuperclassesWithoutAliasesDo: aBlock [
 
 { #category : #enumerating }
 FamixTClassHierarchyNavigation >> anySuperclass [
-
-	self superInheritances ifEmpty: [ ^nil ] ifNotEmpty: [^ self superInheritances any superclass]. 
+	^ self superInheritances
+		ifEmpty: [ nil ]
+		ifNotEmpty: [ self superInheritances anyOne superclass ]
 ]
 
 { #category : #enumerating }
