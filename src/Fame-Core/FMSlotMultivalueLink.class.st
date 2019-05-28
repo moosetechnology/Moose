@@ -115,12 +115,6 @@ FMSlotMultivalueLink >> postCopy [
 	values := values copy.
 ]
 
-{ #category : #printing }
-FMSlotMultivalueLink >> printOn: aStream [
-
-	self asArray printOn: aStream
-]
-
 { #category : #removing }
 FMSlotMultivalueLink >> remove: anElement ifAbsent: exceptionBlock [ 
 	
