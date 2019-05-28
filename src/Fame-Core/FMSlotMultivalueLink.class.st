@@ -4,7 +4,6 @@ Class {
 	#instVars : [
 		'values',
 		'owner',
-		'opposite',
 		'slot'
 	],
 	#category : #'Fame-Core-Slots'
