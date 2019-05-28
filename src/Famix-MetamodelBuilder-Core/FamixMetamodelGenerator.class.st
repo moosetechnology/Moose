@@ -6,7 +6,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'builder',
-		'subbuilders'
+		'subbuilders',
+		'cleaningStrategy'
 	],
 	#classInstVars : [
 		'metamodel'
@@ -200,6 +201,16 @@ FamixMetamodelGenerator >> cleanPackage [
 		ifNotNil: [:aPackage | aPackage removeFromSystem ].
 ]
 
+{ #category : #accessing }
+FamixMetamodelGenerator >> cleaningStrategy [
+	^ cleaningStrategy
+]
+
+{ #category : #accessing }
+FamixMetamodelGenerator >> cleaningStrategy: anObject [
+	cleaningStrategy := anObject
+]
+
 { #category : #definition }
 FamixMetamodelGenerator >> define [
 
@@ -233,32 +244,38 @@ FamixMetamodelGenerator >> defineTraits [
 
 { #category : #generation }
 FamixMetamodelGenerator >> generate [
-
-	self generateWithoutCleaning.
-	self class resetMetamodel.
+	EpMonitor
+		disableDuring: [ self cleaningStrategy cleanBeforeGeneration: self.
+			self define.
+			self builder generate.
+			subbuilders do: #generateRemotes ].
+	self class resetMetamodel
 ]
 
 { #category : #generation }
 FamixMetamodelGenerator >> generateWithCleaning [
-	EpMonitor
-		disableDuring: [ self cleanPackage.
-			self define.
-			self builder generate.
-			subbuilders do: #generateRemotes ]
+	self withCleaning.
+	self generate
+]
+
+{ #category : #generation }
+FamixMetamodelGenerator >> generateWithPartialCleaning [
+	self withPartialCleaning.
+	self generate
 ]
 
 { #category : #generation }
 FamixMetamodelGenerator >> generateWithoutCleaning [
-	EpMonitor
-		disableDuring: [ self define.
-			self builder generate.
-			subbuilders do: #generateRemotes ]
+	self withoutCleaning.
+	self generate
 ]
 
 { #category : #definition }
 FamixMetamodelGenerator >> initialize [
 
 	super initialize.
+	
+	self withoutCleaning.
 	
 	builder := self newBuilder.
 	self adoptBuilder: builder.
@@ -313,4 +330,19 @@ FamixMetamodelGenerator >> remoteEntity: anEntityName withPrefix: aPrefixName [
 	anEntity remoteBuilder: builder.
 	
 	^ anEntity.
+]
+
+{ #category : #definition }
+FamixMetamodelGenerator >> withCleaning [
+	self cleaningStrategy: FamixMetamodelGeneratorTotalCleaningStrategy new
+]
+
+{ #category : #definition }
+FamixMetamodelGenerator >> withPartialCleaning [
+	self cleaningStrategy: FamixMetamodelGeneratorCleanGeneratedStrategy new
+]
+
+{ #category : #definition }
+FamixMetamodelGenerator >> withoutCleaning [
+	self cleaningStrategy: FamixMetamodelGeneratorNoCleaningStrategy new
 ]
