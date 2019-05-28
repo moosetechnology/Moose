@@ -18,9 +18,6 @@ BaselineOfMoose >> baseline: spec [
 	spec
 		for: #common
 		do: [
-			self baselineGrease: spec.
-			self baselineMagritte3: spec.
-
 			self famix: spec.
 
 			spec package: 'GToolkit-Examples'.
@@ -38,9 +35,7 @@ BaselineOfMoose >> baseline: spec [
 			spec
 				package: 'Glamour-Tools';
 				package: 'Glamour-Magritte-Presentations';
-				package: 'Moose-Help'.
-			self baselineMetanool: spec.
-			spec
+				package: 'Moose-Help';
 				package: 'Moose-Finder';
 				package: 'Moose-RoassalPaintings';
 				package: 'Moose-Tests-Finder';
@@ -100,38 +95,11 @@ BaselineOfMoose >> baselineGeometry: spec [
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineGrease: spec [ 
-   
-	self defineGroup: #Grease in: spec with: #(
-		'Grease-Core'
-		'Grease-Pharo30-Core' 
-	).
-
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineMagritte3: spec [ 
-    
-	spec
-		package: 'Magritte-Model';
-		package: 'Magritte-Pharo3-Model';
-		package: 'Magritte-Morph'
-]
-
-{ #category : #baseline }
 BaselineOfMoose >> baselineMerlin: spec [ 
 
 	self defineGroup: #'Merlin-Group' in: spec with: #(
 		'Merlin'
 	).
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineMetanool: spec [ 
-    
-	spec
-		package: 'Metanool-Core';
-		package: 'Metanool-Tests-Core'
 ]
 
 { #category : #baseline }
@@ -250,7 +218,6 @@ BaselineOfMoose >> famix: spec [
 BaselineOfMoose >> groups: spec [ 
     
 	spec group: 'BasicMetamodelling' with: #(
-		'Grease'
 		'Famix'
 	).
 
@@ -270,11 +237,6 @@ BaselineOfMoose >> groups: spec [
 	spec group: 'MooseFinder' with: #(
 		'BasicMetamodellingWithRoassal'
 		'Glamour-Tools'
-		'Magritte-Model'
-		'Magritte-Pharo3-Model'
-		'Magritte-Morph'
-		'Metanool-Core'
-		'Metanool-Tests-Core'			
 		'Glamour-Magritte-Presentations'
 		'MooseAlgos'
 		'Moose-RoassalPaintings'
