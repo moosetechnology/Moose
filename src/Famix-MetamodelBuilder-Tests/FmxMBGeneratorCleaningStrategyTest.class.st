@@ -11,7 +11,7 @@ Class {
 
 { #category : #running }
 FmxMBGeneratorCleaningStrategyTest >> generateClasses [
-	generator generate.
+	FamixMetamodelCleaningStrategiesTestGenerator new generate.
 	self class environment
 		at: #FmxTestCleaningStrategyFmxTestEntity
 		ifPresent: [ :class | 
@@ -20,7 +20,7 @@ FmxMBGeneratorCleaningStrategyTest >> generateClasses [
 					'banana
 
 	^ 42'
-				classified: #accessing ]
+				classified: #monkey ]
 		ifAbsent: [ self fail ]
 ]
 
@@ -38,12 +38,12 @@ FmxMBGeneratorCleaningStrategyTest >> setUp [
 
 { #category : #running }
 FmxMBGeneratorCleaningStrategyTest >> tearDown [
-	"[ 'Famix-MetamodelBuilder-Tests-TemporaryResources' asPackage removeFromSystem ] on: NotFound  do: [ ]."
+	[ self packageName asPackage removeFromSystem ] on: NotFound  do: [ ].
 	super tearDown.
 ]
 
 { #category : #running }
-FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaning [
+FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningCleaning [
 	generator withoutCleaning cleaningStrategy cleanBeforeGeneration: generator.
 	self class environment
 		at: #FmxTestCleaningStrategyFmxTestEntity
@@ -54,12 +54,48 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaning [
 ]
 
 { #category : #running }
-FmxMBGeneratorCleaningStrategyTest >> testGeneratePartialCleaning [
-	self fail
+FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningGeneration [
+	generator generateWithoutCleaning.
+	self class environment
+		at: #FmxTestCleaningStrategyFmxTestEntity
+		ifPresent: [ :class | 
+			self assert: class methods size equals: 3.
+			self assert: (class methods anySatisfy: [ :method | method selector = #banana ]) ]
+		ifAbsent: [ self fail ]
 ]
 
 { #category : #running }
-FmxMBGeneratorCleaningStrategyTest >> testGenerateTotalCleaning [
+FmxMBGeneratorCleaningStrategyTest >> testGeneratePartialCleaningCleaning [
+	generator withPartialCleaning cleaningStrategy cleanBeforeGeneration: generator.
+	self should: [ self class environment at: #FmxTestCleaningStrategyFmxTestEntity ] raise: KeyNotFound
+]
+
+{ #category : #running }
+FmxMBGeneratorCleaningStrategyTest >> testGeneratePartialCleaningGeneration [
+	generator generateWithPartialCleaning.
+
+	self class environment
+		at: #FmxTestCleaningStrategyFmxTestEntity
+		ifPresent: [ :class | 
+			self assert: class methods size equals: 3.
+			self assert: (class methods anySatisfy: [ :method | method selector = #banana ]).
+			self assert: (class methods detect: [ :method | method selector = #banana ]) protocol equals: 'monkey' ]
+		ifAbsent: [ self fail ]
+]
+
+{ #category : #running }
+FmxMBGeneratorCleaningStrategyTest >> testGenerateTotalCleaningCleaning [
 	generator withCleaning cleaningStrategy cleanBeforeGeneration: generator.
 	self should: [ self class environment at: #FmxTestCleaningStrategyFmxTestEntity ] raise: KeyNotFound  
+]
+
+{ #category : #running }
+FmxMBGeneratorCleaningStrategyTest >> testGenerateTotalCleaningGeneration [
+	generator generateWithCleaning.
+	self class environment
+		at: #FmxTestCleaningStrategyFmxTestEntity
+		ifPresent: [ :class | 
+			self assert: class methods size equals: 2.
+			self assert: (class methods noneSatisfy: [ :method | method selector = #banana ]) ]
+		ifAbsent: [ self fail ]
 ]

@@ -13,3 +13,8 @@ FamixAbstractMetamodelGeneratorCleaningStrategy class >> isAbstract [
 FamixAbstractMetamodelGeneratorCleaningStrategy >> cleanBeforeGeneration: aMetamodelGenerator [
 	self subclassResponsibility
 ]
+
+{ #category : #action }
+FamixAbstractMetamodelGeneratorCleaningStrategy >> postGeneration: aMetamodelGenerator [
+	"By default I do nothing"
+]

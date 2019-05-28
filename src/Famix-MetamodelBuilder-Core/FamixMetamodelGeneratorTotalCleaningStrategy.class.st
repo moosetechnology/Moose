@@ -6,5 +6,5 @@ Class {
 
 { #category : #action }
 FamixMetamodelGeneratorTotalCleaningStrategy >> cleanBeforeGeneration: aMetamodelGenerator [
-	[ aMetamodelGenerator packageName asPackage removeFromSystem ] on: NotFound  do: [ "Nothing because it just mean it was clean already" ]
+	aMetamodelGenerator generatedPackage ifNotNil: #removeFromSystem
 ]

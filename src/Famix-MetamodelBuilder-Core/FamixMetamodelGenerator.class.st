@@ -194,13 +194,6 @@ FamixMetamodelGenerator >> builder: anObject [
 	builder := anObject
 ]
 
-{ #category : #generation }
-FamixMetamodelGenerator >> cleanPackage [
-
-	(self packageName asPackageIfAbsent: [ nil ]) 
-		ifNotNil: [:aPackage | aPackage removeFromSystem ].
-]
-
 { #category : #accessing }
 FamixMetamodelGenerator >> cleaningStrategy [
 	^ cleaningStrategy
@@ -244,11 +237,13 @@ FamixMetamodelGenerator >> defineTraits [
 
 { #category : #generation }
 FamixMetamodelGenerator >> generate [
+	self flag: #todo. "Partial cleaning strategy should keep: extension methods + class methods + variable (the 3 of them) + traits + documentation"
 	EpMonitor
 		disableDuring: [ self cleaningStrategy cleanBeforeGeneration: self.
 			self define.
 			self builder generate.
-			subbuilders do: #generateRemotes ].
+			subbuilders do: #generateRemotes.
+			self cleaningStrategy postGeneration: self ].
 	self class resetMetamodel
 ]
 
@@ -268,6 +263,11 @@ FamixMetamodelGenerator >> generateWithPartialCleaning [
 FamixMetamodelGenerator >> generateWithoutCleaning [
 	self withoutCleaning.
 	self generate
+]
+
+{ #category : #generation }
+FamixMetamodelGenerator >> generatedPackage [
+	^ self packageName asPackageIfAbsent: [ nil ]
 ]
 
 { #category : #definition }
