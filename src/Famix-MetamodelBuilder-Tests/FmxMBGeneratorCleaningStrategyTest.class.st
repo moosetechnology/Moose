@@ -37,7 +37,13 @@ FmxMBGeneratorCleaningStrategyTest >> generateClasses [
 			class addInstVarNamed: 'bananaTree'.
 			class addClassVarNamed: 'Fuhrmanator'.
 			class class addInstVarNamed: 'grandFrais' ]
-		ifAbsent: [ self fail ]
+		ifAbsent: [ self fail ].
+	Object
+		subclass: #FmxCleanerTestAddedClass
+		slots: {}
+		classVariables: {}
+		package: self packageName.
+	Trait named: #TFmxCleanerTestAddedTrait uses: {} package: self packageName
 ]
 
 { #category : #running }
@@ -73,7 +79,10 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningCleaning [
 			self assert: (class hasInstVarNamed: #bananaTree).
 			self assert: (class hasClassVarNamed: #Fuhrmanator).
 			self assert: (class class hasInstVarNamed: #grandFrais) ]
-		ifAbsent: [ self fail ]
+		ifAbsent: [ self fail ].
+
+	self class environment at: #FmxCleanerTestAddedClass ifPresent: [ :class | self assert: class package name equals: self packageName ] ifAbsent: [ self fail ].
+	self class environment at: #TFmxCleanerTestAddedTrait ifPresent: [ :class | self assert: class package name equals: self packageName ] ifAbsent: [ self fail ]
 ]
 
 { #category : #running }
@@ -90,14 +99,19 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningGeneration [
 			self assert: (class hasInstVarNamed: #bananaTree).
 			self assert: (class hasClassVarNamed: #Fuhrmanator).
 			self assert: (class class hasInstVarNamed: #grandFrais) ]
-		ifAbsent: [ self fail ]
+		ifAbsent: [ self fail ].
+		
+	self class environment at: #FmxCleanerTestAddedClass ifPresent: [ :class | self assert: class package name equals: self packageName ] ifAbsent: [ self fail ].
+	self class environment at: #TFmxCleanerTestAddedTrait ifPresent: [ :class | self assert: class package name equals: self packageName ] ifAbsent: [ self fail ]
 ]
 
 { #category : #running }
 FmxMBGeneratorCleaningStrategyTest >> testGeneratePartialCleaningCleaning [
 	generator define.
 	generator withPartialCleaning cleaningStrategy cleanBeforeGeneration: generator.
-	self should: [ self class environment at: #FmxTestCleaningStrategyFmxTestEntity ] raise: KeyNotFound
+	self should: [ self class environment at: #FmxTestCleaningStrategyFmxTestEntity ] raise: KeyNotFound.
+	self should: [ self class environment at: #FmxCleanerTestAddedClass ] raise: KeyNotFound.
+	self should: [ self class environment at: #TFmxCleanerTestAddedTrait ] raise: KeyNotFound
 ]
 
 { #category : #running }
@@ -117,14 +131,19 @@ FmxMBGeneratorCleaningStrategyTest >> testGeneratePartialCleaningGeneration [
 			self assert: (class hasInstVarNamed: #bananaTree).
 			self assert: (class hasClassVarNamed: #Fuhrmanator).
 			self assert: (class class hasInstVarNamed: #grandFrais) ]
-		ifAbsent: [ self fail ]
+		ifAbsent: [ self fail ].
+
+	self class environment at: #FmxCleanerTestAddedClass ifPresent: [ :class | self assert: class package name equals: self packageName ] ifAbsent: [ self fail ].
+	self class environment at: #TFmxCleanerTestAddedTrait ifPresent: [ :class | self assert: class package name equals: self packageName ] ifAbsent: [ self fail ]
 ]
 
 { #category : #running }
 FmxMBGeneratorCleaningStrategyTest >> testGenerateTotalCleaningCleaning [
 	generator define.
 	generator withCleaning cleaningStrategy cleanBeforeGeneration: generator.
-	self should: [ self class environment at: #FmxTestCleaningStrategyFmxTestEntity ] raise: KeyNotFound  
+	self should: [ self class environment at: #FmxTestCleaningStrategyFmxTestEntity ] raise: KeyNotFound.
+	self should: [ self class environment at: #FmxCleanerTestAddedClass ] raise: KeyNotFound.
+	self should: [ self class environment at: #TFmxCleanerTestAddedTrait ] raise: KeyNotFound
 ]
 
 { #category : #running }
@@ -140,5 +159,8 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateTotalCleaningGeneration [
 			self deny: (class hasInstVarNamed: #bananaTree).
 			self deny: (class hasClassVarNamed: #Fuhrmanator).
 			self deny: (class class hasInstVarNamed: #grandFrais) ]
-		ifAbsent: [ self fail ]
+		ifAbsent: [ self fail ].
+
+	self should: [ self class environment at: #FmxCleanerTestAddedClass ] raise: KeyNotFound.
+	self should: [ self class environment at: #TFmxCleanerTestAddedTrait ] raise: KeyNotFound
 ]

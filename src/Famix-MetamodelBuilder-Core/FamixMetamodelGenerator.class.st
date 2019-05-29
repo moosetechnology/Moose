@@ -237,7 +237,7 @@ FamixMetamodelGenerator >> defineTraits [
 
 { #category : #generation }
 FamixMetamodelGenerator >> generate [
-	self flag: #todo.	"Partial cleaning strategy should keep: documentation + report + classes added"
+	self flag: #todo.	"Partial cleaning strategy should keep: documentation + report + classes added + clean code"
 	EpMonitor
 		disableDuring: [ self define.
 			self cleaningStrategy cleanBeforeGeneration: self.
@@ -268,6 +268,11 @@ FamixMetamodelGenerator >> generateWithoutCleaning [
 { #category : #generation }
 FamixMetamodelGenerator >> generatedPackage [
 	^ self packageName asPackageIfAbsent: [ nil ]
+]
+
+{ #category : #testing }
+FamixMetamodelGenerator >> includesReal: aTraitOrClass [
+	^ (self builder classes anySatisfy: [ :t | t realClass = aTraitOrClass ]) or: [ self builder traits anySatisfy: [ :t | t realClass = aTraitOrClass ] ]
 ]
 
 { #category : #definition }
