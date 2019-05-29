@@ -194,7 +194,6 @@ FamixMetamodelBuilder >> environment: anObject [
 
 { #category : #generating }
 FamixMetamodelBuilder >> generate [
-
 	self resolveRequirementsFromContainers.
 
 	self registerPackages.
