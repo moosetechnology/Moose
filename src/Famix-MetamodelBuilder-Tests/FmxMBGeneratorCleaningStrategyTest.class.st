@@ -20,6 +20,12 @@ FmxMBGeneratorCleaningStrategyTest >> generateClasses [
 					'banana
 
 	^ 42'
+				classified: #monkey.
+			class class
+				compile:
+					'tree
+
+	^ #Christopher'
 				classified: #monkey ]
 		ifAbsent: [ self fail ]
 ]
@@ -48,7 +54,7 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningCleaning [
 	self class environment
 		at: #FmxTestCleaningStrategyFmxTestEntity
 		ifPresent: [ :class | 
-			self assert: class methods size equals: 3.
+			self assert: (class class methods anySatisfy: [ :method | method selector = #tree ]).
 			self assert: (class methods anySatisfy: [ :method | method selector = #banana ]) ]
 		ifAbsent: [ self fail ]
 ]
@@ -59,7 +65,7 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningGeneration [
 	self class environment
 		at: #FmxTestCleaningStrategyFmxTestEntity
 		ifPresent: [ :class | 
-			self assert: class methods size equals: 3.
+			self assert: (class class methods anySatisfy: [ :method | method selector = #tree ]).
 			self assert: (class methods anySatisfy: [ :method | method selector = #banana ]) ]
 		ifAbsent: [ self fail ]
 ]
@@ -77,7 +83,8 @@ FmxMBGeneratorCleaningStrategyTest >> testGeneratePartialCleaningGeneration [
 	self class environment
 		at: #FmxTestCleaningStrategyFmxTestEntity
 		ifPresent: [ :class | 
-			self assert: class methods size equals: 3.
+			self assert: (class class methods anySatisfy: [ :method | method selector = #tree ]).
+			self assert: (class class methods detect: [ :method | method selector = #tree ]) protocol equals: 'monkey'.
 			self assert: (class methods anySatisfy: [ :method | method selector = #banana ]).
 			self assert: (class methods detect: [ :method | method selector = #banana ]) protocol equals: 'monkey' ]
 		ifAbsent: [ self fail ]
@@ -94,8 +101,8 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateTotalCleaningGeneration [
 	generator generateWithCleaning.
 	self class environment
 		at: #FmxTestCleaningStrategyFmxTestEntity
-		ifPresent: [ :class | 
-			self assert: class methods size equals: 2.
+		ifPresent: [ :class |
+			self assert: (class class methods noneSatisfy: [ :method | method selector = #tree ]). 
 			self assert: (class methods noneSatisfy: [ :method | method selector = #banana ]) ]
 		ifAbsent: [ self fail ]
 ]

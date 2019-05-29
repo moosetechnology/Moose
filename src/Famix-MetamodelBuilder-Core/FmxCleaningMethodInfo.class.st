@@ -3,17 +3,29 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'sourceCode',
-		'protocol'
+		'protocol',
+		'isInstanceSide'
 	],
 	#category : #'Famix-MetamodelBuilder-Core-Basic'
 }
 
 { #category : #'instance creation' }
-FmxCleaningMethodInfo class >> source: aString protocol: aSymbol [
+FmxCleaningMethodInfo class >> source: aString protocol: aSymbol isInstanceSide: aBoolean [
 	^ self new
 		sourceCode: aString;
 		protocol: aSymbol;
+		isInstanceSide: aBoolean;
 		yourself
+]
+
+{ #category : #accessing }
+FmxCleaningMethodInfo >> isInstanceSide [
+	^ isInstanceSide
+]
+
+{ #category : #accessing }
+FmxCleaningMethodInfo >> isInstanceSide: anObject [
+	isInstanceSide := anObject
 ]
 
 { #category : #accessing }

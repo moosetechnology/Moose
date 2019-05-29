@@ -13,7 +13,7 @@ FamixMetamodelGeneratorCleanGeneratedStrategy >> cleanBeforeGeneration: aMetamod
 
 	aMetamodelGenerator generatedPackage classes
 		do: [ :class | 
-			(class methods reject: [ :method | method pragmas anySatisfy: [ :pragma | pragma keyword = #generated ] ] thenCollect: [ :m | FmxCleaningMethodInfo source: m sourceCode protocol: m protocol ])
+			((class methods, class class methods) reject: [ :method | method pragmas anySatisfy: [ :pragma | pragma keyword = #generated ] ] thenCollect: [ :m | FmxCleaningMethodInfo source: m sourceCode protocol: m protocol isInstanceSide: m methodClass isInstanceSide ])
 				ifNotEmpty: [ :methods | addedMethods at: class printString put: methods ] ].
 
 	aMetamodelGenerator generatedPackage removeFromSystem
@@ -28,5 +28,8 @@ FamixMetamodelGeneratorCleanGeneratedStrategy >> initialize [
 { #category : #action }
 FamixMetamodelGeneratorCleanGeneratedStrategy >> postGeneration: aMetamodelBuilder [
 	aMetamodelBuilder generatedPackage classes
-		do: [ :class | addedMethods at: class printString ifPresent: [ :methods | methods do: [ :method | class compile: method sourceCode classified: method protocol ] ] ]
+		do: [ :class | 
+			addedMethods
+				at: class printString
+				ifPresent: [ :methods | methods do: [ :method | (method isInstanceSide ifTrue: [ class ] ifFalse: [ class class ]) compile: method sourceCode classified: method protocol ] ] ]
 ]

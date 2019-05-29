@@ -237,7 +237,7 @@ FamixMetamodelGenerator >> defineTraits [
 
 { #category : #generation }
 FamixMetamodelGenerator >> generate [
-	self flag: #todo. "Partial cleaning strategy should keep: extension methods + class methods + variable (the 3 of them) + traits + documentation"
+	self flag: #todo. "Partial cleaning strategy should keep: extension methods + variable (the 3 of them) + traits + documentation"
 	EpMonitor
 		disableDuring: [ self cleaningStrategy cleanBeforeGeneration: self.
 			self define.
