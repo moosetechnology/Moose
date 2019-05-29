@@ -26,7 +26,14 @@ FmxMBGeneratorCleaningStrategyTest >> generateClasses [
 					'tree
 
 	^ #Christopher'
-				classified: #monkey ]
+				classified: #monkey.
+			class
+				compile:
+					'potatoExtendedMethod
+
+	^ 42'
+				classified: #* , self class package name.
+			class setTraitComposition: class traitComposition + FamixTestExternalTraits ]
 		ifAbsent: [ self fail ]
 ]
 
@@ -55,7 +62,11 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningCleaning [
 		at: #FmxTestCleaningStrategyFmxTestEntity
 		ifPresent: [ :class | 
 			self assert: (class class methods anySatisfy: [ :method | method selector = #tree ]).
-			self assert: (class methods anySatisfy: [ :method | method selector = #banana ]) ]
+			self assert: (class methods anySatisfy: [ :method | method selector = #banana ]).
+			self assert: (class methods anySatisfy: [ :method | method selector = #potatoExtendedMethod ]).
+			self assert: (class methods detect: [ :method | method selector = #potatoExtendedMethod ]) protocol equals: (#* , self class package name).
+			self assert: (class traitComposition allTraits anySatisfy: [ :trait | trait name = #FamixTestExternalTraits ]). ]
+		
 		ifAbsent: [ self fail ]
 ]
 
@@ -66,7 +77,11 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningGeneration [
 		at: #FmxTestCleaningStrategyFmxTestEntity
 		ifPresent: [ :class | 
 			self assert: (class class methods anySatisfy: [ :method | method selector = #tree ]).
-			self assert: (class methods anySatisfy: [ :method | method selector = #banana ]) ]
+			self assert: (class methods anySatisfy: [ :method | method selector = #banana ]).
+			self assert: (class methods anySatisfy: [ :method | method selector = #potatoExtendedMethod ]).
+			self assert: (class methods detect: [ :method | method selector = #potatoExtendedMethod ]) protocol equals: (#* , self class package name).
+			self assert: (class traitComposition allTraits anySatisfy: [ :trait | trait name = #FamixTestExternalTraits ]).
+			 ]
 		ifAbsent: [ self fail ]
 ]
 
@@ -86,7 +101,10 @@ FmxMBGeneratorCleaningStrategyTest >> testGeneratePartialCleaningGeneration [
 			self assert: (class class methods anySatisfy: [ :method | method selector = #tree ]).
 			self assert: (class class methods detect: [ :method | method selector = #tree ]) protocol equals: 'monkey'.
 			self assert: (class methods anySatisfy: [ :method | method selector = #banana ]).
-			self assert: (class methods detect: [ :method | method selector = #banana ]) protocol equals: 'monkey' ]
+			self assert: (class methods detect: [ :method | method selector = #banana ]) protocol equals: 'monkey'.
+			self assert: (class methods anySatisfy: [ :method | method selector = #potatoExtendedMethod ]).
+			self assert: (class methods detect: [ :method | method selector = #potatoExtendedMethod ]) protocol equals: (#* , self class package name).
+			self assert: (class traitComposition allTraits anySatisfy: [ :trait | trait name = #FamixTestExternalTraits ]). ]
 		ifAbsent: [ self fail ]
 ]
 
@@ -103,6 +121,8 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateTotalCleaningGeneration [
 		at: #FmxTestCleaningStrategyFmxTestEntity
 		ifPresent: [ :class |
 			self assert: (class class methods noneSatisfy: [ :method | method selector = #tree ]). 
-			self assert: (class methods noneSatisfy: [ :method | method selector = #banana ]) ]
+			self assert: (class methods noneSatisfy: [ :method | method selector = #banana ]).
+			self assert: (class methods noneSatisfy: [ :method | method selector = #potatoExtendedMethod ]).
+			self assert: (class traitComposition allTraits noneSatisfy: [ :trait | trait name = #FamixTestExternalTraits ]).  ]
 		ifAbsent: [ self fail ]
 ]

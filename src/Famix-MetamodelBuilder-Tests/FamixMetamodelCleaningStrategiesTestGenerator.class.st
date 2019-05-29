@@ -5,7 +5,7 @@ Class {
 		'fmx',
 		'tOneTrait'
 	],
-	#category : #'Famix-MetamodelBuilder-Tests'
+	#category : #'Famix-MetamodelBuilder-Tests-Helpers'
 }
 
 { #category : #accessing }
@@ -43,5 +43,5 @@ FamixMetamodelCleaningStrategiesTestGenerator >> defineProperties [
 { #category : #definition }
 FamixMetamodelCleaningStrategiesTestGenerator >> defineTraits [
 	super defineTraits.
-	tOneTrait := builder newTraitNamed: #TOneTrait.
+	tOneTrait := builder newTraitNamed: #TATrait.
 ]

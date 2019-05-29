@@ -237,10 +237,10 @@ FamixMetamodelGenerator >> defineTraits [
 
 { #category : #generation }
 FamixMetamodelGenerator >> generate [
-	self flag: #todo. "Partial cleaning strategy should keep: extension methods + variable (the 3 of them) + traits + documentation"
+	self flag: #todo.	"Partial cleaning strategy should keep: variable (the 3 of them) + documentation + report + classes added"
 	EpMonitor
-		disableDuring: [ self cleaningStrategy cleanBeforeGeneration: self.
-			self define.
+		disableDuring: [ self define.
+			self cleaningStrategy cleanBeforeGeneration: self.
 			self builder generate.
 			subbuilders do: #generateRemotes.
 			self cleaningStrategy postGeneration: self ].
@@ -330,6 +330,16 @@ FamixMetamodelGenerator >> remoteEntity: anEntityName withPrefix: aPrefixName [
 	anEntity remoteBuilder: builder.
 	
 	^ anEntity.
+]
+
+{ #category : #accessing }
+FamixMetamodelGenerator >> traitsGeneratedIn: aClassOrTrait [
+	"I return all the Traits used by aClassOrTrait that I generated inside it."
+
+	^ (self builder classes
+		detect: [ :class | class realClass = aClassOrTrait ]
+		ifFound: [ :class | class allLocalTraits ]
+		ifNone: [ self builder traits detect: [ :trait | trait realClass = aClassOrTrait ] ifFound: [ :trait | trait allTraitGeneralizations ] ]) collect: #realClass
 ]
 
 { #category : #definition }
