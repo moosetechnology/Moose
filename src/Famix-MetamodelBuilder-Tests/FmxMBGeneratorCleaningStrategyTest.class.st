@@ -33,7 +33,10 @@ FmxMBGeneratorCleaningStrategyTest >> generateClasses [
 
 	^ 42'
 				classified: #* , self class package name.
-			class setTraitComposition: class traitComposition + FamixTestExternalTraits ]
+			class addToComposition: FamixTestExternalTraits.
+			class addInstVarNamed: 'bananaTree'.
+			class addClassVarNamed: 'Fuhrmanator'.
+			class class addInstVarNamed: 'grandFrais' ]
 		ifAbsent: [ self fail ]
 ]
 
@@ -57,6 +60,7 @@ FmxMBGeneratorCleaningStrategyTest >> tearDown [
 
 { #category : #running }
 FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningCleaning [
+	generator define.
 	generator withoutCleaning cleaningStrategy cleanBeforeGeneration: generator.
 	self class environment
 		at: #FmxTestCleaningStrategyFmxTestEntity
@@ -64,9 +68,13 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningCleaning [
 			self assert: (class class methods anySatisfy: [ :method | method selector = #tree ]).
 			self assert: (class methods anySatisfy: [ :method | method selector = #banana ]).
 			self assert: (class methods anySatisfy: [ :method | method selector = #potatoExtendedMethod ]).
-			self assert: (class methods detect: [ :method | method selector = #potatoExtendedMethod ]) protocol equals: (#* , self class package name).
-			self assert: (class traitComposition allTraits anySatisfy: [ :trait | trait name = #FamixTestExternalTraits ]). ]
-		
+			self assert: (class methods detect: [ :method | method selector = #potatoExtendedMethod ]) protocol equals: #* , self class package name.
+			self assert: (class traitComposition allTraits anySatisfy: [ :trait | trait name = #FamixTestExternalTraits ]).
+			self skip.	"Currently, the generator is destroying variables added by the users. Later the generator should be improve to not remove all the variables."
+			true ifTrue: [ ^ self ].
+			self assert: (class hasInstVarNamed: 'bananaTree').
+			self assert: (class hasClassVarNamed: 'Furmanator').
+			self assert: (class class hasInstVarNamed: 'grandFrais') ]
 		ifAbsent: [ self fail ]
 ]
 
@@ -79,14 +87,19 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningGeneration [
 			self assert: (class class methods anySatisfy: [ :method | method selector = #tree ]).
 			self assert: (class methods anySatisfy: [ :method | method selector = #banana ]).
 			self assert: (class methods anySatisfy: [ :method | method selector = #potatoExtendedMethod ]).
-			self assert: (class methods detect: [ :method | method selector = #potatoExtendedMethod ]) protocol equals: (#* , self class package name).
+			self assert: (class methods detect: [ :method | method selector = #potatoExtendedMethod ]) protocol equals: #* , self class package name.
 			self assert: (class traitComposition allTraits anySatisfy: [ :trait | trait name = #FamixTestExternalTraits ]).
-			 ]
+			self skip.	"Currently, the generator is destroying variables added by the users. Later the generator should be improve to not remove all the variables."
+			true ifTrue: [ ^ self ].
+			self assert: (class hasInstVarNamed: 'bananaTree').
+			self assert: (class hasClassVarNamed: 'Fuhrmanator').
+			self assert: (class class hasInstVarNamed: 'grandFrais') ]
 		ifAbsent: [ self fail ]
 ]
 
 { #category : #running }
 FmxMBGeneratorCleaningStrategyTest >> testGeneratePartialCleaningCleaning [
+	generator define.
 	generator withPartialCleaning cleaningStrategy cleanBeforeGeneration: generator.
 	self should: [ self class environment at: #FmxTestCleaningStrategyFmxTestEntity ] raise: KeyNotFound
 ]
@@ -103,13 +116,17 @@ FmxMBGeneratorCleaningStrategyTest >> testGeneratePartialCleaningGeneration [
 			self assert: (class methods anySatisfy: [ :method | method selector = #banana ]).
 			self assert: (class methods detect: [ :method | method selector = #banana ]) protocol equals: 'monkey'.
 			self assert: (class methods anySatisfy: [ :method | method selector = #potatoExtendedMethod ]).
-			self assert: (class methods detect: [ :method | method selector = #potatoExtendedMethod ]) protocol equals: (#* , self class package name).
-			self assert: (class traitComposition allTraits anySatisfy: [ :trait | trait name = #FamixTestExternalTraits ]). ]
+			self assert: (class methods detect: [ :method | method selector = #potatoExtendedMethod ]) protocol equals: #* , self class package name.
+			self assert: (class traitComposition allTraits anySatisfy: [ :trait | trait name = #FamixTestExternalTraits ]).
+			self assert: (class hasInstVarNamed: 'bananaTree').
+			self assert: (class hasClassVarNamed: 'Fuhrmanator').
+			self assert: (class class hasInstVarNamed: 'grandFrais') ]
 		ifAbsent: [ self fail ]
 ]
 
 { #category : #running }
 FmxMBGeneratorCleaningStrategyTest >> testGenerateTotalCleaningCleaning [
+	generator define.
 	generator withCleaning cleaningStrategy cleanBeforeGeneration: generator.
 	self should: [ self class environment at: #FmxTestCleaningStrategyFmxTestEntity ] raise: KeyNotFound  
 ]
@@ -119,10 +136,13 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateTotalCleaningGeneration [
 	generator generateWithCleaning.
 	self class environment
 		at: #FmxTestCleaningStrategyFmxTestEntity
-		ifPresent: [ :class |
-			self assert: (class class methods noneSatisfy: [ :method | method selector = #tree ]). 
+		ifPresent: [ :class | 
+			self assert: (class class methods noneSatisfy: [ :method | method selector = #tree ]).
 			self assert: (class methods noneSatisfy: [ :method | method selector = #banana ]).
 			self assert: (class methods noneSatisfy: [ :method | method selector = #potatoExtendedMethod ]).
-			self assert: (class traitComposition allTraits noneSatisfy: [ :trait | trait name = #FamixTestExternalTraits ]).  ]
+			self assert: (class traitComposition allTraits noneSatisfy: [ :trait | trait name = #FamixTestExternalTraits ]).
+			self deny: (class hasInstVarNamed: 'bananaTree').
+			self deny: (class hasClassVarNamed: 'Fuhrmanator').
+			self deny: (class class hasInstVarNamed: 'grandFrais') ]
 		ifAbsent: [ self fail ]
 ]

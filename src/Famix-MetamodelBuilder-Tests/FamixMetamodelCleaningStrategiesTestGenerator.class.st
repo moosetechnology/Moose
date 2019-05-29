@@ -41,6 +41,12 @@ FamixMetamodelCleaningStrategiesTestGenerator >> defineProperties [
 ]
 
 { #category : #definition }
+FamixMetamodelCleaningStrategiesTestGenerator >> defineRelations [
+	super defineRelations.
+	fmx <>- fmx
+]
+
+{ #category : #definition }
 FamixMetamodelCleaningStrategiesTestGenerator >> defineTraits [
 	super defineTraits.
 	tOneTrait := builder newTraitNamed: #TATrait.
