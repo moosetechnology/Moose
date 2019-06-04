@@ -26,7 +26,7 @@ FmxMBGeneratorRemoteAccessorTest >> setUp [
 
 { #category : #running }
 FmxMBGeneratorRemoteAccessorTest >> tearDown [
-"	[ 'Famix-MetamodelBuilder-TestsResources-A' asPackage removeFromSystem ]
+	[ 'Famix-MetamodelBuilder-TestsResources-A' asPackage removeFromSystem ]
 		on: NotFound
 		do: [  ].
 	[ 'Famix-MetamodelBuilder-TestsResources-B' asPackage removeFromSystem ]
@@ -34,7 +34,7 @@ FmxMBGeneratorRemoteAccessorTest >> tearDown [
 		do: [  ].
 	[ 'Famix-MetamodelBuilder-TestsResources-AB' asPackage removeFromSystem ]
 		on: NotFound
-		do: [  ]."
+		do: [  ].
 	super tearDown
 ]
 
