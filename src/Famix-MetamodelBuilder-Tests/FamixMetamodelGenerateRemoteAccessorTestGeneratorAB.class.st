@@ -45,5 +45,7 @@ FamixMetamodelGenerateRemoteAccessorTestGeneratorAB >> defineClasses [
 { #category : #definition }
 FamixMetamodelGenerateRemoteAccessorTestGeneratorAB >> defineRelations [
 	super defineRelations.
-	(entityA property: #relationToB) - (entityB property: #relationToA)
+	(entityA property: #relationToB) - (entityB property: #relationToA).
+	(entityA property: #manyB) -* (entityB property: #oneA).
+	(entityA property: #manyManyB) *-* (entityB property: #manyManyA).
 ]
