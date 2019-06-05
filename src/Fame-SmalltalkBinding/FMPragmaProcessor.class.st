@@ -194,8 +194,7 @@ FMPragmaProcessor >> processClass: aClass ifPragmaAbsent: anErrorBlock [
 	pragma := Pragma allNamed: #MSEClass:super: in: aClass class.
 	pragma ifEmpty: anErrorBlock.
 	pragma
-		ifEmpty: [ aClass isTrait ifTrue: [ ^ self ]. "This happens if the class is in reality a trait without any pragma (possibly added manually by the user"
-			className := aClass name.
+		ifEmpty: [ className := aClass name.
 			superclassName := aClass superclass name ]
 		ifNotEmpty: [ className := pragma first argumentAt: 1.
 			superclassName := pragma first argumentAt: 2 ].

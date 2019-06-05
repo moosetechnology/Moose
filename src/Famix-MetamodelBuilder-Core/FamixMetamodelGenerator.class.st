@@ -122,33 +122,30 @@ FamixMetamodelGenerator class >> prefix [
 
 { #category : #accessing }
 FamixMetamodelGenerator class >> resetMetamodel [
-
 	" self resetMetamodel"
 
 	| classes tower elements |
-
 	FMRelationSlot allSubInstancesDo: #resetMooseProperty.
 
-	classes := self packageName asPackage definedClasses
-		select: [ :each | each inheritsFrom: MooseEntity ].
-	classes addAll: (self packageName asPackage definedClasses select: #isTrait).
-	
+	classes := self packageName asPackage definedClasses select: [ :each | each inheritsFrom: MooseEntity ].
+	classes
+		addAll: (self packageName asPackage definedClasses select: [ :class | class isTrait and: [ "check that the trait is part of the metamodel" (Pragma allNamed: #MSEClass:super: in: class class) isNotEmpty ] ]).
+
 	classes addAll: self basicMetamodelClasses.
-	
-	classes addAll: (self submetamodels flatCollect: [:submetamodel | submetamodel metamodel classes collect: #implementingClass.]).
-	
+
+	classes addAll: (self submetamodels flatCollect: [ :submetamodel | submetamodel metamodel classes collect: #implementingClass ]).
+
 	tower := MooseModel metaBuilder: classes.
 	self metamodel: tower metamodel.
-	
+
 	elements := self submetamodels flatCollect: [ :each | each metamodel elements ].
 
-	elements do: [ :each |
-		metamodel elementNamed: each fullName ifAbsent: [ metamodel add: each ] ].
-	
+	elements do: [ :each | metamodel elementNamed: each fullName ifAbsent: [ metamodel add: each ] ].
+
 	self modifyMetamodel: metamodel.
-	
+
 	metamodel additionalProperties at: #wantsAllEntitiesNavigation put: self wantsAllEntitiesNavigation.
-	
+
 	^ metamodel
 ]
 
