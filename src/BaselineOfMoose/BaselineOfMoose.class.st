@@ -19,26 +19,12 @@ BaselineOfMoose >> baseline: spec [
 		for: #common
 		do: [
 			self famix: spec.
-
-		
 			self baselineRoassal2: spec.
-
-			self mooseAlgos: spec.
-
-			self baselineOrderPreservingDictionary: spec.
-
-			self baselineBitmapCharacterSet: spec.
-			self baselineXMLParser: spec.
-			spec
-				package: 'Glamour-Tools';
-				package: 'Glamour-Magritte-Presentations';
-				package: 'Moose-Help';
-				package: 'Moose-Finder';
-				package: 'Moose-RoassalPaintings';
-				package: 'Moose-Tests-Finder';
-				package: 'Moose-Tests-RoassalPaintings'.
+			self mooseFinder: spec.
+			self mooseIDE: spec.
 			self baselinePetitParser: spec.
-
+			self baselinePetitParserUI: spec.
+			
 			self baselineSmaCC: spec.
 			self baselineXMLWriter: spec.
 			self baselineMerlin: spec.
@@ -65,12 +51,6 @@ BaselineOfMoose >> baseline: spec [
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineBitmapCharacterSet: spec [ 
-    
-	spec package: 'Collections-BitmapCharacterSet'
-]
-
-{ #category : #baseline }
 BaselineOfMoose >> baselineDistributionMap: spec [ 
 
 	self defineGroup: #'DistributionMap-Group' in: spec with: #(
@@ -88,23 +68,17 @@ BaselineOfMoose >> baselineMerlin: spec [
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineOrderPreservingDictionary: spec [ 
+BaselineOfMoose >> baselinePetitParser: spec [ 
     
-	spec package: 'Collections-OrderPreservingDictionary'
+	spec baseline: 'MoosePetitParser' with: [ spec repository: repository ]
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselinePetitParser: spec [ 
-    
-	self defineGroup: #'PetitParser-Group' in: spec with: #(
-		'PetitParser' 
-		'PetitTests' 
-		'PetitAnalyzer'
-		'PetitGui'
-		
-		'PetitMSE'
-	).
-
+BaselineOfMoose >> baselinePetitParserUI: spec [
+	spec
+		project: 'MoosePetitParserUI'
+		copyFrom: 'MoosePetitParser'
+		with: [ spec loads: 'UI' ]
 ]
 
 { #category : #baseline }
@@ -113,48 +87,42 @@ BaselineOfMoose >> baselineRoassal2: spec [
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineSmaCC: spec [ 
-    
+BaselineOfMoose >> baselineSmaCC: spec [
 	"
 	https://github.com/j-brant/SmaCC
 	git@github.com:j-brant/SmaCC.git
 	branch: Pharo7
 	"
 
-	self defineGroup: #'SmaCC-Group' in: spec with: #(
-		'SmaCC_Runtime'
-		'SmaCC_GLR_Runtime'
-		'SmaCC_Source_Editing'
-		'SmaCC_Rewrite_Engine'
-		
-		'SmaCC_Antlr_Parser'
-		'SmaCC_CSV_Parser'
-		'SmaCC_CSharp'
-		'SmaCC_C_Parser'
-		'SmaCC_Delphi'
-		'SmaCC_Delphi_Forms'
-		'SmaCC_Generic_Smalltalk_Parser'
-		'SmaCC_Grammar_Parser'
-		'SmaCC_Java'
-		'SmaCC_Javascript_Parser'
-		'SmaCC_Line_Parser'
-		'SmaCC_Smalltalk_Parser'
-		'SmaCC_Source_Editing'
-		'SmaCC_Swift'
+	spec
+		baseline: 'MooseSmaCC'
+		with: [ spec
+				repository: repository;
+				load: #(FullNoUI) ]
+]
 
-		'SmaCC_Development'
-		'SmaCC_Debugging_Support'
-		
-		'SmaCC_Parse_Tree_Comparison'
-		'SmaCC_Tests'
-		'SmaCC_Development_UI'
-		'SmaCC_Rewrite_Engine_Tests'
-		
-		'SmaCC_Rewrite_Engine_Command_Line'
-		'SmaCC_Rewrite_Engine_UI'
-		'SmaCC_Rewrite_Server'
-		'SmaCC_Rewrite_Server_Worker'
-	).
+{ #category : #baseline }
+BaselineOfMoose >> baselineSmaCCJava: spec [
+	spec
+		project: 'MooseSmaCCJava'
+		copyFrom: 'MooseSmaCC'
+		with: [ spec loads: 'Java' ]
+]
+
+{ #category : #baseline }
+BaselineOfMoose >> baselineSmaCCJavaUI: spec [
+	spec
+		project: 'MooseSmaCCJavaUI'
+		copyFrom: 'MooseSmaCC'
+		with: [ spec loads: #('Java' UI)  ]
+]
+
+{ #category : #baseline }
+BaselineOfMoose >> baselineSmaCCUI: spec [
+	spec
+		project: 'MooseSmaCCUI'
+		copyFrom: 'MooseSmaCC'
+		with: [ spec loads: 'FullUI' ]
 ]
 
 { #category : #baseline }
@@ -163,12 +131,6 @@ BaselineOfMoose >> baselineWizard: spec [
 	self defineGroup: #'Wizard-Group' in: spec with: #(
 		'Moose-Wizard'
 	).
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineXMLParser: spec [ 
-    
-	spec package: 'XML-Parser'
 ]
 
 { #category : #baseline }
@@ -199,50 +161,36 @@ BaselineOfMoose >> famix: spec [
 BaselineOfMoose >> groups: spec [ 
     
 	spec group: 'BasicMetamodelling' with: #(
-		'Famix'
+		Famix
 	).
 
 	spec group: 'BasicMetamodellingWithRoassal' with: #(
-		'BasicMetamodelling'
-		'Collections-OrderPreservingDictionary'
-		'Collections-BitmapCharacterSet'
-		'XML-Parser'		
-		'MooseRoassal'
+		BasicMetamodelling
+		MooseRoassal
 	).
 	
-	
-	spec group: 'MooseFinder' with: #(
-		'BasicMetamodellingWithRoassal'
-		'Glamour-Tools'
-		'Glamour-Magritte-Presentations'
-		'MooseAlgos'
-		'Moose-RoassalPaintings'
-		'Moose-Help'
-		'Moose-Finder'
-		
-		'Moose-Tests-RoassalPaintings'
-		'Moose-Tests-Finder'
+
+	spec group: 'MooseFinderGroup' with: #(
+		BasicMetamodellingWithRoassal
+		MooseFinder
 	).
 
+	
 	spec group: 'Parsing' with: #(
-		'MooseFinder'
-		'PetitParser-Group'
-		'SmaCC-Group'
+		MooseFinderGroup
+		PetitParser-Group
+		SmaCC-Group
 	).
 	
-	spec group: 'IDE' with: #(
-		'Moose-MenuBar'
-		'Moose-Configuration'
-	).
 	
 	spec group: 'AdditionalTools' with: #(
-		'Parsing'
-		'XMLWriter-Group'
-		'Merlin-Group'
-		'Moose-DistributionMap'
-		'Moose-Tests-DistributionMap'
-		'Wizard-Group'
-		'IDE'
+		Parsing
+		XMLWriter-Group
+		Merlin-Group
+		Moose-DistributionMap
+		Moose-Tests-DistributionMap
+		Wizard-Group
+		MooseIDE
 	).
 		
 	spec group: 'default' with: #('AdditionalTools').
@@ -251,8 +199,13 @@ BaselineOfMoose >> groups: spec [
 ]
 
 { #category : #dependencies }
-BaselineOfMoose >> mooseAlgos: spec [
-	spec baseline: 'MooseAlgos' with: [ spec repository: repository ]
+BaselineOfMoose >> mooseFinder: spec [
+	spec baseline: 'MooseFinder' with: [ spec repository: repository ]
+]
+
+{ #category : #dependencies }
+BaselineOfMoose >> mooseIDE: spec [
+	spec baseline: 'MooseIDE' with: [ spec repository: repository ]
 ]
 
 { #category : #accessing }
