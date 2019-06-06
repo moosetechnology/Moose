@@ -20,10 +20,7 @@ BaselineOfMoose >> baseline: spec [
 		do: [
 			self famix: spec.
 
-			spec package: 'GToolkit-Examples'.
-
-			self baselineGeometry: spec.
-			self baselineAthens: spec.
+		
 			self baselineRoassal2: spec.
 
 			self mooseAlgos: spec.
@@ -68,12 +65,6 @@ BaselineOfMoose >> baseline: spec [
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineAthens: spec [ 
-    
-	spec package: 'Athens-SVG'
-]
-
-{ #category : #baseline }
 BaselineOfMoose >> baselineBitmapCharacterSet: spec [ 
     
 	spec package: 'Collections-BitmapCharacterSet'
@@ -86,12 +77,6 @@ BaselineOfMoose >> baselineDistributionMap: spec [
 		'Moose-DistributionMap'
 		'Moose-Tests-DistributionMap'
 	).
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineGeometry: spec [ 
-    
-	spec package: 'Geometry'
 ]
 
 { #category : #baseline }
@@ -123,12 +108,8 @@ BaselineOfMoose >> baselinePetitParser: spec [
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineRoassal2: spec [ 
-    
-	spec
-		package: 'Trachel';
-		package: 'Roassal2';
-		package: 'Roassal2GT'
+BaselineOfMoose >> baselineRoassal2: spec [
+	spec baseline: 'MooseRoassal' with: [ spec repository: repository ]
 ]
 
 { #category : #baseline }
@@ -226,13 +207,9 @@ BaselineOfMoose >> groups: spec [
 		'Collections-OrderPreservingDictionary'
 		'Collections-BitmapCharacterSet'
 		'XML-Parser'		
-		'Athens-SVG'
-		'Trachel'
-		'Geometry'
-		'Roassal2'
-		'GToolkit-Examples'
-		'Roassal2GT'
+		'MooseRoassal'
 	).
+	
 	
 	spec group: 'MooseFinder' with: #(
 		'BasicMetamodellingWithRoassal'
