@@ -25,3 +25,11 @@ BaselineOfMoosePetitParser >> baseline: spec [
 BaselineOfMoosePetitParser >> baselineRoassal2: spec [
 	spec baseline: 'MooseRoassal' with: [ spec repository:  self packageRepositoryURL. ]
 ]
+
+{ #category : #baselines }
+BaselineOfMoosePetitParser >> packageRepositoryURL [
+	^ super packageRepositoryURL
+		ifEmpty: [ | packageName |
+			packageName := self class package name.
+			'tonel://' , (IceRepository registry detect: [ :repo | repo workingCopy packageNames includes: packageName ] ifFound: [ :repo | repo location pathString , '/' , repo subdirectory ] ifNone: [ '' ]) ]
+]

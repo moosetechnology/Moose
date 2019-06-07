@@ -55,12 +55,17 @@ BaselineOfMooseAlgos >> collectionExtensions: spec [
 	spec baseline: 'CollectionExtensions' with: [ spec repository: repository ]
 ]
 
-{ #category : #accessing }
+{ #category : #baselines }
 BaselineOfMooseAlgos >> packageRepositoryURL [
 	^ super packageRepositoryURL
 		ifEmpty: [ | packageName |
 			packageName := self class package name.
-			'tonel://' , (IceRepository registry detect: [ :repo | repo workingCopy packageNames includes: packageName ] ifFound: [ :repo | repo location pathString , '/' , repo subdirectory ] ifNone: [ '' ]) ]
+			'tonel://'
+				,
+					(IceRepository registry
+						detect: [ :repo | repo workingCopy packageNames includes: packageName ]
+						ifFound: [ :repo | repo location pathString , '/' , repo subdirectory ]
+						ifNone: [ '' ]) ]
 ]
 
 { #category : #accessing }

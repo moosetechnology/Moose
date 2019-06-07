@@ -20,7 +20,6 @@ Class {
 { #category : #baselines }
 BaselineOfMooseRoassal >> baseline: spec [
 	<baseline>
-	
 	self xmlParser: spec.
 	spec
 		package: 'Trachel';
@@ -35,9 +34,15 @@ BaselineOfMooseRoassal >> baseline: spec [
 ]
 
 { #category : #baselines }
+BaselineOfMooseRoassal >> packageRepositoryURL [
+	^ super packageRepositoryURL
+		ifEmpty: [ | packageName |
+			packageName := self class package name.
+			'tonel://' , (IceRepository registry detect: [ :repo | repo workingCopy packageNames includes: packageName ] ifFound: [ :repo | repo location pathString , '/' , repo subdirectory ] ifNone: [ '' ]) ]
+]
+
+{ #category : #baselines }
 BaselineOfMooseRoassal >> xmlParser: spec [
-	self packageRepositoryURL.
-	self halt.
 	spec
 		baseline: 'XMLParser'
 		with: [ spec
