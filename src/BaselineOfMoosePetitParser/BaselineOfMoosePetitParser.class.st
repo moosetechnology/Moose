@@ -20,3 +20,8 @@ BaselineOfMoosePetitParser >> baseline: spec [
 	spec group: #default with: #(PetitParser PetitMSE).
 	spec group: #UI with: #(default PetitGui)
 ]
+
+{ #category : #baselines }
+BaselineOfMoosePetitParser >> baselineRoassal2: spec [
+	spec baseline: 'MooseRoassal' with: [ spec repository:  self packageRepositoryURL. ]
+]
