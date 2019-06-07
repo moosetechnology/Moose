@@ -1,7 +1,14 @@
+"
+This baseline claims SmaCC packages, and it direct dependancies. extracted from the original baseline.
+proposing several configurations: java, c#, javascript, etc.
+
+
+
+"
 Class {
 	#name : #BaselineOfMooseSmaCC,
 	#superclass : #BaselineOf,
-	#category : #BaselineOfMoose
+	#category : #BaselineOfMooseSmaCC
 }
 
 { #category : #baselines }

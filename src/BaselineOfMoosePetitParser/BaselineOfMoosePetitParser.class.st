@@ -1,7 +1,10 @@
+"
+This baseline claims Petitparser packages. Define the minimal requirements relationships. It does also provides groups for loading with and without UI
+"
 Class {
 	#name : #BaselineOfMoosePetitParser,
 	#superclass : #BaselineOf,
-	#category : #BaselineOfMoose
+	#category : #BaselineOfMoosePetitParser
 }
 
 { #category : #baselines }
