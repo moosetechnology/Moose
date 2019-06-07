@@ -36,6 +36,8 @@ BaselineOfMooseRoassal >> baseline: spec [
 
 { #category : #baselines }
 BaselineOfMooseRoassal >> xmlParser: spec [
+	self packageRepositoryURL.
+	self halt.
 	spec
 		baseline: 'XMLParser'
 		with: [ spec
