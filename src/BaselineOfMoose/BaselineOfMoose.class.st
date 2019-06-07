@@ -14,57 +14,47 @@ Class {
 BaselineOfMoose >> baseline: spec [
 	<baseline>
 	repository := self packageRepositoryURL.
-
 	spec
 		for: #common
-		do: [
+		do: [ " Meta Model"
 			self famix: spec.
+			" Roassal "
 			self baselineRoassal2: spec.
+			"Finder & IDE"
 			self mooseFinder: spec.
 			self mooseIDE: spec.
+			" Petit parser with/without UI"
 			self baselinePetitParser: spec.
 			self baselinePetitParserUI: spec.
-			
+			" SmaCC with/without UI"
 			self baselineSmaCC: spec.
+			self baselineSmaCCUI: spec.
+			self baselineSmaCCJava: spec.
+			self baselineSmaCCJavaUI: spec.
+			" XMLWriter / Miscelaneous (Merlin, Wizard, etc)"
 			self baselineXMLWriter: spec.
-			self baselineMerlin: spec.
-			self baselineDistributionMap: spec.
-			self baselineWizard: spec.
-			
-			"Package for the Moose IDE configuration"
-			spec package: 'Moose-MenuBar'.
-			spec package: 'Moose-Configuration'.
-			
-			self groups: spec ].
-
+			self baselineMiscs: spec.
+			self groups: spec.
+			self newGroups: spec ].
 	spec
 		for: #'pharo7.x'
 		do: [ spec
-				package: 'Famix-MetamodelBuilder-Core' with: [ spec includes: #('Famix-MetamodelBuilder-Core-Pharo7') ];
+				package: 'Famix-MetamodelBuilder-Core'
+					with: [ spec includes: #('Famix-MetamodelBuilder-Core-Pharo7') ];
 				package: 'Famix-MetamodelBuilder-Core-Pharo7' ].
-
 	spec
 		for: #'pharo8.x'
-		do: [ spec package: 'Roassal2GT' with: [ spec includes: #('Glamour-Browsers-Pharo8' 'Glamour-Morphic-Renderer-Pharo8') ].
+		do: [ spec
+				package: 'Roassal2GT'
+				with: [ spec
+						includes: #('Glamour-Browsers-Pharo8' 'Glamour-Morphic-Renderer-Pharo8') ].
 			spec package: 'Glamour-Browsers-Pharo8'.
 			spec package: 'Glamour-Morphic-Renderer-Pharo8' ]
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineDistributionMap: spec [ 
-
-	self defineGroup: #'DistributionMap-Group' in: spec with: #(
-		'Moose-DistributionMap'
-		'Moose-Tests-DistributionMap'
-	).
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineMerlin: spec [ 
-
-	self defineGroup: #'Merlin-Group' in: spec with: #(
-		'Merlin'
-	).
+BaselineOfMoose >> baselineMiscs: spec [
+	spec baseline: 'MooseMiscs' with: [ spec repository: repository ]
 ]
 
 { #category : #baseline }
@@ -126,23 +116,10 @@ BaselineOfMoose >> baselineSmaCCUI: spec [
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineWizard: spec [ 
-
-	self defineGroup: #'Wizard-Group' in: spec with: #(
-		'Moose-Wizard'
-	).
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineXMLWriter: spec [ 
-
-	self defineGroup: #'XMLWriter-Group' in: spec with: #(
-		'XML-Writer-Core'
-		'XML-Writer-Tests'
-		'Collections-Tests-OrderPreservingDictionary'
-		'XML-Tests-Parser'
-		'XML-Parser-GTExtensions'
-	).
+BaselineOfMoose >> baselineXMLWriter: spec [
+	spec
+		baseline: 'MooseSXMLWriter'
+		with: [ spec repository: repository ]
 ]
 
 { #category : #private }
@@ -163,36 +140,25 @@ BaselineOfMoose >> groups: spec [
 	spec group: 'BasicMetamodelling' with: #(
 		Famix
 	).
-
 	spec group: 'BasicMetamodellingWithRoassal' with: #(
 		BasicMetamodelling
 		MooseRoassal
 	).
-	
-
 	spec group: 'MooseFinderGroup' with: #(
 		BasicMetamodellingWithRoassal
 		MooseFinder
 	).
-
-	
 	spec group: 'Parsing' with: #(
 		MooseFinderGroup
-		PetitParser-Group
-		SmaCC-Group
+		MoosePetitParserUI
+		MooseSmaCCUI
 	).
-	
-	
 	spec group: 'AdditionalTools' with: #(
 		Parsing
-		XMLWriter-Group
-		Merlin-Group
-		Moose-DistributionMap
-		Moose-Tests-DistributionMap
-		Wizard-Group
+		MooseXMLWriter
+		MooseMiscs
 		MooseIDE
 	).
-		
 	spec group: 'default' with: #('AdditionalTools').
 	
 
@@ -206,6 +172,74 @@ BaselineOfMoose >> mooseFinder: spec [
 { #category : #dependencies }
 BaselineOfMoose >> mooseIDE: spec [
 	spec baseline: 'MooseIDE' with: [ spec repository: repository ]
+]
+
+{ #category : #baseline }
+BaselineOfMoose >> newGroups: spec [ 
+ 
+  "Only Famix"
+	spec group: 'Core' with: #(
+		Famix
+	).
+	"Famix-Java"
+	
+	spec group: 'Java' with: #(
+		Core
+		MooseSmaCCJava
+	).
+	"Famix-Java and UI"
+	spec group: 'JavaUI' with: #(
+		Core
+		MooseRoassal
+		MooseFinder
+		MooseSmaCCJavaUI
+		MooseIDE
+	).
+	
+	"Famix and PetitParser"
+	spec group: 'CorePetitParser' with: #(
+		Core
+		MoosePetitParser
+	).
+	"Famix petit parser and UI"
+	spec group: 'CorePetitParserUI' with: #(
+		Core
+		MooseRoassal
+		MooseFinder
+		MooseIDE
+		MoosePetitParserUI
+	).
+	"Famix and SmaCC"
+	spec group: 'CoreSmaCC' with: #(
+		Core
+		MooseSmaCC
+	).
+	"Famix and SmaCC-UI"
+	spec group: 'CoreSmaCCUI' with: #(
+		Core
+		MooseRoassal
+		MooseFinder
+		MooseIDE
+		MooseSmaCCUI
+	).
+	spec group: 'CoreParsers' with: #(
+		Core
+		MooseSmaCC
+		MoosePetitParser
+	).
+	
+	spec group: 'CoreParsersUI' with: #(
+		Core
+		MooseRoassal
+		MooseFinder
+		MooseIDE
+		MooseSmaCCUI
+		MoosePetitParserUI
+	).
+	
+	
+	
+
 ]
 
 { #category : #accessing }
