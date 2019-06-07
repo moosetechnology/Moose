@@ -31,7 +31,7 @@ BaselineOfMooseRoassal >> baseline: spec [
 		package: 'Roassal2'
 			with: [ spec requires: #('Trachel' 'Athens-SVG' 'Geometry' 'Collections-BitmapCharacterSet' 'XMLParser') ];
 		package: 'Roassal2GT'
-			with: [ spec requires: #('Roassal2' 'GToolkitExamples') ]
+			with: [ spec requires: #('Roassal2' 'GToolkit-Examples') ]
 ]
 
 { #category : #baselines }
