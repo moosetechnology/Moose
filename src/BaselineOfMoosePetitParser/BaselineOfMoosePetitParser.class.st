@@ -10,6 +10,7 @@ Class {
 { #category : #baselines }
 BaselineOfMoosePetitParser >> baseline: spec [
 	<baseline>
+	spec baselineRoassal2: spec.
 	spec
 		package: 'PetitParser';
 		package: 'PetitTests' with: [ spec requires: #(PetitParser) ];
