@@ -32,7 +32,7 @@ BaselineOfMoose >> baseline: spec [
 			self baselineSmaCCJava: spec.
 			self baselineSmaCCJavaUI: spec.
 			" XMLWriter / Miscelaneous (Merlin, Wizard, etc)"
-			self baselineXMLWriter: spec.
+			self baselineXMLParser: spec.
 			self baselineMiscs: spec.
 			self groups: spec.
 			self newGroups: spec ].
@@ -116,10 +116,12 @@ BaselineOfMoose >> baselineSmaCCUI: spec [
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineXMLWriter: spec [
+BaselineOfMoose >> baselineXMLParser: spec [
 	spec
-		baseline: 'MooseSXMLWriter'
-		with: [ spec repository: repository ]
+		baseline: 'MooseXMLParser'
+		with: [ spec
+				repository: repository;
+				loads: #Core ]
 ]
 
 { #category : #private }
@@ -155,7 +157,7 @@ BaselineOfMoose >> groups: spec [
 	).
 	spec group: 'AdditionalTools' with: #(
 		Parsing
-		MooseXMLWriter
+		MooseXMLParser
 		MooseMiscs
 		MooseIDE
 	).
