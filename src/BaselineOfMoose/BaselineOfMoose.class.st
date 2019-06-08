@@ -268,6 +268,13 @@ BaselineOfMoose >> newGroups: spec [
 		MooseIDE
 		MoosePetitParserUI
 	).
+	
+	spec group: 'GraphicTools' with: #(
+		MooseFinder
+		MooseIDE
+		MooseMiscs
+	).
+	
 	"Famix and SmaCC"
 	spec group: 'CoreSmaCC' with: #(
 		Core
