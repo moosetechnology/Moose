@@ -44,7 +44,7 @@ BaselineOfMooseRoassal >> packageRepositoryURL [
 { #category : #baselines }
 BaselineOfMooseRoassal >> xmlParser: spec [
 	spec
-		baseline: 'XMLParser'
+		baseline: 'MooseXMLParser'
 		with: [ spec
 				repository: self packageRepositoryURL;
 				loads: #CoreUI ]
