@@ -24,9 +24,10 @@ BaselineOfMooseXMLParser >> baseline: spec [
 		package: 'XML-Writer-Core'
 			with: [ spec
 				requires:
-					#('Collections-OrderPreservingDictionary' 'Collections-Tests-OrderPreservingDictionary') ];
+					#('Collections-OrderPreservingDictionary' 'Collections-Tests-OrderPreservingDictionary' 'Collections-BitmapCharacterSet') ];
 		package: 'XML-Writer-Tests'
 			with: [ spec requires: 'XML-Writer-Core' ];
+		package: 'Collections-BitmapCharacterSet';
 		package: 'Collections-OrderPreservingDictionary';
 		package: 'Collections-Tests-OrderPreservingDictionary'
 			with: [ spec requires: #('Collections-OrderPreservingDictionary') ].
