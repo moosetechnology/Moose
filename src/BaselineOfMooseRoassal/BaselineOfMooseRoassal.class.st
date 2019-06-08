@@ -28,7 +28,7 @@ BaselineOfMooseRoassal >> baseline: spec [
 		package: 'GToolkit-Examples';
 		package: 'Collections-BitmapCharacterSet';
 		package: 'Roassal2'
-			with: [ spec requires: #('Trachel' 'Athens-SVG' 'Geometry' 'Collections-BitmapCharacterSet' 'XMLParser') ];
+			with: [ spec requires: #('Trachel' 'Athens-SVG' 'Geometry' 'Collections-BitmapCharacterSet' 'MooseXMLParser') ];
 		package: 'Roassal2GT'
 			with: [ spec requires: #('Roassal2' 'GToolkit-Examples') ]
 ]
