@@ -270,6 +270,7 @@ BaselineOfMoose >> newGroups: spec [
 	).
 	
 	spec group: 'GraphicTools' with: #(
+		Core
 		MooseFinder
 		MooseIDE
 		MooseMiscs
