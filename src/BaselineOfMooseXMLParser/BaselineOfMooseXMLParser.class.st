@@ -19,7 +19,7 @@ BaselineOfMooseXMLParser >> baseline: spec [
 				requires:
 					#('Collections-OrderPreservingDictionary' 'Collections-Tests-OrderPreservingDictionary') ];
 		package: 'XML-Parser-GTExtensions'
-			with: [ spec requires: 'XML-Tests-Parser' ];
+			with: [ spec requires: #('XML-Parser' 'XML-Writer-Core')];
 		package: 'XML-Tests-Parser' with: [ spec requires: 'XML-Parser' ];
 		package: 'XML-Writer-Core'
 			with: [ spec
