@@ -88,7 +88,7 @@ BaselineOfMoose >> baselineSmaCC: spec [
 		baseline: 'MooseSmaCC'
 		with: [ spec
 				repository: repository;
-				load: #(FullNoUI) ]
+				loads: #(FullNoUI) ]
 ]
 
 { #category : #baseline }
