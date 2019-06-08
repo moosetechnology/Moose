@@ -12,24 +12,28 @@ Class {
 
 { #category : #tests }
 BaselineOfMoose class >> loadAndTestGroup: group [
-	#ImageWorker asClass
-		do: [ | suits |
-			Metacello new
-				baseline: self name;
-				repository: self packageRepositoryURL;
-				loads: group asSymbol.
-			suits := (Smalltalk packages
-				select: [ :package | 
-					package name
-						beginsWith: (self package name copyReplaceAll: #BaselineOf with: '') asString ])
-				flatCollect: [ :package | 
-					package classes
-						select:
-							[ :class | (class inheritsFrom: TestCase) and: [ class isAbstract not ] ]
-						thenCollect: [ :testCase | testCase buildSuiteFromSelectors ] ].
-			^ (TestSuite named: group , '-Testing')
-				addTests: suits;
-				run ]
+	| suits project |
+	project := (self package name copyReplaceAll: #BaselineOf with: '')
+		asString.
+	Metacello new
+		baseline: project;
+		repository: self packageRepositoryURL;
+		load: group asSymbol.
+	suits := (Smalltalk packages
+		select: [ :package | package name beginsWith: project ])
+		flatCollect: [ :package | 
+			package classes
+				select:
+					[ :class | (class inheritsFrom: TestCase) and: [ class isAbstract not ] ]
+				thenCollect: [ :testCase | testCase buildSuiteFromSelectors ] ].
+	^ (TestSuite named: group , '-Testing')
+		addTests: suits;
+		run
+]
+
+{ #category : #tests }
+BaselineOfMoose class >> loadAndTestGroupInWorker: group [
+	#ImageWorker asClass do: [ self loadAndTestGroup: group ]
 ]
 
 { #category : #tests }
