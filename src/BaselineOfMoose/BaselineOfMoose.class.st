@@ -10,6 +10,59 @@ Class {
 	#category : #BaselineOfMoose
 }
 
+{ #category : #tests }
+BaselineOfMoose class >> loadAndTestGroup: group [
+	#ImageWorker asClass
+		do: [ | suits |
+			Metacello new
+				baseline: self name;
+				repository: self packageRepositoryURL;
+				loads: group asSymbol.
+			suits := (Smalltalk packages
+				select: [ :package | 
+					package name
+						beginsWith: (self package name copyReplaceAll: #BaselineOf with: '') asString ])
+				flatCollect: [ :package | 
+					package classes
+						select:
+							[ :class | (class inheritsFrom: TestCase) and: [ class isAbstract not ] ]
+						thenCollect: [ :testCase | testCase buildSuiteFromSelectors ] ].
+			^ (TestSuite named: group , '-Testing')
+				addTests: suits;
+				run ]
+]
+
+{ #category : #tests }
+BaselineOfMoose class >> packageRepositoryURL [
+	^ self new packageRepositoryURL
+]
+
+{ #category : #tests }
+BaselineOfMoose class >> testAllGroups [
+	"protocol: #tests"
+
+	| results semaphore |
+	Metacello new
+		baseline: #ImageWorker;
+		repository: 'github://pharo-contributions/ImageWorker/source';
+		load.
+	results := Array new: self version groups size.
+	semaphore := Semaphore new.
+	(self version groups collect: #name)
+		doWithIndex: [ :group :id | 
+			[ [ [ results at: id put: (self loadAndTestGroup: group) ]
+				on: Error
+				do: [ :e | results at: id put: e ] ]
+				ensure: [ semaphore signal ] ] forkNamed: 'Group-' , group ].
+	1 to: self version groups size do: [ :i | 
+		semaphore wait: 20 minutes.
+		(results allSatisfy: #isNotNil)
+			ifTrue: [ ^ results ] ].
+	(results allSatisfy: #isNotNil)
+		ifTrue: [ ^ results ].
+	self error: 'Unexpected finalization'
+]
+
 { #category : #baseline }
 BaselineOfMoose >> baseline: spec [
 	<baseline>
