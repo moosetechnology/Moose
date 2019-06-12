@@ -236,10 +236,10 @@ FamixMetamodelGenerator >> generate [
 	self flag: #todo.	"Partial cleaning strategy should keep: documentation + report + clean code"
 	EpMonitor
 		disableDuring: [ self define.
-			self cleaningStrategy cleanBeforeGeneration: self.
-			self builder generate.
-			subbuilders do: #generateRemotes.
-			self cleaningStrategy postGeneration: self ].
+			self cleaningStrategy
+				withCleaningDo: [ self builder generate.
+					subbuilders do: #generateRemotes ]
+				with: self ].
 	self class resetMetamodel
 ]
 

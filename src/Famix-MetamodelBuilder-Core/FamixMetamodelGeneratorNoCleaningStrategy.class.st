@@ -1,7 +1,13 @@
+"
+Description
+--------------------
+
+I am a cleaning strategy that cleans nothing (Null design patter)
+"
 Class {
 	#name : #FamixMetamodelGeneratorNoCleaningStrategy,
 	#superclass : #FamixAbstractMetamodelGeneratorCleaningStrategy,
-	#category : #'Famix-MetamodelBuilder-Core-Basic'
+	#category : #'Famix-MetamodelBuilder-Core-Cleaning'
 }
 
 { #category : #action }

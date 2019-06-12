@@ -1,7 +1,15 @@
+"
+Description
+--------------------
+
+I am an abstract class to define the API of cleaning strategies.
+
+Cleaning strategies are used by a MM generator to know how to regenerate a MM.
+"
 Class {
 	#name : #FamixAbstractMetamodelGeneratorCleaningStrategy,
 	#superclass : #Object,
-	#category : #'Famix-MetamodelBuilder-Core-Basic'
+	#category : #'Famix-MetamodelBuilder-Core-Cleaning'
 }
 
 { #category : #testing }
@@ -17,4 +25,11 @@ FamixAbstractMetamodelGeneratorCleaningStrategy >> cleanBeforeGeneration: aMetam
 { #category : #action }
 FamixAbstractMetamodelGeneratorCleaningStrategy >> postGeneration: aMetamodelGenerator [
 	"By default I do nothing"
+]
+
+{ #category : #action }
+FamixAbstractMetamodelGeneratorCleaningStrategy >> withCleaningDo: aBlock with: aMetamodelGenerator [
+	self cleanBeforeGeneration: aMetamodelGenerator.
+	aBlock value.
+	self postGeneration: aMetamodelGenerator
 ]

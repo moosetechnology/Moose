@@ -1,3 +1,17 @@
+"
+Description
+--------------------
+
+I am a partial cleaning strategy. 
+
+If used by a MM generator, I'll try to save all the informations added by a user in a MM, remove the generated MM, regenerate the MM and add back all the info I saved to it.
+
+To do that I'll save:
+- Non generated methods 
+- Non generated variables
+- Non generated Traits usage
+- Non generated classes
+"
 Class {
 	#name : #FamixMetamodelGeneratorCleanGeneratedStrategy,
 	#superclass : #FamixAbstractMetamodelGeneratorCleaningStrategy,
@@ -9,7 +23,7 @@ Class {
 		'addedClasses',
 		'addedTraitsUsers'
 	],
-	#category : #'Famix-MetamodelBuilder-Core-Basic'
+	#category : #'Famix-MetamodelBuilder-Core-Cleaning'
 }
 
 { #category : #action }
@@ -72,4 +86,10 @@ FamixMetamodelGeneratorCleanGeneratedStrategy >> postGeneration: aMetamodelBuild
 { #category : #accessing }
 FamixMetamodelGeneratorCleanGeneratedStrategy >> temporaryPackageName [
 	^ 'Famix-MetamodelBuilder-Temporary-Classes-Package-Holder'
+]
+
+{ #category : #action }
+FamixMetamodelGeneratorCleanGeneratedStrategy >> withCleaningDo: aBlock with: aMetamodelGenerator [
+	[ super withCleaningDo: aBlock with: aMetamodelGenerator ]
+		ensure: [ self cleanAfterGeneration ]
 ]

@@ -1,3 +1,11 @@
+"
+Description
+--------------------
+
+I am an utility class to keep some info about methods.
+
+I am used by the partial cleaning strategy of the MM generation.
+"
 Class {
 	#name : #FmxCleaningMethodInfo,
 	#superclass : #Object,
@@ -6,7 +14,7 @@ Class {
 		'protocol',
 		'isInstanceSide'
 	],
-	#category : #'Famix-MetamodelBuilder-Core-Basic'
+	#category : #'Famix-MetamodelBuilder-Core-Cleaning'
 }
 
 { #category : #'instance creation' }
