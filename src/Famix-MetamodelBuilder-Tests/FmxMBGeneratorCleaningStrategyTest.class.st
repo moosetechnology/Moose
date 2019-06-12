@@ -2,8 +2,6 @@ Class {
 	#name : #FmxMBGeneratorCleaningStrategyTest,
 	#superclass : #FmxMBTestCase,
 	#instVars : [
-		'mooseClass',
-		'generatorClass',
 		'generator'
 	],
 	#category : #'Famix-MetamodelBuilder-Tests'
