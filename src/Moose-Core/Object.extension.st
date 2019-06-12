@@ -115,6 +115,11 @@ Object >> mooseMenuMorph [
 	^ menu
 ]
 
+{ #category : #'*Moose-Core' }
+Object >> mooseModel [
+	^ nil
+]
+
 { #category : #'*moose-core' }
 Object >> mooseName [
 	^ self printString

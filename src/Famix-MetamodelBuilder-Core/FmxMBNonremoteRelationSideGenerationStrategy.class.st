@@ -39,9 +39,13 @@ FmxMBNonremoteRelationSideGenerationStrategy >> generateSetterCoreIn: aClassOrTr
 		ifTrue: [ 
 			aStream tab; nextPutAll: ('(self privateState attributeAt: #{1} ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].' format: { aRelationSide name }).
 			aStream cr.
-			aStream tab; nextPutAll: ('self privateState attributeAt: #{1} put: anObject.' format: {aRelationSide name}).
-			aStream cr.
-			aStream tab; nextPutAll: ('anObject {1}: self' format: {aRelationSide otherSide name}).
+			aStream tab; nextPutAll: ('anObject ifNil: [ | otherSide |'); cr.
+			aStream tab; tab; nextPutAll: ('otherSide :=  self {1}.' format: {aRelationSide name}); cr.
+			aStream tab; tab; nextPutAll: ('self privateState attributeAt: #{1} put: anObject.' format: {aRelationSide name}); cr.
+			aStream tab; tab; nextPutAll: ('otherSide {1}: nil ]' format: {aRelationSide otherSide name}); cr.
+			aStream tab; nextPutAll: ('ifNotNil: [ ' format: {aRelationSide otherSide name}); cr.
+			aStream tab; tab; nextPutAll: ('self privateState attributeAt: #{1} put: anObject.' format: {aRelationSide name}); cr.
+			aStream tab; tab; nextPutAll: ('anObject {1}: self ]' format: {aRelationSide otherSide name}).
 	].
 
 	((aRelationSide otherSide cardinality = #one) and: [aRelationSide cardinality = #many])
