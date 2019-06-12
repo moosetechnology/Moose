@@ -12,18 +12,27 @@ Class {
 	#instVars : [
 		'sourceCode',
 		'protocol',
-		'isInstanceSide'
+		'isInstanceSide',
+		'methodClass'
 	],
 	#category : #'Famix-MetamodelBuilder-Core-Cleaning'
 }
 
 { #category : #'instance creation' }
-FmxCleaningMethodInfo class >> source: aString protocol: aSymbol isInstanceSide: aBoolean [
+FmxCleaningMethodInfo class >> source: aString protocol: aSymbol isInstanceSide: aBoolean methodClass: aClass [
 	^ self new
 		sourceCode: aString;
 		protocol: aSymbol;
 		isInstanceSide: aBoolean;
+		methodClass: aClass;
 		yourself
+]
+
+{ #category : #actions }
+FmxCleaningMethodInfo >> install [
+	"Reinstall the method if possible."
+
+	self class environment at: self methodClass ifPresent: [ :class | (self isInstanceSide ifTrue: [ class ] ifFalse: [ class class ]) compile: self sourceCode classified: self protocol ]
 ]
 
 { #category : #accessing }
@@ -34,6 +43,16 @@ FmxCleaningMethodInfo >> isInstanceSide [
 { #category : #accessing }
 FmxCleaningMethodInfo >> isInstanceSide: anObject [
 	isInstanceSide := anObject
+]
+
+{ #category : #accessing }
+FmxCleaningMethodInfo >> methodClass [
+	^ methodClass
+]
+
+{ #category : #accessing }
+FmxCleaningMethodInfo >> methodClass: anObject [
+	methodClass := anObject
 ]
 
 { #category : #accessing }

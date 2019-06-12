@@ -39,10 +39,8 @@ FamixMetamodelGeneratorCleanGeneratedStrategy >> cleanBeforeGeneration: aMetamod
 	aMetamodelGenerator generatedPackage definedClasses
 		do: [ :class | 
 			class isMetamodelEntity
-				ifTrue: [ (class localMethods , class class localMethods
-						reject: [ :method | method pragmas anySatisfy: [ :pragma | pragma keyword = #generated ] ]
-						thenCollect: [ :m | FmxCleaningMethodInfo source: m sourceCode protocol: m protocol isInstanceSide: m methodClass isInstanceSide ])
-						ifNotEmpty: [ :methods | addedMethods at: class name put: methods ].
+				ifTrue: [ addedMethods
+						addAll: (class localMethods , class class localMethods reject: [ :method | method pragmas anySatisfy: [ :pragma | pragma keyword = #generated ] ] thenCollect: [ :m | self methodInfoFor: m ]).
 					(class traitComposition allTraits reject: #isMetamodelEntity) ifNotEmpty: [ :traits | addedTraitsUsers at: class name put: traits ].
 
 					(class slotNames difference: (aMetamodelGenerator instanceVariableNamesGeneratedIn: class))
@@ -51,6 +49,8 @@ FamixMetamodelGeneratorCleanGeneratedStrategy >> cleanBeforeGeneration: aMetamod
 					class class instanceVariables ifNotEmpty: [ :classInstVariables | addedClassInstVar at: class name put: classInstVariables ] ]
 				ifFalse: [ addedClasses add: class ] ].
 
+	addedMethods addAll: (aMetamodelGenerator generatedPackage extensionMethods collect: [ :method | self methodInfoFor: method ]).
+
 	addedClasses ifNotEmpty: [ :classes | (RPackageOrganizer default createPackageNamed: self temporaryPackageName) importClasses: classes ].
 	aMetamodelGenerator generatedPackage removeFromSystem
 ]
@@ -58,7 +58,7 @@ FamixMetamodelGeneratorCleanGeneratedStrategy >> cleanBeforeGeneration: aMetamod
 { #category : #initialization }
 FamixMetamodelGeneratorCleanGeneratedStrategy >> initialize [
 	super initialize.
-	addedMethods := Dictionary new.
+	addedMethods := Set new.
 	addedTraitsUsers := Dictionary new.
 	addedInstVar := Dictionary new.
 	addedClassVar := Dictionary new.
@@ -67,20 +67,26 @@ FamixMetamodelGeneratorCleanGeneratedStrategy >> initialize [
 ]
 
 { #category : #action }
-FamixMetamodelGeneratorCleanGeneratedStrategy >> postGeneration: aMetamodelBuilder [
-	[ aMetamodelBuilder generatedPackage classes
-		do: [ :class | 
-			addedMethods
-				at: class name
-				ifPresent: [ :methods | methods do: [ :method | (method isInstanceSide ifTrue: [ class ] ifFalse: [ class class ]) compile: method sourceCode classified: method protocol ] ].
+FamixMetamodelGeneratorCleanGeneratedStrategy >> methodInfoFor: aMethod [
+	^ FmxCleaningMethodInfo
+		source: aMethod sourceCode
+		protocol: aMethod protocol
+		isInstanceSide: aMethod methodClass isInstanceSide
+		methodClass: (aMethod methodClass isClassSide ifTrue: [ aMethod methodClass soleInstance ] ifFalse: [ aMethod methodClass ]) name
+]
 
+{ #category : #action }
+FamixMetamodelGeneratorCleanGeneratedStrategy >> postGeneration: aMetamodelBuilder [
+	aMetamodelBuilder generatedPackage classes
+		do: [ :class | 
 			addedTraitsUsers at: class name ifPresent: [ :traits | class traitComposition: (traits inject: class traitComposition into: [ :trait1 :trait2 | trait1 + trait2 ]) ].
 
 			addedInstVar at: class name ifPresent: [ :instVariables | instVariables do: [ :instVar | class addSlot: instVar ] ].
 			addedClassVar at: class name ifPresent: [ :classVariables | classVariables do: [ :classVar | class addClassVariable: classVar ] ].
 			addedClassInstVar at: class name ifPresent: [ :classInstVariables | classInstVariables do: [ :classInstVar | class class addSlot: classInstVar ] ] ].
-	addedClasses ifNotEmpty: [ :classes | aMetamodelBuilder generatedPackage importClasses: classes ] ]
-		ensure: [ self cleanAfterGeneration ]
+
+	addedMethods do: #install.
+	addedClasses ifNotEmpty: [ :classes | aMetamodelBuilder generatedPackage importClasses: classes ]
 ]
 
 { #category : #accessing }

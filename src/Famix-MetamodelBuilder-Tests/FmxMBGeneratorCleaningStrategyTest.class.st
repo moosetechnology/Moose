@@ -41,7 +41,8 @@ FmxMBGeneratorCleaningStrategyTest >> generateClasses [
 		slots: {}
 		classVariables: {}
 		package: self packageName.
-	Trait named: #TFmxCleanerTestAddedTrait uses: {} package: self packageName
+	Trait named: #TFmxCleanerTestAddedTrait uses: {} package: self packageName.
+	self class compile: 'extensionsMethodForTest' classified: ('*' , generator packageName)
 ]
 
 { #category : #running }
@@ -69,15 +70,17 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningCleaning [
 	self class environment
 		at: #FmxTestCleaningStrategyFmxTestEntity
 		ifPresent: [ :class | 
-			self assert: (class class methods anySatisfy: [ :method | method selector = #tree ]).
-			self assert: (class methods anySatisfy: [ :method | method selector = #banana ]).
-			self assert: (class methods anySatisfy: [ :method | method selector = #potatoExtendedMethod ]).
-			self assert: (class methods detect: [ :method | method selector = #potatoExtendedMethod ]) protocol equals: #* , self class package name.
+			self assert: (class class localMethods anySatisfy: [ :method | method selector = #tree ]).
+			self assert: (class localMethods anySatisfy: [ :method | method selector = #banana ]).
+			self assert: (class localMethods anySatisfy: [ :method | method selector = #potatoExtendedMethod ]).
+			self assert: (class localMethods detect: [ :method | method selector = #potatoExtendedMethod ]) protocol equals: #* , self class package name.
 			self assert: (class traitComposition allTraits anySatisfy: [ :trait | trait name = #FamixTestExternalTraits ]).
 			self assert: (class hasInstVarNamed: #bananaTree).
 			self assert: (class hasClassVarNamed: #Fuhrmanator).
 			self assert: (class class hasInstVarNamed: #grandFrais) ]
 		ifAbsent: [ self fail ].
+
+	self assert: (self class methodDict at: #extensionsMethodForTest ifPresent: [ true ] ifAbsent: [ false ]).
 
 	self class environment at: #FmxCleanerTestAddedClass ifPresent: [ :class | self assert: class package name equals: self packageName ] ifAbsent: [ self fail ].
 	self class environment at: #TFmxCleanerTestAddedTrait ifPresent: [ :class | self assert: class package name equals: self packageName ] ifAbsent: [ self fail ]
@@ -89,15 +92,17 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningGeneration [
 	self class environment
 		at: #FmxTestCleaningStrategyFmxTestEntity
 		ifPresent: [ :class | 
-			self assert: (class class methods anySatisfy: [ :method | method selector = #tree ]).
-			self assert: (class methods anySatisfy: [ :method | method selector = #banana ]).
-			self assert: (class methods anySatisfy: [ :method | method selector = #potatoExtendedMethod ]).
-			self assert: (class methods detect: [ :method | method selector = #potatoExtendedMethod ]) protocol equals: #* , self class package name.
+			self assert: (class class localMethods anySatisfy: [ :method | method selector = #tree ]).
+			self assert: (class localMethods anySatisfy: [ :method | method selector = #banana ]).
+			self assert: (class localMethods anySatisfy: [ :method | method selector = #potatoExtendedMethod ]).
+			self assert: (class localMethods detect: [ :method | method selector = #potatoExtendedMethod ]) protocol equals: #* , self class package name.
 			self assert: (class traitComposition allTraits anySatisfy: [ :trait | trait name = #FamixTestExternalTraits ]).
 			self assert: (class hasInstVarNamed: #bananaTree).
 			self assert: (class hasClassVarNamed: #Fuhrmanator).
 			self assert: (class class hasInstVarNamed: #grandFrais) ]
 		ifAbsent: [ self fail ].
+		
+	self assert: (self class methodDict at: #extensionsMethodForTest ifPresent: [ true ] ifAbsent: [ false ]).
 		
 	self class environment at: #FmxCleanerTestAddedClass ifPresent: [ :class | self assert: class package name equals: self packageName ] ifAbsent: [ self fail ].
 	self class environment at: #TFmxCleanerTestAddedTrait ifPresent: [ :class | self assert: class package name equals: self packageName ] ifAbsent: [ self fail ]
@@ -108,6 +113,7 @@ FmxMBGeneratorCleaningStrategyTest >> testGeneratePartialCleaningCleaning [
 	generator define.
 	generator withPartialCleaning cleaningStrategy cleanBeforeGeneration: generator.
 	self should: [ self class environment at: #FmxTestCleaningStrategyFmxTestEntity ] raise: KeyNotFound.
+	self assert: (self class methodDict at: #extensionsMethodForTest ifPresent: [ false ] ifAbsent: [ true ]).
 	generator cleaningStrategy cleanAfterGeneration
 ]
 
@@ -118,17 +124,19 @@ FmxMBGeneratorCleaningStrategyTest >> testGeneratePartialCleaningGeneration [
 	self class environment
 		at: #FmxTestCleaningStrategyFmxTestEntity
 		ifPresent: [ :class | 
-			self assert: (class class methods anySatisfy: [ :method | method selector = #tree ]).
-			self assert: (class class methods detect: [ :method | method selector = #tree ]) protocol equals: 'monkey'.
-			self assert: (class methods anySatisfy: [ :method | method selector = #banana ]).
-			self assert: (class methods detect: [ :method | method selector = #banana ]) protocol equals: 'monkey'.
-			self assert: (class methods anySatisfy: [ :method | method selector = #potatoExtendedMethod ]).
-			self assert: (class methods detect: [ :method | method selector = #potatoExtendedMethod ]) protocol equals: #* , self class package name.
+			self assert: (class class localMethods anySatisfy: [ :method | method selector = #tree ]).
+			self assert: (class class localMethods detect: [ :method | method selector = #tree ]) protocol equals: 'monkey'.
+			self assert: (class localMethods anySatisfy: [ :method | method selector = #banana ]).
+			self assert: (class localMethods detect: [ :method | method selector = #banana ]) protocol equals: 'monkey'.
+			self assert: (class localMethods anySatisfy: [ :method | method selector = #potatoExtendedMethod ]).
+			self assert: (class localMethods detect: [ :method | method selector = #potatoExtendedMethod ]) protocol equals: #* , self class package name.
 			self assert: (class traitComposition allTraits anySatisfy: [ :trait | trait name = #FamixTestExternalTraits ]).
 			self assert: (class hasInstVarNamed: #bananaTree).
 			self assert: (class hasClassVarNamed: #Fuhrmanator).
 			self assert: (class class hasInstVarNamed: #grandFrais) ]
 		ifAbsent: [ self fail ].
+
+	self assert: (self class methodDict at: #extensionsMethodForTest ifPresent: [ true ] ifAbsent: [ false ]).
 
 	self class environment at: #FmxCleanerTestAddedClass ifPresent: [ :class | self assert: class package name equals: self packageName ] ifAbsent: [ self fail ].
 	self class environment at: #TFmxCleanerTestAddedTrait ifPresent: [ :class | self assert: class package name equals: self packageName ] ifAbsent: [ self fail ]
@@ -140,7 +148,8 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateTotalCleaningCleaning [
 	generator withCleaning cleaningStrategy cleanBeforeGeneration: generator.
 	self should: [ self class environment at: #FmxTestCleaningStrategyFmxTestEntity ] raise: KeyNotFound.
 	self should: [ self class environment at: #FmxCleanerTestAddedClass ] raise: KeyNotFound.
-	self should: [ self class environment at: #TFmxCleanerTestAddedTrait ] raise: KeyNotFound
+	self should: [ self class environment at: #TFmxCleanerTestAddedTrait ] raise: KeyNotFound.
+	self assert: (self class methodDict at: #extensionsMethodForTest ifPresent: [ false ] ifAbsent: [ true ])
 ]
 
 { #category : #running }
@@ -149,14 +158,16 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateTotalCleaningGeneration [
 	self class environment
 		at: #FmxTestCleaningStrategyFmxTestEntity
 		ifPresent: [ :class | 
-			self assert: (class class methods noneSatisfy: [ :method | method selector = #tree ]).
-			self assert: (class methods noneSatisfy: [ :method | method selector = #banana ]).
-			self assert: (class methods noneSatisfy: [ :method | method selector = #potatoExtendedMethod ]).
+			self assert: (class class localMethods noneSatisfy: [ :method | method selector = #tree ]).
+			self assert: (class localMethods noneSatisfy: [ :method | method selector = #banana ]).
+			self assert: (class localMethods noneSatisfy: [ :method | method selector = #potatoExtendedMethod ]).
 			self assert: (class traitComposition allTraits noneSatisfy: [ :trait | trait name = #FamixTestExternalTraits ]).
 			self deny: (class hasInstVarNamed: #bananaTree).
 			self deny: (class hasClassVarNamed: #Fuhrmanator).
 			self deny: (class class hasInstVarNamed: #grandFrais) ]
 		ifAbsent: [ self fail ].
+	
+	self assert: (self class methodDict at: #extensionsMethodForTest ifPresent: [ false ] ifAbsent: [ true ]).
 
 	self should: [ self class environment at: #FmxCleanerTestAddedClass ] raise: KeyNotFound.
 	self should: [ self class environment at: #TFmxCleanerTestAddedTrait ] raise: KeyNotFound
