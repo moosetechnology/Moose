@@ -129,8 +129,7 @@ FamixMetamodelGenerator class >> resetMetamodel [
 	FMRelationSlot allSubInstancesDo: #resetMooseProperty.
 
 	classes := self packageName asPackage definedClasses select: [ :each | each inheritsFrom: MooseEntity ].
-	classes
-		addAll: (self packageName asPackage definedClasses select: [ :class | class isTrait and: [ "check that the trait is part of the metamodel" (Pragma allNamed: #MSEClass:super: in: class class) isNotEmpty ] ]).
+	classes addAll: (self packageName asPackage definedClasses select: [ :class | class isTrait and: [ class isMetamodelEntity ] ]).
 
 	classes addAll: self basicMetamodelClasses.
 
@@ -234,7 +233,7 @@ FamixMetamodelGenerator >> defineTraits [
 
 { #category : #generation }
 FamixMetamodelGenerator >> generate [
-	self flag: #todo.	"Partial cleaning strategy should keep: documentation + report + clean code + manage deleted classes from MM"
+	self flag: #todo.	"Partial cleaning strategy should keep: documentation + report + clean code"
 	EpMonitor
 		disableDuring: [ self define.
 			self cleaningStrategy cleanBeforeGeneration: self.
@@ -265,11 +264,6 @@ FamixMetamodelGenerator >> generateWithoutCleaning [
 { #category : #generation }
 FamixMetamodelGenerator >> generatedPackage [
 	^ self packageName asPackageIfAbsent: [ nil ]
-]
-
-{ #category : #testing }
-FamixMetamodelGenerator >> includesReal: aTraitOrClass [
-	^ (self builder classes anySatisfy: [ :t | t realClass = aTraitOrClass ]) or: [ self builder traits anySatisfy: [ :t | t realClass = aTraitOrClass ] ]
 ]
 
 { #category : #definition }

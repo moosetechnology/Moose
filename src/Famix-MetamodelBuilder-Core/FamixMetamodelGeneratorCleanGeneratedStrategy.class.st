@@ -13,13 +13,18 @@ Class {
 }
 
 { #category : #action }
+FamixMetamodelGeneratorCleanGeneratedStrategy >> cleanAfterGeneration [
+	(self temporaryPackageName asPackageIfAbsent: [ ^ self ]) removeFromSystem
+]
+
+{ #category : #action }
 FamixMetamodelGeneratorCleanGeneratedStrategy >> cleanBeforeGeneration: aMetamodelGenerator [
 	aMetamodelGenerator generatedPackage ifNil: [ ^ self ].
 
 	"We need to select the classes because RPackage return also traits alongside with its classes."
 	aMetamodelGenerator generatedPackage classes
 		do: [ :class | 
-			(aMetamodelGenerator includesReal: class)
+			class isMetamodelEntity
 				ifTrue: [ (class methods , class class methods
 						reject: [ :method | method pragmas anySatisfy: [ :pragma | pragma keyword = #generated ] ]
 						thenCollect: [ :m | FmxCleaningMethodInfo source: m sourceCode protocol: m protocol isInstanceSide: m methodClass isInstanceSide ])
@@ -49,7 +54,7 @@ FamixMetamodelGeneratorCleanGeneratedStrategy >> initialize [
 
 { #category : #action }
 FamixMetamodelGeneratorCleanGeneratedStrategy >> postGeneration: aMetamodelBuilder [
-	aMetamodelBuilder generatedPackage classes
+	[ aMetamodelBuilder generatedPackage classes
 		do: [ :class | 
 			addedMethods
 				at: class name
@@ -60,13 +65,11 @@ FamixMetamodelGeneratorCleanGeneratedStrategy >> postGeneration: aMetamodelBuild
 			addedInstVar at: class name ifPresent: [ :instVariables | instVariables do: [ :instVar | class addSlot: instVar ] ].
 			addedClassVar at: class name ifPresent: [ :classVariables | classVariables do: [ :classVar | class addClassVariable: classVar ] ].
 			addedClassInstVar at: class name ifPresent: [ :classInstVariables | classInstVariables do: [ :classInstVar | class class addSlot: classInstVar ] ] ].
-	addedClasses
-		ifNotEmpty: [ :classes | 
-			aMetamodelBuilder generatedPackage importClasses: classes.
-			self temporaryPackageName asPackage removeFromSystem ]
+	addedClasses ifNotEmpty: [ :classes | aMetamodelBuilder generatedPackage importClasses: classes ] ]
+		ensure: [ self cleanAfterGeneration ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixMetamodelGeneratorCleanGeneratedStrategy >> temporaryPackageName [
 	^ 'Famix-MetamodelBuilder-Temporary-Classes-Package-Holder'
 ]

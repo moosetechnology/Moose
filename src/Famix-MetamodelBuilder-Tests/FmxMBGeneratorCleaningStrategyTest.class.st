@@ -110,8 +110,7 @@ FmxMBGeneratorCleaningStrategyTest >> testGeneratePartialCleaningCleaning [
 	generator define.
 	generator withPartialCleaning cleaningStrategy cleanBeforeGeneration: generator.
 	self should: [ self class environment at: #FmxTestCleaningStrategyFmxTestEntity ] raise: KeyNotFound.
-	self should: [ self class environment at: #FmxCleanerTestAddedClass ] raise: KeyNotFound.
-	self should: [ self class environment at: #TFmxCleanerTestAddedTrait ] raise: KeyNotFound
+	generator cleaningStrategy cleanAfterGeneration
 ]
 
 { #category : #running }
