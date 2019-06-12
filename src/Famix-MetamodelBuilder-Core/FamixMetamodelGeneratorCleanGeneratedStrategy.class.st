@@ -39,7 +39,7 @@ FamixMetamodelGeneratorCleanGeneratedStrategy >> cleanBeforeGeneration: aMetamod
 	aMetamodelGenerator generatedPackage classes
 		do: [ :class | 
 			class isMetamodelEntity
-				ifTrue: [ (class methods , class class methods
+				ifTrue: [ (class localMethods , class class localMethods
 						reject: [ :method | method pragmas anySatisfy: [ :pragma | pragma keyword = #generated ] ]
 						thenCollect: [ :m | FmxCleaningMethodInfo source: m sourceCode protocol: m protocol isInstanceSide: m methodClass isInstanceSide ])
 						ifNotEmpty: [ :methods | addedMethods at: class name put: methods ].
