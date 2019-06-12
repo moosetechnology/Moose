@@ -30,8 +30,9 @@ FamixMetamodelGeneratorCleanGeneratedStrategy >> cleanBeforeGeneration: aMetamod
 						ifNotEmpty: [ :instVarNames | addedInstVar at: class name put: (instVarNames collect: [ :instVarName | class slotNamed: instVarName ]) ].
 					class classVariables ifNotEmpty: [ :classVariables | addedClassVar at: class name put: classVariables ].
 					class class instanceVariables ifNotEmpty: [ :classInstVariables | addedClassInstVar at: class name put: classInstVariables ] ]
-				ifFalse: [ addedClasses add: class copy ] ].
+				ifFalse: [ addedClasses add: class ] ].
 
+	addedClasses ifNotEmpty: [ :classes | (RPackageOrganizer default createPackageNamed: self temporaryPackageName) importClasses: classes ].
 	aMetamodelGenerator generatedPackage removeFromSystem
 ]
 
@@ -58,8 +59,14 @@ FamixMetamodelGeneratorCleanGeneratedStrategy >> postGeneration: aMetamodelBuild
 
 			addedInstVar at: class name ifPresent: [ :instVariables | instVariables do: [ :instVar | class addSlot: instVar ] ].
 			addedClassVar at: class name ifPresent: [ :classVariables | classVariables do: [ :classVar | class addClassVariable: classVar ] ].
-			addedClassInstVar at: class name ifPresent: [ :classInstVariables | classInstVariables do: [ :classInstVar | class class addSlot: classInstVar ] ].
+			addedClassInstVar at: class name ifPresent: [ :classInstVariables | classInstVariables do: [ :classInstVar | class class addSlot: classInstVar ] ] ].
+	addedClasses
+		ifNotEmpty: [ :classes | 
+			aMetamodelBuilder generatedPackage importClasses: classes.
+			self temporaryPackageName asPackage removeFromSystem ]
+]
 
-			self flag: #todo. "This part does not work yet."
-			aMetamodelBuilder generatedPackage importClasses: addedClasses ]
+{ #category : #'as yet unclassified' }
+FamixMetamodelGeneratorCleanGeneratedStrategy >> temporaryPackageName [
+	^ 'Famix-MetamodelBuilder-Temporary-Classes-Package-Holder'
 ]
