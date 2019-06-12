@@ -335,16 +335,6 @@ FamixMetamodelGenerator >> remoteEntity: anEntityName withPrefix: aPrefixName [
 	^ anEntity.
 ]
 
-{ #category : #accessing }
-FamixMetamodelGenerator >> traitsGeneratedIn: aClassOrTrait [
-	"I return all the Traits used by aClassOrTrait that I generated inside it."
-
-	^ (self builder classes
-		detect: [ :class | class realClass = aClassOrTrait ]
-		ifFound: [ :class | class allLocalTraits ]
-		ifNone: [ self builder traits detect: [ :trait | trait realClass = aClassOrTrait ] ifFound: [ :trait | trait allTraitGeneralizations ] ]) collect: #realClass
-]
-
 { #category : #definition }
 FamixMetamodelGenerator >> withCleaning [
 	self cleaningStrategy: FamixMetamodelGeneratorTotalCleaningStrategy new

@@ -43,7 +43,7 @@ FamixMetamodelGeneratorCleanGeneratedStrategy >> cleanBeforeGeneration: aMetamod
 						reject: [ :method | method pragmas anySatisfy: [ :pragma | pragma keyword = #generated ] ]
 						thenCollect: [ :m | FmxCleaningMethodInfo source: m sourceCode protocol: m protocol isInstanceSide: m methodClass isInstanceSide ])
 						ifNotEmpty: [ :methods | addedMethods at: class name put: methods ].
-					(class traitComposition allTraits difference: (aMetamodelGenerator traitsGeneratedIn: class)) ifNotEmpty: [ :traits | addedTraitsUsers at: class name put: traits ].
+					(class traitComposition allTraits reject: #isMetamodelEntity) ifNotEmpty: [ :traits | addedTraitsUsers at: class name put: traits ].
 
 					(class slotNames difference: (aMetamodelGenerator instanceVariableNamesGeneratedIn: class))
 						ifNotEmpty: [ :instVarNames | addedInstVar at: class name put: (instVarNames collect: [ :instVarName | class slotNamed: instVarName ]) ].
