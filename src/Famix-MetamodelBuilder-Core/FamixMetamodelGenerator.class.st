@@ -233,7 +233,7 @@ FamixMetamodelGenerator >> defineTraits [
 
 { #category : #generation }
 FamixMetamodelGenerator >> generate [
-	self flag: #todo.	"Partial cleaning strategy should keep: documentation + report + clean code"
+	"Next step to improve the cleaning is to add a report. For example if we cannot migrate a method since its class was removed from the MM, we should get notified with a report object."
 	EpMonitor
 		disableDuring: [ self define.
 			self cleaningStrategy
