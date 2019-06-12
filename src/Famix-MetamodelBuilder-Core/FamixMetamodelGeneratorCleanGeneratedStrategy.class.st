@@ -35,8 +35,8 @@ FamixMetamodelGeneratorCleanGeneratedStrategy >> cleanAfterGeneration [
 FamixMetamodelGeneratorCleanGeneratedStrategy >> cleanBeforeGeneration: aMetamodelGenerator [
 	aMetamodelGenerator generatedPackage ifNil: [ ^ self ].
 
-	"We need to select the classes because RPackage return also traits alongside with its classes."
-	aMetamodelGenerator generatedPackage classes
+	"We need to select the classes because RPackage return also traits alongside with its classes. We use #defineClasses and not #classes to not get extensions."
+	aMetamodelGenerator generatedPackage definedClasses
 		do: [ :class | 
 			class isMetamodelEntity
 				ifTrue: [ (class localMethods , class class localMethods
