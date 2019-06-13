@@ -129,7 +129,7 @@ FamixMetamodelGenerator class >> resetMetamodel [
 
 	classes := self packageName asPackage definedClasses select: [ :each | each inheritsFrom: MooseEntity ].
 	classes
-		addAll: (self packageName asPackage definedClasses select: [ :class | class isTrait and: [ "check that the trait is part of the metamodel" (Pragma allNamed: #MSEClass:super: in: class class) isNotEmpty ] ]).
+		addAll: (self packageName asPackage definedClasses select: [ :class | class isTrait and: [ class isMetamodelEntity ] ]).
 
 	classes addAll: self basicMetamodelClasses.
 
