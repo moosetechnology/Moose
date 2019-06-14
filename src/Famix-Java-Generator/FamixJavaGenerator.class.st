@@ -142,6 +142,7 @@ FamixJavaGenerator >> defineHierarchy [
 	annotationInstanceAttribute --|> sourcedEntity.
 	annotationInstanceAttribute --|> #TAnnotationInstanceAttribute.
 	annotationInstanceAttribute --|> #TTypedAnnotationInstanceAttribute.
+	annotationInstanceAttribute --|> #TEntityMetaLevelDependency.
 	annotationInstanceAttribute --|> #TDependencyQueries.
 
 	annotationType --|> type.
