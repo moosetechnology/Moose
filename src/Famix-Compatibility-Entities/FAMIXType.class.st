@@ -22,12 +22,6 @@ FAMIXType class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXType class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTClassHierarchyNavigation FamixTContainingWithInvocationsGlue FamixTContainingWithStatementsGlue FamixTParameterizedTypeUser FamixTReferenceable FamixTTraitUser FamixTType FamixTWithAttributes FamixTWithMethods FamixTWithMethodsWithAccessesGlue FamixTWithMethodsWithModifiersGlue FamixTWithSubInheritances FamixTWithSuperInheritances FamixTWithTypeAliases FamixTWithTypedStructures)
-]
-
 { #category : #meta }
 FAMIXType class >> requirements [
 

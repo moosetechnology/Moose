@@ -22,12 +22,6 @@ FamixTWithModifiers classSide >> generatedSlotNames [
 	^ #(modifiers)
 ]
 
-{ #category : #generator }
-FamixTWithModifiers classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #'Famix-Implementation' }
 FamixTWithModifiers >> addModifier: aString [
 	self modifiers add: aString

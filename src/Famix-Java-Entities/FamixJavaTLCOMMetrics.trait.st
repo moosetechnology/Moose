@@ -18,9 +18,3 @@ FamixJavaTLCOMMetrics classSide >> generatedSlotNames [
 	'FamixJavaTLCOMMetrics class>>#generatedSlotNames'.
 	^ #()
 ]
-
-{ #category : #generator }
-FamixJavaTLCOMMetrics classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]

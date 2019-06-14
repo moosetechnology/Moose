@@ -25,12 +25,6 @@ FamixJavaAttribute class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixJavaAttribute class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTAttribute FamixTWithClassScope)
-]
-
 { #category : #meta }
 FamixJavaAttribute class >> requirements [
 

@@ -19,12 +19,6 @@ FamixTLCOMMetrics classSide >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixTLCOMMetrics classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #'Famix-Extensions-metrics-support' }
 FamixTLCOMMetrics >> calculateLCOM2 [
 	

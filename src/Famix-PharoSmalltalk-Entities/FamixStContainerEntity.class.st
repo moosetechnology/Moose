@@ -22,12 +22,6 @@ FamixStContainerEntity class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixStContainerEntity class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTWithAnnotationTypes FamixTWithClasses FamixTWithTypes TOODependencyQueries)
-]
-
 { #category : #meta }
 FamixStContainerEntity class >> requirements [
 

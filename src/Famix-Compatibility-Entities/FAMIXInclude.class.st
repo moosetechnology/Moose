@@ -22,12 +22,6 @@ FAMIXInclude class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXInclude class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTFileInclude)
-]
-
 { #category : #meta }
 FAMIXInclude class >> requirements [
 

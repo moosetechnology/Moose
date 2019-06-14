@@ -20,9 +20,3 @@ FamixTCohesionCouplingMetrics classSide >> generatedSlotNames [
 	'FamixTCohesionCouplingMetrics class>>#generatedSlotNames'.
 	^ #()
 ]
-
-{ #category : #generator }
-FamixTCohesionCouplingMetrics classSide >> generatedTraitNames [
-	<generated>
-	^ #(FamixTPackage)
-]

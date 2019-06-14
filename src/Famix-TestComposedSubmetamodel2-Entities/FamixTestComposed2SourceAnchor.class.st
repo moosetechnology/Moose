@@ -22,12 +22,6 @@ FamixTestComposed2SourceAnchor class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixTestComposed2SourceAnchor class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTSourceAnchor TDependencyQueries TEntityMetaLevelDependency)
-]
-
 { #category : #meta }
 FamixTestComposed2SourceAnchor class >> requirements [
 

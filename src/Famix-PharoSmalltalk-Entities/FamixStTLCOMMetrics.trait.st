@@ -18,9 +18,3 @@ FamixStTLCOMMetrics classSide >> generatedSlotNames [
 	'FamixStTLCOMMetrics class>>#generatedSlotNames'.
 	^ #()
 ]
-
-{ #category : #generator }
-FamixStTLCOMMetrics classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]

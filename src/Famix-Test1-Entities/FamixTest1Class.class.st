@@ -22,12 +22,6 @@ FamixTest1Class class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixTest1Class class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTClass FamixTLCOMMetrics FamixTWithMethods)
-]
-
 { #category : #meta }
 FamixTest1Class class >> requirements [
 

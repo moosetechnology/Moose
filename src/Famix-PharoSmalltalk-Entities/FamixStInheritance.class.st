@@ -22,12 +22,6 @@ FamixStInheritance class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixStInheritance class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTInheritanceGlue FamixTSubInheritance FamixTSuperInheritance)
-]
-
 { #category : #meta }
 FamixStInheritance class >> requirements [
 

@@ -39,12 +39,6 @@ FamixTAccess classSide >> generatedSlotNames [
 	^ #(accessor isWrite variable)
 ]
 
-{ #category : #generator }
-FamixTAccess classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTAccess >> accessor [
 

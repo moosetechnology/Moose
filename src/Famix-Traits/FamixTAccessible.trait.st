@@ -22,12 +22,6 @@ FamixTAccessible classSide >> generatedSlotNames [
 	^ #(incomingAccesses)
 ]
 
-{ #category : #generator }
-FamixTAccessible classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTAccessible >> accessingClasses [
 

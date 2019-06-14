@@ -26,12 +26,6 @@ FamixTAttribute classSide >> generatedSlotNames [
 	^ #(parentType)
 ]
 
-{ #category : #generator }
-FamixTAttribute classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #testing }
 FamixTAttribute >> isAttribute [
 

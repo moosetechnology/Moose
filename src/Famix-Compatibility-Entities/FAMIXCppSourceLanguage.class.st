@@ -20,12 +20,6 @@ FAMIXCppSourceLanguage class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXCppSourceLanguage class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FAMIXCppSourceLanguage class >> requirements [
 

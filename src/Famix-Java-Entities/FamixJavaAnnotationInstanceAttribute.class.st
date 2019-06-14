@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaAnnotationInstanceAttribute,
 	#superclass : #FamixJavaSourcedEntity,
-	#traits : 'FamixTAnnotationInstanceAttribute + FamixTTypedAnnotationInstanceAttribute + TDependencyQueries + TEntityMetaLevelDependency',
-	#classTraits : 'FamixTAnnotationInstanceAttribute classTrait + FamixTTypedAnnotationInstanceAttribute classTrait + TDependencyQueries classTrait + TEntityMetaLevelDependency classTrait',
+	#traits : 'FamixTAnnotationInstanceAttribute + FamixTTypedAnnotationInstanceAttribute + TDependencyQueries',
+	#classTraits : 'FamixTAnnotationInstanceAttribute classTrait + FamixTTypedAnnotationInstanceAttribute classTrait + TDependencyQueries classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
@@ -20,12 +20,6 @@ FamixJavaAnnotationInstanceAttribute class >> generatedSlotNames [
 	<generated>
 	'FamixJavaAnnotationInstanceAttribute class>>#generatedSlotNames'.
 	^ #()
-]
-
-{ #category : #generator }
-FamixJavaAnnotationInstanceAttribute class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTAnnotationInstanceAttribute FamixTTypedAnnotationInstanceAttribute TDependencyQueries)
 ]
 
 { #category : #meta }

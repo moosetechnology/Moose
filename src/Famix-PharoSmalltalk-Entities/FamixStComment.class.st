@@ -22,12 +22,6 @@ FamixStComment class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixStComment class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTComment)
-]
-
 { #category : #meta }
 FamixStComment class >> requirements [
 

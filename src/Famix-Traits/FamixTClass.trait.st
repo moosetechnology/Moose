@@ -36,12 +36,6 @@ FamixTClass classSide >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixTClass classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #testing }
 FamixTClass >> isClass [
 

@@ -20,12 +20,6 @@ FAMIXUnknownSourceLanguage class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXUnknownSourceLanguage class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FAMIXUnknownSourceLanguage class >> requirements [
 

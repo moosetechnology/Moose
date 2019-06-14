@@ -23,9 +23,3 @@ FamixTPreprocessorIfdef classSide >> generatedSlotNames [
 	'FamixTPreprocessorIfdef class>>#generatedSlotNames'.
 	^ #()
 ]
-
-{ #category : #generator }
-FamixTPreprocessorIfdef classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]

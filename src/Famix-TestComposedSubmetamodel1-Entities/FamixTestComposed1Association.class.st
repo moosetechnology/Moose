@@ -22,12 +22,6 @@ FamixTestComposed1Association class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixTestComposed1Association class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTAssociation TAssociationMetaLevelDependency)
-]
-
 { #category : #meta }
 FamixTestComposed1Association class >> requirements [
 

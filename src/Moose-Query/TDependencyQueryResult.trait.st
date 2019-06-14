@@ -24,12 +24,6 @@ TDependencyQueryResult classSide >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-TDependencyQueryResult classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #filtering }
 TDependencyQueryResult >> allAtAnyScope: aCollectionOfFamixClasses [
 	^ self newObjectResultWith: (self storage inject: OrderedCollection new into: [ :res :dep | (self opposite: dep) allAtAnyScope: aCollectionOfFamixClasses in: res ]) asSet

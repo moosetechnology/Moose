@@ -22,12 +22,6 @@ FamixTWithDereferencedInvocations classSide >> generatedSlotNames [
 	^ #(dereferencedInvocations)
 ]
 
-{ #category : #generator }
-FamixTWithDereferencedInvocations classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTWithDereferencedInvocations >> dereferencedInvocations [
 

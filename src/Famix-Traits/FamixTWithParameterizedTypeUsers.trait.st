@@ -22,12 +22,6 @@ FamixTWithParameterizedTypeUsers classSide >> generatedSlotNames [
 	^ #(arguments)
 ]
 
-{ #category : #generator }
-FamixTWithParameterizedTypeUsers classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTWithParameterizedTypeUsers >> arguments [
 

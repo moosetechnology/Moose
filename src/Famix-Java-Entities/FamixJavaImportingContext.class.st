@@ -11,12 +11,6 @@ FamixJavaImportingContext class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixJavaImportingContext class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #testing }
 FamixJavaImportingContext >> importAbstractFile [
 

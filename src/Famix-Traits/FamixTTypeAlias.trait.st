@@ -28,12 +28,6 @@ FamixTTypeAlias classSide >> generatedSlotNames [
 	^ #(aliasedType)
 ]
 
-{ #category : #generator }
-FamixTTypeAlias classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTTypeAlias >> aliasedType [
 

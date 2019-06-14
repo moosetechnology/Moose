@@ -19,12 +19,6 @@ FamixTWithStatements classSide >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixTWithStatements classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #metrics }
 FamixTWithStatements >> numberOfStatements [
 	<MSEProperty: #numberOfStatements type: #Number>

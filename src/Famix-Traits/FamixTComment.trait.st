@@ -33,12 +33,6 @@ FamixTComment classSide >> generatedSlotNames [
 	^ #(container content)
 ]
 
-{ #category : #generator }
-FamixTComment classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTComment >> container [
 

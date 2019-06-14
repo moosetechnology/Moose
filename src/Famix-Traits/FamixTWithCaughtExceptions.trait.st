@@ -22,12 +22,6 @@ FamixTWithCaughtExceptions classSide >> generatedSlotNames [
 	^ #(caughtExceptions)
 ]
 
-{ #category : #generator }
-FamixTWithCaughtExceptions classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTWithCaughtExceptions >> caughtExceptions [
 

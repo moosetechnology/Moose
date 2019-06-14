@@ -26,12 +26,6 @@ FamixTModule classSide >> generatedSlotNames [
 	^ #(moduleEntities)
 ]
 
-{ #category : #generator }
-FamixTModule classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTModule >> moduleEntities [
 

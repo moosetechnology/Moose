@@ -26,12 +26,6 @@ FamixStAssociation class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixStAssociation class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTAssociation TAssociationMetaLevelDependency)
-]
-
 { #category : #meta }
 FamixStAssociation class >> requirements [
 

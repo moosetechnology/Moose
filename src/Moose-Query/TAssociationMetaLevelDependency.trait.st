@@ -32,12 +32,6 @@ TAssociationMetaLevelDependency classSide >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-TAssociationMetaLevelDependency classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #private }
 TAssociationMetaLevelDependency classSide >> privateSourceTypesIn: aMetamodel [
 	"I return the classes that could be my source"

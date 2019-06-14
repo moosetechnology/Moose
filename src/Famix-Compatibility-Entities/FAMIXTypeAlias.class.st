@@ -22,12 +22,6 @@ FAMIXTypeAlias class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXTypeAlias class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTTypeAlias)
-]
-
 { #category : #meta }
 FAMIXTypeAlias class >> requirements [
 

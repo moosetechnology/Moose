@@ -22,12 +22,6 @@ FamixJavaClass class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixJavaClass class >> generatedTraitNames [
-	<generated>
-	^ #(FamixJavaTLCOMMetrics FamixTClass FamixTWithExceptions)
-]
-
 { #category : #meta }
 FamixJavaClass class >> requirements [
 

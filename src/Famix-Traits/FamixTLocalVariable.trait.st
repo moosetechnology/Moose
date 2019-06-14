@@ -25,12 +25,6 @@ FamixTLocalVariable classSide >> generatedSlotNames [
 	^ #(parentBehaviouralEntity)
 ]
 
-{ #category : #generator }
-FamixTLocalVariable classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTLocalVariable >> parentBehaviouralEntity [
 

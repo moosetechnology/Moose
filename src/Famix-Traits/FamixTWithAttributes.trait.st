@@ -22,12 +22,6 @@ FamixTWithAttributes classSide >> generatedSlotNames [
 	^ #(attributes)
 ]
 
-{ #category : #generator }
-FamixTWithAttributes classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #adding }
 FamixTWithAttributes >> addAttribute: anAttribute [
 	attributes add: anAttribute

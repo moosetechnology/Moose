@@ -22,12 +22,6 @@ FamixTWithLocalVariables classSide >> generatedSlotNames [
 	^ #(localVariables)
 ]
 
-{ #category : #generator }
-FamixTWithLocalVariables classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTWithLocalVariables >> addLocalVariable: aLocalVariable [
 	localVariables add: aLocalVariable

@@ -22,12 +22,6 @@ FamixTest1FileAnchor class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixTest1FileAnchor class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTFileNavigation)
-]
-
 { #category : #meta }
 FamixTest1FileAnchor class >> requirements [
 

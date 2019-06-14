@@ -25,12 +25,6 @@ FamixTCaughtException classSide >> generatedSlotNames [
 	^ #(definingEntity)
 ]
 
-{ #category : #generator }
-FamixTCaughtException classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTCaughtException >> definingEntity [
 

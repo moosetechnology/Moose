@@ -18,9 +18,3 @@ FamixTest3TWithMethod classSide >> generatedSlotNames [
 	'FamixTest3TWithMethod class>>#generatedSlotNames'.
 	^ #()
 ]
-
-{ #category : #generator }
-FamixTest3TWithMethod classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]

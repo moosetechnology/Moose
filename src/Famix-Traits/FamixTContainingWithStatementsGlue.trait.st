@@ -36,12 +36,6 @@ FamixTContainingWithStatementsGlue classSide >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixTContainingWithStatementsGlue classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #metrics }
 FamixTContainingWithStatementsGlue >> numberOfStatements [
 	<MSEProperty: #numberOfStatements type: #Number>

@@ -22,12 +22,6 @@ FamixStAccess class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixStAccess class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTAccess)
-]
-
 { #category : #meta }
 FamixStAccess class >> requirements [
 

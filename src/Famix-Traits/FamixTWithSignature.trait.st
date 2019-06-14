@@ -22,12 +22,6 @@ FamixTWithSignature classSide >> generatedSlotNames [
 	^ #(signature)
 ]
 
-{ #category : #generator }
-FamixTWithSignature classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTWithSignature >> signature [
 

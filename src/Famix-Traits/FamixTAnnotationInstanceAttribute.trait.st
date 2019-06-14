@@ -34,12 +34,6 @@ FamixTAnnotationInstanceAttribute classSide >> generatedSlotNames [
 	^ #(parentAnnotationInstance value)
 ]
 
-{ #category : #generator }
-FamixTAnnotationInstanceAttribute classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTAnnotationInstanceAttribute >> parentAnnotationInstance [
 

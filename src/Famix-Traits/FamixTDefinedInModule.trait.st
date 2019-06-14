@@ -22,12 +22,6 @@ FamixTDefinedInModule classSide >> generatedSlotNames [
 	^ #(parentModule)
 ]
 
-{ #category : #generator }
-FamixTDefinedInModule classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTDefinedInModule >> parentModule [
 

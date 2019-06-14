@@ -19,12 +19,6 @@ FamixTInheritanceGlue classSide >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixTInheritanceGlue classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #testing }
 FamixTInheritanceGlue >> isInheritance [ 
 	^true

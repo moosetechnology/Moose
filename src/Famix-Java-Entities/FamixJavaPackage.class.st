@@ -22,12 +22,6 @@ FamixJavaPackage class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixJavaPackage class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTPackage FamixTPackageWithClassesGlue)
-]
-
 { #category : #meta }
 FamixJavaPackage class >> requirements [
 

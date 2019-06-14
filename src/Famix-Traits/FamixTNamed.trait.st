@@ -22,12 +22,6 @@ FamixTNamed classSide >> generatedSlotNames [
 	^ #(name)
 ]
 
-{ #category : #generator }
-FamixTNamed classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #'instance creation' }
 FamixTNamed classSide >> named: aString [
 	^ self new

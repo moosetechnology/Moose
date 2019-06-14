@@ -22,12 +22,6 @@ FamixStStructuralEntity class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixStStructuralEntity class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTAccessible FamixTTypedStructure)
-]
-
 { #category : #meta }
 FamixStStructuralEntity class >> requirements [
 

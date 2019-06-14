@@ -20,12 +20,6 @@ FAMIXSmalltalkSourceLanguage class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXSmalltalkSourceLanguage class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FAMIXSmalltalkSourceLanguage class >> requirements [
 

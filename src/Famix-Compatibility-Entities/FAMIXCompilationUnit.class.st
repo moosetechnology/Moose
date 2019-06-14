@@ -22,12 +22,6 @@ FAMIXCompilationUnit class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXCompilationUnit class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTCompilationUnit FamixTDefinedInModule)
-]
-
 { #category : #meta }
 FAMIXCompilationUnit class >> requirements [
 

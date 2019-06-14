@@ -38,12 +38,6 @@ FamixTNamespace classSide >> generatedSlotNames [
 	^ #(namespaceEntities namespaceOwner)
 ]
 
-{ #category : #generator }
-FamixTNamespace classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #testing }
 FamixTNamespace >> isNamespace [
 

@@ -22,12 +22,6 @@ FAMIXImplicitVariable class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXImplicitVariable class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTImplicitVariable)
-]
-
 { #category : #meta }
 FAMIXImplicitVariable class >> requirements [
 

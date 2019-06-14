@@ -18,9 +18,3 @@ FamixTWithClassScope classSide >> generatedSlotNames [
 	'FamixTWithClassScope class>>#generatedSlotNames'.
 	^ #()
 ]
-
-{ #category : #generator }
-FamixTWithClassScope classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]

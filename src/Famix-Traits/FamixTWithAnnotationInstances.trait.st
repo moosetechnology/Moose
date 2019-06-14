@@ -22,12 +22,6 @@ FamixTWithAnnotationInstances classSide >> generatedSlotNames [
 	^ #(annotationInstances)
 ]
 
-{ #category : #generator }
-FamixTWithAnnotationInstances classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #'Famix-Java' }
 FamixTWithAnnotationInstances >> allAnnotationInstances [
 	| result |

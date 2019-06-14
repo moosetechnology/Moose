@@ -22,12 +22,6 @@ FamixTPossibleStub classSide >> generatedSlotNames [
 	^ #(isStub)
 ]
 
-{ #category : #generator }
-FamixTPossibleStub classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTPossibleStub >> isStub [
 

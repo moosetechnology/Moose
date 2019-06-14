@@ -22,12 +22,6 @@ FamixTInvocable classSide >> generatedSlotNames [
 	^ #(incomingInvocations)
 ]
 
-{ #category : #generator }
-FamixTInvocable classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #adding }
 FamixTInvocable >> addIncomingInvocation: anInvocation [
 	incomingInvocations add: anInvocation

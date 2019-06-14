@@ -37,12 +37,6 @@ FamixJavaEntity class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixJavaEntity class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FamixJavaEntity class >> metamodel [
 
