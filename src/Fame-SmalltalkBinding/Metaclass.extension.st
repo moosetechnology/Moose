@@ -2,10 +2,10 @@ Extension { #name : #Metaclass }
 
 { #category : #'*Fame-SmalltalkBinding' }
 Metaclass >> isMetamodelEntity [
-	^ self metamodelDefinitions isNotEmpty
+	^ self metamodelDefinitionPragmas isNotEmpty
 ]
 
 { #category : #'*Fame-SmalltalkBinding' }
-Metaclass >> metamodelDefinitions [
+Metaclass >> metamodelDefinitionPragmas [
 	^ Pragma allNamed: #MSEClass:super: in: self
 ]
