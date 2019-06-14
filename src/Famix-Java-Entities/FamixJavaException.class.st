@@ -22,12 +22,6 @@ FamixJavaException class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixJavaException class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTException)
-]
-
 { #category : #meta }
 FamixJavaException class >> requirements [
 

@@ -23,12 +23,6 @@ FamixTFileInclude classSide >> generatedSlotNames [
 	^ #(source target)
 ]
 
-{ #category : #generator }
-FamixTFileInclude classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTFileInclude >> source [
 

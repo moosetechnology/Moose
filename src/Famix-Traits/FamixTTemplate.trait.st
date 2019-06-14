@@ -23,12 +23,6 @@ FamixTTemplate classSide >> generatedSlotNames [
 	^ #(templateOwner templateUsers)
 ]
 
-{ #category : #generator }
-FamixTTemplate classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTTemplate >> templateOwner [
 

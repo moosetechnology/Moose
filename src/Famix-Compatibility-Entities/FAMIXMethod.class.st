@@ -25,12 +25,6 @@ FAMIXMethod class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXMethod class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTMethod FamixTWithCaughtExceptions FamixTWithClassScope FamixTWithDeclaredExceptions FamixTWithThrownExceptions)
-]
-
 { #category : #meta }
 FAMIXMethod class >> requirements [
 

@@ -22,12 +22,6 @@ FamixTWithEnumValues classSide >> generatedSlotNames [
 	^ #(enumValues)
 ]
 
-{ #category : #generator }
-FamixTWithEnumValues classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTWithEnumValues >> enumValues [
 

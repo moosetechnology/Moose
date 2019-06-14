@@ -22,12 +22,6 @@ FamixTWithComments classSide >> generatedSlotNames [
 	^ #(comments)
 ]
 
-{ #category : #generator }
-FamixTWithComments classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTWithComments >> comments [
 

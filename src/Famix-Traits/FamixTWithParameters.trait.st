@@ -22,12 +22,6 @@ FamixTWithParameters classSide >> generatedSlotNames [
 	^ #(parameters)
 ]
 
-{ #category : #generator }
-FamixTWithParameters classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #adding }
 FamixTWithParameters >> addParameter: aParameter [ 
 	parameters add: aParameter

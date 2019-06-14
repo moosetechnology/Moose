@@ -20,12 +20,6 @@ FamixTest4Classroom class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixTest4Classroom class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FamixTest4Classroom class >> requirements [
 

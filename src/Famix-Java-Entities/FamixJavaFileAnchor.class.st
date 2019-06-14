@@ -22,12 +22,6 @@ FamixJavaFileAnchor class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixJavaFileAnchor class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTFileNavigation)
-]
-
 { #category : #meta }
 FamixJavaFileAnchor class >> requirements [
 

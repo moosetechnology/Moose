@@ -18,9 +18,3 @@ FamixTClassWithInvocationsGlue classSide >> generatedSlotNames [
 	'FamixTClassWithInvocationsGlue class>>#generatedSlotNames'.
 	^ #()
 ]
-
-{ #category : #generator }
-FamixTClassWithInvocationsGlue classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]

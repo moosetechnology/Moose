@@ -34,12 +34,6 @@ FamixTFile classSide >> generatedSlotNames [
 	^ #(entities)
 ]
 
-{ #category : #generator }
-FamixTFile classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTFile >> addEntity: famixEntity [
 	self entities add: famixEntity

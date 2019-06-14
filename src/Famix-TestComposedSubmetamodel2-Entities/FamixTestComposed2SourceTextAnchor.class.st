@@ -22,12 +22,6 @@ FamixTestComposed2SourceTextAnchor class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixTestComposed2SourceTextAnchor class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTWithImmediateSource)
-]
-
 { #category : #meta }
 FamixTestComposed2SourceTextAnchor class >> requirements [
 

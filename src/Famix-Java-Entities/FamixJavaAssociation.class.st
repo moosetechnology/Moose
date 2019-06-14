@@ -22,12 +22,6 @@ FamixJavaAssociation class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixJavaAssociation class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTAssociation TAssociationMetaLevelDependency)
-]
-
 { #category : #meta }
 FamixJavaAssociation class >> requirements [
 

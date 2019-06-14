@@ -19,12 +19,6 @@ FamixTClassHierarchyNavigation classSide >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixTClassHierarchyNavigation classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #metrics }
 FamixTClassHierarchyNavigation >> addedMethods [
 	| inheritedMethodNames |

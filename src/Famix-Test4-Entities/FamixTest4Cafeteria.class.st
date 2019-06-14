@@ -20,12 +20,6 @@ FamixTest4Cafeteria class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixTest4Cafeteria class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FamixTest4Cafeteria class >> requirements [
 

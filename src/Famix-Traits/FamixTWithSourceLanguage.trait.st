@@ -22,12 +22,6 @@ FamixTWithSourceLanguage classSide >> generatedSlotNames [
 	^ #(declaredSourceLanguage)
 ]
 
-{ #category : #generator }
-FamixTWithSourceLanguage classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTWithSourceLanguage >> declaredSourceLanguage [
 

@@ -19,12 +19,6 @@ FamixTWithMethodsWithModifiersGlue classSide >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixTWithMethodsWithModifiersGlue classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #metrics }
 FamixTWithMethodsWithModifiersGlue >> numberOfAbstractMethods [
 	<MSEProperty: #numberOfAbstractMethods type: #Number>

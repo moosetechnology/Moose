@@ -22,12 +22,6 @@ FamixTest3PrimitiveType class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixTest3PrimitiveType class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTReferenceable FamixTWithTypes)
-]
-
 { #category : #meta }
 FamixTest3PrimitiveType class >> requirements [
 

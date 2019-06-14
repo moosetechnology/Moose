@@ -22,12 +22,6 @@ FAMIXAbstractFileAnchor class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXAbstractFileAnchor class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTFileAnchor)
-]
-
 { #category : #meta }
 FAMIXAbstractFileAnchor class >> requirements [
 

@@ -22,12 +22,6 @@ FAMIXCustomSourceLanguage class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXCustomSourceLanguage class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTNamed)
-]
-
 { #category : #meta }
 FAMIXCustomSourceLanguage class >> requirements [
 

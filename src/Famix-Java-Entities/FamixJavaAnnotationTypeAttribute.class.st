@@ -22,12 +22,6 @@ FamixJavaAnnotationTypeAttribute class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixJavaAnnotationTypeAttribute class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTAnnotationTypeAttribute FamixTTypedAnnotationInstanceAttribute)
-]
-
 { #category : #meta }
 FamixJavaAnnotationTypeAttribute class >> requirements [
 

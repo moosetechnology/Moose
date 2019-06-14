@@ -33,12 +33,6 @@ FamixTFolder classSide >> generatedSlotNames [
 	^ #(childrenFileSystemEntities)
 ]
 
-{ #category : #generator }
-FamixTFolder classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #adding }
 FamixTFolder >> addChildFileSystemEntity: aFileOrFolder [
 	self childrenFileSystemEntities add: aFileOrFolder

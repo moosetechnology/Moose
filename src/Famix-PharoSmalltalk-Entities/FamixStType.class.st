@@ -22,12 +22,6 @@ FamixStType class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixStType class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTReferenceable FamixTType FamixTWithTypedStructures)
-]
-
 { #category : #meta }
 FamixStType class >> requirements [
 

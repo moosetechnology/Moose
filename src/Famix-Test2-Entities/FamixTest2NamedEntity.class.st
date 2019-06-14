@@ -22,12 +22,6 @@ FamixTest2NamedEntity class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixTest2NamedEntity class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTNamed TDependencyQueries TEntityMetaLevelDependency)
-]
-
 { #category : #meta }
 FamixTest2NamedEntity class >> requirements [
 

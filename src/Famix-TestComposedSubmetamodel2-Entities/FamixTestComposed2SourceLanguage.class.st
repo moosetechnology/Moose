@@ -22,12 +22,6 @@ FamixTestComposed2SourceLanguage class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixTestComposed2SourceLanguage class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTSourceLanguage)
-]
-
 { #category : #meta }
 FamixTestComposed2SourceLanguage class >> requirements [
 

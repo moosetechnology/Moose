@@ -25,12 +25,6 @@ FamixStMethod class >> generatedSlotNames [
 	^ #(protocol)
 ]
 
-{ #category : #generator }
-FamixStMethod class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTInvocable FamixTMethod FamixTTypedStructure FamixTWithAccesses FamixTWithClassScope FamixTWithImplicitVariables FamixTWithInvocations FamixTWithLocalVariables FamixTWithParameters FamixTWithReferences FamixTWithSignature)
-]
-
 { #category : #meta }
 FamixStMethod class >> requirements [
 

@@ -35,12 +35,6 @@ FamixTEnumValue classSide >> generatedSlotNames [
 	^ #(parentEnum)
 ]
 
-{ #category : #generator }
-FamixTEnumValue classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTEnumValue >> mooseNameOn: aStream [
 	(self belongsTo isNotNil and: [ self belongsTo name isNotNil ])

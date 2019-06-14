@@ -22,12 +22,6 @@ FamixJavaAccess class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixJavaAccess class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTAccess)
-]
-
 { #category : #meta }
 FamixJavaAccess class >> requirements [
 

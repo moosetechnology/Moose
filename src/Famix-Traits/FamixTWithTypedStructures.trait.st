@@ -22,12 +22,6 @@ FamixTWithTypedStructures classSide >> generatedSlotNames [
 	^ #(structuresWithDeclaredType)
 ]
 
-{ #category : #generator }
-FamixTWithTypedStructures classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #deprecated }
 FamixTWithTypedStructures >> addBehaviourWithDeclaredType: aBehaviour [
 	self structuresWithDeclaredType add: aBehaviour

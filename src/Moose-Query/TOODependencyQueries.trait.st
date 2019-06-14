@@ -26,12 +26,6 @@ TOODependencyQueries classSide >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-TOODependencyQueries classSide >> generatedTraitNames [
-	<generated>
-	^ #(TDependencyQueries)
-]
-
 { #category : #testing }
 TOODependencyQueries >> hasIncomingTypeDeclaration [
 	"This method could be more readable but it needs to be really performant"

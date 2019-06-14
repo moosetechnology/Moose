@@ -22,12 +22,6 @@ FamixTWithFiles classSide >> generatedSlotNames [
 	^ #(containerFiles)
 ]
 
-{ #category : #generator }
-FamixTWithFiles classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTWithFiles >> containerFiles [
 

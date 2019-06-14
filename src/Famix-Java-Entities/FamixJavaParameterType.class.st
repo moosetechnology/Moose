@@ -20,12 +20,6 @@ FamixJavaParameterType class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixJavaParameterType class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FamixJavaParameterType class >> requirements [
 

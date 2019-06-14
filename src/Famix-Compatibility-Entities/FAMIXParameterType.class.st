@@ -20,12 +20,6 @@ FAMIXParameterType class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXParameterType class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FAMIXParameterType class >> requirements [
 

@@ -22,12 +22,6 @@ FamixStSourcedEntity class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixStSourcedEntity class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTWithComments FamixTWithSourceAnchor FamixTWithSourceLanguage)
-]
-
 { #category : #meta }
 FamixStSourcedEntity class >> requirements [
 

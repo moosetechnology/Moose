@@ -22,12 +22,6 @@ FamixStNamespace class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixStNamespace class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTNamespace)
-]
-
 { #category : #meta }
 FamixStNamespace class >> requirements [
 

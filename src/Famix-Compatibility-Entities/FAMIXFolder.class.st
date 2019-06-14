@@ -22,12 +22,6 @@ FAMIXFolder class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXFolder class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTFolder)
-]
-
 { #category : #meta }
 FAMIXFolder class >> requirements [
 

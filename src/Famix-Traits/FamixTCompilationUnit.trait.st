@@ -25,12 +25,6 @@ FamixTCompilationUnit classSide >> generatedSlotNames [
 	^ #(compilationUnitOwner)
 ]
 
-{ #category : #generator }
-FamixTCompilationUnit classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTCompilationUnit >> compilationUnitOwner [
 

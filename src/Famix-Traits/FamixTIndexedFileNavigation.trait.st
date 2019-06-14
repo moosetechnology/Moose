@@ -42,12 +42,6 @@ FamixTIndexedFileNavigation classSide >> generatedSlotNames [
 	^ #(endPos startPos)
 ]
 
-{ #category : #generator }
-FamixTIndexedFileNavigation classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #private }
 FamixTIndexedFileNavigation >> countNumberOfLinesRuturnsFrom: aStream from: start to: end [
 	"Here is a speedup version of the #lineCount method for the IndexedFileAnchors.

@@ -11,12 +11,6 @@ FamixStImportingContext class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixStImportingContext class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #testing }
 FamixStImportingContext >> importAccess [
 

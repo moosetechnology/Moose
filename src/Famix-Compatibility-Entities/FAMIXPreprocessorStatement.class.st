@@ -20,12 +20,6 @@ FAMIXPreprocessorStatement class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXPreprocessorStatement class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FAMIXPreprocessorStatement class >> requirements [
 

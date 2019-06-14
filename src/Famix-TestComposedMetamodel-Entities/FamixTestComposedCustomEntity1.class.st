@@ -20,12 +20,6 @@ FamixTestComposedCustomEntity1 class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixTestComposedCustomEntity1 class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FamixTestComposedCustomEntity1 class >> metamodel [
 

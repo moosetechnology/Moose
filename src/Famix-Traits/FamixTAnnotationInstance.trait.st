@@ -43,12 +43,6 @@ FamixTAnnotationInstance classSide >> generatedSlotNames [
 	^ #(annotatedEntity)
 ]
 
-{ #category : #generator }
-FamixTAnnotationInstance classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTAnnotationInstance >> annotatedEntity [
 

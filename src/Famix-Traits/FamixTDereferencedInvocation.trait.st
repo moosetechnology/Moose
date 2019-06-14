@@ -29,12 +29,6 @@ FamixTDereferencedInvocation classSide >> generatedSlotNames [
 	^ #(referencer)
 ]
 
-{ #category : #generator }
-FamixTDereferencedInvocation classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTDereferencedInvocation >> referencer [
 

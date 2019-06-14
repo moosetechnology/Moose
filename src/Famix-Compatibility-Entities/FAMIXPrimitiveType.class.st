@@ -20,12 +20,6 @@ FAMIXPrimitiveType class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXPrimitiveType class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FAMIXPrimitiveType class >> requirements [
 

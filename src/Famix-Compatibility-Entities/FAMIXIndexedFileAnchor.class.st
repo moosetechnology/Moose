@@ -22,12 +22,6 @@ FAMIXIndexedFileAnchor class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXIndexedFileAnchor class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTIndexedFileNavigation)
-]
-
 { #category : #meta }
 FAMIXIndexedFileAnchor class >> requirements [
 

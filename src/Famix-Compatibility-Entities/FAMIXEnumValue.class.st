@@ -22,12 +22,6 @@ FAMIXEnumValue class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXEnumValue class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTEnumValue)
-]
-
 { #category : #meta }
 FAMIXEnumValue class >> requirements [
 

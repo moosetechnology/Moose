@@ -23,12 +23,6 @@ FamixTest4Principal class >> generatedSlotNames [
 	^ #(school)
 ]
 
-{ #category : #generator }
-FamixTest4Principal class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FamixTest4Principal class >> requirements [
 

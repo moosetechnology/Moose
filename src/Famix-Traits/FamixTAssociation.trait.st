@@ -42,12 +42,6 @@ FamixTAssociation classSide >> generatedSlotNames [
 	^ #(next previous)
 ]
 
-{ #category : #generator }
-FamixTAssociation classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #testing }
 FamixTAssociation >> isAssociation [
 

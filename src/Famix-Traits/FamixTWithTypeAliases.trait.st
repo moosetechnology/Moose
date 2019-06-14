@@ -22,12 +22,6 @@ FamixTWithTypeAliases classSide >> generatedSlotNames [
 	^ #(typeAliases)
 ]
 
-{ #category : #generator }
-FamixTWithTypeAliases classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTWithTypeAliases >> allTypeAliases [
 	| all |

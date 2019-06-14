@@ -20,12 +20,6 @@ FAMIXJavaSourceLanguage class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXJavaSourceLanguage class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FAMIXJavaSourceLanguage class >> requirements [
 

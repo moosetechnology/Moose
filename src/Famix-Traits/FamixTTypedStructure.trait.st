@@ -22,12 +22,6 @@ FamixTTypedStructure classSide >> generatedSlotNames [
 	^ #(declaredType)
 ]
 
-{ #category : #generator }
-FamixTTypedStructure classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTTypedStructure >> declaredType [
 
