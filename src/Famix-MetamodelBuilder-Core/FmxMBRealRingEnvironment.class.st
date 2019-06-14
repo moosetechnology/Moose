@@ -156,16 +156,9 @@ FmxMBRealRingEnvironment >> ensurePackagesFrom: anRGEnvironment [
 
 { #category : #installing }
 FmxMBRealRingEnvironment >> generatedSlotsOf: aRealClass [
-
-	| slotNames |
-	
-	slotNames := (aRealClass classSide canUnderstand: #generatedSlotNames)
-		ifTrue: [ aRealClass generatedSlotNames ]
-		ifFalse: [ Array new ].
-		
-	^ (slotNames collect: [ :slotName | aRealClass slotNamed: slotName ifFound: [ :slot | slot ] ifNone: nil ]) select: #notNil.
-	
-	
+	^ aRealClass generatedSlotNames
+		collect: [ :slotName | aRealClass slotNamed: slotName ifFound: [ :slot | slot ] ifNone: nil ]
+		thenSelect: #isNotNil
 ]
 
 { #category : #installing }

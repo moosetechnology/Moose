@@ -285,13 +285,6 @@ FamixMetamodelGenerator >> initialize [
 
 ]
 
-{ #category : #accessing }
-FamixMetamodelGenerator >> instanceVariableNamesGeneratedIn: aClassOrTrait [
-	"I return all the instance variable names in aClassOrTrait that I generated inside it."
-
-	(self builder classes , self builder traits) detect: [ :class | class realClass = aClassOrTrait ] ifFound: [ :class | ^ class slotDefinitions collect: #name ]
-]
-
 { #category : #definition }
 FamixMetamodelGenerator >> newBuilder [
 
