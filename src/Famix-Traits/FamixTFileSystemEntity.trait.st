@@ -27,12 +27,6 @@ FamixTFileSystemEntity classSide >> generatedSlotNames [
 	^ #(parentFolder)
 ]
 
-{ #category : #generator }
-FamixTFileSystemEntity classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #constants }
 FamixTFileSystemEntity classSide >> named: aName filedIn: aFolder [
 

@@ -22,12 +22,6 @@ FAMIXReference class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXReference class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTReference)
-]
-
 { #category : #meta }
 FAMIXReference class >> requirements [
 

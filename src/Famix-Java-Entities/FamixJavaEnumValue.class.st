@@ -22,12 +22,6 @@ FamixJavaEnumValue class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixJavaEnumValue class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTEnumValue)
-]
-
 { #category : #meta }
 FamixJavaEnumValue class >> requirements [
 

@@ -24,12 +24,6 @@ FAMIXPreprocessorIfdef class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXPreprocessorIfdef class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FAMIXPreprocessorIfdef class >> requirements [
 

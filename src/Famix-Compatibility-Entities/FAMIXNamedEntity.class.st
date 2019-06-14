@@ -27,12 +27,6 @@ FAMIXNamedEntity class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXNamedEntity class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTInvocationsReceiver FamixTNamed FamixTPackageable FamixTPossibleStub FamixTWithAnnotationInstances FamixTWithModifiers TDependencyQueries TEntityMetaLevelDependency)
-]
-
 { #category : #meta }
 FAMIXNamedEntity class >> requirements [
 

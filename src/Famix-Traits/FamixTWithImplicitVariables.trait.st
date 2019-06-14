@@ -22,12 +22,6 @@ FamixTWithImplicitVariables classSide >> generatedSlotNames [
 	^ #(implicitVariables)
 ]
 
-{ #category : #generator }
-FamixTWithImplicitVariables classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #adding }
 FamixTWithImplicitVariables >> addImplicitVariable: anImplicitVariable [
 	implicitVariables add: anImplicitVariable

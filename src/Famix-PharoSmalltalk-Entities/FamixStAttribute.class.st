@@ -25,12 +25,6 @@ FamixStAttribute class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixStAttribute class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTAttribute FamixTWithClassScope)
-]
-
 { #category : #meta }
 FamixStAttribute class >> requirements [
 

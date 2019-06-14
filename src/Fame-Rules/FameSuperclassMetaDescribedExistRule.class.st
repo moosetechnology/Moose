@@ -14,7 +14,7 @@ FameSuperclassMetaDescribedExistRule >> checkClass: aContext [
 | class pragmas pragma substrings metaSuperclassName |
 
 	class := aContext.
-	pragmas := class metamodelDefinitions.
+	pragmas := class metamodelDefinitionPragmas.
 	pragmas ifEmpty: [ ^ self ].
 	pragmas size > 1 ifTrue: [ result addClass: class. ^ self ].
 	

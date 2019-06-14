@@ -22,12 +22,6 @@ FamixTest1AbstractFile class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixTest1AbstractFile class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTFileSystemEntity)
-]
-
 { #category : #meta }
 FamixTest1AbstractFile class >> requirements [
 

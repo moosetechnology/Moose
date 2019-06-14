@@ -22,12 +22,6 @@ FamixTMultipleFileAnchor classSide >> generatedSlotNames [
 	^ #(allFiles)
 ]
 
-{ #category : #generator }
-FamixTMultipleFileAnchor classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTMultipleFileAnchor >> addSourceAnchor: aSourceAnchor [
 	self allFiles add: aSourceAnchor

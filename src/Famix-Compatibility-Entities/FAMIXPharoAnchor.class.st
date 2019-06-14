@@ -23,12 +23,6 @@ FAMIXPharoAnchor class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXPharoAnchor class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FAMIXPharoAnchor class >> requirements [
 

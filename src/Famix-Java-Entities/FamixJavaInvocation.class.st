@@ -22,12 +22,6 @@ FamixJavaInvocation class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixJavaInvocation class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTInvocation FamixTWithSignature)
-]
-
 { #category : #meta }
 FamixJavaInvocation class >> requirements [
 

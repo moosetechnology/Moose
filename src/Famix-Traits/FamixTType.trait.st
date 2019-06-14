@@ -37,12 +37,6 @@ FamixTType classSide >> generatedSlotNames [
 	^ #(typeContainer)
 ]
 
-{ #category : #generator }
-FamixTType classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #'Famix-Extensions-nav All Dependencies' }
 FamixTType >> clientTypes [
 	<MSEProperty: #clientTypes type: #FamixTType>

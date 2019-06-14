@@ -36,12 +36,6 @@ FamixTPackage classSide >> generatedSlotNames [
 	^ #(childEntities packageOwner)
 ]
 
-{ #category : #generator }
-FamixTPackage classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTPackage >> childEntities [
 

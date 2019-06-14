@@ -22,12 +22,6 @@ FamixStClass class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixStClass class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTClass FamixTClassHierarchyNavigation FamixTWithExceptions)
-]
-
 { #category : #meta }
 FamixStClass class >> requirements [
 

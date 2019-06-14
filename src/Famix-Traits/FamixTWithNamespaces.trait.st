@@ -22,12 +22,6 @@ FamixTWithNamespaces classSide >> generatedSlotNames [
 	^ #(namespaces)
 ]
 
-{ #category : #generator }
-FamixTWithNamespaces classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTWithNamespaces >> namespaces [
 

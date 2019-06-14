@@ -20,12 +20,6 @@ FAMIXLeafEntity class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXLeafEntity class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FAMIXLeafEntity class >> requirements [
 

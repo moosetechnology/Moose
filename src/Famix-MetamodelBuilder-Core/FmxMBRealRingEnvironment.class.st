@@ -17,7 +17,7 @@ FmxMBRealRingEnvironment >> adoptClassDefinitionOf: realClass to: anRGClass [
 
 
 	generatedOldSlots := self generatedSlotsOf: realClass.
-	generatedOldTraits := self generatedTraitNamessOf: realClass.
+	generatedOldTraits := realClass generatedTraitNames.
 	customSlots := realClass localSlots copyWithoutAll: generatedOldSlots.
 	customTraits := realClass traitComposition members reject: [ :e | generatedOldTraits includes: e name].
 	customSlotNames := customSlots collect: #name.
@@ -155,20 +155,6 @@ FmxMBRealRingEnvironment >> ensurePackagesFrom: anRGEnvironment [
 ]
 
 { #category : #installing }
-FmxMBRealRingEnvironment >> generateTraitsDescriptionFrom: anRGClass [
-
-	| generatedTraits |
-	
-	generatedTraits := anRGClass traitComposition transformations.
-	
-	anRGClass classSide compile: ('generatedTraitNames
-	<generated>
-	^ {1}' format: { '#(', ((generatedTraits collect: #name) joinUsing: ' '), ')' }) classified: 'generator'
-		
-
-]
-
-{ #category : #installing }
 FmxMBRealRingEnvironment >> generatedSlotsOf: aRealClass [
 
 	| slotNames |
@@ -183,31 +169,10 @@ FmxMBRealRingEnvironment >> generatedSlotsOf: aRealClass [
 ]
 
 { #category : #installing }
-FmxMBRealRingEnvironment >> generatedTraitNamessOf: aRealClass [
-
-	| traitNames |
-	
-	^ traitNames := (aRealClass classSide canUnderstand: #generatedTraitNames)
-		ifTrue: [ aRealClass generatedTraitNames ]
-		ifFalse: [ Array new ].
-		
-
-	
-	
-]
-
-{ #category : #installing }
 FmxMBRealRingEnvironment >> generatedTraitsOf: aRealClass [
-
-	| traitNames |
-	
-	traitNames := (aRealClass classSide canUnderstand: #generatedTraitNames)
-		ifTrue: [ aRealClass generatedTraitNames ]
-		ifFalse: [ Array new ].
-		
-	^ (traitNames collect: [ :traitName | aRealClass traitComposition transformations detect: [ :each | each name = traitName ] ifNone: [nil] ]) select: #notNil.
-	
-	
+	^ aRealClass generatedTraitNames
+		collect: [ :traitName | aRealClass traitComposition transformations detect: [ :each | each name = traitName ] ifNone: [ nil ] ]
+		thenSelect: #isNotNil
 ]
 
 { #category : #installing }
@@ -224,7 +189,6 @@ FmxMBRealRingEnvironment >> installClassChangesFor: anRGClass [
 	self adoptClassCommentOf: realClass to: anRGClass.
 	self cleanClass: realClass.
 	self generateSlotsDescriptionFrom: anRGClass.
-	self generateTraitsDescriptionFrom: anRGClass.
 	self adoptMethodsOf: realClass to: anRGClass
 		
 ]

@@ -28,12 +28,6 @@ FamixTSourceLanguage classSide >> generatedSlotNames [
 	^ #(sourcedEntities)
 ]
 
-{ #category : #generator }
-FamixTSourceLanguage classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #adding }
 FamixTSourceLanguage >> addSourcedEntity: aSourcedEntity [
 	^ self sourcedEntities add: aSourcedEntity

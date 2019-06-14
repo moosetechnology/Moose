@@ -22,12 +22,6 @@ FamixTReferenceable classSide >> generatedSlotNames [
 	^ #(incomingReferences)
 ]
 
-{ #category : #generator }
-FamixTReferenceable classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTReferenceable >> addIncomingReference: aReference [ 
 	incomingReferences add: aReference

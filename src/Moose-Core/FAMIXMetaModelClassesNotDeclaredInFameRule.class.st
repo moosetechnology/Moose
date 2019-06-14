@@ -18,11 +18,13 @@ FAMIXMetaModelClassesNotDeclaredInFameRule >> checkClass: aContext [
 	class := aContext.
 
 	(self metaModelClasses includes: class instanceSide)
-		ifTrue: [ pragmas := class metamodelDefinitions.
-			pragmas ifEmpty: [ class isMeta ifTrue: [ result addClass: class ].
-					^ self ].
-			pragmas size > 1 ifTrue: [ result addClass: class.
-					^ self ] ]
+		ifTrue: [
+			pragmas := class metamodelDefinitionPragmas.
+			pragmas ifEmpty: [
+				class isMeta ifTrue: [ result addClass: class ].
+			^ self ].
+		pragmas size > 1 ifTrue: [ result addClass: class. ^ self ].
+	]
 ]
 
 { #category : #accessing }

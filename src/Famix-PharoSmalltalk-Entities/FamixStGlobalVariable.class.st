@@ -22,12 +22,6 @@ FamixStGlobalVariable class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixStGlobalVariable class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTGlobalVariable)
-]
-
 { #category : #meta }
 FamixStGlobalVariable class >> requirements [
 

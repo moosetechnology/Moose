@@ -19,12 +19,6 @@ FamixTWithMethodsWithAccessesGlue classSide >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixTWithMethodsWithAccessesGlue classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #metrics }
 FamixTWithMethodsWithAccessesGlue >> tightClassCohesion [
 	<MSEProperty: #tightClassCohesion type: #Number>

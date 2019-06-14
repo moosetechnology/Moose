@@ -22,12 +22,6 @@ FAMIXLocalVariable class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXLocalVariable class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTLocalVariable)
-]
-
 { #category : #meta }
 FAMIXLocalVariable class >> requirements [
 

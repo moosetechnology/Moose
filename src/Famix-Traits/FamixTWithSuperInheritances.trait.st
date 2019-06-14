@@ -22,12 +22,6 @@ FamixTWithSuperInheritances classSide >> generatedSlotNames [
 	^ #(subInheritances)
 ]
 
-{ #category : #generator }
-FamixTWithSuperInheritances classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTWithSuperInheritances >> addSubInheritance: anInheritance [ 
 	subInheritances add: anInheritance

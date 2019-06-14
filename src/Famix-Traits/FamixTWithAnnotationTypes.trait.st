@@ -22,12 +22,6 @@ FamixTWithAnnotationTypes classSide >> generatedSlotNames [
 	^ #(definedAnnotationTypes)
 ]
 
-{ #category : #generator }
-FamixTWithAnnotationTypes classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTWithAnnotationTypes >> definedAnnotationTypes [
 

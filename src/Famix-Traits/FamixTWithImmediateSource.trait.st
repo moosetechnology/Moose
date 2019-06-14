@@ -22,12 +22,6 @@ FamixTWithImmediateSource classSide >> generatedSlotNames [
 	^ #(source)
 ]
 
-{ #category : #generator }
-FamixTWithImmediateSource classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTWithImmediateSource >> isFile [
 

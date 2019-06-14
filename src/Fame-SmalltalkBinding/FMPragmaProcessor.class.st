@@ -191,7 +191,7 @@ FMPragmaProcessor >> processClass: aClass [
 { #category : #private }
 FMPragmaProcessor >> processClass: aClass ifPragmaAbsent: anErrorBlock [
 	| pragma meta className superclassName |
-	pragma := aClass metamodelDefinitions.
+	pragma := aClass metamodelDefinitionPragmas.
 	pragma ifEmpty: anErrorBlock.
 	pragma
 		ifEmpty: [ className := aClass name.

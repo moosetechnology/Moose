@@ -25,12 +25,6 @@ FamixTImplicitVariable classSide >> generatedSlotNames [
 	^ #(parentBehaviouralEntity)
 ]
 
-{ #category : #generator }
-FamixTImplicitVariable classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTImplicitVariable >> parentBehaviouralEntity [
 

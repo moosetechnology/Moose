@@ -22,12 +22,6 @@ FamixTWithTemplates classSide >> generatedSlotNames [
 	^ #(templates)
 ]
 
-{ #category : #generator }
-FamixTWithTemplates classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTWithTemplates >> templates [
 

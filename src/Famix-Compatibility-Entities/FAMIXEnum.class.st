@@ -22,12 +22,6 @@ FAMIXEnum class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXEnum class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTWithEnumValues)
-]
-
 { #category : #meta }
 FAMIXEnum class >> requirements [
 

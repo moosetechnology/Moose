@@ -22,12 +22,6 @@ FAMIXMultipleFileAnchor class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXMultipleFileAnchor class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTMultipleFileAnchor)
-]
-
 { #category : #meta }
 FAMIXMultipleFileAnchor class >> requirements [
 

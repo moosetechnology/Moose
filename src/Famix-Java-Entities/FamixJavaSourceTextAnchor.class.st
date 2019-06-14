@@ -22,12 +22,6 @@ FamixJavaSourceTextAnchor class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixJavaSourceTextAnchor class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTWithImmediateSource)
-]
-
 { #category : #meta }
 FamixJavaSourceTextAnchor class >> requirements [
 

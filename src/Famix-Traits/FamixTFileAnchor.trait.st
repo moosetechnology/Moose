@@ -27,12 +27,6 @@ FamixTFileAnchor classSide >> generatedSlotNames [
 	^ #(correspondingFile encoding fileName)
 ]
 
-{ #category : #generator }
-FamixTFileAnchor classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #adding }
 FamixTFileAnchor >> addToFile: entity [
 	^ self correspondingFile addEntity: entity

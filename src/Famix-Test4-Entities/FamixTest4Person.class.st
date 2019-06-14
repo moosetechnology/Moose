@@ -23,12 +23,6 @@ FamixTest4Person class >> generatedSlotNames [
 	^ #(books)
 ]
 
-{ #category : #generator }
-FamixTest4Person class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FamixTest4Person class >> requirements [
 

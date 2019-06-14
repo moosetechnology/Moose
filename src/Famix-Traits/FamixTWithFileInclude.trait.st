@@ -23,12 +23,6 @@ FamixTWithFileInclude classSide >> generatedSlotNames [
 	^ #(incomingIncludeRelations outgoingIncludeRelations)
 ]
 
-{ #category : #generator }
-FamixTWithFileInclude classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTWithFileInclude >> incomingIncludeRelations [
 

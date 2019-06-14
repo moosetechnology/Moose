@@ -22,12 +22,6 @@ FAMIXScopingEntity class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXScopingEntity class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTGlobalVariableScope FamixTScopingEntity)
-]
-
 { #category : #meta }
 FAMIXScopingEntity class >> requirements [
 

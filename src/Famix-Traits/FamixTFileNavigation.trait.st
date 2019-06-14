@@ -48,12 +48,6 @@ FamixTFileNavigation classSide >> generatedSlotNames [
 	^ #(endColumn endLine startColumn startLine)
 ]
 
-{ #category : #generator }
-FamixTFileNavigation classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTFileNavigation >> endColumn [
 

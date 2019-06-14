@@ -22,12 +22,6 @@ FAMIXPackage class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #'as yet unclassified' }
-FAMIXPackage class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTCohesionCouplingMetrics FamixTPackage FamixTPackageWithClassesGlue)
-]
-
 { #category : #meta }
 FAMIXPackage class >> requirements [
 

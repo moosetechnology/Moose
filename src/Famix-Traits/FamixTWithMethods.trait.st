@@ -22,12 +22,6 @@ FamixTWithMethods classSide >> generatedSlotNames [
 	^ #(methods)
 ]
 
-{ #category : #generator }
-FamixTWithMethods classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTWithMethods >> addMethod: aMethod [
 	methods add: aMethod

@@ -74,12 +74,6 @@ TEntityMetaLevelDependency classSide >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-TEntityMetaLevelDependency classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 TEntityMetaLevelDependency classSide >> incomingAssociationTypesIn: aMetamodel [
 

@@ -39,12 +39,6 @@ FamixTMethod classSide >> generatedSlotNames [
 	^ #(isAbstract isClassSide kind parentType)
 ]
 
-{ #category : #generator }
-FamixTMethod classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #metrics }
 FamixTMethod >> cyclomaticComplexity [
 	<MSEProperty: #cyclomaticComplexity type: #Number>

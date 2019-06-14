@@ -6,6 +6,6 @@ Object >> isMetamodelEntity [
 ]
 
 { #category : #'*Fame-SmalltalkBinding' }
-Object >> metamodelDefinitions [
-	^ self class metamodelDefinitions
+Object >> metamodelDefinitionPragmas [
+	^ self class metamodelDefinitionPragmas
 ]

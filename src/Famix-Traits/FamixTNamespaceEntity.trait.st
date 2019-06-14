@@ -22,12 +22,6 @@ FamixTNamespaceEntity classSide >> generatedSlotNames [
 	^ #(parentNamespace)
 ]
 
-{ #category : #generator }
-FamixTNamespaceEntity classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTNamespaceEntity >> parentNamespace [
 

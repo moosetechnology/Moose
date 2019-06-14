@@ -22,12 +22,6 @@ FAMIXInvocation class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FAMIXInvocation class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTInvocation FamixTWithSignature)
-]
-
 { #category : #meta }
 FAMIXInvocation class >> requirements [
 

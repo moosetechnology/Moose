@@ -22,12 +22,6 @@ FamixStPackage class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixStPackage class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTCohesionCouplingMetrics FamixTPackage FamixTPackageWithClassesGlue)
-]
-
 { #category : #meta }
 FamixStPackage class >> requirements [
 

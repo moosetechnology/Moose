@@ -22,12 +22,6 @@ FamixTestComposed2Comment class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixTestComposed2Comment class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTComment)
-]
-
 { #category : #meta }
 FamixTestComposed2Comment class >> requirements [
 

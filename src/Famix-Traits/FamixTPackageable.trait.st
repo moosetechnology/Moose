@@ -22,12 +22,6 @@ FamixTPackageable classSide >> generatedSlotNames [
 	^ #(parentPackage)
 ]
 
-{ #category : #generator }
-FamixTPackageable classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTPackageable >> isExtension [
 	^self belongsTo packageScope ~~ self packageScope.

@@ -20,12 +20,6 @@ FamixStUnknownVariable class >> generatedSlotNames [
 	^ #()
 ]
 
-{ #category : #generator }
-FamixStUnknownVariable class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FamixStUnknownVariable class >> requirements [
 
