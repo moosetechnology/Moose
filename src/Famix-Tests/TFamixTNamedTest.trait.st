@@ -1,24 +1,12 @@
 "
 This trait aims to test the elementary trait FamixTNamed.
 "
-Class {
+Trait {
 	#name : #TFamixTNamedTest,
-	#superclass : #Trait,
-	#instVars : [
-		'entity'
-	],
+	#traits : 'TFamixTest',
+	#classTraits : 'TFamixTest classTrait',
 	#category : #'Famix-Tests-Traits'
 }
-
-{ #category : #accessing }
-TFamixTNamedTest >> entity [
-	^ entity
-]
-
-{ #category : #accessing }
-TFamixTNamedTest >> entity: anObject [
-	entity := anObject
-]
 
 { #category : #tests }
 TFamixTNamedTest >> testSetName [
