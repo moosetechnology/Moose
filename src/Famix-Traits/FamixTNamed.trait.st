@@ -57,23 +57,6 @@ FamixTNamed >> name: anObject [
 
 ]
 
-{ #category : #'Famix-Extensions' }
-FamixTNamed >> nameLength [
-	<MSEProperty: #nameLength type: #Number>
-	<derived>
-	<MSEComment: 'The number of characters in the name'>
-	
-	^self
-		lookUpPropertyNamed: #nameLength
-		computedAs: [self name size]
-]
-
-{ #category : #'Famix-Extensions' }
-FamixTNamed >> nameLength: aNumber [
-	
-	self privateState propertyAt: #nameLength put: aNumber
-]
-
 { #category : #accessing }
 FamixTNamed >> resetMooseName [
 
