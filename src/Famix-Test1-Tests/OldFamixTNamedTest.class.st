@@ -1,5 +1,5 @@
 Class {
-	#name : #FamixTNamedTest,
+	#name : #OldFamixTNamedTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'model',
@@ -17,7 +17,7 @@ Class {
 }
 
 { #category : #running }
-FamixTNamedTest >> setUp [
+OldFamixTNamedTest >> setUp [
 
 	super setUp.
 
@@ -44,14 +44,14 @@ FamixTNamedTest >> setUp [
 ]
 
 { #category : #tests }
-FamixTNamedTest >> testHasUniqueMooseNameInModel [
+OldFamixTNamedTest >> testHasUniqueMooseNameInModel [
 
 	self assert: c1 hasUniqueMooseNameInModel.	
 	self assert: c2 hasUniqueMooseNameInModel.
 ]
 
 { #category : #tests }
-FamixTNamedTest >> testMooseNameOn [
+OldFamixTNamedTest >> testMooseNameOn [
 
 	| newEntity |
 	
@@ -64,7 +64,7 @@ FamixTNamedTest >> testMooseNameOn [
 ]
 
 { #category : #tests }
-FamixTNamedTest >> testName [
+OldFamixTNamedTest >> testName [
 
 	self assert: c1 name equals: 'Class1'.
 	c1 name: 'NewName'.
@@ -73,14 +73,14 @@ FamixTNamedTest >> testName [
 ]
 
 { #category : #tests }
-FamixTNamedTest >> testNameLength [
+OldFamixTNamedTest >> testNameLength [
 
 	self assert: m1 nameLength equals: 7.	
 	self assert: c1 nameLength equals: 6.
 ]
 
 { #category : #tests }
-FamixTNamedTest >> testNameResetsNameOfChildren [
+OldFamixTNamedTest >> testNameResetsNameOfChildren [
 
 	self assert: m1 mooseName equals: 'Class1.method1'.
 	c1 name: 'NewName'.
@@ -90,7 +90,7 @@ FamixTNamedTest >> testNameResetsNameOfChildren [
 ]
 
 { #category : #tests }
-FamixTNamedTest >> testResetMooseName [
+OldFamixTNamedTest >> testResetMooseName [
 
 	"more or less a smoke test"
 	self assert: c1 name equals: 'Class1'.
