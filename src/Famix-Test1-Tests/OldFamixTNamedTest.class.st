@@ -73,13 +73,6 @@ OldFamixTNamedTest >> testName [
 ]
 
 { #category : #tests }
-OldFamixTNamedTest >> testNameLength [
-
-	self assert: m1 nameLength equals: 7.	
-	self assert: c1 nameLength equals: 6.
-]
-
-{ #category : #tests }
 OldFamixTNamedTest >> testNameResetsNameOfChildren [
 
 	self assert: m1 mooseName equals: 'Class1.method1'.
