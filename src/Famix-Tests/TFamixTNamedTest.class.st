@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'entity'
 	],
-	#category : #'Famix-Test-Traits'
+	#category : #'Famix-Tests-Traits'
 }
 
 { #category : #accessing }

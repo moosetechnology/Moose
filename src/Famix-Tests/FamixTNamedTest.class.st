@@ -7,7 +7,7 @@ Class {
 	#superclass : #TestCase,
 	#traits : 'TFamixTNamedTest',
 	#classTraits : 'TFamixTNamedTest classTrait',
-	#category : #'Famix-Test-Tests'
+	#category : #'Famix-Tests-Tests'
 }
 
 { #category : #running }
