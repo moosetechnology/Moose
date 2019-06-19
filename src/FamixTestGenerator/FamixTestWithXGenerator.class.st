@@ -11,21 +11,35 @@ FamixTestWithXGenerator >> famixSlotNameOf: aClass [
 ]
 
 { #category : #'generate testWith method' }
+FamixTestWithXGenerator >> generateCodeForSlotsInitialization: aSlotName with: aTypeName [
+	^ String streamContents: [ :aStream | aStream nextPutAll: 'aSlotName := MooseEntity new copyWithTalent: ' ;
+		nextPutAll: aTypeName;
+		nextPutAll: '.']
+]
+
+{ #category : #'generate testWith method' }
 FamixTestWithXGenerator >> generateTestMethodWithXCodeFrom: aClass [
-	| slotName |
-	slotName := (self famixSlotNameOf: aClass) asString.
+	| famixSlotName traitSlotName1 traitSlotName2 typeName |
+	famixSlotName := (self famixSlotNameOf: aClass) asString.
+	traitSlotName1 := (self slotNameOfTestTraitFrom: aClass) asString, 1 asString.
+	traitSlotName2 := (self slotNameOfTestTraitFrom: aClass) asString, 2 asString.
+	typeName := ''.
 	^ String streamContents: [ :aStream | aStream nextPutAll:  (self generateTestMethodWithXNameFrom: aClass);
-		nextPutAll: '
-			self assert: (self entity ';
-		nextPutAll: slotName;
+		cr;
+		nextPutAll: (self generateCodeForSlotsInitialization: traitSlotName1 with: typeName);
+		cr;
+		nextPutAll: (self generateCodeForSlotsInitialization: traitSlotName2 with: typeName);
+		cr;
+		nextPutAll: 'self assert: (self entity ';
+		nextPutAll: famixSlotName;
 		nextPutAll:
 			' notEmpty).
 	self assertCollection: self entity';
-		nextPutAll: slotName;
+		nextPutAll: famixSlotName;
 		nextPutAll: ' hasSameElements: { ';
-		nextPutAll: (self slotNameOfTestTraitFrom: aClass) asString, 1 asString;
+		nextPutAll: traitSlotName1;
 		nextPutAll: '. ';
-		nextPutAll: (self slotNameOfTestTraitFrom: aClass) asString, 2 asString;
+		nextPutAll: traitSlotName2;
 		nextPutAll: ' }'].
 	
 ]
