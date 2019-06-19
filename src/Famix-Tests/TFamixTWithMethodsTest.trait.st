@@ -21,5 +21,5 @@ TFamixTWithMethodsTest >> testWithMethods [
 
 { #category : #tests }
 TFamixTWithMethodsTest >> testWithoutMethods [
-	self assert: (self entity methods isNil).
+	self assert: (self entity methods isEmpty).
 ]
