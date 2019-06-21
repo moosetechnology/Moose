@@ -23,6 +23,11 @@ FamixTWithThrownExceptions classSide >> generatedSlotNames [
 ]
 
 { #category : #accessing }
+FamixTWithThrownExceptions >> addThrownException: anObject [
+	thrownExceptions add: anObject
+]
+
+{ #category : #accessing }
 FamixTWithThrownExceptions >> thrownExceptions [
 
 	<generated>
@@ -32,6 +37,8 @@ FamixTWithThrownExceptions >> thrownExceptions [
 
 { #category : #accessing }
 FamixTWithThrownExceptions >> thrownExceptions: anObject [
-	thrownExceptions add: anObject
+
+	<generated>
+	thrownExceptions value: anObject
 
 ]
