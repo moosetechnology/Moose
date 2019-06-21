@@ -23,7 +23,7 @@ FamixTWithTemplates classSide >> generatedSlotNames [
 ]
 
 { #category : #accessing }
-FamixTWithTemplates >> addTemplates: anObject [
+FamixTWithTemplates >> addTemplate: anObject [
 	templates add: anObject
 
 ]
