@@ -17,8 +17,8 @@ FamixTestGenerator >> classes [
 
 { #category : #accessing }
 FamixTestGenerator >> createTestFor: aClass [
-	test := TestCase subclass: (self testNameFrom: aClass)
-	uses: (self traitNameFrom: aClass)
+	test := TestCase subclass: (self testNameFrom: aClass) asSymbol
+	uses: traitTest 
 	instanceVariableNames: ''
 	classVariableNames: ''
 	package: 'Famix-Tests-Tests'
@@ -36,8 +36,11 @@ FamixTestGenerator >> createTraitOfTestFor: aClass [
 
 { #category : #'as yet unclassified' }
 FamixTestGenerator >> generateSetUpCodeFor:aClass [
-	^ String streamContents: [ :aStream | aStream nextPutAll: 'self entity: MooseEntity new copyWithTalent:'; 
+	^ String streamContents: [ :aStream | aStream nextPutAll: 'setUp';
+		cr;
+		nextPutAll: 'self entity: (MooseEntity new copyWithTalent:'; 
 		nextPutAll: aClass name;
+		nextPutAll: ').';
 		cr;
 		nextPutAll: 'self entity class initializeSlots: self entity.' ]
 ]

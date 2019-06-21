@@ -28,7 +28,7 @@ FamixTestWithXGenerator >> famixSlotNameOf: aClass [
 
 { #category : #utilities }
 FamixTestWithXGenerator >> famixSlotOf: aClass [
-	^ (aClass slots detect: [ :e | e isKindOf: FMMany ]) 
+	^ (aClass slots detect: [ :e | e isKindOf: FMMany ] ifNone: [] ) 
 
 ]
 
@@ -49,8 +49,15 @@ FamixTestWithXGenerator >> generateAssertionsCollectionOf: famixSlotName with: t
 ]
 
 { #category : #'generate testWith method' }
+FamixTestWithXGenerator >> generateCodeForAddingSlotInCollection: traitSlotName1 for: aClass [ 
+	| methodName |
+	methodName := aClass methodDict keys detect: [ :s | s beginsWith: 'add'  ] ifNone: [ 'addXXX' ] .
+	^ 'self entity ', methodName , ' ',  traitSlotName1 , '.'
+]
+
+{ #category : #'generate testWith method' }
 FamixTestWithXGenerator >> generateCodeForSlotsInitialization: traitSlotName with: type [
-	^ 'traitSlotName := MooseEntity new copyWithTalent: ' , type name
+	^ traitSlotName , ':= MooseEntity new copyWithTalent: ' , type name , '.'.
 ]
 
 { #category : #'generate testWith method' }
@@ -73,14 +80,18 @@ FamixTestWithXGenerator >> generateTestMethodWithXCodeFrom: aClass [
 	self assertCollection: self entity methods hasSameElements: { method1. method2 }.
 	self assert: method1 parentType equals: entity."
 	famixSlotName := (self famixSlotNameOf: aClass) asString.
-	traitSlotName1 := (self slotNameOfTestTraitFrom: aClass) asString, 1 asString.
-	traitSlotName2 := (self slotNameOfTestTraitFrom: aClass) asString, 2 asString.
+	traitSlotName1 := ((self slotNameOfTestTraitFrom: aClass) asString, 1 asString).
+	traitSlotName2 := ((self slotNameOfTestTraitFrom: aClass) asString, 2 asString).
 	type := (self famixOppositeTypeOf: aClass) .
 	^ String streamContents: [ :aStream | aStream nextPutAll:  (self generateTestMethodWithXNameFrom: aClass);
 		cr;
 		nextPutAll: (self generateCodeForSlotsInitialization: traitSlotName1 with: type);
 		cr;
 		nextPutAll: (self generateCodeForSlotsInitialization: traitSlotName2 with: type);
+		cr;
+		nextPutAll: (self generateCodeForAddingSlotInCollection: traitSlotName1 for: aClass );
+		cr;
+		nextPutAll: (self generateCodeForAddingSlotInCollection: traitSlotName2 for: aClass );
 		cr;
 		nextPutAll: (self generateAssertionsCollectionOf: famixSlotName with: traitSlotName1 and: traitSlotName2) ;
 		cr;
@@ -107,7 +118,7 @@ FamixTestWithXGenerator >> generateTestMethodWithoutXCodeFrom: aClass [
 			self assert: (self entity ';
 		nextPutAll: slotName;
 		nextPutAll:
-			' isEmpty'].
+			' isEmpty)'].
 	
 ]
 
@@ -119,7 +130,16 @@ FamixTestWithXGenerator >> generateTestMethodWithoutXNameFrom: aClass [
 { #category : #initialization }
 FamixTestWithXGenerator >> initialize [ 
 	self initializePackageFrom: 'Famix-Traits'.
-	classes := self initializeClassesFrom:  [ :c | c name includesSubstring: 'TWith' ] 
+	self initializeClassesFrom:  [ :c | (c name includesSubstring: 'TWith') and: [ (c slots select: [ :e | e isKindOf: FMMany ]) notEmpty]  ]
+]
+
+{ #category : #'as yet unclassified' }
+FamixTestWithXGenerator >> runFor: aClass [
+	self createTraitOfTestFor: aClass.
+	traitTest compile: (self generateTestMethodWithXCodeFrom: aClass) classified: 'tests'.
+	traitTest compile: (self generateTestMethodWithoutXCodeFrom: aClass) classified: 'tests'.
+	self createTestFor: aClass.
+	test compile: (self generateSetUpCodeFor: aClass) classified: 'overrides'.
 ]
 
 { #category : #accessing }
