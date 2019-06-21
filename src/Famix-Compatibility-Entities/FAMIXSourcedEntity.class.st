@@ -37,7 +37,7 @@ FAMIXSourcedEntity >> accept: aVisitor [
 
 { #category : #accessing }
 FAMIXSourcedEntity >> addComment: aComment [
-		self addComment: aComment asFAMIXComment
+		comments add: aComment asFAMIXComment
 ]
 
 { #category : #'Famix-File' }

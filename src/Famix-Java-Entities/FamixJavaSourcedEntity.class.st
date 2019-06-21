@@ -37,7 +37,7 @@ FamixJavaSourcedEntity >> accept: aVisitor [
 
 { #category : #removing }
 FamixJavaSourcedEntity >> addComment: aComment [
-	self addComment: aComment asFamixJavaComment
+	comments add: aComment asFamixJavaComment
 ]
 
 { #category : #accessing }
