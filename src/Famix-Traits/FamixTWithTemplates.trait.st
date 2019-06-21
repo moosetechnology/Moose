@@ -31,8 +31,6 @@ FamixTWithTemplates >> templates [
 
 { #category : #accessing }
 FamixTWithTemplates >> templates: anObject [
-
-	<generated>
-	templates value: anObject
+	templates add: anObject
 
 ]

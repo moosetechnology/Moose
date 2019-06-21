@@ -23,6 +23,11 @@ FamixTWithDereferencedInvocations classSide >> generatedSlotNames [
 ]
 
 { #category : #accessing }
+FamixTWithDereferencedInvocations >> addDereferencedInvocation: aDeferencedInvocation [
+	dereferencedInvocations add: aDeferencedInvocation 
+]
+
+{ #category : #accessing }
 FamixTWithDereferencedInvocations >> dereferencedInvocations [
 
 	<generated>

@@ -35,9 +35,9 @@ FamixJavaSourcedEntity >> accept: aVisitor [
 	aVisitor visitEntity: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #removing }
 FamixJavaSourcedEntity >> addComment: aComment [
-	self privateAddComment: aComment asFamixJavaComment
+	self addComment: aComment asFamixJavaComment
 ]
 
 { #category : #accessing }

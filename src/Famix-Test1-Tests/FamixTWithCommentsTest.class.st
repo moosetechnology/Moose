@@ -70,7 +70,7 @@ FamixTWithCommentsTest >> testHasComments [
 	comment2 := FamixTest1Comment new.
 
 	self deny: c1 hasComments.
-	c1 privateAddComment: comment.
+	c1 addComment: comment.
 	self assert: c1 hasComments.
 
 ]
@@ -82,7 +82,7 @@ FamixTWithCommentsTest >> testPrivateAddComment [
 	
 	comment := FamixTest1Comment new.
 	self deny: c1 hasComments.
-	c1 privateAddComment: comment.
+	c1 addComment: comment.
 	self assertCollection: c1 comments hasSameElements: { comment }
 
 ]
@@ -94,7 +94,7 @@ FamixTWithCommentsTest >> testRemoveComment [
 	
 	comment := FamixTest1Comment new.
 	self deny: c1 hasComments.
-	c1 privateAddComment: comment.
+	c1 addComment: comment.
 	c1 removeComment: comment.
 	self assert: c1 comments isEmpty.
 

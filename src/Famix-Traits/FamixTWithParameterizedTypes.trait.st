@@ -23,6 +23,12 @@ FamixTWithParameterizedTypes classSide >> generatedSlotNames [
 ]
 
 { #category : #accessing }
+FamixTWithParameterizedTypes >> addParameterizedType: anObject [
+	parameterizedTypes add: anObject
+
+]
+
+{ #category : #accessing }
 FamixTWithParameterizedTypes >> parameterizedTypes [
 
 	<generated>

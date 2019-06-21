@@ -23,6 +23,12 @@ FamixTWithTypeAliases classSide >> generatedSlotNames [
 ]
 
 { #category : #accessing }
+FamixTWithTypeAliases >> addTypeAlias: anObject [
+	typeAliases add: anObject
+
+]
+
+{ #category : #accessing }
 FamixTWithTypeAliases >> allTypeAliases [
 	| all |
 	all := OrderedCollection withAll: self typeAliases.

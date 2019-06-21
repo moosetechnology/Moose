@@ -23,6 +23,14 @@ FamixTWithParameterizedTypeUsers classSide >> generatedSlotNames [
 ]
 
 { #category : #accessing }
+FamixTWithParameterizedTypeUsers >> addArgument: anObject [
+
+	arguments add: anObject.
+	self resetMooseName.
+
+]
+
+{ #category : #accessing }
 FamixTWithParameterizedTypeUsers >> arguments [
 
 	<generated>

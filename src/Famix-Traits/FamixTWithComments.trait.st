@@ -22,6 +22,11 @@ FamixTWithComments classSide >> generatedSlotNames [
 	^ #(comments)
 ]
 
+{ #category : #removing }
+FamixTWithComments >> addComment: aComment [
+	self comments add: aComment 
+]
+
 { #category : #accessing }
 FamixTWithComments >> comments [
 
@@ -59,11 +64,6 @@ FamixTWithComments >> numberOfComments [
 FamixTWithComments >> numberOfComments: aNumber [
 
 	self privateState propertyAt: #numberOfComments put: aNumber
-]
-
-{ #category : #removing }
-FamixTWithComments >> privateAddComment: aComment [
-	self comments add: aComment 
 ]
 
 { #category : #removing }

@@ -1,5 +1,5 @@
 Trait {
-	#name : #FamixTWithTrait,
+	#name : #FamixTWithTraits,
 	#instVars : [
 		'#traits => FMMany type: #FamixTTrait opposite: #traitOwner'
 	],
@@ -7,7 +7,7 @@ Trait {
 }
 
 { #category : #meta }
-FamixTWithTrait classSide >> annotation [
+FamixTWithTraits classSide >> annotation [
 
 	<MSEClass: #TWithTrait super: #Trait>
 	<generated>
@@ -16,21 +16,27 @@ FamixTWithTrait classSide >> annotation [
 ]
 
 { #category : #generator }
-FamixTWithTrait classSide >> generatedSlotNames [
+FamixTWithTraits classSide >> generatedSlotNames [
 	<generated>
 	'FamixTWithTrait class>>#generatedSlotNames'.
 	^ #(traits)
 ]
 
 { #category : #accessing }
-FamixTWithTrait >> traits [
+FamixTWithTraits >> addTrait: anObject [
+	traits add: anObject
+
+]
+
+{ #category : #accessing }
+FamixTWithTraits >> traits [
 
 	<generated>
 	^ traits
 ]
 
 { #category : #accessing }
-FamixTWithTrait >> traits: anObject [
+FamixTWithTraits >> traits: anObject [
 
 	<generated>
 	traits value: anObject

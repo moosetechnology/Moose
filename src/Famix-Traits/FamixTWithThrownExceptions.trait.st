@@ -32,8 +32,6 @@ FamixTWithThrownExceptions >> thrownExceptions [
 
 { #category : #accessing }
 FamixTWithThrownExceptions >> thrownExceptions: anObject [
-
-	<generated>
-	thrownExceptions value: anObject
+	thrownExceptions add: anObject
 
 ]

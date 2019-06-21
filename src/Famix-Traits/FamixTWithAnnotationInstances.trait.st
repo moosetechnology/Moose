@@ -22,6 +22,11 @@ FamixTWithAnnotationInstances classSide >> generatedSlotNames [
 	^ #(annotationInstances)
 ]
 
+{ #category : #accessing }
+FamixTWithAnnotationInstances >> addAnnotationInstances: anAnnotationInstance [
+	annotationInstances add: anAnnotationInstance
+]
+
 { #category : #'Famix-Java' }
 FamixTWithAnnotationInstances >> allAnnotationInstances [
 	| result |

@@ -23,6 +23,12 @@ FamixTWithEnumValues classSide >> generatedSlotNames [
 ]
 
 { #category : #accessing }
+FamixTWithEnumValues >> addEnumValue: anObject [
+	enumValues add: anObject
+
+]
+
+{ #category : #accessing }
 FamixTWithEnumValues >> enumValues [
 
 	<generated>

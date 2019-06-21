@@ -23,6 +23,11 @@ FamixTWithAnnotationInstanceAttributes classSide >> generatedSlotNames [
 ]
 
 { #category : #accessing }
+FamixTWithAnnotationInstanceAttributes >> addAttribute: anAttribute [
+	attributes add: anAttribute
+]
+
+{ #category : #accessing }
 FamixTWithAnnotationInstanceAttributes >> attributes [
 
 	<generated>

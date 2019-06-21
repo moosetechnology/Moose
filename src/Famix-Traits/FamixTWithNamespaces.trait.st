@@ -23,6 +23,12 @@ FamixTWithNamespaces classSide >> generatedSlotNames [
 ]
 
 { #category : #accessing }
+FamixTWithNamespaces >> addNamespace: anObject [
+	namespaces add: anObject
+
+]
+
+{ #category : #accessing }
 FamixTWithNamespaces >> namespaces [
 
 	<generated>

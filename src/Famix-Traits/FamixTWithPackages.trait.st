@@ -23,6 +23,12 @@ FamixTWithPackages classSide >> generatedSlotNames [
 ]
 
 { #category : #accessing }
+FamixTWithPackages >> addPackage: anObject [
+	packages add: anObject
+
+]
+
+{ #category : #accessing }
 FamixTWithPackages >> packages [
 
 	<generated>
