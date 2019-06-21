@@ -1,8 +1,8 @@
 Class {
 	#name : #FAMIXCFile,
 	#superclass : #FAMIXFile,
-	#traits : 'FamixTWithFileInclude',
-	#classTraits : 'FamixTWithFileInclude classTrait',
+	#traits : 'FamixTWithFileIncludes',
+	#classTraits : 'FamixTWithFileIncludes classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 
