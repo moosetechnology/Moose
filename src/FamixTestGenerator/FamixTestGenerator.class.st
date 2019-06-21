@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'package',
 		'classes',
-		'traitTest'
+		'traitTest',
+		'test'
 	],
 	#category : #FamixTestGenerator
 }
@@ -15,12 +16,30 @@ FamixTestGenerator >> classes [
 ]
 
 { #category : #accessing }
+FamixTestGenerator >> createTestFor: aClass [
+	test := TestCase subclass: (self testNameFrom: aClass)
+	uses: (self traitNameFrom: aClass)
+	instanceVariableNames: ''
+	classVariableNames: ''
+	package: 'Famix-Tests-Tests'
+	
+]
+
+{ #category : #accessing }
 FamixTestGenerator >> createTraitOfTestFor: aClass [
 	traitTest := Trait
 		named: (self traitNameFrom: aClass)
 		uses: TFamixTest
 		slots: {(self slotNameOfTestTraitFrom: aClass), 1 asString . (self slotNameOfTestTraitFrom: aClass), 2 asString}
 		category: 'Famix-Tests-Traits'
+]
+
+{ #category : #'as yet unclassified' }
+FamixTestGenerator >> generateSetUpCodeFor:aClass [
+	^ String streamContents: [ :aStream | aStream nextPutAll: 'self entity: MooseEntity new copyWithTalent:'; 
+		nextPutAll: aClass name;
+		cr;
+		nextPutAll: 'self entity class initializeSlots: self entity.' ]
 ]
 
 { #category : #accessing }
@@ -36,6 +55,11 @@ FamixTestGenerator >> initializePackageFrom: aPackageName [
 { #category : #accessing }
 FamixTestGenerator >> package [
 	^ package
+]
+
+{ #category : #accessing }
+FamixTestGenerator >> testNameFrom: aClass [
+	^ aClass name, 'Test'.
 ]
 
 { #category : #accessing }
