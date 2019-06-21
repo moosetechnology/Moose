@@ -23,6 +23,12 @@ FamixTWithCaughtExceptions classSide >> generatedSlotNames [
 ]
 
 { #category : #accessing }
+FamixTWithCaughtExceptions >> addCaughtException: aCaughtException [
+	caughtExceptions add: aCaughtException 
+
+]
+
+{ #category : #accessing }
 FamixTWithCaughtExceptions >> caughtExceptions [
 
 	<generated>

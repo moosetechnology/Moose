@@ -23,6 +23,12 @@ FamixTWithAnnotationTypes classSide >> generatedSlotNames [
 ]
 
 { #category : #accessing }
+FamixTWithAnnotationTypes >> addDefinedAnnotationType: aDefinedAnnotationType [
+	definedAnnotationTypes add: aDefinedAnnotationType 
+
+]
+
+{ #category : #accessing }
 FamixTWithAnnotationTypes >> definedAnnotationTypes [
 
 	<generated>

@@ -23,6 +23,12 @@ FamixTWithFiles classSide >> generatedSlotNames [
 ]
 
 { #category : #accessing }
+FamixTWithFiles >> addContainerFile: anObject [
+	containerFiles add: anObject
+
+]
+
+{ #category : #accessing }
 FamixTWithFiles >> containerFiles [
 
 	<generated>

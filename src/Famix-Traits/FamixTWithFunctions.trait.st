@@ -23,6 +23,12 @@ FamixTWithFunctions classSide >> generatedSlotNames [
 ]
 
 { #category : #accessing }
+FamixTWithFunctions >> addFunction: anObject [
+	functions add: anObject
+
+]
+
+{ #category : #accessing }
 FamixTWithFunctions >> functions [
 
 	<generated>
