@@ -25,7 +25,7 @@ FamixTWithFileIncludes classSide >> generatedSlotNames [
 
 { #category : #accessing }
 FamixTWithFileIncludes >> addIncomingIncludeRelation: anObject [
-	incomingIncludeRelations value: anObject
+	incomingIncludeRelations add: anObject
 
 ]
 
