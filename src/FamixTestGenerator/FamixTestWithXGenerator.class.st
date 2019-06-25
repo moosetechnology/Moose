@@ -16,7 +16,7 @@ FamixTestWithXGenerator >> compileTestMethodWithoutXIn: aTrait from: aClass [
 
 { #category : #utilities }
 FamixTestWithXGenerator >> famixOppositeTypeOf: aClass [
-	^ (aClass slots detect: [ :e | e isKindOf: FMMany ]) targetClass
+	^ (self famixSlotOf: aClass) targetClass
 
 ]
 
@@ -130,10 +130,10 @@ FamixTestWithXGenerator >> generateTestMethodWithoutXNameFrom: aClass [
 { #category : #initialization }
 FamixTestWithXGenerator >> initialize [ 
 	self initializePackageFrom: 'Famix-Traits'.
-	self initializeClassesFrom:  [ :c | (c name includesSubstring: 'TWith') and: [ (c slots select: [ :e | e isKindOf: FMMany ]) notEmpty]  ]
+	self initializeClassesFrom:  [ :c | (c name includesSubstring: 'TWith') and: [ (c slots select: [ :e | (e isKindOf: FMMany) and: [(e targetClass slots select: [ :s | s isKindOf: FMOne  ] ) notEmpty] ]) notEmpty]  ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #run }
 FamixTestWithXGenerator >> runFor: aClass [
 	self createTraitOfTestFor: aClass.
 	traitTest compile: (self generateTestMethodWithXCodeFrom: aClass) classified: 'tests'.
