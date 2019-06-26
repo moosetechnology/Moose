@@ -4,8 +4,7 @@ It represents a file in the file system.
 Trait {
 	#name : #FamixTFile,
 	#instVars : [
-		'#entities => FMMany type: #FamixTWithFiles opposite: #containerFiles',
-		'#name'
+		'#entities => FMMany type: #FamixTWithFiles opposite: #containerFiles'
 	],
 	#category : #'Famix-Traits-File'
 }
