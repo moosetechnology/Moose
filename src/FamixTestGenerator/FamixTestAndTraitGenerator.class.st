@@ -9,7 +9,7 @@ FamixTestAndTraitGenerator >> createTraitOfTestFor: aClass [
 	traitTest := Trait
 		named: (self traitNameFrom: aClass)
 		uses: TFamixTest
-		slots: {self generateSlotsOfTraitOfTestFor: aClass }
+		slots: {String streamContents: [ :aStream | (self generateSlotsOfTraitOfTestFor: aClass) printOn: aStream delimiter: '. ' ] }
 		category: 'Famix-Tests-Traits'
 ]
 
@@ -49,7 +49,7 @@ FamixTestAndTraitGenerator >> generateCodeForFMManySlotAssertions: aSlot [
 		nextPutAll: (self generateSlotNameOfTestTraitFrom: aSlot) asString , '1';
 		nextPutAll: '. ' ;
 		nextPutAll: (self generateSlotNameOfTestTraitFrom: aSlot) asString , '2';
-		nextPutAll: ' }';
+		nextPutAll: ' }.';
 		cr;
 		nextPutAll: (self generateCodeForFMManySlotOppositeAssertion: aSlot)].
 	
@@ -69,10 +69,12 @@ FamixTestAndTraitGenerator >> generateCodeForFMManySlotInitialization: aSlot [
 	^ String streamContents: [ :aStream | aStream nextPutAll:  traitSlotName1 ;
 		nextPutAll: ' := MooseEntity new copyWithTalent: ';
 		nextPutAll: aSlot targetClass name  ;
+		nextPutAll: '.';
 		cr;
 		nextPutAll:  traitSlotName2 ;
 		nextPutAll: ' := MooseEntity new copyWithTalent: ';
 		nextPutAll: aSlot targetClass name  ;
+		nextPutAll: '.';
 		cr;
 		nextPutAll: (self generateCodeForAddingSlotInCollection: traitSlotName1 for: aSlot);
 		cr;
@@ -132,6 +134,7 @@ FamixTestAndTraitGenerator >> generateCodeForFMOneSlotInitialization: aSlot [
 	^ String streamContents: [ :aStream | aStream nextPutAll:  traitSlotName ;
 		nextPutAll: ' := MooseEntity new copyWithTalent: ';
 		nextPutAll: aSlot targetClass name  ;
+		nextPutAll: '. ';
 		cr;
 		nextPutAll: 'self entity ';
 		nextPutAll: aSlot name;
@@ -217,7 +220,7 @@ FamixTestAndTraitGenerator >> generateSlotsOfTraitOfTestFor: aClass [
 
 { #category : #accessing }
 FamixTestAndTraitGenerator >> generateSlotsOfTraitOfTestFrom: aSlot [
-	^((aSlot isKindOf: FMOne) or: [ aSlot isKindOf: InstanceVariableSlot ])
+	^((aSlot class == FMOne) or: [ aSlot class == InstanceVariableSlot ])
 		ifTrue: [ aSlot name ]
 		ifFalse: [ String
 				streamContents: [ :aStream | 
@@ -258,11 +261,11 @@ FamixTestAndTraitGenerator >> generateTestsFor: aClass [
 { #category : #run }
 FamixTestAndTraitGenerator >> generateTestsForASlot: aSlot [
 	(aSlot isKindOf: FMOne)
-		ifTrue: [self generateTestsForFMOneSlot: aSlot].
+		ifTrue: [ ^ self generateTestsForFMOneSlot: aSlot ].
 	(aSlot isKindOf: FMMany)
-		ifTrue: [self generateTestsForFMManySlot: aSlot].
+		ifTrue: [ ^ self generateTestsForFMManySlot: aSlot ].
 	(aSlot isKindOf: InstanceVariableSlot)
-		ifTrue: [self generateTestsForPrimitiveSlot: aSlot]
+		ifTrue: [ ^ self generateTestsForPrimitiveSlot: aSlot ]
 ]
 
 { #category : #'generate for FMMany slot' }
