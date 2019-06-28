@@ -1,8 +1,8 @@
 Trait {
 	#name : #FamixTFileInclude,
 	#instVars : [
-		'#source => FMOne type: #FamixTWithFileInclude opposite: #outgoingIncludeRelations',
-		'#target => FMOne type: #FamixTWithFileInclude opposite: #incomingIncludeRelations'
+		'#source => FMOne type: #FamixTWithFileIncludes opposite: #outgoingIncludeRelations',
+		'#target => FMOne type: #FamixTWithFileIncludes opposite: #incomingIncludeRelations'
 	],
 	#category : #'Famix-Traits-FileInclude'
 }
