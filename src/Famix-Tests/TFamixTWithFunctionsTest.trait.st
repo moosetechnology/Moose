@@ -10,17 +10,14 @@ Trait {
 }
 
 { #category : #tests }
-TFamixTWithFunctionsTest >> testWithFunctions [
-function1:= MooseEntity new copyWithTalent: FamixTFunction.
-function2:= MooseEntity new copyWithTalent: FamixTFunction.
+TFamixTWithFunctionsTest >> testFunctions [
+function1 := MooseEntity new copyWithTalent: FamixTFunction.
+function1 class initializeSlots: function1.
+function2 := MooseEntity new copyWithTalent: FamixTFunction.
+function2 class initializeSlots: function2.
 self entity addFunction: function1.
 self entity addFunction: function2.
 self assert: (self entity functions notEmpty).
-	self assertCollection: self entity functions hasSameElements: { function1. function2 }.
-self assert: function1 functionOwner equals: entity
-]
-
-{ #category : #tests }
-TFamixTWithFunctionsTest >> testWithoutFunctions [
-			self assert: (self entity functions isEmpty)
+self assertCollection: self entity functions hasSameElements: {  function1. function2 }.
+self assert: function1 functionOwner equals: self entity
 ]

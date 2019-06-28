@@ -1,8 +1,8 @@
 Trait {
 	#name : #TFamixTWithTypedStructuresTest,
 	#instVars : [
-		'typedstructure1',
-		'typedstructure2'
+		'typedStructure1',
+		'typedStructure2'
 	],
 	#traits : 'TFamixTest',
 	#classTraits : 'TFamixTest classTrait',
@@ -10,17 +10,14 @@ Trait {
 }
 
 { #category : #tests }
-TFamixTWithTypedStructuresTest >> testWithTypedStructures [
-typedstructure1:= MooseEntity new copyWithTalent: FamixTTypedStructure.
-typedstructure2:= MooseEntity new copyWithTalent: FamixTTypedStructure.
-self entity addBehaviourWithDeclaredType: typedstructure1.
-self entity addBehaviourWithDeclaredType: typedstructure2.
+TFamixTWithTypedStructuresTest >> testStructuresWithDeclaredType [
+typedStructure1 := MooseEntity new copyWithTalent: FamixTTypedStructure.
+typedStructure1 class initializeSlots: typedStructure1.
+typedStructure2 := MooseEntity new copyWithTalent: FamixTTypedStructure.
+typedStructure2 class initializeSlots: typedStructure2.
+self entity addBehaviourWithDeclaredType: typedStructure1.
+self entity addBehaviourWithDeclaredType: typedStructure2.
 self assert: (self entity structuresWithDeclaredType notEmpty).
-	self assertCollection: self entity structuresWithDeclaredType hasSameElements: { typedstructure1. typedstructure2 }.
-self assert: typedstructure1 declaredType equals: entity
-]
-
-{ #category : #tests }
-TFamixTWithTypedStructuresTest >> testWithoutTypedStructures [
-			self assert: (self entity structuresWithDeclaredType isEmpty)
+self assertCollection: self entity structuresWithDeclaredType hasSameElements: {  typedStructure1. typedStructure2 }.
+self assert: typedStructure1 declaredType equals: self entity
 ]

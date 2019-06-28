@@ -1,8 +1,8 @@
 Trait {
 	#name : #TFamixTWithEnumValuesTest,
 	#instVars : [
-		'enumvalue1',
-		'enumvalue2'
+		'enumValue1',
+		'enumValue2'
 	],
 	#traits : 'TFamixTest',
 	#classTraits : 'TFamixTest classTrait',
@@ -10,17 +10,14 @@ Trait {
 }
 
 { #category : #tests }
-TFamixTWithEnumValuesTest >> testWithEnumValues [
-enumvalue1:= MooseEntity new copyWithTalent: FamixTEnumValue.
-enumvalue2:= MooseEntity new copyWithTalent: FamixTEnumValue.
-self entity addEnumValue: enumvalue1.
-self entity addEnumValue: enumvalue2.
+TFamixTWithEnumValuesTest >> testEnumValues [
+enumValue1 := MooseEntity new copyWithTalent: FamixTEnumValue.
+enumValue1 class initializeSlots: enumValue1.
+enumValue2 := MooseEntity new copyWithTalent: FamixTEnumValue.
+enumValue2 class initializeSlots: enumValue2.
+self entity addEnumValue: enumValue1.
+self entity addEnumValue: enumValue2.
 self assert: (self entity enumValues notEmpty).
-	self assertCollection: self entity enumValues hasSameElements: { enumvalue1. enumvalue2 }.
-self assert: enumvalue1 parentEnum equals: entity
-]
-
-{ #category : #tests }
-TFamixTWithEnumValuesTest >> testWithoutEnumValues [
-			self assert: (self entity enumValues isEmpty)
+self assertCollection: self entity enumValues hasSameElements: {  enumValue1. enumValue2 }.
+self assert: enumValue1 parentEnum equals: self entity
 ]

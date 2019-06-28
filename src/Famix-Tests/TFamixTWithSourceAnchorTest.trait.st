@@ -1,7 +1,7 @@
 Trait {
 	#name : #TFamixTWithSourceAnchorTest,
 	#instVars : [
-		'sourceanchor'
+		'sourceAnchor'
 	],
 	#traits : 'TFamixTest',
 	#classTraits : 'TFamixTest classTrait',
@@ -9,10 +9,11 @@ Trait {
 }
 
 { #category : #tests }
-TFamixTWithSourceAnchorTest >> testWithSourceAnchor [
-sourceanchor:= MooseEntity new copyWithTalent: FamixTSourceAnchor.
-self entity sourceAnchor: sourceanchor.
+TFamixTWithSourceAnchorTest >> testSourceAnchor [
+sourceAnchor := MooseEntity new copyWithTalent: FamixTSourceAnchor. 
+sourceAnchor class initializeSlots: sourceAnchor.
+self entity sourceAnchor: sourceAnchor. 
 self assert: (self entity sourceAnchor notNil).
-self assert: self entity sourceAnchor equals: sourceanchor.
-self assert: sourceanchor element equals: entity
+self assert: self entity sourceAnchor equals: sourceAnchor.
+self assert: sourceAnchor element equals: self entity
 ]

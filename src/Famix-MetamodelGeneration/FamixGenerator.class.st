@@ -929,6 +929,8 @@ FamixGenerator >> defineGlueingTraits [
 FamixGenerator >> defineHierarchy [ 
 	super defineHierarchy.
 	tCohesionCouplingMetrics --|> tPackage.
+  
+	tFile --|> tNamed.
 	
 	tClass --|> #TWithMethods.
 	tClass --|> #TWithSubInheritances.

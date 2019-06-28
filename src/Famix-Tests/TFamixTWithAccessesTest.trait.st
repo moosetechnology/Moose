@@ -1,8 +1,8 @@
 Trait {
 	#name : #TFamixTWithAccessesTest,
 	#instVars : [
-		'accesse1',
-		'accesse2'
+		'access1',
+		'access2'
 	],
 	#traits : 'TFamixTest',
 	#classTraits : 'TFamixTest classTrait',
@@ -10,17 +10,14 @@ Trait {
 }
 
 { #category : #tests }
-TFamixTWithAccessesTest >> testWithAccesses [
-accesse1:= MooseEntity new copyWithTalent: FamixTAccess.
-accesse2:= MooseEntity new copyWithTalent: FamixTAccess.
-self entity addAccess: accesse1.
-self entity addAccess: accesse2.
+TFamixTWithAccessesTest >> testAccesses [
+access1 := MooseEntity new copyWithTalent: FamixTAccess.
+access1 class initializeSlots: access1.
+access2 := MooseEntity new copyWithTalent: FamixTAccess.
+access2 class initializeSlots: access2.
+self entity addAccess: access1.
+self entity addAccess: access2.
 self assert: (self entity accesses notEmpty).
-	self assertCollection: self entity accesses hasSameElements: { accesse1. accesse2 }.
-self assert: accesse1 accessor equals: entity
-]
-
-{ #category : #tests }
-TFamixTWithAccessesTest >> testWithoutAccesses [
-			self assert: (self entity accesses isEmpty)
+self assertCollection: self entity accesses hasSameElements: {  access1. access2 }.
+self assert: access1 accessor equals: self entity
 ]

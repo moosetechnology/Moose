@@ -10,17 +10,14 @@ Trait {
 }
 
 { #category : #tests }
-TFamixTWithParametersTest >> testWithParameters [
-parameter1:= MooseEntity new copyWithTalent: FamixTParameter.
-parameter2:= MooseEntity new copyWithTalent: FamixTParameter.
+TFamixTWithParametersTest >> testParameters [
+parameter1 := MooseEntity new copyWithTalent: FamixTParameter.
+parameter1 class initializeSlots: parameter1.
+parameter2 := MooseEntity new copyWithTalent: FamixTParameter.
+parameter2 class initializeSlots: parameter2.
 self entity addParameter: parameter1.
 self entity addParameter: parameter2.
 self assert: (self entity parameters notEmpty).
-	self assertCollection: self entity parameters hasSameElements: { parameter1. parameter2 }.
-self assert: parameter1 parentBehaviouralEntity equals: entity
-]
-
-{ #category : #tests }
-TFamixTWithParametersTest >> testWithoutParameters [
-			self assert: (self entity parameters isEmpty)
+self assertCollection: self entity parameters hasSameElements: {  parameter1. parameter2 }.
+self assert: parameter1 parentBehaviouralEntity equals: self entity
 ]

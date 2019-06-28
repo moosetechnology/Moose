@@ -34,6 +34,12 @@ FamixTAnnotationTypeAttribute classSide >> annotation [
 ]
 
 { #category : #accessing }
+FamixTAnnotationTypeAttribute >> addAnnotationAttributeInstance: anObject [
+	annotationAttributeInstances add: anObject
+
+]
+
+{ #category : #accessing }
 FamixTAnnotationTypeAttribute >> annotationAttributeInstances [
 
 	<generated>

@@ -16,6 +16,13 @@ FamixTParameterizedTypeUser classSide >> annotation [
 ]
 
 { #category : #accessing }
+FamixTParameterizedTypeUser >> addArgumentsInParameterizedType: anObject [
+
+	argumentsInParameterizedTypes add: anObject
+
+]
+
+{ #category : #accessing }
 FamixTParameterizedTypeUser >> argumentsInParameterizedTypes [
 
 	<generated>

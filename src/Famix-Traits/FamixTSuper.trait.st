@@ -16,6 +16,13 @@ FamixTSuper classSide >> annotation [
 ]
 
 { #category : #accessing }
+FamixTSuper >> addSub: anObject [
+
+	subs add: anObject
+
+]
+
+{ #category : #accessing }
 FamixTSuper >> subs [
 
 	<generated>

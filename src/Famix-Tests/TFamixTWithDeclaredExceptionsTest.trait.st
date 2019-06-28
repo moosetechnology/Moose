@@ -1,8 +1,8 @@
 Trait {
 	#name : #TFamixTWithDeclaredExceptionsTest,
 	#instVars : [
-		'declaredexception1',
-		'declaredexception2'
+		'declaredException1',
+		'declaredException2'
 	],
 	#traits : 'TFamixTest',
 	#classTraits : 'TFamixTest classTrait',
@@ -10,17 +10,14 @@ Trait {
 }
 
 { #category : #tests }
-TFamixTWithDeclaredExceptionsTest >> testWithDeclaredExceptions [
-declaredexception1:= MooseEntity new copyWithTalent: FamixTDeclaredException.
-declaredexception2:= MooseEntity new copyWithTalent: FamixTDeclaredException.
-self entity addDeclaredException: declaredexception1.
-self entity addDeclaredException: declaredexception2.
+TFamixTWithDeclaredExceptionsTest >> testDeclaredExceptions [
+declaredException1 := MooseEntity new copyWithTalent: FamixTDeclaredException.
+declaredException1 class initializeSlots: declaredException1.
+declaredException2 := MooseEntity new copyWithTalent: FamixTDeclaredException.
+declaredException2 class initializeSlots: declaredException2.
+self entity addDeclaredException: declaredException1.
+self entity addDeclaredException: declaredException2.
 self assert: (self entity declaredExceptions notEmpty).
-	self assertCollection: self entity declaredExceptions hasSameElements: { declaredexception1. declaredexception2 }.
-self assert: declaredexception1 definingEntity equals: entity
-]
-
-{ #category : #tests }
-TFamixTWithDeclaredExceptionsTest >> testWithoutDeclaredExceptions [
-			self assert: (self entity declaredExceptions isEmpty)
+self assertCollection: self entity declaredExceptions hasSameElements: {  declaredException1. declaredException2 }.
+self assert: declaredException1 definingEntity equals: self entity
 ]

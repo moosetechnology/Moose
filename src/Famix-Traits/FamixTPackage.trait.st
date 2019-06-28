@@ -30,6 +30,12 @@ FamixTPackage classSide >> famixTPackageRelatedGroup [
 ]
 
 { #category : #accessing }
+FamixTPackage >> addChildEntity: anObject [
+	childEntities add: anObject
+
+]
+
+{ #category : #accessing }
 FamixTPackage >> childEntities [
 
 	<generated>

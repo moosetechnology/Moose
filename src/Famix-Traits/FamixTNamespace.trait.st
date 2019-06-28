@@ -31,6 +31,12 @@ FamixTNamespace classSide >> famixTNamespaceRelatedGroup [
 	^ FAMIXNamespaceGroup
 ]
 
+{ #category : #accessing }
+FamixTNamespace >> addNamespaceEntity: anObject [
+	namespaceEntities add: anObject
+
+]
+
 { #category : #testing }
 FamixTNamespace >> isNamespace [
 

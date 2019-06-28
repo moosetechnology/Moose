@@ -13,3 +13,10 @@ FamixTCohesionCouplingMetrics classSide >> annotation [
 	<package: #'Famix-Traits'>
 	^self
 ]
+
+{ #category : #accessing }
+FamixTCohesionCouplingMetrics >> addChildEntity: anObject [
+
+	childEntities add: anObject
+
+]
