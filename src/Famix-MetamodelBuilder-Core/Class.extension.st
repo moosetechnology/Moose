@@ -6,6 +6,18 @@ Class >> generatedSlotNames [
 ]
 
 { #category : #'*Famix-MetamodelBuilder-Core' }
-Class >> generatedTraitNames [
-	^ self traits select: #isMetamodelEntity thenCollect: #name
+Class >> generatedSlots [
+	self flag: #toRemoveSlotGeneration.	"The code of this method should be:
+	
+	self slots select: #isFameSlot
+	
+	The problem is that currently, some classes override #generatedSlotNames to change the result. After new generations this should vanish. So, we will keep the current implementation for some month. Then we can remove this version and use the one in this comment. Browse all senders of toRemoveSlotGeneration to remove all hacks related to this change.
+	
+	Remove in 2020."
+	^ (self generatedSlotNames collect: [ :slotName | self slotNamed: slotName ifFound: [ :slot | slot ] ifNone: nil ]) select: #notNil
+]
+
+{ #category : #'*Famix-MetamodelBuilder-Core' }
+Class >> generatedTraits [
+	^ self traits select: #isMetamodelEntity
 ]
