@@ -81,9 +81,9 @@ FamixTestAndTraitGenerator >> generateCodeForFMManySlotInitialization: aSlot [
 		nextPutAll: aSlot targetClass name  ;
 		nextPutAll: '.';
 		cr;
-		nextPutAll: traitSlotName1 ;
+		nextPutAll: traitSlotName2 ;
 		nextPutAll: ' class initializeSlots: ';
-		nextPutAll: traitSlotName1 ;
+		nextPutAll: traitSlotName2 ;
 		nextPutAll: '.';
 		cr;
 		nextPutAll: (self generateCodeForAddingSlotInCollection: traitSlotName1 for: aSlot);
