@@ -31,7 +31,8 @@ BaselineOfFamix >> baseline: spec [
 				packageBlueprintTestResources: spec;
 				referenceTestResources: spec;
 				neoCSV: spec;
-				roelTyper: spec.
+				roelTyper: spec;
+				talents: spec.
 
 			"Packages"
 			spec
@@ -63,6 +64,7 @@ BaselineOfFamix >> baseline: spec [
 				package: 'Moose-TestResources-LAN';
 				package: 'Moose-TestResources-LCOM';
 				package: 'Moose-Query-Test' with: [ spec requires: #('Moose-Query' 'Famix-Compatibility-Entities') ];
+				package: 'Famix-Tests' with: [ spec requires: #('Famix-Traits' 'Talents') ];
 				package: 'Moose-Tests-Core' with: [ spec requires: #('Famix-Compatibility-Entities' 'Famix-Compatibility-Generator' 'Moose-SmalltalkImporter' 'ReferenceTestResources') ];
 				package: 'Famix-Groups-Tests' with: [ spec requires: #('Famix-Groups' 'Moose-Tests-Core') ];
 				package: 'Famix-Smalltalk-Utils-Tests' with: [ spec requires: #('Famix-Smalltalk-Utils') ];
@@ -99,7 +101,7 @@ BaselineOfFamix >> baseline: spec [
 				group: 'Importers' with: #('Moose-GenericImporter' 'Moose-SmalltalkImporter');
 				group: 'Tests'
 					with:
-					#('Moose-Query-Test' 'Moose-Tests-Core' 'Famix-Smalltalk-Utils-Tests' 'Moose-Tests-SmalltalkImporter-LAN' 'Moose-Tests-SmalltalkImporter-Core' 'Moose-Tests-SmalltalkImporter-KGB' 'Famix-Groups-Tests' 'Famix-Compatibility-Tests-C' 'Famix-Compatibility-Tests-Java' 'Famix-Compatibility-Tests-Core' 'Famix-Compatibility-Tests-Extensions' 'Famix-PharoSmalltalk-Tests' 'Famix-TestGenerators' 'Famix-MetamodelBuilder-Tests' 'Famix-Test1-Entities' 'Famix-Test1-Tests' 'Famix-Test2-Entities' 'Famix-Test2-Tests' 'Famix-Test3-Entities' 'Famix-Test3-Tests' 'Famix-Test4-Entities' 'Famix-Test4-Tests' 'Famix-TestComposedSubmetamodel1-Entities' 'Famix-TestComposedSubmetamodel2-Entities' 'Famix-TestComposedMetamodel-Entities' 'Famix-TestComposedMetamodel') ].
+					#('Famix-Tests' 'Moose-Query-Test' 'Moose-Tests-Core' 'Famix-Smalltalk-Utils-Tests' 'Moose-Tests-SmalltalkImporter-LAN' 'Moose-Tests-SmalltalkImporter-Core' 'Moose-Tests-SmalltalkImporter-KGB' 'Famix-Groups-Tests' 'Famix-Compatibility-Tests-C' 'Famix-Compatibility-Tests-Java' 'Famix-Compatibility-Tests-Core' 'Famix-Compatibility-Tests-Extensions' 'Famix-PharoSmalltalk-Tests' 'Famix-TestGenerators' 'Famix-MetamodelBuilder-Tests' 'Famix-Test1-Entities' 'Famix-Test1-Tests' 'Famix-Test2-Entities' 'Famix-Test2-Tests' 'Famix-Test3-Entities' 'Famix-Test3-Tests' 'Famix-Test4-Entities' 'Famix-Test4-Tests' 'Famix-TestComposedSubmetamodel1-Entities' 'Famix-TestComposedSubmetamodel2-Entities' 'Famix-TestComposedMetamodel-Entities' 'Famix-TestComposedMetamodel') ].
 
 	"We need different versions of Ring for Pharo 7 and 8."
 	spec
@@ -177,4 +179,9 @@ BaselineOfFamix >> referenceTestResources: spec [
 { #category : #dependencies }
 BaselineOfFamix >> roelTyper: spec [
 	spec baseline: 'RoelTyper' with: [ spec repository: repository ]
+]
+
+{ #category : #dependencies }
+BaselineOfFamix >> talents: spec [
+	spec baseline: 'Talents' with: [ spec repository: repository ]
 ]

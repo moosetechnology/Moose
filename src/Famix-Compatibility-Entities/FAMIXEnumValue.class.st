@@ -15,13 +15,6 @@ FAMIXEnumValue class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXEnumValue class >> generatedSlotNames [
-	<generated>
-	'FAMIXEnumValue class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FAMIXEnumValue class >> requirements [
 

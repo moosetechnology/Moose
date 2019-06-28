@@ -30,13 +30,6 @@ FamixJavaEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaEntity class >> generatedSlotNames [
-	<generated>
-	'FamixJavaEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FamixJavaEntity class >> metamodel [
 

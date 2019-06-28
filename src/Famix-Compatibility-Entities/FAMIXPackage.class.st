@@ -6,20 +6,13 @@ Class {
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #meta }
 FAMIXPackage class >> annotation [
 
 	<MSEClass: #Package super: #FAMIXScopingEntity>
 	<package: #FAMIX>
 	<generated>
 	^self
-]
-
-{ #category : #'as yet unclassified' }
-FAMIXPackage class >> generatedSlotNames [
-	<generated>
-	'FAMIXPackage class>>#generatedSlotNames'.
-	^ #()
 ]
 
 { #category : #meta }

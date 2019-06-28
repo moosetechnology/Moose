@@ -15,13 +15,6 @@ FAMIXLocalVariable class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXLocalVariable class >> generatedSlotNames [
-	<generated>
-	'FAMIXLocalVariable class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FAMIXLocalVariable class >> requirements [
 

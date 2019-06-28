@@ -16,10 +16,3 @@ FamixTPreprocessorDefine classSide >> annotation [
 	<package: #'Famix-Traits'>
 	^self
 ]
-
-{ #category : #generator }
-FamixTPreprocessorDefine classSide >> generatedSlotNames [
-	<generated>
-	'FamixTPreprocessorDefine class>>#generatedSlotNames'.
-	^ #()
-]

@@ -31,11 +31,11 @@ FamixTAnnotationType classSide >> famixTAnnotationTypeRelatedGroup [
 	^ FAMIXAnnotationTypeGroup
 ]
 
-{ #category : #generator }
-FamixTAnnotationType classSide >> generatedSlotNames [
-	<generated>
-	'FamixTAnnotationType class>>#generatedSlotNames'.
-	^ #(annotationTypesContainer instances)
+{ #category : #accessing }
+FamixTAnnotationType >> addInstance: anObject [
+
+	instances add: anObject
+
 ]
 
 { #category : #accessing }

@@ -21,8 +21,6 @@ FamixPropertiesTest >> testAttributeMetrics [
 	attribute2 := self model entityNamed: #'Smalltalk::LANOutputServer.serverType'.
 	self assert: (attribute1 propertyNamed: #numberOfAccesses) equals: 3.
 	self assert: attribute1 numberOfAccesses equals: 3.
-	self assert: (attribute1 propertyNamed: #nameLength) equals: 8.
-	self assert: attribute1 nameLength equals: 8.
 	self assert: (attribute1 propertyNamed: #hierarchyNestingLevel) equals: 1.
 	self assert: attribute1 hierarchyNestingLevel equals: 1.
 	self assert: (attribute1 propertyNamed: #numberOfAccessingClasses) equals: 1.
@@ -208,11 +206,6 @@ FamixPropertiesTest >> testMethodInvocationsWithoutCascading [
 FamixPropertiesTest >> testMethodLOC [
 	self assert: (self lanInterfaceOriginateMethod propertyNamed: #numberOfLinesOfCode) equals: 22.
 	self assert: self lanInterfaceOriginateMethod numberOfLinesOfCode equals: 22
-]
-
-{ #category : #testing }
-FamixPropertiesTest >> testMethodName [
-	self assert: (self lanInterfaceOriginateMethod propertyNamed: #nameLength) equals: 9
 ]
 
 { #category : #testing }

@@ -15,13 +15,6 @@ FAMIXSourcedEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXSourcedEntity class >> generatedSlotNames [
-	<generated>
-	'FAMIXSourcedEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FAMIXSourcedEntity class >> requirements [
 
@@ -37,7 +30,7 @@ FAMIXSourcedEntity >> accept: aVisitor [
 
 { #category : #accessing }
 FAMIXSourcedEntity >> addComment: aComment [
-		self privateAddComment: aComment asFAMIXComment
+		comments add: aComment asFAMIXComment
 ]
 
 { #category : #'Famix-File' }

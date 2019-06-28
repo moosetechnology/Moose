@@ -19,11 +19,11 @@ FamixTModule classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTModule classSide >> generatedSlotNames [
-	<generated>
-	'FamixTModule class>>#generatedSlotNames'.
-	^ #(moduleEntities)
+{ #category : #accessing }
+FamixTModule >> addModuleEntity: anObject [
+
+	moduleEntities add: anObject
+
 ]
 
 { #category : #accessing }

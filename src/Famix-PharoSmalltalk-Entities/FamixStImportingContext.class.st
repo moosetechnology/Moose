@@ -4,13 +4,6 @@ Class {
 	#category : #'Famix-PharoSmalltalk-Entities'
 }
 
-{ #category : #generator }
-FamixStImportingContext class >> generatedSlotNames [
-	<generated>
-	'FamixStImportingContext class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #testing }
 FamixStImportingContext >> importAccess [
 

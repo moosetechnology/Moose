@@ -15,13 +15,6 @@ FamixTWithReferences classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithReferences classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithReferences class>>#generatedSlotNames'.
-	^ #(outgoingReferences)
-]
-
 { #category : #accessing }
 FamixTWithReferences >> addOutgoingReference: aReference [ 
 	outgoingReferences add: aReference

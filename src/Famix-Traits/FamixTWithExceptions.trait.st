@@ -15,11 +15,10 @@ FamixTWithExceptions classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithExceptions classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithExceptions class>>#generatedSlotNames'.
-	^ #(exceptions)
+{ #category : #accessing }
+FamixTWithExceptions >> addException: anObject [
+	exceptions add: anObject
+
 ]
 
 { #category : #accessing }

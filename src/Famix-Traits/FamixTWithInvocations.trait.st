@@ -15,13 +15,6 @@ FamixTWithInvocations classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithInvocations classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithInvocations class>>#generatedSlotNames'.
-	^ #(outgoingInvocations)
-]
-
 { #category : #adding }
 FamixTWithInvocations >> addOutgoingInvocation: anInvocation [
 	outgoingInvocations add: anInvocation

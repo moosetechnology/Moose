@@ -15,13 +15,6 @@ FamixJavaAbstractFile class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaAbstractFile class >> generatedSlotNames [
-	<generated>
-	'FamixJavaAbstractFile class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FamixJavaAbstractFile class >> requirements [
 

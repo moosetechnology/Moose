@@ -11,10 +11,3 @@ FamixTClassMetrics classSide >> annotation [
 	<package: #'Famix-Traits'>
 	^self
 ]
-
-{ #category : #generator }
-FamixTClassMetrics classSide >> generatedSlotNames [
-	<generated>
-	'FamixTClassMetrics class>>#generatedSlotNames'.
-	^ #()
-]

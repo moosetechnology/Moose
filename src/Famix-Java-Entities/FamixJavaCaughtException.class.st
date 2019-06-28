@@ -15,13 +15,6 @@ FamixJavaCaughtException class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaCaughtException class >> generatedSlotNames [
-	<generated>
-	'FamixJavaCaughtException class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FamixJavaCaughtException class >> requirements [
 

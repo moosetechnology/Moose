@@ -12,13 +12,6 @@ FamixTInheritanceGlue classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTInheritanceGlue classSide >> generatedSlotNames [
-	<generated>
-	'FamixTInheritanceGlue class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #testing }
 FamixTInheritanceGlue >> isInheritance [ 
 	^true

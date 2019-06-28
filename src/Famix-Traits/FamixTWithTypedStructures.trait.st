@@ -15,13 +15,6 @@ FamixTWithTypedStructures classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithTypedStructures classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithTypedStructures class>>#generatedSlotNames'.
-	^ #(structuresWithDeclaredType)
-]
-
 { #category : #deprecated }
 FamixTWithTypedStructures >> addBehaviourWithDeclaredType: aBehaviour [
 	self structuresWithDeclaredType add: aBehaviour

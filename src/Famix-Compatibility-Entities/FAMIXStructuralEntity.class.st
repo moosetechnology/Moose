@@ -15,13 +15,6 @@ FAMIXStructuralEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXStructuralEntity class >> generatedSlotNames [
-	<generated>
-	'FAMIXStructuralEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FAMIXStructuralEntity class >> requirements [
 

@@ -4,13 +4,6 @@ Class {
 	#category : #'Famix-Test1-Entities'
 }
 
-{ #category : #generator }
-FamixTest1ImportingContext class >> generatedSlotNames [
-	<generated>
-	'FamixTest1ImportingContext class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #testing }
 FamixTest1ImportingContext >> importAbstractFile [
 

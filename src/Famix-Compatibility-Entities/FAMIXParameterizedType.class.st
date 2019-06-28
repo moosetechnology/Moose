@@ -15,13 +15,6 @@ FAMIXParameterizedType class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXParameterizedType class >> generatedSlotNames [
-	<generated>
-	'FAMIXParameterizedType class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FAMIXParameterizedType class >> requirements [
 
