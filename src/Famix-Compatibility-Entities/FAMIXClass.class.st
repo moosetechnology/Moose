@@ -1,8 +1,8 @@
 Class {
 	#name : #FAMIXClass,
 	#superclass : #FAMIXType,
-	#traits : 'FamixTClass + FamixTLCOMMetrics + FamixTWithExceptions',
-	#classTraits : 'FamixTClass classTrait + FamixTLCOMMetrics classTrait + FamixTWithExceptions classTrait',
+	#traits : 'FamixTClass + FamixTWithExceptions',
+	#classTraits : 'FamixTClass classTrait + FamixTWithExceptions classTrait',
 	#instVars : [
 		'#isInterface'
 	],
@@ -16,13 +16,6 @@ FAMIXClass class >> annotation [
 	<package: #FAMIX>
 	<generated>
 	^self
-]
-
-{ #category : #generator }
-FAMIXClass class >> generatedSlotNames [
-	<generated>
-	'FAMIXClass class>>#generatedSlotNames'.
-	^ #()
 ]
 
 { #category : #meta }

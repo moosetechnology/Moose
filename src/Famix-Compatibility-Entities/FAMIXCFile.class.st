@@ -1,8 +1,8 @@
 Class {
 	#name : #FAMIXCFile,
 	#superclass : #FAMIXFile,
-	#traits : 'FamixTWithFileIncludes',
-	#classTraits : 'FamixTWithFileIncludes classTrait',
+	#traits : 'FamixTWithFileInclude',
+	#classTraits : 'FamixTWithFileInclude classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 
@@ -13,13 +13,6 @@ FAMIXCFile class >> annotation [
 	<package: #FAMIX>
 	<generated>
 	^self
-]
-
-{ #category : #generator }
-FAMIXCFile class >> generatedSlotNames [
-	<generated>
-	'FAMIXCFile class>>#generatedSlotNames'.
-	^ #()
 ]
 
 { #category : #meta }

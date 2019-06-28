@@ -15,13 +15,6 @@ FAMIXHeader class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXHeader class >> generatedSlotNames [
-	<generated>
-	'FAMIXHeader class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FAMIXHeader class >> requirements [
 

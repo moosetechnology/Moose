@@ -15,13 +15,6 @@ FAMIXAbstractFile class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXAbstractFile class >> generatedSlotNames [
-	<generated>
-	'FAMIXAbstractFile class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FAMIXAbstractFile class >> requirements [
 

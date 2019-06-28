@@ -13,13 +13,6 @@ FAMIXCSourceLanguage class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXCSourceLanguage class >> generatedSlotNames [
-	<generated>
-	'FAMIXCSourceLanguage class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FAMIXCSourceLanguage class >> requirements [
 
