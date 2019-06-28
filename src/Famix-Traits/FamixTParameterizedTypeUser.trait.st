@@ -15,13 +15,6 @@ FamixTParameterizedTypeUser classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTParameterizedTypeUser classSide >> generatedSlotNames [
-	<generated>
-	'FamixTParameterizedTypeUser class>>#generatedSlotNames'.
-	^ #(argumentsInParameterizedTypes)
-]
-
 { #category : #accessing }
 FamixTParameterizedTypeUser >> argumentsInParameterizedTypes [
 

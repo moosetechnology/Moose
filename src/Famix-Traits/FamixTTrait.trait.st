@@ -5,7 +5,7 @@ Trait {
 	#name : #FamixTTrait,
 	#instVars : [
 		'#incomingTraitUsages => FMMany type: #FamixTTraitUsage opposite: #trait',
-		'#traitOwner => FMOne type: #FamixTWithTraits opposite: #traits'
+		'#traitOwner => FMOne type: #FamixTWithTrait opposite: #traits'
 	],
 	#category : #'Famix-Traits-Trait'
 }
@@ -17,13 +17,6 @@ FamixTTrait classSide >> annotation [
 	<generated>
 	<package: #'Famix-Traits'>
 	^self
-]
-
-{ #category : #generator }
-FamixTTrait classSide >> generatedSlotNames [
-	<generated>
-	'FamixTTrait class>>#generatedSlotNames'.
-	^ #(incomingTraitUsages traitOwner)
 ]
 
 { #category : #accessing }

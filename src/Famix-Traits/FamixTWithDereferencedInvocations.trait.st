@@ -15,13 +15,6 @@ FamixTWithDereferencedInvocations classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithDereferencedInvocations classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithDereferencedInvocations class>>#generatedSlotNames'.
-	^ #(dereferencedInvocations)
-]
-
 { #category : #accessing }
 FamixTWithDereferencedInvocations >> addDereferencedInvocation: aDeferencedInvocation [
 	dereferencedInvocations add: aDeferencedInvocation 

@@ -15,13 +15,6 @@ FamixTWithComments classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithComments classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithComments class>>#generatedSlotNames'.
-	^ #(comments)
-]
-
 { #category : #removing }
 FamixTWithComments >> addComment: aComment [
 	self comments add: aComment 

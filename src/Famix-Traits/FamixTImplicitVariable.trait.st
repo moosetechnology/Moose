@@ -18,13 +18,6 @@ FamixTImplicitVariable classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTImplicitVariable classSide >> generatedSlotNames [
-	<generated>
-	'FamixTImplicitVariable class>>#generatedSlotNames'.
-	^ #(parentBehaviouralEntity)
-]
-
 { #category : #accessing }
 FamixTImplicitVariable >> parentBehaviouralEntity [
 

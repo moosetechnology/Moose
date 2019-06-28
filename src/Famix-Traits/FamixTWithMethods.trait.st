@@ -15,13 +15,6 @@ FamixTWithMethods classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithMethods classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithMethods class>>#generatedSlotNames'.
-	^ #(methods)
-]
-
 { #category : #accessing }
 FamixTWithMethods >> addMethod: aMethod [
 	methods add: aMethod

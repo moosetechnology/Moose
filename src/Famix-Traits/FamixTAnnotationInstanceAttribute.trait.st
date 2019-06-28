@@ -13,7 +13,7 @@ Trait {
 	#name : #FamixTAnnotationInstanceAttribute,
 	#instVars : [
 		'#parentAnnotationInstance => FMOne type: #FamixTWithAnnotationInstanceAttributes opposite: #attributes',
-		'#value'
+		'#value => FMProperty'
 	],
 	#category : #'Famix-Traits-AnnotationInstanceAttribute'
 }
@@ -25,13 +25,6 @@ FamixTAnnotationInstanceAttribute classSide >> annotation [
 	<generated>
 	<package: #'Famix-Traits'>
 	^self
-]
-
-{ #category : #generator }
-FamixTAnnotationInstanceAttribute classSide >> generatedSlotNames [
-	<generated>
-	'FamixTAnnotationInstanceAttribute class>>#generatedSlotNames'.
-	^ #(parentAnnotationInstance value)
 ]
 
 { #category : #accessing }

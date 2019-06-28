@@ -13,10 +13,3 @@ FamixTCohesionCouplingMetrics classSide >> annotation [
 	<package: #'Famix-Traits'>
 	^self
 ]
-
-{ #category : #generator }
-FamixTCohesionCouplingMetrics classSide >> generatedSlotNames [
-	<generated>
-	'FamixTCohesionCouplingMetrics class>>#generatedSlotNames'.
-	^ #()
-]

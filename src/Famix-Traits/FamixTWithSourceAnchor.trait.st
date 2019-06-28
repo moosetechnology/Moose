@@ -15,13 +15,6 @@ FamixTWithSourceAnchor classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithSourceAnchor classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithSourceAnchor class>>#generatedSlotNames'.
-	^ #(sourceAnchor)
-]
-
 { #category : #'Famix-Implementation' }
 FamixTWithSourceAnchor >> computeNumberOfLinesOfCode [
 	self hasSourceAnchor 

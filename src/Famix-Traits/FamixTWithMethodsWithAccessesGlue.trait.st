@@ -12,13 +12,6 @@ FamixTWithMethodsWithAccessesGlue classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithMethodsWithAccessesGlue classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithMethodsWithAccessesGlue class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #metrics }
 FamixTWithMethodsWithAccessesGlue >> tightClassCohesion [
 	<MSEProperty: #tightClassCohesion type: #Number>

@@ -15,13 +15,6 @@ FamixTWithPackages classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithPackages classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithPackages class>>#generatedSlotNames'.
-	^ #(packages)
-]
-
 { #category : #accessing }
 FamixTWithPackages >> addPackage: anObject [
 	packages add: anObject

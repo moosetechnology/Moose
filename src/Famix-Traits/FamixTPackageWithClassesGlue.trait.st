@@ -12,13 +12,6 @@ FamixTPackageWithClassesGlue classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTPackageWithClassesGlue classSide >> generatedSlotNames [
-	<generated>
-	'FamixTPackageWithClassesGlue class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #'Famix-Implementation' }
 FamixTPackageWithClassesGlue >> weightedMethodCount [
 	<MSEProperty: #weightedMethodCount type: #Number>
