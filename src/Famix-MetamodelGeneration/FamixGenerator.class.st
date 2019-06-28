@@ -101,7 +101,6 @@ Class {
 		'tWithSuperInheritances',
 		'tWithTemplates',
 		'tWithThrownExceptions',
-		'tWithTrait',
 		'tWithTypeAliases',
 		'tWithTypedStructures',
 		'tWithTypes',
@@ -127,7 +126,8 @@ Class {
 		'tWithMethodsWithAccessesGlue',
 		'tMultipleFileAnchor',
 		'tCohesionCouplingMetrics',
-		'tWithFileIncludes'
+		'tWithFileIncludes',
+		'tWithTraits'
 	],
 	#category : #'Famix-MetamodelGeneration'
 }
@@ -862,7 +862,7 @@ FamixGenerator >> commentForTWithThrownExceptions [
 ]
 
 { #category : #comments }
-FamixGenerator >> commentForTWithTrait [
+FamixGenerator >> commentForTWithTraits [
 
 	^ ''
 ]
@@ -1286,7 +1286,7 @@ FamixGenerator >> defineRelations [
 
 	((tTrait property: #traitOwner))
 		*-
-	((tWithTrait property: #traits)).
+	((tWithTraits property: #traits)).
 
 	((tTrait property: #incomingTraitUsages))
 		-*
@@ -1635,8 +1635,8 @@ FamixGenerator >> defineTraits [
 	tWithThrownExceptions := builder newTraitNamed: #TWithThrownExceptions.
 	tWithThrownExceptions comment: self commentForTWithThrownExceptions.
 
-	tWithTrait := builder newTraitNamed: #TWithTrait.
-	tWithTrait comment: self commentForTWithTrait.
+	tWithTraits := builder newTraitNamed: #TWithTraits.
+	tWithTraits comment: self commentForTWithTraits.
 
 	tWithTypeAliases := builder newTraitNamed: #TWithTypeAliases.
 	tWithTypeAliases comment: self commentForTWithTypeAliases.

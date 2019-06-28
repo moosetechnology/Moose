@@ -5,7 +5,7 @@ Trait {
 	#name : #FamixTTrait,
 	#instVars : [
 		'#incomingTraitUsages => FMMany type: #FamixTTraitUsage opposite: #trait',
-		'#traitOwner => FMOne type: #FamixTWithTrait opposite: #traits'
+		'#traitOwner => FMOne type: #FamixTWithTraits opposite: #traits'
 	],
 	#category : #'Famix-Traits-Trait'
 }
