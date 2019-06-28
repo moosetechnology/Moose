@@ -1,7 +1,7 @@
 Trait {
 	#name : #TFamixTWithCompilationUnitTest,
 	#instVars : [
-		'compilationunit'
+		'compilationUnit'
 	],
 	#traits : 'TFamixTest',
 	#classTraits : 'TFamixTest classTrait',
@@ -9,10 +9,11 @@ Trait {
 }
 
 { #category : #tests }
-TFamixTWithCompilationUnitTest >> testWithCompilationUnit [
-compilationunit:= MooseEntity new copyWithTalent: FamixTCompilationUnit.
-self entity compilationUnit: compilationunit.
+TFamixTWithCompilationUnitTest >> testCompilationUnit [
+compilationUnit := MooseEntity new copyWithTalent: FamixTCompilationUnit. 
+compilationUnit class initializeSlots: compilationUnit.
+self entity compilationUnit: compilationUnit. 
 self assert: (self entity compilationUnit notNil).
-self assert: self entity compilationUnit equals: compilationunit.
-self assert: compilationunit compilationUnitOwner equals: entity
+self assert: self entity compilationUnit equals: compilationUnit.
+self assert: compilationUnit compilationUnitOwner equals: self entity
 ]

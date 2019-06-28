@@ -10,17 +10,14 @@ Trait {
 }
 
 { #category : #tests }
-TFamixTWithTemplatesTest >> testWithTemplates [
-template1:= MooseEntity new copyWithTalent: FamixTTemplate.
-template2:= MooseEntity new copyWithTalent: FamixTTemplate.
+TFamixTWithTemplatesTest >> testTemplates [
+template1 := MooseEntity new copyWithTalent: FamixTTemplate.
+template1 class initializeSlots: template1.
+template2 := MooseEntity new copyWithTalent: FamixTTemplate.
+template2 class initializeSlots: template2.
 self entity addTemplate: template1.
 self entity addTemplate: template2.
 self assert: (self entity templates notEmpty).
-	self assertCollection: self entity templates hasSameElements: { template1. template2 }.
-self assert: template1 templateOwner equals: entity
-]
-
-{ #category : #tests }
-TFamixTWithTemplatesTest >> testWithoutTemplates [
-			self assert: (self entity templates isEmpty)
+self assertCollection: self entity templates hasSameElements: {  template1. template2 }.
+self assert: template1 templateOwner equals: self entity
 ]

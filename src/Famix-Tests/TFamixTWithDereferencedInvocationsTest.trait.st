@@ -1,8 +1,8 @@
 Trait {
 	#name : #TFamixTWithDereferencedInvocationsTest,
 	#instVars : [
-		'dereferencedinvocation1',
-		'dereferencedinvocation2'
+		'dereferencedInvocation1',
+		'dereferencedInvocation2'
 	],
 	#traits : 'TFamixTest',
 	#classTraits : 'TFamixTest classTrait',
@@ -10,17 +10,14 @@ Trait {
 }
 
 { #category : #tests }
-TFamixTWithDereferencedInvocationsTest >> testWithDereferencedInvocations [
-dereferencedinvocation1:= MooseEntity new copyWithTalent: FamixTDereferencedInvocation.
-dereferencedinvocation2:= MooseEntity new copyWithTalent: FamixTDereferencedInvocation.
-self entity addDereferencedInvocation: dereferencedinvocation1.
-self entity addDereferencedInvocation: dereferencedinvocation2.
+TFamixTWithDereferencedInvocationsTest >> testDereferencedInvocations [
+dereferencedInvocation1 := MooseEntity new copyWithTalent: FamixTDereferencedInvocation.
+dereferencedInvocation1 class initializeSlots: dereferencedInvocation1.
+dereferencedInvocation2 := MooseEntity new copyWithTalent: FamixTDereferencedInvocation.
+dereferencedInvocation2 class initializeSlots: dereferencedInvocation2.
+self entity addDereferencedInvocation: dereferencedInvocation1.
+self entity addDereferencedInvocation: dereferencedInvocation2.
 self assert: (self entity dereferencedInvocations notEmpty).
-	self assertCollection: self entity dereferencedInvocations hasSameElements: { dereferencedinvocation1. dereferencedinvocation2 }.
-self assert: dereferencedinvocation1 referencer equals: entity
-]
-
-{ #category : #tests }
-TFamixTWithDereferencedInvocationsTest >> testWithoutDereferencedInvocations [
-			self assert: (self entity dereferencedInvocations isEmpty)
+self assertCollection: self entity dereferencedInvocations hasSameElements: {  dereferencedInvocation1. dereferencedInvocation2 }.
+self assert: dereferencedInvocation1 referencer equals: self entity
 ]

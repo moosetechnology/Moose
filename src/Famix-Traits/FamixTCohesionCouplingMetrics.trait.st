@@ -20,3 +20,10 @@ FamixTCohesionCouplingMetrics classSide >> generatedSlotNames [
 	'FamixTCohesionCouplingMetrics class>>#generatedSlotNames'.
 	^ #()
 ]
+
+{ #category : #accessing }
+FamixTCohesionCouplingMetrics >> addChildEntity: anObject [
+
+	childEntities add: anObject
+
+]

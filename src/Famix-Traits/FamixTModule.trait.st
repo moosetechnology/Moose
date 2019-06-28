@@ -27,6 +27,13 @@ FamixTModule classSide >> generatedSlotNames [
 ]
 
 { #category : #accessing }
+FamixTModule >> addModuleEntity: anObject [
+
+	moduleEntities add: anObject
+
+]
+
+{ #category : #accessing }
 FamixTModule >> moduleEntities [
 
 	<generated>

@@ -23,6 +23,13 @@ FamixTTraitUser classSide >> generatedSlotNames [
 ]
 
 { #category : #accessing }
+FamixTTraitUser >> addOutgoingTraitUsage: anObject [
+
+	outgoingTraitUsages add: anObject
+
+]
+
+{ #category : #accessing }
 FamixTTraitUser >> outgoingTraitUsages [
 
 	<generated>
