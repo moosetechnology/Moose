@@ -13,12 +13,11 @@ FmxMBRealRingEnvironment >> adoptClassCommentOf: realClass to: anRGClass [
 
 { #category : #installing }
 FmxMBRealRingEnvironment >> adoptClassDefinitionOf: realClass to: anRGClass [
-	| customSlots customTraits customTraitNames customSlotNames slotDefinitions slotsString definition traitsDefinitions traitsString |
+	| customSlots customTraitNames customSlotNames slotDefinitions slotsString definition traitsDefinitions traitsString |
 
 	customSlots := realClass localSlots copyWithoutAll: realClass generatedSlots.
-	customTraits := realClass traitComposition members \  realClass generatedTraits.
 	customSlotNames := customSlots collect: #name.
-	customTraitNames := customTraits collect: #traitCompositionExpression.
+	customTraitNames := realClass customTraits collect: #traitCompositionExpression.
 	slotDefinitions := ((anRGClass slots
 		reject: [ :each | customSlotNames includes: each name ])
 		collect: #definitionString) asOrderedCollection.
