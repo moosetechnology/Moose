@@ -27,6 +27,13 @@ FamixTTrait classSide >> generatedSlotNames [
 ]
 
 { #category : #accessing }
+FamixTTrait >> addIncomingTraitUsage: anObject [
+
+	incomingTraitUsages add: anObject
+
+]
+
+{ #category : #accessing }
 FamixTTrait >> incomingTraitUsages [
 
 	<generated>

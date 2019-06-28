@@ -41,6 +41,12 @@ FamixTAnnotationTypeAttribute classSide >> generatedSlotNames [
 ]
 
 { #category : #accessing }
+FamixTAnnotationTypeAttribute >> addAnnotationAttributeInstance: anObject [
+	annotationAttributeInstances add: anObject
+
+]
+
+{ #category : #accessing }
 FamixTAnnotationTypeAttribute >> annotationAttributeInstances [
 
 	<generated>

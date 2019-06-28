@@ -23,6 +23,13 @@ FamixTParameterizedTypeUser classSide >> generatedSlotNames [
 ]
 
 { #category : #accessing }
+FamixTParameterizedTypeUser >> addArgumentsInParameterizedType: anObject [
+
+	argumentsInParameterizedTypes add: anObject
+
+]
+
+{ #category : #accessing }
 FamixTParameterizedTypeUser >> argumentsInParameterizedTypes [
 
 	<generated>

@@ -24,6 +24,13 @@ FamixTTemplate classSide >> generatedSlotNames [
 ]
 
 { #category : #accessing }
+FamixTTemplate >> addTemplateUser: anObject [
+
+	templateUsers add: anObject
+
+]
+
+{ #category : #accessing }
 FamixTTemplate >> templateOwner [
 
 	<generated>

@@ -38,6 +38,12 @@ FamixTNamespace classSide >> generatedSlotNames [
 	^ #(namespaceEntities namespaceOwner)
 ]
 
+{ #category : #accessing }
+FamixTNamespace >> addNamespaceEntity: anObject [
+	namespaceEntities add: anObject
+
+]
+
 { #category : #testing }
 FamixTNamespace >> isNamespace [
 

@@ -929,6 +929,7 @@ FamixGenerator >> defineGlueingTraits [
 FamixGenerator >> defineHierarchy [ 
 	super defineHierarchy.
 	tCohesionCouplingMetrics --|> tPackage.
+	tFile --|> tNamed.
 ]
 
 { #category : #definition }

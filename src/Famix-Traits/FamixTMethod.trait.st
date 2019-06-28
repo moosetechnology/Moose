@@ -8,7 +8,6 @@ Trait {
 	#instVars : [
 		'#isAbstract',
 		'#isClassSide',
-		'#isPublic',
 		'#kind',
 		'#parentType => FMOne type: #FamixTWithMethods opposite: #methods'
 	],
