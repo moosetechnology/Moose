@@ -15,13 +15,6 @@ FamixStInvocation class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixStInvocation class >> generatedSlotNames [
-	<generated>
-	'FamixStInvocation class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FamixStInvocation class >> requirements [
 

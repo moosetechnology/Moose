@@ -15,13 +15,6 @@ FamixStScopingEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixStScopingEntity class >> generatedSlotNames [
-	<generated>
-	'FamixStScopingEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FamixStScopingEntity class >> requirements [
 

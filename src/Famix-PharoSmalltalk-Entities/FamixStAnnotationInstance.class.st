@@ -15,13 +15,6 @@ FamixStAnnotationInstance class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixStAnnotationInstance class >> generatedSlotNames [
-	<generated>
-	'FamixStAnnotationInstance class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FamixStAnnotationInstance class >> requirements [
 
