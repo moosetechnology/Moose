@@ -232,9 +232,8 @@ FmxMBRingEnvironment >> setComment: aString for: aClass [
 ]
 
 { #category : #initialization }
-FmxMBRingEnvironment >> slotNamed: slotName [ 
-
-	^ (RGInstanceVariableSlot named: slotName asSymbol)
+FmxMBRingEnvironment >> slotNamed: slotName [
+	^ (RGUnknownSlot named: slotName asSymbol) expression: #FMProperty
 ]
 
 { #category : #initialization }
