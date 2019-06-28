@@ -9,7 +9,7 @@ FamixTestAndTraitGenerator >> createTraitOfTestFor: aClass [
 	traitTest := Trait
 		named: (self traitNameFrom: aClass)
 		uses: TFamixTest
-		slots: {String streamContents: [ :aStream | (self generateSlotsOfTraitOfTestFor: aClass) printOn: aStream delimiter: '. ' ] }
+		slots: (self generateSlotsOfTraitOfTestFor: aClass) asArray
 		category: 'Famix-Tests-Traits'
 ]
 
@@ -43,7 +43,7 @@ FamixTestAndTraitGenerator >> generateCodeForFMManySlotAssertions: aSlot [
 		nextPutAll: aSlot name;
 		nextPutAll: ' notEmpty).';
 		cr;
-		nextPutAll: 'self assert: self entity ';
+		nextPutAll: 'self assertCollection: self entity ';
 		nextPutAll: aSlot name;
 		nextPutAll: ' hasSameElements: {  ';
 		nextPutAll: (self generateSlotNameOfTestTraitFrom: aSlot) asString , '1';
@@ -71,9 +71,19 @@ FamixTestAndTraitGenerator >> generateCodeForFMManySlotInitialization: aSlot [
 		nextPutAll: aSlot targetClass name  ;
 		nextPutAll: '.';
 		cr;
+		nextPutAll: traitSlotName1 ;
+		nextPutAll: ' class initializeSlots: ';
+		nextPutAll: traitSlotName1 ;
+		nextPutAll: '.';
+		cr;
 		nextPutAll:  traitSlotName2 ;
 		nextPutAll: ' := MooseEntity new copyWithTalent: ';
 		nextPutAll: aSlot targetClass name  ;
+		nextPutAll: '.';
+		cr;
+		nextPutAll: traitSlotName1 ;
+		nextPutAll: ' class initializeSlots: ';
+		nextPutAll: traitSlotName1 ;
 		nextPutAll: '.';
 		cr;
 		nextPutAll: (self generateCodeForAddingSlotInCollection: traitSlotName1 for: aSlot);
@@ -88,14 +98,14 @@ FamixTestAndTraitGenerator >> generateCodeForFMManySlotOppositeAssertion: aSlot 
 	(oppositeSlot isKindOf: FMOne) 
 	ifTrue: [ ^ String streamContents: [ :aStream | aStream    nextPutAll: 'self assert: ';
 		nextPutAll: (self generateSlotNameOfTestTraitFrom: aSlot);
-		nextPutAll: ' ';
+		nextPutAll: '1 ';
 		nextPutAll: aSlot inverseName ;
-		nextPutAll: ' equals: entity'] ]
+		nextPutAll: ' equals: self entity'] ]
 	ifFalse: [ ^ String streamContents: [ :aStream | aStream    nextPutAll: 'self assertCollection: ';
 		nextPutAll: (self generateSlotNameOfTestTraitFrom: aSlot);
-		nextPutAll: ' ';
+		nextPutAll: '1 ';
 		nextPutAll: aSlot inverseName ;
-		nextPutAll: ' hasElements: {entity}'] ]
+		nextPutAll: ' hasSameElements: {self entity}'] ]
 	
 
 	
@@ -116,7 +126,7 @@ FamixTestAndTraitGenerator >> generateCodeForFMOneSlotAssertions: aSlot [
 		nextPutAll: 'self assert: self entity ';
 		nextPutAll: aSlot name;
 		nextPutAll: ' equals: ';
-		nextPutAll: (self generateSlotNameOfTestTraitFrom: aSlot) asString;
+		nextPutAll: aSlot name;
 		nextPutAll: '.' ;
 		cr;
 		nextPutAll: (self generateCodeForFMOneSlotOppositeAssertion: aSlot)].
@@ -130,11 +140,16 @@ FamixTestAndTraitGenerator >> generateCodeForFMOneSlotInitialization: aSlot [
 	"Example of what we want to generate
 	access := MooseEntity new copyWithTalent: FamixTWithAccesses.
 	self entity accessor: access."
-	traitSlotName := (self generateSlotNameOfTestTraitFrom: aSlot) asString.
+	traitSlotName := aSlot name asString.
 	^ String streamContents: [ :aStream | aStream nextPutAll:  traitSlotName ;
 		nextPutAll: ' := MooseEntity new copyWithTalent: ';
 		nextPutAll: aSlot targetClass name  ;
 		nextPutAll: '. ';
+		cr;
+		nextPutAll: traitSlotName ;
+		nextPutAll: ' class initializeSlots: ';
+		nextPutAll: traitSlotName ;
+		nextPutAll: '.';
 		cr;
 		nextPutAll: 'self entity ';
 		nextPutAll: aSlot name;
@@ -149,15 +164,15 @@ FamixTestAndTraitGenerator >> generateCodeForFMOneSlotOppositeAssertion: aSlot [
 	oppositeSlot := aSlot targetClass slots detect: [ :s | s name = aSlot inverseName ].
 	(oppositeSlot isKindOf: FMOne) 
 	ifTrue: [ ^ String streamContents: [ :aStream | aStream    nextPutAll: 'self assert: ';
-		nextPutAll: (self generateSlotNameOfTestTraitFrom: aSlot);
+		nextPutAll: aSlot name;
 		nextPutAll: ' ';
 		nextPutAll: aSlot inverseName ;
-		nextPutAll: ' equals: entity'] ]
+		nextPutAll: ' equals: self entity'] ]
 	ifFalse: [ ^ String streamContents: [ :aStream | aStream    nextPutAll: 'self assertCollection: ';
-		nextPutAll: (self generateSlotNameOfTestTraitFrom: aSlot);
+		nextPutAll: aSlot name;
 		nextPutAll: ' ';
 		nextPutAll: aSlot inverseName ;
-		nextPutAll: ' hasElements: {entity}'] ]
+		nextPutAll: ' hasSameElements: {self entity}'] ]
 	
 
 ]
@@ -214,20 +229,16 @@ FamixTestAndTraitGenerator >> generateSlotsOfTraitOfTestFor: aClass [
 	| aColl |
 	aColl := OrderedCollection new.
 	aClass slots do: [ :s | aColl
-				add: (self generateSlotsOfTraitOfTestFrom: s) ].
+				addAll: (self generateSlotsOfTraitOfTestFrom: s) ].
 	^aColl
 ]
 
 { #category : #accessing }
 FamixTestAndTraitGenerator >> generateSlotsOfTraitOfTestFrom: aSlot [
 	^((aSlot class == FMOne) or: [ aSlot class == InstanceVariableSlot ])
-		ifTrue: [ aSlot name ]
-		ifFalse: [ String
-				streamContents: [ :aStream | 
-					aStream
-						nextPutAll: (self generateSlotNameOfTestTraitFrom: aSlot) asString , '1';
-						nextPutAll: ' . ';
-						nextPutAll: (self generateSlotNameOfTestTraitFrom: aSlot) asString , '2' ] ]
+		ifTrue: [ {aSlot name} ]
+		ifFalse: [  {(self generateSlotNameOfTestTraitFrom: aSlot) asString , '1'.
+						(self generateSlotNameOfTestTraitFrom: aSlot) asString , '2' } ]
 ]
 
 { #category : #'generate for FMMany slot' }
