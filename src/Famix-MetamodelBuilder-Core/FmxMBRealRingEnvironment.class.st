@@ -188,7 +188,6 @@ FmxMBRealRingEnvironment >> installClassChangesFor: anRGClass [
 			self adoptClassDefinitionOf: realClass to: anRGClass. ].
 	self adoptClassCommentOf: realClass to: anRGClass.
 	self cleanClass: realClass.
-	self generateSlotsDescriptionFrom: anRGClass.
 	self adoptMethodsOf: realClass to: anRGClass
 		
 ]
