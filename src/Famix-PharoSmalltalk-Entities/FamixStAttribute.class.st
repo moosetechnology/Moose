@@ -29,7 +29,7 @@ FamixStAttribute class >> generatedSlotNames [
 FamixStAttribute class >> requirements [
 
 	<generated>
-	^ {  }
+	^ { FamixStAnnotationType }
 ]
 
 { #category : #'Famix-Implementation' }
