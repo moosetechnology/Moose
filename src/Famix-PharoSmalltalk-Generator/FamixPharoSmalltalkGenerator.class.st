@@ -108,6 +108,7 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 
 	annotationType --|> type.
 	annotationType --|> #TAnnotationType.
+	annotationType --|> #TWithAttribute.
 
 	annotationTypeAttribute --|> attribute.
 	annotationTypeAttribute --|> #TAnnotationTypeAttribute.
