@@ -16,13 +16,6 @@ FamixTest4Person class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTest4Person class >> generatedSlotNames [
-	<generated>
-	'FamixTest4Person class>>#generatedSlotNames'.
-	^ #(books)
-]
-
 { #category : #meta }
 FamixTest4Person class >> requirements [
 

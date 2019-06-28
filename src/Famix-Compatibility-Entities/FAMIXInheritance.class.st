@@ -15,13 +15,6 @@ FAMIXInheritance class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXInheritance class >> generatedSlotNames [
-	<generated>
-	'FAMIXInheritance class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FAMIXInheritance class >> requirements [
 

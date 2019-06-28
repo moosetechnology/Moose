@@ -5,3 +5,8 @@ Slot >> isFMRelationSlot [
 
 	^ false
 ]
+
+{ #category : #'*Fame-Core' }
+Slot >> isFameSlot [
+	^ false
+]

@@ -138,6 +138,11 @@ FMRelationSlot >> isFMRelationSlot [
 ]
 
 { #category : #testing }
+FMRelationSlot >> isFameSlot [
+	^ true
+]
+
+{ #category : #testing }
 FMRelationSlot >> isToOneSlot [
 
 	^false

@@ -15,13 +15,6 @@ FamixStPackage class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixStPackage class >> generatedSlotNames [
-	<generated>
-	'FamixStPackage class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FamixStPackage class >> requirements [
 

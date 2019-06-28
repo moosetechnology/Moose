@@ -15,13 +15,6 @@ FamixTTraitUser classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTTraitUser classSide >> generatedSlotNames [
-	<generated>
-	'FamixTTraitUser class>>#generatedSlotNames'.
-	^ #(outgoingTraitUsages)
-]
-
 { #category : #accessing }
 FamixTTraitUser >> addOutgoingTraitUsage: anObject [
 

@@ -15,13 +15,6 @@ FamixTWithThrownExceptions classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithThrownExceptions classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithThrownExceptions class>>#generatedSlotNames'.
-	^ #(thrownExceptions)
-]
-
 { #category : #accessing }
 FamixTWithThrownExceptions >> addThrownException: anObject [
 	thrownExceptions add: anObject

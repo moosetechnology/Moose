@@ -13,13 +13,6 @@ FAMIXJavaSourceLanguage class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXJavaSourceLanguage class >> generatedSlotNames [
-	<generated>
-	'FAMIXJavaSourceLanguage class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FAMIXJavaSourceLanguage class >> requirements [
 

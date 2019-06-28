@@ -15,13 +15,6 @@ FamixStComment class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixStComment class >> generatedSlotNames [
-	<generated>
-	'FamixStComment class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FamixStComment class >> requirements [
 

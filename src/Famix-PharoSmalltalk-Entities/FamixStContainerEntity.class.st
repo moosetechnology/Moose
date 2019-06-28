@@ -15,13 +15,6 @@ FamixStContainerEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixStContainerEntity class >> generatedSlotNames [
-	<generated>
-	'FamixStContainerEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FamixStContainerEntity class >> requirements [
 

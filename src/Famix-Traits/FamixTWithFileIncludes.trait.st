@@ -16,13 +16,6 @@ FamixTWithFileIncludes classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithFileIncludes classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithFileIncludes class>>#generatedSlotNames'.
-	^ #(incomingIncludeRelations outgoingIncludeRelations)
-]
-
 { #category : #accessing }
 FamixTWithFileIncludes >> addIncomingIncludeRelation: anObject [
 	incomingIncludeRelations add: anObject

@@ -15,13 +15,6 @@ FAMIXGlobalVariable class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXGlobalVariable class >> generatedSlotNames [
-	<generated>
-	'FAMIXGlobalVariable class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FAMIXGlobalVariable class >> requirements [
 

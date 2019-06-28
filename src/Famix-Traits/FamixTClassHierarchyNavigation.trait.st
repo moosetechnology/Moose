@@ -12,13 +12,6 @@ FamixTClassHierarchyNavigation classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTClassHierarchyNavigation classSide >> generatedSlotNames [
-	<generated>
-	'FamixTClassHierarchyNavigation class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #metrics }
 FamixTClassHierarchyNavigation >> addedMethods [
 	| inheritedMethodNames |

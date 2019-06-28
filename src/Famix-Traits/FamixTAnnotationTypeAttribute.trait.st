@@ -33,13 +33,6 @@ FamixTAnnotationTypeAttribute classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTAnnotationTypeAttribute classSide >> generatedSlotNames [
-	<generated>
-	'FamixTAnnotationTypeAttribute class>>#generatedSlotNames'.
-	^ #(annotationAttributeInstances)
-]
-
 { #category : #accessing }
 FamixTAnnotationTypeAttribute >> addAnnotationAttributeInstance: anObject [
 	annotationAttributeInstances add: anObject

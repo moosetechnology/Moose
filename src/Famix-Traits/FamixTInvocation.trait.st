@@ -37,13 +37,6 @@ FamixTInvocation classSide >> famixTInvocationRelatedGroup [
 	^ FAMIXInvocationGroup
 ]
 
-{ #category : #generator }
-FamixTInvocation classSide >> generatedSlotNames [
-	<generated>
-	'FamixTInvocation class>>#generatedSlotNames'.
-	^ #(candidates receiver sender)
-]
-
 { #category : #adding }
 FamixTInvocation >> addCandidate: aBehaviouralEntity [ 
 	candidates add: aBehaviouralEntity

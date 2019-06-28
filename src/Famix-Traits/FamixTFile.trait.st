@@ -26,13 +26,6 @@ FamixTFile classSide >> famixTFileRelatedGroup [
 	^ FAMIXFileGroup
 ]
 
-{ #category : #generator }
-FamixTFile classSide >> generatedSlotNames [
-	<generated>
-	'FamixTFile class>>#generatedSlotNames'.
-	^ #(entities)
-]
-
 { #category : #accessing }
 FamixTFile >> addEntity: famixEntity [
 	self entities add: famixEntity

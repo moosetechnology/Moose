@@ -15,13 +15,6 @@ FamixTestComposed1Class class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTestComposed1Class class >> generatedSlotNames [
-	<generated>
-	'FamixTestComposed1Class class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FamixTestComposed1Class class >> requirements [
 

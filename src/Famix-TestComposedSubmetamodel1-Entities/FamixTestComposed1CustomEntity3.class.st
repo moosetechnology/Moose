@@ -13,13 +13,6 @@ FamixTestComposed1CustomEntity3 class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTestComposed1CustomEntity3 class >> generatedSlotNames [
-	<generated>
-	'FamixTestComposed1CustomEntity3 class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FamixTestComposed1CustomEntity3 class >> requirements [
 

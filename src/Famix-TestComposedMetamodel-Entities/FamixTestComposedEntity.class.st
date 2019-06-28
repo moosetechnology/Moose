@@ -13,13 +13,6 @@ FamixTestComposedEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTestComposedEntity class >> generatedSlotNames [
-	<generated>
-	'FamixTestComposedEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FamixTestComposedEntity class >> metamodel [
 

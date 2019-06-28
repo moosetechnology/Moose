@@ -15,13 +15,6 @@ FamixJavaType class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaType class >> generatedSlotNames [
-	<generated>
-	'FamixJavaType class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FamixJavaType class >> requirements [
 

@@ -16,13 +16,6 @@ FamixTest4Principal class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTest4Principal class >> generatedSlotNames [
-	<generated>
-	'FamixTest4Principal class>>#generatedSlotNames'.
-	^ #(school)
-]
-
 { #category : #meta }
 FamixTest4Principal class >> requirements [
 

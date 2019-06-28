@@ -18,13 +18,6 @@ FamixTDeclaredException classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTDeclaredException classSide >> generatedSlotNames [
-	<generated>
-	'FamixTDeclaredException class>>#generatedSlotNames'.
-	^ #(definingEntity)
-]
-
 { #category : #accessing }
 FamixTDeclaredException >> definingEntity [
 

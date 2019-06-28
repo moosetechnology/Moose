@@ -19,13 +19,6 @@ TOODependencyQueries classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-TOODependencyQueries classSide >> generatedSlotNames [
-	<generated>
-	'TOODependencyQueries class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #testing }
 TOODependencyQueries >> hasIncomingTypeDeclaration [
 	"This method could be more readable but it needs to be really performant"

@@ -18,13 +18,6 @@ FAMIXClass class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXClass class >> generatedSlotNames [
-	<generated>
-	'FAMIXClass class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FAMIXClass class >> requirements [
 

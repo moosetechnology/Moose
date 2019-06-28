@@ -15,13 +15,6 @@ FamixTestComposed2Class class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTestComposed2Class class >> generatedSlotNames [
-	<generated>
-	'FamixTestComposed2Class class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FamixTestComposed2Class class >> requirements [
 

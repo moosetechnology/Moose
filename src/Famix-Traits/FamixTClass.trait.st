@@ -29,13 +29,6 @@ FamixTClass classSide >> famixTClassRelatedGroup [
 	^ FAMIXClassGroup
 ]
 
-{ #category : #generator }
-FamixTClass classSide >> generatedSlotNames [
-	<generated>
-	'FamixTClass class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #testing }
 FamixTClass >> isClass [
 

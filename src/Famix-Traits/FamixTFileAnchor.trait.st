@@ -4,9 +4,9 @@ This offers a source anchor that connects a sourced entity to a file through a r
 Trait {
 	#name : #FamixTFileAnchor,
 	#instVars : [
-		'correspondingFile',
-		'encoding',
-		'fileName'
+		'#correspondingFile => FMProperty',
+		'#encoding => FMProperty',
+		'#fileName => FMProperty'
 	],
 	#category : #'Famix-Traits-FileAnchor'
 }
@@ -18,13 +18,6 @@ FamixTFileAnchor classSide >> annotation [
 	<generated>
 	<package: #'Famix-Traits'>
 	^self
-]
-
-{ #category : #generator }
-FamixTFileAnchor classSide >> generatedSlotNames [
-	<generated>
-	'FamixTFileAnchor class>>#generatedSlotNames'.
-	^ #(correspondingFile encoding fileName)
 ]
 
 { #category : #adding }

@@ -15,13 +15,6 @@ FamixTInvocationsReceiver classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTInvocationsReceiver classSide >> generatedSlotNames [
-	<generated>
-	'FamixTInvocationsReceiver class>>#generatedSlotNames'.
-	^ #(receivingInvocations)
-]
-
 { #category : #adding }
 FamixTInvocationsReceiver >> addReceivingInvocation: anInvocation [
 	receivingInvocations add: anInvocation

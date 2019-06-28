@@ -16,13 +16,6 @@ FamixTTraitUsage classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTTraitUsage classSide >> generatedSlotNames [
-	<generated>
-	'FamixTTraitUsage class>>#generatedSlotNames'.
-	^ #(trait user)
-]
-
 { #category : #accessing }
 FamixTTraitUsage >> from [
 	^ self user

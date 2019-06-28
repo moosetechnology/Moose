@@ -13,15 +13,11 @@ FmxMBRealRingEnvironment >> adoptClassCommentOf: realClass to: anRGClass [
 
 { #category : #installing }
 FmxMBRealRingEnvironment >> adoptClassDefinitionOf: realClass to: anRGClass [
-	| generatedOldSlots customSlots customTraits customTraitNames customSlotNames slotDefinitions slotsString definition generatedOldTraits traitsDefinitions traitsString |
+	| customSlots customTraitNames customSlotNames slotDefinitions slotsString definition traitsDefinitions traitsString |
 
-
-	generatedOldSlots := self generatedSlotsOf: realClass.
-	generatedOldTraits := realClass generatedTraitNames.
-	customSlots := realClass localSlots copyWithoutAll: generatedOldSlots.
-	customTraits := realClass traitComposition members reject: [ :e | generatedOldTraits includes: e name].
+	customSlots := realClass localSlots copyWithoutAll: realClass generatedSlots.
 	customSlotNames := customSlots collect: #name.
-	customTraitNames := customTraits collect: #traitCompositionExpression.
+	customTraitNames := realClass customTraits collect: #traitCompositionExpression.
 	slotDefinitions := ((anRGClass slots
 		reject: [ :each | customSlotNames includes: each name ])
 		collect: #definitionString) asOrderedCollection.
@@ -156,23 +152,7 @@ FmxMBRealRingEnvironment >> ensurePackagesFrom: anRGEnvironment [
 
 { #category : #installing }
 FmxMBRealRingEnvironment >> generatedSlotsOf: aRealClass [
-
-	| slotNames |
-	
-	slotNames := (aRealClass classSide canUnderstand: #generatedSlotNames)
-		ifTrue: [ aRealClass generatedSlotNames ]
-		ifFalse: [ Array new ].
-		
-	^ (slotNames collect: [ :slotName | aRealClass slotNamed: slotName ifFound: [ :slot | slot ] ifNone: nil ]) select: #notNil.
-	
-	
-]
-
-{ #category : #installing }
-FmxMBRealRingEnvironment >> generatedTraitsOf: aRealClass [
-	^ aRealClass generatedTraitNames
-		collect: [ :traitName | aRealClass traitComposition transformations detect: [ :each | each name = traitName ] ifNone: [ nil ] ]
-		thenSelect: #isNotNil
+	^ (aRealClass generatedSlotNames collect: [ :slotName | aRealClass slotNamed: slotName ifFound: [ :slot | slot ] ifNone: nil ]) select: #notNil
 ]
 
 { #category : #installing }
@@ -188,7 +168,16 @@ FmxMBRealRingEnvironment >> installClassChangesFor: anRGClass [
 			self adoptClassDefinitionOf: realClass to: anRGClass. ].
 	self adoptClassCommentOf: realClass to: anRGClass.
 	self cleanClass: realClass.
-	self generateSlotsDescriptionFrom: anRGClass.
-	self adoptMethodsOf: realClass to: anRGClass
+	self adoptMethodsOf: realClass to: anRGClass.
+	self removeGeneratedSlotNamesMethodOf: realClass
 		
+]
+
+{ #category : #installing }
+FmxMBRealRingEnvironment >> removeGeneratedSlotNamesMethodOf: aClass [
+	self flag: #toRemoveSlotGeneration.	"Before, a method was generated to kmow generated slots. Now, we use a dedicated slot for that and we can just collect them. This should be removed later when all metamodel will be migrated.
+	
+	Remove in 2020."
+
+	aClass class methods detect: [ :m | m selector = #generatedSlotNames ] ifFound: #removeFromSystem
 ]
