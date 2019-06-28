@@ -1,3 +1,13 @@
+"
+This class enables to generate tests for FamixTrait based on slots.
+
+fttg := FamixTestAndTraitGenerator new.
+
+""to generate tests for all classes""
+fttg classes do: [ :c | fttg runFor: c ].
+
+
+"
 Class {
 	#name : #FamixTestAndTraitGenerator,
 	#superclass : #FamixTestGenerator,
@@ -266,7 +276,7 @@ FamixTestAndTraitGenerator >> generateTestsEmptyCollectionForFMManySlot: aSlot [
 
 { #category : #run }
 FamixTestAndTraitGenerator >> generateTestsFor: aClass [
-	aClass slots do: [ :aSlot | traitTest compile: (self generateTestsForASlot: aSlot) classified: 'tests']
+	aClass localSlots do: [ :aSlot | traitTest compile: (self generateTestsForASlot: aSlot) classified: 'tests']
 ]
 
 { #category : #run }
