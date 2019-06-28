@@ -15,13 +15,6 @@ FamixJavaScopingEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaScopingEntity class >> generatedSlotNames [
-	<generated>
-	'FamixJavaScopingEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FamixJavaScopingEntity class >> requirements [
 
