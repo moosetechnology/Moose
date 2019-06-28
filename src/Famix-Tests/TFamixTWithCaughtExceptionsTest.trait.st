@@ -1,8 +1,8 @@
 Trait {
 	#name : #TFamixTWithCaughtExceptionsTest,
 	#instVars : [
-		'caughtexception1',
-		'caughtexception2'
+		'caughtException1',
+		'caughtException2'
 	],
 	#traits : 'TFamixTest',
 	#classTraits : 'TFamixTest classTrait',
@@ -10,17 +10,14 @@ Trait {
 }
 
 { #category : #tests }
-TFamixTWithCaughtExceptionsTest >> testWithCaughtExceptions [
-caughtexception1:= MooseEntity new copyWithTalent: FamixTCaughtException.
-caughtexception2:= MooseEntity new copyWithTalent: FamixTCaughtException.
-self entity addCaughtException: caughtexception1.
-self entity addCaughtException: caughtexception2.
+TFamixTWithCaughtExceptionsTest >> testCaughtExceptions [
+caughtException1 := MooseEntity new copyWithTalent: FamixTCaughtException.
+caughtException1 class initializeSlots: caughtException1.
+caughtException2 := MooseEntity new copyWithTalent: FamixTCaughtException.
+caughtException2 class initializeSlots: caughtException2.
+self entity addCaughtException: caughtException1.
+self entity addCaughtException: caughtException2.
 self assert: (self entity caughtExceptions notEmpty).
-	self assertCollection: self entity caughtExceptions hasSameElements: { caughtexception1. caughtexception2 }.
-self assert: caughtexception1 definingEntity equals: entity
-]
-
-{ #category : #tests }
-TFamixTWithCaughtExceptionsTest >> testWithoutCaughtExceptions [
-			self assert: (self entity caughtExceptions isEmpty)
+self assertCollection: self entity caughtExceptions hasSameElements: {  caughtException1. caughtException2 }.
+self assert: caughtException1 definingEntity equals: self entity
 ]

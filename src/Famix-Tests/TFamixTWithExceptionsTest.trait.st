@@ -10,17 +10,14 @@ Trait {
 }
 
 { #category : #tests }
-TFamixTWithExceptionsTest >> testWithExceptions [
-exception1:= MooseEntity new copyWithTalent: FamixTException.
-exception2:= MooseEntity new copyWithTalent: FamixTException.
+TFamixTWithExceptionsTest >> testExceptions [
+exception1 := MooseEntity new copyWithTalent: FamixTException.
+exception1 class initializeSlots: exception1.
+exception2 := MooseEntity new copyWithTalent: FamixTException.
+exception2 class initializeSlots: exception2.
 self entity addException: exception1.
 self entity addException: exception2.
 self assert: (self entity exceptions notEmpty).
-	self assertCollection: self entity exceptions hasSameElements: { exception1. exception2 }.
-self assert: exception1 exceptionClass equals: entity
-]
-
-{ #category : #tests }
-TFamixTWithExceptionsTest >> testWithoutExceptions [
-			self assert: (self entity exceptions isEmpty)
+self assertCollection: self entity exceptions hasSameElements: {  exception1. exception2 }.
+self assert: exception1 exceptionClass equals: self entity
 ]

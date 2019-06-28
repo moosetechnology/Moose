@@ -9,10 +9,11 @@ Trait {
 }
 
 { #category : #tests }
-TFamixTWithHeaderTest >> testWithHeader [
-header:= MooseEntity new copyWithTalent: FamixTHeader.
-self entity header: header.
+TFamixTWithHeaderTest >> testHeader [
+header := MooseEntity new copyWithTalent: FamixTHeader. 
+header class initializeSlots: header.
+self entity header: header. 
 self assert: (self entity header notNil).
 self assert: self entity header equals: header.
-self assert: header headerOwner equals: entity
+self assert: header headerOwner equals: self entity
 ]

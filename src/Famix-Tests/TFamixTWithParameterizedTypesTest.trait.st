@@ -1,8 +1,8 @@
 Trait {
 	#name : #TFamixTWithParameterizedTypesTest,
 	#instVars : [
-		'parameterizedtype1',
-		'parameterizedtype2'
+		'parameterizedType1',
+		'parameterizedType2'
 	],
 	#traits : 'TFamixTest',
 	#classTraits : 'TFamixTest classTrait',
@@ -10,17 +10,14 @@ Trait {
 }
 
 { #category : #tests }
-TFamixTWithParameterizedTypesTest >> testWithParameterizedTypes [
-parameterizedtype1:= MooseEntity new copyWithTalent: FamixTParameterizedType.
-parameterizedtype2:= MooseEntity new copyWithTalent: FamixTParameterizedType.
-self entity addParameterizedType: parameterizedtype1.
-self entity addParameterizedType: parameterizedtype2.
+TFamixTWithParameterizedTypesTest >> testParameterizedTypes [
+parameterizedType1 := MooseEntity new copyWithTalent: FamixTParameterizedType.
+parameterizedType1 class initializeSlots: parameterizedType1.
+parameterizedType2 := MooseEntity new copyWithTalent: FamixTParameterizedType.
+parameterizedType2 class initializeSlots: parameterizedType2.
+self entity addParameterizedType: parameterizedType1.
+self entity addParameterizedType: parameterizedType2.
 self assert: (self entity parameterizedTypes notEmpty).
-	self assertCollection: self entity parameterizedTypes hasSameElements: { parameterizedtype1. parameterizedtype2 }.
-self assert: parameterizedtype1 parameterizableClass equals: entity
-]
-
-{ #category : #tests }
-TFamixTWithParameterizedTypesTest >> testWithoutParameterizedTypes [
-			self assert: (self entity parameterizedTypes isEmpty)
+self assertCollection: self entity parameterizedTypes hasSameElements: {  parameterizedType1. parameterizedType2 }.
+self assert: parameterizedType1 parameterizableClass equals: self entity
 ]

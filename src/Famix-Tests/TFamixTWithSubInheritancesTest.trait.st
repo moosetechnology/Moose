@@ -1,8 +1,8 @@
 Trait {
 	#name : #TFamixTWithSubInheritancesTest,
 	#instVars : [
-		'subinheritance1',
-		'subinheritance2'
+		'subInheritance1',
+		'subInheritance2'
 	],
 	#traits : 'TFamixTest',
 	#classTraits : 'TFamixTest classTrait',
@@ -10,17 +10,14 @@ Trait {
 }
 
 { #category : #tests }
-TFamixTWithSubInheritancesTest >> testWithSubInheritances [
-subinheritance1:= MooseEntity new copyWithTalent: FamixTSubInheritance.
-subinheritance2:= MooseEntity new copyWithTalent: FamixTSubInheritance.
-self entity addSuperInheritance: subinheritance1.
-self entity addSuperInheritance: subinheritance2.
+TFamixTWithSubInheritancesTest >> testSuperInheritances [
+subInheritance1 := MooseEntity new copyWithTalent: FamixTSubInheritance.
+subInheritance1 class initializeSlots: subInheritance1.
+subInheritance2 := MooseEntity new copyWithTalent: FamixTSubInheritance.
+subInheritance2 class initializeSlots: subInheritance2.
+self entity addSuperInheritance: subInheritance1.
+self entity addSuperInheritance: subInheritance2.
 self assert: (self entity superInheritances notEmpty).
-	self assertCollection: self entity superInheritances hasSameElements: { subinheritance1. subinheritance2 }.
-self assert: subinheritance1 subclass equals: entity
-]
-
-{ #category : #tests }
-TFamixTWithSubInheritancesTest >> testWithoutSubInheritances [
-			self assert: (self entity superInheritances isEmpty)
+self assertCollection: self entity superInheritances hasSameElements: {  subInheritance1. subInheritance2 }.
+self assert: subInheritance1 subclass equals: self entity
 ]

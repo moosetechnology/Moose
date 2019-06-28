@@ -1,8 +1,8 @@
 Trait {
 	#name : #TFamixTWithLocalVariablesTest,
 	#instVars : [
-		'localvariable1',
-		'localvariable2'
+		'localVariable1',
+		'localVariable2'
 	],
 	#traits : 'TFamixTest',
 	#classTraits : 'TFamixTest classTrait',
@@ -10,17 +10,14 @@ Trait {
 }
 
 { #category : #tests }
-TFamixTWithLocalVariablesTest >> testWithLocalVariables [
-localvariable1:= MooseEntity new copyWithTalent: FamixTLocalVariable.
-localvariable2:= MooseEntity new copyWithTalent: FamixTLocalVariable.
-self entity addLocalVariable: localvariable1.
-self entity addLocalVariable: localvariable2.
+TFamixTWithLocalVariablesTest >> testLocalVariables [
+localVariable1 := MooseEntity new copyWithTalent: FamixTLocalVariable.
+localVariable1 class initializeSlots: localVariable1.
+localVariable2 := MooseEntity new copyWithTalent: FamixTLocalVariable.
+localVariable2 class initializeSlots: localVariable2.
+self entity addLocalVariable: localVariable1.
+self entity addLocalVariable: localVariable2.
 self assert: (self entity localVariables notEmpty).
-	self assertCollection: self entity localVariables hasSameElements: { localvariable1. localvariable2 }.
-self assert: localvariable1 parentBehaviouralEntity equals: entity
-]
-
-{ #category : #tests }
-TFamixTWithLocalVariablesTest >> testWithoutLocalVariables [
-			self assert: (self entity localVariables isEmpty)
+self assertCollection: self entity localVariables hasSameElements: {  localVariable1. localVariable2 }.
+self assert: localVariable1 parentBehaviouralEntity equals: self entity
 ]

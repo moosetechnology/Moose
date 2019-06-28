@@ -10,17 +10,14 @@ Trait {
 }
 
 { #category : #tests }
-TFamixTWithReferencesTest >> testWithReferences [
-reference1:= MooseEntity new copyWithTalent: FamixTReference.
-reference2:= MooseEntity new copyWithTalent: FamixTReference.
+TFamixTWithReferencesTest >> testOutgoingReferences [
+reference1 := MooseEntity new copyWithTalent: FamixTReference.
+reference1 class initializeSlots: reference1.
+reference2 := MooseEntity new copyWithTalent: FamixTReference.
+reference2 class initializeSlots: reference2.
 self entity addOutgoingReference: reference1.
 self entity addOutgoingReference: reference2.
 self assert: (self entity outgoingReferences notEmpty).
-	self assertCollection: self entity outgoingReferences hasSameElements: { reference1. reference2 }.
-self assert: reference1 source equals: entity
-]
-
-{ #category : #tests }
-TFamixTWithReferencesTest >> testWithoutReferences [
-			self assert: (self entity outgoingReferences isEmpty)
+self assertCollection: self entity outgoingReferences hasSameElements: {  reference1. reference2 }.
+self assert: reference1 source equals: self entity
 ]

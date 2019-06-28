@@ -1,8 +1,8 @@
 Trait {
 	#name : #TFamixTWithAnnotationInstanceAttributesTest,
 	#instVars : [
-		'annotationinstanceattribute1',
-		'annotationinstanceattribute2'
+		'annotationInstanceAttribute1',
+		'annotationInstanceAttribute2'
 	],
 	#traits : 'TFamixTest',
 	#classTraits : 'TFamixTest classTrait',
@@ -10,17 +10,14 @@ Trait {
 }
 
 { #category : #tests }
-TFamixTWithAnnotationInstanceAttributesTest >> testWithAnnotationInstanceAttributes [
-annotationinstanceattribute1:= MooseEntity new copyWithTalent: FamixTAnnotationInstanceAttribute.
-annotationinstanceattribute2:= MooseEntity new copyWithTalent: FamixTAnnotationInstanceAttribute.
-self entity addAttribute: annotationinstanceattribute1.
-self entity addAttribute: annotationinstanceattribute2.
+TFamixTWithAnnotationInstanceAttributesTest >> testAttributes [
+annotationInstanceAttribute1 := MooseEntity new copyWithTalent: FamixTAnnotationInstanceAttribute.
+annotationInstanceAttribute1 class initializeSlots: annotationInstanceAttribute1.
+annotationInstanceAttribute2 := MooseEntity new copyWithTalent: FamixTAnnotationInstanceAttribute.
+annotationInstanceAttribute2 class initializeSlots: annotationInstanceAttribute2.
+self entity addAttribute: annotationInstanceAttribute1.
+self entity addAttribute: annotationInstanceAttribute2.
 self assert: (self entity attributes notEmpty).
-	self assertCollection: self entity attributes hasSameElements: { annotationinstanceattribute1. annotationinstanceattribute2 }.
-self assert: annotationinstanceattribute1 parentAnnotationInstance equals: entity
-]
-
-{ #category : #tests }
-TFamixTWithAnnotationInstanceAttributesTest >> testWithoutAnnotationInstanceAttributes [
-			self assert: (self entity attributes isEmpty)
+self assertCollection: self entity attributes hasSameElements: {  annotationInstanceAttribute1. annotationInstanceAttribute2 }.
+self assert: annotationInstanceAttribute1 parentAnnotationInstance equals: self entity
 ]

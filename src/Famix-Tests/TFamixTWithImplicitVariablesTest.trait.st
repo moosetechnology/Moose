@@ -1,8 +1,8 @@
 Trait {
 	#name : #TFamixTWithImplicitVariablesTest,
 	#instVars : [
-		'implicitvariable1',
-		'implicitvariable2'
+		'implicitVariable1',
+		'implicitVariable2'
 	],
 	#traits : 'TFamixTest',
 	#classTraits : 'TFamixTest classTrait',
@@ -10,17 +10,14 @@ Trait {
 }
 
 { #category : #tests }
-TFamixTWithImplicitVariablesTest >> testWithImplicitVariables [
-implicitvariable1:= MooseEntity new copyWithTalent: FamixTImplicitVariable.
-implicitvariable2:= MooseEntity new copyWithTalent: FamixTImplicitVariable.
-self entity addImplicitVariable: implicitvariable1.
-self entity addImplicitVariable: implicitvariable2.
+TFamixTWithImplicitVariablesTest >> testImplicitVariables [
+implicitVariable1 := MooseEntity new copyWithTalent: FamixTImplicitVariable.
+implicitVariable1 class initializeSlots: implicitVariable1.
+implicitVariable2 := MooseEntity new copyWithTalent: FamixTImplicitVariable.
+implicitVariable2 class initializeSlots: implicitVariable2.
+self entity addImplicitVariable: implicitVariable1.
+self entity addImplicitVariable: implicitVariable2.
 self assert: (self entity implicitVariables notEmpty).
-	self assertCollection: self entity implicitVariables hasSameElements: { implicitvariable1. implicitvariable2 }.
-self assert: implicitvariable1 parentBehaviouralEntity equals: entity
-]
-
-{ #category : #tests }
-TFamixTWithImplicitVariablesTest >> testWithoutImplicitVariables [
-			self assert: (self entity implicitVariables isEmpty)
+self assertCollection: self entity implicitVariables hasSameElements: {  implicitVariable1. implicitVariable2 }.
+self assert: implicitVariable1 parentBehaviouralEntity equals: self entity
 ]
