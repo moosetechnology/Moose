@@ -15,13 +15,6 @@ FamixTestComposed1SourcedEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTestComposed1SourcedEntity class >> generatedSlotNames [
-	<generated>
-	'FamixTestComposed1SourcedEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FamixTestComposed1SourcedEntity class >> requirements [
 
