@@ -31,6 +31,29 @@ FamixTest4Teacher class >> requirements [
 	^ { FamixTest4School }
 ]
 
+{ #category : #adding }
+FamixTest4Teacher >> addStudents: anObject [
+			
+	<generated>
+	^ self students add: anObject
+]
+
+{ #category : #accessing }
+FamixTest4Teacher >> belongsTo [
+
+	<generated>
+	^ self school
+
+]
+
+{ #category : #accessing }
+FamixTest4Teacher >> belongsTo: anObject [
+
+	<generated>
+	self school: anObject
+
+]
+
 { #category : #accessing }
 FamixTest4Teacher >> school [
 

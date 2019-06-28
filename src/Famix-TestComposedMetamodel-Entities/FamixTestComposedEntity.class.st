@@ -47,6 +47,11 @@ FamixTestComposedEntity >> method: anObject [
 
 	<generated>
 	(self privateState attributeAt: #method ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
-	self privateState attributeAt: #method put: anObject.
-	anObject entity: self
+	anObject ifNil: [ | otherSide |
+		otherSide :=  self method.
+		self privateState attributeAt: #method put: anObject.
+		otherSide entity: nil ]
+	ifNotNil: [ 
+		self privateState attributeAt: #method put: anObject.
+		anObject entity: self ]
 ]

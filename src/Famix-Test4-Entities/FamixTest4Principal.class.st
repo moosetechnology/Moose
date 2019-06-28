@@ -31,6 +31,22 @@ FamixTest4Principal class >> requirements [
 ]
 
 { #category : #accessing }
+FamixTest4Principal >> belongsTo [
+
+	<generated>
+	^ self school
+
+]
+
+{ #category : #accessing }
+FamixTest4Principal >> belongsTo: anObject [
+
+	<generated>
+	self school: anObject
+
+]
+
+{ #category : #accessing }
 FamixTest4Principal >> school [
 
 	<generated>
