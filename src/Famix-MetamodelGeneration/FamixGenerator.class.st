@@ -126,8 +126,8 @@ Class {
 		'tWithMethodsWithAccessesGlue',
 		'tMultipleFileAnchor',
 		'tCohesionCouplingMetrics',
-		'tWithFileIncludes',
-		'tWithTraits'
+		'tWithTraits',
+		'tWithFileIncludes'
 	],
 	#category : #'Famix-MetamodelGeneration'
 }
@@ -929,6 +929,11 @@ FamixGenerator >> defineGlueingTraits [
 FamixGenerator >> defineHierarchy [ 
 	super defineHierarchy.
 	tCohesionCouplingMetrics --|> tPackage.
+	
+	tClass --|> #TWithMethods.
+	tClass --|> #TWithSubInheritances.
+	tClass --|> #TWithSuperInheritances.
+	tClass --|> #TWithAttributes
 ]
 
 { #category : #definition }

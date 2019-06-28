@@ -22,7 +22,7 @@ FamixStAttribute class >> annotation [
 FamixStAttribute class >> requirements [
 
 	<generated>
-	^ {  }
+	^ { FamixStAnnotationType }
 ]
 
 { #category : #'Famix-Implementation' }
