@@ -26,26 +26,6 @@ FamixTestGenerator >> createTestFor: aClass [
 ]
 
 { #category : #accessing }
-FamixTestGenerator >> createTraitOfTestFor: aClass [
-	traitTest := Trait
-		named: (self traitNameFrom: aClass)
-		uses: TFamixTest
-		slots: {(self slotNameOfTestTraitFrom: aClass), 1 asString . (self slotNameOfTestTraitFrom: aClass), 2 asString}
-		category: 'Famix-Tests-Traits'
-]
-
-{ #category : #'as yet unclassified' }
-FamixTestGenerator >> generateSetUpCodeFor:aClass [
-	^ String streamContents: [ :aStream | aStream nextPutAll: 'setUp';
-		cr;
-		nextPutAll: 'self entity: (MooseEntity new copyWithTalent:'; 
-		nextPutAll: aClass name;
-		nextPutAll: ').';
-		cr;
-		nextPutAll: 'self entity class initializeSlots: self entity.' ]
-]
-
-{ #category : #accessing }
 FamixTestGenerator >> initializeClassesFrom: aBlock [
 	classes := package classes select: aBlock.
 ]
