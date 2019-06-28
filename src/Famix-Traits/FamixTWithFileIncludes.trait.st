@@ -10,7 +10,7 @@ Trait {
 { #category : #meta }
 FamixTWithFileIncludes classSide >> annotation [
 
-	<MSEClass: #TWithFileInclude super: #Trait>
+	<MSEClass: #TWithFileIncludes super: #Trait>
 	<generated>
 	<package: #'Famix-Traits'>
 	^self
@@ -19,7 +19,7 @@ FamixTWithFileIncludes classSide >> annotation [
 { #category : #generator }
 FamixTWithFileIncludes classSide >> generatedSlotNames [
 	<generated>
-	'FamixTWithFileInclude class>>#generatedSlotNames'.
+	'FamixTWithFileIncludes class>>#generatedSlotNames'.
 	^ #(incomingIncludeRelations outgoingIncludeRelations)
 ]
 

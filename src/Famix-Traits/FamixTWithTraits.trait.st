@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithTraits classSide >> annotation [
 
-	<MSEClass: #TWithTrait super: #Trait>
+	<MSEClass: #TWithTraits super: #Trait>
 	<generated>
 	<package: #'Famix-Traits'>
 	^self
@@ -18,7 +18,7 @@ FamixTWithTraits classSide >> annotation [
 { #category : #generator }
 FamixTWithTraits classSide >> generatedSlotNames [
 	<generated>
-	'FamixTWithTrait class>>#generatedSlotNames'.
+	'FamixTWithTraits class>>#generatedSlotNames'.
 	^ #(traits)
 ]
 

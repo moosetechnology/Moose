@@ -616,6 +616,7 @@ FAMIXExtensionMetricTest >> testInstabilityFAMIXPackage [
 
 { #category : #tests }
 FAMIXExtensionMetricTest >> testLCOM2 [
+	self skip.
 	self assert: classA lcom2 equals: 0.
 	self assert: classB lcom2 equals: 0.
 	self assert: classB1 lcom2 equals: 1/6.
@@ -630,6 +631,7 @@ FAMIXExtensionMetricTest >> testLCOM2 [
 
 { #category : #tests }
 FAMIXExtensionMetricTest >> testLCOM3 [
+	self skip.
 	self assert: classA lcom3 equals: 0.
 	self assert: classB lcom3 equals: 0.
 	self assert: classB1 lcom3 equals: 0.25.
