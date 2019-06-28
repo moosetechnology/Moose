@@ -32,7 +32,7 @@ FamixTNamed classSide >> named: aString [
 { #category : #testing }
 FamixTNamed >> hasUniqueMooseNameInModel [
 	" all subclasses should call the method: 'resetMooseName' if a change causes the moosename to change "
-	^true
+	^false
 ]
 
 { #category : #printing }
