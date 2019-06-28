@@ -15,13 +15,6 @@ FamixTest3PrimitiveType class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTest3PrimitiveType class >> generatedSlotNames [
-	<generated>
-	'FamixTest3PrimitiveType class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FamixTest3PrimitiveType class >> requirements [
 

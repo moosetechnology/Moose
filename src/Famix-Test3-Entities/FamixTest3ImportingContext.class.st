@@ -4,13 +4,6 @@ Class {
 	#category : #'Famix-Test3-Entities'
 }
 
-{ #category : #generator }
-FamixTest3ImportingContext class >> generatedSlotNames [
-	<generated>
-	'FamixTest3ImportingContext class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #testing }
 FamixTest3ImportingContext >> importAssociation [
 

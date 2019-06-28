@@ -15,13 +15,6 @@ FamixTest3Invocation class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTest3Invocation class >> generatedSlotNames [
-	<generated>
-	'FamixTest3Invocation class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FamixTest3Invocation class >> requirements [
 

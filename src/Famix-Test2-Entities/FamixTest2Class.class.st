@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixTest2Class,
 	#superclass : #FamixTest2NamedEntity,
-	#traits : 'FamixTClass',
-	#classTraits : 'FamixTClass classTrait',
+	#traits : 'FamixTClass + FamixTWithSubInheritances + FamixTWithSuperInheritances',
+	#classTraits : 'FamixTClass classTrait + FamixTWithSubInheritances classTrait + FamixTWithSuperInheritances classTrait',
 	#category : #'Famix-Test2-Entities-Entities'
 }
 
@@ -13,13 +13,6 @@ FamixTest2Class class >> annotation [
 	<package: #'Famix-Test2-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #generator }
-FamixTest2Class class >> generatedSlotNames [
-	<generated>
-	'FamixTest2Class class>>#generatedSlotNames'.
-	^ #()
 ]
 
 { #category : #meta }
