@@ -31,6 +31,22 @@ FamixTest4Book class >> requirements [
 ]
 
 { #category : #accessing }
+FamixTest4Book >> belongsTo [
+
+	<generated>
+	^ self person
+
+]
+
+{ #category : #accessing }
+FamixTest4Book >> belongsTo: anObject [
+
+	<generated>
+	self person: anObject
+
+]
+
+{ #category : #accessing }
 FamixTest4Book >> person [
 
 	<generated>

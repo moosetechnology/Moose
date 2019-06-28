@@ -33,6 +33,27 @@ FamixTest4School class >> requirements [
 	^ {  }
 ]
 
+{ #category : #adding }
+FamixTest4School >> addRooms: anObject [
+			
+	<generated>
+	^ self rooms add: anObject
+]
+
+{ #category : #adding }
+FamixTest4School >> addStudents: anObject [
+			
+	<generated>
+	^ self students add: anObject
+]
+
+{ #category : #adding }
+FamixTest4School >> addTeachers: anObject [
+			
+	<generated>
+	^ self teachers add: anObject
+]
+
 { #category : #accessing }
 FamixTest4School >> principal [
 

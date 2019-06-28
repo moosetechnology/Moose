@@ -27,7 +27,23 @@ FamixTest4Room class >> generatedSlotNames [
 FamixTest4Room class >> requirements [
 
 	<generated>
-	^ { FamixTest4Room }
+	^ { FamixTest4School }
+]
+
+{ #category : #accessing }
+FamixTest4Room >> belongsTo [
+
+	<generated>
+	^ self school
+
+]
+
+{ #category : #accessing }
+FamixTest4Room >> belongsTo: anObject [
+
+	<generated>
+	self school: anObject
+
 ]
 
 { #category : #accessing }
