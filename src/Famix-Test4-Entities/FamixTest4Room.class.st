@@ -27,6 +27,13 @@ FamixTest4Room class >> requirements [
 FamixTest4Room >> belongsTo [
 
 	<generated>
+	^ { FamixTest4School }
+]
+
+{ #category : #accessing }
+FamixTest4Room >> belongsTo [
+
+	<generated>
 	^ self school
 
 ]
