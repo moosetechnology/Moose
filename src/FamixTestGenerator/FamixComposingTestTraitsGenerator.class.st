@@ -6,14 +6,15 @@ Class {
 
 { #category : #'as yet unclassified' }
 FamixComposingTestTraitsGenerator >> addingTraitsToTestTraitFor: aClass [
+
 	self testAssociatedTo: aClass.
 	(self usedTraitsOfFamixTrait: aClass) do: 
-	[:t | test traitComposition: (test traitComposition + (self findTestFrom: t ))]
+	[:t | test setTraitComposition: (test traitComposition + (self findTestFrom: t ))]
 ]
 
 { #category : #'as yet unclassified' }
 FamixComposingTestTraitsGenerator >> findTestFrom: aTrait [
-	^ (RPackageOrganizer default packageNamed: 'Famix-Tests') classes detect: [ :c | c name = (self testNameFrom: aTrait) ]
+	^ (RPackageOrganizer default packageNamed: 'Famix-Tests') classes detect: [ :c | c name = ('T', (self testNameFrom: aTrait)) ]
 ]
 
 { #category : #'as yet unclassified' }
