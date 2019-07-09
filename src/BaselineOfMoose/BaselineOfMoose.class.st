@@ -41,15 +41,7 @@ BaselineOfMoose >> baseline: spec [
 		do: [ spec
 				package: 'Famix-MetamodelBuilder-Core'
 					with: [ spec includes: #('Famix-MetamodelBuilder-Core-Pharo7') ];
-				package: 'Famix-MetamodelBuilder-Core-Pharo7' ].
-	spec
-		for: #'pharo8.x'
-		do: [ spec
-				package: 'Roassal2GT'
-				with: [ spec
-						includes: #('Glamour-Browsers-Pharo8' 'Glamour-Morphic-Renderer-Pharo8') ].
-			spec package: 'Glamour-Browsers-Pharo8'.
-			spec package: 'Glamour-Morphic-Renderer-Pharo8' ]
+				package: 'Famix-MetamodelBuilder-Core-Pharo7' ]
 ]
 
 { #category : #baseline }

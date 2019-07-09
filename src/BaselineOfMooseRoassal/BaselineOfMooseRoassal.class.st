@@ -22,14 +22,21 @@ BaselineOfMooseRoassal >> baseline: spec [
 	<baseline>
 	self xmlParser: spec.
 	spec
+		for: #'pharo8.x'
+		do: [ spec
+				package: 'Roassal2GT'
+				with: [ spec
+						includes: #('Glamour-Browsers-Pharo8' 'Glamour-Morphic-Renderer-Pharo8') ].
+			spec package: 'Glamour-Browsers-Pharo8'.
+			spec package: 'Glamour-Morphic-Renderer-Pharo8' ].
+	spec
 		package: 'Trachel';
 		package: 'Geometry';
 		package: 'Athens-SVG';
 		package: 'GToolkit-Examples';
 		package: 'Roassal2'
-			with: [ spec
-				requires:
-					#('Trachel' 'Athens-SVG' 'Geometry' 'MooseXMLParser') ];
+			with:
+				[ spec requires: #('Trachel' 'Athens-SVG' 'Geometry' 'MooseXMLParser') ];
 		package: 'Roassal2GT'
 			with: [ spec requires: #('Roassal2' 'GToolkit-Examples') ]
 ]
