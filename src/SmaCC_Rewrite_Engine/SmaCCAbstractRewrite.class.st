@@ -115,6 +115,8 @@ SmaCCAbstractRewrite >> performOn: aSmaCCNode continuation: aBlock [
 
 { #category : #copying }
 SmaCCAbstractRewrite >> postCopy [
+	announcer := nil.
+	dependents := nil.
 	super postCopy.
 	parent := nil
 ]
