@@ -137,12 +137,12 @@ BaselineOfMoose >> groups: spec [
 		BasicMetamodelling
 		MooseRoassal
 	).
-	spec group: 'MooseFinderGroup' with: #(
+	spec group: 'MooseIDEGroup' with: #(
 		BasicMetamodellingWithRoassal
-		MooseFinder
+		MooseIDE
 	).
 	spec group: 'Parsing' with: #(
-		MooseFinderGroup
+		MooseIDEGroup
 		MoosePetitParserUI
 		MooseSmaCCUI
 	).
