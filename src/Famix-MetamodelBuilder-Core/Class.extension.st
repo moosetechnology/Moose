@@ -1,8 +1,18 @@
 Extension { #name : #Class }
 
 { #category : #'*Famix-MetamodelBuilder-Core' }
+Class >> customSlots [
+	^ self slots reject: #isFameSlot
+]
+
+{ #category : #'*Famix-MetamodelBuilder-Core' }
 Class >> customTraits [
 	^ self traits reject: #isMetamodelEntity
+]
+
+{ #category : #'*Famix-MetamodelBuilder-Core' }
+Class >> famixCustomSlots [
+	^ self slots reject: #isFameSlot
 ]
 
 { #category : #'*Famix-MetamodelBuilder-Core' }

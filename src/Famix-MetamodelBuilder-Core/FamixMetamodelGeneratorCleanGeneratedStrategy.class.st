@@ -39,10 +39,9 @@ FamixMetamodelGeneratorCleanGeneratedStrategy >> cleanBeforeGeneration: aMetamod
 	aMetamodelGenerator generatedPackage definedClasses
 		do: [ :class | 
 			class isMetamodelEntity
-				ifTrue: [
-					addedMethods addAll: (class localMethods , class class localMethods reject: [ :method | method pragmas anySatisfy: [ :pragma | pragma keyword = #generated ] ] thenCollect: [ :m | self methodInfoFor: m ]).
-					(class traitComposition allTraits reject: #isMetamodelEntity) ifNotEmpty: [ :traits | addedTraitsUsers at: class name put: traits ].
-					(class slotNames difference: class generatedSlotNames) ifNotEmpty: [ :instVarNames | addedInstVar at: class name put: (instVarNames collect: [ :instVarName | class slotNamed: instVarName ]) ].	"aMetamodelGenerator instanceVariableNamesGeneratedIn: "
+				ifTrue: [ addedMethods addAll: (class localMethods , class class localMethods reject: #hasGeneratedPragma thenCollect: [ :m | self methodInfoFor: m ]).
+					class customTraits ifNotEmpty: [ :traits | addedTraitsUsers at: class name put: traits ].
+					class famixCustomSlots ifNotEmpty: [ :slots | addedInstVar at: class name put: slots ].
 					class classVariables ifNotEmpty: [ :classVariables | addedClassVar at: class name put: classVariables ].
 					class class instanceVariables ifNotEmpty: [ :classInstVariables | addedClassInstVar at: class name put: classInstVariables ] ]
 				ifFalse: [ addedClasses add: class ] ].
