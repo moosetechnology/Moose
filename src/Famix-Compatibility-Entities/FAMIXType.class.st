@@ -406,7 +406,7 @@ FAMIXType >> printOn: aStream [
 		aStream nextPutAll: ' in '.
 		parent mooseNameOn: aStream ].
 	aStream 
-		nextPutAll: ' (', 'Test';
+		nextPutAll: ' (';
 		nextPutAll: (self class name removePrefix: 'FAMIX');
 		nextPutAll: ')'
 ]
