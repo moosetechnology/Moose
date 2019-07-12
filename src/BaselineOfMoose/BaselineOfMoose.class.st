@@ -20,8 +20,7 @@ BaselineOfMoose >> baseline: spec [
 			self famix: spec.
 			" Roassal "
 			self baselineRoassal2: spec.
-			"Finder & IDE"
-			self mooseFinder: spec.
+			"IDE"
 			self mooseIDE: spec.
 			" Petit parser with/without UI"
 			self baselinePetitParser: spec.
@@ -156,11 +155,6 @@ BaselineOfMoose >> groups: spec [
 	spec group: 'default' with: #('AdditionalTools').
 	
 
-]
-
-{ #category : #dependencies }
-BaselineOfMoose >> mooseFinder: spec [
-	spec baseline: 'MooseFinder' with: [ spec repository: repository ]
 ]
 
 { #category : #dependencies }
