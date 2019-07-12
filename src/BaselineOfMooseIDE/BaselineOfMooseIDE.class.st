@@ -17,12 +17,12 @@ BaselineOfMooseIDE >> baseline: spec [
 	<baseline>
 		self mooseAlgos: spec.
 	spec
-		package: 'Moose-MenuBar' with: [ spec requires: #(Moose-Finder) ];
+		package: 'Moose-MenuBar' with: [ spec requires: #('Moose-Finder') ];
 		package: 'Moose-Configuration';
 		package: 'Glamour-Tools';
 		package: 'Glamour-Magritte-Presentations';
 		package: 'Moose-Help';
-		package: 'Moose-Finder' with: [ spec requires: #(MooseAlgos) ];
+		package: 'Moose-Finder' with: [ spec requires: #('MooseAlgos') ];
 		package: 'Moose-RoassalPaintings';
 		package: 'Moose-Tests-Finder';
 		package: 'Moose-Tests-RoassalPaintings'
