@@ -17,7 +17,7 @@ BaselineOfMooseIDE >> baseline: spec [
 	<baseline>
 		self mooseAlgos: spec.
 	spec
-		package: 'Moose-MenuBar';
+		package: 'Moose-MenuBar' with: [ spec requires: #(Moose-Finder) ];
 		package: 'Moose-Configuration';
 		package: 'Glamour-Tools';
 		package: 'Glamour-Magritte-Presentations';
