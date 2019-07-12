@@ -4,7 +4,7 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestMooseQuery,
 	#superclass : #PackageManifest,
-	#category : #'Moose-Query'
+	#category : #'Moose-Query-Manifest'
 }
 
 { #category : #'meta-data' }
