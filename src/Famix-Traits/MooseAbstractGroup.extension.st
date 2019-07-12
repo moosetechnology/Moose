@@ -157,7 +157,7 @@ MooseAbstractGroup >> allModelNamespaces [
 	^ self privateState
 		cacheAt: 'All model namespaces'
 		ifAbsentPut:
-			[ MooseGroup withAll: (self allNamespaces reject: [ :each | each isStub or: [ each types isEmpty or: [ each types allSatisfy: [ :type | type isStub ] ] ] ]) withDescription: 'All model namespaces' ]
+			[ MooseGroup withAll: (self allNamespaces reject: [ :each | each isStub ]) withDescription: 'All model namespaces' ]
 ]
 
 { #category : #'*Famix-Traits' }
