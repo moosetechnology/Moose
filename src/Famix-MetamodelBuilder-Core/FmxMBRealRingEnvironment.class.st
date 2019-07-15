@@ -17,7 +17,7 @@ FmxMBRealRingEnvironment >> adoptClassDefinitionOf: realClass to: anRGClass [
 
 	customSlots := realClass localSlots copyWithoutAll: realClass generatedSlots.
 	customSlotNames := customSlots collect: #name.
-	customTraitNames := realClass customTraits collect: #traitCompositionExpression.
+	customTraitNames := (realClass traitComposition members reject: [ :e | ((realClass customTraits) includes: e innerClass) not]) collect: #traitCompositionExpression.
 	slotDefinitions := ((anRGClass slots
 		reject: [ :each | customSlotNames includes: each name ])
 		collect: #definitionString) asOrderedCollection.
