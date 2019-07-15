@@ -426,17 +426,13 @@ FmxMBBehavior >> singularPropertyName [
 
 { #category : #generating }
 FmxMBBehavior >> slotDefinitions [
-
 	| slotGroups |
-	
 	slotGroups := (self properties select: #producesSlot thenCollect: [ :property | property asSlot ]) groupedBy: #name.
 
 	"check that all slots with the same name have the same properties"
-	slotGroups valuesDo: [ :similarSlots |
-		self assert: (similarSlots collect: #name) asSet size = 1. ].
-		
-	^ slotGroups values collect: [ :each | each anyOne ].
+	slotGroups valuesDo: [ :similarSlots | self assert: (similarSlots collect: #name) asSet size = 1 ].
 
+	^ slotGroups values collect: [ :each | each anyOne ]
 ]
 
 { #category : #accessing }

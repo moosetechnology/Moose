@@ -12,13 +12,6 @@ FamixTDirectFileAnchor classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTDirectFileAnchor classSide >> generatedSlotNames [
-	<generated>
-	'FamixTDirectFileAnchor class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #accessing }
 FamixTDirectFileAnchor >> sourceText [
 	(self startLine isNil and: [ self endLine isNil ]) ifTrue: [ ^ self completeText ].

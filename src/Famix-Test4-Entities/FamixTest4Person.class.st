@@ -16,18 +16,18 @@ FamixTest4Person class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTest4Person class >> generatedSlotNames [
-	<generated>
-	'FamixTest4Person class>>#generatedSlotNames'.
-	^ #(books)
-]
-
 { #category : #meta }
 FamixTest4Person class >> requirements [
 
 	<generated>
 	^ {  }
+]
+
+{ #category : #adding }
+FamixTest4Person >> addBooks: anObject [
+			
+	<generated>
+	^ self books add: anObject
 ]
 
 { #category : #accessing }

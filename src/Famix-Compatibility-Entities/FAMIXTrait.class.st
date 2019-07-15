@@ -15,13 +15,6 @@ FAMIXTrait class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXTrait class >> generatedSlotNames [
-	<generated>
-	'FAMIXTrait class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FAMIXTrait class >> requirements [
 

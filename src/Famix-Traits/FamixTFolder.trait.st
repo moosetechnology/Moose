@@ -26,13 +26,6 @@ FamixTFolder classSide >> famixTFolderRelatedGroup [
 	^ FAMIXFolderGroup
 ]
 
-{ #category : #generator }
-FamixTFolder classSide >> generatedSlotNames [
-	<generated>
-	'FamixTFolder class>>#generatedSlotNames'.
-	^ #(childrenFileSystemEntities)
-]
-
 { #category : #adding }
 FamixTFolder >> addChildFileSystemEntity: aFileOrFolder [
 	self childrenFileSystemEntities add: aFileOrFolder

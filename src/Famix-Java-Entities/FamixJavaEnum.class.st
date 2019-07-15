@@ -15,13 +15,6 @@ FamixJavaEnum class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaEnum class >> generatedSlotNames [
-	<generated>
-	'FamixJavaEnum class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FamixJavaEnum class >> requirements [
 

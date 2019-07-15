@@ -13,13 +13,6 @@ FamixStUnknownSourceLanguage class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixStUnknownSourceLanguage class >> generatedSlotNames [
-	<generated>
-	'FamixStUnknownSourceLanguage class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FamixStUnknownSourceLanguage class >> requirements [
 

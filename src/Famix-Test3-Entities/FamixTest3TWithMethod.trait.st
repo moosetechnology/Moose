@@ -11,10 +11,3 @@ FamixTest3TWithMethod classSide >> annotation [
 	<package: #'Famix-Test3-Entities'>
 	^self
 ]
-
-{ #category : #generator }
-FamixTest3TWithMethod classSide >> generatedSlotNames [
-	<generated>
-	'FamixTest3TWithMethod class>>#generatedSlotNames'.
-	^ #()
-]

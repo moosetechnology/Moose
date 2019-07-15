@@ -15,11 +15,10 @@ FamixTWithTypeAliases classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithTypeAliases classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithTypeAliases class>>#generatedSlotNames'.
-	^ #(typeAliases)
+{ #category : #accessing }
+FamixTWithTypeAliases >> addTypeAlias: anObject [
+	typeAliases add: anObject
+
 ]
 
 { #category : #accessing }

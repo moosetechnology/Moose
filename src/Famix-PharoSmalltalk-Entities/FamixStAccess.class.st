@@ -15,13 +15,6 @@ FamixStAccess class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixStAccess class >> generatedSlotNames [
-	<generated>
-	'FamixStAccess class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FamixStAccess class >> requirements [
 

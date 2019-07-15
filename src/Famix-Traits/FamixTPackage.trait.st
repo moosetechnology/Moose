@@ -29,11 +29,10 @@ FamixTPackage classSide >> famixTPackageRelatedGroup [
 	^ FAMIXPackageGroup
 ]
 
-{ #category : #generator }
-FamixTPackage classSide >> generatedSlotNames [
-	<generated>
-	'FamixTPackage class>>#generatedSlotNames'.
-	^ #(childEntities packageOwner)
+{ #category : #accessing }
+FamixTPackage >> addChildEntity: anObject [
+	childEntities add: anObject
+
 ]
 
 { #category : #accessing }

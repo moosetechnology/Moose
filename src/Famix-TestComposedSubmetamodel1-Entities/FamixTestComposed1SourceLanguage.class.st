@@ -15,13 +15,6 @@ FamixTestComposed1SourceLanguage class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTestComposed1SourceLanguage class >> generatedSlotNames [
-	<generated>
-	'FamixTestComposed1SourceLanguage class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FamixTestComposed1SourceLanguage class >> requirements [
 

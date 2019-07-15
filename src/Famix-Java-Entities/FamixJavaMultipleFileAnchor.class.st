@@ -15,13 +15,6 @@ FamixJavaMultipleFileAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaMultipleFileAnchor class >> generatedSlotNames [
-	<generated>
-	'FamixJavaMultipleFileAnchor class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FamixJavaMultipleFileAnchor class >> requirements [
 

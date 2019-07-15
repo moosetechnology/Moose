@@ -16,18 +16,27 @@ FamixTest4Principal class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTest4Principal class >> generatedSlotNames [
-	<generated>
-	'FamixTest4Principal class>>#generatedSlotNames'.
-	^ #(school)
-]
-
 { #category : #meta }
 FamixTest4Principal class >> requirements [
 
 	<generated>
 	^ { FamixTest4School }
+]
+
+{ #category : #accessing }
+FamixTest4Principal >> belongsTo [
+
+	<generated>
+	^ self school
+
+]
+
+{ #category : #accessing }
+FamixTest4Principal >> belongsTo: anObject [
+
+	<generated>
+	self school: anObject
+
 ]
 
 { #category : #accessing }

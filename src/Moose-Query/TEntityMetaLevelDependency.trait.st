@@ -67,13 +67,6 @@ TEntityMetaLevelDependency classSide >> dependencyFM3PropertyDescriptionIn: aMet
 		select: [ :e | e hasOpposite and: [ e opposite isSource or: [ e opposite isTarget ] ] ]
 ]
 
-{ #category : #generator }
-TEntityMetaLevelDependency classSide >> generatedSlotNames [
-	<generated>
-	'TEntityMetaLevelDependency class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #accessing }
 TEntityMetaLevelDependency classSide >> incomingAssociationTypesIn: aMetamodel [
 

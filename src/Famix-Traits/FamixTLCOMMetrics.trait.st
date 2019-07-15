@@ -12,13 +12,6 @@ FamixTLCOMMetrics classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTLCOMMetrics classSide >> generatedSlotNames [
-	<generated>
-	'FamixTLCOMMetrics class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #'Famix-Extensions-metrics-support' }
 FamixTLCOMMetrics >> calculateLCOM2 [
 	

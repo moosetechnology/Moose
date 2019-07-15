@@ -1,8 +1,8 @@
 Class {
 	#name : #FAMIXType,
 	#superclass : #FAMIXContainerEntity,
-	#traits : 'FamixTClassHierarchyNavigation + FamixTContainingWithInvocationsGlue + FamixTContainingWithStatementsGlue + FamixTParameterizedTypeUser + FamixTReferenceable + FamixTTraitUser + FamixTType + FamixTWithAttributes + FamixTWithMethods + FamixTWithMethodsWithAccessesGlue + FamixTWithMethodsWithModifiersGlue + FamixTWithSubInheritances + FamixTWithSuperInheritances + FamixTWithTypeAliases + FamixTWithTypedStructures + FamixTClassMetrics',
-	#classTraits : 'FamixTClassHierarchyNavigation classTrait + FamixTContainingWithInvocationsGlue classTrait + FamixTContainingWithStatementsGlue classTrait + FamixTParameterizedTypeUser classTrait + FamixTReferenceable classTrait + FamixTTraitUser classTrait + FamixTType classTrait + FamixTWithAttributes classTrait + FamixTWithMethods classTrait + FamixTWithMethodsWithAccessesGlue classTrait + FamixTWithMethodsWithModifiersGlue classTrait + FamixTWithSubInheritances classTrait + FamixTWithSuperInheritances classTrait + FamixTWithTypeAliases classTrait + FamixTWithTypedStructures classTrait + FamixTClassMetrics classTrait',
+	#traits : 'FamixTClassHierarchyNavigation + FamixTContainingWithInvocationsGlue + FamixTContainingWithStatementsGlue + FamixTParameterizedTypeUser + FamixTReferenceable + FamixTTraitUser + FamixTType + FamixTWithAttributes + FamixTWithMethods + FamixTWithMethodsWithAccessesGlue + FamixTWithMethodsWithModifiersGlue + FamixTWithSubInheritances + FamixTWithSuperInheritances + FamixTWithTypeAliases + FamixTWithTypedStructures',
+	#classTraits : 'FamixTClassHierarchyNavigation classTrait + FamixTContainingWithInvocationsGlue classTrait + FamixTContainingWithStatementsGlue classTrait + FamixTParameterizedTypeUser classTrait + FamixTReferenceable classTrait + FamixTTraitUser classTrait + FamixTType classTrait + FamixTWithAttributes classTrait + FamixTWithMethods classTrait + FamixTWithMethodsWithAccessesGlue classTrait + FamixTWithMethodsWithModifiersGlue classTrait + FamixTWithSubInheritances classTrait + FamixTWithSuperInheritances classTrait + FamixTWithTypeAliases classTrait + FamixTWithTypedStructures classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 
@@ -13,13 +13,6 @@ FAMIXType class >> annotation [
 	<package: #FAMIX>
 	<generated>
 	^self
-]
-
-{ #category : #generator }
-FAMIXType class >> generatedSlotNames [
-	<generated>
-	'FAMIXType class>>#generatedSlotNames'.
-	^ #()
 ]
 
 { #category : #meta }
@@ -43,25 +36,6 @@ FAMIXType >> accessTo: aFAMIXPackageOrFAMIXClass [
 	^ accesses 
 		selectAsSet: [:access | (access variable isKindOf: #FAMIXAttribute) 
 								and:[aFAMIXPackageOrFAMIXClass isAccessedBy: access]].
-]
-
-{ #category : #accessing }
-FAMIXType >> addOutgoingTraitUsage: aTraitUsage [
-	self outgoingTraitUsages add: aTraitUsage
-]
-
-{ #category : #accessing }
-FAMIXType >> addTraitUsage: aTraitUsage [
-	
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXType >> allAnnotationInstances [
-	| result |
-	result := OrderedCollection new.
-	result addAll: self annotationInstances.
-	result addAll: (self methods flatCollect: [ :each | each annotationInstances ]).
-	^ result 
 ]
 
 { #category : #'Famix-Extensions' }
@@ -123,7 +97,7 @@ FAMIXType >> clientPackages [
 	^ (self queryAllIncoming atScope: FamixTPackage) withoutSelfLoops
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXType >> container [
 
 	<MSEProperty: #container type: #FAMIXContainerEntity>
@@ -134,7 +108,7 @@ FAMIXType >> container [
 	^ self typeContainer
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXType >> container: aContainer [
 
 	self typeContainer: aContainer

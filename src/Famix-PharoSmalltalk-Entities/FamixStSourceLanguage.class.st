@@ -15,13 +15,6 @@ FamixStSourceLanguage class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixStSourceLanguage class >> generatedSlotNames [
-	<generated>
-	'FamixStSourceLanguage class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FamixStSourceLanguage class >> requirements [
 

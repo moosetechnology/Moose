@@ -177,24 +177,6 @@ FmxMBRingEnvironment >> createTraitNamed: traitName uses: traitNames slots: slot
 	^ aTrait
 ]
 
-{ #category : #installing }
-FmxMBRingEnvironment >> generateSlotsDescriptionFrom: anRGClass [
-
-	| generatedSlots |
-	
-	generatedSlots := anRGClass layout slots select: [ :each | each propertyNamed: #isGenerated ifAbsent: [false] ].
-	
-	anRGClass classSide compile: ('generatedSlotNames
-	<generated>
-	''{2}''.
-	^ {1}' format: { 
-		'#(', ((generatedSlots collect: #name) sorted joinUsing: ' '), ')'.
-		anRGClass name, ' class>>#generatedSlotNames'. "just to make the AST different to let the QA checks (that prove method repetitions in trait users) pass"
-	 }) classified: 'generator'
-		
-
-]
-
 { #category : #initialization }
 FmxMBRingEnvironment >> hasBehaviorNamed: aClassName [
 
@@ -232,9 +214,8 @@ FmxMBRingEnvironment >> setComment: aString for: aClass [
 ]
 
 { #category : #initialization }
-FmxMBRingEnvironment >> slotNamed: slotName [ 
-
-	^ (RGInstanceVariableSlot named: slotName asSymbol)
+FmxMBRingEnvironment >> slotNamed: slotName [
+	^ (RGUnknownSlot named: slotName asSymbol) expression: #FMProperty
 ]
 
 { #category : #initialization }

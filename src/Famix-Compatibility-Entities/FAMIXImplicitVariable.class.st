@@ -15,13 +15,6 @@ FAMIXImplicitVariable class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXImplicitVariable class >> generatedSlotNames [
-	<generated>
-	'FAMIXImplicitVariable class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FAMIXImplicitVariable class >> requirements [
 

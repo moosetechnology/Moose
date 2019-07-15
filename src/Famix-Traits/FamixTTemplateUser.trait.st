@@ -15,13 +15,6 @@ FamixTTemplateUser classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTTemplateUser classSide >> generatedSlotNames [
-	<generated>
-	'FamixTTemplateUser class>>#generatedSlotNames'.
-	^ #(template)
-]
-
 { #category : #accessing }
 FamixTTemplateUser >> template [
 

@@ -35,13 +35,6 @@ FamixTAssociation classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTAssociation classSide >> generatedSlotNames [
-	<generated>
-	'FamixTAssociation class>>#generatedSlotNames'.
-	^ #(next previous)
-]
-
 { #category : #testing }
 FamixTAssociation >> isAssociation [
 

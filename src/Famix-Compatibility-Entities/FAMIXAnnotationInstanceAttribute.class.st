@@ -15,13 +15,6 @@ FAMIXAnnotationInstanceAttribute class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXAnnotationInstanceAttribute class >> generatedSlotNames [
-	<generated>
-	'FAMIXAnnotationInstanceAttribute class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FAMIXAnnotationInstanceAttribute class >> requirements [
 

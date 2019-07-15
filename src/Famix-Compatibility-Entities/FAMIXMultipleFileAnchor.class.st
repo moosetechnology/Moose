@@ -15,13 +15,6 @@ FAMIXMultipleFileAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXMultipleFileAnchor class >> generatedSlotNames [
-	<generated>
-	'FAMIXMultipleFileAnchor class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FAMIXMultipleFileAnchor class >> requirements [
 

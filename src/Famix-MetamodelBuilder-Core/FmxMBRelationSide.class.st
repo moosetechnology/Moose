@@ -37,28 +37,17 @@ FmxMBRelationSide >> asRelationSideNamed: aPropertyName [
 
 { #category : #generating }
 FmxMBRelationSide >> asSlot [
-	
 	| slotName opposite |
+	self hasRelation ifFalse: [ FmxMBIncompletePropertyDefiniton signal ].
 
-	self hasRelation 
-		ifFalse: [ FmxMBIncompletePropertyDefiniton signal ].
-	
 	slotName := self name.
 	opposite := self otherSide.
-	
-	^ self builder environment 
-		slotNamed: slotName asSymbol 
-		cardinality: self cardinality 
-		type: (self builder configuration prefix, opposite relatedEntityName) asSymbol 
-		opposite: opposite name asSymbol
 
-	
-	
-	
-		
-	
-	
-	
+	^ self builder environment
+		slotNamed: slotName asSymbol
+		cardinality: self cardinality
+		type: (self builder configuration prefix , opposite relatedEntityName) asSymbol
+		opposite: opposite name asSymbol
 ]
 
 { #category : #accessing }

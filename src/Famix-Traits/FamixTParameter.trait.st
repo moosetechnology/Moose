@@ -18,13 +18,6 @@ FamixTParameter classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTParameter classSide >> generatedSlotNames [
-	<generated>
-	'FamixTParameter class>>#generatedSlotNames'.
-	^ #(parentBehaviouralEntity)
-]
-
 { #category : #accessing }
 FamixTParameter >> parentBehaviouralEntity [
 
