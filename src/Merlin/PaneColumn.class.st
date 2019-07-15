@@ -4,13 +4,13 @@ Class {
 	#category : #'Merlin-PartsLayout'
 }
 
-{ #category : #'rendering' }
+{ #category : #rendering }
 PaneColumn >> merlinMorphWidget [
 
 	^ nil
 ]
 
-{ #category : #'rendering' }
+{ #category : #rendering }
 PaneColumn >> merlinRendering [
 
 	^ self renderer merlinColumnRenderingFor: self
@@ -22,7 +22,7 @@ PaneColumn >> removeRowAt: anInteger [
 	^ self removeSubComponentAt: anInteger
 ]
 
-{ #category : #'rendering' }
+{ #category : #rendering }
 PaneColumn >> renderOnMerlinRenderer: aMerlinRenderer [
 
 	^ aMerlinRenderer renderColumn: self
