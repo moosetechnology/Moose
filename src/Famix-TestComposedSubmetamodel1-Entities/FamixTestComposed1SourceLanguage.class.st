@@ -1,0 +1,36 @@
+Class {
+	#name : #FamixTestComposed1SourceLanguage,
+	#superclass : #FamixTestComposed1Entity,
+	#traits : 'FamixTSourceLanguage',
+	#classTraits : 'FamixTSourceLanguage classTrait',
+	#category : #'Famix-TestComposedSubmetamodel1-Entities-Entities'
+}
+
+{ #category : #meta }
+FamixTestComposed1SourceLanguage class >> annotation [
+
+	<MSEClass: #SourceLanguage super: #FamixTestComposed1Entity>
+	<package: #'Famix-TestComposedSubmetamodel1-Entities'>
+	<generated>
+	^self
+]
+
+{ #category : #generator }
+FamixTestComposed1SourceLanguage class >> generatedSlotNames [
+	<generated>
+	'FamixTestComposed1SourceLanguage class>>#generatedSlotNames'.
+	^ #()
+]
+
+{ #category : #generator }
+FamixTestComposed1SourceLanguage class >> generatedTraitNames [
+	<generated>
+	^ #(FamixTSourceLanguage)
+]
+
+{ #category : #meta }
+FamixTestComposed1SourceLanguage class >> requirements [
+
+	<generated>
+	^ {  }
+]
