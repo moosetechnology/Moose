@@ -220,6 +220,8 @@ FamixTestAndTraitGenerator >> generateCodeForPrimitiveSlotInitialization: aSlot 
 FamixTestAndTraitGenerator >> generateSetUpInTraitFor: aClass [
 	^ String streamContents: [ :aStream | aStream nextPutAll: 'setUp';
 		cr;
+		nextPutAll: 'super setUp.';
+		cr;
 		nextPutAll: 'self entity: (MooseEntity new copyWithTalent:'; 
 		nextPutAll: aClass name;
 		nextPutAll: ').';
@@ -238,7 +240,7 @@ FamixTestAndTraitGenerator >> generateSlotNameOfTestTraitFrom: aSlot [
 FamixTestAndTraitGenerator >> generateSlotsOfTraitOfTestFor: aClass [
 	| aColl |
 	aColl := OrderedCollection new.
-	aClass slots do: [ :s | aColl
+	aClass localSlots do: [ :s | aColl
 				addAll: (self generateSlotsOfTraitOfTestFrom: s) ].
 	^aColl
 ]
