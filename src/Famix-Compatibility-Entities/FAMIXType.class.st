@@ -38,25 +38,6 @@ FAMIXType >> accessTo: aFAMIXPackageOrFAMIXClass [
 								and:[aFAMIXPackageOrFAMIXClass isAccessedBy: access]].
 ]
 
-{ #category : #accessing }
-FAMIXType >> addOutgoingTraitUsage: aTraitUsage [
-	self outgoingTraitUsages add: aTraitUsage
-]
-
-{ #category : #accessing }
-FAMIXType >> addTraitUsage: aTraitUsage [
-	
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXType >> allAnnotationInstances [
-	| result |
-	result := OrderedCollection new.
-	result addAll: self annotationInstances.
-	result addAll: (self methods flatCollect: [ :each | each annotationInstances ]).
-	^ result 
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXType >> allAnnotationTypes [
 	^ self allAnnotationInstances collectAsSet: #annotationType
@@ -116,7 +97,7 @@ FAMIXType >> clientPackages [
 	^ (self queryAllIncoming atScope: FamixTPackage) withoutSelfLoops
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXType >> container [
 
 	<MSEProperty: #container type: #FAMIXContainerEntity>
@@ -127,7 +108,7 @@ FAMIXType >> container [
 	^ self typeContainer
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXType >> container: aContainer [
 
 	self typeContainer: aContainer
