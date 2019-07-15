@@ -6,7 +6,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'builder',
-		'subbuilders'
+		'subbuilders',
+		'cleaningStrategy'
 	],
 	#classInstVars : [
 		'metamodel'
@@ -128,8 +129,7 @@ FamixMetamodelGenerator class >> resetMetamodel [
 	FMRelationSlot allSubInstancesDo: #resetMooseProperty.
 
 	classes := self packageName asPackage definedClasses select: [ :each | each inheritsFrom: MooseEntity ].
-	classes
-		addAll: (self packageName asPackage definedClasses select: [ :class | class isTrait and: [ class isMetamodelEntity ] ]).
+	classes addAll: (self packageName asPackage definedClasses select: [ :class | class isTrait and: [ class isMetamodelEntity ] ]).
 
 	classes addAll: self basicMetamodelClasses.
 
@@ -190,11 +190,14 @@ FamixMetamodelGenerator >> builder: anObject [
 	builder := anObject
 ]
 
-{ #category : #generation }
-FamixMetamodelGenerator >> cleanPackage [
+{ #category : #accessing }
+FamixMetamodelGenerator >> cleaningStrategy [
+	^ cleaningStrategy
+]
 
-	(self packageName asPackageIfAbsent: [ nil ]) 
-		ifNotNil: [:aPackage | aPackage removeFromSystem ].
+{ #category : #accessing }
+FamixMetamodelGenerator >> cleaningStrategy: anObject [
+	cleaningStrategy := anObject
 ]
 
 { #category : #definition }
@@ -230,32 +233,39 @@ FamixMetamodelGenerator >> defineTraits [
 
 { #category : #generation }
 FamixMetamodelGenerator >> generate [
-
-	self generateWithoutCleaning.
-	self class resetMetamodel.
+	"Next step to improve the cleaning is to add a report. For example if we cannot migrate a method since its class was removed from the MM, we should get notified with a report object."
+	EpMonitor
+		disableDuring: [ self define.
+			self cleaningStrategy
+				withCleaningDo: [ self builder generate.
+					subbuilders do: #generateRemotes ]
+				with: self ].
+	self class resetMetamodel
 ]
 
 { #category : #generation }
 FamixMetamodelGenerator >> generateWithCleaning [
-	EpMonitor
-		disableDuring: [ self cleanPackage.
-			self define.
-			self builder generate.
-			subbuilders do: #generateRemotes ]
+	self withCleaning.
+	self generate
 ]
 
 { #category : #generation }
 FamixMetamodelGenerator >> generateWithoutCleaning [
-	EpMonitor
-		disableDuring: [ self define.
-			self builder generate.
-			subbuilders do: #generateRemotes ]
+	self withoutCleaning.
+	self generate
+]
+
+{ #category : #generation }
+FamixMetamodelGenerator >> generatedPackage [
+	^ self packageName asPackageIfAbsent: [ nil ]
 ]
 
 { #category : #definition }
 FamixMetamodelGenerator >> initialize [
 
 	super initialize.
+	
+	self withoutCleaning.
 	
 	builder := self newBuilder.
 	self adoptBuilder: builder.
@@ -300,7 +310,7 @@ FamixMetamodelGenerator >> prefix [
 	^ self class prefix
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #definition }
 FamixMetamodelGenerator >> remoteEntity: anEntityName withPrefix: aPrefixName [ 
 
 	| anEntity |
@@ -310,4 +320,14 @@ FamixMetamodelGenerator >> remoteEntity: anEntityName withPrefix: aPrefixName [
 	anEntity remoteBuilder: builder.
 	
 	^ anEntity.
+]
+
+{ #category : #definition }
+FamixMetamodelGenerator >> withCleaning [
+	self cleaningStrategy: FamixMetamodelGeneratorTotalCleaningStrategy new
+]
+
+{ #category : #definition }
+FamixMetamodelGenerator >> withoutCleaning [
+	self cleaningStrategy: FamixMetamodelGeneratorNoCleaningStrategy new
 ]
