@@ -232,23 +232,6 @@ FAMIXPackage >> definedMethods [
 ]
 
 { #category : #'Famix-Extensions-metrics' }
-FAMIXPackage >> distance [
-	"D = A + I - 1. A package should be balanced between abstractness and instability, i.e., somewhere between abstract and stable or concrete and unstable. This rule defines the main sequence by the equation A + I - 1 = 0. D is the distance to the main sequence."
-	<MSEProperty: #distance type: #Number>
-	<derived>
-	<MSEComment: 'Distance of a package'>
-
-	
-	| abstractness instability |
-	abstractness := self abstractness.
-	instability := self instability.
-	
-	(abstractness isNil or: [instability isNil]) ifTrue: [^ nil].
-	^ abstractness + instability - 1
-	
-]
-
-{ #category : #'Famix-Extensions-metrics' }
 FAMIXPackage >> efferentCoupling [
 	"Efferent coupling for a package is the number of classes it depends upon"
 
@@ -308,22 +291,6 @@ FAMIXPackage >> historicalUniqueName [
 	^ (self parentPackage isNil 
 		ifTrue: [ self name ]
 		ifFalse: [ self parentPackage historicalUniqueName , '.' , self name ]) asSymbol
-]
-
-{ #category : #'Famix-Extensions-metrics' }
-FAMIXPackage >> instability [
-	"I =	Ce(P)/(Ce(P)+Ca(P)), in the range [0, 1]. 0 means package is maximally stable (i.e., no dependency to other packages and can not change without big consequences), 1 means it is unstable."
-
-	<MSEProperty: #instability type: #Number>
-	<derived>
-	<MSEComment: 'Instability of a package'>
-
-	| efferentCoupling afferentCoupling |
-	
-	efferentCoupling := self efferentCoupling.
-	afferentCoupling := self afferentCoupling.
-	(efferentCoupling + afferentCoupling) == 0 ifTrue: [^ nil].
-	^ efferentCoupling / (efferentCoupling + afferentCoupling)
 ]
 
 { #category : #'Famix-Smalltalk' }
