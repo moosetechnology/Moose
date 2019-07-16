@@ -27,6 +27,11 @@ FamixBasicInfrastructureGenerator class >> basicMetamodelClasses [
 	
 ]
 
+{ #category : #testing }
+FamixBasicInfrastructureGenerator class >> isAbstract [
+	^ self = FamixBasicInfrastructureGenerator
+]
+
 { #category : #definition }
 FamixBasicInfrastructureGenerator >> defineClasses [
 

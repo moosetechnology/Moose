@@ -35,6 +35,11 @@ FamixMetamodelGenerator class >> builderWithDefinitions [
 ]
 
 { #category : #accessing }
+FamixMetamodelGenerator class >> composedMetaModels [
+	^ self allSubclasses select: [ :mm | mm isAbstract not and: [ mm isComposed ] ]
+]
+
+{ #category : #accessing }
 FamixMetamodelGenerator class >> fixRemoteMetamodelRelationsIn: aMetamodel [
 
 	"Description of relations that are created between composed meta-models are not 
@@ -65,11 +70,35 @@ FamixMetamodelGenerator class >> fixRemoteMetamodelRelationsIn: aMetamodel [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #generation }
 FamixMetamodelGenerator class >> generate [
 
 	<ignoreForCoverage>
 	self new generate
+]
+
+{ #category : #generation }
+FamixMetamodelGenerator class >> generateAllMetamodels [
+	<script>
+
+	(self allSubclasses reject: [ :c | c isAbstract or: [ c isPartOfComposedMetaModel ] ])
+		do: [ :mm | mm generate ]
+		displayingProgress: [ :mm | 'Regenerate ' , mm name ]
+]
+
+{ #category : #testing }
+FamixMetamodelGenerator class >> isAbstract [
+	^ self = FamixMetamodelGenerator
+]
+
+{ #category : #testing }
+FamixMetamodelGenerator class >> isComposed [
+	^ self submetamodels isNotEmpty
+]
+
+{ #category : #testing }
+FamixMetamodelGenerator class >> isPartOfComposedMetaModel [
+	^ FamixMetamodelGenerator composedMetaModels anySatisfy: [ :mm | mm submetamodels includes: self ]
 ]
 
 { #category : #accessing }
