@@ -13,6 +13,11 @@ Class {
 	#category : #'Famix-BasicInfrastructure'
 }
 
+{ #category : #testing }
+FamixFileBasedLanguageGenerator class >> isAbstract [
+	^ self = FamixFileBasedLanguageGenerator
+]
+
 { #category : #definition }
 FamixFileBasedLanguageGenerator >> defineClasses [
 
