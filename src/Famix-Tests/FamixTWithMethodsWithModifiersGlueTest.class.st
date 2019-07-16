@@ -8,6 +8,7 @@ Class {
 
 { #category : #overrides }
 FamixTWithMethodsWithModifiersGlueTest >> setUp [
+super setUp.
 self entity: (MooseEntity new copyWithTalent:FamixTWithMethodsWithModifiersGlue).
 self entity class initializeSlots: self entity.
 ]

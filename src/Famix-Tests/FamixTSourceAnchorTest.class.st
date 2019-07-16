@@ -8,6 +8,7 @@ Class {
 
 { #category : #overrides }
 FamixTSourceAnchorTest >> setUp [
+super setUp.
 self entity: (MooseEntity new copyWithTalent:FamixTSourceAnchor).
 self entity class initializeSlots: self entity.
 ]

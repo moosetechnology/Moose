@@ -15,7 +15,7 @@ WizardFirstPane >> initialize [
 	
 ]
 
-{ #category : #rendering }
+{ #category : #'*Merlin' }
 WizardFirstPane >> merlinSpecificRenderer [ 
 
 	^ MerlinMorphicFirstPaneRenderer new 
