@@ -14,6 +14,26 @@ Class {
 	#category : #FamixTestGenerator
 }
 
+{ #category : #'generate for FMMany slot' }
+FamixTestAndTraitGenerator >> computeAddMethodNameFrom: aSlot [
+	| normalizedName pieces lowerCasePieces |
+	pieces := aSlot name cutCamelCase.
+	lowerCasePieces := OrderedCollection new.
+	pieces do: [ :e | lowerCasePieces add: e asLowercase  ].
+	pieces removeAll.
+	normalizedName := aSlot name.
+	( lowerCasePieces includes: 'children' ) ifTrue: [ lowerCasePieces := lowerCasePieces copyReplaceAll: {'children'}  with: {'child'}. 
+		normalizedName := (String streamContents: [ :aStream | 
+	lowerCasePieces do: [:element | aStream nextPutAll: element asCamelCase] ]).
+		normalizedName := normalizedName copyReplaceAll: normalizedName first asCollection  with: normalizedName first asLowercase asCollection  ].
+	(normalizedName endsWith: 'sses')
+		ifTrue: [ normalizedName := normalizedName withoutSuffix: 'es' ]
+		ifFalse: [ (normalizedName endsWith: 'ies')
+				ifTrue: [ normalizedName := (normalizedName withoutSuffix: 'ies') , 'y' ]
+				ifFalse: [ normalizedName := normalizedName withoutSuffix: 's' ] ].
+	^ 'add' , normalizedName capitalized, ':'
+]
+
 { #category : #accessing }
 FamixTestAndTraitGenerator >> createTraitOfTestFor: aClass [
 	traitTest := Trait
@@ -25,9 +45,10 @@ FamixTestAndTraitGenerator >> createTraitOfTestFor: aClass [
 
 { #category : #'generate for FMMany slot' }
 FamixTestAndTraitGenerator >> generateCodeForAddingSlotInCollection: traitSlotName1 for: aSlot [ 
-	| methodName |
-	methodName := aSlot owningClass methodDict keys detect: [ :s | s beginsWith: 'add'  ] ifNone: [ 'addXXX' ] .
-	^ 'self entity ', methodName , ' ',  traitSlotName1 , '.'
+	| method |
+	method := aSlot owningClass methodDict detect: [ :s | (s selector beginsWith: ('add')) and: [ ((s ast allChildren select: #isMessage) anySatisfy: [ :node | node selector = aSlot name ]) or: [ (s ast allChildren select:#isVariable) 
+		anySatisfy: [ :node | node binding name == aSlot name ] ]]  ] ifNone: [1halt. 'addXXX' ] .
+	^ 'self entity ', method selector , ' ',  traitSlotName1 , '.'
 ]
 
 { #category : #'generate for FMMany slot' }
@@ -247,7 +268,7 @@ FamixTestAndTraitGenerator >> generateSlotsOfTraitOfTestFor: aClass [
 
 { #category : #accessing }
 FamixTestAndTraitGenerator >> generateSlotsOfTraitOfTestFrom: aSlot [
-	^((aSlot class == FMOne) or: [ aSlot class == InstanceVariableSlot ])
+	^((aSlot class == FMOne) or: [ aSlot class == FMProperty ])
 		ifTrue: [ {aSlot name} ]
 		ifFalse: [  {(self generateSlotNameOfTestTraitFrom: aSlot) asString , '1'.
 						(self generateSlotNameOfTestTraitFrom: aSlot) asString , '2' } ]
@@ -346,7 +367,7 @@ FamixTestAndTraitGenerator >> generateTestsForPrimitiveSlot: aSlot [
 { #category : #initialization }
 FamixTestAndTraitGenerator >> initialize [ 
 	self initializePackageFrom: 'Famix-Traits'.
-	self initializeClassesFrom:  [ :c | "(c name includesSubstring: 'TWith') not" true ]
+	self initializeClassesFrom:  [ :c | (c name beginsWith: 'Famix')  ]
 ]
 
 { #category : #run }

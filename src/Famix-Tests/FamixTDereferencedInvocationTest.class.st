@@ -8,6 +8,7 @@ Class {
 
 { #category : #overrides }
 FamixTDereferencedInvocationTest >> setUp [
+super setUp.
 self entity: (MooseEntity new copyWithTalent:FamixTDereferencedInvocation).
 self entity class initializeSlots: self entity.
 ]

@@ -1,7 +1,3 @@
-"
-Concrete test using TFamixTNamedTest trait.
-Got a unique method, the set up that creates a MooseEntity with a FamixTNamed talent.
-"
 Class {
 	#name : #FamixTNamedTest,
 	#superclass : #TestCase,
@@ -10,7 +6,9 @@ Class {
 	#category : #'Famix-Tests-Tests'
 }
 
-{ #category : #running }
+{ #category : #overrides }
 FamixTNamedTest >> setUp [
-	self entity: (MooseEntity new copyWithTalent: FamixTNamed ).
+super setUp.
+self entity: (MooseEntity new copyWithTalent:FamixTNamed).
+self entity class initializeSlots: self entity.
 ]

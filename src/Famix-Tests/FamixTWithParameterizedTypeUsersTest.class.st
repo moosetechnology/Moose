@@ -8,6 +8,7 @@ Class {
 
 { #category : #overrides }
 FamixTWithParameterizedTypeUsersTest >> setUp [
+super setUp.
 self entity: (MooseEntity new copyWithTalent:FamixTWithParameterizedTypeUsers).
 self entity class initializeSlots: self entity.
 ]

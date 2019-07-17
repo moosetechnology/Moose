@@ -132,6 +132,12 @@ FMRelationSlot >> inverseSlot [
 ]
 
 { #category : #testing }
+FMRelationSlot >> isAccessedIn: aMethod [ 
+
+	^ aMethod allLiterals includes: self
+]
+
+{ #category : #testing }
 FMRelationSlot >> isFMRelationSlot [
 
 	^ true
@@ -143,9 +149,21 @@ FMRelationSlot >> isFameSlot [
 ]
 
 { #category : #testing }
+FMRelationSlot >> isReadIn: aMethod [ 
+
+	^ aMethod allLiterals includes: self
+]
+
+{ #category : #testing }
 FMRelationSlot >> isToOneSlot [
 
 	^false
+]
+
+{ #category : #testing }
+FMRelationSlot >> isWrittenIn: aMethod [ 
+
+	^ aMethod allLiterals includes: self
 ]
 
 { #category : #initialization }

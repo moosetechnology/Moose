@@ -8,6 +8,7 @@ Class {
 
 { #category : #overrides }
 FamixTInvocationsReceiverTest >> setUp [
+super setUp.
 self entity: (MooseEntity new copyWithTalent:FamixTInvocationsReceiver).
 self entity class initializeSlots: self entity.
 ]
