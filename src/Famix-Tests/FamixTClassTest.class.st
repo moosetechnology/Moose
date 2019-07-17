@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixTClassTest,
 	#superclass : #TestCase,
-	#traits : 'TFamixTClassTest + TFamixTWithMethodsTest + TFamixTWithSubInheritancesTest + TFamixTWithSuperInheritancesTest + TFamixTWithAttributesTest',
-	#classTraits : 'TFamixTClassTest classTrait + TFamixTWithMethodsTest classTrait + TFamixTWithSubInheritancesTest classTrait + TFamixTWithSuperInheritancesTest classTrait + TFamixTWithAttributesTest classTrait',
+	#traits : 'TFamixTClassTest',
+	#classTraits : 'TFamixTClassTest classTrait',
 	#category : #'Famix-Tests-Tests'
 }
 
