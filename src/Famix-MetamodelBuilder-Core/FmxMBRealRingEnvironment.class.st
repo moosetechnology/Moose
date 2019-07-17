@@ -14,12 +14,12 @@ FmxMBRealRingEnvironment >> adoptClassCommentOf: realClass to: anRGClass [
 { #category : #installing }
 FmxMBRealRingEnvironment >> adoptClassDefinitionOf: realClass to: anRGClass [
 	| customSlots customTraitNames customSlotNames slotDefinitions slotsString definition traitsDefinitions traitsString |
-	
+
 	(realClass needToAdaptTo: anRGClass) ifFalse: [ ^ self ].
-	
+
 	customSlots := realClass localSlots copyWithoutAll: realClass generatedSlots.
 	customSlotNames := customSlots collect: #name.
-	customTraitNames := (realClass traitComposition members reject: [ :e | (realClass customTraits includes: e innerClass) not ]) collect: #traitCompositionExpression.
+	customTraitNames := (realClass traitComposition members select: [ :e | realClass customTraits includes: e innerClass ]) collect: #traitCompositionExpression.
 	slotDefinitions := ((anRGClass slots reject: [ :each | customSlotNames includes: each name ]) collect: #definitionString) asOrderedCollection.
 	traitsDefinitions := (anRGClass traitComposition transformations collect: #asString) , customTraitNames.
 	slotDefinitions addAll: (customSlots collect: #definitionString).
@@ -27,8 +27,8 @@ FmxMBRealRingEnvironment >> adoptClassDefinitionOf: realClass to: anRGClass [
 
 	slotsString := '{' , (slotDefinitions joinUsing: '. ') , '}'.
 	traitsString := traitsDefinitions ifEmpty: [ '{ }' ] ifNotEmpty: [ traitsDefinitions joinUsing: ' + ' ].
-	anRGClass isTrait
-		ifFalse: [ definition := '{superclass} subclass: #{className} 
+	definition := anRGClass isTrait
+		ifFalse: [ '{superclass} subclass: #{className} 
 		uses: {traits} 
 		slots: {slots} 
 		classVariables: {classVariables}
@@ -39,37 +39,31 @@ FmxMBRealRingEnvironment >> adoptClassDefinitionOf: realClass to: anRGClass [
 						newFrom:
 							{(#superclass -> anRGClass superclass name) . (#className -> anRGClass name) . (#layout -> realClass classLayout class name) . (#traits -> traitsString) . (#slots -> slotsString).
 							(#classVariables -> (self classVariablesStringFor: realClass)) . (#poolDictionaries -> realClass sharedPoolsString) . (#category -> realClass category)}) ]
-		ifTrue: [ definition := '{superclass} named: #{className} 
+		ifTrue: [ '{superclass} named: #{className} 
 		uses: {traits} 
 		slots: {slots} 
 		category: ''{category}'''
-				format:
-					(Dictionary newFrom: {(#superclass -> anRGClass superclass name) . (#className -> anRGClass name) . (#traits -> traitsString) . (#slots -> slotsString) . (#category -> realClass category)}) ].
+				format: (Dictionary newFrom: {(#superclass -> anRGClass superclass name) . (#className -> anRGClass name) . (#traits -> traitsString) . (#slots -> slotsString) . (#category -> realClass category)}) ].
 
 	self class compiler evaluate: definition
 ]
 
 { #category : #installing }
 FmxMBRealRingEnvironment >> adoptMethodsOf: realClass to: anRGClass [
+	| generatedMethodsOfRealClass generatedMethodNamesOfRealClass |
+	generatedMethodsOfRealClass := (Pragma allNamed: #generated in: realClass) collect: #method thenSelect: [ :method | realClass localMethods includes: method ].	"We reject methods comming from Traits"
+	generatedMethodNamesOfRealClass := generatedMethodsOfRealClass collect: #selector.
 
-	| generatedMethods |
+	"First we removed the generated methods should not be here anymore"
+	(generatedMethodNamesOfRealClass difference: anRGClass localSelectors) do: [ :selectorOfRemovedGeneratedMethod | realClass removeSelector: selectorOfRemovedGeneratedMethod ].
 
-	generatedMethods := Pragma allNamed: #generated in: realClass.
-	generatedMethods
-		do: [ :each | realClass removeSelector: each methodSelector ].
-	anRGClass localMethods
-		do: [ :method | 
-			(realClass localSelectors includes: method name)
-				ifFalse: [ realClass compile: method sourceCode classified: method protocol ] ].
-			
-	generatedMethods := Pragma allNamed: #generated in: realClass classSide.
-	generatedMethods
-		do: [ :each | realClass classSide removeSelector: each methodSelector ].
-	anRGClass classSide localMethods
-		do: [ :method | 
-			(realClass classSide localSelectors includes: method name)
-				ifFalse: [ realClass classSide compile: method sourceCode classified: method protocol ] ]
-			
+	"Add new generated methods"
+	(anRGClass localSelectors difference: generatedMethodNamesOfRealClass)
+		do: [ :selectorOfMethodToAdd | (realClass localSelectors includes: selectorOfMethodToAdd) ifFalse: [ self compile: (anRGClass methodNamed: selectorOfMethodToAdd) into: realClass ] ].
+
+	"Finally, update methods needing updates"
+	(generatedMethodNamesOfRealClass intersection: anRGClass localSelectors)
+		do: [ :selectorOfMethodToUpdate | (anRGClass methodNamed: selectorOfMethodToUpdate) in: [ :method | (realClass needToAdaptToMethod: method) ifTrue: [ self compile: method into: realClass ] ] ]
 ]
 
 { #category : #accessing }
@@ -91,6 +85,11 @@ FmxMBRealRingEnvironment >> compile: aSource in: aClass classified: aProtocol pa
 
 	aClass compile: aSource classified: '*', aPackageName, '-', aProtocol.
 
+]
+
+{ #category : #installing }
+FmxMBRealRingEnvironment >> compile: aRGMethod into: realClass [
+	^ realClass compile: aRGMethod sourceCode classified: aRGMethod protocol
 ]
 
 { #category : #installing }
@@ -137,20 +136,14 @@ FmxMBRealRingEnvironment >> generatedSlotsOf: aRealClass [
 
 { #category : #installing }
 FmxMBRealRingEnvironment >> installClassChangesFor: anRGClass [
-
-	| realClass | 
-	
+	| realClass |
 	realClass := self class environment classNamed: anRGClass name.
-	realClass 
-		ifNil: [ 
-			realClass := self class compiler evaluate: anRGClass definition.]
-		ifNotNil: [ 
-			self adoptClassDefinitionOf: realClass to: anRGClass. ].
+	realClass ifNil: [ realClass := self class compiler evaluate: anRGClass definition ] ifNotNil: [ self adoptClassDefinitionOf: realClass to: anRGClass ].
 	self adoptClassCommentOf: realClass to: anRGClass.
 	self cleanClass: realClass.
 	self adoptMethodsOf: realClass to: anRGClass.
+	self adoptMethodsOf: realClass classSide to: anRGClass classSide.
 	self removeGeneratedSlotNamesMethodOf: realClass
-		
 ]
 
 { #category : #installing }
