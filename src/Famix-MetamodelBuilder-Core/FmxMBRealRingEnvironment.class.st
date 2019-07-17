@@ -14,59 +14,39 @@ FmxMBRealRingEnvironment >> adoptClassCommentOf: realClass to: anRGClass [
 { #category : #installing }
 FmxMBRealRingEnvironment >> adoptClassDefinitionOf: realClass to: anRGClass [
 	| customSlots customTraitNames customSlotNames slotDefinitions slotsString definition traitsDefinitions traitsString |
-
+	
+	(realClass needToAdaptTo: anRGClass) ifFalse: [ ^ self ].
+	
 	customSlots := realClass localSlots copyWithoutAll: realClass generatedSlots.
 	customSlotNames := customSlots collect: #name.
-	customTraitNames := (realClass traitComposition members reject: [ :e | ((realClass customTraits) includes: e innerClass) not]) collect: #traitCompositionExpression.
-	slotDefinitions := ((anRGClass slots
-		reject: [ :each | customSlotNames includes: each name ])
-		collect: #definitionString) asOrderedCollection.
-	traitsDefinitions := (anRGClass traitComposition transformations collect: #asString), 
-		customTraitNames.
+	customTraitNames := (realClass traitComposition members reject: [ :e | (realClass customTraits includes: e innerClass) not ]) collect: #traitCompositionExpression.
+	slotDefinitions := ((anRGClass slots reject: [ :each | customSlotNames includes: each name ]) collect: #definitionString) asOrderedCollection.
+	traitsDefinitions := (anRGClass traitComposition transformations collect: #asString) , customTraitNames.
 	slotDefinitions addAll: (customSlots collect: #definitionString).
 	slotDefinitions := slotDefinitions sorted.
-	
+
 	slotsString := '{' , (slotDefinitions joinUsing: '. ') , '}'.
-	traitsString := traitsDefinitions 
-		ifEmpty: [ '{ }' ]
-		ifNotEmpty: [ traitsDefinitions joinUsing: ' + '. ].
-	anRGClass isTrait ifFalse: [ 
-	definition := '{superclass} subclass: #{className} 
+	traitsString := traitsDefinitions ifEmpty: [ '{ }' ] ifNotEmpty: [ traitsDefinitions joinUsing: ' + ' ].
+	anRGClass isTrait
+		ifFalse: [ definition := '{superclass} subclass: #{className} 
 		uses: {traits} 
 		slots: {slots} 
 		classVariables: {classVariables}
 		poolDictionaries: ''{poolDictionaries}''
 		category: ''{category}'''
-		format:
-			(Dictionary
-				newFrom:
-					{(#superclass -> anRGClass superclass name).
-					(#className -> anRGClass name).
-					(#layout -> realClass classLayout class name).
-					(#traits -> traitsString).
-					(#slots -> slotsString).
-					(#classVariables -> (self classVariablesStringFor: realClass)).
-					(#poolDictionaries -> realClass sharedPoolsString).
-					(#category -> realClass category)})]
-			ifTrue: [ 
-	definition := '{superclass} named: #{className} 
+				format:
+					(Dictionary
+						newFrom:
+							{(#superclass -> anRGClass superclass name) . (#className -> anRGClass name) . (#layout -> realClass classLayout class name) . (#traits -> traitsString) . (#slots -> slotsString).
+							(#classVariables -> (self classVariablesStringFor: realClass)) . (#poolDictionaries -> realClass sharedPoolsString) . (#category -> realClass category)}) ]
+		ifTrue: [ definition := '{superclass} named: #{className} 
 		uses: {traits} 
 		slots: {slots} 
 		category: ''{category}'''
-		format:
-			(Dictionary
-				newFrom:
-					{(#superclass -> anRGClass superclass name).
-					(#className -> anRGClass name).
-					(#traits -> traitsString).
-					(#slots -> slotsString).
-					(#category -> realClass category)}).				
-				 ].
+				format:
+					(Dictionary newFrom: {(#superclass -> anRGClass superclass name) . (#className -> anRGClass name) . (#traits -> traitsString) . (#slots -> slotsString) . (#category -> realClass category)}) ].
 
-	self class compiler evaluate: definition.
-
-	
-	
+	self class compiler evaluate: definition
 ]
 
 { #category : #installing }

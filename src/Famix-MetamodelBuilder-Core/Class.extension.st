@@ -7,7 +7,7 @@ Class >> customTraits [
 
 { #category : #'*Famix-MetamodelBuilder-Core' }
 Class >> generatedSlotNames [
-	^ self slots select: #isFameSlot thenCollect: #name
+	^ self localSlots select: #isFameSlot thenCollect: #name
 ]
 
 { #category : #'*Famix-MetamodelBuilder-Core' }
@@ -20,4 +20,15 @@ Class >> generatedSlots [
 	
 	Remove in 2020."
 	^ (self generatedSlotNames collect: [ :slotName | self slotNamed: slotName ifFound: [ :slot | slot ] ifNone: nil ]) select: #notNil
+]
+
+{ #category : #'*Famix-MetamodelBuilder-Core' }
+Class >> generatedTraits [
+	^ self traits select: #isMetamodelEntity
+]
+
+{ #category : #'*Famix-MetamodelBuilder-Core' }
+Class >> needToAdaptTo: aRGClass [
+	^ ((self generatedTraits collect: #name) asSet = (aRGClass traitComposition transformations collect: #name) asSet
+		and: [ (self generatedSlots collect: #name) asSet = (aRGClass slots collect: #name) asSet ]) not
 ]
