@@ -8,6 +8,7 @@ Class {
 
 { #category : #overrides }
 FamixTMultipleFileAnchorTest >> setUp [
+super setUp.
 self entity: (MooseEntity new copyWithTalent:FamixTMultipleFileAnchor).
 self entity class initializeSlots: self entity.
 ]

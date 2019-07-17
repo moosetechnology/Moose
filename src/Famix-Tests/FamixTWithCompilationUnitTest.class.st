@@ -8,6 +8,7 @@ Class {
 
 { #category : #overrides }
 FamixTWithCompilationUnitTest >> setUp [
+super setUp.
 self entity: (MooseEntity new copyWithTalent:FamixTWithCompilationUnit).
 self entity class initializeSlots: self entity.
 ]

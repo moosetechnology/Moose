@@ -8,6 +8,7 @@ Class {
 
 { #category : #overrides }
 FamixTAccessibleTest >> setUp [
+super setUp.
 self entity: (MooseEntity new copyWithTalent:FamixTAccessible).
 self entity class initializeSlots: self entity.
 ]

@@ -8,6 +8,7 @@ Class {
 
 { #category : #overrides }
 FamixTReferenceableTest >> setUp [
+super setUp.
 self entity: (MooseEntity new copyWithTalent:FamixTReferenceable).
 self entity class initializeSlots: self entity.
 ]
