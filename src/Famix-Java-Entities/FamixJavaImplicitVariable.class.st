@@ -19,7 +19,7 @@ FamixJavaImplicitVariable class >> annotation [
 FamixJavaImplicitVariable class >> requirements [
 
 	<generated>
-	^ { FamixJavaMethod }
+	^ {  }
 ]
 
 { #category : #'as yet unclassified' }

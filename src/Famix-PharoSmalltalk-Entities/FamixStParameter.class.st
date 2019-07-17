@@ -19,7 +19,7 @@ FamixStParameter class >> annotation [
 FamixStParameter class >> requirements [
 
 	<generated>
-	^ { FamixStMethod }
+	^ {  }
 ]
 
 { #category : #accessing }

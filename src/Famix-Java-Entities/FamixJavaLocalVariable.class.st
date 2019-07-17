@@ -19,7 +19,7 @@ FamixJavaLocalVariable class >> annotation [
 FamixJavaLocalVariable class >> requirements [
 
 	<generated>
-	^ { FamixJavaMethod }
+	^ {  }
 ]
 
 { #category : #'as yet unclassified' }
