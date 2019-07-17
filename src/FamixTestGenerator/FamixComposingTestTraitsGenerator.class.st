@@ -1,3 +1,9 @@
+"
+This generator composes traits of tests in parallel of what is done to the trait.
+Example:
+fcg := FamixComposingTestTraitsGenerator new.
+fcg addingTraitsToTestTraitFor: FamixTClass 
+"
 Class {
 	#name : #FamixComposingTestTraitsGenerator,
 	#superclass : #FamixTestGenerator,
