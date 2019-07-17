@@ -50,8 +50,20 @@ FmxMBRealRingEnvironment >> adoptClassDefinitionOf: realClass to: anRGClass [
 
 { #category : #installing }
 FmxMBRealRingEnvironment >> adoptMethodsOf: realClass to: anRGClass [
-	(Pragma allNamed: #generated in: realClass) do: [ :generatedMethod | realClass removeSelector: generatedMethod methodSelector ].
-	anRGClass localMethods do: [ :method | (realClass localSelectors includes: method name) ifFalse: [ realClass compile: method sourceCode classified: method protocol ] ]
+	| generatedMethodsOfRealClass generatedMethodNamesOfRealClass |
+	generatedMethodsOfRealClass := (Pragma allNamed: #generated in: realClass) collect: #method thenSelect: [ :method | realClass localMethods includes: method ].	"We reject methods comming from Traits"
+	generatedMethodNamesOfRealClass := generatedMethodsOfRealClass collect: #selector.
+
+	"First we removed the generated methods should not be here anymore"
+	(generatedMethodNamesOfRealClass difference: anRGClass localSelectors) do: [ :selectorOfRemovedGeneratedMethod | realClass removeSelector: selectorOfRemovedGeneratedMethod ].
+
+	"Add new generated methods"
+	(anRGClass localSelectors difference: generatedMethodNamesOfRealClass)
+		do: [ :selectorOfMethodToAdd | (realClass localSelectors includes: selectorOfMethodToAdd) ifFalse: [ self compile: (anRGClass methodNamed: selectorOfMethodToAdd) into: realClass ] ].
+
+	"Finally, update methods needing updates"
+	(generatedMethodNamesOfRealClass intersection: anRGClass localSelectors)
+		do: [ :selectorOfMethodToUpdate | (anRGClass methodNamed: selectorOfMethodToUpdate) in: [ :method | (realClass needToAdaptToMethod: method) ifTrue: [ self compile: method into: realClass ] ] ]
 ]
 
 { #category : #accessing }
@@ -73,6 +85,11 @@ FmxMBRealRingEnvironment >> compile: aSource in: aClass classified: aProtocol pa
 
 	aClass compile: aSource classified: '*', aPackageName, '-', aProtocol.
 
+]
+
+{ #category : #installing }
+FmxMBRealRingEnvironment >> compile: aRGMethod into: realClass [
+	^ realClass compile: aRGMethod sourceCode classified: aRGMethod protocol
 ]
 
 { #category : #installing }
