@@ -37,6 +37,11 @@ SmaCCTokenRuleNode >> initialize [
 	states := OrderedCollection new: 2.
 ]
 
+{ #category : #testing }
+SmaCCTokenRuleNode >> isTokenRule [
+	^ true
+]
+
 { #category : #generated }
 SmaCCTokenRuleNode >> name [
 	^ name

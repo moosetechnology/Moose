@@ -92,7 +92,7 @@ SwiftClosureExpressionNode >> compositeNodeVariables [
 
 { #category : #generated }
 SwiftClosureExpressionNode >> compositeTokenVariables [
-	^ #(#leftBraceTokens #leftParenTokens #rightParenTokens #inoutTokens #letTokens #_Tokens #identifierTokens #colonTokens #leftBracketTokens #rightBracketTokens #rightBraceTokens #integer_literalTokens #floating_point_literalTokens #full_string_literalTokens #operatorTokens #minusGreaterThanTokens #periodTokens #questionMarkTokens #bangTokens #protocolTokens #lessThanTokens #greaterThanTokens #typeTokens #commaTokens #periodPeriodPeriodTokens #equalTokens #varTokens)
+	^ #(#leftBraceTokens #leftParenTokens #rightParenTokens #inoutTokens #letTokens #_Tokens #identifierTokens #colonTokens #leftBracketTokens #rightBracketTokens #minusGreaterThanTokens #periodTokens #questionMarkTokens #bangTokens #protocolTokens #lessThanTokens #greaterThanTokens #typeTokens #commaTokens #periodPeriodPeriodTokens #equalTokens #varTokens #rightBraceTokens #integer_literalTokens #floating_point_literalTokens #full_string_literalTokens #operatorTokens)
 ]
 
 { #category : #generated }
@@ -178,11 +178,6 @@ SwiftClosureExpressionNode >> initialize [
 	colonTokens := OrderedCollection new: 2.
 	leftBracketTokens := OrderedCollection new: 2.
 	rightBracketTokens := OrderedCollection new: 2.
-	rightBraceTokens := OrderedCollection new: 2.
-	integer_literalTokens := OrderedCollection new: 2.
-	floating_point_literalTokens := OrderedCollection new: 2.
-	full_string_literalTokens := OrderedCollection new: 2.
-	operatorTokens := OrderedCollection new: 2.
 	minusGreaterThanTokens := OrderedCollection new: 2.
 	periodTokens := OrderedCollection new: 2.
 	questionMarkTokens := OrderedCollection new: 2.
@@ -196,6 +191,11 @@ SwiftClosureExpressionNode >> initialize [
 	equalTokens := OrderedCollection new: 2.
 	expressions := OrderedCollection new: 2.
 	varTokens := OrderedCollection new: 2.
+	rightBraceTokens := OrderedCollection new: 2.
+	integer_literalTokens := OrderedCollection new: 2.
+	floating_point_literalTokens := OrderedCollection new: 2.
+	full_string_literalTokens := OrderedCollection new: 2.
+	operatorTokens := OrderedCollection new: 2.
 	statements := OrderedCollection new: 2.
 ]
 

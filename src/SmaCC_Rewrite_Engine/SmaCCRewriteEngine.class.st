@@ -39,6 +39,11 @@ SmaCCRewriteEngine >> contextClass [
 	^ contextClass
 ]
 
+{ #category : #accessing }
+SmaCCRewriteEngine >> contextClass: aBehavior [
+	contextClass := aBehavior
+]
+
 { #category : #private }
 SmaCCRewriteEngine >> finished [
 	newStarts := IdentityDictionary new.

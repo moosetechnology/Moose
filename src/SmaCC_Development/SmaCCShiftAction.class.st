@@ -4,7 +4,7 @@ SmaCCShiftAction represents the LR shift action.
 Class {
 	#name : #SmaCCShiftAction,
 	#superclass : #SmaCCPrimitiveAction,
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-Actions'
 }
 
 { #category : #accessing }

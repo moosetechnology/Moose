@@ -37,6 +37,11 @@ SmaCCSuperclassDirectiveNode >> initialize [
 	names := OrderedCollection new: 2.
 ]
 
+{ #category : #testing }
+SmaCCSuperclassDirectiveNode >> isHierarchyDirective [
+	^ true
+]
+
 { #category : #generated }
 SmaCCSuperclassDirectiveNode >> leftParen [
 	^ leftParen

@@ -34,7 +34,7 @@ JavaEnumDeclarationNode >> commas: anOrderedCollection [
 
 { #category : #generated }
 JavaEnumDeclarationNode >> compositeNodeVariables [
-	^ #(#modifiers #interfaces #constants #declarations)
+	^ #(#declarations #constants #interfaces #modifiers)
 ]
 
 { #category : #generated }
@@ -78,7 +78,7 @@ JavaEnumDeclarationNode >> ignoredCompositeTokenVariables [
 
 { #category : #generated }
 JavaEnumDeclarationNode >> ignoredTokenVariables [
-	^ #(#leftBrace #semicolon #rightBrace)
+	^ #(#leftBrace #rightBrace #semicolon)
 ]
 
 { #category : #generated }
@@ -94,11 +94,11 @@ JavaEnumDeclarationNode >> implementsToken: aSmaCCToken [
 { #category : #'generated-initialize-release' }
 JavaEnumDeclarationNode >> initialize [
 	super initialize.
-	modifiers := OrderedCollection new: 2.
-	interfaces := OrderedCollection new: 2.
+	declarations := OrderedCollection new: 2.
 	commas := OrderedCollection new: 2.
 	constants := OrderedCollection new: 2.
-	declarations := OrderedCollection new: 2.
+	interfaces := OrderedCollection new: 2.
+	modifiers := OrderedCollection new: 2.
 ]
 
 { #category : #generated }

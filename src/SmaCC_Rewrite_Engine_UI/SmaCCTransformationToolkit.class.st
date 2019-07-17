@@ -425,22 +425,18 @@ SmaCCTransformationToolkit >> previewResultHolder [
 
 { #category : #private }
 SmaCCTransformationToolkit >> promptForFile: aTitle extensions: anArray [
-	^ UITheme current
-		chooseFullFileNameIn: UITheme builder
-		title: aTitle
+	^ UIManager default
+		chooseExistingFileReference: aTitle
 		extensions: anArray
-		path: nil
-		preview: nil
+		path: FileSystem workingDirectory
 ]
 
 { #category : #private }
 SmaCCTransformationToolkit >> promptForSaveFile: aTitle extensions: anArray [
-	^ UITheme current
-		fileSaveIn: UITheme builder
-		title: aTitle
-		initialAnswer: ''
+	^ UIManager default
+		chooseForSaveFileReference: aTitle
 		extensions: anArray
-		path: nil
+		path: FileSystem workingDirectory
 ]
 
 { #category : #actions }

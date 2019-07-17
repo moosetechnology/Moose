@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'rootContext'
 	],
-	#category : #'SmaCC_Debugging_Support'
+	#category : #'SmaCC_Debugging_Support-Debugger'
 }
 
 { #category : #testing }

@@ -47,6 +47,11 @@ SmaCCAttributeDirectiveNode >> initialize [
 	names := OrderedCollection new: 2.
 ]
 
+{ #category : #testing }
+SmaCCAttributeDirectiveNode >> isAttributeDirective [
+	^ true
+]
+
 { #category : #generated }
 SmaCCAttributeDirectiveNode >> leftParen [
 	^ leftParen

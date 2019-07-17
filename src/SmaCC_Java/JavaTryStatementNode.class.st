@@ -47,7 +47,7 @@ JavaTryStatementNode >> catches: anOrderedCollection [
 
 { #category : #generated }
 JavaTryStatementNode >> compositeNodeVariables [
-	^ #(#resources #catches)
+	^ #(#catches #resources)
 ]
 
 { #category : #generated }
@@ -77,9 +77,9 @@ JavaTryStatementNode >> ignoredTokenVariables [
 { #category : #'generated-initialize-release' }
 JavaTryStatementNode >> initialize [
 	super initialize.
+	catches := OrderedCollection new: 2.
 	resources := OrderedCollection new: 2.
 	semicolons := OrderedCollection new: 2.
-	catches := OrderedCollection new: 2.
 ]
 
 { #category : #generated }

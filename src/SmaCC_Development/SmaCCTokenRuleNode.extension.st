@@ -3,11 +3,12 @@ Extension { #name : #SmaCCTokenRuleNode }
 { #category : #'*SmaCC_Development' }
 SmaCCTokenRuleNode >> regularExpression [
 	| re |
-	(self attributeNamed: #regularExpression ifAbsent: [ nil ]) ifNotNil: [ :each | ^ each ].
+	(self attributeNamed: #regularExpression ifAbsent: [ nil ])
+		ifNotNil: [ :each | ^ each ].
 	(self attributeNamed: #buildingRegularExpression ifAbsent: [ false ])
 		ifTrue: [ self reportCircularDefinitionError ].
 	self attributeNamed: #buildingRegularExpression put: true.
-	re := regex regularExpression.
+	re := SmaCCSequenceRENode nodes: {regex regularExpression}.
 	self attributeNamed: #regularExpression put: re.
 	self removeAttributeNamed: #buildingRegularExpression.
 	re position: self name startPosition.

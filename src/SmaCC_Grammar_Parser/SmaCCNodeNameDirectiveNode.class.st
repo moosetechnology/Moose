@@ -13,6 +13,11 @@ SmaCCNodeNameDirectiveNode >> acceptVisitor: aDefinitionVisitor [
 	^ aDefinitionVisitor visitNodeNameDirective: self
 ]
 
+{ #category : #testing }
+SmaCCNodeNameDirectiveNode >> isNameDirective [
+	^ true
+]
+
 { #category : #generated }
 SmaCCNodeNameDirectiveNode >> name [
 	^ name

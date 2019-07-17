@@ -34,10 +34,10 @@ SmaCCDefinitionErrorNode >> smaccError [
 ]
 
 { #category : #generated }
-SmaCCDefinitionErrorNode >> smaccError: aSmaCCError [
+SmaCCDefinitionErrorNode >> smaccError: aSmaCCErrorNode [
 	self smaccError notNil
 		ifTrue: [ self smaccError parent: nil ].
-	smaccError := aSmaCCError.
+	smaccError := aSmaCCErrorNode.
 	self smaccError notNil
 		ifTrue: [ self smaccError parent: self ]
 ]

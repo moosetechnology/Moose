@@ -21,7 +21,7 @@ Class {
 		'precedence',
 		'firstTerminals'
 	],
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-Model'
 }
 
 { #category : #variables }

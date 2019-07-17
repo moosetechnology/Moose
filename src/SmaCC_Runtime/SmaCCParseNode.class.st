@@ -31,6 +31,26 @@ SmaCCParseNode class >> collectionVariableIn: aSmaCCParseNode collectionGetter: 
 ]
 
 { #category : #accessing }
+SmaCCParseNode class >> parserClass [
+	"Return the parser class that likely created this node"
+
+	| possibleClasses classNames topNodeClass |
+	self == SmaCCParseNode
+		ifTrue: [ ^ nil ].
+	topNodeClass := self withAllSuperclasses
+		detect: [ :each | each superclass = SmaCCParseNode ].
+	classNames := (topNodeClass withAllSubclasses collect: #name) asSet.
+	possibleClasses := SmaCCParser withAllSubclasses
+		select: [ :each | 
+			(each class includesSelector: #symbolTypes)
+				and: [ each symbolTypes
+						anySatisfy: [ :clsName | classNames includes: clsName ] ] ].
+	possibleClasses size = 1
+		ifTrue: [ ^ possibleClasses first ].
+	^ nil
+]
+
+{ #category : #accessing }
 SmaCCParseNode class >> variableIn: aSmaCCParseNode getter: aSymbol [
 	(aSmaCCParseNode respondsTo: aSymbol)
 		ifTrue: [ ^ aSmaCCParseNode perform: aSymbol ].
@@ -497,6 +517,11 @@ SmaCCParseNode >> isDescendantFrom: aSmaCCNode [
 ]
 
 { #category : #testing }
+SmaCCParseNode >> isErrorNode [
+	^ false
+]
+
+{ #category : #testing }
 SmaCCParseNode >> isListMatch [
 	^ false
 ]
@@ -689,6 +714,11 @@ SmaCCParseNode >> parentOfType: aSmaCCParseNodeClassOrCollection [
 		ifFalse: [ nil ]
 ]
 
+{ #category : #accessing }
+SmaCCParseNode >> parserClass [
+	^ self class parserClass
+]
+
 { #category : #copying }
 SmaCCParseNode >> postCopy [
 	super postCopy.
@@ -825,6 +855,11 @@ SmaCCParseNode >> source [
 	^ self completeSource
 		ifNotNil:
 			[ :value | (value copyFrom: self startPosition to: self stopPosition) asString ]
+]
+
+{ #category : #accessing }
+SmaCCParseNode >> sourceInterval [
+	^ self startPosition to: self stopPosition
 ]
 
 { #category : #accessing }

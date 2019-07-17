@@ -6,7 +6,7 @@ Class {
 
 { #category : #'generated-accessing' }
 SmaCCRewriteTestParser class >> cacheId [
-	^'2018-10-20T09:20:14.771202-05:00'
+	^'2019-04-15T17:16:14.067598-05:00'
 ]
 
 { #category : #generated }
@@ -53,9 +53,13 @@ Expression
 { #category : #generated }
 SmaCCRewriteTestParser class >> reduceTable [
 ^#(
-	#(12 1 #reduceActionForExpression7:) 
-	#(12 3 #reduceActionForExpression1:) 
-	#(12 3 #reduceActionForExpression4:)
+	#(12 1 #reduceActionForExpression7: 290823 false ) 
+	#(12 3 #reduceActionForExpression1: 290817 false ) 
+	#(12 3 #reduceActionForExpression4: 290820 false ) 
+	#(12 3 #reduceActionForExpression4: 290818 false ) 
+	#(12 3 #reduceActionForExpression4: 290819 false ) 
+	#(12 3 #reduceActionForExpression4: 290821 false ) 
+	#(12 3 #reduceActionForExpression4: 290822 false )
 	).
 ]
 
@@ -76,7 +80,7 @@ SmaCCRewriteTestParser class >> symbolNames [
 
 { #category : #generated }
 SmaCCRewriteTestParser class >> symbolTypes [
-	^ #(#SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCRewriteTestExpressionNode #SmaCCRewriteTestExpressionNode #SmaCCToken #SmaCCError)
+	^ #(#SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCRewriteTestExpressionNode #SmaCCRewriteTestExpressionNode #SmaCCToken #SmaCCErrorNode)
 ]
 
 { #category : #generated }
@@ -94,10 +98,10 @@ SmaCCRewriteTestParser class >> transitionTable [
 #[1 0 9 0 1 0 13 0 8 0 65 0 12] 
 #[0 0 10 0 2 0 3 0 4 0 5 0 6 0 7 0 13] 
 #[1 0 14 0 2 0 14 0 3 0 14 0 4 0 14 0 5 0 14 0 6 0 41 0 7 0 14 0 13] 
-#[1 0 14 0 2 0 25 0 3 0 14 0 4 0 14 0 5 0 37 0 6 0 41 0 7 0 14 0 13] 
-#[1 0 14 0 2 0 25 0 3 0 14 0 4 0 14 0 5 0 37 0 6 0 41 0 7 0 14 0 13] 
-#[1 0 14 0 2 0 14 0 3 0 14 0 4 0 14 0 5 0 14 0 6 0 41 0 7 0 14 0 13] 
-#[1 0 14 0 2 0 14 0 3 0 14 0 4 0 14 0 5 0 14 0 6 0 41 0 7 0 14 0 13]
+#[1 0 18 0 2 0 25 0 3 0 18 0 4 0 18 0 5 0 37 0 6 0 41 0 7 0 18 0 13] 
+#[1 0 22 0 2 0 25 0 3 0 22 0 4 0 22 0 5 0 37 0 6 0 41 0 7 0 22 0 13] 
+#[1 0 26 0 2 0 26 0 3 0 26 0 4 0 26 0 5 0 26 0 6 0 41 0 7 0 26 0 13] 
+#[1 0 30 0 2 0 30 0 3 0 30 0 4 0 30 0 5 0 30 0 6 0 41 0 7 0 30 0 13]
 	).
 ]
 

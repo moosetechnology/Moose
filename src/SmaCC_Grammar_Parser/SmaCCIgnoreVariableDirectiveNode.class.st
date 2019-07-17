@@ -34,6 +34,11 @@ SmaCCIgnoreVariableDirectiveNode >> initialize [
 	names := OrderedCollection new: 2.
 ]
 
+{ #category : #testing }
+SmaCCIgnoreVariableDirectiveNode >> isIgnoreDirective [
+	^ true
+]
+
 { #category : #generated }
 SmaCCIgnoreVariableDirectiveNode >> names [
 	^ names

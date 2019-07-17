@@ -1,7 +1,7 @@
 Class {
 	#name : #SmaCCDebuggingAction,
 	#superclass : #DebugAction,
-	#category : #'SmaCC_Debugging_Support'
+	#category : #'SmaCC_Debugging_Support-Debugger'
 }
 
 { #category : #testing }
