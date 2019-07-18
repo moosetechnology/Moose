@@ -9,6 +9,7 @@ Class {
 
 { #category : #running }
 FmxMBGeneratorCleaningStrategyTest >> generateClasses [
+	| generatedClassToRemove generatedTraitToRemove |
 	FamixMetamodelCleaningStrategiesTestGenerator new generate.
 	self class environment
 		at: #FmxTestCleaningStrategyFmxTestEntity
@@ -48,6 +49,36 @@ FmxMBGeneratorCleaningStrategyTest >> generateClasses [
 		classVariables: {}
 		package: self packageName.
 	Trait named: #TFmxCleanerTestAddedTrait uses: {} package: self packageName.
+
+	"We add a class with Famix pragma to ensure it is deleted after the generation."
+	generatedClassToRemove := MooseEntity
+		subclass: #FmxCleanerTestAddedClassFromFamix
+		slots: {}
+		classVariables: {}
+		package: self packageName.
+	generatedClassToRemove class
+		compile:
+			'annotation
+
+	<MSEClass: #AddedClassFromFamix super: #MooseEntity>
+	<package: #'',  self packageName , ''>
+	<generated>
+	^self'.
+	
+	"We add a Trait with Famix pragma to ensure it is deleted after the generation."
+	generatedTraitToRemove := Trait named: #FmxCleanerTestTAddedClassFromFamix
+	 uses: { }
+	 slots: {  }
+	 package:  self packageName.
+	generatedTraitToRemove class
+		compile:
+			'annotation
+
+	<MSEClass: #TAddedClassFromFamix super: #Trait>
+	<package: #'',  self packageName , ''>
+	<generated>
+	^self'.
+	
 	"We change the superclass of this class to ensure regeneration will update it. Check non regression for: https://github.com/moosetechnology/Moose/issues/1668"
 	self class environment
 		at: #FmxTestCleaningStrategyFmxTestEntityWithDifferentSuperclass
@@ -97,10 +128,11 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningCleaning [
 		ifAbsent: [ self fail ].
 
 	"Before the generation, the superclass should not be updated."
-	self class environment
-		at: #FmxTestCleaningStrategyFmxTestEntityWithDifferentSuperclass
-		ifPresent: [ :class | self assert: class superclass name equals: #MooseEntity ]
-		ifAbsent: [ self fail ].
+	self class environment at: #FmxTestCleaningStrategyFmxTestEntityWithDifferentSuperclass ifPresent: [ :class | self assert: class superclass name equals: #MooseEntity ] ifAbsent: [ self fail ].
+
+	"Before the generation, the generated class and trait that were removed from the generator should still be here."
+	self class environment at: #FmxCleanerTestAddedClassFromFamix ifAbsent: [ self fail ].
+	self class environment at: #FmxCleanerTestTAddedClassFromFamix ifAbsent: [ self fail ].
 
 	self assert: (self class methodDict at: #extensionsMethodForTest ifPresent: [ true ] ifAbsent: [ false ]).
 
@@ -135,6 +167,10 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningGeneration [
 		ifPresent: [ :class | self assert: class superclass name equals: #FmxTestCleaningStrategyFmxTestEntity ]
 		ifAbsent: [ self fail ].
 
+	"After the generation, the generated class and trait that were removed from the generator should be removed."
+	self should: [ self class environment at: #FmxCleanerTestAddedClassFromFamix ] raise: KeyNotFound.
+	self should: [ self class environment at: #FmxCleanerTestTAddedClassFromFamix ] raise: KeyNotFound.
+
 	self assert: (self class methodDict at: #extensionsMethodForTest ifPresent: [ true ] ifAbsent: [ false ]).
 
 	self class environment at: #FmxCleanerTestAddedClass ifPresent: [ :class | self assert: class package name equals: self packageName ] ifAbsent: [ self fail ].
@@ -148,6 +184,8 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateTotalCleaningCleaning [
 	self should: [ self class environment at: #FmxTestCleaningStrategyFmxTestEntityWithDifferentSuperclass ] raise: KeyNotFound.
 	self should: [ self class environment at: #FmxCleanerTestAddedClass ] raise: KeyNotFound.
 	self should: [ self class environment at: #TFmxCleanerTestAddedTrait ] raise: KeyNotFound.
+	self should: [ self class environment at: #FmxCleanerTestAddedClassFromFamix ] raise: KeyNotFound.
+	self should: [ self class environment at: #FmxCleanerTestTAddedClassFromFamix ] raise: KeyNotFound.
 	self assert: (self class methodDict at: #extensionsMethodForTest ifPresent: [ false ] ifAbsent: [ true ])
 ]
 
@@ -173,6 +211,10 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateTotalCleaningGeneration [
 		at: #FmxTestCleaningStrategyFmxTestEntityWithDifferentSuperclass
 		ifPresent: [ :class | self assert: class superclass name equals: #FmxTestCleaningStrategyFmxTestEntity ]
 		ifAbsent: [ self fail ].
+
+	"After the generation, the generated class and trait that were removed from the generator should not be generated again."
+	self should: [ self class environment at: #FmxCleanerTestAddedClassFromFamix ] raise: KeyNotFound.
+	self should: [ self class environment at: #FmxCleanerTestTAddedClassFromFamix ] raise: KeyNotFound.
 
 	self assert: (self class methodDict at: #extensionsMethodForTest ifPresent: [ false ] ifAbsent: [ true ]).
 

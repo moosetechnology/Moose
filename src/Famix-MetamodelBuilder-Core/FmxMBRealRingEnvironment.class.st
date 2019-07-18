@@ -68,10 +68,17 @@ FmxMBRealRingEnvironment >> adoptMethodsOf: realClass to: anRGClass [
 
 { #category : #accessing }
 FmxMBRealRingEnvironment >> apply [
+	| resolvedClasses resolvedPackages |
+	resolvedPackages := ringEnvironment ask packages select: [ :each | each isRingResolved ].
+	resolvedClasses := ringEnvironment ask behaviors select: [ :each | each isRingResolved and: [ each superclass isRingResolved ] ].
 
-	self ensurePackagesFrom: ringEnvironment.
-	self ensureClassesFrom: ringEnvironment.
+	self ensurePackages: resolvedPackages.
+	self ensureClasses: resolvedClasses.
 
+	"Since the last generation it is possible some behaviorals were removed from the generator. In that case we should remove them. We will remove all classes and traits of Famix that are not part of the current generator."
+	resolvedPackages
+		collect: [ :e | e name asPackage ]
+		thenDo: [ :package | package definedClasses select: #isMetamodelEntity thenDo: [ :class | resolvedClasses detect: [ :rgClass | rgClass name = class name ] ifNone: [ class removeFromSystem ] ] ]
 ]
 
 { #category : #installing }
@@ -93,40 +100,23 @@ FmxMBRealRingEnvironment >> compile: aRGMethod into: realClass [
 ]
 
 { #category : #installing }
-FmxMBRealRingEnvironment >> ensureClassesFrom: anRGEnvironment [
-	
-	| resolvedClasses sorted notSorted toMove |
-	
-	resolvedClasses := ringEnvironment ask behaviors select: [ :each | each isRingResolved ].
-	resolvedClasses := resolvedClasses select: [ :each | each superclass isRingResolved ].
-	
-	resolvedClasses ifEmpty: [ ^ self ].
-
+FmxMBRealRingEnvironment >> ensureClasses: resolvedClasses [
+	| sorted notSorted toMove |
 	notSorted := resolvedClasses asOrderedCollection.
+
 	sorted := OrderedCollection new.
-	[	
-		toMove := notSorted select: [ :each | notSorted noneSatisfy: [ :toCompare | each dependsOn: toCompare ] ].
-		toMove ifEmpty: [ self error: 'Classes cycling dependency' ].
-		sorted addAll: toMove.
-		notSorted removeAll: toMove.
-		notSorted isEmpty.
-	] whileFalse.
+	[ toMove := notSorted select: [ :each | notSorted noneSatisfy: [ :toCompare | each dependsOn: toCompare ] ].
+	toMove ifEmpty: [ self error: 'Classes cycling dependency' ].
+	sorted addAll: toMove.
+	notSorted removeAll: toMove.
+	notSorted isEmpty ] whileFalse.
 
-	resolvedClasses := sorted.
-
-	resolvedClasses do: [:each | self installClassChangesFor: each ].
+	sorted do: [ :each | self installClassChangesFor: each ]
 ]
 
 { #category : #installing }
-FmxMBRealRingEnvironment >> ensurePackagesFrom: anRGEnvironment [
-	
-	| resolvedPackages |
-	
-	resolvedPackages := anRGEnvironment ask packages select: [ :each | each isRingResolved ].
-
-	resolvedPackages do: [ :each |
-		(RPackageOrganizer default includesPackageNamed: each name)
-			ifFalse: [ RPackageOrganizer default registerPackageNamed: each name]].
+FmxMBRealRingEnvironment >> ensurePackages: resolvedPackages [
+	resolvedPackages do: [ :each | (RPackageOrganizer default includesPackageNamed: each name) ifFalse: [ RPackageOrganizer default registerPackageNamed: each name ] ]
 ]
 
 { #category : #installing }
