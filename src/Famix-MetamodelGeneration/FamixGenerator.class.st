@@ -890,6 +890,8 @@ FamixGenerator >> defineGlueingTraits [
 
 	tClassHierarchyNavigation := builder newTraitNamed: #TClassHierarchyNavigation.
 	
+	tLCOMMetrics := builder newTraitNamed: #TLCOMMetrics.
+	
 	tInheritanceGlue := builder newTraitNamed: #TInheritanceGlue.
 	tInheritanceGlue glues: tSubInheritance with: tSuperInheritance.
 

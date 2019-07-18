@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaClass,
 	#superclass : #FamixJavaType,
-	#traits : 'FamixJavaTLCOMMetrics + FamixTClass + FamixTWithExceptions',
-	#classTraits : 'FamixJavaTLCOMMetrics classTrait + FamixTClass classTrait + FamixTWithExceptions classTrait',
+	#traits : 'FamixTClass + FamixTLCOMMetrics + FamixTWithExceptions',
+	#classTraits : 'FamixTClass classTrait + FamixTLCOMMetrics classTrait + FamixTWithExceptions classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
