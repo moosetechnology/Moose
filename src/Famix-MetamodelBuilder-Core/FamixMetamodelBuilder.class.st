@@ -192,7 +192,7 @@ FamixMetamodelBuilder >> environment: anObject [
 	environment := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #generating }
 FamixMetamodelBuilder >> generate [
 	self resolveRequirementsFromContainers.
 	self registerPackages.
