@@ -80,8 +80,7 @@ FamixMetamodelGenerator class >> generate [
 { #category : #generation }
 FamixMetamodelGenerator class >> generateAllMetamodels [
 	<script>
-
-	(self allSubclasses reject: [ :c | c isAbstract or: [ c isPartOfComposedMetaModel ] ])
+	self metamodelsToGenerate
 		do: [ :mm | mm generate ]
 		displayingProgress: [ :mm | 'Regenerate ' , mm name ]
 ]
@@ -101,6 +100,20 @@ FamixMetamodelGenerator class >> isPartOfComposedMetaModel [
 	^ FamixMetamodelGenerator composedMetaModels anySatisfy: [ :mm | mm submetamodels includes: self ]
 ]
 
+{ #category : #'world menu' }
+FamixMetamodelGenerator class >> menuCommandOn: aBuilder [
+	<worldMenu>
+	(aBuilder item: #'Regenerate all metamodels')
+		order: 40;
+		parent: #Moose;
+		action: [ self generateAllMetamodels ].
+	(aBuilder item: #'Reset metamodels')
+		order: 45;
+		parent: #Moose;
+		action: [ self resetMetamodels ];
+		withSeparatorAfter
+]
+
 { #category : #accessing }
 FamixMetamodelGenerator class >> metamodel [
 	^ metamodel ifNil: [ metamodel := self resetMetamodel ]
@@ -111,6 +124,11 @@ FamixMetamodelGenerator class >> metamodel: anObject [
 
 	<ignoreForCoverage>
 	metamodel := anObject
+]
+
+{ #category : #generation }
+FamixMetamodelGenerator class >> metamodelsToGenerate [
+	^ self allSubclasses reject: [ :c | c isAbstract or: [ c isPartOfComposedMetaModel ] ]
 ]
 
 { #category : #accessing }
@@ -155,6 +173,7 @@ FamixMetamodelGenerator class >> resetMetamodel [
 	" self resetMetamodel"
 
 	| classes tower elements |
+	self submetamodels do: #resetMetamodel.
 	FMRelationSlot allSubInstancesDo: #resetMooseProperty.
 
 	classes := self packageName asPackage definedClasses select: [ :each | each inheritsFrom: MooseEntity ].
@@ -176,6 +195,12 @@ FamixMetamodelGenerator class >> resetMetamodel [
 	metamodel additionalProperties at: #wantsAllEntitiesNavigation put: self wantsAllEntitiesNavigation.
 
 	^ metamodel
+]
+
+{ #category : #accessing }
+FamixMetamodelGenerator class >> resetMetamodels [
+	<script>
+	self metamodelsToGenerate do: #resetMetamodel
 ]
 
 { #category : #accessing }
