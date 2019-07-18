@@ -19,7 +19,7 @@ FamixJavaType class >> annotation [
 FamixJavaType class >> requirements [
 
 	<generated>
-	^ { FamixJavaContainerEntity }
+	^ { FamixJavaMethod. FamixJavaScopingEntity }
 ]
 
 { #category : #'as yet unclassified' }
@@ -210,7 +210,7 @@ FamixJavaType >> instanceSide [
 		ifFalse: [self]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixJavaType >> isAbstract [
 	<MSEProperty: #isAbstract type: #Boolean> <derived>
 	<MSEComment: 'Flag true for abstract classes.'>

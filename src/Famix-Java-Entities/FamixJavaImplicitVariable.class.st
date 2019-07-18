@@ -63,7 +63,7 @@ FamixJavaImplicitVariable >> copyFrom: anEntity within: aVisitor [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaImplicitVariable >> isImplicitVariable [
 	^true
 ]

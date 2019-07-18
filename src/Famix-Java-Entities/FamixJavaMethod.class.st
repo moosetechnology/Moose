@@ -1,12 +1,12 @@
 Class {
 	#name : #FamixJavaMethod,
 	#superclass : #FamixJavaContainerEntity,
-	#traits : 'FamixTMethod + FamixTWithCaughtExceptions + FamixTWithClassScope + FamixTWithDeclaredExceptions + FamixTWithStatements + FamixTWithThrownExceptions',
-	#classTraits : 'FamixTMethod classTrait + FamixTWithCaughtExceptions classTrait + FamixTWithClassScope classTrait + FamixTWithDeclaredExceptions classTrait + FamixTWithStatements classTrait + FamixTWithThrownExceptions classTrait',
+	#traits : 'FamixTMethod + FamixTWithAnnotationTypes + FamixTWithCaughtExceptions + FamixTWithClasses + FamixTWithDeclaredExceptions + FamixTWithStatements + FamixTWithThrownExceptions + FamixTWithTypes',
+	#classTraits : 'FamixTMethod classTrait + FamixTWithAnnotationTypes classTrait + FamixTWithCaughtExceptions classTrait + FamixTWithClasses classTrait + FamixTWithDeclaredExceptions classTrait + FamixTWithStatements classTrait + FamixTWithThrownExceptions classTrait + FamixTWithTypes classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
-{ #category : #meta }
+{ #category : #'as yet unclassified' }
 FamixJavaMethod class >> annotation [
 
 	<MSEClass: #Method super: #FamixJavaContainerEntity>

@@ -9,7 +9,7 @@ Class {
 	#category : #'Famix-Java-Entities-Entities'
 }
 
-{ #category : #meta }
+{ #category : #'as yet unclassified' }
 FamixJavaAttribute class >> annotation [
 
 	<MSEClass: #Attribute super: #FamixJavaStructuralEntity>

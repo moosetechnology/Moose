@@ -99,7 +99,7 @@ FamixTestComposedGenerator >> define [
 { #category : #definition }
 FamixTestComposedGenerator >> newBuilder [
 
-	| mqBuilder |
+	"| mqBuilder |
 
 	mqBuilder := FamixMooseQueryGenerator builderWithDefinitions.
 
@@ -108,5 +108,5 @@ FamixTestComposedGenerator >> newBuilder [
 	^ mqBuilder
 		doNotGenerateCurrent;
 		generator: self;
-		yourself.
+		yourself."^ super newBuilder 
 ]

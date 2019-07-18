@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixTestComposedAssociation,
 	#superclass : #FamixTestComposedEntity,
-	#traits : 'TAssociationMetaLevelDependency',
-	#classTraits : 'TAssociationMetaLevelDependency classTrait',
+	#traits : 'FamixTestComposedTAssociationMetaLevelDependency',
+	#classTraits : 'FamixTestComposedTAssociationMetaLevelDependency classTrait',
 	#category : #'Famix-TestComposedMetamodel-Entities-Entities'
 }
 

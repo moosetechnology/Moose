@@ -6,7 +6,7 @@ Class {
 	#category : #'Famix-Test1-Entities-Entities'
 }
 
-{ #category : #meta }
+{ #category : #'as yet unclassified' }
 FamixTest1Class class >> annotation [
 
 	<MSEClass: #Class super: #FamixTest1NamedEntity>

@@ -29,6 +29,11 @@ Class >> generatedTraits [
 
 { #category : #'*Famix-MetamodelBuilder-Core' }
 Class >> needToAdaptTo: aRGClass [
-	^ ((self generatedTraits collect: #name) asSet = (aRGClass traitComposition transformations collect: #name) asSet
-		and: [ (self generatedSlots collect: #name) asSet = (aRGClass slots collect: #name) asSet ]) not
+	^ ((self generatedTraits collect: #name) asSet
+		= (aRGClass traitComposition transformations collect: #name) asSet
+		and: [ (self generatedSlots collect: #name) asSet
+				= (aRGClass slots collect: #name) asSet
+				and:
+					[ (self superclass ifNil: [ Trait ]) name = aRGClass superclass name ] ])
+		not
 ]

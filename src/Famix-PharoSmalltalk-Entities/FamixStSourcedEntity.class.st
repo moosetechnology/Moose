@@ -23,11 +23,6 @@ FamixStSourcedEntity class >> requirements [
 ]
 
 { #category : #accessing }
-FamixStSourcedEntity >> isImplicitVariable [
-	^false
-]
-
-{ #category : #accessing }
 FamixStSourcedEntity >> sourceLanguage [
 	^ self sourceLanguageOr: FamixStUnknownSourceLanguage
 ]

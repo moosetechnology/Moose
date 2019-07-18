@@ -3,6 +3,8 @@ Trait {
 	#instVars : [
 		'#name => FMProperty'
 	],
+	#traits : 'TDependencyQueries + TEntityMetaLevelDependency + FamixTSourceEntity',
+	#classTraits : 'TDependencyQueries classTrait + TEntityMetaLevelDependency classTrait + FamixTSourceEntity classTrait',
 	#category : #'Famix-Traits-Named'
 }
 
@@ -44,7 +46,6 @@ FamixTNamed >> name [
 
 { #category : #accessing }
 FamixTNamed >> name: anObject [
-
 	name := anObject.
 	self resetMooseName
 

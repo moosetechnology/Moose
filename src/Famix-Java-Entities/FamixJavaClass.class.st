@@ -6,7 +6,7 @@ Class {
 	#category : #'Famix-Java-Entities-Entities'
 }
 
-{ #category : #meta }
+{ #category : #'as yet unclassified' }
 FamixJavaClass class >> annotation [
 
 	<MSEClass: #Class super: #FamixJavaType>
