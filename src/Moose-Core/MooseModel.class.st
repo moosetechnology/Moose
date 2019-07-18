@@ -370,6 +370,23 @@ MooseModel >> exportToMSEStream: aStream [
 ]
 
 { #category : #actions }
+MooseModel >> flush [
+	"Clean the cache of all the entities of the model"
+	self flushProperties.
+	self flushGroups
+]
+
+{ #category : #actions }
+MooseModel >> flushGroups [
+	self entities do: [ :entity | entity privateState flushGroups ] displayingProgress: [ :entity | 'Cleaning cache of ' , entity mooseName ]
+]
+
+{ #category : #actions }
+MooseModel >> flushProperties [
+	self entities do: [ :entity | entity privateState flushProperties ] displayingProgress: [ :entity | 'Cleaning cache of ' , entity mooseName ]
+]
+
+{ #category : #actions }
 MooseModel >> importFromMSEStream: aStream [
 	"Benchmarks
 	Time millisecondsToRun: [ MooseModel new importFromMSEStream: (StandardFileStream readOnlyFileNamed: 'network3.mse') ].
