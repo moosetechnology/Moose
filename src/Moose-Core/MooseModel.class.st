@@ -370,7 +370,7 @@ MooseModel >> exportToMSEStream: aStream [
 ]
 
 { #category : #actions }
-MooseModel >> flush [
+MooseModel >> flushPrivateState [
 	"Clean the private state caches of all the entities of the model. This will not impact attributes in the private state (informations you cannot derive)"
 	self flushProperties.
 	self flushGroups
