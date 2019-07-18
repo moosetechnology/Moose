@@ -81,7 +81,6 @@ FmxMBGeneratorCleaningStrategyTest >> tearDown [
 
 { #category : #running }
 FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningCleaning [
-	generator define.
 	generator withoutCleaning cleaningStrategy cleanBeforeGeneration: generator.
 	self class environment
 		at: #FmxTestCleaningStrategyFmxTestEntity
@@ -129,7 +128,7 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningGeneration [
 			self assert: (class hasClassVarNamed: #Fuhrmanator).
 			self assert: (class class hasInstVarNamed: #grandFrais) ]
 		ifAbsent: [ self fail ].
-		
+
 	"After the generation, the superclass should be updated to be the one described in the generator."
 	self class environment
 		at: #FmxTestCleaningStrategyFmxTestEntityWithDifferentSuperclass
@@ -144,7 +143,6 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningGeneration [
 
 { #category : #running }
 FmxMBGeneratorCleaningStrategyTest >> testGenerateTotalCleaningCleaning [
-	generator define.
 	generator withCleaning cleaningStrategy cleanBeforeGeneration: generator.
 	self should: [ self class environment at: #FmxTestCleaningStrategyFmxTestEntity ] raise: KeyNotFound.
 	self should: [ self class environment at: #FmxTestCleaningStrategyFmxTestEntityWithDifferentSuperclass ] raise: KeyNotFound.
@@ -156,6 +154,7 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateTotalCleaningCleaning [
 { #category : #running }
 FmxMBGeneratorCleaningStrategyTest >> testGenerateTotalCleaningGeneration [
 	generator generateWithCleaning.
+
 	self class environment
 		at: #FmxTestCleaningStrategyFmxTestEntity
 		ifPresent: [ :class | 
@@ -168,13 +167,13 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateTotalCleaningGeneration [
 			self deny: (class hasClassVarNamed: #Fuhrmanator).
 			self deny: (class class hasInstVarNamed: #grandFrais) ]
 		ifAbsent: [ self fail ].
-	
+
 	"After the generation, the superclass should be updated."
 	self class environment
 		at: #FmxTestCleaningStrategyFmxTestEntityWithDifferentSuperclass
 		ifPresent: [ :class | self assert: class superclass name equals: #FmxTestCleaningStrategyFmxTestEntity ]
 		ifAbsent: [ self fail ].
-	
+
 	self assert: (self class methodDict at: #extensionsMethodForTest ifPresent: [ false ] ifAbsent: [ true ]).
 
 	self should: [ self class environment at: #FmxCleanerTestAddedClass ] raise: KeyNotFound.
