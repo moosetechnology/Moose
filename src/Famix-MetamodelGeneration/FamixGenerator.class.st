@@ -22,6 +22,7 @@ Class {
 		'tCompilationUnit',
 		'tDeclaredException',
 		'tDereferencedInvocation',
+		'tDirectFileAnchor',
 		'tEnumValue',
 		'tException',
 		'tFile',
@@ -1394,6 +1395,8 @@ FamixGenerator >> defineTraits [
 
 	tFileAnchor := builder newTraitNamed: #TFileAnchor.
 	tFileAnchor comment: self commentForTFileAnchor.
+
+	tDirectFileAnchor := builder newTraitNamed: #TDirectFileAnchor.
 
 	tFileNavigation := builder newTraitNamed: #TFileNavigation.
 	tFileNavigation comment: self commentForTFileNavigation.
