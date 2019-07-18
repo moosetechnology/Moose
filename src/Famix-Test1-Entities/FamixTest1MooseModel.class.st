@@ -4,19 +4,6 @@ Class {
 	#category : #'Famix-Test1-Entities'
 }
 
-{ #category : #generator }
-FamixTest1MooseModel class >> generatedSlotNames [
-	<generated>
-	'FamixTest1MooseModel class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixTest1MooseModel class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #initialization }
 FamixTest1MooseModel >> initialize [
 		<generated>
