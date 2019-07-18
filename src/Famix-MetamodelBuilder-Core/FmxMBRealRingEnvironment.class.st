@@ -102,6 +102,8 @@ FmxMBRealRingEnvironment >> compile: aRGMethod into: realClass [
 { #category : #installing }
 FmxMBRealRingEnvironment >> ensureClasses: resolvedClasses [
 	| sorted notSorted toMove |
+	resolvedClasses ifEmpty: [ ^ self ].
+	
 	notSorted := resolvedClasses asOrderedCollection.
 
 	sorted := OrderedCollection new.
