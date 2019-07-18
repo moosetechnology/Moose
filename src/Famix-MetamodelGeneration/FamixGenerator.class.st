@@ -22,6 +22,7 @@ Class {
 		'tCompilationUnit',
 		'tDeclaredException',
 		'tDereferencedInvocation',
+		'tDirectFileAnchor',
 		'tEnumValue',
 		'tException',
 		'tFile',
@@ -890,6 +891,8 @@ FamixGenerator >> defineGlueingTraits [
 
 	tClassHierarchyNavigation := builder newTraitNamed: #TClassHierarchyNavigation.
 	
+	tLCOMMetrics := builder newTraitNamed: #TLCOMMetrics.
+	
 	tInheritanceGlue := builder newTraitNamed: #TInheritanceGlue.
 	tInheritanceGlue glues: tSubInheritance with: tSuperInheritance.
 
@@ -1392,6 +1395,8 @@ FamixGenerator >> defineTraits [
 
 	tFileAnchor := builder newTraitNamed: #TFileAnchor.
 	tFileAnchor comment: self commentForTFileAnchor.
+
+	tDirectFileAnchor := builder newTraitNamed: #TDirectFileAnchor.
 
 	tFileNavigation := builder newTraitNamed: #TFileNavigation.
 	tFileNavigation comment: self commentForTFileNavigation.

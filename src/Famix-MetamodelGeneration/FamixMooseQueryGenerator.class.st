@@ -4,7 +4,6 @@ Class {
 	#instVars : [
 		'tAssociationMetaLevelDependency',
 		'tDependencyQueries',
-		'tDependencyQueryResult',
 		'tEntityMetaLevelDependency',
 		'tOODependencyQueries'
 	],
@@ -29,7 +28,6 @@ FamixMooseQueryGenerator >> defineTraits [
 
 	tAssociationMetaLevelDependency := builder newTraitNamed: #TAssociationMetaLevelDependency.
 	tDependencyQueries := builder newTraitNamed: #TDependencyQueries.
-	tDependencyQueryResult := builder newTraitNamed: #TDependencyQueryResult.
 	tEntityMetaLevelDependency := builder newTraitNamed: #TEntityMetaLevelDependency.
 	tOODependencyQueries := builder newTraitNamed: #TOODependencyQueries.
 
