@@ -74,10 +74,11 @@ DelphiFormScanner >> scan11 [
 				or: [ (currentCharacter between: $A and: $F)
 						or: [ currentCharacter between: $a and: $f ] ])
 				ifTrue: [ ^ self scan11 ] ].
-	currentCharacter isLetter
+	(currentCharacter isLetter or: [ currentCharacter == $_ ])
 		ifTrue: [ [ self recordMatch: #(20).
 			self step.
-			currentCharacter isAlphaNumeric ] whileTrue ].
+			currentCharacter isAlphaNumeric or: [ currentCharacter == $_ ] ]
+				whileTrue ].
 	^ self reportLastMatch
 ]
 
@@ -305,7 +306,8 @@ DelphiFormScanner >> scanForTokenX2 [
 DelphiFormScanner >> scanForTokenX3 [
 	[ self recordMatch: #(20).
 	self step.
-	currentCharacter isAlphaNumeric ] whileTrue
+	currentCharacter isAlphaNumeric or: [ currentCharacter == $_ ] ]
+		whileTrue
 ]
 
 { #category : #generated }
@@ -329,7 +331,7 @@ DelphiFormScanner >> scanForTokenX4 [
 	((currentCharacter between: $A and: $F)
 		or: [ currentCharacter between: $a and: $f ])
 		ifTrue: [ ^ self scan11 ].
-	currentCharacter isLetter
+	(currentCharacter isLetter or: [ currentCharacter == $_ ])
 		ifTrue:
 			[ self scanForTokenX3 ].
 	^ self reportLastMatch

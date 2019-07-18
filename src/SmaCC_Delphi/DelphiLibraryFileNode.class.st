@@ -97,8 +97,12 @@ DelphiLibraryFileNode >> libraryName [
 ]
 
 { #category : #generated }
-DelphiLibraryFileNode >> libraryName: aSmaCCToken [
-	libraryName := aSmaCCToken
+DelphiLibraryFileNode >> libraryName: aDelphiModuleNameNode [
+	self libraryName notNil
+		ifTrue: [ self libraryName parent: nil ].
+	libraryName := aDelphiModuleNameNode.
+	self libraryName notNil
+		ifTrue: [ self libraryName parent: self ]
 ]
 
 { #category : #generated }
@@ -149,7 +153,7 @@ DelphiLibraryFileNode >> moduleNames: anOrderedCollection [
 
 { #category : #generated }
 DelphiLibraryFileNode >> nodeVariables [
-	^ #(#main)
+	^ #(#libraryName #main)
 ]
 
 { #category : #generated }
@@ -174,7 +178,7 @@ DelphiLibraryFileNode >> semicolons: anOrderedCollection [
 
 { #category : #generated }
 DelphiLibraryFileNode >> tokenVariables [
-	^ #(#libraryToken #libraryName #modifier #usesToken #period)
+	^ #(#libraryToken #modifier #usesToken #period)
 ]
 
 { #category : #generated }

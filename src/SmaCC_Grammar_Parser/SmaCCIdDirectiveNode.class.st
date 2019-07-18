@@ -34,6 +34,11 @@ SmaCCIdDirectiveNode >> initialize [
 	names := OrderedCollection new: 2.
 ]
 
+{ #category : #testing }
+SmaCCIdDirectiveNode >> isIdDirective [
+	^ true
+]
+
 { #category : #generated }
 SmaCCIdDirectiveNode >> names [
 	^ names

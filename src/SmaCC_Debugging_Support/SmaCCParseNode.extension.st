@@ -118,7 +118,8 @@ SmaCCParseNode >> gtInspectorSourceIn: aComposite [
 		title: 'Source';
 		withLineNumbers: true;
 		display: [ self topParent completeSource ];
-		initialize: [ :textPresentation | textPresentation selectionInterval: (self startPosition to: self stopPosition) ]
+		initialize:
+				[ :textPresentation | textPresentation selectionInterval: self sourceInterval ]
 ]
 
 { #category : #'*SmaCC_Debugging_Support' }

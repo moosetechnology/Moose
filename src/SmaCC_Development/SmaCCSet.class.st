@@ -5,7 +5,7 @@ Class {
 		'characters',
 		'objects'
 	],
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-Collections'
 }
 
 { #category : #adding }

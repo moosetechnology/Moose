@@ -5,7 +5,7 @@ Class {
 		'regexNode',
 		'creationBlock'
 	],
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-Regular Expressions'
 }
 
 { #category : #'instance creation' }

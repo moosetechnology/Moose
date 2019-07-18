@@ -8,7 +8,7 @@ Class {
 	#instVars : [
 		'codeSizeEstimate'
 	],
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-DFA/NFA'
 }
 
 { #category : #comparing }

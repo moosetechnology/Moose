@@ -103,7 +103,7 @@ SwiftProtocolMethodDeclarationNode >> commaTokens: anOrderedCollection [
 
 { #category : #generated }
 SwiftProtocolMethodDeclarationNode >> compositeTokenVariables [
-	^ #(#_Tokens #identifierTokens #leftParenTokens #rightParenTokens #leftBracketTokens #rightBracketTokens #leftBraceTokens #rightBraceTokens #integer_literalTokens #floating_point_literalTokens #full_string_literalTokens #operatorTokens #classTokens #mutatingTokens #nonmutatingTokens #overrideTokens #staticTokens #unownedTokens #unownedLeftParensafeRightParenTokens #unownedLeftParenunsafeRightParenTokens #weakTokens #lessThanTokens #colonTokens #commaTokens #greaterThanTokens #periodTokens #protocolTokens #equalEqualTokens #varTokens #periodPeriodPeriodTokens #inoutTokens #letTokens #equalTokens #minusGreaterThanTokens #questionMarkTokens #bangTokens #typeTokens)
+	^ #(#_Tokens #identifierTokens #leftParenTokens #rightParenTokens #leftBracketTokens #rightBracketTokens #leftBraceTokens #rightBraceTokens #integer_literalTokens #floating_point_literalTokens #full_string_literalTokens #operatorTokens #classTokens #mutatingTokens #nonmutatingTokens #overrideTokens #staticTokens #unownedTokens #unownedLeftParensafeRightParenTokens #unownedLeftParenunsafeRightParenTokens #weakTokens #lessThanTokens #colonTokens #commaTokens #greaterThanTokens #periodTokens #protocolTokens #equalEqualTokens #periodPeriodPeriodTokens #varTokens #inoutTokens #letTokens #equalTokens #minusGreaterThanTokens #questionMarkTokens #bangTokens #typeTokens)
 ]
 
 { #category : #generated }
@@ -217,8 +217,8 @@ SwiftProtocolMethodDeclarationNode >> initialize [
 	periodTokens := OrderedCollection new: 2.
 	protocolTokens := OrderedCollection new: 2.
 	equalEqualTokens := OrderedCollection new: 2.
-	varTokens := OrderedCollection new: 2.
 	periodPeriodPeriodTokens := OrderedCollection new: 2.
+	varTokens := OrderedCollection new: 2.
 	inoutTokens := OrderedCollection new: 2.
 	letTokens := OrderedCollection new: 2.
 	equalTokens := OrderedCollection new: 2.

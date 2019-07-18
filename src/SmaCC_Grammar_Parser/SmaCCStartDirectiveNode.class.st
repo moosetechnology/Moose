@@ -24,6 +24,11 @@ SmaCCStartDirectiveNode >> initialize [
 	symbols := OrderedCollection new: 2.
 ]
 
+{ #category : #testing }
+SmaCCStartDirectiveNode >> isStartDirective [
+	^ true
+]
+
 { #category : #generated }
 SmaCCStartDirectiveNode >> startToken [
 	^ startToken
