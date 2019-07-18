@@ -15,19 +15,6 @@ FamixJavaFolder class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaFolder class >> generatedSlotNames [
-	<generated>
-	'FamixJavaFolder class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaFolder class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTFolder)
-]
-
 { #category : #meta }
 FamixJavaFolder class >> requirements [
 

@@ -13,19 +13,6 @@ FamixJavaUnknownVariable class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaUnknownVariable class >> generatedSlotNames [
-	<generated>
-	'FamixJavaUnknownVariable class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaUnknownVariable class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FamixJavaUnknownVariable class >> requirements [
 

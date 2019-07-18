@@ -1,7 +1,7 @@
 Trait {
 	#name : #FamixTMultipleFileAnchor,
 	#instVars : [
-		'allFiles'
+		'#allFiles => FMProperty'
 	],
 	#category : #'Famix-Traits-Traits'
 }
@@ -13,19 +13,6 @@ FamixTMultipleFileAnchor classSide >> annotation [
 	<generated>
 	<package: #'Famix-Traits'>
 	^self
-]
-
-{ #category : #generator }
-FamixTMultipleFileAnchor classSide >> generatedSlotNames [
-	<generated>
-	'FamixTMultipleFileAnchor class>>#generatedSlotNames'.
-	^ #(allFiles)
-]
-
-{ #category : #generator }
-FamixTMultipleFileAnchor classSide >> generatedTraitNames [
-	<generated>
-	^ #()
 ]
 
 { #category : #accessing }

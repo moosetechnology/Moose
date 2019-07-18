@@ -152,7 +152,7 @@ SwiftAssignmentOperatorNode >> compositeNodeVariables [
 
 { #category : #generated }
 SwiftAssignmentOperatorNode >> compositeTokenVariables [
-	^ #(#equalTokens #identifierTokens #lessThanTokens #commaTokens #greaterThanTokens #integer_literalTokens #floating_point_literalTokens #full_string_literalTokens #leftBracketTokens #rightBracketTokens #colonTokens #selfTokens #periodTokens #initTokens #leftBraceTokens #leftParenTokens #rightParenTokens #inoutTokens #letTokens #_Tokens #rightBraceTokens #operatorTokens #minusGreaterThanTokens #questionMarkTokens #bangTokens #protocolTokens #typeTokens #periodPeriodPeriodTokens #varTokens #dynamicTypeTokens)
+	^ #(#equalTokens #identifierTokens #lessThanTokens #commaTokens #greaterThanTokens #integer_literalTokens #floating_point_literalTokens #full_string_literalTokens #leftBracketTokens #rightBracketTokens #colonTokens #selfTokens #periodTokens #initTokens #leftBraceTokens #leftParenTokens #rightParenTokens #inoutTokens #letTokens #_Tokens #minusGreaterThanTokens #questionMarkTokens #bangTokens #protocolTokens #typeTokens #periodPeriodPeriodTokens #varTokens #rightBraceTokens #operatorTokens #dynamicTypeTokens)
 ]
 
 { #category : #generated }
@@ -271,8 +271,6 @@ SwiftAssignmentOperatorNode >> initialize [
 	inoutTokens := OrderedCollection new: 2.
 	letTokens := OrderedCollection new: 2.
 	_Tokens := OrderedCollection new: 2.
-	rightBraceTokens := OrderedCollection new: 2.
-	operatorTokens := OrderedCollection new: 2.
 	minusGreaterThanTokens := OrderedCollection new: 2.
 	questionMarkTokens := OrderedCollection new: 2.
 	bangTokens := OrderedCollection new: 2.
@@ -280,6 +278,8 @@ SwiftAssignmentOperatorNode >> initialize [
 	typeTokens := OrderedCollection new: 2.
 	periodPeriodPeriodTokens := OrderedCollection new: 2.
 	varTokens := OrderedCollection new: 2.
+	rightBraceTokens := OrderedCollection new: 2.
+	operatorTokens := OrderedCollection new: 2.
 	statements := OrderedCollection new: 2.
 	dynamicTypeTokens := OrderedCollection new: 2.
 ]

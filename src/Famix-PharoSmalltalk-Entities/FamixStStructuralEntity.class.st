@@ -15,19 +15,6 @@ FamixStStructuralEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixStStructuralEntity class >> generatedSlotNames [
-	<generated>
-	'FamixStStructuralEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixStStructuralEntity class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTAccessible FamixTTypedStructure)
-]
-
 { #category : #meta }
 FamixStStructuralEntity class >> requirements [
 

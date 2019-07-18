@@ -18,19 +18,6 @@ FAMIXPreprocessorDefine class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXPreprocessorDefine class >> generatedSlotNames [
-	<generated>
-	'FAMIXPreprocessorDefine class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXPreprocessorDefine class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTPreprocessorIfdef)
-]
-
 { #category : #meta }
 FAMIXPreprocessorDefine class >> requirements [
 

@@ -1,7 +1,7 @@
 Class {
 	#name : #SmaCCScannerStepToAction,
 	#superclass : #SmaCCDebuggingAction,
-	#category : #'SmaCC_Debugging_Support'
+	#category : #'SmaCC_Debugging_Support-Debugger'
 }
 
 { #category : #actions }

@@ -18,19 +18,6 @@ FamixTCaughtException classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTCaughtException classSide >> generatedSlotNames [
-	<generated>
-	'FamixTCaughtException class>>#generatedSlotNames'.
-	^ #(definingEntity)
-]
-
-{ #category : #generator }
-FamixTCaughtException classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTCaughtException >> definingEntity [
 

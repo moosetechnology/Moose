@@ -15,19 +15,6 @@ FamixJavaAccess class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaAccess class >> generatedSlotNames [
-	<generated>
-	'FamixJavaAccess class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaAccess class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTAccess)
-]
-
 { #category : #meta }
 FamixJavaAccess class >> requirements [
 

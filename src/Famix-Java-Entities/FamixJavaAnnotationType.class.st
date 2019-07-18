@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaAnnotationType,
 	#superclass : #FamixJavaType,
-	#traits : 'FamixTAnnotationType + FamixTWithAttributes',
-	#classTraits : 'FamixTAnnotationType classTrait + FamixTWithAttributes classTrait',
+	#traits : 'FamixTAnnotationType',
+	#classTraits : 'FamixTAnnotationType classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
@@ -13,19 +13,6 @@ FamixJavaAnnotationType class >> annotation [
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #generator }
-FamixJavaAnnotationType class >> generatedSlotNames [
-	<generated>
-	'FamixJavaAnnotationType class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaAnnotationType class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTAnnotationType)
 ]
 
 { #category : #meta }

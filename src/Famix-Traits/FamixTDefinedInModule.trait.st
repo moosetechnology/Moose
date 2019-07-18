@@ -15,19 +15,6 @@ FamixTDefinedInModule classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTDefinedInModule classSide >> generatedSlotNames [
-	<generated>
-	'FamixTDefinedInModule class>>#generatedSlotNames'.
-	^ #(parentModule)
-]
-
-{ #category : #generator }
-FamixTDefinedInModule classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTDefinedInModule >> parentModule [
 

@@ -13,87 +13,57 @@ FmxMBRealRingEnvironment >> adoptClassCommentOf: realClass to: anRGClass [
 
 { #category : #installing }
 FmxMBRealRingEnvironment >> adoptClassDefinitionOf: realClass to: anRGClass [
-	| generatedOldSlots customSlots customTraits customTraitNames customSlotNames slotDefinitions slotsString definition generatedOldTraits traitsDefinitions traitsString |
+	| customSlots customTraitNames customSlotNames slotDefinitions slotsString definition traitsDefinitions traitsString |
 
+	(realClass needToAdaptTo: anRGClass) ifFalse: [ ^ self ].
 
-	generatedOldSlots := self generatedSlotsOf: realClass.
-	generatedOldTraits := self generatedTraitNamessOf: realClass.
-	customSlots := realClass localSlots copyWithoutAll: generatedOldSlots.
-	customTraits := realClass traitComposition members reject: [ :e | generatedOldTraits includes: e name].
+	customSlots := realClass localSlots copyWithoutAll: realClass generatedSlots.
 	customSlotNames := customSlots collect: #name.
-	customTraitNames := customTraits collect: #traitCompositionExpression.
-	slotDefinitions := ((anRGClass slots
-		reject: [ :each | customSlotNames includes: each name ])
-		collect: #definitionString) asOrderedCollection.
-	traitsDefinitions := (anRGClass traitComposition transformations collect: #asString), 
-		customTraitNames.
+	customTraitNames := (realClass traitComposition members select: [ :e | realClass customTraits includes: e innerClass ]) collect: #traitCompositionExpression.
+	slotDefinitions := ((anRGClass slots reject: [ :each | customSlotNames includes: each name ]) collect: #definitionString) asOrderedCollection.
+	traitsDefinitions := (anRGClass traitComposition transformations collect: #asString) , customTraitNames.
 	slotDefinitions addAll: (customSlots collect: #definitionString).
 	slotDefinitions := slotDefinitions sorted.
-	
+
 	slotsString := '{' , (slotDefinitions joinUsing: '. ') , '}'.
-	traitsString := traitsDefinitions 
-		ifEmpty: [ '{ }' ]
-		ifNotEmpty: [ traitsDefinitions joinUsing: ' + '. ].
-	anRGClass isTrait ifFalse: [ 
-	definition := '{superclass} subclass: #{className} 
+	traitsString := traitsDefinitions ifEmpty: [ '{ }' ] ifNotEmpty: [ traitsDefinitions joinUsing: ' + ' ].
+	definition := anRGClass isTrait
+		ifFalse: [ '{superclass} subclass: #{className} 
 		uses: {traits} 
 		slots: {slots} 
 		classVariables: {classVariables}
 		poolDictionaries: ''{poolDictionaries}''
 		category: ''{category}'''
-		format:
-			(Dictionary
-				newFrom:
-					{(#superclass -> anRGClass superclass name).
-					(#className -> anRGClass name).
-					(#layout -> realClass classLayout class name).
-					(#traits -> traitsString).
-					(#slots -> slotsString).
-					(#classVariables -> (self classVariablesStringFor: realClass)).
-					(#poolDictionaries -> realClass sharedPoolsString).
-					(#category -> realClass category)})]
-			ifTrue: [ 
-	definition := '{superclass} named: #{className} 
+				format:
+					(Dictionary
+						newFrom:
+							{(#superclass -> anRGClass superclass name) . (#className -> anRGClass name) . (#layout -> realClass classLayout class name) . (#traits -> traitsString) . (#slots -> slotsString).
+							(#classVariables -> (self classVariablesStringFor: realClass)) . (#poolDictionaries -> realClass sharedPoolsString) . (#category -> realClass category)}) ]
+		ifTrue: [ '{superclass} named: #{className} 
 		uses: {traits} 
 		slots: {slots} 
 		category: ''{category}'''
-		format:
-			(Dictionary
-				newFrom:
-					{(#superclass -> anRGClass superclass name).
-					(#className -> anRGClass name).
-					(#traits -> traitsString).
-					(#slots -> slotsString).
-					(#category -> realClass category)}).				
-				 ].
+				format: (Dictionary newFrom: {(#superclass -> anRGClass superclass name) . (#className -> anRGClass name) . (#traits -> traitsString) . (#slots -> slotsString) . (#category -> realClass category)}) ].
 
-	self class compiler evaluate: definition.
-
-	
-	
+	self class compiler evaluate: definition
 ]
 
 { #category : #installing }
 FmxMBRealRingEnvironment >> adoptMethodsOf: realClass to: anRGClass [
+	| generatedMethodsOfRealClass generatedMethodNamesOfRealClass |
+	generatedMethodsOfRealClass := (Pragma allNamed: #generated in: realClass) collect: #method thenSelect: [ :method | realClass localMethods includes: method ].	"We reject methods comming from Traits"
+	generatedMethodNamesOfRealClass := generatedMethodsOfRealClass collect: #selector.
 
-	| generatedMethods |
+	"First we removed the generated methods should not be here anymore"
+	(generatedMethodNamesOfRealClass difference: anRGClass localSelectors) do: [ :selectorOfRemovedGeneratedMethod | realClass removeSelector: selectorOfRemovedGeneratedMethod ].
 
-	generatedMethods := Pragma allNamed: #generated in: realClass.
-	generatedMethods
-		do: [ :each | realClass removeSelector: each methodSelector ].
-	anRGClass localMethods
-		do: [ :method | 
-			(realClass localSelectors includes: method name)
-				ifFalse: [ realClass compile: method sourceCode classified: method protocol ] ].
-			
-	generatedMethods := Pragma allNamed: #generated in: realClass classSide.
-	generatedMethods
-		do: [ :each | realClass classSide removeSelector: each methodSelector ].
-	anRGClass classSide localMethods
-		do: [ :method | 
-			(realClass classSide localSelectors includes: method name)
-				ifFalse: [ realClass classSide compile: method sourceCode classified: method protocol ] ]
-			
+	"Add new generated methods"
+	(anRGClass localSelectors difference: generatedMethodNamesOfRealClass)
+		do: [ :selectorOfMethodToAdd | (realClass localSelectors includes: selectorOfMethodToAdd) ifFalse: [ self compile: (anRGClass methodNamed: selectorOfMethodToAdd) into: realClass ] ].
+
+	"Finally, update methods needing updates"
+	(generatedMethodNamesOfRealClass intersection: anRGClass localSelectors)
+		do: [ :selectorOfMethodToUpdate | (anRGClass methodNamed: selectorOfMethodToUpdate) in: [ :method | (realClass needToAdaptToMethod: method) ifTrue: [ self compile: method into: realClass ] ] ]
 ]
 
 { #category : #accessing }
@@ -115,6 +85,11 @@ FmxMBRealRingEnvironment >> compile: aSource in: aClass classified: aProtocol pa
 
 	aClass compile: aSource classified: '*', aPackageName, '-', aProtocol.
 
+]
+
+{ #category : #installing }
+FmxMBRealRingEnvironment >> compile: aRGMethod into: realClass [
+	^ realClass compile: aRGMethod sourceCode classified: aRGMethod protocol
 ]
 
 { #category : #installing }
@@ -155,76 +130,27 @@ FmxMBRealRingEnvironment >> ensurePackagesFrom: anRGEnvironment [
 ]
 
 { #category : #installing }
-FmxMBRealRingEnvironment >> generateTraitsDescriptionFrom: anRGClass [
-
-	| generatedTraits |
-	
-	generatedTraits := anRGClass traitComposition transformations.
-	
-	anRGClass classSide compile: ('generatedTraitNames
-	<generated>
-	^ {1}' format: { '#(', ((generatedTraits collect: #name) joinUsing: ' '), ')' }) classified: 'generator'
-		
-
-]
-
-{ #category : #installing }
 FmxMBRealRingEnvironment >> generatedSlotsOf: aRealClass [
-
-	| slotNames |
-	
-	slotNames := (aRealClass classSide canUnderstand: #generatedSlotNames)
-		ifTrue: [ aRealClass generatedSlotNames ]
-		ifFalse: [ Array new ].
-		
-	^ (slotNames collect: [ :slotName | aRealClass slotNamed: slotName ifFound: [ :slot | slot ] ifNone: nil ]) select: #notNil.
-	
-	
-]
-
-{ #category : #installing }
-FmxMBRealRingEnvironment >> generatedTraitNamessOf: aRealClass [
-
-	| traitNames |
-	
-	^ traitNames := (aRealClass classSide canUnderstand: #generatedTraitNames)
-		ifTrue: [ aRealClass generatedTraitNames ]
-		ifFalse: [ Array new ].
-		
-
-	
-	
-]
-
-{ #category : #installing }
-FmxMBRealRingEnvironment >> generatedTraitsOf: aRealClass [
-
-	| traitNames |
-	
-	traitNames := (aRealClass classSide canUnderstand: #generatedTraitNames)
-		ifTrue: [ aRealClass generatedTraitNames ]
-		ifFalse: [ Array new ].
-		
-	^ (traitNames collect: [ :traitName | aRealClass traitComposition transformations detect: [ :each | each name = traitName ] ifNone: [nil] ]) select: #notNil.
-	
-	
+	^ (aRealClass generatedSlotNames collect: [ :slotName | aRealClass slotNamed: slotName ifFound: [ :slot | slot ] ifNone: nil ]) select: #notNil
 ]
 
 { #category : #installing }
 FmxMBRealRingEnvironment >> installClassChangesFor: anRGClass [
-
-	| realClass | 
-	
+	| realClass |
 	realClass := self class environment classNamed: anRGClass name.
-	realClass 
-		ifNil: [ 
-			realClass := self class compiler evaluate: anRGClass definition.]
-		ifNotNil: [ 
-			self adoptClassDefinitionOf: realClass to: anRGClass. ].
+	realClass ifNil: [ realClass := self class compiler evaluate: anRGClass definition ] ifNotNil: [ self adoptClassDefinitionOf: realClass to: anRGClass ].
 	self adoptClassCommentOf: realClass to: anRGClass.
 	self cleanClass: realClass.
-	self generateSlotsDescriptionFrom: anRGClass.
-	self generateTraitsDescriptionFrom: anRGClass.
-	self adoptMethodsOf: realClass to: anRGClass
-		
+	self adoptMethodsOf: realClass to: anRGClass.
+	self adoptMethodsOf: realClass classSide to: anRGClass classSide.
+	self removeGeneratedSlotNamesMethodOf: realClass
+]
+
+{ #category : #installing }
+FmxMBRealRingEnvironment >> removeGeneratedSlotNamesMethodOf: aClass [
+	self flag: #toRemoveSlotGeneration.	"Before, a method was generated to kmow generated slots. Now, we use a dedicated slot for that and we can just collect them. This should be removed later when all metamodel will be migrated.
+	
+	Remove in 2020."
+
+	aClass class methods detect: [ :m | m selector = #generatedSlotNames ] ifFound: #removeFromSystem
 ]

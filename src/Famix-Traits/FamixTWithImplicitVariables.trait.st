@@ -15,19 +15,6 @@ FamixTWithImplicitVariables classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithImplicitVariables classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithImplicitVariables class>>#generatedSlotNames'.
-	^ #(implicitVariables)
-]
-
-{ #category : #generator }
-FamixTWithImplicitVariables classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #adding }
 FamixTWithImplicitVariables >> addImplicitVariable: anImplicitVariable [
 	implicitVariables add: anImplicitVariable

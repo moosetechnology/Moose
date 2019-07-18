@@ -15,17 +15,9 @@ FamixTWithDeclaredExceptions classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithDeclaredExceptions classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithDeclaredExceptions class>>#generatedSlotNames'.
-	^ #(declaredExceptions)
-]
-
-{ #category : #generator }
-FamixTWithDeclaredExceptions classSide >> generatedTraitNames [
-	<generated>
-	^ #()
+{ #category : #accessing }
+FamixTWithDeclaredExceptions >> addDeclaredException: aDeclaredException [
+	declaredExceptions add: aDeclaredException
 ]
 
 { #category : #accessing }

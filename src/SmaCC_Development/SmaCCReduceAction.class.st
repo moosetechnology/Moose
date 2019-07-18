@@ -5,7 +5,7 @@ SmaCCReduceAction represents the LR reduce action.
 Class {
 	#name : #SmaCCReduceAction,
 	#superclass : #SmaCCPrimitiveAction,
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-Actions'
 }
 
 { #category : #accessing }

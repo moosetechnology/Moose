@@ -20,7 +20,7 @@ FAMIXModelQueriesTest >> setUp [
 	super setUp.
 	namespace1 := FAMIXNamespace new.
 	namespace2 := FAMIXNamespace new.
-	stubNamespace := FAMIXNamespace new.
+	stubNamespace := FAMIXNamespace new isStub: true.
 	class1 := FAMIXClass new.
 	stubClass1 := FAMIXClass new isStub: true.
 	interface1 := FAMIXClass new isInterface: true.

@@ -3,7 +3,7 @@ I represent message send result as root parent of SpecOfObjectProperty.
 
 My instances can be created by 
 	
-	SpecOfOccurredResultProperty message: aMockOccurredMessage
+	SpecOfOccurredResultProperty of: aMockOccurredMessage
 
 Internal Representation and Key Implementation Points.
 
@@ -12,31 +12,16 @@ Internal Representation and Key Implementation Points.
 "
 Class {
 	#name : #MockOccurredResultProperty,
-	#superclass : #SpecOfObjectItselfProperty,
-	#instVars : [
-		'message'
-	],
+	#superclass : #MockOccurredMessageProperty,
 	#category : 'Mocketry-Domain'
 }
 
-{ #category : #'instance creation' }
-MockOccurredResultProperty class >> message: anOccurredMessage [
-	
-	^(self of: anOccurredMessage returnedValue)
-		message: anOccurredMessage 
-]
-
-{ #category : #accessing }
-MockOccurredResultProperty >> message [
-	^ message
-]
-
-{ #category : #accessing }
-MockOccurredResultProperty >> message: anObject [
-	message := anObject
+{ #category : #initialization }
+MockOccurredResultProperty >> extractValueFromMessage [
+	value := message returnedValue
 ]
 
 { #category : #printing }
 MockOccurredResultProperty >> stringForSpecTitle [ 
-	^message printWithoutResult 
+	^message printWithoutResult
 ]

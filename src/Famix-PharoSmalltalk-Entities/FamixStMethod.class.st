@@ -4,7 +4,7 @@ Class {
 	#traits : 'FamixTInvocable + FamixTMethod + FamixTTypedStructure + FamixTWithAccesses + FamixTWithClassScope + FamixTWithImplicitVariables + FamixTWithInvocations + FamixTWithLocalVariables + FamixTWithParameters + FamixTWithReferences + FamixTWithSignature',
 	#classTraits : 'FamixTInvocable classTrait + FamixTMethod classTrait + FamixTTypedStructure classTrait + FamixTWithAccesses classTrait + FamixTWithClassScope classTrait + FamixTWithImplicitVariables classTrait + FamixTWithInvocations classTrait + FamixTWithLocalVariables classTrait + FamixTWithParameters classTrait + FamixTWithReferences classTrait + FamixTWithSignature classTrait',
 	#instVars : [
-		'#protocol'
+		'#protocol => FMProperty'
 	],
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
@@ -16,19 +16,6 @@ FamixStMethod class >> annotation [
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #generator }
-FamixStMethod class >> generatedSlotNames [
-	<generated>
-	'FamixStMethod class>>#generatedSlotNames'.
-	^ #(protocol)
-]
-
-{ #category : #generator }
-FamixStMethod class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTInvocable FamixTMethod FamixTTypedStructure FamixTWithAccesses FamixTWithClassScope FamixTWithImplicitVariables FamixTWithInvocations FamixTWithLocalVariables FamixTWithParameters FamixTWithReferences FamixTWithSignature)
 ]
 
 { #category : #meta }

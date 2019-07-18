@@ -16,8 +16,7 @@ Trait {
 	#name : #FamixTAccess,
 	#instVars : [
 		'#accessor => FMOne type: #FamixTWithAccesses opposite: #accesses',
-		'#isWrite',
-		'#mySlot',
+		'#isWrite => FMProperty',
 		'#variable => FMOne type: #FamixTAccessible opposite: #incomingAccesses'
 	],
 	#category : #'Famix-Traits-Access'
@@ -30,19 +29,6 @@ FamixTAccess classSide >> annotation [
 	<generated>
 	<package: #'Famix-Traits'>
 	^self
-]
-
-{ #category : #generator }
-FamixTAccess classSide >> generatedSlotNames [
-	<generated>
-	'FamixTAccess class>>#generatedSlotNames'.
-	^ #(accessor isWrite variable)
-]
-
-{ #category : #generator }
-FamixTAccess classSide >> generatedTraitNames [
-	<generated>
-	^ #()
 ]
 
 { #category : #accessing }

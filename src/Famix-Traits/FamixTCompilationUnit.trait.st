@@ -18,19 +18,6 @@ FamixTCompilationUnit classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTCompilationUnit classSide >> generatedSlotNames [
-	<generated>
-	'FamixTCompilationUnit class>>#generatedSlotNames'.
-	^ #(compilationUnitOwner)
-]
-
-{ #category : #generator }
-FamixTCompilationUnit classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTCompilationUnit >> compilationUnitOwner [
 

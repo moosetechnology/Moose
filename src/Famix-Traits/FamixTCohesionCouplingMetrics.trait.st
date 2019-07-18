@@ -14,15 +14,9 @@ FamixTCohesionCouplingMetrics classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTCohesionCouplingMetrics classSide >> generatedSlotNames [
-	<generated>
-	'FamixTCohesionCouplingMetrics class>>#generatedSlotNames'.
-	^ #()
-]
+{ #category : #accessing }
+FamixTCohesionCouplingMetrics >> addChildEntity: anObject [
 
-{ #category : #generator }
-FamixTCohesionCouplingMetrics classSide >> generatedTraitNames [
-	<generated>
-	^ #(FamixTPackage)
+	childEntities add: anObject
+
 ]

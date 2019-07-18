@@ -15,19 +15,6 @@ FAMIXTypeAlias class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXTypeAlias class >> generatedSlotNames [
-	<generated>
-	'FAMIXTypeAlias class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXTypeAlias class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTTypeAlias)
-]
-
 { #category : #meta }
 FAMIXTypeAlias class >> requirements [
 

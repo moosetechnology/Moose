@@ -15,19 +15,6 @@ FamixTTypedStructure classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTTypedStructure classSide >> generatedSlotNames [
-	<generated>
-	'FamixTTypedStructure class>>#generatedSlotNames'.
-	^ #(declaredType)
-]
-
-{ #category : #generator }
-FamixTTypedStructure classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTTypedStructure >> declaredType [
 

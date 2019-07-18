@@ -15,19 +15,6 @@ FamixStLocalVariable class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixStLocalVariable class >> generatedSlotNames [
-	<generated>
-	'FamixStLocalVariable class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixStLocalVariable class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTLocalVariable)
-]
-
 { #category : #meta }
 FamixStLocalVariable class >> requirements [
 

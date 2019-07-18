@@ -8,7 +8,7 @@ Class {
 		'children',
 		'parent'
 	],
-	#category : #'SmaCC_Debugging_Support'
+	#category : #'SmaCC_Debugging_Support-Pattern Matching'
 }
 
 { #category : #examples }
@@ -159,18 +159,22 @@ SmaCCDebugMatchResult >> gtInspectorIn: aComposite [
 				display: [ Array with: self ];
 				children: [ :each | each allPatternChildren ];
 				allExpanded;
-				column: 'Variable' evaluated: [ :each | self patternLabelFor: each ];
-				column: 'Type' evaluated: [ :each | '' ] tags: [ :each | {each patternNode class name} ] ].
+				column: 'Variable'
+					evaluated: [ :each | self patternLabelFor: each ];
+				column: 'Type'
+					evaluated: [ :each | '' ]
+					tags: [ :each | {each patternNode class name} ] ].
 	tabulator transmit
 		to: #patternSource;
-		andShow: [ :p | p text display: [ patternNode topParent completeSource ifNil: [ '' ] ] ].
+		andShow:
+				[ :p | p text display: [ patternNode topParent completeSource ifNil: [ '' ] ] ].
 	tabulator transmit
 		from: #patternTree port: #selection;
 		to: #patternSource port: #selectionInterval;
 		transformation: [ :e | 
 			e isNil
 				ifTrue: [ 1 to: 0 ]
-				ifFalse: [ e patternNode startPosition to: e patternNode stopPosition ] ].
+				ifFalse: [ e patternNode sourceInterval ] ].
 	tabulator transmit
 		to: #nodeTree;
 		andShow: [ :p | 
@@ -181,7 +185,9 @@ SmaCCDebugMatchResult >> gtInspectorIn: aComposite [
 				children: [ :each | each matchResult allNodeChildren ];
 				allExpanded;
 				column: 'Variable' evaluated: [ :each | self nodeLabelFor: each ];
-				column: 'Type' evaluated: [ :each | '' ] tags: [ :each | {each node class name} ] ].
+				column: 'Type'
+					evaluated: [ :each | '' ]
+					tags: [ :each | {each node class name} ] ].
 	tabulator transmit
 		to: #nodeSource;
 		andShow: [ :p | 

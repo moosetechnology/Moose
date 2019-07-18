@@ -2,9 +2,10 @@ Class {
 	#name : #SmaCCNFAtoDFA,
 	#superclass : #SmaCCGraphAlgorithm,
 	#instVars : [
-		'mergedStates'
+		'mergedStates',
+		'reverseMap'
 	],
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-DFA/NFA'
 }
 
 { #category : #accessing }
@@ -59,18 +60,22 @@ SmaCCNFAtoDFA >> eliminateDuplicateTransitionsIn: aSmaCCNode [
 { #category : #'initialize-release' }
 SmaCCNFAtoDFA >> initialize [
 	super initialize.
-	mergedStates := Dictionary new
+	mergedStates := Dictionary new.
+	reverseMap := IdentityDictionary new.
 ]
 
 { #category : #'merging nodes' }
 SmaCCNFAtoDFA >> mergedNodeFor: nodeCollection [
 	| mergedNodes |
-	mergedNodes := nodeCollection asSortedCollection asArray.
+	mergedNodes := IdentitySet new: nodeCollection size.
+	nodeCollection
+		do: [ :each | mergedNodes addAll: (reverseMap at: each ifAbsent: [ {each} ]) ].
+	mergedNodes := mergedNodes asSortedCollection asArray.
 	^ mergedStates
 		at: mergedNodes
-		ifAbsent:
-			[ | newNode |
+		ifAbsent: [ | newNode |
 			newNode := self createMergedNodeFrom: mergedNodes.
+			reverseMap at: newNode put: mergedNodes.
 			mergedStates
 				at: mergedNodes put: newNode;
 				at: (Array with: newNode) put: newNode.

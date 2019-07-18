@@ -15,19 +15,6 @@ FamixJavaReference class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaReference class >> generatedSlotNames [
-	<generated>
-	'FamixJavaReference class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaReference class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTReference)
-]
-
 { #category : #meta }
 FamixJavaReference class >> requirements [
 

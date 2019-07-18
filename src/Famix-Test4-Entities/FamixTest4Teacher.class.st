@@ -17,24 +17,34 @@ FamixTest4Teacher class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTest4Teacher class >> generatedSlotNames [
-	<generated>
-	'FamixTest4Teacher class>>#generatedSlotNames'.
-	^ #(school students)
-]
-
-{ #category : #generator }
-FamixTest4Teacher class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FamixTest4Teacher class >> requirements [
 
 	<generated>
 	^ { FamixTest4School }
+]
+
+{ #category : #adding }
+FamixTest4Teacher >> addStudents: anObject [
+			
+	<generated>
+	^ self students add: anObject
+]
+
+{ #category : #accessing }
+FamixTest4Teacher >> belongsTo [
+
+	<generated>
+	^ self school
+
+]
+
+{ #category : #accessing }
+FamixTest4Teacher >> belongsTo: anObject [
+
+	<generated>
+	self school: anObject
+
 ]
 
 { #category : #accessing }

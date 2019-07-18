@@ -15,19 +15,6 @@ FamixTest1FileAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTest1FileAnchor class >> generatedSlotNames [
-	<generated>
-	'FamixTest1FileAnchor class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixTest1FileAnchor class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTFileNavigation)
-]
-
 { #category : #meta }
 FamixTest1FileAnchor class >> requirements [
 

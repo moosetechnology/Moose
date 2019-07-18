@@ -20,19 +20,6 @@ FAMIXNamedEntity class >> belongsToMethod [
 	^ self compiledMethodAt: #belongsTo ifAbsent: nil
 ]
 
-{ #category : #generator }
-FAMIXNamedEntity class >> generatedSlotNames [
-	<generated>
-	'FAMIXNamedEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXNamedEntity class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTInvocationsReceiver FamixTNamed FamixTPackageable FamixTPossibleStub FamixTWithAnnotationInstances FamixTWithModifiers TDependencyQueries TEntityMetaLevelDependency)
-]
-
 { #category : #meta }
 FAMIXNamedEntity class >> requirements [
 

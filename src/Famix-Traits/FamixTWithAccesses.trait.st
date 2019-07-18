@@ -15,19 +15,6 @@ FamixTWithAccesses classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithAccesses classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithAccesses class>>#generatedSlotNames'.
-	^ #(accesses)
-]
-
-{ #category : #generator }
-FamixTWithAccesses classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTWithAccesses >> accesses [
 

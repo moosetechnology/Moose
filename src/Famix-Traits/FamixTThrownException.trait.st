@@ -18,19 +18,6 @@ FamixTThrownException classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTThrownException classSide >> generatedSlotNames [
-	<generated>
-	'FamixTThrownException class>>#generatedSlotNames'.
-	^ #(definingEntity)
-]
-
-{ #category : #generator }
-FamixTThrownException classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTThrownException >> definingEntity [
 

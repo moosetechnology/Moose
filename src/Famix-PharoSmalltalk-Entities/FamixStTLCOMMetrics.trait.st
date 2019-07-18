@@ -11,16 +11,3 @@ FamixStTLCOMMetrics classSide >> annotation [
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	^self
 ]
-
-{ #category : #generator }
-FamixStTLCOMMetrics classSide >> generatedSlotNames [
-	<generated>
-	'FamixStTLCOMMetrics class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixStTLCOMMetrics classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]

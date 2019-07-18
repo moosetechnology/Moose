@@ -13,19 +13,6 @@ FAMIXEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXEntity class >> generatedSlotNames [
-	<generated>
-	'FAMIXEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXEntity class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FAMIXEntity class >> metamodel [
 

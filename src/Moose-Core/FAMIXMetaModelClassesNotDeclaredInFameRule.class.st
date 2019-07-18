@@ -19,7 +19,7 @@ FAMIXMetaModelClassesNotDeclaredInFameRule >> checkClass: aContext [
 
 	(self metaModelClasses includes: class instanceSide)
 		ifTrue: [
-			pragmas := Pragma allNamed: #MSEClass:super: in: class.
+			pragmas := class metamodelDefinitionPragmas.
 			pragmas ifEmpty: [
 				class isMeta ifTrue: [ result addClass: class ].
 			^ self ].

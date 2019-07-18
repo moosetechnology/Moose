@@ -15,19 +15,6 @@ FAMIXContainerEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXContainerEntity class >> generatedSlotNames [
-	<generated>
-	'FAMIXContainerEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXContainerEntity class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTContainingWithInvocationsGlue FamixTContainingWithStatementsGlue FamixTWithAnnotationTypes FamixTWithClasses FamixTWithFunctions FamixTWithTypes TOODependencyQueries)
-]
-
 { #category : #meta }
 FAMIXContainerEntity class >> requirements [
 

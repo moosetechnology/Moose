@@ -25,19 +25,6 @@ FamixTParameterizedType classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTParameterizedType classSide >> generatedSlotNames [
-	<generated>
-	'FamixTParameterizedType class>>#generatedSlotNames'.
-	^ #(parameterizableClass)
-]
-
-{ #category : #generator }
-FamixTParameterizedType classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTParameterizedType >> parameterizableClass [
 

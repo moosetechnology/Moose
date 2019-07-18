@@ -15,19 +15,6 @@ FamixTestComposed2CustomEntity5 class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTestComposed2CustomEntity5 class >> generatedSlotNames [
-	<generated>
-	'FamixTestComposed2CustomEntity5 class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixTestComposed2CustomEntity5 class >> generatedTraitNames [
-	<generated>
-	^ #(TDependencyQueries TEntityMetaLevelDependency)
-]
-
 { #category : #meta }
 FamixTestComposed2CustomEntity5 class >> requirements [
 

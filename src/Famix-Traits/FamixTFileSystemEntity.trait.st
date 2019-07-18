@@ -20,19 +20,6 @@ FamixTFileSystemEntity classSide >> famixFolderSeparatorString [
 	^'/'
 ]
 
-{ #category : #generator }
-FamixTFileSystemEntity classSide >> generatedSlotNames [
-	<generated>
-	'FamixTFileSystemEntity class>>#generatedSlotNames'.
-	^ #(parentFolder)
-]
-
-{ #category : #generator }
-FamixTFileSystemEntity classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #constants }
 FamixTFileSystemEntity classSide >> named: aName filedIn: aFolder [
 

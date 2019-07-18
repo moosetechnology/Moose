@@ -15,19 +15,6 @@ FAMIXAnnotationInstance class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXAnnotationInstance class >> generatedSlotNames [
-	<generated>
-	'FAMIXAnnotationInstance class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXAnnotationInstance class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTAnnotationInstance FamixTTypedAnnotationInstance FamixTWithAnnotationInstanceAttributes TDependencyQueries TEntityMetaLevelDependency)
-]
-
 { #category : #meta }
 FAMIXAnnotationInstance class >> requirements [
 

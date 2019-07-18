@@ -6,10 +6,9 @@ A FAMIXMethod is always contained in a parentType.
 Trait {
 	#name : #FamixTMethod,
 	#instVars : [
-		'#isAbstract',
-		'#isClassSide',
-		'#isPublic',
-		'#kind',
+		'#isAbstract => FMProperty',
+		'#isClassSide => FMProperty',
+		'#kind => FMProperty',
 		'#parentType => FMOne type: #FamixTWithMethods opposite: #methods'
 	],
 	#category : #'Famix-Traits-Method'
@@ -30,19 +29,6 @@ FamixTMethod classSide >> famixTMethodRelatedGroup [
 	<mooseGroup>
 	
 	^ FAMIXMethodGroup
-]
-
-{ #category : #generator }
-FamixTMethod classSide >> generatedSlotNames [
-	<generated>
-	'FamixTMethod class>>#generatedSlotNames'.
-	^ #(isAbstract isClassSide kind parentType)
-]
-
-{ #category : #generator }
-FamixTMethod classSide >> generatedTraitNames [
-	<generated>
-	^ #()
 ]
 
 { #category : #metrics }

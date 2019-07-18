@@ -5,7 +5,7 @@ Class {
 		'index',
 		'symbol'
 	],
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-Item Sets'
 }
 
 { #category : #'instance creation' }
@@ -24,7 +24,7 @@ SmaCCSymbolTableIndex >> = anObject [
 
 { #category : #comparing }
 SmaCCSymbolTableIndex >> hash [
-	^ (index bitShift: 14) + symbol hash
+	^ index hashMultiply bitXor: symbol hash
 ]
 
 { #category : #accessing }

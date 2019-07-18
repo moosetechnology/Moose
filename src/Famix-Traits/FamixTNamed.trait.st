@@ -1,7 +1,7 @@
 Trait {
 	#name : #FamixTNamed,
 	#instVars : [
-		'name'
+		'#name => FMProperty'
 	],
 	#category : #'Famix-Traits-Named'
 }
@@ -13,19 +13,6 @@ FamixTNamed classSide >> annotation [
 	<generated>
 	<package: #'Famix-Traits'>
 	^self
-]
-
-{ #category : #generator }
-FamixTNamed classSide >> generatedSlotNames [
-	<generated>
-	'FamixTNamed class>>#generatedSlotNames'.
-	^ #(name)
-]
-
-{ #category : #generator }
-FamixTNamed classSide >> generatedTraitNames [
-	<generated>
-	^ #()
 ]
 
 { #category : #'instance creation' }
@@ -61,23 +48,6 @@ FamixTNamed >> name: anObject [
 	name := anObject.
 	self resetMooseName
 
-]
-
-{ #category : #'Famix-Extensions' }
-FamixTNamed >> nameLength [
-	<MSEProperty: #nameLength type: #Number>
-	<derived>
-	<MSEComment: 'The number of characters in the name'>
-	
-	^self
-		lookUpPropertyNamed: #nameLength
-		computedAs: [self name size]
-]
-
-{ #category : #'Famix-Extensions' }
-FamixTNamed >> nameLength: aNumber [
-	
-	self privateState propertyAt: #nameLength put: aNumber
 ]
 
 { #category : #accessing }

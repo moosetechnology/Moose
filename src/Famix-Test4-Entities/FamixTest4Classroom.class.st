@@ -13,19 +13,6 @@ FamixTest4Classroom class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTest4Classroom class >> generatedSlotNames [
-	<generated>
-	'FamixTest4Classroom class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixTest4Classroom class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FamixTest4Classroom class >> requirements [
 

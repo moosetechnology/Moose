@@ -13,19 +13,6 @@ FAMIXCppSourceLanguage class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXCppSourceLanguage class >> generatedSlotNames [
-	<generated>
-	'FAMIXCppSourceLanguage class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXCppSourceLanguage class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FAMIXCppSourceLanguage class >> requirements [
 

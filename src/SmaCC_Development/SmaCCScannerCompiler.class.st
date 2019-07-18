@@ -5,7 +5,7 @@ Class {
 		'grammar',
 		'codeGenerator'
 	],
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-Compiler'
 }
 
 { #category : #'regular expression construction' }
@@ -92,6 +92,18 @@ SmaCCScannerCompiler >> combinedGeneralRegexes [
 	^ combinedRegex
 ]
 
+{ #category : #'regular expression construction' }
+SmaCCScannerCompiler >> combinedRegexes [
+	| combinedRegex |
+	combinedRegex := nil.
+	self
+		regularExpressionsDo: [ :each | 
+			combinedRegex := combinedRegex isNil
+				ifTrue: [ each ]
+				ifFalse: [ combinedRegex | each ] ].
+	^ combinedRegex
+]
+
 { #category : #'compiling-scanner' }
 SmaCCScannerCompiler >> compileMethodsFor: regex [
 	| keywordmap dfa selectorMap |
@@ -154,10 +166,14 @@ SmaCCScannerCompiler >> computeSelectorMap [
 ]
 
 { #category : #'compiling-scanner' }
+SmaCCScannerCompiler >> createFullRegex [
+	self updateSymbolsAndActions.
+	^ self combinedRegexes
+]
+
+{ #category : #'compiling-scanner' }
 SmaCCScannerCompiler >> createRegex [
-	self addSpecialSymbols.
-	self addNormalSymbols.
-	self addActions.
+	self updateSymbolsAndActions.
 	^ self addSpecificREsWithoutActionsTo: self combinedGeneralRegexes
 ]
 
@@ -190,4 +206,11 @@ SmaCCScannerCompiler >> specificRegularExpressionsDo: aBlock [
 { #category : #accessing }
 SmaCCScannerCompiler >> symbols [
 	^ grammar symbols
+]
+
+{ #category : #'compiling-scanner' }
+SmaCCScannerCompiler >> updateSymbolsAndActions [
+	self addSpecialSymbols.
+	self addNormalSymbols.
+	self addActions
 ]

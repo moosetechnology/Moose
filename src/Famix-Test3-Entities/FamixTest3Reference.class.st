@@ -15,19 +15,6 @@ FamixTest3Reference class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTest3Reference class >> generatedSlotNames [
-	<generated>
-	'FamixTest3Reference class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixTest3Reference class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTReference)
-]
-
 { #category : #meta }
 FamixTest3Reference class >> requirements [
 

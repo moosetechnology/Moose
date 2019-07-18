@@ -15,19 +15,6 @@ FAMIXBehaviouralEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXBehaviouralEntity class >> generatedSlotNames [
-	<generated>
-	'FAMIXBehaviouralEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXBehaviouralEntity class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTInvocable FamixTTypedStructure FamixTWithAccesses FamixTWithDereferencedInvocations FamixTWithImplicitVariables FamixTWithInvocations FamixTWithLocalVariables FamixTWithParameters FamixTWithReferences FamixTWithSignature FamixTWithStatements)
-]
-
 { #category : #meta }
 FAMIXBehaviouralEntity class >> requirements [
 

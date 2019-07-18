@@ -216,7 +216,7 @@ FamixCompatibilityGenerator >> defineHierarchy [
 	behaviouralEntity --|> #TWithStatements.
 
 	cFile --|> file.
-	cFile --|> #TWithFileInclude.
+	cFile --|> #TWithFileIncludes.
 
 	cPPSourceLanguage --|> cSourceLanguage.
 

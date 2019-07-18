@@ -15,19 +15,6 @@ FamixTest1Folder class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTest1Folder class >> generatedSlotNames [
-	<generated>
-	'FamixTest1Folder class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixTest1Folder class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTFolder)
-]
-
 { #category : #meta }
 FamixTest1Folder class >> requirements [
 

@@ -31,17 +31,10 @@ FamixTNamespace classSide >> famixTNamespaceRelatedGroup [
 	^ FAMIXNamespaceGroup
 ]
 
-{ #category : #generator }
-FamixTNamespace classSide >> generatedSlotNames [
-	<generated>
-	'FamixTNamespace class>>#generatedSlotNames'.
-	^ #(namespaceEntities namespaceOwner)
-]
+{ #category : #accessing }
+FamixTNamespace >> addNamespaceEntity: anObject [
+	namespaceEntities add: anObject
 
-{ #category : #generator }
-FamixTNamespace classSide >> generatedTraitNames [
-	<generated>
-	^ #()
 ]
 
 { #category : #testing }

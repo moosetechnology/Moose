@@ -15,17 +15,10 @@ FamixTWithParameterizedTypes classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithParameterizedTypes classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithParameterizedTypes class>>#generatedSlotNames'.
-	^ #(parameterizedTypes)
-]
+{ #category : #accessing }
+FamixTWithParameterizedTypes >> addParameterizedType: anObject [
+	parameterizedTypes add: anObject
 
-{ #category : #generator }
-FamixTWithParameterizedTypes classSide >> generatedTraitNames [
-	<generated>
-	^ #()
 ]
 
 { #category : #accessing }

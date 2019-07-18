@@ -15,19 +15,6 @@ FamixTSubInheritance classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTSubInheritance classSide >> generatedSlotNames [
-	<generated>
-	'FamixTSubInheritance class>>#generatedSlotNames'.
-	^ #(subclass)
-]
-
-{ #category : #generator }
-FamixTSubInheritance classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTSubInheritance >> from [
 	^ self subclass 

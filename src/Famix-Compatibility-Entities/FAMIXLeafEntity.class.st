@@ -13,19 +13,6 @@ FAMIXLeafEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXLeafEntity class >> generatedSlotNames [
-	<generated>
-	'FAMIXLeafEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXLeafEntity class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FAMIXLeafEntity class >> requirements [
 

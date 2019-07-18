@@ -4,7 +4,6 @@ Class {
 	#instVars : [
 		'values',
 		'owner',
-		'opposite',
 		'slot'
 	],
 	#category : #'Fame-Core-Slots'
@@ -113,12 +112,6 @@ FMSlotMultivalueLink >> postCopy [
 
 	super postCopy.
 	values := values copy.
-]
-
-{ #category : #printing }
-FMSlotMultivalueLink >> printOn: aStream [
-
-	self asArray printOn: aStream
 ]
 
 { #category : #removing }

@@ -15,19 +15,6 @@ FamixJavaSourcedEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaSourcedEntity class >> generatedSlotNames [
-	<generated>
-	'FamixJavaSourcedEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaSourcedEntity class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTWithComments FamixTWithFiles FamixTWithSourceAnchor FamixTWithSourceLanguage)
-]
-
 { #category : #meta }
 FamixJavaSourcedEntity class >> requirements [
 
@@ -41,9 +28,9 @@ FamixJavaSourcedEntity >> accept: aVisitor [
 	aVisitor visitEntity: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #removing }
 FamixJavaSourcedEntity >> addComment: aComment [
-	self privateAddComment: aComment asFamixJavaComment
+	comments add: aComment asFamixJavaComment
 ]
 
 { #category : #accessing }

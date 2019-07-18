@@ -13,19 +13,6 @@ FAMIXUnknownVariable class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXUnknownVariable class >> generatedSlotNames [
-	<generated>
-	'FAMIXUnknownVariable class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXUnknownVariable class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FAMIXUnknownVariable class >> requirements [
 

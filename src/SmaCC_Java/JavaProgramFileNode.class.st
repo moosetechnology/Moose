@@ -16,7 +16,7 @@ JavaProgramFileNode >> acceptVisitor: aProgramVisitor [
 
 { #category : #generated }
 JavaProgramFileNode >> compositeNodeVariables [
-	^ #(#imports #typeDeclarations)
+	^ #(#typeDeclarations #imports)
 ]
 
 { #category : #generated }
@@ -34,8 +34,8 @@ JavaProgramFileNode >> imports: anOrderedCollection [
 { #category : #'generated-initialize-release' }
 JavaProgramFileNode >> initialize [
 	super initialize.
-	imports := OrderedCollection new: 2.
 	typeDeclarations := OrderedCollection new: 2.
+	imports := OrderedCollection new: 2.
 ]
 
 { #category : #generated }

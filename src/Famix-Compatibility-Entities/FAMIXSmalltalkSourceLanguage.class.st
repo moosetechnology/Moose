@@ -13,19 +13,6 @@ FAMIXSmalltalkSourceLanguage class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXSmalltalkSourceLanguage class >> generatedSlotNames [
-	<generated>
-	'FAMIXSmalltalkSourceLanguage class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXSmalltalkSourceLanguage class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FAMIXSmalltalkSourceLanguage class >> requirements [
 

@@ -29,19 +29,6 @@ FamixTContainingWithStatementsGlue classSide >> generateMethodsFor: aBuilderClas
 "
 ]
 
-{ #category : #generator }
-FamixTContainingWithStatementsGlue classSide >> generatedSlotNames [
-	<generated>
-	'FamixTContainingWithStatementsGlue class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixTContainingWithStatementsGlue classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #metrics }
 FamixTContainingWithStatementsGlue >> numberOfStatements [
 	<MSEProperty: #numberOfStatements type: #Number>

@@ -28,19 +28,6 @@ FamixTEnumValue classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTEnumValue classSide >> generatedSlotNames [
-	<generated>
-	'FamixTEnumValue class>>#generatedSlotNames'.
-	^ #(parentEnum)
-]
-
-{ #category : #generator }
-FamixTEnumValue classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTEnumValue >> mooseNameOn: aStream [
 	(self belongsTo isNotNil and: [ self belongsTo name isNotNil ])

@@ -12,19 +12,6 @@ FamixTClassHierarchyNavigation classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTClassHierarchyNavigation classSide >> generatedSlotNames [
-	<generated>
-	'FamixTClassHierarchyNavigation class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixTClassHierarchyNavigation classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #metrics }
 FamixTClassHierarchyNavigation >> addedMethods [
 	| inheritedMethodNames |
@@ -62,8 +49,9 @@ FamixTClassHierarchyNavigation >> allSuperclassesWithoutAliasesDo: aBlock [
 
 { #category : #enumerating }
 FamixTClassHierarchyNavigation >> anySuperclass [
-
-	self superInheritances ifEmpty: [ ^nil ] ifNotEmpty: [^ self superInheritances any superclass]. 
+	^ self superInheritances
+		ifEmpty: [ nil ]
+		ifNotEmpty: [ self superInheritances anyOne superclass ]
 ]
 
 { #category : #enumerating }

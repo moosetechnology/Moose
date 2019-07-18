@@ -36,19 +36,6 @@ FamixTAnnotationInstance classSide >> famixTAnnotationInstanceRelatedGroup [
 	^ FAMIXAnnotationInstanceGroup
 ]
 
-{ #category : #generator }
-FamixTAnnotationInstance classSide >> generatedSlotNames [
-	<generated>
-	'FamixTAnnotationInstance class>>#generatedSlotNames'.
-	^ #(annotatedEntity)
-]
-
-{ #category : #generator }
-FamixTAnnotationInstance classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTAnnotationInstance >> annotatedEntity [
 

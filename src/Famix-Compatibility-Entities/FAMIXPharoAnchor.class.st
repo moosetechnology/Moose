@@ -16,19 +16,6 @@ FAMIXPharoAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXPharoAnchor class >> generatedSlotNames [
-	<generated>
-	'FAMIXPharoAnchor class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXPharoAnchor class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FAMIXPharoAnchor class >> requirements [
 

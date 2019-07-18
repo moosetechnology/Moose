@@ -9,7 +9,7 @@ Class {
 	#classVars : [
 		'NextId'
 	],
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-DFA/NFA'
 }
 
 { #category : #'class initialization' }
@@ -223,7 +223,7 @@ SmaCCNode >> hasSimpleLoop [
 
 { #category : #comparing }
 SmaCCNode >> hash [
-	^ id bitShift: 4
+	^ id hashMultiply
 ]
 
 { #category : #accessing }

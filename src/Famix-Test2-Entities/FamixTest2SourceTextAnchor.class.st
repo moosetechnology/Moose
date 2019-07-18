@@ -15,19 +15,6 @@ FamixTest2SourceTextAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTest2SourceTextAnchor class >> generatedSlotNames [
-	<generated>
-	'FamixTest2SourceTextAnchor class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixTest2SourceTextAnchor class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTWithImmediateSource)
-]
-
 { #category : #meta }
 FamixTest2SourceTextAnchor class >> requirements [
 

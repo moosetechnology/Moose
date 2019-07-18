@@ -18,19 +18,6 @@ FamixJavaAttribute class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaAttribute class >> generatedSlotNames [
-	<generated>
-	'FamixJavaAttribute class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaAttribute class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTAttribute FamixTWithClassScope)
-]
-
 { #category : #meta }
 FamixJavaAttribute class >> requirements [
 

@@ -15,19 +15,6 @@ FamixTestComposed2NamedEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTestComposed2NamedEntity class >> generatedSlotNames [
-	<generated>
-	'FamixTestComposed2NamedEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixTestComposed2NamedEntity class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTNamed TDependencyQueries TEntityMetaLevelDependency)
-]
-
 { #category : #meta }
 FamixTestComposed2NamedEntity class >> requirements [
 

@@ -6,7 +6,7 @@ Class {
 
 { #category : #'generated-accessing' }
 LineParser class >> cacheId [
-	^'2018-10-20T09:16:31.648459-05:00'
+	^'2019-04-15T17:15:41.487428-05:00'
 ]
 
 { #category : #generated }
@@ -36,11 +36,11 @@ Line
 { #category : #generated }
 LineParser class >> reduceTable [
 ^#(
-	#(6 0 #nil) 
-	#(6 1 #liftFirstValue:) 
-	#(4 1 #reduceActionForFile1:) 
-	#(5 1 #reduceActionForLines1:) 
-	#(5 3 #reduceActionForLines2:)
+	#(6 0 #nil 146433 false ) 
+	#(6 1 #liftFirstValue: 146434 false ) 
+	#(4 1 #reduceActionForFile1: 73729 false ) 
+	#(5 1 #reduceActionForLines1: 104449 false ) 
+	#(5 3 #reduceActionForLines2: 104450 false )
 	).
 ]
 
@@ -61,7 +61,7 @@ LineParser class >> symbolNames [
 
 { #category : #generated }
 LineParser class >> symbolTypes [
-	^ #(#SmaCCToken #SmaCCToken #FileNode #FileNode #OrderedCollection #SmaCCToken #SmaCCToken #SmaCCError)
+	^ #(#SmaCCToken #SmaCCToken #FileNode #FileNode #OrderedCollection #SmaCCToken #SmaCCToken #SmaCCErrorNode)
 ]
 
 { #category : #generated }

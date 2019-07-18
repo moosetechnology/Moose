@@ -15,19 +15,6 @@ FAMIXDereferencedInvocation class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXDereferencedInvocation class >> generatedSlotNames [
-	<generated>
-	'FAMIXDereferencedInvocation class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXDereferencedInvocation class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTDereferencedInvocation)
-]
-
 { #category : #meta }
 FAMIXDereferencedInvocation class >> requirements [
 

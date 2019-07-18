@@ -50,7 +50,7 @@ SmaCCStringIndex >> = anObject [
 
 { #category : #comparing }
 SmaCCStringIndex >> hash [
-	^ index bitXor: intervalId
+	^ (index hashMultiply bitXor: intervalId) hashMultiply
 ]
 
 { #category : #accessing }

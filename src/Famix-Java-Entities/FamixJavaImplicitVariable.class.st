@@ -15,19 +15,6 @@ FamixJavaImplicitVariable class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaImplicitVariable class >> generatedSlotNames [
-	<generated>
-	'FamixJavaImplicitVariable class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaImplicitVariable class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTImplicitVariable)
-]
-
 { #category : #meta }
 FamixJavaImplicitVariable class >> requirements [
 

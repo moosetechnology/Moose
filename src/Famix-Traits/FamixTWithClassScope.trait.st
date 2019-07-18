@@ -11,16 +11,3 @@ FamixTWithClassScope classSide >> annotation [
 	<package: #'Famix-Traits'>
 	^self
 ]
-
-{ #category : #generator }
-FamixTWithClassScope classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithClassScope class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixTWithClassScope classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]

@@ -15,19 +15,6 @@ FamixJavaInheritance class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaInheritance class >> generatedSlotNames [
-	<generated>
-	'FamixJavaInheritance class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaInheritance class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTInheritanceGlue FamixTSubInheritance FamixTSuperInheritance)
-]
-
 { #category : #meta }
 FamixJavaInheritance class >> requirements [
 

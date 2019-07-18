@@ -15,19 +15,6 @@ FamixJavaInvocation class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaInvocation class >> generatedSlotNames [
-	<generated>
-	'FamixJavaInvocation class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaInvocation class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTInvocation FamixTWithSignature)
-]
-
 { #category : #meta }
 FamixJavaInvocation class >> requirements [
 

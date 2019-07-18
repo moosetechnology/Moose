@@ -14,7 +14,7 @@ Class {
 	#classVars : [
 		'IsCaching'
 	],
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-Compilation Model'
 }
 
 { #category : #'class initialization' }

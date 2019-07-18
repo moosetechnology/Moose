@@ -15,19 +15,6 @@ FAMIXInclude class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXInclude class >> generatedSlotNames [
-	<generated>
-	'FAMIXInclude class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXInclude class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTFileInclude)
-]
-
 { #category : #meta }
 FAMIXInclude class >> requirements [
 

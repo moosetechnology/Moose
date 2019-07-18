@@ -15,19 +15,6 @@ FamixJavaLocalVariable class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaLocalVariable class >> generatedSlotNames [
-	<generated>
-	'FamixJavaLocalVariable class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaLocalVariable class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTLocalVariable)
-]
-
 { #category : #meta }
 FamixJavaLocalVariable class >> requirements [
 

@@ -15,19 +15,6 @@ FamixJavaAssociation class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaAssociation class >> generatedSlotNames [
-	<generated>
-	'FamixJavaAssociation class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaAssociation class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTAssociation TAssociationMetaLevelDependency)
-]
-
 { #category : #meta }
 FamixJavaAssociation class >> requirements [
 

@@ -15,19 +15,6 @@ FamixJavaMethod class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaMethod class >> generatedSlotNames [
-	<generated>
-	'FamixJavaMethod class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaMethod class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTInvocable FamixTMethod FamixTTypedStructure FamixTWithAccesses FamixTWithCaughtExceptions FamixTWithClassScope FamixTWithDeclaredExceptions FamixTWithImplicitVariables FamixTWithInvocations FamixTWithLocalVariables FamixTWithParameters FamixTWithReferences FamixTWithSignature FamixTWithStatements FamixTWithThrownExceptions)
-]
-
 { #category : #meta }
 FamixJavaMethod class >> requirements [
 

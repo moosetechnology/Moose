@@ -20,19 +20,6 @@ FAMIXAccess class >> fromMethod [
 	^ self lookupSelector: #accessor
 ]
 
-{ #category : #generator }
-FAMIXAccess class >> generatedSlotNames [
-	<generated>
-	'FAMIXAccess class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXAccess class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTAccess)
-]
-
 { #category : #meta }
 FAMIXAccess class >> requirements [
 

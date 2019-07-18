@@ -18,19 +18,6 @@ FAMIXAttribute class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXAttribute class >> generatedSlotNames [
-	<generated>
-	'FAMIXAttribute class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXAttribute class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTAttribute FamixTWithClassScope)
-]
-
 { #category : #meta }
 FAMIXAttribute class >> requirements [
 

@@ -13,19 +13,6 @@ FamixStUnknownVariable class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixStUnknownVariable class >> generatedSlotNames [
-	<generated>
-	'FamixStUnknownVariable class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixStUnknownVariable class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FamixStUnknownVariable class >> requirements [
 

@@ -2,7 +2,7 @@ Class {
 	#name : #FamixTest4Entity,
 	#superclass : #MooseEntity,
 	#instVars : [
-		'name'
+		'#name => FMProperty'
 	],
 	#category : #'Famix-Test4-Entities-Entities'
 }
@@ -14,19 +14,6 @@ FamixTest4Entity class >> annotation [
 	<package: #'Famix-Test4-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #generator }
-FamixTest4Entity class >> generatedSlotNames [
-	<generated>
-	'FamixTest4Entity class>>#generatedSlotNames'.
-	^ #(name)
-]
-
-{ #category : #generator }
-FamixTest4Entity class >> generatedTraitNames [
-	<generated>
-	^ #()
 ]
 
 { #category : #meta }

@@ -85,7 +85,7 @@ JavaForStatementNode >> leftParen: aSmaCCToken [
 
 { #category : #generated }
 JavaForStatementNode >> nodeVariables [
-	^ #(#initial #test #_update #statement)
+	^ #(#statement #_update #test #initial)
 ]
 
 { #category : #generated }

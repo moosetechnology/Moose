@@ -15,19 +15,6 @@ FAMIXSourceLanguage class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXSourceLanguage class >> generatedSlotNames [
-	<generated>
-	'FAMIXSourceLanguage class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXSourceLanguage class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTSourceLanguage)
-]
-
 { #category : #meta }
 FAMIXSourceLanguage class >> requirements [
 

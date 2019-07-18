@@ -15,19 +15,6 @@ FamixJavaSourceLanguage class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaSourceLanguage class >> generatedSlotNames [
-	<generated>
-	'FamixJavaSourceLanguage class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaSourceLanguage class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTSourceLanguage)
-]
-
 { #category : #meta }
 FamixJavaSourceLanguage class >> requirements [
 

@@ -15,19 +15,6 @@ FamixJavaParameterizedType class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaParameterizedType class >> generatedSlotNames [
-	<generated>
-	'FamixJavaParameterizedType class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaParameterizedType class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTParameterizedType FamixTWithParameterizedTypeUsers)
-]
-
 { #category : #meta }
 FamixJavaParameterizedType class >> requirements [
 

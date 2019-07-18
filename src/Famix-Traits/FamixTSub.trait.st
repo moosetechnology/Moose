@@ -15,19 +15,6 @@ FamixTSub classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTSub classSide >> generatedSlotNames [
-	<generated>
-	'FamixTSub class>>#generatedSlotNames'.
-	^ #(supers)
-]
-
-{ #category : #generator }
-FamixTSub classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTSub >> supers [
 

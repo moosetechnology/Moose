@@ -15,19 +15,6 @@ FamixJavaNamespace class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaNamespace class >> generatedSlotNames [
-	<generated>
-	'FamixJavaNamespace class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaNamespace class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTNamespace)
-]
-
 { #category : #meta }
 FamixJavaNamespace class >> requirements [
 

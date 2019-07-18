@@ -21,19 +21,6 @@ FamixTTypeAlias classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTTypeAlias classSide >> generatedSlotNames [
-	<generated>
-	'FamixTTypeAlias class>>#generatedSlotNames'.
-	^ #(aliasedType)
-]
-
-{ #category : #generator }
-FamixTTypeAlias classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTTypeAlias >> aliasedType [
 

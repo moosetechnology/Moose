@@ -19,19 +19,6 @@ FamixTAttribute classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTAttribute classSide >> generatedSlotNames [
-	<generated>
-	'FamixTAttribute class>>#generatedSlotNames'.
-	^ #(parentType)
-]
-
-{ #category : #generator }
-FamixTAttribute classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #testing }
 FamixTAttribute >> isAttribute [
 

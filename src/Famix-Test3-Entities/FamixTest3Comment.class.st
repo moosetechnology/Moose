@@ -15,19 +15,6 @@ FamixTest3Comment class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTest3Comment class >> generatedSlotNames [
-	<generated>
-	'FamixTest3Comment class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixTest3Comment class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTComment)
-]
-
 { #category : #meta }
 FamixTest3Comment class >> requirements [
 

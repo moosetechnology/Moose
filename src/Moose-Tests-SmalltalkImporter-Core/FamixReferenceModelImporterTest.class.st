@@ -964,11 +964,7 @@ FamixReferenceModelImporterTest >> testUsedClassReifiedWithinReturn [
 FamixReferenceModelImporterTest >> testaccessSharedVariableFromTheClassSide [
 	"self debug: #testaccessSharedVariableFromTheClassSide"
 
-	| attributeName definingClassName classVarUniqueName accessDefinition methodUniqueName methodName methodClassName |
-	attributeName := #TheRootSharedVariable.
-	definingClassName := TheRoot mooseName.
-	methodClassName := TheRoot class mooseName.
-	methodName := #accessSharedVariableFromTheClassSide.
+	| classVarUniqueName accessDefinition methodUniqueName |
 	methodUniqueName := (TheRoot class >> #accessSharedVariableFromTheClassSide) mooseName.
 	classVarUniqueName := TheRoot @ #TheRootSharedVariable.
 	accessDefinition := self model allAccesses

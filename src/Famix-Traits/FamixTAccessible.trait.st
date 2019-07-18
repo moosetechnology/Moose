@@ -15,19 +15,6 @@ FamixTAccessible classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTAccessible classSide >> generatedSlotNames [
-	<generated>
-	'FamixTAccessible class>>#generatedSlotNames'.
-	^ #(incomingAccesses)
-]
-
-{ #category : #generator }
-FamixTAccessible classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTAccessible >> accessingClasses [
 

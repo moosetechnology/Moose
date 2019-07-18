@@ -15,19 +15,6 @@ FamixStClass class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixStClass class >> generatedSlotNames [
-	<generated>
-	'FamixStClass class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixStClass class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTClass FamixTClassHierarchyNavigation FamixTWithExceptions)
-]
-
 { #category : #meta }
 FamixStClass class >> requirements [
 

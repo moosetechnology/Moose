@@ -15,19 +15,6 @@ FamixJavaComment class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaComment class >> generatedSlotNames [
-	<generated>
-	'FamixJavaComment class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaComment class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTComment)
-]
-
 { #category : #meta }
 FamixJavaComment class >> requirements [
 

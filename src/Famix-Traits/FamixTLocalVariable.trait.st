@@ -18,19 +18,6 @@ FamixTLocalVariable classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTLocalVariable classSide >> generatedSlotNames [
-	<generated>
-	'FamixTLocalVariable class>>#generatedSlotNames'.
-	^ #(parentBehaviouralEntity)
-]
-
-{ #category : #generator }
-FamixTLocalVariable classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTLocalVariable >> parentBehaviouralEntity [
 
