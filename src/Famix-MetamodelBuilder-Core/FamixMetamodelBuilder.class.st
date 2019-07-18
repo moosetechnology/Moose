@@ -194,28 +194,35 @@ FamixMetamodelBuilder >> environment: anObject [
 
 { #category : #generating }
 FamixMetamodelBuilder >> generate [
-
 	self resolveRequirementsFromContainers.
-
 	self registerPackages.
-
-	self traits do: [ :each | 
-		self testingSelectorsMapping addAll: each testingSelectors. ].
-	self sortedClasses do: [ :each | 
-		self testingSelectorsMapping addAll: each testingSelectors. ].
-
-	self traits do: [ :each | each generate ] displayingProgress: 'generating traits'.
-	self sortedClasses do: [ :each | each generate ] displayingProgress: 'generating classes'.
-
-	self traits do: [ :each | each generateNavigationGroups ] displayingProgress: 'generating navigation groups for traits'.
-	self sortedClasses do: [ :each | each generateNavigationGroups ] displayingProgress: 'generating navigation groups for classes'.
-
-	self traits do: [ :each | each generateAddToCollection ] displayingProgress: 'generating add to collection for traits'.
-	self sortedClasses do: [ :each | each generateAddToCollection ] displayingProgress: 'generating add to collection for classes'.
-
+	
+	self traits
+		do:
+			[ :each | self testingSelectorsMapping addAll: each testingSelectors ].
+	self sortedClasses
+		do:
+			[ :each | self testingSelectorsMapping addAll: each testingSelectors ].
+	self traits
+		do: [ :each | each generate ]
+		displayingProgress: 'generating traits'.
+	self sortedClasses
+		do: [ :each | each generate ]
+		displayingProgress: 'generating classes'.
+	self traits
+		do: [ :each | each generateNavigationGroups ]
+		displayingProgress: 'generating navigation groups for traits'.
+	self sortedClasses
+		do: [ :each | each generateNavigationGroups ]
+		displayingProgress: 'generating navigation groups for classes'.
+	self traits
+		do: [ :each | each generateAddToCollection ]
+		displayingProgress: 'generating add to collection for traits'.
+	self sortedClasses
+		do: [ :each | each generateAddToCollection ]
+		displayingProgress: 'generating add to collection for classes'.
 	self behaviorsCount > 0
 		ifTrue: [ self generateImportingContext ].
-		
 	self apply
 ]
 
