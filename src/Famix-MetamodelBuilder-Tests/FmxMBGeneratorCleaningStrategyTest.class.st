@@ -48,6 +48,16 @@ FmxMBGeneratorCleaningStrategyTest >> generateClasses [
 		classVariables: {}
 		package: self packageName.
 	Trait named: #TFmxCleanerTestAddedTrait uses: {} package: self packageName.
+	"We change the superclass of this class to ensure regeneration will update it. Check non regression for: https://github.com/moosetechnology/Moose/issues/1668"
+	self class environment
+		at: #FmxTestCleaningStrategyFmxTestEntityWithDifferentSuperclass
+		ifPresent: [ :class | 
+			MooseEntity
+				subclass: #FmxTestCleaningStrategyFmxTestEntityWithDifferentSuperclass
+				slots: {}
+				classVariables: {}
+				package: 'Famix-MetamodelBuilder-TestsResources-Entities' ]
+		ifAbsent: [ self fail ].
 	self class compile: 'extensionsMethodForTest' classified: '*' , generator packageName
 ]
 
@@ -87,6 +97,12 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningCleaning [
 			self assert: (class class hasInstVarNamed: #grandFrais) ]
 		ifAbsent: [ self fail ].
 
+	"Before the generation, the superclass should not be updated."
+	self class environment
+		at: #FmxTestCleaningStrategyFmxTestEntityWithDifferentSuperclass
+		ifPresent: [ :class | self assert: class superclass name equals: #MooseEntity ]
+		ifAbsent: [ self fail ].
+
 	self assert: (self class methodDict at: #extensionsMethodForTest ifPresent: [ true ] ifAbsent: [ false ]).
 
 	self class environment at: #FmxCleanerTestAddedClass ifPresent: [ :class | self assert: class package name equals: self packageName ] ifAbsent: [ self fail ].
@@ -113,6 +129,12 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningGeneration [
 			self assert: (class hasClassVarNamed: #Fuhrmanator).
 			self assert: (class class hasInstVarNamed: #grandFrais) ]
 		ifAbsent: [ self fail ].
+		
+	"After the generation, the superclass should be updated to be the one described in the generator."
+	self class environment
+		at: #FmxTestCleaningStrategyFmxTestEntityWithDifferentSuperclass
+		ifPresent: [ :class | self assert: class superclass name equals: #FmxTestCleaningStrategyFmxTestEntity ]
+		ifAbsent: [ self fail ].
 
 	self assert: (self class methodDict at: #extensionsMethodForTest ifPresent: [ true ] ifAbsent: [ false ]).
 
@@ -125,6 +147,7 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateTotalCleaningCleaning [
 	generator define.
 	generator withCleaning cleaningStrategy cleanBeforeGeneration: generator.
 	self should: [ self class environment at: #FmxTestCleaningStrategyFmxTestEntity ] raise: KeyNotFound.
+	self should: [ self class environment at: #FmxTestCleaningStrategyFmxTestEntityWithDifferentSuperclass ] raise: KeyNotFound.
 	self should: [ self class environment at: #FmxCleanerTestAddedClass ] raise: KeyNotFound.
 	self should: [ self class environment at: #TFmxCleanerTestAddedTrait ] raise: KeyNotFound.
 	self assert: (self class methodDict at: #extensionsMethodForTest ifPresent: [ false ] ifAbsent: [ true ])
@@ -144,6 +167,12 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateTotalCleaningGeneration [
 			self deny: (class hasInstVarNamed: #bananaTree).
 			self deny: (class hasClassVarNamed: #Fuhrmanator).
 			self deny: (class class hasInstVarNamed: #grandFrais) ]
+		ifAbsent: [ self fail ].
+	
+	"After the generation, the superclass should be updated."
+	self class environment
+		at: #FmxTestCleaningStrategyFmxTestEntityWithDifferentSuperclass
+		ifPresent: [ :class | self assert: class superclass name equals: #FmxTestCleaningStrategyFmxTestEntity ]
 		ifAbsent: [ self fail ].
 	
 	self assert: (self class methodDict at: #extensionsMethodForTest ifPresent: [ false ] ifAbsent: [ true ]).

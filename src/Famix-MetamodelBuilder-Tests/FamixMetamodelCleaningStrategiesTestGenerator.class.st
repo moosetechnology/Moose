@@ -3,7 +3,8 @@ Class {
 	#superclass : #FamixMetamodelGenerator,
 	#instVars : [
 		'fmx',
-		'tOneTrait'
+		'tOneTrait',
+		'fmx2'
 	],
 	#category : #'Famix-MetamodelBuilder-Tests-Helpers'
 }
@@ -25,13 +26,15 @@ FamixMetamodelCleaningStrategiesTestGenerator class >> prefix [
 { #category : #definition }
 FamixMetamodelCleaningStrategiesTestGenerator >> defineClasses [
 	super defineClasses.
-	fmx := builder newClassNamed: #FmxTestEntity
+	fmx := builder newClassNamed: #FmxTestEntity.
+	fmx2 := builder newClassNamed: #FmxTestEntityWithDifferentSuperclass
 ]
 
 { #category : #definition }
 FamixMetamodelCleaningStrategiesTestGenerator >> defineHierarchy [
 	super defineHierarchy.
-	fmx --|> tOneTrait
+	fmx --|> tOneTrait.
+	fmx2 --|> fmx
 ]
 
 { #category : #definition }
@@ -49,5 +52,5 @@ FamixMetamodelCleaningStrategiesTestGenerator >> defineRelations [
 { #category : #definition }
 FamixMetamodelCleaningStrategiesTestGenerator >> defineTraits [
 	super defineTraits.
-	tOneTrait := builder newTraitNamed: #TATrait.
+	tOneTrait := builder newTraitNamed: #TATrait
 ]
