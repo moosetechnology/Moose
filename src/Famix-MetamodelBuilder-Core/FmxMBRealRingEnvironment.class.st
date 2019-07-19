@@ -78,7 +78,9 @@ FmxMBRealRingEnvironment >> apply [
 	"Since the last generation it is possible some behaviorals were removed from the generator. In that case we should remove them. We will remove all classes and traits of Famix that are not part of the current generator."
 	resolvedPackages
 		collect: [ :e | e name asPackage ]
-		thenDo: [ :package | package definedClasses select: #isMetamodelEntity thenDo: [ :class | resolvedClasses detect: [ :rgClass | rgClass name = class name ] ifNone: [ class removeFromSystem ] ] ]
+		thenDo: [ :package | package definedClasses select: #isMetamodelEntity thenDo: [ :class | resolvedClasses detect: [ :rgClass | rgClass name = class name ] ifNone: [ class removeFromSystem ] ] ].
+		
+	self createMooseModel
 ]
 
 { #category : #installing }
@@ -97,6 +99,28 @@ FmxMBRealRingEnvironment >> compile: aSource in: aClass classified: aProtocol pa
 { #category : #installing }
 FmxMBRealRingEnvironment >> compile: aRGMethod into: realClass [
 	^ realClass compile: aRGMethod sourceCode classified: aRGMethod protocol
+]
+
+{ #category : #accessing }
+FmxMBRealRingEnvironment >> createMooseModel [
+	| mooseModelName mooseModel |
+	mooseModelName := (self builder configuration prefix , 'MooseModel') asSymbol.
+	mooseModelName = #MooseModel ifTrue: [ ^ self ].
+	
+	mooseModel := self class
+		evaluate:
+			('MooseModel subclass: #{1}
+	instanceVariableNames: ''''
+	classVariableNames: ''''
+	package: ''{2}''' format: {mooseModelName . self builder configuration packageName}).
+
+	mooseModel
+		compile:
+			('initialize
+		<generated>
+		super initialize.
+		self metamodel: (self class environment at: #{1}) metamodel' format: {self builder generator class name})
+		classified: 'initialization'
 ]
 
 { #category : #installing }
