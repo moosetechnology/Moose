@@ -12,6 +12,7 @@ Trait {
 TFamixTTemplateUserTest >> testTemplate [
 template := MooseEntity new copyWithTalent: FamixTTemplate. 
 template class initializeSlots: template.
+model add: template.
 self entity template: template. 
 self assert: (self entity template notNil).
 self assert: self entity template equals: template.

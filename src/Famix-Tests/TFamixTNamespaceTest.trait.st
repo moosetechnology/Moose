@@ -14,8 +14,10 @@ Trait {
 TFamixTNamespaceTest >> testNamespaceEntities [
 namespaceEntity1 := MooseEntity new copyWithTalent: FamixTNamespaceEntity.
 namespaceEntity1 class initializeSlots: namespaceEntity1.
+model add: namespaceEntity1.
 namespaceEntity2 := MooseEntity new copyWithTalent: FamixTNamespaceEntity.
 namespaceEntity2 class initializeSlots: namespaceEntity2.
+model add: namespaceEntity2.
 self entity addNamespaceEntity: namespaceEntity1.
 self entity addNamespaceEntity: namespaceEntity2.
 self assert: (self entity namespaceEntities notEmpty).
@@ -27,6 +29,7 @@ self assert: namespaceEntity1 parentNamespace equals: self entity
 TFamixTNamespaceTest >> testNamespaceOwner [
 namespaceOwner := MooseEntity new copyWithTalent: FamixTWithNamespaces. 
 namespaceOwner class initializeSlots: namespaceOwner.
+model add: namespaceOwner.
 self entity namespaceOwner: namespaceOwner. 
 self assert: (self entity namespaceOwner notNil).
 self assert: self entity namespaceOwner equals: namespaceOwner.

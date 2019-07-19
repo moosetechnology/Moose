@@ -13,8 +13,10 @@ Trait {
 TFamixTTraitUserTest >> testOutgoingTraitUsages [
 traitUsage1 := MooseEntity new copyWithTalent: FamixTTraitUsage.
 traitUsage1 class initializeSlots: traitUsage1.
+model add: traitUsage1.
 traitUsage2 := MooseEntity new copyWithTalent: FamixTTraitUsage.
 traitUsage2 class initializeSlots: traitUsage2.
+model add: traitUsage2.
 self entity addOutgoingTraitUsage: traitUsage1.
 self entity addOutgoingTraitUsage: traitUsage2.
 self assert: (self entity outgoingTraitUsages notEmpty).

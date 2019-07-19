@@ -13,8 +13,10 @@ Trait {
 TFamixTWithParameterizedTypesTest >> testParameterizedTypes [
 parameterizedType1 := MooseEntity new copyWithTalent: FamixTParameterizedType.
 parameterizedType1 class initializeSlots: parameterizedType1.
+model add: parameterizedType1.
 parameterizedType2 := MooseEntity new copyWithTalent: FamixTParameterizedType.
 parameterizedType2 class initializeSlots: parameterizedType2.
+model add: parameterizedType2.
 self entity addParameterizedType: parameterizedType1.
 self entity addParameterizedType: parameterizedType2.
 self assert: (self entity parameterizedTypes notEmpty).

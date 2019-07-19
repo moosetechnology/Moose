@@ -13,8 +13,10 @@ Trait {
 TFamixTWithThrownExceptionsTest >> testThrownExceptions [
 thrownException1 := MooseEntity new copyWithTalent: FamixTThrownException.
 thrownException1 class initializeSlots: thrownException1.
+model add: thrownException1.
 thrownException2 := MooseEntity new copyWithTalent: FamixTThrownException.
 thrownException2 class initializeSlots: thrownException2.
+model add: thrownException2.
 self entity addThrownException: thrownException1.
 self entity addThrownException: thrownException2.
 self assert: (self entity thrownExceptions notEmpty).

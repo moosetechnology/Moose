@@ -12,6 +12,7 @@ Trait {
 TFamixTExceptionTest >> testExceptionClass [
 exceptionClass := MooseEntity new copyWithTalent: FamixTWithExceptions. 
 exceptionClass class initializeSlots: exceptionClass.
+model add: exceptionClass.
 self entity exceptionClass: exceptionClass. 
 self assert: (self entity exceptionClass notNil).
 self assert: self entity exceptionClass equals: exceptionClass.

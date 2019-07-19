@@ -13,8 +13,10 @@ Trait {
 TFamixTWithParametersTest >> testParameters [
 parameter1 := MooseEntity new copyWithTalent: FamixTParameter.
 parameter1 class initializeSlots: parameter1.
+model add: parameter1.
 parameter2 := MooseEntity new copyWithTalent: FamixTParameter.
 parameter2 class initializeSlots: parameter2.
+model add: parameter2.
 self entity addParameter: parameter1.
 self entity addParameter: parameter2.
 self assert: (self entity parameters notEmpty).

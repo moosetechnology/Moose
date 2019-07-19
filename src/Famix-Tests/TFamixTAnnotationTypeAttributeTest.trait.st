@@ -13,8 +13,10 @@ Trait {
 TFamixTAnnotationTypeAttributeTest >> testAnnotationAttributeInstances [
 typedAnnotationInstanceAttribute1 := MooseEntity new copyWithTalent: FamixTTypedAnnotationInstanceAttribute.
 typedAnnotationInstanceAttribute1 class initializeSlots: typedAnnotationInstanceAttribute1.
+model add: typedAnnotationInstanceAttribute1.
 typedAnnotationInstanceAttribute2 := MooseEntity new copyWithTalent: FamixTTypedAnnotationInstanceAttribute.
 typedAnnotationInstanceAttribute2 class initializeSlots: typedAnnotationInstanceAttribute2.
+model add: typedAnnotationInstanceAttribute2.
 self entity addAnnotationAttributeInstance: typedAnnotationInstanceAttribute1.
 self entity addAnnotationAttributeInstance: typedAnnotationInstanceAttribute2.
 self assert: (self entity annotationAttributeInstances notEmpty).

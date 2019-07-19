@@ -12,6 +12,7 @@ Trait {
 TFamixTTypeTest >> testTypeContainer [
 typeContainer := MooseEntity new copyWithTalent: FamixTWithTypes. 
 typeContainer class initializeSlots: typeContainer.
+model add: typeContainer.
 self entity typeContainer: typeContainer. 
 self assert: (self entity typeContainer notNil).
 self assert: self entity typeContainer equals: typeContainer.

@@ -39,6 +39,7 @@ self assert: self entity kind equals: 'aLiteral' .
 TFamixTMethodTest >> testParentType [
 parentType := MooseEntity new copyWithTalent: FamixTWithMethods. 
 parentType class initializeSlots: parentType.
+model add: parentType.
 self entity parentType: parentType. 
 self assert: (self entity parentType notNil).
 self assert: self entity parentType equals: parentType.

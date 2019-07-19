@@ -12,6 +12,7 @@ Trait {
 TFamixTDereferencedInvocationTest >> testReferencer [
 referencer := MooseEntity new copyWithTalent: FamixTWithDereferencedInvocations. 
 referencer class initializeSlots: referencer.
+model add: referencer.
 self entity referencer: referencer. 
 self assert: (self entity referencer notNil).
 self assert: self entity referencer equals: referencer.

@@ -13,8 +13,10 @@ Trait {
 TFamixTParameterizedTypeUserTest >> testArgumentsInParameterizedTypes [
 withParameterizedTypeUsers1 := MooseEntity new copyWithTalent: FamixTWithParameterizedTypeUsers.
 withParameterizedTypeUsers1 class initializeSlots: withParameterizedTypeUsers1.
+model add: withParameterizedTypeUsers1.
 withParameterizedTypeUsers2 := MooseEntity new copyWithTalent: FamixTWithParameterizedTypeUsers.
 withParameterizedTypeUsers2 class initializeSlots: withParameterizedTypeUsers2.
+model add: withParameterizedTypeUsers2.
 self entity addArgumentsInParameterizedType: withParameterizedTypeUsers1.
 self entity addArgumentsInParameterizedType: withParameterizedTypeUsers2.
 self assert: (self entity argumentsInParameterizedTypes notEmpty).

@@ -12,6 +12,7 @@ Trait {
 TFamixTEnumValueTest >> testParentEnum [
 parentEnum := MooseEntity new copyWithTalent: FamixTWithEnumValues. 
 parentEnum class initializeSlots: parentEnum.
+model add: parentEnum.
 self entity parentEnum: parentEnum. 
 self assert: (self entity parentEnum notNil).
 self assert: self entity parentEnum equals: parentEnum.

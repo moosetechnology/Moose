@@ -9,6 +9,8 @@ Class {
 { #category : #overrides }
 FamixTClassHierarchyNavigationTest >> setUp [
 super setUp.
+	model := MooseModel new metamodel: FamixGenerator metamodel.
 self entity: (MooseEntity new copyWithTalent:FamixTClassHierarchyNavigation).
 self entity class initializeSlots: self entity.
+model add: entity. 
 ]
