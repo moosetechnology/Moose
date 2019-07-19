@@ -273,25 +273,6 @@ FamixMetamodelGenerator >> defineClasses [
 FamixMetamodelGenerator >> defineHierarchy [
 ]
 
-{ #category : #generation }
-FamixMetamodelGenerator >> defineMooseModel [
-	| mooseModel |
-	mooseModel := 
-	self builder environment
-		createClassNamed: self mooseModelName
-		superclass: MooseModel
-		traitNames: #()
-		slots: #()
-		in: self packageName
-		overwrite: true.
-	mooseModel
-		compile: 'initialize
-		<generated>
-		super initialize.
-		self metamodel: ' , self class name , ' metamodel'
-		classified: 'initialization'
-]
-
 { #category : #definition }
 FamixMetamodelGenerator >> defineProperties [
 ]
@@ -309,7 +290,6 @@ FamixMetamodelGenerator >> generate [
 	"Next step to improve the cleaning is to add a report. For example if we cannot migrate a method since its class was removed from the MM, we should get notified with a report object."
 	EpMonitor
 		disableDuring: [ self define.
-		    self defineMooseModel.
 			self cleaningStrategy
 				withCleaningDo: [ self builder generate.
 					subbuilders do: #generateRemotes ]
