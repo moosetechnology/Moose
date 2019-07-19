@@ -374,6 +374,12 @@ FamixMetamodelGenerator >> prefix [
 	^ self class prefix
 ]
 
+{ #category : #testing }
+FamixMetamodelGenerator >> regenerationIsNeeded [
+	self define.
+	^ self builder regenerationIsNeeded
+]
+
 { #category : #definition }
 FamixMetamodelGenerator >> remoteEntity: anEntityName withPrefix: aPrefixName [ 
 
