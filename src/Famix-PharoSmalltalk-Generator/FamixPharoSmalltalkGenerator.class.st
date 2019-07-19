@@ -43,11 +43,6 @@ FamixPharoSmalltalkGenerator class >> prefix [
 ]
 
 { #category : #accessing }
-FamixPharoSmalltalkGenerator class >> submetamodels [ 
-	^ { FamixCompatibilityGenerator }
-]
-
-{ #category : #accessing }
 FamixPharoSmalltalkGenerator class >> wantsAllEntitiesNavigation [
 
 	^ false

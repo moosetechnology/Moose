@@ -156,17 +156,6 @@ FmxMBRealRingEnvironment >> installClassChangesFor: anRGClass [
 	realClass := self class environment classNamed: anRGClass name.
 	realClass ifNil: [ realClass := self class compiler evaluate: anRGClass definition ] ifNotNil: [ self adoptClassDefinitionOf: realClass to: anRGClass ].
 	self adoptClassCommentOf: realClass to: anRGClass.
-	self cleanClass: realClass.
 	self adoptMethodsOf: realClass to: anRGClass.
-	self adoptMethodsOf: realClass classSide to: anRGClass classSide.
-	self removeGeneratedSlotNamesMethodOf: realClass
-]
-
-{ #category : #installing }
-FmxMBRealRingEnvironment >> removeGeneratedSlotNamesMethodOf: aClass [
-	self flag: #toRemoveSlotGeneration.	"Before, a method was generated to kmow generated slots. Now, we use a dedicated slot for that and we can just collect them. This should be removed later when all metamodel will be migrated.
-	
-	Remove in 2020."
-
-	aClass class methods detect: [ :m | m selector = #generatedSlotNames ] ifFound: #removeFromSystem
+	self adoptMethodsOf: realClass classSide to: anRGClass classSide
 ]

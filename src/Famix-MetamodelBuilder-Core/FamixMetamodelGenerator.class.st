@@ -128,7 +128,12 @@ FamixMetamodelGenerator class >> metamodel: anObject [
 
 { #category : #generation }
 FamixMetamodelGenerator class >> metamodelsToGenerate [
-	^ self allSubclasses reject: [ :c | c isAbstract or: [ c isPartOfComposedMetaModel ] ]
+	"We add she submetamodels before the MM composing them because if we do the other way around it will cause trouble when we regenerate all because it will remove the glue added by the composed MM."
+
+	| metamodels |
+	metamodels := self allSubclasses reject: [ :c | c isAbstract or: [ c isPartOfComposedMetaModel ] ].
+	metamodels select: #isComposed thenDo: [ :mm | mm submetamodels do: [ :smm | (metamodels includes: smm) ifFalse: [ metamodels add: smm before: mm ] ] ].
+	^ metamodels
 ]
 
 { #category : #accessing }
