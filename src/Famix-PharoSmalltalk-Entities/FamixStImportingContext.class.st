@@ -68,13 +68,6 @@ FamixStImportingContext >> importComment [
 ]
 
 { #category : #testing }
-FamixStImportingContext >> importContainerEntity [
-
-	<generated>
-	^ self import: FamixStContainerEntity
-]
-
-{ #category : #testing }
 FamixStImportingContext >> importEntity [
 
 	<generated>
@@ -208,13 +201,6 @@ FamixStImportingContext >> importStructuralEntity [
 ]
 
 { #category : #testing }
-FamixStImportingContext >> importType [
-
-	<generated>
-	^ self import: FamixStType
-]
-
-{ #category : #testing }
 FamixStImportingContext >> importUnknownSourceLanguage [
 
 	<generated>
@@ -289,13 +275,6 @@ FamixStImportingContext >> shouldImportComment [
 
 	<generated>
 	^ self shouldImport: FamixStComment
-]
-
-{ #category : #testing }
-FamixStImportingContext >> shouldImportContainerEntity [
-
-	<generated>
-	^ self shouldImport: FamixStContainerEntity
 ]
 
 { #category : #testing }
@@ -429,13 +408,6 @@ FamixStImportingContext >> shouldImportStructuralEntity [
 
 	<generated>
 	^ self shouldImport: FamixStStructuralEntity
-]
-
-{ #category : #testing }
-FamixStImportingContext >> shouldImportType [
-
-	<generated>
-	^ self shouldImport: FamixStType
 ]
 
 { #category : #testing }

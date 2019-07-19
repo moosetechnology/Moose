@@ -18,6 +18,13 @@ FamixTImplicitVariable classSide >> annotation [
 	^self
 ]
 
+{ #category : #testing }
+FamixTImplicitVariable >> isImplicitVariable [
+
+	<generated>
+	^ true
+]
+
 { #category : #accessing }
 FamixTImplicitVariable >> parentBehaviouralEntity [
 

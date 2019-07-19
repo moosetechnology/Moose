@@ -8,6 +8,7 @@ A type can have multiple subtypes or supertypes. These are modelled by means of 
 Trait {
 	#name : #FamixTType,
 	#instVars : [
+		'#isAbstract => FMProperty',
 		'#typeContainer => FMOne type: #FamixTWithTypes opposite: #types'
 	],
 	#category : #'Famix-Traits-Type'
@@ -54,6 +55,23 @@ FamixTType >> fanIn [
 FamixTType >> fanIn: aNumber [
 
 	self privateState propertyAt: #fanIn put: aNumber
+]
+
+{ #category : #accessing }
+FamixTType >> isAbstract [
+
+	<MSEProperty: #isAbstract type: #Boolean>
+	<generated>
+	<MSEComment: 'True if abstract method'>
+	^ isAbstract
+]
+
+{ #category : #accessing }
+FamixTType >> isAbstract: anObject [
+
+	<generated>
+	isAbstract := anObject
+
 ]
 
 { #category : #testing }

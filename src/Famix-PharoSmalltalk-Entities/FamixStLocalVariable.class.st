@@ -19,7 +19,7 @@ FamixStLocalVariable class >> annotation [
 FamixStLocalVariable class >> requirements [
 
 	<generated>
-	^ { FamixStMethod }
+	^ {  }
 ]
 
 { #category : #accessing }

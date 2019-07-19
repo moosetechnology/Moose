@@ -387,6 +387,18 @@ FamixMetamodelGenerator >> remoteEntity: anEntityName withPrefix: aPrefixName [
 ]
 
 { #category : #definition }
+FamixMetamodelGenerator >> remoteTrait: anEntityName withPrefix: aPrefixName [ 
+
+	| anEntity |
+	
+	anEntity := (subbuilders at: aPrefixName) ensureTraitNamed: anEntityName.
+	anEntity isRemote: true.
+	anEntity remoteBuilder: builder.
+	
+	^ anEntity.
+]
+
+{ #category : #definition }
 FamixMetamodelGenerator >> withCleaning [
 	self cleaningStrategy: FamixMetamodelGeneratorTotalCleaningStrategy new
 ]

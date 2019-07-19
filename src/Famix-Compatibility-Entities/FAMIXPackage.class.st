@@ -6,7 +6,7 @@ Class {
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 
-{ #category : #meta }
+{ #category : #'as yet unclassified' }
 FAMIXPackage class >> annotation [
 
 	<MSEClass: #Package super: #FAMIXScopingEntity>

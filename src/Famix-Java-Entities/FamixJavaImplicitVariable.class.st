@@ -19,7 +19,7 @@ FamixJavaImplicitVariable class >> annotation [
 FamixJavaImplicitVariable class >> requirements [
 
 	<generated>
-	^ { FamixJavaMethod }
+	^ {  }
 ]
 
 { #category : #'as yet unclassified' }
@@ -63,7 +63,7 @@ FamixJavaImplicitVariable >> copyFrom: anEntity within: aVisitor [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaImplicitVariable >> isImplicitVariable [
 	^true
 ]

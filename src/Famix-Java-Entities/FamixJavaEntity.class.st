@@ -110,6 +110,13 @@ FamixJavaEntity >> isFunction [
 ]
 
 { #category : #testing }
+FamixJavaEntity >> isImplicitVariable [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
 FamixJavaEntity >> isInheritance [
 
 	<generated>
@@ -153,6 +160,13 @@ FamixJavaEntity >> isPrimitiveType [
 
 { #category : #testing }
 FamixJavaEntity >> isReference [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaEntity >> isStructuralEntity [
 
 	<generated>
 	^ false

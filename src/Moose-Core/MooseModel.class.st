@@ -163,6 +163,14 @@ MooseModel class >> importFromMSEStream: aStream [
 ]
 
 { #category : #'import-export' }
+MooseModel class >> importFromMSEStream: aStream withMetamodel: aMetamodel [
+
+	^ self new
+		importFromMSEStream: aStream withMetamodel: aMetamodel;
+		yourself
+]
+
+{ #category : #'import-export' }
 MooseModel class >> importMetamodelFrom: aStream [
 
 	| tower generator |
@@ -370,15 +378,15 @@ MooseModel >> exportToMSEStream: aStream [
 ]
 
 { #category : #actions }
+MooseModel >> flushGroups [
+	self entities do: [ :entity | entity privateState flushGroups ] displayingProgress: [ :entity | 'Cleaning cache of ' , entity mooseName ]
+]
+
+{ #category : #actions }
 MooseModel >> flushPrivateState [
 	"Clean the private state caches of all the entities of the model. This will not impact attributes in the private state (informations you cannot derive)"
 	self flushProperties.
 	self flushGroups
-]
-
-{ #category : #actions }
-MooseModel >> flushGroups [
-	self entities do: [ :entity | entity privateState flushGroups ] displayingProgress: [ :entity | 'Cleaning cache of ' , entity mooseName ]
 ]
 
 { #category : #actions }
@@ -412,6 +420,19 @@ MooseModel >> importFromMSEStream: aStream filteredBy: anImportingContext [
 	repository := self class importFrom: aStream filteredBy: anImportingContext.
 	repository elements do: [ :e | self add: e ].
 	self entityStorage forRuntime
+]
+
+{ #category : #actions }
+MooseModel >> importFromMSEStream: aStream withMetamodel: aMetamodel [
+	
+
+	| repository |
+	repository := self class importFrom: aStream withMetamodel: aMetamodel.
+	self silentlyAddAll: repository elements.
+	self entityStorage forRuntime.
+	self name: (aStream localName removeSuffix: '.mse').
+	"aStream isFileStream
+		ifTrue: [ self rootFolder: aStream fullName asFileReference parent ]"
 ]
 
 { #category : #testing }

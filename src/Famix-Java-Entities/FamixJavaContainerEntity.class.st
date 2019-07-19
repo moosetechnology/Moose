@@ -1,18 +1,23 @@
 Class {
 	#name : #FamixJavaContainerEntity,
-	#superclass : #FamixJavaNamedEntity,
-	#traits : 'FamixTWithAnnotationTypes + FamixTWithClasses + FamixTWithTypes + TOODependencyQueries',
-	#classTraits : 'FamixTWithAnnotationTypes classTrait + FamixTWithClasses classTrait + FamixTWithTypes classTrait + TOODependencyQueries classTrait',
+	#superclass : #MooseEntity,
 	#category : #'Famix-Java-Entities-Entities'
 }
 
 { #category : #meta }
 FamixJavaContainerEntity class >> annotation [
 
-	<MSEClass: #ContainerEntity super: #FamixJavaNamedEntity>
+	<MSEClass: #ContainerEntity super: #MooseEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
+]
+
+{ #category : #meta }
+FamixJavaContainerEntity class >> metamodel [
+
+	<generated>
+	^ (self class environment at: #FamixJavaGenerator) metamodel
 ]
 
 { #category : #meta }
@@ -45,10 +50,115 @@ FamixJavaContainerEntity >> copyFrom: anEntity within: aVisitor [
 ]
 
 { #category : #testing }
+FamixJavaContainerEntity >> isAccess [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaContainerEntity >> isAssociation [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaContainerEntity >> isAttribute [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaContainerEntity >> isClass [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
 FamixJavaContainerEntity >> isContainerEntity [
 
 	<generated>
 	^ true
+]
+
+{ #category : #testing }
+FamixJavaContainerEntity >> isFunction [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaContainerEntity >> isImplicitVariable [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaContainerEntity >> isInheritance [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaContainerEntity >> isInvocation [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaContainerEntity >> isMethod [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaContainerEntity >> isNamespace [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaContainerEntity >> isPackage [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaContainerEntity >> isPrimitiveType [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaContainerEntity >> isReference [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaContainerEntity >> isStructuralEntity [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaContainerEntity >> isType [
+
+	<generated>
+	^ false
 ]
 
 { #category : #'as yet unclassified' }

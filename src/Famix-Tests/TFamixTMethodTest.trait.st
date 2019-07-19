@@ -4,7 +4,8 @@ Trait {
 		'isAbstract',
 		'isClassSide',
 		'kind',
-		'parentType'
+		'parentType',
+		'model'
 	],
 	#traits : 'TFamixTest',
 	#classTraits : 'TFamixTest classTrait',
@@ -38,8 +39,8 @@ self assert: self entity kind equals: 'aLiteral' .
 { #category : #tests }
 TFamixTMethodTest >> testParentType [
 parentType := MooseEntity new copyWithTalent: FamixTWithMethods. 
-parentType class initializeSlots: parentType.
 model add: parentType.
+parentType class initializeSlots: parentType.
 self entity parentType: parentType. 
 self assert: (self entity parentType notNil).
 self assert: self entity parentType equals: parentType.

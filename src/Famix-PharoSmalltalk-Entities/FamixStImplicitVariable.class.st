@@ -19,7 +19,7 @@ FamixStImplicitVariable class >> annotation [
 FamixStImplicitVariable class >> requirements [
 
 	<generated>
-	^ { FamixStMethod }
+	^ {  }
 ]
 
 { #category : #accessing }

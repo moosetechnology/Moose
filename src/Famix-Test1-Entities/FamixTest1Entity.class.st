@@ -63,6 +63,13 @@ FamixTest1Entity >> isFunction [
 ]
 
 { #category : #testing }
+FamixTest1Entity >> isImplicitVariable [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
 FamixTest1Entity >> isInheritance [
 
 	<generated>
@@ -99,6 +106,13 @@ FamixTest1Entity >> isPackage [
 
 { #category : #testing }
 FamixTest1Entity >> isReference [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixTest1Entity >> isStructuralEntity [
 
 	<generated>
 	^ false

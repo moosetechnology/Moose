@@ -110,11 +110,6 @@ FamixJavaSourcedEntity >> fileAnchorPath: aString startPos: anInteger endPos: an
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaSourcedEntity >> isImplicitVariable [
-	^false
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaSourcedEntity >> numberOfJavaNullChecks [
 	<MSEProperty: #numberOfJavaNullChecks type: #Number> <derived>
 	^self

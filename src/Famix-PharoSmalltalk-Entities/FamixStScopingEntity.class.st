@@ -1,15 +1,15 @@
 Class {
 	#name : #FamixStScopingEntity,
-	#superclass : #FamixStContainerEntity,
-	#traits : 'FamixTGlobalVariableScope + FamixTScopingEntity',
-	#classTraits : 'FamixTGlobalVariableScope classTrait + FamixTScopingEntity classTrait',
+	#superclass : #FamixStNamedEntity,
+	#traits : 'FamixTGlobalVariableScope + FamixTScopingEntity + FamixTWithTypes',
+	#classTraits : 'FamixTGlobalVariableScope classTrait + FamixTScopingEntity classTrait + FamixTWithTypes classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 
 { #category : #meta }
 FamixStScopingEntity class >> annotation [
 
-	<MSEClass: #ScopingEntity super: #FamixStContainerEntity>
+	<MSEClass: #ScopingEntity super: #FamixStNamedEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self

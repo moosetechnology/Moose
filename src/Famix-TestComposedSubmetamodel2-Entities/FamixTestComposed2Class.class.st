@@ -6,7 +6,7 @@ Class {
 	#category : #'Famix-TestComposedSubmetamodel2-Entities-Entities'
 }
 
-{ #category : #meta }
+{ #category : #'as yet unclassified' }
 FamixTestComposed2Class class >> annotation [
 
 	<MSEClass: #Class super: #FamixTestComposed2NamedEntity>
