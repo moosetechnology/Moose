@@ -163,6 +163,14 @@ MooseModel class >> importFromMSEStream: aStream [
 ]
 
 { #category : #'import-export' }
+MooseModel class >> importFromMSEStream: aStream withMetamodel: aMetamodel [
+
+	^ self new
+		importFromMSEStream: aStream withMetamodel: aMetamodel;
+		yourself
+]
+
+{ #category : #'import-export' }
 MooseModel class >> importMetamodelFrom: aStream [
 
 	| tower generator |
@@ -395,6 +403,19 @@ MooseModel >> importFromMSEStream: aStream filteredBy: anImportingContext [
 	repository := self class importFrom: aStream filteredBy: anImportingContext.
 	repository elements do: [ :e | self add: e ].
 	self entityStorage forRuntime
+]
+
+{ #category : #actions }
+MooseModel >> importFromMSEStream: aStream withMetamodel: aMetamodel [
+	
+
+	| repository |
+	repository := self class importFrom: aStream withMetamodel: aMetamodel.
+	self silentlyAddAll: repository elements.
+	self entityStorage forRuntime.
+	self name: (aStream localName removeSuffix: '.mse').
+	"aStream isFileStream
+		ifTrue: [ self rootFolder: aStream fullName asFileReference parent ]"
 ]
 
 { #category : #testing }

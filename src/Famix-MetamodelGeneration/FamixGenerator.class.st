@@ -960,9 +960,8 @@ FamixGenerator >> defineHierarchy [
 	tClass --|> #TType.
 	tClass --|> #TPackageable.
 	tClass --|> #TInvocationsReceiver.
+	tClass --|> #TWithComments.
 	
-	"tNamed --|> #TDependencyQueries.
-	tNamed --|> #TEntityMetaLevelDependency."
 	tNamed --|> tDependencyQueries.
 	tNamed --|> tEntityMetaLevelDependency.	
 	tNamed --|> #TSourceEntity.
@@ -979,7 +978,7 @@ FamixGenerator >> defineHierarchy [
 	tMethod --|> #TTypedStructure.
 	tMethod --|> #TWithModifiers.
 	tMethod --|> #TNamed.
-	tMethod --|> #TSourceEntity.
+	tMethod --|> #TWithComments.
 	
 	tAttribute --|> #TWithModifiers.
 	tAttribute --|> #TStructuralEntity.
@@ -992,7 +991,6 @@ FamixGenerator >> defineHierarchy [
 	
 	tSourceEntity --|> #TWithSourceAnchor.
 	tSourceEntity --|> #TWithSourceLanguage.
-
 	
 ]
 
