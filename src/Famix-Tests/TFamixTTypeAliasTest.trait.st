@@ -12,6 +12,7 @@ Trait {
 TFamixTTypeAliasTest >> testAliasedType [
 aliasedType := MooseEntity new copyWithTalent: FamixTWithTypeAliases. 
 aliasedType class initializeSlots: aliasedType.
+model add: aliasedType.
 self entity aliasedType: aliasedType. 
 self assert: (self entity aliasedType notNil).
 self assert: self entity aliasedType equals: aliasedType.

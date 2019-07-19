@@ -13,6 +13,7 @@ Trait {
 TFamixTReferenceTest >> testSource [
 source := MooseEntity new copyWithTalent: FamixTWithReferences. 
 source class initializeSlots: source.
+model add: source.
 self entity source: source. 
 self assert: (self entity source notNil).
 self assert: self entity source equals: source.
@@ -23,6 +24,7 @@ self assertCollection: source outgoingReferences hasSameElements: {self entity}
 TFamixTReferenceTest >> testTarget [
 target := MooseEntity new copyWithTalent: FamixTReferenceable. 
 target class initializeSlots: target.
+model add: target.
 self entity target: target. 
 self assert: (self entity target notNil).
 self assert: self entity target equals: target.

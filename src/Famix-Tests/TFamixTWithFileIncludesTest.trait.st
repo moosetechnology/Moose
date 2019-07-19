@@ -13,8 +13,10 @@ Trait {
 TFamixTWithFileIncludesTest >> testIncomingIncludeRelations [
 fileInclude1 := MooseEntity new copyWithTalent: FamixTFileInclude.
 fileInclude1 class initializeSlots: fileInclude1.
+model add: fileInclude1.
 fileInclude2 := MooseEntity new copyWithTalent: FamixTFileInclude.
 fileInclude2 class initializeSlots: fileInclude2.
+model add: fileInclude2.
 self entity addIncomingIncludeRelation: fileInclude1.
 self entity addIncomingIncludeRelation: fileInclude2.
 self assert: (self entity incomingIncludeRelations notEmpty).
@@ -26,8 +28,10 @@ self assert: fileInclude1 target equals: self entity
 TFamixTWithFileIncludesTest >> testOutgoingIncludeRelations [
 fileInclude1 := MooseEntity new copyWithTalent: FamixTFileInclude.
 fileInclude1 class initializeSlots: fileInclude1.
+model add: fileInclude1.
 fileInclude2 := MooseEntity new copyWithTalent: FamixTFileInclude.
 fileInclude2 class initializeSlots: fileInclude2.
+model add: fileInclude2.
 self entity addOutgoingIncludeRelation: fileInclude1.
 self entity addOutgoingIncludeRelation: fileInclude2.
 self assert: (self entity outgoingIncludeRelations notEmpty).

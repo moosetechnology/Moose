@@ -12,6 +12,7 @@ Trait {
 TFamixTFileSystemEntityTest >> testParentFolder [
 parentFolder := MooseEntity new copyWithTalent: FamixTFolder. 
 parentFolder class initializeSlots: parentFolder.
+model add: parentFolder.
 self entity parentFolder: parentFolder. 
 self assert: (self entity parentFolder notNil).
 self assert: self entity parentFolder equals: parentFolder.

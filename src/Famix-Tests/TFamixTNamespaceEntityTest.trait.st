@@ -12,6 +12,7 @@ Trait {
 TFamixTNamespaceEntityTest >> testParentNamespace [
 parentNamespace := MooseEntity new copyWithTalent: FamixTNamespace. 
 parentNamespace class initializeSlots: parentNamespace.
+model add: parentNamespace.
 self entity parentNamespace: parentNamespace. 
 self assert: (self entity parentNamespace notNil).
 self assert: self entity parentNamespace equals: parentNamespace.

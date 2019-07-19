@@ -13,8 +13,10 @@ Trait {
 TFamixTWithLocalVariablesTest >> testLocalVariables [
 localVariable1 := MooseEntity new copyWithTalent: FamixTLocalVariable.
 localVariable1 class initializeSlots: localVariable1.
+model add: localVariable1.
 localVariable2 := MooseEntity new copyWithTalent: FamixTLocalVariable.
 localVariable2 class initializeSlots: localVariable2.
+model add: localVariable2.
 self entity addLocalVariable: localVariable1.
 self entity addLocalVariable: localVariable2.
 self assert: (self entity localVariables notEmpty).

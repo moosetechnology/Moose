@@ -12,6 +12,7 @@ Trait {
 TFamixTSourceAnchorTest >> testElement [
 element := MooseEntity new copyWithTalent: FamixTWithSourceAnchor. 
 element class initializeSlots: element.
+model add: element.
 self entity element: element. 
 self assert: (self entity element notNil).
 self assert: self entity element equals: element.

@@ -13,8 +13,10 @@ Trait {
 TFamixTWithTypedStructuresTest >> testStructuresWithDeclaredType [
 typedStructure1 := MooseEntity new copyWithTalent: FamixTTypedStructure.
 typedStructure1 class initializeSlots: typedStructure1.
+model add: typedStructure1.
 typedStructure2 := MooseEntity new copyWithTalent: FamixTTypedStructure.
 typedStructure2 class initializeSlots: typedStructure2.
+model add: typedStructure2.
 self entity addBehaviourWithDeclaredType: typedStructure1.
 self entity addBehaviourWithDeclaredType: typedStructure2.
 self assert: (self entity structuresWithDeclaredType notEmpty).

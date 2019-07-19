@@ -14,6 +14,7 @@ Trait {
 TFamixTAnnotationTypeTest >> testAnnotationTypesContainer [
 annotationTypesContainer := MooseEntity new copyWithTalent: FamixTWithAnnotationTypes. 
 annotationTypesContainer class initializeSlots: annotationTypesContainer.
+model add: annotationTypesContainer.
 self entity annotationTypesContainer: annotationTypesContainer. 
 self assert: (self entity annotationTypesContainer notNil).
 self assert: self entity annotationTypesContainer equals: annotationTypesContainer.
@@ -24,8 +25,10 @@ self assertCollection: annotationTypesContainer definedAnnotationTypes hasSameEl
 TFamixTAnnotationTypeTest >> testInstances [
 typedAnnotationInstance1 := MooseEntity new copyWithTalent: FamixTTypedAnnotationInstance.
 typedAnnotationInstance1 class initializeSlots: typedAnnotationInstance1.
+model add: typedAnnotationInstance1.
 typedAnnotationInstance2 := MooseEntity new copyWithTalent: FamixTTypedAnnotationInstance.
 typedAnnotationInstance2 class initializeSlots: typedAnnotationInstance2.
+model add: typedAnnotationInstance2.
 self entity addInstance: typedAnnotationInstance1.
 self entity addInstance: typedAnnotationInstance2.
 self assert: (self entity instances notEmpty).

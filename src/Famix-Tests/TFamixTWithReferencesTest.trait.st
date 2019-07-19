@@ -13,8 +13,10 @@ Trait {
 TFamixTWithReferencesTest >> testOutgoingReferences [
 reference1 := MooseEntity new copyWithTalent: FamixTReference.
 reference1 class initializeSlots: reference1.
+model add: reference1.
 reference2 := MooseEntity new copyWithTalent: FamixTReference.
 reference2 class initializeSlots: reference2.
+model add: reference2.
 self entity addOutgoingReference: reference1.
 self entity addOutgoingReference: reference2.
 self assert: (self entity outgoingReferences notEmpty).

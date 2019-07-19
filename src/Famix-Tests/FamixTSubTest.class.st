@@ -9,6 +9,8 @@ Class {
 { #category : #overrides }
 FamixTSubTest >> setUp [
 super setUp.
+	model := MooseModel new metamodel: FamixGenerator metamodel.
 self entity: (MooseEntity new copyWithTalent:FamixTSub).
 self entity class initializeSlots: self entity.
+model add: entity. 
 ]

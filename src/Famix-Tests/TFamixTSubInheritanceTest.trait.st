@@ -12,6 +12,7 @@ Trait {
 TFamixTSubInheritanceTest >> testSubclass [
 subclass := MooseEntity new copyWithTalent: FamixTWithSubInheritances. 
 subclass class initializeSlots: subclass.
+model add: subclass.
 self entity subclass: subclass. 
 self assert: (self entity subclass notNil).
 self assert: self entity subclass equals: subclass.

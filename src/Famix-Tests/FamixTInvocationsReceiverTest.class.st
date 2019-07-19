@@ -9,6 +9,8 @@ Class {
 { #category : #overrides }
 FamixTInvocationsReceiverTest >> setUp [
 super setUp.
+	model := MooseModel new metamodel: FamixGenerator metamodel.
 self entity: (MooseEntity new copyWithTalent:FamixTInvocationsReceiver).
 self entity class initializeSlots: self entity.
+model add: entity. 
 ]

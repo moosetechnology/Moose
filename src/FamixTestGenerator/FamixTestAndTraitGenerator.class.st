@@ -40,7 +40,7 @@ FamixTestAndTraitGenerator >> createTraitOfTestFor: aClass [
 		named: (self traitNameFrom: aClass)
 		uses: TFamixTest
 		slots: (self generateSlotsOfTraitOfTestFor: aClass) asArray
-		category: 'Famix-Tests-Traits'
+		package: 'Famix-Tests-Traits'
 ]
 
 { #category : #'generate for FMMany slot' }
@@ -92,7 +92,11 @@ FamixTestAndTraitGenerator >> generateCodeForFMManySlotInitialization: aSlot [
 	| traitSlotName1 traitSlotName2 | 
 	"Example of what we want to generate
 	method1 := MooseEntity new copyWithTalent: FamixTMethod.
+	method1 class initializeSlots: method1.
+	model add: method1.
 	method2 := MooseEntity new copyWithTalent: FamixTMethod.
+	method2 class initializeSlots: method2.
+	model add: method2.
 	self entity addMethod: method1.
 	self entity addMethod: method2."
 	traitSlotName1 := (self generateSlotNameOfTestTraitFrom: aSlot) asString , '1'.
@@ -107,6 +111,10 @@ FamixTestAndTraitGenerator >> generateCodeForFMManySlotInitialization: aSlot [
 		nextPutAll: traitSlotName1 ;
 		nextPutAll: '.';
 		cr;
+		nextPutAll: 'model add: ';
+		nextPutAll: traitSlotName1 ;
+		nextPutAll: '.';
+		cr;
 		nextPutAll:  traitSlotName2 ;
 		nextPutAll: ' := MooseEntity new copyWithTalent: ';
 		nextPutAll: aSlot targetClass name  ;
@@ -114,6 +122,10 @@ FamixTestAndTraitGenerator >> generateCodeForFMManySlotInitialization: aSlot [
 		cr;
 		nextPutAll: traitSlotName2 ;
 		nextPutAll: ' class initializeSlots: ';
+		nextPutAll: traitSlotName2 ;
+		nextPutAll: '.';
+		cr;
+		nextPutAll: 'model add: ';
 		nextPutAll: traitSlotName2 ;
 		nextPutAll: '.';
 		cr;
@@ -170,6 +182,8 @@ FamixTestAndTraitGenerator >> generateCodeForFMOneSlotInitialization: aSlot [
 	| traitSlotName | 
 	"Example of what we want to generate
 	access := MooseEntity new copyWithTalent: FamixTWithAccesses.
+	access class initializeSlots: access.
+	model add: access.
 	self entity accessor: access."
 	traitSlotName := aSlot name asString.
 	^ String streamContents: [ :aStream | aStream nextPutAll:  traitSlotName ;
@@ -179,6 +193,10 @@ FamixTestAndTraitGenerator >> generateCodeForFMOneSlotInitialization: aSlot [
 		cr;
 		nextPutAll: traitSlotName ;
 		nextPutAll: ' class initializeSlots: ';
+		nextPutAll: traitSlotName ;
+		nextPutAll: '.';
+		cr;
+		nextPutAll: 'model add: ';
 		nextPutAll: traitSlotName ;
 		nextPutAll: '.';
 		cr;
@@ -243,11 +261,16 @@ FamixTestAndTraitGenerator >> generateSetUpInTraitFor: aClass [
 		cr;
 		nextPutAll: 'super setUp.';
 		cr;
+		nextPutAll: '	model := MooseModel new metamodel: FamixGenerator metamodel.';
+		cr;
 		nextPutAll: 'self entity: (MooseEntity new copyWithTalent:'; 
 		nextPutAll: aClass name;
 		nextPutAll: ').';
 		cr;
-		nextPutAll: 'self entity class initializeSlots: self entity.' ]
+		nextPutAll: 'self entity class initializeSlots: self entity.';
+		cr;
+		nextPutAll: 'model add: entity. '
+		 ]
 ]
 
 { #category : #'generate for FMOne slot' }

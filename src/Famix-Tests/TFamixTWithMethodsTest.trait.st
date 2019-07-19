@@ -13,8 +13,10 @@ Trait {
 TFamixTWithMethodsTest >> testMethods [
 method1 := MooseEntity new copyWithTalent: FamixTMethod.
 method1 class initializeSlots: method1.
+model add: method1.
 method2 := MooseEntity new copyWithTalent: FamixTMethod.
 method2 class initializeSlots: method2.
+model add: method2.
 self entity addMethod: method1.
 self entity addMethod: method2.
 self assert: (self entity methods notEmpty).

@@ -12,6 +12,7 @@ Trait {
 TFamixTCompilationUnitTest >> testCompilationUnitOwner [
 compilationUnitOwner := MooseEntity new copyWithTalent: FamixTWithCompilationUnit. 
 compilationUnitOwner class initializeSlots: compilationUnitOwner.
+model add: compilationUnitOwner.
 self entity compilationUnitOwner: compilationUnitOwner. 
 self assert: (self entity compilationUnitOwner notNil).
 self assert: self entity compilationUnitOwner equals: compilationUnitOwner.

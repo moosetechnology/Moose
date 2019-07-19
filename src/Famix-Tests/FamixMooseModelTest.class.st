@@ -1,16 +1,16 @@
 Class {
-	#name : #FamixTExceptionTest,
+	#name : #FamixMooseModelTest,
 	#superclass : #TestCase,
-	#traits : 'TFamixTExceptionTest',
-	#classTraits : 'TFamixTExceptionTest classTrait',
+	#traits : 'TFamixMooseModelTest',
+	#classTraits : 'TFamixMooseModelTest classTrait',
 	#category : #'Famix-Tests-Tests'
 }
 
 { #category : #overrides }
-FamixTExceptionTest >> setUp [
+FamixMooseModelTest >> setUp [
 super setUp.
 	model := MooseModel new metamodel: FamixGenerator metamodel.
-self entity: (MooseEntity new copyWithTalent:FamixTException).
+self entity: (MooseEntity new copyWithTalent:FamixMooseModel).
 self entity class initializeSlots: self entity.
 model add: entity. 
 ]

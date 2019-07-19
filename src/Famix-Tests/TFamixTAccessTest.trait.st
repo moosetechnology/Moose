@@ -14,6 +14,7 @@ Trait {
 TFamixTAccessTest >> testAccessor [
 accessor := MooseEntity new copyWithTalent: FamixTWithAccesses. 
 accessor class initializeSlots: accessor.
+model add: accessor.
 self entity accessor: accessor. 
 self assert: (self entity accessor notNil).
 self assert: self entity accessor equals: accessor.
@@ -32,6 +33,7 @@ self assert: self entity isWrite equals: 'aLiteral' .
 TFamixTAccessTest >> testVariable [
 variable := MooseEntity new copyWithTalent: FamixTAccessible. 
 variable class initializeSlots: variable.
+model add: variable.
 self entity variable: variable. 
 self assert: (self entity variable notNil).
 self assert: self entity variable equals: variable.

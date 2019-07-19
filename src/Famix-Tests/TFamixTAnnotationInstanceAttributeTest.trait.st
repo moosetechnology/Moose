@@ -13,6 +13,7 @@ Trait {
 TFamixTAnnotationInstanceAttributeTest >> testParentAnnotationInstance [
 parentAnnotationInstance := MooseEntity new copyWithTalent: FamixTWithAnnotationInstanceAttributes. 
 parentAnnotationInstance class initializeSlots: parentAnnotationInstance.
+model add: parentAnnotationInstance.
 self entity parentAnnotationInstance: parentAnnotationInstance. 
 self assert: (self entity parentAnnotationInstance notNil).
 self assert: self entity parentAnnotationInstance equals: parentAnnotationInstance.
