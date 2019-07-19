@@ -31,19 +31,6 @@ FmxMBRingEnvironment >> classNamed: aClassName [
 	^ self ringEnvironment ask behaviorNamed: aClassName
 ]
 
-{ #category : #installing }
-FmxMBRingEnvironment >> cleanClass: realClass [
-
-	realClass protocols 
-		select: [ :each | each beginsWith: '_fromTrait_' ] 
-		thenDo: [ :each | realClass removeProtocol: each ].
-
-	realClass classSide protocols 
-		select: [ :each | each beginsWith: '_fromTrait_' ] 
-		thenDo: [ :each | realClass classSide removeProtocol: each ].
-
-]
-
 { #category : #accessing }
 FmxMBRingEnvironment >> compile: aSource in: aClass classified: aProtocol [
 
