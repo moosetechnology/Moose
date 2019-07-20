@@ -9,7 +9,6 @@ Class {
 
 { #category : #accessing }
 FmxMBRealRingEnvironment >> apply [
-1halt.
 	self collectChangesToApply.
 	changesToApply do: #apply
 ]
