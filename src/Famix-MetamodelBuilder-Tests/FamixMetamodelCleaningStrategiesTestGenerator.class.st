@@ -9,6 +9,11 @@ Class {
 	#category : #'Famix-MetamodelBuilder-Tests-Helpers'
 }
 
+{ #category : #testing }
+FamixMetamodelCleaningStrategiesTestGenerator class >> isRealMetamodel [
+	^ false
+]
+
 { #category : #accessing }
 FamixMetamodelCleaningStrategiesTestGenerator class >> packageName [
 

@@ -1,6 +1,3 @@
-"
-FamixMetamodelGenerator
-"
 Class {
 	#name : #FamixMetamodelGenerator,
 	#superclass : #Object,
@@ -85,6 +82,11 @@ FamixMetamodelGenerator class >> generateAllMetamodels [
 		displayingProgress: [ :mm | 'Regenerate ' , mm name ]
 ]
 
+{ #category : #generation }
+FamixMetamodelGenerator class >> individualGenerators [
+	^ self allSubclasses select: [ :c | c isRealMetamodel and: [ c isPartOfComposedMetaModel not ] ]
+]
+
 { #category : #testing }
 FamixMetamodelGenerator class >> isAbstract [
 	^ self = FamixMetamodelGenerator
@@ -98,6 +100,13 @@ FamixMetamodelGenerator class >> isComposed [
 { #category : #testing }
 FamixMetamodelGenerator class >> isPartOfComposedMetaModel [
 	^ FamixMetamodelGenerator composedMetaModels anySatisfy: [ :mm | mm submetamodels includes: self ]
+]
+
+{ #category : #testing }
+FamixMetamodelGenerator class >> isRealMetamodel [
+	"I should return false for MMs that are used for tests and that should not be generated all the time."
+
+	^ self isAbstract not
 ]
 
 { #category : #'world menu' }
@@ -131,7 +140,7 @@ FamixMetamodelGenerator class >> metamodelsToGenerate [
 	"We add she submetamodels before the MM composing them because if we do the other way around it will cause trouble when we regenerate all because it will remove the glue added by the composed MM."
 
 	| metamodels |
-	metamodels := self allSubclasses reject: [ :c | c isAbstract or: [ c isPartOfComposedMetaModel ] ].
+	metamodels := self individualGenerators.
 	metamodels select: #isComposed thenDo: [ :mm | mm submetamodels do: [ :smm | (metamodels includes: smm) ifFalse: [ metamodels add: smm before: mm ] ] ].
 	^ metamodels
 ]
@@ -372,6 +381,12 @@ FamixMetamodelGenerator >> packageNameForAnnotations [
 FamixMetamodelGenerator >> prefix [
 
 	^ self class prefix
+]
+
+{ #category : #testing }
+FamixMetamodelGenerator >> regenerationIsNeeded [
+	self define.
+	^ self builder regenerationIsNeeded
 ]
 
 { #category : #definition }
