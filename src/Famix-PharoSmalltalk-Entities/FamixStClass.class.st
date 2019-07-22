@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixStClass,
 	#superclass : #FamixStNamedEntity,
-	#traits : 'FamixStFamixTWithTypedStructures + FamixTClass + FamixTClassHierarchyNavigation + FamixTWithExceptions',
-	#classTraits : 'FamixStFamixTWithTypedStructures classTrait + FamixTClass classTrait + FamixTClassHierarchyNavigation classTrait + FamixTWithExceptions classTrait',
+	#traits : 'FamixTClass + FamixTClassHierarchyNavigation + FamixTWithExceptions + FamixTWithTypedStructures',
+	#classTraits : 'FamixTClass classTrait + FamixTClassHierarchyNavigation classTrait + FamixTWithExceptions classTrait + FamixTWithTypedStructures classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 

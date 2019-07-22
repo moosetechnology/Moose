@@ -113,7 +113,7 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	class --|> #TWithExceptions.
 	class --|> #TClass.
 	class --|> #TClassHierarchyNavigation.
-	class --|> #FamixTWithTypedStructures.
+	class --|> #TWithTypedStructures.
 
 	globalVariable --|> structuralEntity.
 	globalVariable --|> #TGlobalVariable.
