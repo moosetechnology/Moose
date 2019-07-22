@@ -97,6 +97,13 @@ FamixMetamodelGenerator class >> isPartOfComposedMetaModel [
 	^ FamixMetamodelGenerator composedMetaModels anySatisfy: [ :mm | mm submetamodels includes: self ]
 ]
 
+{ #category : #testing }
+FamixMetamodelGenerator class >> isRealMetamodel [
+	"I should return false for MMs that are used for tests and that should not be generated all the time."
+
+	^ self isAbstract not
+]
+
 { #category : #'world menu' }
 FamixMetamodelGenerator class >> menuCommandOn: aBuilder [
 	<worldMenu>
@@ -128,7 +135,7 @@ FamixMetamodelGenerator class >> metamodelsToGenerate [
 	"We add she submetamodels before the MM composing them because if we do the other way around it will cause trouble when we regenerate all because it will remove the glue added by the composed MM."
 
 	| metamodels |
-	metamodels := self allSubclasses reject: [ :c | c isAbstract or: [ c isPartOfComposedMetaModel ] ].
+	metamodels := self allSubclasses select: [ :c | c isRealMetamodel and: [ c isPartOfComposedMetaModel not ] ].
 	metamodels select: #isComposed thenDo: [ :mm | mm submetamodels do: [ :smm | (metamodels includes: smm) ifFalse: [ metamodels add: smm before: mm ] ] ].
 	^ metamodels
 ]
