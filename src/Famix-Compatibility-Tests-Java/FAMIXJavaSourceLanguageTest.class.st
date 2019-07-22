@@ -8,9 +8,7 @@ Class {
 FAMIXJavaSourceLanguageTest >> testIsJava [
 	| model |
 	MooseModel resetMeta.
-	model := MooseModel new.
-	
-	model importFromMSEStream: '(
+	model := FamixJavaMooseModel importFromMSEStream: '(
 		(Famix-Java-Entities.JavaSourceLanguage)
 		(Famix-Java-Entities.Class (id: 2) (name ''ClassWithoutSourceA''))
 		(Famix-Java-Entities.Class (id: 3) (name ''ClassWithoutSourceB''))
