@@ -11,10 +11,10 @@ FAMIXJavaSourceLanguageTest >> testIsJava [
 	model := MooseModel new.
 	
 	model importFromMSEStream: '(
-		(FAMIX.JavaSourceLanguage)
-		(FAMIX.Class (id: 2) (name ''ClassWithoutSourceA''))
-		(FAMIX.Class (id: 3) (name ''ClassWithoutSourceB''))
-	)' readStream.
+		(Famix-Java-Entities.JavaSourceLanguage)
+		(Famix-Java-Entities.Class (id: 2) (name ''ClassWithoutSourceA''))
+		(Famix-Java-Entities.Class (id: 3) (name ''ClassWithoutSourceB''))
+	)' readStream withMetamodel: FamixJavaGenerator metamodel.
 	self assert: model sourceLanguage isJava
 ]
 

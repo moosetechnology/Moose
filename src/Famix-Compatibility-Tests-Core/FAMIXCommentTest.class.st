@@ -12,6 +12,7 @@ FAMIXCommentTest >> actualClass [
 { #category : #tests }
 FAMIXCommentTest >> testAddingComment [
 	| cls |
+	self skip: 'A generated test replaces this one'.
 	cls := FAMIXClass new.
 	cls name: 'AClass'.
 	self assert: cls mooseName == #AClass.

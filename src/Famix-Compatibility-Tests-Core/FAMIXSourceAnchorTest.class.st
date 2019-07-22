@@ -13,18 +13,18 @@ FAMIXSourceAnchorTest class >> isAbstract [
 FAMIXSourceAnchorTest >> testImportFileAnchors [
 	| model aMethod |
 	MooseModel resetMeta.
-	model := MooseModel 
+	model := FamixJavaMooseModel 
 		importFromMSEStream:
 			'(		
-		(Famix-PharoSmalltalk-Entities.Class (id: 1) (name ''AClass'') (sourceAnchor (ref: 3)))
-		(Famix-PharoSmalltalk-Entities.Method (id: 2) (name ''aMethod'') (parentType (ref: 1)) (sourceAnchor (ref: 4)))
-		(Famix-PharoSmalltalk-Entities.SourceAnchor (id: 3) (element (ref: 1)) )  
-		(Famix-PharoSmalltalk-Entities.SourceAnchor (id: 4) (element (ref: 2))  (startLine 3) (endLine 30))
-	)' readStream withMetamodel: FamixPharoSmalltalkGenerator  metamodel.
+		(Famix-Java-Entities.Class (id: 1) (name ''AClass'') (sourceAnchor (ref: 3)))
+		(Famix-Java-Entities.Method (id: 2) (name ''aMethod'') (parentType (ref: 1)) (sourceAnchor (ref: 4)))
+		(Famix-Java-Entities.FileAnchor (id: 3) (element (ref: 1)) (fileName ''afile''))  
+		(Famix-Java-Entities.FileAnchor (id: 4) (element (ref: 2)) (fileName ''afile'') (startLine 3) (endLine 30))
+	)' readStream.
 	self assert: model entities size equals: 4.
 	self assert: model allClasses first sourceAnchor notNil.
 	self assert: model allClasses first sourceAnchor mooseModel == model.
-	self assert: (model allClasses first sourceAnchor isKindOf: FamixStSourceAnchor).
+	self assert: (model allClasses first sourceAnchor isKindOf: FamixJavaFileAnchor).
 	aMethod := model allMethods first.
 	self assert: aMethod hasSourceAnchor.
 	self assert: aMethod sourceAnchor notNil.

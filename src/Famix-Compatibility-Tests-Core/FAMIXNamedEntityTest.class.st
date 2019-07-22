@@ -12,6 +12,7 @@ FAMIXNamedEntityTest >> actualClass [
 { #category : #tests }
 FAMIXNamedEntityTest >> testIsAbstract [
 	| entity |
+	self skip: 'A generated test replaces this one'.
 	entity := self actualClass new.
 	entity isAbstract: true.
 	self assert: entity isAbstract

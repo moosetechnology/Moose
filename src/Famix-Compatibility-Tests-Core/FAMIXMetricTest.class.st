@@ -25,7 +25,7 @@ self skip.
 
 { #category : #testing }
 FAMIXMetricTest >> testAllPackageMetrics [
-	self assertNoErrorForAllMetricsOf: (FAMIXPackage new name: 'package'; mooseModel: MooseModel new)
+	self assertNoErrorForAllMetricsOf: (FamixStPackage new name: 'package'; mooseModel: FamixStMooseModel new; yourself )
 ]
 
 { #category : #testing }

@@ -26,6 +26,7 @@ FAMIXSourcedEntityTest >> testAddComment [
 { #category : #tests }
 FAMIXSourcedEntityTest >> testAddCommentFromString [
 	| inst |
+	self skip: 'A generated test replace this one'.
 	inst := self actualClass new.
 	inst addComment: 'This is a test'.
 	self assert: inst comments size equals: 1.
