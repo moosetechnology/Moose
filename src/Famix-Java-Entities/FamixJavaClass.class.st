@@ -93,6 +93,21 @@ FamixJavaClass >> isInheritedBy: anInheritance [
 ]
 
 { #category : #testing }
+FamixJavaClass >> isInterface [
+
+	<MSEProperty: #isInterface type: #Boolean>
+	<MSEComment: 'This is a boolean flag used to distinguish between classes with implementation and interfaces'>
+
+	^ self privateState attributeAt: #isInterface ifAbsent: [ false ]
+]
+
+{ #category : #testing }
+FamixJavaClass >> isInterface: aBoolean [
+
+	^ self privateState attributeAt: #isInterface put: true
+]
+
+{ #category : #testing }
 FamixJavaClass >> isInvokedBy: anInvocation [ 
 	 
 	^(anInvocation candidateList notNil 
