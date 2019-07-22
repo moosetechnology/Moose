@@ -19,7 +19,7 @@ FamixJavaAnnotationInstance class >> annotation [
 FamixJavaAnnotationInstance class >> requirements [
 
 	<generated>
-	^ { FamixJavaNamedEntity }
+	^ { FamixJavaAttribute. FamixJavaClass. FamixJavaMethod. FamixJavaNamedEntity }
 ]
 
 { #category : #'Moose-Query' }

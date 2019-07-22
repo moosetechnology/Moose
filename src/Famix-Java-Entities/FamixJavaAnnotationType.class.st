@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaAnnotationType,
 	#superclass : #FamixJavaType,
-	#traits : 'FamixTAnnotationType',
-	#classTraits : 'FamixTAnnotationType classTrait',
+	#traits : 'FamixTAnnotationType + FamixTWithAttributes',
+	#classTraits : 'FamixTAnnotationType classTrait + FamixTWithAttributes classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
@@ -19,7 +19,7 @@ FamixJavaAnnotationType class >> annotation [
 FamixJavaAnnotationType class >> requirements [
 
 	<generated>
-	^ { FamixJavaMethod }
+	^ { FamixJavaNamespace }
 ]
 
 { #category : #'as yet unclassified' }

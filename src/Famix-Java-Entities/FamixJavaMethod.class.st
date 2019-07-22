@@ -1,15 +1,15 @@
 Class {
 	#name : #FamixJavaMethod,
-	#superclass : #FamixJavaContainerEntity,
-	#traits : 'FamixTMethod + FamixTWithAnnotationTypes + FamixTWithCaughtExceptions + FamixTWithClasses + FamixTWithDeclaredExceptions + FamixTWithStatements + FamixTWithThrownExceptions + FamixTWithTypes',
-	#classTraits : 'FamixTMethod classTrait + FamixTWithAnnotationTypes classTrait + FamixTWithCaughtExceptions classTrait + FamixTWithClasses classTrait + FamixTWithDeclaredExceptions classTrait + FamixTWithStatements classTrait + FamixTWithThrownExceptions classTrait + FamixTWithTypes classTrait',
+	#superclass : #FamixJavaNamedEntity,
+	#traits : 'FamixTMethod + FamixTWithAnnotationInstances + FamixTWithCaughtExceptions + FamixTWithClasses + FamixTWithDeclaredExceptions + FamixTWithStatements + FamixTWithThrownExceptions + FamixTWithTypes',
+	#classTraits : 'FamixTMethod classTrait + FamixTWithAnnotationInstances classTrait + FamixTWithCaughtExceptions classTrait + FamixTWithClasses classTrait + FamixTWithDeclaredExceptions classTrait + FamixTWithStatements classTrait + FamixTWithThrownExceptions classTrait + FamixTWithTypes classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
 { #category : #meta }
 FamixJavaMethod class >> annotation [
 
-	<MSEClass: #Method super: #FamixJavaContainerEntity>
+	<MSEClass: #Method super: #FamixJavaNamedEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
@@ -19,7 +19,7 @@ FamixJavaMethod class >> annotation [
 FamixJavaMethod class >> requirements [
 
 	<generated>
-	^ {  }
+	^ { FamixJavaType }
 ]
 
 { #category : #'as yet unclassified' }

@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaAttribute,
 	#superclass : #FamixJavaStructuralEntity,
-	#traits : 'FamixTAttribute + FamixTWithClassScope',
-	#classTraits : 'FamixTAttribute classTrait + FamixTWithClassScope classTrait',
+	#traits : 'FamixTAttribute + FamixTWithAnnotationInstances + FamixTWithClassScope',
+	#classTraits : 'FamixTAttribute classTrait + FamixTWithAnnotationInstances classTrait + FamixTWithClassScope classTrait',
 	#instVars : [
 		'#hasClassScope'
 	],
@@ -22,7 +22,7 @@ FamixJavaAttribute class >> annotation [
 FamixJavaAttribute class >> requirements [
 
 	<generated>
-	^ {  }
+	^ { FamixJavaAnnotationType. FamixJavaType }
 ]
 
 { #category : #'as yet unclassified' }

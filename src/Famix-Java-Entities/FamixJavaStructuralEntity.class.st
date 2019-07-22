@@ -82,13 +82,6 @@ FamixJavaStructuralEntity >> isClass [
 ]
 
 { #category : #testing }
-FamixJavaStructuralEntity >> isContainerEntity [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
 FamixJavaStructuralEntity >> isFunction [
 
 	<generated>

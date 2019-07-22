@@ -1,15 +1,15 @@
 Class {
 	#name : #FamixJavaType,
-	#superclass : #FamixJavaContainerEntity,
-	#traits : 'FamixTClassHierarchyNavigation + FamixTParameterizedTypeUser + FamixTReferenceable + FamixTType + FamixTWithTypeAliases + FamixTWithTypedStructures',
-	#classTraits : 'FamixTClassHierarchyNavigation classTrait + FamixTParameterizedTypeUser classTrait + FamixTReferenceable classTrait + FamixTType classTrait + FamixTWithTypeAliases classTrait + FamixTWithTypedStructures classTrait',
+	#superclass : #FamixJavaNamedEntity,
+	#traits : 'FamixTClassHierarchyNavigation + FamixTContainingWithStatementsGlue + FamixTParameterizedTypeUser + FamixTReferenceable + FamixTType + FamixTWithAttributes + FamixTWithMethods + FamixTWithMethodsWithModifiersGlue + FamixTWithSuperInheritances + FamixTWithTypeAliases + FamixTWithTypedStructures + FamixTWithTypes',
+	#classTraits : 'FamixTClassHierarchyNavigation classTrait + FamixTContainingWithStatementsGlue classTrait + FamixTParameterizedTypeUser classTrait + FamixTReferenceable classTrait + FamixTType classTrait + FamixTWithAttributes classTrait + FamixTWithMethods classTrait + FamixTWithMethodsWithModifiersGlue classTrait + FamixTWithSuperInheritances classTrait + FamixTWithTypeAliases classTrait + FamixTWithTypedStructures classTrait + FamixTWithTypes classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
 { #category : #meta }
 FamixJavaType class >> annotation [
 
-	<MSEClass: #Type super: #FamixJavaContainerEntity>
+	<MSEClass: #Type super: #FamixJavaNamedEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
@@ -19,7 +19,7 @@ FamixJavaType class >> annotation [
 FamixJavaType class >> requirements [
 
 	<generated>
-	^ { FamixJavaMethod. FamixJavaScopingEntity }
+	^ { FamixJavaClass. FamixJavaMethod. FamixJavaScopingEntity. FamixJavaType }
 ]
 
 { #category : #'as yet unclassified' }
@@ -93,7 +93,7 @@ FamixJavaType >> clientPackages [
 { #category : #'as yet unclassified' }
 FamixJavaType >> container [
 
-	<MSEProperty: #container type: #FamixJavaContainerEntity>
+	<MSEProperty: #container type: #FamixTWithTypes>
 	<MSEComment: 'Deprected, use typeContainer'>
 	<container>
 	<derived>

@@ -10,7 +10,6 @@ Class {
 		'attribute',
 		'caughtException',
 		'class',
-		'containerEntity',
 		'declaredException',
 		'enum',
 		'enumValue',
@@ -71,7 +70,6 @@ FamixJavaGenerator >> defineClasses [
 	attribute := builder newClassNamed: #Attribute.
 	caughtException := builder newClassNamed: #CaughtException.
 	class := builder newClassNamed: #Class.
-	containerEntity := builder newClassNamed: #ContainerEntity.
 	declaredException := builder newClassNamed: #DeclaredException.
 	enum := builder newClassNamed: #Enum.
 	enumValue := builder newClassNamed: #EnumValue.
@@ -98,7 +96,6 @@ FamixJavaGenerator >> defineClasses [
 	unknownVariable := builder newClassNamed: #UnknownVariable.
 	
 	primitiveType withTesting.
-	containerEntity withTesting.
 
 	self defineComments
 ]
@@ -147,6 +144,7 @@ FamixJavaGenerator >> defineHierarchy [
 
 	annotationType --|> type.
 	annotationType --|> #TAnnotationType.
+	annotationType --|> #TWithAttributes.
 
 	annotationTypeAttribute --|> attribute.
 	annotationTypeAttribute --|> #TAnnotationTypeAttribute.
@@ -155,8 +153,9 @@ FamixJavaGenerator >> defineHierarchy [
 	attribute --|> structuralEntity.
 	attribute --|> #TAttribute.
 	attribute --|> #TWithClassScope.
+	attribute --|> #TWithAnnotationInstances.
 
-	method --|> containerEntity.
+	method --|> namedEntity.
 	method --|> #TMethod.
 	method --|> #TWithThrownExceptions.
 	method --|> #TWithDeclaredExceptions.
@@ -164,7 +163,7 @@ FamixJavaGenerator >> defineHierarchy [
 	method --|> #TWithStatements.
 	method --|> #TWithTypes.
 	method --|> #TWithClasses.
-	method --|> #TWithAnnotationTypes.
+	method --|> #TWithAnnotationInstances.
 
 	caughtException --|> exception.
 	caughtException --|> #TCaughtException.
@@ -173,6 +172,8 @@ FamixJavaGenerator >> defineHierarchy [
 	class --|> #TWithExceptions.
 	class --|> #TClass.
 	class --|> #TLCOMMetrics.
+	class --|> #TWithAnnotationInstances.
+	class --|> #TWithTypes.
 
 	declaredException --|> exception.
 	declaredException --|> #TDeclaredException.
@@ -210,6 +211,7 @@ FamixJavaGenerator >> defineHierarchy [
 
 	namespace --|> scopingEntity.
 	namespace --|> #TNamespace.
+	namespace --|> #TWithAnnotationTypes.
 
 	package --|> scopingEntity.
 	package --|> #TPackage.
@@ -242,13 +244,17 @@ FamixJavaGenerator >> defineHierarchy [
 	thrownException --|> exception.
 	thrownException --|> #TThrownException.
 
-	type --|> containerEntity.
+	type --|> namedEntity.
 	type --|> #TType.
 	type --|> #TReferenceable.
 	type --|> #TWithTypedStructures.
 	type --|> #TWithTypeAliases.
 	type --|> #TParameterizedTypeUser.
 	type --|> #TClassHierarchyNavigation. 
+	type --|> #TWithMethods.
+	type --|> #TWithTypes.
+	type --|> #TWithSuperInheritances.
+	type --|> #TWithAttributes.
 
 	unknownSourceLanguage --|> entity.
 	unknownSourceLanguage --|> #TSourceLanguage.

@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaNamespace,
 	#superclass : #FamixJavaScopingEntity,
-	#traits : 'FamixTNamespace',
-	#classTraits : 'FamixTNamespace classTrait',
+	#traits : 'FamixTNamespace + FamixTWithAnnotationTypes',
+	#classTraits : 'FamixTNamespace classTrait + FamixTWithAnnotationTypes classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
