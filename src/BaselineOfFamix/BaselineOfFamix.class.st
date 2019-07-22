@@ -61,6 +61,7 @@ BaselineOfFamix >> baseline: spec [
 				package: 'Famix-Java-Generator' with: [ spec requires: #('Basic') ];
 				package: 'Famix-Java-Entities' with: [ spec requires: #('Famix-MetamodelBuilder-Core' 'Famix-Traits') ];
 				package: 'Famix-Java-Entities-Extensions' with: [ spec requires: #('Famix-Java-Entities') ];
+				package: 'Famix-Java-Tests' with: [ spec requires: #('Famix-Java-Entities' 'Famix-Java-Generator' 'Famix-Java-Entities-Extensions' ) ];
 				package: 'Moose-TestResources-LAN';
 				package: 'Moose-TestResources-LCOM';
 				package: 'Moose-Query-Test' with: [ spec requires: #('Moose-Query' 'Famix-Compatibility-Entities') ];
