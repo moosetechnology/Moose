@@ -1,0 +1,40 @@
+Class {
+	#name : #FamixParameterizableClassTest,
+	#superclass : #TestCase,
+	#category : #'Famix-Java-Tests'
+}
+
+{ #category : #tests }
+FamixParameterizableClassTest >> testParameterTypes [
+	| model aParameterizableClass |
+	MooseModel resetMeta.
+	model := FamixJavaMooseModel new.
+	model
+		importFromMSEStream:
+			'(
+		(Famix-Java-Entities.Namespace (id: 1) (name ''NamespaceA''))
+		(Famix-Java-Entities.ParameterizableClass (id: 2) (name ''ParameterizableClassA'') )
+		(Famix-Java-Entities.ParameterizableClass (id: 3) (name ''ParameterizableClassB'') )
+		(Famix-Java-Entities.ParameterizableClass (id: 4) (name ''ParameterizableClassC'') )
+		(Famix-Java-Entities.ParameterType (id: 5) (name ''A'') (container (ref: 2)))
+		(Famix-Java-Entities.ParameterType (id: 6) (name ''B'') (container (ref: 2)))
+		(Famix-Java-Entities.ParameterType (id: 7) (name ''C'') (container (ref: 3)))
+	)' readStream.
+	self assert: model entities size equals: 7.
+	self assert: model allParameterizableClasses size equals: 3.
+	aParameterizableClass := model allParameterizableClasses entityNamed: #ParameterizableClassA.
+	self assert: aParameterizableClass parameters size equals: 2.
+	self
+		assertCollection: (aParameterizableClass parameters collect: #name)
+		hasSameElements: {#'A' . #'B' }.
+	self
+		assert: aParameterizableClass parameters last
+		equals: (model allParameterTypes entityNamed: #ParameterizableClassA::B).
+	aParameterizableClass := model allParameterizableClasses entityNamed: #ParameterizableClassB.
+	self assert: aParameterizableClass parameters size equals: 1.
+	self
+		assert: aParameterizableClass parameters first
+		equals: (model allParameterTypes entityNamed: #ParameterizableClassB::C).
+	aParameterizableClass := model allParameterizableClasses entityNamed: #ParameterizableClassC.
+	self assert: aParameterizableClass parameters isEmpty
+]
