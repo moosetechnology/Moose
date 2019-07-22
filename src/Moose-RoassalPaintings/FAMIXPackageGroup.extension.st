@@ -88,8 +88,8 @@ FAMIXPackageGroup >> viewSystemComplexityOn: view [
 	view
 		nodes: self
 		forEach: [ :p | 
-			p localClassesGroup isEmpty
-				ifFalse: [ p localClassesGroup viewSimpleSystemComplexityOn: view ] ].
+			p classes isEmpty
+				ifFalse: [ p classes viewSimpleSystemComplexityOn: view ] ].
 	view shape orthoVerticalLine.
 	view edges connectFrom: #yourself toAll: [ :each | each queryIncomingInheritances atScope: FamixTPackage ].
 	view layout dominanceTree

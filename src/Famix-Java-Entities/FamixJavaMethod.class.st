@@ -28,7 +28,7 @@ FamixJavaMethod >> accept: aVisitor [
 	aVisitor visitMethod: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions-metrics-support' }
 FamixJavaMethod >> accessedAttributes [
 	
 	"Returns the set of attributes of my class accessed by me (method). 
@@ -53,7 +53,7 @@ FamixJavaMethod >> belongsTo: anObject [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixJavaMethod >> category [
 	<MSEProperty: #category type: #String>
 	<MSEComment: 'Category of the method'>
@@ -62,32 +62,26 @@ FamixJavaMethod >> category [
 	^ self privateState attributeAt: #category ifAbsentPut: [ nil ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions' }
 FamixJavaMethod >> clientBehaviours [
 	<MSEProperty: #clientBehaviours type: #FamixJavaMethod> <multivalued> <derived>
 	<MSEComment: 'All behaviours that depend on the receiver'>
 	^ self invokingBehaviours 
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaMethod >> clientClasses [
-	self deprecated: 'use clientTypes instead'.
-	^ self clientTypes
-]
-
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions' }
 FamixJavaMethod >> clientMethods [
 	^ self clientBehaviours select: [ :each | each isMethod ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions-nav All Dependencies' }
 FamixJavaMethod >> clientNamespaces [
 	"returns a set of all the namespaces that depend on the receiver"
 
 	^ (self queryAllIncoming atScope: FamixTNamespace) withoutSelfLoops
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions-nav All Dependencies' }
 FamixJavaMethod >> clientPackages [
 	"returns a set of all the packages that depend on the receiver"
 
@@ -104,12 +98,12 @@ FamixJavaMethod >> copyFrom: anEntity within: aVisitor [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'moosequery-queries-generic' }
 FamixJavaMethod >> entityHasOutgoingTypeDeclarations [
 	^ self declaredType isNotNil
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaMethod >> hasEmptyBody [
 	"Copied from FAMIX2.
 	 The closest we can get in FAMIX2 to determine if a body is empty is to check if the method
@@ -122,12 +116,12 @@ FamixJavaMethod >> hasEmptyBody [
 	^ self numberOfAccesses = 0 and: [ self numberOfOutgoingInvocations = 0 ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaMethod >> hasInnerClassImplementingMethods [
 	^ self innerClassesImplementingMethods isNotEmpty
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #metrics }
 FamixJavaMethod >> hierarchyNestingLevel [
 	<MSEProperty: #hierarchyNestingLevel type: #Number>
 	<derived>
@@ -138,35 +132,29 @@ FamixJavaMethod >> hierarchyNestingLevel [
 		computedAs: [self belongsTo hierarchyNestingLevel]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #metrics }
 FamixJavaMethod >> hierarchyNestingLevel: aNumber [
 
 	self privateState propertyAt: #hierarchyNestingLevel put: aNumber
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Java' }
 FamixJavaMethod >> implementMethod [
 	^ self belongsTo implementedInterfaces
 		collect: [ :each | each implementationOf: self signature ]
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaMethod >> initialize [
-	super initialize.
-	hasClassScope := false
-]
-
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Java' }
 FamixJavaMethod >> innerClassesImplementingMethods [
 	^ self types select: [ :el | el methods anySatisfy: [ :m | m isStub not ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions' }
 FamixJavaMethod >> invokedBehaviours [
 	^ self queryAllOutgoingInvocations opposites
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions' }
 FamixJavaMethod >> invokedMethods [
 	<MSEProperty: #invokedMethods type: #FamixJavaMethod> <derived> <multivalued>
 	<MSEComment: 'The methods invoked by the receiver'>
@@ -174,12 +162,12 @@ FamixJavaMethod >> invokedMethods [
 	^ self invokedBehaviours select: [ :each | each isMethod ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions' }
 FamixJavaMethod >> invokingBehaviours [
 	^ self queryAllIncomingInvocations opposites
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions' }
 FamixJavaMethod >> invokingMethods [
 	<MSEProperty: #invokingMethods type: #FamixJavaMethod> <derived> <multivalued>
 	<MSEComment: 'The methods invoking the receiver'>
@@ -187,14 +175,14 @@ FamixJavaMethod >> invokingMethods [
 	^ self invokingBehaviours select: [ :each | each isMethod ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaMethod >> isCalledInternally [
 	^self incomingInvocations
 		anySatisfy:
 			[:each | each sender isMethod and: [each sender belongsTo == self belongsTo]]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaMethod >> isClassInitializer [
 	<MSEProperty: #isClassInitializer type: #Boolean>
 	<derived>
@@ -203,21 +191,21 @@ FamixJavaMethod >> isClassInitializer [
 		or: [ self privateState propertyAt: #isClassInitializer ifAbsent: [ false ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaMethod >> isDetectedGetter [
 	^ self outgoingInvocations isEmpty and: [ 
 		self accesses size = 1 and: [ 
 			self accesses first isWrite not ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaMethod >> isDetectedSetter [
 	^ self outgoingInvocations isEmpty and: [ 
 		self accesses size = 1 and: [ 
 			self accesses first isWrite ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaMethod >> isImplementing [
 	<MSEProperty: #isImplementing type: #Boolean>
 	<derived>
@@ -234,7 +222,7 @@ FamixJavaMethod >> isJUnit4Test [
 	^ self isAnnotatedWith: 'Test'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaMethod >> isOverriden [
 	<MSEProperty: #isOverriden type: #Boolean>
 	<derived>
@@ -245,7 +233,7 @@ FamixJavaMethod >> isOverriden [
 	^ self belongsTo subclassHierarchyGroup anySatisfy: [ :each | each hasMethodWithSignature: self signature ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaMethod >> isOverriding [
 	<MSEProperty: #isOverriding type: #Boolean>
 	<derived>
@@ -255,7 +243,7 @@ FamixJavaMethod >> isOverriding [
 		each isInterface not and: [each understands: self signature]]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaMethod >> isSurelyInvokedBy: aFAMIXMethod [ 
 	 
 	| outgoingInvo |
@@ -284,7 +272,7 @@ FamixJavaMethod >> methodScope [
 	^ self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 FamixJavaMethod >> mooseNameOn: stream [ 
 	| parent |
 	parent := self belongsTo.
@@ -302,7 +290,7 @@ FamixJavaMethod >> namespaceScope [
 	^ self parentType namespaceScope
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixJavaMethod >> numberOfAccesses [
 	<MSEProperty: #numberOfAccesses type: #Number>
 	<derived>
@@ -313,7 +301,7 @@ FamixJavaMethod >> numberOfAccesses [
 		computedAs: [ self accesses size ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #metrics }
 FamixJavaMethod >> numberOfAnnotationInstances [
 	<MSEProperty: #numberOfAnnotationInstances type: #Number>
 	<derived>
@@ -324,7 +312,7 @@ FamixJavaMethod >> numberOfAnnotationInstances [
 		computedAs: [self annotationInstances size]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixJavaMethod >> numberOfComments [
 	<MSEProperty: #numberOfComments type: #Number>
 	<MSEComment: 'The number of comment fragments'>
@@ -332,13 +320,13 @@ FamixJavaMethod >> numberOfComments [
 	^ self lookUpPropertyNamed: #numberOfComments computedAs: [ self comments size ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixJavaMethod >> numberOfComments: aNumber [
 
 	self privateState propertyAt: #numberOfComments put: aNumber
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions-private' }
 FamixJavaMethod >> numberOfConditionals [
 	<MSEProperty: #numberOfConditionals type: #Number>
 	<MSEComment: 'The number of conditionals in a method'>
@@ -348,13 +336,13 @@ FamixJavaMethod >> numberOfConditionals [
 			self notExistentMetricValue ] 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions-private' }
 FamixJavaMethod >> numberOfConditionals: aNumber [
 
 	self privateState propertyAt: #numberOfConditionals put: aNumber
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions' }
 FamixJavaMethod >> numberOfInvokedMethods [
 	<MSEProperty: #numberOfInvokedMethods type: #Number>
 	<MSEComment: 'Return a number corresponding to the number of invoked methods'>
@@ -363,7 +351,7 @@ FamixJavaMethod >> numberOfInvokedMethods [
 	^ self privateState propertyAt: #numberOfInvokedMethods ifAbsentPut: [self invokedMethods size]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions-private' }
 FamixJavaMethod >> numberOfOutgoingInvocations [
 	<MSEProperty: #numberOfOutgoingInvocations type: #Number>
 	<derived>
@@ -374,17 +362,17 @@ FamixJavaMethod >> numberOfOutgoingInvocations [
 		computedAs: [self outgoingInvocations size]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'moosequery-queries-outgoing' }
 FamixJavaMethod >> outgoingTypeDeclarations [
 	^ self declaredType ifNil: [ {} ] ifNotNil: [ :dt | {(MooseQueryTypeDeclarationAssociation newFrom: self to: dt)} ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Implementation' }
 FamixJavaMethod >> overridesMethod [
 	^ self belongsTo superclassHierarchy collect: [ :each | each implementationOf: self signature ] thenSelect: #isNotNil
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixJavaMethod >> packageScope [
 
 	^ self parentPackage ifNil:[ 
@@ -396,14 +384,14 @@ FamixJavaMethod >> packageScope [
 	]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixJavaMethod >> parentScope [
 	"Polymorphic alias to mimic GlobalVariable#parentScope and similar"
 
 	^ self parentType parentScope
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 FamixJavaMethod >> printOn: aStream [
 	parentType ifNotNil: [ aStream nextPutAll: parentType name ].
 	aStream nextPutAll: '>>'.
@@ -411,7 +399,7 @@ FamixJavaMethod >> printOn: aStream [
 	aStream nextPutAll: ' (Method)'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions' }
 FamixJavaMethod >> providerBehaviours [
 	<MSEProperty: #providerBehaviours type: #FamixJavaMethod> <derived> <multivalued>
 	<MSEComment: 'All behaviours that the receiver depends on'>
@@ -419,32 +407,26 @@ FamixJavaMethod >> providerBehaviours [
 	^ self invokedBehaviours 
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaMethod >> providerClasses [
-	self deprecated: 'use providerTypes'.
-	^ self providerTypes
-]
-
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions' }
 FamixJavaMethod >> providerMethods [
 	^ self providerBehaviours select: [ :each | each isMethod ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions-nav All Dependencies' }
 FamixJavaMethod >> providerNamespaces [
 	"returns a set of all the namespaces that the receiver depends on the receiver"
 
 	^ (self queryAllOutgoing atScope: FamixTNamespace) withoutSelfLoops
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions-nav All Dependencies' }
 FamixJavaMethod >> providerPackages [
 	"returns a set of all the packages that the receiver depends on the receiver"
 
 	^ (self queryAllOutgoing atScope: FamixTPackage) withoutSelfLoops
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixJavaMethod >> providerTypes [
 	<MSEProperty: #providerTypes type: #FamixJavaType>
 	<derived>
