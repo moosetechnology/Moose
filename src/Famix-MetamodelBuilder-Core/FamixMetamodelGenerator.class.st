@@ -82,6 +82,11 @@ FamixMetamodelGenerator class >> generateAllMetamodels [
 		displayingProgress: [ :mm | 'Regenerate ' , mm name ]
 ]
 
+{ #category : #generation }
+FamixMetamodelGenerator class >> individualGenerators [
+	^ self allSubclasses select: [ :c | c isRealMetamodel and: [ c isPartOfComposedMetaModel not ] ]
+]
+
 { #category : #testing }
 FamixMetamodelGenerator class >> isAbstract [
 	^ self = FamixMetamodelGenerator
@@ -135,7 +140,7 @@ FamixMetamodelGenerator class >> metamodelsToGenerate [
 	"We add she submetamodels before the MM composing them because if we do the other way around it will cause trouble when we regenerate all because it will remove the glue added by the composed MM."
 
 	| metamodels |
-	metamodels := self allSubclasses select: [ :c | c isRealMetamodel and: [ c isPartOfComposedMetaModel not ] ].
+	metamodels := self individualGenerators.
 	metamodels select: #isComposed thenDo: [ :mm | mm submetamodels do: [ :smm | (metamodels includes: smm) ifFalse: [ metamodels add: smm before: mm ] ] ].
 	^ metamodels
 ]
