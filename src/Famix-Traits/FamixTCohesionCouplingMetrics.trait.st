@@ -28,13 +28,6 @@ FamixTCohesionCouplingMetrics >> abstractness [
 	^ (nsClasses select: [:c | c isAbstract]) size / (nsClasses size)
 ]
 
-{ #category : #accessing }
-FamixTCohesionCouplingMetrics >> addChildEntity: anObject [
-
-	childEntities add: anObject
-
-]
-
 { #category : #metrics }
 FamixTCohesionCouplingMetrics >> afferentCoupling [
 	<MSEProperty: #afferentCoupling type: #Number>
