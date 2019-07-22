@@ -28,6 +28,14 @@ FamixTAccessible >> accessingMethods [
 
 ]
 
+{ #category : #accessing }
+FamixTAccessible >> accessors [
+	<MSEProperty: #accessors type: #FamixTWithAccesses>
+	<multivalued>
+	<derived>
+	^ (self incomingAccesses collectAsSet: [ :each | each accessor ]) asMooseGroup
+]
+
 { #category : #adding }
 FamixTAccessible >> addIncomingAccess: anAccess [
 	incomingAccesses add: anAccess
