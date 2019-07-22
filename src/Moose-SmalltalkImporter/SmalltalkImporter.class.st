@@ -72,7 +72,7 @@ SmalltalkImporter >> basicClassCreation: aClass [
 
 { #category : #'private utils' }
 SmalltalkImporter >> checkAbstractClass: class [ 
-	(class methods contains: [ :each | each isAbstract ]) ifTrue: [ class isAbstract: true ]
+	class isAbstract:  (class methods contains: [ :each | each isAbstract ]) 
 ]
 
 { #category : #'private accessing' }
