@@ -22,10 +22,3 @@ FamixTest1NamedEntity class >> dependencyFM3PropertyDescription [
 	^ self allDeclaredProperties
 		select: [ :e | e hasOpposite and: [ e opposite isSource or: [ e opposite isTarget ] ] ]
 ]
-
-{ #category : #meta }
-FamixTest1NamedEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]

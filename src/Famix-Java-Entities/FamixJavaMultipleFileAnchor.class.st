@@ -15,13 +15,6 @@ FamixJavaMultipleFileAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaMultipleFileAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaMultipleFileAnchor >> addFileAnchorWithPath: aPath [
 	self allFiles detect: [ :each | each fileName = aPath ] ifNone: [ self createAnchorWithPath: aPath ]

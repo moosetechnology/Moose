@@ -246,12 +246,15 @@ FmxMBClass >> generateRemotes [
 
 { #category : #generating }
 FmxMBClass >> generateRequirementsFor: aClass [
-
-	aClass classSide compile: ('requirements
+	self allRequirementNames
+		ifNotEmpty: [ :requirementNames | 
+			aClass classSide
+				compile:
+					('requirements
 
 	<generated>
-	^ \{ {1} \}' format: { self allRequirementNames joinUsing: '. ' }) 
-		classified: #meta
+	^ \{ {1} \}' format: {(requirementNames joinUsing: '. ')})
+				classified: #meta ]
 ]
 
 { #category : #accessing }

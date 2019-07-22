@@ -14,10 +14,3 @@ FamixJavaThrownException class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #meta }
-FamixJavaThrownException class >> requirements [
-
-	<generated>
-	^ {  }
-]

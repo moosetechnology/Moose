@@ -37,13 +37,6 @@ FamixJavaEntity class >> metamodel [
 	^ (self class environment at: #FamixJavaGenerator) metamodel
 ]
 
-{ #category : #meta }
-FamixJavaEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Moose-Query' }
 FamixJavaEntity class >> resetMSEProperties [
 	"

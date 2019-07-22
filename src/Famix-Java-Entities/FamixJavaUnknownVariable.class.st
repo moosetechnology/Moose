@@ -13,13 +13,6 @@ FamixJavaUnknownVariable class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaUnknownVariable class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaUnknownVariable >> accept: aVisitor [
 

@@ -15,13 +15,6 @@ FamixJavaMethod class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaMethod class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaMethod >> accept: aVisitor [
 

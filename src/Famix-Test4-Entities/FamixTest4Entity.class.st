@@ -23,13 +23,6 @@ FamixTest4Entity class >> metamodel [
 	^ (self class environment at: #FamixTest4Generator) metamodel
 ]
 
-{ #category : #meta }
-FamixTest4Entity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FamixTest4Entity >> name [
 

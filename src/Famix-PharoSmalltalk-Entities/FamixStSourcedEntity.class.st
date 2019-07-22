@@ -15,13 +15,6 @@ FamixStSourcedEntity class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixStSourcedEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FamixStSourcedEntity >> isImplicitVariable [
 	^false

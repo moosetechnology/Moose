@@ -15,13 +15,6 @@ FamixStClass class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixStClass class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Famix-Extensions-metrics-support' }
 FamixStClass >> accessedAttributes [
 	

@@ -15,13 +15,6 @@ FamixJavaPackage class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaPackage class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Famix-Implementation' }
 FamixJavaPackage >> abstractClasses [
 

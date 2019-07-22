@@ -13,13 +13,6 @@ FAMIXCSourceLanguage class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXCSourceLanguage class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #testing }
 FAMIXCSourceLanguage >> isC [
 	^ true

@@ -14,10 +14,3 @@ FamixTest2NamedEntity class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #meta }
-FamixTest2NamedEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]

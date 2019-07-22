@@ -15,13 +15,6 @@ FamixJavaUnknownSourceLanguage class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaUnknownSourceLanguage class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaUnknownSourceLanguage >> isUnknown [ 
 	^ true

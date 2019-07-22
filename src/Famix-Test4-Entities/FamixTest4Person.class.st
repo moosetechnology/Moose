@@ -16,13 +16,6 @@ FamixTest4Person class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixTest4Person class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #adding }
 FamixTest4Person >> addBooks: anObject [
 			

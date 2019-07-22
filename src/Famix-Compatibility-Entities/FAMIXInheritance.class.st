@@ -15,13 +15,6 @@ FAMIXInheritance class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXInheritance class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXInheritance >> accept: aVisitor [
 

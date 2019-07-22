@@ -13,13 +13,6 @@ FAMIXLeafEntity class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXLeafEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #visiting }
 FAMIXLeafEntity >> accept: aVisitor [
 

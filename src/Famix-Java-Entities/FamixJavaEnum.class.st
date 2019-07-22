@@ -15,13 +15,6 @@ FamixJavaEnum class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaEnum class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaEnum >> values [
 	^ self enumValues

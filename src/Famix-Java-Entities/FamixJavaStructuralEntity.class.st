@@ -15,13 +15,6 @@ FamixJavaStructuralEntity class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaStructuralEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaStructuralEntity >> accept: aVisitor [
 

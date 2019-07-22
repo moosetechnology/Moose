@@ -15,13 +15,6 @@ FamixJavaAbstractFile class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaAbstractFile class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaAbstractFile >> belongsTo [
 	<navigation: 'parent folder'>

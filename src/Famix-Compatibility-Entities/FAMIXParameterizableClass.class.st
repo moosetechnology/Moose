@@ -15,13 +15,6 @@ FAMIXParameterizableClass class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXParameterizableClass class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #generated }
 FAMIXParameterizableClass >> parameters [
 	<MSEProperty: #parameters type: #FAMIXParameterType> <multivalued> <derived>

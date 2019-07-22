@@ -15,13 +15,6 @@ FAMIXNamespace class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXNamespace class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Famix-Extensions-metrics' }
 FAMIXNamespace >> abstractness: aNumber [
 

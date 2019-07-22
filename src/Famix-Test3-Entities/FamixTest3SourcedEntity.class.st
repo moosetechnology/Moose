@@ -14,10 +14,3 @@ FamixTest3SourcedEntity class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #meta }
-FamixTest3SourcedEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]

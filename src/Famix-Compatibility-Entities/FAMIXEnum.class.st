@@ -15,13 +15,6 @@ FAMIXEnum class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXEnum class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FAMIXEnum >> values [
 	^ self enumValues

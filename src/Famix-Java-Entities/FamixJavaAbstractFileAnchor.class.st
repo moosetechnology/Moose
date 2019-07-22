@@ -15,13 +15,6 @@ FamixJavaAbstractFileAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaAbstractFileAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaAbstractFileAnchor >> <= aFileAnchor [
 	^ self fileName <= aFileAnchor fileName

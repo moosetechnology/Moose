@@ -13,13 +13,6 @@ FAMIXSmalltalkSourceLanguage class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXSmalltalkSourceLanguage class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #testing }
 FAMIXSmalltalkSourceLanguage >> isSmalltalk [
 	^ true

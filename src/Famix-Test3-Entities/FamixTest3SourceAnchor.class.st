@@ -14,10 +14,3 @@ FamixTest3SourceAnchor class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #meta }
-FamixTest3SourceAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]

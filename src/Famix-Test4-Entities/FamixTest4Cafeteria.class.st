@@ -12,10 +12,3 @@ FamixTest4Cafeteria class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #meta }
-FamixTest4Cafeteria class >> requirements [
-
-	<generated>
-	^ {  }
-]

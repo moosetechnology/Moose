@@ -15,13 +15,6 @@ FAMIXFile class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXFile class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #properties }
 FAMIXFile >> averageNumberOfCharactersPerLine [
 	<MSEProperty: #averageNumberOfCharactersPerLine type: #Number>

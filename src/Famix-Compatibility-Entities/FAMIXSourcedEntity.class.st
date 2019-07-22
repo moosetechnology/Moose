@@ -15,13 +15,6 @@ FAMIXSourcedEntity class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXSourcedEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXSourcedEntity >> accept: aVisitor [
 

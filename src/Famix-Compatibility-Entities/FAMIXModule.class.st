@@ -15,13 +15,6 @@ FAMIXModule class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXModule class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FAMIXModule >> classes [ 
 	^ #()

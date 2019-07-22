@@ -15,13 +15,6 @@ FAMIXStructuralEntity class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXStructuralEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXStructuralEntity >> accept: aVisitor [
 

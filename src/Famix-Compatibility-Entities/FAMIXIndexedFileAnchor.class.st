@@ -15,13 +15,6 @@ FAMIXIndexedFileAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXIndexedFileAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FAMIXIndexedFileAnchor >> lineCount [
 

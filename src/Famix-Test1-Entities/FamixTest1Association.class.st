@@ -14,10 +14,3 @@ FamixTest1Association class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #meta }
-FamixTest1Association class >> requirements [
-
-	<generated>
-	^ {  }
-]

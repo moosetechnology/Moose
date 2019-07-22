@@ -15,13 +15,6 @@ FAMIXComment class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXComment class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXComment >> accept: aVisitor [
 
