@@ -7,6 +7,7 @@ Class {
 { #category : #tests }
 FAMIXModuleTest >> testFunctions [
 	| module function |
+	self skip: 'Test skipped until C metamodel definition'.
 	module := FAMIXModule new.
 	self assert: module functions isEmpty.
 	function := FAMIXFunction new.

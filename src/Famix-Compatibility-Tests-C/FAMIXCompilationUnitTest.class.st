@@ -7,6 +7,7 @@ Class {
 { #category : #tests }
 FAMIXCompilationUnitTest >> testImporting [
 	| model |
+	self skip: 'Test skipped until C metamodel definition'.
 	MooseModel resetMeta.
 	model := MooseModel new.
 	
