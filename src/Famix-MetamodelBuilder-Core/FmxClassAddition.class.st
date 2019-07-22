@@ -1,3 +1,24 @@
+"
+Description
+--------------------
+
+I represent a change that would create a class during a Famix generation.
+
+Examples
+--------------------
+
+	FmxClassAddition definition: 'MooseModel subclass: #FmxStMooseModel
+	instanceVariableNames: ''''
+	classVariableNames: ''''
+	package: ''Famix-Smalltalk-Entities'''
+ 
+Internal Representation and Key Implementation Points.
+--------------------
+
+    Instance Variables
+	definition:		<aString>		The definition of the class to create.
+
+"
 Class {
 	#name : #FmxClassAddition,
 	#superclass : #FmxCodeChange,

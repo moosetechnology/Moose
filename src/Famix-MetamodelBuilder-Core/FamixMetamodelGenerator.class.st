@@ -1,6 +1,3 @@
-"
-FamixMetamodelGenerator
-"
 Class {
 	#name : #FamixMetamodelGenerator,
 	#superclass : #Object,

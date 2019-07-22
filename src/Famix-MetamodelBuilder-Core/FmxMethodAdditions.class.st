@@ -1,3 +1,31 @@
+"
+Description
+--------------------
+
+I represent a change that would create add methods to a class during a Famix generation.
+
+Examples
+--------------------
+
+	method := RGMethod new
+		sourceCode: 'initialize
+		<generated>
+		super initialize.
+		self toto: true;
+		protocol: #initialization;
+		name: #initialize;
+		yourself.
+
+	FmxMethodAdditions className: FmxMethodAddition isClassSide: false rgMethods: {method}
+	
+ 
+Internal Representation and Key Implementation Points.
+--------------------
+
+    Instance Variables
+	rgMethods:		<aCollectionOfRGMethods>		A collection of ring methods to add to a class.
+
+"
 Class {
 	#name : #FmxMethodAdditions,
 	#superclass : #FmxLazyClassChange,

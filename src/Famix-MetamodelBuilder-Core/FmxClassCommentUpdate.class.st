@@ -1,3 +1,21 @@
+"
+Description
+--------------------
+
+I represent a change that would update a class comment during a Famix generation.
+
+Examples
+--------------------
+
+	FmxClassCommentUpdate className: FmxClassCommentUpdate comment: 'This is the new comment of my class.'
+ 
+Internal Representation and Key Implementation Points.
+--------------------
+
+    Instance Variables
+	comment:		<aString>		The new comment of the class.
+
+"
 Class {
 	#name : #FmxClassCommentUpdate,
 	#superclass : #FmxLazyClassChange,

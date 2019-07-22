@@ -1,3 +1,20 @@
+"
+Description
+--------------------
+
+I represent a change that would create a package during a Famix generation.
+
+Examples
+--------------------
+
+	FmxPackageAddition named: 'Famix-Example-Entities'
+ 
+Internal Representation and Key Implementation Points.
+--------------------
+
+    Instance Variables
+	packageName:		<aString>		Name of the package to create.
+"
 Class {
 	#name : #FmxPackageAddition,
 	#superclass : #FmxCodeChange,

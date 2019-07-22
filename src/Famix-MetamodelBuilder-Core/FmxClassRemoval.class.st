@@ -1,3 +1,21 @@
+"
+Description
+--------------------
+
+I represent a change that would remove a class during a Famix generation.
+
+Examples
+--------------------
+
+	FmxClassRemoval class: FmxClassRemoval
+ 
+Internal Representation and Key Implementation Points.
+--------------------
+
+    Instance Variables
+	class:		<aClass>		The instance of the class to remove from the system.
+
+"
 Class {
 	#name : #FmxClassRemoval,
 	#superclass : #FmxCodeChange,
