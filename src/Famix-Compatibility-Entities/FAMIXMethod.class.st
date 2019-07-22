@@ -9,7 +9,7 @@ Class {
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #meta }
 FAMIXMethod class >> annotation [
 
 	<MSEClass: #Method super: #FAMIXBehaviouralEntity>

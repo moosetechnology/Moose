@@ -155,15 +155,6 @@ FamixStPackage >> providerPackages [
 ]
 
 { #category : #accessing }
-FamixStPackage >> providerTypes [
-	<MSEProperty: #providerTypes type: #FamixStType>
-	<derived>
-	<multivalued>
-	<MSEComment: 'All types that the receiver depends on'>
-	^ (self queryAllOutgoing atScope: FamixTType) withoutSelfLoops
-]
-
-{ #category : #accessing }
 FamixStPackage >> relativeImportanceForSystem [
 	<MSEProperty: #relativeImportanceForSystem type: #Number>
 	<derived>

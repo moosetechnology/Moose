@@ -9,7 +9,7 @@ Class {
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #meta }
 FAMIXClass class >> annotation [
 
 	<MSEClass: #Class super: #FAMIXType>

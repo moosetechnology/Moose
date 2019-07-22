@@ -95,24 +95,6 @@ FamixTWithMethods >> numberOfConstructorMethods: aNumber [
 ]
 
 { #category : #metrics }
-FamixTWithMethods >> numberOfLinesOfCode [
-
-	<MSEProperty: #numberOfLinesOfCode type: #Number>
-	<derived>
-	<MSEComment: 'The number of lines of code in a class'>
-
-	^self
-		lookUpPropertyNamed: #numberOfLinesOfCode
-		computedAs: [self methodsGroup sumNumbers: #numberOfLinesOfCode]
-]
-
-{ #category : #metrics }
-FamixTWithMethods >> numberOfLinesOfCode: aNumber [
-
-	self privateState propertyAt: #numberOfLinesOfCode put: aNumber
-]
-
-{ #category : #metrics }
 FamixTWithMethods >> numberOfMessageSends [
 	<MSEProperty: #numberOfMessageSends type: #Number>
 	<derived>

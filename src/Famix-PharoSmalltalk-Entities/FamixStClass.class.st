@@ -1,25 +1,18 @@
 Class {
 	#name : #FamixStClass,
-	#superclass : #MooseEntity,
-	#traits : 'FamixTClass + FamixTClassHierarchyNavigation + FamixTWithExceptions',
-	#classTraits : 'FamixTClass classTrait + FamixTClassHierarchyNavigation classTrait + FamixTWithExceptions classTrait',
+	#superclass : #FamixStNamedEntity,
+	#traits : 'FamixStFamixTWithTypedStructures + FamixTClass + FamixTClassHierarchyNavigation + FamixTWithExceptions',
+	#classTraits : 'FamixStFamixTWithTypedStructures classTrait + FamixTClass classTrait + FamixTClassHierarchyNavigation classTrait + FamixTWithExceptions classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 
 { #category : #meta }
 FamixStClass class >> annotation [
 
-	<MSEClass: #Class super: #MooseEntity>
+	<MSEClass: #Class super: #FamixStNamedEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FamixStClass class >> metamodel [
-
-	<generated>
-	^ (self class environment at: #FamixPharoSmalltalkGenerator) metamodel
 ]
 
 { #category : #meta }
@@ -50,39 +43,11 @@ FamixStClass >> implementationOf: signature [
 ]
 
 { #category : #testing }
-FamixStClass >> isAccess [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixStClass >> isAssociation [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixStClass >> isAttribute [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
 FamixStClass >> isClassSide [
 	"Kind of a hack. Uses the FAMIX2 Smalltalk naming convention that every Smalltalk
 	 metaclass has _class appended to the classname of the class it is a metaclass of."
 
 	^'*_class' match: self name
-]
-
-{ #category : #testing }
-FamixStClass >> isFunction [
-
-	<generated>
-	^ false
 ]
 
 { #category : #'Famix-Implementation' }
@@ -96,71 +61,8 @@ FamixStClass >> isIgnored [
 ]
 
 { #category : #testing }
-FamixStClass >> isImplicitVariable [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixStClass >> isInheritance [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
 FamixStClass >> isInstanceSide [
 	^self isClassSide not
-]
-
-{ #category : #testing }
-FamixStClass >> isInvocation [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixStClass >> isMethod [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixStClass >> isNamespace [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixStClass >> isPackage [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixStClass >> isReference [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixStClass >> isStructuralEntity [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixStClass >> isType [
-
-	<generated>
-	^ false
 ]
 
 { #category : #'Famix-Implementation' }

@@ -98,6 +98,13 @@ FAMIXEntity >> isFunction [
 ]
 
 { #category : #testing }
+FAMIXEntity >> isImplicitVariable [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
 FAMIXEntity >> isInheritance [
 
 	<generated>
@@ -141,6 +148,13 @@ FAMIXEntity >> isPrimitiveType [
 
 { #category : #testing }
 FAMIXEntity >> isReference [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FAMIXEntity >> isStructuralEntity [
 
 	<generated>
 	^ false
