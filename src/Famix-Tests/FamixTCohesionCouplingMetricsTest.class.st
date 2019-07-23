@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixTCohesionCouplingMetricsTest,
 	#superclass : #TestCase,
-	#traits : 'TFamixTCohesionCouplingMetricsTest',
-	#classTraits : 'TFamixTCohesionCouplingMetricsTest classTrait',
+	#traits : 'TFamixTCohesionCouplingMetricsTest + TFamixTest + TFamixTPackageTest',
+	#classTraits : 'TFamixTCohesionCouplingMetricsTest classTrait + TFamixTest classTrait + TFamixTPackageTest classTrait',
 	#category : #'Famix-Tests-Tests'
 }
 
