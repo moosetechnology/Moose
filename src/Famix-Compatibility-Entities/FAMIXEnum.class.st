@@ -15,20 +15,6 @@ FAMIXEnum class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXEnum class >> generatedSlotNames [
-	<generated>
-	'FAMIXEnum class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FAMIXEnum class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FAMIXEnum >> values [
 	^ self enumValues

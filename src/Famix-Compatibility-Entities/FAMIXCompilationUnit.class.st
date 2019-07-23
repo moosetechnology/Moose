@@ -15,20 +15,6 @@ FAMIXCompilationUnit class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXCompilationUnit class >> generatedSlotNames [
-	<generated>
-	'FAMIXCompilationUnit class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FAMIXCompilationUnit class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #testing }
 FAMIXCompilationUnit >> isCompilationUnit [
 	^ true

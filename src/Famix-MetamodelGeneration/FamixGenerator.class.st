@@ -22,6 +22,7 @@ Class {
 		'tCompilationUnit',
 		'tDeclaredException',
 		'tDereferencedInvocation',
+		'tDirectFileAnchor',
 		'tEnumValue',
 		'tException',
 		'tFile',
@@ -80,7 +81,6 @@ Class {
 		'tWithDereferencedInvocations',
 		'tWithEnumValues',
 		'tWithExceptions',
-		'tWithFileInclude',
 		'tWithFiles',
 		'tWithFunctions',
 		'tWithHeader',
@@ -102,7 +102,6 @@ Class {
 		'tWithSuperInheritances',
 		'tWithTemplates',
 		'tWithThrownExceptions',
-		'tWithTrait',
 		'tWithTypeAliases',
 		'tWithTypedStructures',
 		'tWithTypes',
@@ -127,7 +126,9 @@ Class {
 		'tContainingWithInvocationsGlue',
 		'tWithMethodsWithAccessesGlue',
 		'tMultipleFileAnchor',
-		'tCohesionCouplingMetrics'
+		'tCohesionCouplingMetrics',
+		'tWithTraits',
+		'tWithFileIncludes'
 	],
 	#category : #'Famix-MetamodelGeneration'
 }
@@ -730,7 +731,7 @@ FamixGenerator >> commentForTWithExceptions [
 ]
 
 { #category : #comments }
-FamixGenerator >> commentForTWithFileInclude [
+FamixGenerator >> commentForTWithFileIncludes [
 
 	^ ''
 ]
@@ -862,7 +863,7 @@ FamixGenerator >> commentForTWithThrownExceptions [
 ]
 
 { #category : #comments }
-FamixGenerator >> commentForTWithTrait [
+FamixGenerator >> commentForTWithTraits [
 
 	^ ''
 ]
@@ -889,6 +890,8 @@ FamixGenerator >> commentForTWithTypes [
 FamixGenerator >> defineGlueingTraits [
 
 	tClassHierarchyNavigation := builder newTraitNamed: #TClassHierarchyNavigation.
+	
+	tLCOMMetrics := builder newTraitNamed: #TLCOMMetrics.
 	
 	tInheritanceGlue := builder newTraitNamed: #TInheritanceGlue.
 	tInheritanceGlue glues: tSubInheritance with: tSuperInheritance.
@@ -929,6 +932,11 @@ FamixGenerator >> defineGlueingTraits [
 FamixGenerator >> defineHierarchy [ 
 	super defineHierarchy.
 	tCohesionCouplingMetrics --|> tPackage.
+	
+	tClass --|> #TWithMethods.
+	tClass --|> #TWithSubInheritances.
+	tClass --|> #TWithSuperInheritances.
+	tClass --|> #TWithAttributes
 ]
 
 { #category : #definition }
@@ -1112,13 +1120,13 @@ FamixGenerator >> defineRelations [
 	((tFileInclude property: #source)
 			comment: 'The file that is including')
 		*-
-	((tWithFileInclude property: #outgoingIncludeRelations)
+	((tWithFileIncludes property: #outgoingIncludeRelations)
 			comment: 'The include entities that have this file as a source.').
 
 	((tFileInclude property: #target)
 			comment: 'The file that is included')
 		*-
-	((tWithFileInclude property: #incomingIncludeRelations)
+	((tWithFileIncludes property: #incomingIncludeRelations)
 			comment: 'The include entities that have this file as a target.').
 
 	((tFunction property: #functionOwner)
@@ -1286,7 +1294,7 @@ FamixGenerator >> defineRelations [
 
 	((tTrait property: #traitOwner))
 		*-
-	((tWithTrait property: #traits)).
+	((tWithTraits property: #traits)).
 
 	((tTrait property: #incomingTraitUsages))
 		-*
@@ -1387,6 +1395,8 @@ FamixGenerator >> defineTraits [
 
 	tFileAnchor := builder newTraitNamed: #TFileAnchor.
 	tFileAnchor comment: self commentForTFileAnchor.
+
+	tDirectFileAnchor := builder newTraitNamed: #TDirectFileAnchor.
 
 	tFileNavigation := builder newTraitNamed: #TFileNavigation.
 	tFileNavigation comment: self commentForTFileNavigation.
@@ -1569,8 +1579,8 @@ FamixGenerator >> defineTraits [
 	tWithExceptions := builder newTraitNamed: #TWithExceptions.
 	tWithExceptions comment: self commentForTWithExceptions.
 
-	tWithFileInclude := builder newTraitNamed: #TWithFileInclude.
-	tWithFileInclude comment: self commentForTWithFileInclude.
+	tWithFileIncludes := builder newTraitNamed: #TWithFileIncludes.
+	tWithFileIncludes comment: self commentForTWithFileIncludes.
 
 	tWithFiles := builder newTraitNamed: #TWithFiles.
 	tWithFiles comment: self commentForTWithFiles.
@@ -1635,8 +1645,8 @@ FamixGenerator >> defineTraits [
 	tWithThrownExceptions := builder newTraitNamed: #TWithThrownExceptions.
 	tWithThrownExceptions comment: self commentForTWithThrownExceptions.
 
-	tWithTrait := builder newTraitNamed: #TWithTrait.
-	tWithTrait comment: self commentForTWithTrait.
+	tWithTraits := builder newTraitNamed: #TWithTraits.
+	tWithTraits comment: self commentForTWithTraits.
 
 	tWithTypeAliases := builder newTraitNamed: #TWithTypeAliases.
 	tWithTypeAliases comment: self commentForTWithTypeAliases.
@@ -1670,7 +1680,8 @@ FamixGenerator >> initialize [
 
 	super initialize.
 
-	builder := FamixMetamodelBuilder new.
+	builder := FamixMetamodelBuilder forGenerator: self.
+
 	builder configuration 
 		prefix: self prefix;
 		packageName: self packageName.

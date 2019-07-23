@@ -13,20 +13,6 @@ FAMIXParameterType class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXParameterType class >> generatedSlotNames [
-	<generated>
-	'FAMIXParameterType class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FAMIXParameterType class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #testing }
 FAMIXParameterType >> isParameterType [
 	^ true

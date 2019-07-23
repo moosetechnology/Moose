@@ -15,20 +15,6 @@ FamixJavaComment class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaComment class >> generatedSlotNames [
-	<generated>
-	'FamixJavaComment class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FamixJavaComment class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaComment >> accept: aVisitor [
 

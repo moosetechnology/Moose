@@ -14,192 +14,105 @@ Class {
 BaselineOfMoose >> baseline: spec [
 	<baseline>
 	repository := self packageRepositoryURL.
-
 	spec
 		for: #common
-		do: [
+		do: [ " Meta Model"
 			self famix: spec.
-
-			spec package: 'GToolkit-Examples'.
-
-			self baselineGeometry: spec.
-			self baselineAthens: spec.
+			" Roassal "
 			self baselineRoassal2: spec.
-
-			self mooseAlgos: spec.
-
-			self baselineOrderPreservingDictionary: spec.
-
-			self baselineBitmapCharacterSet: spec.
-			self baselineXMLParser: spec.
-			spec
-				package: 'Glamour-Tools';
-				package: 'Glamour-Magritte-Presentations';
-				package: 'Moose-Help';
-				package: 'Moose-Finder';
-				package: 'Moose-RoassalPaintings';
-				package: 'Moose-Tests-Finder';
-				package: 'Moose-Tests-RoassalPaintings'.
+			"IDE"
+			self mooseIDE: spec.
+			" Petit parser with/without UI"
 			self baselinePetitParser: spec.
-
+			self baselinePetitParserUI: spec.
+			" SmaCC with/without UI"
 			self baselineSmaCC: spec.
-			self baselineXMLWriter: spec.
-			self baselineMerlin: spec.
-			self baselineDistributionMap: spec.
-			self baselineWizard: spec.
-			
-			"Package for the Moose IDE configuration"
-			spec package: 'Moose-MenuBar'.
-			spec package: 'Moose-Configuration'.
-			
-			self groups: spec ].
-
+			self baselineSmaCCUI: spec.
+			self baselineSmaCCJava: spec.
+			self baselineSmaCCJavaUI: spec.
+			" XMLWriter / Miscelaneous (Merlin, Wizard, etc)"
+			self baselineXMLParser: spec.
+			self baselineMiscs: spec.
+			self groups: spec.
+			self newGroups: spec ].
 	spec
 		for: #'pharo7.x'
 		do: [ spec
-				package: 'Famix-MetamodelBuilder-Core' with: [ spec includes: #('Famix-MetamodelBuilder-Core-Pharo7') ];
-				package: 'Famix-MetamodelBuilder-Core-Pharo7' ].
-
-	spec
-		for: #'pharo8.x'
-		do: [ spec package: 'Roassal2GT' with: [ spec includes: #('Glamour-Browsers-Pharo8' 'Glamour-Morphic-Renderer-Pharo8') ].
-			spec package: 'Glamour-Browsers-Pharo8'.
-			spec package: 'Glamour-Morphic-Renderer-Pharo8' ]
+				package: 'Famix-MetamodelBuilder-Core'
+					with: [ spec includes: #('Famix-MetamodelBuilder-Core-Pharo7') ];
+				package: 'Famix-MetamodelBuilder-Core-Pharo7' ]
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineAthens: spec [ 
-    
-	spec package: 'Athens-SVG'
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineBitmapCharacterSet: spec [ 
-    
-	spec package: 'Collections-BitmapCharacterSet'
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineDistributionMap: spec [ 
-
-	self defineGroup: #'DistributionMap-Group' in: spec with: #(
-		'Moose-DistributionMap'
-		'Moose-Tests-DistributionMap'
-	).
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineGeometry: spec [ 
-    
-	spec package: 'Geometry'
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineMerlin: spec [ 
-
-	self defineGroup: #'Merlin-Group' in: spec with: #(
-		'Merlin'
-	).
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineOrderPreservingDictionary: spec [ 
-    
-	spec package: 'Collections-OrderPreservingDictionary'
+BaselineOfMoose >> baselineMiscs: spec [
+	spec baseline: 'MooseMiscs' with: [ spec repository: repository ]
 ]
 
 { #category : #baseline }
 BaselineOfMoose >> baselinePetitParser: spec [ 
     
-	self defineGroup: #'PetitParser-Group' in: spec with: #(
-		'PetitParser' 
-		'PetitTests' 
-		'PetitAnalyzer'
-		'PetitGui'
-		
-		'PetitMSE'
-	).
-
+	spec baseline: 'MoosePetitParser' with: [ spec repository: repository ]
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineRoassal2: spec [ 
-    
+BaselineOfMoose >> baselinePetitParserUI: spec [
 	spec
-		package: 'Trachel';
-		package: 'Roassal2';
-		package: 'Roassal2GT'
+		project: 'MoosePetitParserUI'
+		copyFrom: 'MoosePetitParser'
+		with: [ spec loads: 'UI' ]
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineSmaCC: spec [ 
-    
+BaselineOfMoose >> baselineRoassal2: spec [
+	spec baseline: 'MooseRoassal' with: [ spec repository: repository ]
+]
+
+{ #category : #baseline }
+BaselineOfMoose >> baselineSmaCC: spec [
 	"
 	https://github.com/j-brant/SmaCC
 	git@github.com:j-brant/SmaCC.git
 	branch: Pharo7
 	"
 
-	self defineGroup: #'SmaCC-Group' in: spec with: #(
-		'SmaCC_Runtime'
-		'SmaCC_GLR_Runtime'
-		'SmaCC_Source_Editing'
-		'SmaCC_Rewrite_Engine'
-		
-		'SmaCC_Antlr_Parser'
-		'SmaCC_CSV_Parser'
-		'SmaCC_CSharp'
-		'SmaCC_C_Parser'
-		'SmaCC_Delphi'
-		'SmaCC_Delphi_Forms'
-		'SmaCC_Generic_Smalltalk_Parser'
-		'SmaCC_Grammar_Parser'
-		'SmaCC_Java'
-		'SmaCC_Javascript_Parser'
-		'SmaCC_Line_Parser'
-		'SmaCC_Smalltalk_Parser'
-		'SmaCC_Source_Editing'
-		'SmaCC_Swift'
-
-		'SmaCC_Development'
-		'SmaCC_Debugging_Support'
-		
-		'SmaCC_Parse_Tree_Comparison'
-		'SmaCC_Tests'
-		'SmaCC_Development_UI'
-		'SmaCC_Rewrite_Engine_Tests'
-		
-		'SmaCC_Rewrite_Engine_Command_Line'
-		'SmaCC_Rewrite_Engine_UI'
-		'SmaCC_Rewrite_Server'
-		'SmaCC_Rewrite_Server_Worker'
-	).
+	spec
+		baseline: 'MooseSmaCC'
+		with: [ spec
+				repository: repository;
+				loads: #(FullNoUI) ]
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineWizard: spec [ 
-
-	self defineGroup: #'Wizard-Group' in: spec with: #(
-		'Moose-Wizard'
-	).
+BaselineOfMoose >> baselineSmaCCJava: spec [
+	spec
+		project: 'MooseSmaCCJava'
+		copyFrom: 'MooseSmaCC'
+		with: [ spec loads: 'Java' ]
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineXMLParser: spec [ 
-    
-	spec package: 'XML-Parser'
+BaselineOfMoose >> baselineSmaCCJavaUI: spec [
+	spec
+		project: 'MooseSmaCCJavaUI'
+		copyFrom: 'MooseSmaCC'
+		with: [ spec loads: #('Java' UI)  ]
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineXMLWriter: spec [ 
+BaselineOfMoose >> baselineSmaCCUI: spec [
+	spec
+		project: 'MooseSmaCCUI'
+		copyFrom: 'MooseSmaCC'
+		with: [ spec loads: 'FullUI' ]
+]
 
-	self defineGroup: #'XMLWriter-Group' in: spec with: #(
-		'XML-Writer-Core'
-		'XML-Writer-Tests'
-		'Collections-Tests-OrderPreservingDictionary'
-		'XML-Tests-Parser'
-		'XML-Parser-GTExtensions'
-	).
+{ #category : #baseline }
+BaselineOfMoose >> baselineXMLParser: spec [
+	spec
+		baseline: 'MooseXMLParser'
+		with: [ spec
+				repository: repository;
+				loads: #Core ]
 ]
 
 { #category : #private }
@@ -218,64 +131,111 @@ BaselineOfMoose >> famix: spec [
 BaselineOfMoose >> groups: spec [ 
     
 	spec group: 'BasicMetamodelling' with: #(
-		'Famix'
+		Famix
 	).
-
 	spec group: 'BasicMetamodellingWithRoassal' with: #(
-		'BasicMetamodelling'
-		'Collections-OrderPreservingDictionary'
-		'Collections-BitmapCharacterSet'
-		'XML-Parser'		
-		'Athens-SVG'
-		'Trachel'
-		'Geometry'
-		'Roassal2'
-		'GToolkit-Examples'
-		'Roassal2GT'
+		BasicMetamodelling
+		MooseRoassal
 	).
-	
-	spec group: 'MooseFinder' with: #(
-		'BasicMetamodellingWithRoassal'
-		'Glamour-Tools'
-		'Glamour-Magritte-Presentations'
-		'MooseAlgos'
-		'Moose-RoassalPaintings'
-		'Moose-Help'
-		'Moose-Finder'
-		
-		'Moose-Tests-RoassalPaintings'
-		'Moose-Tests-Finder'
+	spec group: 'MooseIDEGroup' with: #(
+		BasicMetamodellingWithRoassal
+		MooseIDE
 	).
-
 	spec group: 'Parsing' with: #(
-		'MooseFinder'
-		'PetitParser-Group'
-		'SmaCC-Group'
+		MooseIDEGroup
+		MoosePetitParserUI
+		MooseSmaCCUI
 	).
-	
-	spec group: 'IDE' with: #(
-		'Moose-MenuBar'
-		'Moose-Configuration'
-	).
-	
 	spec group: 'AdditionalTools' with: #(
-		'Parsing'
-		'XMLWriter-Group'
-		'Merlin-Group'
-		'Moose-DistributionMap'
-		'Moose-Tests-DistributionMap'
-		'Wizard-Group'
-		'IDE'
+		Parsing
+		MooseXMLParser
+		MooseMiscs
+		MooseIDE
 	).
-		
 	spec group: 'default' with: #('AdditionalTools').
 	
 
 ]
 
 { #category : #dependencies }
-BaselineOfMoose >> mooseAlgos: spec [
-	spec baseline: 'MooseAlgos' with: [ spec repository: repository ]
+BaselineOfMoose >> mooseIDE: spec [
+	spec baseline: 'MooseIDE' with: [ spec repository: repository ]
+]
+
+{ #category : #baseline }
+BaselineOfMoose >> newGroups: spec [ 
+ 
+  "Only Famix"
+	spec group: 'Core' with: #(
+		Famix
+	).
+	"Famix-Java"
+	
+	spec group: 'Java' with: #(
+		Core
+		MooseSmaCCJava
+	).
+	"Famix-Java and UI"
+	spec group: 'JavaUI' with: #(
+		Core
+		MooseRoassal
+		MooseFinder
+		MooseSmaCCJavaUI
+		MooseIDE
+	).
+	
+	"Famix and PetitParser"
+	spec group: 'CorePetitParser' with: #(
+		Core
+		MoosePetitParser
+	).
+	"Famix petit parser and UI"
+	spec group: 'CorePetitParserUI' with: #(
+		Core
+		MooseRoassal
+		MooseFinder
+		MooseIDE
+		MoosePetitParserUI
+	).
+	
+	spec group: 'GraphicTools' with: #(
+		Core
+		MooseFinder
+		MooseIDE
+		MooseMiscs
+	).
+	
+	"Famix and SmaCC"
+	spec group: 'CoreSmaCC' with: #(
+		Core
+		MooseSmaCC
+	).
+	"Famix and SmaCC-UI"
+	spec group: 'CoreSmaCCUI' with: #(
+		Core
+		MooseRoassal
+		MooseFinder
+		MooseIDE
+		MooseSmaCCUI
+	).
+	spec group: 'CoreParsers' with: #(
+		Core
+		MooseSmaCC
+		MoosePetitParser
+	).
+	
+	spec group: 'CoreParsersUI' with: #(
+		Core
+		MooseRoassal
+		MooseFinder
+		MooseIDE
+		MooseSmaCCUI
+		MoosePetitParserUI
+	).
+	
+	
+	
+
 ]
 
 { #category : #accessing }

@@ -15,20 +15,6 @@ FamixJavaReference class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaReference class >> generatedSlotNames [
-	<generated>
-	'FamixJavaReference class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FamixJavaReference class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaReference >> accept: aVisitor [
 

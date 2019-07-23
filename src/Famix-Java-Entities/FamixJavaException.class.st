@@ -15,20 +15,6 @@ FamixJavaException class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaException class >> generatedSlotNames [
-	<generated>
-	'FamixJavaException class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FamixJavaException class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #deprecated }
 FamixJavaException >> definingMethod [
 

@@ -16,13 +16,6 @@ FamixTFileInclude classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTFileInclude classSide >> generatedSlotNames [
-	<generated>
-	'FamixTFileInclude class>>#generatedSlotNames'.
-	^ #(source target)
-]
-
 { #category : #accessing }
 FamixTFileInclude >> source [
 

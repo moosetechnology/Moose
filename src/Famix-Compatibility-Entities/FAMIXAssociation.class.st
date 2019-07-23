@@ -15,20 +15,6 @@ FAMIXAssociation class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXAssociation class >> generatedSlotNames [
-	<generated>
-	'FAMIXAssociation class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FAMIXAssociation class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXAssociation >> accept: aVisitor [
 

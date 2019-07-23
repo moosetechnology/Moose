@@ -15,20 +15,6 @@ FamixJavaInvocation class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaInvocation class >> generatedSlotNames [
-	<generated>
-	'FamixJavaInvocation class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FamixJavaInvocation class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaInvocation >> accept: aVisitor [
 

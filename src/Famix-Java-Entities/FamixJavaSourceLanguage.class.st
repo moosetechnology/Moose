@@ -15,20 +15,6 @@ FamixJavaSourceLanguage class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaSourceLanguage class >> generatedSlotNames [
-	<generated>
-	'FamixJavaSourceLanguage class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FamixJavaSourceLanguage class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaSourceLanguage >> isC [ 
 	^ false

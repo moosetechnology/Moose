@@ -19,11 +19,11 @@ FamixTTrait classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTTrait classSide >> generatedSlotNames [
-	<generated>
-	'FamixTTrait class>>#generatedSlotNames'.
-	^ #(incomingTraitUsages traitOwner)
+{ #category : #accessing }
+FamixTTrait >> addIncomingTraitUsage: anObject [
+
+	incomingTraitUsages add: anObject
+
 ]
 
 { #category : #accessing }

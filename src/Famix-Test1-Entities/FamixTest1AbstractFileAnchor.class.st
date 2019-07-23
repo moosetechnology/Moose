@@ -14,17 +14,3 @@ FamixTest1AbstractFileAnchor class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FamixTest1AbstractFileAnchor class >> generatedSlotNames [
-	<generated>
-	'FamixTest1AbstractFileAnchor class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FamixTest1AbstractFileAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]

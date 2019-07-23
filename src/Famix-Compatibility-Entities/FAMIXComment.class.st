@@ -15,20 +15,6 @@ FAMIXComment class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXComment class >> generatedSlotNames [
-	<generated>
-	'FAMIXComment class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FAMIXComment class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXComment >> accept: aVisitor [
 

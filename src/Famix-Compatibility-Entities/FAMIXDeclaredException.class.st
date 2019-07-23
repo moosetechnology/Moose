@@ -14,17 +14,3 @@ FAMIXDeclaredException class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FAMIXDeclaredException class >> generatedSlotNames [
-	<generated>
-	'FAMIXDeclaredException class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FAMIXDeclaredException class >> requirements [
-
-	<generated>
-	^ {  }
-]

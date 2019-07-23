@@ -15,13 +15,6 @@ FAMIXParameter class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXParameter class >> generatedSlotNames [
-	<generated>
-	'FAMIXParameter class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FAMIXParameter class >> requirements [
 

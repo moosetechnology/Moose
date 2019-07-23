@@ -15,20 +15,6 @@ FamixStStructuralEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixStStructuralEntity class >> generatedSlotNames [
-	<generated>
-	'FamixStStructuralEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FamixStStructuralEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Famix-Implementation' }
 FamixStStructuralEntity >> entityHasOutgoingTypeDeclarations [
 	^ self declaredType isNotNil

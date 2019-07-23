@@ -15,20 +15,6 @@ FAMIXIndexedFileAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXIndexedFileAnchor class >> generatedSlotNames [
-	<generated>
-	'FAMIXIndexedFileAnchor class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FAMIXIndexedFileAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FAMIXIndexedFileAnchor >> lineCount [
 

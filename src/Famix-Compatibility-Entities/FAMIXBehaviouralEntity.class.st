@@ -15,20 +15,6 @@ FAMIXBehaviouralEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXBehaviouralEntity class >> generatedSlotNames [
-	<generated>
-	'FAMIXBehaviouralEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FAMIXBehaviouralEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXBehaviouralEntity >> accept: aVisitor [
 

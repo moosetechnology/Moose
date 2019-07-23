@@ -15,13 +15,6 @@ FamixTDefinedInModule classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTDefinedInModule classSide >> generatedSlotNames [
-	<generated>
-	'FamixTDefinedInModule class>>#generatedSlotNames'.
-	^ #(parentModule)
-]
-
 { #category : #accessing }
 FamixTDefinedInModule >> parentModule [
 

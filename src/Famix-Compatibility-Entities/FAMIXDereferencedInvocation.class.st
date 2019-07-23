@@ -14,17 +14,3 @@ FAMIXDereferencedInvocation class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FAMIXDereferencedInvocation class >> generatedSlotNames [
-	<generated>
-	'FAMIXDereferencedInvocation class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FAMIXDereferencedInvocation class >> requirements [
-
-	<generated>
-	^ {  }
-]

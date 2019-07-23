@@ -13,25 +13,11 @@ FamixTestComposedCustomEntity2 class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTestComposedCustomEntity2 class >> generatedSlotNames [
-	<generated>
-	'FamixTestComposedCustomEntity2 class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FamixTestComposedCustomEntity2 class >> metamodel [
 
 	<generated>
 	^ (self class environment at: #FamixTestComposedGenerator) metamodel
-]
-
-{ #category : #meta }
-FamixTestComposedCustomEntity2 class >> requirements [
-
-	<generated>
-	^ {  }
 ]
 
 { #category : #accessing }

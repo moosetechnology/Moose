@@ -10,22 +10,15 @@ Trait {
 { #category : #meta }
 FamixTWithFileIncludes classSide >> annotation [
 
-	<MSEClass: #TWithFileInclude super: #Trait>
+	<MSEClass: #TWithFileIncludes super: #Trait>
 	<generated>
 	<package: #'Famix-Traits'>
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithFileIncludes classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithFileInclude class>>#generatedSlotNames'.
-	^ #(incomingIncludeRelations outgoingIncludeRelations)
-]
-
 { #category : #accessing }
 FamixTWithFileIncludes >> addIncomingIncludeRelation: anObject [
-	incomingIncludeRelations value: anObject
+	incomingIncludeRelations add: anObject
 
 ]
 

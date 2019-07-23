@@ -15,13 +15,6 @@ FamixTWithEnumValues classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithEnumValues classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithEnumValues class>>#generatedSlotNames'.
-	^ #(enumValues)
-]
-
 { #category : #accessing }
 FamixTWithEnumValues >> addEnumValue: anObject [
 	enumValues add: anObject

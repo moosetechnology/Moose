@@ -13,25 +13,11 @@ FAMIXEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXEntity class >> generatedSlotNames [
-	<generated>
-	'FAMIXEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
 { #category : #meta }
 FAMIXEntity class >> metamodel [
 
 	<generated>
 	^ (self class environment at: #FamixCompatibilityGenerator) metamodel
-]
-
-{ #category : #meta }
-FAMIXEntity class >> requirements [
-
-	<generated>
-	^ {  }
 ]
 
 { #category : #'Moose-Query-Extensions' }

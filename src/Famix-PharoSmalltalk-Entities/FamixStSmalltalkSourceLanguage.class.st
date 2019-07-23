@@ -13,20 +13,6 @@ FamixStSmalltalkSourceLanguage class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixStSmalltalkSourceLanguage class >> generatedSlotNames [
-	<generated>
-	'FamixStSmalltalkSourceLanguage class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FamixStSmalltalkSourceLanguage class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #testing }
 FamixStSmalltalkSourceLanguage >> isSmalltalk [
 	^ true

@@ -416,20 +416,18 @@ FmxMBClassTest >> testRelatedTraitName [
 
 { #category : #tests }
 FmxMBClassTest >> testSimpleClass [
-
 	"check expected parameters of a newely generated class"
 
-	| simpleClass generated |
-	
-	simpleClass := builder newClassNamed: #Comment.	
+	| generated |
+	builder newClassNamed: #Comment.
 	builder generate.
 	generated := builder testingEnvironment ask classNamed: 'TstComment'.
 	self assert: generated notNil.
 	self assert: generated isClass.
 	self assert: generated superclass name equals: 'MooseEntity'.
 	self assert: generated slots isEmpty.
-	self assert: generated instanceSide localSelectors isEmpty.	
-	self assertCollection: generated classSide localSelectors sorted equals: #(annotation #metamodel #requirements).
+	self assert: generated instanceSide localSelectors isEmpty.
+	self assertCollection: generated classSide localSelectors sorted equals: #(annotation #metamodel)
 ]
 
 { #category : #tests }

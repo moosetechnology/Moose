@@ -8,6 +8,11 @@ Class {
 	#category : #'Famix-MetamodelBuilder-Tests-GeneratorRessources'
 }
 
+{ #category : #testing }
+FamixMetamodelGenerateRemoteAccessorTestGeneratorAB class >> isRealMetamodel [
+	^ false
+]
+
 { #category : #accessing }
 FamixMetamodelGenerateRemoteAccessorTestGeneratorAB class >> modifyMetamodel: aMetamodel [
 

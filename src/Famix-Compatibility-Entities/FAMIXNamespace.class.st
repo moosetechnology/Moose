@@ -15,20 +15,6 @@ FAMIXNamespace class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXNamespace class >> generatedSlotNames [
-	<generated>
-	'FAMIXNamespace class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FAMIXNamespace class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Famix-Extensions-metrics' }
 FAMIXNamespace >> abstractness: aNumber [
 

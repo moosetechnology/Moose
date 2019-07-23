@@ -15,13 +15,6 @@ FamixTWithCaughtExceptions classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithCaughtExceptions classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithCaughtExceptions class>>#generatedSlotNames'.
-	^ #(caughtExceptions)
-]
-
 { #category : #accessing }
 FamixTWithCaughtExceptions >> addCaughtException: aCaughtException [
 	caughtExceptions add: aCaughtException 

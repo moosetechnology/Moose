@@ -15,13 +15,6 @@ FamixTGlobalVariableScope classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTGlobalVariableScope classSide >> generatedSlotNames [
-	<generated>
-	'FamixTGlobalVariableScope class>>#generatedSlotNames'.
-	^ #(globalVariables)
-]
-
 { #category : #accessing }
 FamixTGlobalVariableScope >> addGlobalVariable: aGlobalVariable [ 
 	globalVariables add: aGlobalVariable

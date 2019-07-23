@@ -1,7 +1,8 @@
 Trait {
 	#name : #TFamixTest,
 	#instVars : [
-		'entity'
+		'entity',
+		'model'
 	],
 	#category : #'Famix-Tests-Traits'
 }
@@ -14,4 +15,14 @@ TFamixTest >> entity [
 { #category : #accessing }
 TFamixTest >> entity: anObject [
 	entity := anObject
+]
+
+{ #category : #accessing }
+TFamixTest >> model [
+	^ model
+]
+
+{ #category : #accessing }
+TFamixTest >> model: anObject [
+	model := anObject
 ]

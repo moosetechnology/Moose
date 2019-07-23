@@ -13,20 +13,6 @@ FamixJavaParameterType class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaParameterType class >> generatedSlotNames [
-	<generated>
-	'FamixJavaParameterType class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FamixJavaParameterType class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaParameterType >> isParameterType [
 	^ true

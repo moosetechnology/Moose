@@ -12,17 +12,3 @@ FAMIXPreprocessorStatement class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FAMIXPreprocessorStatement class >> generatedSlotNames [
-	<generated>
-	'FAMIXPreprocessorStatement class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FAMIXPreprocessorStatement class >> requirements [
-
-	<generated>
-	^ {  }
-]

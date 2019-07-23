@@ -6,8 +6,11 @@ Class {
 	#category : #'Famix-Tests-Tests'
 }
 
-{ #category : #running }
-FamixTWithMethodsTest >> setUp [ 	
-	self entity: (MooseEntity new copyWithTalent: FamixTWithMethods).
-	self entity class initializeSlots: self entity.  
+{ #category : #overrides }
+FamixTWithMethodsTest >> setUp [
+super setUp.
+	model := MooseModel new metamodel: FamixGenerator metamodel.
+self entity: (MooseEntity new copyWithTalent:FamixTWithMethods).
+self entity class initializeSlots: self entity.
+model add: entity. 
 ]

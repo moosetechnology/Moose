@@ -18,20 +18,6 @@ FAMIXPreprocessorDefine class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXPreprocessorDefine class >> generatedSlotNames [
-	<generated>
-	'FAMIXPreprocessorDefine class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FAMIXPreprocessorDefine class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FAMIXPreprocessorDefine >> macro [
 	<MSEProperty: #macro type: #String>

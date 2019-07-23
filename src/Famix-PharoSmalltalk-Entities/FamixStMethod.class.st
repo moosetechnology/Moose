@@ -4,7 +4,7 @@ Class {
 	#traits : 'FamixTInvocable + FamixTMethod + FamixTTypedStructure + FamixTWithAccesses + FamixTWithClassScope + FamixTWithImplicitVariables + FamixTWithInvocations + FamixTWithLocalVariables + FamixTWithParameters + FamixTWithReferences + FamixTWithSignature',
 	#classTraits : 'FamixTInvocable classTrait + FamixTMethod classTrait + FamixTTypedStructure classTrait + FamixTWithAccesses classTrait + FamixTWithClassScope classTrait + FamixTWithImplicitVariables classTrait + FamixTWithInvocations classTrait + FamixTWithLocalVariables classTrait + FamixTWithParameters classTrait + FamixTWithReferences classTrait + FamixTWithSignature classTrait',
 	#instVars : [
-		'#protocol'
+		'#protocol => FMProperty'
 	],
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
@@ -16,20 +16,6 @@ FamixStMethod class >> annotation [
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #generator }
-FamixStMethod class >> generatedSlotNames [
-	<generated>
-	'FamixStMethod class>>#generatedSlotNames'.
-	^ #(protocol)
-]
-
-{ #category : #meta }
-FamixStMethod class >> requirements [
-
-	<generated>
-	^ {  }
 ]
 
 { #category : #meta }
@@ -191,6 +177,16 @@ FamixStMethod >> isOverriden [
 	(self belongsTo isNil and: [ self isStub ]) ifTrue: [ ^ false ].
 	
 	^ self belongsTo subclassHierarchyGroup anySatisfy: [ :each | each hasMethodWithSignature: self signature ]
+]
+
+{ #category : #accessing }
+FamixStMethod >> isOverriding [
+	<MSEProperty: #isOverriding type: #Boolean>
+	<derived>
+	<MSEComment: 'The method is overrinding a method defined in a super class'>
+	
+	^self belongsTo directSuperclasses anySatisfy: [:each | 
+		each understands: self signature]
 ]
 
 { #category : #'Famix-Extensions-metrics-support' }

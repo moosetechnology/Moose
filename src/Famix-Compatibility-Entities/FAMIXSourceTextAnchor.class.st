@@ -15,20 +15,6 @@ FAMIXSourceTextAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXSourceTextAnchor class >> generatedSlotNames [
-	<generated>
-	'FAMIXSourceTextAnchor class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FAMIXSourceTextAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Famix-File' }
 FAMIXSourceTextAnchor >> containerFiles [
 	^ {}

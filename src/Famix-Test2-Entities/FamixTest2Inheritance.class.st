@@ -14,17 +14,3 @@ FamixTest2Inheritance class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FamixTest2Inheritance class >> generatedSlotNames [
-	<generated>
-	'FamixTest2Inheritance class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FamixTest2Inheritance class >> requirements [
-
-	<generated>
-	^ {  }
-]

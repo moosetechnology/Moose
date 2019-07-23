@@ -6,24 +6,12 @@ os:
 
 smalltalk:
   - Pharo64-7.0
-
-smalltalk_config:
-  - .smalltalk.ston
-  - .withPharoTests.ston
+  - Pharo64-8.0
 
 matrix:
   fast_finish: true
   allow_failures:
-    - smalltalk_config: .withPharoTests.ston
-    - smalltalk: Pharo32-8.0
-      smalltalk_config: .smalltalk.ston
     - smalltalk: Pharo64-8.0
-      smalltalk_config: .smalltalk.ston
-  include:
-    - smalltalk: Pharo32-8.0
-      smalltalk_config: .smalltalk.ston
-    - smalltalk: Pharo64-8.0
-      smalltalk_config: .smalltalk.ston
 
 after_success:
   - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh

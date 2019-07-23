@@ -11,10 +11,3 @@ FamixTClassWithInvocationsGlue classSide >> annotation [
 	<package: #'Famix-Traits'>
 	^self
 ]
-
-{ #category : #generator }
-FamixTClassWithInvocationsGlue classSide >> generatedSlotNames [
-	<generated>
-	'FamixTClassWithInvocationsGlue class>>#generatedSlotNames'.
-	^ #()
-]

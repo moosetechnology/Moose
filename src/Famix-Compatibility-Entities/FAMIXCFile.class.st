@@ -15,20 +15,6 @@ FAMIXCFile class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXCFile class >> generatedSlotNames [
-	<generated>
-	'FAMIXCFile class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FAMIXCFile class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FAMIXCFile >> allIncomingIncludeRelations [
 	| answer |

@@ -18,13 +18,6 @@ FamixTHeader classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTHeader classSide >> generatedSlotNames [
-	<generated>
-	'FamixTHeader class>>#generatedSlotNames'.
-	^ #(headerOwner)
-]
-
 { #category : #accessing }
 FamixTHeader >> headerOwner [
 

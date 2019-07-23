@@ -14,17 +14,3 @@ FamixTestComposed1SourceAnchor class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FamixTestComposed1SourceAnchor class >> generatedSlotNames [
-	<generated>
-	'FamixTestComposed1SourceAnchor class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FamixTestComposed1SourceAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]

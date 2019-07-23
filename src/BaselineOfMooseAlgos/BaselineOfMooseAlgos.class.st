@@ -47,7 +47,7 @@ BaselineOfMooseAlgos >> baseline: spec [
 			spec
 				group: 'default' with: #('Core' 'Tests');
 				group: 'Core' with: #('CollectionExtensions' 'Moose-Algos-Clustering' 'Moose-Algos-FormalConceptAnalysis' 'Moose-Algos-Graph' 'Moose-Algos-Graph-Generators' 'Moose-Algos-HierarchicalGraph' 'Moose-Algos-InformationRetrieval' 'Moose-Algos-Kontractor' 'Moose-Algos-Lattice' 'Moose-Algos-LinearAlgebra');
-				group: 'Tests' with: #('Moose-Algos-Graph-Tests' 'Moose-Algos-Graph-Generators-Tests' 'Moose-Algos-LinearAlgebra-Tests' 'Moose-Algos-Clustering-Tests' 'Moose-Algos-InformationRetrieval-Tests' 'Moose-Algos-FormalConceptAnalysis-Tests' 'Moose-Algos-Kontractor-Tests' 'Moose-Algos-Lattice-Tests' 'Moose-Algos-HierarchicalGraph') ]
+				group: 'Tests' with: #('Moose-Algos-Graph-Tests' 'Moose-Algos-Graph-Generators-Tests' 'Moose-Algos-LinearAlgebra-Tests' 'Moose-Algos-Clustering-Tests' 'Moose-Algos-InformationRetrieval-Tests' 'Moose-Algos-FormalConceptAnalysis-Tests' 'Moose-Algos-Kontractor-Tests' 'Moose-Algos-Lattice-Tests' 'Moose-Algos-HierarchicalGraph' 'Moose-Algos-HierarchicalGraph-Tests') ]
 ]
 
 { #category : #dependencies }
@@ -55,12 +55,17 @@ BaselineOfMooseAlgos >> collectionExtensions: spec [
 	spec baseline: 'CollectionExtensions' with: [ spec repository: repository ]
 ]
 
-{ #category : #accessing }
+{ #category : #baselines }
 BaselineOfMooseAlgos >> packageRepositoryURL [
 	^ super packageRepositoryURL
 		ifEmpty: [ | packageName |
 			packageName := self class package name.
-			'tonel://' , (IceRepository registry detect: [ :repo | repo workingCopy packageNames includes: packageName ] ifFound: [ :repo | repo location pathString , '/' , repo subdirectory ] ifNone: [ '' ]) ]
+			'tonel://'
+				,
+					(IceRepository registry
+						detect: [ :repo | repo workingCopy packageNames includes: packageName ]
+						ifFound: [ :repo | repo location pathString , '/' , repo subdirectory ]
+						ifNone: [ '' ]) ]
 ]
 
 { #category : #accessing }

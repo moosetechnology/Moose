@@ -43,11 +43,6 @@ FamixPharoSmalltalkGenerator class >> prefix [
 ]
 
 { #category : #accessing }
-FamixPharoSmalltalkGenerator class >> submetamodels [ 
-	^ { FamixCompatibilityGenerator }
-]
-
-{ #category : #accessing }
 FamixPharoSmalltalkGenerator class >> wantsAllEntitiesNavigation [
 
 	^ false
@@ -108,6 +103,7 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 
 	annotationType --|> type.
 	annotationType --|> #TAnnotationType.
+	annotationType --|> #TWithAttributes.
 
 	annotationTypeAttribute --|> attribute.
 	annotationTypeAttribute --|> #TAnnotationTypeAttribute.
@@ -167,6 +163,7 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 
 	namespace --|> scopingEntity.
 	namespace --|> #TNamespace.
+	namespace --|> #TInvocationsReceiver.
 
 	package --|> scopingEntity.
 	package --|> #TPackage.

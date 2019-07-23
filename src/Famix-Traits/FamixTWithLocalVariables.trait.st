@@ -15,13 +15,6 @@ FamixTWithLocalVariables classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithLocalVariables classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithLocalVariables class>>#generatedSlotNames'.
-	^ #(localVariables)
-]
-
 { #category : #accessing }
 FamixTWithLocalVariables >> addLocalVariable: aLocalVariable [
 	localVariables add: aLocalVariable

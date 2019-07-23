@@ -6,10 +6,9 @@ A FAMIXMethod is always contained in a parentType.
 Trait {
 	#name : #FamixTMethod,
 	#instVars : [
-		'#isAbstract',
-		'#isClassSide',
-		'#isPublic',
-		'#kind',
+		'#isAbstract => FMProperty',
+		'#isClassSide => FMProperty',
+		'#kind => FMProperty',
 		'#parentType => FMOne type: #FamixTWithMethods opposite: #methods'
 	],
 	#category : #'Famix-Traits-Method'
@@ -32,13 +31,6 @@ FamixTMethod classSide >> famixTMethodRelatedGroup [
 	^ FAMIXMethodGroup
 ]
 
-{ #category : #generator }
-FamixTMethod classSide >> generatedSlotNames [
-	<generated>
-	'FamixTMethod class>>#generatedSlotNames'.
-	^ #(isAbstract isClassSide kind parentType)
-]
-
 { #category : #metrics }
 FamixTMethod >> cyclomaticComplexity [
 	<MSEProperty: #cyclomaticComplexity type: #Number>
@@ -52,6 +44,20 @@ FamixTMethod >> cyclomaticComplexity [
 FamixTMethod >> cyclomaticComplexity: aNumber [
 
 	self privateState propertyAt: #cyclomaticComplexity put: aNumber
+]
+
+{ #category : #testing }
+FamixTMethod >> hasClassScope [
+	<MSEProperty: #hasClassScope type: #Boolean>
+	<MSEComment: 'This property is for compatibility purpose. It is used by the old generator of MSE files'>
+	self deprecated: 'This property is deprecated from Moose 7.0. Please use isClassSide instead.' transformWith: '`@receiver hasClassScope' -> '`@receiver isClassSide'.
+	^ self isClassSide
+]
+
+{ #category : #testing }
+FamixTMethod >> hasClassScope: aBoolean [
+	self deprecated: 'This property is deprecated from Moose 7.0. Please use isClassSide instead.' transformWith: '`@receiver hasClassScope: `@statements1' -> '`@receiver isClassSide: `@statements1'.
+	^ self isClassSide: aBoolean
 ]
 
 { #category : #accessing }

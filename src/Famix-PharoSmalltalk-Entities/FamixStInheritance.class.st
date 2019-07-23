@@ -14,17 +14,3 @@ FamixStInheritance class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FamixStInheritance class >> generatedSlotNames [
-	<generated>
-	'FamixStInheritance class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FamixStInheritance class >> requirements [
-
-	<generated>
-	^ {  }
-]

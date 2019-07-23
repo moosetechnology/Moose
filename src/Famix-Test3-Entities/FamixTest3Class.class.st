@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixTest3Class,
 	#superclass : #FamixTest3Types,
-	#traits : 'FamixTClass + FamixTContainingWithInvocationsGlue + FamixTLCOMMetrics + FamixTWithMethods',
-	#classTraits : 'FamixTClass classTrait + FamixTContainingWithInvocationsGlue classTrait + FamixTLCOMMetrics classTrait + FamixTWithMethods classTrait',
+	#traits : 'FamixTClass + FamixTContainingWithInvocationsGlue + FamixTWithMethods',
+	#classTraits : 'FamixTClass classTrait + FamixTContainingWithInvocationsGlue classTrait + FamixTWithMethods classTrait',
 	#category : #'Famix-Test3-Entities-Entities'
 }
 
@@ -13,18 +13,4 @@ FamixTest3Class class >> annotation [
 	<package: #'Famix-Test3-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #generator }
-FamixTest3Class class >> generatedSlotNames [
-	<generated>
-	'FamixTest3Class class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FamixTest3Class class >> requirements [
-
-	<generated>
-	^ {  }
 ]

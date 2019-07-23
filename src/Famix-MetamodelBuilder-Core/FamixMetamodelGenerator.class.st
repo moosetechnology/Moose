@@ -1,12 +1,10 @@
-"
-FamixMetamodelGenerator
-"
 Class {
 	#name : #FamixMetamodelGenerator,
 	#superclass : #Object,
 	#instVars : [
 		'builder',
-		'subbuilders'
+		'subbuilders',
+		'cleaningStrategy'
 	],
 	#classInstVars : [
 		'metamodel'
@@ -31,6 +29,11 @@ FamixMetamodelGenerator class >> basicMetamodelClasses [
 FamixMetamodelGenerator class >> builderWithDefinitions [
 
 	^ self new define builder
+]
+
+{ #category : #accessing }
+FamixMetamodelGenerator class >> composedMetaModels [
+	^ self allSubclasses select: [ :mm | mm isAbstract not and: [ mm isComposed ] ]
 ]
 
 { #category : #accessing }
@@ -64,11 +67,60 @@ FamixMetamodelGenerator class >> fixRemoteMetamodelRelationsIn: aMetamodel [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #generation }
 FamixMetamodelGenerator class >> generate [
 
 	<ignoreForCoverage>
 	self new generate
+]
+
+{ #category : #generation }
+FamixMetamodelGenerator class >> generateAllMetamodels [
+	<script>
+	self metamodelsToGenerate
+		do: [ :mm | mm generate ]
+		displayingProgress: [ :mm | 'Regenerate ' , mm name ]
+]
+
+{ #category : #generation }
+FamixMetamodelGenerator class >> individualGenerators [
+	^ self allSubclasses select: [ :c | c isRealMetamodel and: [ c isPartOfComposedMetaModel not ] ]
+]
+
+{ #category : #testing }
+FamixMetamodelGenerator class >> isAbstract [
+	^ self = FamixMetamodelGenerator
+]
+
+{ #category : #testing }
+FamixMetamodelGenerator class >> isComposed [
+	^ self submetamodels isNotEmpty
+]
+
+{ #category : #testing }
+FamixMetamodelGenerator class >> isPartOfComposedMetaModel [
+	^ FamixMetamodelGenerator composedMetaModels anySatisfy: [ :mm | mm submetamodels includes: self ]
+]
+
+{ #category : #testing }
+FamixMetamodelGenerator class >> isRealMetamodel [
+	"I should return false for MMs that are used for tests and that should not be generated all the time."
+
+	^ self isAbstract not
+]
+
+{ #category : #'world menu' }
+FamixMetamodelGenerator class >> menuCommandOn: aBuilder [
+	<worldMenu>
+	(aBuilder item: #'Regenerate all metamodels')
+		order: 40;
+		parent: #Moose;
+		action: [ self generateAllMetamodels ].
+	(aBuilder item: #'Reset metamodels')
+		order: 45;
+		parent: #Moose;
+		action: [ self resetMetamodels ];
+		withSeparatorAfter
 ]
 
 { #category : #accessing }
@@ -81,6 +133,16 @@ FamixMetamodelGenerator class >> metamodel: anObject [
 
 	<ignoreForCoverage>
 	metamodel := anObject
+]
+
+{ #category : #generation }
+FamixMetamodelGenerator class >> metamodelsToGenerate [
+	"We add she submetamodels before the MM composing them because if we do the other way around it will cause trouble when we regenerate all because it will remove the glue added by the composed MM."
+
+	| metamodels |
+	metamodels := self individualGenerators.
+	metamodels select: #isComposed thenDo: [ :mm | mm submetamodels do: [ :smm | (metamodels includes: smm) ifFalse: [ metamodels add: smm before: mm ] ] ].
+	^ metamodels
 ]
 
 { #category : #accessing }
@@ -125,11 +187,11 @@ FamixMetamodelGenerator class >> resetMetamodel [
 	" self resetMetamodel"
 
 	| classes tower elements |
+	self submetamodels do: #resetMetamodel.
 	FMRelationSlot allSubInstancesDo: #resetMooseProperty.
 
 	classes := self packageName asPackage definedClasses select: [ :each | each inheritsFrom: MooseEntity ].
-	classes
-		addAll: (self packageName asPackage definedClasses select: [ :class | class isTrait and: [ class isMetamodelEntity ] ]).
+	classes addAll: (self packageName asPackage definedClasses select: [ :class | class isTrait and: [ class isMetamodelEntity ] ]).
 
 	classes addAll: self basicMetamodelClasses.
 
@@ -147,6 +209,12 @@ FamixMetamodelGenerator class >> resetMetamodel [
 	metamodel additionalProperties at: #wantsAllEntitiesNavigation put: self wantsAllEntitiesNavigation.
 
 	^ metamodel
+]
+
+{ #category : #accessing }
+FamixMetamodelGenerator class >> resetMetamodels [
+	<script>
+	self metamodelsToGenerate do: #resetMetamodel
 ]
 
 { #category : #accessing }
@@ -190,11 +258,14 @@ FamixMetamodelGenerator >> builder: anObject [
 	builder := anObject
 ]
 
-{ #category : #generation }
-FamixMetamodelGenerator >> cleanPackage [
+{ #category : #accessing }
+FamixMetamodelGenerator >> cleaningStrategy [
+	^ cleaningStrategy
+]
 
-	(self packageName asPackageIfAbsent: [ nil ]) 
-		ifNotNil: [:aPackage | aPackage removeFromSystem ].
+{ #category : #accessing }
+FamixMetamodelGenerator >> cleaningStrategy: anObject [
+	cleaningStrategy := anObject
 ]
 
 { #category : #definition }
@@ -230,32 +301,40 @@ FamixMetamodelGenerator >> defineTraits [
 
 { #category : #generation }
 FamixMetamodelGenerator >> generate [
+	"Next step to improve the cleaning is to add a report. For example if we cannot migrate a method since its class was removed from the MM, we should get notified with a report object."
 
-	self generateWithoutCleaning.
-	self class resetMetamodel.
+	EpMonitor
+		disableDuring: [ self define.
+			self cleaningStrategy
+				withCleaningDo: [ self builder generate.
+					subbuilders do: #generateRemotes ]
+				with: self ].
+	self class resetMetamodel
 ]
 
 { #category : #generation }
 FamixMetamodelGenerator >> generateWithCleaning [
-	EpMonitor
-		disableDuring: [ self cleanPackage.
-			self define.
-			self builder generate.
-			subbuilders do: #generateRemotes ]
+	self withCleaning.
+	self generate
 ]
 
 { #category : #generation }
 FamixMetamodelGenerator >> generateWithoutCleaning [
-	EpMonitor
-		disableDuring: [ self define.
-			self builder generate.
-			subbuilders do: #generateRemotes ]
+	self withoutCleaning.
+	self generate
+]
+
+{ #category : #generation }
+FamixMetamodelGenerator >> generatedPackage [
+	^ self packageName asPackageIfAbsent: [ nil ]
 ]
 
 { #category : #definition }
 FamixMetamodelGenerator >> initialize [
 
 	super initialize.
+	
+	self withoutCleaning.
 	
 	builder := self newBuilder.
 	self adoptBuilder: builder.
@@ -267,6 +346,11 @@ FamixMetamodelGenerator >> initialize [
 		builder environment: builder environment.		
 		each prefix -> subbuilder ]).
 
+]
+
+{ #category : #accessing }
+FamixMetamodelGenerator >> mooseModelName [
+	^ self prefix , 'MooseModel'
 ]
 
 { #category : #definition }
@@ -300,14 +384,34 @@ FamixMetamodelGenerator >> prefix [
 	^ self class prefix
 ]
 
-{ #category : #'as yet unclassified' }
-FamixMetamodelGenerator >> remoteEntity: anEntityName withPrefix: aPrefixName [ 
+{ #category : #testing }
+FamixMetamodelGenerator >> regenerationIsNeeded [
+	self define.
+	^ self builder regenerationIsNeeded
+]
 
-	| anEntity |
-	
-	anEntity := (subbuilders at: aPrefixName) ensureClassNamed: anEntityName.
-	anEntity isRemote: true.
-	anEntity remoteBuilder: builder.
-	
-	^ anEntity.
+{ #category : #definition }
+FamixMetamodelGenerator >> remoteEntity: anEntityName withPrefix: aPrefixName [
+	^ ((subbuilders at: aPrefixName) ensureClassNamed: anEntityName)
+		isRemote: true;
+		remoteBuilder: builder;
+		yourself
+]
+
+{ #category : #definition }
+FamixMetamodelGenerator >> remoteTrait: anEntityName withPrefix: aPrefixName [
+	^ ((subbuilders at: aPrefixName) ensureTraitNamed: anEntityName)
+		isRemote: true;
+		remoteBuilder: builder;
+		yourself
+]
+
+{ #category : #definition }
+FamixMetamodelGenerator >> withCleaning [
+	self cleaningStrategy: FamixMetamodelGeneratorTotalCleaningStrategy new
+]
+
+{ #category : #definition }
+FamixMetamodelGenerator >> withoutCleaning [
+	self cleaningStrategy: FamixMetamodelGeneratorNoCleaningStrategy new
 ]

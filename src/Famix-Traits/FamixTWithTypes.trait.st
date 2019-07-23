@@ -15,13 +15,6 @@ FamixTWithTypes classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithTypes classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithTypes class>>#generatedSlotNames'.
-	^ #(types)
-]
-
 { #category : #adding }
 FamixTWithTypes >> addType: aType [ 
 	types add: aType

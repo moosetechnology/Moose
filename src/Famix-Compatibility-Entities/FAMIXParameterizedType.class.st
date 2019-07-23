@@ -15,20 +15,6 @@ FAMIXParameterizedType class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXParameterizedType class >> generatedSlotNames [
-	<generated>
-	'FAMIXParameterizedType class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FAMIXParameterizedType class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FAMIXParameterizedType >> allSubclassesDo: aBlock [
 	"we override this traversal because we want to

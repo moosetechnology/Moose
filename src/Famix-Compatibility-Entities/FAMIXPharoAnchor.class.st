@@ -16,20 +16,6 @@ FAMIXPharoAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXPharoAnchor class >> generatedSlotNames [
-	<generated>
-	'FAMIXPharoAnchor class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FAMIXPharoAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Famix-File' }
 FAMIXPharoAnchor >> containerFiles [
 	^ {  }

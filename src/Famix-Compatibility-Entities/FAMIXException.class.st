@@ -15,20 +15,6 @@ FAMIXException class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXException class >> generatedSlotNames [
-	<generated>
-	'FAMIXException class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FAMIXException class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #compatibility }
 FAMIXException >> definingEntity [
 	self subclassResponsibility

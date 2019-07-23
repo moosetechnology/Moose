@@ -15,13 +15,6 @@ FamixTPackageable classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTPackageable classSide >> generatedSlotNames [
-	<generated>
-	'FamixTPackageable class>>#generatedSlotNames'.
-	^ #(parentPackage)
-]
-
 { #category : #accessing }
 FamixTPackageable >> isExtension [
 	^self belongsTo packageScope ~~ self packageScope.

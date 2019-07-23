@@ -115,7 +115,7 @@ DelphiProgramFileNode >> moduleNames: anOrderedCollection [
 
 { #category : #generated }
 DelphiProgramFileNode >> nodeVariables [
-	^ #(#main)
+	^ #(#programName #main)
 ]
 
 { #category : #generated }
@@ -134,8 +134,12 @@ DelphiProgramFileNode >> programName [
 ]
 
 { #category : #generated }
-DelphiProgramFileNode >> programName: aSmaCCToken [
-	programName := aSmaCCToken
+DelphiProgramFileNode >> programName: aDelphiModuleNameNode [
+	self programName notNil
+		ifTrue: [ self programName parent: nil ].
+	programName := aDelphiModuleNameNode.
+	self programName notNil
+		ifTrue: [ self programName parent: self ]
 ]
 
 { #category : #generated }
@@ -160,7 +164,7 @@ DelphiProgramFileNode >> semicolons: anOrderedCollection [
 
 { #category : #generated }
 DelphiProgramFileNode >> tokenVariables [
-	^ #(#programToken #programName #modifier #usesToken #period)
+	^ #(#programToken #modifier #usesToken #period)
 ]
 
 { #category : #generated }

@@ -13,20 +13,6 @@ FAMIXUnknownVariable class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXUnknownVariable class >> generatedSlotNames [
-	<generated>
-	'FAMIXUnknownVariable class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FAMIXUnknownVariable class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXUnknownVariable >> accept: aVisitor [
 

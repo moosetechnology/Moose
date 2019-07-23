@@ -19,20 +19,6 @@ FamixStAssociation class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixStAssociation class >> generatedSlotNames [
-	<generated>
-	'FamixStAssociation class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FamixStAssociation class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #printing }
 FamixStAssociation >> from [
 

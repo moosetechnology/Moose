@@ -15,20 +15,6 @@ FamixJavaFile class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaFile class >> generatedSlotNames [
-	<generated>
-	'FamixJavaFile class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FamixJavaFile class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaFile >> averageNumberOfCharactersPerLine [
 	<MSEProperty: #averageNumberOfCharactersPerLine type: #Number>

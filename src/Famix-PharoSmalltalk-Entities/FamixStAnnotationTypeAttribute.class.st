@@ -15,20 +15,6 @@ FamixStAnnotationTypeAttribute class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixStAnnotationTypeAttribute class >> generatedSlotNames [
-	<generated>
-	'FamixStAnnotationTypeAttribute class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FamixStAnnotationTypeAttribute class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FamixStAnnotationTypeAttribute >> parentAnnotationType [
 	<MSEProperty: #parentAnnotationType type: #FamixStAnnotationType> <derived> 

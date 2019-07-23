@@ -18,13 +18,6 @@ FamixTFunction classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTFunction classSide >> generatedSlotNames [
-	<generated>
-	'FamixTFunction class>>#generatedSlotNames'.
-	^ #(functionOwner)
-]
-
 { #category : #accessing }
 FamixTFunction >> functionOwner [
 

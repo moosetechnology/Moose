@@ -14,17 +14,3 @@ FamixJavaThrownException class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FamixJavaThrownException class >> generatedSlotNames [
-	<generated>
-	'FamixJavaThrownException class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FamixJavaThrownException class >> requirements [
-
-	<generated>
-	^ {  }
-]

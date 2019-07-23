@@ -14,17 +14,3 @@ FamixTest1MultipleFileAnchor class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FamixTest1MultipleFileAnchor class >> generatedSlotNames [
-	<generated>
-	'FamixTest1MultipleFileAnchor class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #meta }
-FamixTest1MultipleFileAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
