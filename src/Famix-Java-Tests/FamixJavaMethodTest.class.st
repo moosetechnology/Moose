@@ -1,16 +1,16 @@
 Class {
-	#name : #FAMIXMethodTest,
-	#superclass : #FAMIXNamedEntityTest,
-	#category : #'Famix-Compatibility-Tests-Core'
+	#name : #FamixJavaMethodTest,
+	#superclass : #FamixJavaNamedEntityTest,
+	#category : #'Famix-Java-Tests'
 }
 
 { #category : #helpers }
-FAMIXMethodTest >> actualClass [
-	^ FAMIXMethod
+FamixJavaMethodTest >> actualClass [
+	^ FamixJavaMethod
 ]
 
 { #category : #testing }
-FAMIXMethodTest >> testIsConstructor [
+FamixJavaMethodTest >> testIsConstructor [
 	self
 		assert:
 			(self actualClass new
@@ -32,6 +32,6 @@ FAMIXMethodTest >> testIsConstructor [
 ]
 
 { #category : #testing }
-FAMIXMethodTest >> testIsConstructorByKind [
+FamixJavaMethodTest >> testIsConstructorByKind [
 	self assert: (self actualClass new kind: 'constructor'; isConstructor)
 ]

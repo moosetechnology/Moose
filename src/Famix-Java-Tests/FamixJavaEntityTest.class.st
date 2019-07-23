@@ -2,17 +2,17 @@
 I am the generic class for all the tests for famix entities
 "
 Class {
-	#name : #FAMIXEntityTest,
+	#name : #FamixJavaEntityTest,
 	#superclass : #TestCase,
-	#category : #'Famix-Compatibility-Tests-Core'
+	#category : #'Famix-Java-Tests'
 }
 
 { #category : #asserting }
-FAMIXEntityTest class >> shouldInheritSelectors [
+FamixJavaEntityTest class >> shouldInheritSelectors [
 	^ true
 ]
 
 { #category : #helpers }
-FAMIXEntityTest >> actualClass [
+FamixJavaEntityTest >> actualClass [
 	^ self subclassResponsibility
 ]

@@ -113,9 +113,9 @@ FamixParameterizedTypeTest >> testArguments [
 { #category : #tests }
 FamixParameterizedTypeTest >> testArgumentsConstruction [
 	| parameterizableType argument1 argument2 |
-	parameterizableType := FAMIXParameterizedType new.
-	argument1 := FAMIXClass new.
-	argument2 := FAMIXClass new.
+	parameterizableType := FamixJavaParameterizedType new.
+	argument1 := FamixJavaClass new.
+	argument2 := FamixJavaClass new.
 	parameterizableType arguments: {argument1}.
 	parameterizableType arguments add: argument2.
 	self assert: parameterizableType arguments size equals: 2.

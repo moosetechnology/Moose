@@ -2,21 +2,21 @@
 I am an abstract test class for the tests of FAMIXSourcedEntity's subclasses
 "
 Class {
-	#name : #FAMIXSourcedEntityTest,
-	#superclass : #FAMIXEntityTest,
-	#category : #'Famix-Compatibility-Tests-Core'
+	#name : #FamixJavaSourcedEntityTest,
+	#superclass : #FamixJavaEntityTest,
+	#category : #'Famix-Java-Tests'
 }
 
 { #category : #testing }
-FAMIXSourcedEntityTest class >> isAbstract [
-	^ self = FAMIXSourcedEntityTest
+FamixJavaSourcedEntityTest class >> isAbstract [
+	^ self = FamixJavaSourcedEntityTest
 ]
 
 { #category : #tests }
-FAMIXSourcedEntityTest >> testAddComment [
+FamixJavaSourcedEntityTest >> testAddComment [
 	| inst comment |
 	inst := self actualClass new.
-	comment := FAMIXComment content: 'This is a test'.
+	comment := FamixJavaComment content: 'This is a test'.
 	inst addComment: comment.
 	self assert: inst comments size equals: 1.
 	self assert: inst comments anyOne equals: comment.
@@ -24,7 +24,7 @@ FAMIXSourcedEntityTest >> testAddComment [
 ]
 
 { #category : #tests }
-FAMIXSourcedEntityTest >> testAddCommentFromString [
+FamixJavaSourcedEntityTest >> testAddCommentFromString [
 	| inst |
 	self skip: 'A generated test replace this one'.
 	inst := self actualClass new.
@@ -34,15 +34,15 @@ FAMIXSourcedEntityTest >> testAddCommentFromString [
 ]
 
 { #category : #tests }
-FAMIXSourcedEntityTest >> testAddCommentRaiseErrorOnWrongObject [
-	self should: [ self actualClass new addComment: FAMIXSourceAnchor new ] raise: Error
+FamixJavaSourcedEntityTest >> testAddCommentRaiseErrorOnWrongObject [
+	self should: [ self actualClass new addComment: FamixJavaSourceAnchor new ] raise: Error
 ]
 
 { #category : #tests }
-FAMIXSourcedEntityTest >> testRemoveComment [
+FamixJavaSourcedEntityTest >> testRemoveComment [
 	| inst comment |
 	inst := self actualClass new.
-	comment := FAMIXComment content: 'This is a test'.
+	comment := FamixJavaComment content: 'This is a test'.
 	inst addComment: comment.
 	self assert: inst comments size equals: 1.
 	self assert: inst comments anyOne equals: comment.

@@ -1,16 +1,21 @@
 Class {
-	#name : #FAMIXSourceAnchorTest,
-	#superclass : #FAMIXEntityTest,
-	#category : #'Famix-Compatibility-Tests-Core'
+	#name : #FamixJavaSourceAnchorTest,
+	#superclass : #FamixJavaEntityTest,
+	#category : #'Famix-Java-Tests'
 }
 
 { #category : #testing }
-FAMIXSourceAnchorTest class >> isAbstract [
-	^ self = FAMIXSourceAnchorTest
+FamixJavaSourceAnchorTest class >> isAbstract [
+	^ self = FamixJavaSourceAnchorTest
+]
+
+{ #category : #helpers }
+FamixJavaSourceAnchorTest >> actualClass [
+	^ self subclassResponsibility
 ]
 
 { #category : #tests }
-FAMIXSourceAnchorTest >> testImportFileAnchors [
+FamixJavaSourceAnchorTest >> testImportFileAnchors [
 	| model aMethod |
 	MooseModel resetMeta.
 	model := FamixJavaMooseModel 
@@ -40,6 +45,6 @@ FAMIXSourceAnchorTest >> testImportFileAnchors [
 ]
 
 { #category : #tests }
-FAMIXSourceAnchorTest >> testIsMultiple [
+FamixJavaSourceAnchorTest >> testIsMultiple [
 	^ self deny: self actualClass new isMultiple
 ]

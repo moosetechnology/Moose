@@ -1,16 +1,16 @@
 Class {
-	#name : #FAMIXNamedEntityTest,
-	#superclass : #FAMIXSourcedEntityTest,
-	#category : #'Famix-Compatibility-Tests-Core'
+	#name : #FamixJavaNamedEntityTest,
+	#superclass : #FamixJavaSourcedEntityTest,
+	#category : #'Famix-Java-Tests'
 }
 
 { #category : #helpers }
-FAMIXNamedEntityTest >> actualClass [
-	^ FAMIXNamedEntity
+FamixJavaNamedEntityTest >> actualClass [
+	^ FamixJavaNamedEntity
 ]
 
 { #category : #tests }
-FAMIXNamedEntityTest >> testIsAbstract [
+FamixJavaNamedEntityTest >> testIsAbstract [
 	| entity |
 	self skip: 'A generated test replaces this one'.
 	entity := self actualClass new.
@@ -19,7 +19,7 @@ FAMIXNamedEntityTest >> testIsAbstract [
 ]
 
 { #category : #tests }
-FAMIXNamedEntityTest >> testIsFinal [
+FamixJavaNamedEntityTest >> testIsFinal [
 	| entity |
 	entity :=self actualClass new.
 	entity isFinal: true.
@@ -27,7 +27,7 @@ FAMIXNamedEntityTest >> testIsFinal [
 ]
 
 { #category : #tests }
-FAMIXNamedEntityTest >> testIsPackage [
+FamixJavaNamedEntityTest >> testIsPackage [
 	| entity |
 	entity := self actualClass new.
 	entity isPackage: true.
@@ -35,7 +35,7 @@ FAMIXNamedEntityTest >> testIsPackage [
 ]
 
 { #category : #tests }
-FAMIXNamedEntityTest >> testIsPrivate [
+FamixJavaNamedEntityTest >> testIsPrivate [
 	| entity |
 	entity := self actualClass new.
 	entity isPrivate: true.
@@ -43,7 +43,7 @@ FAMIXNamedEntityTest >> testIsPrivate [
 ]
 
 { #category : #tests }
-FAMIXNamedEntityTest >> testIsProtected [
+FamixJavaNamedEntityTest >> testIsProtected [
 	| entity |
 	entity := self actualClass new.
 	entity isProtected: true.
@@ -51,7 +51,7 @@ FAMIXNamedEntityTest >> testIsProtected [
 ]
 
 { #category : #tests }
-FAMIXNamedEntityTest >> testIsPublic [
+FamixJavaNamedEntityTest >> testIsPublic [
 	| entity |
 	entity := self actualClass new.
 	entity isPublic: true.

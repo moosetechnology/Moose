@@ -1,12 +1,12 @@
 Class {
 	#name : #FamixJavaAnnotationInstanceAttributeTest,
-	#superclass : #FAMIXSourcedEntityTest,
+	#superclass : #FamixJavaSourcedEntityTest,
 	#category : #'Famix-Java-Tests'
 }
 
 { #category : #helpers }
 FamixJavaAnnotationInstanceAttributeTest >> actualClass [
-	^ FAMIXAnnotationInstanceAttribute
+	^ FamixJavaAnnotationInstanceAttribute
 ]
 
 { #category : #tests }

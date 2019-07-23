@@ -1,6 +1,6 @@
 Class {
 	#name : #FAMIXAnnotationTypeAttributeTest,
-	#superclass : #FAMIXSourcedEntityTest,
+	#superclass : #FamixJavaSourcedEntityTest,
 	#category : #'Famix-Compatibility-Tests-Core'
 }
 

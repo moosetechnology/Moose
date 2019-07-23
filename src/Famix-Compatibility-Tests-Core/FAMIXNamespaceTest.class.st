@@ -1,6 +1,6 @@
 Class {
 	#name : #FAMIXNamespaceTest,
-	#superclass : #FAMIXNamedEntityTest,
+	#superclass : #FamixJavaNamedEntityTest,
 	#instVars : [
 		'root',
 		'child1',

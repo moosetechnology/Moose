@@ -3,7 +3,7 @@ A FAMIXAbstractFileTest is a test class for testing the behavior of FAMIXAbstrac
 "
 Class {
 	#name : #FAMIXAbstractFileTest,
-	#superclass : #FAMIXNamedEntityTest,
+	#superclass : #FamixJavaNamedEntityTest,
 	#category : #'Famix-Compatibility-Tests-Core'
 }
 
