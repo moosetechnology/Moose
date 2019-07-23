@@ -27,7 +27,7 @@ BaselineOfMooseIDE >> baseline: spec [
 		package: 'Moose-RoassalPaintings';
 		package: 'Moose-Tests-Finder';
 		package: 'Moose-Tests-RoassalPaintings';
-		package: 'Moose-Easy'
+		package: 'Moose-Easy' with: [ spec repository: self mooseEasyURL. ]
 ]
 
 { #category : #baselines }
@@ -37,7 +37,12 @@ BaselineOfMooseIDE >> mooseAlgos: spec [
 
 { #category : #baselines }
 BaselineOfMooseIDE >> mooseEasy: spec [
-	spec baseline: 'MooseEasy' with: [ spec repository: 'github://moosetechnology/Moose-Easy:master/src'. ]
+	spec baseline: 'MooseEasy' with: [ spec repository: self mooseEasyURL . ]
+]
+
+{ #category : #'as yet unclassified' }
+BaselineOfMooseIDE >> mooseEasyURL [
+ ^ 'github://moosetechnology/Moose-Easy:master/src'
 ]
 
 { #category : #baselines }
