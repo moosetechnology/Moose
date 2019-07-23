@@ -13,13 +13,6 @@ FamixStUnknownVariable class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixStUnknownVariable class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'moosechef-scoping-filtering' }
 FamixStUnknownVariable >> typeScope [
 	"typeScope does not make sense for an unknown variable,

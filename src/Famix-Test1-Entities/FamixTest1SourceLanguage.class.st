@@ -14,10 +14,3 @@ FamixTest1SourceLanguage class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #meta }
-FamixTest1SourceLanguage class >> requirements [
-
-	<generated>
-	^ {  }
-]

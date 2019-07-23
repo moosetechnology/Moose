@@ -15,13 +15,6 @@ FamixStContainerEntity class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixStContainerEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FamixStContainerEntity >> numberOfChildren [
 	<MSEProperty: #numberOfChildren type: #Number>

@@ -24,13 +24,6 @@ FamixStSourceAnchor class >> parentTypes [
 	^ {}
 ]
 
-{ #category : #meta }
-FamixStSourceAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixStSourceAnchor class >> resetMooseQueryCaches [
 	super resetMooseQueryCaches.

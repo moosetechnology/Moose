@@ -186,6 +186,13 @@ MooseEntity class >> registerAsMooseSubclass: aClass [
 	self mooseSubClasses add: aClass
 ]
 
+{ #category : #accessing }
+MooseEntity class >> requirements [
+	"Used by Famix generator."
+
+	^ {}
+]
+
 { #category : #private }
 MooseEntity class >> resetIDGeneration [ 
 	"Resets the internal ID generation." 

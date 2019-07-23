@@ -15,13 +15,6 @@ FAMIXBehaviouralEntity class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXBehaviouralEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXBehaviouralEntity >> accept: aVisitor [
 

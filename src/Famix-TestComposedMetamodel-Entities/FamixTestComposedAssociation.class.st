@@ -15,13 +15,6 @@ FamixTestComposedAssociation class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixTestComposedAssociation class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FamixTestComposedAssociation >> c15 [
 

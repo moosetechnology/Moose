@@ -27,13 +27,6 @@ FAMIXSourceAnchor class >> parentTypes [
 	^ {}
 ]
 
-{ #category : #meta }
-FAMIXSourceAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #generator }
 FAMIXSourceAnchor class >> resetMooseQueryCaches [
 	super resetMooseQueryCaches.

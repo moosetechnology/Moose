@@ -15,13 +15,6 @@ FamixStStructuralEntity class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixStStructuralEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Famix-Implementation' }
 FamixStStructuralEntity >> entityHasOutgoingTypeDeclarations [
 	^ self declaredType isNotNil

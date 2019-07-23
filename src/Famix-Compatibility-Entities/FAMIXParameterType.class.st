@@ -13,13 +13,6 @@ FAMIXParameterType class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXParameterType class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #testing }
 FAMIXParameterType >> isParameterType [
 	^ true

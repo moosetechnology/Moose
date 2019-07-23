@@ -15,13 +15,6 @@ FAMIXPackage class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXPackage class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXPackage >> abstractClasses [
 

@@ -15,13 +15,6 @@ FamixStComment class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixStComment class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FamixStComment >> belongsTo [
 	

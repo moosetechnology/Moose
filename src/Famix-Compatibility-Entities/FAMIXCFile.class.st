@@ -15,13 +15,6 @@ FAMIXCFile class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXCFile class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FAMIXCFile >> allIncomingIncludeRelations [
 	| answer |

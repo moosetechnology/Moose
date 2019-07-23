@@ -15,13 +15,6 @@ FAMIXSourceTextAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXSourceTextAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Famix-File' }
 FAMIXSourceTextAnchor >> containerFiles [
 	^ {}

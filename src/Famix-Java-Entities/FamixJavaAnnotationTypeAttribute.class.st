@@ -15,13 +15,6 @@ FamixJavaAnnotationTypeAttribute class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaAnnotationTypeAttribute class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaAnnotationTypeAttribute >> parentAnnotationType [
 	<MSEProperty: #parentAnnotationType type: #FamixJavaAnnotationType> 

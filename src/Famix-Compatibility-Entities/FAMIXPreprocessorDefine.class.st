@@ -18,13 +18,6 @@ FAMIXPreprocessorDefine class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXPreprocessorDefine class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FAMIXPreprocessorDefine >> macro [
 	<MSEProperty: #macro type: #String>

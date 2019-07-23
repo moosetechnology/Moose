@@ -20,13 +20,6 @@ FAMIXAccess class >> fromMethod [
 	^ self lookupSelector: #accessor
 ]
 
-{ #category : #meta }
-FAMIXAccess class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Moose-Query-Extensions' }
 FAMIXAccess class >> toMethod [
 	^ self lookupSelector: #variable

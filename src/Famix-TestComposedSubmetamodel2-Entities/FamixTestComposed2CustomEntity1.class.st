@@ -12,10 +12,3 @@ FamixTestComposed2CustomEntity1 class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #meta }
-FamixTestComposed2CustomEntity1 class >> requirements [
-
-	<generated>
-	^ {  }
-]

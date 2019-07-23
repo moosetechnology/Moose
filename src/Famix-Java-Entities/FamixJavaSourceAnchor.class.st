@@ -28,13 +28,6 @@ FamixJavaSourceAnchor class >> parentTypes [
 ]
 
 { #category : #meta }
-FamixJavaSourceAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
-{ #category : #meta }
 FamixJavaSourceAnchor class >> resetMooseQueryCaches [
 	super resetMooseQueryCaches.
 	self resetTEntityMetaLevelDependencyCaches.

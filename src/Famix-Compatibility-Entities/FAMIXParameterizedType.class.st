@@ -15,13 +15,6 @@ FAMIXParameterizedType class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXParameterizedType class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FAMIXParameterizedType >> allSubclassesDo: aBlock [
 	"we override this traversal because we want to

@@ -13,13 +13,6 @@ FamixJavaParameterType class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaParameterType class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaParameterType >> isParameterType [
 	^ true

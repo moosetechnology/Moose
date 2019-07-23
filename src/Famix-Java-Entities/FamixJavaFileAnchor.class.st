@@ -15,13 +15,6 @@ FamixJavaFileAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaFileAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FamixJavaFileAnchor >> mooseNameOn: aStream [
 	super mooseNameOn: aStream.

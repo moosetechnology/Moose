@@ -14,10 +14,3 @@ FamixStReference class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #meta }
-FamixStReference class >> requirements [
-
-	<generated>
-	^ {  }
-]

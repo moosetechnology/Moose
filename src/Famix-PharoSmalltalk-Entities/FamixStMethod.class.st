@@ -19,13 +19,6 @@ FamixStMethod class >> annotation [
 ]
 
 { #category : #meta }
-FamixStMethod class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
-{ #category : #meta }
 FamixStMethod class >> shouldSearchForSmalltalkCodeInImage [
 	^ true
 ]

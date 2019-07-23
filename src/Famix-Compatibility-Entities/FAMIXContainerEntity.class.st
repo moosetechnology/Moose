@@ -15,13 +15,6 @@ FAMIXContainerEntity class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXContainerEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXContainerEntity >> accept: aVisitor [
 

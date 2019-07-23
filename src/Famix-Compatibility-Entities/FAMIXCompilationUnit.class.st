@@ -15,13 +15,6 @@ FAMIXCompilationUnit class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXCompilationUnit class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #testing }
 FAMIXCompilationUnit >> isCompilationUnit [
 	^ true
