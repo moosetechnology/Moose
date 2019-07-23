@@ -390,15 +390,19 @@ FamixMetamodelGenerator >> regenerationIsNeeded [
 ]
 
 { #category : #definition }
-FamixMetamodelGenerator >> remoteEntity: anEntityName withPrefix: aPrefixName [ 
+FamixMetamodelGenerator >> remoteEntity: anEntityName withPrefix: aPrefixName [
+	^ ((subbuilders at: aPrefixName) ensureClassNamed: anEntityName)
+		isRemote: true;
+		remoteBuilder: builder;
+		yourself
+]
 
-	| anEntity |
-	
-	anEntity := (subbuilders at: aPrefixName) ensureClassNamed: anEntityName.
-	anEntity isRemote: true.
-	anEntity remoteBuilder: builder.
-	
-	^ anEntity.
+{ #category : #definition }
+FamixMetamodelGenerator >> remoteTrait: anEntityName withPrefix: aPrefixName [
+	^ ((subbuilders at: aPrefixName) ensureTraitNamed: anEntityName)
+		isRemote: true;
+		remoteBuilder: builder;
+		yourself
 ]
 
 { #category : #definition }
