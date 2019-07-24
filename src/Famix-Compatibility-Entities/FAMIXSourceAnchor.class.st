@@ -34,12 +34,6 @@ FAMIXSourceAnchor class >> resetMooseQueryCaches [
 
 ]
 
-{ #category : #'Famix-Extensions' }
-FAMIXSourceAnchor >> accept: aVisitor [
-
-	aVisitor visitSourceAnchor: self
-]
-
 { #category : #accessing }
 FAMIXSourceAnchor >> belongsTo [ 
 		
@@ -61,13 +55,6 @@ FAMIXSourceAnchor >> containerFiles [
 	"I should return a collection of files corresponding to the source anchor. If there is no file just return an empty collection."
 
 	^ self subclassResponsibility
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXSourceAnchor >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	self element: (aVisitor visit: anEntity)
 ]
 
 { #category : #accessing }

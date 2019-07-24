@@ -317,10 +317,6 @@ MooseEntity >> children [
 	^children
 ]
 
-{ #category : #'Famix-Extensions' }
-MooseEntity >> copyFrom: anEntity within: aVisitor [
-]
-
 { #category : #private }
 MooseEntity >> defaultStateClass [
 	"Answer the default implementator of this element's state."

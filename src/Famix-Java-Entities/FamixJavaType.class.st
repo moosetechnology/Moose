@@ -22,12 +22,6 @@ FamixJavaType class >> requirements [
 	^ { FamixJavaContainerEntity }
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaType >> accept: aVisitor [
-
-	aVisitor visitType: self
-]
-
 { #category : #'Famix-Java' }
 FamixJavaType >> allAnnotationInstances [
 	| result |
@@ -100,20 +94,6 @@ FamixJavaType >> container [
 FamixJavaType >> container: aContainer [
 
 	self typeContainer: aContainer
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaType >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-
-	anEntity superInheritances do: [:inh|
-		aVisitor visit: inh ].
-	anEntity attributes do: [:a |
-		self addAttribute: (aVisitor visit: a) ].
-	anEntity methods do: [:m|
-		self addMethod: (aVisitor visit: m) ].
-
 ]
 
 { #category : #'moosequery-queries-incoming' }

@@ -16,20 +16,6 @@ FamixJavaReference class >> annotation [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaReference >> accept: aVisitor [
-
-	aVisitor visitReference: self
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaReference >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	self source: (aVisitor visit: anEntity source).
-	self target: (aVisitor visit: anEntity target).
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaReference >> mooseNameOn: aStream [
 	"aStream nextPutAll: 'Reference'."
 

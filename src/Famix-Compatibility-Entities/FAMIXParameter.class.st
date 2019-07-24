@@ -22,12 +22,6 @@ FAMIXParameter class >> requirements [
 	^ { FAMIXBehaviouralEntity }
 ]
 
-{ #category : #'Famix-Extensions' }
-FAMIXParameter >> accept: aVisitor [
-
-	aVisitor visitParameter: self
-]
-
 { #category : #accessing }
 FAMIXParameter >> belongsTo [
 

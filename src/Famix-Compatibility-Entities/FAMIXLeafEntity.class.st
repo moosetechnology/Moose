@@ -12,9 +12,3 @@ FAMIXLeafEntity class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #visiting }
-FAMIXLeafEntity >> accept: aVisitor [
-
-	aVisitor visitLeafEntity: self
-]

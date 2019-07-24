@@ -15,12 +15,6 @@ FamixJavaClass class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaClass >> accept: aVisitor [
-
-	aVisitor visitClass: self
-]
-
 { #category : #'Famix-Extensions-metrics-support' }
 FamixJavaClass >> accessedAttributes [
 	

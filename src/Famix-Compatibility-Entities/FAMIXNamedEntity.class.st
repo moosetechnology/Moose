@@ -33,12 +33,6 @@ FAMIXNamedEntity class >> resetMooseQueryCaches [
 	self resetTEntityMetaLevelDependencyCaches.
 ]
 
-{ #category : #'Famix-Extensions' }
-FAMIXNamedEntity >> accept: aVisitor [
-
-	aVisitor visitNamedEntity: self
-]
-
 { #category : #accessing }
 FAMIXNamedEntity >> belongsTo [
 	
@@ -49,16 +43,6 @@ FAMIXNamedEntity >> belongsTo [
 FAMIXNamedEntity >> belongsTo: anObject [
 
 	^self subclassResponsibility
-
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXNamedEntity >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	self name: anEntity name copy.
-	self isStub: anEntity isStub.
-	self modifiers: (anEntity modifiers collect: #copy)
 
 ]
 

@@ -15,12 +15,6 @@ FAMIXComment class >> annotation [
 	^self
 ]
 
-{ #category : #'Famix-Extensions' }
-FAMIXComment >> accept: aVisitor [
-
-	aVisitor visitComment: self
-]
-
 { #category : #converting }
 FAMIXComment >> asFAMIXComment [
 	^ self
@@ -30,13 +24,6 @@ FAMIXComment >> asFAMIXComment [
 FAMIXComment >> belongsTo [
 	
 	^ self container
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXComment >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	self content: anEntity content copy
 ]
 
 { #category : #printing }
