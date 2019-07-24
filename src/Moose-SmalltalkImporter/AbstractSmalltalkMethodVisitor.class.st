@@ -376,7 +376,7 @@ AbstractSmalltalkMethodVisitor >> visitVariableNode: aVariableNode [
 				access := self createAccessTo: global writing: false]
 			ifFalse: [
 				namedEntity := self resolve: aVariableNode name.
-				access := (namedEntity isKindOf: self importer factory containerEntity)
+				access := (namedEntity isKindOf: self importer factory classEntity)
 					ifTrue: [ self createReferenceTo: namedEntity ]
 					ifFalse: [ self createAccessTo: namedEntity writing: false ] ].
 		importer addEntity: access ].
