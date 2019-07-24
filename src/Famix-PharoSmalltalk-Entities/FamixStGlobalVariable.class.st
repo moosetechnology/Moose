@@ -1,15 +1,15 @@
 Class {
 	#name : #FamixStGlobalVariable,
-	#superclass : #FamixStStructuralEntity,
-	#traits : 'FamixTGlobalVariable',
-	#classTraits : 'FamixTGlobalVariable classTrait',
+	#superclass : #FamixStEntity,
+	#traits : 'FamixStStructuralEntity + FamixTGlobalVariable',
+	#classTraits : 'FamixStStructuralEntity classTrait + FamixTGlobalVariable classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 
 { #category : #meta }
 FamixStGlobalVariable class >> annotation [
 
-	<MSEClass: #GlobalVariable super: #FamixStStructuralEntity>
+	<MSEClass: #GlobalVariable super: #FamixStEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self

@@ -1,18 +1,25 @@
 Class {
 	#name : #FamixJavaStructuralEntity,
-	#superclass : #FamixJavaNamedEntity,
-	#traits : 'FamixTAccessible + FamixTTypedStructure + FamixTWithDereferencedInvocations',
-	#classTraits : 'FamixTAccessible classTrait + FamixTTypedStructure classTrait + FamixTWithDereferencedInvocations classTrait',
+	#superclass : #MooseEntity,
+	#traits : 'FamixTStructuralEntity + FamixTWithDereferencedInvocations',
+	#classTraits : 'FamixTStructuralEntity classTrait + FamixTWithDereferencedInvocations classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
 { #category : #meta }
 FamixJavaStructuralEntity class >> annotation [
 
-	<MSEClass: #StructuralEntity super: #FamixJavaNamedEntity>
+	<MSEClass: #StructuralEntity super: #MooseEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
+]
+
+{ #category : #meta }
+FamixJavaStructuralEntity class >> metamodel [
+
+	<generated>
+	^ (self class environment at: #FamixJavaGenerator) metamodel
 ]
 
 { #category : #'as yet unclassified' }
@@ -30,13 +37,99 @@ FamixJavaStructuralEntity >> copyFrom: anEntity within: aVisitor [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaStructuralEntity >> entityHasOutgoingTypeDeclarations [
-	^ self declaredType isNotNil
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaStructuralEntity >> hasDeclaredType [
 	^ self declaredType notNil
+]
+
+{ #category : #testing }
+FamixJavaStructuralEntity >> isAccess [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaStructuralEntity >> isAssociation [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaStructuralEntity >> isAttribute [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaStructuralEntity >> isClass [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaStructuralEntity >> isContainerEntity [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaStructuralEntity >> isFunction [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaStructuralEntity >> isInheritance [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaStructuralEntity >> isInvocation [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaStructuralEntity >> isMethod [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaStructuralEntity >> isNamespace [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaStructuralEntity >> isPackage [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaStructuralEntity >> isPrimitiveType [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaStructuralEntity >> isReference [
+
+	<generated>
+	^ false
 ]
 
 { #category : #'as yet unclassified' }
@@ -45,14 +138,16 @@ FamixJavaStructuralEntity >> isSharedVariable [
 	^ false
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaStructuralEntity >> namespaceScope [
-	^ self subclassResponsibility
+{ #category : #testing }
+FamixJavaStructuralEntity >> isType [
+
+	<generated>
+	^ false
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaStructuralEntity >> outgoingTypeDeclarations [
-	^ self declaredType ifNil: [ {} ] ifNotNil: [ :dt | {(MooseQueryTypeDeclarationAssociation newFrom: self to: dt)} ]
+FamixJavaStructuralEntity >> namespaceScope [
+	^ self subclassResponsibility
 ]
 
 { #category : #'as yet unclassified' }

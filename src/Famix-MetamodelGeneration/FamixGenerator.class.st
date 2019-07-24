@@ -22,7 +22,6 @@ Class {
 		'tCompilationUnit',
 		'tDeclaredException',
 		'tDereferencedInvocation',
-		'tDirectFileAnchor',
 		'tEnumValue',
 		'tException',
 		'tFile',
@@ -54,6 +53,7 @@ Class {
 		'tScopingEntity',
 		'tSourceAnchor',
 		'tSourceLanguage',
+		'tStructuralEntity',
 		'tSub',
 		'tSubInheritance',
 		'tSuper',
@@ -562,6 +562,11 @@ One can create a default source language for a project by not associating any en
 ]
 
 { #category : #comments }
+FamixGenerator >> commentForTStructuralEntity [
+	^ 'FAMIXStructuralEntity is the abstract superclass for basic data structure in the source code. A structural entity has a declaredType that points to the type of the variable.'
+]
+
+{ #category : #comments }
 FamixGenerator >> commentForTSub [
 
 	^ ''
@@ -936,12 +941,17 @@ FamixGenerator >> defineHierarchy [
 	tClass --|> #TWithMethods.
 	tClass --|> #TWithSubInheritances.
 	tClass --|> #TWithSuperInheritances.
-	tClass --|> #TWithAttributes
+	tClass --|> #TWithAttributes.
+	
+	tStructuralEntity --|> #TNamed.
+	tStructuralEntity --|> #TAccessible.
+	tStructuralEntity --|> #TInvocationsReceiver.
+	tStructuralEntity --|> #TTypedStructure
 ]
 
 { #category : #definition }
 FamixGenerator >> defineProperties [
-
+	super defineProperties.
 	((tFileAnchor property: #correspondingFile type: #FamixTFile) 
 		comment: 'File associated to this source anchor').
 	((tFileAnchor property: #encoding type: #String) 
@@ -1332,7 +1342,7 @@ FamixGenerator >> defineRelations [
 
 { #category : #definition }
 FamixGenerator >> defineTraits [
-
+	super defineTraits.
 	tAccess := builder newTraitNamed: #TAccess.
 	tAccess comment: self commentForTAccess.
 	tAccess withTesting.
@@ -1395,8 +1405,6 @@ FamixGenerator >> defineTraits [
 
 	tFileAnchor := builder newTraitNamed: #TFileAnchor.
 	tFileAnchor comment: self commentForTFileAnchor.
-
-	tDirectFileAnchor := builder newTraitNamed: #TDirectFileAnchor.
 
 	tFileNavigation := builder newTraitNamed: #TFileNavigation.
 	tFileNavigation comment: self commentForTFileNavigation.
@@ -1491,6 +1499,10 @@ FamixGenerator >> defineTraits [
 	tSourceLanguage := builder newTraitNamed: #TSourceLanguage.
 	tSourceLanguage comment: self commentForTSourceLanguage.
 
+	tStructuralEntity := builder newTraitNamed: #TStructuralEntity.
+	tStructuralEntity comment: self commentForTStructuralEntity.
+	tStructuralEntity withTesting.
+	
 	tSub := builder newTraitNamed: #TSub.
 	tSub comment: self commentForTSub.
 
