@@ -1,7 +1,7 @@
 Extension { #name : #MooseIcons }
 
 { #category : #'*moose-smalltalkimporter' }
-MooseIcons classSide >> importIcon [
+MooseIcons class >> importIcon [
 	"self importIcon"
 	| wantedIcons |
 	MooseIcons resetIcons.
