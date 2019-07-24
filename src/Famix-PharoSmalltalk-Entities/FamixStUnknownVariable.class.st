@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixStUnknownVariable,
-	#superclass : #FamixStEntity,
+	#superclass : #FamixStNamedEntity,
 	#traits : 'FamixStStructuralEntity',
 	#classTraits : 'FamixStStructuralEntity classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixStUnknownVariable class >> annotation [
 
-	<MSEClass: #UnknownVariable super: #FamixStEntity>
+	<MSEClass: #UnknownVariable super: #FamixStNamedEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self

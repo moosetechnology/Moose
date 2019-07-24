@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixStGlobalVariable,
-	#superclass : #FamixStEntity,
+	#superclass : #FamixStNamedEntity,
 	#traits : 'FamixStStructuralEntity + FamixTGlobalVariable',
 	#classTraits : 'FamixStStructuralEntity classTrait + FamixTGlobalVariable classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixStGlobalVariable class >> annotation [
 
-	<MSEClass: #GlobalVariable super: #FamixStEntity>
+	<MSEClass: #GlobalVariable super: #FamixStNamedEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self

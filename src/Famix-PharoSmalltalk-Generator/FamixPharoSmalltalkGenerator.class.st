@@ -106,7 +106,7 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	annotationTypeAttribute --|> #TAnnotationTypeAttribute.
 	annotationTypeAttribute --|> #TTypedAnnotationInstanceAttribute.
 
-	attribute --|> entity.
+	attribute --|> namedEntity.
 	attribute --|> tStructuralEntity.
 	attribute --|> #TAttribute.
 	attribute --|> #TWithClassScope.
@@ -123,11 +123,11 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	containerEntity --|> #TWithAnnotationTypes.
 	containerEntity --|> #TOODependencyQueries.
 
-	globalVariable --|> entity.
+	globalVariable --|> namedEntity.
 	globalVariable --|> tStructuralEntity.
 	globalVariable --|> #TGlobalVariable.
 
-	implicitVariable --|> entity.
+	implicitVariable --|> namedEntity.
 	implicitVariable --|> tStructuralEntity.
 	implicitVariable --|> #TImplicitVariable.
 
@@ -139,7 +139,7 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	invocation --|> #TInvocation.
 	invocation --|> #TWithSignature.
 
-	localVariable --|> entity.
+	localVariable --|> namedEntity.
 	localVariable --|> tStructuralEntity.
 	localVariable --|> #TLocalVariable.
 
@@ -170,7 +170,7 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	package --|> #TPackage.
 	package --|> #TCohesionCouplingMetrics.
 
-	parameter --|> entity.
+	parameter --|> namedEntity.
 	parameter --|> tStructuralEntity.
 	parameter --|> #TParameter.
 
@@ -192,7 +192,7 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 
 	unknownSourceLanguage --|> sourceLanguage.
 
-	unknownVariable --|> entity.
+	unknownVariable --|> namedEntity.
 	unknownVariable --|> tStructuralEntity.
 
 	sourceAnchor --|> #TWithImmediateSource.
