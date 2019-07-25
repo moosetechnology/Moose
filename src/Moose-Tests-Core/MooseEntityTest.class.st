@@ -95,14 +95,6 @@ MooseEntityTest >> testBookmark [
 ]
 
 { #category : #tests }
-MooseEntityTest >> testCopyFromWithin [
-
-	| entity |
-	entity := MooseEntity new.
-	self assert: (entity copyFrom: nil within: nil) == entity
-]
-
-{ #category : #tests }
 MooseEntityTest >> testEntityBackLink [
 	"self debug: #testEntityBackLink"
 	

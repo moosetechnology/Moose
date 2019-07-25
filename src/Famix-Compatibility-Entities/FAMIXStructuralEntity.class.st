@@ -15,20 +15,6 @@ FAMIXStructuralEntity class >> annotation [
 	^self
 ]
 
-{ #category : #'Famix-Extensions' }
-FAMIXStructuralEntity >> accept: aVisitor [
-
-	aVisitor visitStructuralEntity: self
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXStructuralEntity >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	self declaredType: (aVisitor visit: anEntity declaredType).
-
-]
-
 { #category : #'as yet unclassified' }
 FAMIXStructuralEntity >> entityHasOutgoingTypeDeclarations [
 	^ self declaredType isNotNil

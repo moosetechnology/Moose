@@ -29,12 +29,6 @@ FamixJavaScopingEntity >> abstractness [
 	self subclassResponsibility
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaScopingEntity >> accept: aVisitor [
-
-	aVisitor visitScopingEntity: self
-]
-
 { #category : #'Famix-Extensions-metrics' }
 FamixJavaScopingEntity >> afferentCoupling [
 	"Afferent coupling for a module is the number of modules that depend upon this module"
@@ -89,18 +83,6 @@ FamixJavaScopingEntity >> childrenOfMyKind [
 	"Polymorphic accessor to children of this scope in a hierarchical structure (package->subpackages, scope->subscopes)"
 
 	^ self children allWithSubTypesOf: self class
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaScopingEntity >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	anEntity globalVariables do: [ :glv | 
-		self addGlobalVariable: (aVisitor visit: glv) ].
-	anEntity childScopes do: [ :cs | 
-		self addChildScope: (aVisitor visit: cs) ].
-	anEntity functions do: [ :f | "empty loop in smalltalk models"
-		self addFunction: (aVisitor visit: f) ].
 ]
 
 { #category : #'Famix-Extensions-metrics' }

@@ -36,12 +36,6 @@ FamixJavaNamespace >> abstractness: aNumber [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaNamespace >> accept: aVisitor [
-
-	aVisitor visitNamespace: self
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaNamespace >> afferentCoupling [
 	<MSEProperty: #afferentCoupling type: #Number>
 	<derived>

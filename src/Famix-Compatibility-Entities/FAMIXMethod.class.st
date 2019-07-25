@@ -35,12 +35,6 @@ FAMIXMethod class >> shouldSearchForSmalltalkCodeInImage: anObject [
 	ShouldSearchForSmalltalkCodeInImage := anObject
 ]
 
-{ #category : #'Famix-Extensions' }
-FAMIXMethod >> accept: aVisitor [
-
-	aVisitor visitMethod: self
-]
-
 { #category : #'Famix-Extensions-metrics-support' }
 FAMIXMethod >> accessedAttributes [
 	
@@ -115,16 +109,6 @@ FAMIXMethod >> compiledMethod [
 	^ self smalltalkClass  compiledMethodAt: self name asSymbol
 	
 	
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXMethod >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	self kind: anEntity kind copy.
-	self protocol: anEntity protocol copy.
-
-
 ]
 
 { #category : #'Famix-Extensions' }

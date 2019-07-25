@@ -16,20 +16,6 @@ FamixJavaStructuralEntity class >> annotation [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaStructuralEntity >> accept: aVisitor [
-
-	aVisitor visitStructuralEntity: self
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaStructuralEntity >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	self declaredType: (aVisitor visit: anEntity declaredType).
-
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaStructuralEntity >> entityHasOutgoingTypeDeclarations [
 	^ self declaredType isNotNil
 ]

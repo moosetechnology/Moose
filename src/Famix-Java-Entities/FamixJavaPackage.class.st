@@ -35,12 +35,6 @@ FamixJavaPackage >> abstractness [
 	^ (nsClasses select: [ :c | c isAbstract ]) size / nsClasses size
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaPackage >> accept: aVisitor [
-
-	aVisitor visitPackage: self
-]
-
 { #category : #adding }
 FamixJavaPackage >> addChildNamedEntity: aNamedEntity [
 	childEntities add: aNamedEntity
@@ -153,16 +147,6 @@ FamixJavaPackage >> containedEntities [
 { #category : #'Famix-Extensions-accessing' }
 FamixJavaPackage >> containedEntities: collection [
 	self definedClasses: collection.
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaPackage >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	
-	anEntity childEntities do: [:c|
-		self addChildNamedEntity: (aVisitor visit: c ) ].
-
 ]
 
 { #category : #'as yet unclassified' }

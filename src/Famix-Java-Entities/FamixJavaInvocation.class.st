@@ -16,21 +16,6 @@ FamixJavaInvocation class >> annotation [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaInvocation >> accept: aVisitor [
-
-	aVisitor visitInvocation: self
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaInvocation >> copyFrom: anEntity within: aVisitor [
-	super copyFrom: anEntity within: aVisitor.
-	self sender: (aVisitor visit: anEntity sender).
-	self receiver: (aVisitor visit: anEntity receiver).
-	self signature: anEntity signature copy.
-	anEntity candidates do: [ :c | self addCandidate: (aVisitor visit: c) ]
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaInvocation >> getReceivingFAMIXClass [
 	|tmpReceiver|
 	"return the FAMIXClass of the receiver. If the receiver is a FAMIXClass, this one is returned. If it is self or super, the corresponding FAMIXClass is returned. The receiver may not be nil"
