@@ -215,16 +215,7 @@ MooseEntity class >> statefulTraits [
 
 { #category : #'stateful traits' }
 MooseEntity class >> usedStatefulTraits [
-
-	^ (self instanceSide withAllSuperclasses flatCollect: [ :class | class traits ]) select: [ :trait | trait classSide includesSelector: #annotation ] 
-
-	
-]
-
-{ #category : #accessing }
-MooseEntity class >> usesMooseTraitDirectly: aTrait [
-
-	^ self traits includes: aTrait
+	^ self withAllSuperclasses flatCollect: [ :class | class allGeneratedTraits ]
 ]
 
 { #category : #accessing }
@@ -409,8 +400,7 @@ MooseEntity >> isBookmarked: aBoolean [
 
 { #category : #testing }
 MooseEntity >> isOfType: aClassFAMIX [
-	
-	^ ((self mooseTypes flatCollect: #withAllSuperclasses as: Set) includes: aClassFAMIX)
+	^ (self mooseTypes flatCollect: #withAllSuperclasses as: Set) includes: aClassFAMIX
 ]
 
 { #category : #testing }
@@ -519,10 +509,9 @@ MooseEntity >> mooseNameOn: aStream [
 
 { #category : #accessing }
 MooseEntity >> mooseTypes [
-
-	^ { self class }, self class usedStatefulTraits
-
-	
+	^ self class usedStatefulTraits
+		add: self class;
+		yourself
 ]
 
 { #category : #accessing }
