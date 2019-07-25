@@ -139,6 +139,12 @@ FamixGenerator class >> packageName [
 	^ #'Famix-Traits'
 ]
 
+{ #category : #initialization }
+FamixGenerator class >> prefix [
+
+	^ #Famix
+]
+
 { #category : #comments }
 FamixGenerator >> commentForTAccess [
 
@@ -1686,16 +1692,4 @@ FamixGenerator >> initialize [
 		prefix: self prefix;
 		packageName: self packageName.
 
-]
-
-{ #category : #initialization }
-FamixGenerator >> packageName [
-
-	^ self class packageName
-]
-
-{ #category : #initialization }
-FamixGenerator >> prefix [
-
-	^ #Famix
 ]
