@@ -10,6 +10,11 @@ Object >> hasUniqueMooseNameInModel [
 	^false
 ]
 
+{ #category : #'*Moose-Core' }
+Object class >> isOfType: aClassFAMIX [
+	^ false
+]
+
 { #category : #'*moose-core' }
 Object >> mooseDescription [
 
