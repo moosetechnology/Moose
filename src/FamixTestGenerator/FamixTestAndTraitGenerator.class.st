@@ -1,11 +1,10 @@
 "
 This class enables to generate tests for FamixTrait based on slots.
 
-fttg := FamixTestAndTraitGenerator new.
 
-""to generate tests for all classes""
-fttg classes do: [ :c | fttg runFor: c ].
-
+How to use it:
+fttg := FamixTestAndTraitGenerator   new.
+fttg runForAllClassesWith: FamixGenerator . ""the parameter is a generator""
 
 "
 Class {
@@ -40,7 +39,7 @@ FamixTestAndTraitGenerator >> createTraitOfTestFor: aClass [
 		named: (self traitNameFrom: aClass)
 		uses: TFamixTest
 		slots: (self generateSlotsOfTraitOfTestFor: aClass) asArray
-		package: 'Famix-Tests-Traits'
+		package: self generator prefix, '-Tests-Traits'
 ]
 
 { #category : #'generate for FMMany slot' }
@@ -275,7 +274,7 @@ FamixTestAndTraitGenerator >> generateSetUpInTraitFor: aClass [
 
 { #category : #'generate for FMOne slot' }
 FamixTestAndTraitGenerator >> generateSlotNameOfTestTraitFrom: aSlot [
-	^ (aSlot targetClass name withoutPrefix: 'FamixT') uncapitalized.
+	^ (aSlot targetClass name withoutPrefix: self generator prefix, 'T') uncapitalized.
 	 
 	
 ]
@@ -361,6 +360,7 @@ FamixTestAndTraitGenerator >> generateTestsForFMOneSlot: aSlot [
 	"Example of what we want to generate
 	testAccessor
 	withAccesses := MooseEntity new copyWithTalent: FamixTWithAccesses.
+	model add: withAccesses.
 	self entity accessor: withAccesses.
 	self assert: (self entity accessor notNil).
 	self assert: self entity accessor equals: withAccesses.
@@ -387,16 +387,15 @@ FamixTestAndTraitGenerator >> generateTestsForPrimitiveSlot: aSlot [
 		nextPutAll: (self generateCodeForPrimitiveSlotAssertions: aSlot) ]
 ]
 
-{ #category : #initialization }
-FamixTestAndTraitGenerator >> initialize [ 
-	self initializePackageFrom: 'Famix-Traits'.
-	self initializeClassesFrom:  [ :c | (c name beginsWith: 'Famix')  ]
-]
-
 { #category : #run }
 FamixTestAndTraitGenerator >> runFor: aClass [
-	self createTraitOfTestFor: aClass.
-	self createTestFor: aClass.
-	self generateTestsFor: aClass.
-	test compile: (self generateSetUpInTraitFor: aClass) classified: 'overrides'.
+	aClass allSlots
+		ifNotEmpty: [ 
+			self createPackageToPutGeneratedTests.
+			self createTraitOfTestFor: aClass.
+			self createTestFor: aClass.
+			self generateTestsFor: aClass.
+			test
+				compile: (self generateSetUpInTraitFor: aClass)
+				classified: 'overrides' ]
 ]

@@ -5,7 +5,8 @@ Class {
 		'package',
 		'classes',
 		'traitTest',
-		'test'
+		'test',
+		'generator'
 	],
 	#category : #FamixTestGenerator
 }
@@ -15,14 +16,41 @@ FamixTestGenerator >> classes [
 	^classes
 ]
 
+{ #category : #'as yet unclassified' }
+FamixTestGenerator >> createPackageToPutGeneratedTests [
+	(RPackageOrganizer new includesPackageNamed: self generator prefix, '-Tests') ifFalse: 
+	[RPackageOrganizer new createPackageNamed: self generator prefix, '-Tests']
+
+]
+
 { #category : #accessing }
 FamixTestGenerator >> createTestFor: aClass [
 	test := TestCase subclass: (self testNameFrom: aClass) asSymbol
 	uses: traitTest 
 	instanceVariableNames: ''
 	classVariableNames: ''
-	package: 'Famix-Tests-Tests'
+	package: self generator prefix, '-Tests-Tests'
 	
+]
+
+{ #category : #accessing }
+FamixTestGenerator >> generator [
+	^ generator
+]
+
+{ #category : #accessing }
+FamixTestGenerator >> generator: anObject [
+	generator := anObject
+]
+
+{ #category : #'as yet unclassified' }
+FamixTestGenerator >> initClasses [
+	classes := self package classes select:[:c| c name beginsWith: self generator prefix] .
+]
+
+{ #category : #'as yet unclassified' }
+FamixTestGenerator >> initPackage [
+	self initializePackageFrom: self generator packageName.
 ]
 
 { #category : #accessing }
@@ -38,6 +66,28 @@ FamixTestGenerator >> initializePackageFrom: aPackageName [
 { #category : #accessing }
 FamixTestGenerator >> package [
 	^ package
+]
+
+{ #category : #'as yet unclassified' }
+FamixTestGenerator >> runFor: aClass [.
+	self subclassResponsibility .
+]
+
+{ #category : #'as yet unclassified' }
+FamixTestGenerator >> runForASpecificClass: aClass with: aGenerator [
+	self generator: aGenerator.
+	self initPackage.
+	self runFor: aClass.
+	
+]
+
+{ #category : #'as yet unclassified' }
+FamixTestGenerator >> runForAllClassesWith: aGenerator [
+	self generator: aGenerator.
+	self initPackage.
+	self initClasses.
+	self classes do: [ :c | self runFor: c ].
+	
 ]
 
 { #category : #accessing }
