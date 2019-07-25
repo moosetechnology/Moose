@@ -169,6 +169,12 @@ MooseEntity class >> implementingClassesIn: aMetamodel [
 	^ { self }
 ]
 
+{ #category : #testing }
+MooseEntity class >> isOfType: aClassFAMIX [
+	^ (self mooseTypes flatCollect: #withAllSuperclasses as: Set)
+		includes: aClassFAMIX
+]
+
 { #category : #constants }
 MooseEntity class >> mooseDev [ 
 	"Answer the email address of the Moose mailinglist." 
@@ -179,6 +185,11 @@ MooseEntity class >> mooseDev [
 { #category : #meta }
 MooseEntity class >> mooseSubClasses [
 	 ^mooseSubClasses ifNil: [ mooseSubClasses := Set new ]
+]
+
+{ #category : #accessing }
+MooseEntity class >> mooseTypes [
+	^ {self} , self usedStatefulTraits
 ]
 
 { #category : #meta }
@@ -519,10 +530,7 @@ MooseEntity >> mooseNameOn: aStream [
 
 { #category : #accessing }
 MooseEntity >> mooseTypes [
-
-	^ { self class }, self class usedStatefulTraits
-
-	
+	^ self class mooseTypes
 ]
 
 { #category : #accessing }
