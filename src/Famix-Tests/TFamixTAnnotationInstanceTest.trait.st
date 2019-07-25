@@ -12,6 +12,7 @@ Trait {
 TFamixTAnnotationInstanceTest >> testAnnotatedEntity [
 annotatedEntity := MooseEntity new copyWithTalent: FamixTWithAnnotationInstances. 
 annotatedEntity class initializeSlots: annotatedEntity.
+model add: annotatedEntity.
 self entity annotatedEntity: annotatedEntity. 
 self assert: (self entity annotatedEntity notNil).
 self assert: self entity annotatedEntity equals: annotatedEntity.

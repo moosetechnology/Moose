@@ -14,10 +14,3 @@ FAMIXTraitUsage class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #meta }
-FAMIXTraitUsage class >> requirements [
-
-	<generated>
-	^ {  }
-]

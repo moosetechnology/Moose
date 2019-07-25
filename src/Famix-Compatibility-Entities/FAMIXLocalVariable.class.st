@@ -22,12 +22,6 @@ FAMIXLocalVariable class >> requirements [
 	^ { FAMIXBehaviouralEntity }
 ]
 
-{ #category : #'Famix-Extensions' }
-FAMIXLocalVariable >> accept: aVisitor [
-
-	aVisitor visitLocalVariable: self
-]
-
 { #category : #accessing }
 FAMIXLocalVariable >> belongsTo [
 

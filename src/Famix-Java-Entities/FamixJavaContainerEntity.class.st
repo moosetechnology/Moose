@@ -15,33 +15,10 @@ FamixJavaContainerEntity class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaContainerEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaContainerEntity >> accept: aVisitor [
-
-	aVisitor visitContainerEntity: self
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaContainerEntity >> addClass: aClass [
 	
 	types add: aClass
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaContainerEntity >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	anEntity types do: [:t|
-		self addType: (aVisitor visit: t) ].
-
-	
 ]
 
 { #category : #testing }

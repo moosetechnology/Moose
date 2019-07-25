@@ -14,10 +14,3 @@ FAMIXDeclaredException class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #meta }
-FAMIXDeclaredException class >> requirements [
-
-	<generated>
-	^ {  }
-]

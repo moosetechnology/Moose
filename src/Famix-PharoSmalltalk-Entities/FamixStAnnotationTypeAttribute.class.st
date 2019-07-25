@@ -15,13 +15,6 @@ FamixStAnnotationTypeAttribute class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixStAnnotationTypeAttribute class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FamixStAnnotationTypeAttribute >> parentAnnotationType [
 	<MSEProperty: #parentAnnotationType type: #FamixStAnnotationType> <derived> 

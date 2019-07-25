@@ -14,10 +14,3 @@ FAMIXCustomSourceLanguage class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #meta }
-FAMIXCustomSourceLanguage class >> requirements [
-
-	<generated>
-	^ {  }
-]

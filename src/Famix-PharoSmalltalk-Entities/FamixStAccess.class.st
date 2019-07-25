@@ -15,13 +15,6 @@ FamixStAccess class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixStAccess class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixStAccess >> mooseFinderSourceTextIn: composite [
 	<moosePresentationOrder: 20>

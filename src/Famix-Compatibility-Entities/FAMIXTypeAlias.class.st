@@ -15,13 +15,6 @@ FAMIXTypeAlias class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXTypeAlias class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXTypeAlias >> allSubclassesDo: aBlock [
 	"we override this traversal because we want to

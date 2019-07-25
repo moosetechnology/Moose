@@ -1,5 +1,5 @@
 Trait {
-	#name : #TFamixTClassMetricsTest,
+	#name : #TFamixMooseModelTest,
 	#traits : 'TFamixTest',
 	#classTraits : 'TFamixTest classTrait',
 	#category : #'Famix-Tests-Traits'

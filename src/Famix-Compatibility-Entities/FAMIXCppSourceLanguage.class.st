@@ -12,10 +12,3 @@ FAMIXCppSourceLanguage class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #meta }
-FAMIXCppSourceLanguage class >> requirements [
-
-	<generated>
-	^ {  }
-]

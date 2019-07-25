@@ -14,10 +14,3 @@ FamixTest3PrimitiveType class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #meta }
-FamixTest3PrimitiveType class >> requirements [
-
-	<generated>
-	^ {  }
-]

@@ -15,19 +15,6 @@ FAMIXContainerEntity class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXContainerEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXContainerEntity >> accept: aVisitor [
-
-	aVisitor visitContainerEntity: self
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXContainerEntity >> addClass: aClass [
 	
@@ -37,16 +24,6 @@ FAMIXContainerEntity >> addClass: aClass [
 { #category : #accessing }
 FAMIXContainerEntity >> addFunction: aFunction [ 
 	functions add: aFunction
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXContainerEntity >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	anEntity types do: [:t|
-		self addType: (aVisitor visit: t) ].
-
-	
 ]
 
 { #category : #testing }

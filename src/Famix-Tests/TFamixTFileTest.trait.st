@@ -13,8 +13,10 @@ Trait {
 TFamixTFileTest >> testEntities [
 withFiles1 := MooseEntity new copyWithTalent: FamixTWithFiles.
 withFiles1 class initializeSlots: withFiles1.
+model add: withFiles1.
 withFiles2 := MooseEntity new copyWithTalent: FamixTWithFiles.
 withFiles2 class initializeSlots: withFiles2.
+model add: withFiles2.
 self entity addEntity: withFiles1.
 self entity addEntity: withFiles2.
 self assert: (self entity entities notEmpty).

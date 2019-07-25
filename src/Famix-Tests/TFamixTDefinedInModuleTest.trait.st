@@ -12,6 +12,7 @@ Trait {
 TFamixTDefinedInModuleTest >> testParentModule [
 parentModule := MooseEntity new copyWithTalent: FamixTModule. 
 parentModule class initializeSlots: parentModule.
+model add: parentModule.
 self entity parentModule: parentModule. 
 self assert: (self entity parentModule notNil).
 self assert: self entity parentModule equals: parentModule.

@@ -15,13 +15,6 @@ FAMIXHeader class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXHeader class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #testing }
 FAMIXHeader >> isHeader [
 	^ true

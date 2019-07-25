@@ -12,10 +12,3 @@ FAMIXPreprocessorStatement class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #meta }
-FAMIXPreprocessorStatement class >> requirements [
-
-	<generated>
-	^ {  }
-]

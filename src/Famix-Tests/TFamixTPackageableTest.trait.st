@@ -12,6 +12,7 @@ Trait {
 TFamixTPackageableTest >> testParentPackage [
 parentPackage := MooseEntity new copyWithTalent: FamixTPackage. 
 parentPackage class initializeSlots: parentPackage.
+model add: parentPackage.
 self entity parentPackage: parentPackage. 
 self assert: (self entity parentPackage notNil).
 self assert: self entity parentPackage equals: parentPackage.

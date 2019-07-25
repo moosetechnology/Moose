@@ -52,12 +52,6 @@ AbstractSmalltalkMetamodelFactory >> classEntity [
 	^ self entityNamed: #Class
 ]
 
-{ #category : #accessing }
-AbstractSmalltalkMetamodelFactory >> containerEntity [ 
-
-	^ self entityNamed: #ContainerEntity
-]
-
 { #category : #initialization }
 AbstractSmalltalkMetamodelFactory >> defaultMetamodelClass [
 

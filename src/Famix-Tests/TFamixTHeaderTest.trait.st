@@ -12,6 +12,7 @@ Trait {
 TFamixTHeaderTest >> testHeaderOwner [
 headerOwner := MooseEntity new copyWithTalent: FamixTWithHeader. 
 headerOwner class initializeSlots: headerOwner.
+model add: headerOwner.
 self entity headerOwner: headerOwner. 
 self assert: (self entity headerOwner notNil).
 self assert: self entity headerOwner equals: headerOwner.

@@ -169,6 +169,12 @@ MooseEntity class >> implementingClassesIn: aMetamodel [
 	^ { self }
 ]
 
+{ #category : #testing }
+MooseEntity class >> isOfType: aClassFAMIX [
+	^ (self mooseTypes flatCollect: #withAllSuperclasses as: Set)
+		includes: aClassFAMIX
+]
+
 { #category : #constants }
 MooseEntity class >> mooseDev [ 
 	"Answer the email address of the Moose mailinglist." 
@@ -181,9 +187,21 @@ MooseEntity class >> mooseSubClasses [
 	 ^mooseSubClasses ifNil: [ mooseSubClasses := Set new ]
 ]
 
+{ #category : #accessing }
+MooseEntity class >> mooseTypes [
+	^ {self} , self usedStatefulTraits
+]
+
 { #category : #meta }
 MooseEntity class >> registerAsMooseSubclass: aClass [
 	self mooseSubClasses add: aClass
+]
+
+{ #category : #accessing }
+MooseEntity class >> requirements [
+	"Used by Famix generator."
+
+	^ {}
 ]
 
 { #category : #private }
@@ -308,10 +326,6 @@ MooseEntity >> children [
 			group := self perform: eachSelector. 
 			group isEmpty ifFalse: [children add: group]]. 
 	^children
-]
-
-{ #category : #'Famix-Extensions' }
-MooseEntity >> copyFrom: anEntity within: aVisitor [
 ]
 
 { #category : #private }
@@ -516,10 +530,7 @@ MooseEntity >> mooseNameOn: aStream [
 
 { #category : #accessing }
 MooseEntity >> mooseTypes [
-
-	^ { self class }, self class usedStatefulTraits
-
-	
+	^ self class mooseTypes
 ]
 
 { #category : #accessing }

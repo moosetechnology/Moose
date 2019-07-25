@@ -15,27 +15,6 @@ FAMIXReference class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXReference class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXReference >> accept: aVisitor [
-
-	aVisitor visitReference: self
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXReference >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	self source: (aVisitor visit: anEntity source).
-	self target: (aVisitor visit: anEntity target).
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXReference >> mooseNameOn: aStream [
 	"aStream nextPutAll: 'Reference'."

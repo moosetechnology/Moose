@@ -13,8 +13,10 @@ Trait {
 TFamixTWithAttributesTest >> testAttributes [
 attribute1 := MooseEntity new copyWithTalent: FamixTAttribute.
 attribute1 class initializeSlots: attribute1.
+model add: attribute1.
 attribute2 := MooseEntity new copyWithTalent: FamixTAttribute.
 attribute2 class initializeSlots: attribute2.
+model add: attribute2.
 self entity addAttribute: attribute1.
 self entity addAttribute: attribute2.
 self assert: (self entity attributes notEmpty).

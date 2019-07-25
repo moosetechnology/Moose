@@ -163,6 +163,7 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 
 	namespace --|> scopingEntity.
 	namespace --|> #TNamespace.
+	namespace --|> #TInvocationsReceiver.
 
 	package --|> scopingEntity.
 	package --|> #TPackage.

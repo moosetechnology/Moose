@@ -14,10 +14,3 @@ FAMIXDereferencedInvocation class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #meta }
-FAMIXDereferencedInvocation class >> requirements [
-
-	<generated>
-	^ {  }
-]

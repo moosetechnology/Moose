@@ -13,8 +13,10 @@ Trait {
 TFamixTWithNamespacesTest >> testNamespaces [
 namespace1 := MooseEntity new copyWithTalent: FamixTNamespace.
 namespace1 class initializeSlots: namespace1.
+model add: namespace1.
 namespace2 := MooseEntity new copyWithTalent: FamixTNamespace.
 namespace2 class initializeSlots: namespace2.
+model add: namespace2.
 self entity addNamespace: namespace1.
 self entity addNamespace: namespace2.
 self assert: (self entity namespaces notEmpty).

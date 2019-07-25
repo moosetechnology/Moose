@@ -17,13 +17,6 @@ FAMIXPreprocessorIfdef class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXPreprocessorIfdef class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FAMIXPreprocessorIfdef >> isNegated [
 	<MSEProperty: #negated type: #Boolean>

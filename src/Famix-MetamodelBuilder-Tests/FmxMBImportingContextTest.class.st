@@ -87,22 +87,13 @@ FmxMBImportingContextTest >> testNotGeneratedForEmptyBuilder [
 
 { #category : #initialization }
 FmxMBImportingContextTest >> testRequirements [
-
 	| localMethod |
-	
-	localMethod := generatedVariable classSide methodNamed: #requirements.
-	self assert: (localMethod sourceCode includesSubstring: '<generated>').
-	self assert: (localMethod sourceCode includesSubstring: '^ {  }').
-
-	localMethod := generatedMethod classSide methodNamed: #requirements.
-	self assert: (localMethod sourceCode includesSubstring: '<generated>').
-	self assert: (localMethod sourceCode includesSubstring: '^ {  }').
+	self assert: (generatedVariable classSide methodNamed: #requirements) isNil.
+	self assert: (generatedMethod classSide methodNamed: #requirements) isNil.
 
 	localMethod := generatedAccess classSide methodNamed: #requirements.
 	self assert: (localMethod sourceCode includesSubstring: '<generated>').
-	self assert: (localMethod sourceCode includesSubstring: '^ { TstMethod. TstVariable }').
-
-
+	self assert: (localMethod sourceCode includesSubstring: '^ { TstMethod. TstVariable }')
 ]
 
 { #category : #initialization }

@@ -15,13 +15,6 @@ FamixJavaException class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaException class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #deprecated }
 FamixJavaException >> definingMethod [
 

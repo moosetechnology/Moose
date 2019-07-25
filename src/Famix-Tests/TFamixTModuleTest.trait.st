@@ -13,8 +13,10 @@ Trait {
 TFamixTModuleTest >> testModuleEntities [
 definedInModule1 := MooseEntity new copyWithTalent: FamixTDefinedInModule.
 definedInModule1 class initializeSlots: definedInModule1.
+model add: definedInModule1.
 definedInModule2 := MooseEntity new copyWithTalent: FamixTDefinedInModule.
 definedInModule2 class initializeSlots: definedInModule2.
+model add: definedInModule2.
 self entity addModuleEntity: definedInModule1.
 self entity addModuleEntity: definedInModule2.
 self assert: (self entity moduleEntities notEmpty).

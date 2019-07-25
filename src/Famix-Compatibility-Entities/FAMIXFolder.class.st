@@ -15,13 +15,6 @@ FAMIXFolder class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXFolder class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #testing }
 FAMIXFolder >> isFolder [
 	^ true

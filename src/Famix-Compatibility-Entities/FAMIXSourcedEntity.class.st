@@ -15,19 +15,6 @@ FAMIXSourcedEntity class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXSourcedEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXSourcedEntity >> accept: aVisitor [
-
-	aVisitor visitEntity: self
-]
-
 { #category : #accessing }
 FAMIXSourcedEntity >> addComment: aComment [
 		comments add: aComment asFAMIXComment
@@ -50,15 +37,6 @@ FAMIXSourcedEntity >> containerFiles: aColl [
 	"This method is a hack for now because we need an opposite to the files."
 
 	
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXSourcedEntity >> copyFrom: anEntity within: aVisitor [
-
-	sourceAnchor := aVisitor visit: anEntity sourceAnchor.
-	anEntity comments do: [:com | 
-		self comments add: (aVisitor visit: com) ].
-
 ]
 
 { #category : #'Famix-SourceAnchor' }

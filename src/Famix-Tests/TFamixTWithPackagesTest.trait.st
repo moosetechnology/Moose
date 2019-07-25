@@ -13,8 +13,10 @@ Trait {
 TFamixTWithPackagesTest >> testPackages [
 package1 := MooseEntity new copyWithTalent: FamixTPackage.
 package1 class initializeSlots: package1.
+model add: package1.
 package2 := MooseEntity new copyWithTalent: FamixTPackage.
 package2 class initializeSlots: package2.
+model add: package2.
 self entity addPackage: package1.
 self entity addPackage: package2.
 self assert: (self entity packages notEmpty).

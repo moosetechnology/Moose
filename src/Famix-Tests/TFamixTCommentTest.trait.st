@@ -13,6 +13,7 @@ Trait {
 TFamixTCommentTest >> testContainer [
 container := MooseEntity new copyWithTalent: FamixTWithComments. 
 container class initializeSlots: container.
+model add: container.
 self entity container: container. 
 self assert: (self entity container notNil).
 self assert: self entity container equals: container.

@@ -15,13 +15,6 @@ FamixJavaIndexedFileAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaIndexedFileAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaIndexedFileAnchor >> lineCount [
 

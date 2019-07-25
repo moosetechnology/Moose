@@ -12,6 +12,7 @@ Trait {
 TFamixTSuperInheritanceTest >> testSuperclass [
 superclass := MooseEntity new copyWithTalent: FamixTWithSuperInheritances. 
 superclass class initializeSlots: superclass.
+model add: superclass.
 self entity superclass: superclass. 
 self assert: (self entity superclass notNil).
 self assert: self entity superclass equals: superclass.

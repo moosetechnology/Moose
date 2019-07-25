@@ -13,8 +13,10 @@ Trait {
 TFamixTWithSuperInheritancesTest >> testSubInheritances [
 superInheritance1 := MooseEntity new copyWithTalent: FamixTSuperInheritance.
 superInheritance1 class initializeSlots: superInheritance1.
+model add: superInheritance1.
 superInheritance2 := MooseEntity new copyWithTalent: FamixTSuperInheritance.
 superInheritance2 class initializeSlots: superInheritance2.
+model add: superInheritance2.
 self entity addSubInheritance: superInheritance1.
 self entity addSubInheritance: superInheritance2.
 self assert: (self entity subInheritances notEmpty).

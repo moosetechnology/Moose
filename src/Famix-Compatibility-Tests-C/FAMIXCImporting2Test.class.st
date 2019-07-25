@@ -10,7 +10,8 @@ Class {
 { #category : #running }
 FAMIXCImporting2Test >> setUp [
 	super setUp.
-
+	self skip: 'Test skipped until C metamodel definition'.
+	
 	MooseModel resetMeta.
 	model := MooseModel new.
 	model
@@ -49,7 +50,7 @@ FAMIXCImporting2Test >> setUp [
 
 { #category : #tests }
 FAMIXCImporting2Test >> testBasic [
-
+	self skip: 'Test skipped until C metamodel definition'.
 	self assert: model entities size equals: 7
 
 ]
@@ -57,6 +58,7 @@ FAMIXCImporting2Test >> testBasic [
 { #category : #tests }
 FAMIXCImporting2Test >> testClassInContainer [	
 	| cls module |
+	self skip: 'Test skipped until C metamodel definition'.
 	cls := model entityNamed: #'Siconos::MyClass'.
 	module := model entities detect: [ :e | e class == FAMIXPackage ].
 	self assert: cls belongsTo equals: module.
@@ -66,6 +68,7 @@ FAMIXCImporting2Test >> testClassInContainer [
 { #category : #tests }
 FAMIXCImporting2Test >> testCompilationUnitIncludes [
 	| cu header |
+	self skip: 'Test skipped until C metamodel definition'.
 	cu := model entities detect: [ :e | e class == FAMIXCompilationUnit ].
 	header := model entities detect: [ :e | e class == FAMIXHeader ].
 	self assert: cu notNil.

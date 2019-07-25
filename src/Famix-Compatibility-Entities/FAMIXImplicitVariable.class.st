@@ -22,11 +22,6 @@ FAMIXImplicitVariable class >> requirements [
 	^ { FAMIXBehaviouralEntity }
 ]
 
-{ #category : #'Famix-Extensions' }
-FAMIXImplicitVariable >> accept: aVisitor [
-	aVisitor visitImplicitVariable: self
-]
-
 { #category : #accessing }
 FAMIXImplicitVariable >> belongsTo [
 
@@ -53,14 +48,6 @@ FAMIXImplicitVariable >> container [
 FAMIXImplicitVariable >> container: aBehaviouralEntity [
 	self deprecated: 'Please use #parentBehaviouralEntity: instead'.
 	^ self parentBehaviouralEntity: aBehaviouralEntity
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXImplicitVariable >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	self container: (aVisitor visit: anEntity container).
-
 ]
 
 { #category : #'Famix-Implementation' }

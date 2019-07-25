@@ -15,13 +15,6 @@ FAMIXException class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXException class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #compatibility }
 FAMIXException >> definingEntity [
 	self subclassResponsibility

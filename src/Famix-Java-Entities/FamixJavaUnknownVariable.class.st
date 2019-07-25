@@ -13,30 +13,9 @@ FamixJavaUnknownVariable class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaUnknownVariable class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaUnknownVariable >> accept: aVisitor [
-
-	aVisitor visitUnknownVariable: self
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaUnknownVariable >> belongsTo [
 	^ nil
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaUnknownVariable >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	self container: (aVisitor visit: anEntity container).
-
 ]
 
 { #category : #'as yet unclassified' }

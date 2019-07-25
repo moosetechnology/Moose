@@ -20,13 +20,6 @@ FamixTest1Entity class >> metamodel [
 	^ (self class environment at: #FamixTest1Generator) metamodel
 ]
 
-{ #category : #meta }
-FamixTest1Entity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #testing }
 FamixTest1Entity >> isAccess [
 

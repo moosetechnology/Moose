@@ -19,13 +19,6 @@ FamixStAssociation class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixStAssociation class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #printing }
 FamixStAssociation >> from [
 

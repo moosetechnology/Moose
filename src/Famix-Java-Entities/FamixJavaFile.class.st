@@ -15,13 +15,6 @@ FamixJavaFile class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaFile class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaFile >> averageNumberOfCharactersPerLine [
 	<MSEProperty: #averageNumberOfCharactersPerLine type: #Number>

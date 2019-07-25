@@ -15,23 +15,10 @@ FAMIXNamespace class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXNamespace class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Famix-Extensions-metrics' }
 FAMIXNamespace >> abstractness: aNumber [
 
 	self privateState propertyAt: #abstractness put: aNumber
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXNamespace >> accept: aVisitor [
-
-	aVisitor visitNamespace: self
 ]
 
 { #category : #'Famix-Extensions-metrics' }

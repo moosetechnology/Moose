@@ -12,10 +12,3 @@ FamixStUnknownSourceLanguage class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #meta }
-FamixStUnknownSourceLanguage class >> requirements [
-
-	<generated>
-	^ {  }
-]
