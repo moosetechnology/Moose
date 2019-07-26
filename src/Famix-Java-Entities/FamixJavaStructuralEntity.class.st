@@ -22,11 +22,6 @@ FamixJavaStructuralEntity class >> metamodel [
 	^ (self class environment at: #FamixJavaGenerator) metamodel
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaStructuralEntity >> hasDeclaredType [
-	^ self declaredType notNil
-]
-
 { #category : #testing }
 FamixJavaStructuralEntity >> isAccess [
 

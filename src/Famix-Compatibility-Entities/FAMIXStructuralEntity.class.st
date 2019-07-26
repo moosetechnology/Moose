@@ -16,11 +16,6 @@ FAMIXStructuralEntity class >> annotation [
 ]
 
 { #category : #'Famix-Extensions' }
-FAMIXStructuralEntity >> hasDeclaredType [
-	^ self declaredType notNil
-]
-
-{ #category : #'Famix-Extensions' }
 FAMIXStructuralEntity >> isSharedVariable [
 
 	^ false

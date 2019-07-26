@@ -33,6 +33,11 @@ FamixTTypedStructure >> declaredType: anObject [
 
 { #category : #'moose query' }
 FamixTTypedStructure >> entityHasOutgoingTypeDeclarations [
+	^ self hasDeclaredType
+]
+
+{ #category : #testing }
+FamixTTypedStructure >> hasDeclaredType [
 	^ self declaredType isNotNil
 ]
 
