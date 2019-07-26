@@ -60,17 +60,11 @@ FAMIXStepwiseImporterTest >> testCheckSelfIsCreated [
 
 { #category : #tests }
 FAMIXStepwiseImporterTest >> testClassVariable [
-
-	| model importer |
+	| model |
 	self timeLimit: 60 seconds.
-	model := MooseModel new.
-	model name: 'Morphic'.
-	importer := self newPharoImporterTask.
-	importer importingContext mergeClassAndMetaclass.
-	importer runCandidateOperator.
-	importer model: model; addFromPackagesNamed: (MooseScripts packageNamesFor: 'Morphic*'); runWithProgress.
-	 
-	self shouldnt: [(model entities select: [:e | e isKindOf: FAMIXUnknownVariable ]) do: #typeScope ] raise: Error
+	model := MooseMorphicTestResource current model.
+
+	self shouldnt: [ (model entities select: [ :e | e isKindOf: FAMIXUnknownVariable ]) do: #typeScope ] raise: Error
 ]
 
 { #category : #tests }
