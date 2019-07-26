@@ -197,11 +197,11 @@ MooseModelTest >> testEnsureClassesAndNamespaces [
 MooseModelTest >> testExport [
 	| stream |
 	stream := WriteStream on: String new.
-	model  export: model to: stream.
+	model exportTo: stream.
 	self assert: stream contents equals: '()'.
 	model add: (FAMIXClass new name: 'Foo').
 	stream := WriteStream on: String new.
-	model export: model to: stream.
+	model exportTo: stream.
 	self
 		assert: stream contents
 		equals:

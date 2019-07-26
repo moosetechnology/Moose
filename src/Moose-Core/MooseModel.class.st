@@ -26,6 +26,28 @@ MooseModel class >> annotation [
 
 ]
 
+{ #category : #'import-export' }
+MooseModel class >> export: aModel to: aStream [ 
+	aModel exportTo: aStream
+]
+
+{ #category : #'import-export' }
+MooseModel class >> export: aModel withMetamodel: aMetamodel to: aStream [
+	aModel exportWithMetamodel: aMetamodel to: aStream
+]
+
+{ #category : #'import-export' }
+MooseModel class >> exportMetamodel: aMetamodel to: aStream [ 
+
+	aMetamodel exportOn: aStream
+]
+
+{ #category : #'import-export' }
+MooseModel class >> exportMetamodelTo: aStream [
+	self deprecated: 'Use exportMetamodelTo: in instance side'.
+	self exportMetamodel: self meta to: aStream
+]
+
 { #category : #meta }
 MooseModel class >> generateClassesFrom: aCollection [
 	"I generate the implementation for some meta-described classes. aCollection need to contain the full set of meta-described classes so that the metamodel is complete. Warning, part of classes will be overwritten."
@@ -319,36 +341,19 @@ MooseModel >> difference: aGroup [
 ]
 
 { #category : #'import-export' }
-MooseModel >> export: aModel to: aStream [
-	self export: aModel withMetamodel: self metamodel to: aStream
-]
-
-{ #category : #'import-export' }
-MooseModel >> export: aModel withMetamodel: aMetamodel to: aStream [ 
-	| tower repository |
-	tower := FMCompleteTower new.
-	tower metaMetamodel: aMetamodel metamodel.
-	tower metamodel: aMetamodel.
-	tower model: (repository := (FMRepository with: aMetamodel) addAll: aModel entities).
-	tower model exportOn: aStream
-]
-
-{ #category : #'import-export' }
 MooseModel >> exportMetamodel: aMetamodel to: aStream [
 
-	aMetamodel exportOn: aStream
-"
-	| tower |
-	tower := FMCompleteTower new.
-	tower metamodel: aMetamodel.
-
-	tower metamodel exportOn: aStream
-"
+	self class exportMetamodel: aMetamodel to: aStream
 ]
 
 { #category : #'import-export' }
 MooseModel >> exportMetamodelTo: aStream [
 	self exportMetamodel: self metamodel to: aStream
+]
+
+{ #category : #'import-export' }
+MooseModel >> exportTo: aStream [
+	self exportWithMetamodel: self metamodel to: aStream
 ]
 
 { #category : #actions }
@@ -364,7 +369,17 @@ MooseModel >> exportToMSEStream: aStream [
 	"
 
 	self detectEncodingOfAllFileAnchors.
-	self export: self to: aStream
+	self exportTo: aStream
+]
+
+{ #category : #'import-export' }
+MooseModel >> exportWithMetamodel: aMetamodel to: aStream [ 
+	| tower repository |
+	tower := FMCompleteTower new.
+	tower metaMetamodel: aMetamodel metamodel.
+	tower metamodel: aMetamodel.
+	tower model: (repository := (FMRepository with: aMetamodel) addAll: self entities).
+	tower model exportOn: aStream
 ]
 
 { #category : #actions }
