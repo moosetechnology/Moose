@@ -98,6 +98,13 @@ FamixTest3Entity >> isReference [
 ]
 
 { #category : #testing }
+FamixTest3Entity >> isStructuralEntity [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
 FamixTest3Entity >> isType [
 
 	<generated>

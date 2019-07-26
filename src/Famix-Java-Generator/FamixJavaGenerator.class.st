@@ -30,12 +30,12 @@ Class {
 		'primitiveType',
 		'reference',
 		'scopingEntity',
-		'structuralEntity',
 		'thrownException',
 		'type',
 		'unknownVariable',
 		'unknownSourceLanguage',
-		'parameterizedType'
+		'parameterizedType',
+		'structuralEntity'
 	],
 	#category : #'Famix-Java-Generator'
 }
@@ -248,10 +248,8 @@ FamixJavaGenerator >> defineHierarchy [
 	scopingEntity --|> #TGlobalVariableScope.
 	scopingEntity --|> #TScopingEntity.
 
-	structuralEntity --|> namedEntity.
-	structuralEntity --|> #TAccessible.
+	structuralEntity --|> #TStructuralEntity.
 	structuralEntity --|> #TWithDereferencedInvocations.
-	structuralEntity --|> #TTypedStructure.
 
 	thrownException --|> exception.
 	thrownException --|> #TThrownException.

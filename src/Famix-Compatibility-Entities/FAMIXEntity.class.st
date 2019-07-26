@@ -140,6 +140,13 @@ FAMIXEntity >> isReference [
 ]
 
 { #category : #testing }
+FAMIXEntity >> isStructuralEntity [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
 FAMIXEntity >> isType [
 
 	<generated>

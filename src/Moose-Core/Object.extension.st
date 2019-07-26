@@ -131,9 +131,14 @@ Object >> mooseName [
 ]
 
 { #category : #'*Moose-Core' }
-Object >> mooseTypes [
+Object class >> mooseTypes [
 
 	^ { self class }
 
 	
+]
+
+{ #category : #'*Moose-Core' }
+Object >> mooseTypes [
+	^ self class mooseTypes
 ]
