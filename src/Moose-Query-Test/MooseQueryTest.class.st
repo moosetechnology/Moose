@@ -497,6 +497,49 @@ MooseQueryTest >> testToAnyScope [
 ]
 
 { #category : #tests }
+MooseQueryTest >> testSourceThroughAll [
+	self assertCollection: (method2 throughAllFrom) storage flattened hasSameElements: {method2 . method1 . method3}.
+	self assertCollection: (class2 throughAllFrom) storage flattened hasSameElements:  {method2 . method1 . method3 . class1}
+]
+
+{ #category : #tests }
+MooseQueryTest >> testSourceThroughInvocation [
+
+	self assertCollection: (method2 sourceThrough: FamixTInvocation) storage flattened hasSameElements: {method2 . method1 . method3}.
+	self assertCollection: (method2 sourceThrough: FamixTInvocation) hasSameElements: ((method2 queryIncoming: FamixTInvocation) collect: #from).
+	self assertCollection: (class2 sourceThrough: FamixTInvocation) storage flattened hasSameElements: {method2 . method1 . method3}.
+	
+]
+
+{ #category : #tests }
+MooseQueryTest >> testTargetThroughAll [
+	self assertCollection: (method2 throughAllTo) storage flattened hasSameElements: { var1 . method2}.
+	self assertCollection: (class2 throughAllTo) storage flattened hasSameElements: { var1 . method2}
+]
+
+{ #category : #tests }
+MooseQueryTest >> testTargetThroughInvocation [
+
+	self assertCollection: (method1 targetThrough: FamixTInvocation) storage flattened hasSameElements: {method2}.
+	self assertCollection: (method1 targetThrough: FamixTInvocation) hasSameElements: ((method1 queryOutgoing: FamixTInvocation) collect: #to).
+	self assertCollection: (class2 targetThrough: FamixTInvocation) storage flattened hasSameElements: {method2}.
+
+	
+]
+
+{ #category : #tests }
+MooseQueryTest >> testThrougAllIncoming [
+	self assert: method2 queryAllIncoming size equals: 3.
+	self assert: class2 queryAllIncoming size equals: 7
+]
+
+{ #category : #tests }
+MooseQueryTest >> testThroughAllFrom [
+	self assert: method2 queryAllIncoming size equals: 3.
+	self assert: class2 queryAllIncoming size equals: 7
+]
+
+{ #category : #tests }
 MooseQueryTest >> testToScope [
 	self assertCollection: (class1 toScope: FAMIXMethod) hasSameElements: {method1}.
 	self assertCollection: (class2 toScope: FAMIXAttribute) hasSameElements: {var1 . var2}.

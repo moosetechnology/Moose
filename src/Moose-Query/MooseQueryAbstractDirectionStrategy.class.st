@@ -52,3 +52,10 @@ MooseQueryAbstractDirectionStrategy class >> msePropertiesOf: anEntity [
 MooseQueryAbstractDirectionStrategy class >> queryResultOn: anEntity with: aCollection [
 	^ self subclassResponsibility
 ]
+
+{ #category : #accessing }
+MooseQueryAbstractDirectionStrategy class >> symbolToCollectEntities [
+	"I should return a Symbol to collect entities. For example an Incoming direction will have #source as symbol to collect entities."
+
+	^ self subclassResponsibility
+]
