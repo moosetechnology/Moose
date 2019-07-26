@@ -30,3 +30,18 @@ FamixTTypedStructure >> declaredType: anObject [
 	declaredType := anObject
 
 ]
+
+{ #category : #'moose query' }
+FamixTTypedStructure >> entityHasOutgoingTypeDeclarations [
+	^ self hasDeclaredType
+]
+
+{ #category : #testing }
+FamixTTypedStructure >> hasDeclaredType [
+	^ self declaredType isNotNil
+]
+
+{ #category : #'moose query' }
+FamixTTypedStructure >> outgoingTypeDeclarations [
+	^ self declaredType ifNil: [ {} ] ifNotNil: [ :dt | {(MooseQueryTypeDeclarationAssociation newFrom: self to: dt)} ]
+]

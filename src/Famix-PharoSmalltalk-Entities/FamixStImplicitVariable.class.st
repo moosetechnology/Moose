@@ -1,15 +1,15 @@
 Class {
 	#name : #FamixStImplicitVariable,
-	#superclass : #FamixStStructuralEntity,
-	#traits : 'FamixTImplicitVariable',
-	#classTraits : 'FamixTImplicitVariable classTrait',
+	#superclass : #FamixStNamedEntity,
+	#traits : 'FamixStStructuralEntity + FamixTImplicitVariable',
+	#classTraits : 'FamixStStructuralEntity classTrait + FamixTImplicitVariable classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 
 { #category : #meta }
 FamixStImplicitVariable class >> annotation [
 
-	<MSEClass: #ImplicitVariable super: #FamixStStructuralEntity>
+	<MSEClass: #ImplicitVariable super: #FamixStNamedEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self

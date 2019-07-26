@@ -75,11 +75,6 @@ FamixJavaMethod >> clientPackages [
 	^ (self queryAllIncoming atScope: FamixTPackage) withoutSelfLoops
 ]
 
-{ #category : #'moosequery-queries-generic' }
-FamixJavaMethod >> entityHasOutgoingTypeDeclarations [
-	^ self declaredType isNotNil
-]
-
 { #category : #testing }
 FamixJavaMethod >> hasEmptyBody [
 	"Copied from FAMIX2.
@@ -337,11 +332,6 @@ FamixJavaMethod >> numberOfOutgoingInvocations [
 	^self
 		lookUpPropertyNamed: #numberOfOutgoingInvocations
 		computedAs: [self outgoingInvocations size]
-]
-
-{ #category : #'moosequery-queries-outgoing' }
-FamixJavaMethod >> outgoingTypeDeclarations [
-	^ self declaredType ifNil: [ {} ] ifNotNil: [ :dt | {(MooseQueryTypeDeclarationAssociation newFrom: self to: dt)} ]
 ]
 
 { #category : #'Famix-Implementation' }
