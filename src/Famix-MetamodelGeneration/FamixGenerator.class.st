@@ -129,7 +129,6 @@ Class {
 		'tCohesionCouplingMetrics',
 		'tWithTraits',
 		'tWithFileIncludes',
-		'tStructuralEntity',
 		'tSourceEntity',
 		'tDependencyQueries',
 		'tEntityMetaLevelDependency'
