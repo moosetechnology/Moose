@@ -14,3 +14,10 @@ FamixTest1SourceAnchor class >> annotation [
 	<generated>
 	^self
 ]
+
+{ #category : #accessing }
+FamixTest1SourceAnchor >> sourceText [
+
+	"I should be overriden in my users"
+	^ nil
+]

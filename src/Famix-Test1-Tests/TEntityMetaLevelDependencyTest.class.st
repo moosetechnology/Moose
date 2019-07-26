@@ -108,7 +108,7 @@ TEntityMetaLevelDependencyTest >> testAllChildrenTypes [
 TEntityMetaLevelDependencyTest >> testAllIncomingAssociationTypes [
 
 	
-	self assertCollection: c1 allIncomingAssociationTypes  hasSameElements:  { FamixTSuperInheritance. FamixTInvocation }
+	self assertCollection: c1 allIncomingAssociationTypes  hasSameElements:  { FamixTSuperInheritance. FamixTInvocation. FamixTReference }
 ]
 
 { #category : #tests }
@@ -121,8 +121,8 @@ TEntityMetaLevelDependencyTest >> testAllOutgoingAssociationTypes [
 { #category : #tests }
 TEntityMetaLevelDependencyTest >> testAllParentTypes [
 	
-	self assertCollection: c1 allParentTypes hasSameElements: {  }.
-	self assertCollection: m1 allParentTypes hasSameElements: { FamixTest1Class. FamixTWithMethods }.
+	self assertCollection: c1 allParentTypes hasSameElements: { FamixTPackage. FamixTWithTypes }.
+	self assertCollection: m1 allParentTypes hasSameElements: { FamixTest1Class. FamixTWithMethods. FamixTPackage. FamixTWithTypes }.
 	self assertCollection: anchor1 allParentTypes hasSameElements: { }.
 	self assert: anchor1 allParentTypes isEmpty.
 ]
@@ -215,13 +215,13 @@ TEntityMetaLevelDependencyTest >> testChildrenSelectors [
 { #category : #tests }
 TEntityMetaLevelDependencyTest >> testIncomingAssociationTypes [
 
-	self assertCollection: c1 incomingAssociationTypes  hasSameElements:  { FamixTSuperInheritance }
+	self assertCollection: c1 incomingAssociationTypes  hasSameElements:  { FamixTReference. FamixTSuperInheritance }
 ]
 
 { #category : #tests }
 TEntityMetaLevelDependencyTest >> testIncomingMSEProperties [
 
-	self assertCollection: c1 incomingAssociationTypes  hasSameElements:  { FamixTSuperInheritance }
+	self assertCollection: c1 incomingAssociationTypes  hasSameElements:  { FamixTReference. FamixTSuperInheritance }
 ]
 
 { #category : #tests }
@@ -240,7 +240,7 @@ TEntityMetaLevelDependencyTest >> testOutgoingMSEProperties [
 TEntityMetaLevelDependencyTest >> testParentTypes [
 
 	self assertCollection: m1 parentTypes hasSameElements: { FamixTest1Class. FamixTWithMethods }.
- 	self assertCollection: c1 parentTypes hasSameElements: { }.
+ 	self assertCollection: c1 parentTypes hasSameElements: { FamixTPackage. FamixTWithTypes}.
  	self assertCollection: anchor1 parentTypes hasSameElements: { }.
 ]
 

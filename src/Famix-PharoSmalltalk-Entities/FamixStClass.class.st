@@ -35,6 +35,15 @@ FamixStClass >> implementationOf: signature [
 	^ nil
 ]
 
+{ #category : #'as yet unclassified' }
+FamixStClass >> instanceSide [
+	^self isClassSide
+		ifTrue:
+			[self mooseModel allClasses
+				entityNamed: (self mooseName removeSuffix: '_class') asSymbol]
+		ifFalse: [self]
+]
+
 { #category : #testing }
 FamixStClass >> isClassSide [
 	"Kind of a hack. Uses the FAMIX2 Smalltalk naming convention that every Smalltalk
