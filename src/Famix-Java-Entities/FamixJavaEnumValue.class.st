@@ -1,15 +1,15 @@
 Class {
 	#name : #FamixJavaEnumValue,
-	#superclass : #FamixJavaStructuralEntity,
-	#traits : 'FamixTEnumValue',
-	#classTraits : 'FamixTEnumValue classTrait',
+	#superclass : #FamixJavaNamedEntity,
+	#traits : 'FamixJavaTStructuralEntity + FamixTEnumValue',
+	#classTraits : 'FamixJavaTStructuralEntity classTrait + FamixTEnumValue classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
 { #category : #meta }
 FamixJavaEnumValue class >> annotation [
 
-	<MSEClass: #EnumValue super: #FamixJavaStructuralEntity>
+	<MSEClass: #EnumValue super: #FamixJavaNamedEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
@@ -36,4 +36,14 @@ FamixJavaEnumValue >> belongsTo: anObject [
 	<generated>
 	self parentEnum: anObject
 
+]
+
+{ #category : #accessing }
+FamixJavaEnumValue >> packageScope [
+	^ self typeScope ifNotNil: #packageScope
+]
+
+{ #category : #accessing }
+FamixJavaEnumValue >> typeScope [
+	^ self belongsTo typeScope
 ]

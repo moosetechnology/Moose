@@ -306,13 +306,6 @@ FamixJavaImportingContext >> importSourcedEntity [
 ]
 
 { #category : #testing }
-FamixJavaImportingContext >> importStructuralEntity [
-
-	<generated>
-	^ self import: FamixJavaStructuralEntity
-]
-
-{ #category : #testing }
 FamixJavaImportingContext >> importThrownException [
 
 	<generated>
@@ -639,13 +632,6 @@ FamixJavaImportingContext >> shouldImportSourcedEntity [
 
 	<generated>
 	^ self shouldImport: FamixJavaSourcedEntity
-]
-
-{ #category : #testing }
-FamixJavaImportingContext >> shouldImportStructuralEntity [
-
-	<generated>
-	^ self shouldImport: FamixJavaStructuralEntity
 ]
 
 { #category : #testing }

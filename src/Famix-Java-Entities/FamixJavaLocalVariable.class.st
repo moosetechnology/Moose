@@ -1,15 +1,15 @@
 Class {
 	#name : #FamixJavaLocalVariable,
-	#superclass : #FamixJavaStructuralEntity,
-	#traits : 'FamixTLocalVariable',
-	#classTraits : 'FamixTLocalVariable classTrait',
+	#superclass : #FamixJavaNamedEntity,
+	#traits : 'FamixJavaTStructuralEntity + FamixTLocalVariable',
+	#classTraits : 'FamixJavaTStructuralEntity classTrait + FamixTLocalVariable classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
 { #category : #meta }
 FamixJavaLocalVariable class >> annotation [
 
-	<MSEClass: #LocalVariable super: #FamixJavaStructuralEntity>
+	<MSEClass: #LocalVariable super: #FamixJavaNamedEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self

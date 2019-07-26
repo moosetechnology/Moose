@@ -1,15 +1,15 @@
 Class {
 	#name : #FamixJavaParameter,
-	#superclass : #FamixJavaStructuralEntity,
-	#traits : 'FamixTParameter',
-	#classTraits : 'FamixTParameter classTrait',
+	#superclass : #FamixJavaNamedEntity,
+	#traits : 'FamixJavaTStructuralEntity + FamixTParameter',
+	#classTraits : 'FamixJavaTStructuralEntity classTrait + FamixTParameter classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
 { #category : #meta }
 FamixJavaParameter class >> annotation [
 
-	<MSEClass: #Parameter super: #FamixJavaStructuralEntity>
+	<MSEClass: #Parameter super: #FamixJavaNamedEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
