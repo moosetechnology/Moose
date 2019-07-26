@@ -6,6 +6,8 @@ Trait {
 	#instVars : [
 		'#entities => FMMany type: #FamixTWithFiles opposite: #containerFiles'
 	],
+	#traits : 'FamixTNamed',
+	#classTraits : 'FamixTNamed classTrait',
 	#category : #'Famix-Traits-File'
 }
 

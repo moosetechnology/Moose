@@ -942,7 +942,9 @@ FamixGenerator >> defineHierarchy [
 	tClass --|> #TWithMethods.
 	tClass --|> #TWithSubInheritances.
 	tClass --|> #TWithSuperInheritances.
-	tClass --|> #TWithAttributes
+	tClass --|> #TWithAttributes.
+	
+	tFile --|> #TNamed
 ]
 
 { #category : #definition }
