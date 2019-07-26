@@ -21,8 +21,7 @@ FamixSmalltalkMethodTest >> setUp [
 
 	super setUp.
 
-	model := MooseModel new.
-	model metamodel: FamixTest1Class metamodel.
+	model := FamixStMooseModel new.
 	c1 := FamixStClass named: 'Class1'.
 	c2 := FamixStClass named: 'Class2'.
 	m1 := FamixStMethod named: 'method1'.

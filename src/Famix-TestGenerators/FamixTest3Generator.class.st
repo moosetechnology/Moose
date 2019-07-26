@@ -49,26 +49,24 @@ FamixTest3Generator >> defineHierarchy [
 
 	classEntity --|> type.
 	classEntity --|> #TClass.
-	classEntity --|> #TWithMethods.
 
 	method --|> namedEntity.
 	method --|> #TMethod.
 	method --|> #TWithTypes.
+	method --|> #TWithReferences.
+	method --|> #TInvocable.
+	method --|> #TWithInvocations.
 	
 	primitiveType --|> type.
 	primitiveType --|> #TWithTypes.
+	primitiveType --|> #TReferenceable.
 
 	reference --|> association.
 	reference --|> #TReference.
 	
-	method --|> #TWithReferences.
-	primitiveType --|> #TReferenceable.
-	
 	invocation --|> association.
 	invocation --|> #TInvocation.
 
-	method --|> #TInvocable.
-	method --|> #TWithInvocations.
 	
 
 
