@@ -3,7 +3,7 @@ I am an abstract test class for the tests of FAMIXAssociation's subclasses
 "
 Class {
 	#name : #FAMIXAssociationTest,
-	#superclass : #FamixJavaEntityTest,
+	#superclass : #FAMIXEntityTest,
 	#category : #'Famix-Compatibility-Tests-Core'
 }
 

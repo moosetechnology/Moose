@@ -1,6 +1,6 @@
 Class {
 	#name : #FAMIXImplicitVariableTest,
-	#superclass : #FamixJavaNamedEntityTest,
+	#superclass : #FAMIXNamedEntityTest,
 	#category : #'Famix-Compatibility-Tests-Core'
 }
 
