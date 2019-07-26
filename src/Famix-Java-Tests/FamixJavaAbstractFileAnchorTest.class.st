@@ -3,7 +3,7 @@ I am an abstract test class for the tests of FAMIXAbstractFileAnchor's subclasse
 "
 Class {
 	#name : #FamixJavaAbstractFileAnchorTest,
-	#superclass : #FamixJavaSourceAnchorTest,
+	#superclass : #FAMIXSourceAnchorTest,
 	#category : #'Famix-Java-Tests'
 }
 

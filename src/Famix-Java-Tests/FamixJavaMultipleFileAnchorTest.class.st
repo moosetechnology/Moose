@@ -3,7 +3,7 @@ A FAMIXMultipleFileAnchorTest is a test class for testing the behavior of FAMIXM
 "
 Class {
 	#name : #FamixJavaMultipleFileAnchorTest,
-	#superclass : #FamixJavaSourceAnchorTest,
+	#superclass : #FAMIXSourceAnchorTest,
 	#category : #'Famix-Java-Tests'
 }
 
@@ -17,16 +17,16 @@ FamixJavaMultipleFileAnchorTest >> testContainerFiles [
 	| anchor file1 file2 |
 	anchor := self actualClass new
 		addSourceAnchor:
-			(FamixJavaFileAnchor new
+			(FAMIXFileAnchor new
 				correspondingFile:
-					(file1 := FamixJavaFile new
+					(file1 := FAMIXFile new
 						name: 'test';
 						yourself);
 				yourself);
 		addSourceAnchor:
-			(FamixJavaFileAnchor new
+			(FAMIXFileAnchor new
 				correspondingFile:
-					(file2 := FamixJavaFile new
+					(file2 := FAMIXFile new
 						name: 'test2';
 						yourself);
 				yourself);
@@ -41,8 +41,8 @@ FamixJavaMultipleFileAnchorTest >> testContainerFilesWithoutFileReferenced [
 
 	| anchor |
 	anchor := self actualClass new
-		addSourceAnchor: FamixJavaFileAnchor new;
-		addSourceAnchor: FamixJavaFileAnchor new;
+		addSourceAnchor: FAMIXFileAnchor new;
+		addSourceAnchor: FAMIXFileAnchor new;
 		yourself.
 	self assert: anchor containerFiles size equals: 0
 ]
