@@ -69,18 +69,6 @@ FAMIXAnnotationInstance >> name [
 ]
 
 { #category : #'moosequery-queries-generic' }
-FAMIXAnnotationInstance >> throughAllFrom [
-	"Query all the incoming associations of the receiver and its children.
-
-	Example:
-		aFAMIXClass throughAllFrom.
-			--> Will return a MooseIncomingQueryResult containing the FAMIXAssociation having aFAMIXClass or its children as target
-	"
-
-	^ (MooseQueryCalculator strategy: MooseQueryIncomingDirectionStrategy) throughAllFor: self
-]
-
-{ #category : #'moosequery-queries-generic' }
 FAMIXAnnotationInstance >> throughAllTo [
 	"Collect all the targets of the receiver and its children.
 	
