@@ -182,21 +182,11 @@ MooseEntity class >> mooseDev [
 	^'moose-dev@iam.unibe.ch'
 ]
 
-{ #category : #meta }
-MooseEntity class >> mooseSubClasses [
-	 ^mooseSubClasses ifNil: [ mooseSubClasses := Set new ]
-]
-
 { #category : #accessing }
 MooseEntity class >> mooseTypes [
 	^ self usedStatefulTraits
 		add: self class;
 		yourself
-]
-
-{ #category : #meta }
-MooseEntity class >> registerAsMooseSubclass: aClass [
-	self mooseSubClasses add: aClass
 ]
 
 { #category : #accessing }
@@ -235,12 +225,6 @@ MooseEntity class >> usedStatefulTraits [
 MooseEntity class >> usesTrait: aTrait [
 
 	^ (self instanceSide withAllSuperclasses flatCollect: #traits) includes: aTrait
-]
-
-{ #category : #meta }
-MooseEntity class >> withMooseSubclasses [
-	mooseSubClasses ifNil: [ ^self withAllSubclasses ].
-	^(mooseSubClasses copyWithAll: self withAllSubclasses) asSet
 ]
 
 { #category : #'meta information' }
