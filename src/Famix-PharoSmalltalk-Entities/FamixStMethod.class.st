@@ -391,11 +391,11 @@ FamixStMethod >> sourceText [
 		ifTrue: [ [ | class |
 			"take the normal class"
 			class := Smalltalk at: self parentType instanceSide name asSymbol.
-			self hasClassScope
+			self isClassSide
 				ifFalse: [ class sourceCodeAt: self name asSymbol ]
-				ifTrue: [ class class sourceCodeAt: self name asSymbol ]	"dispatch on class or metaclass depending on method scope" ]
+				ifTrue: [ "dispatch on class or metaclass depending on method scope" class class sourceCodeAt: self name asSymbol ] ]
 				on: Error
-				do: [ super sourceText ]	"probably class is not in the system" ]
+				do: [ "probably class is not in the system" super sourceText ] ]
 		ifFalse: [ super sourceText ]
 ]
 
