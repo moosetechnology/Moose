@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixStAnnotationType,
 	#superclass : #FamixStType,
-	#traits : 'FamixTAnnotationType',
-	#classTraits : 'FamixTAnnotationType classTrait',
+	#traits : 'FamixTAnnotationType + FamixTWithAttributes',
+	#classTraits : 'FamixTAnnotationType classTrait + FamixTWithAttributes classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 
@@ -13,19 +13,6 @@ FamixStAnnotationType class >> annotation [
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #generator }
-FamixStAnnotationType class >> generatedSlotNames [
-	<generated>
-	'FamixStAnnotationType class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixStAnnotationType class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTAnnotationType)
 ]
 
 { #category : #meta }

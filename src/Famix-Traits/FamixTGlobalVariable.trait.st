@@ -27,19 +27,6 @@ FamixTGlobalVariable classSide >> famixTGlobalVariableRelatedGroup [
 	^ FAMIXGlobalVariableGroup
 ]
 
-{ #category : #generator }
-FamixTGlobalVariable classSide >> generatedSlotNames [
-	<generated>
-	'FamixTGlobalVariable class>>#generatedSlotNames'.
-	^ #(parentScope)
-]
-
-{ #category : #generator }
-FamixTGlobalVariable classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTGlobalVariable >> parentScope [
 

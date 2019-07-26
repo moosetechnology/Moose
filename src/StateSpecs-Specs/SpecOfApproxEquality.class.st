@@ -18,7 +18,7 @@ Class {
 	#instVars : [
 		'accuracy'
 	],
-	#category : 'StateSpecs-Specs'
+	#category : #'StateSpecs-Specs'
 }
 
 { #category : #'instance creation' }

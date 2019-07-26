@@ -77,7 +77,7 @@ SwiftTupleTypeNode >> commaTokens: anOrderedCollection [
 
 { #category : #generated }
 SwiftTupleTypeNode >> compositeTokenVariables [
-	^ #(#leftParenTokens #_Tokens #identifierTokens #rightParenTokens #leftBracketTokens #rightBracketTokens #leftBraceTokens #rightBraceTokens #integer_literalTokens #floating_point_literalTokens #full_string_literalTokens #operatorTokens #inoutTokens #colonTokens #minusGreaterThanTokens #periodTokens #questionMarkTokens #bangTokens #protocolTokens #lessThanTokens #greaterThanTokens #typeTokens #commaTokens #periodPeriodPeriodTokens)
+	^ #(#leftParenTokens #_Tokens #identifierTokens #rightParenTokens #inoutTokens #leftBracketTokens #rightBracketTokens #colonTokens #minusGreaterThanTokens #periodTokens #questionMarkTokens #bangTokens #protocolTokens #lessThanTokens #greaterThanTokens #typeTokens #commaTokens #periodPeriodPeriodTokens #leftBraceTokens #rightBraceTokens #integer_literalTokens #floating_point_literalTokens #full_string_literalTokens #operatorTokens)
 ]
 
 { #category : #generated }
@@ -127,15 +127,9 @@ SwiftTupleTypeNode >> initialize [
 	_Tokens := OrderedCollection new: 2.
 	identifierTokens := OrderedCollection new: 2.
 	rightParenTokens := OrderedCollection new: 2.
+	inoutTokens := OrderedCollection new: 2.
 	leftBracketTokens := OrderedCollection new: 2.
 	rightBracketTokens := OrderedCollection new: 2.
-	leftBraceTokens := OrderedCollection new: 2.
-	rightBraceTokens := OrderedCollection new: 2.
-	integer_literalTokens := OrderedCollection new: 2.
-	floating_point_literalTokens := OrderedCollection new: 2.
-	full_string_literalTokens := OrderedCollection new: 2.
-	operatorTokens := OrderedCollection new: 2.
-	inoutTokens := OrderedCollection new: 2.
 	colonTokens := OrderedCollection new: 2.
 	minusGreaterThanTokens := OrderedCollection new: 2.
 	periodTokens := OrderedCollection new: 2.
@@ -147,6 +141,12 @@ SwiftTupleTypeNode >> initialize [
 	typeTokens := OrderedCollection new: 2.
 	commaTokens := OrderedCollection new: 2.
 	periodPeriodPeriodTokens := OrderedCollection new: 2.
+	leftBraceTokens := OrderedCollection new: 2.
+	rightBraceTokens := OrderedCollection new: 2.
+	integer_literalTokens := OrderedCollection new: 2.
+	floating_point_literalTokens := OrderedCollection new: 2.
+	full_string_literalTokens := OrderedCollection new: 2.
+	operatorTokens := OrderedCollection new: 2.
 ]
 
 { #category : #generated }

@@ -14,23 +14,3 @@ FAMIXTraitUsage class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FAMIXTraitUsage class >> generatedSlotNames [
-	<generated>
-	'FAMIXTraitUsage class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXTraitUsage class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTTraitUsage)
-]
-
-{ #category : #meta }
-FAMIXTraitUsage class >> requirements [
-
-	<generated>
-	^ {  }
-]

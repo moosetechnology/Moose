@@ -13,26 +13,6 @@ FAMIXPrimitiveType class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXPrimitiveType class >> generatedSlotNames [
-	<generated>
-	'FAMIXPrimitiveType class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXPrimitiveType class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
-{ #category : #meta }
-FAMIXPrimitiveType class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #testing }
 FAMIXPrimitiveType >> isPrimitiveType [
 

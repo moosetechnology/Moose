@@ -14,23 +14,3 @@ FamixTest3Association class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FamixTest3Association class >> generatedSlotNames [
-	<generated>
-	'FamixTest3Association class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixTest3Association class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTAssociation TAssociationMetaLevelDependency)
-]
-
-{ #category : #meta }
-FamixTest3Association class >> requirements [
-
-	<generated>
-	^ {  }
-]

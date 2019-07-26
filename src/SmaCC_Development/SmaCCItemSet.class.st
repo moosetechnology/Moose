@@ -6,7 +6,7 @@ Class {
 		'previousItemSets',
 		'grammar'
 	],
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-Item Sets'
 }
 
 { #category : #'instance creation' }

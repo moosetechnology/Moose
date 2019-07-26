@@ -12,19 +12,6 @@ FamixTContainingWithInvocationsGlue classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTContainingWithInvocationsGlue classSide >> generatedSlotNames [
-	<generated>
-	'FamixTContainingWithInvocationsGlue class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixTContainingWithInvocationsGlue classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #metrics }
 FamixTContainingWithInvocationsGlue >> incomingInvocations [
 

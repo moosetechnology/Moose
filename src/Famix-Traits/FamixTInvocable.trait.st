@@ -15,19 +15,6 @@ FamixTInvocable classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTInvocable classSide >> generatedSlotNames [
-	<generated>
-	'FamixTInvocable class>>#generatedSlotNames'.
-	^ #(incomingInvocations)
-]
-
-{ #category : #generator }
-FamixTInvocable classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #adding }
 FamixTInvocable >> addIncomingInvocation: anInvocation [
 	incomingInvocations add: anInvocation

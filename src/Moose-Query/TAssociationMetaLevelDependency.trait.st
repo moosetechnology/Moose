@@ -25,19 +25,6 @@ TAssociationMetaLevelDependency classSide >> dependencyFM3PropertyDescriptionIn:
 	^ (self allDeclaredPropertiesIn: aMetamodel) select: [ :e | e isSource or: [ e isTarget ] ]
 ]
 
-{ #category : #generator }
-TAssociationMetaLevelDependency classSide >> generatedSlotNames [
-	<generated>
-	'TAssociationMetaLevelDependency class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-TAssociationMetaLevelDependency classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #private }
 TAssociationMetaLevelDependency classSide >> privateSourceTypesIn: aMetamodel [
 	"I return the classes that could be my source"

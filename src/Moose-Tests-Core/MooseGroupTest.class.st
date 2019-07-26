@@ -74,8 +74,26 @@ MooseGroupTest >> testAnySatisfy [
 { #category : #tests }
 MooseGroupTest >> testAsMooseGroup [
 	| group |
+	group := #(1 2 3) asMooseGroup.
+	self assert: (group isKindOf: MooseGroup).
+	self assert: group size equals: 3
+]
+
+{ #category : #tests }
+MooseGroupTest >> testAsMooseGroupDoNotCopy [
+	| group |
 	group := MooseGroup new.
 	self assert: group asMooseGroup == group
+]
+
+{ #category : #tests }
+MooseGroupTest >> testAsMooseGroupWithClasses [
+	"Non regression test of issue https://github.com/moosetechnology/Moose/issues/1486"
+
+	| group |
+	self shouldnt: [ group := {Object} asMooseGroup ] raise: Error.
+	self assert: group size equals: 1.
+	self assert: group anyOne equals: Object
 ]
 
 { #category : #tests }
@@ -171,6 +189,21 @@ MooseGroupTest >> testDetect [
 	
 	v := group detect: [ :el | el == el1 ].
 	self assert: v == el1
+]
+
+{ #category : #tests }
+MooseGroupTest >> testDifference [
+	| group |
+	group := #(1 2 3) asMooseGroup.
+	self assertCollection: (group difference: #(2 4) asMooseGroup) hasSameElements: #(1 3).
+	self assertCollection: (#(2 4) asMooseGroup difference: group) hasSameElements: #(4)
+]
+
+{ #category : #tests }
+MooseGroupTest >> testDifferenceWithRealCollection [
+	| group |
+	group := #(1 2 3) asMooseGroup.
+	self assertCollection: (group difference: #(2)) hasSameElements: #(1 3)
 ]
 
 { #category : #tests }
@@ -390,6 +423,22 @@ MooseGroupTest >> testInitialization [
 ]
 
 { #category : #tests }
+MooseGroupTest >> testIntersection [
+	| group |
+	group := #(1 2 3) asMooseGroup.
+	self assertCollection: (group intersection: #(2 3 4) asMooseGroup) hasSameElements: #(2 3).
+	self assertCollection: (#(2 3 4) asMooseGroup intersection: group) hasSameElements: #(2 3)
+]
+
+{ #category : #tests }
+MooseGroupTest >> testIntersectionWithRealCollection [
+	| group |
+	group := #(1 2 3) asMooseGroup.
+	self assertCollection: (group intersection: #(2 3 4)) hasSameElements: #(2 3).
+	self assertCollection: (#(2 3 4) intersection: group) hasSameElements: #(2 3)
+]
+
+{ #category : #tests }
 MooseGroupTest >> testIsCollection [
 	self assert: MooseGroup new isCollection
 ]
@@ -524,24 +573,18 @@ MooseGroupTest >> testUnion [
 	group2 := MooseGroup new.
 	group2 add: (el4 := MooseEntity new).
 	group3 := group1 union: group2.
-	self
-		assert:
-			(group3 entities
-				includesAll:
-					{el1.
-					el2.
-					el3.
-					el4}).
-	self assert: group3 entities size equals: 4.
-	self
-		assert:
-			((group2 union: group1) entities
-				includesAll:
-					{el1.
-					el2.
-					el3.
-					el4}).
+	self assert: (group3 includesAll: {el1 . el2 . el3 . el4}).
+	self assert: group3 size equals: 4.
+	self assert: ((group2 union: group1) includesAll: {el1 . el2 . el3 . el4}).
 	self assert: (group2 union: group1) ~= (group1 union: group2)
+]
+
+{ #category : #tests }
+MooseGroupTest >> testUnionWithRealCollection [
+	| group |
+	group := #(1 2 3) asMooseGroup.
+	self assertCollection: (group union: #(2 3 4)) hasSameElements: #(1 2 3 4).
+	self assertCollection: (#(2 3 4) union: group) hasSameElements: #(1 2 3 4)
 ]
 
 { #category : #tests }

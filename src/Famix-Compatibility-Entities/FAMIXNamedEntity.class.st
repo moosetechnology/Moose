@@ -20,19 +20,6 @@ FAMIXNamedEntity class >> belongsToMethod [
 	^ self compiledMethodAt: #belongsTo ifAbsent: nil
 ]
 
-{ #category : #generator }
-FAMIXNamedEntity class >> generatedSlotNames [
-	<generated>
-	'FAMIXNamedEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXNamedEntity class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTInvocationsReceiver FamixTNamed FamixTPackageable FamixTPossibleStub FamixTWithAnnotationInstances FamixTWithModifiers TDependencyQueries TEntityMetaLevelDependency)
-]
-
 { #category : #meta }
 FAMIXNamedEntity class >> requirements [
 
@@ -46,12 +33,6 @@ FAMIXNamedEntity class >> resetMooseQueryCaches [
 	self resetTEntityMetaLevelDependencyCaches.
 ]
 
-{ #category : #'Famix-Extensions' }
-FAMIXNamedEntity >> accept: aVisitor [
-
-	aVisitor visitNamedEntity: self
-]
-
 { #category : #accessing }
 FAMIXNamedEntity >> belongsTo [
 	
@@ -62,16 +43,6 @@ FAMIXNamedEntity >> belongsTo [
 FAMIXNamedEntity >> belongsTo: anObject [
 
 	^self subclassResponsibility
-
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXNamedEntity >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	self name: anEntity name copy.
-	self isStub: anEntity isStub.
-	self modifiers: (anEntity modifiers collect: #copy)
 
 ]
 

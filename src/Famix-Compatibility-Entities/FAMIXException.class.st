@@ -15,24 +15,15 @@ FAMIXException class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXException class >> generatedSlotNames [
-	<generated>
-	'FAMIXException class>>#generatedSlotNames'.
-	^ #()
+{ #category : #compatibility }
+FAMIXException >> definingEntity [
+	self subclassResponsibility
 ]
 
-{ #category : #generator }
-FAMIXException class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTException)
-]
-
-{ #category : #meta }
-FAMIXException class >> requirements [
-
-	<generated>
-	^ {  }
+{ #category : #compatibility }
+FAMIXException >> definingEntity: aMethod [
+	"I'm here for compatibility purpose. All the children of my class define this method from trait"
+	self subclassResponsibility
 ]
 
 { #category : #compatibility }
@@ -44,11 +35,10 @@ FAMIXException >> definingMethod [
 ]
 
 { #category : #compatibility }
-FAMIXException >> definingMethod: aMethod [ 
-
-	^ self definingEntity: aMethod 
-	
-
+FAMIXException >> definingMethod: aMethod [
+	<MSEProperty: #definingMethod type: #FAMIXMethod>
+	<MSEComment: 'This property is for compatibility purpose. It is used by the old generator of MSE files'>
+	^ self definingEntity: aMethod
 ]
 
 { #category : #accessing }

@@ -15,34 +15,3 @@ FamixTest2NamedEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTest2NamedEntity class >> generatedSlotNames [
-	<generated>
-	'FamixTest2NamedEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixTest2NamedEntity class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTNamed TDependencyQueries TEntityMetaLevelDependency)
-]
-
-{ #category : #meta }
-FamixTest2NamedEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
-{ #category : #'moosequery-queries-generic' }
-FamixTest2NamedEntity >> throughAllFrom [
-	"Query all the incoming associations of the receiver and its children.
-
-	Example:
-		aFAMIXClass queryAllIncoming.
-			--> Will return a MooseIncomingQueryResult containing the FAMIXAssociation having aFAMIXClass or its children as target
-	"
-
-	^ (MooseQueryCalculator strategy: MooseQueryIncomingDirectionStrategy) throughAllFor: self
-]

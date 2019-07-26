@@ -15,33 +15,7 @@ FamixJavaClass class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaClass class >> generatedSlotNames [
-	<generated>
-	'FamixJavaClass class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaClass class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTClass FamixTLCOMMetrics FamixTWithExceptions)
-]
-
-{ #category : #meta }
-FamixJavaClass class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaClass >> accept: aVisitor [
-
-	aVisitor visitClass: self
-]
-
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions-metrics-support' }
 FamixJavaClass >> accessedAttributes [
 	
 	"Returns my attributes accessed by my methods. If the same attribute is accessed 
@@ -51,21 +25,7 @@ FamixJavaClass >> accessedAttributes [
 	^ self methodsWithoutSutbsAndConstructors asOrderedCollection flatCollect: [ :method | method accessedAttributes ]
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaClass >> containsTheReceiverOf: anInvocation [ 
-	 
-	^anInvocation receivingVariable notNil 
-		ifTrue: 
-			[anInvocation receivingVariable class name = #FAMIXClass 
-				ifTrue: [anInvocation receivingVariable == self] 
-				ifFalse: 
-					[anInvocation receivingVariable class name = #FAMIXImplicitVariable 
-						ifTrue: [anInvocation receivingVariable belongsTo == self] 
-						ifFalse: [false]]] 
-		ifFalse: [false]
-]
-
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaClass >> isADirectSubclassOf: aClass [ 
 	 
 	aClass class = FamixJavaClass 
@@ -73,7 +33,7 @@ FamixJavaClass >> isADirectSubclassOf: aClass [
 		ifFalse: [^false]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaClass >> isADirectSuperclassOf: aClass [ 
 	 
 	aClass class = FamixJavaClass 
@@ -81,7 +41,7 @@ FamixJavaClass >> isADirectSuperclassOf: aClass [
 		ifFalse: [^false]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaClass >> isASubclassOf: aClass [ 
 	 
 	^aClass class = FamixJavaClass 
@@ -89,7 +49,7 @@ FamixJavaClass >> isASubclassOf: aClass [
 		ifFalse: [false]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaClass >> isASuperclassOf: aClass [ 
 	 
 	^aClass class = FamixJavaClass 
@@ -97,13 +57,13 @@ FamixJavaClass >> isASuperclassOf: aClass [
 		ifFalse: [false]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaClass >> isAccessedBy: anAccess [ 
 	 
 	^anAccess accesses == self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaClass >> isIgnored [
 	<MSEProperty: #isIgnored type: #Boolean>
 	<multivalued>
@@ -113,13 +73,28 @@ FamixJavaClass >> isIgnored [
 	^ (self isAnnotatedWith: 'Ignore') 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaClass >> isInheritedBy: anInheritance [ 
 	 
 	^anInheritance superclass == self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
+FamixJavaClass >> isInterface [
+
+	<MSEProperty: #isInterface type: #Boolean>
+	<MSEComment: 'This is a boolean flag used to distinguish between classes with implementation and interfaces'>
+
+	^ self privateState attributeAt: #isInterface ifAbsent: [ false ]
+]
+
+{ #category : #testing }
+FamixJavaClass >> isInterface: aBoolean [
+
+	^ self privateState attributeAt: #isInterface put: true
+]
+
+{ #category : #testing }
 FamixJavaClass >> isInvokedBy: anInvocation [ 
 	 
 	^(anInvocation candidateList notNil 
@@ -131,7 +106,7 @@ FamixJavaClass >> isInvokedBy: anInvocation [
 		ifFalse: [false]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions-metrics-support' }
 FamixJavaClass >> methodsWithoutSutbsAndConstructors [
 
 	"Removing stub and contructor methods. Used to support the calculation of LCOM."

@@ -15,26 +15,6 @@ FamixJavaIndexedFileAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaIndexedFileAnchor class >> generatedSlotNames [
-	<generated>
-	'FamixJavaIndexedFileAnchor class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaIndexedFileAnchor class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTIndexedFileNavigation)
-]
-
-{ #category : #meta }
-FamixJavaIndexedFileAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaIndexedFileAnchor >> lineCount [
 

@@ -1,7 +1,7 @@
 Class {
 	#name : #SmaCCStartingSymbol,
 	#superclass : #SmaCCNonTerminalSymbol,
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-Model'
 }
 
 { #category : #accessing }

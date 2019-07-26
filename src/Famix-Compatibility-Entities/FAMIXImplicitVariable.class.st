@@ -15,29 +15,11 @@ FAMIXImplicitVariable class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXImplicitVariable class >> generatedSlotNames [
-	<generated>
-	'FAMIXImplicitVariable class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXImplicitVariable class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTImplicitVariable)
-]
-
 { #category : #meta }
 FAMIXImplicitVariable class >> requirements [
 
 	<generated>
 	^ { FAMIXBehaviouralEntity }
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXImplicitVariable >> accept: aVisitor [
-	aVisitor visitImplicitVariable: self
 ]
 
 { #category : #accessing }
@@ -66,14 +48,6 @@ FAMIXImplicitVariable >> container [
 FAMIXImplicitVariable >> container: aBehaviouralEntity [
 	self deprecated: 'Please use #parentBehaviouralEntity: instead'.
 	^ self parentBehaviouralEntity: aBehaviouralEntity
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXImplicitVariable >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	self container: (aVisitor visit: anEntity container).
-
 ]
 
 { #category : #'Famix-Implementation' }

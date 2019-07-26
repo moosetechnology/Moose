@@ -15,19 +15,6 @@ FamixTReferenceable classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTReferenceable classSide >> generatedSlotNames [
-	<generated>
-	'FamixTReferenceable class>>#generatedSlotNames'.
-	^ #(incomingReferences)
-]
-
-{ #category : #generator }
-FamixTReferenceable classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTReferenceable >> addIncomingReference: aReference [ 
 	incomingReferences add: aReference

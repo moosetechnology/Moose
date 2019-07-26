@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'actual'
 	],
-	#category : 'StateSpecs-Specs-Tests'
+	#category : #'StateSpecs-Specs-Tests'
 }
 
 { #category : #tests }

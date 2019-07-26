@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixTest1Class,
 	#superclass : #FamixTest1NamedEntity,
-	#traits : 'FamixTClass + FamixTLCOMMetrics + FamixTWithMethods',
-	#classTraits : 'FamixTClass classTrait + FamixTLCOMMetrics classTrait + FamixTWithMethods classTrait',
+	#traits : 'FamixTClass + FamixTWithMethods',
+	#classTraits : 'FamixTClass classTrait + FamixTWithMethods classTrait',
 	#category : #'Famix-Test1-Entities-Entities'
 }
 
@@ -13,24 +13,4 @@ FamixTest1Class class >> annotation [
 	<package: #'Famix-Test1-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #generator }
-FamixTest1Class class >> generatedSlotNames [
-	<generated>
-	'FamixTest1Class class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixTest1Class class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTClass FamixTLCOMMetrics FamixTWithMethods)
-]
-
-{ #category : #meta }
-FamixTest1Class class >> requirements [
-
-	<generated>
-	^ {  }
 ]

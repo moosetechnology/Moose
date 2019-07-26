@@ -15,26 +15,6 @@ FamixStAccess class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixStAccess class >> generatedSlotNames [
-	<generated>
-	'FamixStAccess class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixStAccess class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTAccess)
-]
-
-{ #category : #meta }
-FamixStAccess class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixStAccess >> mooseFinderSourceTextIn: composite [
 	<moosePresentationOrder: 20>

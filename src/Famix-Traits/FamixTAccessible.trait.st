@@ -15,19 +15,6 @@ FamixTAccessible classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTAccessible classSide >> generatedSlotNames [
-	<generated>
-	'FamixTAccessible class>>#generatedSlotNames'.
-	^ #(incomingAccesses)
-]
-
-{ #category : #generator }
-FamixTAccessible classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTAccessible >> accessingClasses [
 
@@ -39,6 +26,14 @@ FamixTAccessible >> accessingMethods [
 
 	^ self incomingAccesses collectAsSet: [:anAccess | anAccess accessor].
 
+]
+
+{ #category : #accessing }
+FamixTAccessible >> accessors [
+	<MSEProperty: #accessors type: #FamixTWithAccesses>
+	<multivalued>
+	<derived>
+	^ (self incomingAccesses collectAsSet: [ :each | each accessor ]) asMooseGroup
 ]
 
 { #category : #adding }

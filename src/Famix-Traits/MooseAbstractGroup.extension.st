@@ -138,7 +138,7 @@ MooseAbstractGroup >> allModelClasses [
 	^ self privateState cacheAt: 'All model classes'
 		ifAbsentPut: [
 			MooseGroup
-				withAll: ((self allClasses reject: [:each | each isStub or: [each isInterface]]) )
+				withAll: ((self allClasses reject: [:each | each isStub ]) )
 				withDescription: 'All model classes' ]
 ]
 
@@ -154,14 +154,10 @@ MooseAbstractGroup >> allModelMethods [
 { #category : #'*Famix-Traits' }
 MooseAbstractGroup >> allModelNamespaces [
 	<navigation: 'All model namespaces'>
-
-	^ self privateState cacheAt: 'All model namespaces'
-		ifAbsentPut: [
-			MooseGroup
-				withAll: (self allNamespaces select: [:each | 
-					each classes notEmpty and: [
-						each classes anySatisfy: [:class | class isStub not]]])
-				withDescription: 'All model namespaces' ]
+	^ self privateState
+		cacheAt: 'All model namespaces'
+		ifAbsentPut:
+			[ MooseGroup withAll: (self allNamespaces reject: [ :each | each isStub ]) withDescription: 'All model namespaces' ]
 ]
 
 { #category : #'*Famix-Traits' }
@@ -174,6 +170,16 @@ MooseAbstractGroup >> allModelPackages [
 				withAll: ((self allPackages reject: [:each | each isStub]) sorted:
 																		[:p1 :p2 | p1 name < p2 name] )
 				withDescription: 'All model packages' ]
+]
+
+{ #category : #'*Famix-Traits' }
+MooseAbstractGroup >> allModelPureClasses [
+	self flag: 'this method exists only the time we manage correctly the interface'.
+	^ self privateState cacheAt: 'All model classes'
+		ifAbsentPut: [
+			MooseGroup
+				withAll: ((self allClasses reject: [:each | each isStub or: [each isInterface]]) )
+				withDescription: 'All model classes' ]
 ]
 
 { #category : #'*Famix-Traits' }

@@ -6,7 +6,7 @@ Class {
 
 { #category : #'generated-accessing' }
 CSVParser class >> cacheId [
-	^'2018-10-19T21:52:12.059456-05:00'
+	^'2019-04-15T17:15:42.810828-05:00'
 ]
 
 { #category : #private }
@@ -120,13 +120,14 @@ CSVParser class >> parseFileWithoutHeader: aFilename [
 { #category : #generated }
 CSVParser class >> reduceTable [
 ^#(
-	#(9 0 #reduceActionForMissing1:) 
-	#(8 1 #liftFirstValue:) 
-	#(5 1 #reduceActionForFile1:) 
-	#(6 1 #reduceActionForLines1:) 
-	#(7 1 #reduceActionForLine1:) 
-	#(6 3 #reduceActionForLines2:) 
-	#(7 3 #reduceActionForLine2:)
+	#(9 0 #reduceActionForMissing1: 344065 false ) 
+	#(8 1 #liftFirstValue: 312321 false ) 
+	#(5 1 #reduceActionForFile1: 156673 false ) 
+	#(6 1 #reduceActionForLines1: 179201 false ) 
+	#(7 1 #reduceActionForLine1: 241665 false ) 
+	#(8 1 #liftFirstValue: 312322 false ) 
+	#(6 3 #reduceActionForLines2: 179202 false ) 
+	#(7 3 #reduceActionForLine2: 241666 false )
 	).
 ]
 
@@ -147,7 +148,7 @@ CSVParser class >> symbolNames [
 
 { #category : #generated }
 CSVParser class >> symbolTypes [
-	^ #(#SmaCCToken #SmaCCToken #SmaCCToken #CSVFileNode #CSVFileNode #OrderedCollection #CSVLineNode #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCError)
+	^ #(#SmaCCToken #SmaCCToken #SmaCCToken #CSVFileNode #CSVFileNode #OrderedCollection #CSVLineNode #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCErrorNode)
 ]
 
 { #category : #generated }
@@ -159,11 +160,11 @@ CSVParser class >> transitionTable [
 #[1 0 33 0 3 0 14 0 10] 
 #[1 0 37 0 1 0 18 0 3 0 18 0 10] 
 #[0 0 22 0 1 0 3 0 10] 
-#[0 0 10 0 1 0 3 0 10] 
+#[0 0 26 0 1 0 3 0 10] 
 #[1 0 6 0 1 0 25 0 2 0 6 0 3 0 41 0 7 0 25 0 8 0 25 0 9 0 6 0 10] 
 #[1 0 6 0 1 0 45 0 2 0 6 0 3 0 45 0 8 0 45 0 9 0 6 0 10] 
-#[1 0 37 0 1 0 26 0 3 0 26 0 10] 
-#[0 0 30 0 1 0 3 0 10]
+#[1 0 37 0 1 0 30 0 3 0 30 0 10] 
+#[0 0 34 0 1 0 3 0 10]
 	).
 ]
 

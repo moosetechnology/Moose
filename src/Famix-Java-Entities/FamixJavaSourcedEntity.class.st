@@ -15,35 +15,9 @@ FamixJavaSourcedEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaSourcedEntity class >> generatedSlotNames [
-	<generated>
-	'FamixJavaSourcedEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaSourcedEntity class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTWithComments FamixTWithFiles FamixTWithSourceAnchor FamixTWithSourceLanguage)
-]
-
-{ #category : #meta }
-FamixJavaSourcedEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaSourcedEntity >> accept: aVisitor [
-
-	aVisitor visitEntity: self
-]
-
-{ #category : #'as yet unclassified' }
+{ #category : #removing }
 FamixJavaSourcedEntity >> addComment: aComment [
-	self privateAddComment: aComment asFamixJavaComment
+	comments add: aComment asFamixJavaComment
 ]
 
 { #category : #accessing }
@@ -63,15 +37,6 @@ FamixJavaSourcedEntity >> containerFiles: aColl [
 	"This method is a hack for now because we need an opposite to the files."
 
 	
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaSourcedEntity >> copyFrom: anEntity within: aVisitor [
-
-	sourceAnchor := aVisitor visit: anEntity sourceAnchor.
-	anEntity comments do: [:com | 
-		self comments add: (aVisitor visit: com) ].
-
 ]
 
 { #category : #'as yet unclassified' }

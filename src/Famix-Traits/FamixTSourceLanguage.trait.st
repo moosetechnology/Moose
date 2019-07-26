@@ -21,19 +21,6 @@ FamixTSourceLanguage classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTSourceLanguage classSide >> generatedSlotNames [
-	<generated>
-	'FamixTSourceLanguage class>>#generatedSlotNames'.
-	^ #(sourcedEntities)
-]
-
-{ #category : #generator }
-FamixTSourceLanguage classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #adding }
 FamixTSourceLanguage >> addSourcedEntity: aSourcedEntity [
 	^ self sourcedEntities add: aSourcedEntity

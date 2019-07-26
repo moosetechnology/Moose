@@ -15,30 +15,11 @@ FAMIXLocalVariable class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXLocalVariable class >> generatedSlotNames [
-	<generated>
-	'FAMIXLocalVariable class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXLocalVariable class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTLocalVariable)
-]
-
 { #category : #meta }
 FAMIXLocalVariable class >> requirements [
 
 	<generated>
 	^ { FAMIXBehaviouralEntity }
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXLocalVariable >> accept: aVisitor [
-
-	aVisitor visitLocalVariable: self
 ]
 
 { #category : #accessing }

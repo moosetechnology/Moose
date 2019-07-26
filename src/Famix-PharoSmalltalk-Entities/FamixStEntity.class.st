@@ -13,31 +13,11 @@ FamixStEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixStEntity class >> generatedSlotNames [
-	<generated>
-	'FamixStEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixStEntity class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FamixStEntity class >> metamodel [
 
 	<generated>
 	^ (self class environment at: #FamixPharoSmalltalkGenerator) metamodel
-]
-
-{ #category : #meta }
-FamixStEntity class >> requirements [
-
-	<generated>
-	^ {  }
 ]
 
 { #category : #'as yet unclassified' }

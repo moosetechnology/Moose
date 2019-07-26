@@ -15,46 +15,6 @@ FAMIXStructuralEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXStructuralEntity class >> generatedSlotNames [
-	<generated>
-	'FAMIXStructuralEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXStructuralEntity class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTAccessible FamixTTypedStructure FamixTWithDereferencedInvocations)
-]
-
-{ #category : #meta }
-FAMIXStructuralEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXStructuralEntity >> accept: aVisitor [
-
-	aVisitor visitStructuralEntity: self
-]
-
-{ #category : #accessing }
-FAMIXStructuralEntity >> accessors [
-	<MSEProperty: #accessors type: #FAMIXBehaviouralEntity> <multivalued> <derived>
-	^ (self incomingAccesses collectAsSet: [ :each | each accessor ]) asMooseGroup
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXStructuralEntity >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	self declaredType: (aVisitor visit: anEntity declaredType).
-
-]
-
 { #category : #'as yet unclassified' }
 FAMIXStructuralEntity >> entityHasOutgoingTypeDeclarations [
 	^ self declaredType isNotNil

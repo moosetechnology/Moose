@@ -18,19 +18,6 @@ FamixTException classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTException classSide >> generatedSlotNames [
-	<generated>
-	'FamixTException class>>#generatedSlotNames'.
-	^ #(exceptionClass)
-]
-
-{ #category : #generator }
-FamixTException classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTException >> exceptionClass [
 

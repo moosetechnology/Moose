@@ -15,19 +15,6 @@ FamixTWithHeader classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithHeader classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithHeader class>>#generatedSlotNames'.
-	^ #(header)
-]
-
-{ #category : #generator }
-FamixTWithHeader classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTWithHeader >> header [
 

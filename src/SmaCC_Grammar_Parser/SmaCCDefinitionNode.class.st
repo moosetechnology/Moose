@@ -22,7 +22,67 @@ SmaCCDefinitionNode >> allReferencesTo: aString [
 ]
 
 { #category : #testing }
+SmaCCDefinitionNode >> isAssociativeDirective [
+	^ false
+]
+
+{ #category : #testing }
+SmaCCDefinitionNode >> isAttributeDirective [
+	^ false
+]
+
+{ #category : #testing }
+SmaCCDefinitionNode >> isDirective [
+	^ false
+]
+
+{ #category : #testing }
+SmaCCDefinitionNode >> isFlagDirective [
+	^ false
+]
+
+{ #category : #testing }
 SmaCCDefinitionNode >> isGroup [
+	^ false
+]
+
+{ #category : #testing }
+SmaCCDefinitionNode >> isHierarchyDirective [
+	^ false
+]
+
+{ #category : #testing }
+SmaCCDefinitionNode >> isIdDirective [
+	^ false
+]
+
+{ #category : #testing }
+SmaCCDefinitionNode >> isIgnoreDirective [
+	^ false
+]
+
+{ #category : #testing }
+SmaCCDefinitionNode >> isNameDirective [
+	^ false
+]
+
+{ #category : #testing }
+SmaCCDefinitionNode >> isProductionRule [
+	^ false
+]
+
+{ #category : #testing }
+SmaCCDefinitionNode >> isScopeDirective [
+	^ false
+]
+
+{ #category : #testing }
+SmaCCDefinitionNode >> isStartDirective [
+	^ false
+]
+
+{ #category : #testing }
+SmaCCDefinitionNode >> isTokenRule [
 	^ false
 ]
 

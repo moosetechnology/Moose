@@ -15,26 +15,6 @@ FAMIXFileAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXFileAnchor class >> generatedSlotNames [
-	<generated>
-	'FAMIXFileAnchor class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXFileAnchor class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTFileNavigation)
-]
-
-{ #category : #meta }
-FAMIXFileAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FAMIXFileAnchor >> mooseNameOn: aStream [
 	super mooseNameOn: aStream.

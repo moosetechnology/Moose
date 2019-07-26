@@ -5,7 +5,7 @@ Trait {
 	#name : #FamixTComment,
 	#instVars : [
 		'#container => FMOne type: #FamixTWithComments opposite: #comments',
-		'#content'
+		'#content => FMProperty'
 	],
 	#category : #'Famix-Traits-Comment'
 }
@@ -24,19 +24,6 @@ FamixTComment classSide >> content: aString [
 	^ self new
 		content: aString;
 		yourself
-]
-
-{ #category : #generator }
-FamixTComment classSide >> generatedSlotNames [
-	<generated>
-	'FamixTComment class>>#generatedSlotNames'.
-	^ #(container content)
-]
-
-{ #category : #generator }
-FamixTComment classSide >> generatedTraitNames [
-	<generated>
-	^ #()
 ]
 
 { #category : #accessing }

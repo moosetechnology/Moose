@@ -72,7 +72,7 @@ SmalltalkImporter >> basicClassCreation: aClass [
 
 { #category : #'private utils' }
 SmalltalkImporter >> checkAbstractClass: class [ 
-	(class methods contains: [ :each | each isAbstract ]) ifTrue: [ class isAbstract: true ]
+	class isAbstract:  (class methods contains: [ :each | each isAbstract ]) 
 ]
 
 { #category : #'private accessing' }
@@ -207,13 +207,12 @@ SmalltalkImporter >> createMethod: aCompiledMethod [
 		do: [ :aRPackage | 
 			(aCompiledMethod isExtensionInPackage: aRPackage)
 				ifTrue: [ method parentPackage: (self ensurePackage: aRPackage) ] ].
-	method hasClassScope: aCompiledMethod methodClass isMeta.
+	method isClassSide: aCompiledMethod methodClass isMeta.
 	method
-		category:
+		protocol:
 			(aCompiledMethod methodClass organization
 				categoryOfElement: aCompiledMethod selector).
 	method isPublic: true.
-	method timeStamp: aCompiledMethod timeStamp.
 	importingContext shouldImportMethodBody
 		ifTrue: [ | visitor |
 			visitor := SmalltalkMethodVisitor on: self.
@@ -411,7 +410,6 @@ SmalltalkImporter >> factory [
 
 { #category : #accessing }
 SmalltalkImporter >> factory: anObject [
-
 	factory := anObject
 ]
 

@@ -96,6 +96,28 @@ FmxMBBehavior >> generateAccessors [
 ]
 
 { #category : #generating }
+FmxMBBehavior >> generateAddToCollection [
+
+	|  allNavigationGroups |
+
+	allNavigationGroups := self allNavigationGroups.
+	allNavigationGroups do: [ :aGroup | 
+		| sideName |
+		sideName := aGroup entity name.
+		aGroup entity isMany ifTrue: [ 
+			self realClass instanceSide compile: ('{1}
+			
+	<generated>
+	^ self {2} add: anObject'   format: { 
+				'add', sideName capitalized, ': anObject'.
+				sideName.
+				 }) 
+			classified: #adding. ]
+	].
+
+]
+
+{ #category : #generating }
 FmxMBBehavior >> generateAnnotationIn: aRealClass as: aName superclass: aSuperclass [
 
 	| aSuperclassName |
@@ -404,17 +426,13 @@ FmxMBBehavior >> singularPropertyName [
 
 { #category : #generating }
 FmxMBBehavior >> slotDefinitions [
-
 	| slotGroups |
-	
 	slotGroups := (self properties select: #producesSlot thenCollect: [ :property | property asSlot ]) groupedBy: #name.
 
 	"check that all slots with the same name have the same properties"
-	slotGroups valuesDo: [ :similarSlots |
-		self assert: (similarSlots collect: #name) asSet size = 1. ].
-		
-	^ slotGroups values collect: [ :each | each anyOne ].
+	slotGroups valuesDo: [ :similarSlots | self assert: (similarSlots collect: #name) asSet size = 1 ].
 
+	^ slotGroups values collect: [ :each | each anyOne ]
 ]
 
 { #category : #accessing }

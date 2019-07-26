@@ -15,19 +15,6 @@ FamixJavaNamedEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaNamedEntity class >> generatedSlotNames [
-	<generated>
-	'FamixJavaNamedEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaNamedEntity class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTInvocationsReceiver FamixTNamed FamixTPackageable FamixTPossibleStub FamixTWithAnnotationInstances FamixTWithModifiers TDependencyQueries TEntityMetaLevelDependency)
-]
-
 { #category : #meta }
 FamixJavaNamedEntity class >> requirements [
 
@@ -43,12 +30,6 @@ FamixJavaNamedEntity class >> resetMooseQueryCaches [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaNamedEntity >> accept: aVisitor [
-
-	aVisitor visitNamedEntity: self
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaNamedEntity >> belongsTo [
 	
 	^self subclassResponsibility
@@ -58,16 +39,6 @@ FamixJavaNamedEntity >> belongsTo [
 FamixJavaNamedEntity >> belongsTo: anObject [
 
 	^self subclassResponsibility
-
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaNamedEntity >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	self name: anEntity name copy.
-	self isStub: anEntity isStub.
-	self modifiers: (anEntity modifiers collect: #copy)
 
 ]
 

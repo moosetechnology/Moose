@@ -15,26 +15,6 @@ FAMIXFolder class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXFolder class >> generatedSlotNames [
-	<generated>
-	'FAMIXFolder class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXFolder class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTFolder)
-]
-
-{ #category : #meta }
-FAMIXFolder class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #testing }
 FAMIXFolder >> isFolder [
 	^ true

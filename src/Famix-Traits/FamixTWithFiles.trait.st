@@ -15,17 +15,10 @@ FamixTWithFiles classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithFiles classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithFiles class>>#generatedSlotNames'.
-	^ #(containerFiles)
-]
+{ #category : #accessing }
+FamixTWithFiles >> addContainerFile: anObject [
+	containerFiles add: anObject
 
-{ #category : #generator }
-FamixTWithFiles classSide >> generatedTraitNames [
-	<generated>
-	^ #()
 ]
 
 { #category : #accessing }

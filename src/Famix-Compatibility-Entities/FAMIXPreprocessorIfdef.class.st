@@ -17,26 +17,6 @@ FAMIXPreprocessorIfdef class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXPreprocessorIfdef class >> generatedSlotNames [
-	<generated>
-	'FAMIXPreprocessorIfdef class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXPreprocessorIfdef class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
-{ #category : #meta }
-FAMIXPreprocessorIfdef class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FAMIXPreprocessorIfdef >> isNegated [
 	<MSEProperty: #negated type: #Boolean>

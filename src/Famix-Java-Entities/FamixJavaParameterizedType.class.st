@@ -15,26 +15,6 @@ FamixJavaParameterizedType class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaParameterizedType class >> generatedSlotNames [
-	<generated>
-	'FamixJavaParameterizedType class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaParameterizedType class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTParameterizedType FamixTWithParameterizedTypeUsers)
-]
-
-{ #category : #meta }
-FamixJavaParameterizedType class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaParameterizedType >> allSubclassesDo: aBlock [
 	"we override this traversal because we want to

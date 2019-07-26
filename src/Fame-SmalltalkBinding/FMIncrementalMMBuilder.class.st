@@ -285,12 +285,7 @@ FMIncrementalMMBuilder >> resolveSmalltalkBindingsIn: aFMMetaRepository [
 
 { #category : #'private-pragmas' }
 FMIncrementalMMBuilder >> retrieveClassPragma: aClass [
-	| pragma |
-	pragma := Pragma allNamed: #MSEClass:super: in: aClass class.
-	pragma isEmpty
-		ifTrue: [ self error: 'No Fame pragma ' , aClass name ].
-	pragma := pragma first.
-	^ pragma
+	^ aClass metamodelDefinitionPragmas ifEmpty: [ self error: 'No Fame pragma ' , aClass name ] ifNotEmpty: #first
 ]
 
 { #category : #'private-pragmas' }

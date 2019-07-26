@@ -12,23 +12,3 @@ FamixStUnknownSourceLanguage class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FamixStUnknownSourceLanguage class >> generatedSlotNames [
-	<generated>
-	'FamixStUnknownSourceLanguage class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixStUnknownSourceLanguage class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
-{ #category : #meta }
-FamixStUnknownSourceLanguage class >> requirements [
-
-	<generated>
-	^ {  }
-]

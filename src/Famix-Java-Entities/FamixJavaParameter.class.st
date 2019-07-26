@@ -15,30 +15,11 @@ FamixJavaParameter class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaParameter class >> generatedSlotNames [
-	<generated>
-	'FamixJavaParameter class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaParameter class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTParameter)
-]
-
 { #category : #meta }
 FamixJavaParameter class >> requirements [
 
 	<generated>
 	^ { FamixJavaMethod }
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaParameter >> accept: aVisitor [
-
-	aVisitor visitParameter: self
 ]
 
 { #category : #accessing }

@@ -15,44 +15,11 @@ FAMIXAssociation class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXAssociation class >> generatedSlotNames [
-	<generated>
-	'FAMIXAssociation class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXAssociation class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTAssociation TAssociationMetaLevelDependency)
-]
-
-{ #category : #meta }
-FAMIXAssociation class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXAssociation >> accept: aVisitor [
-
-	aVisitor visitAssociation: self
-]
-
 { #category : #accessing }
 FAMIXAssociation >> anyTo [
 	"This is a utility method that could be used polymorphically to obtain exactly one
 	target entity even when the internal implementation stores these as a collection"
 	^ self to asOrderedCollection anyOne
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXAssociation >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	"self previous: (aVisitor visit: anEntity previous)."
 ]
 
 { #category : #accessing }

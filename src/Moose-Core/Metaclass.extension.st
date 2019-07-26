@@ -22,3 +22,8 @@ Metaclass >> mooseName [
 
 	^ ('Smalltalk::' , self soleInstance name, '_class') asSymbol
 ]
+
+{ #category : #'*Moose-Core' }
+Metaclass >> relatedGroupType [
+	^ MooseGroup
+]

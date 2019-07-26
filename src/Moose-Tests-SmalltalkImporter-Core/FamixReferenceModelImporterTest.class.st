@@ -48,7 +48,7 @@ FamixReferenceModelImporterTest >> testAbstractMethodAnnotation [
 	method := self model entityNamed: methodName.
 	self assert: method isNil not.
 	self assert: method belongsTo equals: (self model entityNamed: TheRoot mooseName).
-	self assert: method hasClassScope not.
+	self assert: method isClassSide not.
 	self
 		assert: method signature
 		equals: (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: #sendingSubclassResponsibility).
@@ -305,7 +305,7 @@ FamixReferenceModelImporterTest >> testClassMethodAnnotation [
 		hasClassScope: false
 		class: definingClassName.
 	method := self model entityNamed: methodUniqueName.
-	self assert: method category equals: #'accessing superclassinstance on class side'
+	self assert: method protocol equals: #'accessing superclassinstance on class side'
 ]
 
 { #category : #'new tests' }
@@ -379,7 +379,7 @@ FamixReferenceModelImporterTest >> testConstantMethodAnnotation [
 	method := self model entityNamed: methodUniqueName.
 	self assert: method isNil not.
 	self assert: method belongsTo equals: (self model entityNamed: TheRoot mooseName).
-	self assert: method hasClassScope not.
+	self assert: method isClassSide not.
 	self assert: method signature equals: (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: methodName).
 	self assert: method isPublic.
 	self assert: method isConstant
@@ -533,7 +533,7 @@ FamixReferenceModelImporterTest >> testGetterMethod [
 	methodUniqueName := (TheRoot >> methodName) mooseName.
 	method := self model entityNamed: methodUniqueName.
 	self assert: method isNil not.
-	self assert: method hasClassScope not.
+	self assert: method isClassSide not.
 	self assert: method signature equals: (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: methodName).
 	self assert: method isPublic.
 	self assert: method isPureAccessor.
@@ -667,7 +667,7 @@ FamixReferenceModelImporterTest >> testMethodAnnotation [
 		class: definingClassName.
 	method := self model entityNamed: methodUniqueName ifAbsent: [ nil ].
 	self assert: method name equals: #accessSuperclassInstVar.
-	self assert: method category equals: #accessingSuperclassInstVar
+	self assert: method protocol equals: #accessingSuperclassInstVar
 ]
 
 { #category : #'reference model reification' }
@@ -685,7 +685,7 @@ FamixReferenceModelImporterTest >> testMethodReification [
 	method := self model entityNamed: methodUniqueName.
 	self assert: method isNil not.
 	self assert: method belongsTo equals: (self model entityNamed: referenceModelSubRootLevelOneName).
-	self assert: method hasClassScope not.
+	self assert: method isClassSide not.
 	self assert: method signature equals: (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: #accessSuperclassInstVar).
 	self assert: method isPublic
 ]
@@ -771,7 +771,7 @@ FamixReferenceModelImporterTest >> testSetterMethod [
 	method := self model entityNamed: methodUniqueName.
 	self assert: method isNil not.
 	self assert: method belongsTo equals: (self model entityNamed: TheRoot mooseName).
-	self assert: method hasClassScope not.
+	self assert: method isClassSide not.
 	self assert: method signature equals: (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: methodName).
 	self assert: method isPublic.
 	self assert: method isPureAccessor.
@@ -964,11 +964,7 @@ FamixReferenceModelImporterTest >> testUsedClassReifiedWithinReturn [
 FamixReferenceModelImporterTest >> testaccessSharedVariableFromTheClassSide [
 	"self debug: #testaccessSharedVariableFromTheClassSide"
 
-	| attributeName definingClassName classVarUniqueName accessDefinition methodUniqueName methodName methodClassName |
-	attributeName := #TheRootSharedVariable.
-	definingClassName := TheRoot mooseName.
-	methodClassName := TheRoot class mooseName.
-	methodName := #accessSharedVariableFromTheClassSide.
+	| classVarUniqueName accessDefinition methodUniqueName |
 	methodUniqueName := (TheRoot class >> #accessSharedVariableFromTheClassSide) mooseName.
 	classVarUniqueName := TheRoot @ #TheRootSharedVariable.
 	accessDefinition := self model allAccesses

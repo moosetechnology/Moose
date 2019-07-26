@@ -12,29 +12,3 @@ FAMIXLeafEntity class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FAMIXLeafEntity class >> generatedSlotNames [
-	<generated>
-	'FAMIXLeafEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXLeafEntity class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
-{ #category : #meta }
-FAMIXLeafEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
-{ #category : #visiting }
-FAMIXLeafEntity >> accept: aVisitor [
-
-	aVisitor visitLeafEntity: self
-]

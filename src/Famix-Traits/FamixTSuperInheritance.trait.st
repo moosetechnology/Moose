@@ -15,19 +15,6 @@ FamixTSuperInheritance classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTSuperInheritance classSide >> generatedSlotNames [
-	<generated>
-	'FamixTSuperInheritance class>>#generatedSlotNames'.
-	^ #(superclass)
-]
-
-{ #category : #generator }
-FamixTSuperInheritance classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #testing }
 FamixTSuperInheritance >> isInheritance [
 

@@ -6,7 +6,7 @@ Class {
 
 { #category : #'generated-accessing' }
 DelphiFormParser class >> cacheId [
-	^'2018-10-19T22:04:34.139141-05:00'
+	^'2019-06-10T21:38:33.313871-05:00'
 ]
 
 { #category : #generated }
@@ -23,7 +23,7 @@ DelphiFormParser class >> definitionComment [
 	: true | false
 	;
 <LETTER> 
-	: <isLetter>
+	: <isLetter> | _
 	;
 <DIGIT> 
 	: [0-9] 
@@ -154,40 +154,49 @@ DelphiFormParser class >> fileExtensionType [
 { #category : #generated }
 DelphiFormParser class >> reduceTable [
 ^#(
-	#(30 1 #liftFirstValue:) 
-	#(28 1 #liftFirstValue:) 
-	#(49 1 #reduceActionForQualifiedName1:) 
-	#(33 1 #liftFirstValue:) 
-	#(42 0 #reduceActionForValues1:) 
-	#(47 0 #reduceActionForValues1:) 
-	#(39 0 #reduceActionForSetItems_1:) 
-	#(44 0 #reduceActionForValues1:) 
-	#(45 1 #reduceActionForBoolean1:) 
-	#(36 1 #reduceActionForNumber1:) 
-	#(36 1 #reduceActionForNumber2:) 
-	#(37 1 #reduceActionForString1:) 
-	#(35 1 #liftFirstValue:) 
-	#(35 1 #reduceActionForValue4:) 
-	#(32 0 #reduceActionForValues1:) 
-	#(31 0 #reduceActionForIndex1:) 
-	#(40 1 #reduceActionForSetItems1:) 
-	#(39 1 #reduceActionForSetItems_2:) 
-	#(49 3 #reduceActionForQualifiedName2:) 
-	#(34 3 #reduceActionForAssignment1:) 
-	#(41 3 #reduceActionForArray1:) 
-	#(42 2 #reduceActionForValues2:) 
-	#(46 3 #reduceActionForObjectArray1:) 
-	#(47 2 #reduceActionForValues2:) 
-	#(38 3 #reduceActionForSet1:) 
-	#(43 3 #reduceActionForByteArray1:) 
-	#(44 2 #reduceActionForValues2:) 
-	#(37 3 #reduceActionForString2:) 
-	#(48 3 #reduceActionForItem1:) 
-	#(32 2 #reduceActionForValues2:) 
-	#(40 3 #reduceActionForSetItems2:) 
-	#(31 3 #reduceActionForIndex2:) 
-	#(29 5 #reduceActionForObject2:) 
-	#(29 7 #reduceActionForObject1:)
+	#(30 1 #liftFirstValue: 876546 false ) 
+	#(30 1 #liftFirstValue: 876547 false ) 
+	#(30 1 #liftFirstValue: 876545 false ) 
+	#(28 1 #liftFirstValue: 614401 false ) 
+	#(49 1 #reduceActionForQualifiedName1: 2039809 false ) 
+	#(33 1 #liftFirstValue: 1045506 false ) 
+	#(33 1 #liftFirstValue: 1045505 false ) 
+	#(42 0 #reduceActionForValues1: 1679361 false ) 
+	#(47 0 #reduceActionForValues1: 1935361 false ) 
+	#(39 0 #reduceActionForSetItems_1: 1526785 false ) 
+	#(44 0 #reduceActionForValues1: 1781761 false ) 
+	#(45 1 #reduceActionForBoolean1: 1825793 false ) 
+	#(36 1 #reduceActionForNumber1: 1293313 false ) 
+	#(36 1 #reduceActionForNumber2: 1293314 false ) 
+	#(37 1 #reduceActionForString1: 1367041 false ) 
+	#(35 1 #liftFirstValue: 1167361 false ) 
+	#(35 1 #liftFirstValue: 1167362 false ) 
+	#(35 1 #liftFirstValue: 1167363 false ) 
+	#(35 1 #liftFirstValue: 1167365 false ) 
+	#(35 1 #liftFirstValue: 1167366 false ) 
+	#(35 1 #liftFirstValue: 1167367 false ) 
+	#(35 1 #liftFirstValue: 1167368 false ) 
+	#(35 1 #reduceActionForValue4: 1167364 false ) 
+	#(32 0 #reduceActionForValues1: 993281 false ) 
+	#(31 0 #reduceActionForIndex1: 930817 false ) 
+	#(40 1 #reduceActionForSetItems1: 1555457 false ) 
+	#(39 1 #reduceActionForSetItems_2: 1526786 false ) 
+	#(49 3 #reduceActionForQualifiedName2: 2039810 false ) 
+	#(34 3 #reduceActionForAssignment1: 1082369 false ) 
+	#(41 3 #reduceActionForArray1: 1626113 false ) 
+	#(42 2 #reduceActionForValues2: 1679362 false ) 
+	#(46 3 #reduceActionForObjectArray1: 1870849 false ) 
+	#(47 2 #reduceActionForValues2: 1935362 false ) 
+	#(38 3 #reduceActionForSet1: 1474561 false ) 
+	#(43 3 #reduceActionForByteArray1: 1718273 false ) 
+	#(44 2 #reduceActionForValues2: 1781762 false ) 
+	#(37 3 #reduceActionForString2: 1367042 false ) 
+	#(48 3 #reduceActionForItem1: 1971201 false ) 
+	#(32 2 #reduceActionForValues2: 993282 false ) 
+	#(40 3 #reduceActionForSetItems2: 1555458 false ) 
+	#(31 3 #reduceActionForIndex2: 930818 false ) 
+	#(29 5 #reduceActionForObject2: 632834 false ) 
+	#(29 7 #reduceActionForObject1: 632833 false )
 	).
 ]
 
@@ -228,7 +237,7 @@ DelphiFormParser class >> symbolNames [
 
 { #category : #generated }
 DelphiFormParser class >> symbolTypes [
-	^ #(#SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #DelphiFormObjectNode #DelphiFormObjectNode #DelphiFormObjectNode #SmaCCToken #OrderedCollection #OrderedCollection #DelphiFormParseNode #DelphiFormPropertyNode #DelphiFormParseNode #DelphiFormLiteralNode #DelphiFormParseNode #DelphiFormSetNode #OrderedCollection #OrderedCollection #DelphiFormArrayNode #OrderedCollection #DelphiFormByteArrayNode #OrderedCollection #DelphiFormBooleanNode #DelphiFormObjectArrayNode #OrderedCollection #DelphiFormItemNode #DelphiFormQualifiedNameNode #SmaCCToken #SmaCCError)
+	^ #(#SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #DelphiFormObjectNode #DelphiFormObjectNode #DelphiFormObjectNode #SmaCCToken #OrderedCollection #OrderedCollection #DelphiFormParseNode #DelphiFormPropertyNode #DelphiFormParseNode #DelphiFormLiteralNode #DelphiFormParseNode #DelphiFormSetNode #OrderedCollection #OrderedCollection #DelphiFormArrayNode #OrderedCollection #DelphiFormByteArrayNode #OrderedCollection #DelphiFormBooleanNode #DelphiFormObjectArrayNode #OrderedCollection #DelphiFormItemNode #DelphiFormQualifiedNameNode #SmaCCToken #SmaCCErrorNode)
 ]
 
 { #category : #generated }
@@ -240,72 +249,72 @@ DelphiFormParser class >> transitionTable [
 #[1 0 73 0 1 0 77 0 7 0 81 0 10 0 85 0 17 0 89 0 19 0 49 0 20 0 93 0 21 0 97 0 22 0 101 0 23 0 105 0 35 0 105 0 36 0 113 0 37 0 105 0 38 0 105 0 41 0 105 0 43 0 105 0 45 0 105 0 46 0 137 0 49] 
 #[1 0 141 0 15 0 145 0 48] 
 #[0 0 6 0 20] 
-#[0 0 6 0 20] 
-#[0 0 6 0 20] 
+#[0 0 10 0 20] 
+#[0 0 14 0 20] 
 #[0 0 0 0 50] 
-#[0 0 10 0 50] 
+#[0 0 18 0 50] 
 #[0 0 149 0 20] 
-#[0 0 14 0 1 0 2 0 5 0 7 0 8 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
-#[0 0 18 0 12 0 13 0 14 0 16 0 20 0 50] 
+#[0 0 22 0 1 0 2 0 5 0 7 0 8 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
+#[0 0 26 0 12 0 13 0 14 0 16 0 20 0 50] 
 #[0 0 0 0 50] 
-#[0 0 18 0 12 0 13 0 14 0 16 0 20 0 50] 
+#[0 0 30 0 12 0 13 0 14 0 16 0 20 0 50] 
 #[1 0 153 0 5 0 157 0 8] 
 #[0 0 0 0 50] 
-#[1 0 22 0 1 0 22 0 2 0 22 0 7 0 22 0 10 0 22 0 17 0 22 0 19 0 22 0 20 0 22 0 21 0 22 0 22 0 22 0 23 0 161 0 42] 
-#[1 0 26 0 9 0 26 0 15 0 165 0 47] 
-#[1 0 30 0 11 0 169 0 20 0 173 0 39 0 177 0 40] 
-#[1 0 34 0 18 0 34 0 24 0 181 0 44] 
-#[0 0 38 0 1 0 2 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
-#[0 0 42 0 1 0 2 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
-#[0 0 46 0 1 0 2 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
-#[0 0 50 0 1 0 2 0 3 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
+#[1 0 34 0 1 0 34 0 2 0 34 0 7 0 34 0 10 0 34 0 17 0 34 0 19 0 34 0 20 0 34 0 21 0 34 0 22 0 34 0 23 0 161 0 42] 
+#[1 0 38 0 9 0 38 0 15 0 165 0 47] 
+#[1 0 42 0 11 0 169 0 20 0 173 0 39 0 177 0 40] 
+#[1 0 46 0 18 0 46 0 24 0 181 0 44] 
+#[0 0 50 0 1 0 2 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
+#[0 0 54 0 1 0 2 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
+#[0 0 58 0 1 0 2 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
+#[0 0 62 0 1 0 2 0 3 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
 #[0 0 0 0 50] 
-#[0 0 54 0 1 0 2 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
-#[1 0 54 0 1 0 54 0 2 0 185 0 3 0 54 0 7 0 54 0 10 0 54 0 12 0 54 0 13 0 54 0 14 0 54 0 16 0 54 0 17 0 54 0 19 0 54 0 20 0 54 0 21 0 54 0 22 0 54 0 23 0 54 0 50] 
-#[0 0 54 0 1 0 2 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
-#[0 0 54 0 1 0 2 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
-#[0 0 54 0 1 0 2 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
-#[0 0 54 0 1 0 2 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
-#[0 0 54 0 1 0 2 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
-#[1 0 58 0 1 0 58 0 2 0 153 0 5 0 58 0 7 0 58 0 10 0 58 0 12 0 58 0 13 0 58 0 14 0 58 0 16 0 58 0 17 0 58 0 19 0 58 0 20 0 58 0 21 0 58 0 22 0 58 0 23 0 58 0 50] 
-#[1 0 62 0 12 0 62 0 13 0 62 0 14 0 62 0 16 0 62 0 20 0 189 0 32] 
+#[0 0 66 0 1 0 2 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
+#[1 0 70 0 1 0 70 0 2 0 185 0 3 0 70 0 7 0 70 0 10 0 70 0 12 0 70 0 13 0 70 0 14 0 70 0 16 0 70 0 17 0 70 0 19 0 70 0 20 0 70 0 21 0 70 0 22 0 70 0 23 0 70 0 50] 
+#[0 0 74 0 1 0 2 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
+#[0 0 78 0 1 0 2 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
+#[0 0 82 0 1 0 2 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
+#[0 0 86 0 1 0 2 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
+#[0 0 90 0 1 0 2 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
+#[1 0 94 0 1 0 94 0 2 0 153 0 5 0 94 0 7 0 94 0 10 0 94 0 12 0 94 0 13 0 94 0 14 0 94 0 16 0 94 0 17 0 94 0 19 0 94 0 20 0 94 0 21 0 94 0 22 0 94 0 23 0 94 0 50] 
+#[1 0 98 0 12 0 98 0 13 0 98 0 14 0 98 0 16 0 98 0 20 0 189 0 32] 
 #[0 0 0 0 50] 
-#[1 0 193 0 6 0 197 0 10 0 66 0 12 0 66 0 13 0 66 0 14 0 66 0 16 0 66 0 20 0 201 0 31] 
+#[1 0 193 0 6 0 197 0 10 0 102 0 12 0 102 0 13 0 102 0 14 0 102 0 16 0 102 0 20 0 201 0 31] 
 #[0 0 205 0 20] 
 #[1 0 73 0 1 0 77 0 7 0 81 0 10 0 85 0 17 0 89 0 19 0 49 0 20 0 93 0 21 0 97 0 22 0 101 0 23 0 209 0 35 0 209 0 36 0 113 0 37 0 209 0 38 0 209 0 41 0 209 0 43 0 209 0 45 0 209 0 46 0 137 0 49] 
 #[1 0 73 0 1 0 213 0 2 0 77 0 7 0 81 0 10 0 85 0 17 0 89 0 19 0 49 0 20 0 93 0 21 0 97 0 22 0 101 0 23 0 217 0 35 0 217 0 36 0 113 0 37 0 217 0 38 0 217 0 41 0 217 0 43 0 217 0 45 0 217 0 46 0 137 0 49] 
 #[1 0 221 0 9 0 141 0 15 0 225 0 48] 
-#[0 0 70 0 4 0 11] 
+#[0 0 106 0 4 0 11] 
 #[0 0 229 0 11] 
-#[1 0 233 0 4 0 74 0 11] 
+#[1 0 233 0 4 0 110 0 11] 
 #[1 0 237 0 18 0 241 0 24] 
 #[0 0 245 0 23] 
 #[1 0 249 0 12 0 45 0 13 0 45 0 14 0 45 0 16 0 49 0 20 0 253 0 29 0 45 0 30 0 253 0 33 0 253 0 34 0 65 0 49] 
 #[0 1 1 0 20] 
 #[0 1 5 0 21] 
-#[1 0 62 0 12 0 62 0 13 0 62 0 14 0 62 0 16 0 62 0 20 1 9 0 32] 
-#[0 0 78 0 1 0 2 0 5 0 7 0 8 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
-#[0 0 82 0 12 0 13 0 14 0 16 0 20 0 50] 
-#[0 0 86 0 1 0 2 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
-#[0 0 90 0 1 0 2 0 7 0 10 0 17 0 19 0 20 0 21 0 22 0 23] 
-#[0 0 94 0 1 0 2 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
-#[0 0 98 0 9 0 15] 
-#[0 0 102 0 1 0 2 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
+#[1 0 98 0 12 0 98 0 13 0 98 0 14 0 98 0 16 0 98 0 20 1 9 0 32] 
+#[0 0 114 0 1 0 2 0 5 0 7 0 8 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
+#[0 0 118 0 12 0 13 0 14 0 16 0 20 0 50] 
+#[0 0 122 0 1 0 2 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
+#[0 0 126 0 1 0 2 0 7 0 10 0 17 0 19 0 20 0 21 0 22 0 23] 
+#[0 0 130 0 1 0 2 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
+#[0 0 134 0 9 0 15] 
+#[0 0 138 0 1 0 2 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
 #[0 1 13 0 20] 
-#[0 0 106 0 1 0 2 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
-#[0 0 110 0 18 0 24] 
-#[0 0 114 0 1 0 2 0 3 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
-#[0 0 118 0 9 0 15 0 50] 
-#[0 0 122 0 12 0 13 0 14 0 16 0 20] 
-#[1 0 197 0 10 0 66 0 12 0 66 0 13 0 66 0 14 0 66 0 16 0 66 0 20 1 17 0 31] 
+#[0 0 142 0 1 0 2 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
+#[0 0 146 0 18 0 24] 
+#[0 0 150 0 1 0 2 0 3 0 7 0 10 0 12 0 13 0 14 0 16 0 17 0 19 0 20 0 21 0 22 0 23 0 50] 
+#[0 0 154 0 9 0 15 0 50] 
+#[0 0 158 0 12 0 13 0 14 0 16 0 20] 
+#[1 0 197 0 10 0 102 0 12 0 102 0 13 0 102 0 14 0 102 0 16 0 102 0 20 1 17 0 31] 
 #[0 1 21 0 11] 
 #[1 1 25 0 12 0 45 0 13 0 45 0 14 0 45 0 16 0 49 0 20 0 253 0 29 0 45 0 30 0 253 0 33 0 253 0 34 0 65 0 49] 
-#[0 0 126 0 4 0 11] 
-#[1 0 62 0 12 0 62 0 13 0 62 0 14 0 62 0 16 0 62 0 20 1 29 0 32] 
-#[0 0 130 0 12 0 13 0 14 0 16 0 20] 
-#[0 0 134 0 12 0 13 0 14 0 16 0 20 0 50] 
+#[0 0 162 0 4 0 11] 
+#[1 0 98 0 12 0 98 0 13 0 98 0 14 0 98 0 16 0 98 0 20 1 29 0 32] 
+#[0 0 166 0 12 0 13 0 14 0 16 0 20] 
+#[0 0 170 0 12 0 13 0 14 0 16 0 20 0 50] 
 #[1 1 33 0 12 0 45 0 13 0 45 0 14 0 45 0 16 0 49 0 20 0 253 0 29 0 45 0 30 0 253 0 33 0 253 0 34 0 65 0 49] 
-#[0 0 138 0 12 0 13 0 14 0 16 0 20 0 50]
+#[0 0 174 0 12 0 13 0 14 0 16 0 20 0 50]
 	).
 ]
 

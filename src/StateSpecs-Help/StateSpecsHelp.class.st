@@ -1,7 +1,7 @@
 Class {
 	#name : #StateSpecsHelp,
 	#superclass : #CustomHelp,
-	#category : 'StateSpecs-Help'
+	#category : #'StateSpecs-Help'
 }
 
 { #category : #accessing }
@@ -82,10 +82,12 @@ StateSpecsHelp class >> shouldExpressions [
 [1 + 2] should raise: ZeroDivide.
 [1/0] should not raise: ZeroDivide.
 [1/0] should raise: Error.
-[1/0] should raise: (Kind of: Error).
+[1/0] should raise: (Instance of: Error).
 [1/0] should fail.
 [self error: ''test''] should raise: errorInstance. "fail because raised error is not the same as expected errorInstance"
 [1 + 2] should not fail.
+error := [ self error: ''test cool error'' ] should fail.
+error description should includeSubstring: ''cool''
 
 3 should be even.
 2 should not be even.

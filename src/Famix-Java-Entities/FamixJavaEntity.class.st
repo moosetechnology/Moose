@@ -30,31 +30,11 @@ FamixJavaEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaEntity class >> generatedSlotNames [
-	<generated>
-	'FamixJavaEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaEntity class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FamixJavaEntity class >> metamodel [
 
 	<generated>
 	^ (self class environment at: #FamixJavaGenerator) metamodel
-]
-
-{ #category : #meta }
-FamixJavaEntity class >> requirements [
-
-	<generated>
-	^ {  }
 ]
 
 { #category : #'Moose-Query' }

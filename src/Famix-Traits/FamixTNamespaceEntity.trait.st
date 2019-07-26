@@ -15,19 +15,6 @@ FamixTNamespaceEntity classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTNamespaceEntity classSide >> generatedSlotNames [
-	<generated>
-	'FamixTNamespaceEntity class>>#generatedSlotNames'.
-	^ #(parentNamespace)
-]
-
-{ #category : #generator }
-FamixTNamespaceEntity classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTNamespaceEntity >> parentNamespace [
 

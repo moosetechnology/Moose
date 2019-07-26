@@ -31,7 +31,7 @@ Class {
 	#classVars : [
 		'CurrentExpressionsClass'
 	],
-	#category : 'StateSpecs-DSL-ShouldExpressions'
+	#category : #'StateSpecs-DSL-ShouldExpressions'
 }
 
 { #category : #accessing }
@@ -155,7 +155,7 @@ SpecOfShouldExpression >> equalInOrder: anObject [
 
 { #category : #expressions }
 SpecOfShouldExpression >> fail [
-	^self raise: (SpecOfObjectSuperclass requiredClass: Error)
+	^self raise: Error
 ]
 
 { #category : #expressions }

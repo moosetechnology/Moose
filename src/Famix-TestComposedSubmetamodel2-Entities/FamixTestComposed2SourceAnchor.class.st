@@ -14,35 +14,3 @@ FamixTestComposed2SourceAnchor class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FamixTestComposed2SourceAnchor class >> generatedSlotNames [
-	<generated>
-	'FamixTestComposed2SourceAnchor class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixTestComposed2SourceAnchor class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTSourceAnchor TDependencyQueries TEntityMetaLevelDependency)
-]
-
-{ #category : #meta }
-FamixTestComposed2SourceAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
-{ #category : #'moosequery-queries-generic' }
-FamixTestComposed2SourceAnchor >> throughAllFrom [
-	"Query all the incoming associations of the receiver and its children.
-
-	Example:
-		aFAMIXClass queryAllIncoming.
-			--> Will return a MooseIncomingQueryResult containing the FAMIXAssociation having aFAMIXClass or its children as target
-	"
-
-	^ (MooseQueryCalculator strategy: MooseQueryIncomingDirectionStrategy) throughAllFor: self
-]

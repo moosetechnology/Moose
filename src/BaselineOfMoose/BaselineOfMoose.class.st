@@ -4,529 +4,115 @@ rce: 22987863
 Class {
 	#name : #BaselineOfMoose,
 	#superclass : #BaselineOf,
+	#instVars : [
+		'repository'
+	],
 	#category : #BaselineOfMoose
 }
 
 { #category : #baseline }
-BaselineOfMoose >> baseline: spec [ 
-    
-	<baseline> 
-       
-	| repository |
-
+BaselineOfMoose >> baseline: spec [
+	<baseline>
 	repository := self packageRepositoryURL.
-
-	spec for: #common do: [ 		
-		
-		spec package: 'Moose-PharoOverrides'.		
-		
-		self baselineGrease: spec. 
-		self baselineMagritte3: spec.
-		self baselineHashtable: spec.
-		self baselineStateSpecs: spec.
-		self baselineGhost: spec.
-		self baselineMocketry: spec.
-		self baselineFame: spec.
-
-		spec package: 'GToolkit-Examples'.
-		
-		self baselineDeepTraverser: spec.
-		self baselineRing2: spec.
-		
-		spec
-			package: 'Moose-Query';
-			package: 'Moose-Core';
-			package: 'Moose-Query-Extensions';
-			package: 'Famix-MetamodelBuilder-Core';
-			package: 'Famix-MetamodelBuilder-Tests';
-			
-			package: 'Famix-MetamodelGeneration';
-			package: 'Famix-Groups';
-			package: 'Famix-Traits';
-				
-			package: 'Famix-BasicInfrastructure';
-			package: 'Famix-Smalltalk-Utils';
-			
-			package: 'Famix-Compatibility-Generator';
-			package: 'Famix-Compatibility-Entities'.
-
-		spec baseline: 'FamixCompatibility' with: [spec repository: repository].
-		
-		self baselineRoelTyper: spec.
-		
-		spec
-			package: 'Moose-GenericImporter';
-			package: 'Famix-Compatibility-Tests-C';
-			package: 'Moose-Query-Extensions';
-			package: 'Moose-SmalltalkImporter';
-			package: 'Moose-MonticelloImporter';
-			package: 'Moose-Tests-Core';
-			package: 'Famix-Smalltalk-Utils-Tests';
-			package: 'Famix-Compatibility-Tests-Java';
-			package: 'Moose-Tests-SmalltalkImporter-LAN';
-			package: 'Moose-Tests-SmalltalkImporter-Core';
-			package: 'Moose-Tests-SmalltalkImporter-KGB';
-			package: 'Famix-Compatibility-Tests-Core';
-			package: 'Famix-Compatibility-Tests-Extensions';
-			package: 'Moose-TestResources-Reference-External';
-			package: 'Moose-TestResources-Reference-Core';
-			package: 'Moose-TestResources-Reference-PackageOne';
-			package: 'Moose-TestResources-Reference-PackageTwo';
-			package: 'Moose-TestResources-LAN';
-			package: 'Moose-TestResources-LCOM';
-			package: 'Moose-TestResources-KGB-P4FullInteracted';
-			package: 'Moose-TestResources-KGB-P6InteractedReferee';
-			package: 'Moose-TestResources-KGB-P5FullReferee';
-			package: 'Moose-TestResources-KGB-P1FullReferencer';
-			package: 'Moose-TestResources-KGB-P2InteractedReferencerReferee';
-			package: 'Moose-TestResources-KGB-P3InteractedReferencer';
-			package: 'Moose-TestResources-KGB-P7ReferencerReferee';
-			package: 'Moose-TestResources-KGB-P8FullReferencer';
-			package: 'Moose-TestResources-KGB-P9FullReferencer';
-			package: 'Moose-TestResources-KGB-P10InteractedReferee';
-			package: 'Moose-TestResources-KGB-P12FullReferencer';
-			package: 'Moose-TestResources-KGB-P11FullReferee';
-			package: 'Moose-TestResources-KGB-P13FullReferencer';
-			package: 'Moose-TestResources-KGB-P14FullReferee';
-			package: 'Moose-TestResources-KGB-PExtensions';
-			package: 'Moose-TestResources-PackageBlueprint-P1';
-			package: 'Moose-TestResources-PackageBlueprint-P2';
-			package: 'Moose-TestResources-PackageBlueprint-P3';
-			package: 'Moose-TestResources-PackageBlueprint-P4';
-			package: 'Moose-Tests-MonticelloImporter';
-			package: 'Moose-Query-Test'.
-
-		self baselineMetamodelBuilder: spec.
-		self baselineFamixNG: spec.
-
-		self baselineGeometry: spec.
-		self baselineAthens: spec.
-		self baselineRoassal2: spec.
-
-		self baselineMooseAlgos: spec.
-
-		self baselineOrderPreservingDictionary: spec.
-		self baselineCollectionExtensions: spec.
-		self baselineBitmapCharacterSet: spec.
-		self baselineXMLParser: spec.
-
-		spec
-			package: 'Glamour-Tools';
-			package: 'Glamour-Magritte-Presentations';
-			
-			package: 'Moose-Help'.
-	
-		self baselineMetanool: spec.
-		
-		spec
-			package: 'Moose-Finder';
-			package: 'Moose-RoassalPaintings';
-			package: 'Moose-Tests-Finder';
-			package: 'Moose-Tests-RoassalPaintings'.
-			
-		self baselinePetitParser: spec.
-		self baselineNeoCSV: spec.
-		self baselineSmaCC: spec.
-		self baselineXMLWriter: spec.
-		self baselineMerlin: spec.
-		self baselineDistributionMap: spec.
-		self baselineWizard: spec.
-
-	   self groups: spec.
-	]
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineAthens: spec [ 
-    
-	spec package: 'Athens-SVG'
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineBitmapCharacterSet: spec [ 
-    
-	spec package: 'Collections-BitmapCharacterSet'
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineCollectionExtensions: spec [ 
-    
-	self defineGroup: #'CollectionExtensions-Group' in: spec with: #(
-		'CollectionExtensions'
-	).
-	
-	self defineGroup: #'CollectionExtensions-Tests-Group' in: spec with: #(
-		'CollectionExtensions-Tests'	
-	).
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineDeepTraverser: spec [ 
-    
-	self defineGroup: #'DeepTraverser-Base' in: spec with: #(
-		 'DeepTraverser'
-	).
-	
-	self defineGroup: #'DeepTraverser-Tests-Group' in: spec with: #(
-		 'DeepTraverser-Tests'
-	).
-	
-	self defineGroup: #'DeepTraverser-Examples-Group' in: spec with: #(
-		 'DeepTraverser-Examples'
-	).
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineDistributionMap: spec [ 
-
-	self defineGroup: #'DistributionMap-Group' in: spec with: #(
-		'Moose-DistributionMap'
-		'Moose-Tests-DistributionMap'
-	).
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineFame: spec [ 
-    
-	self defineGroup: #'Fame' in: spec with: #(
-		'Fame-Core'
-		'Fame-ImportExport'
-		'Fame-SmalltalkBinding'
-		'Fame-Example'
-		'Fame-Tests-Core'
-		'Fame-Rules'
-	) 
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineFamixNG: spec [ 
-    
 	spec
-		package: 'Famix-Traits';
-
-		package: 'Famix-PharoSmalltalk-Generator';
-		package: 'Famix-PharoSmalltalk-Entities';
-		package: 'Famix-PharoSmalltalk-Importer';
-
-		package: 'Famix-Java-Generator';
-		package: 'Famix-Java-Entities';
-
-		package: 'Famix-TestGenerators';
-		package: 'Famix-Test1-Entities';
-		package: 'Famix-Test1-Tests';
-		package: 'Famix-Test2-Entities';
-		package: 'Famix-Test2-Tests';
-		package: 'Famix-Test3-Entities';
-		package: 'Famix-Test3-Tests';
-		package: 'Famix-Test4-Entities';
-		package: 'Famix-Test4-Tests';
-		package: 'Famix-TestComposedSubmetamodel1-Entities';
-		package: 'Famix-TestComposedSubmetamodel2-Entities';
-		package: 'Famix-TestComposedMetamodel';
-		package: 'Famix-TestComposedMetamodel-Entities'.
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineGeometry: spec [ 
-    
-	spec package: 'Geometry'
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineGhost: spec [ 
-    
-	self defineGroup: #Ghost in: spec with: #(
-		'Ghost-ObjectGhost'
-		'Ghost-ClassGhost'
-		'Ghost-ObjectMutation'
-		'Ghost-ObjectGhost-Tests'
-		'Ghost-GTSupport'
-		'Ghost-StateSpecsSupport'
-		'Ghost-StateSpecsSupport-Tests'
-		'Ghost-ClassGhost-Tests'
-		'Ghost-ObjectMutation-Tests'
-	)
-	
-
-
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineGrease: spec [ 
-   
-	self defineGroup: #Grease in: spec with: #(
-		'Grease-Core'
-		'Grease-Pharo30-Core' 
-	).
-
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineHashtable: spec [ 
-    
-	self defineGroup: #'HashTable' in: spec with: #(
-		'Hashtable'
-	).
-	
-	self defineGroup: #'HashTable-Tests-Group' in: spec with: #(
-		'Hashtable-Tests'
-	).
-	
-	spec group: 'HashTable-Group' with: #(
-		'HashTable-Base'
-		'HashTable-Tests-Group'
-	).
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineMagritte3: spec [ 
-    
+		for: #common
+		do: [ " Meta Model"
+			self famix: spec.
+			" Roassal "
+			self baselineRoassal2: spec.
+			"IDE"
+			self mooseIDE: spec.
+			" Petit parser with/without UI"
+			self baselinePetitParser: spec.
+			self baselinePetitParserUI: spec.
+			" SmaCC with/without UI"
+			self baselineSmaCC: spec.
+			self baselineSmaCCUI: spec.
+			self baselineSmaCCJava: spec.
+			self baselineSmaCCJavaUI: spec.
+			" XMLWriter / Miscelaneous (Merlin, Wizard, etc)"
+			self baselineXMLParser: spec.
+			self baselineMiscs: spec.
+			self groups: spec.
+			self newGroups: spec ].
 	spec
-		package: 'Magritte-Model';
-		package: 'Magritte-Pharo3-Model';
-		package: 'Magritte-Morph'
+		for: #'pharo7.x'
+		do: [ spec
+				package: 'Famix-MetamodelBuilder-Core'
+					with: [ spec includes: #('Famix-MetamodelBuilder-Core-Pharo7') ];
+				package: 'Famix-MetamodelBuilder-Core-Pharo7' ]
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineMerlin: spec [ 
-
-	self defineGroup: #'Merlin-Group' in: spec with: #(
-		'Merlin'
-	).
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineMetamodelBuilder: spec [ 
-    
-	spec package: 'Famix-MetamodelBuilder-Core'
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineMetanool: spec [ 
-    
-	spec
-		package: 'Metanool-Core';
-		package: 'Metanool-Tests-Core'
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineMocketry: spec [ 
-    
-	self defineGroup: #Mocketry in: spec with: #(
-		'Mocketry-Specs'
-		'Mocketry-Domain'
-		'Mocketry-Help'
-		'Mocketry-Specs-Tests'
-		'Mocketry-Domain-Tests'
-	)
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineMooseAlgos: spec [ 
-    
-	spec
-		package: 'Moose-Algos-Graph';
-		package: 'Moose-Algos-Graph-Tests';
-		package: 'Moose-Algos-FormalConceptAnalysis';
-		package: 'Moose-Algos-FormalConceptAnalysis-Tests';
-		package: 'Moose-Algos-Lattice';
-		package: 'Moose-Algos-Lattice-Tests';
-		package: 'Moose-Algos-LinearAlgebra';
-		package: 'Moose-Algos-LinearAlgebra-Tests';
-		package: 'Moose-Algos-InformationRetrieval';
-		package: 'Moose-Algos-InformationRetrieval-Tests'.
-		
-	self defineGroup: #'MooseAlgos-Additions' in: spec with: #(
-		'Moose-Algos-Clustering'
-		'Moose-Algos-HierarchicalGraph'
-		'Moose-Algos-Kontractor'
-		'Moose-Algos-Clustering-Tests'
-		'Moose-Algos-HierarchicalGraph-Tests'
-		'Moose-Algos-Kontractor-Tests'
-	).
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineMooseTestResources: spec [ 
-    
-	self defineGroup: #MooseTestResources in: spec with: #(
-		'Moose-TestResources-LAN'
-		'Moose-TestResources-Reference-Core'
-		'Moose-TestResources-KGB-P4FullInteracted'
-		'Moose-TestResources-KGB-P6InteractedReferee'
-		'Moose-TestResources-KGB-P5FullReferee'
-		'Moose-TestResources-KGB-P7ReferencerReferee'
-		'Moose-TestResources-KGB-P2InteractedReferencerReferee'
-		'Moose-TestResources-KGB-P1FullReferencer'
-		'Moose-TestResources-KGB-P3InteractedReferencer'
-		'Moose-TestResources-KGB-P8FullReferencer'
-		'Moose-TestResources-KGB-P9FullReferencer'
-		'Moose-TestResources-KGB-P10InteractedReferee'
-		'Moose-TestResources-KGB-P11FullReferee'
-		'Moose-TestResources-KGB-P12FullReferencer'
-		'Moose-TestResources-KGB-P13FullReferencer'
-		'Moose-TestResources-KGB-P14FullReferee'
-		'Moose-TestResources-LCOM'
-		'Moose-TestResources-PackageBlueprint-P1'
-		'Moose-TestResources-PackageBlueprint-P2'
-		'Moose-TestResources-PackageBlueprint-P3'
-		'Moose-TestResources-PackageBlueprint-P4'
-		'Moose-TestResources-Reference-PackageOne'
-		'Moose-Tests-SmalltalkImporter-Core'
-		'Moose-TestResources-Reference-PackageTwo'
-		'Moose-Tests-SmalltalkImporter-LAN'
-		'Moose-Tests-SmalltalkImporter-KGB'
-		'Moose-TestResources-KGB-PExtensions'
-	).
-
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineNeoCSV: spec [ 
-    
-	self defineGroup: #'NeoCSV-Group' in: spec with: #(
-		'Neo-CSV-Core' 
-		'Neo-CSV-Tests' 
-	).
-
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineOrderPreservingDictionary: spec [ 
-    
-	spec package: 'Collections-OrderPreservingDictionary'
+BaselineOfMoose >> baselineMiscs: spec [
+	spec baseline: 'MooseMiscs' with: [ spec repository: repository ]
 ]
 
 { #category : #baseline }
 BaselineOfMoose >> baselinePetitParser: spec [ 
     
-	self defineGroup: #'PetitParser-Group' in: spec with: #(
-		'PetitParser' 
-		'PetitTests' 
-		'PetitAnalyzer'
-		'PetitGui'
-		
-		'PetitMSE'
-	).
-
+	spec baseline: 'MoosePetitParser' with: [ spec repository: repository ]
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineRing2: spec [ 
-    
-	self defineGroup: #Ring2 in: spec with: #(
-		'Ring2-Core' 
-		'Ring2-TraitsV2Support'
-		'Ring2-Monticello' 
-		'Ring2-ChunkImporter'
-		'Ring2-Tests-Core' 
-		'Ring2-Tests-Monticello' 
-		'Ring2-Tests-ChunkImporter' 
-		'Ring2-RuntimeSupport' 
-		'Calypso-Ring2').
-
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineRoassal2: spec [ 
-    
+BaselineOfMoose >> baselinePetitParserUI: spec [
 	spec
-		package: 'Trachel';
-		package: 'Roassal2';
-		package: 'Roassal2GT'
+		project: 'MoosePetitParserUI'
+		copyFrom: 'MoosePetitParser'
+		with: [ spec loads: 'UI' ]
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineRoelTyper: spec [
-	self defineGroup: #'RoelTyper-Group' in: spec with: #('RoelTyper' 'RoelTyper')
+BaselineOfMoose >> baselineRoassal2: spec [
+	spec baseline: 'MooseRoassal' with: [ spec repository: repository ]
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineSmaCC: spec [ 
-    
+BaselineOfMoose >> baselineSmaCC: spec [
 	"
 	https://github.com/j-brant/SmaCC
 	git@github.com:j-brant/SmaCC.git
 	branch: Pharo7
 	"
 
-	self defineGroup: #'SmaCC-Group' in: spec with: #(
-		'SmaCC_Runtime'
-		'SmaCC_GLR_Runtime'
-		'SmaCC_Source_Editing'
-		'SmaCC_Rewrite_Engine'
-		
-		'SmaCC_Antlr_Parser'
-		'SmaCC_CSV_Parser'
-		'SmaCC_CSharp'
-		'SmaCC_C_Parser'
-		'SmaCC_Delphi'
-		'SmaCC_Delphi_Forms'
-		'SmaCC_Generic_Smalltalk_Parser'
-		'SmaCC_Grammar_Parser'
-		'SmaCC_Java'
-		'SmaCC_Javascript_Parser'
-		'SmaCC_Line_Parser'
-		'SmaCC_Smalltalk_Parser'
-		'SmaCC_Source_Editing'
-		'SmaCC_Swift'
-
-		'SmaCC_Development'
-		'SmaCC_Debugging_Support'
-		
-		'SmaCC_Parse_Tree_Comparison'
-		'SmaCC_Tests'
-		'SmaCC_Development_UI'
-		'SmaCC_Rewrite_Engine_Tests'
-		
-		'SmaCC_Rewrite_Engine_Command_Line'
-		'SmaCC_Rewrite_Engine_UI'
-		'SmaCC_Rewrite_Server'
-		'SmaCC_Rewrite_Server_Worker'
-	).
+	spec
+		baseline: 'MooseSmaCC'
+		with: [ spec
+				repository: repository;
+				loads: #(FullNoUI) ]
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineStateSpecs: spec [ 
-    
-	self defineGroup: #'StateSpecs-Base' in: spec with: #(
-		'StateSpecs-Specs'
-		'StateSpecs-DSL-ShouldExpressions'
-	).
-
-	self defineGroup: #'StateSpecs-Additional' in: spec with: #(
-		'StateSpecs-DSL-ClassWords'
-		'StateSpecs-Help'
-		'StateSpecs-Specs-Tests'
-		'StateSpecs-DSL-ShouldExpressions-Tests'
-		'StateSpecs-DSL-ClassWords-Tests'
-	)
+BaselineOfMoose >> baselineSmaCCJava: spec [
+	spec
+		project: 'MooseSmaCCJava'
+		copyFrom: 'MooseSmaCC'
+		with: [ spec loads: 'Java' ]
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineWizard: spec [ 
-
-	self defineGroup: #'Wizard-Group' in: spec with: #(
-		'Moose-Wizard'
-	).
+BaselineOfMoose >> baselineSmaCCJavaUI: spec [
+	spec
+		project: 'MooseSmaCCJavaUI'
+		copyFrom: 'MooseSmaCC'
+		with: [ spec loads: #('Java' UI)  ]
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineXMLParser: spec [ 
-    
-	spec package: 'XML-Parser'
+BaselineOfMoose >> baselineSmaCCUI: spec [
+	spec
+		project: 'MooseSmaCCUI'
+		copyFrom: 'MooseSmaCC'
+		with: [ spec loads: 'FullUI' ]
 ]
 
 { #category : #baseline }
-BaselineOfMoose >> baselineXMLWriter: spec [ 
-
-	self defineGroup: #'XMLWriter-Group' in: spec with: #(
-		'XML-Writer-Core'
-		'XML-Writer-Tests'
-		'Collections-Tests-OrderPreservingDictionary'
-		'XML-Tests-Parser'
-		'XML-Parser-GTExtensions'
-	).
+BaselineOfMoose >> baselineXMLParser: spec [
+	spec
+		baseline: 'MooseXMLParser'
+		with: [ spec
+				repository: repository;
+				loads: #Core ]
 ]
 
 { #category : #private }
@@ -536,172 +122,131 @@ BaselineOfMoose >> defineGroup: groupName in: spec with: packages [
 	spec group: groupName with: packages
 ]
 
+{ #category : #dependencies }
+BaselineOfMoose >> famix: spec [
+	spec baseline: 'Famix' with: [ spec repository: repository ]
+]
+
 { #category : #baseline }
 BaselineOfMoose >> groups: spec [ 
     
 	spec group: 'BasicMetamodelling' with: #(
-		'Moose-PharoOverrides'
-
-		'Ring2' 
-		'Grease' 
-		'CollectionExtensions-Group'
-		'HashTable'
-		'StateSpecs-Base'
-		'Fame'
-		'DeepTraverser-Base'
-
-		'Moose-Core'
-		'Moose-Query'
-			
-		'Famix-BasicInfrastructure'
-		'Famix-MetamodelBuilder-Core'
-			
-		'Moose-Query-Extensions'
-		'Moose-Query-Test'
-		'Moose-GenericImporter'
-			
-		'Famix-MetamodelGeneration'
-		'Famix-Traits'
-		
-		'Famix-Smalltalk-Utils'
-		'Famix-Groups'
-		'Famix-Compatibility-Generator' 
-		'Famix-Compatibility-Entities'
+		Famix
 	).
-	
-	spec group: 'BasicTests' with: #(
-		'Famix-MetamodelBuilder-Tests'
-		'Famix-Smalltalk-Utils-Tests'
-
-		'StateSpecs-Additional'
-		'Ghost'
-		'Mocketry'
-			
-		'Moose-TestResources-LAN'
-		'Moose-TestResources-Reference-External'
-		'Moose-TestResources-Reference-Core'
-		'Moose-TestResources-Reference-PackageOne'
-		'Moose-TestResources-Reference-PackageTwo'
-		'Moose-TestResources-KGB-P4FullInteracted'
-		'Moose-TestResources-KGB-P6InteractedReferee'
-		'Moose-TestResources-KGB-P5FullReferee'
-		'Moose-TestResources-KGB-P7ReferencerReferee'
-		'Moose-TestResources-KGB-P2InteractedReferencerReferee'
-		'Moose-TestResources-KGB-P1FullReferencer'
-		'Moose-TestResources-KGB-P3InteractedReferencer'
-		'Moose-TestResources-KGB-P8FullReferencer'
-		'Moose-TestResources-KGB-P9FullReferencer'
-		'Moose-TestResources-KGB-P10InteractedReferee'
-		'Moose-TestResources-KGB-P11FullReferee'
-		'Moose-TestResources-KGB-P12FullReferencer'
-		'Moose-TestResources-KGB-P13FullReferencer'
-		'Moose-TestResources-KGB-P14FullReferee'
-		'Moose-TestResources-LCOM'
-		'Moose-TestResources-PackageBlueprint-P1'
-		'Moose-TestResources-PackageBlueprint-P2'
-		'Moose-TestResources-PackageBlueprint-P3'
-		'Moose-TestResources-PackageBlueprint-P4'
-		'Moose-Tests-SmalltalkImporter-Core'
-		'Moose-Tests-SmalltalkImporter-LAN'
-		'Moose-Tests-SmalltalkImporter-KGB'
-		'Moose-TestResources-KGB-PExtensions'
-			
-		'RoelTyper-Group'
-		'Moose-GenericImporter'
-		'Moose-SmalltalkImporter'
-		'Moose-Tests-Core'
-		'Famix-Compatibility-Tests-Core'
-		'Famix-Compatibility-Tests-C'
-		'Famix-Compatibility-Tests-Java'
-		'Famix-Compatibility-Tests-Extensions'
-		'DeepTraverser-Tests-Group'
-		'HashTable-Tests-Group'
-		'CollectionExtensions-Tests-Group'
-	).	
-
 	spec group: 'BasicMetamodellingWithRoassal' with: #(
-		'BasicMetamodelling'
-		'Collections-OrderPreservingDictionary'
-		'Collections-BitmapCharacterSet'
-		'XML-Parser'		
-		'Athens-SVG'
-		'Trachel'
-		'Geometry'
-		'Roassal2'
-		'GToolkit-Examples'
-		'Roassal2GT'
+		BasicMetamodelling
+		MooseRoassal
 	).
-	
-	spec group: 'MooseFinder' with: #(
-		'BasicMetamodellingWithRoassal'
-		'BasicTests'
-		'Glamour-Tools'
-		'Magritte-Model'
-		'Magritte-Pharo3-Model'
-		'Magritte-Morph'
-		'Metanool-Core'
-		'Metanool-Tests-Core'			
-		'Glamour-Magritte-Presentations'
-		'Moose-Algos-Lattice'
-		'Moose-Algos-Graph-Tests'
-		'Moose-Algos-FormalConceptAnalysis'
-		'Moose-Algos-InformationRetrieval'
-		'Moose-Algos-LinearAlgebra'
-		'Moose-Algos-FormalConceptAnalysis-Tests'
-		'Moose-Algos-LinearAlgebra-Tests'
-		'Moose-RoassalPaintings'
-		'Moose-Help'
-		'Moose-Finder'
-		
-		'Moose-Tests-RoassalPaintings'
-		'Moose-Tests-Finder'
-		'Moose-Algos-Lattice-Tests'
-		'Moose-Algos-InformationRetrieval-Tests'
-
-		'Moose-MonticelloImporter'
-		'Moose-Tests-MonticelloImporter'
-		
-		'Famix-PharoSmalltalk-Generator'
-		'Famix-PharoSmalltalk-Entities'
-		'Famix-PharoSmalltalk-Importer'
-		
-		'Famix-Java-Generator'
-		'Famix-Java-Entities'
-		
-		'Famix-TestGenerators'
-		'Famix-Test1-Entities'
-		'Famix-Test1-Tests'
-		'Famix-Test2-Entities'
-		'Famix-Test2-Tests'
-		'Famix-Test3-Entities'
-		'Famix-Test3-Tests'
-		'Famix-Test4-Entities'
-		'Famix-Test4-Tests'
-		'Famix-TestComposedMetamodel'
-		'Famix-TestComposedMetamodel-Entities'
-		'Famix-TestComposedSubmetamodel1-Entities'
-		'Famix-TestComposedSubmetamodel2-Entities'
+	spec group: 'MooseIDEGroup' with: #(
+		BasicMetamodellingWithRoassal
+		MooseIDE
 	).
-
 	spec group: 'Parsing' with: #(
-		'MooseFinder'
-		'PetitParser-Group'
-		'NeoCSV-Group'
-		'SmaCC-Group'
+		MooseIDEGroup
+		MoosePetitParserUI
+		MooseSmaCCUI
 	).
-	
 	spec group: 'AdditionalTools' with: #(
-		'Parsing'
-		'XMLWriter-Group'
-		'DeepTraverser-Examples-Group'
-		'MooseAlgos-Additions'
-		'Merlin-Group'
-		'Moose-DistributionMap'
-		'Moose-Tests-DistributionMap'
-		'Wizard-Group'
+		Parsing
+		MooseXMLParser
+		MooseMiscs
+		MooseIDE
 	).
-		
 	spec group: 'default' with: #('AdditionalTools').
 	
 
+]
+
+{ #category : #dependencies }
+BaselineOfMoose >> mooseIDE: spec [
+	spec baseline: 'MooseIDE' with: [ spec repository: repository ]
+]
+
+{ #category : #baseline }
+BaselineOfMoose >> newGroups: spec [ 
+ 
+  "Only Famix"
+	spec group: 'Core' with: #(
+		Famix
+	).
+	"Famix-Java"
+	
+	spec group: 'Java' with: #(
+		Core
+		MooseSmaCCJava
+	).
+	"Famix-Java and UI"
+	spec group: 'JavaUI' with: #(
+		Core
+		MooseRoassal
+		MooseFinder
+		MooseSmaCCJavaUI
+		MooseIDE
+	).
+	
+	"Famix and PetitParser"
+	spec group: 'CorePetitParser' with: #(
+		Core
+		MoosePetitParser
+	).
+	"Famix petit parser and UI"
+	spec group: 'CorePetitParserUI' with: #(
+		Core
+		MooseRoassal
+		MooseFinder
+		MooseIDE
+		MoosePetitParserUI
+	).
+	
+	spec group: 'GraphicTools' with: #(
+		Core
+		MooseFinder
+		MooseIDE
+		MooseMiscs
+	).
+	
+	"Famix and SmaCC"
+	spec group: 'CoreSmaCC' with: #(
+		Core
+		MooseSmaCC
+	).
+	"Famix and SmaCC-UI"
+	spec group: 'CoreSmaCCUI' with: #(
+		Core
+		MooseRoassal
+		MooseFinder
+		MooseIDE
+		MooseSmaCCUI
+	).
+	spec group: 'CoreParsers' with: #(
+		Core
+		MooseSmaCC
+		MoosePetitParser
+	).
+	
+	spec group: 'CoreParsersUI' with: #(
+		Core
+		MooseRoassal
+		MooseFinder
+		MooseIDE
+		MooseSmaCCUI
+		MoosePetitParserUI
+	).
+	
+	
+	
+
+]
+
+{ #category : #accessing }
+BaselineOfMoose >> packageRepositoryURL [
+	^ super packageRepositoryURL
+		ifEmpty: [ | packageName |
+			packageName := self class package name.
+			'tonel://' , (IceRepository registry detect: [ :repo | repo workingCopy packageNames includes: packageName ] ifFound: [ :repo | repo location pathString , '/' , repo subdirectory ] ifNone: [ '' ]) ]
+]
+
+{ #category : #accessing }
+BaselineOfMoose >> projectClass [
+	^ MetacelloCypressBaselineProject
 ]

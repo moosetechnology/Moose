@@ -1,8 +1,8 @@
 Class {
 	#name : #FAMIXType,
 	#superclass : #FAMIXContainerEntity,
-	#traits : 'FamixTClassHierarchyNavigation + FamixTContainingWithInvocationsGlue + FamixTContainingWithStatementsGlue + FamixTParameterizedTypeUser + FamixTReferenceable + FamixTTraitUser + FamixTType + FamixTWithAttributes + FamixTWithMethods + FamixTWithMethodsWithAccessesGlue + FamixTWithMethodsWithModifiersGlue + FamixTWithSubInheritances + FamixTWithSuperInheritances + FamixTWithTypeAliases + FamixTWithTypedStructures + FamixTClassMetrics',
-	#classTraits : 'FamixTClassHierarchyNavigation classTrait + FamixTContainingWithInvocationsGlue classTrait + FamixTContainingWithStatementsGlue classTrait + FamixTParameterizedTypeUser classTrait + FamixTReferenceable classTrait + FamixTTraitUser classTrait + FamixTType classTrait + FamixTWithAttributes classTrait + FamixTWithMethods classTrait + FamixTWithMethodsWithAccessesGlue classTrait + FamixTWithMethodsWithModifiersGlue classTrait + FamixTWithSubInheritances classTrait + FamixTWithSuperInheritances classTrait + FamixTWithTypeAliases classTrait + FamixTWithTypedStructures classTrait + FamixTClassMetrics classTrait',
+	#traits : 'FamixTClassHierarchyNavigation + FamixTContainingWithInvocationsGlue + FamixTContainingWithStatementsGlue + FamixTParameterizedTypeUser + FamixTReferenceable + FamixTTraitUser + FamixTType + FamixTWithAttributes + FamixTWithMethods + FamixTWithMethodsWithAccessesGlue + FamixTWithMethodsWithModifiersGlue + FamixTWithSubInheritances + FamixTWithSuperInheritances + FamixTWithTypeAliases + FamixTWithTypedStructures',
+	#classTraits : 'FamixTClassHierarchyNavigation classTrait + FamixTContainingWithInvocationsGlue classTrait + FamixTContainingWithStatementsGlue classTrait + FamixTParameterizedTypeUser classTrait + FamixTReferenceable classTrait + FamixTTraitUser classTrait + FamixTType classTrait + FamixTWithAttributes classTrait + FamixTWithMethods classTrait + FamixTWithMethodsWithAccessesGlue classTrait + FamixTWithMethodsWithModifiersGlue classTrait + FamixTWithSubInheritances classTrait + FamixTWithSuperInheritances classTrait + FamixTWithTypeAliases classTrait + FamixTWithTypedStructures classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 
@@ -15,30 +15,11 @@ FAMIXType class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXType class >> generatedSlotNames [
-	<generated>
-	'FAMIXType class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXType class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTClassHierarchyNavigation FamixTContainingWithInvocationsGlue FamixTContainingWithStatementsGlue FamixTParameterizedTypeUser FamixTReferenceable FamixTTraitUser FamixTType FamixTWithAttributes FamixTWithMethods FamixTWithMethodsWithAccessesGlue FamixTWithMethodsWithModifiersGlue FamixTWithSubInheritances FamixTWithSuperInheritances FamixTWithTypeAliases FamixTWithTypedStructures)
-]
-
 { #category : #meta }
 FAMIXType class >> requirements [
 
 	<generated>
 	^ { FAMIXContainerEntity }
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXType >> accept: aVisitor [
-
-	aVisitor visitType: self
 ]
 
 { #category : #'Famix-Extensions-navigation' }
@@ -51,25 +32,6 @@ FAMIXType >> accessTo: aFAMIXPackageOrFAMIXClass [
 								and:[aFAMIXPackageOrFAMIXClass isAccessedBy: access]].
 ]
 
-{ #category : #accessing }
-FAMIXType >> addOutgoingTraitUsage: aTraitUsage [
-	self outgoingTraitUsages add: aTraitUsage
-]
-
-{ #category : #accessing }
-FAMIXType >> addTraitUsage: aTraitUsage [
-	
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXType >> allAnnotationInstances [
-	| result |
-	result := OrderedCollection new.
-	result addAll: self annotationInstances.
-	result addAll: (self methods flatCollect: [ :each | each annotationInstances ]).
-	^ result 
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXType >> allAnnotationTypes [
 	^ self allAnnotationInstances collectAsSet: #annotationType
@@ -80,6 +42,19 @@ FAMIXType >> allSuperclassesDo: aBlock [
 	self allSuperclassesWithoutAliasesDo: aBlock.
 	(self mooseModel sourceLanguage notNil and: [self mooseModel sourceLanguage isC])
 		ifTrue: [ self typeAliases do: [ :each | each allSuperclassesWithoutAliasesDo: aBlock ] ]
+]
+
+{ #category : #accessing }
+FAMIXType >> anySuperclass [
+
+	"Mircea: this used to return interfaces too. fixed now. 
+	also added superclass that does the same thing"
+
+	self
+		allSuperclassesDo: [ :each | 
+			each isInterface
+				ifFalse: [ ^ each ] ].
+	^ nil
 ]
 
 { #category : #accessing }
@@ -129,7 +104,7 @@ FAMIXType >> clientPackages [
 	^ (self queryAllIncoming atScope: FamixTPackage) withoutSelfLoops
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXType >> container [
 
 	<MSEProperty: #container type: #FAMIXContainerEntity>
@@ -140,24 +115,10 @@ FAMIXType >> container [
 	^ self typeContainer
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXType >> container: aContainer [
 
 	self typeContainer: aContainer
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXType >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-
-	anEntity superInheritances do: [:inh|
-		aVisitor visit: inh ].
-	anEntity attributes do: [:a |
-		self addAttribute: (aVisitor visit: a) ].
-	anEntity methods do: [:m|
-		self addMethod: (aVisitor visit: m) ].
-
 ]
 
 { #category : #'moosequery-queries-incoming' }

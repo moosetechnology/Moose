@@ -18,30 +18,11 @@ FAMIXAttribute class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXAttribute class >> generatedSlotNames [
-	<generated>
-	'FAMIXAttribute class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXAttribute class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTAttribute FamixTWithClassScope)
-]
-
 { #category : #meta }
 FAMIXAttribute class >> requirements [
 
 	<generated>
 	^ { FAMIXType }
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXAttribute >> accept: aVisitor [
-
-	aVisitor visitAttribute: self
 ]
 
 { #category : #'Famix-Smalltalk' }
@@ -70,13 +51,6 @@ FAMIXAttribute >> belongsTo: anObject [
 	<generated>
 	self parentType: anObject
 
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXAttribute >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	self hasClassScope: anEntity hasClassScope
 ]
 
 { #category : #accessing }

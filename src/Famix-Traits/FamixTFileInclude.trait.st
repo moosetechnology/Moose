@@ -1,8 +1,8 @@
 Trait {
 	#name : #FamixTFileInclude,
 	#instVars : [
-		'#source => FMOne type: #FamixTWithFileInclude opposite: #outgoingIncludeRelations',
-		'#target => FMOne type: #FamixTWithFileInclude opposite: #incomingIncludeRelations'
+		'#source => FMOne type: #FamixTWithFileIncludes opposite: #outgoingIncludeRelations',
+		'#target => FMOne type: #FamixTWithFileIncludes opposite: #incomingIncludeRelations'
 	],
 	#category : #'Famix-Traits-FileInclude'
 }
@@ -14,19 +14,6 @@ FamixTFileInclude classSide >> annotation [
 	<generated>
 	<package: #'Famix-Traits'>
 	^self
-]
-
-{ #category : #generator }
-FamixTFileInclude classSide >> generatedSlotNames [
-	<generated>
-	'FamixTFileInclude class>>#generatedSlotNames'.
-	^ #(source target)
-]
-
-{ #category : #generator }
-FamixTFileInclude classSide >> generatedTraitNames [
-	<generated>
-	^ #()
 ]
 
 { #category : #accessing }

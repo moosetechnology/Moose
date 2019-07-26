@@ -15,26 +15,6 @@ FAMIXMultipleFileAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXMultipleFileAnchor class >> generatedSlotNames [
-	<generated>
-	'FAMIXMultipleFileAnchor class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXMultipleFileAnchor class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTMultipleFileAnchor)
-]
-
-{ #category : #meta }
-FAMIXMultipleFileAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #public }
 FAMIXMultipleFileAnchor >> addFileAnchorWithPath: aPath [
 	self allFiles detect: [ :each | each fileName = aPath ] ifNone: [ self createAnchorWithPath: aPath ]

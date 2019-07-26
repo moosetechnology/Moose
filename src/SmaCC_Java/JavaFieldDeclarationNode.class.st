@@ -28,7 +28,7 @@ JavaFieldDeclarationNode >> commas: anOrderedCollection [
 
 { #category : #generated }
 JavaFieldDeclarationNode >> compositeNodeVariables [
-	^ #(#modifiers #variableDeclarations)
+	^ #(#variableDeclarations #modifiers)
 ]
 
 { #category : #generated }
@@ -44,9 +44,9 @@ JavaFieldDeclarationNode >> ignoredTokenVariables [
 { #category : #'generated-initialize-release' }
 JavaFieldDeclarationNode >> initialize [
 	super initialize.
-	modifiers := OrderedCollection new: 2.
 	variableDeclarations := OrderedCollection new: 2.
 	commas := OrderedCollection new: 2.
+	modifiers := OrderedCollection new: 2.
 ]
 
 { #category : #generated }

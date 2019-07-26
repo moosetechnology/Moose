@@ -20,7 +20,7 @@ Class {
 		'variableDefinitions',
 		'grammar'
 	],
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-Model'
 }
 
 { #category : #private }

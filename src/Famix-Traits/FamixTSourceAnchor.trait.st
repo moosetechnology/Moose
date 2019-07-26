@@ -18,19 +18,6 @@ FamixTSourceAnchor classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTSourceAnchor classSide >> generatedSlotNames [
-	<generated>
-	'FamixTSourceAnchor class>>#generatedSlotNames'.
-	^ #(element)
-]
-
-{ #category : #generator }
-FamixTSourceAnchor classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTSourceAnchor >> element [
 

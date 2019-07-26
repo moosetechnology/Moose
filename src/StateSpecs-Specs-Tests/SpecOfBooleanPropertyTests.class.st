@@ -1,7 +1,7 @@
 Class {
 	#name : #SpecOfBooleanPropertyTests,
 	#superclass : #TestCase,
-	#category : 'StateSpecs-Specs-Tests'
+	#category : #'StateSpecs-Specs-Tests'
 }
 
 { #category : #tests }

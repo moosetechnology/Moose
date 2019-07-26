@@ -24,6 +24,11 @@ SmaCCScopeDirectiveNode >> initialize [
 	names := OrderedCollection new: 2.
 ]
 
+{ #category : #testing }
+SmaCCScopeDirectiveNode >> isScopeDirective [
+	^ true
+]
+
 { #category : #generated }
 SmaCCScopeDirectiveNode >> names [
 	^ names

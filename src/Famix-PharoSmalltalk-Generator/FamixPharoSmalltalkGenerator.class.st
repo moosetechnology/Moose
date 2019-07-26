@@ -43,11 +43,6 @@ FamixPharoSmalltalkGenerator class >> prefix [
 ]
 
 { #category : #accessing }
-FamixPharoSmalltalkGenerator class >> submetamodels [ 
-	^ { FamixCompatibilityGenerator }
-]
-
-{ #category : #accessing }
 FamixPharoSmalltalkGenerator class >> wantsAllEntitiesNavigation [
 
 	^ false
@@ -108,6 +103,7 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 
 	annotationType --|> type.
 	annotationType --|> #TAnnotationType.
+	annotationType --|> #TWithAttributes.
 
 	annotationTypeAttribute --|> attribute.
 	annotationTypeAttribute --|> #TAnnotationTypeAttribute.
@@ -120,10 +116,8 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	class --|> type.
 	class --|> #TWithExceptions.
 	class --|> #TClass.
-	class --|> #TWithMethods.
-	class --|> #TWithSuperInheritances.
-	class --|> #TWithSubInheritances.
 	class --|> #TClassHierarchyNavigation.
+
 	
 	containerEntity --|> namedEntity.
 	containerEntity --|> #TWithTypes.
@@ -169,9 +163,11 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 
 	namespace --|> scopingEntity.
 	namespace --|> #TNamespace.
+	namespace --|> #TInvocationsReceiver.
 
 	package --|> scopingEntity.
 	package --|> #TPackage.
+	package --|> #TCohesionCouplingMetrics.
 
 	parameter --|> structuralEntity.
 	parameter --|> #TParameter.
@@ -192,7 +188,6 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	type --|> containerEntity.
 	type --|> #TType.
 	type --|> #TReferenceable.
-	type --|> #TWithAttributes.
 	type --|> #TWithTypedStructures.
 
 	unknownSourceLanguage --|> sourceLanguage.
@@ -204,6 +199,13 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 
 	
 
+]
+
+{ #category : #definition }
+FamixPharoSmalltalkGenerator >> defineProperties [
+	super defineProperties.
+	((method property: #protocol type: #String)
+		comment: 'Protocol of the method').
 ]
 
 { #category : #initialization }

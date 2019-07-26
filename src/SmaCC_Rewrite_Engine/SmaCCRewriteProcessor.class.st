@@ -152,17 +152,21 @@ SmaCCRewriteProcessor >> processFile: aString usingResult: aSmaCCRewriteResult [
 				ifTrue: [ aSmaCCRewriteResult
 						startLine: (stream lineNumberFor: token startPosition);
 						startColumn: (stream columnNumberFor: token startPosition);
-						interval: (token startPosition to: token stopPosition) ].
+						interval: token sourceInterval ].
 			ex pass ].
 	tree
 		completeSource: input;
 		filename: aString.
 	subdirectory := self baseDirectory isEmpty
 		ifTrue: [ '' ]
-		ifFalse: [ aString asFileReference parent pathString copyFrom: self baseDirectory size + 1 to: aString asFileReference parent pathString size ].
-	fullFilename := (self outputDirectory isNil or: [ self outputDirectory isEmpty ])
+		ifFalse: [ aString asFileReference parent pathString
+				copyFrom: self baseDirectory size + 1
+				to: aString asFileReference parent pathString size ].
+	fullFilename := (self outputDirectory isNil
+		or: [ self outputDirectory isEmpty ])
 		ifTrue: [ '' ]
-		ifFalse: [ self outputDirectory , FileSystem disk delimiter asString , subdirectory ].
+		ifFalse: [ self outputDirectory , FileSystem disk delimiter asString
+				, subdirectory ].
 	self engine
 		source: (aSmaCCRewriteResult smaccStringClass on: input);
 		outputDirectory: fullFilename;
@@ -177,31 +181,37 @@ SmaCCRewriteProcessor >> processFile: aString usingResult: aSmaCCRewriteResult [
 		do: [ :ex | 
 			| frame node |
 			frame := thisContext.
-			[ frame isNil or: [ (frame receiver isKindOf: SmaCCRewrite) and: [ frame method selector = #performOn:continuation: ] ] ]
+			[ frame isNil
+				or: [ (frame receiver isKindOf: SmaCCRewrite)
+						and: [ frame method selector = #performOn:continuation: ] ] ]
 				whileFalse: [ frame := frame sender ].
 			frame notNil
 				ifTrue: [ node := frame tempAt: 1.
 					aSmaCCRewriteResult
 						startLine: (stream lineNumberFor: node startPosition);
 						startColumn: (stream columnNumberFor: node startPosition);
-						interval: (node startPosition to: node stopPosition);
+						interval: node sourceInterval;
 						transformation: frame receiver ].
 			ex pass ].
 	aSmaCCRewriteResult
 		outputSource: output;
 		transformedString: self engine source;
 		outputFilename: self engine outputFilename.
-	self engine additionalFiles keysAndValuesDo: [ :file :text | aSmaCCRewriteResult addFile: text named: file ].
+	self engine additionalFiles
+		keysAndValuesDo: [ :file :text | aSmaCCRewriteResult addFile: text named: file ].
 	(self outputDirectory isNil or: [ self outputDirectory isEmpty ])
 		ifFalse: [ | filename |
 			filename := self engine outputDirectory
 				,
-					((self engine outputDirectory isEmpty or: [ self engine outputDirectory last = FileSystem disk delimiter ])
+					((self engine outputDirectory isEmpty
+						or: [ self engine outputDirectory last = FileSystem disk delimiter ])
 						ifTrue: [ '' ]
-						ifFalse: [ String with: FileSystem disk delimiter ]) , self engine outputFilename.
+						ifFalse: [ String with: FileSystem disk delimiter ])
+				, self engine outputFilename.
 			self engine ignoreFile
 				ifFalse: [ self saveOutput: output in: filename ].
-			self engine additionalFiles keysAndValuesDo: [ :file :text | self saveOutput: text in: file ] ].
+			self engine additionalFiles
+				keysAndValuesDo: [ :file :text | self saveOutput: text in: file ] ].
 	self engine finished.
 	aSmaCCRewriteResult class == SmaCCRewriteResult
 		ifFalse: [ self validate: output forResult: aSmaCCRewriteResult ] ]
@@ -215,7 +225,8 @@ SmaCCRewriteProcessor >> processFile: aString usingResult: aSmaCCRewriteResult [
 			aSmaCCRewriteResult errorString: ex description.
 			(self debug and: [ Processor activeProcess respondsTo: #debug ])
 				ifTrue: [ Processor activeProcess debug ].
-			((Smalltalk options select: [ :each | '-/' includes: each first ]) collect: [ :each | each copyFrom: 2 to: each size ])
+			((Smalltalk options select: [ :each | '-/' includes: each first ])
+				collect: [ :each | each copyFrom: 2 to: each size ])
 				do: [ :each | 
 					(each sameAs: 'error')
 						ifTrue: [ ex pass ] ].

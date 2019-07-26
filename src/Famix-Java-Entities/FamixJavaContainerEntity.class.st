@@ -15,46 +15,10 @@ FamixJavaContainerEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaContainerEntity class >> generatedSlotNames [
-	<generated>
-	'FamixJavaContainerEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaContainerEntity class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTWithAnnotationTypes FamixTWithClasses FamixTWithTypes TOODependencyQueries)
-]
-
-{ #category : #meta }
-FamixJavaContainerEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaContainerEntity >> accept: aVisitor [
-
-	aVisitor visitContainerEntity: self
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaContainerEntity >> addClass: aClass [
 	
 	types add: aClass
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaContainerEntity >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	anEntity types do: [:t|
-		self addType: (aVisitor visit: t) ].
-
-	
 ]
 
 { #category : #testing }

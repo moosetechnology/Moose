@@ -15,17 +15,10 @@ FamixTWithNamespaces classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithNamespaces classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithNamespaces class>>#generatedSlotNames'.
-	^ #(namespaces)
-]
+{ #category : #accessing }
+FamixTWithNamespaces >> addNamespace: anObject [
+	namespaces add: anObject
 
-{ #category : #generator }
-FamixTWithNamespaces classSide >> generatedTraitNames [
-	<generated>
-	^ #()
 ]
 
 { #category : #accessing }

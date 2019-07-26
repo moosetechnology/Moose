@@ -216,7 +216,7 @@ FamixCompatibilityGenerator >> defineHierarchy [
 	behaviouralEntity --|> #TWithStatements.
 
 	cFile --|> file.
-	cFile --|> #TWithFileInclude.
+	cFile --|> #TWithFileIncludes.
 
 	cPPSourceLanguage --|> cSourceLanguage.
 
@@ -312,6 +312,7 @@ FamixCompatibilityGenerator >> defineHierarchy [
 
 	package --|> scopingEntity.
 	package --|> #TPackage.
+	package --|> #TCohesionCouplingMetrics.
 
 	parameter --|> structuralEntity.
 	parameter --|> #TParameter.

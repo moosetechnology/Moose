@@ -3,12 +3,12 @@ Class {
 	#superclass : #SmaCCGrammarItem,
 	#instVars : [
 		'collection',
-		'reduceAction',
 		'variableNameMap',
 		'nodeClassDefinition',
-		'productionSymbol'
+		'productionSymbol',
+		'reduceCode'
 	],
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-Model'
 }
 
 { #category : #comparing }
@@ -160,12 +160,12 @@ SmaCCRHS >> hasNodeClassDefinition [
 
 { #category : #testing }
 SmaCCRHS >> hasReduceAction [
-	^ reduceAction hasReduceAction
+	^ reduceCode hasReduceAction
 ]
 
 { #category : #comparing }
 SmaCCRHS >> hash [
-	^ self class hash bitXor: (collection hash bitShift: 14)
+	^ self class hash hashMultiply bitXor: collection hash
 ]
 
 { #category : #variables }
@@ -177,7 +177,7 @@ SmaCCRHS >> indexOfVariable: aString [
 SmaCCRHS >> initialize [
 	super initialize.
 	collection := OrderedCollection new.
-	reduceAction := SmaCCDefaultReduceCode onRHS: self.
+	reduceCode := SmaCCDefaultReduceCode onRHS: self.
 	variableNameMap := Dictionary new
 ]
 
@@ -188,7 +188,7 @@ SmaCCRHS >> locallyDefinesVariable: aString [
 
 { #category : #accessing }
 SmaCCRHS >> modelTypes: anIdentitySet [
-	^ reduceAction modelTypes: anIdentitySet
+	^ reduceCode modelTypes: anIdentitySet
 ]
 
 { #category : #accessing }
@@ -220,28 +220,34 @@ SmaCCRHS >> productionSymbol [
 ]
 
 { #category : #'reduce actions' }
-SmaCCRHS >> reduceAction [
-	^ reduceAction
+SmaCCRHS >> reduceCode [
+	^ reduceCode
 ]
 
 { #category : #'reduce actions' }
-SmaCCRHS >> reduceAction: aSmaCCReduceCode [
-	reduceAction := aSmaCCReduceCode
+SmaCCRHS >> reduceCode: aSmaCCReduceCode [
+	reduceCode := aSmaCCReduceCode
 ]
 
 { #category : #'reduce actions' }
-SmaCCRHS >> reduceActionSource: aString [
-	reduceAction := SmaCCSourceReduceCode onRHS: self source: aString
+SmaCCRHS >> reduceCodeSource: aString [
+	reduceCode := SmaCCSourceReduceCode onRHS: self source: aString
 ]
 
 { #category : #testing }
 SmaCCRHS >> returnsSingleVariable [
-	^ reduceAction returnsSingleVariable
+	^ reduceCode returnsSingleVariable
 ]
 
 { #category : #testing }
 SmaCCRHS >> returnsVariableCollection [
-	^ reduceAction returnsVariableCollection
+	^ reduceCode returnsVariableCollection
+]
+
+{ #category : #accessing }
+SmaCCRHS >> ruleNumber [
+	^ (productionSymbol ruleNumber bitShift: 10)
+		+ (productionSymbol positionOf: self)
 ]
 
 { #category : #accessing }

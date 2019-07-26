@@ -21,19 +21,6 @@ FamixTScopingEntity classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTScopingEntity classSide >> generatedSlotNames [
-	<generated>
-	'FamixTScopingEntity class>>#generatedSlotNames'.
-	^ #(childScopes parentScope)
-]
-
-{ #category : #generator }
-FamixTScopingEntity classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTScopingEntity >> addChildScope: aScopingEntity [ 
 	childScopes add: aScopingEntity

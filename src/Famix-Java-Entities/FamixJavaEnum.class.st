@@ -15,26 +15,6 @@ FamixJavaEnum class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaEnum class >> generatedSlotNames [
-	<generated>
-	'FamixJavaEnum class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaEnum class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTWithEnumValues)
-]
-
-{ #category : #meta }
-FamixJavaEnum class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaEnum >> values [
 	^ self enumValues

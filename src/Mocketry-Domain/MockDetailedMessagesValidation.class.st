@@ -21,6 +21,17 @@ MockDetailedMessagesValidation >> execute [
 ]
 
 { #category : #'extra validation' }
+MockDetailedMessagesValidation >> inProcessWhich [
+
+	| result lastMessage |
+	result := self execute.
+	lastMessage := result occurredMessages last.
+	
+	^SpecOfObjectPropertyBuilder new 
+		property: (MockOccurredMessageProcessProperty of: lastMessage)
+]
+
+{ #category : #'extra validation' }
 MockDetailedMessagesValidation >> which [
 
 	| result lastMessage |
@@ -28,5 +39,5 @@ MockDetailedMessagesValidation >> which [
 	lastMessage := result occurredMessages last.
 	
 	^SpecOfObjectPropertyBuilder new 
-		property: (MockOccurredResultProperty message: lastMessage)
+		property: (MockOccurredResultProperty of: lastMessage)
 ]

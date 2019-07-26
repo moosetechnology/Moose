@@ -15,35 +15,9 @@ FAMIXSourcedEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXSourcedEntity class >> generatedSlotNames [
-	<generated>
-	'FAMIXSourcedEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXSourcedEntity class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTWithComments FamixTWithFiles FamixTWithSourceAnchor FamixTWithSourceLanguage)
-]
-
-{ #category : #meta }
-FAMIXSourcedEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXSourcedEntity >> accept: aVisitor [
-
-	aVisitor visitEntity: self
-]
-
 { #category : #accessing }
 FAMIXSourcedEntity >> addComment: aComment [
-		self privateAddComment: aComment asFAMIXComment
+		comments add: aComment asFAMIXComment
 ]
 
 { #category : #'Famix-File' }
@@ -63,15 +37,6 @@ FAMIXSourcedEntity >> containerFiles: aColl [
 	"This method is a hack for now because we need an opposite to the files."
 
 	
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXSourcedEntity >> copyFrom: anEntity within: aVisitor [
-
-	sourceAnchor := aVisitor visit: anEntity sourceAnchor.
-	anEntity comments do: [:com | 
-		self comments add: (aVisitor visit: com) ].
-
 ]
 
 { #category : #'Famix-SourceAnchor' }

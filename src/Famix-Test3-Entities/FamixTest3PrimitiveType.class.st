@@ -14,23 +14,3 @@ FamixTest3PrimitiveType class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FamixTest3PrimitiveType class >> generatedSlotNames [
-	<generated>
-	'FamixTest3PrimitiveType class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixTest3PrimitiveType class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTReferenceable FamixTWithTypes)
-]
-
-{ #category : #meta }
-FamixTest3PrimitiveType class >> requirements [
-
-	<generated>
-	^ {  }
-]

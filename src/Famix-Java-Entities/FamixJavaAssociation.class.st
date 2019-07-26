@@ -15,44 +15,11 @@ FamixJavaAssociation class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaAssociation class >> generatedSlotNames [
-	<generated>
-	'FamixJavaAssociation class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaAssociation class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTAssociation TAssociationMetaLevelDependency)
-]
-
-{ #category : #meta }
-FamixJavaAssociation class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaAssociation >> accept: aVisitor [
-
-	aVisitor visitAssociation: self
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaAssociation >> anyTo [
 	"This is a utility method that could be used polymorphically to obtain exactly one
 	target entity even when the internal implementation stores these as a collection"
 	^ self to asOrderedCollection anyOne
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaAssociation >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	"self previous: (aVisitor visit: anEntity previous)."
 ]
 
 { #category : #'as yet unclassified' }

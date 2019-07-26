@@ -21,19 +21,6 @@ FamixJavaSourceAnchor class >> childrenTypes [
 	^ {}
 ]
 
-{ #category : #generator }
-FamixJavaSourceAnchor class >> generatedSlotNames [
-	<generated>
-	'FamixJavaSourceAnchor class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaSourceAnchor class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTSourceAnchor TDependencyQueries TEntityMetaLevelDependency)
-]
-
 { #category : #accessing }
 FamixJavaSourceAnchor class >> parentTypes [
 	self flag: #todo. "Source Anchors should not implement TEntityMetaLevelDependency but currently a source anchor is in Moose containment tree. This is a bug but Orion depend on this hack. So we first need to clean Orion, then we can remove those aweful methods. here."
@@ -41,23 +28,10 @@ FamixJavaSourceAnchor class >> parentTypes [
 ]
 
 { #category : #meta }
-FamixJavaSourceAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
-{ #category : #meta }
 FamixJavaSourceAnchor class >> resetMooseQueryCaches [
 	super resetMooseQueryCaches.
 	self resetTEntityMetaLevelDependencyCaches.
 
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaSourceAnchor >> accept: aVisitor [
-
-	aVisitor visitSourceAnchor: self
 ]
 
 { #category : #'as yet unclassified' }
@@ -74,13 +48,6 @@ FamixJavaSourceAnchor >> containerFiles [
 	"I should return a collection of files corresponding to the source anchor. If there is no file just return an empty collection."
 
 	^ self subclassResponsibility
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaSourceAnchor >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	self element: (aVisitor visit: anEntity)
 ]
 
 { #category : #'as yet unclassified' }

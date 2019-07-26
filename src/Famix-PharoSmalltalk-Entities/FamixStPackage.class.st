@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixStPackage,
 	#superclass : #FamixStScopingEntity,
-	#traits : 'FamixTPackage + FamixTPackageWithClassesGlue',
-	#classTraits : 'FamixTPackage classTrait + FamixTPackageWithClassesGlue classTrait',
+	#traits : 'FamixTCohesionCouplingMetrics + FamixTPackage + FamixTPackageWithClassesGlue',
+	#classTraits : 'FamixTCohesionCouplingMetrics classTrait + FamixTPackage classTrait + FamixTPackageWithClassesGlue classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 
@@ -13,26 +13,6 @@ FamixStPackage class >> annotation [
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #generator }
-FamixStPackage class >> generatedSlotNames [
-	<generated>
-	'FamixStPackage class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixStPackage class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTPackage FamixTPackageWithClassesGlue)
-]
-
-{ #category : #meta }
-FamixStPackage class >> requirements [
-
-	<generated>
-	^ {  }
 ]
 
 { #category : #'Famix-Extensions-metrics' }

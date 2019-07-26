@@ -15,17 +15,12 @@ FamixTWithParameterizedTypeUsers classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithParameterizedTypeUsers classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithParameterizedTypeUsers class>>#generatedSlotNames'.
-	^ #(arguments)
-]
+{ #category : #accessing }
+FamixTWithParameterizedTypeUsers >> addArgument: anObject [
 
-{ #category : #generator }
-FamixTWithParameterizedTypeUsers classSide >> generatedTraitNames [
-	<generated>
-	^ #()
+	arguments add: anObject.
+	self resetMooseName.
+
 ]
 
 { #category : #accessing }

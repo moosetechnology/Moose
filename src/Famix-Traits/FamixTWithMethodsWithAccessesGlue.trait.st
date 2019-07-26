@@ -12,19 +12,6 @@ FamixTWithMethodsWithAccessesGlue classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithMethodsWithAccessesGlue classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithMethodsWithAccessesGlue class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixTWithMethodsWithAccessesGlue classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #metrics }
 FamixTWithMethodsWithAccessesGlue >> tightClassCohesion [
 	<MSEProperty: #tightClassCohesion type: #Number>
@@ -38,7 +25,7 @@ FamixTWithMethodsWithAccessesGlue >> tightClassCohesion [
 			tcc := 0.
 			accessDictionary := Dictionary new.
 			self
-				methodsDo: [ :eachMethod | 
+				methods do: [ :eachMethod | 
 					eachMethod accesses
 						do: [ :eachAccess | 
 							| var |

@@ -15,26 +15,6 @@ FamixJavaFileAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaFileAnchor class >> generatedSlotNames [
-	<generated>
-	'FamixJavaFileAnchor class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaFileAnchor class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTFileNavigation)
-]
-
-{ #category : #meta }
-FamixJavaFileAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FamixJavaFileAnchor >> mooseNameOn: aStream [
 	super mooseNameOn: aStream.

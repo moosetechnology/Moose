@@ -15,26 +15,6 @@ FamixJavaAbstractFile class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaAbstractFile class >> generatedSlotNames [
-	<generated>
-	'FamixJavaAbstractFile class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaAbstractFile class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTFileSystemEntity)
-]
-
-{ #category : #meta }
-FamixJavaAbstractFile class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaAbstractFile >> belongsTo [
 	<navigation: 'parent folder'>

@@ -12,7 +12,7 @@ Class {
 	#instVars : [
 		'lr1Item'
 	],
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-Actions'
 }
 
 { #category : #accessing }

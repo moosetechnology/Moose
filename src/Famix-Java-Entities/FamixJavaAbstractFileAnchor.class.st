@@ -15,26 +15,6 @@ FamixJavaAbstractFileAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaAbstractFileAnchor class >> generatedSlotNames [
-	<generated>
-	'FamixJavaAbstractFileAnchor class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaAbstractFileAnchor class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTFileAnchor)
-]
-
-{ #category : #meta }
-FamixJavaAbstractFileAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaAbstractFileAnchor >> <= aFileAnchor [
 	^ self fileName <= aFileAnchor fileName

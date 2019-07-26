@@ -6,7 +6,7 @@ SmaCCRejectAction represents the LR reject action.
 Class {
 	#name : #SmaCCRejectAction,
 	#superclass : #SmaCCPrimitiveAction,
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-Actions'
 }
 
 { #category : #accessing }

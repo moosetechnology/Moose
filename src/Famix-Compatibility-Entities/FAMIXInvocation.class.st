@@ -15,41 +15,6 @@ FAMIXInvocation class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXInvocation class >> generatedSlotNames [
-	<generated>
-	'FAMIXInvocation class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXInvocation class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTInvocation FamixTWithSignature)
-]
-
-{ #category : #meta }
-FAMIXInvocation class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXInvocation >> accept: aVisitor [
-
-	aVisitor visitInvocation: self
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXInvocation >> copyFrom: anEntity within: aVisitor [
-	super copyFrom: anEntity within: aVisitor.
-	self sender: (aVisitor visit: anEntity sender).
-	self receiver: (aVisitor visit: anEntity receiver).
-	self signature: anEntity signature copy.
-	anEntity candidates do: [ :c | self addCandidate: (aVisitor visit: c) ]
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXInvocation >> getReceivingFAMIXClass [
 	|tmpReceiver|

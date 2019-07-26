@@ -15,26 +15,6 @@ FAMIXModule class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXModule class >> generatedSlotNames [
-	<generated>
-	'FAMIXModule class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXModule class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTModule FamixTWithCompilationUnit FamixTWithHeader)
-]
-
-{ #category : #meta }
-FAMIXModule class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FAMIXModule >> classes [ 
 	^ #()

@@ -1186,7 +1186,7 @@ CF8IH74QvhA+fCF8+EL4QvjwhfCF8OEL4QvhwxdC5g9sF+trm6wBMAAAAABJRU5ErkJggg=='
 RTGrapherExample >> examplePopulationUSA [
 <noTest>
 | b  tab |
-tab := RTTabTable new input: (TRPlatform current download: 'https://www.census.gov/popest/data/state/asrh/2013/files/SCPRC-EST2013-18+POP-RES.csv') contents usingDelimiter: $,.
+tab := RTTabTable new input: (TRPlatform current download: 'https://www2.census.gov/programs-surveys/popest/datasets/2010-2013/state/asrh/scprc-est2013-18+pop-res.csv') contents usingDelimiter: $,.
 tab removeFirstRow.
 tab convertColumnsAsInteger: #('POPESTIMATE2013' 'POPEST18PLUS2013').
 

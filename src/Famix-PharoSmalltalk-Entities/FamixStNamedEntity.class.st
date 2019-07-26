@@ -15,19 +15,6 @@ FamixStNamedEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixStNamedEntity class >> generatedSlotNames [
-	<generated>
-	'FamixStNamedEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixStNamedEntity class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTInvocationsReceiver FamixTNamed FamixTPackageable FamixTPossibleStub FamixTWithAnnotationInstances FamixTWithModifiers TDependencyQueries TEntityMetaLevelDependency)
-]
-
 { #category : #meta }
 FamixStNamedEntity class >> requirements [
 

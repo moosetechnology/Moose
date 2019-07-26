@@ -6,13 +6,10 @@ A FAMIXMethod is always contained in a parentType.
 Trait {
 	#name : #FamixTMethod,
 	#instVars : [
-		'#category',
-		'#hasClassScope',
-		'#isAbstract',
-		'#isPublic',
-		'#kind',
-		'#parentType => FMOne type: #FamixTWithMethods opposite: #methods',
-		'#timeStamp'
+		'#isAbstract => FMProperty',
+		'#isClassSide => FMProperty',
+		'#kind => FMProperty',
+		'#parentType => FMOne type: #FamixTWithMethods opposite: #methods'
 	],
 	#category : #'Famix-Traits-Method'
 }
@@ -34,45 +31,6 @@ FamixTMethod classSide >> famixTMethodRelatedGroup [
 	^ FAMIXMethodGroup
 ]
 
-{ #category : #generator }
-FamixTMethod classSide >> generatedSlotNames [
-	<generated>
-	'FamixTMethod class>>#generatedSlotNames'.
-	^ #(category hasClassScope kind parentType timeStamp)
-]
-
-{ #category : #generator }
-FamixTMethod classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
-{ #category : #accessing }
-FamixTMethod >> category [
-
-	<MSEProperty: #category type: #String>
-	<generated>
-	<MSEComment: 'Category of the method'>
-	^ category
-]
-
-{ #category : #accessing }
-FamixTMethod >> category: anObject [
-
-	<generated>
-	category := anObject
-
-]
-
-{ #category : #'Famix-Implementation' }
-FamixTMethod >> computeNumberOfLinesOfCode [
-	self hasSourceAnchor 
-		ifTrue: [ ^ self sourceAnchor lineCount ].
-	^ (self sourceText = '')
-			ifTrue: [ self notExistentMetricValue ]
-			ifFalse: [ self sourceText lineCount ]
-]
-
 { #category : #metrics }
 FamixTMethod >> cyclomaticComplexity [
 	<MSEProperty: #cyclomaticComplexity type: #Number>
@@ -88,20 +46,51 @@ FamixTMethod >> cyclomaticComplexity: aNumber [
 	self privateState propertyAt: #cyclomaticComplexity put: aNumber
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 FamixTMethod >> hasClassScope [
-
 	<MSEProperty: #hasClassScope type: #Boolean>
-	<generated>
-	<MSEComment: 'True if class-side method'>
-	^ hasClassScope
+	<MSEComment: 'This property is for compatibility purpose. It is used by the old generator of MSE files'>
+	self deprecated: 'This property is deprecated from Moose 7.0. Please use isClassSide instead.' transformWith: '`@receiver hasClassScope' -> '`@receiver isClassSide'.
+	^ self isClassSide
+]
+
+{ #category : #testing }
+FamixTMethod >> hasClassScope: aBoolean [
+	self deprecated: 'This property is deprecated from Moose 7.0. Please use isClassSide instead.' transformWith: '`@receiver hasClassScope: `@statements1' -> '`@receiver isClassSide: `@statements1'.
+	^ self isClassSide: aBoolean
 ]
 
 { #category : #accessing }
-FamixTMethod >> hasClassScope: anObject [
+FamixTMethod >> isAbstract [
+
+	<MSEProperty: #isAbstract type: #Boolean>
+	<generated>
+	<MSEComment: 'True if abstract method'>
+	^ isAbstract
+]
+
+{ #category : #accessing }
+FamixTMethod >> isAbstract: anObject [
 
 	<generated>
-	hasClassScope := anObject
+	isAbstract := anObject
+
+]
+
+{ #category : #accessing }
+FamixTMethod >> isClassSide [
+
+	<MSEProperty: #isClassSide type: #Boolean>
+	<generated>
+	<MSEComment: 'True if class-side method'>
+	^ isClassSide
+]
+
+{ #category : #accessing }
+FamixTMethod >> isClassSide: anObject [
+
+	<generated>
+	isClassSide := anObject
 
 ]
 
@@ -180,21 +169,6 @@ FamixTMethod >> kind: anObject [
 
 ]
 
-{ #category : #'Famix-Implementation' }
-FamixTMethod >> numberOfLinesOfCode [
-	<MSEProperty: #numberOfLinesOfCode type: #Number>
-	<MSEComment: 'The number of lines of code in a method.'>
-	^ self
-		lookUpPropertyNamed: #numberOfLinesOfCode
-		computedAs: [ self computeNumberOfLinesOfCode ]
-]
-
-{ #category : #'Famix-Implementation' }
-FamixTMethod >> numberOfLinesOfCode: aNumber [
-
-	self privateState propertyAt: #numberOfLinesOfCode put: aNumber
-]
-
 { #category : #metrics }
 FamixTMethod >> numberOfMessageSends [
 	<MSEProperty: #numberOfMessageSends type: #Number>
@@ -242,21 +216,4 @@ FamixTMethod >> parentTypeGroup [
 FamixTMethod >> parentTypeIsStub [
 
 	^ self parentType ifNotNil: [ :e | e isStub ] ifNil: [ true ]
-]
-
-{ #category : #accessing }
-FamixTMethod >> timeStamp [
-
-	<MSEProperty: #timeStamp type: #String>
-	<generated>
-	<MSEComment: 'TimeStamp of the method with author and time of the last change'>
-	^ timeStamp
-]
-
-{ #category : #accessing }
-FamixTMethod >> timeStamp: anObject [
-
-	<generated>
-	timeStamp := anObject
-
 ]

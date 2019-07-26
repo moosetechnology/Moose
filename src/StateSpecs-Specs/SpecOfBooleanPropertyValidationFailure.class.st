@@ -5,7 +5,7 @@ I provide suitable description for incorrect property
 Class {
 	#name : #SpecOfBooleanPropertyValidationFailure,
 	#superclass : #SpecOfValidationFailure,
-	#category : 'StateSpecs-Specs'
+	#category : #'StateSpecs-Specs'
 }
 
 { #category : #printing }

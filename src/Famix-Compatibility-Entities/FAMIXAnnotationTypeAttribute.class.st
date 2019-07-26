@@ -15,26 +15,6 @@ FAMIXAnnotationTypeAttribute class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXAnnotationTypeAttribute class >> generatedSlotNames [
-	<generated>
-	'FAMIXAnnotationTypeAttribute class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXAnnotationTypeAttribute class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTAnnotationTypeAttribute FamixTTypedAnnotationInstanceAttribute)
-]
-
-{ #category : #meta }
-FAMIXAnnotationTypeAttribute class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FAMIXAnnotationTypeAttribute >> parentAnnotationType [
 	<MSEProperty: #parentAnnotationType type: #FAMIXAnnotationType> <derived> 

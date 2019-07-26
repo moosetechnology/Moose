@@ -16,12 +16,6 @@ FAMIXType >> abstractMethodsGroup [
 ]
 
 { #category : #'*Moose-RoassalPaintings-Support' }
-FAMIXType >> accessorMethods [
-	
-	^ self methods select: #isPureAccessor
-]
-
-{ #category : #'*Moose-RoassalPaintings-Support' }
 FAMIXType >> accessorMethodsGroup [
 	<navigation: 'Accessor methods'>
 	
@@ -104,22 +98,6 @@ FAMIXType >> getterMethods [
 ]
 
 { #category : #'*Moose-RoassalPaintings-Support' }
-FAMIXType >> implementationMethods [
-	^ self methods select: #isInternalImplementation
-]
-
-{ #category : #'*Moose-RoassalPaintings-Support' }
-FAMIXType >> initializers [
-
-	^ self methods select: #isInitializer
-]
-
-{ #category : #'*Moose-RoassalPaintings-Support' }
-FAMIXType >> interfaceMethods [
-	^ self methods select: [:each | each isInternalImplementation not & each isInitializer not & each isPureAccessor not]
-]
-
-{ #category : #'*Moose-RoassalPaintings-Support' }
 FAMIXType >> internalFanin [
 
 	^ self clientClassesIntoMyPackage size
@@ -164,21 +142,6 @@ FAMIXType >> setterMethods [
 	"Used for the class blueprint
 	Alexandre.Bergel 3/28/2009 12:10"
 	^ self methods select: #isSetter
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
-FAMIXType >> viewBlueprint [
-	<menuItem: 'Class blueprint' category: 'Visualize'>
-	| view |
-	view := RTView new.
-	view @ RTDraggableView.
-	self viewBlueprintOn: view.
-	^ view open
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
-FAMIXType >> viewBlueprintOn: view [
-	^ FAMIXClassBlueprint new view: self on: view
 ]
 
 { #category : #'*Moose-RoassalPaintings' }

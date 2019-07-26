@@ -12,6 +12,11 @@ SmaCCFlagDirectiveNode >> acceptVisitor: aDefinitionVisitor [
 	^ aDefinitionVisitor visitFlagDirective: self
 ]
 
+{ #category : #testing }
+SmaCCFlagDirectiveNode >> isFlagDirective [
+	^ true
+]
+
 { #category : #generated }
 SmaCCFlagDirectiveNode >> tokenVariables [
 	^ #(#typeToken #directiveStartToken #semicolon)

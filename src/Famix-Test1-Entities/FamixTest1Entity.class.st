@@ -13,31 +13,11 @@ FamixTest1Entity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTest1Entity class >> generatedSlotNames [
-	<generated>
-	'FamixTest1Entity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixTest1Entity class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #meta }
 FamixTest1Entity class >> metamodel [
 
 	<generated>
 	^ (self class environment at: #FamixTest1Generator) metamodel
-]
-
-{ #category : #meta }
-FamixTest1Entity class >> requirements [
-
-	<generated>
-	^ {  }
 ]
 
 { #category : #testing }

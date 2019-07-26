@@ -5,6 +5,18 @@ Moose is an extensive platform for software and data analysis.
 Moose is an open source software. It was started at the Software Composition Group from the University of Bern in 1996 and is currently contributed to and used by multiple partners. It offers multiple services ranging from importing and parsing data, to modeling, to measuring, querying, mining, and to building interactive and visual analysis tools.
 
 ### How to load
+
+**Moose v7**
+
+```smalltalk
+Metacello new
+  baseline: 'Moose';
+  repository: 'github://moosetechnology/Moose:v7.x.x/src';
+  load.
+```
+
+**Moose 8 (development)**
+
 ```smalltalk
 Metacello new
   baseline: 'Moose';
@@ -16,9 +28,9 @@ Metacello new
 Check out [the official webpage of the Moose project](http://moosetechnology.org). 
 
 ### Famix generators
-- [Java](https://github.com/girba/jdt2famix) 
+- [Java](https://github.com/feenkcom/jdt2famix) 
+- [C#](https://github.com/feenkcom/roslyn2famix) 
 - [.NET](http://www.sharpmetrics.net/index.php/famix-generator)
 - [SAP](https://github.com/RainerWinkler/Moose-FAMIX-SAP-Extractor)
 - [Fortran](https://github.com/NicolasAnquetil/VerveineF.git)
 - [C/C++](https://github.com/Synectique/VerveineC-Cpp.git)
-

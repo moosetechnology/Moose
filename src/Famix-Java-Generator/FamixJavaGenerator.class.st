@@ -100,7 +100,26 @@ FamixJavaGenerator >> defineClasses [
 	primitiveType withTesting.
 	containerEntity withTesting.
 
+	self defineComments
+]
 
+{ #category : #definition }
+FamixJavaGenerator >> defineComments [
+	entity comment: 'file :=  ''ArgoUML-0.34.mse'' asFileReference readStream.
+
+dictionary := Dictionary newFrom: (
+	FamixJavaEntity withAllSubclasses collect: [ :c | 
+		cn := c name withoutPrefix: #FamixJava.
+		(''FAMIX.'', cn) -> (''FamixJava-Entities.'', cn) ]).
+
+dictionary at: ''FAMIX.JavaSourceLanguage'' put: ''FamixJava-Entities.SourceLanguage''.
+
+repo := MooseModel importFrom: file withMetamodel: FamixJavaGenerator metamodel translationDictionary: dictionary.
+
+model := MooseModel new.
+	model silentlyAddAll: repo elements.
+	model entityStorage forRuntime.
+model.'
 ]
 
 { #category : #definition }
@@ -123,6 +142,7 @@ FamixJavaGenerator >> defineHierarchy [
 	annotationInstanceAttribute --|> sourcedEntity.
 	annotationInstanceAttribute --|> #TAnnotationInstanceAttribute.
 	annotationInstanceAttribute --|> #TTypedAnnotationInstanceAttribute.
+	annotationInstanceAttribute --|> #TEntityMetaLevelDependency.
 	annotationInstanceAttribute --|> #TDependencyQueries.
 
 	annotationType --|> type.
@@ -159,6 +179,7 @@ FamixJavaGenerator >> defineHierarchy [
 	class --|> type.
 	class --|> #TWithExceptions.
 	class --|> #TClass.
+	class --|> #TLCOMMetrics.
 
 	containerEntity --|> namedEntity.
 	containerEntity --|> #TWithTypes.
@@ -240,10 +261,6 @@ FamixJavaGenerator >> defineHierarchy [
 	type --|> #TReferenceable.
 	type --|> #TWithTypedStructures.
 	type --|> #TWithTypeAliases.
-	type --|> #TWithMethods.
-	type --|> #TWithSuperInheritances.
-	type --|> #TWithSubInheritances.
-	type --|> #TWithAttributes.
 	type --|> #TParameterizedTypeUser.
 	type --|> #TClassHierarchyNavigation. 
 

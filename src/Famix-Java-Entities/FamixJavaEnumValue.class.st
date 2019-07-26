@@ -15,19 +15,6 @@ FamixJavaEnumValue class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaEnumValue class >> generatedSlotNames [
-	<generated>
-	'FamixJavaEnumValue class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaEnumValue class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTEnumValue)
-]
-
 { #category : #meta }
 FamixJavaEnumValue class >> requirements [
 

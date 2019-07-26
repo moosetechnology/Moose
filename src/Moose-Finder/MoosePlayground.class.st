@@ -8,11 +8,17 @@ Class {
 }
 
 { #category : #'world menu' }
+MoosePlayground class >> initialize [
+	Smalltalk tools workspaceTool: self
+]
+
+{ #category : #'world menu' }
 MoosePlayground class >> menuCommandOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #'Moose Playground')
 		order: 1.0; 
 		parent: #Moose;
+		keyText: 'o, w';
 		label: 'Moose Playground';
 		help: 'Plaground enhanced for usage in Moose';
 		icon: (MooseIcons mooseIcon scaledToSize: 16@16);
@@ -21,69 +27,34 @@ MoosePlayground class >> menuCommandOn: aBuilder [
 ]
 
 { #category : #building }
-MoosePlayground >> compose [
-	self title: 'Moose Playground'.
-	self
-		act: [ :b | b update ]
-		icon: GLMUIThemeExtraIcons glamorousRefresh
-		entitled: 'Update'.
-	self
-		act: [ :b | 
-			HelpBrowser open
-				selectTopicSatisfying: [ :each | 
-					each owner notNil
-						and: [ each owner key = GTPlaygroundHelp key
-								and: [ each title = 'Overview' ] ] ] ]
-		icon: GLMUIThemeExtraIcons glamorousHelp
-		entitled: 'Help'.
-	self
-		act: [ :b | 
-			SettingBrowser new
-				changePackageSet: {(RPackageOrganizer default packageNamed: 'GT-Playground')};
-				open;
-				expandAll ]
-		icon: (Smalltalk ui icons iconNamed: #smallCogInitialState)
-		entitled: 'Global Setting'.
-	self
-		custom:
-			(GTInspector new
-				noTitle;
-				noActions;
-				wantsAutomaticRefresh: true;
-				showFirst: [ :composite | 
-					(self codeIn: composite)
-						title: 'Playground';
-						titleIcon: MooseIcons mooseEvaluator;
-					addAction:
-					(GLMPopupAction new
-						action: [ :text :page :popup | 
-							MoosePlaygroundCommand new
-								on: MooseModel;
-								when: #pageAccepted
-									do: [ :aMooseModel | 
-									| position |
-									MooseModel root indexOf: aMooseModel.
-									text entity
-										saveContent:
-											aMooseModel name uncapitalized, ' := MooseModel root at: '
-												, (MooseModel root indexOf: aMooseModel) asString , '.'
-												, String crlf , text entity content.
-									text update ];
-								yourself ];
-						icon: MooseIcons mooseMetamodelGroup;
-						title: 'Model installed';
-						yourself).
-					self modelsIn: composite.
+MoosePlayground >> codeIn: composite [
+	(super codeIn: composite)
+		title: 'Playground';
+		titleIcon: MooseIcons mooseEvaluator;
+		addAction:
+			(GLMPopupAction new
+				action: [ :text :page :popup | 
+					MoosePlaygroundCommand new
+						on: MooseModel;
+						when: #pageAccepted
+							do: [ :aMooseModel | 
+							MooseModel root indexOf: aMooseModel.
+							text entity saveContent: aMooseModel name uncapitalized , ' := MooseModel root at: ' , (MooseModel root indexOf: aMooseModel) asString , '.' , String crlf , text entity content.
+							text update ];
+						yourself ];
+				icon: MooseIcons mooseMetamodelGroup;
+				title: 'Model installed';
+				yourself).
+				self modelsIn: composite.
 					(FileSystem workingDirectory gtInspectorItemsIn: composite)
 						title: 'Current directory';
-						titleIcon: MooseIcons mooseFolder ];
-				 yourself);
-		when: GLMBrowserClosing
-			do: [ :ann | self actOnBrowserClosing: ann ].
-	GTInspector isStepRefreshEnabled
-		ifTrue: [ self wantsAutomaticRefresh: true.
-			self wantsSteps: true.
-			self stepTime: GTInspector stepRefreshRate ]
+						titleIcon: MooseIcons mooseFolder
+]
+
+{ #category : #building }
+MoosePlayground >> defaultPlaygroundTitle [
+	^ 'Moose Playground'.
+	
 ]
 
 { #category : #building }

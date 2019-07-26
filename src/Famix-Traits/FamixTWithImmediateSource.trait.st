@@ -1,7 +1,7 @@
 Trait {
 	#name : #FamixTWithImmediateSource,
 	#instVars : [
-		'source'
+		'#source => FMProperty'
 	],
 	#category : #'Famix-Traits-SourceAnchor'
 }
@@ -13,19 +13,6 @@ FamixTWithImmediateSource classSide >> annotation [
 	<generated>
 	<package: #'Famix-Traits'>
 	^self
-]
-
-{ #category : #generator }
-FamixTWithImmediateSource classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithImmediateSource class>>#generatedSlotNames'.
-	^ #(source)
-]
-
-{ #category : #generator }
-FamixTWithImmediateSource classSide >> generatedTraitNames [
-	<generated>
-	^ #()
 ]
 
 { #category : #accessing }

@@ -14,23 +14,3 @@ FAMIXCaughtException class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FAMIXCaughtException class >> generatedSlotNames [
-	<generated>
-	'FAMIXCaughtException class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXCaughtException class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTCaughtException)
-]
-
-{ #category : #meta }
-FAMIXCaughtException class >> requirements [
-
-	<generated>
-	^ {  }
-]

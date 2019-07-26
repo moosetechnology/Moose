@@ -15,26 +15,6 @@ FamixStSourcedEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixStSourcedEntity class >> generatedSlotNames [
-	<generated>
-	'FamixStSourcedEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixStSourcedEntity class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTWithComments FamixTWithSourceAnchor FamixTWithSourceLanguage)
-]
-
-{ #category : #meta }
-FamixStSourcedEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FamixStSourcedEntity >> isImplicitVariable [
 	^false

@@ -15,26 +15,6 @@ FamixJavaAnnotationTypeAttribute class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaAnnotationTypeAttribute class >> generatedSlotNames [
-	<generated>
-	'FamixJavaAnnotationTypeAttribute class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaAnnotationTypeAttribute class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTAnnotationTypeAttribute FamixTTypedAnnotationInstanceAttribute)
-]
-
-{ #category : #meta }
-FamixJavaAnnotationTypeAttribute class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaAnnotationTypeAttribute >> parentAnnotationType [
 	<MSEProperty: #parentAnnotationType type: #FamixJavaAnnotationType> 

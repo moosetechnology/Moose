@@ -30,7 +30,7 @@ Class {
 		'containingKey',
 		'requiredItem'
 	],
-	#category : 'StateSpecs-Specs'
+	#category : #'StateSpecs-Specs'
 }
 
 { #category : #'instance creation' }

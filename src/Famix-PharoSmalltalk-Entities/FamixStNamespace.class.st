@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixStNamespace,
 	#superclass : #FamixStScopingEntity,
-	#traits : 'FamixTNamespace',
-	#classTraits : 'FamixTNamespace classTrait',
+	#traits : 'FamixTInvocationsReceiver + FamixTNamespace',
+	#classTraits : 'FamixTInvocationsReceiver classTrait + FamixTNamespace classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 
@@ -13,26 +13,6 @@ FamixStNamespace class >> annotation [
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #generator }
-FamixStNamespace class >> generatedSlotNames [
-	<generated>
-	'FamixStNamespace class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixStNamespace class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTNamespace)
-]
-
-{ #category : #meta }
-FamixStNamespace class >> requirements [
-
-	<generated>
-	^ {  }
 ]
 
 { #category : #'Famix-Extensions-metrics' }

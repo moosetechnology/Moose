@@ -15,19 +15,6 @@ FamixTWithSourceLanguage classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTWithSourceLanguage classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithSourceLanguage class>>#generatedSlotNames'.
-	^ #(declaredSourceLanguage)
-]
-
-{ #category : #generator }
-FamixTWithSourceLanguage classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTWithSourceLanguage >> declaredSourceLanguage [
 

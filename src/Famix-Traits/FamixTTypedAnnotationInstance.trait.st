@@ -15,19 +15,6 @@ FamixTTypedAnnotationInstance classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixTTypedAnnotationInstance classSide >> generatedSlotNames [
-	<generated>
-	'FamixTTypedAnnotationInstance class>>#generatedSlotNames'.
-	^ #(annotationType)
-]
-
-{ #category : #generator }
-FamixTTypedAnnotationInstance classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 FamixTTypedAnnotationInstance >> annotationType [
 

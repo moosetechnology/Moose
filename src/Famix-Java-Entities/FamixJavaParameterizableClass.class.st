@@ -15,26 +15,6 @@ FamixJavaParameterizableClass class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaParameterizableClass class >> generatedSlotNames [
-	<generated>
-	'FamixJavaParameterizableClass class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaParameterizableClass class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTWithParameterizedTypes)
-]
-
-{ #category : #meta }
-FamixJavaParameterizableClass class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaParameterizableClass >> parameters [
 	<MSEProperty: #parameters type: #FamixJavaParameterType> <multivalued> <derived>

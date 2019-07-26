@@ -15,26 +15,6 @@ FAMIXFile class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXFile class >> generatedSlotNames [
-	<generated>
-	'FAMIXFile class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXFile class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTFile)
-]
-
-{ #category : #meta }
-FAMIXFile class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #properties }
 FAMIXFile >> averageNumberOfCharactersPerLine [
 	<MSEProperty: #averageNumberOfCharactersPerLine type: #Number>

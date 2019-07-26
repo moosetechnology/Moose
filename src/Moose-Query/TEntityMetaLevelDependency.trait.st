@@ -67,19 +67,6 @@ TEntityMetaLevelDependency classSide >> dependencyFM3PropertyDescriptionIn: aMet
 		select: [ :e | e hasOpposite and: [ e opposite isSource or: [ e opposite isTarget ] ] ]
 ]
 
-{ #category : #generator }
-TEntityMetaLevelDependency classSide >> generatedSlotNames [
-	<generated>
-	'TEntityMetaLevelDependency class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-TEntityMetaLevelDependency classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #accessing }
 TEntityMetaLevelDependency classSide >> incomingAssociationTypesIn: aMetamodel [
 
@@ -124,7 +111,6 @@ TEntityMetaLevelDependency classSide >> parentTypesIn: aMetamodel [
 
 { #category : #new }
 TEntityMetaLevelDependency classSide >> privateAllChildrenTypesIn: aMetamodel [
-
 	^ ((self childrenTypesIn: aMetamodel) withDeepCollect: [ :each | each childrenTypesInMetamodel: aMetamodel] as: Set) asOrderedCollection
 ]
 

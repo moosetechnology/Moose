@@ -205,9 +205,9 @@ CSQueryExpressionNode >> initialize [
 	joinEqualsExpressions := OrderedCollection new: 2.
 	intoTokens := OrderedCollection new: 2.
 	orderbyTokens := OrderedCollection new: 2.
-	commaTokens := OrderedCollection new: 2.
 	ascendingTokens := OrderedCollection new: 2.
 	descendingTokens := OrderedCollection new: 2.
+	commaTokens := OrderedCollection new: 2.
 	selectTokens := OrderedCollection new: 2.
 	groupTokens := OrderedCollection new: 2.
 	groupExpressions := OrderedCollection new: 2.

@@ -15,26 +15,6 @@ FAMIXAbstractFileAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXAbstractFileAnchor class >> generatedSlotNames [
-	<generated>
-	'FAMIXAbstractFileAnchor class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXAbstractFileAnchor class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTFileAnchor)
-]
-
-{ #category : #meta }
-FAMIXAbstractFileAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Famix-File' }
 FAMIXAbstractFileAnchor >> <= aFileAnchor [
 	^ self fileName <= aFileAnchor fileName

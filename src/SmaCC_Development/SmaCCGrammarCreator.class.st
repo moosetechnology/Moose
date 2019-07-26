@@ -9,7 +9,7 @@ Class {
 	#classVars : [
 		'MaxExpansions'
 	],
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-Model'
 }
 
 { #category : #building }
@@ -130,11 +130,6 @@ SmaCCGrammarCreator >> isLetterOrDigit: each [
 				or: [ (each between: $0 and: $9) or: [ each == $_ ] ] ]
 ]
 
-{ #category : #testing }
-SmaCCGrammarCreator >> isWhitespace: each [
-	^ self whitespaceValues includes: each asInteger
-]
-
 { #category : #private }
 SmaCCGrammarCreator >> reportErrorMessage: aString on: aSmaCCToken [
 	SmaCCParserError new
@@ -149,9 +144,16 @@ SmaCCGrammarCreator >> verifyCodeToken: codeToken for: aSmaCCRHS [
 	code := codeToken value copyFrom: 2 to: codeToken value size - 1.
 	RBParser
 		parseExpression: code
-		onError:
-			[ :string :position | self reportErrorMessage: string on: (SmaCCToken value: (code copyFrom: position to: position) start: codeToken startPosition + position ids: #()) ].
-	aSmaCCRHS reduceActionSource: code.
+		onError: [ :string :position | 
+			self
+				reportErrorMessage: string
+				on:
+					(SmaCCToken
+						value: (code copyFrom: position to: position)
+						start: codeToken startPosition + position
+						ids: #()) ].
+	aSmaCCRHS reduceCodeSource: code.
+	aSmaCCRHS reduceCode isImmediate: codeToken value first = $[.
 	^ aSmaCCRHS
 ]
 
@@ -222,7 +224,13 @@ SmaCCGrammarCreator >> visitFlagDirective: aFlagDirective [
 		ifTrue: [ ^ grammar annotateTokens: true ].
 	name = 'lr1'
 		ifTrue: [ ^ grammar type: #LR1 ].
-	self reportErrorMessage: 'Unknown directive' on: aFlagDirective typeToken
+	name = 'unicode'
+		ifTrue: [ ^ SmaCCGrammar maximumCharacterValue: 16rE01EF ].
+	name = 'byte'
+		ifTrue: [ ^ SmaCCGrammar maximumCharacterValue: 255 ].
+	self
+		reportErrorMessage: 'Unknown directive'
+		on: aFlagDirective typeToken
 ]
 
 { #category : #visiting }

@@ -18,7 +18,7 @@ Class {
 		'toNode',
 		'transitionObjects'
 	],
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-DFA/NFA'
 }
 
 { #category : #'instance creation' }
@@ -71,7 +71,7 @@ SmaCCEdge >> edgeLabel [
 
 { #category : #comparing }
 SmaCCEdge >> hash [
-	^ (self to hash bitShift: 14) bitXor: transitionObjects hash
+	^ self to hash hashMultiply bitXor: transitionObjects hash
 ]
 
 { #category : #testing }

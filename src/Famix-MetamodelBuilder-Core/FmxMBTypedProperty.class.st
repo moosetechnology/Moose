@@ -19,13 +19,9 @@ FmxMBTypedProperty >> acceptVisitor: aVisitor [
 
 { #category : #generating }
 FmxMBTypedProperty >> asSlot [
+	self propertyType ifNil: [ FmxMBIncompletePropertyDefiniton signal ].
 
-	self propertyType 
-		ifNil: [ FmxMBIncompletePropertyDefiniton signal ].
-
-	^ self builder environment 
-		slotNamed: self name asSymbol 
-
+	^ self builder environment slotNamed: self name asSymbol
 ]
 
 { #category : #generating }

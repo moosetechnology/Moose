@@ -6,7 +6,7 @@ Class {
 
 { #category : #'generated-accessing' }
 SmaCCReplaceExpressionParser class >> cacheId [
-	^'2018-10-20T09:21:10.927433-05:00'
+	^'2019-04-15T17:15:43.228108-05:00'
 ]
 
 { #category : #generated }
@@ -94,25 +94,27 @@ Characters
 { #category : #generated }
 SmaCCReplaceExpressionParser class >> reduceTable [
 ^#(
-	#(10 0 #reduceActionForRewriteExpressions1:) 
-	#(15 0 #reduceActionForSwitchStateToExpression1:) 
-	#(17 0 #reduceActionForSwitchStateToCode1:) 
-	#(9 1 #reduceActionForExpression1:) 
-	#(12 1 #reduceActionForStringReplace1:) 
-	#(10 2 #reduceActionForRewriteExpressions2:) 
-	#(11 1 #liftFirstValue:) 
-	#(20 0 #nil) 
-	#(20 1 #liftFirstValue:) 
-	#(21 0 #nil) 
-	#(14 0 #reduceActionForSwitchStateToDefault1:) 
-	#(22 1 #liftFirstValue:) 
-	#(18 2 #reduceActionForPrefixModifiers2:) 
-	#(21 1 #liftFirstValue:) 
-	#(16 5 #reduceActionForCodeReplace1:) 
-	#(19 2 #reduceActionForPrefixModifiers2:) 
-	#(18 4 #reduceActionForPrefixModifiers1:) 
-	#(13 7 #reduceActionForNodeReplace1:) 
-	#(19 4 #reduceActionForPostfixModifiers1:)
+	#(10 0 #reduceActionForRewriteExpressions1: 525313 false ) 
+	#(15 0 #reduceActionForSwitchStateToExpression1: 943105 false ) 
+	#(17 0 #reduceActionForSwitchStateToCode1: 1143809 false ) 
+	#(9 1 #reduceActionForExpression1: 466945 false ) 
+	#(12 1 #reduceActionForStringReplace1: 675841 false ) 
+	#(10 2 #reduceActionForRewriteExpressions2: 525314 false ) 
+	#(11 1 #liftFirstValue: 606209 false ) 
+	#(11 1 #liftFirstValue: 606210 false ) 
+	#(11 1 #liftFirstValue: 606211 false ) 
+	#(20 0 #nil 1631233 false ) 
+	#(20 1 #liftFirstValue: 1631234 false ) 
+	#(21 0 #nil 1671169 false ) 
+	#(14 0 #reduceActionForSwitchStateToDefault1: 886785 false ) 
+	#(22 1 #liftFirstValue: 1712129 false ) 
+	#(18 2 #reduceActionForPrefixModifiers2: 1193986 false ) 
+	#(21 1 #liftFirstValue: 1671170 false ) 
+	#(16 5 #reduceActionForCodeReplace1: 1005569 false ) 
+	#(19 2 #reduceActionForPrefixModifiers2: 1412098 false ) 
+	#(18 4 #reduceActionForPrefixModifiers1: 1193985 false ) 
+	#(13 7 #reduceActionForNodeReplace1: 733185 false ) 
+	#(19 4 #reduceActionForPostfixModifiers1: 1412097 false )
 	).
 ]
 
@@ -133,7 +135,7 @@ SmaCCReplaceExpressionParser class >> symbolNames [
 
 { #category : #generated }
 SmaCCReplaceExpressionParser class >> symbolTypes [
-	^ #(#SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCCompositeReplaceExpression #SmaCCCompositeReplaceExpression #OrderedCollection #SmaCCReplaceExpression #SmaCCStringReplaceExpression #SmaCCNodeReplaceExpression nil nil #SmaCCCodeReplaceExpression nil #OrderedCollection #OrderedCollection #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCError)
+	^ #(#SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCCompositeReplaceExpression #SmaCCCompositeReplaceExpression #OrderedCollection #SmaCCReplaceExpression #SmaCCStringReplaceExpression #SmaCCNodeReplaceExpression nil nil #SmaCCCodeReplaceExpression nil #OrderedCollection #OrderedCollection #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCToken #SmaCCErrorNode)
 ]
 
 { #category : #generated }
@@ -145,33 +147,33 @@ SmaCCReplaceExpressionParser class >> transitionTable [
 #[0 0 22 0 5 0 6 0 7 0 24] 
 #[0 0 26 0 5 0 6 0 7 0 24] 
 #[0 0 30 0 5 0 6 0 7 0 24] 
-#[0 0 30 0 5 0 6 0 7 0 24] 
+#[0 0 34 0 5 0 6 0 7 0 24] 
 #[0 0 45 0 6] 
-#[0 0 30 0 5 0 6 0 7 0 24] 
+#[0 0 38 0 5 0 6 0 7 0 24] 
 #[0 0 49 0 7] 
-#[1 0 34 0 1 0 61 0 2 0 34 0 3 0 57 0 18 0 61 0 20] 
+#[1 0 42 0 1 0 61 0 2 0 42 0 3 0 57 0 18 0 61 0 20] 
 #[0 0 65 0 23] 
-#[0 0 38 0 1 0 3 0 6] 
+#[0 0 46 0 1 0 3 0 6] 
 #[0 0 69 0 1] 
-#[1 0 42 0 1 0 81 0 3 0 77 0 21 0 81 0 22] 
-#[1 0 46 0 7 0 85 0 14] 
-#[1 0 42 0 2 0 93 0 3 0 42 0 4 0 42 0 6 0 89 0 19 0 93 0 21 0 93 0 22] 
-#[0 0 50 0 1 0 2 0 4 0 6] 
-#[0 0 54 0 1] 
-#[1 0 58 0 1 0 101 0 4] 
-#[0 0 105 0 7] 
-#[1 0 46 0 6 0 109 0 14] 
-#[1 0 117 0 2 0 113 0 4 0 34 0 6 0 117 0 20] 
+#[1 0 50 0 1 0 81 0 3 0 77 0 21 0 81 0 22] 
+#[1 0 54 0 7 0 85 0 14] 
+#[1 0 50 0 2 0 93 0 3 0 50 0 4 0 50 0 6 0 89 0 19 0 93 0 21 0 93 0 22] 
 #[0 0 58 0 1 0 2 0 4 0 6] 
-#[1 0 42 0 1 0 121 0 3 0 121 0 21 0 121 0 22] 
-#[0 0 62 0 5 0 6 0 7 0 24] 
+#[0 0 62 0 1] 
+#[1 0 66 0 1 0 101 0 4] 
+#[0 0 105 0 7] 
+#[1 0 54 0 6 0 109 0 14] 
+#[1 0 117 0 2 0 113 0 4 0 42 0 6 0 117 0 20] 
+#[0 0 66 0 1 0 2 0 4 0 6] 
+#[1 0 50 0 1 0 121 0 3 0 121 0 21 0 121 0 22] 
+#[0 0 70 0 5 0 6 0 7 0 24] 
 #[0 0 125 0 6] 
 #[0 0 129 0 3 0 22] 
-#[0 0 66 0 6] 
-#[0 0 70 0 1] 
-#[0 0 74 0 5 0 6 0 7 0 24] 
-#[1 0 133 0 2 0 34 0 6 0 133 0 20] 
-#[0 0 78 0 6]
+#[0 0 74 0 6] 
+#[0 0 78 0 1] 
+#[0 0 82 0 5 0 6 0 7 0 24] 
+#[1 0 133 0 2 0 42 0 6 0 133 0 20] 
+#[0 0 86 0 6]
 	).
 ]
 

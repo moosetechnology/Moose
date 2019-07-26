@@ -18,19 +18,6 @@ FAMIXMethod class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXMethod class >> generatedSlotNames [
-	<generated>
-	'FAMIXMethod class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXMethod class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTMethod FamixTWithCaughtExceptions FamixTWithClassScope FamixTWithDeclaredExceptions FamixTWithThrownExceptions)
-]
-
 { #category : #meta }
 FAMIXMethod class >> requirements [
 
@@ -46,12 +33,6 @@ FAMIXMethod class >> shouldSearchForSmalltalkCodeInImage [
 { #category : #accessing }
 FAMIXMethod class >> shouldSearchForSmalltalkCodeInImage: anObject [
 	ShouldSearchForSmalltalkCodeInImage := anObject
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXMethod >> accept: aVisitor [
-
-	aVisitor visitMethod: self
 ]
 
 { #category : #'Famix-Extensions-metrics-support' }
@@ -131,16 +112,6 @@ FAMIXMethod >> compiledMethod [
 ]
 
 { #category : #'Famix-Extensions' }
-FAMIXMethod >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	self kind: anEntity kind copy.
-	self category: anEntity category copy.
-
-
-]
-
-{ #category : #'Famix-Extensions' }
 FAMIXMethod >> cyclomaticComplexity [
 
 	"redefine this method because we need to override an implementation provided by FamixTMethod"
@@ -188,7 +159,7 @@ FAMIXMethod >> implementMethod [
 { #category : #initialization }
 FAMIXMethod >> initialize [
 	super initialize.
-	hasClassScope := false
+	isClassSide := false
 ]
 
 { #category : #'Famix-Java' }
@@ -453,7 +424,7 @@ FAMIXMethod >> smalltalkClass [
 	
 	^   ('*_class' match: self parentType name)
 			ifTrue: [self parentType smalltalkClass]
-			ifFalse: [self hasClassScope 
+			ifFalse: [self isClassSide 
 							ifTrue: [self parentType smalltalkClass class]
 							ifFalse: [self parentType smalltalkClass]]
 ]

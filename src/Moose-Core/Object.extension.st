@@ -10,6 +10,11 @@ Object >> hasUniqueMooseNameInModel [
 	^false
 ]
 
+{ #category : #'*Moose-Core' }
+Object class >> isOfType: aClassFAMIX [
+	^ false
+]
+
 { #category : #'*moose-core' }
 Object >> mooseDescription [
 
@@ -113,6 +118,11 @@ Object >> mooseMenuMorph [
 					target: [ self perform: eachPragma selector ]
 					selector: #value ]].
 	^ menu
+]
+
+{ #category : #'*Moose-Core' }
+Object >> mooseModel [
+	^ nil
 ]
 
 { #category : #'*moose-core' }

@@ -13,26 +13,6 @@ FamixJavaPrimitiveType class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaPrimitiveType class >> generatedSlotNames [
-	<generated>
-	'FamixJavaPrimitiveType class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaPrimitiveType class >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
-{ #category : #meta }
-FamixJavaPrimitiveType class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #testing }
 FamixJavaPrimitiveType >> isPrimitiveType [
 

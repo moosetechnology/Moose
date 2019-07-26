@@ -1,7 +1,7 @@
 Trait {
 	#name : #FamixTWithSignature,
 	#instVars : [
-		'signature'
+		'#signature => FMProperty'
 	],
 	#category : #'Famix-Traits-Signature'
 }
@@ -13,19 +13,6 @@ FamixTWithSignature classSide >> annotation [
 	<generated>
 	<package: #'Famix-Traits'>
 	^self
-]
-
-{ #category : #generator }
-FamixTWithSignature classSide >> generatedSlotNames [
-	<generated>
-	'FamixTWithSignature class>>#generatedSlotNames'.
-	^ #(signature)
-]
-
-{ #category : #generator }
-FamixTWithSignature classSide >> generatedTraitNames [
-	<generated>
-	^ #()
 ]
 
 { #category : #accessing }

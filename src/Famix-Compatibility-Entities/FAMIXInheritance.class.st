@@ -15,40 +15,6 @@ FAMIXInheritance class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXInheritance class >> generatedSlotNames [
-	<generated>
-	'FAMIXInheritance class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXInheritance class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTInheritanceGlue FamixTSubInheritance FamixTSuperInheritance)
-]
-
-{ #category : #meta }
-FAMIXInheritance class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXInheritance >> accept: aVisitor [
-
-	aVisitor visitInheritance: self
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXInheritance >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	self superclass: (aVisitor visit: anEntity superclass).
-	self subclass: (aVisitor visit: anEntity subclass).
-]
-
 { #category : #'Moose-Hismo' }
 FAMIXInheritance >> historicalUniqueName [
 	

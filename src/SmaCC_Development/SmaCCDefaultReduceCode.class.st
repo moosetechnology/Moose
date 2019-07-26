@@ -4,7 +4,7 @@ SmaCCDefaultReduceCode represents a reduce action that returns a collection of a
 Class {
 	#name : #SmaCCDefaultReduceCode,
 	#superclass : #SmaCCReduceCode,
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-Compilation Model'
 }
 
 { #category : #private }

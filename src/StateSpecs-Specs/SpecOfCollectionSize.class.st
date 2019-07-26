@@ -18,7 +18,7 @@ Class {
 	#instVars : [
 		'requiredSize'
 	],
-	#category : 'StateSpecs-Specs'
+	#category : #'StateSpecs-Specs'
 }
 
 { #category : #'instance creation' }

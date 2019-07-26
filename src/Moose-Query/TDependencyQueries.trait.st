@@ -70,19 +70,6 @@ TDependencyQueries classSide >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-TDependencyQueries classSide >> generatedSlotNames [
-	<generated>
-	'TDependencyQueries class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-TDependencyQueries classSide >> generatedTraitNames [
-	<generated>
-	^ #()
-]
-
 { #category : #'moosequery-queries-generic' }
 TDependencyQueries >> createIncomingQueryResultWith: aCollection [
 	^ MooseIncomingQueryResult on: self withAll: aCollection

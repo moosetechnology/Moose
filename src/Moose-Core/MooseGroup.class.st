@@ -135,15 +135,6 @@ MooseGroup >> copyFrom: startIndex to: endIndex [
 	^ result	
 ]
 
-{ #category : #'set operations' }
-MooseGroup >> difference: aGroup [ 
-	 
-	| result | 
-	result := self class withAll: (self entities difference: aGroup entities). 
-	result description: self description , '  subtracted with ' , aGroup description. 
-	^result
-]
-
 { #category : #'public interface' }
 MooseGroup >> distributionOverAGroupOfGroups: aGroupOfGroups [ 
 	 
@@ -193,15 +184,6 @@ MooseGroup >> initializeWithAll: aCollection [
 	self entityStorage addAll: aCollection.
 ]
 
-{ #category : #'set operations' }
-MooseGroup >> intersection: aGroup [ 
-	 
-	| result | 
-	result := self class withAll: (self entities intersection: aGroup entities). 
-	result description: self description , '  intersected with ' , aGroup description. 
-	^result
-]
-
 { #category : #'public interface' }
 MooseGroup >> max: aSymbolOrBlock [ 
 	 
@@ -221,7 +203,7 @@ MooseGroup >> min: aSymbolOrBlock [
 { #category : #accessing }
 MooseGroup >> mooseDescription [
 
-	^ self mooseModel metamodel descriptionOf: self class instanceSide  
+	^ self mooseModel ifNil: [ FM3NullDescription new ] ifNotNil: [ :mooseModel | mooseModel metamodel descriptionOf: self class instanceSide]  
 ]
 
 { #category : #accessing }
@@ -402,23 +384,14 @@ MooseGroup >> sumOfPropertyNamed: aPropertyName [
 						ifNil: [0])]
 ]
 
-{ #category : #'set operations' }
-MooseGroup >> union: aGroup [ 
-	 
-	| result | 
-	result := self class withAll: (self entities asSet union: aGroup entities asSet). 
-	result description: self description , '  and ' , aGroup description. 
-	^result
-]
-
 { #category : #private }
 MooseGroup >> updateTypeAccordingToEntities [
 	| common wantedType class |
 	common := self commonEntitiesClass.
-	wantedType := (common name, 'Group') asSymbol.
+	wantedType := common relatedGroupType.
 	self name = wantedType ifTrue: [ ^ self ].
 	class := MooseAbstractGroup allSubclasses 
-		detect: [ :each | each name == wantedType ]
+		detect: [ :each | each name == wantedType name ]
 		ifNone: [ ^ self changeTypeToDefaultType ].
 	self changeTypeTo: class
 ]

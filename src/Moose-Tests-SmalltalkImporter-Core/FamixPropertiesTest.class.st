@@ -21,8 +21,6 @@ FamixPropertiesTest >> testAttributeMetrics [
 	attribute2 := self model entityNamed: #'Smalltalk::LANOutputServer.serverType'.
 	self assert: (attribute1 propertyNamed: #numberOfAccesses) equals: 3.
 	self assert: attribute1 numberOfAccesses equals: 3.
-	self assert: (attribute1 propertyNamed: #nameLength) equals: 8.
-	self assert: attribute1 nameLength equals: 8.
 	self assert: (attribute1 propertyNamed: #hierarchyNestingLevel) equals: 1.
 	self assert: attribute1 hierarchyNestingLevel equals: 1.
 	self assert: (attribute1 propertyNamed: #numberOfAccessingClasses) equals: 1.
@@ -73,6 +71,7 @@ FamixPropertiesTest >> testClassAttributes [
 
 { #category : #testing }
 FamixPropertiesTest >> testClassCategories [
+"1halt."
 	self assert: (self nodeClass propertyNamed: #numberOfMethodProtocols) equals: 6.
 	self assert: self nodeClass numberOfMethodProtocols equals: 6
 ]
@@ -115,11 +114,6 @@ FamixPropertiesTest >> testClassMethods [
 		assert: (self nodeClass propertyNamed: #numberOfMethodsAdded)
 		equals: (self nodeClass propertyNamed: #numberOfMethods).
 	self assert: (self nodeClass propertyNamed: #numberOfConstructorMethods) equals: 0.
-	self assert: (self nodeClass propertyNamed: #numberOfPrivateMethods) equals: 0.
-	self assert: (self nodeClass propertyNamed: #numberOfProtectedMethods) equals: 0.
-	self
-		assert: (self nodeClass propertyNamed: #numberOfPublicMethods)
-		equals: (self nodeClass propertyNamed: #numberOfMethods).
 	self
 		assert: (self workstationClass propertyNamed: #numberOfMethodsInherited)
 		equals: (self nodeClass propertyNamed: #numberOfMethods) + (self nodeClass propertyNamed: #numberOfMethodsInherited).
@@ -212,11 +206,6 @@ FamixPropertiesTest >> testMethodInvocationsWithoutCascading [
 FamixPropertiesTest >> testMethodLOC [
 	self assert: (self lanInterfaceOriginateMethod propertyNamed: #numberOfLinesOfCode) equals: 22.
 	self assert: self lanInterfaceOriginateMethod numberOfLinesOfCode equals: 22
-]
-
-{ #category : #testing }
-FamixPropertiesTest >> testMethodName [
-	self assert: (self lanInterfaceOriginateMethod propertyNamed: #nameLength) equals: 9
 ]
 
 { #category : #testing }

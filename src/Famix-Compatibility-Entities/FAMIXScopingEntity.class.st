@@ -15,19 +15,6 @@ FAMIXScopingEntity class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FAMIXScopingEntity class >> generatedSlotNames [
-	<generated>
-	'FAMIXScopingEntity class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXScopingEntity class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTGlobalVariableScope FamixTScopingEntity)
-]
-
 { #category : #meta }
 FAMIXScopingEntity class >> requirements [
 
@@ -40,12 +27,6 @@ FAMIXScopingEntity >> abstractness [
 	"Abstractness is the ratio between the number of abstract classes and the total number of classes in a package, in the range [0, 1]. 0 means the package is fully concrete, 1 it is fully abstract."
 	
 	self subclassResponsibility
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXScopingEntity >> accept: aVisitor [
-
-	aVisitor visitScopingEntity: self
 ]
 
 { #category : #'Famix-Extensions-metrics' }
@@ -108,18 +89,6 @@ FAMIXScopingEntity >> childrenOfMyKind [
 	"Polymorphic accessor to children of this scope in a hierarchical structure (package->subpackages, scope->subscopes)"
 
 	^ self children allWithSubTypesOf: self class
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXScopingEntity >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	anEntity globalVariables do: [ :glv | 
-		self addGlobalVariable: (aVisitor visit: glv) ].
-	anEntity childScopes do: [ :cs | 
-		self addChildScope: (aVisitor visit: cs) ].
-	anEntity functions do: [ :f | "empty loop in smalltalk models"
-		self addFunction: (aVisitor visit: f) ].
 ]
 
 { #category : #'Famix-Extensions-metrics' }

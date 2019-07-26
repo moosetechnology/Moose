@@ -15,26 +15,6 @@ FamixJavaUnknownSourceLanguage class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaUnknownSourceLanguage class >> generatedSlotNames [
-	<generated>
-	'FamixJavaUnknownSourceLanguage class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaUnknownSourceLanguage class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTSourceLanguage)
-]
-
-{ #category : #meta }
-FamixJavaUnknownSourceLanguage class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaUnknownSourceLanguage >> isUnknown [ 
 	^ true

@@ -12,7 +12,7 @@ Class {
 	#instVars : [
 		'nodeMap'
 	],
-	#category : #'SmaCC_Development'
+	#category : #'SmaCC_Development-DFA/NFA'
 }
 
 { #category : #algorithm }

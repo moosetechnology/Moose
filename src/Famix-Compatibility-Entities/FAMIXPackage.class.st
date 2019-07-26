@@ -1,8 +1,8 @@
 Class {
 	#name : #FAMIXPackage,
 	#superclass : #FAMIXScopingEntity,
-	#traits : 'FamixTPackage + FamixTPackageWithClassesGlue',
-	#classTraits : 'FamixTPackage classTrait + FamixTPackageWithClassesGlue classTrait',
+	#traits : 'FamixTCohesionCouplingMetrics + FamixTPackage + FamixTPackageWithClassesGlue',
+	#classTraits : 'FamixTCohesionCouplingMetrics classTrait + FamixTPackage classTrait + FamixTPackageWithClassesGlue classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 
@@ -13,26 +13,6 @@ FAMIXPackage class >> annotation [
 	<package: #FAMIX>
 	<generated>
 	^self
-]
-
-{ #category : #generator }
-FAMIXPackage class >> generatedSlotNames [
-	<generated>
-	'FAMIXPackage class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FAMIXPackage class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTPackage FamixTPackageWithClassesGlue)
-]
-
-{ #category : #meta }
-FAMIXPackage class >> requirements [
-
-	<generated>
-	^ {  }
 ]
 
 { #category : #'Famix-Implementation' }
@@ -53,12 +33,6 @@ FAMIXPackage >> abstractness [
 	(nsClasses size == 0) ifTrue: [^nil].
 	
 	^ (nsClasses select: [:c | c isAbstract]) size / (nsClasses size)
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXPackage >> accept: aVisitor [
-
-	aVisitor visitPackage: self
 ]
 
 { #category : #accessing }
@@ -205,60 +179,11 @@ FAMIXPackage >> containedEntities: collection [
 	self definedClasses: collection.
 ]
 
-{ #category : #'Famix-Extensions' }
-FAMIXPackage >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	
-	anEntity childNamedEntities do: [:c|
-		self addChildNamedEntity: (aVisitor visit: c ) ].
-
-]
-
-{ #category : #'Famix-Smalltalk' }
-FAMIXPackage >> createPackagesFromCategories [
-	<menuItem: 'Create packages from package categories' category: 'Utilities'>
-	"Inspired by the Moose Smalltalk Category importer"
-	| cat famixCat |
-	
-	self localClasses do:[ :class |
-		cat := (Smalltalk at: class instanceSide name) category.
-		famixCat := self mooseModel allPackages detect: [:each | each mooseName = cat] ifNone: [nil].
-		famixCat ifNil: [
-			famixCat := self mooseModel add: (FAMIXPackage new name: cat; stub: true)
-		].
-		class isStub
-			ifFalse: [ famixCat stub: false ].
-		class localMethods do:[:aMethod |
-			aMethod parentPackage: famixCat ].
-		class parentPackage: famixCat.
-	].
-	self privateState flushGroups.
-	self mooseModel cacheMooseGroups
-]
-
 { #category : #'Famix-Smalltalk' }
 FAMIXPackage >> definedMethods [
 	"alias"
 
 	^ self localMethods
-]
-
-{ #category : #'Famix-Extensions-metrics' }
-FAMIXPackage >> distance [
-	"D = A + I - 1. A package should be balanced between abstractness and instability, i.e., somewhere between abstract and stable or concrete and unstable. This rule defines the main sequence by the equation A + I - 1 = 0. D is the distance to the main sequence."
-	<MSEProperty: #distance type: #Number>
-	<derived>
-	<MSEComment: 'Distance of a package'>
-
-	
-	| abstractness instability |
-	abstractness := self abstractness.
-	instability := self instability.
-	
-	(abstractness isNil or: [instability isNil]) ifTrue: [^ nil].
-	^ abstractness + instability - 1
-	
 ]
 
 { #category : #'Famix-Extensions-metrics' }
@@ -321,22 +246,6 @@ FAMIXPackage >> historicalUniqueName [
 	^ (self parentPackage isNil 
 		ifTrue: [ self name ]
 		ifFalse: [ self parentPackage historicalUniqueName , '.' , self name ]) asSymbol
-]
-
-{ #category : #'Famix-Extensions-metrics' }
-FAMIXPackage >> instability [
-	"I =	Ce(P)/(Ce(P)+Ca(P)), in the range [0, 1]. 0 means package is maximally stable (i.e., no dependency to other packages and can not change without big consequences), 1 means it is unstable."
-
-	<MSEProperty: #instability type: #Number>
-	<derived>
-	<MSEComment: 'Instability of a package'>
-
-	| efferentCoupling afferentCoupling |
-	
-	efferentCoupling := self efferentCoupling.
-	afferentCoupling := self afferentCoupling.
-	(efferentCoupling + afferentCoupling) == 0 ifTrue: [^ nil].
-	^ efferentCoupling / (efferentCoupling + afferentCoupling)
 ]
 
 { #category : #'Famix-Smalltalk' }

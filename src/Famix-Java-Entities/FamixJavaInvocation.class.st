@@ -15,41 +15,6 @@ FamixJavaInvocation class >> annotation [
 	^self
 ]
 
-{ #category : #generator }
-FamixJavaInvocation class >> generatedSlotNames [
-	<generated>
-	'FamixJavaInvocation class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixJavaInvocation class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTInvocation FamixTWithSignature)
-]
-
-{ #category : #meta }
-FamixJavaInvocation class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaInvocation >> accept: aVisitor [
-
-	aVisitor visitInvocation: self
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaInvocation >> copyFrom: anEntity within: aVisitor [
-	super copyFrom: anEntity within: aVisitor.
-	self sender: (aVisitor visit: anEntity sender).
-	self receiver: (aVisitor visit: anEntity receiver).
-	self signature: anEntity signature copy.
-	anEntity candidates do: [ :c | self addCandidate: (aVisitor visit: c) ]
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaInvocation >> getReceivingFAMIXClass [
 	|tmpReceiver|

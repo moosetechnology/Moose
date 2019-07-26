@@ -7,7 +7,7 @@ I describe strings which include particular substring.
 Class {
 	#name : #SpecOfSubstring,
 	#superclass : #SpecOfString,
-	#category : 'StateSpecs-Specs'
+	#category : #'StateSpecs-Specs'
 }
 
 { #category : #testing }

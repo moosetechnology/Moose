@@ -14,23 +14,3 @@ FamixTest3SourceTextAnchor class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #generator }
-FamixTest3SourceTextAnchor class >> generatedSlotNames [
-	<generated>
-	'FamixTest3SourceTextAnchor class>>#generatedSlotNames'.
-	^ #()
-]
-
-{ #category : #generator }
-FamixTest3SourceTextAnchor class >> generatedTraitNames [
-	<generated>
-	^ #(FamixTWithImmediateSource)
-]
-
-{ #category : #meta }
-FamixTest3SourceTextAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
