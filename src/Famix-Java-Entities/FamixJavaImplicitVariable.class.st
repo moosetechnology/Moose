@@ -50,7 +50,6 @@ FamixJavaImplicitVariable >> container: aBehaviouralEntity [
 	^ self parentBehaviouralEntity: aBehaviouralEntity
 ]
 
-{ #category : #'as yet unclassified' }
 { #category : #testing }
 FamixJavaImplicitVariable >> isImplicitVariable [
 	^true
