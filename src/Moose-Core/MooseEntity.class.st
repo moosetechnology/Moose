@@ -54,10 +54,6 @@ Class {
 		'DefaultState',
 		'MooseID'
 	],
-	#classInstVars : [
-		'mooseSubClasses',
-		'usedStatefulTraits'
-	],
 	#category : #'Moose-Core'
 }
 
