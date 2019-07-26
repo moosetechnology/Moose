@@ -28,6 +28,11 @@ FamixStSourceLanguage >> isSmalltalk [
 ]
 
 { #category : #testing }
+FamixStSourceLanguage >> isUnknown [
+	^false.
+]
+
+{ #category : #testing }
 FamixStSourceLanguage >> name [
 
 	<MSEProperty: #name type: #String> <derived>

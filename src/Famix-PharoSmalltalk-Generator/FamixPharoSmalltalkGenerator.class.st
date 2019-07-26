@@ -70,7 +70,6 @@ FamixPharoSmalltalkGenerator >> defineClasses [
 	reference := builder newClassNamed: #Reference.
 	scopingEntity := builder newClassNamed: #ScopingEntity.
 	structuralEntity := builder newClassNamed: #StructuralEntity.
-	smalltalkSourceLanguage := builder newClassNamed: #SmalltalkSourceLanguage.
 	unknownSourceLanguage := builder newClassNamed: #UnknownSourceLanguage.
 	unknownVariable := builder newClassNamed: #UnknownVariable.
 		

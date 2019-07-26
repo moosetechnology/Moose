@@ -159,13 +159,6 @@ FamixStImportingContext >> importScopingEntity [
 ]
 
 { #category : #testing }
-FamixStImportingContext >> importSmalltalkSourceLanguage [
-
-	<generated>
-	^ self import: FamixStSmalltalkSourceLanguage
-]
-
-{ #category : #testing }
 FamixStImportingContext >> importSourceAnchor [
 
 	<generated>
@@ -366,13 +359,6 @@ FamixStImportingContext >> shouldImportScopingEntity [
 
 	<generated>
 	^ self shouldImport: FamixStScopingEntity
-]
-
-{ #category : #testing }
-FamixStImportingContext >> shouldImportSmalltalkSourceLanguage [
-
-	<generated>
-	^ self shouldImport: FamixStSmalltalkSourceLanguage
 ]
 
 { #category : #testing }
