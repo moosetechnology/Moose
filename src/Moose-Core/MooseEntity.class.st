@@ -187,10 +187,11 @@ MooseEntity class >> mooseSubClasses [
 	 ^mooseSubClasses ifNil: [ mooseSubClasses := Set new ]
 ]
 
-
 { #category : #accessing }
 MooseEntity class >> mooseTypes [
-	^ {self} , self usedStatefulTraits
+	^ self usedStatefulTraits
+		add: self class;
+		yourself
 ]
 
 { #category : #meta }
@@ -319,7 +320,6 @@ MooseEntity >> children [
 			group isEmpty ifFalse: [children add: group]]. 
 	^children
 ]
-
 
 { #category : #private }
 MooseEntity >> defaultStateClass [
@@ -518,13 +518,6 @@ MooseEntity >> mooseNameOn: aStream [
 			[ self name 
 				ifNil: [ aStream print: self mooseID ]
 				ifNotNil: [ aStream nextPutAll: self name ] ]
-]
-
-{ #category : #accessing }
-MooseEntity >> mooseTypes [
-	^ self class usedStatefulTraits
-		add: self class;
-		yourself
 ]
 
 { #category : #accessing }
