@@ -406,6 +406,8 @@ BaselineOfMoose >> baselinePetitParser: spec [
 		'PetitGui'
 		
 		'PetitMSE'
+		'PetitJson'
+		'PetitJson-Tests'
 	).
 
 ]
