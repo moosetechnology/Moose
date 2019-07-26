@@ -10,6 +10,11 @@ Object >> hasUniqueMooseNameInModel [
 	^false
 ]
 
+{ #category : #'*Moose-Core' }
+Object class >> isOfType: aClassFAMIX [
+	^ false
+]
+
 { #category : #'*moose-core' }
 Object >> mooseDescription [
 
@@ -126,9 +131,14 @@ Object >> mooseName [
 ]
 
 { #category : #'*Moose-Core' }
-Object >> mooseTypes [
+Object class >> mooseTypes [
 
 	^ { self class }
 
 	
+]
+
+{ #category : #'*Moose-Core' }
+Object >> mooseTypes [
+	^ self class mooseTypes
 ]

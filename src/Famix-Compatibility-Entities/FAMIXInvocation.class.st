@@ -16,21 +16,6 @@ FAMIXInvocation class >> annotation [
 ]
 
 { #category : #'Famix-Extensions' }
-FAMIXInvocation >> accept: aVisitor [
-
-	aVisitor visitInvocation: self
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXInvocation >> copyFrom: anEntity within: aVisitor [
-	super copyFrom: anEntity within: aVisitor.
-	self sender: (aVisitor visit: anEntity sender).
-	self receiver: (aVisitor visit: anEntity receiver).
-	self signature: anEntity signature copy.
-	anEntity candidates do: [ :c | self addCandidate: (aVisitor visit: c) ]
-]
-
-{ #category : #'Famix-Extensions' }
 FAMIXInvocation >> getReceivingFAMIXClass [
 	|tmpReceiver|
 	"return the FAMIXClass of the receiver. If the receiver is a FAMIXClass, this one is returned. If it is self or super, the corresponding FAMIXClass is returned. The receiver may not be nil"

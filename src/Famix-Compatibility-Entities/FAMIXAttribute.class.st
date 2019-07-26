@@ -25,12 +25,6 @@ FAMIXAttribute class >> requirements [
 	^ { FAMIXType }
 ]
 
-{ #category : #'Famix-Extensions' }
-FAMIXAttribute >> accept: aVisitor [
-
-	aVisitor visitAttribute: self
-]
-
 { #category : #'Famix-Smalltalk' }
 FAMIXAttribute >> beInstanceVariable [
 
@@ -57,13 +51,6 @@ FAMIXAttribute >> belongsTo: anObject [
 	<generated>
 	self parentType: anObject
 
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXAttribute >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	self hasClassScope: anEntity hasClassScope
 ]
 
 { #category : #accessing }

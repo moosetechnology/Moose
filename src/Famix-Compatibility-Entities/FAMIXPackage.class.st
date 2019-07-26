@@ -35,12 +35,6 @@ FAMIXPackage >> abstractness [
 	^ (nsClasses select: [:c | c isAbstract]) size / (nsClasses size)
 ]
 
-{ #category : #'Famix-Extensions' }
-FAMIXPackage >> accept: aVisitor [
-
-	aVisitor visitPackage: self
-]
-
 { #category : #accessing }
 FAMIXPackage >> addChildNamedEntity: aNamedEntity [
 	childEntities add: aNamedEntity
@@ -183,16 +177,6 @@ FAMIXPackage >> containedEntities [
 { #category : #'Famix-Extensions-accessing' }
 FAMIXPackage >> containedEntities: collection [
 	self definedClasses: collection.
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXPackage >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	
-	anEntity childNamedEntities do: [:c|
-		self addChildNamedEntity: (aVisitor visit: c ) ].
-
 ]
 
 { #category : #'Famix-Smalltalk' }

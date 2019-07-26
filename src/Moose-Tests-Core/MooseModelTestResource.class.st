@@ -20,8 +20,12 @@ MooseModelTestResource >> model [
 ]
 
 { #category : #setup }
-MooseModelTestResource >> setUp [ 
-	 
-	model := MooseModel new. 
+MooseModelTestResource >> modelClass [
+	^ MooseModel
+]
+
+{ #category : #setup }
+MooseModelTestResource >> setUp [
+	model := self modelClass new.
 	self importModel
 ]

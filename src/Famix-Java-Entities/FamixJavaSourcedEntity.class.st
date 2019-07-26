@@ -15,12 +15,6 @@ FamixJavaSourcedEntity class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaSourcedEntity >> accept: aVisitor [
-
-	aVisitor visitEntity: self
-]
-
 { #category : #removing }
 FamixJavaSourcedEntity >> addComment: aComment [
 	comments add: aComment asFamixJavaComment
@@ -43,15 +37,6 @@ FamixJavaSourcedEntity >> containerFiles: aColl [
 	"This method is a hack for now because we need an opposite to the files."
 
 	
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaSourcedEntity >> copyFrom: anEntity within: aVisitor [
-
-	sourceAnchor := aVisitor visit: anEntity sourceAnchor.
-	anEntity comments do: [:com | 
-		self comments add: (aVisitor visit: com) ].
-
 ]
 
 { #category : #'as yet unclassified' }

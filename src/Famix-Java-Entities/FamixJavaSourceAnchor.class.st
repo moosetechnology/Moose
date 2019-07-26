@@ -35,12 +35,6 @@ FamixJavaSourceAnchor class >> resetMooseQueryCaches [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaSourceAnchor >> accept: aVisitor [
-
-	aVisitor visitSourceAnchor: self
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaSourceAnchor >> completeText [
 	"The complete text of a FileAnchor contains all the code of the file pointed by the source anchor. On the contrary the #sourceText return only the pant of the file concerned by the entity. For example a FAMIXFileAnchon knows the start line and end line of the source anchor into the file."
 	
@@ -54,13 +48,6 @@ FamixJavaSourceAnchor >> containerFiles [
 	"I should return a collection of files corresponding to the source anchor. If there is no file just return an empty collection."
 
 	^ self subclassResponsibility
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaSourceAnchor >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	self element: (aVisitor visit: anEntity)
 ]
 
 { #category : #'as yet unclassified' }

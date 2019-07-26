@@ -54,10 +54,6 @@ Class {
 		'DefaultState',
 		'MooseID'
 	],
-	#classInstVars : [
-		'mooseSubClasses',
-		'usedStatefulTraits'
-	],
 	#category : #'Moose-Core'
 }
 
@@ -169,6 +165,12 @@ MooseEntity class >> implementingClassesIn: aMetamodel [
 	^ { self }
 ]
 
+{ #category : #testing }
+MooseEntity class >> isOfType: aClassFAMIX [
+	^ (self mooseTypes flatCollect: #withAllSuperclasses as: Set)
+		includes: aClassFAMIX
+]
+
 { #category : #constants }
 MooseEntity class >> mooseDev [ 
 	"Answer the email address of the Moose mailinglist." 
@@ -176,14 +178,11 @@ MooseEntity class >> mooseDev [
 	^'moose-dev@iam.unibe.ch'
 ]
 
-{ #category : #meta }
-MooseEntity class >> mooseSubClasses [
-	 ^mooseSubClasses ifNil: [ mooseSubClasses := Set new ]
-]
-
-{ #category : #meta }
-MooseEntity class >> registerAsMooseSubclass: aClass [
-	self mooseSubClasses add: aClass
+{ #category : #accessing }
+MooseEntity class >> mooseTypes [
+	^ self usedStatefulTraits
+		add: self;
+		yourself
 ]
 
 { #category : #accessing }
@@ -215,28 +214,13 @@ MooseEntity class >> statefulTraits [
 
 { #category : #'stateful traits' }
 MooseEntity class >> usedStatefulTraits [
-
-	^ (self instanceSide withAllSuperclasses flatCollect: [ :class | class traits ]) select: [ :trait | trait classSide includesSelector: #annotation ] 
-
-	
-]
-
-{ #category : #accessing }
-MooseEntity class >> usesMooseTraitDirectly: aTrait [
-
-	^ self traits includes: aTrait
+	^ self withAllSuperclasses flatCollect: [ :class | class allGeneratedTraits ]
 ]
 
 { #category : #accessing }
 MooseEntity class >> usesTrait: aTrait [
 
 	^ (self instanceSide withAllSuperclasses flatCollect: #traits) includes: aTrait
-]
-
-{ #category : #meta }
-MooseEntity class >> withMooseSubclasses [
-	mooseSubClasses ifNil: [ ^self withAllSubclasses ].
-	^(mooseSubClasses copyWithAll: self withAllSubclasses) asSet
 ]
 
 { #category : #'meta information' }
@@ -315,10 +299,6 @@ MooseEntity >> children [
 			group := self perform: eachSelector. 
 			group isEmpty ifFalse: [children add: group]]. 
 	^children
-]
-
-{ #category : #'Famix-Extensions' }
-MooseEntity >> copyFrom: anEntity within: aVisitor [
 ]
 
 { #category : #private }
@@ -413,8 +393,7 @@ MooseEntity >> isBookmarked: aBoolean [
 
 { #category : #testing }
 MooseEntity >> isOfType: aClassFAMIX [
-	
-	^ ((self mooseTypes flatCollect: #withAllSuperclasses as: Set) includes: aClassFAMIX)
+	^ (self mooseTypes flatCollect: #withAllSuperclasses as: Set) includes: aClassFAMIX
 ]
 
 { #category : #testing }
@@ -519,14 +498,6 @@ MooseEntity >> mooseNameOn: aStream [
 			[ self name 
 				ifNil: [ aStream print: self mooseID ]
 				ifNotNil: [ aStream nextPutAll: self name ] ]
-]
-
-{ #category : #accessing }
-MooseEntity >> mooseTypes [
-
-	^ { self class }, self class usedStatefulTraits
-
-	
 ]
 
 { #category : #accessing }

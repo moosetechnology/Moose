@@ -22,12 +22,6 @@ FAMIXGlobalVariable class >> requirements [
 	^ { FAMIXScopingEntity }
 ]
 
-{ #category : #'Famix-Extensions' }
-FAMIXGlobalVariable >> accept: aVisitor [
-
-	aVisitor visitGlobalVariable: self
-]
-
 { #category : #accessing }
 FAMIXGlobalVariable >> belongsTo [
 

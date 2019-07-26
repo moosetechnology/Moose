@@ -15,12 +15,6 @@ FamixJavaMethod class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaMethod >> accept: aVisitor [
-
-	aVisitor visitMethod: self
-]
-
 { #category : #'Famix-Extensions-metrics-support' }
 FamixJavaMethod >> accessedAttributes [
 	
@@ -79,16 +73,6 @@ FamixJavaMethod >> clientPackages [
 	"returns a set of all the packages that depend on the receiver"
 
 	^ (self queryAllIncoming atScope: FamixTPackage) withoutSelfLoops
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaMethod >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	self kind: anEntity kind copy.
-	"self category: anEntity category copy."
-
-
 ]
 
 { #category : #testing }
