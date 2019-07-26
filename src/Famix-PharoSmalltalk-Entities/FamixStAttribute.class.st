@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixStAttribute,
 	#superclass : #FamixStNamedEntity,
-	#traits : 'FamixStStructuralEntity + FamixTAttribute + FamixTWithClassScope',
-	#classTraits : 'FamixStStructuralEntity classTrait + FamixTAttribute classTrait + FamixTWithClassScope classTrait',
+	#traits : 'FamixStTStructuralEntity + FamixTAttribute + FamixTWithClassScope',
+	#classTraits : 'FamixStTStructuralEntity classTrait + FamixTAttribute classTrait + FamixTWithClassScope classTrait',
 	#instVars : [
 		'#hasClassScope'
 	],

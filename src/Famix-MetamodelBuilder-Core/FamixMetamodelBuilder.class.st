@@ -345,14 +345,11 @@ FamixMetamodelBuilder >> newTrait [
 
 { #category : #initialization }
 FamixMetamodelBuilder >> newTraitNamed: aTraitName [
-
 	| candidates |
-	
-	candidates := self traits select: [ :each | each name = aTraitName].
+	candidates := self traits select: [ :each | each fullName = (self configuration prefix , aTraitName) ].
 	candidates isEmpty ifFalse: [ FmxMBEntityAlreadyExists signal ].
 
 	^ self unsafeNewTraitNamed: aTraitName
-
 ]
 
 { #category : #initialization }

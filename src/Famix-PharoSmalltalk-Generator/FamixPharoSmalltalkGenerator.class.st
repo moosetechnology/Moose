@@ -180,7 +180,7 @@ FamixPharoSmalltalkGenerator >> defineProperties [
 { #category : #initialization }
 FamixPharoSmalltalkGenerator >> defineTraits [
 	super defineTraits.
-	tStructuralEntity := builder newTraitNamed: #StructuralEntity
+	tStructuralEntity := builder newTraitNamed: #TStructuralEntity
 ]
 
 { #category : #initialization }
