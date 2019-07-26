@@ -153,8 +153,7 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	reference --|> association.
 	reference --|> #TReference.
 
-	smalltalkSourceLanguage --|> sourceLanguage.
-
+	
 	scopingEntity --|> namedEntity.
 	scopingEntity --|> #TGlobalVariableScope.
 	scopingEntity --|> #TScopingEntity.
@@ -164,7 +163,8 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	structuralEntity --|> #TStructuralEntity.
 	structuralEntity --|> #TTypedStructure.
 
-	unknownSourceLanguage --|> sourceLanguage.
+	unknownSourceLanguage --|> entity.
+	unknownSourceLanguage --|> #TSourceLanguage.
 
 	unknownVariable --|> structuralEntity.
 
