@@ -348,9 +348,7 @@ MooseModel >> exportMetamodel: aMetamodel to: aStream [
 
 { #category : #'import-export' }
 MooseModel >> exportMetamodelTo: aStream [
-
-	self exportMetamodel: self meta to: aStream
-
+	self exportMetamodel: self metamodel to: aStream
 ]
 
 { #category : #actions }

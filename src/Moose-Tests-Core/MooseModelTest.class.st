@@ -197,11 +197,11 @@ MooseModelTest >> testEnsureClassesAndNamespaces [
 MooseModelTest >> testExport [
 	| stream |
 	stream := WriteStream on: String new.
-	MooseModel export: model to: stream.
+	model  export: model to: stream.
 	self assert: stream contents equals: '()'.
 	model add: (FAMIXClass new name: 'Foo').
 	stream := WriteStream on: String new.
-	MooseModel export: model to: stream.
+	model export: model to: stream.
 	self
 		assert: stream contents
 		equals:
@@ -215,7 +215,7 @@ MooseModelTest >> testExportMetamodelTo [
 
 	| stream |
 	stream := WriteStream on: String new.
-	self shouldnt: [MooseModel exportMetamodelTo: stream]  raise: Error.
+	self shouldnt: [model exportMetamodelTo: stream]  raise: Error.
 	self deny: stream isEmpty
 ]
 
