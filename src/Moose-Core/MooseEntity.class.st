@@ -181,7 +181,7 @@ MooseEntity class >> mooseDev [
 { #category : #accessing }
 MooseEntity class >> mooseTypes [
 	^ self usedStatefulTraits
-		add: self class;
+		add: self;
 		yourself
 ]
 
