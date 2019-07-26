@@ -1,3 +1,32 @@
+"
+Use me to create a Moose model.
+You should extend me and then redefine the methods: 
+
+(see documentation https://github.com/SquareBracketAssociates/Booklet-FamixNG)
+
+- defineClasses: to define the entities (can be instanciate)
+- defineHierarchy: to define the hierarchy of class
+- defineProperties: to define the properties (fields) of an Entity
+- defineTraits: to define the Traits (can't be instanciate)
+- defineRelations: to define the relations between entities.
+	- oneToOne:
+	-* oneToMany:
+	*- manyToOne:
+	*-* manyToMany:
+
+	<>- containsOne:
+	<>-* containsMany:
+	-<> oneBelongsTo:
+	*-<> manyBelongTo:
+
+
+Once the metamodel is defined, use:
+	MyModelGenerator generate.
+
+
+You can also redefine #submetamodels 
+to use entities from another generator
+"
 Class {
 	#name : #FamixMetamodelGenerator,
 	#superclass : #Object,
