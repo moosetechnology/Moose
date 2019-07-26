@@ -14,10 +14,3 @@ FamixTestComposed2Comment class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #meta }
-FamixTestComposed2Comment class >> requirements [
-
-	<generated>
-	^ {  }
-]

@@ -20,13 +20,6 @@ FamixTestComposed2Entity class >> metamodel [
 	^ (self class environment at: #FamixTestComposedSubmetamodel2Generator) metamodel
 ]
 
-{ #category : #meta }
-FamixTestComposed2Entity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #testing }
 FamixTestComposed2Entity >> isAccess [
 

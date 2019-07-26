@@ -10,6 +10,11 @@ MooseModelTestResourceWithSmalltalkDependency >> metamodelFactory [
 	^ SmalltalkMetamodelFactory
 ]
 
+{ #category : #setup }
+MooseModelTestResourceWithSmalltalkDependency >> modelClass [
+	^ FamixStMooseModel
+]
+
 { #category : #'as yet unclassified' }
 MooseModelTestResourceWithSmalltalkDependency >> newImportClassesTask [
 	

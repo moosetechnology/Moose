@@ -15,13 +15,6 @@ FamixJavaSourceTextAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaSourceTextAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaSourceTextAnchor >> containerFiles [
 	^ {}

@@ -22,12 +22,6 @@ FamixJavaLocalVariable class >> requirements [
 	^ {  }
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaLocalVariable >> accept: aVisitor [
-
-	aVisitor visitLocalVariable: self
-]
-
 { #category : #accessing }
 FamixJavaLocalVariable >> belongsTo [
 

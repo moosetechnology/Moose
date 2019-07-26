@@ -22,12 +22,6 @@ FAMIXType class >> requirements [
 	^ { FAMIXContainerEntity }
 ]
 
-{ #category : #'Famix-Extensions' }
-FAMIXType >> accept: aVisitor [
-
-	aVisitor visitType: self
-]
-
 { #category : #'Famix-Extensions-navigation' }
 FAMIXType >> accessTo: aFAMIXPackageOrFAMIXClass [ 
 
@@ -48,6 +42,19 @@ FAMIXType >> allSuperclassesDo: aBlock [
 	self allSuperclassesWithoutAliasesDo: aBlock.
 	(self mooseModel sourceLanguage notNil and: [self mooseModel sourceLanguage isC])
 		ifTrue: [ self typeAliases do: [ :each | each allSuperclassesWithoutAliasesDo: aBlock ] ]
+]
+
+{ #category : #accessing }
+FAMIXType >> anySuperclass [
+
+	"Mircea: this used to return interfaces too. fixed now. 
+	also added superclass that does the same thing"
+
+	self
+		allSuperclassesDo: [ :each | 
+			each isInterface
+				ifFalse: [ ^ each ] ].
+	^ nil
 ]
 
 { #category : #accessing }
@@ -112,20 +119,6 @@ FAMIXType >> container [
 FAMIXType >> container: aContainer [
 
 	self typeContainer: aContainer
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXType >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-
-	anEntity superInheritances do: [:inh|
-		aVisitor visit: inh ].
-	anEntity attributes do: [:a |
-		self addAttribute: (aVisitor visit: a) ].
-	anEntity methods do: [:m|
-		self addMethod: (aVisitor visit: m) ].
-
 ]
 
 { #category : #'moosequery-queries-incoming' }

@@ -15,13 +15,6 @@ FamixStInvocation class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixStInvocation class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'instance creation' }
 FamixStInvocation >> getReceivingFAMIXClass [
 	|tmpReceiver|

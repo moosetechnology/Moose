@@ -15,13 +15,6 @@ FAMIXAbstractFileAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXAbstractFileAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Famix-File' }
 FAMIXAbstractFileAnchor >> <= aFileAnchor [
 	^ self fileName <= aFileAnchor fileName

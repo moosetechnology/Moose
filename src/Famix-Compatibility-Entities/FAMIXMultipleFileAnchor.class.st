@@ -15,13 +15,6 @@ FAMIXMultipleFileAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXMultipleFileAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #public }
 FAMIXMultipleFileAnchor >> addFileAnchorWithPath: aPath [
 	self allFiles detect: [ :each | each fileName = aPath ] ifNone: [ self createAnchorWithPath: aPath ]

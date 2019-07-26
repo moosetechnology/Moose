@@ -22,12 +22,6 @@ FamixJavaParameter class >> requirements [
 	^ {  }
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaParameter >> accept: aVisitor [
-
-	aVisitor visitParameter: self
-]
-
 { #category : #accessing }
 FamixJavaParameter >> belongsTo [
 

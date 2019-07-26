@@ -1,23 +1,18 @@
 Class {
 	#name : #FamixStUnknownVariable,
-	#superclass : #FamixStStructuralEntity,
+	#superclass : #FamixStNamedEntity,
+	#traits : 'FamixStStructuralEntity',
+	#classTraits : 'FamixStStructuralEntity classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 
 { #category : #meta }
 FamixStUnknownVariable class >> annotation [
 
-	<MSEClass: #UnknownVariable super: #FamixStStructuralEntity>
+	<MSEClass: #UnknownVariable super: #FamixStNamedEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FamixStUnknownVariable class >> requirements [
-
-	<generated>
-	^ {  }
 ]
 
 { #category : #'moosechef-scoping-filtering' }

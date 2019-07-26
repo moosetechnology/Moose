@@ -20,13 +20,6 @@ FAMIXEntity class >> metamodel [
 	^ (self class environment at: #FamixCompatibilityGenerator) metamodel
 ]
 
-{ #category : #meta }
-FAMIXEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Moose-Query-Extensions' }
 FAMIXEntity class >> resetMSEProperties [
 	"

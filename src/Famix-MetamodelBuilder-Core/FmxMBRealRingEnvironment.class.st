@@ -1,20 +1,81 @@
 Class {
 	#name : #FmxMBRealRingEnvironment,
 	#superclass : #FmxMBRingEnvironment,
+	#instVars : [
+		'changesToApply'
+	],
 	#category : #'Famix-MetamodelBuilder-Core-Implementation'
 }
 
-{ #category : #installing }
-FmxMBRealRingEnvironment >> adoptClassCommentOf: realClass to: anRGClass [
-	
-	anRGClass comment content isEmptyOrNil
-		ifFalse: [ realClass comment: anRGClass comment content ]
+{ #category : #accessing }
+FmxMBRealRingEnvironment >> apply [
+	self collectChangesToApply.
+	changesToApply do: #apply
 ]
 
 { #category : #installing }
-FmxMBRealRingEnvironment >> adoptClassDefinitionOf: realClass to: anRGClass [
-	| customSlots customTraitNames customSlotNames slotDefinitions slotsString definition traitsDefinitions traitsString |
+FmxMBRealRingEnvironment >> classVariablesStringFor: realClass [
 
+	^ '{', ((realClass classVarNames collect: [ :each | '#', each ]) joinUsing: ' '), '}'
+]
+
+{ #category : #accessing }
+FmxMBRealRingEnvironment >> collectChangesToApply [
+	| resolvedClasses resolvedPackages |
+	changesToApply := OrderedCollection new.
+	resolvedPackages := ringEnvironment ask packages select: [ :each | each isRingResolved ].
+	resolvedClasses := ringEnvironment ask behaviors select: [ :each | each isRingResolved and: [ each superclass isRingResolved ] ].
+
+	self recordPackagesChangesFor: resolvedPackages.
+	self recordClassesChangesFor: resolvedClasses.
+	self recordRemovalOfGeneratedEntitiesIn: resolvedPackages notPresentIn: resolvedClasses.
+	self createMooseModel
+]
+
+{ #category : #installing }
+FmxMBRealRingEnvironment >> compile: aSource in: aClass classified: aProtocol package: aPackageName [
+
+	aClass compile: aSource classified: '*', aPackageName, '-', aProtocol.
+
+]
+
+{ #category : #accessing }
+FmxMBRealRingEnvironment >> createMooseModel [
+	| mooseModelName initialize |
+	mooseModelName := (self builder configuration prefix , 'MooseModel') asSymbol.
+	mooseModelName = #MooseModel ifTrue: [ ^ self ].
+	self class environment
+		at: mooseModelName
+		ifAbsent: [ changesToApply
+				add:
+					(FmxClassAddition
+						definition:
+							('MooseModel subclass: #{1}
+	instanceVariableNames: ''''
+	classVariableNames: ''''
+	package: ''{2}''' format: {mooseModelName . self builder configuration packageName})) ].
+	initialize := RGMethod new
+		sourceCode:
+			('initialize
+		<generated>
+		super initialize.
+		self metamodel: (self class environment at: #{1}) metamodel' format: {self builder generator class name});
+		protocol: #initialization;
+		name: #initialize;
+		yourself.
+
+	(self class environment at: mooseModelName ifPresent: [ :class | class needToAdaptToMethod: initialize ] ifAbsent: [ true ])
+		ifTrue: [ changesToApply add: (FmxMethodAdditions className: mooseModelName isClassSide: false rgMethods: {initialize}) ]
+]
+
+{ #category : #installing }
+FmxMBRealRingEnvironment >> generatedSlotsOf: aRealClass [
+	^ (aRealClass generatedSlotNames collect: [ :slotName | aRealClass slotNamed: slotName ifFound: [ :slot | slot ] ifNone: nil ]) select: #notNil
+]
+
+{ #category : #installing }
+FmxMBRealRingEnvironment >> recordAdoptionOfClassDefinitionFrom: realClass to: anRGClass [
+	| customSlots customTraitNames customSlotNames slotDefinitions slotsString definition traitsDefinitions traitsString |
 	(realClass needToAdaptTo: anRGClass) ifFalse: [ ^ self ].
 
 	customSlots := realClass localSlots copyWithoutAll: realClass generatedSlots.
@@ -45,86 +106,30 @@ FmxMBRealRingEnvironment >> adoptClassDefinitionOf: realClass to: anRGClass [
 		category: ''{category}'''
 				format: (Dictionary newFrom: {(#superclass -> anRGClass superclass name) . (#className -> anRGClass name) . (#traits -> traitsString) . (#slots -> slotsString) . (#category -> realClass category)}) ].
 
-	self class compiler evaluate: definition
+	changesToApply add: (FmxClassAddition definition: definition)
 ]
 
 { #category : #installing }
-FmxMBRealRingEnvironment >> adoptMethodsOf: realClass to: anRGClass [
-	| generatedMethodsOfRealClass generatedMethodNamesOfRealClass |
-	generatedMethodsOfRealClass := (Pragma allNamed: #generated in: realClass) collect: #method thenSelect: [ :method | realClass localMethods includes: method ].	"We reject methods comming from Traits"
-	generatedMethodNamesOfRealClass := generatedMethodsOfRealClass collect: #selector.
-
-	"First we removed the generated methods should not be here anymore"
-	(generatedMethodNamesOfRealClass difference: anRGClass localSelectors) do: [ :selectorOfRemovedGeneratedMethod | realClass removeSelector: selectorOfRemovedGeneratedMethod ].
-
-	"Add new generated methods"
-	(anRGClass localSelectors difference: generatedMethodNamesOfRealClass)
-		do: [ :selectorOfMethodToAdd | (realClass localSelectors includes: selectorOfMethodToAdd) ifFalse: [ self compile: (anRGClass methodNamed: selectorOfMethodToAdd) into: realClass ] ].
-
-	"Finally, update methods needing updates"
-	(generatedMethodNamesOfRealClass intersection: anRGClass localSelectors)
-		do: [ :selectorOfMethodToUpdate | (anRGClass methodNamed: selectorOfMethodToUpdate) in: [ :method | (realClass needToAdaptToMethod: method) ifTrue: [ self compile: method into: realClass ] ] ]
-]
-
-{ #category : #accessing }
-FmxMBRealRingEnvironment >> apply [
-	| resolvedClasses resolvedPackages |
-	resolvedPackages := ringEnvironment ask packages select: [ :each | each isRingResolved ].
-	resolvedClasses := ringEnvironment ask behaviors select: [ :each | each isRingResolved and: [ each superclass isRingResolved ] ].
-
-	self ensurePackages: resolvedPackages.
-	self ensureClasses: resolvedClasses.
-
-	"Since the last generation it is possible some behaviorals were removed from the generator. In that case we should remove them. We will remove all classes and traits of Famix that are not part of the current generator."
-	resolvedPackages
-		collect: [ :e | e name asPackage ]
-		thenDo: [ :package | package definedClasses select: #isMetamodelEntity thenDo: [ :class | resolvedClasses detect: [ :rgClass | rgClass name = class name ] ifNone: [ class removeFromSystem ] ] ].
-		
-	self createMooseModel
+FmxMBRealRingEnvironment >> recordClassChangesFor: anRGClass [
+	| realClass |
+	realClass := self class environment classNamed: anRGClass name.
+	realClass ifNil: [ changesToApply add: (FmxClassAddition definition: anRGClass definition) ] ifNotNil: [ self recordAdoptionOfClassDefinitionFrom: realClass to: anRGClass ].
+	self recordClassCommentChangeOf: realClass to: anRGClass.
+	self recordMethodsAdoptionsOf: realClass to: anRGClass realClassName: anRGClass name.
+	self recordMethodsAdoptionsOf: (realClass ifNotNil: #class) to: anRGClass classSide realClassName: anRGClass name
 ]
 
 { #category : #installing }
-FmxMBRealRingEnvironment >> classVariablesStringFor: realClass [
+FmxMBRealRingEnvironment >> recordClassCommentChangeOf: realClass to: anRGClass [
+	| newComment |
+	newComment := anRGClass comment content.
+	(realClass isNotNil and: [ newComment = realClass comment ]) ifTrue: [ ^ self ].
 
-	^ '{', ((realClass classVarNames collect: [ :each | '#', each ]) joinUsing: ' '), '}'
+	newComment isEmptyOrNil ifFalse: [ changesToApply add: (FmxClassCommentUpdate className: anRGClass name comment: newComment) ]
 ]
 
 { #category : #installing }
-FmxMBRealRingEnvironment >> compile: aSource in: aClass classified: aProtocol package: aPackageName [
-
-	aClass compile: aSource classified: '*', aPackageName, '-', aProtocol.
-
-]
-
-{ #category : #installing }
-FmxMBRealRingEnvironment >> compile: aRGMethod into: realClass [
-	^ realClass compile: aRGMethod sourceCode classified: aRGMethod protocol
-]
-
-{ #category : #accessing }
-FmxMBRealRingEnvironment >> createMooseModel [
-	| mooseModelName mooseModel |
-	mooseModelName := (self builder configuration prefix , 'MooseModel') asSymbol.
-	mooseModelName = #MooseModel ifTrue: [ ^ self ].
-	
-	mooseModel := self class
-		evaluate:
-			('MooseModel subclass: #{1}
-	instanceVariableNames: ''''
-	classVariableNames: ''''
-	package: ''{2}''' format: {mooseModelName . self builder configuration packageName}).
-
-	mooseModel
-		compile:
-			('initialize
-		<generated>
-		super initialize.
-		self metamodel: (self class environment at: #{1}) metamodel' format: {self builder generator class name})
-		classified: 'initialization'
-]
-
-{ #category : #installing }
-FmxMBRealRingEnvironment >> ensureClasses: resolvedClasses [
+FmxMBRealRingEnvironment >> recordClassesChangesFor: resolvedClasses [
 	| sorted notSorted toMove |
 	resolvedClasses ifEmpty: [ ^ self ].
 	
@@ -137,25 +142,58 @@ FmxMBRealRingEnvironment >> ensureClasses: resolvedClasses [
 	notSorted removeAll: toMove.
 	notSorted isEmpty ] whileFalse.
 
-	sorted do: [ :each | self installClassChangesFor: each ]
+	sorted do: [ :each | self recordClassChangesFor: each ]
 ]
 
 { #category : #installing }
-FmxMBRealRingEnvironment >> ensurePackages: resolvedPackages [
-	resolvedPackages do: [ :each | (RPackageOrganizer default includesPackageNamed: each name) ifFalse: [ RPackageOrganizer default registerPackageNamed: each name ] ]
+FmxMBRealRingEnvironment >> recordMethodsAdoptionsOf: realClass to: anRGClass realClassName: aClassName [
+	| generatedMethodsOfRealClass generatedMethodNamesOfRealClass |
+	generatedMethodsOfRealClass := realClass
+		ifNil: [ {} ]
+		ifNotNil: [ (Pragma allNamed: #generated in: realClass) collect: #method thenSelect: [ :method | "We reject methods comming from Traits" realClass localMethods includes: method ] ].
+
+	generatedMethodNamesOfRealClass := generatedMethodsOfRealClass collect: #selector.
+
+	"First we removed the generated methods should not be here anymore"
+	(generatedMethodNamesOfRealClass difference: anRGClass localSelectors)
+		ifNotEmpty: [ :selectorsOfRemovedGeneratedMethod | changesToApply add: (FmxMethodRemovals className: aClassName isClassSide: anRGClass isClassSide selectors: selectorsOfRemovedGeneratedMethod) ].
+
+	"Add new generated methods"
+	((anRGClass localSelectors difference: generatedMethodNamesOfRealClass)
+		select: [ :selectorOfMethodToAdd | realClass ifNil: [ true ] ifNotNil: [ (realClass localSelectors includes: selectorOfMethodToAdd) not ] ]
+		thenCollect: [ :selectorOfMethodToAdd | anRGClass methodNamed: selectorOfMethodToAdd ])
+		ifNotEmpty: [ :methods | changesToApply add: (FmxMethodAdditions className: aClassName isClassSide: anRGClass isClassSide rgMethods: methods) ].
+
+	"Finally, update methods needing updates"
+	((generatedMethodNamesOfRealClass intersection: anRGClass localSelectors)
+		collect: [ :selectorOfMethodToUpdate | anRGClass methodNamed: selectorOfMethodToUpdate ]
+		thenSelect: [ :method | realClass needToAdaptToMethod: method ])
+		ifNotEmpty: [ :methods | changesToApply add: (FmxMethodUpdates className: aClassName isClassSide: anRGClass isClassSide rgMethods: methods) ]
 ]
 
 { #category : #installing }
-FmxMBRealRingEnvironment >> generatedSlotsOf: aRealClass [
-	^ (aRealClass generatedSlotNames collect: [ :slotName | aRealClass slotNamed: slotName ifFound: [ :slot | slot ] ifNone: nil ]) select: #notNil
+FmxMBRealRingEnvironment >> recordPackagesChangesFor: resolvedPackages [
+	resolvedPackages
+		select: [ :each | (RPackageOrganizer default includesPackageNamed: each name) not ]
+		thenDo: [ :each | changesToApply add: (FmxPackageAddition named: each name) ]
 ]
 
-{ #category : #installing }
-FmxMBRealRingEnvironment >> installClassChangesFor: anRGClass [
-	| realClass |
-	realClass := self class environment classNamed: anRGClass name.
-	realClass ifNil: [ realClass := self class compiler evaluate: anRGClass definition ] ifNotNil: [ self adoptClassDefinitionOf: realClass to: anRGClass ].
-	self adoptClassCommentOf: realClass to: anRGClass.
-	self adoptMethodsOf: realClass to: anRGClass.
-	self adoptMethodsOf: realClass classSide to: anRGClass classSide
+{ #category : #accessing }
+FmxMBRealRingEnvironment >> recordRemovalOfGeneratedEntitiesIn: resolvedPackages notPresentIn: resolvedClasses [
+	"Since the last generation it is possible some behaviorals were removed from the generator. In that case we should remove them. We will remove all classes and traits of Famix that are not part of the current generator."
+
+	resolvedPackages
+		collect: [ :e | e name asPackageIfAbsent: [ nil ] ]
+		thenDo: [ :package | 
+			package
+				ifNotNil:
+					[ package definedClasses select: #isMetamodelEntity thenDo: [ :class | resolvedClasses detect: [ :rgClass | rgClass name = class name ] ifNone: [ changesToApply add: (FmxClassRemoval class: class) ] ] ] ]
+]
+
+{ #category : #testing }
+FmxMBRealRingEnvironment >> regenerationIsNeeded [
+	"Return true if a regeneration would cause changes in the system."
+
+	self collectChangesToApply.
+	^ changesToApply isNotEmpty
 ]

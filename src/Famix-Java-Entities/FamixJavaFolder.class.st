@@ -14,10 +14,3 @@ FamixJavaFolder class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #meta }
-FamixJavaFolder class >> requirements [
-
-	<generated>
-	^ {  }
-]

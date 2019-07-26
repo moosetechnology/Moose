@@ -50,7 +50,6 @@ FAMIXCImportingTest >> setUp [
 { #category : #tests }
 FAMIXCImportingTest >> testBasic [
 	self skip: 'Test skipped until C metamodel definition'.
-	self skip.
 	self assert: model entities size equals: 10
 ]
 

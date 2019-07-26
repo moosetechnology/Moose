@@ -20,6 +20,15 @@ FmxMBGeneratorTest >> testGenerateMooseModelSubclass [
 ]
 
 { #category : #tests }
+FmxMBGeneratorTest >> testGeneratorsAreUpToDate [
+	FamixMetamodelGenerator individualGenerators
+		do: [ :mm | 
+			self
+				deny: mm new regenerationIsNeeded
+				description: 'The meta-model ' , mm asString , ' is not in sync with its generator. Please, regenerate your MMs with `FamixMetamodelGenerator generateAllMetamodels.' ]
+]
+
+{ #category : #tests }
 FmxMBGeneratorTest >> testMooseModelSubclassHasInitialize [
 	| mooseModel |
 	FamixTest1Generator new generate.

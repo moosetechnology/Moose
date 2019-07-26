@@ -15,27 +15,6 @@ FamixJavaInheritance class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaInheritance class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaInheritance >> accept: aVisitor [
-
-	aVisitor visitInheritance: self
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaInheritance >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	self superclass: (aVisitor visit: anEntity superclass).
-	self subclass: (aVisitor visit: anEntity subclass).
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaInheritance >> historicalUniqueName [
 	

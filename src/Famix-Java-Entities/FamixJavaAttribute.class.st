@@ -25,12 +25,6 @@ FamixJavaAttribute class >> requirements [
 	^ { FamixJavaAnnotationType. FamixJavaType }
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaAttribute >> accept: aVisitor [
-
-	aVisitor visitAttribute: self
-]
-
 { #category : #accessing }
 FamixJavaAttribute >> belongsTo [
 
@@ -45,13 +39,6 @@ FamixJavaAttribute >> belongsTo: anObject [
 	<generated>
 	self parentType: anObject
 
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaAttribute >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	self hasClassScope: anEntity hasClassScope
 ]
 
 { #category : #'as yet unclassified' }

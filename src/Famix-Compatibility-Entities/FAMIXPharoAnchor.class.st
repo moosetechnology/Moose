@@ -16,13 +16,6 @@ FAMIXPharoAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXPharoAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Famix-File' }
 FAMIXPharoAnchor >> containerFiles [
 	^ {  }

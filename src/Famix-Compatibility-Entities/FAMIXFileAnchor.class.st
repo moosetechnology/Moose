@@ -15,13 +15,6 @@ FAMIXFileAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXFileAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FAMIXFileAnchor >> mooseNameOn: aStream [
 	super mooseNameOn: aStream.

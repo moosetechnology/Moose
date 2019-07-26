@@ -13,30 +13,9 @@ FAMIXUnknownVariable class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXUnknownVariable class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXUnknownVariable >> accept: aVisitor [
-
-	aVisitor visitUnknownVariable: self
-]
-
 { #category : #accessing }
 FAMIXUnknownVariable >> belongsTo [
 	^ nil
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXUnknownVariable >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	self container: (aVisitor visit: anEntity container).
-
 ]
 
 { #category : #'moosechef-scoping-filtering' }

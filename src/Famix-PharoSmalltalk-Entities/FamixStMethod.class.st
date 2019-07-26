@@ -19,13 +19,6 @@ FamixStMethod class >> annotation [
 ]
 
 { #category : #meta }
-FamixStMethod class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
-{ #category : #meta }
 FamixStMethod class >> shouldSearchForSmalltalkCodeInImage [
 	^ true
 ]
@@ -184,6 +177,16 @@ FamixStMethod >> isOverriden [
 	(self belongsTo isNil and: [ self isStub ]) ifTrue: [ ^ false ].
 	
 	^ self belongsTo subclassHierarchyGroup anySatisfy: [ :each | each hasMethodWithSignature: self signature ]
+]
+
+{ #category : #accessing }
+FamixStMethod >> isOverriding [
+	<MSEProperty: #isOverriding type: #Boolean>
+	<derived>
+	<MSEComment: 'The method is overrinding a method defined in a super class'>
+	
+	^self belongsTo directSuperclasses anySatisfy: [:each | 
+		each understands: self signature]
 ]
 
 { #category : #'Famix-Extensions-metrics-support' }

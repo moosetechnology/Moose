@@ -15,13 +15,6 @@ FamixJavaParameterizedType class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaParameterizedType class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaParameterizedType >> allSubclassesDo: aBlock [
 	"we override this traversal because we want to

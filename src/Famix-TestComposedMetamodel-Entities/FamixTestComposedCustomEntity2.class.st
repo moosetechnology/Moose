@@ -20,13 +20,6 @@ FamixTestComposedCustomEntity2 class >> metamodel [
 	^ (self class environment at: #FamixTestComposedGenerator) metamodel
 ]
 
-{ #category : #meta }
-FamixTestComposedCustomEntity2 class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FamixTestComposedCustomEntity2 >> c22s [
 

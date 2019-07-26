@@ -1,6 +1,3 @@
-"
-FamixMetamodelGenerator
-"
 Class {
 	#name : #FamixMetamodelGenerator,
 	#superclass : #Object,
@@ -85,6 +82,11 @@ FamixMetamodelGenerator class >> generateAllMetamodels [
 		displayingProgress: [ :mm | 'Regenerate ' , mm name ]
 ]
 
+{ #category : #generation }
+FamixMetamodelGenerator class >> individualGenerators [
+	^ self allSubclasses select: [ :c | c isRealMetamodel and: [ c isPartOfComposedMetaModel not ] ]
+]
+
 { #category : #testing }
 FamixMetamodelGenerator class >> isAbstract [
 	^ self = FamixMetamodelGenerator
@@ -98,6 +100,13 @@ FamixMetamodelGenerator class >> isComposed [
 { #category : #testing }
 FamixMetamodelGenerator class >> isPartOfComposedMetaModel [
 	^ FamixMetamodelGenerator composedMetaModels anySatisfy: [ :mm | mm submetamodels includes: self ]
+]
+
+{ #category : #testing }
+FamixMetamodelGenerator class >> isRealMetamodel [
+	"I should return false for MMs that are used for tests and that should not be generated all the time."
+
+	^ self isAbstract not
 ]
 
 { #category : #'world menu' }
@@ -131,7 +140,7 @@ FamixMetamodelGenerator class >> metamodelsToGenerate [
 	"We add she submetamodels before the MM composing them because if we do the other way around it will cause trouble when we regenerate all because it will remove the glue added by the composed MM."
 
 	| metamodels |
-	metamodels := self allSubclasses reject: [ :c | c isAbstract or: [ c isPartOfComposedMetaModel ] ].
+	metamodels := self individualGenerators.
 	metamodels select: #isComposed thenDo: [ :mm | mm submetamodels do: [ :smm | (metamodels includes: smm) ifFalse: [ metamodels add: smm before: mm ] ] ].
 	^ metamodels
 ]
@@ -293,6 +302,7 @@ FamixMetamodelGenerator >> defineTraits [
 { #category : #generation }
 FamixMetamodelGenerator >> generate [
 	"Next step to improve the cleaning is to add a report. For example if we cannot migrate a method since its class was removed from the MM, we should get notified with a report object."
+
 	EpMonitor
 		disableDuring: [ self define.
 			self cleaningStrategy
@@ -374,16 +384,26 @@ FamixMetamodelGenerator >> prefix [
 	^ self class prefix
 ]
 
-{ #category : #definition }
-FamixMetamodelGenerator >> remoteEntity: anEntityName withPrefix: aPrefixName [ 
+{ #category : #testing }
+FamixMetamodelGenerator >> regenerationIsNeeded [
+	self define.
+	^ self builder regenerationIsNeeded
+]
 
-	| anEntity |
-	
-	anEntity := (subbuilders at: aPrefixName) ensureClassNamed: anEntityName.
-	anEntity isRemote: true.
-	anEntity remoteBuilder: builder.
-	
-	^ anEntity.
+{ #category : #definition }
+FamixMetamodelGenerator >> remoteEntity: anEntityName withPrefix: aPrefixName [
+	^ ((subbuilders at: aPrefixName) ensureClassNamed: anEntityName)
+		isRemote: true;
+		remoteBuilder: builder;
+		yourself
+]
+
+{ #category : #definition }
+FamixMetamodelGenerator >> remoteTrait: anEntityName withPrefix: aPrefixName [
+	^ ((subbuilders at: aPrefixName) ensureTraitNamed: anEntityName)
+		isRemote: true;
+		remoteBuilder: builder;
+		yourself
 ]
 
 { #category : #definition }

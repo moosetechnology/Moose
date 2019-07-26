@@ -53,6 +53,7 @@ Class {
 		'tScopingEntity',
 		'tSourceAnchor',
 		'tSourceLanguage',
+		'tStructuralEntity',
 		'tSub',
 		'tSubInheritance',
 		'tSuper',
@@ -145,6 +146,12 @@ FamixGenerator class >> packageName [
 { #category : #'as yet unclassified' }
 FamixGenerator class >> submetamodels [
 	^ { FamixMooseQueryGenerator }
+]
+
+{ #category : #initialization }
+FamixGenerator class >> prefix [
+
+	^ #Famix
 ]
 
 { #category : #comments }
@@ -577,7 +584,6 @@ One can create a default source language for a project by not associating any en
 
 { #category : #comments }
 FamixGenerator >> commentForTStructuralEntity [
-
 	^ 'FAMIXStructuralEntity is the abstract superclass for basic data structure in the source code. A structural entity has a declaredType that points to the type of the variable.'
 ]
 
@@ -989,7 +995,6 @@ FamixGenerator >> defineHierarchy [
 	tStructuralEntity --|> #TAccessible.
 	tStructuralEntity --|> #TInvocationsReceiver.
 	tStructuralEntity --|> #TTypedStructure.
-	tStructuralEntity --|> #TAccessible.
 	
 	tSourceEntity --|> #TWithSourceAnchor.
 	tSourceEntity --|> #TWithSourceLanguage.
@@ -998,7 +1003,7 @@ FamixGenerator >> defineHierarchy [
 
 { #category : #definition }
 FamixGenerator >> defineProperties [
-super defineProperties.
+	super defineProperties.
 	((tFileAnchor property: #correspondingFile type: #FamixTFile) 
 		comment: 'File associated to this source anchor').
 	((tFileAnchor property: #encoding type: #String) 
@@ -1561,6 +1566,10 @@ FamixGenerator >> defineTraits [
 	tStructuralEntity comment: self commentForTStructuralEntity.
 	tStructuralEntity withTesting.
 
+	tStructuralEntity := builder newTraitNamed: #TStructuralEntity.
+	tStructuralEntity comment: self commentForTStructuralEntity.
+	tStructuralEntity withTesting.
+	
 	tSub := builder newTraitNamed: #TSub.
 	tSub comment: self commentForTSub.
 
@@ -1756,16 +1765,4 @@ FamixGenerator >> initialize [
 		prefix: self prefix;
 		packageName: self packageName.
 
-]
-
-{ #category : #initialization }
-FamixGenerator >> packageName [
-
-	^ self class packageName
-]
-
-{ #category : #initialization }
-FamixGenerator >> prefix [
-
-	^ #Famix
 ]

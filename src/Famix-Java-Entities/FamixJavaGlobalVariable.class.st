@@ -22,12 +22,6 @@ FamixJavaGlobalVariable class >> requirements [
 	^ { FamixJavaScopingEntity }
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaGlobalVariable >> accept: aVisitor [
-
-	aVisitor visitGlobalVariable: self
-]
-
 { #category : #accessing }
 FamixJavaGlobalVariable >> belongsTo [
 

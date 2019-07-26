@@ -15,13 +15,6 @@ FAMIXInclude class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXInclude class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FAMIXInclude >> from [	
 	^ self source

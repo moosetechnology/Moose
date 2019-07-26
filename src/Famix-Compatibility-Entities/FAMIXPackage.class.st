@@ -15,13 +15,6 @@ FAMIXPackage class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXPackage class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXPackage >> abstractClasses [
 
@@ -40,12 +33,6 @@ FAMIXPackage >> abstractness [
 	(nsClasses size == 0) ifTrue: [^nil].
 	
 	^ (nsClasses select: [:c | c isAbstract]) size / (nsClasses size)
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXPackage >> accept: aVisitor [
-
-	aVisitor visitPackage: self
 ]
 
 { #category : #accessing }
@@ -190,38 +177,6 @@ FAMIXPackage >> containedEntities [
 { #category : #'Famix-Extensions-accessing' }
 FAMIXPackage >> containedEntities: collection [
 	self definedClasses: collection.
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXPackage >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	
-	anEntity childNamedEntities do: [:c|
-		self addChildNamedEntity: (aVisitor visit: c ) ].
-
-]
-
-{ #category : #'Famix-Smalltalk' }
-FAMIXPackage >> createPackagesFromCategories [
-	<menuItem: 'Create packages from package categories' category: 'Utilities'>
-	"Inspired by the Moose Smalltalk Category importer"
-	| cat famixCat |
-	
-	self localClasses do:[ :class |
-		cat := (Smalltalk at: class instanceSide name) category.
-		famixCat := self mooseModel allPackages detect: [:each | each mooseName = cat] ifNone: [nil].
-		famixCat ifNil: [
-			famixCat := self mooseModel add: (FAMIXPackage new name: cat; stub: true)
-		].
-		class isStub
-			ifFalse: [ famixCat stub: false ].
-		class localMethods do:[:aMethod |
-			aMethod parentPackage: famixCat ].
-		class parentPackage: famixCat.
-	].
-	self privateState flushGroups.
-	self mooseModel cacheMooseGroups
 ]
 
 { #category : #'Famix-Smalltalk' }

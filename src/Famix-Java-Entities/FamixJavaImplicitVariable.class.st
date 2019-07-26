@@ -22,11 +22,6 @@ FamixJavaImplicitVariable class >> requirements [
 	^ {  }
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaImplicitVariable >> accept: aVisitor [
-	aVisitor visitImplicitVariable: self
-]
-
 { #category : #accessing }
 FamixJavaImplicitVariable >> belongsTo [
 
@@ -56,13 +51,6 @@ FamixJavaImplicitVariable >> container: aBehaviouralEntity [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaImplicitVariable >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	self container: (aVisitor visit: anEntity container).
-
-]
-
 { #category : #testing }
 FamixJavaImplicitVariable >> isImplicitVariable [
 	^true

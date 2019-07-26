@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixTest1Class,
 	#superclass : #FamixTest1NamedEntity,
-	#traits : 'FamixTClass + FamixTWithMethods',
-	#classTraits : 'FamixTClass classTrait + FamixTWithMethods classTrait',
+	#traits : 'FamixTClass',
+	#classTraits : 'FamixTClass classTrait',
 	#category : #'Famix-Test1-Entities-Entities'
 }
 
@@ -13,11 +13,4 @@ FamixTest1Class class >> annotation [
 	<package: #'Famix-Test1-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FamixTest1Class class >> requirements [
-
-	<generated>
-	^ {  }
 ]

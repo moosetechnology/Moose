@@ -15,13 +15,6 @@ FAMIXUnknownSourceLanguage class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXUnknownSourceLanguage class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #testing }
 FAMIXUnknownSourceLanguage >> isUnknown [ 
 	^ true

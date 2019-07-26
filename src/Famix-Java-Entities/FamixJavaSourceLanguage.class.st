@@ -15,13 +15,6 @@ FamixJavaSourceLanguage class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaSourceLanguage class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaSourceLanguage >> isC [ 
 	^ false

@@ -13,13 +13,6 @@ FAMIXJavaSourceLanguage class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXJavaSourceLanguage class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #testing }
 FAMIXJavaSourceLanguage >> isJava [
 	^ true

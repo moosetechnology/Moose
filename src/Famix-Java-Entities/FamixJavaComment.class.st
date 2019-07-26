@@ -15,19 +15,6 @@ FamixJavaComment class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaComment class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaComment >> accept: aVisitor [
-
-	aVisitor visitComment: self
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaComment >> asFamixJavaComment [
 	^ self
@@ -37,13 +24,6 @@ FamixJavaComment >> asFamixJavaComment [
 FamixJavaComment >> belongsTo [
 	
 	^ self container
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaComment >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	self content: anEntity content copy
 ]
 
 { #category : #'as yet unclassified' }

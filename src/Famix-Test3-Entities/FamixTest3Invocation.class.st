@@ -14,10 +14,3 @@ FamixTest3Invocation class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #meta }
-FamixTest3Invocation class >> requirements [
-
-	<generated>
-	^ {  }
-]

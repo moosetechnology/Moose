@@ -22,35 +22,39 @@ FamixJavaStructuralEntity class >> metamodel [
 	^ (self class environment at: #FamixJavaGenerator) metamodel
 ]
 
-{ #category : #meta }
-FamixJavaStructuralEntity class >> requirements [
+{ #category : #testing }
+FamixJavaStructuralEntity >> isAccess [
 
 	<generated>
-	^ {  }
+	^ false
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaStructuralEntity >> accept: aVisitor [
+{ #category : #testing }
+FamixJavaStructuralEntity >> isAssociation [
 
-	aVisitor visitStructuralEntity: self
+	<generated>
+	^ false
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaStructuralEntity >> copyFrom: anEntity within: aVisitor [
+{ #category : #testing }
+FamixJavaStructuralEntity >> isAttribute [
 
-	super copyFrom: anEntity within: aVisitor.
-	self declaredType: (aVisitor visit: anEntity declaredType).
-
+	<generated>
+	^ false
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaStructuralEntity >> entityHasOutgoingTypeDeclarations [
-	^ self declaredType isNotNil
+{ #category : #testing }
+FamixJavaStructuralEntity >> isClass [
+
+	<generated>
+	^ false
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaStructuralEntity >> hasDeclaredType [
-	^ self declaredType notNil
+{ #category : #testing }
+FamixJavaStructuralEntity >> isContainerEntity [
+
+	<generated>
+	^ false
 ]
 
 { #category : #testing }
@@ -160,11 +164,6 @@ FamixJavaStructuralEntity >> isType [
 { #category : #'as yet unclassified' }
 FamixJavaStructuralEntity >> namespaceScope [
 	^ self subclassResponsibility
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaStructuralEntity >> outgoingTypeDeclarations [
-	^ self declaredType ifNil: [ {} ] ifNotNil: [ :dt | {(MooseQueryTypeDeclarationAssociation newFrom: self to: dt)} ]
 ]
 
 { #category : #'as yet unclassified' }

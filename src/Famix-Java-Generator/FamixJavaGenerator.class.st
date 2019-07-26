@@ -29,11 +29,11 @@ Class {
 		'primitiveType',
 		'reference',
 		'scopingEntity',
-		'structuralEntity',
 		'thrownException',
 		'type',
 		'unknownVariable',
-		'parameterizedType'
+		'parameterizedType',
+		'structuralEntity'
 	],
 	#category : #'Famix-Java-Generator'
 }

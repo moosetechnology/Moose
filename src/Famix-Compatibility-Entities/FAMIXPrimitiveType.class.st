@@ -13,13 +13,6 @@ FAMIXPrimitiveType class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXPrimitiveType class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #testing }
 FAMIXPrimitiveType >> isPrimitiveType [
 

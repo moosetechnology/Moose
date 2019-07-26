@@ -15,13 +15,6 @@ FamixTest1Method class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixTest1Method class >> requirements [
-
-	<generated>
-	^ { FamixTest1Class }
-]
-
 { #category : #accessing }
 FamixTest1Method >> belongsTo [
 

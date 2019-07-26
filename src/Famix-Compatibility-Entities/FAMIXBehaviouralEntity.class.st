@@ -15,19 +15,6 @@ FAMIXBehaviouralEntity class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXBehaviouralEntity class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXBehaviouralEntity >> accept: aVisitor [
-
-	aVisitor visitBehaviouralEntity: self
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXBehaviouralEntity >> clientBehaviours [
 	<MSEProperty: #clientBehaviours type: #FAMIXBehaviouralEntity> <multivalued> <derived>
@@ -51,25 +38,6 @@ FAMIXBehaviouralEntity >> computeNumberOfLinesOfCodeIfSmalltalk [
 	parser := RBVisitorForFAMIXMetrics new.
 	parser processMethod: self usingImporter: nil inModel: nil.
 	^ parser numberOfLinesOfCode
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXBehaviouralEntity >> copyFrom: anEntity within: aVisitor [
-
-	super copyFrom: anEntity within: aVisitor.
-	self signature: anEntity signature copy.
-	self declaredType: (aVisitor visit: anEntity declaredType).
-	
-	anEntity localVariables do: [ :var | 
-		self addLocalVariable: (aVisitor visit: var) ].
-	anEntity parameters do: [ :par | 
-		self addParameter: (aVisitor visit: par) ].
-	anEntity outgoingInvocations do: [ :inv | 
-		aVisitor visit: inv ].
-	anEntity accesses do: [ :acc | 
-		aVisitor visit: acc ].
-	anEntity outgoingReferences do: [:r|
-		aVisitor visit: r ]
 ]
 
 { #category : #'Famix-Extensions' }

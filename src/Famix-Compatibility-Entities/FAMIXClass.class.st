@@ -18,19 +18,6 @@ FAMIXClass class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXClass class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
-{ #category : #'Famix-Extensions-visitor' }
-FAMIXClass >> accept: aVisitor [
-
-	aVisitor visitClass: self
-]
-
 { #category : #'Famix-Extensions-metrics-support' }
 FAMIXClass >> accessedAttributes [
 	

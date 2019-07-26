@@ -14,10 +14,3 @@ FamixTest1AbstractFileAnchor class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #meta }
-FamixTest1AbstractFileAnchor class >> requirements [
-
-	<generated>
-	^ {  }
-]

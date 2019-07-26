@@ -15,13 +15,6 @@ FamixTest3Method class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixTest3Method class >> requirements [
-
-	<generated>
-	^ { FamixTest3Class }
-]
-
 { #category : #accessing }
 FamixTest3Method >> belongsTo [
 
