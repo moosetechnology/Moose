@@ -218,9 +218,8 @@ MooseEntity class >> usedStatefulTraits [
 ]
 
 { #category : #accessing }
-MooseEntity class >> usesTrait: aTrait [
-
-	^ (self instanceSide withAllSuperclasses flatCollect: #traits) includes: aTrait
+MooseEntity class >> usesFamixTrait: aTrait [
+	^ self usedStatefulTraits includes: aTrait
 ]
 
 { #category : #'meta information' }
@@ -651,7 +650,7 @@ MooseEntity >> suspendAllAnnouncementsDuring: aBlock [
 ]
 
 { #category : #accessing }
-MooseEntity >> usesTrait: aTrait [
+MooseEntity >> usesFamixTrait: aTrait [
 
-	^ self class usesTrait: aTrait
+	^ self class usesFamixTrait: aTrait
 ]

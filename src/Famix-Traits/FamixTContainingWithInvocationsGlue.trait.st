@@ -16,7 +16,7 @@ FamixTContainingWithInvocationsGlue classSide >> annotation [
 FamixTContainingWithInvocationsGlue >> incomingInvocations [
 
 	| withInvocations |
-	withInvocations :=  self children select: [ :child | child usesTrait: FamixTWithInvocations].
+	withInvocations :=  self children select: [ :child | child usesFamixTrait: FamixTWithInvocations].
 	^ withInvocations flatCollect: [ :each | each incomingInvocations ]
 ]
 
@@ -35,7 +35,7 @@ FamixTContainingWithInvocationsGlue >> incomingInvocationsGroup [
 FamixTContainingWithInvocationsGlue >> outgoingInvocations [
 
 	| withInvocations |
-	withInvocations :=  self children select: [ :child | child usesTrait: FamixTWithInvocations].
+	withInvocations :=  self children select: [ :child | child usesFamixTrait: FamixTWithInvocations].
 	^ withInvocations flatCollect: [ :each | each outgoingInvocations ]
 ]
 
