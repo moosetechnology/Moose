@@ -75,6 +75,13 @@ FamixTest2ImportingContext >> importSourcedEntity [
 ]
 
 { #category : #testing }
+FamixTest2ImportingContext >> importUnknownSourceLanguage [
+
+	<generated>
+	^ self import: FamixTest2UnknownSourceLanguage
+]
+
+{ #category : #testing }
 FamixTest2ImportingContext >> shouldImportAssociation [
 
 	<generated>
@@ -142,4 +149,11 @@ FamixTest2ImportingContext >> shouldImportSourcedEntity [
 
 	<generated>
 	^ self shouldImport: FamixTest2SourcedEntity
+]
+
+{ #category : #testing }
+FamixTest2ImportingContext >> shouldImportUnknownSourceLanguage [
+
+	<generated>
+	^ self shouldImport: FamixTest2UnknownSourceLanguage
 ]

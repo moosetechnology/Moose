@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixTest3Class,
 	#superclass : #FamixTest3Types,
-	#traits : 'FamixTClass + FamixTContainingWithInvocationsGlue + FamixTWithMethods',
-	#classTraits : 'FamixTClass classTrait + FamixTContainingWithInvocationsGlue classTrait + FamixTWithMethods classTrait',
+	#traits : 'FamixTClass + FamixTContainingWithInvocationsGlue + FamixTSourceLanguage + FamixTWithMethods',
+	#classTraits : 'FamixTClass classTrait + FamixTContainingWithInvocationsGlue classTrait + FamixTSourceLanguage classTrait + FamixTWithMethods classTrait',
 	#category : #'Famix-Test3-Entities-Entities'
 }
 

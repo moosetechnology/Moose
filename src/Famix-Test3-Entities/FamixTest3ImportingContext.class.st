@@ -103,6 +103,13 @@ FamixTest3ImportingContext >> importTypes [
 ]
 
 { #category : #testing }
+FamixTest3ImportingContext >> importUnknownSourceLanguage [
+
+	<generated>
+	^ self import: FamixTest3UnknownSourceLanguage
+]
+
+{ #category : #testing }
 FamixTest3ImportingContext >> shouldImportAssociation [
 
 	<generated>
@@ -198,4 +205,11 @@ FamixTest3ImportingContext >> shouldImportTypes [
 
 	<generated>
 	^ self shouldImport: FamixTest3Types
+]
+
+{ #category : #testing }
+FamixTest3ImportingContext >> shouldImportUnknownSourceLanguage [
+
+	<generated>
+	^ self shouldImport: FamixTest3UnknownSourceLanguage
 ]
