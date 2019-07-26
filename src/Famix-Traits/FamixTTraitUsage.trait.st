@@ -11,8 +11,8 @@ Trait {
 FamixTTraitUsage classSide >> annotation [
 
 	<MSEClass: #TTraitUsage super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

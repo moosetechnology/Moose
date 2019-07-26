@@ -11,8 +11,8 @@ Trait {
 FamixTWithFileIncludes classSide >> annotation [
 
 	<MSEClass: #TWithFileIncludes super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

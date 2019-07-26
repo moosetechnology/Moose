@@ -9,8 +9,8 @@ Trait {
 FamixStTStructuralEntity classSide >> annotation [
 
 	<MSEClass: #TStructuralEntity super: #Trait>
-	<generated>
 	<package: #'Famix-PharoSmalltalk-Entities'>
+	<generated>
 	^self
 ]
 

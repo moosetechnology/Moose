@@ -10,8 +10,8 @@ Trait {
 FamixTWithThrownExceptions classSide >> annotation [
 
 	<MSEClass: #TWithThrownExceptions super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

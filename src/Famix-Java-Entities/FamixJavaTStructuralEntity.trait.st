@@ -9,7 +9,7 @@ Trait {
 FamixJavaTStructuralEntity classSide >> annotation [
 
 	<MSEClass: #TStructuralEntity super: #Trait>
-	<generated>
 	<package: #'Famix-Java-Entities'>
+	<generated>
 	^self
 ]

@@ -194,7 +194,7 @@ FamixJavaGenerator >> defineHierarchy [
 	enum --|> #TWithEnumValues.
 
 	enumValue --|> namedEntity.
-	enumValue --|> tStructuralEntity.
+	enumValue inheritsFromTrait: tStructuralEntity without: #(#mooseNameOn:).
 	enumValue --|> #TEnumValue.
 
 	exception --|> #TException.

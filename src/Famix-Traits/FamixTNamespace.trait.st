@@ -18,8 +18,8 @@ Trait {
 FamixTNamespace classSide >> annotation [
 
 	<MSEClass: #TNamespace super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

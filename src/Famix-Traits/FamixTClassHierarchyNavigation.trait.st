@@ -7,8 +7,8 @@ Trait {
 FamixTClassHierarchyNavigation classSide >> annotation [
 
 	<MSEClass: #TClassHierarchyNavigation super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

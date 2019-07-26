@@ -17,8 +17,8 @@ Trait {
 FamixTDereferencedInvocation classSide >> annotation [
 
 	<MSEClass: #TDereferencedInvocation super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

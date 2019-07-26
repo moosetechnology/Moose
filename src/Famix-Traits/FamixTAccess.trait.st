@@ -26,8 +26,8 @@ Trait {
 FamixTAccess classSide >> annotation [
 
 	<MSEClass: #TAccess super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 
