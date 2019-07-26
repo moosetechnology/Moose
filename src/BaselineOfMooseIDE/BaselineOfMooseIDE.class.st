@@ -32,17 +32,12 @@ BaselineOfMooseIDE >> baseline: spec [
 
 { #category : #baselines }
 BaselineOfMooseIDE >> mooseAlgos: spec [
-	spec baseline: 'MooseAlgos' with: [ spec repository: self packageRepositoryURL. ]
+	spec baseline: 'MooseAlgos' with: [ spec repository: self packageRepositoryURL ]
 ]
 
 { #category : #baselines }
 BaselineOfMooseIDE >> mooseEasy: spec [
-	spec baseline: 'MooseEasy' with: [ spec repository: self mooseEasyURL . ]
-]
-
-{ #category : #'as yet unclassified' }
-BaselineOfMooseIDE >> mooseEasyURL [
- ^ 'github://moosetechnology/Moose-Easy:master/src'
+	spec baseline: 'MooseEasy' with: [ spec repository: 'github://moosetechnology/Moose-Easy:v1.x.x/src' ]
 ]
 
 { #category : #baselines }
