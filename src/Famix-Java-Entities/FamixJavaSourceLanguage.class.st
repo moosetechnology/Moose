@@ -37,7 +37,7 @@ FamixJavaSourceLanguage >> isSmalltalk [
 	 ^ false
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaSourceLanguage >> isUnknown [ 
 	^ false
 ]

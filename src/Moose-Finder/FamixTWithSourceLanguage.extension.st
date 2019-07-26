@@ -9,7 +9,12 @@ FamixTWithSourceLanguage >> formattedSourceText [
 
 { #category : #'*Moose-Finder' }
 FamixTWithSourceLanguage >> sourceLanguage [
+	"We are looking for the UnknownSourceLanguage in the metamodel"
 
-	"should be redefined"
-	^ nil
+	^ self
+		sourceLanguageOr:
+			(self mooseModel metamodel classes
+				detect: [ :e | 
+					(e implementingClass traits includes: FamixTSourceLanguage)
+						and: [ e implementingClass new isUnknown ] ]) implementingClass
 ]

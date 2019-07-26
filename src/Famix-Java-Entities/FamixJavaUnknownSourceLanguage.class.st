@@ -22,7 +22,7 @@ FamixJavaUnknownSourceLanguage class >> requirements [
 	^ {  }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaUnknownSourceLanguage >> isUnknown [ 
 	^ true
 ]

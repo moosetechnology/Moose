@@ -33,6 +33,11 @@ FamixTSourceLanguage >> isAttached [
 	^ self sourcedEntities notEmpty  
 ]
 
+{ #category : #testing }
+FamixTSourceLanguage >> isUnknown [
+	self explicitRequirement.
+]
+
 { #category : #accessing }
 FamixTSourceLanguage >> sourcedEntities [
 
