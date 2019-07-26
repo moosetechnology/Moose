@@ -139,13 +139,11 @@ MooseGroupRuntimeStorage >> selectAllWithType: aSmalltalkType [
 	^ byType
 		at: aSmalltalkType
 		ifAbsent: [ | result |
-			result := self class byTypeDefaultCollection.
+			result := Set new.
 			byType keys
 				select: [ :aClass | aClass isOfType: aSmalltalkType ]
-				thenDo: [ :aKey | 
-					(byType at: aKey)
-						do: [ :anElement | result addIfNotPresent: anElement ] ].
-			result ]
+				thenDo: [ :aKey | (byType at: aKey) do: [ :anElement | result add: anElement ] ].
+			self class byTypeDefaultCollection addAll: result ]
 ]
 
 { #category : #private }

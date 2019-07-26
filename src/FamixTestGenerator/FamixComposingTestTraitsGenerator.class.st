@@ -21,7 +21,13 @@ FamixComposingTestTraitsGenerator >> addingTraitsToTestTraitFor: aClass [
 
 { #category : #'as yet unclassified' }
 FamixComposingTestTraitsGenerator >> findTestFrom: aTrait [
-	^ (RPackageOrganizer default packageNamed: 'Famix-Tests') classes detect: [ :c | c name = ('T', (self testNameFrom: aTrait)) ]
+	^ (RPackageOrganizer default packageNamed: self generator prefix, '-Tests-Traits') classes detect: [ :c | c name = ('T', (self testNameFrom: aTrait)) ]
+]
+
+{ #category : #'as yet unclassified' }
+FamixComposingTestTraitsGenerator >> runFor: aClass [
+	aClass allSlots
+		ifNotEmpty: [ self addingTraitsToTestTraitFor: aClass ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -31,7 +37,7 @@ FamixComposingTestTraitsGenerator >> runFor: aClass [
 
 { #category : #'as yet unclassified' }
 FamixComposingTestTraitsGenerator >> testAssociatedTo: aClass [
-	test := (RPackageOrganizer default packageNamed: 'Famix-Tests') classes detect: [ :c | c name = (self testNameFrom: aClass) ].
+	test := (RPackageOrganizer default packageNamed: self generator prefix, 'Tests-Tests') classes detect: [ :c | c name = (self testNameFrom: aClass) ].
 	
 	
 ]

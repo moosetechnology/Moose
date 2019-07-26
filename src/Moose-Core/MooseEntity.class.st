@@ -187,6 +187,7 @@ MooseEntity class >> mooseSubClasses [
 	 ^mooseSubClasses ifNil: [ mooseSubClasses := Set new ]
 ]
 
+
 { #category : #accessing }
 MooseEntity class >> mooseTypes [
 	^ {self} , self usedStatefulTraits
@@ -318,6 +319,7 @@ MooseEntity >> children [
 			group isEmpty ifFalse: [children add: group]]. 
 	^children
 ]
+
 
 { #category : #private }
 MooseEntity >> defaultStateClass [
