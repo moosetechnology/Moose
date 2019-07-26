@@ -1,15 +1,10 @@
 Class {
 	#name : #FamixTSourceEntityTest,
 	#superclass : #TestCase,
-	#traits : 'TFamixTSourceEntityTest + TFamixTWithSourceLanguageTest + TFamixTest + TFamixTWithSourceAnchorTest',
-	#classTraits : 'TFamixTSourceEntityTest classTrait + TFamixTWithSourceLanguageTest classTrait + TFamixTest classTrait + TFamixTWithSourceAnchorTest classTrait',
+	#traits : 'TFamixTSourceEntityTest + TFamixTWithSourceAnchorTest + TFamixTWithSourceLanguageTest',
+	#classTraits : 'TFamixTSourceEntityTest classTrait + TFamixTWithSourceAnchorTest classTrait + TFamixTWithSourceLanguageTest classTrait',
 	#category : #'Famix-Tests-Tests'
 }
-
-{ #category : #'as yet unclassified' }
-FamixTSourceEntityTest class >> removeUser: aClass [ 
-	
-]
 
 { #category : #overrides }
 FamixTSourceEntityTest >> setUp [
