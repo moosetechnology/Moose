@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixStLocalVariable,
 	#superclass : #FamixStNamedEntity,
-	#traits : 'FamixStStructuralEntity + FamixTLocalVariable',
-	#classTraits : 'FamixStStructuralEntity classTrait + FamixTLocalVariable classTrait',
+	#traits : 'FamixStTStructuralEntity + FamixTLocalVariable',
+	#classTraits : 'FamixStTStructuralEntity classTrait + FamixTLocalVariable classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 

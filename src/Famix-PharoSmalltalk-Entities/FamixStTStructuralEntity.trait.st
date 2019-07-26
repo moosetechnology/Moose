@@ -1,20 +1,20 @@
 Trait {
-	#name : #FamixStStructuralEntity,
+	#name : #FamixStTStructuralEntity,
 	#traits : 'FamixTStructuralEntity',
 	#classTraits : 'FamixTStructuralEntity classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Traits'
 }
 
 { #category : #meta }
-FamixStStructuralEntity classSide >> annotation [
+FamixStTStructuralEntity classSide >> annotation [
 
-	<MSEClass: #StructuralEntity super: #Trait>
+	<MSEClass: #TStructuralEntity super: #Trait>
 	<generated>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	^self
 ]
 
 { #category : #testing }
-FamixStStructuralEntity >> isSharedVariable [
+FamixStTStructuralEntity >> isSharedVariable [
 	^ false
 ]
