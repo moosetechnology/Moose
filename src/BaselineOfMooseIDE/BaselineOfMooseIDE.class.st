@@ -26,8 +26,7 @@ BaselineOfMooseIDE >> baseline: spec [
 		package: 'Moose-Finder' with: [ spec requires: #('MooseAlgos') ];
 		package: 'Moose-RoassalPaintings';
 		package: 'Moose-Tests-Finder';
-		package: 'Moose-Tests-RoassalPaintings';
-		package: 'Moose-Easy' with: [ spec repository: self mooseEasyURL. ]
+		package: 'Moose-Tests-RoassalPaintings'
 ]
 
 { #category : #baselines }
