@@ -20,13 +20,6 @@ FamixTestComposed1UnknownSourceLanguage class >> metamodel [
 	^ (self class environment at: #FamixTestComposedSubmetamodel1Generator) metamodel
 ]
 
-{ #category : #meta }
-FamixTestComposed1UnknownSourceLanguage class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #testing }
 FamixTestComposed1UnknownSourceLanguage >> isAccess [
 

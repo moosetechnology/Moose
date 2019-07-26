@@ -15,13 +15,6 @@ FamixStImplicitVariable class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixStImplicitVariable class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FamixStImplicitVariable >> belongsTo [
 

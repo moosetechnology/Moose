@@ -20,13 +20,6 @@ FamixTest3UnknownSourceLanguage class >> metamodel [
 	^ (self class environment at: #FamixTest3Generator) metamodel
 ]
 
-{ #category : #meta }
-FamixTest3UnknownSourceLanguage class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #testing }
 FamixTest3UnknownSourceLanguage >> isAccess [
 

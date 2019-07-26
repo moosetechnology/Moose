@@ -187,20 +187,6 @@ FamixStImportingContext >> importSourcedEntity [
 ]
 
 { #category : #testing }
-FamixStImportingContext >> importStructuralEntity [
-
-	<generated>
-	^ self import: FamixStStructuralEntity
-]
-
-{ #category : #testing }
-FamixStImportingContext >> importType [
-
-	<generated>
-	^ self import: FamixStType
-]
-
-{ #category : #testing }
 FamixStImportingContext >> importUnknownSourceLanguage [
 
 	<generated>
@@ -394,20 +380,6 @@ FamixStImportingContext >> shouldImportSourcedEntity [
 
 	<generated>
 	^ self shouldImport: FamixStSourcedEntity
-]
-
-{ #category : #testing }
-FamixStImportingContext >> shouldImportStructuralEntity [
-
-	<generated>
-	^ self shouldImport: FamixStStructuralEntity
-]
-
-{ #category : #testing }
-FamixStImportingContext >> shouldImportType [
-
-	<generated>
-	^ self shouldImport: FamixStType
 ]
 
 { #category : #testing }

@@ -142,15 +142,15 @@ FamixGenerator class >> packageName [
 	^ #'Famix-Traits'
 ]
 
-{ #category : #'as yet unclassified' }
-FamixGenerator class >> submetamodels [
-	^ { FamixMooseQueryGenerator }
-]
-
 { #category : #initialization }
 FamixGenerator class >> prefix [
 
 	^ #Famix
+]
+
+{ #category : #'as yet unclassified' }
+FamixGenerator class >> submetamodels [
+	^ { FamixMooseQueryGenerator }
 ]
 
 { #category : #comments }
@@ -1561,10 +1561,6 @@ FamixGenerator >> defineTraits [
 	tSourceLanguage := builder newTraitNamed: #TSourceLanguage.
 	tSourceLanguage comment: self commentForTSourceLanguage.
 	
-	tStructuralEntity := builder newTraitNamed: #TStructuralEntity.
-	tStructuralEntity comment: self commentForTStructuralEntity.
-	tStructuralEntity withTesting.
-
 	tStructuralEntity := builder newTraitNamed: #TStructuralEntity.
 	tStructuralEntity comment: self commentForTStructuralEntity.
 	tStructuralEntity withTesting.

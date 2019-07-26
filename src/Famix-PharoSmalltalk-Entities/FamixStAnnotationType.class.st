@@ -15,13 +15,6 @@ FamixStAnnotationType class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixStAnnotationType class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FamixStAnnotationType >> belongsTo [
 

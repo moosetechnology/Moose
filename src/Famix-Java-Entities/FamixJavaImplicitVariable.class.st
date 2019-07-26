@@ -15,13 +15,6 @@ FamixJavaImplicitVariable class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaImplicitVariable class >> requirements [
-
-	<generated>
-	^ {  }
-]
-
 { #category : #accessing }
 FamixJavaImplicitVariable >> belongsTo [
 

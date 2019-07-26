@@ -51,41 +51,6 @@ FamixJavaStructuralEntity >> isClass [
 ]
 
 { #category : #testing }
-FamixJavaStructuralEntity >> isContainerEntity [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaStructuralEntity >> isAccess [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaStructuralEntity >> isAssociation [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaStructuralEntity >> isAttribute [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaStructuralEntity >> isClass [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
 FamixJavaStructuralEntity >> isFunction [
 
 	<generated>
