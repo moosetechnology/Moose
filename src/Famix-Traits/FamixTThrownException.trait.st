@@ -13,8 +13,8 @@ Trait {
 FamixTThrownException classSide >> annotation [
 
 	<MSEClass: #TThrownException super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

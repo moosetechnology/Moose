@@ -30,8 +30,8 @@ Trait {
 FamixTAssociation classSide >> annotation [
 
 	<MSEClass: #TAssociation super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

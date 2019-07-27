@@ -10,8 +10,8 @@ Trait {
 FamixTFileSystemEntity classSide >> annotation [
 
 	<MSEClass: #TFileSystemEntity super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

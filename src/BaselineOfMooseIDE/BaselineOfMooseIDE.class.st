@@ -16,6 +16,7 @@ Class {
 BaselineOfMooseIDE >> baseline: spec [
 	<baseline>
 		self mooseAlgos: spec.
+		self mooseEasy: spec.
 	spec
 		package: 'Moose-MenuBar' with: [ spec requires: #('Moose-Finder') ];
 		package: 'Moose-Configuration';
@@ -30,7 +31,12 @@ BaselineOfMooseIDE >> baseline: spec [
 
 { #category : #baselines }
 BaselineOfMooseIDE >> mooseAlgos: spec [
-	spec baseline: 'MooseAlgos' with: [ spec repository: self packageRepositoryURL. ]
+	spec baseline: 'MooseAlgos' with: [ spec repository: self packageRepositoryURL ]
+]
+
+{ #category : #baselines }
+BaselineOfMooseIDE >> mooseEasy: spec [
+	spec baseline: 'MooseEasy' with: [ spec repository: 'github://moosetechnology/Moose-Easy:v1.x.x/src' ]
 ]
 
 { #category : #baselines }

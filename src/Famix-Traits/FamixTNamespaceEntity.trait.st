@@ -10,8 +10,8 @@ Trait {
 FamixTNamespaceEntity classSide >> annotation [
 
 	<MSEClass: #TNamespaceEntity super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

@@ -7,8 +7,8 @@ Trait {
 FamixTWithStatements classSide >> annotation [
 
 	<MSEClass: #TWithStatements super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

@@ -7,8 +7,8 @@ Trait {
 FamixTLCOMMetrics classSide >> annotation [
 
 	<MSEClass: #TLCOMMetrics super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

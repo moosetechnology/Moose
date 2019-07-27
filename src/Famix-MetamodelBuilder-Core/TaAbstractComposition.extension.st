@@ -5,3 +5,8 @@ TaAbstractComposition >> members [
 
 	^ {  }
 ]
+
+{ #category : #'*Famix-MetamodelBuilder-Core' }
+TaAbstractComposition >> rootMembers [
+	^ self members
+]

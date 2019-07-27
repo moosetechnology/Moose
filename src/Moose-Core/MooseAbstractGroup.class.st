@@ -70,7 +70,7 @@ MooseAbstractGroup >> allWithSubTypesOf: aSmalltalkClass ofGroupClass:  aGroupSm
 	^ self privateState cacheAt: 'sub', aSmalltalkClass className
 		ifAbsentPut: [
 			aGroupSmalltalkClass 
-				withAll: (aSmalltalkClass withMooseSubclasses flatCollect: [:each |
+				withAll: (aSmalltalkClass withAllSubclasses flatCollect: [:each |
 		self entityStorage selectAllWithType: each ])
 				withDescription: 'All ' , aSmalltalkClass name asLowercase asEnglishPlural]
 ]

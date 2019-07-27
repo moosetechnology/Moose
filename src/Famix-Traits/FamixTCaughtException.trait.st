@@ -13,8 +13,8 @@ Trait {
 FamixTCaughtException classSide >> annotation [
 
 	<MSEClass: #TCaughtException super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

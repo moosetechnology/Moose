@@ -152,6 +152,13 @@ FamixJavaEntity >> isReference [
 ]
 
 { #category : #testing }
+FamixJavaEntity >> isStructuralEntity [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
 FamixJavaEntity >> isType [
 
 	<generated>

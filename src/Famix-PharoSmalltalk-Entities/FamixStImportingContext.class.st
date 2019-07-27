@@ -201,13 +201,6 @@ FamixStImportingContext >> importSourcedEntity [
 ]
 
 { #category : #testing }
-FamixStImportingContext >> importStructuralEntity [
-
-	<generated>
-	^ self import: FamixStStructuralEntity
-]
-
-{ #category : #testing }
 FamixStImportingContext >> importType [
 
 	<generated>
@@ -422,13 +415,6 @@ FamixStImportingContext >> shouldImportSourcedEntity [
 
 	<generated>
 	^ self shouldImport: FamixStSourcedEntity
-]
-
-{ #category : #testing }
-FamixStImportingContext >> shouldImportStructuralEntity [
-
-	<generated>
-	^ self shouldImport: FamixStStructuralEntity
 ]
 
 { #category : #testing }

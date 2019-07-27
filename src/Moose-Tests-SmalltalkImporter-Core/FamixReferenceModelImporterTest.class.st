@@ -99,7 +99,7 @@ FamixReferenceModelImporterTest >> testAccessingGlobalVariableFromInstanceSide [
 		hasAccessesSize: 1.
 	declaredType := (self model allGlobalVariables entityNamed: #Transcript) declaredType.
 	self assert: declaredType mooseName equals: Transcript class mooseName.
-	self assert: (declaredType usesTrait: FamixTType)
+	self assert: (declaredType usesFamixTrait: FamixTType)
 ]
 
 { #category : #'reference model access' }

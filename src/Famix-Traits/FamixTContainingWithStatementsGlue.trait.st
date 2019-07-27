@@ -7,8 +7,8 @@ Trait {
 FamixTContainingWithStatementsGlue classSide >> annotation [
 
 	<MSEClass: #TContainingWithStatementsGlue super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 
@@ -40,7 +40,7 @@ FamixTContainingWithStatementsGlue >> numberOfStatements [
 		computedAs: [
 			| group |
 			group := MooseGroup
-				withAll: (self children select: [ :child | child usesTrait: FamixTWithStatements])
+				withAll: (self children select: [ :child | child usesFamixTrait: FamixTWithStatements])
 				withDescription: 'Entities from ' , self mooseName.
 			group sumNumbers: #numberOfStatements ] 
 ]

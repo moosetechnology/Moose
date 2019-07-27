@@ -12,7 +12,7 @@ Trait {
 FamixTPreprocessorDefine classSide >> annotation [
 
 	<MSEClass: #TPreprocessorDefine super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]

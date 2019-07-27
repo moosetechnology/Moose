@@ -7,8 +7,8 @@ Trait {
 FamixTWithMethodsWithModifiersGlue classSide >> annotation [
 
 	<MSEClass: #TWithMethodsWithModifiersGlue super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

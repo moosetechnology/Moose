@@ -15,16 +15,6 @@ FAMIXStructuralEntity class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
-FAMIXStructuralEntity >> entityHasOutgoingTypeDeclarations [
-	^ self declaredType isNotNil
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXStructuralEntity >> hasDeclaredType [
-	^ self declaredType notNil
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXStructuralEntity >> isSharedVariable [
 
@@ -34,11 +24,6 @@ FAMIXStructuralEntity >> isSharedVariable [
 { #category : #'moosechef-scoping-filtering' }
 FAMIXStructuralEntity >> namespaceScope [
 	^ self subclassResponsibility
-]
-
-{ #category : #'as yet unclassified' }
-FAMIXStructuralEntity >> outgoingTypeDeclarations [
-	^ self declaredType ifNil: [ {} ] ifNotNil: [ :dt | {(MooseQueryTypeDeclarationAssociation newFrom: self to: dt)} ]
 ]
 
 { #category : #'moosechef-scoping-filtering' }
