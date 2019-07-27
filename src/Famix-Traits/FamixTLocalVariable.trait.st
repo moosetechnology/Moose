@@ -13,8 +13,8 @@ Trait {
 FamixTLocalVariable classSide >> annotation [
 
 	<MSEClass: #TLocalVariable super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

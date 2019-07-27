@@ -1,15 +1,15 @@
 Class {
 	#name : #FamixJavaGlobalVariable,
-	#superclass : #FamixJavaStructuralEntity,
-	#traits : 'FamixTGlobalVariable',
-	#classTraits : 'FamixTGlobalVariable classTrait',
+	#superclass : #FamixJavaNamedEntity,
+	#traits : 'FamixJavaTStructuralEntity + FamixTGlobalVariable',
+	#classTraits : 'FamixJavaTStructuralEntity classTrait + FamixTGlobalVariable classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
 { #category : #meta }
 FamixJavaGlobalVariable class >> annotation [
 
-	<MSEClass: #GlobalVariable super: #FamixJavaStructuralEntity>
+	<MSEClass: #GlobalVariable super: #FamixJavaNamedEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self

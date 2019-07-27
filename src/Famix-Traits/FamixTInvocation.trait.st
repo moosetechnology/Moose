@@ -24,8 +24,8 @@ Trait {
 FamixTInvocation classSide >> annotation [
 
 	<MSEClass: #TInvocation super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

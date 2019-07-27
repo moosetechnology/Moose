@@ -13,8 +13,8 @@ Trait {
 FamixTImplicitVariable classSide >> annotation [
 
 	<MSEClass: #TImplicitVariable super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

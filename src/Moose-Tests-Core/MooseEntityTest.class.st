@@ -6,28 +6,23 @@ Class {
 
 { #category : #tests }
 MooseEntityTest >> testAllMooseDisplayOn [
-	| t str ins |
+	| t ins |
 	(MooseEntity withAllSubclasses reject: #hasAbstractMethods)
 		do: [ :cls | 
-			str := WriteStream on: String new.
 			ins := cls new.
 			self shouldnt: [ t := ins gtDisplayString ] raise: Error.
 			self assert: t isByteString.
-			ins gtDisplayOn: str.
-			self assert: str contents equals: t ]
+			self assert: (String streamContents: [ :s | ins gtDisplayOn: s ]) equals: t ]
 ]
 
 { #category : #tests }
 MooseEntityTest >> testAllMooseNameOn [
-	| t str ins |
+	| t ins |
 	MooseEntity allSubclasses
 		do: [ :cls | 
-			str := WriteStream on: String new.
 			ins := cls new.
 			self shouldnt: [ t := ins mooseName ] raise: Error.
-			self assert: t isByteString.
-			ins mooseNameOn: str.
-			self assert: str contents equals: t ]
+			self assert: (String streamContents: [ :s | ins mooseNameOn: s ]) equals: t ]
 ]
 
 { #category : #tests }

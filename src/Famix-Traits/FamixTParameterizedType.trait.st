@@ -20,8 +20,8 @@ Trait {
 FamixTParameterizedType classSide >> annotation [
 
 	<MSEClass: #TParameterizedType super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

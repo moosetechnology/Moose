@@ -13,8 +13,8 @@ Trait {
 FamixTFunction classSide >> annotation [
 
 	<MSEClass: #TFunction super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

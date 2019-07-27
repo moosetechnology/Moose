@@ -15,8 +15,8 @@ Trait {
 FamixTFileAnchor classSide >> annotation [
 
 	<MSEClass: #TFileAnchor super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 
