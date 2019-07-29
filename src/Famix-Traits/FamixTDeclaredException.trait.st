@@ -13,8 +13,8 @@ Trait {
 FamixTDeclaredException classSide >> annotation [
 
 	<MSEClass: #TDeclaredException super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

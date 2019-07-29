@@ -14,8 +14,8 @@ Trait {
 FamixTGlobalVariable classSide >> annotation [
 
 	<MSEClass: #TGlobalVariable super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

@@ -18,8 +18,8 @@ Trait {
 FamixTAnnotationType classSide >> annotation [
 
 	<MSEClass: #TAnnotationType super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

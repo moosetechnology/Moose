@@ -10,8 +10,8 @@ Trait {
 FamixTAccessible classSide >> annotation [
 
 	<MSEClass: #TAccessible super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

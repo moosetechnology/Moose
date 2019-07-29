@@ -10,8 +10,8 @@ Trait {
 FamixTWithNamespaces classSide >> annotation [
 
 	<MSEClass: #TWithNamespaces super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

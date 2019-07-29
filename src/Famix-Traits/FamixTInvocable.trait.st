@@ -10,8 +10,8 @@ Trait {
 FamixTInvocable classSide >> annotation [
 
 	<MSEClass: #TInvocable super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

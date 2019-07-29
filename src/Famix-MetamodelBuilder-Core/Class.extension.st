@@ -1,8 +1,8 @@
 Extension { #name : #Class }
 
 { #category : #'*Famix-MetamodelBuilder-Core' }
-Class >> customTraits [
-	^ self traits reject: #isMetamodelEntity
+Class >> customTraitNames [
+	^ self traits reject: #isMetamodelEntity thenCollect: #name
 ]
 
 { #category : #'*Famix-MetamodelBuilder-Core' }
@@ -27,7 +27,13 @@ Class >> generatedTraits [
 
 { #category : #'*Famix-MetamodelBuilder-Core' }
 Class >> needToAdaptTo: aRGClass [
-	(self generatedTraitNames equalsTo: (aRGClass traitComposition transformations collect: #name)) ifFalse: [ ^ true ].
+	| generatedTraitNames generatedTraitDefinitions |
+	generatedTraitNames := self generatedTraitNames.
+
+	"We need to manage the cases where it will be things like `FamixJavaTStructuralEntity - {#mooseNameOn:}`"
+	generatedTraitDefinitions := self traitComposition rootMembers select: [ :member | generatedTraitNames includes: member name ] thenCollect: #traitCompositionExpression.
+
+	(generatedTraitDefinitions equalsTo: aRGClass traitsDefinitions) ifFalse: [ ^ true ].
 
 	(self generatedSlotNames equalsTo: (aRGClass slots collect: #name)) ifFalse: [ ^ true ].
 

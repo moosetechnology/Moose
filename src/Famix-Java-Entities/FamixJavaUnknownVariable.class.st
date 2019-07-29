@@ -1,13 +1,15 @@
 Class {
 	#name : #FamixJavaUnknownVariable,
-	#superclass : #FamixJavaStructuralEntity,
+	#superclass : #FamixJavaNamedEntity,
+	#traits : 'FamixJavaTStructuralEntity',
+	#classTraits : 'FamixJavaTStructuralEntity classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
 { #category : #meta }
 FamixJavaUnknownVariable class >> annotation [
 
-	<MSEClass: #UnknownVariable super: #FamixJavaStructuralEntity>
+	<MSEClass: #UnknownVariable super: #FamixJavaNamedEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self

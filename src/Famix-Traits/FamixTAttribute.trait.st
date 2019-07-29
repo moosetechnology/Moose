@@ -14,8 +14,8 @@ Trait {
 FamixTAttribute classSide >> annotation [
 
 	<MSEClass: #TAttribute super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

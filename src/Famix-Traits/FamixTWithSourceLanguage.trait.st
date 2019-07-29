@@ -10,8 +10,8 @@ Trait {
 FamixTWithSourceLanguage classSide >> annotation [
 
 	<MSEClass: #TWithSourceLanguage super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

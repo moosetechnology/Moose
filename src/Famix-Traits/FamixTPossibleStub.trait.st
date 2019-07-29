@@ -10,8 +10,8 @@ Trait {
 FamixTPossibleStub classSide >> annotation [
 
 	<MSEClass: #TPossibleStub super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

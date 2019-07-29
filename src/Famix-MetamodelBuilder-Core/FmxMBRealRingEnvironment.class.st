@@ -75,19 +75,17 @@ FmxMBRealRingEnvironment >> generatedSlotsOf: aRealClass [
 
 { #category : #installing }
 FmxMBRealRingEnvironment >> recordAdoptionOfClassDefinitionFrom: realClass to: anRGClass [
-	| customSlots customTraitNames customSlotNames slotDefinitions slotsString definition traitsDefinitions traitsString |
+	| customSlots customSlotNames slotDefinitions slotsString definition traitsString |
 	(realClass needToAdaptTo: anRGClass) ifFalse: [ ^ self ].
 
 	customSlots := realClass localSlots copyWithoutAll: realClass generatedSlots.
 	customSlotNames := customSlots collect: #name.
-	customTraitNames := (realClass traitComposition members select: [ :e | realClass customTraits includes: e innerClass ]) collect: #traitCompositionExpression.
 	slotDefinitions := ((anRGClass slots reject: [ :each | customSlotNames includes: each name ]) collect: #definitionString) asOrderedCollection.
-	traitsDefinitions := (anRGClass traitComposition transformations collect: #asString) , customTraitNames.
 	slotDefinitions addAll: (customSlots collect: #definitionString).
 	slotDefinitions := slotDefinitions sorted.
 
 	slotsString := '{' , (slotDefinitions joinUsing: '. ') , '}'.
-	traitsString := traitsDefinitions ifEmpty: [ '{ }' ] ifNotEmpty: [ traitsDefinitions joinUsing: ' + ' ].
+	traitsString := self traitStringFrom: realClass to: anRGClass.
 	definition := anRGClass isTrait
 		ifFalse: [ '{superclass} subclass: #{className} 
 		uses: {traits} 
@@ -196,4 +194,15 @@ FmxMBRealRingEnvironment >> regenerationIsNeeded [
 
 	self collectChangesToApply.
 	^ changesToApply isNotEmpty
+]
+
+{ #category : #installing }
+FmxMBRealRingEnvironment >> traitStringFrom: realClass to: aRGClass [
+	"We need to collect the generated traits + the custom traits added by the user."
+
+	| customTraitNames traitsDefinitions |
+	customTraitNames := (realClass traitComposition rootMembers select: [ :e | realClass customTraitNames includes: e name ]) collect: #traitCompositionExpression.
+	traitsDefinitions := aRGClass traitsDefinitions ifEmpty: [ {} ] ifNotEmpty: [ :rgDefinitions | {rgDefinitions anyOne} , (rgDefinitions allButFirst collect: [ :e | '(' , e , ')' ]) ].
+	traitsDefinitions := traitsDefinitions , customTraitNames.
+	^ traitsDefinitions ifEmpty: [ '{ }' ] ifNotEmpty: [ traitsDefinitions joinUsing: ' + ' ]
 ]
