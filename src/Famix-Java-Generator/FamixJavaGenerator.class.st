@@ -33,7 +33,7 @@ Class {
 		'type',
 		'unknownVariable',
 		'parameterizedType',
-		'structuralEntity'
+		'tStructuralEntity'
 	],
 	#category : #'Famix-Java-Generator'
 }
@@ -88,7 +88,6 @@ FamixJavaGenerator >> defineClasses [
 	primitiveType := builder newClassNamed: #PrimitiveType.
 	reference := builder newClassNamed: #Reference.
 	scopingEntity := builder newClassNamed: #ScopingEntity.
-	structuralEntity := builder newClassNamed: #StructuralEntity.
 	thrownException := builder newClassNamed: #ThrownException.
 	type := builder newClassNamed: #Type.
 	unknownVariable := builder newClassNamed: #UnknownVariable.
@@ -148,7 +147,7 @@ FamixJavaGenerator >> defineHierarchy [
 	annotationTypeAttribute --|> #TAnnotationTypeAttribute.
 	annotationTypeAttribute --|> #TTypedAnnotationInstanceAttribute.
 
-	attribute --|> structuralEntity.
+	attribute --|> tStructuralEntity.
 	attribute --|> #TAttribute.
 	attribute --|> #TWithClassScope.
 	attribute --|> #TWithAnnotationInstances.
@@ -179,15 +178,15 @@ FamixJavaGenerator >> defineHierarchy [
 	enum --|> type.
 	enum --|> #TWithEnumValues.
 
-	enumValue --|> structuralEntity.
+	enumValue --|> tStructuralEntity.
 	enumValue --|> #TEnumValue.
 
 	exception --|> #TException.
 
-	globalVariable --|> structuralEntity.
+	globalVariable --|> tStructuralEntity.
 	globalVariable --|> #TGlobalVariable.
 
-	implicitVariable --|> structuralEntity.
+	implicitVariable --|> tStructuralEntity.
 	implicitVariable --|> #TImplicitVariable.
 
 	inheritance --|> association.
@@ -198,7 +197,7 @@ FamixJavaGenerator >> defineHierarchy [
 	invocation --|> #TInvocation.
 	invocation --|> #TWithSignature.
 
-	localVariable --|> structuralEntity.
+	localVariable --|> tStructuralEntity.
 	localVariable --|> #TLocalVariable.
 
 	namedEntity --|> #TPackageable.
@@ -214,7 +213,7 @@ FamixJavaGenerator >> defineHierarchy [
 	package --|> scopingEntity.
 	package --|> #TPackage.
 
-	parameter --|> structuralEntity.
+	parameter --|> tStructuralEntity.
 	parameter --|> #TParameter.
 
 	parameterType --|> type.
@@ -236,9 +235,6 @@ FamixJavaGenerator >> defineHierarchy [
 	scopingEntity --|> #TScopingEntity.
 	scopingEntity --|> #TWithTypes.
 
-	structuralEntity --|> #TStructuralEntity.
-	structuralEntity --|> #TWithDereferencedInvocations.
-
 	thrownException --|> exception.
 	thrownException --|> #TThrownException.
 
@@ -254,7 +250,7 @@ FamixJavaGenerator >> defineHierarchy [
 	type --|> #TWithSuperInheritances.
 	type --|> #TWithAttributes.
 
-	unknownVariable --|> structuralEntity.
+	unknownVariable --|> tStructuralEntity.
 	
 
 

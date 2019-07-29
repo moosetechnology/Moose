@@ -7,7 +7,7 @@ Trait {
 FamixTestComposedTAssociationMetaLevelDependency classSide >> annotation [
 
 	<MSEClass: #TAssociationMetaLevelDependency super: #Trait>
-	<generated>
 	<package: #'Famix-TestComposedMetamodel-Entities'>
+	<generated>
 	^self
 ]

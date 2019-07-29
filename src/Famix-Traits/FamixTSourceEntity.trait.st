@@ -12,7 +12,7 @@ Trait {
 FamixTSourceEntity classSide >> annotation [
 
 	<MSEClass: #TSourceEntity super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
