@@ -20,8 +20,8 @@ Trait {
 FamixTMethod classSide >> annotation [
 
 	<MSEClass: #TMethod super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

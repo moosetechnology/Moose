@@ -23,8 +23,8 @@ Trait {
 FamixTEnumValue classSide >> annotation [
 
 	<MSEClass: #TEnumValue super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

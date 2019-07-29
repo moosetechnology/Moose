@@ -58,6 +58,11 @@ FmxMBTrait >> classGeneralization [
 	^ self builder environment basicTrait
 ]
 
+{ #category : #accessing }
+FmxMBTrait >> classGeneralization: anObject [
+	FmxMBTraitsGeneralizationError signal
+]
+
 { #category : #generating }
 FmxMBTrait >> defaultSuperclass [
 	
@@ -68,19 +73,6 @@ FmxMBTrait >> defaultSuperclass [
 FmxMBTrait >> defaultTag [
 
 	^ self builder configuration traitTag
-]
-
-{ #category : #accessing }
-FmxMBTrait >> generalization: anObject [
-
-	^ anObject isSymbol
-		ifTrue: [ self addTraitGeneralization: (self builder ensureTraitNamed: anObject) ]
-		ifFalse: [ 
-			anObject isMetamodelTrait 
-				ifTrue: [ self addTraitGeneralization: anObject ]
-				ifFalse: [ FmxMBTraitsGeneralizationError signal ] ]
-			
-	
 ]
 
 { #category : #generating }
@@ -104,32 +96,7 @@ FmxMBTrait >> generate [
 	
 	self generateTestingMethodsIn: aTrait.
 	self generateRootMetamodelMethodIn: aTrait.
-
-]
-
-{ #category : #generating }
-FmxMBTrait >> generateAnnotationIn: aRealClass as: aName superclass: aSuperclass [
-
-	| aSuperclassName |
-	
-	aSuperclassName := aSuperclass  
-		ifNotNil: [ aSuperclass name ]
-		ifNil: [ 
-		aSuperclassName := (self classGeneralization = self defaultSuperclass) 
-			ifTrue: [ self defaultSuperclass name]
-			ifFalse: [ self classGeneralization 
-				ifNil: [ self defaultSuperclass name ]
-				ifNotNil: [ 
-					self classGeneralization realClass name ] ] ].
-
-	aRealClass classSide compile: ('annotation
-
-	<MSEClass: #{1} super: #{2}>
-	<generated>
-	<package: {3}>
-	^self' format: { aName. aSuperclassName. self builder safeAnnotationPackageName})
-		classified: 'meta'
-
+	self generateMethodsToRemoveFromTraitCompositionFor: aTrait
 ]
 
 { #category : #generating }

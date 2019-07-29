@@ -7,7 +7,7 @@ Trait {
 FamixTClassWithInvocationsGlue classSide >> annotation [
 
 	<MSEClass: #TClassWithInvocationsGlue super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]

@@ -11,8 +11,8 @@ Trait {
 FamixTIndexedFileNavigation classSide >> annotation [
 
 	<MSEClass: #TIndexedFileNavigation super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

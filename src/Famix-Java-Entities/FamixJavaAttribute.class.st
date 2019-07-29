@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaAttribute,
-	#superclass : #FamixJavaStructuralEntity,
-	#traits : 'FamixTAttribute + FamixTWithAnnotationInstances + FamixTWithClassScope',
-	#classTraits : 'FamixTAttribute classTrait + FamixTWithAnnotationInstances classTrait + FamixTWithClassScope classTrait',
+	#superclass : #FamixJavaNamedEntity,
+	#traits : 'FamixJavaTStructuralEntity + FamixTAttribute + FamixTWithClassScope',
+	#classTraits : 'FamixJavaTStructuralEntity classTrait + FamixTAttribute classTrait + FamixTWithClassScope classTrait',
 	#instVars : [
 		'#hasClassScope'
 	],
@@ -12,7 +12,7 @@ Class {
 { #category : #meta }
 FamixJavaAttribute class >> annotation [
 
-	<MSEClass: #Attribute super: #FamixJavaStructuralEntity>
+	<MSEClass: #Attribute super: #FamixJavaNamedEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self

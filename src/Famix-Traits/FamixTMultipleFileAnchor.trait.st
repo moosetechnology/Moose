@@ -10,8 +10,8 @@ Trait {
 FamixTMultipleFileAnchor classSide >> annotation [
 
 	<MSEClass: #TMultipleFileAnchor super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

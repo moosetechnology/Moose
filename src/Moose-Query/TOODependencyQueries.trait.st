@@ -14,8 +14,8 @@ Trait {
 TOODependencyQueries classSide >> annotation [
 
 	<MSEClass: #TOODependencyQueries super: #Trait>
-	<generated>
 	<package: #'Moose-Query'>
+	<generated>
 	^self
 ]
 

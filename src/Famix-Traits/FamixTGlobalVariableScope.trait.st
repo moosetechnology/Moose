@@ -10,8 +10,8 @@ Trait {
 FamixTGlobalVariableScope classSide >> annotation [
 
 	<MSEClass: #TGlobalVariableScope super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

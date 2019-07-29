@@ -10,8 +10,8 @@ Trait {
 FamixTTemplateUser classSide >> annotation [
 
 	<MSEClass: #TTemplateUser super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

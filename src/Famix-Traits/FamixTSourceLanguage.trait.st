@@ -16,8 +16,8 @@ Trait {
 FamixTSourceLanguage classSide >> annotation [
 
 	<MSEClass: #TSourceLanguage super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 

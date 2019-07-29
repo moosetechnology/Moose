@@ -1,15 +1,15 @@
 Class {
 	#name : #FamixJavaImplicitVariable,
-	#superclass : #FamixJavaStructuralEntity,
-	#traits : 'FamixTImplicitVariable',
-	#classTraits : 'FamixTImplicitVariable classTrait',
+	#superclass : #FamixJavaNamedEntity,
+	#traits : 'FamixJavaTStructuralEntity + FamixTImplicitVariable',
+	#classTraits : 'FamixJavaTStructuralEntity classTrait + FamixTImplicitVariable classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
 { #category : #meta }
 FamixJavaImplicitVariable class >> annotation [
 
-	<MSEClass: #ImplicitVariable super: #FamixJavaStructuralEntity>
+	<MSEClass: #ImplicitVariable super: #FamixJavaNamedEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self

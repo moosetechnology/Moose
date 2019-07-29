@@ -13,8 +13,8 @@ Trait {
 FamixTFileNavigation classSide >> annotation [
 
 	<MSEClass: #TFileNavigation super: #Trait>
-	<generated>
 	<package: #'Famix-Traits'>
+	<generated>
 	^self
 ]
 
