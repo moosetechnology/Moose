@@ -1,28 +1,27 @@
 Class {
-	#name : #MooseAbstractInstallToolEntry,
+	#name : #MooseAbstractToolEntry,
 	#superclass : #MooseAbstractMenuEntry,
 	#category : #'Moose-MenuBar'
 }
 
 { #category : #'world menu' }
-MooseAbstractInstallToolEntry class >> allToolClasses [
+MooseAbstractToolEntry class >> allToolClasses [
 	^ self subclasses reject: #isCategory
 ]
 
 { #category : #testing }
-MooseAbstractInstallToolEntry class >> isCategory [
-	^ false
+MooseAbstractToolEntry class >> isCategory [
+	^ self name = #MooseAbstractToolEntry
 ]
 
 { #category : #'world menu' }
-MooseAbstractInstallToolEntry class >> menuCommandOn: aBuilder [
+MooseAbstractToolEntry class >> menuCommandOn: aBuilder [
 	<worldMenu>
 	| b |
 	b := ((aBuilder
 		item: self menuConfigurationSymbol;
 		order: 15;
 		parent: #Moose) icon: MooseIcons mooseIcon)
-		withSeparatorAfter;
 		yourself.
 	b
 		with: [ self allToolClasses
@@ -30,18 +29,13 @@ MooseAbstractInstallToolEntry class >> menuCommandOn: aBuilder [
 							(aBuilder item: cls new label)
 								order: 20;
 								parent: self menuConfigurationSymbol;
-								label: 'Load ', cls new label;
-								help:'Load ', cls new label;
+								label: cls new label;
+								help: cls new label;
 								icon: MooseIcons mooseIcon;
 								action: [ cls new run ] ] ].
 ]
 
 { #category : #'world menu' }
-MooseAbstractInstallToolEntry class >> menuConfigurationSymbol [
-	^ #'Moose Projects'
-]
-
-{ #category : #execution }
-MooseAbstractInstallToolEntry >> version [
-	^ self subclassResponsibility
+MooseAbstractToolEntry class >> menuConfigurationSymbol [
+	^ #'Moose Tools'
 ]

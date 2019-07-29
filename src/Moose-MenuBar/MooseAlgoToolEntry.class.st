@@ -19,5 +19,5 @@ MooseAlgoToolEntry >> label [
 
 { #category : #accessing }
 MooseAlgoToolEntry >> version [
-	^ 'v1.1.3'
+	^ 'v1.x.x'
 ]
