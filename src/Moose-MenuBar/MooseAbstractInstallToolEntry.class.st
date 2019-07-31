@@ -38,5 +38,10 @@ MooseAbstractInstallToolEntry class >> menuCommandOn: aBuilder [
 
 { #category : #'world menu' }
 MooseAbstractInstallToolEntry class >> menuConfigurationSymbol [
-	^ #'Mosse Tools'
+	^ #'Moose Projects'
+]
+
+{ #category : #execution }
+MooseAbstractInstallToolEntry >> version [
+	^ self subclassResponsibility
 ]
