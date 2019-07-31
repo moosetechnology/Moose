@@ -984,7 +984,7 @@ FamixGenerator >> defineHierarchy [
 	tMethod --|> #TWithClassScope.""
 	tMethod --|> #TTypedStructure.
 	tMethod --|> #TWithModifiers.
-	tMethod --|> #TNamed.
+	tMethod inheritsFromTrait: tNamed without: #(#outgoingTypeDeclarations ).
 	tMethod --|> #TWithComments.
 	
 	tAttribute --|> #TWithModifiers.
