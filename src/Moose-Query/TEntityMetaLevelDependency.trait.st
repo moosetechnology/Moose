@@ -212,13 +212,25 @@ TEntityMetaLevelDependency >> allAtAnyScope: aCollectionOfFamixClasses [
 
 { #category : #private }
 TEntityMetaLevelDependency >> allAtAnyScope: aCollectionOfFamixClasses in: aCollection [
+	^ self allAtAnyScope: aCollectionOfFamixClasses in: aCollection until: self falseBlock 
+]
+
+{ #category : #private }
+TEntityMetaLevelDependency >> allAtAnyScope: aCollectionOfFamixClasses in: aCollection until: rejectBlock [
 	| selectors |
 	(aCollectionOfFamixClasses anySatisfy: [ :aFAMIXClass | self isOfType: aFAMIXClass ]) ifTrue: [ aCollection add: self ].
-
-	"The content of this block could be much more readable with #do: but we do this solution for performances... We need this method to be really really performant."
-	1 to: (selectors := self parentSelectors) size do: [ :ind | (self perform: (selectors at: ind)) allAtAnyScope: aCollectionOfFamixClasses in: aCollection ].
+	(rejectBlock value: self)
+		ifFalse: [ 1 to: (selectors := self parentSelectors) size do: [ :ind | (self perform: (selectors at: ind)) allAtAnyScope: aCollectionOfFamixClasses in: aCollection until: rejectBlock ] ].
 
 	^ aCollection
+]
+
+{ #category : #scoping }
+TEntityMetaLevelDependency >> allAtAnyScope: aCollectionOfFamixClasses until: rejectBlock [
+	"I am used to return all the encountered entities (recursively) at matching one of the class scope given as parameter that are up in the containment tree of the metamodel.
+	I stop the recursion when the rejectBlock is true"
+
+	^ (self allAtAnyScope: aCollectionOfFamixClasses in: OrderedCollection new until: rejectBlock ) asSet asArray
 ]
 
 { #category : #scoping }
@@ -231,13 +243,26 @@ TEntityMetaLevelDependency >> allAtScope: aClassFAMIX [
 
 { #category : #private }
 TEntityMetaLevelDependency >> allAtScope: aClassFAMIX in: aCollection [
+	^ self allAtScope: aClassFAMIX in: aCollection until: self falseBlock 
+]
+
+{ #category : #private }
+TEntityMetaLevelDependency >> allAtScope: aClassFAMIX in: aCollection until: rejectBlock [
 	| selectors |
-	(self isOfType: aClassFAMIX) ifTrue: [ aCollection add: self ].	
-	
+	(self isOfType: aClassFAMIX) ifTrue: [ aCollection add: self ].
+
 	"The content of this block could be much more readable with #do: but we do this solution for performances... We need this method to be really really performant."
-	1 to: (selectors := self parentSelectors) size do: [ :ind | (self perform: (selectors at: ind)) allAtScope: aClassFAMIX in: aCollection ].
-	
+	(rejectBlock value: self) ifFalse: [ 1 to: (selectors := self parentSelectors) size do: [ :ind | (self perform: (selectors at: ind)) allAtScope: aClassFAMIX in: aCollection until: rejectBlock ] ].
+
 	^ aCollection
+]
+
+{ #category : #scoping }
+TEntityMetaLevelDependency >> allAtScope: aClassFAMIX until: rejectBlock [
+	"I am used to return all the entities at a given famix class scope that are up in the containment tree of the metamodel on multiple levels.
+	I stop the recursion when the rejectBlock is true."
+
+	^ (self allAtScope: aClassFAMIX in: OrderedCollection new until: rejectBlock) asSet asArray
 ]
 
 { #category : #accessing }
@@ -304,13 +329,25 @@ TEntityMetaLevelDependency >> allToAnyScope: aCollectionOfFamixClasses [
 
 { #category : #private }
 TEntityMetaLevelDependency >> allToAnyScope: aCollectionOfFamixClasses in: aCollection [
+	^ self allToAnyScope: aCollectionOfFamixClasses in: aCollection until: self falseBlock
+]
+
+{ #category : #private }
+TEntityMetaLevelDependency >> allToAnyScope: aCollectionOfFamixClasses in: aCollection until: rejectBlock [
 	| selectors |
 	(aCollectionOfFamixClasses anySatisfy: [ :aFAMIXClass | self isOfType: aFAMIXClass ]) ifTrue: [ aCollection add: self ].
 
-	"The content of this block could be much more readable with #do: but we do this solution for performances... We need this method to be really really performant."
-	1 to: (selectors := self childrenSelectors) size do: [ :ind | (self perform: (selectors at: ind)) allToAnyScope: aCollectionOfFamixClasses in: aCollection ].
+	(rejectBlock value: self) ifFalse: [ 1 to: (selectors := self childrenSelectors) size do: [ :ind | (self perform: (selectors at: ind)) allToAnyScope: aCollectionOfFamixClasses in: aCollection  until: rejectBlock ] ].
 
 	^ aCollection
+]
+
+{ #category : #scoping }
+TEntityMetaLevelDependency >> allToAnyScope: aCollectionOfFamixClasses until: rejectBlock [
+	"I am used to return all the encountered entities (recursively) at matching one of the class scope given as parameter that are down in the containment tree of the metamodel
+	I stop the recursion when the rejectBlock is true"
+
+	^ (self allToAnyScope: aCollectionOfFamixClasses in: OrderedCollection new until: rejectBlock) asSet asArray
 ]
 
 { #category : #scoping }
@@ -323,13 +360,27 @@ TEntityMetaLevelDependency >> allToScope: aClassFAMIX [
 
 { #category : #private }
 TEntityMetaLevelDependency >> allToScope: aClassFAMIX in: aCollection [
+	^ self allToScope: aClassFAMIX in: aCollection until: self falseBlock 
+]
+
+{ #category : #private }
+TEntityMetaLevelDependency >> allToScope: aClassFAMIX in: aCollection until: rejectBlock [
 	| selectors |
-	(self isOfType: aClassFAMIX) ifTrue: [ aCollection add: self ].	
-		
+	(self isOfType: aClassFAMIX) ifTrue: [ aCollection add: self ].
+
 	"The content of this block could be much more readable with #do: but we do this solution for performances... We need this method to be really really performant."
-	1 to: (selectors := self childrenSelectors) size do: [ :ind | (self perform: (selectors at: ind)) allToScope: aClassFAMIX in: aCollection ].
-	
+	(rejectBlock value: self) ifFalse: [ 1 to: (selectors := self childrenSelectors) size do: [ :ind | (self perform: (selectors at: ind)) allToScope: aClassFAMIX in: aCollection until: rejectBlock ] ].
+
 	^ aCollection
+]
+
+{ #category : #scoping }
+TEntityMetaLevelDependency >> allToScope: aClassFAMIX until: rejectBlock [
+	"I am used to return all the entities at a given famix class scope that are down in the containment tree of the metamodel on multiple levels.
+	I stop the recursion when the rejectBlock is true"
+
+	self flag: #todo.	"I think we do not need the #asArray cast but it will break tests. I will probably let it now then change the tests later. Step by step."
+	^ (self allToScope: aClassFAMIX in: OrderedCollection new until: rejectBlock) asSet asArray
 ]
 
 { #category : #scoping }
@@ -341,15 +392,28 @@ TEntityMetaLevelDependency >> allWithAnyScope: aCollectionOfFamixClasses [
 
 { #category : #private }
 TEntityMetaLevelDependency >> allWithAnyScope: aCollectionOfFamixClasses in: aCollection [
-	(aCollectionOfFamixClasses anySatisfy: [ :aFAMIXClass | self class traits includes: aFAMIXClass ]) ifTrue: [ self allToAnyScope: aCollectionOfFamixClasses in: aCollection ].
+	^ self allWithAnyScope: aCollectionOfFamixClasses in: aCollection until: self falseBlock
+]
+
+{ #category : #private }
+TEntityMetaLevelDependency >> allWithAnyScope: aCollectionOfFamixClasses in: aCollection until: rejectBlock [
+	(aCollectionOfFamixClasses anySatisfy: [ :aFAMIXClass | self class traits includes: aFAMIXClass ]) ifTrue: [ self allToAnyScope: aCollectionOfFamixClasses in: aCollection until: rejectBlock ].
 
 	self allParentTypes
 		detect: [ :class | aCollectionOfFamixClasses anySatisfy: [ :aFAMIXClass | aFAMIXClass = class or: [ aFAMIXClass inheritsFrom: class ] ] ]
-		ifFound: [ self allAtAnyScope: aCollectionOfFamixClasses in: aCollection ].
+		ifFound: [ self allAtAnyScope: aCollectionOfFamixClasses in: aCollection until: rejectBlock ].
 	self allChildrenTypes
 		detect: [ :class | aCollectionOfFamixClasses anySatisfy: [ :aFAMIXClass | aFAMIXClass = class or: [ aFAMIXClass inheritsFrom: class ] ] ]
-		ifFound: [ self allToAnyScope: aCollectionOfFamixClasses in: aCollection ].
+		ifFound: [ self allToAnyScope: aCollectionOfFamixClasses in: aCollection until: rejectBlock ].
 	^ aCollection
+]
+
+{ #category : #scoping }
+TEntityMetaLevelDependency >> allWithAnyScope: aCollectionOfFamixClasses until: rejectBlock [
+	"I am used to return all the entities (recursively) matching one of the class scope that are up or down in the containment tree of the metamodel.
+	I stop the recursion when the rejectBlock is true"
+
+	^ (self allWithAnyScope: aCollectionOfFamixClasses in: OrderedCollection new until: rejectBlock) asSet
 ]
 
 { #category : #scoping }
@@ -361,12 +425,25 @@ TEntityMetaLevelDependency >> allWithScope: aClassFAMIX [
 
 { #category : #private }
 TEntityMetaLevelDependency >> allWithScope: aClassFAMIX in: aCollection [
+	^ self allWithScope: aClassFAMIX in: aCollection until: self falseBlock 
+]
 
-	(self class traits includes: aClassFAMIX) ifTrue: [ self allToScope: aClassFAMIX in: aCollection  ].
+{ #category : #private }
+TEntityMetaLevelDependency >> allWithScope: aClassFAMIX in: aCollection until: rejectBlock [
 
-	self allParentTypes detect: [ :class | aClassFAMIX = class or: [ aClassFAMIX inheritsFrom: class ] ] ifFound: [ self allAtScope: aClassFAMIX in: aCollection ].
-	self allChildrenTypes detect: [ :class | aClassFAMIX = class or: [ aClassFAMIX inheritsFrom: class ] ] ifFound: [ self allToScope: aClassFAMIX in: aCollection ].
+	(self class traits includes: aClassFAMIX) ifTrue: [ self allToScope: aClassFAMIX in: aCollection until: rejectBlock ].
+
+	self allParentTypes detect: [ :class | aClassFAMIX = class or: [ aClassFAMIX inheritsFrom: class ] ] ifFound: [ self allAtScope: aClassFAMIX in: aCollection until: rejectBlock ].
+	self allChildrenTypes detect: [ :class | aClassFAMIX = class or: [ aClassFAMIX inheritsFrom: class ] ] ifFound: [ self allToScope: aClassFAMIX in: aCollection until: rejectBlock ].
 	^ aCollection
+]
+
+{ #category : #scoping }
+TEntityMetaLevelDependency >> allWithScope: aClassFAMIX until: rejectBlock [
+	"I am used to return all the entities at a given famix class scope that are up or down in the containment tree of the metamodel on multiple levels.
+	I stop the recursion when the rejectBlock is true"
+
+	^ (self allWithScope: aClassFAMIX in: OrderedCollection new until: rejectBlock) asSet
 ]
 
 { #category : #scoping }
@@ -378,12 +455,25 @@ TEntityMetaLevelDependency >> atAnyScope: aCollectionOfFamixClasses [
 
 { #category : #private }
 TEntityMetaLevelDependency >> atAnyScope: aCollectionOfFamixScopes in: aCollection [
+	^ self atAnyScope: aCollectionOfFamixScopes in: aCollection until: self falseBlock 
+]
+
+{ #category : #private }
+TEntityMetaLevelDependency >> atAnyScope: aCollectionOfFamixScopes in: aCollection until: rejectBlock [
 	(aCollectionOfFamixScopes anySatisfy: [ :aClassFAMIX | self isOfType: aClassFAMIX ])
 		ifTrue: [ aCollection add: self ]
 		ifFalse: [ "The content of this block could be much more readable with #do: but we do this solution for performances... We need this method to be really really performant."
 			| selectors |
-			1 to: (selectors := self parentSelectors) size do: [ :ind | (self perform: (selectors at: ind)) atAnyScope: aCollectionOfFamixScopes in: aCollection ] ].
+			(rejectBlock value: self) ifFalse: [ 1 to: (selectors := self parentSelectors) size do: [ :ind | (self perform: (selectors at: ind)) atAnyScope: aCollectionOfFamixScopes in: aCollection  until: rejectBlock ] ] ].
 	^ aCollection
+]
+
+{ #category : #scoping }
+TEntityMetaLevelDependency >> atAnyScope: aCollectionOfFamixClasses until: rejectBlock [
+	"I am used to return all the first encountered entities matching one of the class scope given as parameter that are up in the containment tree of the metamodel.
+	I stop the recursion when the rejectBlock is true"
+
+	^ (self atAnyScope: aCollectionOfFamixClasses in: OrderedCollection new until: rejectBlock) asSet asArray
 ]
 
 { #category : #scoping }
@@ -396,12 +486,26 @@ TEntityMetaLevelDependency >> atScope: aClassFAMIX [
 
 { #category : #private }
 TEntityMetaLevelDependency >> atScope: aClassFAMIX in: aCollection [
+	^ self atScope: aClassFAMIX in: aCollection until: self falseBlock 
+]
+
+{ #category : #private }
+TEntityMetaLevelDependency >> atScope: aClassFAMIX in: aCollection until: rejectBlock [
 	(self isOfType: aClassFAMIX)
 		ifTrue: [ aCollection add: self ]
 		ifFalse: [ "The content of this block could be much more readable with #do: but we do this solution for performances... We need this method to be really really performant."
 			| selectors |
-			1 to: (selectors := self parentSelectors) size do: [ :ind | (self perform: (selectors at: ind)) atScope: aClassFAMIX in: aCollection ] ].
+			(rejectBlock value: self) ifFalse: [ 1 to: (selectors := self parentSelectors) size do: [ :ind | (self perform: (selectors at: ind)) atScope: aClassFAMIX in: aCollection  until: rejectBlock ] ] ].
 	^ aCollection
+]
+
+{ #category : #scoping }
+TEntityMetaLevelDependency >> atScope: aClassFAMIX until: rejectBlock [
+	"I am used to return all the first encountered entities at a given famix class scope that are up in the containment tree of the metamodel.
+	I stop the recursion when the rejectBlock is true"
+
+	self flag: #todo.	"I think we do not need the #asArray cast but it will break tests. I will probably let it now then change the tests later. Step by step."
+	^ (self atScope: aClassFAMIX in: OrderedCollection new until: rejectBlock) asSet asArray
 ]
 
 { #category : #accessing }
@@ -426,6 +530,11 @@ TEntityMetaLevelDependency >> childrenTypes [
 { #category : #accessing }
 TEntityMetaLevelDependency >> dependencyFM3PropertyDescription [
 	^ self class dependencyFM3PropertyDescriptionIn: self metamodel
+]
+
+{ #category : #private }
+TEntityMetaLevelDependency >> falseBlock [
+	^ [ :a | false ]
 ]
 
 { #category : #accessing }
@@ -475,12 +584,25 @@ TEntityMetaLevelDependency >> toAnyScope: aCollectionOfFamixClasses [
 
 { #category : #private }
 TEntityMetaLevelDependency >> toAnyScope: aCollectionOfFamixClasses in: aCollection [
+	^ self toAnyScope: aCollectionOfFamixClasses in: aCollection until: self falseBlock
+]
+
+{ #category : #private }
+TEntityMetaLevelDependency >> toAnyScope: aCollectionOfFamixClasses in: aCollection until: rejectBlock [
 	(aCollectionOfFamixClasses anySatisfy: [ :aFAMIXClass | self isOfType: aFAMIXClass ])
 		ifTrue: [ aCollection add: self ]
 		ifFalse: [ "The content of this block could be much more readable with #do: but we do this solution for performances... We need this method to be really really performant."
 			| selectors |
-			1 to: (selectors := self childrenSelectors) size do: [ :ind | (self perform: (selectors at: ind)) toAnyScope: aCollectionOfFamixClasses in: aCollection ] ].
+			(rejectBlock value: self) ifFalse: [ 1 to: (selectors := self childrenSelectors) size do: [ :ind | (self perform: (selectors at: ind)) toAnyScope: aCollectionOfFamixClasses in: aCollection  until: rejectBlock ] ] ].
 	^ aCollection
+]
+
+{ #category : #scoping }
+TEntityMetaLevelDependency >> toAnyScope: aCollectionOfFamixClasses until: rejectBlock [
+	"I am used to return all the first encountered entities matching one of the class scope given as parameter that are down in the containment tree of the metamodel.
+	I stop the recursion when the rejectBlock is true"
+
+	^ (self toAnyScope: aCollectionOfFamixClasses in: OrderedCollection new until: rejectBlock) asSet asArray
 ]
 
 { #category : #scoping }
@@ -493,12 +615,26 @@ TEntityMetaLevelDependency >> toScope: aClassFAMIX [
 
 { #category : #private }
 TEntityMetaLevelDependency >> toScope: aClassFAMIX in: aCollection [
+	^ self toScope: aClassFAMIX in: aCollection until: self falseBlock 
+]
+
+{ #category : #private }
+TEntityMetaLevelDependency >> toScope: aClassFAMIX in: aCollection until: rejectBlock [
 	(self isOfType: aClassFAMIX)
 		ifTrue: [ aCollection add: self ]
 		ifFalse: [ "The content of this block could be much more readable with #do: but we do this solution for performances... We need this method to be really really performant."
 			| selectors |
-			1 to: (selectors := self childrenSelectors) size do: [ :ind | (self perform: (selectors at: ind)) toScope: aClassFAMIX in: aCollection ] ].
+			(rejectBlock value: self) ifFalse: [ 1 to: (selectors := self childrenSelectors) size do: [ :ind | (self perform: (selectors at: ind)) toScope: aClassFAMIX in: aCollection  until: rejectBlock ] ] ].
 	^ aCollection
+]
+
+{ #category : #scoping }
+TEntityMetaLevelDependency >> toScope: aClassFAMIX until: rejectBlock [
+	"I am used to return all the first encountered  entities at a given famix class scope that are down in the containment tree of the metamodel.
+	I stop the recursion when the rejectBlock is true"
+
+	self flag: #todo.	"I think we do not need the #asArray cast but it will break tests. I will probably let it now then change the tests later. Step by step."
+	^ (self toScope: aClassFAMIX in: OrderedCollection new until: rejectBlock) asSet asArray
 ]
 
 { #category : #accessing }
@@ -524,16 +660,29 @@ TEntityMetaLevelDependency >> withAnyScope: aCollectionOfFamixClasses [
 
 { #category : #private }
 TEntityMetaLevelDependency >> withAnyScope: aCollectionOfFamixClasses in: aCollection [
+	^ self withAnyScope: aCollectionOfFamixClasses in: aCollection until: self falseBlock 
+]
+
+{ #category : #private }
+TEntityMetaLevelDependency >> withAnyScope: aCollectionOfFamixClasses in: aCollection until: rejectBlock [
 	(aCollectionOfFamixClasses anySatisfy: [ :aFAMIXClass | (self class traits includes: aFAMIXClass) or: [ self class = aFAMIXClass ] ])
-		ifTrue: [ self atScope: aCollectionOfFamixClasses in: aCollection ].
+		ifTrue: [ self atScope: aCollectionOfFamixClasses in: aCollection until: rejectBlock ].
 
 	self allParentTypes
 		detect: [ :class | aCollectionOfFamixClasses anySatisfy: [ :aFAMIXClass | aFAMIXClass = class or: [ aFAMIXClass mooseInheritsFrom: class ] ] ]
-		ifFound: [ self atAnyScope: aCollectionOfFamixClasses in: aCollection ].
+		ifFound: [ self atAnyScope: aCollectionOfFamixClasses in: aCollection until: rejectBlock ].
 	self allChildrenTypes
 		detect: [ :class | aCollectionOfFamixClasses anySatisfy: [ :aFAMIXClass | aFAMIXClass = class or: [ aFAMIXClass mooseInheritsFrom: class ] ] ]
-		ifFound: [ self toAnyScope: aCollectionOfFamixClasses in: aCollection ].
+		ifFound: [ self toAnyScope: aCollectionOfFamixClasses in: aCollection until: rejectBlock ].
 	^ aCollection
+]
+
+{ #category : #scoping }
+TEntityMetaLevelDependency >> withAnyScope: aCollectionOfFamixClasses until: rejectBlock [
+	"I am used to return all the first encountered entities matching one of the class scope that are up or down in the containment tree of the metamodel.
+	I stop the recursion when the rejectBlock is true"
+
+	^ (self withAnyScope: aCollectionOfFamixClasses in: OrderedCollection new until: rejectBlock) asSet
 ]
 
 { #category : #scoping }
@@ -545,9 +694,22 @@ TEntityMetaLevelDependency >> withScope: aClassFAMIX [
 
 { #category : #private }
 TEntityMetaLevelDependency >> withScope: aClassFAMIX in: aCollection [
-	((self class allGeneratedTraits includes: aClassFAMIX) or: [ self class = aClassFAMIX ]) ifTrue: [ self atScope: aClassFAMIX in: aCollection ].
+	^ self withScope: aClassFAMIX in: aCollection until: self falseBlock 
+]
 
-	self allParentTypes detect: [ :class | aClassFAMIX = class or: [ aClassFAMIX mooseInheritsFrom: class ] ] ifFound: [ self atScope: aClassFAMIX in: aCollection ].
-	self allChildrenTypes detect: [ :class | aClassFAMIX = class or: [ aClassFAMIX mooseInheritsFrom: class ] ] ifFound: [ self toScope: aClassFAMIX in: aCollection ].
+{ #category : #private }
+TEntityMetaLevelDependency >> withScope: aClassFAMIX in: aCollection until: rejectBlock [
+	((self class allGeneratedTraits includes: aClassFAMIX) or: [ self class = aClassFAMIX ]) ifTrue: [ self atScope: aClassFAMIX in: aCollection until: rejectBlock ].
+
+	self allParentTypes detect: [ :class | aClassFAMIX = class or: [ aClassFAMIX mooseInheritsFrom: class ] ] ifFound: [ self atScope: aClassFAMIX in: aCollection until: rejectBlock ].
+	self allChildrenTypes detect: [ :class | aClassFAMIX = class or: [ aClassFAMIX mooseInheritsFrom: class ] ] ifFound: [ self toScope: aClassFAMIX in: aCollection until: rejectBlock ].
 	^ aCollection
+]
+
+{ #category : #scoping }
+TEntityMetaLevelDependency >> withScope: aClassFAMIX until: rejectBlock [
+	"I am used to return all the first encountered  entities at a given famix class scope that are up or down in the containment tree of the metamodel.
+	I stop the recursion when the rejectBlock is true"
+
+	^ (self withScope: aClassFAMIX in: OrderedCollection new until: rejectBlock) asSet
 ]
