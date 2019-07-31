@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixTest2Class,
 	#superclass : #FamixTest2NamedEntity,
-	#traits : 'FamixTClass',
-	#classTraits : 'FamixTClass classTrait',
+	#traits : 'FamixTClass + FamixTSourceLanguage',
+	#classTraits : 'FamixTClass classTrait + FamixTSourceLanguage classTrait',
 	#category : #'Famix-Test2-Entities-Entities'
 }
 
