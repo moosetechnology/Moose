@@ -162,3 +162,9 @@ FamixStPackage >> relativeImportanceForSystem [
 						ifFalse: [0]
 						]
 ]
+
+{ #category : #accessing }
+FamixStPackage >> typeScope [
+	"This only makes sense to reject self loops in #collectAtScope:"
+	^ self classes
+]

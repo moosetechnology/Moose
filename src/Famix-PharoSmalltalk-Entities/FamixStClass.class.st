@@ -89,6 +89,16 @@ FamixStClass >> mooseNameOn: aStream [
 	self name ifNotNil: [aStream nextPutAll: self name]
 ]
 
+{ #category : #'moosechef-scoping-filtering' }
+FamixStClass >> namespaceScope [ 
+"we ask the container for the namespaceScope
+	because we can have classes in methods or in other classes.
+	Thus, we need to traverse recursively until we reach a namespace"
+	
+	^ self parentPackage 
+		ifNotNil: [ self parentPackage namespaceScope ]
+]
+
 { #category : #'Famix-Implementation' }
 FamixStClass >> smalltalkClass [ 
 	"Returns the associated smalltalk class if it exist in the system."

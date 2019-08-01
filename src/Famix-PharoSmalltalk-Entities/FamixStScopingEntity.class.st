@@ -49,9 +49,3 @@ FamixStScopingEntity >> belongsTo: anObject [
 	self parentScope: anObject
 
 ]
-
-{ #category : #accessing }
-FamixStScopingEntity >> typeScope [
-	"This only makes sense to reject self loops in #collectAtScope:"
-	^ self classes
-]
