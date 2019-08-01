@@ -191,146 +191,146 @@ AbstractFAMIXNavigationTest >> model [
 	^FAMIXNavigationPluginTestsResource current model
 ]
 
-{ #category : #'Moose-Cook-FAMIX2-Test-resourcesNamespaces' }
+{ #category : #'Moose-Cook-FAMIX2-Test-resourcesPackages' }
 AbstractFAMIXNavigationTest >> namespace1InteractedReferencerReferee [ 
 	 
 	^self model entityNamed: 
 			#'Model1InteractedReferencerReferee'
 ]
 
-{ #category : #'Moose-Cook-FAMIX2-Test-resourcesNamespaces' }
+{ #category : #'Moose-Cook-FAMIX2-Test-resourcesPackages' }
 AbstractFAMIXNavigationTest >> namespace2FullReferee [ 
 	 
 	^self model entityNamed: 
 			#'Model2FullReferee'
 ]
 
-{ #category : #'Moose-Cook-FAMIX2-Test-resourcesNamespaces' }
+{ #category : #'Moose-Cook-FAMIX2-Test-resourcesPackages' }
 AbstractFAMIXNavigationTest >> namespace3ReferencerReferee [
 	 
 	^self model entityNamed: 
 			#'Model3ReferencerReferee'
 ]
 
-{ #category : #'Moose-Cook-FAMIX2-Test-resourcesNamespaces' }
+{ #category : #'Moose-Cook-FAMIX2-Test-resourcesPackages' }
 AbstractFAMIXNavigationTest >> namespace4FullReferencer [ 
 	 
 	^self model entityNamed: 
 			#'Model4FullReferencer'
 ]
 
-{ #category : #'Moose-Cook-FAMIX2-Test-resourcesNamespaces' }
+{ #category : #'Moose-Cook-FAMIX2-Test-resourcesPackages' }
 AbstractFAMIXNavigationTest >> namespace5InteractedReferencer [ 
 	 
 	^self model entityNamed: 
 			#'Model5InteractedReferencer'
 ]
 
-{ #category : #'Moose-Cook-FAMIX2-Test-resourcesNamespaces' }
+{ #category : #'Moose-Cook-FAMIX2-Test-resourcesPackages' }
 AbstractFAMIXNavigationTest >> namespace6InteractedReferee [ 
 	 
 	^self model entityNamed: 
 			#'Model6InteractedReferee'
 ]
 
-{ #category : #'Moose-Cook-FAMIX2-Test-resourcesNamespaces' }
+{ #category : #'Moose-Cook-FAMIX2-Test-resourcesPackages' }
 AbstractFAMIXNavigationTest >> namespace7FullInteracted [ 
 	 
 	^self model entityNamed: 
 			#'Model7FullInteracted'
 ]
 
-{ #category : #'Moose-Cook-FAMIX2-Test-resourcesNamespaces' }
+{ #category : #'Moose-Cook-FAMIX2-Test-resourcesPackages' }
 AbstractFAMIXNavigationTest >> namespaceSmalltalkCore [ 
 	 
 	^self model entityNamed: #'Smalltalk'
 ]
 
-{ #category : #'Moose-Cook-FAMIX2-Test-resourcesNamespaces' }
+{ #category : #'Moose-Cook-FAMIX2-Test-resourcesPackages' }
 AbstractFAMIXNavigationTest >> packageP10InteractedReferee [
 	 
 	^self model entityNamed: #'Moose-TestResources-KGB-P10InteractedReferee'. 
 ]
 
-{ #category : #'Moose-Cook-FAMIX2-Test-resourcesNamespaces' }
+{ #category : #'Moose-Cook-FAMIX2-Test-resourcesPackages' }
 AbstractFAMIXNavigationTest >> packageP11FullReferee [
 	 
 	^self model entityNamed: #'Moose-TestResources-KGB-P11FullReferee'. 
 ]
 
-{ #category : #'Moose-Cook-FAMIX2-Test-resourcesNamespaces' }
+{ #category : #'Moose-Cook-FAMIX2-Test-resourcesPackages' }
 AbstractFAMIXNavigationTest >> packageP12FullReferencer [
 	 
 	^self model entityNamed: #'Moose-TestResources-KGB-P12FullReferencer'. 
 ]
 
-{ #category : #'Moose-Cook-FAMIX2-Test-resourcesNamespaces' }
+{ #category : #'Moose-Cook-FAMIX2-Test-resourcesPackages' }
 AbstractFAMIXNavigationTest >> packageP13FullReferencer [
 	 
 	^self model entityNamed: #'Moose-TestResources-KGB-P13FullReferencer'. 
 ]
 
-{ #category : #'Moose-Cook-FAMIX2-Test-resourcesNamespaces' }
+{ #category : #'Moose-Cook-FAMIX2-Test-resourcesPackages' }
 AbstractFAMIXNavigationTest >> packageP14FullReferee [
 	 
 	^self model entityNamed: #'Moose-TestResources-KGB-P14FullReferee'. 
 ]
 
-{ #category : #'Moose-Cook-FAMIX2-Test-resourcesNamespaces' }
+{ #category : #'Moose-Cook-FAMIX2-Test-resourcesPackages' }
 AbstractFAMIXNavigationTest >> packageP1FullReferencer [ 
 	 
 	^self model entityNamed: #'Moose-TestResources-KGB-P1FullReferencer'. 
 ]
 
-{ #category : #'Moose-Cook-FAMIX2-Test-resourcesNamespaces' }
+{ #category : #'Moose-Cook-FAMIX2-Test-resourcesPackages' }
 AbstractFAMIXNavigationTest >> packageP2InteractedReferencerReferee [
 	 
 	^self model entityNamed: #'Moose-TestResources-KGB-P2InteractedReferencerReferee'. 
 ]
 
-{ #category : #'Moose-Cook-FAMIX2-Test-resourcesNamespaces' }
+{ #category : #'Moose-Cook-FAMIX2-Test-resourcesPackages' }
 AbstractFAMIXNavigationTest >> packageP3InteractedReferencer [
 	 
 	^self model entityNamed: #'Moose-TestResources-KGB-P3InteractedReferencer'. 
 ]
 
-{ #category : #'Moose-Cook-FAMIX2-Test-resourcesNamespaces' }
+{ #category : #'Moose-Cook-FAMIX2-Test-resourcesPackages' }
 AbstractFAMIXNavigationTest >> packageP4FullInteracted [
 	 
 	^self model entityNamed: #'Moose-TestResources-KGB-P4FullInteracted'. 
 ]
 
-{ #category : #'Moose-Cook-FAMIX2-Test-resourcesNamespaces' }
+{ #category : #'Moose-Cook-FAMIX2-Test-resourcesPackages' }
 AbstractFAMIXNavigationTest >> packageP5FullReferee [
 	 
 	^self model entityNamed: #'Moose-TestResources-KGB-P5FullReferee'. 
 ]
 
-{ #category : #'Moose-Cook-FAMIX2-Test-resourcesNamespaces' }
+{ #category : #'Moose-Cook-FAMIX2-Test-resourcesPackages' }
 AbstractFAMIXNavigationTest >> packageP6InteractedReferee [
 	 
 	^self model entityNamed: #'Moose-TestResources-KGB-P6InteractedReferee'. 
 ]
 
-{ #category : #'Moose-Cook-FAMIX2-Test-resourcesNamespaces' }
+{ #category : #'Moose-Cook-FAMIX2-Test-resourcesPackages' }
 AbstractFAMIXNavigationTest >> packageP7ReferencerReferee [
 	 
 	^self model entityNamed: #'Moose-TestResources-KGB-P7ReferencerReferee'. 
 ]
 
-{ #category : #'Moose-Cook-FAMIX2-Test-resourcesNamespaces' }
+{ #category : #'Moose-Cook-FAMIX2-Test-resourcesPackages' }
 AbstractFAMIXNavigationTest >> packageP8FullReferencer [
 	 
 	^self model entityNamed: #'Moose-TestResources-KGB-P8FullReferencer'. 
 ]
 
-{ #category : #'Moose-Cook-FAMIX2-Test-resourcesNamespaces' }
+{ #category : #'Moose-Cook-FAMIX2-Test-resourcesPackages' }
 AbstractFAMIXNavigationTest >> packageP9FullReferencer [
 	 
 	^self model entityNamed: #'Moose-TestResources-KGB-P9FullReferencer'. 
 ]
 
-{ #category : #'Moose-Cook-FAMIX2-Test-resourcesNamespaces' }
+{ #category : #'Moose-Cook-FAMIX2-Test-resourcesPackages' }
 AbstractFAMIXNavigationTest >> packagePExtensions [
 	 
 	^self model entityNamed: #'Moose-TestResources-KGB-PExtensions'. 

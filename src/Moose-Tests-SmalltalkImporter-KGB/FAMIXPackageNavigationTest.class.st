@@ -21,6 +21,11 @@ FAMIXPackageNavigationTest >> testClientClasses [
 ]
 
 { #category : #'MooseKGB-TestFamix3-allDependencies' }
+FAMIXPackageNavigationTest >> testClientClassesInto [
+	self assert: (((self namespace2FullReferee queryAllIncoming atScope: FamixTType) withinPackage: self namespace3ReferencerReferee) equalsTo: (Set with: self c14ReferencerOutSideRefereeOutSide))
+]
+
+{ #category : #'MooseKGB-TestFamix3-allDependencies' }
 FAMIXPackageNavigationTest >> testClientPackages [ 
 	 
 	| p1 p2 p3 p5 p7 | 
@@ -47,6 +52,14 @@ FAMIXPackageNavigationTest >> testProviderClasses [
 						with: self c18FullRefereeInSideOutSide 
 						with: self c19FullRefereeOutSide 
 						with: self c14ReferencerOutSideRefereeOutSide))
+]
+
+{ #category : #'MooseKGB-TestFamix3-allDependencies' }
+FAMIXPackageNavigationTest >> testProviderClassesInto [
+	self
+		assert:
+			(((self namespace1InteractedReferencerReferee queryAllOutgoing atScope: FamixTType) withinPackage: self namespace2FullReferee)
+				equalsTo: (Set with: self c11FullRefereeOutSide with: self c13FullRefereeInSideOutSide))
 ]
 
 { #category : #'MooseKGB-TestFamix3-allDependencies' }

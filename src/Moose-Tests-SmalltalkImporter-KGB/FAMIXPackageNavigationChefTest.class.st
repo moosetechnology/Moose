@@ -197,6 +197,54 @@ FAMIXPackageNavigationChefTest >> testProviderClassesInto [
 ]
 
 { #category : #allDependencies }
+FAMIXPackageNavigationChefTest >> testProviderClassesOutOf [
+	| invos refs inh acc |
+	self
+		assert:
+			(((self namespace1InteractedReferencerReferee queryAllOutgoing atScope: FamixTType) outOfPackage: self packageP5FullReferee)
+				equalsTo:
+					((Set
+						with: self c13FullRefereeInSideOutSide
+						with: self c14ReferencerOutSideRefereeOutSide
+						with: self cObject
+						with: self c6FullReferencerInSideOutSide
+						with: self c5ReferencerInSideRefereeInSide
+						with: self c7FullRefereeInSide)
+						union:
+							(Set
+								with: self c2ReferencerOutSideRefereeInSide
+								with: self c3ReferencerInSideRefereeOutSide
+								with: self c4FullRefereeInSide
+								with: self c1FullReferencerOutSide))).
+	self assert: 55 equals: (self namespace1InteractedReferencerReferee queryAllOutgoing outOfPackage: self packageP5FullReferee) size.
+	invos := (self namespace1InteractedReferencerReferee queryAllOutgoing outOfPackage: self packageP5FullReferee) select: [ :dep | dep usesFamixTrait: FamixTInvocation ].
+	self assert: 29 equals: invos size.
+	refs := (self namespace1InteractedReferencerReferee queryAllOutgoing outOfPackage: self packageP5FullReferee) select: [ :dep | dep usesFamixTrait: FamixTReference ].
+	self assert: 10 equals: refs size.
+	inh := (self namespace1InteractedReferencerReferee queryAllOutgoing outOfPackage: self packageP5FullReferee) select: [ :dep | dep usesFamixTrait: FamixTSubInheritance ].
+	self assert: 7 equals: inh size.
+	acc := (self namespace1InteractedReferencerReferee queryAllOutgoing outOfPackage: self packageP5FullReferee) select: [ :dep | dep usesFamixTrait: FamixTAccess ].
+	self assert: 9 equals: acc size.
+	self
+		assert:
+			(((self namespace1InteractedReferencerReferee queryAllOutgoing outOfPackage: self packageP5FullReferee) atScope: FamixTType)
+				equalsTo:
+					((Set
+						with: self c13FullRefereeInSideOutSide
+						with: self c14ReferencerOutSideRefereeOutSide
+						with: self cObject
+						with: self c6FullReferencerInSideOutSide
+						with: self c5ReferencerInSideRefereeInSide
+						with: self c7FullRefereeInSide)
+						union:
+							(Set
+								with: self c2ReferencerOutSideRefereeInSide
+								with: self c3ReferencerInSideRefereeOutSide
+								with: self c4FullRefereeInSide
+								with: self c1FullReferencerOutSide)))
+]
+
+{ #category : #allDependencies }
 FAMIXPackageNavigationChefTest >> testProviderPackages [
 	| p7 p8 p10 p11 pEx |
 	p7 := self packageP7ReferencerReferee.

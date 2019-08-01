@@ -5,12 +5,12 @@ Class {
 }
 
 { #category : #allIncomingInvocations }
-FAMIXClassNavigationChefTest >> testAllIncomingInvocationsIntoMyNamespace [
-	self assert: self c14ReferencerOutSideRefereeOutSide queryAllIncomingInvocations withinMyNamespace isEmpty.
-	self assert: self c13FullRefereeInSideOutSide queryAllIncomingInvocations withinMyNamespace size equals: 4.	"querying dependencies does not exclude self loop, hence C13 is on both sides"
+FAMIXClassNavigationChefTest >> testAllIncomingInvocationsIntoMyPackage [
+	self assert: self c14ReferencerOutSideRefereeOutSide queryAllIncomingInvocations withinMyPackage isEmpty.
+	self assert: self c13FullRefereeInSideOutSide queryAllIncomingInvocations withinMyPackage size equals: 4.	"querying dependencies does not exclude self loop, hence C13 is on both sides"
 	self
 		assert:
-			((self c13FullRefereeInSideOutSide queryAllIncomingInvocations withinMyNamespace atScope: FamixTType) asSet equalsTo: (Set with: self c13FullRefereeInSideOutSide with: self c12FullReferencerInSide))
+			((self c13FullRefereeInSideOutSide queryAllIncomingInvocations withinMyPackage atScope: FamixTType) asSet equalsTo: (Set with: self c13FullRefereeInSideOutSide with: self c12FullReferencerInSide))
 ]
 
 { #category : #allIncomingInvocations }
@@ -42,19 +42,19 @@ FAMIXClassNavigationChefTest >> testAllOutgoingInvocationsIntoMyPackage [
 ]
 
 { #category : #allOutgoingInvocations }
-FAMIXClassNavigationChefTest >> testAllOutgoingInvocationsOutOfMyNamespace [
+FAMIXClassNavigationChefTest >> testAllOutgoingInvocationsOutOfMyPackage [
 	self
 		assert: 3
 		equals:
 			self c6FullReferencerInSideOutSide queryAllOutgoingInvocations
-				outOfMyNamespace size.
+				outOfMyPackage size.
 	self
 		assert:
 			((self c6FullReferencerInSideOutSide queryAllOutgoingInvocations
-				outOfMyNamespace atScope: FamixTType)
+				outOfMyPackage atScope: FamixTType)
 				equalsTo:
 					(self c6FullReferencerInSideOutSide queryAllOutgoingInvocations
-						atScope: FamixTType) outOfMyNamespace)
+						atScope: FamixTType) outOfMyPackage)
 ]
 
 { #category : #allOutgoingInvocations }
@@ -84,23 +84,16 @@ FAMIXClassNavigationChefTest >> testClientClassesInto [
 	p2 := self packageP2InteractedReferencerReferee.
 	self assert: ((self c14ReferencerOutSideRefereeOutSide queryAllIncoming atScope: FamixTType) withinPackage: p2) size equals: 1.
 	self assert: (((self c14ReferencerOutSideRefereeOutSide queryAllIncoming atScope: FamixTType) withinPackage: p2) equalsTo: (Set with: self c2ReferencerOutSideRefereeInSide)).
-	self assert: ((self c14ReferencerOutSideRefereeOutSide queryAllIncoming atScope: FamixTType) withinNamespace: self namespace1InteractedReferencerReferee) size equals: 1.
+	self assert: ((self c14ReferencerOutSideRefereeOutSide queryAllIncoming atScope: FamixTType) withinPackage: self namespace1InteractedReferencerReferee) size equals: 1.
 	self
 		assert:
-			(((self c14ReferencerOutSideRefereeOutSide queryAllIncoming atScope: FamixTType) withinNamespace: self namespace1InteractedReferencerReferee) equalsTo: (Set with: self c2ReferencerOutSideRefereeInSide)).
+			(((self c14ReferencerOutSideRefereeOutSide queryAllIncoming atScope: FamixTType) withinPackage: self namespace1InteractedReferencerReferee) equalsTo: (Set with: self c2ReferencerOutSideRefereeInSide)).
 	self assert: (((self c3ReferencerInSideRefereeOutSide queryAllIncoming atScope: FamixTType) withinPackage: p1) equalsTo: (Set with: self c1FullReferencerOutSide)).
-	self assert: ((self c3ReferencerInSideRefereeOutSide queryAllIncoming atScope: FamixTType) withinNamespace: self namespace1InteractedReferencerReferee) size equals: 2.
+	self assert: ((self c3ReferencerInSideRefereeOutSide queryAllIncoming atScope: FamixTType) withinPackage: self namespace1InteractedReferencerReferee) size equals: 2.
 	self
 		assert:
-			(((self c3ReferencerInSideRefereeOutSide queryAllIncoming atScope: FamixTType) withinNamespace: self namespace1InteractedReferencerReferee)
+			(((self c3ReferencerInSideRefereeOutSide queryAllIncoming atScope: FamixTType) withinPackage: self namespace1InteractedReferencerReferee)
 				equalsTo: (Set with: self c1FullReferencerOutSide with: self c6FullReferencerInSideOutSide))
-]
-
-{ #category : #allDependencies }
-FAMIXClassNavigationChefTest >> testClientClassesIntoMyNamespace [
-	self assert: (self c14ReferencerOutSideRefereeOutSide queryAllIncoming withoutSelfLoops atScope: FamixTType) withinMyNamespace size equals: 0.
-	self assert: (self c13FullRefereeInSideOutSide queryAllIncoming atScope: FamixTType) withinMyNamespace size equals: 2.
-	self assert: ((self c13FullRefereeInSideOutSide queryAllIncoming atScope: FamixTType) withinMyNamespace equalsTo: (Set with: self c12FullReferencerInSide with: self c13FullRefereeInSideOutSide))
 ]
 
 { #category : #allDependencies }
@@ -108,15 +101,6 @@ FAMIXClassNavigationChefTest >> testClientClassesIntoMyPackage [
 	self assert: (self c14ReferencerOutSideRefereeOutSide queryAllIncoming withoutSelfLoops atScope: FamixTType) withinMyPackage size equals: 0.
 	self assert: (self c13FullRefereeInSideOutSide queryAllIncoming atScope: FamixTType) withinMyPackage size equals: 2.
 	self assert: ((self c13FullRefereeInSideOutSide queryAllIncoming atScope: FamixTType) withinMyPackage equalsTo: (Set with: self c12FullReferencerInSide with: self c13FullRefereeInSideOutSide))
-]
-
-{ #category : #allDependencies }
-FAMIXClassNavigationChefTest >> testClientClassesOutOfMyNamespace [
-	self assert: (self c14ReferencerOutSideRefereeOutSide queryAllIncoming atScope: FamixTType) outOfMyNamespace size equals: 2.
-	self
-		assert: ((self c14ReferencerOutSideRefereeOutSide queryAllIncoming atScope: FamixTType) outOfMyNamespace equalsTo: (Set with: self c2ReferencerOutSideRefereeInSide with: self c15FullReferencerOutSide)).
-	self assert: (self c3ReferencerInSideRefereeOutSide queryAllIncoming atScope: FamixTType) outOfMyNamespace size equals: 1.
-	self assert: ((self c3ReferencerInSideRefereeOutSide queryAllIncoming atScope: FamixTType) outOfMyNamespace equalsTo: (Set with: self c14ReferencerOutSideRefereeOutSide))
 ]
 
 { #category : #allDependencies }
@@ -128,14 +112,6 @@ FAMIXClassNavigationChefTest >> testClientClassesOutOfMyPackage [
 		assert:
 			((self c3ReferencerInSideRefereeOutSide queryAllIncoming atScope: FamixTType) outOfMyPackage
 				equalsTo: (Set with: self c1FullReferencerOutSide with: self c6FullReferencerInSideOutSide with: self c14ReferencerOutSideRefereeOutSide))
-]
-
-{ #category : #allDependencies }
-FAMIXClassNavigationChefTest >> testClientNamespaces [
-	self assert: (self c14ReferencerOutSideRefereeOutSide queryAllIncoming withoutSelfLoops atScope: FamixTNamespace) size equals: 2.
-	self
-		assert:
-			((self c14ReferencerOutSideRefereeOutSide queryAllIncoming withoutSelfLoops atScope: FamixTNamespace) equalsTo: (Set with: self namespace1InteractedReferencerReferee with: self namespace4FullReferencer))
 ]
 
 { #category : #allDependencies }
@@ -164,7 +140,7 @@ FAMIXClassNavigationChefTest >> testEachOutgoingReferenceImpliesAnIncomingRefere
 		assert:
 			(modelClasses
 				allSatisfy:
-					[ :referencer | (referencer queryAllOutgoingInvocations atScope: FamixTNamespace) allSatisfy: [ :referenced | (referenced queryAllIncomingInvocations atScope: FamixTType) includes: referencer ] ])
+					[ :referencer | (referencer queryAllOutgoingInvocations atScope: FamixTPackage) allSatisfy: [ :referenced | (referenced queryAllIncomingInvocations atScope: FamixTType) includes: referencer ] ])
 ]
 
 { #category : #'MooseKGB-TestFamix3-integralTests' }
@@ -197,7 +173,7 @@ FAMIXClassNavigationChefTest >> testEachSureOutgoingReferenceImpliesASureIncomin
 		assert:
 			(modelClasses
 				allSatisfy:
-					[ :referencer | (referencer querySureOutgoingInvocations atScope: FamixTNamespace) allSatisfy: [ :referenced | (referenced querySureIncomingInvocations atScope: FamixTType) includes: referencer ] ])
+					[ :referencer | (referencer querySureOutgoingInvocations atScope: FamixTPackage) allSatisfy: [ :referenced | (referenced querySureIncomingInvocations atScope: FamixTType) includes: referencer ] ])
 ]
 
 { #category : #'MooseKGB-TestFamix3-integralTests' }
@@ -207,7 +183,7 @@ FAMIXClassNavigationChefTest >> testIncomingReferencesAreEitherPotentialOrSureOr
 	self flag: 'Should we test all combinations of static, access, inheritance...?'.
 	self assert: (modelClasses allSatisfy: [ :referencer | (referencer queryAllIncoming atScope: FamixTType) includesAll: (referencer queryAllIncomingInvocations atScope: FamixTType) ]).
 	self assert: (modelClasses allSatisfy: [ :referencer | (referencer queryAllIncoming atScope: FamixTPackage) includesAll: (referencer queryAllIncomingInvocations atScope: FamixTPackage) ]).
-	self assert: (modelClasses allSatisfy: [ :referencer | (referencer queryAllIncoming atScope: FamixTNamespace) includesAll: (referencer queryAllIncomingInvocations atScope: FamixTNamespace) ])
+	self assert: (modelClasses allSatisfy: [ :referencer | (referencer queryAllIncoming atScope: FamixTPackage) includesAll: (referencer queryAllIncomingInvocations atScope: FamixTPackage) ])
 ]
 
 { #category : #inheritance }
@@ -223,20 +199,11 @@ FAMIXClassNavigationChefTest >> testInheritedByClasses [
 FAMIXClassNavigationChefTest >> testInheritedByClassesInto [ 
 
 	self assert: ((self c11FullRefereeOutSide queryIncomingInheritances opposites
-						withinNamespace: self namespace1InteractedReferencerReferee) 
+						withinPackage: self namespace1InteractedReferencerReferee) 
 		equalsTo: (Set with: self c3ReferencerInSideRefereeOutSide)). 
 	self assert: ((self c11FullRefereeOutSide queryIncomingInheritances opposites
 						withinPackage: self packageP2InteractedReferencerReferee) 
 		equalsTo: (Set with: self c3ReferencerInSideRefereeOutSide))
-]
-
-{ #category : #inheritance }
-FAMIXClassNavigationChefTest >> testInheritedByClassesIntoMyNamespace [ 
-	 
-	self 
-		assert: 
-			(self c12FullReferencerInSide queryIncomingInheritances opposites withinMyNamespace  
-				equalsTo: (Set with: self c11FullRefereeOutSide))
 ]
 
 { #category : #inheritance }
@@ -245,15 +212,6 @@ FAMIXClassNavigationChefTest >> testInheritedByClassesIntoMyPackage [
 	self 
 		assert: 
 			self c11FullRefereeOutSide queryIncomingInheritances opposites withinMyPackage isEmpty
-]
-
-{ #category : #inheritance }
-FAMIXClassNavigationChefTest >> testInheritedByClassesOutOfMyNamespace [ 
-	 
-	self 
-		assert: 
-			(self c11FullRefereeOutSide queryIncomingInheritances opposites outOfMyNamespace 
-				equalsTo: (Set with: self c3ReferencerInSideRefereeOutSide))
 ]
 
 { #category : #inheritance }
@@ -266,21 +224,12 @@ FAMIXClassNavigationChefTest >> testInheritedByClassesOutOfMyPackage [
 ]
 
 { #category : #inheritance }
-FAMIXClassNavigationChefTest >> testInheritedByNamespaces [
-	self
-		assert:
-			((self c11FullRefereeOutSide queryIncomingInheritances
-				atScope: FamixTNamespace)
-				equalsTo: (Set with: self namespace1InteractedReferencerReferee))
-]
-
-{ #category : #inheritance }
 FAMIXClassNavigationChefTest >> testInheritedByPackages [
 	self
 		assert:
 			((self c11FullRefereeOutSide queryIncomingInheritances
 				atScope: FamixTPackage)
-				equalsTo: (Set with: self packageP2InteractedReferencerReferee))
+				equalsTo: (Set with: self namespace1InteractedReferencerReferee))
 ]
 
 { #category : #inheritance }
@@ -304,16 +253,7 @@ FAMIXClassNavigationChefTest >> testInheritedClassesInto [
 	self 
 		assert: 
 			((self c11FullRefereeOutSide 
-				queryOutgoingInheritances opposites withinNamespace: self namespace2FullReferee) 
-				equalsTo: (Set with: self c12FullReferencerInSide))
-]
-
-{ #category : #inheritance }
-FAMIXClassNavigationChefTest >> testInheritedClassesIntoMyNamespace [ 
-	 
-	self 
-		assert: 
-			(self c11FullRefereeOutSide queryOutgoingInheritances opposites withinMyNamespace  
+				queryOutgoingInheritances opposites withinPackage: self namespace2FullReferee) 
 				equalsTo: (Set with: self c12FullReferencerInSide))
 ]
 
@@ -322,14 +262,6 @@ FAMIXClassNavigationChefTest >> testInheritedClassesIntoMyPackage [
 	 
 	self 
 		assert: self c11FullRefereeOutSide queryOutgoingInheritances opposites withinMyPackage isEmpty
-]
-
-{ #category : #inheritance }
-FAMIXClassNavigationChefTest >> testInheritedClassesOutOfMyNamespace [ 
-	 
-	self 
-		assert: 
-			self c11FullRefereeOutSide queryOutgoingInheritances opposites outOfMyNamespace isEmpty
 ]
 
 { #category : #inheritance }
@@ -342,26 +274,16 @@ FAMIXClassNavigationChefTest >> testInheritedClassesOutOfMyPackage [
 ]
 
 { #category : #inheritance }
-FAMIXClassNavigationChefTest >> testInheritedNamespaces [
+FAMIXClassNavigationChefTest >> testInheritedPackages [
 	self
 		assert:
 			(self c11FullRefereeOutSide queryOutgoingInheritances
-				atScope: FamixTNamespace) size
+				atScope: FamixTPackage) size
 		equals: 1.
 	self
 		assert:
 			((self c11FullRefereeOutSide queryOutgoingInheritances
-				atScope: FamixTNamespace) includes: self namespace2FullReferee)
-]
-
-{ #category : #inheritance }
-FAMIXClassNavigationChefTest >> testInheritedPackages [
-	| p6 |
-	p6 := self packageP6InteractedReferee.
-	self
-		assert:
-			((self c11FullRefereeOutSide queryOutgoingInheritances opposites
-				atScope: FamixTPackage) equalsTo: (Set with: p6))
+				atScope: FamixTPackage) includes: self namespace2FullReferee)
 ]
 
 { #category : #allOutgoingInvocations }
@@ -409,31 +331,12 @@ FAMIXClassNavigationChefTest >> testProviderClassesInto [
 	| p11 |
 	p11 := self packageP11FullReferee.
 	self assert: (((self c15FullReferencerOutSide queryAllOutgoing atScope: FamixTType) withinPackage: p11) equalsTo: (Set with: self c19FullRefereeOutSide)).
-	self assert: (((self c15FullReferencerOutSide queryAllOutgoing atScope: FamixTType) withinNamespace: self namespace6InteractedReferee) equalsTo: (Set with: self c19FullRefereeOutSide))
-]
-
-{ #category : #allDependencies }
-FAMIXClassNavigationChefTest >> testProviderClassesIntoMyNamespace [
-	self assert: (self c15FullReferencerOutSide queryAllOutgoing atScope: FamixTType) withinMyNamespace isEmpty
+	self assert: (((self c15FullReferencerOutSide queryAllOutgoing atScope: FamixTType) withinPackage: self namespace6InteractedReferee) equalsTo: (Set with: self c19FullRefereeOutSide))
 ]
 
 { #category : #allDependencies }
 FAMIXClassNavigationChefTest >> testProviderClassesIntoMyPackage [
 	self assert: (self c15FullReferencerOutSide queryAllOutgoing atScope: FamixTType) withinMyPackage isEmpty
-]
-
-{ #category : #allDependencies }
-FAMIXClassNavigationChefTest >> testProviderClassesOutOfMyNamespace [
-	self assert: (self c15FullReferencerOutSide queryAllOutgoing atScope: FamixTType) outOfMyNamespace size equals: 3.
-	self
-		assert:
-			((self c15FullReferencerOutSide queryAllOutgoing atScope: FamixTType) outOfMyNamespace
-				equalsTo:
-					(Set new
-						add: self c14ReferencerOutSideRefereeOutSide;
-						add: self c18FullRefereeInSideOutSide;
-						add: self c19FullRefereeOutSide;
-						yourself))
 ]
 
 { #category : #allDependencies }
@@ -451,11 +354,11 @@ FAMIXClassNavigationChefTest >> testProviderClassesOutOfMyPackage [
 ]
 
 { #category : #allDependencies }
-FAMIXClassNavigationChefTest >> testProviderNamespace [
-	self assert: (self c15FullReferencerOutSide queryAllOutgoing atScope: FamixTNamespace) size equals: 3.
+FAMIXClassNavigationChefTest >> testProviderPackage [
+	self assert: (self c15FullReferencerOutSide queryAllOutgoing atScope: FamixTPackage) size equals: 3.
 	self
 		assert:
-			((self c15FullReferencerOutSide queryAllOutgoing atScope: FamixTNamespace)
+			((self c15FullReferencerOutSide queryAllOutgoing atScope: FamixTPackage)
 				equalsTo:
 					(Set new
 						add: self namespace3ReferencerReferee;
@@ -520,24 +423,6 @@ FAMIXClassNavigationChefTest >> testReferencedClassesInto [
 ]
 
 { #category : #allOutgoingInvocations }
-FAMIXClassNavigationChefTest >> testReferencedClassesIntoMyNamespace [
-	self
-		assert:
-			(self c6FullReferencerInSideOutSide queryAllOutgoingInvocations
-				atScope: FamixTType) withinMyNamespace size
-		equals: 2.
-	self
-		assert:
-			((self c6FullReferencerInSideOutSide queryAllOutgoingInvocations
-				atScope: FamixTType) withinMyNamespace
-				equalsTo:
-					(Set new
-						add: self c3ReferencerInSideRefereeOutSide;
-						add: self c5ReferencerInSideRefereeInSide;
-						yourself))
-]
-
-{ #category : #allOutgoingInvocations }
 FAMIXClassNavigationChefTest >> testReferencedClassesIntoMyPackage [
 	self
 		assert: 1
@@ -551,23 +436,6 @@ FAMIXClassNavigationChefTest >> testReferencedClassesIntoMyPackage [
 				equalsTo:
 					(Set new
 						add: self c5ReferencerInSideRefereeInSide;
-						yourself))
-]
-
-{ #category : #allOutgoingInvocations }
-FAMIXClassNavigationChefTest >> testReferencedClassesOutOfMyNamespace [
-	self
-		assert: 1
-		equals:
-			(self c6FullReferencerInSideOutSide queryAllOutgoingInvocations
-				atScope: FamixTType) outOfMyNamespace size.
-	self
-		assert:
-			((self c6FullReferencerInSideOutSide queryAllOutgoingInvocations
-				atScope: FamixTType) outOfMyNamespace
-				equalsTo:
-					(Set new
-						add: self c11FullRefereeOutSide;
 						yourself))
 ]
 
@@ -603,24 +471,6 @@ FAMIXClassNavigationChefTest >> testReferencedMethods [
 						add: c11InstCreation1;
 						add: c3m3;
 						add: c5m1;
-						yourself))
-]
-
-{ #category : #allOutgoingInvocations }
-FAMIXClassNavigationChefTest >> testReferencedNamespaces [
-	self
-		assert:
-			(self c6FullReferencerInSideOutSide queryAllOutgoingInvocations
-				atScope: FamixTNamespace) size
-		equals: 2.
-	self
-		assert:
-			((self c6FullReferencerInSideOutSide queryAllOutgoingInvocations
-				atScope: FamixTNamespace)
-				equalsTo:
-					(Set new
-						add: self namespace1InteractedReferencerReferee;
-						add: self namespace2FullReferee;
 						yourself))
 ]
 
@@ -697,13 +547,13 @@ FAMIXClassNavigationChefTest >> testReferencingClassesInto [
 		assert:
 			((self c14ReferencerOutSideRefereeOutSide queryAllIncomingInvocations
 				atScope: FamixTType)
-				withinNamespace: self namespace1InteractedReferencerReferee) size
+				withinPackage: self namespace1InteractedReferencerReferee) size
 		equals: 1.
 	self
 		assert:
 			(((self c14ReferencerOutSideRefereeOutSide queryAllIncomingInvocations
 				atScope: FamixTType)
-				withinNamespace: self namespace1InteractedReferencerReferee)
+				withinPackage: self namespace1InteractedReferencerReferee)
 				equalsTo:
 					(Set new
 						add: self c2ReferencerOutSideRefereeInSide;
@@ -717,39 +567,17 @@ FAMIXClassNavigationChefTest >> testReferencingClassesInto [
 		assert:
 			((self c3ReferencerInSideRefereeOutSide queryAllIncomingInvocations
 				atScope: FamixTType)
-				withinNamespace: self namespace1InteractedReferencerReferee) size
+				withinPackage: self namespace1InteractedReferencerReferee) size
 		equals: 2.
 	self
 		assert:
 			(((self c3ReferencerInSideRefereeOutSide queryAllIncomingInvocations
 				atScope: FamixTType)
-				withinNamespace: self namespace1InteractedReferencerReferee)
+				withinPackage: self namespace1InteractedReferencerReferee)
 				equalsTo:
 					(Set new
 						add: self c1FullReferencerOutSide;
 						add: self c6FullReferencerInSideOutSide;
-						yourself))
-]
-
-{ #category : #allIncomingInvocations }
-FAMIXClassNavigationChefTest >> testReferencingClassesIntoMyNamespace [
-	self
-		assert:
-			(self c14ReferencerOutSideRefereeOutSide queryAllIncomingInvocations
-				atScope: FamixTType) withinMyNamespace isEmpty.
-	self
-		assert:
-			(self c13FullRefereeInSideOutSide queryAllIncomingInvocations
-				atScope: FamixTType) withinMyNamespace size
-		equals: 2.
-	self
-		assert:
-			((self c13FullRefereeInSideOutSide queryAllIncomingInvocations
-				atScope: FamixTType) withinMyNamespace
-				equalsTo:
-					(Set new
-						add: self c12FullReferencerInSide;
-						add: self c13FullRefereeInSideOutSide;
 						yourself))
 ]
 
@@ -776,36 +604,6 @@ FAMIXClassNavigationChefTest >> testReferencingClassesIntoMyPackage [
 ]
 
 { #category : #allIncomingInvocations }
-FAMIXClassNavigationChefTest >> testReferencingClassesOutOfMyNamespace [
-	self
-		assert:
-			(self c14ReferencerOutSideRefereeOutSide queryAllIncomingInvocations
-				atScope: FamixTType) outOfMyNamespace size
-		equals: 1.
-	self
-		assert:
-			((self c14ReferencerOutSideRefereeOutSide queryAllIncomingInvocations
-				atScope: FamixTType) outOfMyNamespace
-				equalsTo:
-					(Set new
-						add: self c2ReferencerOutSideRefereeInSide;
-						yourself)).
-	self
-		assert:
-			(self c3ReferencerInSideRefereeOutSide queryAllIncomingInvocations
-				atScope: FamixTType) outOfMyNamespace size
-		equals: 1.
-	self
-		assert:
-			((self c3ReferencerInSideRefereeOutSide queryAllIncomingInvocations
-				atScope: FamixTType) outOfMyNamespace
-				equalsTo:
-					(Set new
-						add: self c14ReferencerOutSideRefereeOutSide;
-						yourself))
-]
-
-{ #category : #allIncomingInvocations }
 FAMIXClassNavigationChefTest >> testReferencingClassesOutOfMyPackage [
 	self
 		assert:
@@ -824,15 +622,13 @@ FAMIXClassNavigationChefTest >> testReferencingClassesOutOfMyPackage [
 		assert:
 			(self c3ReferencerInSideRefereeOutSide queryAllIncomingInvocations
 				atScope: FamixTType) outOfMyPackage size
-		equals: 3.
+		equals: 1.
 	self
 		assert:
 			((self c3ReferencerInSideRefereeOutSide queryAllIncomingInvocations
 				atScope: FamixTType) outOfMyPackage
 				equalsTo:
 					(Set new
-						add: self c1FullReferencerOutSide;
-						add: self c6FullReferencerInSideOutSide;
 						add: self c14ReferencerOutSideRefereeOutSide;
 						yourself))
 ]
@@ -850,24 +646,6 @@ FAMIXClassNavigationChefTest >> testReferencingMethods [
 					(Set new
 						add: c2m1;
 						add: c2m2;
-						yourself))
-]
-
-{ #category : #allIncomingInvocations }
-FAMIXClassNavigationChefTest >> testReferencingNamespaces [
-	self
-		assert:
-			(self c3ReferencerInSideRefereeOutSide queryAllIncomingInvocations
-				atScope: FamixTNamespace) size
-		equals: 2.
-	self
-		assert:
-			((self c3ReferencerInSideRefereeOutSide queryAllIncomingInvocations
-				atScope: FamixTNamespace)
-				equalsTo:
-					(Set new
-						add: self namespace3ReferencerReferee;
-						add: self namespace1InteractedReferencerReferee;
 						yourself))
 ]
 
@@ -898,8 +676,8 @@ FAMIXClassNavigationChefTest >> testReferencingPackages [
 FAMIXClassNavigationChefTest >> testSourceMethodsInReferencedMethods [
 
 	self assert: 2
-		equals: self c6FullReferencerInSideOutSide queryAllOutgoingInvocations outOfMyNamespace sourceMethods size.
-	self assert: (self c6FullReferencerInSideOutSide queryAllOutgoingInvocations outOfMyNamespace sourceMethods
+		equals: self c6FullReferencerInSideOutSide queryAllOutgoingInvocations outOfMyPackage sourceMethods size.
+	self assert: (self c6FullReferencerInSideOutSide queryAllOutgoingInvocations outOfMyPackage sourceMethods
 		equalsTo: (Set
 			with: (self getMethod: 'm1p3c6Mtd1()' from: self c6FullReferencerInSideOutSide)
 			with: (self getMethod: 'm1p3c6Mtd2()' from: self c6FullReferencerInSideOutSide) ))
@@ -917,17 +695,17 @@ FAMIXClassNavigationChefTest >> testSourceMethodsInStaticReferencedClasses [
 { #category : #staticDependencies }
 FAMIXClassNavigationChefTest >> testStaticClientClasses [
 	self
-		assert:
-			((self c11FullRefereeOutSide queryStaticIncomingAssociations
+		assertCollection:
+			(self c11FullRefereeOutSide queryStaticIncomingAssociations
 				atScope: FamixTType)
-				equalsTo:
+				hasSameElements:
 					(Set new
 						add: self c3ReferencerInSideRefereeOutSide;
 						add: self c14ReferencerOutSideRefereeOutSide;
 						add: self c6FullReferencerInSideOutSide;
 						add: self c1FullReferencerOutSide;
 						add: self c11FullRefereeOutSide;
-						yourself))
+						yourself)
 ]
 
 { #category : #staticDependencies }
@@ -938,7 +716,7 @@ FAMIXClassNavigationChefTest >> testStaticClientClassesInto [
 		assert:
 			(((self c11FullRefereeOutSide queryStaticIncomingAssociations
 				atScope: FamixTType)
-				withinNamespace: self namespace1InteractedReferencerReferee)
+				withinPackage: self namespace1InteractedReferencerReferee)
 				equalsTo:
 					(Set new
 						add: self c3ReferencerInSideRefereeOutSide;
@@ -956,36 +734,12 @@ FAMIXClassNavigationChefTest >> testStaticClientClassesInto [
 ]
 
 { #category : #staticDependencies }
-FAMIXClassNavigationChefTest >> testStaticClientClassesIntoMyNamespace [
-	self
-		assert:
-			(self c11FullRefereeOutSide queryStaticIncomingAssociations
-				atScope: FamixTType) withinMyNamespace size
-		equals: 1
-]
-
-{ #category : #staticDependencies }
 FAMIXClassNavigationChefTest >> testStaticClientClassesIntoMyPackage [
 	self
 		assert:
 			(self c11FullRefereeOutSide queryStaticIncomingAssociations
 				atScope: FamixTType) withinMyPackage size
 		equals: 1
-]
-
-{ #category : #staticDependencies }
-FAMIXClassNavigationChefTest >> testStaticClientClassesOutOfMyNamespace [
-	self
-		assert:
-			((self c11FullRefereeOutSide queryStaticIncomingAssociations
-				atScope: FamixTType) outOfMyNamespace
-				equalsTo:
-					(Set new
-						add: self c3ReferencerInSideRefereeOutSide;
-						add: self c14ReferencerOutSideRefereeOutSide;
-						add: self c6FullReferencerInSideOutSide;
-						add: self c1FullReferencerOutSide;
-						yourself))
 ]
 
 { #category : #staticDependencies }
@@ -1000,20 +754,6 @@ FAMIXClassNavigationChefTest >> testStaticClientClassesOutOfMyPackage [
 						add: self c14ReferencerOutSideRefereeOutSide;
 						add: self c6FullReferencerInSideOutSide;
 						add: self c1FullReferencerOutSide;
-						yourself))
-]
-
-{ #category : #staticDependencies }
-FAMIXClassNavigationChefTest >> testStaticClientNamespaces [
-	self
-		assert:
-			((self c11FullRefereeOutSide queryStaticIncomingAssociations
-				atScope: FamixTNamespace)
-				equalsTo:
-					(Set new
-						add: self namespace1InteractedReferencerReferee;
-						add: self namespace3ReferencerReferee;
-						add: self namespace2FullReferee;
 						yourself))
 ]
 
@@ -1062,19 +802,7 @@ FAMIXClassNavigationChefTest >> testStaticProviderClassesInto [
 	self
 		assert:
 			(((self c11FullRefereeOutSide queryStaticOutgoingAssociations
-				atScope: FamixTType) withinNamespace: self namespace2FullReferee)
-				equalsTo:
-					(Set
-						with: self c12FullReferencerInSide
-						with: self c11FullRefereeOutSide))
-]
-
-{ #category : #staticDependencies }
-FAMIXClassNavigationChefTest >> testStaticProviderClassesIntoMyNamespace [
-	self
-		assert:
-			((self c11FullRefereeOutSide queryStaticOutgoingAssociations
-				atScope: FamixTType) withinMyNamespace
+				atScope: FamixTType) withinPackage: self namespace2FullReferee)
 				equalsTo:
 					(Set
 						with: self c12FullReferencerInSide
@@ -1085,46 +813,29 @@ FAMIXClassNavigationChefTest >> testStaticProviderClassesIntoMyNamespace [
 FAMIXClassNavigationChefTest >> testStaticProviderClassesIntoMyPackage [
 	self
 		assert:
-			(self c11FullRefereeOutSide queryStaticOutgoingAssociations
-				atScope: FamixTType) withinMyPackage size
-		equals: 1
-]
-
-{ #category : #staticDependencies }
-FAMIXClassNavigationChefTest >> testStaticProviderClassesOutOfMyNamespace [
-	self
-		assert:
-			(self c11FullRefereeOutSide queryStaticOutgoingAssociations
-				atScope: FamixTType) outOfMyNamespace isEmpty
+			((self c11FullRefereeOutSide queryStaticOutgoingAssociations
+				atScope: FamixTType) withinMyPackage
+				equalsTo:
+					(Set
+						with: self c12FullReferencerInSide
+						with: self c11FullRefereeOutSide))
 ]
 
 { #category : #staticDependencies }
 FAMIXClassNavigationChefTest >> testStaticProviderClassesOutOfMyPackage [
 	self
 		assert:
-			((self c11FullRefereeOutSide queryStaticOutgoingAssociations
-				atScope: FamixTType) outOfMyPackage
-				equalsTo: (Set with: self c12FullReferencerInSide))
-]
-
-{ #category : #staticDependencies }
-FAMIXClassNavigationChefTest >> testStaticProviderNamespaces [
-	self
-		assert:
 			(self c11FullRefereeOutSide queryStaticOutgoingAssociations
-				atScope: FamixTNamespace) size
-		equals: 1
+				atScope: FamixTType) outOfMyPackage isEmpty
 ]
 
 { #category : #staticDependencies }
 FAMIXClassNavigationChefTest >> testStaticProviderPackages [
-	| p6 |
-	p6 := self packageP6InteractedReferee.
 	self
 		assert:
-			((self c11FullRefereeOutSide queryStaticOutgoingAssociations
-				atScope: FamixTPackage)
-				equalsTo: (Set with: p6 with: self packageP5FullReferee))
+			(self c11FullRefereeOutSide queryStaticOutgoingAssociations
+				atScope: FamixTPackage) size
+		equals: 1
 ]
 
 { #category : #references }
@@ -1151,19 +862,6 @@ FAMIXClassNavigationChefTest >> testStaticReferencedClassesInto [
 			((self c6FullReferencerInSideOutSide queryOutgoingReferences opposites withinPackage: p3)
 				equalsTo:
 					(Set new
-						add: self c5ReferencerInSideRefereeInSide;
-						yourself))
-]
-
-{ #category : #references }
-FAMIXClassNavigationChefTest >> testStaticReferencedClassesIntoMyNamespace [
-	self assert: self c6FullReferencerInSideOutSide queryOutgoingReferences opposites withinMyNamespace size equals: 2.
-	self
-		assert:
-			(self c6FullReferencerInSideOutSide queryOutgoingReferences opposites withinMyNamespace
-				equalsTo:
-					(Set new
-						add: self c3ReferencerInSideRefereeOutSide;
 						add: self c5ReferencerInSideRefereeInSide;
 						yourself))
 ]
@@ -1198,16 +896,16 @@ FAMIXClassNavigationChefTest >> testStaticReferencedClassesIntoMyPackage [
 ]
 
 { #category : #references }
-FAMIXClassNavigationChefTest >> testStaticReferencedClassesOutOfMyNamespace [
+FAMIXClassNavigationChefTest >> testStaticReferencedClassesOutOfMyPackage [
 	self
 		assert: 1
 		equals:
 			self c6FullReferencerInSideOutSide queryOutgoingReferences opposites
-				outOfMyNamespace size.
+				outOfMyPackage size.
 	self
 		assert:
 			(self c6FullReferencerInSideOutSide queryOutgoingReferences opposites
-				outOfMyNamespace
+				outOfMyPackage
 				equalsTo:
 					(Set new
 						add: self c11FullRefereeOutSide;
@@ -1216,45 +914,14 @@ FAMIXClassNavigationChefTest >> testStaticReferencedClassesOutOfMyNamespace [
 		assert: 1
 		equals:
 			self c6FullReferencerInSideOutSide queryOutgoingReferences
-				outOfMyNamespace size.
+				outOfMyPackage size.
 	self
 		assert:
 			((self c6FullReferencerInSideOutSide queryOutgoingReferences
-				outOfMyNamespace atScope: FamixTType)
+				outOfMyPackage atScope: FamixTType)
 				equalsTo:
 					self c6FullReferencerInSideOutSide queryOutgoingReferences opposites
-						outOfMyNamespace)
-]
-
-{ #category : #references }
-FAMIXClassNavigationChefTest >> testStaticReferencedClassesOutOfMyPackage [
-	self assert: self c6FullReferencerInSideOutSide queryOutgoingReferences opposites outOfMyPackage size equals: 2.
-	self
-		assert:
-			(self c6FullReferencerInSideOutSide queryOutgoingReferences opposites outOfMyPackage
-				equalsTo:
-					(Set new
-						add: self c3ReferencerInSideRefereeOutSide;
-						add: self c11FullRefereeOutSide;
-						yourself))
-]
-
-{ #category : #references }
-FAMIXClassNavigationChefTest >> testStaticReferencedNamespaces [
-	self
-		assert:
-			(self c6FullReferencerInSideOutSide queryOutgoingReferences
-				atScope: FamixTNamespace) size
-		equals: 2.
-	self
-		assert:
-			((self c6FullReferencerInSideOutSide queryOutgoingReferences
-				atScope: FamixTNamespace)
-				equalsTo:
-					(Set new
-						add: self namespace2FullReferee;
-						add: self namespace1InteractedReferencerReferee;
-						yourself))
+						outOfMyPackage)
 ]
 
 { #category : #references }
@@ -1332,13 +999,13 @@ FAMIXClassNavigationChefTest >> testStaticReferencingClassesInto [
 		assert:
 			((self c14ReferencerOutSideRefereeOutSide queryIncomingReferences
 				atScope: FamixTType)
-				withinNamespace: self namespace1InteractedReferencerReferee) size
+				withinPackage: self namespace1InteractedReferencerReferee) size
 		equals: 1.
 	self
 		assert:
 			(((self c14ReferencerOutSideRefereeOutSide queryIncomingReferences
 				atScope: FamixTType)
-				withinNamespace: self namespace1InteractedReferencerReferee)
+				withinPackage: self namespace1InteractedReferencerReferee)
 				equalsTo:
 					(Set new
 						add: self c2ReferencerOutSideRefereeInSide;
@@ -1351,37 +1018,16 @@ FAMIXClassNavigationChefTest >> testStaticReferencingClassesInto [
 		assert:
 			((self c3ReferencerInSideRefereeOutSide queryIncomingReferences
 				atScope: FamixTType)
-				withinNamespace: self namespace1InteractedReferencerReferee) size
+				withinPackage: self namespace1InteractedReferencerReferee) size
 		equals: 1.
 	self
 		assert:
 			(((self c3ReferencerInSideRefereeOutSide queryIncomingReferences
 				atScope: FamixTType)
-				withinNamespace: self namespace1InteractedReferencerReferee)
+				withinPackage: self namespace1InteractedReferencerReferee)
 				equalsTo:
 					(Set new
 						add: self c6FullReferencerInSideOutSide;
-						yourself))
-]
-
-{ #category : #references }
-FAMIXClassNavigationChefTest >> testStaticReferencingClassesIntoMyNamespace [
-	self
-		assert:
-			(self c14ReferencerOutSideRefereeOutSide queryIncomingReferences
-				atScope: FamixTType) withinMyNamespace isEmpty.
-	self
-		assert:
-			(self c13FullRefereeInSideOutSide queryIncomingReferences
-				atScope: FamixTType) withinMyNamespace size
-		equals: 1.
-	self
-		assert:
-			((self c13FullRefereeInSideOutSide queryIncomingReferences
-				atScope: FamixTType) withinMyNamespace
-				equalsTo:
-					(Set new
-						add: self c12FullReferencerInSide;
 						yourself))
 ]
 
@@ -1407,36 +1053,6 @@ FAMIXClassNavigationChefTest >> testStaticReferencingClassesIntoMyPackage [
 ]
 
 { #category : #references }
-FAMIXClassNavigationChefTest >> testStaticReferencingClassesOutOfMyNamespace [
-	self
-		assert:
-			(self c14ReferencerOutSideRefereeOutSide queryIncomingReferences
-				atScope: FamixTType) outOfMyNamespace size
-		equals: 1.
-	self
-		assert:
-			((self c14ReferencerOutSideRefereeOutSide queryIncomingReferences
-				atScope: FamixTType) outOfMyNamespace
-				equalsTo:
-					(Set new
-						add: self c2ReferencerOutSideRefereeInSide;
-						yourself)).
-	self
-		assert:
-			(self c3ReferencerInSideRefereeOutSide queryIncomingReferences
-				atScope: FamixTType) outOfMyNamespace size
-		equals: 1.
-	self
-		assert:
-			((self c3ReferencerInSideRefereeOutSide queryIncomingReferences
-				atScope: FamixTType) outOfMyNamespace
-				equalsTo:
-					(Set new
-						add: self c14ReferencerOutSideRefereeOutSide;
-						yourself))
-]
-
-{ #category : #references }
 FAMIXClassNavigationChefTest >> testStaticReferencingClassesOutOfMyPackage [
 	self
 		assert:
@@ -1455,14 +1071,13 @@ FAMIXClassNavigationChefTest >> testStaticReferencingClassesOutOfMyPackage [
 		assert:
 			(self c3ReferencerInSideRefereeOutSide queryIncomingReferences
 				atScope: FamixTType) outOfMyPackage size
-		equals: 2.
+		equals: 1.
 	self
 		assert:
 			((self c3ReferencerInSideRefereeOutSide queryIncomingReferences
 				atScope: FamixTType) outOfMyPackage
 				equalsTo:
 					(Set new
-						add: self c6FullReferencerInSideOutSide;
 						add: self c14ReferencerOutSideRefereeOutSide;
 						yourself))
 ]
@@ -1484,28 +1099,7 @@ FAMIXClassNavigationChefTest >> testStaticReferencingMethods [
 ]
 
 { #category : #references }
-FAMIXClassNavigationChefTest >> testStaticReferencingNamespaces [
-	self
-		assert:
-			(self c3ReferencerInSideRefereeOutSide queryIncomingReferences
-				atScope: FamixTNamespace) size
-		equals: 2.
-	self
-		assert:
-			((self c3ReferencerInSideRefereeOutSide queryIncomingReferences
-				atScope: FamixTNamespace)
-				equalsTo:
-					(Set new
-						add: self namespace3ReferencerReferee;
-						add: self namespace1InteractedReferencerReferee;
-						yourself))
-]
-
-{ #category : #references }
 FAMIXClassNavigationChefTest >> testStaticReferencingPackages [
-	| p3 p7 |
-	p3 := self packageP3InteractedReferencer.
-	p7 := self packageP7ReferencerReferee.
 	self
 		assert:
 			(self c3ReferencerInSideRefereeOutSide queryIncomingReferences
@@ -1517,8 +1111,8 @@ FAMIXClassNavigationChefTest >> testStaticReferencingPackages [
 				atScope: FamixTPackage)
 				equalsTo:
 					(Set new
-						add: p3;
-						add: p7;
+						add: self namespace3ReferencerReferee;
+						add: self namespace1InteractedReferencerReferee;
 						yourself))
 ]
 
@@ -1564,16 +1158,16 @@ FAMIXClassNavigationChefTest >> testSureReferencedClassesInto [
 ]
 
 { #category : #sureOutgoingInvocations }
-FAMIXClassNavigationChefTest >> testSureReferencedClassesIntoMyNamespace [
+FAMIXClassNavigationChefTest >> testSureReferencedClassesIntoMyPackage [
 	self
 		assert: 1
 		equals:
 			(self c16FullReferencerOutSideInSide querySureOutgoingInvocations
-				atScope: FamixTType) withinMyNamespace size.
+				atScope: FamixTType) withinMyPackage size.
 	self
 		assert:
 			((self c16FullReferencerOutSideInSide querySureOutgoingInvocations
-				atScope: FamixTType) withinMyNamespace
+				atScope: FamixTType) withinMyPackage
 				equalsTo:
 					(Set
 						with: self c18FullRefereeInSideOutSide
@@ -1581,30 +1175,16 @@ FAMIXClassNavigationChefTest >> testSureReferencedClassesIntoMyNamespace [
 ]
 
 { #category : #sureOutgoingInvocations }
-FAMIXClassNavigationChefTest >> testSureReferencedClassesIntoMyPackage [
-	self
-		assert: 1
-		equals:
-			(self c10FullReferencerInSide querySureOutgoingInvocations
-				atScope: FamixTType) withinMyPackage size.
-	self
-		assert:
-			((self c10FullReferencerInSide querySureOutgoingInvocations
-				atScope: FamixTType) withinMyPackage
-				equalsTo: (Set with: self c9FullRefereeInSide))
-]
-
-{ #category : #sureOutgoingInvocations }
-FAMIXClassNavigationChefTest >> testSureReferencedClassesOutOfMyNamespace [
+FAMIXClassNavigationChefTest >> testSureReferencedClassesOutOfMyPackage [
 	self
 		assert:
 			(self c6FullReferencerInSideOutSide querySureOutgoingInvocations
-				atScope: FamixTType) outOfMyNamespace size
+				atScope: FamixTType) outOfMyPackage size
 		equals: 1.
 	self
 		assert:
 			((self c6FullReferencerInSideOutSide querySureOutgoingInvocations
-				atScope: FamixTType) outOfMyNamespace
+				atScope: FamixTType) outOfMyPackage
 				equalsTo:
 					(Set new
 						add: self c11FullRefereeOutSide;
@@ -1626,44 +1206,6 @@ FAMIXClassNavigationChefTest >> testSureReferencedMethods [
 ]
 
 { #category : #sureOutgoingInvocations }
-FAMIXClassNavigationChefTest >> testSureReferencedNamespaces [
-	self
-		assert:
-			(self c6FullReferencerInSideOutSide querySureOutgoingInvocations
-				atScope: FamixTNamespace) size
-		equals: 1.
-	self
-		assert:
-			((self c6FullReferencerInSideOutSide querySureOutgoingInvocations
-				atScope: FamixTNamespace)
-				equalsTo:
-					(Set new
-						add: self namespace2FullReferee;
-						yourself))
-]
-
-{ #category : #'MooseKGB-TestFamix3-integralTests' }
-FAMIXClassNavigationChefTest >> testSureReferencedNamespacesTest [
-	| modelClasses |
-	modelClasses := self model allClasses.
-	modelClasses
-		do: [ :each | 
-			self
-				assert: (each querySureOutgoingInvocations atScope: FamixTNamespace) size
-				equals: (each querySureOutgoingInvocations atScope: FamixTNamespace) asSet size ].
-	modelClasses
-		do: [ :each | 
-			self
-				assert: (each querySureIncomingInvocations atScope: FamixTType) size
-				equals: (each querySureIncomingInvocations atScope: FamixTType) asSet size ].
-	modelClasses
-		do: [ :each | 
-			self
-				assert: (each querySureIncomingInvocations atScope: FamixTNamespace) size
-				equals: (each querySureIncomingInvocations atScope: FamixTNamespace) asSet size ]
-]
-
-{ #category : #sureOutgoingInvocations }
 FAMIXClassNavigationChefTest >> testSureReferencedPackages [
 	self
 		assert: 2
@@ -1678,6 +1220,27 @@ FAMIXClassNavigationChefTest >> testSureReferencedPackages [
 					(Set
 						with: self packageP6InteractedReferee
 						with: self packageP5FullReferee))
+]
+
+{ #category : #'MooseKGB-TestFamix3-integralTests' }
+FAMIXClassNavigationChefTest >> testSureReferencedPackagesTest [
+	| modelClasses |
+	modelClasses := self model allClasses.
+	modelClasses
+		do: [ :each | 
+			self
+				assert: (each querySureOutgoingInvocations atScope: FamixTPackage) size
+				equals: (each querySureOutgoingInvocations atScope: FamixTPackage) asSet size ].
+	modelClasses
+		do: [ :each | 
+			self
+				assert: (each querySureIncomingInvocations atScope: FamixTType) size
+				equals: (each querySureIncomingInvocations atScope: FamixTType) asSet size ].
+	modelClasses
+		do: [ :each | 
+			self
+				assert: (each querySureIncomingInvocations atScope: FamixTPackage) size
+				equals: (each querySureIncomingInvocations atScope: FamixTPackage) asSet size ]
 ]
 
 { #category : #sureIncomingInvocations }
@@ -1738,13 +1301,13 @@ FAMIXClassNavigationChefTest >> testSureReferencingClassesInto [
 		assert:
 			((self c14ReferencerOutSideRefereeOutSide querySureIncomingInvocations
 				atScope: FamixTType)
-				withinNamespace: self namespace1InteractedReferencerReferee) size
+				withinPackage: self namespace1InteractedReferencerReferee) size
 		equals: 1.
 	self
 		assert:
 			(((self c14ReferencerOutSideRefereeOutSide
 				querySureIncomingInvocations atScope: FamixTType)
-				withinNamespace: self namespace1InteractedReferencerReferee)
+				withinPackage: self namespace1InteractedReferencerReferee)
 				equalsTo:
 					(Set new
 						add: self c2ReferencerOutSideRefereeInSide;
@@ -1756,38 +1319,16 @@ FAMIXClassNavigationChefTest >> testSureReferencingClassesInto [
 	self
 		assert:
 			((self c19FullRefereeOutSide querySureIncomingInvocations
-				atScope: FamixTType) withinNamespace: self namespace4FullReferencer)
+				atScope: FamixTType) withinPackage: self namespace4FullReferencer)
 				size
 		equals: 1.
 	self
 		assert:
 			(((self c19FullRefereeOutSide querySureIncomingInvocations
-				atScope: FamixTType) withinNamespace: self namespace4FullReferencer)
+				atScope: FamixTType) withinPackage: self namespace4FullReferencer)
 				equalsTo:
 					(Set new
 						add: self c15FullReferencerOutSide;
-						yourself))
-]
-
-{ #category : #sureIncomingInvocations }
-FAMIXClassNavigationChefTest >> testSureReferencingClassesIntoMyNamespace [
-	self
-		assert:
-			(self c14ReferencerOutSideRefereeOutSide querySureIncomingInvocations
-				atScope: FamixTType) withinMyNamespace isEmpty.
-	self
-		assert:
-			(self c13FullRefereeInSideOutSide querySureIncomingInvocations
-				atScope: FamixTType) withinMyNamespace size
-		equals: 2.
-	self
-		assert:
-			((self c13FullRefereeInSideOutSide querySureIncomingInvocations
-				atScope: FamixTType) withinMyNamespace
-				equalsTo:
-					(Set new
-						add: self c12FullReferencerInSide;
-						add: self c13FullRefereeInSideOutSide;
 						yourself))
 ]
 
@@ -1811,36 +1352,6 @@ FAMIXClassNavigationChefTest >> testSureReferencingClassesIntoMyPackage [
 						add: self c12FullReferencerInSide;
 						add: self c13FullRefereeInSideOutSide;
 						yourself))
-]
-
-{ #category : #sureIncomingInvocations }
-FAMIXClassNavigationChefTest >> testSureReferencingClassesOutOfMyNamespace [
-	self
-		assert:
-			(self c14ReferencerOutSideRefereeOutSide querySureIncomingInvocations
-				atScope: FamixTType) outOfMyNamespace size
-		equals: 1.
-	self
-		assert:
-			((self c14ReferencerOutSideRefereeOutSide querySureIncomingInvocations
-				atScope: FamixTType) outOfMyNamespace
-				equalsTo:
-					(Set new
-						add: self c2ReferencerOutSideRefereeInSide;
-						yourself)).
-	self
-		assert:
-			(self c19FullRefereeOutSide querySureIncomingInvocations
-				atScope: FamixTType) outOfMyNamespace size
-		equals: 2.
-	self
-		assert:
-			((self c19FullRefereeOutSide querySureIncomingInvocations
-				atScope: FamixTType) outOfMyNamespace
-				equalsTo:
-					(Set
-						with: self c15FullReferencerOutSide
-						with: self c16FullReferencerOutSideInSide))
 ]
 
 { #category : #sureIncomingInvocations }
@@ -1881,24 +1392,6 @@ FAMIXClassNavigationChefTest >> testSureReferencingMethods [
 	self assert: self c14ReferencerOutSideRefereeOutSide querySureIncomingInvocations opposites size equals: 1.
 	self
 		assert: (self c14ReferencerOutSideRefereeOutSide querySureIncomingInvocations opposites equalsTo: (Set with: c2m1))
-]
-
-{ #category : #sureIncomingInvocations }
-FAMIXClassNavigationChefTest >> testSureReferencingNamespaces [
-	self
-		assert:
-			(self c19FullRefereeOutSide querySureIncomingInvocations
-				atScope: FamixTNamespace) size
-		equals: 3.
-	self
-		assert:
-			((self c19FullRefereeOutSide querySureIncomingInvocations
-				atScope: FamixTNamespace)
-				equalsTo:
-					(Set
-						with: self namespace4FullReferencer
-						with: self namespace5InteractedReferencer
-						with: self namespace6InteractedReferee))
 ]
 
 { #category : #sureIncomingInvocations }
