@@ -1,8 +1,18 @@
 Class {
 	#name : #FamixJavaSourceLanguageTest,
-	#superclass : #TestCase,
+	#superclass : #FamixJavaEntityTest,
 	#category : #'Famix-Java-Tests'
 }
+
+{ #category : #tests }
+FamixJavaSourceLanguageTest >> actualClass [ 
+		^ FamixJavaSourceLanguage
+]
+
+{ #category : #tests }
+FamixJavaSourceLanguageTest >> testDefaultUnknownLanguage [
+	self assert: MooseModel new sourceLanguage isNil
+]
 
 { #category : #tests }
 FamixJavaSourceLanguageTest >> testIsJava [
@@ -18,12 +28,12 @@ FamixJavaSourceLanguageTest >> testIsJava [
 
 { #category : #tests }
 FamixJavaSourceLanguageTest >> testIsUnknown [
-	self assert: FamixJavaSourceLanguage new isUnknown not
+	self deny: self actualClass new isUnknown 
 ]
 
 { #category : #tests }
 FamixJavaSourceLanguageTest >> testName [
-	self assert: FamixJavaSourceLanguage new name equals: 'Java'
+	self assert:  self actualClass new name equals: 'Java'
 ]
 
 { #category : #tests }

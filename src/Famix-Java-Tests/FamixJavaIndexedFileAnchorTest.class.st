@@ -42,10 +42,10 @@ FamixJavaIndexedFileAnchorTest >> testLineCountWithCRLF [
 		writeStreamDo: [ :s | s << (self sourceCodeForTest copyReplaceAll: String cr with: String crlf) ].
 	anchor := self actualClass new
 		startPos: 54;
-		endPos: 273;
+		endPos: 240;
 		yourself.
 	anchor stub fileReference willReturn: file.
-	self assert: anchor lineCount equals: 17
+	self assert: anchor lineCount equals: 13
 ]
 
 { #category : #tests }

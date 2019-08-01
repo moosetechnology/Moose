@@ -1,9 +1,9 @@
 "
-I am an abstract test class for the tests of FAMIXAbstractFileAnchor's subclasses
+I am an abstract test class for the tests of FamixJavaAbstractFileAnchor's subclasses
 "
 Class {
 	#name : #FamixJavaAbstractFileAnchorTest,
-	#superclass : #FAMIXSourceAnchorTest,
+	#superclass : #FamixJavaSourceAnchorTest,
 	#category : #'Famix-Java-Tests'
 }
 
