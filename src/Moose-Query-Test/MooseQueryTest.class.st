@@ -37,7 +37,7 @@ MooseQueryTest >> model [
 { #category : #running }
 MooseQueryTest >> setUp [
 	super setUp.
-	model := MooseModel new.
+	model := FAMIXMooseModel new.
 	package1 := FAMIXPackage new name: 'package1' ; mooseModel: model.
 	package2 := FAMIXPackage new name: 'package2' ; mooseModel: model.
 	isolatedPackage := FAMIXPackage new name: 'isolatedPackage' ; mooseModel: model.
@@ -489,14 +489,6 @@ MooseQueryTest >> testQueryWith [
 ]
 
 { #category : #tests }
-MooseQueryTest >> testToAnyScope [
-	self assertCollection: (class2 toAnyScope: {FAMIXMethod . FAMIXAttribute}) hasSameElements: {method2 . method3 . methodExt . var1 . var2}.
-	self assertCollection: (class2 toAnyScope: {FAMIXMethod . FAMIXStructuralEntity}) hasSameElements: {method2 . method3 . methodExt . var1 . var2}.
-	self assertCollection: (class2 toAnyScope: {FAMIXClass . FAMIXMethod}) hasSameElements: {class2}.
-	self assertCollection: (method1 toAnyScope: {FAMIXClass . FAMIXPackage}) hasSameElements: {}
-]
-
-{ #category : #tests }
 MooseQueryTest >> testSourceThroughAll [
 	self assertCollection: (method2 throughAllFrom) storage flattened hasSameElements: {method2 . method1 . method3}.
 	self assertCollection: (class2 throughAllFrom) storage flattened hasSameElements:  {method2 . method1 . method3 . class1}
@@ -537,6 +529,14 @@ MooseQueryTest >> testThrougAllIncoming [
 MooseQueryTest >> testThroughAllFrom [
 	self assert: method2 queryAllIncoming size equals: 3.
 	self assert: class2 queryAllIncoming size equals: 7
+]
+
+{ #category : #tests }
+MooseQueryTest >> testToAnyScope [
+	self assertCollection: (class2 toAnyScope: {FAMIXMethod . FAMIXAttribute}) hasSameElements: {method2 . method3 . methodExt . var1 . var2}.
+	self assertCollection: (class2 toAnyScope: {FAMIXMethod . FAMIXStructuralEntity}) hasSameElements: {method2 . method3 . methodExt . var1 . var2}.
+	self assertCollection: (class2 toAnyScope: {FAMIXClass . FAMIXMethod}) hasSameElements: {class2}.
+	self assertCollection: (method1 toAnyScope: {FAMIXClass . FAMIXPackage}) hasSameElements: {}
 ]
 
 { #category : #tests }

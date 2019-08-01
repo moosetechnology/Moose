@@ -17,7 +17,7 @@ MooseObjectQueryResultTest >> actualClass [
 { #category : #tests }
 MooseObjectQueryResultTest >> testWithoutSelfLoops [
 	| model namespace1 namespace2 class1 class2 |
-	model := MooseModel new.
+	model := FAMIXMooseModel new.
 	namespace1 := (FAMIXNamespace named: 'namespace1')
 		mooseModel: model;
 		yourself.
