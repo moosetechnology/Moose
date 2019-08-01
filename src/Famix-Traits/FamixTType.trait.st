@@ -147,3 +147,8 @@ FamixTType >> typeContainerGroup [
 	^ MooseGroup
 			with: (self typeContainer)
 ]
+
+{ #category : #'moosechef-scoping-filtering' }
+FamixTType >> typeScope [ 
+	^self.
+]

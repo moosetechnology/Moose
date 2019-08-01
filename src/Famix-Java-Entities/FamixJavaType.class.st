@@ -321,7 +321,7 @@ FamixJavaType >> providerTypes [
 	^ (self queryAllOutgoing atScope: FamixTType) withoutSelfLoops
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'moosechef-scoping-filtering' }
 FamixJavaType >> typeScope [
 	"all types are not classes. Redefined in FamixClass"
 
