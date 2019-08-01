@@ -23,7 +23,7 @@ FamixTPackageable >> isExtension [
 { #category : #accessing }
 FamixTPackageable >> packageScope [
 
-	self parentPackage.
+	^ self parentPackage.
 ]
 
 { #category : #accessing }
