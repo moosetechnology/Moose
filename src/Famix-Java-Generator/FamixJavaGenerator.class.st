@@ -238,6 +238,7 @@ FamixJavaGenerator >> defineHierarchy [
 	scopingEntity --|> #TGlobalVariableScope.
 	scopingEntity --|> #TScopingEntity.
 	scopingEntity --|> #TWithTypes.
+	scopingEntity --|> #TOODependencyQueries.
 
 	tStructuralEntity --|> #TStructuralEntity.
 	
@@ -255,6 +256,7 @@ FamixJavaGenerator >> defineHierarchy [
 	type --|> #TWithTypes.
 	type --|> #TWithSuperInheritances.
 	type --|> #TWithAttributes.
+	
 
 	unknownVariable --|> tStructuralEntity.
 	
@@ -265,7 +267,8 @@ FamixJavaGenerator >> defineHierarchy [
 { #category : #definition }
 FamixJavaGenerator >> defineTraits [
 	super defineTraits.
-	tStructuralEntity := builder newTraitNamed: #TStructuralEntity
+	tStructuralEntity := builder newTraitNamed: #TStructuralEntity.
+	
 ]
 
 { #category : #definition }

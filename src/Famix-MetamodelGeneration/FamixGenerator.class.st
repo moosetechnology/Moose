@@ -131,7 +131,8 @@ Class {
 		'tWithFileIncludes',
 		'tSourceEntity',
 		'tDependencyQueries',
-		'tEntityMetaLevelDependency'
+		'tEntityMetaLevelDependency',
+		'tOODependencyQueries'
 	],
 	#category : #'Famix-MetamodelGeneration'
 }
@@ -964,7 +965,7 @@ FamixGenerator >> defineHierarchy [
 	tClass --|> #TWithAttributes.
 	tClass --|> #TReferenceable.
 	tClass --|> #TNamed.
-	tClass --|> #TType.
+	tClass --|> tType.
 	tClass --|> #TPackageable.
 	tClass --|> #TInvocationsReceiver.
 	tClass --|> #TWithComments.
@@ -998,6 +999,7 @@ FamixGenerator >> defineHierarchy [
 	tSourceEntity --|> #TWithSourceAnchor.
 	tSourceEntity --|> #TWithSourceLanguage.
 	
+	tType --|> tOODependencyQueries.
 ]
 
 { #category : #definition }
@@ -1399,6 +1401,7 @@ FamixGenerator >> defineTraits [
 
 	super defineTraits.
 	tDependencyQueries := self remoteTrait: #TDependencyQueries withPrefix: 'Moose-Query'. 
+	tOODependencyQueries := self remoteTrait: #TOODependencyQueries withPrefix: 'Moose-Query'. 
 	tEntityMetaLevelDependency := self remoteTrait: #TEntityMetaLevelDependency withPrefix: 'Moose-Query'.
 	
 	tAccess := builder newTraitNamed: #TAccess.
