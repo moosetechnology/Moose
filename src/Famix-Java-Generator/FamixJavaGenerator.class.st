@@ -179,12 +179,15 @@ FamixJavaGenerator >> defineHierarchy [
 	enum --|> #TWithEnumValues.
 
 	enumValue --|> tStructuralEntity.
+	enumValue --|> namedEntity.
+	enumValue inheritsFromTrait: tStructuralEntity without: #(#mooseNameOn:).
 	enumValue --|> #TEnumValue.
 
 	exception --|> #TException.
 
 	globalVariable --|> tStructuralEntity.
 	globalVariable --|> #TGlobalVariable.
+	globalVariable --|> #TWithModifiers .
 
 	implicitVariable --|> tStructuralEntity.
 	implicitVariable --|> #TImplicitVariable.
@@ -235,6 +238,8 @@ FamixJavaGenerator >> defineHierarchy [
 	scopingEntity --|> #TScopingEntity.
 	scopingEntity --|> #TWithTypes.
 
+	tStructuralEntity --|> #TStructuralEntity.
+	
 	thrownException --|> exception.
 	thrownException --|> #TThrownException.
 
