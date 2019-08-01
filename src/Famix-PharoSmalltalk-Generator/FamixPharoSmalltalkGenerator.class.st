@@ -157,6 +157,7 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	scopingEntity --|> #TGlobalVariableScope.
 	scopingEntity --|> #TScopingEntity.
 	scopingEntity --|> #TWithTypes.
+	scopingEntity --|> #TOODependencyQueries.
 
 	tStructuralEntity --|> #TStructuralEntity.
 
