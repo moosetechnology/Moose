@@ -25,6 +25,13 @@ FamixStClass >> accessedAttributes [
 	^ self methodsWithoutSutbsAndConstructors asOrderedCollection flatCollect: [ :method | method accessedAttributes ]
 ]
 
+{ #category : #'Famix-Extensions-nav All Dependencies' }
+FamixStClass >> clientPackages [
+	"returns a set of all the packages that depend on the receiver"
+
+	^ (self queryAllIncoming atScope: FamixTPackage) withoutSelfLoops
+]
+
 { #category : #'Famix-Implementation' }
 FamixStClass >> implementationOf: signature [
 	self withSuperclassesDo: [ :class | | found |
@@ -97,6 +104,15 @@ FamixStClass >> namespaceScope [
 	
 	^ self parentPackage 
 		ifNotNil: [ self parentPackage namespaceScope ]
+]
+
+{ #category : #accessing }
+FamixStClass >> providerTypes [
+	<MSEProperty: #providerTypes type: #FamixTType>
+	<derived>
+	<multivalued>
+	<MSEComment: 'All types that the receiver depends on (inherites, staticly accesses, or uses some of their methods)'>
+	^ (self queryAllOutgoing atScope: FamixTType) withoutSelfLoops
 ]
 
 { #category : #'Famix-Implementation' }

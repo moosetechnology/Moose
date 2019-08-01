@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixStScopingEntity,
 	#superclass : #FamixStNamedEntity,
-	#traits : 'FamixTGlobalVariableScope + FamixTScopingEntity + FamixTWithTypes',
-	#classTraits : 'FamixTGlobalVariableScope classTrait + FamixTScopingEntity classTrait + FamixTWithTypes classTrait',
+	#traits : 'FamixTGlobalVariableScope + FamixTScopingEntity + FamixTWithTypes + TOODependencyQueries',
+	#classTraits : 'FamixTGlobalVariableScope classTrait + FamixTScopingEntity classTrait + FamixTWithTypes classTrait + TOODependencyQueries classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 
