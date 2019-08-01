@@ -212,6 +212,7 @@ FamixJavaGenerator >> defineHierarchy [
 	namespace --|> scopingEntity.
 	namespace --|> #TNamespace.
 	namespace --|> #TWithAnnotationTypes.
+	namespace --|> #TWithClasses.
 
 	package --|> scopingEntity.
 	package --|> #TPackage.

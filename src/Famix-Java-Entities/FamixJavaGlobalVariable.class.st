@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaGlobalVariable,
 	#superclass : #MooseEntity,
-	#traits : 'FamixJavaTStructuralEntity + FamixTGlobalVariable',
-	#classTraits : 'FamixJavaTStructuralEntity classTrait + FamixTGlobalVariable classTrait',
+	#traits : 'FamixJavaTStructuralEntity + FamixTGlobalVariable + FamixTWithModifiers',
+	#classTraits : 'FamixJavaTStructuralEntity classTrait + FamixTGlobalVariable classTrait + FamixTWithModifiers classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
