@@ -1,11 +1,31 @@
 Class {
-	#name : #FamixSmalltalkSourceLanguageTest,
-	#superclass : #TestCase,
+	#name : #FamixStSourceLanguageTest,
+	#superclass : #FamixStEntityTest,
 	#category : #'Famix-PharoSmalltalk-Tests'
 }
 
 { #category : #tests }
-FamixSmalltalkSourceLanguageTest >> testSourcedEntities [
+FamixStSourceLanguageTest >> actualClass [ 
+		^ FamixStSourceLanguage
+]
+
+{ #category : #tests }
+FamixStSourceLanguageTest >> testDefaultUnknownLanguage [
+	self assert: MooseModel new sourceLanguage isNil
+]
+
+{ #category : #tests }
+FamixStSourceLanguageTest >> testIsUnknown [
+	self deny: self actualClass new isUnknown 
+]
+
+{ #category : #tests }
+FamixStSourceLanguageTest >> testName [
+	self assert:  self actualClass new name equals: 'Smalltalk'
+]
+
+{ #category : #tests }
+FamixStSourceLanguageTest >> testSourcedEntities [
 	| model |
 	MooseModel resetMeta.
 	model := FamixStMooseModel importFromMSEStream:

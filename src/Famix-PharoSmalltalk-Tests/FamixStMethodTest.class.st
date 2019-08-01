@@ -1,6 +1,6 @@
 Class {
-	#name : #FamixSmalltalkMethodTest,
-	#superclass : #TestCase,
+	#name : #FamixStMethodTest,
+	#superclass : #FamixStNamedEntityTest,
 	#instVars : [
 		'model',
 		'c1',
@@ -16,8 +16,13 @@ Class {
 	#category : #'Famix-PharoSmalltalk-Tests'
 }
 
+{ #category : #helpers }
+FamixStMethodTest >> actualClass [ 
+		^ FamixStMethod
+]
+
 { #category : #running }
-FamixSmalltalkMethodTest >> setUp [
+FamixStMethodTest >> setUp [
 
 	super setUp.
 
@@ -37,13 +42,37 @@ FamixSmalltalkMethodTest >> setUp [
 	m2 parentType: c2. "opposite way"
 	c2 addMethod: m3.
 	m1 sourceAnchor: anchor1.
-	m2 sourceAnchor: anchor2.
-	m3 sourceAnchor: anchor3.
+]
 
+{ #category : #testing }
+FamixStMethodTest >> testIsConstructor [
+	self
+		assert:
+			(self actualClass new
+				isConstructor: true;
+				isConstructor).
+	self
+		deny:
+			(self actualClass new
+				isConstructor: true;
+				isConstructor: false;
+				isConstructor).
+	self
+		assert:
+			(self actualClass new
+				isConstructor: true;
+				isConstructor: false;
+				isConstructor: true;
+				isConstructor)
+]
+
+{ #category : #testing }
+FamixStMethodTest >> testIsConstructorByKind [
+	self assert: (self actualClass new kind: 'constructor'; isConstructor)
 ]
 
 { #category : #tests }
-FamixSmalltalkMethodTest >> testNumberOfMethodProtocols [
+FamixStMethodTest >> testNumberOfMethodProtocols [
 
 	m1 protocol: #accessing.
 	self assert: c1 numberOfMethodProtocols equals: 1.
@@ -53,7 +82,7 @@ FamixSmalltalkMethodTest >> testNumberOfMethodProtocols [
 ]
 
 { #category : #tests }
-FamixSmalltalkMethodTest >> testProtocol [
+FamixStMethodTest >> testProtocol [
 
 	self assert: m1 protocol isNil.
 	m1 protocol: 'accessing'.
