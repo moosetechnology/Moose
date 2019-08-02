@@ -93,6 +93,7 @@ FamixPropertiesTest >> testClassInvocations [
 
 { #category : #testing }
 FamixPropertiesTest >> testClassLinesOfCode [
+	self skip: 'computation of numberOfLinesOfCode is not correct currently in Pharo and requires management of source for classes'.
 	self model allClasses do: [ :each | self assert: each numberOfLinesOfCode >= 0 ].
 	self assert: (self nodeClass propertyNamed: #numberOfLinesOfCode) equals: 58.
 	self assert: self nodeClass numberOfLinesOfCode equals: 58
