@@ -25,11 +25,35 @@ FamixStClass >> accessedAttributes [
 	^ self methodsWithoutSutbsAndConstructors asOrderedCollection flatCollect: [ :method | method accessedAttributes ]
 ]
 
+{ #category : #'as yet unclassified' }
+FamixStClass >> classSide [
+	^self isClassSide
+		ifFalse:
+			[self mooseModel allClasses
+				entityNamed: (self mooseName , '_class') asSymbol]
+		ifTrue: [self]
+]
+
 { #category : #'Famix-Extensions-nav All Dependencies' }
 FamixStClass >> clientPackages [
 	"returns a set of all the packages that depend on the receiver"
 
 	^ (self queryAllIncoming atScope: FamixTPackage) withoutSelfLoops
+]
+
+{ #category : #'as yet unclassified' }
+FamixStClass >> extendedInPackages [
+
+	^ self privateState cacheAt: #extendedInPackages
+							ifAbsentPut: [ self extendedMethods collectAsSet: [ :m| m packageScope ] ]
+]
+
+{ #category : #'as yet unclassified' }
+FamixStClass >> extendedMethods [
+	"select methods which are class extensions in this class"
+
+	^  self privateState cacheAt: #extendedMethods
+							ifAbsentPut: [ self methods select: [ :m| m isExtension ] ]
 ]
 
 { #category : #'Famix-Implementation' }
@@ -51,12 +75,26 @@ FamixStClass >> instanceSide [
 		ifFalse: [self]
 ]
 
+{ #category : #'as yet unclassified' }
+FamixStClass >> isAnonymousClass [
+	^  self container notNil and: [
+			self container isMethod or: [
+				self name isAllDigits or: [
+					'*_anonymous_*' match: self name ]] ]
+]
+
 { #category : #testing }
 FamixStClass >> isClassSide [
 	"Kind of a hack. Uses the FAMIX2 Smalltalk naming convention that every Smalltalk
 	 metaclass has _class appended to the classname of the class it is a metaclass of."
 
 	^'*_class' match: self name
+]
+
+{ #category : #'as yet unclassified' }
+FamixStClass >> isExtended [
+
+	^ self methods anySatisfy: [ :m| m isExtension ]
 ]
 
 { #category : #'Famix-Implementation' }
@@ -72,6 +110,26 @@ FamixStClass >> isIgnored [
 { #category : #testing }
 FamixStClass >> isInstanceSide [
 	^self isClassSide not
+]
+
+{ #category : #'as yet unclassified' }
+FamixStClass >> isLonelyWithin: aClassGroup [
+	^ ( self subclassHierarchyGroup intersection: aClassGroup ) isEmpty and: [
+		( self superclassHierarchyGroup intersection: aClassGroup ) isEmpty ]
+]
+
+{ #category : #'as yet unclassified' }
+FamixStClass >> isSUnitTestCase [
+	self allSuperclassesDo: [:each | each name = 'TestCase' ifTrue: [^ true] ].
+	^ false
+]
+
+{ #category : #'as yet unclassified' }
+FamixStClass >> localMethods [
+	"select all locally defined methods"
+
+	^ self privateState cacheAt: #localMethods
+							ifAbsentPut: [ self methods reject: [ :m| m isExtension ] ]
 ]
 
 { #category : #'Famix-Implementation' }
@@ -104,6 +162,15 @@ FamixStClass >> namespaceScope [
 	
 	^ self parentPackage 
 		ifNotNil: [ self parentPackage namespaceScope ]
+]
+
+{ #category : #'as yet unclassified' }
+FamixStClass >> providerPackages [
+	"returns a set of all the packages that the receiver depends on (they include some classes that the receiver inherites, staticly accesses, or uses some of their methods)"
+
+	"Moose cook was: ^ self inheritedPackages union: self invokedPackages"
+
+	^ (self queryAllOutgoing atScope: FamixTPackage) withoutSelfLoops
 ]
 
 { #category : #accessing }

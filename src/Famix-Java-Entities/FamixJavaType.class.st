@@ -102,13 +102,6 @@ FamixJavaType >> entityHasIncomingTypeDeclarations [
 ]
 
 { #category : #testing }
-FamixJavaType >> hasMethodWithSignature: aStringOrSymbol [
-	| symbol |
-	symbol := aStringOrSymbol asSymbol.
-	^self methods anySatisfy: [:each | each signature asSymbol = symbol]
-]
-
-{ #category : #testing }
 FamixJavaType >> hasMethodsAnnotatedWith: aString [
 	^ self methods anySatisfy: [ :each | each isAnnotatedWith: aString ]
 ]
@@ -127,12 +120,6 @@ FamixJavaType >> implementationOf: signature [
 FamixJavaType >> implementedInterfaces [
 
 	^ self directSuperclasses select: #isInterface
-]
-
-{ #category : #'Famix-Implementation' }
-FamixJavaType >> implements: aString [
-	^ self methods
-		anySatisfy: [ :each | aString = each signature	 "was changed from match: for performances and because signature is case sensitive" ]
 ]
 
 { #category : #accessing }
@@ -213,27 +200,6 @@ FamixJavaType >> isTestCase [
 	<derived>
 	<MSEComment: 'True if the method is considered as a Java test'>
 	^ self isJUnit3TestCase or: [ self isJUnit4TestCase ] 
-]
-
-{ #category : #'Famix-Extensions-operations' }
-FamixJavaType >> lookUp: aMethodSignature [ 
-	"Returns the first method that has as signature #aMethodSignature. 
-	The search starts from the receiver's methods and traveses the inherited methods from the receiver's superclasses heirarchy.
-	If such a method has not been found, it returns nil"
-
-	| c toSearchIt searchedM |
-	c := self.
-	searchedM := nil.
-	toSearchIt := true.
-	[c notNil and: [toSearchIt]] whileTrue: 
-			[searchedM := c methods 
-						detect: [:m | m signature = aMethodSignature]
-						ifNone: [nil].
-			searchedM
-				ifNil: [c := c superclass]
-				ifNotNil: [toSearchIt := false]
-			].
-	^searchedM
 ]
 
 { #category : #'as yet unclassified' }
@@ -326,15 +292,6 @@ FamixJavaType >> typeScope [
 	"all types are not classes. Redefined in FamixClass"
 
 	^ self
-]
-
-{ #category : #'Famix-Implementation' }
-FamixJavaType >> understands: signature [
-	"returns true if a class is able to respond to an invocation to aSignature on itself; false otherwise"
-
-	self withSuperclassesDo: [:each | 
-		(each implements: signature) ifTrue: [^true]].
-	^false
 ]
 
 { #category : #'Famix-Implementation' }

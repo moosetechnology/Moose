@@ -20,6 +20,40 @@ FamixTWithMethods >> addMethod: aMethod [
 	methods add: aMethod
 ]
 
+{ #category : #testing }
+FamixTWithMethods >> hasMethodWithSignature: aStringOrSymbol [
+	| symbol |
+	symbol := aStringOrSymbol asSymbol.
+	^self methods anySatisfy: [:each | each signature asSymbol = symbol]
+]
+
+{ #category : #'Famix-Implementation' }
+FamixTWithMethods >> implements: aString [
+	^ self methods
+		anySatisfy: [ :each | aString = each signature	 "was changed from match: for performances and because signature is case sensitive" ]
+]
+
+{ #category : #'Famix-Extensions-operations' }
+FamixTWithMethods >> lookUp: aMethodSignature [ 
+	"Returns the first method that has as signature #aMethodSignature. 
+	The search starts from the receiver's methods and traveses the inherited methods from the receiver's superclasses heirarchy.
+	If such a method has not been found, it returns nil"
+
+	| c toSearchIt searchedM |
+	c := self.
+	searchedM := nil.
+	toSearchIt := true.
+	[c notNil and: [toSearchIt]] whileTrue: 
+			[searchedM := c methods 
+						detect: [:m | m signature = aMethodSignature]
+						ifNone: [nil].
+			searchedM
+				ifNil: [c := c superclass]
+				ifNotNil: [toSearchIt := false]
+			].
+	^searchedM
+]
+
 { #category : #accessing }
 FamixTWithMethods >> methods [
 
@@ -145,6 +179,15 @@ FamixTWithMethods >> numberOfMethods: aNumber [
 	self privateState propertyAt: #numberOfMethods put: aNumber
 ]
 
+{ #category : #'Famix-Implementation' }
+FamixTWithMethods >> understands: signature [
+	"returns true if a class is able to respond to an invocation to aSignature on itself; false otherwise"
+
+	self withSuperclassesDo: [:each | 
+		(each implements: signature) ifTrue: [^true]].
+	^false
+]
+
 { #category : #metrics }
 FamixTWithMethods >> weightedMethodCount [
 	<MSEProperty: #weightedMethodCount type: #Number>
@@ -160,4 +203,9 @@ FamixTWithMethods >> weightedMethodCount [
 FamixTWithMethods >> weightedMethodCount: aNumber [
 
 	self privateState propertyAt: #weightedMethodCount put: aNumber
+]
+
+{ #category : #'Famix-Implementation' }
+FamixTWithMethods >> withSuperclassesDo: aBlock [ 
+	self explicitRequirement
 ]
