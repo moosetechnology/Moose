@@ -61,27 +61,25 @@ MooseAbstractGroup >> allSatisfy: aBlock [
 ]
 
 { #category : #groups }
-MooseAbstractGroup >> allWithSubTypesOf: aSmalltalkClass [ 
+MooseAbstractGroup >> allWithSubTypesOf: aSmalltalkClass [
 	^ self allWithSubTypesOf: aSmalltalkClass ofGroupClass: MooseGroup 
 ]
 
 { #category : #groups }
-MooseAbstractGroup >> allWithSubTypesOf: aSmalltalkClass ofGroupClass:  aGroupSmalltalkClass [
-	^ self privateState cacheAt: 'sub', aSmalltalkClass className
-		ifAbsentPut: [
-			aGroupSmalltalkClass 
-				withAll: (aSmalltalkClass withAllSubclasses flatCollect: [:each |
-		self entityStorage selectAllWithType: each ])
-				withDescription: 'All ' , aSmalltalkClass name asLowercase asEnglishPlural]
+MooseAbstractGroup >> allWithSubTypesOf: aSmalltalkClass ofGroupClass: aGroupSmalltalkClass [
+	^ aGroupSmalltalkClass
+		withAll: ((aSmalltalkClass withAllSubclasses , aSmalltalkClass allUsers asOrderedCollection flattened flatCollect: #withAllSubclasses) asSet flatCollect: [ :each | self entityStorage selectAllWithType: each ])
+		withDescription: 'All ' , aSmalltalkClass name asLowercase asEnglishPlural
 ]
 
 { #category : #groups }
-MooseAbstractGroup >> allWithType: aSmalltalkClass [ 
-	^ self allWithType: aSmalltalkClass ofGroupClass: MooseGroup 
+MooseAbstractGroup >> allWithType: aSmalltalkType [
+	^ self allWithType: aSmalltalkType ofGroupClass: MooseGroup 
 ]
 
 { #category : #groups }
 MooseAbstractGroup >> allWithType: aSmalltalkClass ofGroupClass: aGroupSmalltalkClass [
+	aSmalltalkClass isTrait ifTrue: [ MooseAllWithTypeOnTrait signal ].
 	^ self privateState 
 		cacheAt: aSmalltalkClass
 		ifAbsentPut: [

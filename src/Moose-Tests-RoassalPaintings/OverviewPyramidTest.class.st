@@ -33,6 +33,7 @@ OverviewPyramidTest >> prepareAnyMooseModel [
 OverviewPyramidTest >> testOpen [
 
 	| model |
+	self timeLimit: 30 seconds.
 	model := self prepareAnyMooseModel.
 	self shouldnt: (OverviewPyramid on: model) open delete raise: Error.
 ]

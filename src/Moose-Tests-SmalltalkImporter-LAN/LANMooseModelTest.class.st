@@ -22,6 +22,6 @@ LANMooseModelTest >> setUp [
 
 { #category : #tests }
 LANMooseModelTest >> testIncludeElementOfType [
-	self assert: (self model includesElementsOfType: FamixTClass).
+	self assert: (self model includesElementsOfType: FamixStClass).
 	self deny: (self model includesElementsOfType: SmallInteger)
 ]

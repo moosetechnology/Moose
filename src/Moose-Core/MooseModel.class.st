@@ -424,7 +424,7 @@ MooseModel >> includes: anItem [
 MooseModel >> includesElementsOfType: aClass [
 
 	"self entities detect: [:each | each class = aClass] ifNone: [^ false].
-	^true"
+	^true" 
 	^ (self allWithType: aClass) isEmpty not
 ]
 
