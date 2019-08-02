@@ -6,7 +6,7 @@ Class {
 
 { #category : #util }
 MooseMSEImporterTest >> readMSEStream: aStream [ 
-	^ MooseModel new importFromMSEStream: aStream
+	^ FamixJavaMooseModel new importFromMSEStream: aStream
 ]
 
 { #category : #tests }
@@ -14,18 +14,16 @@ MooseMSEImporterTest >> testComplex [
 	| mooseModel |
 	mooseModel := self readMSEStream: (
 '(
-	(FAMIX.Namespace (id: 1) (name ''aNamespace''))
+	(Famix-Java-Entities.Class (id: 2) (name ''ClassA'') (parentPackage (ref: 201)))
+	(Famix-Java-Entities.Method (name ''methodA1'') (signature ''methodA1()'') (parentType (ref: 2)) (LOC 2))
+	(Famix-Java-Entities.Attribute (name ''attributeA1'') (parentType (ref: 2)))
 
-	(FAMIX.Class (id: 2) (name ''ClassA'') (container (ref: 1)) (parentPackage (ref: 201)))
-	(FAMIX.Method (name ''methodA1'') (signature ''methodA1()'') (parentType (ref: 2)) (LOC 2))
-	(FAMIX.Attribute (name ''attributeA1'') (parentType (ref: 2)))
+	(Famix-Java-Entities.Class (id: 3) (name ''ClassB'') (container (ref: 1)) (parentPackage (ref: 201)))
 
-	(FAMIX.Class (id: 3) (name ''ClassB'') (container (ref: 1)) (parentPackage (ref: 201)))
+	(Famix-Java-Entities.Inheritance (subclass (ref: 3)) (superclass (ref: 2)))
 
-	(FAMIX.Inheritance (subclass (ref: 3)) (superclass (ref: 2)))
-
-	(FAMIX.Package (id: 201) (name ''aPackage''))
-	(FAMIX.Package (id: 202) (name ''aPackage'') (parentPackage (ref: 201)))
+	(Famix-Java-Entities.Package (id: 201) (name ''aPackage''))
+	(Famix-Java-Entities.Package (id: 202) (name ''aPackage'') (parentPackage (ref: 201)))
 )' readStream).
 	
 	self assert: (mooseModel entities notEmpty).
@@ -36,7 +34,7 @@ MooseMSEImporterTest >> testComplex [
 { #category : #tests }
 MooseMSEImporterTest >> testOneClass [
 	| mooseModel |
-	mooseModel := self readMSEStream: '((FAMIX.Class (name ''ClassA'')))' readStream.
+	mooseModel := self readMSEStream: '((Famix-Java-Entities.Class (name ''ClassA'')))' readStream.
 	self assert: mooseModel entities notEmpty.
 	self assert: (mooseModel allClasses collect: #name) first equals: 'ClassA'
 ]
@@ -47,8 +45,8 @@ MooseMSEImporterTest >> testOneClassAndOnePackage [
 	mooseModel := self
 		readMSEStream:
 			'(
-	(FAMIX.Class (id: 2) (name ''ClassA'') (parentPackage (ref: 201)))
-	(FAMIX.Package (id: 201) (name ''aPackage''))	
+	(Famix-Java-Entities.Class (id: 2) (name ''ClassA'') (parentPackage (ref: 201)))
+	(Famix-Java-Entities.Package (id: 201) (name ''aPackage''))	
 )' readStream.
 	self assert: mooseModel entities notEmpty.
 	self assert: (mooseModel allPackages collect: #name) first equals: 'aPackage'.
@@ -58,7 +56,7 @@ MooseMSEImporterTest >> testOneClassAndOnePackage [
 { #category : #tests }
 MooseMSEImporterTest >> testOnePackage [
 	| mooseModel |
-	mooseModel := self readMSEStream: ('((FAMIX.Package (name ''PackageA'')))' readStream).
+	mooseModel := self readMSEStream: ('((Famix-Java-Entities.Package (name ''PackageA'')))' readStream).
 	
 	self assert: (mooseModel entities notEmpty).
 	self assert: ((mooseModel allPackages collect: #name) includes: 'PackageA').
@@ -67,7 +65,9 @@ MooseMSEImporterTest >> testOnePackage [
 { #category : #tests }
 MooseMSEImporterTest >> testOnePrimitiveType [
 	| mooseModel |
-	mooseModel := self readMSEStream: '((FAMIX.PrimitiveType (name ''int'')))' readStream.
+	self skip: 'allPrimitiveTypes is implemented in MooseAbstractGroup but the trait FamixTPrimitiveType does not exist in FamixGenerator. '.
+	self flag: 'allPrimitiveTypes is implemented in MooseAbstractGroup but the trait FamixTPrimitiveType does not exist in FamixGenerator. '.
+	mooseModel := self readMSEStream: '((Famix-Java-Entities.PrimitiveType (name ''int'')))' readStream.
 	self assert: mooseModel entities notEmpty.
 	self assert: (mooseModel allPrimitiveTypes collect: #name) first equals: 'int'
 ]
@@ -75,6 +75,9 @@ MooseMSEImporterTest >> testOnePrimitiveType [
 { #category : #tests }
 MooseMSEImporterTest >> testOnePrimitiveTypeAndMethod [
 	| mooseModel |
+	self skip: 'allPrimitiveTypes is implemented in MooseAbstractGroup but the trait FamixTPrimitiveType does not exist in FamixGenerator. '.
+	self flag: 'allPrimitiveTypes is implemented in MooseAbstractGroup but the trait FamixTPrimitiveType does not exist in FamixGenerator. '.
+	
 	mooseModel := self
 		readMSEStream:
 			'(
@@ -89,7 +92,7 @@ MooseMSEImporterTest >> testOnePrimitiveTypeAndMethod [
 { #category : #tests }
 MooseMSEImporterTest >> testPropertyWithNoSetter [
 	| mooseModel |
-	mooseModel := self readMSEStream: '((FAMIX.Class (name ''ClassA'') (numberOfLinesOfCode 42)))' readStream.
+	mooseModel := self readMSEStream: '((Famix-Java-Entities.Class (name ''ClassA'') (numberOfLinesOfCode 42)))' readStream.
 	self assert: mooseModel allClasses first name equals: 'ClassA'.
 	self assert: mooseModel allClasses first numberOfLinesOfCode equals: 42
 ]
@@ -97,14 +100,13 @@ MooseMSEImporterTest >> testPropertyWithNoSetter [
 { #category : #tests }
 MooseMSEImporterTest >> testSimple [
 	| mooseSample mooseModel classA |
-	mooseSample := MooseSampleData new.
+	mooseSample := MooseJavaSampleData new.
 	mooseModel := self readMSEStream: mooseSample modelVersion1 readStream.
 	self assert: mooseModel entities notEmpty.
 	self assert: (mooseModel allClasses collect: #name) asSortedCollection asArray equals: {'ClassA' . 'ClassB'}.
 	self assert: (mooseModel allPackages collect: #name) asArray equals: {'aPackage' . 'aPackage'}.
-	classA := mooseModel entityNamed: #aNamespace::ClassA.
+	classA := mooseModel entityNamed: #ClassA.
 	self assert: classA notNil.
-	self assert: classA container == (mooseModel entityNamed: #aNamespace).
 	self assert: classA methods size equals: 1.	"====="
 	self shouldnt: [ self readMSEStream: mooseSample modelVersion2 readStream ] raise: Error.
 	self shouldnt: [ self readMSEStream: mooseSample modelVersion3 readStream ] raise: Error.
@@ -115,7 +117,7 @@ MooseMSEImporterTest >> testSimple [
 { #category : #tests }
 MooseMSEImporterTest >> testUndeclaredProperty [
 	| mooseModel |
-	mooseModel := self readMSEStream: '((FAMIX.Class (name ''ClassA'') (Undeclared 42) ))' readStream.
+	mooseModel := self readMSEStream: '((Famix-Java-Entities.Class (name ''ClassA'') (Undeclared 42) ))' readStream.
 	self assert: mooseModel allClasses first name equals: 'ClassA'.
 	self assert: (mooseModel allClasses first propertyNamed: #Undeclared) notNil.
 	self assert: (mooseModel allClasses first propertyNamed: #Undeclared) equals: 42

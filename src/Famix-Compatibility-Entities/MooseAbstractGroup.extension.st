@@ -4,6 +4,7 @@ Extension { #name : #MooseAbstractGroup }
 MooseAbstractGroup >> allPrimitiveTypes [
 	
 	<navigation: 'All primitive types'>
+	self flag: 'FamixTPrimitiveType should be added'.
 	^(self allWithType: FAMIXPrimitiveType) sorted: [:a :b | a name < b name]; yourself
 ]
 
