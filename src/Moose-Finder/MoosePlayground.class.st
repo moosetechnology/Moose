@@ -20,7 +20,7 @@ MoosePlayground class >> menuCommandOn: aBuilder [
 		parent: #Moose;
 		keyText: 'o, w';
 		label: 'Moose Playground';
-		help: 'Plaground enhanced for usage in Moose';
+		help: 'Playground enhanced for usage in Moose';
 		icon: (MooseIcons mooseIcon scaledToSize: 16@16);
 		action:[ MoosePlayground open ];
 		withSeparatorAfter
