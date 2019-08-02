@@ -96,16 +96,16 @@ FamixTest >> testSlot [
 { #category : #tests }
 FamixTest >> testSourcesAnchorsAreNotDuplicatedAfterExport [
 	| model package tempFile importedModel ws |
-	model := MooseModel new name: 'Perdu'.
-	package := FAMIXPackage new
+	model := FamixJavaMooseModel new name: 'Perdu'.
+	package := FamixJavaPackage new
 		name: 'Package';
 		mooseModel: model;
 		yourself.
-	FAMIXClass new
+	FamixJavaClass new
 		name: 'Class';
-		container: package;
+		parentPackage: package;
 		sourceAnchor:
-			(FAMIXSourceTextAnchor new
+			(FamixJavaSourceTextAnchor new
 				source: 'some text';
 				mooseModel: model;
 				yourself);
@@ -114,7 +114,7 @@ FamixTest >> testSourcesAnchorsAreNotDuplicatedAfterExport [
 	ws := tempFile writeStream.
 	model exportToMSEStream: ws.
 	ws close; flush.
-	importedModel := MooseModel new importFromMSEStream: tempFile readStream.
+	importedModel := FamixJavaMooseModel new importFromMSEStream: tempFile readStream.
 	self assert: importedModel size equals: model size.
 	self assert: importedModel allClasses anyOne sourceAnchor notNil
 ]

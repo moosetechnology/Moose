@@ -10,6 +10,11 @@ VerveineJTestResource >> importModel [
 	model importFromMSEStream: self mse readStream
 ]
 
+{ #category : #setup }
+VerveineJTestResource >> modelClass [
+	^ FamixJavaMooseModel
+]
+
 { #category : #private }
 VerveineJTestResource >> mse [
 	^ '(
