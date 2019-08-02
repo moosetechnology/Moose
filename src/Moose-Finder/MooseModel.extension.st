@@ -29,10 +29,12 @@ MooseModel >> browseCodeWithPackages [
 ]
 
 { #category : #'*Moose-Finder' }
+MooseModel >> browseMeta [
+	^ MooseMetaBrowser new openOn: self metamodel
+]
+
+{ #category : #'*Moose-Finder' }
 MooseModel class >> browseMeta [
-	"
-	self browseMeta
-	"
 	^ MooseMetaBrowser new openOn: MooseModel meta
 ]
 
