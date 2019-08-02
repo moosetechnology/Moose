@@ -48,13 +48,6 @@ FamixPropertiesTest >> testAttributesOfStubClasses [
 ]
 
 { #category : #testing }
-FamixPropertiesTest >> testClassAllProperties [
-	| class |
-	class := self model entityNamed: LANNode mooseName.
-	self deny: (class allDeclaredProperties select: [:each | each name = #modifiers]) isEmpty.
-]
-
-{ #category : #testing }
 FamixPropertiesTest >> testClassAttributes [
 	self assert: self nodeClass numberOfAttributes equals: 2.
 	self assert: self nodeClass numberOfAttributesInherited equals: 3.

@@ -82,11 +82,11 @@ MooseFinderTest >> tearDown [
 { #category : #tests }
 MooseFinderTest >> testAsMooseFinderItemNamed [
 	| entity1 entity2 model2 |
-	entity1 := FAMIXType new.
+	entity1 := FamixJavaType new.
 	entity1 name: 'hello'.
-	entity2 := FAMIXType new.
+	entity2 := FamixJavaType new.
 	entity2 name: 'hello2'.
-	model := MooseModel new.
+	model := FamixJavaMooseModel new.
 	model
 		addAll:
 			{entity1.
@@ -178,7 +178,7 @@ MooseFinderTest >> testMooseIcon [
 { #category : #tests }
 MooseFinderTest >> testProperty [
 	| entity |
-	entity := FAMIXEntity new.
+	entity := FamixStEntity new.
 	self assert: entity properties isEmpty.
 	self assert: (entity propertyNamed: #aKey ifNil: [ 10 ]) equals: 10.
 	entity propertyNamed: #aKey ifAbsentPut: 20.
