@@ -66,12 +66,6 @@ LANImporterTest >> testAllImplicitVariablesAreStoredInTheModel [
 ]
 
 { #category : #tests }
-LANImporterTest >> testClassModifiers [	
-	self model allClasses 
-		do: [:each | self assert: (each modifiers isKindOf: Set)].
-]
-
-{ #category : #tests }
 LANImporterTest >> testClassName [ 
 	 "self debug: #testClassName"
 	
@@ -366,13 +360,6 @@ LANImporterTest >> testNamespace [
 	| namespace |
 	namespace := self model entityNamed: #Smalltalk.
 	self assert: (namespace usesFamixTrait: FamixTNamespace)
-]
-
-{ #category : #tests }
-LANImporterTest >> testNamespaceReification [ 
-	 
-	self model allClasses 
-		do: [:each | self assert: (each belongsTo usesFamixTrait: FamixTNamespace)]
 ]
 
 { #category : #tests }

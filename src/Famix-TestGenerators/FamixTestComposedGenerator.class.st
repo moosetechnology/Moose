@@ -95,18 +95,3 @@ FamixTestComposedGenerator >> define [
 		
 
 ]
-
-{ #category : #definition }
-FamixTestComposedGenerator >> newBuilder [
-
-	"| mqBuilder |
-
-	mqBuilder := FamixMooseQueryGenerator builderWithDefinitions.
-
-	self adoptBuilder: mqBuilder.
-
-	^ mqBuilder
-		doNotGenerateCurrent;
-		generator: self;
-		yourself."^ super newBuilder 
-]

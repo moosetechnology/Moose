@@ -56,20 +56,6 @@ FAMIXClassNavigationTest >> testProviderClasses [
 ]
 
 { #category : #'MooseKGB-TestFamix3-allDependencies' }
-FAMIXClassNavigationTest >> testProviderPackage [
-	self assert: self c15FullReferencerOutSide providerPackages size equals: 3.
-	self
-		assert:
-			(self c15FullReferencerOutSide providerPackages
-				equalsTo:
-					(Set new
-						add: self namespace3ReferencerReferee;
-						add: self namespace5InteractedReferencer;
-						add: self namespace6InteractedReferee;
-						yourself))
-]
-
-{ #category : #'MooseKGB-TestFamix3-allDependencies' }
 FAMIXClassNavigationTest >> testProviderPackages [
 	| p10 p11 p7 pEx |
 	p10 := self packageP10InteractedReferee.

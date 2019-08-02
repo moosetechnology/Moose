@@ -33,11 +33,14 @@ OverviewPyramidTest >> prepareAnyMooseModel [
 OverviewPyramidTest >> testOpen [
 
 	| model |
+	self skip: 'anonymous classes are not yet managed in Pharo'.
+	
 	model := self prepareAnyMooseModel.
 	self shouldnt: (OverviewPyramid on: model) open delete raise: Error.
 ]
 
 { #category : #tests }
 OverviewPyramidTest >> testoverviewPyramidMetrics [
+	self skip: 'anonymous classes are not yet managed in Pharo'.
 	self assert: (self model overviewPyramidMetrics isKindOf: OverviewPyramidMetrics)
 ]

@@ -19,6 +19,7 @@ MooseModelRoassalPaintingsExtensionsTest >> model [
 { #category : #tests }
 MooseModelRoassalPaintingsExtensionsTest >> testviewOverviewPyramid [
 	| windows |
+	self skip: 'anonymous classes are not yet managed in Pharo'.
 	windows := self getAllWindows.
 	[self model viewOverviewPyramid] 
 		ensure: [ (self getAllWindows copyWithoutAll: windows) do: #delete   ].
