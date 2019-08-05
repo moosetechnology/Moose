@@ -32,7 +32,7 @@ MooseAbstractGroup >> allAttributes [
 MooseAbstractGroup >> allCaughtExceptions [
 	<navigation: 'All caught exceptions'>
 	<package: #Java>
-	^ self allWithSubTypesOf: FamixTCaughtException
+	^ self allUsing: FamixTCaughtException
 ]
 
 { #category : #'*Famix-Traits' }
