@@ -34,7 +34,7 @@ OverviewPyramidTest >> testOpen [
 
 	| model |
 	self skip: 'anonymous classes are not yet managed in Pharo'.
-	
+	self timeLimit: 30 seconds.
 	model := self prepareAnyMooseModel.
 	self shouldnt: (OverviewPyramid on: model) open delete raise: Error.
 ]

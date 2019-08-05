@@ -332,7 +332,7 @@ MooseModel >> cacheMooseGroups [
 MooseModel >> detectEncodingOfAllFileAnchors [
 	"I can be execute to reduce the time of detection of the encoding of each file anchor because multiple file anchor can point to the same file."
 
-	(((self allWithSubTypesOf: FamixTFileAnchor) asOrderedCollection reject: #privateHasEncoding) groupedBy: #fileName)
+	(((self allUsing: FamixTFileAnchor) asOrderedCollection reject: #privateHasEncoding) groupedBy: #fileName)
 		valuesDo: [ :anchors | 
 			| encoding |
 			encoding := anchors anyOne detectEncoding.
@@ -458,7 +458,7 @@ MooseModel >> includes: anItem [
 MooseModel >> includesElementsOfType: aClass [
 
 	"self entities detect: [:each | each class = aClass] ifNone: [^ false].
-	^true"
+	^true" 
 	^ (self allWithType: aClass) isEmpty not
 ]
 
