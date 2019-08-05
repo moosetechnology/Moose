@@ -45,7 +45,7 @@ MooseGroupTest >> testAllWithSubTypesOfInModel [
 	model addAll: { FamixJavaClass new. FamixJavaParameterizableClass new }.
 	self assert: (model allWithSubTypesOf: FamixJavaClass) size equals: 2.
 	self assert: (model allWithSubTypesOf: FamixJavaParameterizableClass) size equals: 1.
-	self assert: (model allWithSubTypesOf: FamixTClass) size equals: 2.
+	self assert: (model allUsing: FamixTClass) size equals: 2.
 	self assert: (model allWithSubTypesOf: MooseEntity) size equals: 2
 ]
 

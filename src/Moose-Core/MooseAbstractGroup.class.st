@@ -61,14 +61,27 @@ MooseAbstractGroup >> allSatisfy: aBlock [
 ]
 
 { #category : #groups }
+MooseAbstractGroup >> allUsing: aTrait [
+	^ self allUsing: aTrait ofGroupClass: MooseGroup 
+]
+
+{ #category : #groups }
+MooseAbstractGroup >> allUsing: aTrait ofGroupClass: aGroupSmalltalkClass [
+	^ aGroupSmalltalkClass
+		withAll: ((aTrait allUsers flattened flatCollect: #withAllSubclasses) asSet flatCollect: [ :each | self entityStorage selectAllWithType: each ])
+		withDescription: 'All ' , aTrait name asLowercase asEnglishPlural
+]
+
+{ #category : #groups }
 MooseAbstractGroup >> allWithSubTypesOf: aSmalltalkClass [
 	^ self allWithSubTypesOf: aSmalltalkClass ofGroupClass: MooseGroup 
 ]
 
 { #category : #groups }
 MooseAbstractGroup >> allWithSubTypesOf: aSmalltalkClass ofGroupClass: aGroupSmalltalkClass [
+	aSmalltalkClass isTrait ifTrue: [ MooseAllWithTypeOnTrait signal ].
 	^ aGroupSmalltalkClass
-		withAll: ((aSmalltalkClass withAllSubclasses , aSmalltalkClass allUsers asOrderedCollection flattened flatCollect: #withAllSubclasses) asSet flatCollect: [ :each | self entityStorage selectAllWithType: each ])
+		withAll: ((aSmalltalkClass withAllSubclasses) asSet flatCollect: [ :each | self entityStorage selectAllWithType: each ])
 		withDescription: 'All ' , aSmalltalkClass name asLowercase asEnglishPlural
 ]
 

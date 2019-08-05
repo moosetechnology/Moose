@@ -11,5 +11,5 @@ MooseAllWithTypeOnTrait >> isResumable [
 
 { #category : #private }
 MooseAllWithTypeOnTrait >> messageText [
-	^ 'Do not use allWithTrait with a Trait. Use allWithSubTypesOf:'
+	^ 'Use #allUsing: with Traits'
 ]

@@ -19,7 +19,7 @@ LANAbstractImportTest >> model [
 LANAbstractImportTest >> testClasses [
 	"self debug: #testClasses"
 	self model metamodel.
-	self deny: (self model allWithSubTypesOf: FamixTClass) isEmpty
+	self deny: (self model allUsing: FamixTClass) isEmpty
 ]
 
 { #category : #private }
