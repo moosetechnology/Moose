@@ -60,14 +60,14 @@ MooseAbstractGroup >> allDeclaredExceptions [
 MooseAbstractGroup >> allEnumValues [
 	<navigation: 'All enum values'>
 	<package: #Java>
-	^ self allWithSubTypesOf: FamixTEnumValue 
+	^ self allUsing: FamixTEnumValue 
 ]
 
 { #category : #'*Famix-Traits' }
 MooseAbstractGroup >> allEnums [
 	<navigation: 'All enums'>
 	<package: #Java>
-	^ self allWithSubTypesOf: FamixTWithEnumValues  
+	^ self allUsing: FamixTWithEnumValues  
 ]
 
 { #category : #'*Famix-Traits' }
@@ -85,7 +85,7 @@ MooseAbstractGroup >> allFolders [
 { #category : #'*Famix-Traits' }
 MooseAbstractGroup >> allFunctions [
 	<navigation: 'All functions'>
-	^ self allWithSubTypesOf: FamixTFunction
+	^ self allUsing: FamixTFunction
 ]
 
 { #category : #'*Famix-Traits' }
