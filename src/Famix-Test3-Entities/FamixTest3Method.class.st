@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixTest3Method,
 	#superclass : #FamixTest3NamedEntity,
-	#traits : 'FamixTInvocable + FamixTMethod + FamixTWithInvocations + FamixTWithReferences + FamixTWithTypes',
-	#classTraits : 'FamixTInvocable classTrait + FamixTMethod classTrait + FamixTWithInvocations classTrait + FamixTWithReferences classTrait + FamixTWithTypes classTrait',
+	#traits : 'FamixTMethod + FamixTWithTypes',
+	#classTraits : 'FamixTMethod classTrait + FamixTWithTypes classTrait',
 	#category : #'Famix-Test3-Entities-Entities'
 }
 

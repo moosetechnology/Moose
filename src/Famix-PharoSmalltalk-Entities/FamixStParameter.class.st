@@ -15,13 +15,6 @@ FamixStParameter class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixStParameter class >> requirements [
-
-	<generated>
-	^ { FamixStMethod }
-]
-
 { #category : #accessing }
 FamixStParameter >> belongsTo [
 

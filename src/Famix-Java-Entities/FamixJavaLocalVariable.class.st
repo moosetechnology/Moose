@@ -15,13 +15,6 @@ FamixJavaLocalVariable class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaLocalVariable class >> requirements [
-
-	<generated>
-	^ { FamixJavaMethod }
-]
-
 { #category : #accessing }
 FamixJavaLocalVariable >> belongsTo [
 
