@@ -12,7 +12,7 @@ MooseModel >> allModelEntities [
 { #category : #'*Famix-Traits' }
 MooseModel >> allSourceLanguages [
 
-	^ self allWithType: FamixTSourceLanguage.
+	^ self allUsing: FamixTSourceLanguage.
 
 ]
 

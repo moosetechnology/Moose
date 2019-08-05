@@ -18,8 +18,8 @@ LANAbstractImportTest >> model [
 { #category : #tests }
 LANAbstractImportTest >> testClasses [
 	"self debug: #testClasses"
-	
-	self deny: (self model entityStorage selectAllWithType: FamixTClass) isEmpty
+	self model metamodel.
+	self deny: (self model allUsing: FamixTClass) isEmpty
 ]
 
 { #category : #private }
