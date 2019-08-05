@@ -15,13 +15,6 @@ FamixStLocalVariable class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixStLocalVariable class >> requirements [
-
-	<generated>
-	^ { FamixStMethod }
-]
-
 { #category : #accessing }
 FamixStLocalVariable >> belongsTo [
 

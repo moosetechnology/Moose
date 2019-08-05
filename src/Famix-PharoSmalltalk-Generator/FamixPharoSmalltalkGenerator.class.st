@@ -144,14 +144,6 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	localVariable --|> #TLocalVariable.
 
 	method --|> containerEntity.
-	method --|> #TWithParameters.
-	method --|> #TInvocable.
-	method --|> #TWithInvocations.
-	method --|> #TWithReferences.
-	method --|> #TWithAccesses.
-	method --|> #TWithLocalVariables.
-	method --|> #TWithImplicitVariables.
-	method --|> #TWithSignature.
 	method --|> #TMethod.
 	method --|> #TWithClassScope.
 	method --|> #TTypedStructure.

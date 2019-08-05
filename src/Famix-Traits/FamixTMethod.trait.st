@@ -11,6 +11,8 @@ Trait {
 		'#kind => FMProperty',
 		'#parentType => FMOne type: #FamixTWithMethods opposite: #methods'
 	],
+	#traits : 'FamixTWithParameters + FamixTInvocable + FamixTWithInvocations + FamixTWithReferences + FamixTWithAccesses + FamixTWithLocalVariables + FamixTWithImplicitVariables + FamixTWithSignature',
+	#classTraits : 'FamixTWithParameters classTrait + FamixTInvocable classTrait + FamixTWithInvocations classTrait + FamixTWithReferences classTrait + FamixTWithAccesses classTrait + FamixTWithLocalVariables classTrait + FamixTWithImplicitVariables classTrait + FamixTWithSignature classTrait',
 	#category : #'Famix-Traits-Method'
 }
 
