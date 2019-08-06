@@ -25,6 +25,11 @@ Class {
 	#category : #'Famix-MetamodelBuilder-Tests'
 }
 
+{ #category : #running }
+FamixGenerateRemoteAccessorTestResource >> classNamed: aSymbol [
+	^ self class environment at: aSymbol ifAbsent: [ self fail ]
+]
+
 { #category : #accessing }
 FamixGenerateRemoteAccessorTestResource >> entityA [
 	^ entityA
@@ -37,17 +42,15 @@ FamixGenerateRemoteAccessorTestResource >> entityB [
 
 { #category : #running }
 FamixGenerateRemoteAccessorTestResource >> setUp [
-	| mooseModel |
 	super setUp.
 	FamixMetamodelGenerateRemoteAccessorTestGeneratorA generate.
 	FamixMetamodelGenerateRemoteAccessorTestGeneratorB generate.
 	FamixMetamodelGenerateRemoteAccessorTestGeneratorAB generate.
-	mooseModel := MooseModel new.
 	"the following entities are created by the generators
 	Do not remove them (or change the all the tests)"
-	entityA := (self class environment at: #FmxTestGenerateAccessorAEntityA ifAbsent: [ self fail ]) new.
-	entityB := (self class environment at: #FmxTestGenerateAccessorBEntityB ifAbsent: [ self fail ]) new.
-	mooseModel addAll: {entityA . entityB}
+	entityA := (self classNamed: #FmxTestGenerateAccessorAEntityA) new.
+	entityB := (self classNamed: #FmxTestGenerateAccessorBEntityB) new.
+	(self classNamed: #FmxTestGenerateAccessorABMooseModel) new addAll: {entityA . entityB}
 ]
 
 { #category : #running }
