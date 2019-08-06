@@ -27,13 +27,6 @@ FamixJavaSourceAnchor class >> parentTypes [
 	^ {}
 ]
 
-{ #category : #meta }
-FamixJavaSourceAnchor class >> resetMooseQueryCaches [
-	super resetMooseQueryCaches.
-	self resetTEntityMetaLevelDependencyCaches.
-
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaSourceAnchor >> completeText [
 	"The complete text of a FileAnchor contains all the code of the file pointed by the source anchor. On the contrary the #sourceText return only the pant of the file concerned by the entity. For example a FAMIXFileAnchon knows the start line and end line of the source anchor into the file."

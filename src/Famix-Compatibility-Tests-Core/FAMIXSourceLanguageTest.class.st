@@ -12,7 +12,6 @@ FAMIXSourceLanguageTest >> actualClass [
 { #category : #tests }
 FAMIXSourceLanguageTest >> testDefaultSourceLanguage [
 	| model |
-	MooseModel resetMeta.
 	model := MooseModel new.
 	model
 		importFromMSEStream:
@@ -47,7 +46,6 @@ FAMIXSourceLanguageTest >> testName [
 { #category : #tests }
 FAMIXSourceLanguageTest >> testSourcedEntities [
 	| model |
-	MooseModel resetMeta.
 	model := MooseModel new.
 	model
 		importFromMSEStream:

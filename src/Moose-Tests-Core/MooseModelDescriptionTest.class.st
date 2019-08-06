@@ -39,13 +39,6 @@ MooseModelDescriptionTest >> testAsMooseDescriptionAttributes [
 ]
 
 { #category : #tests }
-MooseModelDescriptionTest >> testAsMooseDescriptionWithResetting [	
-	self assert: (FAMIXClass asMooseDescription isKindOf: FM3MetaDescription).
-	MooseModel resetMeta.
-	self assert: (FAMIXClass asMooseDescription isKindOf: FM3MetaDescription).
-]
-
-{ #category : #tests }
 MooseModelDescriptionTest >> testOppositeOfOppositePropertyIsMyself [
 	| allSelector dictOpposite |
 
