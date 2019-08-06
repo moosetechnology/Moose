@@ -9,33 +9,16 @@ Class {
 	#category : #'Famix-MetamodelBuilder-Tests'
 }
 
-{ #category : #running }
-FmxMBGeneratorRemoteAccessorTest >> setUp [
-	super setUp.
-	FamixMetamodelGenerateRemoteAccessorTestGeneratorA generate.
-	FamixMetamodelGenerateRemoteAccessorTestGeneratorB generate.
-	FamixMetamodelGenerateRemoteAccessorTestGeneratorAB generate.
-	mm := MooseModel new.
-	"the following entities are created by the generators
-	Do not remove them (or change the all the tests)"
-	entityA := ((SmalltalkImage current classNamed: 'FmxTestGenerateAccessorAEntityA') ifNil: [ self fail ]) new.
-	entityB := ((SmalltalkImage current classNamed: 'FmxTestGenerateAccessorBEntityB') ifNil: [ self fail ]) new.
-	mm addAll: { entityA. entityB }
-	
+{ #category : #accessing }
+FmxMBGeneratorRemoteAccessorTest class >> resources [
+	^ { FamixGenerateRemoteAccessorTestResource }
 ]
 
 { #category : #running }
-FmxMBGeneratorRemoteAccessorTest >> tearDown [
-	[ 'Famix-MetamodelBuilder-TestsResources-A' asPackage removeFromSystem ]
-		on: NotFound
-		do: [  ].
-	[ 'Famix-MetamodelBuilder-TestsResources-B' asPackage removeFromSystem ]
-		on: NotFound
-		do: [  ].
-	[ 'Famix-MetamodelBuilder-TestsResources-AB' asPackage removeFromSystem ]
-		on: NotFound
-		do: [  ].
-	super tearDown
+FmxMBGeneratorRemoteAccessorTest >> setUp [
+	super setUp.
+	entityA := FamixGenerateRemoteAccessorTestResource current entityA.
+	entityB := FamixGenerateRemoteAccessorTestResource current entityB
 ]
 
 { #category : #running }
