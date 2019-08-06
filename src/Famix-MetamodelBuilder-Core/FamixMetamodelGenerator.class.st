@@ -236,7 +236,10 @@ FamixMetamodelGenerator class >> resetMetamodel [
 	self modifyMetamodel: metamodel.
 
 	metamodel additionalProperties at: #wantsAllEntitiesNavigation put: self wantsAllEntitiesNavigation.
-
+	
+	"MooseEntity has a cache for some infos. When we regenerate a MM we need to flush this cache."
+	classes do: #resetMooseEntityCache.
+	
 	^ metamodel
 ]
 
