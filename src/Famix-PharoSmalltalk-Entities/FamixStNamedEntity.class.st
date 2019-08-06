@@ -22,13 +22,6 @@ FamixStNamedEntity class >> requirements [
 	^ { FamixStPackage }
 ]
 
-{ #category : #'as yet unclassified' }
-FamixStNamedEntity class >> resetMooseQueryCaches [
-	super resetMooseQueryCaches.
-	self resetTEntityMetaLevelDependencyCaches.
-
-]
-
 { #category : #accessing }
 FamixStNamedEntity >> belongsTo [
 

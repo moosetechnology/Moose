@@ -54,6 +54,9 @@ Class {
 		'DefaultState',
 		'MooseID'
 	],
+	#classInstVars : [
+		'cache'
+	],
 	#category : #'Moose-Core'
 }
 
@@ -133,6 +136,11 @@ MooseEntity class >> annotation [
 ]
 
 { #category : #accessing }
+MooseEntity class >> cache [
+	^ cache ifNil: [ cache := Dictionary new ]
+]
+
+{ #category : #accessing }
 MooseEntity class >> defaultState [
 	^ DefaultState ifNil: [ DefaultState := MooseMemoryEfficientState ]
 ]
@@ -167,8 +175,7 @@ MooseEntity class >> implementingClassesIn: aMetamodel [
 
 { #category : #testing }
 MooseEntity class >> isOfType: aClassFAMIX [
-	^ (self mooseTypes flatCollect: #withAllSuperclasses as: Set)
-		includes: aClassFAMIX
+	^ self superclassesAndFamixTraits includes: aClassFAMIX
 ]
 
 { #category : #constants }
@@ -176,13 +183,6 @@ MooseEntity class >> mooseDev [
 	"Answer the email address of the Moose mailinglist." 
 	 
 	^'moose-dev@iam.unibe.ch'
-]
-
-{ #category : #accessing }
-MooseEntity class >> mooseTypes [
-	^ self usedStatefulTraits
-		add: self;
-		yourself
 ]
 
 { #category : #accessing }
@@ -199,6 +199,11 @@ MooseEntity class >> resetIDGeneration [
 	MooseID := nil
 ]
 
+{ #category : #initialization }
+MooseEntity class >> resetMooseEntityCache [
+	cache := nil
+]
+
 { #category : #private }
 MooseEntity class >> setMooseID: anInteger [
 	"This method is used in the unit test"
@@ -206,15 +211,14 @@ MooseEntity class >> setMooseID: anInteger [
 	MooseID := anInteger 
 ]
 
-{ #category : #'stateful traits' }
-MooseEntity class >> statefulTraits [
-
-	^ {  }
+{ #category : #testing }
+MooseEntity class >> superclassesAndFamixTraits [
+	^ self cache at: #superclassesAndFamixTraits ifAbsentPut: [ self usedStatefulTraits , self withAllSuperclasses ]
 ]
 
 { #category : #'stateful traits' }
 MooseEntity class >> usedStatefulTraits [
-	^ self withAllSuperclasses flatCollect: [ :class | class allGeneratedTraits ]
+	^ self cache at: #usedStatefulTraits ifAbsentPut: [ super usedStatefulTraits ]
 ]
 
 { #category : #accessing }
@@ -392,7 +396,7 @@ MooseEntity >> isBookmarked: aBoolean [
 
 { #category : #testing }
 MooseEntity >> isOfType: aClassFAMIX [
-	^ (self mooseTypes flatCollect: #withAllSuperclasses as: Set) includes: aClassFAMIX
+	^ self class isOfType: aClassFAMIX
 ]
 
 { #category : #testing }

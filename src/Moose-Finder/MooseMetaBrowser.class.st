@@ -48,13 +48,12 @@ MooseMetaBrowser >> addClassLegendOn: view [
 MooseMetaBrowser >> browserActions [
 	browser
 		morphicAct: [ :b | 
-					MooseModel resetMeta.
-					browser entity: MooseModel meta.
-					browser update ]
+			browser entity: MooseModel meta.
+			browser update ]
 			icon: GLMUIThemeExtraIcons glamorousRefresh
 			entitled: 'Reinitialize meta descriptions';
 		morphicAct: [ :b :repo | self openLintBrowserOn: repo ] entitled: 'Check metamodel rules';
-		morphicAct: [ :b :repo | MooseFameView new openOn: repo ] entitled: 'View class diagram'.
+		morphicAct: [ :b :repo | MooseFameView new openOn: repo ] entitled: 'View class diagram'
 ]
 
 { #category : #building }

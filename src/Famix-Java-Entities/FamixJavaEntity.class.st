@@ -37,22 +37,6 @@ FamixJavaEntity class >> metamodel [
 	^ (self class environment at: #FamixJavaGenerator) metamodel
 ]
 
-{ #category : #'Moose-Query' }
-FamixJavaEntity class >> resetMSEProperties [
-	"
-	self resetMSEProperties
-		"
-
-	self allSubclasses
-		do: [ :aSubClass | 
-			aSubClass resetMooseQueryCaches.]
-]
-
-{ #category : #'Moose-Query' }
-FamixJavaEntity class >> resetMooseQueryCaches [
-	"Here do nothing. Customize in subclasses."
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaEntity >> belongsTo [
 	"Return the primary container of the entity if it exist"

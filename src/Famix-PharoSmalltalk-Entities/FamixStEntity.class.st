@@ -20,11 +20,6 @@ FamixStEntity class >> metamodel [
 	^ (self class environment at: #FamixPharoSmalltalkGenerator) metamodel
 ]
 
-{ #category : #'as yet unclassified' }
-FamixStEntity class >> resetMooseQueryCaches [
-	"Here do nothing. Customize in subclasses."
-]
-
 { #category : #testing }
 FamixStEntity >> isAccess [
 

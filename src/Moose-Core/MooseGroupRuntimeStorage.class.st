@@ -31,8 +31,7 @@ Class {
 	#instVars : [
 		'byName',
 		'elements',
-		'byType',
-		'sortedCollectionList'
+		'byType'
 	],
 	#category : #'Moose-Core'
 }
@@ -59,25 +58,6 @@ MooseGroupRuntimeStorage >> at: uniqueName ifAbsent: exceptionBlock [
 	^byName at: uniqueName asSymbol ifAbsent: exceptionBlock
 ]
 
-{ #category : #accessing }
-MooseGroupRuntimeStorage >> at: uniqueName withType: aClass ifAbsent: exceptionBlock [
-	| s |
-	s := uniqueName asSymbol.
-	^ (self
-		shouldSort: (self selectAllWithType: aClass)
-		withBlock: [ :a :b | a mooseName asSymbol <= b mooseName asSymbol ]
-		type: aClass)
-		findBinary: [ :a | 
-			| aName |
-			aName := a mooseName asSymbol.
-			aName = s
-				ifTrue: [ 0 ]
-				ifFalse: [ s < aName
-						ifTrue: [ -1 ]
-						ifFalse: [ 1 ] ] ]
-		ifNone: exceptionBlock
-]
-
 { #category : #enumerating }
 MooseGroupRuntimeStorage >> do: aBlock [ 
 	 
@@ -90,11 +70,9 @@ MooseGroupRuntimeStorage >> elements [
 ]
 
 { #category : #'initialize-release' }
-MooseGroupRuntimeStorage >> initialize: capacity [ 
-	 
-	byType := Dictionary new: 24.
-	sortedCollectionList := Dictionary new: 24.
-	byName := IdentityDictionary new: capacity. 
+MooseGroupRuntimeStorage >> initialize: capacity [
+	byType := IdentityDictionary new: 24.
+	byName := IdentityDictionary new: capacity.
 	elements := OrderedCollection new: capacity
 ]
 
@@ -146,37 +124,18 @@ MooseGroupRuntimeStorage >> selectAllWithType: aSmalltalkType [
 			self class byTypeDefaultCollection addAll: result ]
 ]
 
-{ #category : #private }
-MooseGroupRuntimeStorage >> shouldSort: aCollection withBlock: aBlockClosure type: aMooseClass [
-	| isSorted |
-	isSorted := self sortedCollectionList at: aMooseClass ifAbsentPut: [ false ].
-	^ isSorted
-		ifTrue: [ aCollection ]
-		ifFalse: [ self sortedCollectionList at: aMooseClass put: true.
-			aCollection sort: aBlockClosure ]
-]
-
 { #category : #accessing }
 MooseGroupRuntimeStorage >> size [ 
 	^ elements size
 ]
 
 { #category : #private }
-MooseGroupRuntimeStorage >> sortedCollectionList [
-	^ sortedCollectionList ifNil: [ sortedCollectionList := Dictionary new ]
-]
-
-{ #category : #private }
 MooseGroupRuntimeStorage >> updateCacheOnAddingOf: anElement [
-    | group |
-    group := byType
-        at: anElement class
-        ifAbsentPut: [ self class byTypeDefaultCollection ].
-    self sortedCollectionList at: anElement put: false.
-    group add: anElement.
-    anElement hasUniqueMooseNameInModel
-        ifTrue: [ byName at: anElement mooseName asSymbol put: anElement ].
-    ^ anElement
+	| group |
+	group := byType at: anElement class ifAbsentPut: [ self class byTypeDefaultCollection ].
+	group add: anElement.
+	anElement hasUniqueMooseNameInModel ifTrue: [ byName at: anElement mooseName asSymbol put: anElement ].
+	^ anElement
 ]
 
 { #category : #private }

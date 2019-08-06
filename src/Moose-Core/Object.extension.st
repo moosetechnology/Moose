@@ -129,16 +129,3 @@ Object >> mooseModel [
 Object >> mooseName [
 	^ self printString
 ]
-
-{ #category : #'*Moose-Core' }
-Object class >> mooseTypes [
-
-	^ { self class }
-
-	
-]
-
-{ #category : #'*Moose-Core' }
-Object >> mooseTypes [
-	^ self class mooseTypes
-]

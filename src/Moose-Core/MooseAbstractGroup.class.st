@@ -293,20 +293,6 @@ MooseAbstractGroup >> entityNamed: aMooseName ifAbsentPut: aValue [
 	^ self entityNamed: aMooseName ifAbsent: [self add: aValue]
 ]
 
-{ #category : #'public interface' }
-MooseAbstractGroup >> entityNamed: aSymbol withType: aFamixType [
-	 
-	^self 
-		entityNamed: aSymbol 
-		withType: aFamixType
-		ifAbsent: [nil]
-]
-
-{ #category : #'public interface' }
-MooseAbstractGroup >> entityNamed: aMooseName withType: aFamixType ifAbsent: aBlock [
-	^ self entityStorage at: aMooseName withType: aFamixType ifAbsent: aBlock
-]
-
 { #category : #private }
 MooseAbstractGroup >> entityStorage [ 
 	 

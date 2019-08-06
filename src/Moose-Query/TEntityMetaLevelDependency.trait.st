@@ -183,12 +183,6 @@ TEntityMetaLevelDependency classSide >> privateParentTypesIn: aMetamodel [
 	^ (containerBehaviors , (containerUsers collect: #implementingClass)) asSet asArray
 ]
 
-{ #category : #'Moose-Query-Extensions' }
-TEntityMetaLevelDependency classSide >> resetTEntityMetaLevelDependencyCaches [
-
-	
-]
-
 { #category : #private }
 TEntityMetaLevelDependency >> addAllChildrenIn: aCollection [
 	aCollection addAll: self children.

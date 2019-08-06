@@ -27,13 +27,6 @@ FAMIXSourceAnchor class >> parentTypes [
 	^ {}
 ]
 
-{ #category : #generator }
-FAMIXSourceAnchor class >> resetMooseQueryCaches [
-	super resetMooseQueryCaches.
-	self resetTEntityMetaLevelDependencyCaches.
-
-]
-
 { #category : #accessing }
 FAMIXSourceAnchor >> belongsTo [ 
 		
