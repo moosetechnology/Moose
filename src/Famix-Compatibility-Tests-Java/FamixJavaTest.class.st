@@ -7,7 +7,6 @@ Class {
 { #category : #tests }
 FamixJavaTest >> testImportAnnotations [
 	| model |
-	MooseModel resetMeta.
 	model := MooseModel new.
 	model
 		importFromMSEStream:
@@ -42,7 +41,6 @@ FamixJavaTest >> testImportAnnotations [
 { #category : #tests }
 FamixJavaTest >> testImportExceptions [
 	| model |
-	MooseModel resetMeta.
 	model := MooseModel new.
 	model
 		importFromMSEStream:

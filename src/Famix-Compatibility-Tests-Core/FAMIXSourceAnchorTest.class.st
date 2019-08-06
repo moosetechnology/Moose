@@ -12,7 +12,6 @@ FAMIXSourceAnchorTest class >> isAbstract [
 { #category : #tests }
 FAMIXSourceAnchorTest >> testImportFileAnchors [
 	| model aMethod |
-	MooseModel resetMeta.
 	model := MooseModel new.
 	model
 		importFromMSEStream:

@@ -7,7 +7,6 @@ Class {
 { #category : #tests }
 FamixParameterizableClassTest >> testParameterTypes [
 	| model aParameterizableClass |
-	MooseModel resetMeta.
 	model := MooseModel new.
 	model
 		importFromMSEStream:

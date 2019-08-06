@@ -11,7 +11,6 @@ Class {
 FamixParameterizedTypeTest >> setUp [
 
 	super setUp.
-	MooseModel resetMeta.
 	model := MooseModel new.
 	
 	model importFromMSEStream: '(

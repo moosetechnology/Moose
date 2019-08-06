@@ -20,22 +20,6 @@ FAMIXEntity class >> metamodel [
 	^ (self class environment at: #FamixCompatibilityGenerator) metamodel
 ]
 
-{ #category : #'Moose-Query-Extensions' }
-FAMIXEntity class >> resetMSEProperties [
-	"
-	self resetMSEProperties
-		"
-
-	self allSubclasses
-		do: [ :aSubClass | 
-			aSubClass resetMooseQueryCaches.]
-]
-
-{ #category : #'Moose-Query-Extensions' }
-FAMIXEntity class >> resetMooseQueryCaches [
-	"Here do nothing. Customize in subclasses."
-]
-
 { #category : #accessing }
 FAMIXEntity >> belongsTo [
 	"Return the primary container of the entity if it exist"

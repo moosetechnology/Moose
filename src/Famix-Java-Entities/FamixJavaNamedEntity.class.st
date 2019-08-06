@@ -22,13 +22,6 @@ FamixJavaNamedEntity class >> requirements [
 	^ { FamixJavaPackage }
 ]
 
-{ #category : #'Moose-Query' }
-FamixJavaNamedEntity class >> resetMooseQueryCaches [
-	super resetMooseQueryCaches.
-	self resetTEntityMetaLevelDependencyCaches.
-
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaNamedEntity >> belongsTo [
 	

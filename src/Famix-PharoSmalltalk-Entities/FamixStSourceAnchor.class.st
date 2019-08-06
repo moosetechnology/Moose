@@ -24,13 +24,6 @@ FamixStSourceAnchor class >> parentTypes [
 	^ {}
 ]
 
-{ #category : #'as yet unclassified' }
-FamixStSourceAnchor class >> resetMooseQueryCaches [
-	super resetMooseQueryCaches.
-	self resetTEntityMetaLevelDependencyCaches.
-
-]
-
 { #category : #initialization }
 FamixStSourceAnchor >> initialize [
 	super initialize.
