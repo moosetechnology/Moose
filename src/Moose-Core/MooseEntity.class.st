@@ -478,15 +478,10 @@ MooseEntity >> mooseName [
 	
 	Do not override this method.
 	Instead, use mooseNameOn: to customize the result."
-	self privateState hasMooseModel ifFalse: [ "do not cache yet"
-			| stream |
-			stream := (String new: 64) writeStream.
-			self mooseNameOn: stream.
-			^stream contents asSymbol ].
-	^self privateState 
+
+	^ self privateState
 		propertyAt: #mooseName
-		ifAbsentPut: [ 
-			| stream |
+		ifAbsentPut: [ | stream |
 			stream := (String new: 64) writeStream.
 			self mooseNameOn: stream.
 			stream contents asSymbol ]
@@ -628,8 +623,13 @@ MooseEntity >> removeFromModel [
 
 { #category : #'meta information' }
 MooseEntity >> resetMooseName [
-	(self hasUniqueMooseNameInModel and: [ self privateState hasMooseModel ])
-		ifTrue: [ self mooseModel resetMooseNameFor: self ]
+	"If needed I reset my moose name in the MooseModel. I return true if my MooseName was updated and false if it was not."
+
+	(self hasUniqueMooseNameInModel and: [ self privateState hasMooseModel ]) ifFalse: [ ^ false ].
+
+	self mooseModel resetMooseNameFor: self.
+
+	^ true
 ]
 
 { #category : #initialization }

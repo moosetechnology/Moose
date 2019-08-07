@@ -52,7 +52,6 @@ FamixTNamed >> name: anObject [
 
 { #category : #accessing }
 FamixTNamed >> resetMooseName [
-
-	super resetMooseName.
-	self children do: [ :entity | entity resetMooseName ]
+	super resetMooseName ifTrue: [ self children do: [ :entity | entity resetMooseName ] ].
+	^ false
 ]
