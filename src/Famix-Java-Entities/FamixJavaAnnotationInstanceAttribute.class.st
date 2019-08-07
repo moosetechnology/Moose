@@ -22,13 +22,6 @@ FamixJavaAnnotationInstanceAttribute class >> requirements [
 	^ { FamixJavaAnnotationInstance }
 ]
 
-{ #category : #generator }
-FamixJavaAnnotationInstanceAttribute class >> resetMooseQueryCaches [
-	super resetMooseQueryCaches.
-	self resetTEntityMetaLevelDependencyCaches.
-
-]
-
 { #category : #accessing }
 FamixJavaAnnotationInstanceAttribute >> belongsTo [
 

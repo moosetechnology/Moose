@@ -12,7 +12,6 @@ FAMIXAnnotationInstanceAttributeTest >> actualClass [
 { #category : #tests }
 FAMIXAnnotationInstanceAttributeTest >> testComplex [
 	| model |
-	MooseModel resetMeta.
 	model := MooseModel new.
 	model
 		importFromMSEStream:

@@ -39,6 +39,17 @@ MooseGroupTest >> testAllSatisfy [
 ]
 
 { #category : #tests }
+MooseGroupTest >> testAllWithSubTypesOfInModel [
+	| model |
+	model := FamixJavaMooseModel new.
+	model addAll: { FamixJavaClass new. FamixJavaParameterizableClass new }.
+	self assert: (model allWithSubTypesOf: FamixJavaClass) size equals: 2.
+	self assert: (model allWithSubTypesOf: FamixJavaParameterizableClass) size equals: 1.
+	self assert: (model allUsing: FamixTClass) size equals: 2.
+	self assert: (model allWithSubTypesOf: MooseEntity) size equals: 2
+]
+
+{ #category : #tests }
 MooseGroupTest >> testAllWithTypeAtRuntime [
 	| group |
 	group := MooseGroup withAll: #(42 #fortytwo).
@@ -56,6 +67,17 @@ MooseGroupTest >> testAllWithTypeAtSetup [
 	self assert: (group allWithType: SmallInteger) size equals: 1.
 	self assert: (group allWithType: ByteSymbol) size equals: 1.
 	self assert: (group allWithType: Object) isEmpty
+]
+
+{ #category : #tests }
+MooseGroupTest >> testAllWithTypeInModel [
+	| model |
+	model := FamixJavaMooseModel new.
+	model addAll: { FamixJavaClass new. FamixJavaParameterizableClass new }.
+	self assert: (model allWithType: FamixJavaClass) size equals: 1.
+	self assert: (model allWithType: FamixJavaParameterizableClass) size equals: 1.
+	self should: [ (model allWithType: FamixTClass) size ] raise: MooseAllWithTypeOnTrait.
+	self assert: (model allWithType: Object) isEmpty
 ]
 
 { #category : #tests }
@@ -309,22 +331,6 @@ MooseGroupTest >> testEntitiesDo [
 			{el1.
 			el2.
 			el3}
-]
-
-{ #category : #tests }
-MooseGroupTest >> testEntityNamedWithType [
-	| group result c n |
-	group := MooseGroup new.
-	c := FAMIXClass new name: 'A'.
-	n := FAMIXNamespace new name: 'A'.
-	group add: c.
-	group add: n.
-	result := group entityNamed: 'A'.
-	self assert: result equals: n.
-	result := group entityNamed: 'A' withType: FAMIXNamespace.
-	self assert: result equals: n.
-	result := group entityNamed: 'A' withType: FAMIXClass.
-	self assert: result equals: c
 ]
 
 { #category : #tests }

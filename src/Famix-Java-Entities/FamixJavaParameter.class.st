@@ -15,13 +15,6 @@ FamixJavaParameter class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaParameter class >> requirements [
-
-	<generated>
-	^ { FamixJavaMethod }
-]
-
 { #category : #accessing }
 FamixJavaParameter >> belongsTo [
 

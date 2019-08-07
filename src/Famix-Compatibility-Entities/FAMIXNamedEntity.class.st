@@ -27,12 +27,6 @@ FAMIXNamedEntity class >> requirements [
 	^ { FAMIXPackage }
 ]
 
-{ #category : #'Moose-Query-Extensions' }
-FAMIXNamedEntity class >> resetMooseQueryCaches [
-	super resetMooseQueryCaches.
-	self resetTEntityMetaLevelDependencyCaches.
-]
-
 { #category : #accessing }
 FAMIXNamedEntity >> belongsTo [
 	

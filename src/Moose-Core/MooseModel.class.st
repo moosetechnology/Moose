@@ -27,38 +27,25 @@ MooseModel class >> annotation [
 ]
 
 { #category : #'import-export' }
-MooseModel class >> export: aModel to: aStream [
-	self export: aModel withMetamodel: self meta to: aStream
+MooseModel class >> export: aModel to: aStream [ 
+	aModel exportTo: aStream
 ]
 
 { #category : #'import-export' }
-MooseModel class >> export: aModel withMetamodel: aMetamodel to: aStream [ 
-	| tower repository |
-	tower := FMCompleteTower new.
-	tower metaMetamodel: aMetamodel metamodel.
-	tower metamodel: aMetamodel.
-	tower model: (repository := (FMRepository with: aMetamodel) addAll: aModel entities).
-	tower model exportOn: aStream
+MooseModel class >> export: aModel withMetamodel: aMetamodel to: aStream [
+	aModel exportWithMetamodel: aMetamodel to: aStream
 ]
 
 { #category : #'import-export' }
-MooseModel class >> exportMetamodel: aMetamodel to: aStream [
+MooseModel class >> exportMetamodel: aMetamodel to: aStream [ 
 
 	aMetamodel exportOn: aStream
-"
-	| tower |
-	tower := FMCompleteTower new.
-	tower metamodel: aMetamodel.
-
-	tower metamodel exportOn: aStream
-"
 ]
 
 { #category : #'import-export' }
 MooseModel class >> exportMetamodelTo: aStream [
-
+	self deprecated: 'Use exportMetamodelTo: in instance side'.
 	self exportMetamodel: self meta to: aStream
-
 ]
 
 { #category : #meta }
@@ -337,7 +324,7 @@ MooseModel >> cacheMooseGroups [
 MooseModel >> detectEncodingOfAllFileAnchors [
 	"I can be execute to reduce the time of detection of the encoding of each file anchor because multiple file anchor can point to the same file."
 
-	(((self allWithSubTypesOf: FamixTFileAnchor) asOrderedCollection reject: #privateHasEncoding) groupedBy: #fileName)
+	(((self allUsing: FamixTFileAnchor) asOrderedCollection reject: #privateHasEncoding) groupedBy: #fileName)
 		valuesDo: [ :anchors | 
 			| encoding |
 			encoding := anchors anyOne detectEncoding.
@@ -353,6 +340,22 @@ MooseModel >> difference: aGroup [
 	^result
 ]
 
+{ #category : #'import-export' }
+MooseModel >> exportMetamodel: aMetamodel to: aStream [
+
+	self class exportMetamodel: aMetamodel to: aStream
+]
+
+{ #category : #'import-export' }
+MooseModel >> exportMetamodelTo: aStream [
+	self exportMetamodel: self metamodel to: aStream
+]
+
+{ #category : #'import-export' }
+MooseModel >> exportTo: aStream [
+	self exportWithMetamodel: self metamodel to: aStream
+]
+
 { #category : #actions }
 MooseModel >> exportToMSEStream: aStream [
 	"Benchmarks on Network packages
@@ -366,7 +369,17 @@ MooseModel >> exportToMSEStream: aStream [
 	"
 
 	self detectEncodingOfAllFileAnchors.
-	self class export: self to: aStream
+	self exportTo: aStream
+]
+
+{ #category : #'import-export' }
+MooseModel >> exportWithMetamodel: aMetamodel to: aStream [ 
+	| tower repository |
+	tower := FMCompleteTower new.
+	tower metaMetamodel: aMetamodel metamodel.
+	tower metamodel: aMetamodel.
+	tower model: (repository := (FMRepository with: aMetamodel) addAll: self entities).
+	tower model exportOn: aStream
 ]
 
 { #category : #actions }
@@ -424,7 +437,7 @@ MooseModel >> includes: anItem [
 MooseModel >> includesElementsOfType: aClass [
 
 	"self entities detect: [:each | each class = aClass] ifNone: [^ false].
-	^true"
+	^true" 
 	^ (self allWithType: aClass) isEmpty not
 ]
 

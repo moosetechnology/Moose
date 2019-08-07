@@ -47,19 +47,6 @@ MooseModel >> inferNamespaceParentsBasedOnNames [
 ]
 
 { #category : #'*Famix-Compatibility-Entities' }
-MooseModel class >> resetMeta [
-	"self resetMeta"
-
-	FAMIXEntity resetMSEProperties.
-	FAMIXNamedEntity resetMSEProperties.
-	
-	metaTower := nil.
-	
-	FamixCompatibilityGenerator metamodel: nil.
-	^self meta
-]
-
-{ #category : #'*Famix-Compatibility-Entities' }
 MooseModel >> unknownFAMIXClass [
 	^ self allClasses 
 		detect: [:each | each mooseName = #'unknownNamespace::UnknownClass'] 

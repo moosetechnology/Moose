@@ -22,13 +22,6 @@ FAMIXAnnotationInstance class >> requirements [
 	^ { FAMIXNamedEntity }
 ]
 
-{ #category : #'Moose-Query-Extensions' }
-FAMIXAnnotationInstance class >> resetMooseQueryCaches [
-	super resetMooseQueryCaches.
-	self resetTEntityMetaLevelDependencyCaches.
-
-]
-
 { #category : #accessing }
 FAMIXAnnotationInstance >> belongsTo [
 

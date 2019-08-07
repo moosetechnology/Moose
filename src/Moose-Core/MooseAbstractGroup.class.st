@@ -61,27 +61,38 @@ MooseAbstractGroup >> allSatisfy: aBlock [
 ]
 
 { #category : #groups }
-MooseAbstractGroup >> allWithSubTypesOf: aSmalltalkClass [ 
+MooseAbstractGroup >> allUsing: aTrait [
+	^ self allUsing: aTrait ofGroupClass: MooseGroup 
+]
+
+{ #category : #groups }
+MooseAbstractGroup >> allUsing: aTrait ofGroupClass: aGroupSmalltalkClass [
+	^ aGroupSmalltalkClass
+		withAll: ((aTrait allUsers flattened flatCollect: #withAllSubclasses) asSet flatCollect: [ :each | self entityStorage selectAllWithType: each ])
+		withDescription: 'All ' , aTrait name asLowercase asEnglishPlural
+]
+
+{ #category : #groups }
+MooseAbstractGroup >> allWithSubTypesOf: aSmalltalkClass [
 	^ self allWithSubTypesOf: aSmalltalkClass ofGroupClass: MooseGroup 
 ]
 
 { #category : #groups }
-MooseAbstractGroup >> allWithSubTypesOf: aSmalltalkClass ofGroupClass:  aGroupSmalltalkClass [
-	^ self privateState cacheAt: 'sub', aSmalltalkClass className
-		ifAbsentPut: [
-			aGroupSmalltalkClass 
-				withAll: (aSmalltalkClass withAllSubclasses flatCollect: [:each |
-		self entityStorage selectAllWithType: each ])
-				withDescription: 'All ' , aSmalltalkClass name asLowercase asEnglishPlural]
+MooseAbstractGroup >> allWithSubTypesOf: aSmalltalkClass ofGroupClass: aGroupSmalltalkClass [
+	aSmalltalkClass isTrait ifTrue: [ MooseAllWithTypeOnTrait signal ].
+	^ aGroupSmalltalkClass
+		withAll: ((aSmalltalkClass withAllSubclasses) asSet flatCollect: [ :each | self entityStorage selectAllWithType: each ])
+		withDescription: 'All ' , aSmalltalkClass name asLowercase asEnglishPlural
 ]
 
 { #category : #groups }
-MooseAbstractGroup >> allWithType: aSmalltalkClass [ 
-	^ self allWithType: aSmalltalkClass ofGroupClass: MooseGroup 
+MooseAbstractGroup >> allWithType: aSmalltalkType [
+	^ self allWithType: aSmalltalkType ofGroupClass: MooseGroup 
 ]
 
 { #category : #groups }
 MooseAbstractGroup >> allWithType: aSmalltalkClass ofGroupClass: aGroupSmalltalkClass [
+	aSmalltalkClass isTrait ifTrue: [ MooseAllWithTypeOnTrait signal ].
 	^ self privateState 
 		cacheAt: aSmalltalkClass
 		ifAbsentPut: [
@@ -280,20 +291,6 @@ MooseAbstractGroup >> entityNamed: aMooseName ifAbsent: aBlock ifPresent: anothe
 { #category : #'public interface' }
 MooseAbstractGroup >> entityNamed: aMooseName ifAbsentPut: aValue [ 
 	^ self entityNamed: aMooseName ifAbsent: [self add: aValue]
-]
-
-{ #category : #'public interface' }
-MooseAbstractGroup >> entityNamed: aSymbol withType: aFamixType [
-	 
-	^self 
-		entityNamed: aSymbol 
-		withType: aFamixType
-		ifAbsent: [nil]
-]
-
-{ #category : #'public interface' }
-MooseAbstractGroup >> entityNamed: aMooseName withType: aFamixType ifAbsent: aBlock [
-	^ self entityStorage at: aMooseName withType: aFamixType ifAbsent: aBlock
 ]
 
 { #category : #private }

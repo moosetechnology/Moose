@@ -951,6 +951,15 @@ FamixGenerator >> defineHierarchy [
 
 	tFile --|> #TNamed.
 
+	tMethod --|> #TWithParameters.
+	tMethod --|> #TInvocable.
+	tMethod --|> #TWithInvocations.
+	tMethod --|> #TWithReferences.
+	tMethod --|> #TWithAccesses.
+	tMethod --|> #TWithLocalVariables.
+	tMethod --|> #TWithImplicitVariables.
+	tMethod --|> #TWithSignature.
+	
 	tStructuralEntity --|> #TNamed.
 	tStructuralEntity --|> #TAccessible.
 	tStructuralEntity --|> #TInvocationsReceiver.

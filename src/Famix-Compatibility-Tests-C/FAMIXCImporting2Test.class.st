@@ -11,8 +11,7 @@ Class {
 FAMIXCImporting2Test >> setUp [
 	super setUp.
 	self skip: 'Test skipped until C metamodel definition'.
-	
-	MooseModel resetMeta.
+
 	model := MooseModel new.
 	model
 		importFromMSEStream:

@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixStMethod,
 	#superclass : #FamixStContainerEntity,
-	#traits : 'FamixTInvocable + FamixTMethod + FamixTTypedStructure + FamixTWithAccesses + FamixTWithClassScope + FamixTWithImplicitVariables + FamixTWithInvocations + FamixTWithLocalVariables + FamixTWithParameters + FamixTWithReferences + FamixTWithSignature',
-	#classTraits : 'FamixTInvocable classTrait + FamixTMethod classTrait + FamixTTypedStructure classTrait + FamixTWithAccesses classTrait + FamixTWithClassScope classTrait + FamixTWithImplicitVariables classTrait + FamixTWithInvocations classTrait + FamixTWithLocalVariables classTrait + FamixTWithParameters classTrait + FamixTWithReferences classTrait + FamixTWithSignature classTrait',
+	#traits : 'FamixTMethod + FamixTTypedStructure + FamixTWithClassScope',
+	#classTraits : 'FamixTMethod classTrait + FamixTTypedStructure classTrait + FamixTWithClassScope classTrait',
 	#instVars : [
 		'#protocol => FMProperty'
 	],
@@ -391,11 +391,11 @@ FamixStMethod >> sourceText [
 		ifTrue: [ [ | class |
 			"take the normal class"
 			class := Smalltalk at: self parentType instanceSide name asSymbol.
-			self hasClassScope
+			self isClassSide
 				ifFalse: [ class sourceCodeAt: self name asSymbol ]
-				ifTrue: [ class class sourceCodeAt: self name asSymbol ]	"dispatch on class or metaclass depending on method scope" ]
+				ifTrue: [ "dispatch on class or metaclass depending on method scope" class class sourceCodeAt: self name asSymbol ] ]
 				on: Error
-				do: [ super sourceText ]	"probably class is not in the system" ]
+				do: [ "probably class is not in the system" super sourceText ] ]
 		ifFalse: [ super sourceText ]
 ]
 

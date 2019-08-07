@@ -7,7 +7,6 @@ Class {
 { #category : #tests }
 FAMIXJavaSourceLanguageTest >> testIsJava [
 	| model |
-	MooseModel resetMeta.
 	model := MooseModel new.
 	
 	model importFromMSEStream: '(
