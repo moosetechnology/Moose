@@ -542,6 +542,14 @@ TEntityMetaLevelDependency >> incomingMSEProperties [
 ]
 
 { #category : #accessing }
+TEntityMetaLevelDependency >> numberOfChildren [
+	<MSEProperty: #numberOfChildren type: #Number>
+	<MSEComment: 'Number of direct children entities in the containment tree.'>
+	<derived>
+	^ self isContainerEntity ifTrue: [ self children size ] ifFalse: [ 0 ]
+]
+
+{ #category : #accessing }
 TEntityMetaLevelDependency >> outgoingAssociationTypes [
 	^ self class outgoingAssociationTypesIn: self metamodel
 ]

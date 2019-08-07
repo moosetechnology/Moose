@@ -26,23 +26,7 @@ FAMIXContainerEntity >> addFunction: aFunction [
 	functions add: aFunction
 ]
 
-{ #category : #testing }
-FAMIXContainerEntity >> isContainerEntity [
-
-	<generated>
-	^ true
-]
-
 { #category : #'Famix-Java' }
 FAMIXContainerEntity >> mooseNameWithDots [
 	^ self mooseName ifNotNil: [ '.' join: (self mooseName substrings: '::') ]
-]
-
-{ #category : #accessing }
-FAMIXContainerEntity >> numberOfChildren [
-	<MSEProperty: #numberOfChildren type: #Number>
-	<MSEComment: 'Number of direct children entities in the containment tree.'>
-	<derived>
-	
-	^ self children size
 ]
