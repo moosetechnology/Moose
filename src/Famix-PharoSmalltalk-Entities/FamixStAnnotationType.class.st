@@ -40,8 +40,7 @@ FamixStAnnotationType >> belongsTo: anObject [
 
 { #category : #compatibility }
 FamixStAnnotationType >> directSubclasses [
-
-	^ OrderedCollection new.
+	^ OrderedCollection new
 ]
 
 { #category : #compatibility }

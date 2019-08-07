@@ -36,15 +36,6 @@ FamixStType >> belongsTo: anObject [
 ]
 
 { #category : #adding }
-FamixStType >> classSide [
-	^self isClassSide
-		ifFalse:
-			[self mooseModel allClasses
-				entityNamed: (self mooseName , '_class') asSymbol]
-		ifTrue: [self]
-]
-
-{ #category : #adding }
 FamixStType >> clientNamespaces [
 	"returns a set of all the namespaces that depend on (some classes of them inherit, staticly access, or use some methods of) the receiver"
 
@@ -56,8 +47,6 @@ FamixStType >> clientNamespaces [
 { #category : #adding }
 FamixStType >> clientPackages [
 	"returns a set of all the packages that depend on (some classes of them inherit, staticly access, or use some methods of) the receiver"
-
-	"Moose cook was: ^ self inheritedByPackages union: self invokingPackages"
 
 	^ (self queryAllIncoming atScope: FamixTPackage) withoutSelfLoops
 ]
@@ -76,23 +65,6 @@ FamixStType >> container [
 { #category : #adding }
 FamixStType >> entityHasIncomingTypeDeclarations [
 	^ (self structuresWithDeclaredType , self behavioursWithDeclaredType) isNotEmpty
-]
-
-{ #category : #adding }
-FamixStType >> extendedInPackages [
-
-	^ self privateState cacheAt: #extendedInPackages
-							ifAbsentPut: [ self extendedMethods collectAsSet: [ :m| m packageScope ] ]
-
-
-]
-
-{ #category : #adding }
-FamixStType >> extendedMethods [
-	"select methods which are class extensions in this class"
-
-	^  self privateState cacheAt: #extendedMethods
-							ifAbsentPut: [ self methods select: [ :m| m isExtension ] ]
 ]
 
 { #category : #adding }
@@ -116,13 +88,6 @@ FamixStType >> implementationOf: signature [
 FamixStType >> implements: aString [
 	^ self methods
 		anySatisfy: [ :each | aString = each signature	 "was changed from match: for performances and because signature is case sensitive" ]
-]
-
-{ #category : #'Famix-Extensions' }
-FamixStType >> incomingAccesses [
-	^ self privateState 
-		cacheAt: #incomingAccesses
-		ifAbsentPut: [ attributes flatCollect: [ :each | each incomingAccesses ] ]
 ]
 
 { #category : #adding }
@@ -156,72 +121,15 @@ FamixStType >> isAnonymousClass [
 ]
 
 { #category : #adding }
-FamixStType >> isClassSide [
-	"Kind of a hack. Uses the FAMIX2 Smalltalk naming convention that every Smalltalk
-	 metaclass has _class appended to the classname of the class it is a metaclass of."
-
-	^'*_class' match: self name
-]
-
-{ #category : #adding }
 FamixStType >> isExtended [
 
 	^ self methods anySatisfy: [ :m| m isExtension ]
 ]
 
 { #category : #adding }
-FamixStType >> isInnerClass [
-	<MSEProperty: #isInnerClass type: #Boolean>
-	<derived>
-	<MSEComment:
-		'True if the method is considered as an innerclass (i.e. is contained elsewhere than a java package: class, method, enum,...)'>
-	^ self container ifNotNil: [ :c | c isNamespace not ] ifNil: [ false ]
-]
-
-{ #category : #adding }
-FamixStType >> isInstanceSide [
-	^self isClassSide not
-]
-
-{ #category : #adding }
-FamixStType >> isJUnit3TestCase [
-	^ self superclassHierarchy anySatisfy: [:each | each mooseName =  #'junit::framework::TestCase']
-]
-
-{ #category : #adding }
-FamixStType >> isJUnit4TestCase [
-	<MSEProperty: #isJUnit4TestCase type: #Boolean>
-	<derived>
-	<MSEComment: 'True if the method is considered as a Junit 4 Java test'>
-	^ self methods anySatisfy: [ :m | m isJUnit4Test ]
-]
-
-{ #category : #adding }
 FamixStType >> isLonelyWithin: aClassGroup [
 	^ ( self subclassHierarchyGroup intersection: aClassGroup ) isEmpty and: [
 		( self superclassHierarchyGroup intersection: aClassGroup ) isEmpty ]
-]
-
-{ #category : #adding }
-FamixStType >> isSUnitTestCase [
-	self allSuperclassesDo: [:each | each name = 'TestCase' ifTrue: [^ true] ].
-	^ false
-]
-
-{ #category : #adding }
-FamixStType >> isTestCase [
-	<MSEProperty: #isTestCase type: #Boolean>
-	<derived>
-	<MSEComment: 'True if the method is considered as a Java test'>
-	^ self isJUnit3TestCase or: [ self isJUnit4TestCase ] 
-]
-
-{ #category : #adding }
-FamixStType >> localMethods [
-	"select all locally defined methods"
-
-	^ self privateState cacheAt: #localMethods
-							ifAbsentPut: [ self methods reject: [ :m| m isExtension ] ]
 ]
 
 { #category : #adding }
@@ -243,14 +151,6 @@ FamixStType >> lookUp: aMethodSignature [
 				ifNotNil: [toSearchIt := false]
 			].
 	^searchedM
-]
-
-{ #category : #accessing }
-FamixStType >> methods [
-
-	"only for compatibility with some tools (RTUMLClassBuilder"
-
-	^ Set new
 ]
 
 { #category : #adding }
