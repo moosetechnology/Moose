@@ -35,7 +35,7 @@ TEntityMetaLevelDependencyTest >> setUp [
 	anchor3 := FamixTest1SourceTextAnchor new source: 'method3\source3a\source3b\source3c' withCRs.
 	anchorC1 := FamixTest1SourceTextAnchor new source: 'Class1 definition' withCRs.
 	
-	model addAll: { c1. c2. m1. m2. m3. anchor1. anchor2 }.
+	model addAll: { c1. c2. m1. m2. m3. a1. anchor1. anchor2 }.
 	
 	c1 addMethod: m1.
 	m2 parentType: c2. "opposite way"
