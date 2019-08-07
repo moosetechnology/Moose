@@ -25,35 +25,31 @@ FamixStClass >> accessedAttributes [
 	^ self methodsWithoutSutbsAndConstructors asOrderedCollection flatCollect: [ :method | method accessedAttributes ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixStClass >> classSide [
-	^self isClassSide
-		ifFalse:
-			[self mooseModel allClasses
-				entityNamed: (self mooseName , '_class') asSymbol]
-		ifTrue: [self]
+	^ self isClassSide
+		ifFalse: [ self mooseModel allClasses entityNamed: (self mooseName , '_class') asSymbol ]
+		ifTrue: [ self ]
+]
+
+{ #category : #accessing }
+FamixStClass >> extendedInPackages [
+	^ self extendedMethods flatCollectAsSet: [ :m | m atScope: FamixStPackage ]
+]
+
+{ #category : #accessing }
+FamixStClass >> extendedMethods [
+	<MSEProperty: #extendedMethods type: #FamixStMethod>
+	<MSEComment: 'Methods which are class extensions in this class.'>
+	<derived>
+	^ self methods select: [ :m | m isExtension ]
 ]
 
 { #category : #'Famix-Extensions-nav All Dependencies' }
 FamixStClass >> clientPackages [
+
 	"returns a set of all the packages that depend on the receiver"
-
 	^ (self queryAllIncoming atScope: FamixTPackage) withoutSelfLoops
-]
-
-{ #category : #'as yet unclassified' }
-FamixStClass >> extendedInPackages [
-
-	^ self privateState cacheAt: #extendedInPackages
-							ifAbsentPut: [ self extendedMethods collectAsSet: [ :m| m packageScope ] ]
-]
-
-{ #category : #'as yet unclassified' }
-FamixStClass >> extendedMethods [
-	"select methods which are class extensions in this class"
-
-	^  self privateState cacheAt: #extendedMethods
-							ifAbsentPut: [ self methods select: [ :m| m isExtension ] ]
 ]
 
 { #category : #'Famix-Implementation' }
@@ -109,19 +105,30 @@ FamixStClass >> isIgnored [
 
 { #category : #testing }
 FamixStClass >> isInstanceSide [
-	^self isClassSide not
+	^ self isClassSide not
 ]
 
-{ #category : #'as yet unclassified' }
-FamixStClass >> isLonelyWithin: aClassGroup [
-	^ ( self subclassHierarchyGroup intersection: aClassGroup ) isEmpty and: [
-		( self superclassHierarchyGroup intersection: aClassGroup ) isEmpty ]
-]
-
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixStClass >> isSUnitTestCase [
-	self allSuperclassesDo: [:each | each name = 'TestCase' ifTrue: [^ true] ].
+	self deprecated: 'Use #isTestCase instead' transformWith: '`@receiver isSUnitTestCase' -> '`@receiver isTestCase'.
+	^ self isTestCase
+]
+
+{ #category : #testing }
+FamixStClass >> isTestCase [
+	<MSEProperty: #isTestCase type: #Boolean>
+	<derived>
+	<MSEComment: 'True if the method is considered as a Java test'>
+	self allSuperclassesDo: [ :each | each name = 'TestCase' ifTrue: [ ^ true ] ].
 	^ false
+]
+
+{ #category : #accessing }
+FamixStClass >> localMethods [
+	<MSEProperty: #extendedMethods type: #FamixStMethod>
+	<MSEComment: 'Methods which are local methods of the class and not extensions in this class.'>
+	<derived>
+	^ self methods reject: [ :m | m isExtension ]
 ]
 
 { #category : #'as yet unclassified' }

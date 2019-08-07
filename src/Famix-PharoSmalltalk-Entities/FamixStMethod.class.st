@@ -18,11 +18,6 @@ FamixStMethod class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixStMethod class >> shouldSearchForSmalltalkCodeInImage [
-	^ true
-]
-
 { #category : #'Famix-Extensions-metrics-support' }
 FamixStMethod >> accessedAttributes [
 	
@@ -387,16 +382,9 @@ FamixStMethod >> smalltalkClass [
 { #category : #'Famix-Extensions-metrics-support' }
 FamixStMethod >> sourceText [
 	self flag: 'This code should be delegated to the FAMIXPharoAnchor'.
-	^ self class shouldSearchForSmalltalkCodeInImage
-		ifTrue: [ [ | class |
-			"take the normal class"
-			class := Smalltalk at: self parentType instanceSide name asSymbol.
-			self isClassSide
-				ifFalse: [ class sourceCodeAt: self name asSymbol ]
-				ifTrue: [ "dispatch on class or metaclass depending on method scope" class class sourceCodeAt: self name asSymbol ] ]
-				on: Error
-				do: [ "probably class is not in the system" super sourceText ] ]
-		ifFalse: [ super sourceText ]
+	^ [ self compiledMethod sourceCode ]
+		on: Error
+		do: [ "probably class is not in the system" super sourceText ]
 ]
 
 { #category : #'Famix-Extensions-metrics-support' }

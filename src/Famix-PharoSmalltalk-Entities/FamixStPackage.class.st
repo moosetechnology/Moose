@@ -43,9 +43,8 @@ FamixStPackage >> classes [
 
 { #category : #accessing }
 FamixStPackage >> clientPackages [
-	"^ self inheritedByPackages union: self invokingPackages"
-
-	^ (self queryAllIncoming atScope: FamixTPackage) withoutSelfLoops
+	self deprecated: 'Use #allClients instead' transformWith: '`@receiver clientPackages' -> '`@receiver allClients'.
+	^ self allClients
 ]
 
 { #category : #accessing }
@@ -123,15 +122,10 @@ FamixStPackage >> numberOfClasses [
 
 { #category : #accessing }
 FamixStPackage >> numberOfClientPackages [
-"	<property: #CP longName: 'Number of client packages' description:
-			'The number of packages which depend on this package'>"
-
 	<MSEProperty: #numberOfClientPackages type: #Number>
 	<MSEComment: 'The number of packages which depend on this package'>
 	<derived>
-
-	^ self lookUpPropertyNamed: #numberOfClientPackages
-				 computedAs: [ self clientPackages size ]
+	^ self lookUpPropertyNamed: #numberOfClientPackages computedAs: [ self allClients size ]
 ]
 
 { #category : #accessing }

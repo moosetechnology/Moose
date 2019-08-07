@@ -47,7 +47,6 @@ FamixTClass >> isTestCase [
 
 { #category : #testing }
 FamixTClass >> isTestCase: aBoolean [
-
 	^ self privateState attributeAt: #isTestCase put: true
 ]
 
