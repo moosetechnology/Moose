@@ -478,10 +478,15 @@ MooseEntity >> mooseName [
 	
 	Do not override this method.
 	Instead, use mooseNameOn: to customize the result."
-
-	^ self privateState
+	self privateState hasMooseModel ifFalse: [ "do not cache yet"
+			| stream |
+			stream := (String new: 64) writeStream.
+			self mooseNameOn: stream.
+			^stream contents asSymbol ].
+	^self privateState 
 		propertyAt: #mooseName
-		ifAbsentPut: [ | stream |
+		ifAbsentPut: [ 
+			| stream |
 			stream := (String new: 64) writeStream.
 			self mooseNameOn: stream.
 			stream contents asSymbol ]
