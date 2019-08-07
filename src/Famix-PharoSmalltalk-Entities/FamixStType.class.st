@@ -68,13 +68,6 @@ FamixStType >> entityHasIncomingTypeDeclarations [
 ]
 
 { #category : #adding }
-FamixStType >> hasMethodWithSignature: aStringOrSymbol [
-	| symbol |
-	symbol := aStringOrSymbol asSymbol.
-	^self methods anySatisfy: [:each | each signature asSymbol = symbol]
-]
-
-{ #category : #adding }
 FamixStType >> implementationOf: signature [
 	self withSuperclassesDo: [ :class | | found |
 			found := class methods
@@ -82,26 +75,6 @@ FamixStType >> implementationOf: signature [
 				ifNone: [ nil ].
 			found ifNotNil: [ ^found ] ].
 	^ nil
-]
-
-{ #category : #adding }
-FamixStType >> implements: aString [
-	^ self methods
-		anySatisfy: [ :each | aString = each signature	 "was changed from match: for performances and because signature is case sensitive" ]
-]
-
-{ #category : #adding }
-FamixStType >> incomingTypeDeclarations [
-	^ self structuresWithDeclaredType , self behavioursWithDeclaredType collect: [ :var | MooseQueryTypeDeclarationAssociation newFrom: var to: self ]
-]
-
-{ #category : #adding }
-FamixStType >> instanceSide [
-	^self isClassSide
-		ifTrue:
-			[self mooseModel allClasses
-				entityNamed: (self mooseName removeSuffix: '_class') asSymbol]
-		ifFalse: [self]
 ]
 
 { #category : #adding }
@@ -118,12 +91,6 @@ FamixStType >> isAnonymousClass [
 			self container isMethod or: [
 				self name isAllDigits or: [
 					'*_anonymous_*' match: self name ]] ]
-]
-
-{ #category : #adding }
-FamixStType >> isExtended [
-
-	^ self methods anySatisfy: [ :m| m isExtension ]
 ]
 
 { #category : #adding }
@@ -214,13 +181,4 @@ FamixStType >> typeScope [
 	"all types are not classes. Redefined in FamixClass"
 
 	^ self
-]
-
-{ #category : #'Famix-Extensions' }
-FamixStType >> understands: signature [
-	"returns true if a class is able to respond to an invocation to aSignature on itself; false otherwise"
-
-	self withSuperclassesDo: [:each | 
-		(each implements: signature) ifTrue: [^true]].
-	^false
 ]
