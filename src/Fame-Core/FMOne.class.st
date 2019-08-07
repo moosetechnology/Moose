@@ -18,19 +18,14 @@ FMOne >> mooseProperty [
 
 { #category : #'meta-object-protocol' }
 FMOne >> write: newValue to: anObject [
-
 	| oldValue |
-
 	oldValue := self read: anObject.
-	newValue notNil
-		ifTrue: [ self checkValue: newValue ].
-	self hasInverse 
-		ifTrue: [ 
-			oldValue notNil
-				ifTrue: [ self removeAssociationFrom: anObject to: oldValue ].
-			newValue notNil
-				ifTrue: [ self addAssociationFrom: anObject to: newValue ] ].
-		
+	
+	newValue ifNotNil: [ self checkValue: newValue ].
+	self hasInverse
+		ifTrue: [ oldValue ifNotNil: [ self removeAssociationFrom: anObject to: oldValue ].
+			newValue ifNotNil: [ self addAssociationFrom: anObject to: newValue ] ].
+
 	super write: newValue to: anObject
 ]
 
