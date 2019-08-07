@@ -505,9 +505,9 @@ TEntityMetaLevelDependency >> atScope: aClassFAMIX until: rejectBlock [
 { #category : #accessing }
 TEntityMetaLevelDependency >> children [
 	| res |
-	res := OrderedCollection new.
+	res := Set new.
 	self childrenSelectors do: [ :accessor | (self perform: accessor) ifNotNil: [ :r | res addAll: r asCollection ] ].
-	^ res asSet
+	^ res
 ]
 
 { #category : #accessing }
@@ -564,9 +564,9 @@ TEntityMetaLevelDependency >> parentTypes [
 { #category : #accessing }
 TEntityMetaLevelDependency >> parents [
 	| res |
-	res := OrderedCollection new.
+	res := Set new.
 	self parentSelectors do: [ :accessor | (self perform: accessor) ifNotNil: [ :r | res addAll: r asCollection ] ].
-	^ res asSet
+	^ res
 ]
 
 { #category : #scoping }
