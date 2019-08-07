@@ -34,7 +34,7 @@ FamixStClass >> classSide [
 
 { #category : #accessing }
 FamixStClass >> extendedInPackages [
-	^ self extendedMethods collectAsSet: [ :m | m atScope: FamixStPackage ]
+	^ self extendedMethods flatCollectAsSet: [ :m | m atScope: FamixStPackage ]
 ]
 
 { #category : #accessing }
@@ -66,6 +66,21 @@ FamixStClass >> isIgnored [
 { #category : #testing }
 FamixStClass >> isInstanceSide [
 	^ self isClassSide not
+]
+
+{ #category : #testing }
+FamixStClass >> isSUnitTestCase [
+	self deprecated: 'Use #isTestCase instead' transformWith: '`@receiver isSUnitTestCase' -> '`@receiver isTestCase'.
+	^ self isTestCase
+]
+
+{ #category : #testing }
+FamixStClass >> isTestCase [
+	<MSEProperty: #isTestCase type: #Boolean>
+	<derived>
+	<MSEComment: 'True if the method is considered as a Java test'>
+	self allSuperclassesDo: [ :each | each name = 'TestCase' ifTrue: [ ^ true ] ].
+	^ false
 ]
 
 { #category : #accessing }

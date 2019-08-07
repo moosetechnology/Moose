@@ -133,15 +133,6 @@ FamixStType >> isLonelyWithin: aClassGroup [
 ]
 
 { #category : #adding }
-FamixStType >> isTestCase [
-	<MSEProperty: #isTestCase type: #Boolean>
-	<derived>
-	<MSEComment: 'True if the method is considered as a Java test'>
-	self flag: #todo. "In Pharo model we should change this implementation and ensure we have TestCase as superclass."
-	^ self isJUnit3TestCase or: [ self isJUnit4TestCase ] 
-]
-
-{ #category : #adding }
 FamixStType >> lookUp: aMethodSignature [ 
 	"Returns the first method that has as signature #aMethodSignature. 
 	The search starts from the receiver's methods and traveses the inherited methods from the receiver's superclasses heirarchy.
