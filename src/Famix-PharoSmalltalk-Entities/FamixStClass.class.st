@@ -25,6 +25,34 @@ FamixStClass >> accessedAttributes [
 	^ self methodsWithoutSutbsAndConstructors asOrderedCollection flatCollect: [ :method | method accessedAttributes ]
 ]
 
+{ #category : #accessing }
+FamixStClass >> classSide [
+	^ self isClassSide
+		ifFalse: [ self mooseModel allClasses entityNamed: (self mooseName , '_class') asSymbol ]
+		ifTrue: [ self ]
+]
+
+{ #category : #accessing }
+FamixStClass >> extendedInPackages [
+	^ self extendedMethods collectAsSet: [ :m | m atScope: FamixStPackage ]
+]
+
+{ #category : #accessing }
+FamixStClass >> extendedMethods [
+	<MSEProperty: #extendedMethods type: #FamixStMethod>
+	<MSEComment: 'Methods which are class extensions in this class.'>
+	<derived>
+	^ self methods select: [ :m | m isExtension ]
+]
+
+{ #category : #testing }
+FamixStClass >> isClassSide [
+	"Kind of a hack. Uses the FAMIX2 Smalltalk naming convention that every Smalltalk
+	 metaclass has _class appended to the classname of the class it is a metaclass of."
+
+	^ '*_class' match: self name
+]
+
 { #category : #'Famix-Implementation' }
 FamixStClass >> isIgnored [
 	<MSEProperty: #isIgnored type: #Boolean>
@@ -33,6 +61,19 @@ FamixStClass >> isIgnored [
 	<MSEComment:
 		'If the class is a test class, it can be annotated with Ignore, all the tests of contained are bypassed'>
 	^ (self isAnnotatedWith: 'Ignore') 
+]
+
+{ #category : #testing }
+FamixStClass >> isInstanceSide [
+	^ self isClassSide not
+]
+
+{ #category : #accessing }
+FamixStClass >> localMethods [
+	<MSEProperty: #extendedMethods type: #FamixStMethod>
+	<MSEComment: 'Methods which are local methods of the class and not extensions in this class.'>
+	<derived>
+	^ self methods reject: [ :m | m isExtension ]
 ]
 
 { #category : #'Famix-Implementation' }
