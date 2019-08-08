@@ -9,7 +9,8 @@ Class {
 		'association',
 		'comment',
 		'namedEntity',
-		'sourceTextAnchor'
+		'sourceTextAnchor',
+		'unknownSourceLanguage'
 	],
 	#category : #'Famix-BasicInfrastructure'
 }
@@ -40,6 +41,7 @@ FamixBasicInfrastructureGenerator >> defineClasses [
 	entity := builder newClassNamed: #Entity.
 	sourceAnchor := builder newClassNamed: #SourceAnchor.
 	sourceLanguage := builder newClassNamed: #SourceLanguage.
+	unknownSourceLanguage := builder newClassNamed: #UnknownSourceLanguage.
 	sourcedEntity := builder newClassNamed: #SourcedEntity.
 	association := builder newClassNamed: #Association.
 	comment := builder newClassNamed: #Comment.
@@ -81,8 +83,9 @@ FamixBasicInfrastructureGenerator >> defineHierarchy [
 	
 	sourceTextAnchor --|> sourceAnchor.
 	sourceTextAnchor --|> #TWithImmediateSource.
-
-
+	
+	unknownSourceLanguage --|> entity.
+	unknownSourceLanguage --|> #TSourceLanguage
 ]
 
 { #category : #definition }

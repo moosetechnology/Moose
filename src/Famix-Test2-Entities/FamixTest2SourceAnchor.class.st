@@ -14,4 +14,3 @@ FamixTest2SourceAnchor class >> annotation [
 	<generated>
 	^self
 ]
-

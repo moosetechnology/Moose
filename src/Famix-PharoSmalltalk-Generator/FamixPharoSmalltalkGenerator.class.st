@@ -23,7 +23,6 @@ Class {
 		'scopingEntity',
 		'smalltalkSourceLanguage',
 		'type',
-		'unknownSourceLanguage',
 		'unknownVariable',
 		'tStructuralEntity'
 	],
@@ -73,7 +72,6 @@ FamixPharoSmalltalkGenerator >> defineClasses [
 	scopingEntity := builder newClassNamed: #ScopingEntity.
 	smalltalkSourceLanguage := builder newClassNamed: #SmalltalkSourceLanguage.
 	type := builder newClassNamed: #Type.
-	unknownSourceLanguage := builder newClassNamed: #UnknownSourceLanguage.
 	unknownVariable := builder newClassNamed: #UnknownVariable
 ]
 
@@ -179,8 +177,6 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	type --|> #TType.
 	type --|> #TReferenceable.
 	type --|> #TWithTypedStructures.
-
-	unknownSourceLanguage --|> sourceLanguage.
 
 	unknownVariable --|> namedEntity.
 	unknownVariable --|> tStructuralEntity.

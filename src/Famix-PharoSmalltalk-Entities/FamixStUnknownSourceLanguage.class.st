@@ -1,13 +1,15 @@
 Class {
 	#name : #FamixStUnknownSourceLanguage,
-	#superclass : #FamixStSourceLanguage,
+	#superclass : #FamixStEntity,
+	#traits : 'FamixTSourceLanguage',
+	#classTraits : 'FamixTSourceLanguage classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 
 { #category : #meta }
 FamixStUnknownSourceLanguage class >> annotation [
 
-	<MSEClass: #UnknownSourceLanguage super: #FamixStSourceLanguage>
+	<MSEClass: #UnknownSourceLanguage super: #FamixStEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
