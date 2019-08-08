@@ -24,6 +24,15 @@ MooseAbstractGroup class >> annotation [
 
 ]
 
+{ #category : #'instance creation' }
+MooseAbstractGroup class >> withAll: aCollection [
+	"Create a new collection containing all the elements from aCollection."
+
+	^ self new
+		addAll: aCollection;
+		yourself
+]
+
 { #category : #'set operations' }
 MooseAbstractGroup >> & aCollection [
 	^ self intersection: aCollection

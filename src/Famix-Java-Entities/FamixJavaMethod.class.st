@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaMethod,
 	#superclass : #FamixJavaContainerEntity,
-	#traits : 'FamixTMethod + FamixTWithCaughtExceptions + FamixTWithClassScope + FamixTWithDeclaredExceptions + FamixTWithStatements + FamixTWithThrownExceptions',
-	#classTraits : 'FamixTMethod classTrait + FamixTWithCaughtExceptions classTrait + FamixTWithClassScope classTrait + FamixTWithDeclaredExceptions classTrait + FamixTWithStatements classTrait + FamixTWithThrownExceptions classTrait',
+	#traits : 'FamixTMethod + FamixTWithCaughtExceptions + FamixTWithDeclaredExceptions + FamixTWithStatements + FamixTWithThrownExceptions',
+	#classTraits : 'FamixTMethod classTrait + FamixTWithCaughtExceptions classTrait + FamixTWithDeclaredExceptions classTrait + FamixTWithStatements classTrait + FamixTWithThrownExceptions classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 

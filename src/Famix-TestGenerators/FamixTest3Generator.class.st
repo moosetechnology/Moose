@@ -52,7 +52,6 @@ FamixTest3Generator >> defineHierarchy [
 
 	method --|> namedEntity.
 	method --|> #TMethod.
-	method --|> #TWithTypes.
 	
 	primitiveType --|> type.
 	primitiveType --|> #TWithTypes.

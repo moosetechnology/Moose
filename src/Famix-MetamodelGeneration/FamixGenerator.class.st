@@ -957,6 +957,8 @@ FamixGenerator >> defineHierarchy [
 	tMethod --|> #TWithLocalVariables.
 	tMethod --|> #TWithImplicitVariables.
 	tMethod --|> #TWithSignature.
+	tMethod --|> #TWithClassScope.
+	tMethod --|> #TTypedStructure.
 	
 	tStructuralEntity --|> #TNamed.
 	tStructuralEntity --|> #TAccessible.

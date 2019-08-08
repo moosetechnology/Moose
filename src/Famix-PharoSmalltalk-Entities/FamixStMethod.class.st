@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixStMethod,
 	#superclass : #FamixStContainerEntity,
-	#traits : 'FamixTMethod + FamixTTypedStructure + FamixTWithClassScope',
-	#classTraits : 'FamixTMethod classTrait + FamixTTypedStructure classTrait + FamixTWithClassScope classTrait',
+	#traits : 'FamixTMethod',
+	#classTraits : 'FamixTMethod classTrait',
 	#instVars : [
 		'#protocol => FMProperty'
 	],

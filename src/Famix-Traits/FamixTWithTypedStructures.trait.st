@@ -38,6 +38,11 @@ FamixTWithTypedStructures >> behavioursWithDeclaredType: anObject [
 ]
 
 { #category : #accessing }
+FamixTWithTypedStructures >> incomingTypeDeclarations [
+	^ self structuresWithDeclaredType collect: [ :var | MooseQueryTypeDeclarationAssociation newFrom: var to: self ]
+]
+
+{ #category : #accessing }
 FamixTWithTypedStructures >> structuresWithDeclaredType [
 
 	<generated>
