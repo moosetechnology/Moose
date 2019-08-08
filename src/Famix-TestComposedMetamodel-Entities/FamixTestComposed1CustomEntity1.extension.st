@@ -27,6 +27,8 @@ FamixTestComposed1CustomEntity1 >> c21: anObject [
 FamixTestComposed1CustomEntity1 >> customEntity1 [
 
 	<generated>
+	<container>
+
 	<MSEProperty: #customEntity1 type: #Object>
 	<package: #'Famix-TestComposedMetamodel-Entities'>
 	^ self privateState attributeAt: #customEntity1 ifAbsent: [ nil ]

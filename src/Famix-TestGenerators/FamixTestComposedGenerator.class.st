@@ -67,7 +67,7 @@ FamixTestComposedGenerator >> define [
 
 	entity - test1Method.
 
-	customEntity1 - test1Custom1.
+	customEntity1 <>- test1Custom1.
 	customEntity2 -* test1Custom2.	
 	customEntity3 *- test1Custom3.	
 	customEntity4 *-* test1Custom4.		
