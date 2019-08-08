@@ -42,6 +42,12 @@ Class {
 }
 
 { #category : #accessing }
+FamixMetamodelGenerator class >> allSubmetamodels [
+
+	^ {self submetamodels . self submetamodels collect: #allSubmetamodels} flattened
+]
+
+{ #category : #accessing }
 FamixMetamodelGenerator class >> basicFamixTraits [
 
 	^ #'Famix-Traits' asPackage definedClasses.
@@ -232,7 +238,8 @@ FamixMetamodelGenerator class >> resetMetamodel [
 	elements := self submetamodels flatCollect: [ :each | each metamodel elements ].
 
 	elements do: [ :each | metamodel elementNamed: each fullName ifAbsent: [ metamodel add: each ] ].
-
+	
+	self allSubmetamodels do: [ :submetamodel | submetamodel modifyMetamodel: metamodel ].
 	self modifyMetamodel: metamodel.
 
 	metamodel additionalProperties at: #wantsAllEntitiesNavigation put: self wantsAllEntitiesNavigation.
