@@ -160,8 +160,7 @@ FamixCompatibilityGenerator >> defineClasses [
 	trait := builder newClassNamed: #Trait.
 	traitUsage := builder newClassNamed: #TraitUsage.
 
-	primitiveType withTesting.
-	containerEntity withTesting.
+	primitiveType withTesting
 
 
 ]
@@ -292,7 +291,6 @@ FamixCompatibilityGenerator >> defineHierarchy [
 	method --|> #TWithThrownExceptions.
 	method --|> #TWithDeclaredExceptions.
 	method --|> #TWithCaughtExceptions.
-	method --|> #TWithClassScope.
 
 	module --|> scopingEntity.
 	module --|> #TModule.

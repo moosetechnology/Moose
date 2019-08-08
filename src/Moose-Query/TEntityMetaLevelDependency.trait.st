@@ -505,9 +505,9 @@ TEntityMetaLevelDependency >> atScope: aClassFAMIX until: rejectBlock [
 { #category : #accessing }
 TEntityMetaLevelDependency >> children [
 	| res |
-	res := OrderedCollection new.
+	res := Set new.
 	self childrenSelectors do: [ :accessor | (self perform: accessor) ifNotNil: [ :r | res addAll: r asCollection ] ].
-	^ res asSet
+	^ res
 ]
 
 { #category : #accessing }
@@ -542,6 +542,14 @@ TEntityMetaLevelDependency >> incomingMSEProperties [
 ]
 
 { #category : #accessing }
+TEntityMetaLevelDependency >> numberOfChildren [
+	<MSEProperty: #numberOfChildren type: #Number>
+	<MSEComment: 'Number of direct children entities in the containment tree.'>
+	<derived>
+	^ self isContainerEntity ifTrue: [ self children size ] ifFalse: [ 0 ]
+]
+
+{ #category : #accessing }
 TEntityMetaLevelDependency >> outgoingAssociationTypes [
 	^ self class outgoingAssociationTypesIn: self metamodel
 ]
@@ -564,9 +572,9 @@ TEntityMetaLevelDependency >> parentTypes [
 { #category : #accessing }
 TEntityMetaLevelDependency >> parents [
 	| res |
-	res := OrderedCollection new.
+	res := Set new.
 	self parentSelectors do: [ :accessor | (self perform: accessor) ifNotNil: [ :r | res addAll: r asCollection ] ].
-	^ res asSet
+	^ res
 ]
 
 { #category : #scoping }

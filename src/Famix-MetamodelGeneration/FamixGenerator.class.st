@@ -981,8 +981,8 @@ FamixGenerator >> defineHierarchy [
 	tMethod --|> #TWithAccesses.
 	tMethod --|> #TWithLocalVariables.
 	tMethod --|> #TWithImplicitVariables.
-	tMethod --|> #TWithSignature.""
-	tMethod --|> #TWithClassScope.""
+	tMethod --|> #TWithSignature.
+	tMethod --|> #TWithClassScope.
 	tMethod --|> #TTypedStructure.
 	tMethod --|> #TWithModifiers.
 	tMethod --|> #TNamed.

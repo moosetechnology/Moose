@@ -127,13 +127,7 @@ FamixJavaType >> incomingAccesses [
 		ifAbsentPut: [ attributes flatCollect: [ :each | each incomingAccesses ] ]
 ]
 
-{ #category : #'moosequery-queries-incoming' }
-FamixJavaType >> incomingTypeDeclarations [
-
-	^ self structuresWithDeclaredType , self behavioursWithDeclaredType collect: [ :var | MooseQueryTypeDeclarationAssociation newFrom: var to: self ]
-]
-
-{ #category : #accessing }
+{ #category : #'Famix-Extensions' }
 FamixJavaType >> isAbstract [
 	<MSEProperty: #isAbstract type: #Boolean> <derived>
 	<MSEComment: 'Flag true for abstract classes.'>

@@ -132,7 +132,6 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 
 	method --|> namedEntity.
 	method --|> #TMethod.
-	
 
 	namedEntity --|> #TPackageable.
 	namedEntity --|> #TWithAnnotationInstances.

@@ -26,6 +26,13 @@ FamixTest1ImportingContext >> importAssociation [
 ]
 
 { #category : #testing }
+FamixTest1ImportingContext >> importAttribute [
+
+	<generated>
+	^ self import: FamixTest1Attribute
+]
+
+{ #category : #testing }
 FamixTest1ImportingContext >> importClass [
 
 	<generated>
@@ -149,6 +156,13 @@ FamixTest1ImportingContext >> shouldImportAssociation [
 
 	<generated>
 	^ self shouldImport: FamixTest1Association
+]
+
+{ #category : #testing }
+FamixTest1ImportingContext >> shouldImportAttribute [
+
+	<generated>
+	^ self shouldImport: FamixTest1Attribute
 ]
 
 { #category : #testing }
