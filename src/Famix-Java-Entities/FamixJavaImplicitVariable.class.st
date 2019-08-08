@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixJavaImplicitVariable,
-	#superclass : #MooseEntity,
+	#superclass : #FamixJavaEntity,
 	#traits : 'FamixJavaTStructuralEntity + FamixTImplicitVariable',
 	#classTraits : 'FamixJavaTStructuralEntity classTrait + FamixTImplicitVariable classTrait',
 	#category : #'Famix-Java-Entities-Entities'
@@ -9,17 +9,10 @@ Class {
 { #category : #meta }
 FamixJavaImplicitVariable class >> annotation [
 
-	<MSEClass: #ImplicitVariable super: #MooseEntity>
+	<MSEClass: #ImplicitVariable super: #FamixJavaEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FamixJavaImplicitVariable class >> metamodel [
-
-	<generated>
-	^ (self class environment at: #FamixJavaGenerator) metamodel
 ]
 
 { #category : #accessing }
@@ -51,106 +44,8 @@ FamixJavaImplicitVariable >> container: aBehaviouralEntity [
 ]
 
 { #category : #testing }
-FamixJavaImplicitVariable >> isAccess [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaImplicitVariable >> isAssociation [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaImplicitVariable >> isAttribute [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaImplicitVariable >> isClass [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaImplicitVariable >> isFunction [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
 FamixJavaImplicitVariable >> isImplicitVariable [
 	^true
-]
-
-{ #category : #testing }
-FamixJavaImplicitVariable >> isInheritance [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaImplicitVariable >> isInvocation [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaImplicitVariable >> isMethod [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaImplicitVariable >> isNamespace [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaImplicitVariable >> isPackage [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaImplicitVariable >> isPrimitiveType [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaImplicitVariable >> isReference [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaImplicitVariable >> isStructuralEntity [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaImplicitVariable >> isType [
-
-	<generated>
-	^ false
 ]
 
 { #category : #'as yet unclassified' }

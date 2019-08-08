@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixJavaParameter,
-	#superclass : #MooseEntity,
+	#superclass : #FamixJavaEntity,
 	#traits : 'FamixJavaTStructuralEntity + FamixTParameter',
 	#classTraits : 'FamixJavaTStructuralEntity classTrait + FamixTParameter classTrait',
 	#category : #'Famix-Java-Entities-Entities'
@@ -9,17 +9,10 @@ Class {
 { #category : #meta }
 FamixJavaParameter class >> annotation [
 
-	<MSEClass: #Parameter super: #MooseEntity>
+	<MSEClass: #Parameter super: #FamixJavaEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FamixJavaParameter class >> metamodel [
-
-	<generated>
-	^ (self class environment at: #FamixJavaGenerator) metamodel
 ]
 
 { #category : #accessing }
@@ -36,111 +29,6 @@ FamixJavaParameter >> belongsTo: anObject [
 	<generated>
 	self parentBehaviouralEntity: anObject
 
-]
-
-{ #category : #testing }
-FamixJavaParameter >> isAccess [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaParameter >> isAssociation [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaParameter >> isAttribute [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaParameter >> isClass [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaParameter >> isFunction [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaParameter >> isImplicitVariable [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaParameter >> isInheritance [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaParameter >> isInvocation [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaParameter >> isMethod [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaParameter >> isNamespace [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaParameter >> isPackage [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaParameter >> isPrimitiveType [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaParameter >> isReference [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaParameter >> isStructuralEntity [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaParameter >> isType [
-
-	<generated>
-	^ false
 ]
 
 { #category : #'as yet unclassified' }

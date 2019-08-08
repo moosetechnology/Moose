@@ -147,6 +147,7 @@ FamixJavaGenerator >> defineHierarchy [
 	annotationTypeAttribute --|> #TAnnotationTypeAttribute.
 	annotationTypeAttribute --|> #TTypedAnnotationInstanceAttribute.
 
+	attribute --|> entity.
 	attribute --|> tStructuralEntity.
 	attribute --|> #TAttribute.
 	attribute --|> #TWithClassScope.
@@ -178,6 +179,7 @@ FamixJavaGenerator >> defineHierarchy [
 	enum --|> type.
 	enum --|> #TWithEnumValues.
 
+	enumValue --|> entity.
 	enumValue --|> tStructuralEntity.
 	enumValue --|> namedEntity.
 	enumValue inheritsFromTrait: tStructuralEntity without: #(#mooseNameOn:).
@@ -185,10 +187,12 @@ FamixJavaGenerator >> defineHierarchy [
 
 	exception --|> #TException.
 
+	globalVariable --|> entity.
 	globalVariable --|> tStructuralEntity.
 	globalVariable --|> #TGlobalVariable.
 	globalVariable --|> #TWithModifiers .
 
+	implicitVariable --|> entity.
 	implicitVariable --|> tStructuralEntity.
 	implicitVariable --|> #TImplicitVariable.
 
@@ -200,6 +204,7 @@ FamixJavaGenerator >> defineHierarchy [
 	invocation --|> #TInvocation.
 	invocation --|> #TWithSignature.
 
+	localVariable --|> entity.
 	localVariable --|> tStructuralEntity.
 	localVariable --|> #TLocalVariable.
 
@@ -217,6 +222,7 @@ FamixJavaGenerator >> defineHierarchy [
 	package --|> scopingEntity.
 	package --|> #TPackage.
 
+	parameter --|> entity.
 	parameter --|> tStructuralEntity.
 	parameter --|> #TParameter.
 
@@ -257,7 +263,7 @@ FamixJavaGenerator >> defineHierarchy [
 	type --|> #TWithSuperInheritances.
 	type --|> #TWithAttributes.
 	
-
+	unknownVariable --|> entity.
 	unknownVariable --|> tStructuralEntity.
 	
 

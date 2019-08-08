@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixJavaAttribute,
-	#superclass : #MooseEntity,
+	#superclass : #FamixJavaEntity,
 	#traits : 'FamixJavaTStructuralEntity + FamixTAttribute + FamixTWithAnnotationInstances + FamixTWithClassScope',
 	#classTraits : 'FamixJavaTStructuralEntity classTrait + FamixTAttribute classTrait + FamixTWithAnnotationInstances classTrait + FamixTWithClassScope classTrait',
 	#instVars : [
@@ -12,17 +12,10 @@ Class {
 { #category : #meta }
 FamixJavaAttribute class >> annotation [
 
-	<MSEClass: #Attribute super: #MooseEntity>
+	<MSEClass: #Attribute super: #FamixJavaEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FamixJavaAttribute class >> metamodel [
-
-	<generated>
-	^ (self class environment at: #FamixJavaGenerator) metamodel
 ]
 
 { #category : #meta }
@@ -84,104 +77,6 @@ FamixJavaAttribute >> initialize [
 	super initialize.
 	hasClassScope := false.
 
-]
-
-{ #category : #testing }
-FamixJavaAttribute >> isAccess [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaAttribute >> isAssociation [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaAttribute >> isClass [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaAttribute >> isFunction [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaAttribute >> isImplicitVariable [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaAttribute >> isInheritance [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaAttribute >> isInvocation [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaAttribute >> isMethod [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaAttribute >> isNamespace [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaAttribute >> isPackage [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaAttribute >> isPrimitiveType [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaAttribute >> isReference [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaAttribute >> isStructuralEntity [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaAttribute >> isType [
-
-	<generated>
-	^ false
 ]
 
 { #category : #'as yet unclassified' }

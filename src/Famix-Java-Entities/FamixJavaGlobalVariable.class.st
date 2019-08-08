@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixJavaGlobalVariable,
-	#superclass : #MooseEntity,
+	#superclass : #FamixJavaEntity,
 	#traits : 'FamixJavaTStructuralEntity + FamixTGlobalVariable + FamixTWithModifiers',
 	#classTraits : 'FamixJavaTStructuralEntity classTrait + FamixTGlobalVariable classTrait + FamixTWithModifiers classTrait',
 	#category : #'Famix-Java-Entities-Entities'
@@ -9,17 +9,10 @@ Class {
 { #category : #meta }
 FamixJavaGlobalVariable class >> annotation [
 
-	<MSEClass: #GlobalVariable super: #MooseEntity>
+	<MSEClass: #GlobalVariable super: #FamixJavaEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FamixJavaGlobalVariable class >> metamodel [
-
-	<generated>
-	^ (self class environment at: #FamixJavaGenerator) metamodel
 ]
 
 { #category : #meta }
@@ -45,90 +38,6 @@ FamixJavaGlobalVariable >> belongsTo: anObject [
 
 ]
 
-{ #category : #testing }
-FamixJavaGlobalVariable >> isAccess [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaGlobalVariable >> isAssociation [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaGlobalVariable >> isAttribute [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaGlobalVariable >> isClass [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaGlobalVariable >> isFunction [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaGlobalVariable >> isImplicitVariable [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaGlobalVariable >> isInheritance [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaGlobalVariable >> isInvocation [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaGlobalVariable >> isMethod [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaGlobalVariable >> isNamespace [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaGlobalVariable >> isPackage [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaGlobalVariable >> isPrimitiveType [
-
-	<generated>
-	^ false
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaGlobalVariable >> isPrivate [
 	^ self isPublic not
@@ -139,27 +48,6 @@ FamixJavaGlobalVariable >> isPublic [
 	"checker whether I am called outside the module in which I am defined"
 	^ self incomingAccesses anySatisfy: [:inv |
 			inv accessor parentScope ~~ self parentScope]
-]
-
-{ #category : #testing }
-FamixJavaGlobalVariable >> isReference [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaGlobalVariable >> isStructuralEntity [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaGlobalVariable >> isType [
-
-	<generated>
-	^ false
 ]
 
 { #category : #'as yet unclassified' }
