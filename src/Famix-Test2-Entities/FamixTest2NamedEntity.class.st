@@ -14,4 +14,3 @@ FamixTest2NamedEntity class >> annotation [
 	<generated>
 	^self
 ]
-

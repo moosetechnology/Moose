@@ -58,7 +58,6 @@ Class {
 		'thrownException',
 		'type',
 		'typeAlias',
-		'uNKNOWNSourceLanguage',
 		'unknownVariable',
 		'trait',
 		'traitUsage'
@@ -157,7 +156,6 @@ FamixCompatibilityGenerator >> defineClasses [
 	thrownException := builder newClassNamed: #ThrownException.
 	type := builder newClassNamed: #Type.
 	typeAlias := builder newClassNamed: #TypeAlias.
-	uNKNOWNSourceLanguage := builder newClassNamed: #UnknownSourceLanguage.
 	unknownVariable := builder newClassNamed: #UnknownVariable.
 	trait := builder newClassNamed: #Trait.
 	traitUsage := builder newClassNamed: #TraitUsage.
@@ -367,8 +365,6 @@ FamixCompatibilityGenerator >> defineHierarchy [
 
 	typeAlias --|> type.
 	typeAlias --|> #TTypeAlias.
-
-	uNKNOWNSourceLanguage --|> sourceLanguage.
 
 	unknownVariable --|> structuralEntity.
 	

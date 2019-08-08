@@ -33,7 +33,6 @@ Class {
 		'thrownException',
 		'type',
 		'unknownVariable',
-		'unknownSourceLanguage',
 		'parameterizedType',
 		'tStructuralEntity'
 	],
@@ -93,7 +92,6 @@ FamixJavaGenerator >> defineClasses [
 	scopingEntity := builder newClassNamed: #ScopingEntity.
 	thrownException := builder newClassNamed: #ThrownException.
 	type := builder newClassNamed: #Type.
-	unknownSourceLanguage := builder newClassNamed: #UnknownSourceLanguage.
 	unknownVariable := builder newClassNamed: #UnknownVariable.
 	
 	primitiveType withTesting.
@@ -255,9 +253,6 @@ FamixJavaGenerator >> defineHierarchy [
 	
 	tStructuralEntity --|> #TStructuralEntity.
 	tStructuralEntity --|> #TWithDereferencedInvocations.
-
-	unknownSourceLanguage --|> entity.
-	unknownSourceLanguage --|> #TSourceLanguage.
 
 	unknownVariable --|> namedEntity.
 	unknownVariable --|> tStructuralEntity.
