@@ -61,13 +61,6 @@ FAMIXEntity >> isClass [
 ]
 
 { #category : #testing }
-FAMIXEntity >> isContainerEntity [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
 FAMIXEntity >> isFunction [
 
 	<generated>

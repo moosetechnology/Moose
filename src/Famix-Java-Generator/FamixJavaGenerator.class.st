@@ -97,7 +97,6 @@ FamixJavaGenerator >> defineClasses [
 	unknownVariable := builder newClassNamed: #UnknownVariable.
 	
 	primitiveType withTesting.
-	containerEntity withTesting.
 
 	self defineComments
 ]

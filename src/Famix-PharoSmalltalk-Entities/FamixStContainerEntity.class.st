@@ -14,12 +14,3 @@ FamixStContainerEntity class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #accessing }
-FamixStContainerEntity >> numberOfChildren [
-	<MSEProperty: #numberOfChildren type: #Number>
-	<MSEComment: 'Number of direct children entities in the containment tree.'>
-	<derived>
-	
-	^ self children size
-]

@@ -47,6 +47,12 @@ MooseAbstractGroup >> addAll: aCollectionOfItems [
 	^ self subclassResponsibility
 ]
 
+{ #category : #accessing }
+MooseAbstractGroup >> allContainers [
+	<navigation: 'All containers'>
+	^ self lookUpPropertyNamed: #allContainers computedAs: [ self entities select: #isContainerEntity ]
+]
+
 { #category : #groups }
 MooseAbstractGroup >> allModels [ 
 	 "returns all known Models (be them MooseModels or of a subclass of it)"
