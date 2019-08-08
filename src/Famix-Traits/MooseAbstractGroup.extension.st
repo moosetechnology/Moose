@@ -225,6 +225,12 @@ MooseAbstractGroup >> allReferences [
 ]
 
 { #category : #'*Famix-Traits' }
+MooseAbstractGroup >> allStructuralEntities [
+	<navigation: 'All structural entities'>
+	^ self allUsing: FamixTStructuralEntity
+]
+
+{ #category : #'*Famix-Traits' }
 MooseAbstractGroup >> allTestClasses [
 	<navigation: 'All test classes'>
 	<package: #Java>

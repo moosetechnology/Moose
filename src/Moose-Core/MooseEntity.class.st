@@ -174,6 +174,14 @@ MooseEntity class >> implementingClassesIn: aMetamodel [
 ]
 
 { #category : #testing }
+MooseEntity class >> isContainerEntityIn: aMetamodel [
+	^ aMetamodel
+		additionalProperty: #isContainerEntity
+		for: self
+		ifAbsentPut: [ (self allDeclaredPropertiesIn: aMetamodel) anySatisfy: #isChildrenProperty ]
+]
+
+{ #category : #testing }
 MooseEntity class >> isOfType: aClassFAMIX [
 	^ self superclassesAndFamixTraits includes: aClassFAMIX
 ]
@@ -392,6 +400,11 @@ MooseEntity >> isBookmarked [
 { #category : #accessing }
 MooseEntity >> isBookmarked: aBoolean [
 	self propertyNamed: #isBookmarked put: aBoolean
+]
+
+{ #category : #testing }
+MooseEntity >> isContainerEntity [
+	^ self class isContainerEntityIn: self metamodel
 ]
 
 { #category : #testing }
