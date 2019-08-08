@@ -19,7 +19,7 @@ FamixTest3Types class >> annotation [
 FamixTest3Types class >> requirements [
 
 	<generated>
-	^ { FamixTest3Method. FamixTest3PrimitiveType }
+	^ { FamixTest3PrimitiveType }
 ]
 
 { #category : #accessing }

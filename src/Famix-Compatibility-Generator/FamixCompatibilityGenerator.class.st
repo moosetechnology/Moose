@@ -293,7 +293,6 @@ FamixCompatibilityGenerator >> defineHierarchy [
 	method --|> #TWithThrownExceptions.
 	method --|> #TWithDeclaredExceptions.
 	method --|> #TWithCaughtExceptions.
-	method --|> #TWithClassScope.
 
 	module --|> scopingEntity.
 	module --|> #TModule.

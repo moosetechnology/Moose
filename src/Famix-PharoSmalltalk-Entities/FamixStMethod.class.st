@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixStMethod,
 	#superclass : #FamixStContainerEntity,
-	#traits : 'FamixTMethod + FamixTTypedStructure + FamixTWithClassScope',
-	#classTraits : 'FamixTMethod classTrait + FamixTTypedStructure classTrait + FamixTWithClassScope classTrait',
+	#traits : 'FamixTMethod',
+	#classTraits : 'FamixTMethod classTrait',
 	#instVars : [
 		'#protocol => FMProperty'
 	],
@@ -165,13 +165,14 @@ FamixStMethod >> isJUnit4Test [
 
 { #category : #'Famix-Extensions-metrics-support' }
 FamixStMethod >> isOverriden [
+	"If we have a stub and we don't have the container, we can't have the information"
+
 	<MSEProperty: #isOverriden type: #Boolean>
 	<derived>
 	<MSEComment: 'The method is overrided in a sub class'>
-	"If we have a stub and we don't have the container, we can't have the information"
 	(self belongsTo isNil and: [ self isStub ]) ifTrue: [ ^ false ].
-	
-	^ self belongsTo subclassHierarchyGroup anySatisfy: [ :each | each hasMethodWithSignature: self signature ]
+
+	^ self belongsTo subclassHierarchyGroup anySatisfy: [ :each | each implements: self signature ]
 ]
 
 { #category : #accessing }

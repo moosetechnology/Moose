@@ -7,6 +7,15 @@ Class {
 	#category : #'Moose-Query'
 }
 
+{ #category : #'instance creation' }
+MooseObjectQueryResult class >> withAll: aCollection [
+	"Create a new collection containing all the elements from aCollection."
+
+	^ self new
+		addAll: aCollection;
+		yourself
+]
+
 { #category : #filtering }
 MooseObjectQueryResult >> allAtAnyScope: aCollectionOfFamixClasses [
 	^ self newObjectResultWith: (self storage inject: OrderedCollection new into: [ :res :entity | entity allAtAnyScope: aCollectionOfFamixClasses in: res ]) asSet
