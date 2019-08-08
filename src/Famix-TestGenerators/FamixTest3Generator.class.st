@@ -67,14 +67,3 @@ FamixTest3Generator >> defineHierarchy [
 
 
 ]
-
-{ #category : #definition }
-FamixTest3Generator >> newBuilder [
-
-	^ self builderWithStandardTraits
-		withImportingContext;
-		yourself
-		
-		
-	
-]

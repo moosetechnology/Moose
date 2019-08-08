@@ -69,14 +69,3 @@ FamixTest1Generator >> defineHierarchy [
 	attribute --|> #TStructuralEntity.
 	attribute --|> #TAttribute.
 ]
-
-{ #category : #definition }
-FamixTest1Generator >> newBuilder [
-
-	^ self builderWithStandardTraits
-		withImportingContext;
-		yourself
-		
-		
-	
-]
