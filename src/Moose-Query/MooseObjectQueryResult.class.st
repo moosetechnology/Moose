@@ -100,17 +100,17 @@ MooseObjectQueryResult >> within: aFAMIXEntity [
 
 { #category : #filtering }
 MooseObjectQueryResult >> withinClass: aFAMIXClass [
-	^ self newObjectResultWith: (storage select: [ :obj | aFAMIXClass == (obj atScope: FamixTClass) anyOne ])
+	^ self newObjectResultWith: (storage select: [ :obj | (obj atScope: FamixTClass) includes: aFAMIXClass ])
 ]
 
 { #category : #filtering }
 MooseObjectQueryResult >> withinNamespace: aFAMIXNamespace [
-	^ self newObjectResultWith: (storage select: [ :obj | aFAMIXNamespace == (obj atScope: FamixTNamespace) anyOne ])
+	^ self newObjectResultWith: (storage select: [ :obj | (obj atScope: FamixTNamespace) includes: aFAMIXNamespace ])
 ]
 
 { #category : #filtering }
 MooseObjectQueryResult >> withinPackage: aFAMIXPackage [
-	^ self newObjectResultWith: (storage select: [ :obj | aFAMIXPackage == (obj atScope: FamixTPackage) anyOne ])
+	^ self newObjectResultWith: (storage select: [ :obj | (obj atScope: FamixTPackage) includes: aFAMIXPackage ])
 ]
 
 { #category : #filtering }
