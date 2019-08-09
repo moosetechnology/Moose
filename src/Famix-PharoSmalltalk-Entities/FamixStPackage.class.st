@@ -42,12 +42,6 @@ FamixStPackage >> classes [
 ]
 
 { #category : #accessing }
-FamixStPackage >> clientPackages [
-	self deprecated: 'Use #allClients instead' transformWith: '`@receiver clientPackages' -> '`@receiver allClients'.
-	^ self allClients
-]
-
-{ #category : #accessing }
 FamixStPackage >> extendedClasses [
 	"select all classes extended in this package"
 

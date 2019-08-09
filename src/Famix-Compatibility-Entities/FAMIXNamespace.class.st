@@ -103,19 +103,6 @@ FAMIXNamespace >> childrenOfMyKind [
 	^ self childScopes
 ]
 
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXNamespace >> clientClasses [
-	self deprecated: 'use clientTypes'.
-	^ self clientTypes
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXNamespace >> clientNamespaces [
-	"MooseCook was: ^ self inheritedByNamespaces union: self invokingNamespaces"
-
-	^ (self queryAllIncoming atScope: FamixTNamespace) withoutSelfLoops
-]
-
 { #category : #'Famix-Extensions-accessing' }
 FAMIXNamespace >> containedEntities [
 	^self types

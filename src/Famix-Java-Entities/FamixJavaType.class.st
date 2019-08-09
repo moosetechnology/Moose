@@ -61,22 +61,6 @@ FamixJavaType >> belongsTo: anObject [
 
 ]
 
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixJavaType >> clientNamespaces [
-	"returns a set of all the namespaces that depend on (some classes of them inherit, staticly access, or use some methods of) the receiver"
-
-	"Moose cook was: ^ self inheritedByNamespaces union: self invokingNamespaces"
-
-	^ (self queryAllIncoming atScope: FamixTNamespace) withoutSelfLoops
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixJavaType >> clientPackages [
-	"returns a set of all the packages that depend on (some classes of them inherit, staticly access, or use some methods of) the receiver"
-
-	^ (self queryAllIncoming atScope: FamixTPackage) withoutSelfLoops
-]
-
 { #category : #accessing }
 FamixJavaType >> container [
 

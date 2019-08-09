@@ -6,19 +6,19 @@ Class {
 
 { #category : #'MooseKGB-TestFamix3-allDependencies' }
 FAMIXClassNavigationTest >> testClientClasses [
-	self assert: self c14ReferencerOutSideRefereeOutSide clientTypes size equals: 2.
+	self assert: (self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTType) size equals: 2.
 	self
 		assert:
-			(self c14ReferencerOutSideRefereeOutSide clientTypes
+			((self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTType)
 				equalsTo:
 					(Set new
 						add: self c2ReferencerOutSideRefereeInSide;
 						add: self c15FullReferencerOutSide;
 						yourself)).
-	self assert: self c3ReferencerInSideRefereeOutSide clientTypes size equals: 3.
+	self assert: (self c3ReferencerInSideRefereeOutSide allClientsAtScope: FamixTType) size equals: 3.
 	self
 		assert:
-			(self c3ReferencerInSideRefereeOutSide clientTypes
+			((self c3ReferencerInSideRefereeOutSide allClientsAtScope: FamixTType)
 				equalsTo:
 					(Set new
 						add: self c1FullReferencerOutSide;
@@ -29,10 +29,10 @@ FAMIXClassNavigationTest >> testClientClasses [
 
 { #category : #'MooseKGB-TestFamix3-allDependencies' }
 FAMIXClassNavigationTest >> testClientNamespaces [
-	self assert: self c14ReferencerOutSideRefereeOutSide clientNamespaces size equals: 3.
+	self assert: (self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTNamespace) size equals: 3.
 	self
 		assert:
-			(self c14ReferencerOutSideRefereeOutSide clientNamespaces
+			((self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTNamespace)
 				equalsTo:
 					(Set new
 						add: self namespace1InteractedReferencerReferee;
@@ -47,10 +47,10 @@ FAMIXClassNavigationTest >> testClientPackages [
 	p2 := self packageP2InteractedReferencerReferee.
 	p7 := self packageP7ReferencerReferee.
 	p8 := self packageP8FullReferencer.
-	self assert: self c14ReferencerOutSideRefereeOutSide clientPackages size equals: 3.
+	self assert: (self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTPackage) size equals: 3.
 	self
 		assert:
-			(self c14ReferencerOutSideRefereeOutSide clientPackages
+			((self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTPackage)
 				equalsTo:
 					(Set new
 						add: p2;

@@ -56,25 +56,6 @@ FamixJavaMethod >> clientBehaviours [
 	^ self invokingBehaviours 
 ]
 
-{ #category : #'Famix-Extensions' }
-FamixJavaMethod >> clientMethods [
-	^ self clientBehaviours select: [ :each | each isMethod ]
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixJavaMethod >> clientNamespaces [
-	"returns a set of all the namespaces that depend on the receiver"
-
-	^ (self queryAllIncoming atScope: FamixTNamespace) withoutSelfLoops
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixJavaMethod >> clientPackages [
-	"returns a set of all the packages that depend on the receiver"
-
-	^ (self queryAllIncoming atScope: FamixTPackage) withoutSelfLoops
-]
-
 { #category : #testing }
 FamixJavaMethod >> hasEmptyBody [
 	"Copied from FAMIX2.

@@ -122,13 +122,6 @@ FamixJavaNamespace >> childrenOfMyKind [
 	^ self childScopes
 ]
 
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixJavaNamespace >> clientNamespaces [
-	"MooseCook was: ^ self inheritedByNamespaces union: self invokingNamespaces"
-
-	^ (self queryAllIncoming atScope: FamixTNamespace) withoutSelfLoops
-]
-
 { #category : #'Famix-Extensions-accessing' }
 FamixJavaNamespace >> containedEntities [
 	^self types

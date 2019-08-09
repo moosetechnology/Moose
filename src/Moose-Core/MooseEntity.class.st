@@ -312,6 +312,30 @@ MooseEntity >> children [
 	^children
 ]
 
+{ #category : #deprecated }
+MooseEntity >> clientMethods [
+	self deprecated: 'Use #allClientsAtScope: instead.' transformWith: '`@receiver clientMethods' -> '`@receiver allClientsAtScope: FamixTMethod'.
+	^ self allClientsAtScope: FamixTMethod
+]
+
+{ #category : #deprecated }
+MooseEntity >> clientNamespaces [
+	self deprecated: 'Use #allClientsAtScope: instead.' transformWith: '`@receiver clientNamespaces' -> '`@receiver allClientsAtScope: FamixTNamespace'.
+	^ self allClientsAtScope: FamixTNamespace
+]
+
+{ #category : #deprecated }
+MooseEntity >> clientPackages [
+	self deprecated: 'Use #allClientsAtScope: instead.' transformWith: '`@receiver clientPackages' -> '`@receiver allClientsAtScope: FamixTPackage'.
+	^ self allClientsAtScope: FamixTPackage
+]
+
+{ #category : #deprecated }
+MooseEntity >> clientTypes [
+	self deprecated: 'Use #allClientsAtScope: instead.' transformWith: '`@receiver clientTypes' -> '`@receiver allClientsAtScope: FamixTType'.
+	^ self allClientsAtScope: FamixTType
+]
+
 { #category : #private }
 MooseEntity >> defaultStateClass [
 	"Answer the default implementator of this element's state."
