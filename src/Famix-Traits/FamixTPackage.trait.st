@@ -71,9 +71,3 @@ FamixTPackage >> packageOwner: anObject [
 	packageOwner := anObject
 
 ]
-
-{ #category : #accessing }
-FamixTPackage >> packageScope [
-
-	^ self
-]

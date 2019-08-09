@@ -56,13 +56,3 @@ FamixStImplicitVariable >> mooseNameOn: stream [
 
 	self name ifNotNil: [ stream nextPutAll: self name ]
 ]
-
-{ #category : #testing }
-FamixStImplicitVariable >> packageScope [
-	^ self parentBehaviouralEntity packageScope
-]
-
-{ #category : #testing }
-FamixStImplicitVariable >> typeScope [
-	^ self parentBehaviouralEntity typeScope
-]

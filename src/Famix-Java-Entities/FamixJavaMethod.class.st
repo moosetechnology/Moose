@@ -63,25 +63,6 @@ FamixJavaMethod >> clientBehaviours [
 	^ self invokingBehaviours 
 ]
 
-{ #category : #'Famix-Extensions' }
-FamixJavaMethod >> clientMethods [
-	^ self clientBehaviours select: [ :each | each isMethod ]
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixJavaMethod >> clientNamespaces [
-	"returns a set of all the namespaces that depend on the receiver"
-
-	^ (self queryAllIncoming atScope: FamixTNamespace) withoutSelfLoops
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixJavaMethod >> clientPackages [
-	"returns a set of all the packages that depend on the receiver"
-
-	^ (self queryAllIncoming atScope: FamixTPackage) withoutSelfLoops
-]
-
 { #category : #testing }
 FamixJavaMethod >> hasEmptyBody [
 	"Copied from FAMIX2.
@@ -244,13 +225,6 @@ FamixJavaMethod >> isSurelyInvokedBy: aFAMIXMethod [
 	^false
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaMethod >> methodScope [
-"This is a special case, only meaningful when using #withoutSelfLoops. Rejecting self loops with a method means rejecting recursive calls."
-
-	^ self
-]
-
 { #category : #printing }
 FamixJavaMethod >> mooseNameOn: stream [ 
 	| parent |
@@ -262,11 +236,6 @@ FamixJavaMethod >> mooseNameOn: stream [
 		ifNotNil: [ stream nextPutAll: self signature ]
 		ifNil: [ 
 			self name ifNotNil: [ stream nextPutAll: self name] ]
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaMethod >> namespaceScope [
-	^ self parentType namespaceScope
 ]
 
 { #category : #accessing }
@@ -347,18 +316,6 @@ FamixJavaMethod >> overridesMethod [
 ]
 
 { #category : #accessing }
-FamixJavaMethod >> packageScope [
-
-	^ self parentPackage ifNil:[ 
-		|cl|
-		cl := self parentType.
-		cl isNil 
-			ifTrue:[nil]
-			ifFalse:[cl packageScope]
-	]
-]
-
-{ #category : #accessing }
 FamixJavaMethod >> parentScope [
 	"Polymorphic alias to mimic GlobalVariable#parentScope and similar"
 
@@ -379,38 +336,4 @@ FamixJavaMethod >> providerBehaviours [
 	<MSEComment: 'All behaviours that the receiver depends on'>
 
 	^ self invokedBehaviours 
-]
-
-{ #category : #'Famix-Extensions' }
-FamixJavaMethod >> providerMethods [
-	^ self providerBehaviours select: [ :each | each isMethod ]
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixJavaMethod >> providerNamespaces [
-	"returns a set of all the namespaces that the receiver depends on the receiver"
-
-	^ (self queryAllOutgoing atScope: FamixTNamespace) withoutSelfLoops
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixJavaMethod >> providerPackages [
-	"returns a set of all the packages that the receiver depends on the receiver"
-
-	^ (self queryAllOutgoing atScope: FamixTPackage) withoutSelfLoops
-]
-
-{ #category : #accessing }
-FamixJavaMethod >> providerTypes [
-	<MSEProperty: #providerTypes type: #FamixJavaType>
-	<derived>
-	<multivalued>
-	<MSEComment: 'All types that the receiver depends on'>
-	^ (self queryAllOutgoing atScope: FamixTType) withoutSelfLoops
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaMethod >> typeScope [
-
-	^ self parentType 
 ]

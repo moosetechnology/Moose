@@ -41,24 +41,6 @@ FAMIXNamedEntity >> belongsTo: anObject [
 ]
 
 { #category : #'moosechef-scoping-filtering' }
-FAMIXNamedEntity >> methodScope [
-	"Empty default scope"
-	^ nil
-]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXNamedEntity >> namespaceScope [
-	"Empty default scope"
-	^ nil
-]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXNamedEntity >> packageScope [
-	"Empty default scope"
-	^ nil
-]
-
-{ #category : #'moosechef-scoping-filtering' }
 FAMIXNamedEntity >> selectWithinYourScope: aMooseQueryResult [
 	self subclassResponsibility
 ]
@@ -70,12 +52,6 @@ FAMIXNamedEntity >> stubFormattedName [
 					string: self name
 					attribute: TextEmphasis italic ]
 		ifFalse: [ Text fromString: self name ] 
-]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXNamedEntity >> typeScope [
-	"Empty default scope"
-	^ nil
 ]
 
 { #category : #'moosechef-scoping-filtering' }

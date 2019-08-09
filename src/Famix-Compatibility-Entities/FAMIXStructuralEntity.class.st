@@ -20,23 +20,3 @@ FAMIXStructuralEntity >> isSharedVariable [
 
 	^ false
 ]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXStructuralEntity >> namespaceScope [
-	^ self subclassResponsibility
-]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXStructuralEntity >> packageScope [
-
-	| cs |
-	cs := self typeScope.
-	
-	^ (cs isNil) ifTrue: [nil] ifFalse: [cs packageScope]
-]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXStructuralEntity >> typeScope [
-
-	^ self belongsTo typeScope 
-]

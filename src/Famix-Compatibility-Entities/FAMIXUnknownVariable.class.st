@@ -17,24 +17,3 @@ FAMIXUnknownVariable class >> annotation [
 FAMIXUnknownVariable >> belongsTo [
 	^ nil
 ]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXUnknownVariable >> namespaceScope [
-	"namespaceScope does not make sense for an unknown variable,
-	so we return nil"
-	^ nil
-]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXUnknownVariable >> packageScope [
-	"packageScope does not make sense for an unknown variable,
-	so we return nil"
-	^ nil
-]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXUnknownVariable >> typeScope [
-	"typeScope does not make sense for an unknown variable,
-	so we return nil"
-	^ nil
-]

@@ -42,16 +42,6 @@ FamixJavaLocalVariable >> mooseNameOn: stream [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaLocalVariable >> namespaceScope [
-	^ self parentBehaviouralEntity namespaceScope
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaLocalVariable >> packageScope [
-	^ self parentBehaviouralEntity packageScope
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaLocalVariable >> printOn: stream [ 
 	| parent |
 	self name ifNotNil: [ stream nextPutAll: self name ].
@@ -62,9 +52,4 @@ FamixJavaLocalVariable >> printOn: stream [
 		parent printOn: stream ].
 	stream nextPut: $)
 
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaLocalVariable >> typeScope [
-	^ self parentBehaviouralEntity typeScope
 ]

@@ -90,16 +90,6 @@ FamixJavaAttribute >> mooseNameOn: aStream [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaAttribute >> namespaceScope [
-	^ self parentType namespaceScope
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaAttribute >> packageScope [
-	^ self parentType packageScope
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaAttribute >> printOn: aStream [ 
 	| parent |
 	parent := self belongsTo.
@@ -108,9 +98,4 @@ FamixJavaAttribute >> printOn: aStream [
 		aStream nextPut: $. ].
 	self name ifNotNil: [ aStream nextPutAll: self name ].
 	aStream nextPutAll: ' (Attribute)'
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaAttribute >> typeScope [
-	^ self parentType
 ]

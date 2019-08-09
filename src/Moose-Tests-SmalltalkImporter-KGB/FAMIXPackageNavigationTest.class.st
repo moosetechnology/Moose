@@ -5,18 +5,17 @@ Class {
 }
 
 { #category : #'MooseKGB-TestFamix3-allDependencies' }
-FAMIXPackageNavigationTest >> testClientClasses [ 
-	 
-	| p5 | 
-	p5 := self packageP5FullReferee. 
-	self 
-		assert: 
-			(p5 clientTypes 
-				equalsTo: 
-					(Set 
-						with: self c1FullReferencerOutSide 
-						with: self c14ReferencerOutSideRefereeOutSide 
-						with: self c6FullReferencerInSideOutSide 
+FAMIXPackageNavigationTest >> testClientClasses [
+	| p5 |
+	p5 := self packageP5FullReferee.
+	self
+		assert:
+			((p5 allClientsAtScope: FamixTType)
+				equalsTo:
+					(Set
+						with: self c1FullReferencerOutSide
+						with: self c14ReferencerOutSideRefereeOutSide
+						with: self c6FullReferencerInSideOutSide
 						with: self c3ReferencerInSideRefereeOutSide))
 ]
 
@@ -45,18 +44,10 @@ FAMIXPackageNavigationTest >> testClientPackages [
 ]
 
 { #category : #'MooseKGB-TestFamix3-allDependencies' }
-FAMIXPackageNavigationTest >> testProviderClasses [ 
-	 
-	| p8 | 
-	p8 := self packageP8FullReferencer. 
-	self 
-		assert: 
-			(p8 providerTypes 
-				equalsTo: 
-					(Set 
-						with: self c18FullRefereeInSideOutSide 
-						with: self c19FullRefereeOutSide 
-						with: self c14ReferencerOutSideRefereeOutSide))
+FAMIXPackageNavigationTest >> testProviderClasses [
+	| p8 |
+	p8 := self packageP8FullReferencer.
+	self assert: ((p8 allProvidersAtScope: FamixTType) equalsTo: (Set with: self c18FullRefereeInSideOutSide with: self c19FullRefereeOutSide with: self c14ReferencerOutSideRefereeOutSide))
 ]
 
 { #category : #'MooseKGB-TestFamix3-allDependencies' }
@@ -68,15 +59,20 @@ FAMIXPackageNavigationTest >> testProviderClassesInto [
 ]
 
 { #category : #'MooseKGB-TestFamix3-allDependencies' }
-FAMIXPackageNavigationTest >> testProviderPackages [ 
-	 
-	| p7 p8 p10 p11 pEx | 
-	p7 := self packageP7ReferencerReferee. 
-	p8 := self packageP8FullReferencer. 
-	p10 := self packageP10InteractedReferee. 
-	p11 := self packageP11FullReferee. 
-	pEx := self packagePExtensions. 
-	self 
-		assert: 
-			(p8 providerPackages equalsTo: (Set with: p10 with: p11 with: p7 with: pEx))
+FAMIXPackageNavigationTest >> testProviderPackages [
+	| p7 p8 p10 p11 pEx |
+	p7 := self packageP7ReferencerReferee.
+	p8 := self packageP8FullReferencer.
+	p10 := self packageP10InteractedReferee.
+	p11 := self packageP11FullReferee.
+	pEx := self packagePExtensions.
+	self
+		assert:
+			((p8 allProvidersAtScope: FamixTPackage)
+				equalsTo:
+					(Set
+						with: p10
+						with: p11
+						with: p7
+						with: pEx))
 ]

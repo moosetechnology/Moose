@@ -37,16 +37,3 @@ FamixStGlobalVariable >> belongsTo: anObject [
 	self parentScope: anObject
 
 ]
-
-{ #category : #'moosechef-scoping-filtering' }
-FamixStGlobalVariable >> packageScope [
-	^ self parentPackage
-]
-
-{ #category : #'moosechef-scoping-filtering' }
-FamixStGlobalVariable >> typeScope [
-	"typeScope does not make sense for a global variable,
-	so we return nil"
-
-	^ nil
-]

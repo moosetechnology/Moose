@@ -19,7 +19,7 @@ FAMIXInvocationGroup >> exportToCsvStream: stream [
 		nextPut: #('FromNamespace' 'FromClass' 'FromMethod' 'ToNamespace' 'ToClass' 'ToMethod');
 		fieldWriter: #quoted;
 		addFields:
-			{[ :inv | inv from namespaceScope mooseName ] . [ :inv | inv from typeScope name ] . [ :inv | inv from signature ] . [ :inv | inv anyCandidate namespaceScope mooseName ].
-			[ :inv | inv anyCandidate typeScope name ] . [ :inv | inv anyCandidate signature ]};
+			{[ :inv | (inv from atScope: FamixTNamespace) anyOne mooseName ] . [ :inv | (inv from atScope: FamixTType) anyOne name ] . [ :inv | inv from signature ] . [ :inv | (inv anyCandidate atScope: FamixTNamespace) anyOne mooseName ].
+			[ :inv | (inv anyCandidate atScope: FamixTType) anyOne name ] . [ :inv | inv anyCandidate signature ]};
 		nextPutAll: self
 ]

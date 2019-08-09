@@ -30,13 +30,6 @@ FamixStNamespace >> abstractness [
 ]
 
 { #category : #'Famix-Extensions-nav All Dependencies' }
-FamixStNamespace >> clientNamespaces [
-	"MooseCook was: ^ self inheritedByNamespaces union: self invokingNamespaces"
-
-	^ (self queryAllIncoming atScope: FamixTNamespace) withoutSelfLoops
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
 FamixStNamespace >> isNamespace [
 	^ true
 ]
@@ -51,12 +44,6 @@ FamixStNamespace >> mooseNameOn: aStream [
 			nextPut: $:;
 			nextPut: $: ].
 	self name ifNotNil: [aStream nextPutAll: self name]
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixStNamespace >> namespaceScope [
-
-	^ self 
 ]
 
 { #category : #'Famix-Extensions' }
@@ -110,17 +97,4 @@ FamixStNamespace >> numberOfMethods [
 FamixStNamespace >> numberOfMethods: aNumber [
 
 	self privateState propertyAt: #numberOfMethods put: aNumber
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixStNamespace >> packageScope [
-
-	self shouldNotImplement
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixStNamespace >> providerNamespaces [
-	"MooseCook was: ^ self inheritedNamespaces union: self invokedNamespaces"
-
-	^ (self queryAllOutgoing atScope: FamixTNamespace) withoutSelfLoops
 ]

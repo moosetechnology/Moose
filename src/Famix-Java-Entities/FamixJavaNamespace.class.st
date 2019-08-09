@@ -122,13 +122,6 @@ FamixJavaNamespace >> childrenOfMyKind [
 	^ self childScopes
 ]
 
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixJavaNamespace >> clientNamespaces [
-	"MooseCook was: ^ self inheritedByNamespaces union: self invokingNamespaces"
-
-	^ (self queryAllIncoming atScope: FamixTNamespace) withoutSelfLoops
-]
-
 { #category : #'Famix-Extensions-accessing' }
 FamixJavaNamespace >> containedEntities [
 	^self types
@@ -229,12 +222,6 @@ FamixJavaNamespace >> mooseNameOn: aStream [
 	self name ifNotNil: [aStream nextPutAll: self name]
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaNamespace >> namespaceScope [
-
-	^ self 
-]
-
 { #category : #'Famix-Extensions' }
 FamixJavaNamespace >> numberOfAttributes [
 "	<property: #NOA longName: 'Number of attributes' description:
@@ -325,12 +312,6 @@ FamixJavaNamespace >> numberOfNonInterfacesClasses: aNumber [
 	self privateState propertyAt: #numberOfNonInterfacesClasses put: aNumber
 ]
 
-{ #category : #accessing }
-FamixJavaNamespace >> packageScope [
-
-	self shouldNotImplement
-]
-
 { #category : #printing }
 FamixJavaNamespace >> printOn: aStream [ 
 	self belongsTo ifNotNil: [:parent |
@@ -340,22 +321,6 @@ FamixJavaNamespace >> printOn: aStream [
 			nextPut: $: ].
 	self name ifNotNil: [ aStream nextPutAll: self name ].
 	aStream nextPutAll: ' (Namespace)'
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixJavaNamespace >> providerNamespaces [
-	"MooseCook was: ^ self inheritedNamespaces union: self invokedNamespaces"
-
-	^ (self queryAllOutgoing atScope: FamixTNamespace) withoutSelfLoops
-]
-
-{ #category : #accessing }
-FamixJavaNamespace >> providerTypes [
-	<MSEProperty: #providerTypes type: #FamixJavaType>
-	<derived>
-	<multivalued>
-	<MSEComment: 'All types that the receiver depends on'>
-	^ (self queryAllOutgoing atScope: FamixTType) withoutSelfLoops
 ]
 
 { #category : #'as yet unclassified' }

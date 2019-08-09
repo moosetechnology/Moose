@@ -148,18 +148,6 @@ FAMIXPackage >> classes [
 							ifAbsentPut: [ self childEntities select: [ :child | child isClass ]]
 ]
 
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXPackage >> clientClasses [
-	self deprecated: 'use clientTypes'.
-	^ self clientTypes
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXPackage >> clientPackages [
-	self deprecated: 'Use #allClients instead' transformWith: '`@receiver clientPackages' -> '`@receiver allClients'.
-	^ self allClients
-]
-
 { #category : #'Famix-Extensions-accessing' }
 FAMIXPackage >> concernedClassesCollection [
 	"it returns the collection of the receiver's concerned classes (See #__concernedClassesCollection). Before returning this value it verifies if it is cached in the receiver's state under the properiety #concernedClasses."
@@ -295,13 +283,6 @@ FAMIXPackage >> methods [
 	^ self localMethods union: self extensionMethods
 ]
 
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXPackage >> namespaceScope [
-
-	self shouldNotImplement 
-
-]
-
 { #category : #'Famix-Extensions-metrics' }
 FAMIXPackage >> numberOfClasses [
 	<MSEProperty: #numberOfClasses type: #Number>
@@ -369,28 +350,6 @@ FAMIXPackage >> printOn: aStream [
 			nextPut: $. ].
 	self name ifNotNil: [ aStream nextPutAll: self name ].
 	aStream nextPutAll: ' (Package)'
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXPackage >> providerClasses [
-	self deprecated: 'use providerTypes'.
-	^ self providerTypes
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXPackage >> providerPackages [
-	"^ self inheritedPackages union: self invokedPackages"
-
-	^ (self queryAllOutgoing atScope: FamixTPackage) withoutSelfLoops
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXPackage >> providerTypes [
-	<MSEProperty: #providerTypes type: #FAMIXType>
-	<derived>
-	<multivalued>
-	<MSEComment: 'All types that the receiver depends on'>
-	^ (self queryAllOutgoing atScope: FamixTType) withoutSelfLoops
 ]
 
 { #category : #'Famix-Extensions-metrics' }

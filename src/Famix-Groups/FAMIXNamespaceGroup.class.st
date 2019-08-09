@@ -12,8 +12,3 @@ FAMIXNamespaceGroup class >> annotation [
 	<MSEClass: #NamespaceGroup super: #MooseGroup>
 	<package: #FAMIX>
 ]
-
-{ #category : #algorithms }
-FAMIXNamespaceGroup >> cyclesToAllProviderNamespaces [
-	^ self cyclesToAll: #providerNamespaces
-]

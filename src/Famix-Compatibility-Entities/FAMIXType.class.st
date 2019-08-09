@@ -79,31 +79,6 @@ FAMIXType >> classSide [
 		ifTrue: [self]
 ]
 
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXType >> clientClasses [
-	self deprecated: 'use clientTypes'.
-	
-	^ self clientTypes 
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXType >> clientNamespaces [
-	"returns a set of all the namespaces that depend on (some classes of them inherit, staticly access, or use some methods of) the receiver"
-
-	"Moose cook was: ^ self inheritedByNamespaces union: self invokingNamespaces"
-
-	^ (self queryAllIncoming atScope: FamixTNamespace) withoutSelfLoops
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXType >> clientPackages [
-	"returns a set of all the packages that depend on (some classes of them inherit, staticly access, or use some methods of) the receiver"
-
-	"Moose cook was: ^ self inheritedByPackages union: self invokingPackages"
-
-	^ (self queryAllIncoming atScope: FamixTPackage) withoutSelfLoops
-]
-
 { #category : #accessing }
 FAMIXType >> container [
 
@@ -128,11 +103,7 @@ FAMIXType >> entityHasIncomingTypeDeclarations [
 
 { #category : #'Famix-Smalltalk' }
 FAMIXType >> extendedInPackages [
-
-	^ self privateState cacheAt: #extendedInPackages
-							ifAbsentPut: [ self extendedMethods collectAsSet: [ :m| m packageScope ] ]
-
-
+	^ self extendedMethods flatCollectAsSet: [ :m | m atScope: FamixStPackage ]
 ]
 
 { #category : #'Famix-Smalltalk' }
@@ -340,13 +311,6 @@ FAMIXType >> lookUp: aMethodSignature [
 	^searchedM
 ]
 
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXType >> methodScope [
-	"This only makes sense to reject self loops in #collectAtScope:"
-
-	^ self methods
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXType >> mooseNameOn: aStream [ 
 	| parent |
@@ -358,22 +322,6 @@ FAMIXType >> mooseNameOn: aStream [
 				nextPut: $:;
 				nextPut: $: ].
 	self name ifNotNil: [aStream nextPutAll: self name]
-]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXType >> namespaceScope [
-	"we ask the container for the namespaceScope
-	because we can have classes in methods or in other classes.
-	Thus, we need to traverse recursively until we reach a namespace"
-	
-	^ self container 
-		ifNotNil: [ self container namespaceScope ]
-]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXType >> packageScope [
-
-	^ self parentPackage
 ]
 
 { #category : #'Famix-Implementation' }
@@ -396,46 +344,6 @@ FAMIXType >> printOn: aStream [
 		nextPutAll: ' (';
 		nextPutAll: (self class name removePrefix: 'FAMIX');
 		nextPutAll: ')'
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXType >> providerClasses [
-	self deprecated: 'use providerTypes'.
-	^ self providerTypes
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXType >> providerNamespaces [
-	"returns a set of all the namespaces that the receiver depends on (they include some classes that the receiver inherites, staticly accesses, or uses some of their methods)"
-
-	"Moose cook was: ^ self inheritedNamespaces union: self invokedNamespaces"
-
-	^ (self queryAllOutgoing atScope: FamixTNamespace) withoutSelfLoops
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXType >> providerPackages [
-	"returns a set of all the packages that the receiver depends on (they include some classes that the receiver inherites, staticly accesses, or uses some of their methods)"
-
-	"Moose cook was: ^ self inheritedPackages union: self invokedPackages"
-
-	^ (self queryAllOutgoing atScope: FamixTPackage) withoutSelfLoops
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXType >> providerTypes [
-	<MSEProperty: #providerTypes type: #FAMIXType>
-	<derived>
-	<multivalued>
-	<MSEComment: 'All types that the receiver depends on (inherites, staticly accesses, or uses some of their methods)'>
-	^ (self queryAllOutgoing atScope: FamixTType) withoutSelfLoops
-]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXType >> typeScope [
-	"all types are not classes. Redefined in FamixClass"
-
-	^ self
 ]
 
 { #category : #'Famix-Implementation' }

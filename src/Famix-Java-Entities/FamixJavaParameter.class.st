@@ -42,16 +42,6 @@ FamixJavaParameter >> mooseNameOn: stream [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaParameter >> namespaceScope [
-	^ self parentBehaviouralEntity namespaceScope
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaParameter >> packageScope [
-	^ self parentBehaviouralEntity packageScope
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaParameter >> parentType [
 	^self parentBehaviouralEntity parentType
 ]
@@ -67,9 +57,4 @@ FamixJavaParameter >> printOn: stream [
 		parent printOn: stream ].
 	stream nextPut: $)
 
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaParameter >> typeScope [
-	^ self parentBehaviouralEntity typeScope
 ]

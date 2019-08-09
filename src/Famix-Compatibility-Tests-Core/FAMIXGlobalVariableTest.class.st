@@ -10,11 +10,6 @@ FAMIXGlobalVariableTest >> actualClass [
 ]
 
 { #category : #tests }
-FAMIXGlobalVariableTest >> testClassScope [ 
-	self assert: self actualClass new typeScope isNil
-]
-
-{ #category : #tests }
 FAMIXGlobalVariableTest >> testIsPublic [
 	| entity |
 	entity := self actualClass new.
@@ -27,10 +22,5 @@ FAMIXGlobalVariableTest >> testNamespaceScope [
 	| namespace globalVariable |
 	namespace := FAMIXNamespace new.
 	globalVariable := self actualClass new parentScope: namespace.
-	self assert: globalVariable namespaceScope equals: namespace
-]
-
-{ #category : #tests }
-FAMIXGlobalVariableTest >> testPackageScope [ 
-	self assert: self actualClass new packageScope isNil
+	self assert: (globalVariable atScope: FamixTNamespace) anyOne equals: namespace
 ]

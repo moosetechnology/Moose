@@ -91,21 +91,30 @@ TDependencyQueryResult >> opposites [
 ]
 
 { #category : #filtering }
-TDependencyQueryResult >> outOfClass: aFAMIXClass [ 
-	
-	^ self rejectDependencies: [ :dep | (self opposite: dep) isCollection ifTrue: [ (self opposite: dep) isNotEmpty and: [(self opposite: dep) anySatisfy: [ :anEntity | anEntity typeScope == aFAMIXClass ] ] ] ifFalse: [aFAMIXClass == (self opposite: dep) typeScope]]
+TDependencyQueryResult >> outOfClass: aFAMIXClass [
+	^ self
+		rejectDependencies: [ :dep | 
+			(self opposite: dep) isCollection
+				ifTrue: [ (self opposite: dep) isNotEmpty and: [ (self opposite: dep) anySatisfy: [ :anEntity | (anEntity atScope: FamixTClass) anyOne == aFAMIXClass ] ] ]
+				ifFalse: [ aFAMIXClass == ((self opposite: dep) atScope: FamixTClass) anyOne ] ]
 ]
 
 { #category : #filtering }
-TDependencyQueryResult >> outOfNamespace: aFAMIXNamespace [ 
-
-	^ self rejectDependencies: [ :dep | (self opposite: dep) isCollection ifTrue: [ (self opposite: dep) isNotEmpty and: [(self opposite: dep) anySatisfy: [ :anEntity | anEntity namespaceScope == aFAMIXNamespace ] ] ] ifFalse: [aFAMIXNamespace == (self opposite: dep) namespaceScope]]
+TDependencyQueryResult >> outOfNamespace: aFAMIXNamespace [
+	^ self
+		rejectDependencies: [ :dep | 
+			(self opposite: dep) isCollection
+				ifTrue: [ (self opposite: dep) isNotEmpty and: [ (self opposite: dep) anySatisfy: [ :anEntity | (anEntity atScope: FamixTNamespace) anyOne == aFAMIXNamespace ] ] ]
+				ifFalse: [ aFAMIXNamespace == ((self opposite: dep) atScope: FamixTNamespace) anyOne ] ]
 ]
 
 { #category : #filtering }
-TDependencyQueryResult >> outOfPackage: aFAMIXPackage [ 
-	
-	^ self rejectDependencies: [ :dep | (self opposite: dep) isCollection ifTrue: [ (self opposite: dep) isNotEmpty and: [(self opposite: dep) anySatisfy: [ :anEntity | anEntity packageScope == aFAMIXPackage ] ] ] ifFalse: [aFAMIXPackage == (self opposite: dep) packageScope]]
+TDependencyQueryResult >> outOfPackage: aFAMIXPackage [
+	^ self
+		rejectDependencies: [ :dep | 
+			(self opposite: dep) isCollection
+				ifTrue: [ (self opposite: dep) isNotEmpty and: [ (self opposite: dep) anySatisfy: [ :anEntity | (anEntity atScope: FamixTPackage) anyOne == aFAMIXPackage ] ] ]
+				ifFalse: [ aFAMIXPackage == ((self opposite: dep) atScope: FamixTPackage) anyOne ] ]
 ]
 
 { #category : #private }

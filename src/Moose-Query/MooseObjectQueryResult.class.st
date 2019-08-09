@@ -57,21 +57,18 @@ MooseObjectQueryResult >> atScope: aClassFamix [
 ]
 
 { #category : #filtering }
-MooseObjectQueryResult >> outOfClass: aFAMIXClass [ 
-	
-	^ self newObjectResultWith: (storage reject: [ :obj | aFAMIXClass == obj typeScope ])
+MooseObjectQueryResult >> outOfClass: aFAMIXClass [
+	^ self newObjectResultWith: (storage reject: [ :obj | aFAMIXClass == (obj atScope: FamixTClass) anyOne ])
 ]
 
 { #category : #filtering }
-MooseObjectQueryResult >> outOfNamespace: aFAMIXNamespace [ 
-
-	^ self newObjectResultWith: (storage reject: [:obj | aFAMIXNamespace==obj namespaceScope])
+MooseObjectQueryResult >> outOfNamespace: aFAMIXNamespace [
+	^ self newObjectResultWith: (storage reject: [ :obj | aFAMIXNamespace == (obj atScope: FamixTNamespace) anyOne ])
 ]
 
 { #category : #filtering }
-MooseObjectQueryResult >> outOfPackage: aFAMIXPackage [ 
-
-	^ self newObjectResultWith: (storage reject: [ :obj | aFAMIXPackage == obj packageScope ])
+MooseObjectQueryResult >> outOfPackage: aFAMIXPackage [
+	^ self newObjectResultWith: (storage reject: [ :obj | aFAMIXPackage == (obj atScope: FamixTPackage) anyOne ])
 ]
 
 { #category : #filtering }
@@ -102,21 +99,18 @@ MooseObjectQueryResult >> within: aFAMIXEntity [
 ]
 
 { #category : #filtering }
-MooseObjectQueryResult >> withinClass: aFAMIXClass [ 
-	
-	^ self newObjectResultWith: (storage select: [ :obj | aFAMIXClass == obj typeScope ])
+MooseObjectQueryResult >> withinClass: aFAMIXClass [
+	^ self newObjectResultWith: (storage select: [ :obj | aFAMIXClass == (obj atScope: FamixTClass) anyOne ])
 ]
 
 { #category : #filtering }
-MooseObjectQueryResult >> withinNamespace: aFAMIXNamespace [ 
-
-	^ self newObjectResultWith: (storage select: [:obj | aFAMIXNamespace==obj namespaceScope])
+MooseObjectQueryResult >> withinNamespace: aFAMIXNamespace [
+	^ self newObjectResultWith: (storage select: [ :obj | aFAMIXNamespace == (obj atScope: FamixTNamespace) anyOne ])
 ]
 
 { #category : #filtering }
-MooseObjectQueryResult >> withinPackage: aFAMIXPackage [ 
-
-	^ self newObjectResultWith: (storage select: [ :obj | aFAMIXPackage == obj packageScope ])
+MooseObjectQueryResult >> withinPackage: aFAMIXPackage [
+	^ self newObjectResultWith: (storage select: [ :obj | aFAMIXPackage == (obj atScope: FamixTPackage) anyOne ])
 ]
 
 { #category : #filtering }

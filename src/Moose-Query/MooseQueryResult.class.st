@@ -141,21 +141,17 @@ MooseQueryResult >> outOfClass: aFAMIXClass [
 
 { #category : #filtering }
 MooseQueryResult >> outOfMyClass [
-
-	^ self outOfClass: self receiver typeScope
-
+	^ self outOfClass: (self receiver atScope: FamixTClass) anyOne
 ]
 
 { #category : #filtering }
 MooseQueryResult >> outOfMyNamespace [
-
-	^ self outOfNamespace: self receiver namespaceScope   
+	^ self outOfNamespace: (self receiver atScope: FamixTNamespace) anyOne
 ]
 
 { #category : #filtering }
 MooseQueryResult >> outOfMyPackage [
-	
-	^ self outOfPackage: self receiver packageScope    
+	^ self outOfPackage: (self receiver atScope: FamixTPackage) anyOne
 ]
 
 { #category : #filtering }
@@ -258,21 +254,18 @@ MooseQueryResult >> withinClass: aFAMIXClass [
 
 { #category : #filtering }
 MooseQueryResult >> withinMyClass [
-
-	^ self withinClass: self receiver typeScope
-
+	^ self withinClass: (self receiver atScope: FamixTClass) anyOne
 ]
 
 { #category : #filtering }
 MooseQueryResult >> withinMyNamespace [
 
-	^ self withinNamespace: self receiver namespaceScope   
+	^ self withinNamespace: (self receiver atScope: FamixTNamespace) anyOne   
 ]
 
 { #category : #filtering }
 MooseQueryResult >> withinMyPackage [
-	
-	^ self withinPackage: self receiver packageScope    
+	^ self withinPackage: (self receiver atScope: FamixTPackage) anyOne
 ]
 
 { #category : #filtering }

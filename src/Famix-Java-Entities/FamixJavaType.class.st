@@ -61,22 +61,6 @@ FamixJavaType >> belongsTo: anObject [
 
 ]
 
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixJavaType >> clientNamespaces [
-	"returns a set of all the namespaces that depend on (some classes of them inherit, staticly access, or use some methods of) the receiver"
-
-	"Moose cook was: ^ self inheritedByNamespaces union: self invokingNamespaces"
-
-	^ (self queryAllIncoming atScope: FamixTNamespace) withoutSelfLoops
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixJavaType >> clientPackages [
-	"returns a set of all the packages that depend on (some classes of them inherit, staticly access, or use some methods of) the receiver"
-
-	^ (self queryAllIncoming atScope: FamixTPackage) withoutSelfLoops
-]
-
 { #category : #accessing }
 FamixJavaType >> container [
 
@@ -194,11 +178,25 @@ FamixJavaType >> isTestCase [
 	^ self isJUnit3TestCase or: [ self isJUnit4TestCase ] 
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaType >> methodScope [
-	"This only makes sense to reject self loops in #collectAtScope:"
+{ #category : #'Famix-Extensions-operations' }
+FamixJavaType >> lookUp: aMethodSignature [ 
+	"Returns the first method that has as signature #aMethodSignature. 
+	The search starts from the receiver's methods and traveses the inherited methods from the receiver's superclasses heirarchy.
+	If such a method has not been found, it returns nil"
 
-	^ self methods
+	| c toSearchIt searchedM |
+	c := self.
+	searchedM := nil.
+	toSearchIt := true.
+	[c notNil and: [toSearchIt]] whileTrue: 
+			[searchedM := c methods 
+						detect: [:m | m signature = aMethodSignature]
+						ifNone: [nil].
+			searchedM
+				ifNil: [c := c superclass]
+				ifNotNil: [toSearchIt := false]
+			].
+	^searchedM
 ]
 
 { #category : #printing }
@@ -212,22 +210,6 @@ FamixJavaType >> mooseNameOn: aStream [
 				nextPut: $:;
 				nextPut: $: ].
 	self name ifNotNil: [aStream nextPutAll: self name]
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaType >> namespaceScope [
-	"we ask the container for the namespaceScope
-	because we can have classes in methods or in other classes.
-	Thus, we need to traverse recursively until we reach a namespace"
-	
-	^ self container 
-		ifNotNil: [ self container namespaceScope ]
-]
-
-{ #category : #accessing }
-FamixJavaType >> packageScope [
-
-	^ self parentPackage
 ]
 
 { #category : #accessing }
@@ -250,40 +232,6 @@ FamixJavaType >> printOn: aStream [
 		nextPutAll: ' (';
 		nextPutAll: (self class name removePrefix: 'FamixJava');
 		nextPutAll: ')'
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixJavaType >> providerNamespaces [
-	"returns a set of all the namespaces that the receiver depends on (they include some classes that the receiver inherites, staticly accesses, or uses some of their methods)"
-
-	"Moose cook was: ^ self inheritedNamespaces union: self invokedNamespaces"
-
-	^ (self queryAllOutgoing atScope: FamixTNamespace) withoutSelfLoops
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixJavaType >> providerPackages [
-	"returns a set of all the packages that the receiver depends on (they include some classes that the receiver inherites, staticly accesses, or uses some of their methods)"
-
-	"Moose cook was: ^ self inheritedPackages union: self invokedPackages"
-
-	^ (self queryAllOutgoing atScope: FamixTPackage) withoutSelfLoops
-]
-
-{ #category : #accessing }
-FamixJavaType >> providerTypes [
-	<MSEProperty: #providerTypes type: #FamixJavaType>
-	<derived>
-	<multivalued>
-	<MSEComment: 'All types that the receiver depends on (inherites, staticly accesses, or uses some of their methods)'>
-	^ (self queryAllOutgoing atScope: FamixTType) withoutSelfLoops
-]
-
-{ #category : #'moosechef-scoping-filtering' }
-FamixJavaType >> typeScope [
-	"all types are not classes. Redefined in FamixClass"
-
-	^ self
 ]
 
 { #category : #'Famix-Implementation' }

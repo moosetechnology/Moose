@@ -220,11 +220,6 @@ FamixStMethod >> mooseNameOn: stream [
 			self name ifNotNil: [ stream nextPutAll: self name] ]
 ]
 
-{ #category : #'Famix-Extensions-metrics-support' }
-FamixStMethod >> namespaceScope [
-	^ self parentType namespaceScope
-]
-
 { #category : #'Famix-Extensions-private' }
 FamixStMethod >> numberOfAccesses [
 	<MSEProperty: #numberOfAccesses type: #Number>
@@ -340,18 +335,6 @@ FamixStMethod >> outgoingTypeDeclarations [
 	^ self declaredType ifNil: [ {} ] ifNotNil: [ :dt | {(MooseQueryTypeDeclarationAssociation newFrom: self to: dt)} ]
 ]
 
-{ #category : #'Famix-Extensions-metrics-support' }
-FamixStMethod >> packageScope [
-
-	^ self parentPackage ifNil:[ 
-		|cl|
-		cl := self parentType.
-		cl isNil 
-			ifTrue:[nil]
-			ifFalse:[cl packageScope]
-	]
-]
-
 { #category : #accessing }
 FamixStMethod >> protocol [
 
@@ -401,10 +384,4 @@ FamixStMethod >> timeStamp [
 FamixStMethod >> timeStamp: aTimeStamp [
 
 	self privateState attributeAt: #timeStamp put: aTimeStamp
-]
-
-{ #category : #'Famix-Extensions-metrics-support' }
-FamixStMethod >> typeScope [
-
-	^ self parentType 
 ]

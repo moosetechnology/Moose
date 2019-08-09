@@ -48,16 +48,6 @@ FAMIXLocalVariable >> mooseNameOn: stream [
 	self name ifNotNil: [stream nextPutAll: self name]
 ]
 
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXLocalVariable >> namespaceScope [
-	^ self parentBehaviouralEntity namespaceScope
-]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXLocalVariable >> packageScope [
-	^ self parentBehaviouralEntity packageScope
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXLocalVariable >> printOn: stream [ 
 	| parent |
@@ -69,9 +59,4 @@ FAMIXLocalVariable >> printOn: stream [
 		parent printOn: stream ].
 	stream nextPut: $)
 
-]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXLocalVariable >> typeScope [
-	^ self parentBehaviouralEntity typeScope
 ]

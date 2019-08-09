@@ -701,10 +701,8 @@ TEntityMetaLevelDependency >> withScope: aClassFAMIX in: aCollection [
 
 { #category : #private }
 TEntityMetaLevelDependency >> withScope: aClassFAMIX in: aCollection until: rejectBlock [
-	((self class allGeneratedTraits includes: aClassFAMIX) or: [ self class = aClassFAMIX ]) ifTrue: [ self atScope: aClassFAMIX in: aCollection until: rejectBlock ].
-
-	self allParentTypes detect: [ :class | aClassFAMIX = class or: [ aClassFAMIX mooseInheritsFrom: class ] ] ifFound: [ self atScope: aClassFAMIX in: aCollection until: rejectBlock ].
-	self allChildrenTypes detect: [ :class | aClassFAMIX = class or: [ aClassFAMIX mooseInheritsFrom: class ] ] ifFound: [ self toScope: aClassFAMIX in: aCollection until: rejectBlock ].
+	self atScope: aClassFAMIX in: aCollection until: rejectBlock.
+	self toScope: aClassFAMIX in: aCollection until: rejectBlock.
 	^ aCollection
 ]
 

@@ -132,12 +132,6 @@ FamixJavaPackage >> classes [
 	^ self privateState cacheAt: #classes ifAbsentPut: [ self childEntities select: [ :child | child isClass ] ]
 ]
 
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixJavaPackage >> clientPackages [
-	self deprecated: 'Use #allClients instead' transformWith: '`@receiver clientPackages' -> '`@receiver allClients'.
-	^ self allClients
-]
-
 { #category : #'Famix-Extensions-accessing' }
 FamixJavaPackage >> containedEntities [
 	^ super containedEntities union: self childEntities
@@ -211,13 +205,6 @@ FamixJavaPackage >> methods [
 	^ self privateState cacheAt: #methods ifAbsentPut: [ self classes flatCollect: #methods ]
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaPackage >> namespaceScope [
-
-	self shouldNotImplement 
-
-]
-
 { #category : #'Famix-Extensions' }
 FamixJavaPackage >> numberOfClasses [
 	<MSEProperty: #numberOfClasses type: #Number>
@@ -285,22 +272,6 @@ FamixJavaPackage >> printOn: aStream [
 			nextPut: $. ].
 	self name ifNotNil: [ aStream nextPutAll: self name ].
 	aStream nextPutAll: ' (Package)'
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixJavaPackage >> providerPackages [
-	"^ self inheritedPackages union: self invokedPackages"
-
-	^ (self queryAllOutgoing atScope: FamixTPackage) withoutSelfLoops
-]
-
-{ #category : #accessing }
-FamixJavaPackage >> providerTypes [
-	<MSEProperty: #providerTypes type: #FamixJavaType>
-	<derived>
-	<multivalued>
-	<MSEComment: 'All types that the receiver depends on'>
-	^ (self queryAllOutgoing atScope: FamixTType) withoutSelfLoops
 ]
 
 { #category : #'Famix-Extensions-metrics' }

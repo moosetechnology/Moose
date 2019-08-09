@@ -50,16 +50,6 @@ FAMIXGlobalVariable >> isPublic [
 			inv accessor parentScope ~~ self parentScope]
 ]
 
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXGlobalVariable >> namespaceScope [
-	^ self parentScope
-]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXGlobalVariable >> packageScope [
-	^ self parentPackage
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXGlobalVariable >> printOn: aStream [ 
 	| parent |
@@ -69,12 +59,4 @@ FAMIXGlobalVariable >> printOn: aStream [
 		aStream nextPut: $. ].
 	self name ifNotNil: [ aStream nextPutAll: self name ].
 	aStream nextPutAll: ' (Global Variable)'
-]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXGlobalVariable >> typeScope [
-	"typeScope does not make sense for a global variable,
-	so we return nil"
-
-	^ nil
 ]

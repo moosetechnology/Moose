@@ -42,12 +42,6 @@ FamixStPackage >> classes [
 ]
 
 { #category : #accessing }
-FamixStPackage >> clientPackages [
-	self deprecated: 'Use #allClients instead' transformWith: '`@receiver clientPackages' -> '`@receiver allClients'.
-	^ self allClients
-]
-
-{ #category : #accessing }
 FamixStPackage >> extendedClasses [
 	"select all classes extended in this package"
 
@@ -105,13 +99,6 @@ FamixStPackage >> methods [
 ]
 
 { #category : #accessing }
-FamixStPackage >> namespaceScope [
-
-	self shouldNotImplement 
-
-]
-
-{ #category : #accessing }
 FamixStPackage >> numberOfClasses [
 	<MSEProperty: #numberOfClasses type: #Number>
 	<derived>
@@ -132,13 +119,6 @@ FamixStPackage >> numberOfClientPackages [
 FamixStPackage >> numberOfClientPackages: aNumber [
 
 	self privateState propertyAt: #numberOfClientPackages put: aNumber
-]
-
-{ #category : #accessing }
-FamixStPackage >> providerPackages [
-	"^ self inheritedPackages union: self invokedPackages"
-
-	^ (self queryAllOutgoing atScope: FamixTPackage) withoutSelfLoops
 ]
 
 { #category : #accessing }

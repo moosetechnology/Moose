@@ -103,19 +103,6 @@ FAMIXNamespace >> childrenOfMyKind [
 	^ self childScopes
 ]
 
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXNamespace >> clientClasses [
-	self deprecated: 'use clientTypes'.
-	^ self clientTypes
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXNamespace >> clientNamespaces [
-	"MooseCook was: ^ self inheritedByNamespaces union: self invokingNamespaces"
-
-	^ (self queryAllIncoming atScope: FamixTNamespace) withoutSelfLoops
-]
-
 { #category : #'Famix-Extensions-accessing' }
 FAMIXNamespace >> containedEntities [
 	^self types
@@ -182,12 +169,6 @@ FAMIXNamespace >> mooseNameOn: aStream [
 			nextPut: $:;
 			nextPut: $: ].
 	self name ifNotNil: [aStream nextPutAll: self name]
-]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXNamespace >> namespaceScope [
-
-	^ self 
 ]
 
 { #category : #'Famix-Extensions' }
@@ -280,12 +261,6 @@ FAMIXNamespace >> numberOfNonInterfacesClasses: aNumber [
 	self privateState propertyAt: #numberOfNonInterfacesClasses put: aNumber
 ]
 
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXNamespace >> packageScope [
-
-	self shouldNotImplement
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXNamespace >> printOn: aStream [ 
 	self belongsTo ifNotNil: [:parent |
@@ -295,28 +270,6 @@ FAMIXNamespace >> printOn: aStream [
 			nextPut: $: ].
 	self name ifNotNil: [ aStream nextPutAll: self name ].
 	aStream nextPutAll: ' (Namespace)'
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXNamespace >> providerClasses [
-	self deprecated: 'use providerTypes'.
-	^ self providerTypes
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXNamespace >> providerNamespaces [
-	"MooseCook was: ^ self inheritedNamespaces union: self invokedNamespaces"
-
-	^ (self queryAllOutgoing atScope: FamixTNamespace) withoutSelfLoops
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXNamespace >> providerTypes [
-	<MSEProperty: #providerTypes type: #FAMIXType>
-	<derived>
-	<multivalued>
-	<MSEComment: 'All types that the receiver depends on'>
-	^ (self queryAllOutgoing atScope: FamixTType) withoutSelfLoops
 ]
 
 { #category : #'moosechef-scoping-filtering' }

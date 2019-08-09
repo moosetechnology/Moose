@@ -108,16 +108,6 @@ FAMIXAttribute >> mooseNameOn: aStream [
 	self name ifNotNil: [ aStream nextPutAll: self name ].
 ]
 
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXAttribute >> namespaceScope [
-	^ self parentType namespaceScope
-]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXAttribute >> packageScope [
-	^ self parentType packageScope
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXAttribute >> printOn: aStream [ 
 	| parent |
@@ -127,9 +117,4 @@ FAMIXAttribute >> printOn: aStream [
 		aStream nextPut: $. ].
 	self name ifNotNil: [ aStream nextPutAll: self name ].
 	aStream nextPutAll: ' (Attribute)'
-]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXAttribute >> typeScope [
-	^ self parentType
 ]

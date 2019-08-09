@@ -51,16 +51,6 @@ FamixJavaGlobalVariable >> isPublic [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaGlobalVariable >> namespaceScope [
-	^ self parentScope
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaGlobalVariable >> packageScope [
-	^ self parentPackage
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaGlobalVariable >> printOn: aStream [ 
 	| parent |
 	parent := self belongsTo.
@@ -69,12 +59,4 @@ FamixJavaGlobalVariable >> printOn: aStream [
 		aStream nextPut: $. ].
 	self name ifNotNil: [ aStream nextPutAll: self name ].
 	aStream nextPutAll: ' (Global Variable)'
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaGlobalVariable >> typeScope [
-	"typeScope does not make sense for a global variable,
-	so we return nil"
-
-	^ nil
 ]

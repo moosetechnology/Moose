@@ -35,26 +35,26 @@ MooseDependencyBrowser >> detailsIn: a [
 		initializeView: [ RTMondrian new ];
 		title: 'Map of providers';
 		painting: [ :view :model :namespace :class :method | 
-					self
-						viewNamespaceMapOf: [ :x | x providerNamespaces ]
-						fromModel: model
-						namespace: namespace
-						class: class
-						method: method
-						on: view ];
+			self
+				viewNamespaceMapOf: [ :x | x allProvidersAtScope: FamixTNamespace ]
+				fromModel: model
+				namespace: namespace
+				class: class
+				method: method
+				on: view ];
 		allowNil;
 		when: [ :model | model notNil ].
 	a roassal2
 		initializeView: [ RTMondrian new ];
 		title: 'Map of clients';
 		painting: [ :view :model :namespace :class :method | 
-					self
-						viewNamespaceMapOf: [ :x | x clientNamespaces ]
-						fromModel: model
-						namespace: namespace
-						class: class
-						method: method
-						on: view ];
+			self
+				viewNamespaceMapOf: [ :x | x allClientsAtScope: FamixTNamespace ]
+				fromModel: model
+				namespace: namespace
+				class: class
+				method: method
+				on: view ];
 		allowNil;
 		when: [ :model | model notNil ].
 	a text
