@@ -73,13 +73,6 @@ FamixJavaEntity >> isClass [
 ]
 
 { #category : #testing }
-FamixJavaEntity >> isFunction [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
 FamixJavaEntity >> isInheritance [
 
 	<generated>
