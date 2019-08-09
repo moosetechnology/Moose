@@ -105,19 +105,3 @@ FamixStNamespace >> numberOfMethods: aNumber [
 
 	self privateState propertyAt: #numberOfMethods put: aNumber
 ]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixStNamespace >> providerNamespaces [
-	"MooseCook was: ^ self inheritedNamespaces union: self invokedNamespaces"
-
-	^ (self queryAllOutgoing atScope: FamixTNamespace) withoutSelfLoops
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixStNamespace >> providerTypes [
-	<MSEProperty: #providerTypes type: #FamixStType>
-	<derived>
-	<multivalued>
-	<MSEComment: 'All types that the receiver depends on'>
-	^ (self queryAllOutgoing atScope: FamixTType) withoutSelfLoops
-]

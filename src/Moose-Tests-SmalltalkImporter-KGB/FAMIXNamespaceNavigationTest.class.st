@@ -36,16 +36,15 @@ FAMIXNamespaceNavigationTest >> testClientNamespaces [
 ]
 
 { #category : #'MooseKGB-TestFamix3-allDependencies' }
-FAMIXNamespaceNavigationTest >> testProviderClasses [ 
-	 
-	self 
-		assert: 
-			(self namespace1InteractedReferencerReferee providerTypes 
-				equalsTo: 
-					(Set 
-						with: self c11FullRefereeOutSide 
-						with: self c13FullRefereeInSideOutSide 
-						with: self c14ReferencerOutSideRefereeOutSide 
+FAMIXNamespaceNavigationTest >> testProviderClasses [
+	self
+		assert:
+			((self namespace1InteractedReferencerReferee allProvidersAtScope: FamixTType)
+				equalsTo:
+					(Set
+						with: self c11FullRefereeOutSide
+						with: self c13FullRefereeInSideOutSide
+						with: self c14ReferencerOutSideRefereeOutSide
 						with: self cObject))
 ]
 
@@ -58,14 +57,9 @@ FAMIXNamespaceNavigationTest >> testProviderClassesInto [
 ]
 
 { #category : #'MooseKGB-TestFamix3-allDependencies' }
-FAMIXNamespaceNavigationTest >> testProviderNamespaces [ 
-	 
-	self 
-		assert: 
-			(self namespace1InteractedReferencerReferee providerNamespaces 
-				equalsTo: 
-					(Set 
-						with: self namespace2FullReferee 
-						with: self namespace3ReferencerReferee 
-						with: self namespaceSmalltalkCore))
+FAMIXNamespaceNavigationTest >> testProviderNamespaces [
+	self
+		assert:
+			((self namespace1InteractedReferencerReferee allProvidersAtScope: FamixTNamespace)
+				equalsTo: (Set with: self namespace2FullReferee with: self namespace3ReferencerReferee with: self namespaceSmalltalkCore))
 ]

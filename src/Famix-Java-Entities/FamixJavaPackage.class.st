@@ -280,22 +280,6 @@ FamixJavaPackage >> printOn: aStream [
 	aStream nextPutAll: ' (Package)'
 ]
 
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixJavaPackage >> providerPackages [
-	"^ self inheritedPackages union: self invokedPackages"
-
-	^ (self queryAllOutgoing atScope: FamixTPackage) withoutSelfLoops
-]
-
-{ #category : #accessing }
-FamixJavaPackage >> providerTypes [
-	<MSEProperty: #providerTypes type: #FamixJavaType>
-	<derived>
-	<multivalued>
-	<MSEComment: 'All types that the receiver depends on'>
-	^ (self queryAllOutgoing atScope: FamixTType) withoutSelfLoops
-]
-
 { #category : #'Famix-Extensions-metrics' }
 FamixJavaPackage >> relativeImportanceForSystem [
 	<MSEProperty: #relativeImportanceForSystem type: #Number>

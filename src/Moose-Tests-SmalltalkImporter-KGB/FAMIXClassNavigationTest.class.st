@@ -61,24 +61,18 @@ FAMIXClassNavigationTest >> testClientPackages [
 
 { #category : #'MooseKGB-TestFamix3-allDependencies' }
 FAMIXClassNavigationTest >> testProviderClasses [
-	self assert: self c15FullReferencerOutSide providerTypes size equals: 3.
+	self assert: (self c15FullReferencerOutSide allProvidersAtScope: FamixTType) size equals: 3.
 	self
-		assert:
-			(self c15FullReferencerOutSide providerTypes
-				equalsTo:
-					(Set new
-						add: self c14ReferencerOutSideRefereeOutSide;
-						add: self c18FullRefereeInSideOutSide;
-						add: self c19FullRefereeOutSide;
-						yourself))
+		assertCollection: (self c15FullReferencerOutSide allProvidersAtScope: FamixTType)
+		hasSameElements: {self c14ReferencerOutSideRefereeOutSide . self c18FullRefereeInSideOutSide . self c19FullRefereeOutSide}
 ]
 
 { #category : #'MooseKGB-TestFamix3-allDependencies' }
 FAMIXClassNavigationTest >> testProviderNamespace [
-	self assert: self c15FullReferencerOutSide providerNamespaces size equals: 3.
+	self assert: (self c15FullReferencerOutSide allProvidersAtScope: FamixTNamespace) size equals: 3.
 	self
 		assert:
-			(self c15FullReferencerOutSide providerNamespaces
+			((self c15FullReferencerOutSide allProvidersAtScope: FamixTNamespace)
 				equalsTo:
 					(Set new
 						add: self namespace3ReferencerReferee;
@@ -94,10 +88,10 @@ FAMIXClassNavigationTest >> testProviderPackages [
 	p11 := self packageP11FullReferee.
 	p7 := self packageP7ReferencerReferee.
 	pEx := self packagePExtensions.
-	self assert: self c15FullReferencerOutSide providerPackages size equals: 4.
+	self assert: (self c15FullReferencerOutSide allProvidersAtScope: FamixTPackage) size equals: 4.
 	self
 		assert:
-			(self c15FullReferencerOutSide providerPackages
+			((self c15FullReferencerOutSide allProvidersAtScope: FamixTPackage)
 				equalsTo:
 					(Set new
 						add: p10;

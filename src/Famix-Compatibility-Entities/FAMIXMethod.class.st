@@ -360,40 +360,6 @@ FAMIXMethod >> printOn: aStream [
 	aStream nextPutAll: ' (Method)'
 ]
 
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXMethod >> providerClasses [
-	self deprecated: 'use providerTypes'.
-	^ self providerTypes
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXMethod >> providerMethods [
-	^ self providerBehaviours select: [ :each | each isMethod ]
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXMethod >> providerNamespaces [
-	"returns a set of all the namespaces that the receiver depends on the receiver"
-
-	^ (self queryAllOutgoing atScope: FamixTNamespace) withoutSelfLoops
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXMethod >> providerPackages [
-	"returns a set of all the packages that the receiver depends on the receiver"
-
-	^ (self queryAllOutgoing atScope: FamixTPackage) withoutSelfLoops
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXMethod >> providerTypes [
-	<MSEProperty: #providerTypes type: #FAMIXType>
-	<derived>
-	<multivalued>
-	<MSEComment: 'All types that the receiver depends on'>
-	^ (self queryAllOutgoing atScope: FamixTType) withoutSelfLoops
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXMethod >> smalltalkClass [ 
 	"Return the smalltalk class associated with the receiver. Note that it may be different than doing self parentType because the class and metaclass can be merged."
