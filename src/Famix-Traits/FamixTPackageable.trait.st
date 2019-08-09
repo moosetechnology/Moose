@@ -17,7 +17,7 @@ FamixTPackageable classSide >> annotation [
 
 { #category : #accessing }
 FamixTPackageable >> isExtension [
-	^ (self belongsTo atScope: FamixTPackage) ~~ (self atScope: FamixTPackage)
+	^ (self belongsTo atScope: FamixTPackage) ~= (self atScope: FamixTPackage)
 ]
 
 { #category : #accessing }
