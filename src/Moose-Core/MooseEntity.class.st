@@ -467,6 +467,23 @@ MooseEntity >> metamodel [
 
 ]
 
+{ #category : #deprecated }
+MooseEntity >> methodScope [
+	self
+		deprecated:
+			'methodScope does not have a coherent behavior and should be replaced with a query. The query will depend on your needs. It can either be:
+	- `self allAtScope: FamixTMethod` if you want a collection of all the methods up in the containment tree of your entity
+	- `self allToScope: FamixTMethod` if you want a collection of all the methods down in the containment tree of your entity
+	- `self allWithScope: FamixTMethod` if you want a collection of all the methods up and down in the containment tree of your entity
+	- `self atScope: FamixTMethod` if you want a collection of the first encountered methods up in the containment tree of your entity
+	- `self toScope: FamixTMethod` if you want a collection of the first encountered methods down in the containment tree of your entity
+	- `self withScope: FamixTMethod` if you want a collection of the first encountered methods up and down in the containment tree of your entity
+	
+	In case you know there is only one type (for example in java a #atScope: on a structural entity), you can call #anyOne on the result of the query.'.
+	"This implementation seems to be the most common"
+	^ (self toScope: FamixTMethod) anyOne
+]
+
 { #category : #accessing }
 MooseEntity >> mooseDescription [
 

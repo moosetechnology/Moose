@@ -41,12 +41,6 @@ FAMIXNamedEntity >> belongsTo: anObject [
 ]
 
 { #category : #'moosechef-scoping-filtering' }
-FAMIXNamedEntity >> methodScope [
-	"Empty default scope"
-	^ nil
-]
-
-{ #category : #'moosechef-scoping-filtering' }
 FAMIXNamedEntity >> selectWithinYourScope: aMooseQueryResult [
 	self subclassResponsibility
 ]

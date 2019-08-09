@@ -212,13 +212,6 @@ FamixJavaType >> lookUp: aMethodSignature [
 	^searchedM
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaType >> methodScope [
-	"This only makes sense to reject self loops in #collectAtScope:"
-
-	^ self methods
-]
-
 { #category : #printing }
 FamixJavaType >> mooseNameOn: aStream [ 
 	| parent |

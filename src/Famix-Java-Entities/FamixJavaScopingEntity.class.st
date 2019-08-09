@@ -107,13 +107,6 @@ FamixJavaScopingEntity >> instability [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaScopingEntity >> methodScope [
-	"This only makes sense to reject self loops in #collectAtScope:"
-
-	^ self classes collectAsSet: [:c | c methods]
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaScopingEntity >> structuralChildren [ 
 	^ (OrderedCollection withAll: self childScopes), self classes 
 ]
