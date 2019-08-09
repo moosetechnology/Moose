@@ -671,6 +671,23 @@ MooseEntity >> suspendAllAnnouncementsDuring: aBlock [
 			ensure: [ self announcer: currentAnnouncer ]
 ]
 
+{ #category : #deprecated }
+MooseEntity >> typeScope [
+	self
+		deprecated:
+			'typeScope does not have a coherent behavior and should be replaced with a query. The query will depend on your needs. It can either be:
+	- `self allAtScope: FamixTType` if you want a collection of all the types up in the containment tree of your entity
+	- `self allToScope: FamixTType` if you want a collection of all the types down in the containment tree of your entity
+	- `self allWithScope: FamixTType` if you want a collection of all the types up and down in the containment tree of your entity
+	- `self atScope: FamixTType` if you want a collection of the first encountered types up in the containment tree of your entity
+	- `self toScope: FamixTType` if you want a collection of the first encountered types down in the containment tree of your entity
+	- `self withScope: FamixTType` if you want a collection of the first encountered types up and down in the containment tree of your entity
+	
+	In case you know there is only one type (for example in java a #atScope: on a structural entity), you can call #anyOne on the result of the query.'.
+	"This implementation seems to be the most common"
+	^ (self atScope: FamixTType) anyOne
+]
+
 { #category : #accessing }
 MooseEntity >> usesFamixTrait: aTrait [
 
