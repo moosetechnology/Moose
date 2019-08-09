@@ -50,7 +50,6 @@ FamixTestComposedSubmetamodel1Generator >> defineHierarchy [
 
 	classEntity --|> namedEntity.
 	classEntity --|> #TClass.
-	classEntity --|> #TWithMethods.
 
 	method --|> namedEntity.
 	method --|> #TMethod.

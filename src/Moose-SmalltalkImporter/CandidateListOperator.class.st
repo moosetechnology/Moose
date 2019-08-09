@@ -56,29 +56,22 @@ CandidateListOperator >> computeCandidateListFor: anInvocation [
 ]
 
 { #category : #running }
-CandidateListOperator >> computeCandidateListFor: anInvocation withBaseClass: aClass [ 
-	 
-	aClass ~~ nil 
-		ifTrue: 
-			[| candidate | 
-			candidate := aClass implementationOf: anInvocation signature. 
-			(candidate ~~ nil and: [candidate isAbstract not]) 
-				ifTrue: [anInvocation candidates: (Array with: candidate)]]
+CandidateListOperator >> computeCandidateListFor: anInvocation withBaseClass: aClass [
+	aClass ~~ nil
+		ifTrue: [ | candidate |
+			candidate := aClass lookUp: anInvocation signature.
+			(candidate ~~ nil and: [ candidate isAbstract not ]) ifTrue: [ anInvocation candidates: (Array with: candidate) ] ]
 ]
 
 { #category : #running }
-CandidateListOperator >> computeCandidateListFor: anInvocation withReceivingClass: aClass [ 
-	 
-	| candidate candidates | 
-	aClass ~~ nil 
-		ifTrue: 
-			[candidates := self allCandidatesFor: anInvocation. 
-			candidates := candidates 
-				select: [:each | each belongsTo inheritsFrom: aClass]. 
-			candidate := aClass implementationOf: anInvocation signature. 
-			(candidate ~~ nil and: [candidate isAbstract not]) 
-				ifTrue: [candidates := candidates copyWith: candidate]. 
-			anInvocation candidates: candidates]
+CandidateListOperator >> computeCandidateListFor: anInvocation withReceivingClass: aClass [
+	| candidate candidates |
+	aClass ~~ nil
+		ifTrue: [ candidates := self allCandidatesFor: anInvocation.
+			candidates := candidates select: [ :each | each belongsTo inheritsFrom: aClass ].
+			candidate := aClass lookUp: anInvocation signature.
+			(candidate ~~ nil and: [ candidate isAbstract not ]) ifTrue: [ candidates := candidates copyWith: candidate ].
+			anInvocation candidates: candidates ]
 ]
 
 { #category : #running }
@@ -113,7 +106,7 @@ CandidateListOperator >> computeTemporaryVariableCandidateListFor: anInvocation 
 	aClass ~~ nil 
 		ifTrue: 
 			[| candidate | 
-			candidate := aClass implementationOf: anInvocation signature. 
+			candidate := aClass lookUp: anInvocation signature. 
 			(candidate ~~ nil and: [candidate isAbstract not]) 
 				ifTrue: [anInvocation candidates: (Array with: candidate)]]
 ]

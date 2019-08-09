@@ -49,7 +49,7 @@ AbstractCandidateListOperator >> computeCandidateListFor: anInvocation withBaseC
 	aClass ~~ nil 
 		ifTrue: 
 			[| candidate | 
-			candidate := aClass implementationOf: anInvocation signature. 
+			candidate := aClass lookUp: anInvocation signature. 
 			(candidate ~~ nil and: [candidate isAbstract not]) 
 				ifTrue: [anInvocation candidates: (Array with: candidate)]]
 ]
@@ -63,7 +63,7 @@ AbstractCandidateListOperator >> computeCandidateListFor: anInvocation withRecei
 			[candidates := self allCandidatesFor: anInvocation. 
 			candidates := candidates 
 				select: [:each | each belongsTo inheritsFrom: aClass]. 
-			candidate := aClass implementationOf: anInvocation signature. 
+			candidate := aClass lookUp: anInvocation signature. 
 			(candidate ~~ nil and: [candidate isAbstract not]) 
 				ifTrue: [candidates := candidates copyWith: candidate]. 
 			anInvocation candidates: candidates]

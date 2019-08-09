@@ -80,3 +80,14 @@ FamixTAnnotationType >> instances: anObject [
 	instances value: anObject
 
 ]
+
+{ #category : #printing }
+FamixTAnnotationType >> mooseNameOn: aStream [
+	self annotationTypesContainer
+		ifNotNil: [ :parent | 
+			parent mooseNameOn: aStream.
+			aStream
+				nextPut: $:;
+				nextPut: $: ].
+	self name ifNotNil: [ aStream nextPutAll: self name ]
+]
