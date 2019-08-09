@@ -45,16 +45,6 @@ FamixStClass >> extendedMethods [
 	^ self methods select: #isExtension
 ]
 
-{ #category : #'Famix-Implementation' }
-FamixStClass >> implementationOf: signature [
-	self withSuperclassesDo: [ :class | | found |
-			found := class methods
-				detect: [ :method | method signature = signature ]
-				ifNone: [ nil ].
-			found ifNotNil: [ ^found ] ].
-	^ nil
-]
-
 { #category : #testing }
 FamixStClass >> implements: aString [
 	"Was changed from match: for performances and because signature is case sensitive"
@@ -69,14 +59,6 @@ FamixStClass >> instanceSide [
 		ifFalse: [ self ]
 ]
 
-{ #category : #'as yet unclassified' }
-FamixStClass >> isAnonymousClass [
-	^  self container notNil and: [
-			self container isMethod or: [
-				self name isAllDigits or: [
-					'*_anonymous_*' match: self name ]] ]
-]
-
 { #category : #testing }
 FamixStClass >> isAnonymousClass [
 	self flag: #todo.	"We need to check how to do that in Pharo smalltalk because I think some of the conditions are for Java"
@@ -88,13 +70,12 @@ FamixStClass >> isClassSide [
 	"Kind of a hack. Uses the FAMIX2 Smalltalk naming convention that every Smalltalk
 	 metaclass has _class appended to the classname of the class it is a metaclass of."
 
-	^'*_class' match: self name
+	^ '*_class' match: self name
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixStClass >> isExtended [
-
-	^ self methods anySatisfy: [ :m| m isExtension ]
+	^ self methods anySatisfy: #isExtension
 ]
 
 { #category : #testing }
