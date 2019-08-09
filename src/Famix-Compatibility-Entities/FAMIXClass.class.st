@@ -136,11 +136,6 @@ FAMIXClass >> methodsWithoutSutbsAndConstructors [
 		each isStub not and: [each isConstructor not]]) asSet
 ]
 
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXClass >> selectWithinYourScope: aMooseQueryResult [
-	^ aMooseQueryResult withinClass: self
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXClass >> smalltalkClass [ 
 	"Returns the associated smalltalk class if it exist in the system."

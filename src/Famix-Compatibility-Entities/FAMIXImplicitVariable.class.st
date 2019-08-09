@@ -38,18 +38,6 @@ FAMIXImplicitVariable >> belongsTo: anObject [
 
 ]
 
-{ #category : #accessing }
-FAMIXImplicitVariable >> container [
-	self deprecated: 'Please use parentBehaviouralEntity instead'.  
-	^ self parentBehaviouralEntity
-]
-
-{ #category : #accessing }
-FAMIXImplicitVariable >> container: aBehaviouralEntity [
-	self deprecated: 'Please use #parentBehaviouralEntity: instead'.
-	^ self parentBehaviouralEntity: aBehaviouralEntity
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXImplicitVariable >> isImplicitVariable [
 	^true
