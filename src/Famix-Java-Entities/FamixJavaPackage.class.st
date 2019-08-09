@@ -132,12 +132,6 @@ FamixJavaPackage >> classes [
 	^ self privateState cacheAt: #classes ifAbsentPut: [ self childEntities select: [ :child | child isClass ] ]
 ]
 
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixJavaPackage >> clientPackages [
-	self deprecated: 'Use #allClients instead' transformWith: '`@receiver clientPackages' -> '`@receiver allClients'.
-	^ self allClients
-]
-
 { #category : #'Famix-Extensions-accessing' }
 FamixJavaPackage >> containedEntities [
 	^ super containedEntities union: self childEntities

@@ -49,7 +49,7 @@ MooseDependencyBrowser >> detailsIn: a [
 		title: 'Map of clients';
 		painting: [ :view :model :namespace :class :method | 
 			self
-				viewNamespaceMapOf: [ :x | x clientNamespaces ]
+				viewNamespaceMapOf: [ :x | x allClientsAtScope: FamixTNamespace ]
 				fromModel: model
 				namespace: namespace
 				class: class

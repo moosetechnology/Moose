@@ -148,18 +148,6 @@ FAMIXPackage >> classes [
 							ifAbsentPut: [ self childEntities select: [ :child | child isClass ]]
 ]
 
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXPackage >> clientClasses [
-	self deprecated: 'use clientTypes'.
-	^ self clientTypes
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXPackage >> clientPackages [
-	self deprecated: 'Use #allClients instead' transformWith: '`@receiver clientPackages' -> '`@receiver allClients'.
-	^ self allClients
-]
-
 { #category : #'Famix-Extensions-accessing' }
 FAMIXPackage >> concernedClassesCollection [
 	"it returns the collection of the receiver's concerned classes (See #__concernedClassesCollection). Before returning this value it verifies if it is cached in the receiver's state under the properiety #concernedClasses."

@@ -30,13 +30,6 @@ FamixStNamespace >> abstractness [
 ]
 
 { #category : #'Famix-Extensions-nav All Dependencies' }
-FamixStNamespace >> clientNamespaces [
-	"MooseCook was: ^ self inheritedByNamespaces union: self invokingNamespaces"
-
-	^ (self queryAllIncoming atScope: FamixTNamespace) withoutSelfLoops
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
 FamixStNamespace >> isNamespace [
 	^ true
 ]

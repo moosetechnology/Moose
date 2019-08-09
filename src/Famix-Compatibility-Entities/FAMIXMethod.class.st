@@ -77,31 +77,6 @@ FAMIXMethod >> category: aString [
 	
 ]
 
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXMethod >> clientClasses [
-	self deprecated: 'use clientTypes instead'.
-	^ self clientTypes
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXMethod >> clientMethods [
-	^ self clientBehaviours select: [ :each | each isMethod ]
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXMethod >> clientNamespaces [
-	"returns a set of all the namespaces that depend on the receiver"
-
-	^ (self queryAllIncoming atScope: FamixTNamespace) withoutSelfLoops
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXMethod >> clientPackages [
-	"returns a set of all the packages that depend on the receiver"
-
-	^ (self queryAllIncoming atScope: FamixTPackage) withoutSelfLoops
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXMethod >> compiledMethod [
 	"Return the compiled method associated to the receiver or nil"

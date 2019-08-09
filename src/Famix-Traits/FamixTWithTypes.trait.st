@@ -39,15 +39,6 @@ FamixTWithTypes >> allRecursiveTypesDo: aBlock [
 		each allRecursiveTypesDo: aBlock ]
 ]
 
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixTWithTypes >> clientTypes [
-	<MSEProperty: #clientTypes type: #FamixTType>
-	<multivalued>
-	<derived>
-	<MSEComment: 'All types that depend on (inherit, staticly access, or use some methods of) the receiver'>
-	^ (self queryAllIncoming atScope: FamixTType) withoutSelfLoops
-]
-
 { #category : #metrics }
 FamixTWithTypes >> fanOut [
 	<MSEProperty: #fanOut type: #Number>

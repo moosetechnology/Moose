@@ -36,22 +36,6 @@ FamixStType >> belongsTo: anObject [
 ]
 
 { #category : #adding }
-FamixStType >> clientNamespaces [
-	"returns a set of all the namespaces that depend on (some classes of them inherit, staticly access, or use some methods of) the receiver"
-
-	"Moose cook was: ^ self inheritedByNamespaces union: self invokingNamespaces"
-
-	^ (self queryAllIncoming atScope: FamixTNamespace) withoutSelfLoops
-]
-
-{ #category : #adding }
-FamixStType >> clientPackages [
-	"returns a set of all the packages that depend on (some classes of them inherit, staticly access, or use some methods of) the receiver"
-
-	^ (self queryAllIncoming atScope: FamixTPackage) withoutSelfLoops
-]
-
-{ #category : #adding }
 FamixStType >> container [
 
 	<MSEProperty: #container type: #FamixStContainerEntity>

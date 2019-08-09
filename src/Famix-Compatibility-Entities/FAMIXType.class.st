@@ -79,31 +79,6 @@ FAMIXType >> classSide [
 		ifTrue: [self]
 ]
 
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXType >> clientClasses [
-	self deprecated: 'use clientTypes'.
-	
-	^ self clientTypes 
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXType >> clientNamespaces [
-	"returns a set of all the namespaces that depend on (some classes of them inherit, staticly access, or use some methods of) the receiver"
-
-	"Moose cook was: ^ self inheritedByNamespaces union: self invokingNamespaces"
-
-	^ (self queryAllIncoming atScope: FamixTNamespace) withoutSelfLoops
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXType >> clientPackages [
-	"returns a set of all the packages that depend on (some classes of them inherit, staticly access, or use some methods of) the receiver"
-
-	"Moose cook was: ^ self inheritedByPackages union: self invokingPackages"
-
-	^ (self queryAllIncoming atScope: FamixTPackage) withoutSelfLoops
-]
-
 { #category : #accessing }
 FAMIXType >> container [
 
