@@ -336,13 +336,6 @@ FAMIXType >> lookUp: aMethodSignature [
 	^searchedM
 ]
 
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXType >> methodScope [
-	"This only makes sense to reject self loops in #collectAtScope:"
-
-	^ self methods
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXType >> mooseNameOn: aStream [ 
 	| parent |

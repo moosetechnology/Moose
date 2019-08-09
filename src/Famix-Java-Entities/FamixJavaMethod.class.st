@@ -237,13 +237,6 @@ FamixJavaMethod >> isSurelyInvokedBy: aFAMIXMethod [
 	^false
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaMethod >> methodScope [
-"This is a special case, only meaningful when using #withoutSelfLoops. Rejecting self loops with a method means rejecting recursive calls."
-
-	^ self
-]
-
 { #category : #printing }
 FamixJavaMethod >> mooseNameOn: stream [ 
 	| parent |
