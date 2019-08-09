@@ -402,9 +402,3 @@ FamixStMethod >> timeStamp: aTimeStamp [
 
 	self privateState attributeAt: #timeStamp put: aTimeStamp
 ]
-
-{ #category : #'Famix-Extensions-metrics-support' }
-FamixStMethod >> typeScope [
-
-	^ self parentType 
-]

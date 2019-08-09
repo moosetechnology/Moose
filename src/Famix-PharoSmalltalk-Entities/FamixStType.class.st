@@ -175,10 +175,3 @@ FamixStType >> providerTypes [
 	<MSEComment: 'All types that the receiver depends on (inherites, staticly accesses, or uses some of their methods)'>
 	^ (self queryAllOutgoing atScope: FamixTType) withoutSelfLoops
 ]
-
-{ #category : #'Famix-Extensions' }
-FamixStType >> typeScope [
-	"all types are not classes. Redefined in FamixClass"
-
-	^ self
-]

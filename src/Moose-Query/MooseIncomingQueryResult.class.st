@@ -25,9 +25,9 @@ MooseIncomingQueryResult >> opposite: aDependency [
 
 { #category : #accessing }
 MooseIncomingQueryResult >> targetClasses [
-	
 	"flatten targets as we receive candidates instead of single elements for incoming invocations"
-	^ self targets deepFlatten collectAsSet: #typeScope
+
+	^ self targets deepFlatten flatCollectAsSet: [ :e | e atScope: FamixTClass ]
 ]
 
 { #category : #accessing }

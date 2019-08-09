@@ -63,8 +63,3 @@ FamixJavaLocalVariable >> printOn: stream [
 	stream nextPut: $)
 
 ]
-
-{ #category : #'as yet unclassified' }
-FamixJavaLocalVariable >> typeScope [
-	^ self parentBehaviouralEntity typeScope
-]

@@ -68,12 +68,6 @@ FamixJavaNamedEntity >> stubFormattedName [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaNamedEntity >> typeScope [
-	"Empty default scope"
-	^ nil
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaNamedEntity >> yourScope [
 	"Empty default scope"
 

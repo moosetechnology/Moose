@@ -33,10 +33,3 @@ FamixJavaUnknownVariable >> packageScope [
 	so we return nil"
 	^ nil
 ]
-
-{ #category : #'as yet unclassified' }
-FamixJavaUnknownVariable >> typeScope [
-	"typeScope does not make sense for an unknown variable,
-	so we return nil"
-	^ nil
-]

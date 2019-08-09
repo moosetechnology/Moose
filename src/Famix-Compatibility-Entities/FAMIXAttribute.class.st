@@ -128,8 +128,3 @@ FAMIXAttribute >> printOn: aStream [
 	self name ifNotNil: [ aStream nextPutAll: self name ].
 	aStream nextPutAll: ' (Attribute)'
 ]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXAttribute >> typeScope [
-	^ self parentType
-]

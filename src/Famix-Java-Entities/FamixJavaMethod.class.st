@@ -401,9 +401,3 @@ FamixJavaMethod >> providerTypes [
 	<MSEComment: 'All types that the receiver depends on'>
 	^ (self queryAllOutgoing atScope: FamixTType) withoutSelfLoops
 ]
-
-{ #category : #'as yet unclassified' }
-FamixJavaMethod >> typeScope [
-
-	^ self parentType 
-]

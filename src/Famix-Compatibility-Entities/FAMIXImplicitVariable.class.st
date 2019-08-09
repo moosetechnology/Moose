@@ -96,8 +96,3 @@ FAMIXImplicitVariable >> printOn: aStream [
 	self name ifNotNil: [ aStream nextPutAll: self name ].
 	aStream nextPutAll: ' (ImplicitVariable)'
 ]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXImplicitVariable >> typeScope [
-	^ self parentBehaviouralEntity typeScope
-]

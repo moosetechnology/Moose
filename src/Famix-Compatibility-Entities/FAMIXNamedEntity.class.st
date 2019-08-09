@@ -73,12 +73,6 @@ FAMIXNamedEntity >> stubFormattedName [
 ]
 
 { #category : #'moosechef-scoping-filtering' }
-FAMIXNamedEntity >> typeScope [
-	"Empty default scope"
-	^ nil
-]
-
-{ #category : #'moosechef-scoping-filtering' }
 FAMIXNamedEntity >> yourScope [
 	"Empty default scope"
 

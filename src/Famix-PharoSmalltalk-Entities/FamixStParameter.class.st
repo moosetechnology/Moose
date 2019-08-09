@@ -45,8 +45,3 @@ FamixStParameter >> mooseNameOn: stream [
 FamixStParameter >> packageScope [
 	^ self parentBehaviouralEntity packageScope
 ]
-
-{ #category : #accessing }
-FamixStParameter >> typeScope [
-	^ self parentBehaviouralEntity typeScope
-]

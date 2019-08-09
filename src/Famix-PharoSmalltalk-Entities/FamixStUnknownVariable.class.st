@@ -14,10 +14,3 @@ FamixStUnknownVariable class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #'moosechef-scoping-filtering' }
-FamixStUnknownVariable >> typeScope [
-	"typeScope does not make sense for an unknown variable,
-	so we return nil"
-	^ nil
-]

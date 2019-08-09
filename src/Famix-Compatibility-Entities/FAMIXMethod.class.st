@@ -458,9 +458,3 @@ FAMIXMethod >> timeStamp: aTimeStamp [
 
 	self privateState attributeAt: #timeStamp put: aTimeStamp
 ]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXMethod >> typeScope [
-
-	^ self parentType 
-]

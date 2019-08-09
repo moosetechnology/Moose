@@ -28,15 +28,5 @@ FAMIXStructuralEntity >> namespaceScope [
 
 { #category : #'moosechef-scoping-filtering' }
 FAMIXStructuralEntity >> packageScope [
-
-	| cs |
-	cs := self typeScope.
-	
-	^ (cs isNil) ifTrue: [nil] ifFalse: [cs packageScope]
-]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXStructuralEntity >> typeScope [
-
-	^ self belongsTo typeScope 
+	^ (self atScope: FamixTType) ifEmpty: [ nil ] ifNotEmpty: [ :types | types anyOne packageScope ]
 ]

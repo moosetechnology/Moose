@@ -100,8 +100,3 @@ FamixStAttribute >> mooseNameOn: aStream [
 		aStream nextPut: $. ].
 	self name ifNotNil: [ aStream nextPutAll: self name ].
 ]
-
-{ #category : #'Famix-Implementation' }
-FamixStAttribute >> typeScope [
-	^ self parentType
-]

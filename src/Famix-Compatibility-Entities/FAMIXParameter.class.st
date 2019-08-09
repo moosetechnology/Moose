@@ -75,8 +75,3 @@ FAMIXParameter >> printOn: stream [
 	stream nextPut: $)
 
 ]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXParameter >> typeScope [
-	^ self parentBehaviouralEntity typeScope
-]

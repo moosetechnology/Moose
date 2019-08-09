@@ -10,8 +10,3 @@ FAMIXNamespaceChefTest >> testNilNamespaceScope [
 	namespace := FAMIXNamespace new.
 	self assert: namespace namespaceScope == namespace
 ]
-
-{ #category : #tests }
-FAMIXNamespaceChefTest >> testNoClassScope [
-	self assert: FAMIXNamespace new typeScope isEmpty
-]

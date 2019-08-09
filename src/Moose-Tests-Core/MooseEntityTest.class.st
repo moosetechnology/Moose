@@ -155,14 +155,6 @@ MooseEntityTest >> testLocalMooseModel [
 ]
 
 { #category : #tests }
-MooseEntityTest >> testMooseIncludes [
-	| t |
-	t := MooseEntity new.
-	self assert: (t mooseIncludes: t).
-	self deny: (t mooseIncludes: MooseEntity new).
-]
-
-{ #category : #tests }
 MooseEntityTest >> testMooseModel [
 	| element model |
 	

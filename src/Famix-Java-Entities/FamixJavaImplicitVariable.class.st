@@ -79,8 +79,3 @@ FamixJavaImplicitVariable >> printOn: aStream [
 	self name ifNotNil: [ aStream nextPutAll: self name ].
 	aStream nextPutAll: ' (ImplicitVariable)'
 ]
-
-{ #category : #'as yet unclassified' }
-FamixJavaImplicitVariable >> typeScope [
-	^ self parentBehaviouralEntity typeScope
-]

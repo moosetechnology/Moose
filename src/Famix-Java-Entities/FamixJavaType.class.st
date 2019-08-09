@@ -313,13 +313,6 @@ FamixJavaType >> providerTypes [
 	^ (self queryAllOutgoing atScope: FamixTType) withoutSelfLoops
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaType >> typeScope [
-	"all types are not classes. Redefined in FamixClass"
-
-	^ self
-]
-
 { #category : #'Famix-Implementation' }
 FamixJavaType >> understands: signature [
 	"returns true if a class is able to respond to an invocation to aSignature on itself; false otherwise"

@@ -10,11 +10,6 @@ FAMIXGlobalVariableTest >> actualClass [
 ]
 
 { #category : #tests }
-FAMIXGlobalVariableTest >> testClassScope [ 
-	self assert: self actualClass new typeScope isNil
-]
-
-{ #category : #tests }
 FAMIXGlobalVariableTest >> testIsPublic [
 	| entity |
 	entity := self actualClass new.
