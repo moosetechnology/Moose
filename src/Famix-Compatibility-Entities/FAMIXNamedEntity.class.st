@@ -40,11 +40,6 @@ FAMIXNamedEntity >> belongsTo: anObject [
 
 ]
 
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXNamedEntity >> selectWithinYourScope: aMooseQueryResult [
-	self subclassResponsibility
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXNamedEntity >> stubFormattedName [
 	 ^ self isStub 
@@ -52,16 +47,4 @@ FAMIXNamedEntity >> stubFormattedName [
 					string: self name
 					attribute: TextEmphasis italic ]
 		ifFalse: [ Text fromString: self name ] 
-]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXNamedEntity >> yourScope [
-	"Empty default scope"
-
-	self
-		deprecated:
-			'#yourScope was used by MooseChef for queries. Now, MooseQuery does not need it anymore. Example of code update: "myEntity queryAllIncoming perform: mySecondEntity yourScope" => "myEntity queryAllIncoming withScope: mySecondEntity class"'
-		on: '12 january 2018'
-		in: 'Moose6.1'.
-	^ nil
 ]

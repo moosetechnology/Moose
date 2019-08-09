@@ -15,22 +15,6 @@ FamixJavaException class >> annotation [
 	^self
 ]
 
-{ #category : #deprecated }
-FamixJavaException >> definingMethod [
-
-	^ self definingEntity
-	
-
-]
-
-{ #category : #deprecated }
-FamixJavaException >> definingMethod: aMethod [ 
-
-	^ self definingEntity: aMethod 
-	
-
-]
-
 { #category : #accessing }
 FamixJavaException >> mooseNameOn: aStream [ 
 	aStream nextPutAll: (self class name withoutPrefix: 'FamixJava').

@@ -25,30 +25,12 @@ FAMIXMethodNavigationChefTest >> testReferencedClasses [
 { #category : #allOutgoingInvocations }
 FAMIXMethodNavigationChefTest >> testReferencedClassesInto [
 	| c1Mtd4 p6 |
-	c1Mtd4 := self
-		getMethod: 'm1p1c1Mtd4:(Object)'
-		from: self c1FullReferencerOutSide.
+	c1Mtd4 := self getMethod: 'm1p1c1Mtd4:(Object)' from: self c1FullReferencerOutSide.
 	p6 := self packageP6InteractedReferee.
-	self
-		assert:
-			((c1Mtd4 queryAllOutgoingInvocations atScope: FamixTType)
-				withinPackage: p6) size
-		equals: 1.
-	self
-		assert:
-			(((c1Mtd4 queryAllOutgoingInvocations atScope: FamixTType)
-				withinPackage: p6)
-				equalsTo: (Set with: self c13FullRefereeInSideOutSide)).
-	self
-		assert: 1
-		equals:
-			((c1Mtd4 queryAllOutgoingInvocations atScope: FamixTType)
-				withinNamespace: self namespace2FullReferee) size.
-	self
-		assert:
-			(((c1Mtd4 queryAllOutgoingInvocations atScope: FamixTType)
-				withinNamespace: self namespace2FullReferee)
-				equalsTo: (Set with: self c13FullRefereeInSideOutSide))
+	self assert: ((c1Mtd4 queryAllOutgoingInvocations atScope: FamixTType) within: p6) size equals: 1.
+	self assert: (((c1Mtd4 queryAllOutgoingInvocations atScope: FamixTType) within: p6) equalsTo: (Set with: self c13FullRefereeInSideOutSide)).
+	self assert: 1 equals: ((c1Mtd4 queryAllOutgoingInvocations atScope: FamixTType) within: self namespace2FullReferee) size.
+	self assert: (((c1Mtd4 queryAllOutgoingInvocations atScope: FamixTType) within: self namespace2FullReferee) equalsTo: (Set with: self c13FullRefereeInSideOutSide))
 ]
 
 { #category : #allOutgoingInvocations }
@@ -72,11 +54,9 @@ FAMIXMethodNavigationChefTest >> testReferencedMethodsDefinedInto [
 	c15m3 := self getMethod: 'm4p8c15Mtd3()' from: self c15FullReferencerOutSide.
 	c19InstCreation1 := self getMethod: 'm6p11c19InstCreation1()' from: self c19FullRefereeOutSide.
 	c19m2 := self getMethod: 'm6p11c19Mtd2()' from: self c19FullRefereeOutSide.
-	
-	self assert: 2
-		equals: (c15m3 queryAllOutgoingInvocations opposites withinClass: self c19FullRefereeOutSide) size.
-	self assert: ((c15m3 queryAllOutgoingInvocations opposites withinClass: self c19FullRefereeOutSide)
-		equalsTo: (Set with: c19InstCreation1 with: c19m2))
+
+	self assert: 2 equals: (c15m3 queryAllOutgoingInvocations opposites within: self c19FullRefereeOutSide) size.
+	self assert: ((c15m3 queryAllOutgoingInvocations opposites within: self c19FullRefereeOutSide) equalsTo: (Set with: c19InstCreation1 with: c19m2))
 ]
 
 { #category : #allOutgoingInvocations }
@@ -86,7 +66,7 @@ FAMIXMethodNavigationChefTest >> testReferencedMethodsDefinedIntoAndPackagedInto
 	c19InstCreation1 := self getMethod: 'm6p11c19InstCreation1()' from: self c19FullRefereeOutSide.
 	c19m2 := self getMethod: 'm6p11c19Mtd2()' from: self c19FullRefereeOutSide.
 
-	self assertCollection: ((c15m3 queryAllOutgoingInvocations opposites withinClass: self c19FullRefereeOutSide) withinPackage: self packagePExtensions) hasSameElements: {c19InstCreation1 . c19m2}
+	self assertCollection: ((c15m3 queryAllOutgoingInvocations opposites within: self c19FullRefereeOutSide) within: self packagePExtensions) hasSameElements: {c19InstCreation1 . c19m2}
 ]
 
 { #category : #allOutgoingInvocations }
@@ -149,30 +129,12 @@ FAMIXMethodNavigationChefTest >> testReferencingClasses [
 { #category : #allIncomingInvocations }
 FAMIXMethodNavigationChefTest >> testReferencingClassesInto [
 	| c19m2 p9 |
-	c19m2 := self
-		getMethod: 'm6p11c19Mtd2()'
-		from: self c19FullRefereeOutSide.
+	c19m2 := self getMethod: 'm6p11c19Mtd2()' from: self c19FullRefereeOutSide.
 	p9 := self packageP9FullReferencer.
-	self
-		assert: 1
-		equals:
-			((c19m2 queryAllIncomingInvocations atScope: FamixTType)
-				withinPackage: p9) size.
-	self
-		assert:
-			(((c19m2 queryAllIncomingInvocations atScope: FamixTType)
-				withinPackage: p9)
-				equalsTo: (Set with: self c16FullReferencerOutSideInSide)).
-	self
-		assert: 1
-		equals:
-			((c19m2 queryAllIncomingInvocations atScope: FamixTType)
-				withinNamespace: self namespace4FullReferencer) size.
-	self
-		assert:
-			(((c19m2 queryAllIncomingInvocations atScope: FamixTType)
-				withinNamespace: self namespace4FullReferencer)
-				equalsTo: (Set with: self c15FullReferencerOutSide))
+	self assert: 1 equals: ((c19m2 queryAllIncomingInvocations atScope: FamixTType) within: p9) size.
+	self assert: (((c19m2 queryAllIncomingInvocations atScope: FamixTType) within: p9) equalsTo: (Set with: self c16FullReferencerOutSideInSide)).
+	self assert: 1 equals: ((c19m2 queryAllIncomingInvocations atScope: FamixTType) within: self namespace4FullReferencer) size.
+	self assert: (((c19m2 queryAllIncomingInvocations atScope: FamixTType) within: self namespace4FullReferencer) equalsTo: (Set with: self c15FullReferencerOutSide))
 ]
 
 { #category : #allIncomingInvocations }
@@ -193,18 +155,11 @@ FAMIXMethodNavigationChefTest >> testReferencingMethods [
 { #category : #allIncomingInvocations }
 FAMIXMethodNavigationChefTest >> testReferencingMethodsDefinedInto [
 	| c19m2 c19m1 |
-	c19m1 := self 
-		getMethod: 'm6p11c19Mtd1()'
-		from: self c19FullRefereeOutSide.
-	c19m2 := self 
-		getMethod: 'm6p11c19Mtd2()'
-		from: self c19FullRefereeOutSide.
-	
-	self assert: 1
-		equals: (c19m1 queryAllIncomingInvocations opposites withinClass: c19m1 belongsTo) size.
-	self assert: ((c19m1 queryAllIncomingInvocations opposites withinClass: c19m1 belongsTo)
-					equalsTo: (Set with: c19m2))
-		description: 'Unexpected query result'
+	c19m1 := self getMethod: 'm6p11c19Mtd1()' from: self c19FullRefereeOutSide.
+	c19m2 := self getMethod: 'm6p11c19Mtd2()' from: self c19FullRefereeOutSide.
+
+	self assert: 1 equals: (c19m1 queryAllIncomingInvocations opposites within: c19m1 belongsTo) size.
+	self assert: ((c19m1 queryAllIncomingInvocations opposites within: c19m1 belongsTo) equalsTo: (Set with: c19m2)) description: 'Unexpected query result'
 ]
 
 { #category : #allIncomingInvocations }
@@ -214,8 +169,8 @@ FAMIXMethodNavigationChefTest >> testReferencingMethodsDefinedIntoAndPackagedInt
 	c19m2 := self getMethod: 'm6p11c19Mtd2()' from: self c19FullRefereeOutSide.
 	pExtensions := self packagePExtensions.
 
-	self assert: 1 equals: ((c19m1 queryAllIncomingInvocations opposites withinClass: c19m1 belongsTo) withinPackage: pExtensions) size.
-	self assert: (((c19m1 queryAllIncomingInvocations opposites withinClass: c19m1 belongsTo) withinPackage: pExtensions) equalsTo: (Set with: c19m2)) description: 'Unexpected query result'
+	self assert: 1 equals: ((c19m1 queryAllIncomingInvocations opposites within: c19m1 belongsTo) within: pExtensions) size.
+	self assert: (((c19m1 queryAllIncomingInvocations opposites within: c19m1 belongsTo) within: pExtensions) equalsTo: (Set with: c19m2)) description: 'Unexpected query result'
 ]
 
 { #category : #allIncomingInvocations }
@@ -284,15 +239,10 @@ FAMIXMethodNavigationChefTest >> testStaticReferencedClassesInto [
 	| c15m3 p11 |
 	c15m3 := self getMethod: 'm4p8c15Mtd3()' from: self c15FullReferencerOutSide.
 	p11 := self packageP11FullReferee.
-	self assert: (c15m3 queryOutgoingReferences opposites withinPackage: p11) size equals: 1.
-	self
-		assert:
-			((c15m3 queryOutgoingReferences opposites withinPackage: p11) equalsTo: (Set with: self c19FullRefereeOutSide)).
-	self assert: 1 equals: (c15m3 queryOutgoingReferences opposites withinNamespace: self namespace6InteractedReferee) size.
-	self
-		assert:
-			((c15m3 queryOutgoingReferences opposites withinNamespace: self namespace6InteractedReferee)
-				equalsTo: (Set with: self c19FullRefereeOutSide))
+	self assert: (c15m3 queryOutgoingReferences opposites within: p11) size equals: 1.
+	self assert: ((c15m3 queryOutgoingReferences opposites within: p11) equalsTo: (Set with: self c19FullRefereeOutSide)).
+	self assert: 1 equals: (c15m3 queryOutgoingReferences opposites within: self namespace6InteractedReferee) size.
+	self assert: ((c15m3 queryOutgoingReferences opposites within: self namespace6InteractedReferee) equalsTo: (Set with: self c19FullRefereeOutSide))
 ]
 
 { #category : #references }
@@ -343,24 +293,12 @@ FAMIXMethodNavigationChefTest >> testSureReferencedClasses [
 { #category : #sureOutgoingInvocations }
 FAMIXMethodNavigationChefTest >> testSureReferencedClassesInto [
 	| c20Mtd1 p11 pEx |
-	c20Mtd1 := self
-		getMethod: 'm6p12c20Mtd1()'
-		from: self c20FullReferencerOutSide.
+	c20Mtd1 := self getMethod: 'm6p12c20Mtd1()' from: self c20FullReferencerOutSide.
 	p11 := self packageP11FullReferee.
 	pEx := self packagePExtensions.
-	self
-		assert:
-			((c20Mtd1 querySureOutgoingInvocations atScope: FamixTType)
-				withinPackage: pEx) isEmpty.
-	self
-		assert:
-			((c20Mtd1 querySureOutgoingInvocations atScope: FamixTType)
-				withinPackage: p11) size
-		equals: 1.
-	self
-		assert:
-			(((c20Mtd1 querySureOutgoingInvocations atScope: FamixTType)
-				withinPackage: p11) includes: self c19FullRefereeOutSide)
+	self assert: ((c20Mtd1 querySureOutgoingInvocations atScope: FamixTType) within: pEx) isEmpty.
+	self assert: ((c20Mtd1 querySureOutgoingInvocations atScope: FamixTType) within: p11) size equals: 1.
+	self assert: (((c20Mtd1 querySureOutgoingInvocations atScope: FamixTType) within: p11) includes: self c19FullRefereeOutSide)
 ]
 
 { #category : #sureOutgoingInvocations }
@@ -377,24 +315,17 @@ FAMIXMethodNavigationChefTest >> testSureReferencedMethods [
 ]
 
 { #category : #sureOutgoingInvocations }
-FAMIXMethodNavigationChefTest >> testSureReferencedMethodsDefinedInto [ 
-	 
-	| c19Mtd1 c19Mtd2 c19InstCreation c20Mtd1 | 
-	c19Mtd1 := self getMethod: 'm6p11c19Mtd1()' from: self c19FullRefereeOutSide. 
-	c19Mtd2 := self getMethod: 'm6p11c19Mtd2()' from: self c19FullRefereeOutSide. 
-	c19InstCreation := self getMethod: 'm6p11c19InstCreation()' from: self c19FullRefereeOutSide. 
-	c20Mtd1 := self getMethod: 'm6p12c20Mtd1()' from: self c20FullReferencerOutSide. 
-	
-	self assert: 1
-		equals: (c19Mtd2 querySureOutgoingInvocations opposites withinClass: self c19FullRefereeOutSide) size. 
-	self assert: 
-			((c19Mtd2 querySureOutgoingInvocations opposites withinClass: self c19FullRefereeOutSide) 
-		includes: c19Mtd1). 
-	self assert: 1
-		equals: (c20Mtd1 querySureOutgoingInvocations opposites withinClass: self c19FullRefereeOutSide) size. 
-	self assert: 
-			((c20Mtd1 querySureOutgoingInvocations opposites withinClass: self c19FullRefereeOutSide) 
-		includes: c19InstCreation)
+FAMIXMethodNavigationChefTest >> testSureReferencedMethodsDefinedInto [
+	| c19Mtd1 c19Mtd2 c19InstCreation c20Mtd1 |
+	c19Mtd1 := self getMethod: 'm6p11c19Mtd1()' from: self c19FullRefereeOutSide.
+	c19Mtd2 := self getMethod: 'm6p11c19Mtd2()' from: self c19FullRefereeOutSide.
+	c19InstCreation := self getMethod: 'm6p11c19InstCreation()' from: self c19FullRefereeOutSide.
+	c20Mtd1 := self getMethod: 'm6p12c20Mtd1()' from: self c20FullReferencerOutSide.
+
+	self assert: 1 equals: (c19Mtd2 querySureOutgoingInvocations opposites within: self c19FullRefereeOutSide) size.
+	self assert: ((c19Mtd2 querySureOutgoingInvocations opposites within: self c19FullRefereeOutSide) includes: c19Mtd1).
+	self assert: 1 equals: (c20Mtd1 querySureOutgoingInvocations opposites within: self c19FullRefereeOutSide) size.
+	self assert: ((c20Mtd1 querySureOutgoingInvocations opposites within: self c19FullRefereeOutSide) includes: c19InstCreation)
 ]
 
 { #category : #sureOutgoingInvocations }
@@ -406,30 +337,12 @@ FAMIXMethodNavigationChefTest >> testSureReferencedMethodsDefinedIntoAndPackaged
 	c20Mtd1 := self getMethod: 'm6p12c20Mtd1()' from: self c20FullReferencerOutSide.
 	p11 := self packageP11FullReferee.
 	pExtensions := self packagePExtensions.
-	self
-		assert:
-			((c19Mtd2 querySureOutgoingInvocations opposites withinClass: self c19FullRefereeOutSide) withinPackage: pExtensions)
-				isEmpty.
-	self
-		assert:
-			((c19Mtd2 querySureOutgoingInvocations opposites withinClass: self c19FullRefereeOutSide) withinPackage: p11) size
-		equals: 1.
-	self
-		assert:
-			(((c19Mtd2 querySureOutgoingInvocations opposites withinClass: self c19FullRefereeOutSide) withinPackage: p11)
-				includes: c19Mtd1).
-	self
-		assert:
-			((c20Mtd1 querySureOutgoingInvocations opposites withinClass: self c19FullRefereeOutSide) withinPackage: pExtensions)
-				isEmpty.
-	self
-		assert:
-			((c20Mtd1 querySureOutgoingInvocations opposites withinClass: self c19FullRefereeOutSide) withinPackage: p11) size
-		equals: 1.
-	self
-		assert:
-			(((c20Mtd1 querySureOutgoingInvocations opposites withinClass: self c19FullRefereeOutSide) withinPackage: p11)
-				includes: c19InstCreation)
+	self assert: ((c19Mtd2 querySureOutgoingInvocations opposites within: self c19FullRefereeOutSide) within: pExtensions) isEmpty.
+	self assert: ((c19Mtd2 querySureOutgoingInvocations opposites within: self c19FullRefereeOutSide) within: p11) size equals: 1.
+	self assert: (((c19Mtd2 querySureOutgoingInvocations opposites within: self c19FullRefereeOutSide) within: p11) includes: c19Mtd1).
+	self assert: ((c20Mtd1 querySureOutgoingInvocations opposites within: self c19FullRefereeOutSide) within: pExtensions) isEmpty.
+	self assert: ((c20Mtd1 querySureOutgoingInvocations opposites within: self c19FullRefereeOutSide) within: p11) size equals: 1.
+	self assert: (((c20Mtd1 querySureOutgoingInvocations opposites within: self c19FullRefereeOutSide) within: p11) includes: c19InstCreation)
 ]
 
 { #category : #sureOutgoingInvocations }
@@ -496,30 +409,12 @@ FAMIXMethodNavigationChefTest >> testSureReferencingClasses [
 { #category : #sureIncomingInvocations }
 FAMIXMethodNavigationChefTest >> testSureReferencingClassesInto [
 	| c13InstCreation p6 |
-	c13InstCreation := self
-		getMethod: 'm2p6c13InstCreation()'
-		from: self c13FullRefereeInSideOutSide.
+	c13InstCreation := self getMethod: 'm2p6c13InstCreation()' from: self c13FullRefereeInSideOutSide.
 	p6 := self packageP6InteractedReferee.
-	self
-		assert: 1
-		equals:
-			((c13InstCreation querySureIncomingInvocations atScope: FamixTType)
-				withinPackage: p6) size.
-	self
-		assert:
-			(((c13InstCreation querySureIncomingInvocations atScope: FamixTType)
-				withinPackage: p6)
-				equalsTo: (Set with: self c12FullReferencerInSide)).
-	self
-		assert: 1
-		equals:
-			((c13InstCreation querySureIncomingInvocations atScope: FamixTType)
-				withinNamespace: self namespace1InteractedReferencerReferee) size.
-	self
-		assert:
-			(((c13InstCreation querySureIncomingInvocations atScope: FamixTType)
-				withinNamespace: self namespace1InteractedReferencerReferee)
-				equalsTo: (Set with: self c1FullReferencerOutSide))
+	self assert: 1 equals: ((c13InstCreation querySureIncomingInvocations atScope: FamixTType) within: p6) size.
+	self assert: (((c13InstCreation querySureIncomingInvocations atScope: FamixTType) within: p6) equalsTo: (Set with: self c12FullReferencerInSide)).
+	self assert: 1 equals: ((c13InstCreation querySureIncomingInvocations atScope: FamixTType) within: self namespace1InteractedReferencerReferee) size.
+	self assert: (((c13InstCreation querySureIncomingInvocations atScope: FamixTType) within: self namespace1InteractedReferencerReferee) equalsTo: (Set with: self c1FullReferencerOutSide))
 ]
 
 { #category : #sureIncomingInvocations }
@@ -542,43 +437,27 @@ FAMIXMethodNavigationChefTest >> testSureReferencingMethods [
 ]
 
 { #category : #sureIncomingInvocations }
-FAMIXMethodNavigationChefTest >> testSureReferencingMethodsDefinedInto [ 
-	 
-	| c13InstCreation c1Mtd1 c1Mtd4 | 
-	c13InstCreation := self 	getMethod: 'm2p6c13InstCreation()' from: self c13FullRefereeInSideOutSide. 
-	c1Mtd1 := self getMethod: 'm1p1c1Mtd1()' from: self c1FullReferencerOutSide. 
-	c1Mtd4 := self getMethod: 'm1p1c1Mtd4:(Object)' from: self c1FullReferencerOutSide. 
-	self assert: 2
-		equals: (c13InstCreation querySureIncomingInvocations opposites
-					withinClass: self c1FullReferencerOutSide) size. 
-	self assert: ((c13InstCreation querySureIncomingInvocations opposites
-					withinClass: self c1FullReferencerOutSide) 
-				equalsTo: (Set with: c1Mtd1 with: c1Mtd4))
+FAMIXMethodNavigationChefTest >> testSureReferencingMethodsDefinedInto [
+	| c13InstCreation c1Mtd1 c1Mtd4 |
+	c13InstCreation := self getMethod: 'm2p6c13InstCreation()' from: self c13FullRefereeInSideOutSide.
+	c1Mtd1 := self getMethod: 'm1p1c1Mtd1()' from: self c1FullReferencerOutSide.
+	c1Mtd4 := self getMethod: 'm1p1c1Mtd4:(Object)' from: self c1FullReferencerOutSide.
+	self assert: 2 equals: (c13InstCreation querySureIncomingInvocations opposites within: self c1FullReferencerOutSide) size.
+	self assert: ((c13InstCreation querySureIncomingInvocations opposites within: self c1FullReferencerOutSide) equalsTo: (Set with: c1Mtd1 with: c1Mtd4))
 ]
 
 { #category : #sureIncomingInvocations }
-FAMIXMethodNavigationChefTest >> testSureReferencingMethodsDefinedIntoAndPackagedInto [ 
-	 
-	| c13InstCreation c1Mtd1 c1Mtd4 p1 p6 | 
-	c13InstCreation := self getMethod: 'm2p6c13InstCreation()' from: self c13FullRefereeInSideOutSide. 
-	c1Mtd1 := self getMethod: 'm1p1c1Mtd1()' from: self c1FullReferencerOutSide. 
-	c1Mtd4 := self getMethod: 'm1p1c1Mtd4:(Object)' from: self c1FullReferencerOutSide. 
-	p1 := self packageP1FullReferencer. 
+FAMIXMethodNavigationChefTest >> testSureReferencingMethodsDefinedIntoAndPackagedInto [
+	| c13InstCreation c1Mtd1 c1Mtd4 p1 p6 |
+	c13InstCreation := self getMethod: 'm2p6c13InstCreation()' from: self c13FullRefereeInSideOutSide.
+	c1Mtd1 := self getMethod: 'm1p1c1Mtd1()' from: self c1FullReferencerOutSide.
+	c1Mtd4 := self getMethod: 'm1p1c1Mtd4:(Object)' from: self c1FullReferencerOutSide.
+	p1 := self packageP1FullReferencer.
 	p6 := self packageP6InteractedReferee.
-	
-	self assert: 2
-		equals: ((c13InstCreation querySureIncomingInvocations opposites
-					withinClass: self c1FullReferencerOutSide)
-					withinPackage: p1) size. 
-	self assert: 
-			(((c13InstCreation querySureIncomingInvocations opposites
-					withinClass: self c1FullReferencerOutSide)
-					withinPackage: p1) 
-				equalsTo: (Set with: c1Mtd1 with: c1Mtd4)). 
-	self assert: 
-			((c13InstCreation querySureIncomingInvocations opposites
-					withinClass: self c1FullReferencerOutSide)
-					withinPackage: 6) isEmpty
+
+	self assert: 2 equals: ((c13InstCreation querySureIncomingInvocations opposites within: self c1FullReferencerOutSide) within: p1) size.
+	self assert: (((c13InstCreation querySureIncomingInvocations opposites within: self c1FullReferencerOutSide) within: p1) equalsTo: (Set with: c1Mtd1 with: c1Mtd4)).
+	self assert: ((c13InstCreation querySureIncomingInvocations opposites within: self c1FullReferencerOutSide) within: 6) isEmpty
 ]
 
 { #category : #sureIncomingInvocations }

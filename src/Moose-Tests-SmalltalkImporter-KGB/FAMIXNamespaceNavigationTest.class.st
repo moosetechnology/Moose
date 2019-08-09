@@ -19,7 +19,7 @@ FAMIXNamespaceNavigationTest >> testClientClasses [
 
 { #category : #'MooseKGB-TestFamix3-allDependencies' }
 FAMIXNamespaceNavigationTest >> testClientClassesInto [
-	self assert: (((self namespace2FullReferee queryAllIncoming atScope: FamixTType) withinNamespace: self namespace3ReferencerReferee) equalsTo: (Set with: self c14ReferencerOutSideRefereeOutSide))
+	self assert: (((self namespace2FullReferee queryAllIncoming atScope: FamixTType) within: self namespace3ReferencerReferee) equalsTo: (Set with: self c14ReferencerOutSideRefereeOutSide))
 ]
 
 { #category : #'MooseKGB-TestFamix3-allDependencies' }
@@ -44,7 +44,7 @@ FAMIXNamespaceNavigationTest >> testProviderClasses [
 FAMIXNamespaceNavigationTest >> testProviderClassesInto [
 	self
 		assert:
-			(((self namespace1InteractedReferencerReferee queryAllOutgoing atScope: FamixTType) withinNamespace: self namespace2FullReferee)
+			(((self namespace1InteractedReferencerReferee queryAllOutgoing atScope: FamixTType) within: self namespace2FullReferee)
 				equalsTo: (Set with: self c11FullRefereeOutSide with: self c13FullRefereeInSideOutSide))
 ]
 

@@ -53,12 +53,6 @@ FamixTScopingEntity >> allParentScopesDo: aBlock [
 ]
 
 { #category : #accessing }
-FamixTScopingEntity >> allRecursiveScopes [
-	self deprecated: 'Use allChildScopes'.
-	^ self allChildScopes 
-]
-
-{ #category : #accessing }
 FamixTScopingEntity >> childScopes [
 
 	<generated>

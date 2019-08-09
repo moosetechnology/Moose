@@ -243,37 +243,21 @@ MooseQueryResult >> withScope: aSymbol [
 ]
 
 { #category : #evaluating }
-MooseQueryResult >> within: aFAMIXEntity [ 
-	 self subclassResponsibility
-]
-
-{ #category : #filtering }
-MooseQueryResult >> withinClass: aFAMIXClass [ 
-	self subclassResponsibility 
+MooseQueryResult >> within: aFAMIXEntity [
+	^ self subclassResponsibility
 ]
 
 { #category : #filtering }
 MooseQueryResult >> withinMyClass [
-	^ self withinClass: (self receiver atScope: FamixTClass) anyOne
+	^ self within: (self receiver atScope: FamixTClass) anyOne
 ]
 
 { #category : #filtering }
 MooseQueryResult >> withinMyNamespace [
-
-	^ self withinNamespace: (self receiver atScope: FamixTNamespace) anyOne   
+	^ self within: (self receiver atScope: FamixTNamespace) anyOne
 ]
 
 { #category : #filtering }
 MooseQueryResult >> withinMyPackage [
-	^ self withinPackage: (self receiver atScope: FamixTPackage) anyOne
-]
-
-{ #category : #filtering }
-MooseQueryResult >> withinNamespace: aFAMIXNamespace [ 
-	self subclassResponsibility 
-]
-
-{ #category : #filtering }
-MooseQueryResult >> withinPackage: aFAMIXPackage [ 
-	self subclassResponsibility 
+	^ self within: (self receiver atScope: FamixTPackage) anyOne
 ]

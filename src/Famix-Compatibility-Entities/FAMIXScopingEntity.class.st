@@ -50,12 +50,6 @@ FAMIXScopingEntity >> allClassesGroup [
 	^ FAMIXTypeGroup withAll: self allClasses withDescription: 'All classes from ', self printString
 ]
 
-{ #category : #'Famix-Extensions' }
-FAMIXScopingEntity >> allRecursiveClasses [
-	self deprecated: 'Use allClasses'.
-	^ self allClasses 
-]
-
 { #category : #accessing }
 FAMIXScopingEntity >> belongsTo [
 
