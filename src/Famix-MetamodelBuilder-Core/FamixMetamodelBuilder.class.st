@@ -278,7 +278,7 @@ FamixMetamodelBuilder >> initialize [
 	classes := OrderedCollection new.
 	traits := OrderedCollection new.
 	relations := OrderedCollection new.
-	testingSelectorsMapping := Set new.	
+	testingSelectorsMapping := Dictionary new.	
 	
 	
 ]
@@ -387,8 +387,8 @@ FamixMetamodelBuilder >> prepareGeneration [
 	self resolveRequirementsFromContainers.
 	self registerPackages.
 
-	self traits do: [ :each | self testingSelectorsMapping addAll: each testingSelectors ].
-	self sortedClasses do: [ :each | self testingSelectorsMapping addAll: each testingSelectors ].
+	self traits do: [ :each | self testingSelectorsMapping at: each put: each testingSelectors ].
+	self sortedClasses do: [ :each | self testingSelectorsMapping at: each put: each testingSelectors ].
 	self traits do: [ :each | each generate ].
 	self sortedClasses do: [ :each | each generate ].
 	self traits do: [ :each | each generateNavigationGroups ].

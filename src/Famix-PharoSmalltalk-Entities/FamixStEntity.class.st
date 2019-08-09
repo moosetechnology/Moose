@@ -49,13 +49,6 @@ FamixStEntity >> isClass [
 ]
 
 { #category : #testing }
-FamixStEntity >> isFunction [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
 FamixStEntity >> isImplicitVariable [
 
 	<generated>

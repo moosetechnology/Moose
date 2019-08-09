@@ -61,11 +61,23 @@ FmxMBBehavior >> addTraitGeneralization: aTrait [
 	^ aTrait
 ]
 
+{ #category : #accessing }
+FmxMBBehavior >> allLocalTraits [
+	^ self traitGeneralizations
+]
+
 { #category : #'as yet unclassified' }
 FmxMBBehavior >> allNavigationGroups [
 
 	^ self navigationGroups, (self relations flatCollect: [ :relation |
 		relation side navigationGroups ]).
+]
+
+{ #category : #accessing }
+FmxMBBehavior >> allTransitiveTraits [
+	^ (Set with: self)
+		addAll: (self allLocalTraits flatCollect: [ :trait | trait allTransitiveTraits ]);
+		yourself
 ]
 
 { #category : #converting }
