@@ -36,12 +36,6 @@ FamixJavaNamedEntity >> belongsTo: anObject [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaNamedEntity >> methodScope [
-	"Empty default scope"
-	^ nil
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaNamedEntity >> selectWithinYourScope: aMooseQueryResult [
 	self subclassResponsibility
 ]

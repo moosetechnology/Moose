@@ -112,13 +112,6 @@ FAMIXScopingEntity >> instability [
 	self subclassResponsibility
 ]
 
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXScopingEntity >> methodScope [
-	"This only makes sense to reject self loops in #collectAtScope:"
-
-	^ self classes collectAsSet: [:c | c methods]
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXScopingEntity >> structuralChildren [ 
 	^ (OrderedCollection withAll: self childScopes), self classes 

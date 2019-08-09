@@ -290,13 +290,6 @@ FAMIXMethod >> isSurelyInvokedBy: aFAMIXMethod [
 	^false
 ]
 
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXMethod >> methodScope [
-"This is a special case, only meaningful when using #withoutSelfLoops. Rejecting self loops with a method means rejecting recursive calls."
-
-	^ self
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXMethod >> mooseNameOn: stream [ 
 	| parent |
