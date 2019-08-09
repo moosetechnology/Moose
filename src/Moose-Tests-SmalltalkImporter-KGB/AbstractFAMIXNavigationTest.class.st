@@ -4,10 +4,9 @@ Class {
 	#category : #'Moose-Tests-SmalltalkImporter-KGB'
 }
 
-{ #category : #resources }
-AbstractFAMIXNavigationTest class >> resources [ 
-	 
-	^Array with: FAMIXNavigationPluginTestsResource
+{ #category : #accessing }
+AbstractFAMIXNavigationTest class >> resources [
+	^ {FAMIXNavigationPluginTestsResource}
 ]
 
 { #category : #'Moose-Cook-FAMIX2-Test-resourcesClasses' }
