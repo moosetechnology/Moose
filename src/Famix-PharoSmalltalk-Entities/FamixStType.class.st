@@ -132,30 +132,3 @@ FamixStType >> mooseNameOn: aStream [
 				nextPut: $: ].
 	self name ifNotNil: [aStream nextPutAll: self name]
 ]
-
-{ #category : #'Famix-Extensions' }
-FamixStType >> providerNamespaces [
-	"returns a set of all the namespaces that the receiver depends on (they include some classes that the receiver inherites, staticly accesses, or uses some of their methods)"
-
-	"Moose cook was: ^ self inheritedNamespaces union: self invokedNamespaces"
-
-	^ (self queryAllOutgoing atScope: FamixTNamespace) withoutSelfLoops
-]
-
-{ #category : #'Famix-Extensions' }
-FamixStType >> providerPackages [
-	"returns a set of all the packages that the receiver depends on (they include some classes that the receiver inherites, staticly accesses, or uses some of their methods)"
-
-	"Moose cook was: ^ self inheritedPackages union: self invokedPackages"
-
-	^ (self queryAllOutgoing atScope: FamixTPackage) withoutSelfLoops
-]
-
-{ #category : #'Famix-Extensions' }
-FamixStType >> providerTypes [
-	<MSEProperty: #providerTypes type: #FamixStType>
-	<derived>
-	<multivalued>
-	<MSEComment: 'All types that the receiver depends on (inherites, staticly accesses, or uses some of their methods)'>
-	^ (self queryAllOutgoing atScope: FamixTType) withoutSelfLoops
-]

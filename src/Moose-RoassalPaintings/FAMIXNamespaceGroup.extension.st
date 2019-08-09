@@ -11,24 +11,20 @@ FAMIXNamespaceGroup >> viewDependenciesWithCycles [
 
 { #category : #'*Moose-RoassalPaintings' }
 FAMIXNamespaceGroup >> viewDependenciesWithCyclesOn: view [
-	
-	| tarjan |	
+	| tarjan |
 	tarjan := MalTarjan new.
 	tarjan nodes: self.
-	tarjan edges: self from: #yourself toAll: #providerNamespaces.
+	tarjan edges: self from: #yourself toAll: [ :e | e allProvidersAtScope: FamixTNamespace ].
 	tarjan run.
 
 	view shape rectangle
-		width: #numberOfClasses; 
-		height: [:each | each numberOfMethods / 10];
-		fillColor: [ :namespace|
-			(tarjan findNode: namespace) isInCycle
-				ifTrue: [Color red]
-				ifFalse: [Color veryLightGray]].
+		width: #numberOfClasses;
+		height: [ :each | each numberOfMethods / 10 ];
+		fillColor: [ :namespace | (tarjan findNode: namespace) isInCycle ifTrue: [ Color red ] ifFalse: [ Color veryLightGray ] ].
 	view interaction popupText: #gtDisplayString.
 	view nodes: self.
 	view shape line color: (Color gray alpha: 0.2).
-	view edges source: self connectFrom: #yourself toAll: #providerNamespaces.
+	view edges source: self connectFrom: #yourself toAll: [ :e | e allProvidersAtScope: FamixTNamespace ].
 	view layout dominanceTree layered.
 	view view pushBackEdges
 ]

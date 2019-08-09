@@ -285,28 +285,6 @@ FAMIXNamespace >> printOn: aStream [
 	aStream nextPutAll: ' (Namespace)'
 ]
 
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXNamespace >> providerClasses [
-	self deprecated: 'use providerTypes'.
-	^ self providerTypes
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXNamespace >> providerNamespaces [
-	"MooseCook was: ^ self inheritedNamespaces union: self invokedNamespaces"
-
-	^ (self queryAllOutgoing atScope: FamixTNamespace) withoutSelfLoops
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXNamespace >> providerTypes [
-	<MSEProperty: #providerTypes type: #FAMIXType>
-	<derived>
-	<multivalued>
-	<MSEComment: 'All types that the receiver depends on'>
-	^ (self queryAllOutgoing atScope: FamixTType) withoutSelfLoops
-]
-
 { #category : #'moosechef-scoping-filtering' }
 FAMIXNamespace >> selectWithinYourScope: aMooseQueryResult [
 	^ aMooseQueryResult withinNamespace: self

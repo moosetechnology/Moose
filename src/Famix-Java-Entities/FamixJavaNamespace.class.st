@@ -330,22 +330,6 @@ FamixJavaNamespace >> printOn: aStream [
 	aStream nextPutAll: ' (Namespace)'
 ]
 
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixJavaNamespace >> providerNamespaces [
-	"MooseCook was: ^ self inheritedNamespaces union: self invokedNamespaces"
-
-	^ (self queryAllOutgoing atScope: FamixTNamespace) withoutSelfLoops
-]
-
-{ #category : #accessing }
-FamixJavaNamespace >> providerTypes [
-	<MSEProperty: #providerTypes type: #FamixJavaType>
-	<derived>
-	<multivalued>
-	<MSEComment: 'All types that the receiver depends on'>
-	^ (self queryAllOutgoing atScope: FamixTType) withoutSelfLoops
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaNamespace >> selectWithinYourScope: aMooseQueryResult [
 	^ aMooseQueryResult withinNamespace: self

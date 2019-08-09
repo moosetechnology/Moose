@@ -662,6 +662,30 @@ MooseEntity >> propertyNamed: name put: value [
 	^self privateState propertyAt: name put: value
 ]
 
+{ #category : #deprecated }
+MooseEntity >> providerMethods [
+	self deprecated: 'Use #allProvidersAtScope: instead.' transformWith: '`@receiver providerMethods' -> '`@receiver allProvidersAtScope: FamixTMethod'.
+	^ self allProvidersAtScope: FamixTMethod
+]
+
+{ #category : #deprecated }
+MooseEntity >> providerNamespaces [
+	self deprecated: 'Use #allProvidersAtScope: instead.' transformWith: '`@receiver providerNamespaces' -> '`@receiver allProvidersAtScope: FamixTNamespace'.
+	^ self allProvidersAtScope: FamixTNamespace
+]
+
+{ #category : #deprecated }
+MooseEntity >> providerPackages [
+	self deprecated: 'Use #allProvidersAtScope: instead.' transformWith: '`@receiver providerPackages' -> '`@receiver allProvidersAtScope: FamixTPackage'.
+	^ self allProvidersAtScope: FamixTPackage
+]
+
+{ #category : #deprecated }
+MooseEntity >> providerTypes [
+	self deprecated: 'Use #allProvidersAtScope: instead.' transformWith: '`@receiver providerTypes' -> '`@receiver allProvidersAtScope: FamixTType'.
+	^ self allProvidersAtScope: FamixTType
+]
+
 { #category : #accessing }
 MooseEntity >> removeFromModel [
 	^ self mooseModel ifNil: [ self ] ifNotNil: [ self mooseModel removeEntity: self ]

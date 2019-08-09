@@ -356,31 +356,3 @@ FamixJavaMethod >> providerBehaviours [
 
 	^ self invokedBehaviours 
 ]
-
-{ #category : #'Famix-Extensions' }
-FamixJavaMethod >> providerMethods [
-	^ self providerBehaviours select: [ :each | each isMethod ]
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixJavaMethod >> providerNamespaces [
-	"returns a set of all the namespaces that the receiver depends on the receiver"
-
-	^ (self queryAllOutgoing atScope: FamixTNamespace) withoutSelfLoops
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixJavaMethod >> providerPackages [
-	"returns a set of all the packages that the receiver depends on the receiver"
-
-	^ (self queryAllOutgoing atScope: FamixTPackage) withoutSelfLoops
-]
-
-{ #category : #accessing }
-FamixJavaMethod >> providerTypes [
-	<MSEProperty: #providerTypes type: #FamixJavaType>
-	<derived>
-	<multivalued>
-	<MSEComment: 'All types that the receiver depends on'>
-	^ (self queryAllOutgoing atScope: FamixTType) withoutSelfLoops
-]

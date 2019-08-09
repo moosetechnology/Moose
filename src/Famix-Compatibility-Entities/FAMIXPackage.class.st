@@ -364,28 +364,6 @@ FAMIXPackage >> printOn: aStream [
 	aStream nextPutAll: ' (Package)'
 ]
 
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXPackage >> providerClasses [
-	self deprecated: 'use providerTypes'.
-	^ self providerTypes
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXPackage >> providerPackages [
-	"^ self inheritedPackages union: self invokedPackages"
-
-	^ (self queryAllOutgoing atScope: FamixTPackage) withoutSelfLoops
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FAMIXPackage >> providerTypes [
-	<MSEProperty: #providerTypes type: #FAMIXType>
-	<derived>
-	<multivalued>
-	<MSEComment: 'All types that the receiver depends on'>
-	^ (self queryAllOutgoing atScope: FamixTType) withoutSelfLoops
-]
-
 { #category : #'Famix-Extensions-metrics' }
 FAMIXPackage >> relativeImportanceForSystem [
 	<MSEProperty: #relativeImportanceForSystem type: #Number>

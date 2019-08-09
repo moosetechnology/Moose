@@ -53,25 +53,13 @@ FamixTWithTypes >> fanOut [
 	<MSEProperty: #fanOut type: #Number>
 	<derived>
 	<MSEComment: 'Number of provider classes'>
-
-	^self
-		lookUpPropertyNamed: #fanOut
-		computedAs: [self providerTypes size]
+	^ self lookUpPropertyNamed: #fanOut computedAs: [ (self allProvidersAtScope: FamixTType) size ]
 ]
 
 { #category : #metrics }
 FamixTWithTypes >> fanOut: aNumber [
 
 	self privateState propertyAt: #fanOut put: aNumber
-]
-
-{ #category : #accessing }
-FamixTWithTypes >> providerTypes [
-	<MSEProperty: #providerTypes type: #FamixTType>
-	<derived>
-	<multivalued>
-	<MSEComment: 'All types that the receiver depends on (inherites, staticly accesses, or uses some of their methods)'>
-	^ (self queryAllOutgoing atScope: FamixTType) withoutSelfLoops
 ]
 
 { #category : #accessing }

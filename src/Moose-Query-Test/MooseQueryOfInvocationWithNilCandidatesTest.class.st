@@ -20,5 +20,5 @@ MooseQueryOfInvocationWithNilCandidatesTest >> setUp [
 
 { #category : #tests }
 MooseQueryOfInvocationWithNilCandidatesTest >> testProviderTypesShouldNotRaiseError [
-	self shouldnt: [ class providerTypes ] raise: Error
+	self shouldnt: [ class allProvidersAtScope: FamixTType ] raise: Error
 ]
