@@ -47,11 +47,6 @@ FamixStType >> container [
 ]
 
 { #category : #adding }
-FamixStType >> entityHasIncomingTypeDeclarations [
-	^ (self structuresWithDeclaredType , self behavioursWithDeclaredType) isNotEmpty
-]
-
-{ #category : #adding }
 FamixStType >> implementationOf: signature [
 	self withSuperclassesDo: [ :class | | found |
 			found := class methods

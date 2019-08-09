@@ -78,11 +78,6 @@ FamixJavaType >> container: aContainer [
 	self typeContainer: aContainer
 ]
 
-{ #category : #'moosequery-queries-incoming' }
-FamixJavaType >> entityHasIncomingTypeDeclarations [
-	^ (self structuresWithDeclaredType , self behavioursWithDeclaredType) isNotEmpty
-]
-
 { #category : #testing }
 FamixJavaType >> hasMethodWithSignature: aStringOrSymbol [
 	| symbol |
