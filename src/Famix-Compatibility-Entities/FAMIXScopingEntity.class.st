@@ -124,12 +124,6 @@ FAMIXScopingEntity >> structuralChildren [
 	^ (OrderedCollection withAll: self childScopes), self classes 
 ]
 
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXScopingEntity >> typeScope [
-	"This only makes sense to reject self loops in #collectAtScope:"
-	^ self classes
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXScopingEntity >> withAllChildrenOfType: anSTClass [ 
 	| all |

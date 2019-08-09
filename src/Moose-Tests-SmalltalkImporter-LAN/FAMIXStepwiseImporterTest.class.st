@@ -59,15 +59,6 @@ FAMIXStepwiseImporterTest >> testCheckSelfIsCreated [
 ]
 
 { #category : #tests }
-FAMIXStepwiseImporterTest >> testClassVariable [
-	| model |
-	self timeLimit: 60 seconds.
-	model := MooseMorphicTestResource current model.
-
-	self shouldnt: [ (model entities select: [ :e | e isKindOf: FAMIXUnknownVariable ]) do: #typeScope ] raise: Error
-]
-
-{ #category : #tests }
 FAMIXStepwiseImporterTest >> testImportAttribute [
 	"self debug: #testImportAttribute"
 

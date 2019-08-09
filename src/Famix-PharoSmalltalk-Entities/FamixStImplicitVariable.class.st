@@ -61,8 +61,3 @@ FamixStImplicitVariable >> mooseNameOn: stream [
 FamixStImplicitVariable >> packageScope [
 	^ self parentBehaviouralEntity packageScope
 ]
-
-{ #category : #testing }
-FamixStImplicitVariable >> typeScope [
-	^ self parentBehaviouralEntity typeScope
-]

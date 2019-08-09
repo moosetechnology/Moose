@@ -31,10 +31,3 @@ FAMIXUnknownVariable >> packageScope [
 	so we return nil"
 	^ nil
 ]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXUnknownVariable >> typeScope [
-	"typeScope does not make sense for an unknown variable,
-	so we return nil"
-	^ nil
-]

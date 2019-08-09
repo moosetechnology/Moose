@@ -57,9 +57,8 @@ MooseObjectQueryResult >> atScope: aClassFamix [
 ]
 
 { #category : #filtering }
-MooseObjectQueryResult >> outOfClass: aFAMIXClass [ 
-	
-	^ self newObjectResultWith: (storage reject: [ :obj | aFAMIXClass == obj typeScope ])
+MooseObjectQueryResult >> outOfClass: aFAMIXClass [
+	^ self newObjectResultWith: (storage reject: [ :obj | aFAMIXClass == (obj atScope: FamixTClass) anyOne ])
 ]
 
 { #category : #filtering }
@@ -102,9 +101,8 @@ MooseObjectQueryResult >> within: aFAMIXEntity [
 ]
 
 { #category : #filtering }
-MooseObjectQueryResult >> withinClass: aFAMIXClass [ 
-	
-	^ self newObjectResultWith: (storage select: [ :obj | aFAMIXClass == obj typeScope ])
+MooseObjectQueryResult >> withinClass: aFAMIXClass [
+	^ self newObjectResultWith: (storage select: [ :obj | aFAMIXClass == (obj atScope: FamixTClass) anyOne ])
 ]
 
 { #category : #filtering }

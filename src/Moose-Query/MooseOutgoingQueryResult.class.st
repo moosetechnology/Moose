@@ -27,8 +27,7 @@ MooseOutgoingQueryResult >> opposite: aDependency [
 
 { #category : #accessing }
 MooseOutgoingQueryResult >> sourceClasses [
-
-	^ self sources collectAsSet: #typeScope
+	^ self sources flatCollectAsSet: [ :e | e atScope: FamixTClass ]
 ]
 
 { #category : #accessing }

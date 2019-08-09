@@ -68,8 +68,3 @@ FamixJavaParameter >> printOn: stream [
 	stream nextPut: $)
 
 ]
-
-{ #category : #'as yet unclassified' }
-FamixJavaParameter >> typeScope [
-	^ self parentBehaviouralEntity typeScope
-]

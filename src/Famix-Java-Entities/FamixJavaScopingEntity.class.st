@@ -118,12 +118,6 @@ FamixJavaScopingEntity >> structuralChildren [
 	^ (OrderedCollection withAll: self childScopes), self classes 
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaScopingEntity >> typeScope [
-	"This only makes sense to reject self loops in #collectAtScope:"
-	^ self classes
-]
-
 { #category : #'Famix-Extensions' }
 FamixJavaScopingEntity >> withAllChildrenOfType: anSTClass [ 
 	| all |

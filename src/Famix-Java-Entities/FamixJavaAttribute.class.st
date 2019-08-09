@@ -102,8 +102,3 @@ FamixJavaAttribute >> printOn: aStream [
 	self name ifNotNil: [ aStream nextPutAll: self name ].
 	aStream nextPutAll: ' (Attribute)'
 ]
-
-{ #category : #'as yet unclassified' }
-FamixJavaAttribute >> typeScope [
-	^ self parentType
-]

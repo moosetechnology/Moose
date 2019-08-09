@@ -70,8 +70,3 @@ FAMIXLocalVariable >> printOn: stream [
 	stream nextPut: $)
 
 ]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXLocalVariable >> typeScope [
-	^ self parentBehaviouralEntity typeScope
-]

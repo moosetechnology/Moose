@@ -91,9 +91,12 @@ TDependencyQueryResult >> opposites [
 ]
 
 { #category : #filtering }
-TDependencyQueryResult >> outOfClass: aFAMIXClass [ 
-	
-	^ self rejectDependencies: [ :dep | (self opposite: dep) isCollection ifTrue: [ (self opposite: dep) isNotEmpty and: [(self opposite: dep) anySatisfy: [ :anEntity | anEntity typeScope == aFAMIXClass ] ] ] ifFalse: [aFAMIXClass == (self opposite: dep) typeScope]]
+TDependencyQueryResult >> outOfClass: aFAMIXClass [
+	^ self
+		rejectDependencies: [ :dep | 
+			(self opposite: dep) isCollection
+				ifTrue: [ (self opposite: dep) isNotEmpty and: [ (self opposite: dep) anySatisfy: [ :anEntity | (anEntity atScope: FamixTClass) anyOne == aFAMIXClass ] ] ]
+				ifFalse: [ aFAMIXClass == ((self opposite: dep) atScope: FamixTClass) anyOne ] ]
 ]
 
 { #category : #filtering }

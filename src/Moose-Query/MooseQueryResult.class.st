@@ -141,9 +141,7 @@ MooseQueryResult >> outOfClass: aFAMIXClass [
 
 { #category : #filtering }
 MooseQueryResult >> outOfMyClass [
-
-	^ self outOfClass: self receiver typeScope
-
+	^ self outOfClass: (self receiver atScope: FamixTClass) anyOne
 ]
 
 { #category : #filtering }
@@ -258,9 +256,7 @@ MooseQueryResult >> withinClass: aFAMIXClass [
 
 { #category : #filtering }
 MooseQueryResult >> withinMyClass [
-
-	^ self withinClass: self receiver typeScope
-
+	^ self withinClass: (self receiver atScope: FamixTClass) anyOne
 ]
 
 { #category : #filtering }

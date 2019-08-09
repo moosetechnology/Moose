@@ -70,11 +70,3 @@ FAMIXGlobalVariable >> printOn: aStream [
 	self name ifNotNil: [ aStream nextPutAll: self name ].
 	aStream nextPutAll: ' (Global Variable)'
 ]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXGlobalVariable >> typeScope [
-	"typeScope does not make sense for a global variable,
-	so we return nil"
-
-	^ nil
-]

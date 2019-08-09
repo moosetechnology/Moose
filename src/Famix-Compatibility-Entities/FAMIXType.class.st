@@ -431,13 +431,6 @@ FAMIXType >> providerTypes [
 	^ (self queryAllOutgoing atScope: FamixTType) withoutSelfLoops
 ]
 
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXType >> typeScope [
-	"all types are not classes. Redefined in FamixClass"
-
-	^ self
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXType >> understands: signature [
 	"returns true if a class is able to respond to an invocation to aSignature on itself; false otherwise"
