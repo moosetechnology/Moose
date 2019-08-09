@@ -37,8 +37,3 @@ FAMIXEnumValue >> belongsTo: anObject [
 	self parentEnum: anObject
 
 ]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXEnumValue >> namespaceScope [
-	^ self parentType namespaceScope
-]

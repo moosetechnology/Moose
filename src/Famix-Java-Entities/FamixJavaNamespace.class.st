@@ -229,12 +229,6 @@ FamixJavaNamespace >> mooseNameOn: aStream [
 	self name ifNotNil: [aStream nextPutAll: self name]
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaNamespace >> namespaceScope [
-
-	^ self 
-]
-
 { #category : #'Famix-Extensions' }
 FamixJavaNamespace >> numberOfAttributes [
 "	<property: #NOA longName: 'Number of attributes' description:

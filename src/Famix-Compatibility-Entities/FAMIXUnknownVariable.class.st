@@ -19,13 +19,6 @@ FAMIXUnknownVariable >> belongsTo [
 ]
 
 { #category : #'moosechef-scoping-filtering' }
-FAMIXUnknownVariable >> namespaceScope [
-	"namespaceScope does not make sense for an unknown variable,
-	so we return nil"
-	^ nil
-]
-
-{ #category : #'moosechef-scoping-filtering' }
 FAMIXUnknownVariable >> packageScope [
 	"packageScope does not make sense for an unknown variable,
 	so we return nil"

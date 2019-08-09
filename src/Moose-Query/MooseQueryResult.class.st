@@ -146,8 +146,7 @@ MooseQueryResult >> outOfMyClass [
 
 { #category : #filtering }
 MooseQueryResult >> outOfMyNamespace [
-
-	^ self outOfNamespace: self receiver namespaceScope   
+	^ self outOfNamespace: (self receiver atScope: FamixTNamespace) anyOne
 ]
 
 { #category : #filtering }
@@ -262,7 +261,7 @@ MooseQueryResult >> withinMyClass [
 { #category : #filtering }
 MooseQueryResult >> withinMyNamespace [
 
-	^ self withinNamespace: self receiver namespaceScope   
+	^ self withinNamespace: (self receiver atScope: FamixTNamespace) anyOne   
 ]
 
 { #category : #filtering }

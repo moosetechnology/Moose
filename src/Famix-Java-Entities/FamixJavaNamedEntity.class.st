@@ -41,12 +41,6 @@ FamixJavaNamedEntity >> methodScope [
 	^ nil
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaNamedEntity >> namespaceScope [
-	"Empty default scope"
-	^ nil
-]
-
 { #category : #accessing }
 FamixJavaNamedEntity >> packageScope [
 	"Empty default scope"

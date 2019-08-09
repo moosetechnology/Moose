@@ -257,11 +257,6 @@ FamixJavaMethod >> mooseNameOn: stream [
 			self name ifNotNil: [ stream nextPutAll: self name] ]
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaMethod >> namespaceScope [
-	^ self parentType namespaceScope
-]
-
 { #category : #accessing }
 FamixJavaMethod >> numberOfAccesses [
 	<MSEProperty: #numberOfAccesses type: #Number>

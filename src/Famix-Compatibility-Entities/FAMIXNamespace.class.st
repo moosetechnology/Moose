@@ -184,12 +184,6 @@ FAMIXNamespace >> mooseNameOn: aStream [
 	self name ifNotNil: [aStream nextPutAll: self name]
 ]
 
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXNamespace >> namespaceScope [
-
-	^ self 
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXNamespace >> numberOfAttributes [
 "	<property: #NOA longName: 'Number of attributes' description:

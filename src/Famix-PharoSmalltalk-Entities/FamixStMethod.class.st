@@ -220,11 +220,6 @@ FamixStMethod >> mooseNameOn: stream [
 			self name ifNotNil: [ stream nextPutAll: self name] ]
 ]
 
-{ #category : #'Famix-Extensions-metrics-support' }
-FamixStMethod >> namespaceScope [
-	^ self parentType namespaceScope
-]
-
 { #category : #'Famix-Extensions-private' }
 FamixStMethod >> numberOfAccesses [
 	<MSEProperty: #numberOfAccesses type: #Number>

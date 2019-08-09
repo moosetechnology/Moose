@@ -310,11 +310,6 @@ FAMIXMethod >> mooseNameOn: stream [
 			self name ifNotNil: [ stream nextPutAll: self name] ]
 ]
 
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXMethod >> namespaceScope [
-	^ self parentType namespaceScope
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXMethod >> numberOfAnnotationInstances [
 	<MSEProperty: #numberOfAnnotationInstances type: #Number>

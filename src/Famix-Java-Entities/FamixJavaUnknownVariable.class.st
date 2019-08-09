@@ -21,13 +21,6 @@ FamixJavaUnknownVariable >> belongsTo [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaUnknownVariable >> namespaceScope [
-	"namespaceScope does not make sense for an unknown variable,
-	so we return nil"
-	^ nil
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaUnknownVariable >> packageScope [
 	"packageScope does not make sense for an unknown variable,
 	so we return nil"

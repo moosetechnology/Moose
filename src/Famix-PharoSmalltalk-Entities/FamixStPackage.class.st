@@ -105,13 +105,6 @@ FamixStPackage >> methods [
 ]
 
 { #category : #accessing }
-FamixStPackage >> namespaceScope [
-
-	self shouldNotImplement 
-
-]
-
-{ #category : #accessing }
 FamixStPackage >> numberOfClasses [
 	<MSEProperty: #numberOfClasses type: #Number>
 	<derived>
