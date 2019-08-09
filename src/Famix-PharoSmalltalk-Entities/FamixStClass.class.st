@@ -45,6 +45,16 @@ FamixStClass >> extendedMethods [
 	^ self methods select: #isExtension
 ]
 
+{ #category : #'Famix-Implementation' }
+FamixStClass >> implementationOf: signature [
+	self withSuperclassesDo: [ :class | | found |
+			found := class methods
+				detect: [ :method | method signature = signature ]
+				ifNone: [ nil ].
+			found ifNotNil: [ ^found ] ].
+	^ nil
+]
+
 { #category : #testing }
 FamixStClass >> implements: aString [
 	"Was changed from match: for performances and because signature is case sensitive"
@@ -57,32 +67,6 @@ FamixStClass >> instanceSide [
 	^ self isClassSide
 		ifTrue: [ self mooseModel allClasses entityNamed: (self mooseName removeSuffix: '_class') asSymbol ]
 		ifFalse: [ self ]
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixStClass >> clientPackages [
-
-	"returns a set of all the packages that depend on the receiver"
-	^ (self queryAllIncoming atScope: FamixTPackage) withoutSelfLoops
-]
-
-{ #category : #'Famix-Implementation' }
-FamixStClass >> implementationOf: signature [
-	self withSuperclassesDo: [ :class | | found |
-			found := class methods
-				detect: [ :method | method signature = signature ]
-				ifNone: [ nil ].
-			found ifNotNil: [ ^found ] ].
-	^ nil
-]
-
-{ #category : #'as yet unclassified' }
-FamixStClass >> instanceSide [
-	^self isClassSide
-		ifTrue:
-			[self mooseModel allClasses
-				entityNamed: (self mooseName removeSuffix: '_class') asSymbol]
-		ifFalse: [self]
 ]
 
 { #category : #'as yet unclassified' }
@@ -108,11 +92,6 @@ FamixStClass >> isExtended [
 ]
 
 { #category : #testing }
-FamixStClass >> isExtended [
-	^ self methods anySatisfy: #isExtension
-]
-
-{ #category : #testing }
 FamixStClass >> isInstanceSide [
 	^ self isClassSide not
 ]
@@ -134,14 +113,6 @@ FamixStClass >> localMethods [
 	^ self methods reject: #isExtension
 ]
 
-{ #category : #'as yet unclassified' }
-FamixStClass >> localMethods [
-	"select all locally defined methods"
-
-	^ self privateState cacheAt: #localMethods
-							ifAbsentPut: [ self methods reject: [ :m| m isExtension ] ]
-]
-
 { #category : #'Famix-Implementation' }
 FamixStClass >> methodsWithoutSutbsAndConstructors [
 	"Removing stub and contructor methods. Used to support the calculation of LCOM."
@@ -160,34 +131,6 @@ FamixStClass >> mooseNameOn: aStream [
 				nextPut: $:;
 				nextPut: $: ].
 	self name ifNotNil: [aStream nextPutAll: self name]
-]
-
-{ #category : #'moosechef-scoping-filtering' }
-FamixStClass >> namespaceScope [ 
-"we ask the container for the namespaceScope
-	because we can have classes in methods or in other classes.
-	Thus, we need to traverse recursively until we reach a namespace"
-	
-	^ self parentPackage 
-		ifNotNil: [ self parentPackage namespaceScope ]
-]
-
-{ #category : #'as yet unclassified' }
-FamixStClass >> providerPackages [
-	"returns a set of all the packages that the receiver depends on (they include some classes that the receiver inherites, staticly accesses, or uses some of their methods)"
-
-	"Moose cook was: ^ self inheritedPackages union: self invokedPackages"
-
-	^ (self queryAllOutgoing atScope: FamixTPackage) withoutSelfLoops
-]
-
-{ #category : #accessing }
-FamixStClass >> providerTypes [
-	<MSEProperty: #providerTypes type: #FamixTType>
-	<derived>
-	<multivalued>
-	<MSEComment: 'All types that the receiver depends on (inherites, staticly accesses, or uses some of their methods)'>
-	^ (self queryAllOutgoing atScope: FamixTType) withoutSelfLoops
 ]
 
 { #category : #'Famix-Implementation' }
