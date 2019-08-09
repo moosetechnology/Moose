@@ -35,20 +35,6 @@ FamixTest3Entity >> isClass [
 ]
 
 { #category : #testing }
-FamixTest3Entity >> isImplicitVariable [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixTest3Entity >> isInheritance [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
 FamixTest3Entity >> isInvocation [
 
 	<generated>
