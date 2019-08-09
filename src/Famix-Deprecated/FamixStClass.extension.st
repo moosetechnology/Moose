@@ -7,6 +7,12 @@ FamixStClass >> hasMethodWithSignature: aSignature [
 ]
 
 { #category : #'*Famix-Deprecated' }
+FamixStClass >> implementationOf: signature [
+	self deprecated: 'Use #lookUp: instead' transformWith: '`@receiver implementationOf: `@statements1' -> '`@receiver lookUp: `@statements1'.
+	^ self lookUp: signature
+]
+
+{ #category : #'*Famix-Deprecated' }
 FamixStClass >> isSUnitTestCase [
 	self deprecated: 'Use #isTestCase instead' transformWith: '`@receiver isSUnitTestCase' -> '`@receiver isTestCase'.
 	^ self isTestCase
