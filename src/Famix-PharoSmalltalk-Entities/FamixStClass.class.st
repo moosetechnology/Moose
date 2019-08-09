@@ -78,6 +78,12 @@ FamixStClass >> isAnonymousClass [
 ]
 
 { #category : #testing }
+FamixStClass >> isAnonymousClass [
+	self flag: #todo.	"We need to check how to do that in Pharo smalltalk because I think some of the conditions are for Java"
+	^ self container notNil and: [ self container isMethod or: [ self name isAllDigits or: [ '*_anonymous_*' match: self name ] ] ]
+]
+
+{ #category : #testing }
 FamixStClass >> isClassSide [
 	"Kind of a hack. Uses the FAMIX2 Smalltalk naming convention that every Smalltalk
 	 metaclass has _class appended to the classname of the class it is a metaclass of."
@@ -97,6 +103,11 @@ FamixStClass >> isInstanceSide [
 ]
 
 { #category : #testing }
+FamixStClass >> isLonelyWithin: aClassGroup [
+	^ (self subclassHierarchyGroup intersection: aClassGroup) isEmpty and: [ (self superclassHierarchyGroup intersection: aClassGroup) isEmpty ]
+]
+
+{ #category : #testing }
 FamixStClass >> isTestCase [
 	<MSEProperty: #isTestCase type: #Boolean>
 	<derived>
@@ -113,6 +124,12 @@ FamixStClass >> localMethods [
 	^ self methods reject: #isExtension
 ]
 
+{ #category : #accessing }
+FamixStClass >> lookUp: signature [
+	self withSuperclassesDo: [ :class | class methods detect: [ :method | method signature = signature ] ifFound: [ :found | ^ found ] ].
+	^ nil
+]
+
 { #category : #'Famix-Implementation' }
 FamixStClass >> methodsWithoutSutbsAndConstructors [
 	"Removing stub and contructor methods. Used to support the calculation of LCOM."
@@ -121,16 +138,14 @@ FamixStClass >> methodsWithoutSutbsAndConstructors [
 ]
 
 { #category : #'Famix-Implementation' }
-FamixStClass >> mooseNameOn: aStream [ 
-	| parent |
-	parent := self typeContainer.
-	parent ifNotNil: 
-		[ 
+FamixStClass >> mooseNameOn: aStream [
+	self typeContainer
+		ifNotNil: [ :parent | 
 			parent mooseNameOn: aStream.
 			aStream
 				nextPut: $:;
 				nextPut: $: ].
-	self name ifNotNil: [aStream nextPutAll: self name]
+	self name ifNotNil: [ aStream nextPutAll: self name ]
 ]
 
 { #category : #'Famix-Implementation' }
