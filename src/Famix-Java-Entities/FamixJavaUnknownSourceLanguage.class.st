@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixJavaUnknownSourceLanguage,
-	#superclass : #FamixJavaEntity,
+	#superclass : #FamixJavaSourceLanguage,
 	#traits : 'FamixTSourceLanguage',
 	#classTraits : 'FamixTSourceLanguage classTrait',
 	#category : #'Famix-Java-Entities-Entities'
@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaUnknownSourceLanguage class >> annotation [
 
-	<MSEClass: #UnknownSourceLanguage super: #FamixJavaEntity>
+	<MSEClass: #UnknownSourceLanguage super: #FamixJavaSourceLanguage>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self

@@ -1,6 +1,6 @@
 Class {
 	#name : #FAMIXUnknownSourceLanguage,
-	#superclass : #FAMIXEntity,
+	#superclass : #FAMIXSourceLanguage,
 	#traits : 'FamixTSourceLanguage',
 	#classTraits : 'FamixTSourceLanguage classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXUnknownSourceLanguage class >> annotation [
 
-	<MSEClass: #UnknownSourceLanguage super: #FAMIXEntity>
+	<MSEClass: #UnknownSourceLanguage super: #FAMIXSourceLanguage>
 	<package: #FAMIX>
 	<generated>
 	^self

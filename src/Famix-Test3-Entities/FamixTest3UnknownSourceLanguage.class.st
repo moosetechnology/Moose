@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixTest3UnknownSourceLanguage,
-	#superclass : #FamixTest3Entity,
+	#superclass : #FamixTest3SourceLanguage,
 	#traits : 'FamixTSourceLanguage',
 	#classTraits : 'FamixTSourceLanguage classTrait',
 	#category : #'Famix-Test3-Entities-Entities'
@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixTest3UnknownSourceLanguage class >> annotation [
 
-	<MSEClass: #UnknownSourceLanguage super: #FamixTest3Entity>
+	<MSEClass: #UnknownSourceLanguage super: #FamixTest3SourceLanguage>
 	<package: #'Famix-Test3-Entities'>
 	<generated>
 	^self
