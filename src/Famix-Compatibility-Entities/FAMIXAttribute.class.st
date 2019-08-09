@@ -109,11 +109,6 @@ FAMIXAttribute >> mooseNameOn: aStream [
 ]
 
 { #category : #'moosechef-scoping-filtering' }
-FAMIXAttribute >> namespaceScope [
-	^ self parentType namespaceScope
-]
-
-{ #category : #'moosechef-scoping-filtering' }
 FAMIXAttribute >> packageScope [
 	^ self parentType packageScope
 ]

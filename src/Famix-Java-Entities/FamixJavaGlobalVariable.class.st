@@ -51,11 +51,6 @@ FamixJavaGlobalVariable >> isPublic [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaGlobalVariable >> namespaceScope [
-	^ self parentScope
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaGlobalVariable >> packageScope [
 	^ self parentPackage
 ]

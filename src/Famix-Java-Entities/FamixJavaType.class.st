@@ -248,16 +248,6 @@ FamixJavaType >> mooseNameOn: aStream [
 	self name ifNotNil: [aStream nextPutAll: self name]
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaType >> namespaceScope [
-	"we ask the container for the namespaceScope
-	because we can have classes in methods or in other classes.
-	Thus, we need to traverse recursively until we reach a namespace"
-	
-	^ self container 
-		ifNotNil: [ self container namespaceScope ]
-]
-
 { #category : #accessing }
 FamixJavaType >> packageScope [
 

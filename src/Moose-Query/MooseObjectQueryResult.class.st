@@ -62,9 +62,8 @@ MooseObjectQueryResult >> outOfClass: aFAMIXClass [
 ]
 
 { #category : #filtering }
-MooseObjectQueryResult >> outOfNamespace: aFAMIXNamespace [ 
-
-	^ self newObjectResultWith: (storage reject: [:obj | aFAMIXNamespace==obj namespaceScope])
+MooseObjectQueryResult >> outOfNamespace: aFAMIXNamespace [
+	^ self newObjectResultWith: (storage reject: [ :obj | aFAMIXNamespace == (obj atScope: FamixTNamespace) anyOne ])
 ]
 
 { #category : #filtering }
@@ -106,9 +105,8 @@ MooseObjectQueryResult >> withinClass: aFAMIXClass [
 ]
 
 { #category : #filtering }
-MooseObjectQueryResult >> withinNamespace: aFAMIXNamespace [ 
-
-	^ self newObjectResultWith: (storage select: [:obj | aFAMIXNamespace==obj namespaceScope])
+MooseObjectQueryResult >> withinNamespace: aFAMIXNamespace [
+	^ self newObjectResultWith: (storage select: [ :obj | aFAMIXNamespace == (obj atScope: FamixTNamespace) anyOne ])
 ]
 
 { #category : #filtering }

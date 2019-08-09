@@ -51,11 +51,6 @@ FAMIXGlobalVariable >> isPublic [
 ]
 
 { #category : #'moosechef-scoping-filtering' }
-FAMIXGlobalVariable >> namespaceScope [
-	^ self parentScope
-]
-
-{ #category : #'moosechef-scoping-filtering' }
 FAMIXGlobalVariable >> packageScope [
 	^ self parentPackage
 ]

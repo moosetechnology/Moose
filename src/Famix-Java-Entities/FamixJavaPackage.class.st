@@ -211,13 +211,6 @@ FamixJavaPackage >> methods [
 	^ self privateState cacheAt: #methods ifAbsentPut: [ self classes flatCollect: #methods ]
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaPackage >> namespaceScope [
-
-	self shouldNotImplement 
-
-]
-
 { #category : #'Famix-Extensions' }
 FamixJavaPackage >> numberOfClasses [
 	<MSEProperty: #numberOfClasses type: #Number>

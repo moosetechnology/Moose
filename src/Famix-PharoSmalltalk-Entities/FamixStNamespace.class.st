@@ -53,12 +53,6 @@ FamixStNamespace >> mooseNameOn: aStream [
 	self name ifNotNil: [aStream nextPutAll: self name]
 ]
 
-{ #category : #'Famix-Extensions-nav All Dependencies' }
-FamixStNamespace >> namespaceScope [
-
-	^ self 
-]
-
 { #category : #'Famix-Extensions' }
 FamixStNamespace >> numberOfClasses [
 	<MSEProperty: #numberOfClasses type: #Number>

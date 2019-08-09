@@ -77,11 +77,6 @@ FAMIXImplicitVariable >> mooseNameOn: stream [
 ]
 
 { #category : #'moosechef-scoping-filtering' }
-FAMIXImplicitVariable >> namespaceScope [
-	^ self parentBehaviouralEntity namespaceScope
-]
-
-{ #category : #'moosechef-scoping-filtering' }
 FAMIXImplicitVariable >> packageScope [
 	^ self parentBehaviouralEntity packageScope
 ]

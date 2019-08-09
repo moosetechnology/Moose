@@ -516,6 +516,23 @@ MooseEntity >> name [
 	^#noname
 ]
 
+{ #category : #deprecated }
+MooseEntity >> namespaceScope [
+	self
+		deprecated:
+			'namespaceScope does not have a coherent behavior and should be replaced with a query. The query will depend on your needs. It can either be:
+	- `self allAtScope: FamixTNamespace` if you want a collection of all the namespaces up in the containment tree of your entity
+	- `self allToScope: FamixTNamespace` if you want a collection of all the namespaces down in the containment tree of your entity
+	- `self allWithScope: FamixTNamespace` if you want a collection of all the namespaces up and down in the containment tree of your entity
+	- `self atScope: FamixTNamespace` if you want a collection of the first encountered namespaces up in the containment tree of your entity
+	- `self toScope: FamixTNamespace` if you want a collection of the first encountered namespaces down in the containment tree of your entity
+	- `self withScope: FamixTNamespace` if you want a collection of the first encountered namespaces up and down in the containment tree of your entity
+	
+	In case you know there is only one type (for example in java a #atScope: on a structural entity), you can call #anyOne on the result of the query.'.
+	"This implementation seems to be the most common"
+	^ (self atScope: FamixTNamespace) anyOne
+]
+
 { #category : #'meta information' }
 MooseEntity >> navigationSelectors [
 	^ (Pragma allNamed: #navigation: from: self class to: MooseEntity)

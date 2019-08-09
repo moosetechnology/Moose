@@ -100,9 +100,12 @@ TDependencyQueryResult >> outOfClass: aFAMIXClass [
 ]
 
 { #category : #filtering }
-TDependencyQueryResult >> outOfNamespace: aFAMIXNamespace [ 
-
-	^ self rejectDependencies: [ :dep | (self opposite: dep) isCollection ifTrue: [ (self opposite: dep) isNotEmpty and: [(self opposite: dep) anySatisfy: [ :anEntity | anEntity namespaceScope == aFAMIXNamespace ] ] ] ifFalse: [aFAMIXNamespace == (self opposite: dep) namespaceScope]]
+TDependencyQueryResult >> outOfNamespace: aFAMIXNamespace [
+	^ self
+		rejectDependencies: [ :dep | 
+			(self opposite: dep) isCollection
+				ifTrue: [ (self opposite: dep) isNotEmpty and: [ (self opposite: dep) anySatisfy: [ :anEntity | (anEntity atScope: FamixTNamespace) anyOne == aFAMIXNamespace ] ] ]
+				ifFalse: [ aFAMIXNamespace == ((self opposite: dep) atScope: FamixTNamespace) anyOne ] ]
 ]
 
 { #category : #filtering }

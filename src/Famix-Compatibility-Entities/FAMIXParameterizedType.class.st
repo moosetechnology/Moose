@@ -47,11 +47,3 @@ FAMIXParameterizedType >> mooseNameOn: aStream [
 	aStream nextPut: $>.  
 
 ]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXParameterizedType >> namespaceScope [
-	"we ask the namespaceScope of the parameterizable class"
-	
-	^ self parameterizableClass ifNotNil: [
-		self parameterizableClass namespaceScope ]
-]

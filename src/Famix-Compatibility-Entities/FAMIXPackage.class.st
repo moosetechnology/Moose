@@ -295,13 +295,6 @@ FAMIXPackage >> methods [
 	^ self localMethods union: self extensionMethods
 ]
 
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXPackage >> namespaceScope [
-
-	self shouldNotImplement 
-
-]
-
 { #category : #'Famix-Extensions-metrics' }
 FAMIXPackage >> numberOfClasses [
 	<MSEProperty: #numberOfClasses type: #Number>

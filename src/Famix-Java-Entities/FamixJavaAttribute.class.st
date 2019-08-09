@@ -83,11 +83,6 @@ FamixJavaAttribute >> mooseNameOn: aStream [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaAttribute >> namespaceScope [
-	^ self parentType namespaceScope
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaAttribute >> packageScope [
 	^ self parentType packageScope
 ]

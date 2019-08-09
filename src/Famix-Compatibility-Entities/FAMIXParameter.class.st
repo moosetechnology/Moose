@@ -49,11 +49,6 @@ FAMIXParameter >> mooseNameOn: stream [
 ]
 
 { #category : #'moosechef-scoping-filtering' }
-FAMIXParameter >> namespaceScope [
-	^ self parentBehaviouralEntity namespaceScope
-]
-
-{ #category : #'moosechef-scoping-filtering' }
 FAMIXParameter >> packageScope [
 	^ self parentBehaviouralEntity packageScope
 ]
