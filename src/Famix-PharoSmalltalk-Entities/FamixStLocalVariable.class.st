@@ -40,8 +40,3 @@ FamixStLocalVariable >> mooseNameOn: stream [
 		stream nextPut: $. ].
 	self name ifNotNil: [stream nextPutAll: self name]
 ]
-
-{ #category : #accessing }
-FamixStLocalVariable >> packageScope [
-	^ self parentBehaviouralEntity packageScope
-]

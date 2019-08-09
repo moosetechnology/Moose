@@ -24,8 +24,3 @@ FAMIXGlobalVariableTest >> testNamespaceScope [
 	globalVariable := self actualClass new parentScope: namespace.
 	self assert: (globalVariable atScope: FamixTNamespace) anyOne equals: namespace
 ]
-
-{ #category : #tests }
-FAMIXGlobalVariableTest >> testPackageScope [ 
-	self assert: self actualClass new packageScope isNil
-]

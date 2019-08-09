@@ -50,11 +50,6 @@ FAMIXGlobalVariable >> isPublic [
 			inv accessor parentScope ~~ self parentScope]
 ]
 
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXGlobalVariable >> packageScope [
-	^ self parentPackage
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXGlobalVariable >> printOn: aStream [ 
 	| parent |

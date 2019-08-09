@@ -134,12 +134,6 @@ FamixStType >> mooseNameOn: aStream [
 ]
 
 { #category : #'Famix-Extensions' }
-FamixStType >> packageScope [
-
-	^ self parentPackage
-]
-
-{ #category : #'Famix-Extensions' }
 FamixStType >> providerNamespaces [
 	"returns a set of all the namespaces that the receiver depends on (they include some classes that the receiver inherites, staticly accesses, or uses some of their methods)"
 

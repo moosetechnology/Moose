@@ -19,10 +19,3 @@ FamixJavaUnknownVariable class >> annotation [
 FamixJavaUnknownVariable >> belongsTo [
 	^ nil
 ]
-
-{ #category : #'as yet unclassified' }
-FamixJavaUnknownVariable >> packageScope [
-	"packageScope does not make sense for an unknown variable,
-	so we return nil"
-	^ nil
-]

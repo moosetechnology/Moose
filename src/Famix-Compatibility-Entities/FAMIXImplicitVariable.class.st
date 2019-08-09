@@ -76,11 +76,6 @@ FAMIXImplicitVariable >> mooseNameOn: stream [
 	self name ifNotNil: [ stream nextPutAll: self name ]
 ]
 
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXImplicitVariable >> packageScope [
-	^ self parentBehaviouralEntity packageScope
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXImplicitVariable >> printOn: aStream [ 
 	| parent |

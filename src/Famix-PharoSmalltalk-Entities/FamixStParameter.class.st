@@ -40,8 +40,3 @@ FamixStParameter >> mooseNameOn: stream [
 		stream nextPut: $. ].
 	self name ifNotNil: [stream nextPutAll: self name]
 ]
-
-{ #category : #accessing }
-FamixStParameter >> packageScope [
-	^ self parentBehaviouralEntity packageScope
-]

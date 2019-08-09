@@ -274,12 +274,6 @@ FAMIXNamespace >> numberOfNonInterfacesClasses: aNumber [
 	self privateState propertyAt: #numberOfNonInterfacesClasses put: aNumber
 ]
 
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXNamespace >> packageScope [
-
-	self shouldNotImplement
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXNamespace >> printOn: aStream [ 
 	self belongsTo ifNotNil: [:parent |

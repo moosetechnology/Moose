@@ -128,11 +128,7 @@ FAMIXType >> entityHasIncomingTypeDeclarations [
 
 { #category : #'Famix-Smalltalk' }
 FAMIXType >> extendedInPackages [
-
-	^ self privateState cacheAt: #extendedInPackages
-							ifAbsentPut: [ self extendedMethods collectAsSet: [ :m| m packageScope ] ]
-
-
+	^ self extendedMethods flatCollectAsSet: [ :m | m atScope: FamixStPackage ]
 ]
 
 { #category : #'Famix-Smalltalk' }
@@ -358,12 +354,6 @@ FAMIXType >> mooseNameOn: aStream [
 				nextPut: $:;
 				nextPut: $: ].
 	self name ifNotNil: [aStream nextPutAll: self name]
-]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXType >> packageScope [
-
-	^ self parentPackage
 ]
 
 { #category : #'Famix-Implementation' }

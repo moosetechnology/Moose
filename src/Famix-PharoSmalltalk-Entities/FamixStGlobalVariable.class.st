@@ -37,8 +37,3 @@ FamixStGlobalVariable >> belongsTo: anObject [
 	self parentScope: anObject
 
 ]
-
-{ #category : #'moosechef-scoping-filtering' }
-FamixStGlobalVariable >> packageScope [
-	^ self parentPackage
-]

@@ -77,13 +77,6 @@ FAMIXFunction >> mooseNameOn: stream [
 		ifNil: [ self name ifNotNil: [ stream nextPutAll: self name] ]
 ]
 
-{ #category : #testing }
-FAMIXFunction >> packageScope [
-	"No package scope for functions"
-
-	^ nil
-]
-
 { #category : #accessing }
 FAMIXFunction >> parentScope [
 	^ self functionOwner

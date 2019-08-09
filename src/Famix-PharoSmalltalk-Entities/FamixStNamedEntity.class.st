@@ -38,12 +38,6 @@ FamixStNamedEntity >> belongsTo: anObject [
 
 ]
 
-{ #category : #accessing }
-FamixStNamedEntity >> packageScope [
-	"Empty default scope"
-	^ nil
-]
-
 { #category : #'Famix-Extensions' }
 FamixStNamedEntity >> stubFormattedName [
 	 ^ self isStub 

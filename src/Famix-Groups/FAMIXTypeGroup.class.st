@@ -14,7 +14,7 @@ FAMIXTypeGroup class >> annotation [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #metrics }
 FAMIXTypeGroup >> abstractness [
 	"Abstractness is the ratio between the number of abstract classes and the total number of classes in a package, in the range [0, 1]. 0 means the package is fully concrete, 1 it is fully abstract."
 
@@ -55,8 +55,7 @@ FAMIXTypeGroup >> allMethods [
 
 { #category : #navigation }
 FAMIXTypeGroup >> allPackages [
-
-	^ FAMIXPackageGroup withAll: ((self entities select: [:c | c packageScope notNil]) collectAsSet: [:c| c packageScope])
+	^ FAMIXPackageGroup withAll: (self entities flatCollectAsSet: [ :c | c atScope: FamixTPackage ])
 ]
 
 { #category : #metrics }
@@ -126,7 +125,7 @@ FAMIXTypeGroup >> commonExternalSuperclasses [
 	^result
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #metrics }
 FAMIXTypeGroup >> distance [
 	"D = A + I - 1. A package should be balanced between abstractness and instability, i.e., somewhere between abstract and stable or concrete and unstable. This rule defines the main sequence by the equation A + I - 1 = 0. D is the distance to the main sequence."
 	<MSEProperty: #distance type: #Number>
@@ -141,7 +140,7 @@ FAMIXTypeGroup >> distance [
 	^ abstractness + instability - 1
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #metrics }
 FAMIXTypeGroup >> instability [
 	"I =	Ce(P)/(Ce(P)+Ca(P)), in the range [0, 1]. 0 means package is maximally stable (i.e., no dependency to other packages and can not change without big consequences), 1 means it is unstable."
 	<MSEProperty: #instability type: #Number>

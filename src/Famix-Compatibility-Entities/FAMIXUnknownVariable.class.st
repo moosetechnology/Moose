@@ -17,10 +17,3 @@ FAMIXUnknownVariable class >> annotation [
 FAMIXUnknownVariable >> belongsTo [
 	^ nil
 ]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXUnknownVariable >> packageScope [
-	"packageScope does not make sense for an unknown variable,
-	so we return nil"
-	^ nil
-]

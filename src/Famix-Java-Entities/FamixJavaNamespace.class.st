@@ -319,12 +319,6 @@ FamixJavaNamespace >> numberOfNonInterfacesClasses: aNumber [
 	self privateState propertyAt: #numberOfNonInterfacesClasses put: aNumber
 ]
 
-{ #category : #accessing }
-FamixJavaNamespace >> packageScope [
-
-	self shouldNotImplement
-]
-
 { #category : #printing }
 FamixJavaNamespace >> printOn: aStream [ 
 	self belongsTo ifNotNil: [:parent |
