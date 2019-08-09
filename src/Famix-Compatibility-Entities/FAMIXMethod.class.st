@@ -352,18 +352,6 @@ FAMIXMethod >> overridesMethod [
 	^ self belongsTo superclassHierarchy collect: [ :each | each implementationOf: self signature ] thenSelect: #isNotNil
 ]
 
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXMethod >> packageScope [
-
-	^ self parentPackage ifNil:[ 
-		|cl|
-		cl := self parentType.
-		cl isNil 
-			ifTrue:[nil]
-			ifFalse:[cl packageScope]
-	]
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXMethod >> parentScope [
 	"Polymorphic alias to mimic GlobalVariable#parentScope and similar"

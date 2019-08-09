@@ -37,8 +37,3 @@ FamixJavaEnumValue >> belongsTo: anObject [
 	self parentEnum: anObject
 
 ]
-
-{ #category : #accessing }
-FamixJavaEnumValue >> packageScope [
-	^ (self atScope: FamixTType) ifEmpty: [ nil ] ifNotEmpty: [ :types | types anyOne packageScope ]
-]

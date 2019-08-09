@@ -20,8 +20,3 @@ FAMIXStructuralEntity >> isSharedVariable [
 
 	^ false
 ]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXStructuralEntity >> packageScope [
-	^ (self atScope: FamixTType) ifEmpty: [ nil ] ifNotEmpty: [ :types | types anyOne packageScope ]
-]

@@ -219,25 +219,13 @@ FAMIXMethodNavigationChefTest >> testReferencingMethodsDefinedInto [
 { #category : #allIncomingInvocations }
 FAMIXMethodNavigationChefTest >> testReferencingMethodsDefinedIntoAndPackagedInto [
 	| c19m2 c19m1 pExtensions |
-	c19m1 := self 
-		getMethod: 'm6p11c19Mtd1()'
-		from: self c19FullRefereeOutSide.
-	c19m2 := self 
-		getMethod: 'm6p11c19Mtd2()'
-		from: self c19FullRefereeOutSide.
+	c19m1 := self getMethod: 'm6p11c19Mtd1()' from: self c19FullRefereeOutSide.
+	c19m2 := self getMethod: 'm6p11c19Mtd2()' from: self c19FullRefereeOutSide.
 	pExtensions := self packagePExtensions.
-	
-	self assert: 1
-		equals: ((c19m1 queryAllIncomingInvocations opposites
-					withinClass: c19m1 belongsTo) withinPackage: pExtensions) size.
-	self assert:
-			(((c19m1 queryAllIncomingInvocations opposites
-				withinClass: c19m1 belongsTo) withinPackage: pExtensions)
-			equalsTo: (Set with: c19m2))
-		description: 'Unexpected query result'.
-	self assert: ((c19m1 queryAllIncomingInvocations opposites
-				withinClass: c19m1 belongsTo) withinPackage: c19m1 packageScope) isEmpty
-		description: 'Non-empty query result'.
+
+	self assert: 1 equals: ((c19m1 queryAllIncomingInvocations opposites withinClass: c19m1 belongsTo) withinPackage: pExtensions) size.
+	self assert: (((c19m1 queryAllIncomingInvocations opposites withinClass: c19m1 belongsTo) withinPackage: pExtensions) equalsTo: (Set with: c19m2)) description: 'Unexpected query result'.
+	self assert: ((c19m1 queryAllIncomingInvocations opposites withinClass: c19m1 belongsTo) withinPackage: (c19m1 atScope: FamixTPackage) anyOne) isEmpty description: 'Non-empty query result'
 ]
 
 { #category : #allIncomingInvocations }
@@ -335,16 +323,8 @@ FAMIXMethodNavigationChefTest >> testStaticReferencedNamespaces [
 { #category : #references }
 FAMIXMethodNavigationChefTest >> testStaticReferencedPackages [
 	| c15m3 |
-	c15m3 := self
-		getMethod: 'm4p8c15Mtd3()'
-		from: self c15FullReferencerOutSide.
-	self
-		assert: (c15m3 queryOutgoingReferences atScope: FamixTPackage) size
-		equals: 1.
-	self
-		assert:
-			((c15m3 queryOutgoingReferences atScope: FamixTPackage)
-				equalsTo: (Set with: self c19FullRefereeOutSide packageScope))
+	c15m3 := self getMethod: 'm4p8c15Mtd3()' from: self c15FullReferencerOutSide.
+	self assertCollection: (c15m3 queryOutgoingReferences atScope: FamixTPackage) hasSameElements: (self c19FullRefereeOutSide atScope: FamixTPackage)
 ]
 
 { #category : #sureOutgoingInvocations }

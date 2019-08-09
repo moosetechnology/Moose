@@ -335,18 +335,6 @@ FamixStMethod >> outgoingTypeDeclarations [
 	^ self declaredType ifNil: [ {} ] ifNotNil: [ :dt | {(MooseQueryTypeDeclarationAssociation newFrom: self to: dt)} ]
 ]
 
-{ #category : #'Famix-Extensions-metrics-support' }
-FamixStMethod >> packageScope [
-
-	^ self parentPackage ifNil:[ 
-		|cl|
-		cl := self parentType.
-		cl isNil 
-			ifTrue:[nil]
-			ifFalse:[cl packageScope]
-	]
-]
-
 { #category : #accessing }
 FamixStMethod >> protocol [
 

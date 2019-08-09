@@ -107,12 +107,6 @@ FamixStNamespace >> numberOfMethods: aNumber [
 ]
 
 { #category : #'Famix-Extensions-nav All Dependencies' }
-FamixStNamespace >> packageScope [
-
-	self shouldNotImplement
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
 FamixStNamespace >> providerNamespaces [
 	"MooseCook was: ^ self inheritedNamespaces union: self invokedNamespaces"
 

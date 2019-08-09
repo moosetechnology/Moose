@@ -545,6 +545,23 @@ MooseEntity >> notExistentMetricValue [
 	^-1
 ]
 
+{ #category : #deprecated }
+MooseEntity >> packageScope [
+	self
+		deprecated:
+			'packageScope does not have a coherent behavior and should be replaced with a query. The query will depend on your needs. It can either be:
+	- `self allAtScope: FamixTPackage` if you want a collection of all the packages up in the containment tree of your entity
+	- `self allToScope: FamixTPackage` if you want a collection of all the packages down in the containment tree of your entity
+	- `self allWithScope: FamixTPackage` if you want a collection of all the packages up and down in the containment tree of your entity
+	- `self atScope: FamixTPackage` if you want a collection of the first encountered packages up in the containment tree of your entity
+	- `self toScope: FamixTPackage` if you want a collection of the first encountered packages down in the containment tree of your entity
+	- `self withScope: FamixTPackage` if you want a collection of the first encountered packages up and down in the containment tree of your entity
+	
+	In case you know there is only one type (for example in java a #atScope: on a structural entity), you can call #anyOne on the result of the query.'.
+	"This implementation seems to be the most common"
+	^ (self atScope: FamixTPackage) anyOne
+]
+
 { #category : #printing }
 MooseEntity >> printOn: aStream [ 
 	 

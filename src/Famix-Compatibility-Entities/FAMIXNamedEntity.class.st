@@ -47,12 +47,6 @@ FAMIXNamedEntity >> methodScope [
 ]
 
 { #category : #'moosechef-scoping-filtering' }
-FAMIXNamedEntity >> packageScope [
-	"Empty default scope"
-	^ nil
-]
-
-{ #category : #'moosechef-scoping-filtering' }
 FAMIXNamedEntity >> selectWithinYourScope: aMooseQueryResult [
 	self subclassResponsibility
 ]

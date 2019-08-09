@@ -335,18 +335,6 @@ FamixJavaMethod >> overridesMethod [
 ]
 
 { #category : #accessing }
-FamixJavaMethod >> packageScope [
-
-	^ self parentPackage ifNil:[ 
-		|cl|
-		cl := self parentType.
-		cl isNil 
-			ifTrue:[nil]
-			ifFalse:[cl packageScope]
-	]
-]
-
-{ #category : #accessing }
 FamixJavaMethod >> parentScope [
 	"Polymorphic alias to mimic GlobalVariable#parentScope and similar"
 

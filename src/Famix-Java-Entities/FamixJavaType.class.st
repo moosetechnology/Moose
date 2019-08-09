@@ -249,12 +249,6 @@ FamixJavaType >> mooseNameOn: aStream [
 ]
 
 { #category : #accessing }
-FamixJavaType >> packageScope [
-
-	^ self parentPackage
-]
-
-{ #category : #accessing }
 FamixJavaType >> parentScope [
 	"Polymorphic alias to mimic GlobalVariable#parentScope and similar"
 

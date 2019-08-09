@@ -48,11 +48,6 @@ FAMIXParameter >> mooseNameOn: stream [
 	self name ifNotNil: [stream nextPutAll: self name]
 ]
 
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXParameter >> packageScope [
-	^ self parentBehaviouralEntity packageScope
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXParameter >> parentType [
 	^self parentBehaviouralEntity parentType

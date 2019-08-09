@@ -16,8 +16,7 @@ FAMIXMethodGroup class >> annotation [
 
 { #category : #navigation }
 FAMIXMethodGroup >> allClasses [
-
-	^ FAMIXTypeGroup withAll: (self entities collectAsSet: [:m | m parentType])
+	^ FAMIXTypeGroup withAll: (self entities flatCollectAsSet: [ :m | m atScope: FamixTClass ])
 ]
 
 { #category : #navigation }
@@ -28,8 +27,7 @@ FAMIXMethodGroup >> allMethods [
 
 { #category : #navigation }
 FAMIXMethodGroup >> allPackages [
-
-	^ FAMIXPackageGroup withAll: (self entities collectAsSet: [:m | m packageScope])
+	^ FAMIXPackageGroup withAll: (self entities flatCollectAsSet: [ :m | m atScope: FamixTPackage ])
 ]
 
 { #category : #metrics }

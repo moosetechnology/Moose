@@ -151,8 +151,7 @@ MooseQueryResult >> outOfMyNamespace [
 
 { #category : #filtering }
 MooseQueryResult >> outOfMyPackage [
-	
-	^ self outOfPackage: self receiver packageScope    
+	^ self outOfPackage: (self receiver atScope: FamixTPackage) anyOne
 ]
 
 { #category : #filtering }
@@ -266,8 +265,7 @@ MooseQueryResult >> withinMyNamespace [
 
 { #category : #filtering }
 MooseQueryResult >> withinMyPackage [
-	
-	^ self withinPackage: self receiver packageScope    
+	^ self withinPackage: (self receiver atScope: FamixTPackage) anyOne
 ]
 
 { #category : #filtering }

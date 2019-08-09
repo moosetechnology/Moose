@@ -51,11 +51,6 @@ FamixJavaGlobalVariable >> isPublic [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaGlobalVariable >> packageScope [
-	^ self parentPackage
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaGlobalVariable >> printOn: aStream [ 
 	| parent |
 	parent := self belongsTo.

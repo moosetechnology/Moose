@@ -60,11 +60,6 @@ FamixJavaImplicitVariable >> mooseNameOn: stream [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaImplicitVariable >> packageScope [
-	^ self parentBehaviouralEntity packageScope
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaImplicitVariable >> printOn: aStream [ 
 	| parent |
 	parent := self parentBehaviouralEntity.
