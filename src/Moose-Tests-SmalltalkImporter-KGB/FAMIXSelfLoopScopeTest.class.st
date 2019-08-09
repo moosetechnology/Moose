@@ -6,23 +6,10 @@ Class {
 
 { #category : #'famix-class' }
 FAMIXSelfLoopScopeTest >> testFamixClassClassScope [
-	self
-		assert:
-			(self c12FullReferencerInSide typeScope
-				mooseIncludes: self c12FullReferencerInSide).
-	self
-		deny:
-			(self c12FullReferencerInSide typeScope
-				mooseIncludes: self c13FullRefereeInSideOutSide).
-	self
-		assert:
-			((self c1FullReferencerOutSide queryAllIncomingInvocations
-				atScope: FamixTType) includes: self c1FullReferencerOutSide).
-	self
-		deny:
-			((self c1FullReferencerOutSide queryAllIncomingInvocations
-				atScope: FamixTType) withoutSelfLoops
-				includes: self c1FullReferencerOutSide)
+	self assert: ((self c12FullReferencerInSide atScope: FamixTClass) mooseIncludes: self c12FullReferencerInSide).
+	self deny: ((self c12FullReferencerInSide atScope: FamixTClass) mooseIncludes: self c13FullRefereeInSideOutSide).
+	self assert: ((self c1FullReferencerOutSide queryAllIncomingInvocations atScope: FamixTClass) includes: self c1FullReferencerOutSide).
+	self deny: ((self c1FullReferencerOutSide queryAllIncomingInvocations atScope: FamixTClass) withoutSelfLoops includes: self c1FullReferencerOutSide)
 ]
 
 { #category : #'famix-class' }
