@@ -34,7 +34,7 @@ FmxMBClass >> allClassGeneralizations [
 
 { #category : #accessing }
 FmxMBClass >> allLocalTraits [
-	^ super allLocalTraits , self traitsFromRelations
+	^ self traitsFromRelations , super allLocalTraits
 ]
 
 { #category : #accessing }
