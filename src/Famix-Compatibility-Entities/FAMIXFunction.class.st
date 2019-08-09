@@ -81,9 +81,3 @@ FAMIXFunction >> mooseNameOn: stream [
 FAMIXFunction >> parentScope [
 	^ self functionOwner
 ]
-
-{ #category : #accessing }
-FAMIXFunction >> parentScope: aScopingEntity [ 
-	self deprecated: 'Please use container: instead of parentScope:'.
-	self container: aScopingEntity
-]

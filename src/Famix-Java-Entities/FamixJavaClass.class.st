@@ -116,11 +116,6 @@ FamixJavaClass >> methodsWithoutSutbsAndConstructors [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaClass >> selectWithinYourScope: aMooseQueryResult [
-	^ aMooseQueryResult withinClass: self
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaClass >> structuralChildren [
 	^ (OrderedCollection withAll: self methods), self attributes
 ]

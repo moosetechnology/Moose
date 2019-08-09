@@ -63,15 +63,14 @@ FAMIXNamespace >> bunchCouplingWith: aNamespace [
 	myClasses := myClasses union: (myClasses flatCollect: [ :c | c allRecursiveTypes ]).
 	otherClasses := aNamespace classes.
 	otherClasses := otherClasses union: (otherClasses flatCollect: [ :c | c allRecursiveTypes ]).
-	(myClasses size == 0 or: [ otherClasses size == 0 ])
-		ifTrue: [ ^ nil ].
+	(myClasses size == 0 or: [ otherClasses size == 0 ]) ifTrue: [ ^ nil ].
 
 	"All outgoing dependencies"
-	interConnectivities := (myClasses collect: [ :c | (c queryOutgoingDependencies atScope: FamixTType) withinNamespace: aNamespace ]) inject: 0 into: [ :subTotal :each | subTotal + each size ].
+	interConnectivities := (myClasses collect: [ :c | (c queryOutgoingDependencies atScope: FamixTType) within: aNamespace ]) inject: 0 into: [ :subTotal :each | subTotal + each size ].
 
 	"Plus all incoming dependencies"
 	interConnectivities := interConnectivities
-		+ ((myClasses collect: [ :c | (c queryIncomingDependencies atScope: FamixTType) withinNamespace: aNamespace ]) inject: 0 into: [ :subTotal :each | subTotal + each size ]).
+		+ ((myClasses collect: [ :c | (c queryIncomingDependencies atScope: FamixTType) within: aNamespace ]) inject: 0 into: [ :subTotal :each | subTotal + each size ]).
 	^ interConnectivities / (2 * myClasses size * otherClasses size) asFloat
 ]
 
@@ -270,11 +269,6 @@ FAMIXNamespace >> printOn: aStream [
 			nextPut: $: ].
 	self name ifNotNil: [ aStream nextPutAll: self name ].
 	aStream nextPutAll: ' (Namespace)'
-]
-
-{ #category : #'moosechef-scoping-filtering' }
-FAMIXNamespace >> selectWithinYourScope: aMooseQueryResult [
-	^ aMooseQueryResult withinNamespace: self
 ]
 
 { #category : #'Famix-Extensions' }

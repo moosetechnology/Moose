@@ -426,12 +426,6 @@ MooseAbstractGroup >> insertInto: aSequenceableCollection from: anInteger to: an
 	^ self entities insertInto: aSequenceableCollection from: anInteger to: anotherInteger
 ]
 
-{ #category : #'set operations' }
-MooseAbstractGroup >> intersect: aGroup [ 
-	self deprecated: 'use intersection: instead, as it is polymorphic with the Collection protocol'.
-	^ self intersection: aGroup 
-]
-
 { #category : #'entity collection' }
 MooseAbstractGroup >> intersection: aCollection [
 	^ self species withAll: (self entities intersection: aCollection)

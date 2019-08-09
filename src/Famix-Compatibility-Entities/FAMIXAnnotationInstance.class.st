@@ -61,7 +61,7 @@ FAMIXAnnotationInstance >> name [
 				<< ' on ' << (self annotatedEntity ifNotNil: #name ifNil: [ 'undefined' ]) ]
 ]
 
-{ #category : #'moosequery-queries-generic' }
+{ #category : #'query dependencies' }
 FAMIXAnnotationInstance >> throughAllTo [
 	"Collect all the targets of the receiver and its children.
 	

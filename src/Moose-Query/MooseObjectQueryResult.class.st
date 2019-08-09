@@ -91,26 +91,9 @@ MooseObjectQueryResult >> withScope: aClassFamix [
 	^ self newObjectResultWith: (self storage inject: OrderedCollection new into: [ :res :entity | entity withScope: aClassFamix in: res ]) asSet
 ]
 
-{ #category : #filtering }
+{ #category : #evaluating }
 MooseObjectQueryResult >> within: aFAMIXEntity [
-	"Copy from TDependencyQueryResult because trait is not to be used"
-	^aFAMIXEntity selectWithinYourScope: self.
-	
-]
-
-{ #category : #filtering }
-MooseObjectQueryResult >> withinClass: aFAMIXClass [
-	^ self newObjectResultWith: (storage select: [ :obj | aFAMIXClass == (obj atScope: FamixTClass) anyOne ])
-]
-
-{ #category : #filtering }
-MooseObjectQueryResult >> withinNamespace: aFAMIXNamespace [
-	^ self newObjectResultWith: (storage select: [ :obj | aFAMIXNamespace == (obj atScope: FamixTNamespace) anyOne ])
-]
-
-{ #category : #filtering }
-MooseObjectQueryResult >> withinPackage: aFAMIXPackage [
-	^ self newObjectResultWith: (storage select: [ :obj | aFAMIXPackage == (obj atScope: FamixTPackage) anyOne ])
+	^ self newObjectResultWith: (storage select: [ :obj | (obj atScope: aFAMIXEntity class) includes: aFAMIXEntity ])
 ]
 
 { #category : #filtering }

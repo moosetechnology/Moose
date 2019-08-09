@@ -98,7 +98,7 @@ FAMIXSourceAnchor >> queryIncomingReferences [
 	^ MooseQueryResult new
 ]
 
-{ #category : #'moosequery-queries-incoming' }
+{ #category : #'query dependencies' }
 FAMIXSourceAnchor >> queryIncomingTypeDeclarations [
 	^ MooseQueryResult new
 ]
@@ -113,7 +113,7 @@ FAMIXSourceAnchor >> queryOutgoingReferences [
 	^ MooseQueryResult new
 ]
 
-{ #category : #'moosequery-queries-outgoing' }
+{ #category : #'query dependencies' }
 FAMIXSourceAnchor >> queryOutgoingTypeDeclarations [
 	^ MooseQueryResult new
 ]

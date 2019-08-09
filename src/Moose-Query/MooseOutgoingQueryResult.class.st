@@ -14,9 +14,7 @@ Class {
 
 { #category : #private }
 MooseOutgoingQueryResult >> isOppositeMultivalued: aDependency [
-
-	^ (aDependency attributesTogetherWithGenerated
-		detect: [ :att | att isTarget ]) isMultivalued
+	^ (aDependency attributesTogetherWithGenerated detect: [ :att | att isTarget ]) isMultivalued
 ]
 
 { #category : #private }

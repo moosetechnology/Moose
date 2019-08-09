@@ -36,27 +36,10 @@ FamixJavaNamedEntity >> belongsTo: anObject [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaNamedEntity >> selectWithinYourScope: aMooseQueryResult [
-	self subclassResponsibility
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaNamedEntity >> stubFormattedName [
 	 ^ self isStub 
 		ifTrue: [ Text 
 					string: self name
 					attribute: TextEmphasis italic ]
 		ifFalse: [ Text fromString: self name ] 
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaNamedEntity >> yourScope [
-	"Empty default scope"
-
-	self
-		deprecated:
-			'#yourScope was used by MooseChef for queries. Now, MooseQuery does not need it anymore. Example of code update: "myEntity queryAllIncoming perform: mySecondEntity yourScope" => "myEntity queryAllIncoming withScope: mySecondEntity class"'
-		on: '12 january 2018'
-		in: 'Moose6.1'.
-	^ nil
 ]

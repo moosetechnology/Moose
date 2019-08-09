@@ -96,11 +96,6 @@ FAMIXType >> container: aContainer [
 	self typeContainer: aContainer
 ]
 
-{ #category : #'moosequery-queries-incoming' }
-FAMIXType >> entityHasIncomingTypeDeclarations [
-	^ (self structuresWithDeclaredType , self behavioursWithDeclaredType) isNotEmpty
-]
-
 { #category : #'Famix-Smalltalk' }
 FAMIXType >> extendedInPackages [
 	^ self extendedMethods flatCollectAsSet: [ :m | m atScope: FamixStPackage ]

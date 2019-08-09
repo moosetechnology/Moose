@@ -46,12 +46,6 @@ FamixStClass >> extendedMethods [
 ]
 
 { #category : #testing }
-FamixStClass >> hasMethodWithSignature: aSignature [
-	self deprecated: 'Use #implements: instead' transformWith: '`@receiver hasMethodWithSignature: `@statements1' -> '`@receiver implements: `@statements1'.
-	^ self implements: aSignature
-]
-
-{ #category : #testing }
 FamixStClass >> implements: aString [
 	"Was changed from match: for performances and because signature is case sensitive"
 
@@ -121,12 +115,6 @@ FamixStClass >> isExtended [
 { #category : #testing }
 FamixStClass >> isInstanceSide [
 	^ self isClassSide not
-]
-
-{ #category : #testing }
-FamixStClass >> isSUnitTestCase [
-	self deprecated: 'Use #isTestCase instead' transformWith: '`@receiver isSUnitTestCase' -> '`@receiver isTestCase'.
-	^ self isTestCase
 ]
 
 { #category : #testing }

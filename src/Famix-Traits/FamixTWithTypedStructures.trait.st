@@ -15,7 +15,7 @@ FamixTWithTypedStructures classSide >> annotation [
 	^self
 ]
 
-{ #category : #deprecated }
+{ #category : #adding }
 FamixTWithTypedStructures >> addBehaviourWithDeclaredType: aBehaviour [
 	self structuresWithDeclaredType add: aBehaviour
 ]
@@ -25,16 +25,9 @@ FamixTWithTypedStructures >> addStructureWithDeclaredType: aStructuralEntity [
 	structuresWithDeclaredType add: aStructuralEntity
 ]
 
-{ #category : #deprecated }
-FamixTWithTypedStructures >> behavioursWithDeclaredType [
-
-	^ self structuresWithDeclaredType
-]
-
-{ #category : #deprecated }
-FamixTWithTypedStructures >> behavioursWithDeclaredType: anObject [
-
-	^ self structuresWithDeclaredType: anObject
+{ #category : #testing }
+FamixTWithTypedStructures >> entityHasIncomingTypeDeclarations [
+	^ self structuresWithDeclaredType isNotEmpty
 ]
 
 { #category : #accessing }

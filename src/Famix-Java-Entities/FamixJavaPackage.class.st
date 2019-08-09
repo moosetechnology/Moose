@@ -83,11 +83,11 @@ FamixJavaPackage >> bunchCouplingWith: aPackage [
 	(myClasses size == 0 or: [ otherClasses size == 0 ]) ifTrue: [ ^ nil ].
 
 	"All outgoing dependencies"
-	interConnectivities := (myClasses collect: [ :c | (c queryOutgoingDependencies atScope: FamixTType) withinPackage: aPackage ]) inject: 0 into: [ :subTotal :each | subTotal + each size ].
+	interConnectivities := (myClasses collect: [ :c | (c queryOutgoingDependencies atScope: FamixTType) within: aPackage ]) inject: 0 into: [ :subTotal :each | subTotal + each size ].
 
 	"Plus all incoming dependencies"
 	interConnectivities := interConnectivities
-		+ ((myClasses collect: [ :c | (c queryIncomingDependencies atScope: FamixTType) withinPackage: aPackage ]) inject: 0 into: [ :subTotal :each | subTotal + each size ]).
+		+ ((myClasses collect: [ :c | (c queryIncomingDependencies atScope: FamixTType) within: aPackage ]) inject: 0 into: [ :subTotal :each | subTotal + each size ]).
 	^ interConnectivities / (2 * myClasses size * otherClasses size) asFloat
 ]
 
@@ -108,18 +108,6 @@ FamixJavaPackage >> bunchCouplingWithAll [
 	interConnectivities := interConnectivities
 		+ ((myClasses collect: [ :c | (c queryIncomingDependencies atScope: FamixTType) outOfMyPackage ]) inject: 0 into: [ :subTotal :each | subTotal + each size ]).
 	^ interConnectivities / (2 * myClasses size * (allClasses size - myClasses size)) asFloat
-]
-
-{ #category : #deprecated }
-FamixJavaPackage >> childNamedEntities [
-
-	^ self childEntities
-]
-
-{ #category : #deprecated }
-FamixJavaPackage >> childNamedEntities: aNamedEntity [
-
-	^ self childEntities: aNamedEntity
 ]
 
 { #category : #'as yet unclassified' }
@@ -288,9 +276,4 @@ FamixJavaPackage >> relativeImportanceForSystem [
 							]
 						ifFalse: [0]
 						]
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaPackage >> selectWithinYourScope: aMooseQueryResult [
-	^ aMooseQueryResult withinPackage: self
 ]

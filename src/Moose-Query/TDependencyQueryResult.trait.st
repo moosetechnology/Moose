@@ -157,29 +157,7 @@ TDependencyQueryResult >> withScope: aClassFamix [
 
 { #category : #filtering }
 TDependencyQueryResult >> within: aFamixEntity [
-	^self newAssocResultWith:
-		(self storage select: [ :dep | 
-			(self isOppositeMultivalued: dep)
-				ifTrue: [ (self opposite: dep) anySatisfy: [ :entity |  {aFamixEntity} = (entity atScope: aFamixEntity class) ] ]
-				ifFalse: [ {aFamixEntity} = ((self opposite: dep) atScope: aFamixEntity class) ] ])
-]
-
-{ #category : #filtering }
-TDependencyQueryResult >> withinClass: aFAMIXClass [ 
-	
-	^ self within: aFAMIXClass 
-]
-
-{ #category : #filtering }
-TDependencyQueryResult >> withinNamespace: aFAMIXNamespace [ 
-
-	^ self within: aFAMIXNamespace 
-]
-
-{ #category : #filtering }
-TDependencyQueryResult >> withinPackage: aFAMIXPackage [ 
-	
-	^ self within: aFAMIXPackage 
+	^ self newAssocResultWith: (self storage select: [ :dep | (self opposite: dep) asCollection anySatisfy: [ :entity | {aFamixEntity} = (entity atScope: aFamixEntity class) ] ])
 ]
 
 { #category : #filtering }

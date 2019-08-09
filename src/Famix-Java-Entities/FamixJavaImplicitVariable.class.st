@@ -32,18 +32,6 @@ FamixJavaImplicitVariable >> belongsTo: anObject [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaImplicitVariable >> container [
-	self deprecated: 'Please use parentBehaviouralEntity instead'.  
-	^ self parentBehaviouralEntity
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaImplicitVariable >> container: aBehaviouralEntity [
-	self deprecated: 'Please use #parentBehaviouralEntity: instead'.
-	^ self parentBehaviouralEntity: aBehaviouralEntity
-]
-
-{ #category : #testing }
 FamixJavaImplicitVariable >> isImplicitVariable [
 	^true
 ]
