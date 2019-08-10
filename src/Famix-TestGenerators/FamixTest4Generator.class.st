@@ -73,8 +73,7 @@ FamixTest4Generator >> defineHierarchy [
 	school --|> entity.
 	room --|> entity.
 	classroom --|> room.
-	cafeteria --|> room.
-	
+	cafeteria --|> room
 ]
 
 { #category : #definition }

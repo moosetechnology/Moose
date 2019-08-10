@@ -41,10 +41,5 @@ FamixTest2Generator >> defineHierarchy [
 
 	inheritance --|> association.
 	inheritance --|> #TSubInheritance.
-	inheritance --|> #TSuperInheritance.
-
-
-	
-
-
+	inheritance --|> #TSuperInheritance
 ]

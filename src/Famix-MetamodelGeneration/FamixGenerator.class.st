@@ -948,6 +948,7 @@ FamixGenerator >> defineHierarchy [
 	tClass --|> #TWithSubInheritances.
 	tClass --|> #TWithSuperInheritances.
 	tClass --|> #TWithAttributes.
+	tClass --|> tType.
 
 	tMethod --|> #TWithParameters.
 	tMethod --|> #TInvocable.
@@ -960,7 +961,7 @@ FamixGenerator >> defineHierarchy [
 	tMethod --|> #TWithClassScope.
 	tMethod --|> #TTypedStructure.
 	
-	tStructuralEntity --|> #TNamed.
+	tStructuralEntity --|> tNamed.
 	tStructuralEntity --|> #TAccessible.
 	tStructuralEntity --|> #TInvocationsReceiver.
 	tStructuralEntity --|> #TTypedStructure
