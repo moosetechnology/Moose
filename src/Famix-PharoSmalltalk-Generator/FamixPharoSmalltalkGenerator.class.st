@@ -174,7 +174,6 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 
 	type --|> containerEntity.
 	type --|> #TType.
-	type --|> #TReferenceable.
 	type --|> #TWithTypedStructures.
 
 	unknownVariable --|> namedEntity.

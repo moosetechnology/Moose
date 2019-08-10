@@ -15,11 +15,6 @@ FamixJavaSourcedEntity class >> annotation [
 	^self
 ]
 
-{ #category : #removing }
-FamixJavaSourcedEntity >> addComment: aComment [
-	comments add: aComment asFamixJavaComment
-]
-
 { #category : #accessing }
 FamixJavaSourcedEntity >> containerFiles [
 	"this method returns a collection because a source entity can be defined in single as well as multiple files. Hence we support the language that allow the separation of declaration and definition"

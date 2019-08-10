@@ -119,17 +119,6 @@ FamixStClass >> methodsWithoutSutbsAndConstructors [
 ]
 
 { #category : #'Famix-Implementation' }
-FamixStClass >> mooseNameOn: aStream [
-	self typeContainer
-		ifNotNil: [ :parent | 
-			parent mooseNameOn: aStream.
-			aStream
-				nextPut: $:;
-				nextPut: $: ].
-	self name ifNotNil: [ aStream nextPutAll: self name ]
-]
-
-{ #category : #'Famix-Implementation' }
 FamixStClass >> smalltalkClass [
 	"Returns the associated smalltalk class if it exist in the system."
 

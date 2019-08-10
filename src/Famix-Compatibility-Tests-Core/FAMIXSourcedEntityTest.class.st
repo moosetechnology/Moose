@@ -24,15 +24,6 @@ FAMIXSourcedEntityTest >> testAddComment [
 ]
 
 { #category : #tests }
-FAMIXSourcedEntityTest >> testAddCommentFromString [
-	| inst |
-	inst := self actualClass new.
-	inst addComment: 'This is a test'.
-	self assert: inst comments size equals: 1.
-	self assert: inst comments anyOne content equals: 'This is a test'
-]
-
-{ #category : #tests }
 FAMIXSourcedEntityTest >> testAddCommentRaiseErrorOnWrongObject [
 	self should: [ self actualClass new addComment: FAMIXSourceAnchor new ] raise: Error
 ]

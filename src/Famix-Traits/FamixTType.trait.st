@@ -10,6 +10,8 @@ Trait {
 	#instVars : [
 		'#typeContainer => FMOne type: #FamixTWithTypes opposite: #types'
 	],
+	#traits : 'FamixTReferenceable',
+	#classTraits : 'FamixTReferenceable classTrait',
 	#category : #'Famix-Traits-Type'
 }
 
@@ -49,6 +51,15 @@ FamixTType >> isType [
 
 	<generated>
 	^ true
+]
+
+{ #category : #accessing }
+FamixTType >> mooseNameOn: aStream [
+	self typeContainer
+		ifNotNil: [ :parent | 
+			parent mooseNameOn: aStream.
+			aStream nextPutAll: '::' ].
+	self name ifNotNil: [ :name | aStream nextPutAll: name ]
 ]
 
 { #category : #metrics }

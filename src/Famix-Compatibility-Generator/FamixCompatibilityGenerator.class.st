@@ -352,7 +352,6 @@ FamixCompatibilityGenerator >> defineHierarchy [
 
 	type --|> containerEntity.
 	type --|> #TType.
-	type --|> #TReferenceable.
 	type --|> #TWithTypedStructures.
 	type --|> #TWithTypeAliases.
 	type --|> #TWithMethods.

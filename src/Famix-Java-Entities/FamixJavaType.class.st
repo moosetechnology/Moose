@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaType,
 	#superclass : #FamixJavaContainerEntity,
-	#traits : 'FamixTClassHierarchyNavigation + FamixTParameterizedTypeUser + FamixTReferenceable + FamixTType + FamixTWithTypeAliases + FamixTWithTypedStructures',
-	#classTraits : 'FamixTClassHierarchyNavigation classTrait + FamixTParameterizedTypeUser classTrait + FamixTReferenceable classTrait + FamixTType classTrait + FamixTWithTypeAliases classTrait + FamixTWithTypedStructures classTrait',
+	#traits : 'FamixTClassHierarchyNavigation + FamixTParameterizedTypeUser + FamixTType + FamixTWithTypeAliases + FamixTWithTypedStructures',
+	#classTraits : 'FamixTClassHierarchyNavigation classTrait + FamixTParameterizedTypeUser classTrait + FamixTType classTrait + FamixTWithTypeAliases classTrait + FamixTWithTypedStructures classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
@@ -205,19 +205,6 @@ FamixJavaType >> lookUp: aMethodSignature [
 				ifNotNil: [toSearchIt := false]
 			].
 	^searchedM
-]
-
-{ #category : #printing }
-FamixJavaType >> mooseNameOn: aStream [ 
-	| parent |
-	parent := self typeContainer.
-	parent ifNotNil: 
-		[ 
-			parent mooseNameOn: aStream.
-			aStream
-				nextPut: $:;
-				nextPut: $: ].
-	self name ifNotNil: [aStream nextPutAll: self name]
 ]
 
 { #category : #accessing }
