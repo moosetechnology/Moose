@@ -22,7 +22,6 @@ Class {
 		'reference',
 		'scopingEntity',
 		'smalltalkSourceLanguage',
-		'type',
 		'unknownVariable',
 		'tStructuralEntity'
 	],
@@ -71,7 +70,6 @@ FamixPharoSmalltalkGenerator >> defineClasses [
 	reference := builder newClassNamed: #Reference.
 	scopingEntity := builder newClassNamed: #ScopingEntity.
 	smalltalkSourceLanguage := builder newClassNamed: #SmalltalkSourceLanguage.
-	type := builder newClassNamed: #Type.
 	unknownVariable := builder newClassNamed: #UnknownVariable
 ]
 
@@ -96,7 +94,7 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	annotationInstanceAttribute --|> #TEntityMetaLevelDependency.
 	annotationInstanceAttribute --|> #TDependencyQueries.
 
-	annotationType --|> type.
+	annotationType --|> containerEntity.
 	annotationType --|> #TAnnotationType.
 	annotationType --|> #TWithAttributes.
 
@@ -109,10 +107,11 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	attribute --|> #TAttribute.
 	attribute --|> #TWithClassScope.
 
-	class --|> type.
+	class --|> containerEntity.
 	class --|> #TWithExceptions.
 	class --|> #TClass.
 	class --|> #TClassHierarchyNavigation.
+	class --|> #TWithTypedStructures.
 	
 	containerEntity --|> namedEntity.
 	containerEntity --|> #TWithTypes.
@@ -171,10 +170,6 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	scopingEntity --|> #TScopingEntity.
 
 	tStructuralEntity --|> #TStructuralEntity.
-
-	type --|> containerEntity.
-	type --|> #TType.
-	type --|> #TWithTypedStructures.
 
 	unknownVariable --|> namedEntity.
 	unknownVariable --|> tStructuralEntity.
