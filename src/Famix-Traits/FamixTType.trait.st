@@ -71,6 +71,15 @@ FamixTType >> isType [
 	^ true
 ]
 
+{ #category : #accessing }
+FamixTType >> mooseNameOn: aStream [
+	self typeContainer
+		ifNotNil: [ :parent | 
+			parent mooseNameOn: aStream.
+			aStream nextPutAll: '::' ].
+	self name ifNotNil: [ :name | aStream nextPutAll: name ]
+]
+
 { #category : #metrics }
 FamixTType >> numberOfAccessesToForeignData [
 	<MSEProperty: #numberOfAccessesToForeignData type: #Number>

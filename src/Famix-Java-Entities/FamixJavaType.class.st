@@ -194,19 +194,6 @@ FamixJavaType >> lookUp: aMethodSignature [
 	^searchedM
 ]
 
-{ #category : #printing }
-FamixJavaType >> mooseNameOn: aStream [ 
-	| parent |
-	parent := self typeContainer.
-	parent ifNotNil: 
-		[ 
-			parent mooseNameOn: aStream.
-			aStream
-				nextPut: $:;
-				nextPut: $: ].
-	self name ifNotNil: [aStream nextPutAll: self name]
-]
-
 { #category : #accessing }
 FamixJavaType >> parentScope [
 	"Polymorphic alias to mimic GlobalVariable#parentScope and similar"

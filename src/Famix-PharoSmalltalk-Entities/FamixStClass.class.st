@@ -26,6 +26,16 @@ FamixStClass >> accessedAttributes [
 ]
 
 { #category : #accessing }
+FamixStClass >> belongsTo [
+	^ self typeContainer
+]
+
+{ #category : #accessing }
+FamixStClass >> belongsTo: anObject [
+	self typeContainer: anObject
+]
+
+{ #category : #accessing }
 FamixStClass >> classSide [
 	^ self isClassSide
 		ifFalse: [ self mooseModel allClasses entityNamed: (self mooseName , '_class') asSymbol ]
@@ -116,17 +126,6 @@ FamixStClass >> methodsWithoutSutbsAndConstructors [
 	"Removing stub and contructor methods. Used to support the calculation of LCOM."
 
 	^ (self methods select: [ :each | each isStub not and: [ each isConstructor not ] ]) asSet
-]
-
-{ #category : #'Famix-Implementation' }
-FamixStClass >> mooseNameOn: aStream [
-	self typeContainer
-		ifNotNil: [ :parent | 
-			parent mooseNameOn: aStream.
-			aStream
-				nextPut: $:;
-				nextPut: $: ].
-	self name ifNotNil: [ aStream nextPutAll: self name ]
 ]
 
 { #category : #'Famix-Implementation' }

@@ -963,8 +963,7 @@ FamixGenerator >> defineHierarchy [
 	tClass --|> #TWithSubInheritances.
 	tClass --|> #TWithSuperInheritances.
 	tClass --|> #TWithAttributes.
-	tClass --|> #TReferenceable.
-	tClass --|> #TNamed.
+	tClass inheritsFromTrait: tNamed without: #(#mooseNameOn:).
 	tClass --|> tType.
 	tClass --|> #TPackageable.
 	tClass --|> #TInvocationsReceiver.
@@ -1000,6 +999,7 @@ FamixGenerator >> defineHierarchy [
 	tSourceEntity --|> #TWithSourceLanguage.
 	
 	tType --|> tOODependencyQueries.
+	tType --|> #TReferenceable.
 ]
 
 { #category : #definition }

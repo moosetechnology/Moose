@@ -209,6 +209,13 @@ FAMIXMethodNavigationChefTest >> testStaticReferencedClassesInto [
 ]
 
 { #category : #references }
+FAMIXMethodNavigationChefTest >> testStaticReferencedNamespaces [
+	| c15m3 |
+	c15m3 := self getMethod: 'm4p8c15Mtd3()' from: self c15FullReferencerOutSide.
+	self assertCollection: (c15m3 queryOutgoingReferences atScope: FamixTNamespace) hasSameElements: {self namespace6InteractedReferee}
+]
+
+{ #category : #references }
 FAMIXMethodNavigationChefTest >> testStaticReferencedPackages [
 	| c15m3 |
 	c15m3 := self getMethod: 'm4p8c15Mtd3()' from: self c15FullReferencerOutSide.

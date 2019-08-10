@@ -15,13 +15,6 @@ FamixTestComposed2Method class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixTestComposed2Method class >> requirements [
-
-	<generated>
-	^ { FamixTestComposed2Class }
-]
-
 { #category : #accessing }
 FamixTestComposed2Method >> belongsTo [
 

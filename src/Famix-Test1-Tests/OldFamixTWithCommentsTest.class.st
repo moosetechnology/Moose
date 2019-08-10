@@ -63,39 +63,29 @@ OldFamixTWithCommentsTest >> testComments [
 
 { #category : #tests }
 OldFamixTWithCommentsTest >> testHasComments [
-
-	| comment comment2 |
-	
+	| comment |
 	comment := FamixTest1Comment new.
-	comment2 := FamixTest1Comment new.
 
 	self deny: c1 hasComments.
 	c1 addComment: comment.
-	self assert: c1 hasComments.
-
+	self assert: c1 hasComments
 ]
 
 { #category : #tests }
 OldFamixTWithCommentsTest >> testPrivateAddComment [
-
 	| comment |
-	
 	comment := FamixTest1Comment new.
 	self deny: c1 hasComments.
 	c1 addComment: comment.
-	self assertCollection: c1 comments hasSameElements: { comment }
-
+	self assertCollection: c1 comments hasSameElements: {comment}
 ]
 
 { #category : #tests }
 OldFamixTWithCommentsTest >> testRemoveComment [
-
 	| comment |
-	
 	comment := FamixTest1Comment new.
 	self deny: c1 hasComments.
 	c1 addComment: comment.
 	c1 removeComment: comment.
-	self assert: c1 comments isEmpty.
-
+	self assert: c1 comments isEmpty
 ]

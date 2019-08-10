@@ -21,21 +21,7 @@ FamixTestComposed1Entity class >> metamodel [
 ]
 
 { #category : #testing }
-FamixTestComposed1Entity >> isAccess [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
 FamixTestComposed1Entity >> isAssociation [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixTestComposed1Entity >> isAttribute [
 
 	<generated>
 	^ false
@@ -49,63 +35,7 @@ FamixTestComposed1Entity >> isClass [
 ]
 
 { #category : #testing }
-FamixTestComposed1Entity >> isFunction [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixTestComposed1Entity >> isImplicitVariable [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixTestComposed1Entity >> isInheritance [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixTestComposed1Entity >> isInvocation [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
 FamixTestComposed1Entity >> isMethod [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixTestComposed1Entity >> isNamespace [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixTestComposed1Entity >> isPackage [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixTestComposed1Entity >> isReference [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixTestComposed1Entity >> isStructuralEntity [
 
 	<generated>
 	^ false

@@ -253,7 +253,6 @@ FamixJavaGenerator >> defineHierarchy [
 
 	type --|> namedEntity.
 	type --|> #TType.
-	type --|> #TReferenceable.
 	type --|> #TWithTypedStructures.
 	type --|> #TWithTypeAliases.
 	type --|> #TParameterizedTypeUser.
