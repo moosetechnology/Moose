@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaType,
 	#superclass : #FamixJavaNamedEntity,
-	#traits : 'FamixTClassHierarchyNavigation + FamixTContainingWithStatementsGlue + FamixTParameterizedTypeUser + FamixTReferenceable + FamixTType + FamixTWithAttributes + FamixTWithMethods + FamixTWithMethodsWithModifiersGlue + FamixTWithSuperInheritances + FamixTWithTypeAliases + FamixTWithTypedStructures + FamixTWithTypes',
-	#classTraits : 'FamixTClassHierarchyNavigation classTrait + FamixTContainingWithStatementsGlue classTrait + FamixTParameterizedTypeUser classTrait + FamixTReferenceable classTrait + FamixTType classTrait + FamixTWithAttributes classTrait + FamixTWithMethods classTrait + FamixTWithMethodsWithModifiersGlue classTrait + FamixTWithSuperInheritances classTrait + FamixTWithTypeAliases classTrait + FamixTWithTypedStructures classTrait + FamixTWithTypes classTrait',
+	#traits : 'FamixTClassHierarchyNavigation + FamixTContainingWithStatementsGlue + FamixTParameterizedTypeUser + FamixTType + FamixTWithAttributes + FamixTWithMethods + FamixTWithMethodsWithModifiersGlue + FamixTWithSuperInheritances + FamixTWithTypeAliases + FamixTWithTypedStructures + FamixTWithTypes',
+	#classTraits : 'FamixTClassHierarchyNavigation classTrait + FamixTContainingWithStatementsGlue classTrait + FamixTParameterizedTypeUser classTrait + FamixTType classTrait + FamixTWithAttributes classTrait + FamixTWithMethods classTrait + FamixTWithMethodsWithModifiersGlue classTrait + FamixTWithSuperInheritances classTrait + FamixTWithTypeAliases classTrait + FamixTWithTypedStructures classTrait + FamixTWithTypes classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 

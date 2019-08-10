@@ -11,8 +11,8 @@ Trait {
 		'#isAbstract => FMProperty',
 		'#typeContainer => FMOne type: #FamixTWithTypes opposite: #types'
 	],
-	#traits : 'TOODependencyQueries',
-	#classTraits : 'TOODependencyQueries classTrait',
+	#traits : 'TOODependencyQueries + FamixTReferenceable',
+	#classTraits : 'TOODependencyQueries classTrait + FamixTReferenceable classTrait',
 	#category : #'Famix-Traits-Type'
 }
 
