@@ -29,18 +29,15 @@ FamixTestComposedSubmetamodel2Generator class >> prefix [
 
 { #category : #definition }
 FamixTestComposedSubmetamodel2Generator >> defineClasses [
-
 	super defineClasses.
 
 	classEntity := builder newClassNamed: #Class.
 	method := builder newClassNamed: #Method.
-	
 	customEntity1 := builder newClassNamed: #CustomEntity1.
 	customEntity2 := builder newClassNamed: #CustomEntity2.
 	customEntity3 := builder newClassNamed: #CustomEntity3.
 	customEntity4 := builder newClassNamed: #CustomEntity4.
-	customEntity5 := builder newClassNamed: #CustomEntity5.
-
+	customEntity5 := builder newClassNamed: #CustomEntity5
 ]
 
 { #category : #definition }
