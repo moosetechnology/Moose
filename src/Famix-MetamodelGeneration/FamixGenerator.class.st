@@ -948,7 +948,10 @@ FamixGenerator >> defineHierarchy [
 	tClass --|> #TWithSubInheritances.
 	tClass --|> #TWithSuperInheritances.
 	tClass --|> #TWithAttributes.
+	tClass inheritsFromTrait: tNamed without: #(#mooseNameOn:).
 	tClass --|> tType.
+	tClass --|> #TPackageable.
+	tClass --|> #TWithComments.
 
 	tMethod --|> #TWithParameters.
 	tMethod --|> #TInvocable.
@@ -964,7 +967,9 @@ FamixGenerator >> defineHierarchy [
 	tStructuralEntity --|> tNamed.
 	tStructuralEntity --|> #TAccessible.
 	tStructuralEntity --|> #TInvocationsReceiver.
-	tStructuralEntity --|> #TTypedStructure
+	tStructuralEntity --|> #TTypedStructure.
+
+	tType --|> #TReferenceable.
 ]
 
 { #category : #definition }

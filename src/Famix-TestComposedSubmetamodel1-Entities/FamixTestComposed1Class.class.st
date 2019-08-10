@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixTestComposed1Class,
 	#superclass : #FamixTestComposed1NamedEntity,
-	#traits : 'FamixTClass + FamixTWithMethods',
-	#classTraits : 'FamixTClass classTrait + FamixTWithMethods classTrait',
+	#traits : 'FamixTClass',
+	#classTraits : 'FamixTClass classTrait',
 	#category : #'Famix-TestComposedSubmetamodel1-Entities-Entities'
 }
 

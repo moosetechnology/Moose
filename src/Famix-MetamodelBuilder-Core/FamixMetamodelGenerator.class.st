@@ -41,6 +41,15 @@ Class {
 	#category : #'Famix-MetamodelBuilder-Core-Basic'
 }
 
+{ #category : #generation }
+FamixMetamodelGenerator class >> addSubmetamodelsToGenerateFrom: aCollection to: metamodels [
+	aCollection
+		select: #isComposed
+		thenDo: [ :mm | 
+			mm submetamodels do: [ :smm | (metamodels includes: smm) ifFalse: [ metamodels add: smm before: mm ] ].
+			self addSubmetamodelsToGenerateFrom: mm submetamodels to: metamodels ]
+]
+
 { #category : #accessing }
 FamixMetamodelGenerator class >> allSubmetamodels [
 
@@ -176,7 +185,7 @@ FamixMetamodelGenerator class >> metamodelsToGenerate [
 
 	| metamodels |
 	metamodels := self individualGenerators.
-	metamodels select: #isComposed thenDo: [ :mm | mm submetamodels do: [ :smm | (metamodels includes: smm) ifFalse: [ metamodels add: smm before: mm ] ] ].
+	self addSubmetamodelsToGenerateFrom: metamodels to: metamodels.
 	^ metamodels
 ]
 

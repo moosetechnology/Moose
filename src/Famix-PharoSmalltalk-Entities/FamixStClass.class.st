@@ -1,15 +1,15 @@
 Class {
 	#name : #FamixStClass,
-	#superclass : #FamixStType,
-	#traits : 'FamixTClass + FamixTClassHierarchyNavigation + FamixTWithExceptions',
-	#classTraits : 'FamixTClass classTrait + FamixTClassHierarchyNavigation classTrait + FamixTWithExceptions classTrait',
+	#superclass : #FamixStContainerEntity,
+	#traits : 'FamixTClass + FamixTClassHierarchyNavigation + FamixTWithExceptions + FamixTWithTypedStructures',
+	#classTraits : 'FamixTClass classTrait + FamixTClassHierarchyNavigation classTrait + FamixTWithExceptions classTrait + FamixTWithTypedStructures classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 
 { #category : #meta }
 FamixStClass class >> annotation [
 
-	<MSEClass: #Class super: #FamixStType>
+	<MSEClass: #Class super: #FamixStContainerEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
@@ -23,6 +23,16 @@ FamixStClass >> accessedAttributes [
 	Used to support the calculation of LCOM"
 	
 	^ self methodsWithoutSutbsAndConstructors asOrderedCollection flatCollect: [ :method | method accessedAttributes ]
+]
+
+{ #category : #accessing }
+FamixStClass >> belongsTo [
+	^ self typeContainer
+]
+
+{ #category : #accessing }
+FamixStClass >> belongsTo: anObject [
+	self typeContainer: anObject
 ]
 
 { #category : #accessing }
@@ -116,17 +126,6 @@ FamixStClass >> methodsWithoutSutbsAndConstructors [
 	"Removing stub and contructor methods. Used to support the calculation of LCOM."
 
 	^ (self methods select: [ :each | each isStub not and: [ each isConstructor not ] ]) asSet
-]
-
-{ #category : #'Famix-Implementation' }
-FamixStClass >> mooseNameOn: aStream [
-	self typeContainer
-		ifNotNil: [ :parent | 
-			parent mooseNameOn: aStream.
-			aStream
-				nextPut: $:;
-				nextPut: $: ].
-	self name ifNotNil: [ aStream nextPutAll: self name ]
 ]
 
 { #category : #'Famix-Implementation' }
