@@ -114,7 +114,6 @@ TEntityMetaLevelDependencyTest >> testAllOutgoingAssociationTypes [
 
 { #category : #tests }
 TEntityMetaLevelDependencyTest >> testAllParentTypes [
-	
 	self assertCollection: c1 allParentTypes hasSameElements: { FamixTPackage. FamixTWithTypes }.
 	self assertCollection: m1 allParentTypes hasSameElements: { FamixTest1Class. FamixTWithMethods. FamixTPackage. FamixTWithTypes }.
 	self assertCollection: anchor1 allParentTypes hasSameElements: { }.
@@ -226,7 +225,6 @@ TEntityMetaLevelDependencyTest >> testOutgoingAssociationTypes [
 
 { #category : #tests }
 TEntityMetaLevelDependencyTest >> testParentTypes [
-
 	self assertCollection: m1 parentTypes hasSameElements: { FamixTest1Class. FamixTWithMethods }.
  	self assertCollection: c1 parentTypes hasSameElements: { FamixTPackage. FamixTWithTypes}.
  	self assertCollection: anchor1 parentTypes hasSameElements: { }.

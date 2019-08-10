@@ -991,7 +991,7 @@ FamixGenerator >> defineHierarchy [
 	tAttribute --|> #TWithModifiers.
 	tAttribute --|> #TStructuralEntity.
 	
-	tStructuralEntity --|> #TNamed.
+	tStructuralEntity --|> tNamed.
 	tStructuralEntity --|> #TAccessible.
 	tStructuralEntity --|> #TInvocationsReceiver.
 	tStructuralEntity --|> #TTypedStructure.
