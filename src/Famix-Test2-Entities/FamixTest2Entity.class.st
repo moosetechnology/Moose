@@ -40,3 +40,10 @@ FamixTest2Entity >> isInheritance [
 	<generated>
 	^ false
 ]
+
+{ #category : #testing }
+FamixTest2Entity >> isType [
+
+	<generated>
+	^ false
+]

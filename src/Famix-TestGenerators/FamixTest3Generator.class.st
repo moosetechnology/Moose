@@ -61,9 +61,5 @@ FamixTest3Generator >> defineHierarchy [
 	reference --|> #TReference.
 	
 	invocation --|> association.
-	invocation --|> #TInvocation.
-
-	
-
-
+	invocation --|> #TInvocation
 ]

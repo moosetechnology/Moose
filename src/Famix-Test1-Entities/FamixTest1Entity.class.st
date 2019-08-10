@@ -54,3 +54,10 @@ FamixTest1Entity >> isStructuralEntity [
 	<generated>
 	^ false
 ]
+
+{ #category : #testing }
+FamixTest1Entity >> isType [
+
+	<generated>
+	^ false
+]
