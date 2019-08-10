@@ -26,6 +26,16 @@ FamixStClass >> accessedAttributes [
 ]
 
 { #category : #accessing }
+FamixStClass >> belongsTo [
+	^ self typeContainer
+]
+
+{ #category : #accessing }
+FamixStClass >> belongsTo: anObject [
+	self typeContainer: anObject
+]
+
+{ #category : #accessing }
 FamixStClass >> classSide [
 	^ self isClassSide
 		ifFalse: [ self mooseModel allClasses entityNamed: (self mooseName , '_class') asSymbol ]
