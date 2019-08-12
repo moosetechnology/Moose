@@ -10,8 +10,8 @@ Trait {
 	#instVars : [
 		'#typeContainer => FMOne type: #FamixTWithTypes opposite: #types'
 	],
-	#traits : 'FamixTReferenceable',
-	#classTraits : 'FamixTReferenceable classTrait',
+	#traits : 'FamixTReferenceable + FamixTWithTypedStructures',
+	#classTraits : 'FamixTReferenceable classTrait + FamixTWithTypedStructures classTrait',
 	#category : #'Famix-Traits-Type'
 }
 

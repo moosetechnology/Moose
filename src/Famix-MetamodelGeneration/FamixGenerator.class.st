@@ -970,6 +970,7 @@ FamixGenerator >> defineHierarchy [
 	tStructuralEntity --|> #TTypedStructure.
 
 	tType --|> #TReferenceable.
+	tType --|> #TWithTypedStructures
 ]
 
 { #category : #definition }
