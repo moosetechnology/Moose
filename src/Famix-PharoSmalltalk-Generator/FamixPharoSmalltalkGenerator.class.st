@@ -109,7 +109,6 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	class --|> #TWithExceptions.
 	class --|> #TClass.
 	class --|> #TClassHierarchyNavigation.
-	class --|> #TWithTypedStructures.
 	
 	containerEntity --|> namedEntity.
 	containerEntity --|> #TWithTypes.

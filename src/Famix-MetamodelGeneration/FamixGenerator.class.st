@@ -980,7 +980,8 @@ FamixGenerator >> defineHierarchy [
 	tStructuralEntity --|> #TInvocationsReceiver.
 	tStructuralEntity --|> #TTypedStructure.
 
-	tType --|> #TReferenceable
+	tType --|> #TReferenceable.
+	tType --|> #TWithTypedStructures
 ]
 
 { #category : #definition }
