@@ -271,8 +271,7 @@ FamixJavaGenerator >> defineHierarchy [
 { #category : #definition }
 FamixJavaGenerator >> defineTraits [
 	super defineTraits.
-	tStructuralEntity := builder newTraitNamed: #TStructuralEntity.
-	
+	tStructuralEntity := builder newTraitNamed: #TStructuralEntity
 ]
 
 { #category : #definition }

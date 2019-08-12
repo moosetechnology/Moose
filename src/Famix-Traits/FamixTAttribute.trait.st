@@ -7,8 +7,8 @@ Trait {
 	#instVars : [
 		'#parentType => FMOne type: #FamixTWithAttributes opposite: #attributes'
 	],
-	#traits : 'FamixTWithModifiers + FamixTStructuralEntity',
-	#classTraits : 'FamixTWithModifiers classTrait + FamixTStructuralEntity classTrait',
+	#traits : 'FamixTStructuralEntity',
+	#classTraits : 'FamixTStructuralEntity classTrait',
 	#category : #'Famix-Traits-Attribute'
 }
 

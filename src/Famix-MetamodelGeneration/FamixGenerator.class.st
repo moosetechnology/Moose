@@ -957,6 +957,9 @@ FamixGenerator >> defineGlueingTraits [
 { #category : #definition }
 FamixGenerator >> defineHierarchy [ 
 	super defineHierarchy.
+
+	tAttribute --|> #TStructuralEntity.
+	
 	tCohesionCouplingMetrics --|> tPackage.
 	
 	tClass --|> #TWithMethods.
@@ -986,9 +989,6 @@ FamixGenerator >> defineHierarchy [
 	tMethod --|> #TWithModifiers.
 	tMethod --|> #TNamed.
 	tMethod --|> #TWithComments.
-	
-	tAttribute --|> #TWithModifiers.
-	tAttribute --|> #TStructuralEntity.
 	
 	tStructuralEntity --|> tNamed.
 	tStructuralEntity --|> #TAccessible.
