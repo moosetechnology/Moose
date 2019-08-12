@@ -1000,6 +1000,7 @@ FamixGenerator >> defineHierarchy [
 	
 	tType --|> tOODependencyQueries.
 	tType --|> #TReferenceable.
+	tType --|> #TWithTypedStructures
 ]
 
 { #category : #definition }
