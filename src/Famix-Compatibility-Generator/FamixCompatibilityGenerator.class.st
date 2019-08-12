@@ -343,6 +343,7 @@ FamixCompatibilityGenerator >> defineHierarchy [
 	scopingEntity --|> #TScopingEntity.
 
 	structuralEntity --|> leafEntity.
+	structuralEntity --|> #TStructuralEntity.
 	structuralEntity --|> #TAccessible.
 	structuralEntity --|> #TWithDereferencedInvocations.
 	structuralEntity --|> #TTypedStructure.

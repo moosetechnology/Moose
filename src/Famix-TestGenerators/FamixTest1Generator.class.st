@@ -66,6 +66,5 @@ FamixTest1Generator >> defineHierarchy [
 	classEntity --|> #TClass.
 
 	attribute --|> namedEntity.
-	attribute --|> #TStructuralEntity.
 	attribute --|> #TAttribute
 ]

@@ -1,8 +1,8 @@
 Class {
 	#name : #FAMIXStructuralEntity,
 	#superclass : #FAMIXLeafEntity,
-	#traits : 'FamixTAccessible + FamixTTypedStructure + FamixTWithDereferencedInvocations',
-	#classTraits : 'FamixTAccessible classTrait + FamixTTypedStructure classTrait + FamixTWithDereferencedInvocations classTrait',
+	#traits : 'FamixTAccessible + FamixTStructuralEntity + FamixTTypedStructure + FamixTWithDereferencedInvocations',
+	#classTraits : 'FamixTAccessible classTrait + FamixTStructuralEntity classTrait + FamixTTypedStructure classTrait + FamixTWithDereferencedInvocations classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 
