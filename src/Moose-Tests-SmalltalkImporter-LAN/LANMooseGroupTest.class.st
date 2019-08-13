@@ -202,5 +202,5 @@ LANMooseGroupTest >> testSelectTopTwentyForMetric [
 
 { #category : #tests }
 LANMooseGroupTest >> testSum [
-	self assert: (self model allModelClasses sumNumbers: #numberOfAttributes) equals: 96
+	self assert: (self model allModelClasses sumNumbers: #numberOfAttributes) equals: 16
 ]
