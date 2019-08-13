@@ -32,11 +32,6 @@ FamixJavaImplicitVariable >> belongsTo: anObject [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaImplicitVariable >> isImplicitVariable [
-	^true
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaImplicitVariable >> mooseNameOn: stream [ 
 	| parent |
 	parent := self parentBehaviouralEntity.

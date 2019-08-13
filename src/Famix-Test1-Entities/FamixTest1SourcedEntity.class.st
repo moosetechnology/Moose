@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixTest1SourcedEntity,
 	#superclass : #FamixTest1Entity,
-	#traits : 'FamixTWithComments + FamixTWithFiles + FamixTWithSourceAnchor + FamixTWithSourceLanguage',
-	#classTraits : 'FamixTWithComments classTrait + FamixTWithFiles classTrait + FamixTWithSourceAnchor classTrait + FamixTWithSourceLanguage classTrait',
+	#traits : 'FamixTSourceEntity + FamixTWithComments + FamixTWithFiles',
+	#classTraits : 'FamixTSourceEntity classTrait + FamixTWithComments classTrait + FamixTWithFiles classTrait',
 	#category : #'Famix-Test1-Entities-Entities'
 }
 

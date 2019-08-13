@@ -52,6 +52,7 @@ Class {
 		'tReferenceable',
 		'tScopingEntity',
 		'tSourceAnchor',
+		'tSourceEntity',
 		'tSourceLanguage',
 		'tStructuralEntity',
 		'tSub',
@@ -129,7 +130,6 @@ Class {
 		'tCohesionCouplingMetrics',
 		'tWithTraits',
 		'tWithFileIncludes',
-		'tSourceEntity',
 		'tDependencyQueries',
 		'tEntityMetaLevelDependency',
 		'tOODependencyQueries'
@@ -569,7 +569,6 @@ FamixGenerator >> commentForTSourceAnchor [
 
 { #category : #comments }
 FamixGenerator >> commentForTSourceEntity [
-
 	^ 'FAMIXSourcedEntity models any fact in a program source and it is the superclass (root class) of all source code entities and their relationships. It is a FAMIXEntity and it can hold comments, a source anchor and a source language.'
 ]
 
@@ -1006,7 +1005,7 @@ FamixGenerator >> defineHierarchy [
 	
 	tSourceEntity --|> #TWithSourceAnchor.
 	tSourceEntity --|> #TWithSourceLanguage.
-	
+
 	tType --|> tOODependencyQueries.
 	tType --|> #TReferenceable.
 	tType --|> #TWithTypedStructures
@@ -1567,6 +1566,9 @@ FamixGenerator >> defineTraits [
 
 	tSourceAnchor := builder newTraitNamed: #TSourceAnchor.
 	tSourceAnchor comment: self commentForTSourceAnchor.
+	
+	tSourceEntity := builder newTraitNamed: #TSourceEntity.
+	tSourceEntity comment: self commentForTSourceEntity.
 
 	tSourceEntity := builder newTraitNamed: #TSourceEntity.
 	tSourceEntity comment: self commentForTSourceEntity.

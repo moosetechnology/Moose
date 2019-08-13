@@ -1,8 +1,8 @@
 Class {
 	#name : #FAMIXSourcedEntity,
 	#superclass : #FAMIXEntity,
-	#traits : 'FamixTWithComments + FamixTWithFiles + FamixTWithSourceAnchor + FamixTWithSourceLanguage',
-	#classTraits : 'FamixTWithComments classTrait + FamixTWithFiles classTrait + FamixTWithSourceAnchor classTrait + FamixTWithSourceLanguage classTrait',
+	#traits : 'FamixTSourceEntity + FamixTWithComments + FamixTWithFiles',
+	#classTraits : 'FamixTSourceEntity classTrait + FamixTWithComments classTrait + FamixTWithFiles classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 
@@ -80,11 +80,6 @@ FAMIXSourcedEntity >> fileAnchorPath: aString startPos: anInteger endPos: anothe
 				startPos: anInteger
 				endPos: anotherInteger
 				model: self mooseModel)
-]
-
-{ #category : #'Famix-Implementation' }
-FAMIXSourcedEntity >> isImplicitVariable [
-	^false
 ]
 
 { #category : #'Famix-Extensions' }

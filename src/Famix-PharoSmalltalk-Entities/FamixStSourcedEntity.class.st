@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixStSourcedEntity,
 	#superclass : #FamixStEntity,
-	#traits : 'FamixTWithComments + FamixTWithSourceAnchor + FamixTWithSourceLanguage',
-	#classTraits : 'FamixTWithComments classTrait + FamixTWithSourceAnchor classTrait + FamixTWithSourceLanguage classTrait',
+	#traits : 'FamixTSourceEntity + FamixTWithComments',
+	#classTraits : 'FamixTSourceEntity classTrait + FamixTWithComments classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 

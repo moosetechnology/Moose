@@ -32,11 +32,6 @@ FamixStImplicitVariable >> belongsTo: anObject [
 ]
 
 { #category : #testing }
-FamixStImplicitVariable >> isImplicitVariable [
-	^true
-]
-
-{ #category : #testing }
 FamixStImplicitVariable >> isSelf [
 	^ self name = #self
 ]

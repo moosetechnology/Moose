@@ -39,11 +39,6 @@ FAMIXImplicitVariable >> belongsTo: anObject [
 ]
 
 { #category : #'Famix-Implementation' }
-FAMIXImplicitVariable >> isImplicitVariable [
-	^true
-]
-
-{ #category : #'Famix-Implementation' }
 FAMIXImplicitVariable >> isSelf [
 	^ self name = #self
 ]
