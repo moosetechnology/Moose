@@ -68,6 +68,13 @@ FAMIXEntity >> isFunction [
 ]
 
 { #category : #testing }
+FAMIXEntity >> isImplicitVariable [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
 FAMIXEntity >> isInheritance [
 
 	<generated>

@@ -49,6 +49,13 @@ FamixStEntity >> isClass [
 ]
 
 { #category : #testing }
+FamixStEntity >> isImplicitVariable [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
 FamixStEntity >> isInheritance [
 
 	<generated>

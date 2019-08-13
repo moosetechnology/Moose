@@ -52,6 +52,7 @@ Class {
 		'tReferenceable',
 		'tScopingEntity',
 		'tSourceAnchor',
+		'tSourceEntity',
 		'tSourceLanguage',
 		'tStructuralEntity',
 		'tSub',
@@ -559,6 +560,11 @@ FamixGenerator >> commentForTSourceAnchor [
 ]
 
 { #category : #comments }
+FamixGenerator >> commentForTSourceEntity [
+	^ 'FAMIXSourcedEntity models any fact in a program source and it is the superclass (root class) of all source code entities and their relationships. It is a FAMIXEntity and it can hold comments, a source anchor and a source language.'
+]
+
+{ #category : #comments }
 FamixGenerator >> commentForTSourceLanguage [
 
 	^ 'FAMIXSourceLanguage represents the programming language in which an entity is written. It is used for dispatching entity actions for specific languages. For example, formatting a source text will be performed according to the language. A project may have multiple languages. 
@@ -979,6 +985,9 @@ FamixGenerator >> defineHierarchy [
 	tStructuralEntity --|> #TAccessible.
 	tStructuralEntity --|> #TInvocationsReceiver.
 	tStructuralEntity --|> #TTypedStructure.
+	
+	tSourceEntity --|> #TWithSourceAnchor.
+	tSourceEntity --|> #TWithSourceLanguage.
 
 	tType --|> #TReferenceable.
 	tType --|> #TWithTypedStructures
@@ -1465,6 +1474,7 @@ FamixGenerator >> defineTraits [
 
 	tImplicitVariable := builder newTraitNamed: #TImplicitVariable.
 	tImplicitVariable comment: self commentForTImplicitVariable.
+	tImplicitVariable withTesting.
 
 	tInvocable := builder newTraitNamed: #TInvocable.
 	tInvocable comment: self commentForTInvocable.
@@ -1530,6 +1540,9 @@ FamixGenerator >> defineTraits [
 
 	tSourceAnchor := builder newTraitNamed: #TSourceAnchor.
 	tSourceAnchor comment: self commentForTSourceAnchor.
+	
+	tSourceEntity := builder newTraitNamed: #TSourceEntity.
+	tSourceEntity comment: self commentForTSourceEntity.
 
 	tSourceLanguage := builder newTraitNamed: #TSourceLanguage.
 	tSourceLanguage comment: self commentForTSourceLanguage.
