@@ -21,7 +21,6 @@ Class {
 		'parameter',
 		'reference',
 		'scopingEntity',
-		'smalltalkSourceLanguage',
 		'unknownVariable'
 	],
 	#category : #'Famix-PharoSmalltalk-Generator'
@@ -68,7 +67,6 @@ FamixPharoSmalltalkGenerator >> defineClasses [
 	parameter := builder newClassNamed: #Parameter.
 	reference := builder newClassNamed: #Reference.
 	scopingEntity := builder newClassNamed: #ScopingEntity.
-	smalltalkSourceLanguage := builder newClassNamed: #SmalltalkSourceLanguage.
 	unknownVariable := builder newClassNamed: #UnknownVariable
 ]
 
@@ -155,8 +153,6 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 
 	reference --|> association.
 	reference --|> #TReference.
-
-	smalltalkSourceLanguage --|> sourceLanguage.
 
 	scopingEntity --|> containerEntity.
 	scopingEntity --|> #TGlobalVariableScope.
