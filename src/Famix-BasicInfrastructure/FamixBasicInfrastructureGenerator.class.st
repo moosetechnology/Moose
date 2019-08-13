@@ -63,9 +63,8 @@ FamixBasicInfrastructureGenerator >> defineHierarchy [
 	sourceLanguage --|> #TSourceLanguage.
 	
 	sourcedEntity --|> entity.
-	sourcedEntity --|> #TWithSourceAnchor.
+	sourcedEntity --|> #TSourceEntity.
 	sourcedEntity --|> #TWithComments.
-	sourcedEntity --|> #TWithSourceLanguage.
 	
 	association --|> sourcedEntity.
 	association --|> #TAssociation.
