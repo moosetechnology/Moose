@@ -12,15 +12,12 @@ LANMooseGroupTest >> model [
 
 { #category : #tests }
 LANMooseGroupTest >> testAdd [
-	self
-		assert: (self model allClasses copy , self model allMethods copy) size
-		equals: self model allClasses size + self model allMethods size
+	self assert: (self model allClasses copy , self model allMethods copy) size equals: self model allClasses size + self model allMethods size
 ]
 
 { #category : #tests }
 LANMooseGroupTest >> testAllLikeSelectors [
 	self assert: self model allClasses size equals: self model allClasses allClasses size.
-	self model allClasses allMethods size = 57.
 	self assert: (self model allClasses , self model allMethods) allClasses size equals: self model allClasses size.
 	self assert: (self model allClasses , self model allMethods) allMethods size equals: self model allMethods size.
 	self assert: ((self model allClasses , self model allMethods) allClasses isKindOf: FAMIXTypeGroup)
@@ -55,24 +52,16 @@ LANMooseGroupTest >> testCollectGroupType [
 
 { #category : #tests }
 LANMooseGroupTest >> testEntityNamed [
-	
-	self model allClasses
-		do:
-			[:each | self assert: (self model allClasses entityNamed: each mooseName) notNil].
-	self model allMethods
-		do:
-			[:each | self assert: (self model allMethods entityNamed: each mooseName) notNil]
+	self model allClasses do: [ :each | self assert: (self model allClasses entityNamed: each mooseName) isNotNil ].
+	self model allMethods do: [ :each | self assert: (self model allMethods entityNamed: each mooseName) isNotNil ]
 ]
 
 { #category : #tests }
 LANMooseGroupTest >> testEntityUniquelyNamed [
-	
 	| classes |
 	classes := self model allClasses.
-	self
-		assert: (classes entityNamed: classes first mooseName) == classes first.
-	self assert: (classes entityNamed: classes last mooseName) == classes last.
-
+	self assert: (classes entityNamed: classes first mooseName) identicalTo: classes first.
+	self assert: (classes entityNamed: classes last mooseName) identicalTo: classes last
 ]
 
 { #category : #tests }
@@ -98,7 +87,7 @@ LANMooseGroupTest >> testGroupInsideGroup [
 	methods := self model allMethods.
 	group2 := MooseGroup withAll: methods.
 	group3 := MooseGroup withAll: (OrderedCollection with: group1 with: group2).
-	self assert: (group3 select: [ :each | each mooseID = group2 mooseID ]) isEmpty not.
+	self assert: (group3 select: [ :each | each mooseID = group2 mooseID ]) isNotEmpty.
 	self assert: (self model allClasses isMemberOf: FAMIXClassGroup).
 	self assert: self model allClasses size equals: numberOfClasses
 ]
@@ -157,9 +146,7 @@ LANMooseGroupTest >> testIncludesAllOf [
 
 { #category : #tests }
 LANMooseGroupTest >> testMax [
-	| classes |
-	classes := self model allClasses.
-	self assert: (classes max: #numberOfMethods) equals: 32 "was 15 before stateful traits conversion"
+	self assert: (self model allClasses detectMax: #numberOfMethods) equals: (self model entityNamed: #Smalltalk::LANInterface_class)
 ]
 
 { #category : #tests }
@@ -180,7 +167,7 @@ LANMooseGroupTest >> testPrintOn [
 LANMooseGroupTest >> testSelectEightyCoverForMetric [
 	| top |
 	top := self model allMethods selectEightyCoverForMetric: #numberOfLinesOfCode.
-	self assert: (top notEmpty)
+	self assert: top isNotEmpty
 ]
 
 { #category : #tests }
@@ -201,7 +188,7 @@ LANMooseGroupTest >> testSelectFirst [
 { #category : #tests }
 LANMooseGroupTest >> testSelectGroupType [
 	| selected |
-	selected := self model allMethods select: [ :each | each cyclomaticComplexity  = 1 ].
+	selected := self model allMethods select: [ :each | each cyclomaticComplexity = 1 ].
 	self assert: (selected isKindOf: MooseGroup)
 ]
 
@@ -209,15 +196,11 @@ LANMooseGroupTest >> testSelectGroupType [
 LANMooseGroupTest >> testSelectTopTwentyForMetric [
 	| top remaining |
 	top := self model allMethods selectTopTwentyForMetric: #numberOfLinesOfCode.
-	remaining := self model allMethods entities copyWithoutAll: top.  
-	self assert: (remaining allSatisfy: [ :m | top noneSatisfy: [ :m2 | m2 numberOfLinesOfCode <= m numberOfLinesOfCode] ]) 
-	
-
+	remaining := self model allMethods entities copyWithoutAll: top.
+	self assert: (remaining allSatisfy: [ :m | top noneSatisfy: [ :m2 | m2 numberOfLinesOfCode <= m numberOfLinesOfCode ] ])
 ]
 
 { #category : #tests }
 LANMooseGroupTest >> testSum [
-	| classes |
-	classes := self model allClasses.
-	self assert: (classes sumNumbers: #numberOfMethods) equals: 112 "was 54 before traits classes inclusion"
+	self assert: (self model allModelClasses sumNumbers: #numberOfAttributes) equals: 16
 ]

@@ -955,13 +955,13 @@ FamixGenerator >> defineGlueingTraits [
 ]
 
 { #category : #definition }
-FamixGenerator >> defineHierarchy [ 
+FamixGenerator >> defineHierarchy [
 	super defineHierarchy.
 
-	tAttribute --|> #TStructuralEntity.
-	
+	tAttribute --|> tStructuralEntity.
+
 	tCohesionCouplingMetrics --|> tPackage.
-	
+
 	tClass --|> #TWithMethods.
 	tClass --|> #TWithSubInheritances.
 	tClass --|> #TWithSuperInheritances.
@@ -971,6 +971,13 @@ FamixGenerator >> defineHierarchy [
 	tClass --|> #TPackageable.
 	tClass --|> #TInvocationsReceiver.
 	tClass --|> #TWithComments.
+	
+	tGlobalVariable --|> tStructuralEntity.
+	
+	tImplicitVariable --|> tStructuralEntity.
+	
+	tLocalVariable --|> tStructuralEntity.
+
 	
 	tNamed --|> tDependencyQueries.
 	tNamed --|> tEntityMetaLevelDependency.	
@@ -990,6 +997,8 @@ FamixGenerator >> defineHierarchy [
 	tMethod --|> #TNamed.
 	tMethod --|> #TWithComments.
 	
+	tParameter --|> tStructuralEntity.
+
 	tStructuralEntity --|> tNamed.
 	tStructuralEntity --|> #TAccessible.
 	tStructuralEntity --|> #TInvocationsReceiver.
