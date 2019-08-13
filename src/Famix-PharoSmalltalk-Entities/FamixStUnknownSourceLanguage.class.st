@@ -16,6 +16,11 @@ FamixStUnknownSourceLanguage class >> annotation [
 ]
 
 { #category : #testing }
+FamixStUnknownSourceLanguage >> isSmalltalk [
+	^ false
+]
+
+{ #category : #testing }
 FamixStUnknownSourceLanguage >> isUnknown [
-	^true
+	^ true
 ]

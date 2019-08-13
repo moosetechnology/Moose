@@ -17,7 +17,7 @@ FamixStSourceLanguage class >> annotation [
 
 { #category : #testing }
 FamixStSourceLanguage >> isSmalltalk [
-	^ false
+	^ true
 ]
 
 { #category : #testing }
