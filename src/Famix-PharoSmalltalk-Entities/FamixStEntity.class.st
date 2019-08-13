@@ -91,6 +91,11 @@ FamixStEntity >> isReference [
 ]
 
 { #category : #testing }
+FamixStEntity >> isSharedVariable [
+	^ false
+]
+
+{ #category : #testing }
 FamixStEntity >> isStructuralEntity [
 
 	<generated>

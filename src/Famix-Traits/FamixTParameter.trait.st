@@ -6,6 +6,8 @@ Trait {
 	#instVars : [
 		'#parentBehaviouralEntity => FMOne type: #FamixTWithParameters opposite: #parameters'
 	],
+	#traits : 'FamixTStructuralEntity',
+	#classTraits : 'FamixTStructuralEntity classTrait',
 	#category : #'Famix-Traits-Parameter'
 }
 

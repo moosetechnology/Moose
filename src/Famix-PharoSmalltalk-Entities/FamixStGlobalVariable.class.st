@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixStGlobalVariable,
 	#superclass : #FamixStNamedEntity,
-	#traits : 'FamixStTStructuralEntity + FamixTGlobalVariable',
-	#classTraits : 'FamixStTStructuralEntity classTrait + FamixTGlobalVariable classTrait',
+	#traits : 'FamixTGlobalVariable',
+	#classTraits : 'FamixTGlobalVariable classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 

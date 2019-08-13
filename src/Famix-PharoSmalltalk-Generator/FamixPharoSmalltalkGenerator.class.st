@@ -22,8 +22,7 @@ Class {
 		'reference',
 		'scopingEntity',
 		'smalltalkSourceLanguage',
-		'unknownVariable',
-		'tStructuralEntity'
+		'unknownVariable'
 	],
 	#category : #'Famix-PharoSmalltalk-Generator'
 }
@@ -103,7 +102,6 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	annotationTypeAttribute --|> #TTypedAnnotationInstanceAttribute.
 
 	attribute --|> namedEntity.
-	attribute --|> tStructuralEntity.
 	attribute --|> #TAttribute.
 	attribute --|> #TWithClassScope.
 
@@ -119,11 +117,9 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	containerEntity --|> #TOODependencyQueries.
 
 	globalVariable --|> namedEntity.
-	globalVariable --|> tStructuralEntity.
 	globalVariable --|> #TGlobalVariable.
 
 	implicitVariable --|> namedEntity.
-	implicitVariable --|> tStructuralEntity.
 	implicitVariable --|> #TImplicitVariable.
 
 	inheritance --|> association.
@@ -135,7 +131,6 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	invocation --|> #TWithSignature.
 
 	localVariable --|> namedEntity.
-	localVariable --|> tStructuralEntity.
 	localVariable --|> #TLocalVariable.
 
 	method --|> containerEntity.
@@ -156,7 +151,6 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	package --|> #TCohesionCouplingMetrics.
 
 	parameter --|> namedEntity.
-	parameter --|> tStructuralEntity.
 	parameter --|> #TParameter.
 
 	reference --|> association.
@@ -168,10 +162,8 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	scopingEntity --|> #TGlobalVariableScope.
 	scopingEntity --|> #TScopingEntity.
 
-	tStructuralEntity --|> #TStructuralEntity.
-
 	unknownVariable --|> namedEntity.
-	unknownVariable --|> tStructuralEntity.
+	unknownVariable --|> #TStructuralEntity.
 
 	sourceAnchor --|> #TWithImmediateSource.
 	
@@ -185,12 +177,6 @@ FamixPharoSmalltalkGenerator >> defineProperties [
 	super defineProperties.
 	((method property: #protocol type: #String)
 		comment: 'Protocol of the method').
-]
-
-{ #category : #initialization }
-FamixPharoSmalltalkGenerator >> defineTraits [
-	super defineTraits.
-	tStructuralEntity := builder newTraitNamed: #TStructuralEntity
 ]
 
 { #category : #initialization }
