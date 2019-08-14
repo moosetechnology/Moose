@@ -955,6 +955,12 @@ FamixGenerator >> defineHierarchy [
 	super defineHierarchy.
 
 	tAttribute --|> tStructuralEntity.
+	
+	tAnnotationInstance --|> #TEntityMetaLevelDependency.
+	tAnnotationInstance --|> #TDependencyQueries.
+
+	tAnnotationInstance --|> #TEntityMetaLevelDependency.
+	tAnnotationInstance --|> #TDependencyQueries.
 
 	tCohesionCouplingMetrics --|> tPackage.
 
