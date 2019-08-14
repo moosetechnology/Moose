@@ -58,9 +58,7 @@ FamixTest4Book >> person: anObject [
 
 { #category : #navigation }
 FamixTest4Book >> personGroup [
-
 	<generated>
 	<navigation: 'Person'>
-	^ MooseGroup
-			with: (self person)
+	^ MooseGroup with: self person
 ]

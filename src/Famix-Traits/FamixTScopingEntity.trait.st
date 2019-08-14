@@ -93,11 +93,9 @@ FamixTScopingEntity >> parentScope: anObject [
 
 { #category : #navigation }
 FamixTScopingEntity >> parentScopeGroup [
-
 	<generated>
 	<navigation: 'ParentScope'>
-	^ MooseGroup
-			with: (self parentScope)
+	^ MooseGroup with: self parentScope
 ]
 
 { #category : #accessing }
