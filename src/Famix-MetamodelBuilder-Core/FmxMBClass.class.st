@@ -198,7 +198,10 @@ FmxMBClass >> generate [
 	self generateRequirementsFor: aClass.
 
 	self generateMethodsMadeByTraitsFor: aClass.
-	self generateMethodsToRemoveFromTraitCompositionFor: aClass
+	self generateMethodsToRemoveFromTraitCompositionFor: aClass.
+	
+	self generateNavigationGroupsFor: aClass.
+	self generateAddToCollectionFor: aClass
 ]
 
 { #category : #generating }

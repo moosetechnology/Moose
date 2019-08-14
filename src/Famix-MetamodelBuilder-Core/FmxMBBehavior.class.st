@@ -147,19 +147,18 @@ FmxMBBehavior >> generateAccessors [
 ]
 
 { #category : #generating }
-FmxMBBehavior >> generateAddToCollection [
-	| sideName allNavigationGroups |
-	allNavigationGroups := self allNavigationGroups.
-	allNavigationGroups
+FmxMBBehavior >> generateAddToCollectionFor: aClass [
+	| sideName |
+	self allNavigationGroups
 		do: [ :aGroup | 
 			sideName := aGroup entity name.
 			aGroup entity isMany
-				ifTrue: [ self realClass instanceSide
+				ifTrue: [ self builder environment
 						compile:
 							('add{1}: anObject
-			
 	<generated>
 	^ self {2} add: anObject' format: {sideName capitalized . sideName})
+						in: aClass instanceSide
 						classified: #adding ] ]
 ]
 
@@ -196,40 +195,25 @@ FmxMBBehavior >> generateMethodsToRemoveFromTraitCompositionFor: aBehavioral [
 ]
 
 { #category : #generating }
-FmxMBBehavior >> generateNavigationGroups [
+FmxMBBehavior >> generateNavigationGroupsFor: aClass [
+	self allNavigationGroups
+		do: [ :aNavigationGroup | 
+			| sideName |
+			sideName := aNavigationGroup entity name.
 
-	| allNavigationGroups |
-
-	allNavigationGroups := self allNavigationGroups.
-
-	allNavigationGroups do: [ :aGroup | 
-		| sideName |
-		sideName := aGroup entity name.
-		aGroup entity isMany ifTrue: [ 
-			self realClass instanceSide compile: ('{1}
-
+			self builder environment
+				compile:
+					((aNavigationGroup entity isMany
+						ifTrue: [ '{1}
 	<generated>
 	<navigation: ''{2}''>
-	^ MooseGroup
-			withAll: (self {3} asSet)' format: { 
-				sideName, 'Group'.
-				sideName capitalized.
-				sideName }) 
-			classified: #navigation.]
-		ifFalse: [ 
-			self realClass instanceSide compile: ('{1}
-
+	^ MooseGroup withAll: self {3} asSet' ]
+						ifFalse: [ '{1}
 	<generated>
 	<navigation: ''{2}''>
-	^ MooseGroup
-			with: (self {3})' format: { 
-				sideName, 'Group'.
-				sideName capitalized.
-				sideName }) 
-			classified: #navigation.]
-
-	].
-
+	^ MooseGroup with: self {3}' ]) format: {(sideName , 'Group') . sideName capitalized . sideName})
+				in: aClass instanceSide
+				classified: #navigation ]
 ]
 
 { #category : #generating }

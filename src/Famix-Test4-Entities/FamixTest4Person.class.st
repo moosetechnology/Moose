@@ -18,7 +18,6 @@ FamixTest4Person class >> annotation [
 
 { #category : #adding }
 FamixTest4Person >> addBooks: anObject [
-			
 	<generated>
 	^ self books add: anObject
 ]
@@ -40,9 +39,7 @@ FamixTest4Person >> books: anObject [
 
 { #category : #navigation }
 FamixTest4Person >> booksGroup [
-
 	<generated>
 	<navigation: 'Books'>
-	^ MooseGroup
-			withAll: (self books asSet)
+	^ MooseGroup withAll: self books asSet
 ]

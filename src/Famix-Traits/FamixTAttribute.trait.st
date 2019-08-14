@@ -48,9 +48,7 @@ FamixTAttribute >> parentType: anObject [
 
 { #category : #navigation }
 FamixTAttribute >> parentTypeGroup [
-
 	<generated>
 	<navigation: 'ParentType'>
-	^ MooseGroup
-			with: (self parentType)
+	^ MooseGroup with: self parentType
 ]
