@@ -197,39 +197,24 @@ FmxMBBehavior >> generateMethodsToRemoveFromTraitCompositionFor: aBehavioral [
 
 { #category : #generating }
 FmxMBBehavior >> generateNavigationGroups [
+	self allNavigationGroups
+		do: [ :aNavigationGroup | 
+			| sideName |
+			sideName := aNavigationGroup entity name.
 
-	| allNavigationGroups |
-
-	allNavigationGroups := self allNavigationGroups.
-
-	allNavigationGroups do: [ :aGroup | 
-		| sideName |
-		sideName := aGroup entity name.
-		aGroup entity isMany ifTrue: [ 
-			self realClass instanceSide compile: ('{1}
-
+			self builder environment
+				compile:
+					((aNavigationGroup entity isMany
+						ifTrue: [ '{1}
 	<generated>
 	<navigation: ''{2}''>
-	^ MooseGroup
-			withAll: (self {3} asSet)' format: { 
-				sideName, 'Group'.
-				sideName capitalized.
-				sideName }) 
-			classified: #navigation.]
-		ifFalse: [ 
-			self realClass instanceSide compile: ('{1}
-
+	^ MooseGroup withAll: self {3} asSet' ]
+						ifFalse: [ '{1}
 	<generated>
 	<navigation: ''{2}''>
-	^ MooseGroup
-			with: (self {3})' format: { 
-				sideName, 'Group'.
-				sideName capitalized.
-				sideName }) 
-			classified: #navigation.]
-
-	].
-
+	^ MooseGroup with: self {3}' ]) format: {(sideName , 'Group') . sideName capitalized . sideName})
+				in: self realClass instanceSide
+				classified: #navigation ]
 ]
 
 { #category : #generating }

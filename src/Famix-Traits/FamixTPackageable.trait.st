@@ -40,9 +40,7 @@ FamixTPackageable >> parentPackage: anObject [
 
 { #category : #navigation }
 FamixTPackageable >> parentPackageGroup [
-
 	<generated>
 	<navigation: 'ParentPackage'>
-	^ MooseGroup
-			with: (self parentPackage)
+	^ MooseGroup with: self parentPackage
 ]

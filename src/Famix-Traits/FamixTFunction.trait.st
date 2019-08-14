@@ -38,11 +38,9 @@ FamixTFunction >> functionOwner: anObject [
 
 { #category : #navigation }
 FamixTFunction >> functionOwnerGroup [
-
 	<generated>
 	<navigation: 'FunctionOwner'>
-	^ MooseGroup
-			with: (self functionOwner)
+	^ MooseGroup with: self functionOwner
 ]
 
 { #category : #testing }

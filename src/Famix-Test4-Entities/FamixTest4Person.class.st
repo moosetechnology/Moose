@@ -40,9 +40,7 @@ FamixTest4Person >> books: anObject [
 
 { #category : #navigation }
 FamixTest4Person >> booksGroup [
-
 	<generated>
 	<navigation: 'Books'>
-	^ MooseGroup
-			withAll: (self books asSet)
+	^ MooseGroup withAll: self books asSet
 ]

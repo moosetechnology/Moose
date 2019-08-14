@@ -66,11 +66,9 @@ FamixTest4Teacher >> school: anObject [
 
 { #category : #navigation }
 FamixTest4Teacher >> schoolGroup [
-
 	<generated>
 	<navigation: 'School'>
-	^ MooseGroup
-			with: (self school)
+	^ MooseGroup with: self school
 ]
 
 { #category : #accessing }
@@ -90,9 +88,7 @@ FamixTest4Teacher >> students: anObject [
 
 { #category : #navigation }
 FamixTest4Teacher >> studentsGroup [
-
 	<generated>
 	<navigation: 'Students'>
-	^ MooseGroup
-			withAll: (self students asSet)
+	^ MooseGroup withAll: self students asSet
 ]

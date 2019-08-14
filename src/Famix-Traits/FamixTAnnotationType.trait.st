@@ -58,11 +58,9 @@ FamixTAnnotationType >> annotationTypesContainer: anObject [
 
 { #category : #navigation }
 FamixTAnnotationType >> annotationTypesContainerGroup [
-
 	<generated>
 	<navigation: 'AnnotationTypesContainer'>
-	^ MooseGroup
-			with: (self annotationTypesContainer)
+	^ MooseGroup with: self annotationTypesContainer
 ]
 
 { #category : #accessing }
