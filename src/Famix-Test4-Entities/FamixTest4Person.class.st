@@ -18,7 +18,6 @@ FamixTest4Person class >> annotation [
 
 { #category : #adding }
 FamixTest4Person >> addBooks: anObject [
-			
 	<generated>
 	^ self books add: anObject
 ]

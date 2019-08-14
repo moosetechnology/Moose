@@ -21,21 +21,18 @@ FamixTest4School class >> annotation [
 
 { #category : #adding }
 FamixTest4School >> addRooms: anObject [
-			
 	<generated>
 	^ self rooms add: anObject
 ]
 
 { #category : #adding }
 FamixTest4School >> addStudents: anObject [
-			
 	<generated>
 	^ self students add: anObject
 ]
 
 { #category : #adding }
 FamixTest4School >> addTeachers: anObject [
-			
 	<generated>
 	^ self teachers add: anObject
 ]

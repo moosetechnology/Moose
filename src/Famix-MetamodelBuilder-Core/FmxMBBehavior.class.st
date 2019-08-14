@@ -148,18 +148,17 @@ FmxMBBehavior >> generateAccessors [
 
 { #category : #generating }
 FmxMBBehavior >> generateAddToCollection [
-	| sideName allNavigationGroups |
-	allNavigationGroups := self allNavigationGroups.
-	allNavigationGroups
+	| sideName |
+	self allNavigationGroups
 		do: [ :aGroup | 
 			sideName := aGroup entity name.
 			aGroup entity isMany
-				ifTrue: [ self realClass instanceSide
+				ifTrue: [ self builder environment
 						compile:
 							('add{1}: anObject
-			
 	<generated>
 	^ self {2} add: anObject' format: {sideName capitalized . sideName})
+						in: self realClass instanceSide
 						classified: #adding ] ]
 ]
 
