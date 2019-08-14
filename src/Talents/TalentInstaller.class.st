@@ -7,7 +7,7 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : 'Talents-Installer'
+	#category : #'Talents-Installer'
 }
 
 { #category : #'as yet unclassified' }
@@ -128,6 +128,7 @@ TalentInstaller >> extendClass: aClass with: aTalent [
 		builder
 			superclass: aClass;
 			traitComposition: aTalent;
+			classTraitComposition: aTalent classComposition;
 			layoutClass: aClass classLayout class ].
 		
 	talentedClasses at: newClass put: aTalent.
