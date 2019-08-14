@@ -131,7 +131,7 @@ FmxMBBehavior >> fullName [
 FmxMBBehavior >> generalization: anObject [
 
 	^ anObject isSymbol
-		ifTrue: [ self addTraitGeneralization: (self builder ensureTraitNamed: anObject) ]
+		ifTrue: [ self addTraitGeneralization: (self builder getTraitNamed: anObject) ]
 		ifFalse: [ 
 			anObject isMetamodelTrait 
 				ifTrue: [ self addTraitGeneralization: anObject ]

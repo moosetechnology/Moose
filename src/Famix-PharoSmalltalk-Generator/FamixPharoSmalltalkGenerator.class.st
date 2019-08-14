@@ -177,11 +177,7 @@ FamixPharoSmalltalkGenerator >> defineProperties [
 
 { #category : #initialization }
 FamixPharoSmalltalkGenerator >> newBuilder [
-
-	^ self builderWithStandardTraits
+	^ super newBuilder
 		withImportingContext;
 		yourself
-		
-		
-	
 ]

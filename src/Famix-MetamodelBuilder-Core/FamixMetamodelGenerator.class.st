@@ -191,8 +191,7 @@ FamixMetamodelGenerator class >> metamodelsToGenerate [
 
 { #category : #accessing }
 FamixMetamodelGenerator class >> modifyMetamodel: aMetamodel [
-
-	"override this method to do some additional modificatoins of the metamodel"
+	self submetamodels ifNotEmpty: [ self fixRemoteMetamodelRelationsIn: aMetamodel ]
 ]
 
 { #category : #accessing }
@@ -287,6 +286,14 @@ FamixMetamodelGenerator >> adoptBuilder: aBuilder [
 		packageName: self packageName;
 		packageNameForAnnotations: self packageNameForAnnotations.
 
+]
+
+{ #category : #accessing }
+FamixMetamodelGenerator >> allSubBuilders [
+	| result |
+	result := subbuilders copy.
+	subbuilders valuesDo: [ :subBuilder | result addAll: subBuilder generator allSubBuilders ].
+	^ result
 ]
 
 { #category : #definition }
@@ -452,6 +459,11 @@ FamixMetamodelGenerator >> remoteTrait: anEntityName withPrefix: aPrefixName [
 		isRemote: true;
 		remoteBuilder: builder;
 		yourself
+]
+
+{ #category : #accessing }
+FamixMetamodelGenerator >> subBuilders [
+	^ subbuilders
 ]
 
 { #category : #definition }
