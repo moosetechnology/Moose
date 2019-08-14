@@ -32,8 +32,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'builder',
-		'subbuilders',
-		'cleaningStrategy'
+		'cleaningStrategy',
+		'subBuildersMapByPrefix'
 	],
 	#classInstVars : [
 		'metamodel'
@@ -291,8 +291,11 @@ FamixMetamodelGenerator >> adoptBuilder: aBuilder [
 { #category : #accessing }
 FamixMetamodelGenerator >> allSubBuilders [
 	| result |
-	result := subbuilders copy.
-	subbuilders valuesDo: [ :subBuilder | result addAll: subBuilder generator allSubBuilders ].
+	result := self subBuilders asSet.
+	self subBuilders
+		do: [ :subBuilder | subBuilder generator allSubBuilders
+			do: [ :subSubBuilder | (result anySatisfy: [ :b | b generator class = subSubBuilder generator class ])
+				ifFalse: [ result add: subSubBuilder ] ] ].
 	^ result
 ]
 
@@ -362,7 +365,7 @@ FamixMetamodelGenerator >> generate [
 		disableDuring: [ self define.
 			self cleaningStrategy
 				withCleaningDo: [ self builder generate.
-					subbuilders do: #generateRemotes ]
+					self subBuilders do: #generateRemotes ]
 				with: self ].
 	self class resetMetamodel
 ]
@@ -394,7 +397,7 @@ FamixMetamodelGenerator >> initialize [
 	builder := self newBuilder.
 	self adoptBuilder: builder.
 	
-	subbuilders := Dictionary newFrom: (self class submetamodels collect: [ :each | 
+	subBuildersMapByPrefix := Dictionary newFrom: (self class submetamodels collect: [ :each | 
 		| subbuilder |
 		subbuilder := each builderWithDefinitions.
 		subbuilder parentBuilder: self builder.
@@ -447,7 +450,7 @@ FamixMetamodelGenerator >> regenerationIsNeeded [
 
 { #category : #definition }
 FamixMetamodelGenerator >> remoteEntity: anEntityName withPrefix: aPrefixName [
-	^ ((subbuilders at: aPrefixName) ensureClassNamed: anEntityName)
+	^ ((subBuildersMapByPrefix at: aPrefixName) ensureClassNamed: anEntityName)
 		isRemote: true;
 		remoteBuilder: builder;
 		yourself
@@ -455,7 +458,7 @@ FamixMetamodelGenerator >> remoteEntity: anEntityName withPrefix: aPrefixName [
 
 { #category : #definition }
 FamixMetamodelGenerator >> remoteTrait: anEntityName withPrefix: aPrefixName [
-	^ ((subbuilders at: aPrefixName) ensureTraitNamed: anEntityName)
+	^ ((subBuildersMapByPrefix at: aPrefixName) ensureTraitNamed: anEntityName)
 		isRemote: true;
 		remoteBuilder: builder;
 		yourself
@@ -463,7 +466,7 @@ FamixMetamodelGenerator >> remoteTrait: anEntityName withPrefix: aPrefixName [
 
 { #category : #accessing }
 FamixMetamodelGenerator >> subBuilders [
-	^ subbuilders
+	^ subBuildersMapByPrefix values
 ]
 
 { #category : #definition }

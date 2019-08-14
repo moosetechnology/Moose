@@ -77,6 +77,11 @@ FamixMetamodelBuilder >> acceptVisitor: aVisitor [
 ]
 
 { #category : #accessing }
+FamixMetamodelBuilder >> allSubBuilders [
+	^ self generator ifNil: [ Set new ] ifNotNil: #allSubBuilders
+]
+
+{ #category : #accessing }
 FamixMetamodelBuilder >> apply [
 	self environment apply
 ]
@@ -270,7 +275,7 @@ FamixMetamodelBuilder >> getTraitNamed: aSymbol [
 	| remoteTraits |
 	self flag: #todo. "Maybe we could cache the sub MM entities."
 	remoteTraits := Dictionary new.
-	self generator allSubBuilders keysAndValuesDo: [ :prefix :builder | builder traits detect: [ :each | each name = aSymbol ] ifFound: [ :trait | remoteTraits at: builder put: trait ] ].
+	self allSubBuilders do: [ :builder | builder traits detect: [ :each | each name = aSymbol ] ifFound: [ :trait | remoteTraits at: builder put: trait ] ].
 	remoteTraits size = 1
 		ifTrue: [ ^ remoteTraits values anyOne
 				isRemote: true;
@@ -421,6 +426,18 @@ FamixMetamodelBuilder >> prepareGeneration [
 	self behaviorsCount > 0 ifTrue: [ self generateImportingContext ]
 ]
 
+{ #category : #printing }
+FamixMetamodelBuilder >> printOn: aStream [
+	super printOn: aStream.
+
+	self generator
+		ifNotNil: [ :g | 
+			aStream
+				nextPut: $(;
+				print: g class;
+				nextPut: $) ]
+]
+
 { #category : #generating }
 FamixMetamodelBuilder >> regenerationIsNeeded [
 	self prepareGeneration.
@@ -486,6 +503,11 @@ FamixMetamodelBuilder >> sortedTraits [
 
 ]
 
+{ #category : #accessing }
+FamixMetamodelBuilder >> subBuilders [
+	^ self generator ifNil: [ #() ] ifNotNil: #subBuilders
+]
+
 { #category : #'tests support' }
 FamixMetamodelBuilder >> testingEnvironment [
 
@@ -516,7 +538,9 @@ FamixMetamodelBuilder >> traitsToGenerate [
 
 { #category : #accessing }
 FamixMetamodelBuilder >> traitsWithSubBuildersTraits [
-	^ self traits , (self generator allSubBuilders values flatCollect: #traits)
+	^ (self allSubBuilders flatCollect: #traits)
+		addAll: self traits;
+		yourself
 ]
 
 { #category : #initialization }
