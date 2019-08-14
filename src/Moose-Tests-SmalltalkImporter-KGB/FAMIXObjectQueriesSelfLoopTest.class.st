@@ -4,7 +4,7 @@ Class {
 	#category : #'Moose-Tests-SmalltalkImporter-KGB-MooseChef'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXObjectQueriesSelfLoopTest >> testClassObjectTests [
 	self
 		assert:
@@ -17,7 +17,7 @@ FAMIXObjectQueriesSelfLoopTest >> testClassObjectTests [
 				includes: self c1FullReferencerOutSide)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXObjectQueriesSelfLoopTest >> testPackageObjectTests [
 	self
 		assert:

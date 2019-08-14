@@ -4,7 +4,7 @@ Class {
 	#category : #'Moose-Tests-SmalltalkImporter-KGB'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXInvocationNavigationTest >> testIsASureInvocation [
 	 
 	| invoc1 invoc2 method | 
@@ -18,7 +18,7 @@ FAMIXInvocationNavigationTest >> testIsASureInvocation [
 	self assert: (invoc2 isASureInvocation) not. 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXInvocationNavigationTest >> testIsSurelyInvokedBy [
 	 
 	| method m1 m2 | 
