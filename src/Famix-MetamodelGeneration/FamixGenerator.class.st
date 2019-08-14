@@ -982,10 +982,7 @@ FamixGenerator >> defineHierarchy [
 	tMethod --|> #TWithImplicitVariables.
 	tMethod --|> #TWithSignature.
 	tMethod --|> #TWithClassScope.
-	tMethod --|> #TTypedStructure.
-	
-	tNamed --|> #TDependencyQueries.
-	tNamed --|> #TEntityMetaLevelDependency.	
+	tMethod --|> #TTypedStructure.	
 	
 	tParameter --|> tStructuralEntity.
 
