@@ -147,7 +147,7 @@ FmxMBBehavior >> generateAccessors [
 ]
 
 { #category : #generating }
-FmxMBBehavior >> generateAddToCollection [
+FmxMBBehavior >> generateAddToCollectionFor: aClass [
 	| sideName |
 	self allNavigationGroups
 		do: [ :aGroup | 
@@ -158,7 +158,7 @@ FmxMBBehavior >> generateAddToCollection [
 							('add{1}: anObject
 	<generated>
 	^ self {2} add: anObject' format: {sideName capitalized . sideName})
-						in: self realClass instanceSide
+						in: aClass instanceSide
 						classified: #adding ] ]
 ]
 
@@ -195,7 +195,7 @@ FmxMBBehavior >> generateMethodsToRemoveFromTraitCompositionFor: aBehavioral [
 ]
 
 { #category : #generating }
-FmxMBBehavior >> generateNavigationGroups [
+FmxMBBehavior >> generateNavigationGroupsFor: aClass [
 	self allNavigationGroups
 		do: [ :aNavigationGroup | 
 			| sideName |
@@ -212,7 +212,7 @@ FmxMBBehavior >> generateNavigationGroups [
 	<generated>
 	<navigation: ''{2}''>
 	^ MooseGroup with: self {3}' ]) format: {(sideName , 'Group') . sideName capitalized . sideName})
-				in: self realClass instanceSide
+				in: aClass instanceSide
 				classified: #navigation ]
 ]
 

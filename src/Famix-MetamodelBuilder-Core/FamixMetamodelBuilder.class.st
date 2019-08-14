@@ -391,10 +391,6 @@ FamixMetamodelBuilder >> prepareGeneration [
 	self sortedClasses do: [ :each | self testingSelectorsMapping at: each put: each testingSelectors ].
 	self traits do: [ :each | each generate ].
 	self sortedClasses do: [ :each | each generate ].
-	self traits do: [ :each | each generateNavigationGroups ].
-	self sortedClasses do: [ :each | each generateNavigationGroups ].
-	self traits do: [ :each | each generateAddToCollection ].
-	self sortedClasses do: [ :each | each generateAddToCollection ].
 	self behaviorsCount > 0 ifTrue: [ self generateImportingContext ]
 ]
 

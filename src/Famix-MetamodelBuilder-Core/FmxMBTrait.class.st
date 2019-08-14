@@ -96,7 +96,10 @@ FmxMBTrait >> generate [
 	
 	self generateTestingMethodsIn: aTrait.
 	self generateRootMetamodelMethodIn: aTrait.
-	self generateMethodsToRemoveFromTraitCompositionFor: aTrait
+	self generateMethodsToRemoveFromTraitCompositionFor: aTrait.
+	
+	self generateNavigationGroupsFor: aTrait.
+	self generateAddToCollectionFor: aTrait
 ]
 
 { #category : #generating }
