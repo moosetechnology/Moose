@@ -4,7 +4,7 @@ Class {
 	#category : #'Moose-Tests-SmalltalkImporter-KGB'
 }
 
-{ #category : #'MooseKGB-TestFamix3-allDependencies' }
+{ #category : #tests }
 FAMIXClassNavigationTest >> testClientClasses [
 	self assert: (self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTType) size equals: 2.
 	self
@@ -27,7 +27,7 @@ FAMIXClassNavigationTest >> testClientClasses [
 						yourself))
 ]
 
-{ #category : #'MooseKGB-TestFamix3-allDependencies' }
+{ #category : #tests }
 FAMIXClassNavigationTest >> testClientNamespaces [
 	self assert: (self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTNamespace) size equals: 3.
 	self
@@ -41,7 +41,7 @@ FAMIXClassNavigationTest >> testClientNamespaces [
 						yourself))
 ]
 
-{ #category : #'MooseKGB-TestFamix3-allDependencies' }
+{ #category : #tests }
 FAMIXClassNavigationTest >> testClientPackages [
 	| p2 p8 p7 |
 	p2 := self packageP2InteractedReferencerReferee.
@@ -59,7 +59,7 @@ FAMIXClassNavigationTest >> testClientPackages [
 						yourself))
 ]
 
-{ #category : #'MooseKGB-TestFamix3-allDependencies' }
+{ #category : #tests }
 FAMIXClassNavigationTest >> testProviderClasses [
 	self assert: (self c15FullReferencerOutSide allProvidersAtScope: FamixTType) size equals: 3.
 	self
@@ -67,7 +67,7 @@ FAMIXClassNavigationTest >> testProviderClasses [
 		hasSameElements: {self c14ReferencerOutSideRefereeOutSide . self c18FullRefereeInSideOutSide . self c19FullRefereeOutSide}
 ]
 
-{ #category : #'MooseKGB-TestFamix3-allDependencies' }
+{ #category : #tests }
 FAMIXClassNavigationTest >> testProviderNamespace [
 	self assert: (self c15FullReferencerOutSide allProvidersAtScope: FamixTNamespace) size equals: 3.
 	self
@@ -81,7 +81,7 @@ FAMIXClassNavigationTest >> testProviderNamespace [
 						yourself))
 ]
 
-{ #category : #'MooseKGB-TestFamix3-allDependencies' }
+{ #category : #tests }
 FAMIXClassNavigationTest >> testProviderPackages [
 	| p10 p11 p7 pEx |
 	p10 := self packageP10InteractedReferee.

@@ -4,7 +4,7 @@ Class {
 	#category : #'Moose-Tests-SmalltalkImporter-KGB'
 }
 
-{ #category : #'MooseKGB-TestFamix3-allDependencies' }
+{ #category : #tests }
 FAMIXNamespaceNavigationTest >> testClientClasses [
 	self
 		assert:
@@ -17,17 +17,17 @@ FAMIXNamespaceNavigationTest >> testClientClasses [
 						with: self c3ReferencerInSideRefereeOutSide))
 ]
 
-{ #category : #'MooseKGB-TestFamix3-allDependencies' }
+{ #category : #tests }
 FAMIXNamespaceNavigationTest >> testClientClassesInto [
 	self assert: (((self namespace2FullReferee queryAllIncoming atScope: FamixTType) within: self namespace3ReferencerReferee) equalsTo: (Set with: self c14ReferencerOutSideRefereeOutSide))
 ]
 
-{ #category : #'MooseKGB-TestFamix3-allDependencies' }
+{ #category : #tests }
 FAMIXNamespaceNavigationTest >> testClientNamespaces [
 	self assert: ((self namespace2FullReferee allClientsAtScope: FamixTNamespace) equalsTo: (Set with: self namespace1InteractedReferencerReferee with: self namespace3ReferencerReferee))
 ]
 
-{ #category : #'MooseKGB-TestFamix3-allDependencies' }
+{ #category : #tests }
 FAMIXNamespaceNavigationTest >> testProviderClasses [
 	self
 		assert:
@@ -40,7 +40,7 @@ FAMIXNamespaceNavigationTest >> testProviderClasses [
 						with: self cObject))
 ]
 
-{ #category : #'MooseKGB-TestFamix3-allDependencies' }
+{ #category : #tests }
 FAMIXNamespaceNavigationTest >> testProviderClassesInto [
 	self
 		assert:
@@ -48,7 +48,7 @@ FAMIXNamespaceNavigationTest >> testProviderClassesInto [
 				equalsTo: (Set with: self c11FullRefereeOutSide with: self c13FullRefereeInSideOutSide))
 ]
 
-{ #category : #'MooseKGB-TestFamix3-allDependencies' }
+{ #category : #tests }
 FAMIXNamespaceNavigationTest >> testProviderNamespaces [
 	self
 		assert:
