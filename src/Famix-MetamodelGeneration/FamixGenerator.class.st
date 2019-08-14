@@ -149,9 +149,9 @@ FamixGenerator class >> prefix [
 	^ #Famix
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixGenerator class >> submetamodels [
-	^ { FamixMooseQueryGenerator }
+	^ {FamixMooseQueryGenerator}
 ]
 
 { #category : #comments }
@@ -930,14 +930,14 @@ FamixGenerator >> defineGlueingTraits [
 	tWithMethodsWithModifiersGlue := builder newTraitNamed: #TWithMethodsWithModifiersGlue.
 	tWithMethodsWithModifiersGlue glueingCondition: [ :aClass |
 		| methodClasses |
-		methodClasses := self builder classesThatDirectlyUse: tMethod.
+		methodClasses := aClass builder classesThatDirectlyUse: tMethod.
 		(aClass allLocalTraits includes: tWithMethods) 
 			and: [ methodClasses anySatisfy: [ :methodClass | methodClass allTraitsInHierarchy includes: tWithModifiers ] ] ].
 
 	tWithMethodsWithAccessesGlue := builder newTraitNamed: #TWithMethodsWithAccessesGlue.
 	tWithMethodsWithAccessesGlue glueingCondition: [ :aClass |
 		| methodClasses |
-		methodClasses := self builder classesThatDirectlyUse: tMethod.
+		methodClasses := aClass builder classesThatDirectlyUse: tMethod.
 		(aClass allLocalTraits includes: tWithMethods) 
 			and: [ methodClasses anySatisfy: [ :methodClass | methodClass allTraitsInHierarchy includes: tWithAccesses ] ] ].
 
@@ -958,6 +958,12 @@ FamixGenerator >> defineHierarchy [
 	super defineHierarchy.
 
 	tAttribute --|> tStructuralEntity.
+	
+	tAnnotationInstance --|> #TEntityMetaLevelDependency.
+	tAnnotationInstance --|> #TDependencyQueries.
+
+	tAnnotationInstance --|> #TEntityMetaLevelDependency.
+	tAnnotationInstance --|> #TDependencyQueries.
 
 	tCohesionCouplingMetrics --|> tPackage.
 

@@ -4,7 +4,7 @@ Class {
 	#category : #'Moose-Tests-SmalltalkImporter-KGB'
 }
 
-{ #category : #'MooseKGB-TestFamix3-allDependencies' }
+{ #category : #tests }
 FAMIXPackageNavigationTest >> testClientClasses [
 	| p5 |
 	p5 := self packageP5FullReferee.
@@ -19,12 +19,12 @@ FAMIXPackageNavigationTest >> testClientClasses [
 						with: self c3ReferencerInSideRefereeOutSide))
 ]
 
-{ #category : #'MooseKGB-TestFamix3-allDependencies' }
+{ #category : #tests }
 FAMIXPackageNavigationTest >> testClientClassesInto [
 	self assert: (((self namespace2FullReferee queryAllIncoming atScope: FamixTType) withinPackage: self namespace3ReferencerReferee) equalsTo: (Set with: self c14ReferencerOutSideRefereeOutSide))
 ]
 
-{ #category : #'MooseKGB-TestFamix3-allDependencies' }
+{ #category : #tests }
 FAMIXPackageNavigationTest >> testClientPackages [
 	| p1 p2 p3 p5 p7 |
 	p1 := self packageP1FullReferencer.
@@ -43,14 +43,14 @@ FAMIXPackageNavigationTest >> testClientPackages [
 						with: p3))
 ]
 
-{ #category : #'MooseKGB-TestFamix3-allDependencies' }
+{ #category : #tests }
 FAMIXPackageNavigationTest >> testProviderClasses [
 	| p8 |
 	p8 := self packageP8FullReferencer.
 	self assert: ((p8 allProvidersAtScope: FamixTType) equalsTo: (Set with: self c18FullRefereeInSideOutSide with: self c19FullRefereeOutSide with: self c14ReferencerOutSideRefereeOutSide))
 ]
 
-{ #category : #'MooseKGB-TestFamix3-allDependencies' }
+{ #category : #tests }
 FAMIXPackageNavigationTest >> testProviderClassesInto [
 	self
 		assert:
@@ -58,7 +58,7 @@ FAMIXPackageNavigationTest >> testProviderClassesInto [
 				equalsTo: (Set with: self c11FullRefereeOutSide with: self c13FullRefereeInSideOutSide))
 ]
 
-{ #category : #'MooseKGB-TestFamix3-allDependencies' }
+{ #category : #tests }
 FAMIXPackageNavigationTest >> testProviderPackages [
 	| p7 p8 p10 p11 pEx |
 	p7 := self packageP7ReferencerReferee.

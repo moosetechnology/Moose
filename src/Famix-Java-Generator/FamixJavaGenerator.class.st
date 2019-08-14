@@ -130,14 +130,10 @@ FamixJavaGenerator >> defineHierarchy [
 	annotationInstance --|> #TAnnotationInstance.
 	annotationInstance --|> #TWithAnnotationInstanceAttributes.
 	annotationInstance --|> #TTypedAnnotationInstance.
-	annotationInstance --|> #TEntityMetaLevelDependency.
-	annotationInstance --|> #TDependencyQueries.
 
 	annotationInstanceAttribute --|> sourcedEntity.
 	annotationInstanceAttribute --|> #TAnnotationInstanceAttribute.
 	annotationInstanceAttribute --|> #TTypedAnnotationInstanceAttribute.
-	annotationInstanceAttribute --|> #TEntityMetaLevelDependency.
-	annotationInstanceAttribute --|> #TDependencyQueries.
 
 	annotationType --|> type.
 	annotationType --|> #TAnnotationType.
@@ -245,8 +241,6 @@ FamixJavaGenerator >> defineHierarchy [
 	scopingEntity --|> #TScopingEntity.
 	scopingEntity --|> #TWithTypes.
 	scopingEntity --|> #TOODependencyQueries.
-
-	tStructuralEntity --|> #TStructuralEntity.
 	
 	thrownException --|> exception.
 	thrownException --|> #TThrownException.
@@ -261,6 +255,11 @@ FamixJavaGenerator >> defineHierarchy [
 	type --|> #TWithSuperInheritances.
 	type --|> #TWithAttributes.
 	
+
+	tStructuralEntity --|> #TStructuralEntity.
+	tStructuralEntity --|> #TWithDereferencedInvocations.
+
+	unknownVariable --|> namedEntity.
 	unknownVariable --|> entity.
 	unknownVariable --|> tStructuralEntity.
 	
@@ -276,11 +275,7 @@ FamixJavaGenerator >> defineTraits [
 
 { #category : #definition }
 FamixJavaGenerator >> newBuilder [
-
-	^ self builderWithStandardTraits
+	^ super newBuilder
 		withImportingContext;
 		yourself
-		
-		
-	
 ]

@@ -80,14 +80,10 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	annotationInstance --|> #TAnnotationInstance.
 	annotationInstance --|> #TWithAnnotationInstanceAttributes.
 	annotationInstance --|> #TTypedAnnotationInstance.
-	annotationInstance --|> #TEntityMetaLevelDependency.
-	annotationInstance --|> #TDependencyQueries.
 
 	annotationInstanceAttribute --|> sourcedEntity.
 	annotationInstanceAttribute --|> #TAnnotationInstanceAttribute.
 	annotationInstanceAttribute --|> #TTypedAnnotationInstanceAttribute.
-	annotationInstanceAttribute --|> #TEntityMetaLevelDependency.
-	annotationInstanceAttribute --|> #TDependencyQueries.
 
 	annotationType --|> namedEntity.
 	annotationType --|> #TAnnotationType.
@@ -168,11 +164,7 @@ FamixPharoSmalltalkGenerator >> defineProperties [
 
 { #category : #initialization }
 FamixPharoSmalltalkGenerator >> newBuilder [
-
-	^ self builderWithStandardTraits
+	^ super newBuilder
 		withImportingContext;
 		yourself
-		
-		
-	
 ]

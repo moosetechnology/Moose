@@ -179,14 +179,10 @@ FamixCompatibilityGenerator >> defineHierarchy [
 	annotationInstance --|> #TAnnotationInstance.
 	annotationInstance --|> #TWithAnnotationInstanceAttributes.
 	annotationInstance --|> #TTypedAnnotationInstance.
-	annotationInstance --|> #TEntityMetaLevelDependency.
-	annotationInstance --|> #TDependencyQueries.
 
 	annotationInstanceAttribute --|> sourcedEntity.
 	annotationInstanceAttribute --|> #TAnnotationInstanceAttribute.
 	annotationInstanceAttribute --|> #TTypedAnnotationInstanceAttribute.
-	annotationInstanceAttribute --|> #TEntityMetaLevelDependency.
-	annotationInstanceAttribute --|> #TDependencyQueries.
 
 	annotationType --|> type.
 	annotationType --|> #TAnnotationType.

@@ -33,6 +33,11 @@ FamixBasicInfrastructureGenerator class >> isAbstract [
 	^ self = FamixBasicInfrastructureGenerator
 ]
 
+{ #category : #accessing }
+FamixBasicInfrastructureGenerator class >> submetamodels [
+	^ {FamixGenerator}
+]
+
 { #category : #definition }
 FamixBasicInfrastructureGenerator >> defineClasses [
 
@@ -84,10 +89,4 @@ FamixBasicInfrastructureGenerator >> defineHierarchy [
 	
 	unknownSourceLanguage --|> sourceLanguage.
 	unknownSourceLanguage --|> #TSourceLanguage
-]
-
-{ #category : #definition }
-FamixBasicInfrastructureGenerator >> newBuilder [
-
-	^ self builderWithStandardTraits
 ]

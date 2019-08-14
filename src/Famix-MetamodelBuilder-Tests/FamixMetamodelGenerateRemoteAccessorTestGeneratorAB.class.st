@@ -14,14 +14,6 @@ FamixMetamodelGenerateRemoteAccessorTestGeneratorAB class >> isRealMetamodel [
 ]
 
 { #category : #accessing }
-FamixMetamodelGenerateRemoteAccessorTestGeneratorAB class >> modifyMetamodel: aMetamodel [
-
-	super modifyMetamodel: aMetamodel.
-	
-	self fixRemoteMetamodelRelationsIn: aMetamodel.
-]
-
-{ #category : #accessing }
 FamixMetamodelGenerateRemoteAccessorTestGeneratorAB class >> packageName [
 
 	<ignoreForCoverage>

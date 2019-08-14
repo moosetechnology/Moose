@@ -7,7 +7,7 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : 'Talents-Installer'
+	#category : #'Talents-Installer'
 }
 
 { #category : #'as yet unclassified' }
@@ -124,16 +124,16 @@ TalentInstaller >> extendClass: aClass with: aTalent [
 	 | newClass |
     talentedClasses associations detect: [ :e | e value = aTalent ] ifFound: [ :e | ^ e key ] ifNone: [  ].
 
-    newClass := Smalltalk anonymousClassInstaller make: [ :builder |
-        builder
-            superclass: aClass;
-            traitComposition: aTalent;
-            classTraitComposition: aTalent classComposition;
-            layoutClass: aClass classLayout class ].
-
-    talentedClasses at: newClass put: aTalent.
-
-    ^ newClass
+	newClass := Smalltalk anonymousClassInstaller make: [ :builder |
+		builder
+			superclass: aClass;
+			traitComposition: aTalent;
+			classTraitComposition: aTalent classComposition;
+			layoutClass: aClass classLayout class ].
+		
+	talentedClasses at: newClass put: aTalent.
+		
+	^ newClass
 ]
 
 { #category : #operations }
