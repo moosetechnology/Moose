@@ -146,9 +146,7 @@ FmxMBClass >> classGeneralization: anObject [
 
 { #category : #accessing }
 FmxMBClass >> conditionalGlueingTraitsFor: aClass [
-
-	^ self builder traits select: [ :each | 
-		each canGlueTo: aClass ].
+	^ self builder traitsWithSubBuildersTraits select: [ :each | each canGlueTo: aClass ]
 ]
 
 { #category : #accessing }
@@ -272,13 +270,7 @@ FmxMBClass >> generateTestingMethodsIn: aClass [
 
 { #category : #accessing }
 FmxMBClass >> glueingTraitsOf: selectedTraits whenAllHierarchyHas: allTraitsInHierarchy [
-
-	| potentialGlues |
-	
-	potentialGlues := self builder traits select: [ :each | each gluesSomeOf: allTraitsInHierarchy ].
-	
-	^ potentialGlues select: [ :each | each gluesOneOf: selectedTraits ]
-	
+	^ self builder traitsWithSubBuildersTraits select: [ :each | (each gluesSomeOf: allTraitsInHierarchy) and: [ each gluesOneOf: selectedTraits ] ]
 ]
 
 { #category : #testing }

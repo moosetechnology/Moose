@@ -13,14 +13,6 @@ Class {
 }
 
 { #category : #accessing }
-FamixTestComposedGenerator class >> modifyMetamodel: aMetamodel [
-
-	super modifyMetamodel: aMetamodel.
-	
-	self fixRemoteMetamodelRelationsIn: aMetamodel.
-]
-
-{ #category : #accessing }
 FamixTestComposedGenerator class >> packageName [ 
 
 	^ 'Famix-TestComposedMetamodel-Entities'

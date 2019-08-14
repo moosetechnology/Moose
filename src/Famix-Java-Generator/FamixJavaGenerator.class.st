@@ -248,7 +248,7 @@ FamixJavaGenerator >> defineHierarchy [
 	type --|> #TWithTypeAliases.
 	type --|> #TParameterizedTypeUser.
 	type --|> #TClassHierarchyNavigation. 
-	
+
 	tStructuralEntity --|> #TStructuralEntity.
 	tStructuralEntity --|> #TWithDereferencedInvocations.
 
@@ -267,11 +267,7 @@ FamixJavaGenerator >> defineTraits [
 
 { #category : #definition }
 FamixJavaGenerator >> newBuilder [
-
-	^ self builderWithStandardTraits
+	^ super newBuilder
 		withImportingContext;
 		yourself
-		
-		
-	
 ]

@@ -146,6 +146,11 @@ FamixGenerator class >> prefix [
 	^ #Famix
 ]
 
+{ #category : #accessing }
+FamixGenerator class >> submetamodels [
+	^ {FamixMooseQueryGenerator}
+]
+
 { #category : #comments }
 FamixGenerator >> commentForTAccess [
 
@@ -922,14 +927,14 @@ FamixGenerator >> defineGlueingTraits [
 	tWithMethodsWithModifiersGlue := builder newTraitNamed: #TWithMethodsWithModifiersGlue.
 	tWithMethodsWithModifiersGlue glueingCondition: [ :aClass |
 		| methodClasses |
-		methodClasses := self builder classesThatDirectlyUse: tMethod.
+		methodClasses := aClass builder classesThatDirectlyUse: tMethod.
 		(aClass allLocalTraits includes: tWithMethods) 
 			and: [ methodClasses anySatisfy: [ :methodClass | methodClass allTraitsInHierarchy includes: tWithModifiers ] ] ].
 
 	tWithMethodsWithAccessesGlue := builder newTraitNamed: #TWithMethodsWithAccessesGlue.
 	tWithMethodsWithAccessesGlue glueingCondition: [ :aClass |
 		| methodClasses |
-		methodClasses := self builder classesThatDirectlyUse: tMethod.
+		methodClasses := aClass builder classesThatDirectlyUse: tMethod.
 		(aClass allLocalTraits includes: tWithMethods) 
 			and: [ methodClasses anySatisfy: [ :methodClass | methodClass allTraitsInHierarchy includes: tWithAccesses ] ] ].
 
@@ -977,7 +982,7 @@ FamixGenerator >> defineHierarchy [
 	tMethod --|> #TWithImplicitVariables.
 	tMethod --|> #TWithSignature.
 	tMethod --|> #TWithClassScope.
-	tMethod --|> #TTypedStructure.
+	tMethod --|> #TTypedStructure.	
 	
 	tParameter --|> tStructuralEntity.
 

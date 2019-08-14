@@ -77,6 +77,11 @@ FamixMetamodelBuilder >> acceptVisitor: aVisitor [
 ]
 
 { #category : #accessing }
+FamixMetamodelBuilder >> allSubBuilders [
+	^ self generator ifNil: [ Set new ] ifNotNil: #allSubBuilders
+]
+
+{ #category : #accessing }
 FamixMetamodelBuilder >> apply [
 	self environment apply
 ]
@@ -262,6 +267,33 @@ FamixMetamodelBuilder >> generator: aGenerator [
 
 ]
 
+{ #category : #initialization }
+FamixMetamodelBuilder >> getTraitNamed: aSymbol [
+	"Check if I contain a trait of this name. If yes, return it. 
+	If I do not contain a trait of this name, check if one of my subMM has a trait of this name. If one is found, return it. If more is found raise an error. If non is found, create a new trait of this name and return it."
+
+	| remoteTraits |
+	self flag: #todo. "Maybe we could cache the sub MM entities."
+	remoteTraits := Dictionary new.
+	self allSubBuilders do: [ :builder | builder traits detect: [ :each | each name = aSymbol ] ifFound: [ :trait | remoteTraits at: builder put: trait ] ].
+	remoteTraits size = 1
+		ifTrue: [ ^ remoteTraits values anyOne
+				isRemote: true;
+				remoteBuilder: self;
+				yourself ].
+	remoteTraits size > 1
+		ifTrue: [ self
+				error:
+					('Multiple remote traits named {1} where found in sub metamodels. Found in: {2}.
+In order to fix the issue you should use #remoteTrait:withPrefix: in your generator to select yourself the right trait to use. If you want to create an entity of this name in your model and not use the trait of this name from a sub metamodel, declare this trait before referencing it.'
+						format: {aSymbol . (', ' join: (remoteTraits keys collect: [ :builder | builder generator asString ]))}) ].
+	
+	self flag: #todo. "Later we should raise an error here. For local traits, they should be declared."
+	self traits detect: [ :each | each name = aSymbol ] ifFound: [ :trait | ^ trait ].
+
+	^ self ensureTraitNamed: aSymbol
+]
+
 { #category : #accessing }
 FamixMetamodelBuilder >> importingContextName [
 
@@ -387,11 +419,23 @@ FamixMetamodelBuilder >> prepareGeneration [
 	self resolveRequirementsFromContainers.
 	self registerPackages.
 
-	self traits do: [ :each | self testingSelectorsMapping at: each put: each testingSelectors ].
+	self traitsWithSubBuildersTraits do: [ :each | self testingSelectorsMapping at: each put: each testingSelectors ].
 	self sortedClasses do: [ :each | self testingSelectorsMapping at: each put: each testingSelectors ].
 	self traits do: [ :each | each generate ].
 	self sortedClasses do: [ :each | each generate ].
 	self behaviorsCount > 0 ifTrue: [ self generateImportingContext ]
+]
+
+{ #category : #printing }
+FamixMetamodelBuilder >> printOn: aStream [
+	super printOn: aStream.
+
+	self generator
+		ifNotNil: [ :g | 
+			aStream
+				nextPut: $(;
+				print: g class;
+				nextPut: $) ]
 ]
 
 { #category : #generating }
@@ -459,6 +503,11 @@ FamixMetamodelBuilder >> sortedTraits [
 
 ]
 
+{ #category : #accessing }
+FamixMetamodelBuilder >> subBuilders [
+	^ self generator ifNil: [ #() ] ifNotNil: #subBuilders
+]
+
 { #category : #'tests support' }
 FamixMetamodelBuilder >> testingEnvironment [
 
@@ -485,6 +534,13 @@ FamixMetamodelBuilder >> traits [
 FamixMetamodelBuilder >> traitsToGenerate [ 
 
 	^ self traits select: #willGenerate
+]
+
+{ #category : #accessing }
+FamixMetamodelBuilder >> traitsWithSubBuildersTraits [
+	^ (self allSubBuilders flatCollect: #traits)
+		addAll: self traits;
+		yourself
 ]
 
 { #category : #initialization }
