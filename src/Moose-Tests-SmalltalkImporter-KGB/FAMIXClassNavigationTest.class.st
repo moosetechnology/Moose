@@ -6,62 +6,30 @@ Class {
 
 { #category : #tests }
 FAMIXClassNavigationTest >> testClientClasses [
-	self assert: (self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTType) size equals: 2.
 	self
-		assert:
-			((self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTType)
-				equalsTo:
-					(Set new
-						add: self c2ReferencerOutSideRefereeInSide;
-						add: self c15FullReferencerOutSide;
-						yourself)).
-	self assert: (self c3ReferencerInSideRefereeOutSide allClientsAtScope: FamixTType) size equals: 3.
+		assertCollection: (self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTType)
+		hasSameElements: {self c2ReferencerOutSideRefereeInSide . self c15FullReferencerOutSide}.
 	self
-		assert:
-			((self c3ReferencerInSideRefereeOutSide allClientsAtScope: FamixTType)
-				equalsTo:
-					(Set new
-						add: self c1FullReferencerOutSide;
-						add: self c6FullReferencerInSideOutSide;
-						add: self c14ReferencerOutSideRefereeOutSide;
-						yourself))
+		assertCollection: (self c3ReferencerInSideRefereeOutSide allClientsAtScope: FamixTType)
+		hasSameElements: {self c1FullReferencerOutSide . self c6FullReferencerInSideOutSide . self c14ReferencerOutSideRefereeOutSide}
 ]
 
 { #category : #tests }
 FAMIXClassNavigationTest >> testClientNamespaces [
-	self assert: (self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTNamespace) size equals: 3.
 	self
-		assert:
-			((self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTNamespace)
-				equalsTo:
-					(Set new
-						add: self namespace1InteractedReferencerReferee;
-						add: self namespace4FullReferencer;
-						add: self namespace3ReferencerReferee;
-						yourself))
+		assertCollection: (self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTNamespace)
+		hasSameElements: {self namespace1InteractedReferencerReferee . self namespace4FullReferencer}
 ]
 
 { #category : #tests }
 FAMIXClassNavigationTest >> testClientPackages [
-	| p2 p8 p7 |
-	p2 := self packageP2InteractedReferencerReferee.
-	p7 := self packageP7ReferencerReferee.
-	p8 := self packageP8FullReferencer.
-	self assert: (self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTPackage) size equals: 3.
 	self
-		assert:
-			((self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTPackage)
-				equalsTo:
-					(Set new
-						add: p2;
-						add: p8;
-						add: p7;
-						yourself))
+		assertCollection: (self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTPackage)
+		hasSameElements: {self packageP2InteractedReferencerReferee . self packageP8FullReferencer}
 ]
 
 { #category : #tests }
 FAMIXClassNavigationTest >> testProviderClasses [
-	self assert: (self c15FullReferencerOutSide allProvidersAtScope: FamixTType) size equals: 3.
 	self
 		assertCollection: (self c15FullReferencerOutSide allProvidersAtScope: FamixTType)
 		hasSameElements: {self c14ReferencerOutSideRefereeOutSide . self c18FullRefereeInSideOutSide . self c19FullRefereeOutSide}
@@ -69,34 +37,14 @@ FAMIXClassNavigationTest >> testProviderClasses [
 
 { #category : #tests }
 FAMIXClassNavigationTest >> testProviderNamespace [
-	self assert: (self c15FullReferencerOutSide allProvidersAtScope: FamixTNamespace) size equals: 3.
 	self
-		assert:
-			((self c15FullReferencerOutSide allProvidersAtScope: FamixTNamespace)
-				equalsTo:
-					(Set new
-						add: self namespace3ReferencerReferee;
-						add: self namespace5InteractedReferencer;
-						add: self namespace6InteractedReferee;
-						yourself))
+		assertCollection: (self c15FullReferencerOutSide allProvidersAtScope: FamixTNamespace)
+		hasSameElements: {self namespace3ReferencerReferee . self namespace5InteractedReferencer . self namespace6InteractedReferee}
 ]
 
 { #category : #tests }
 FAMIXClassNavigationTest >> testProviderPackages [
-	| p10 p11 p7 pEx |
-	p10 := self packageP10InteractedReferee.
-	p11 := self packageP11FullReferee.
-	p7 := self packageP7ReferencerReferee.
-	pEx := self packagePExtensions.
-	self assert: (self c15FullReferencerOutSide allProvidersAtScope: FamixTPackage) size equals: 4.
 	self
-		assert:
-			((self c15FullReferencerOutSide allProvidersAtScope: FamixTPackage)
-				equalsTo:
-					(Set new
-						add: p10;
-						add: p11;
-						add: pEx;
-						add: p7;
-						yourself))
+		assertCollection: (self c15FullReferencerOutSide allProvidersAtScope: FamixTPackage)
+		hasSameElements: {self packageP10InteractedReferee . self packageP11FullReferee . self packagePExtensions . self packageP7ReferencerReferee}
 ]
