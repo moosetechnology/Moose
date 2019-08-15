@@ -157,7 +157,7 @@ TDependencyQueryResult >> withScope: aClassFamix [
 
 { #category : #filtering }
 TDependencyQueryResult >> within: aFamixEntity [
-	^ self newAssocResultWith: (self storage select: [ :dep | (self opposite: dep) asCollection anySatisfy: [ :entity | {aFamixEntity} = (entity atScope: aFamixEntity class) ] ])
+	^ self newAssocResultWith: (self storage select: [ :dep | (self opposite: dep) asCollection anySatisfy: [ :entity | (entity allAtScope: aFamixEntity class) includes: aFamixEntity ] ])
 ]
 
 { #category : #filtering }

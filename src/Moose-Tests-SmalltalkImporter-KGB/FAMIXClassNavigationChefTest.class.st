@@ -4,13 +4,13 @@ Class {
 	#category : #'Moose-Tests-SmalltalkImporter-KGB-MooseChef'
 }
 
-{ #category : #allIncomingInvocations }
+{ #category : #tests }
 FAMIXClassNavigationChefTest >> testAllIncomingInvocationsIntoMyNamespace [
-	self assert: self c14ReferencerOutSideRefereeOutSide queryAllIncomingInvocations withinMyNamespace isEmpty.
-	self assert: self c13FullRefereeInSideOutSide queryAllIncomingInvocations withinMyNamespace size equals: 4.	"querying dependencies does not exclude self loop, hence C13 is on both sides"
+	self assertEmpty: (self c14ReferencerOutSideRefereeOutSide queryAllIncomingInvocations withinParentUsing: FamixTNamespace).
+	self assert: (self c13FullRefereeInSideOutSide queryAllIncomingInvocations withinParentUsing: FamixTNamespace) size equals: 4.	"querying dependencies does not exclude self loop, hence C13 is on both sides"
 	self
-		assert:
-			((self c13FullRefereeInSideOutSide queryAllIncomingInvocations withinMyNamespace atScope: FamixTType) asSet equalsTo: (Set with: self c13FullRefereeInSideOutSide with: self c12FullReferencerInSide))
+		assertCollection: ((self c13FullRefereeInSideOutSide queryAllIncomingInvocations withinParentUsing: FamixTNamespace) atScope: FamixTType)
+		hasSameElements: {self c13FullRefereeInSideOutSide . self c12FullReferencerInSide}
 ]
 
 { #category : #allIncomingInvocations }
@@ -34,99 +34,93 @@ FAMIXClassNavigationChefTest >> testAllOutgoingDependenciesWithoutSelfLoops [
 
 { #category : #allOutgoingInvocations }
 FAMIXClassNavigationChefTest >> testAllOutgoingInvocationsIntoMyPackage [
-	self assert: 1 equals: self c6FullReferencerInSideOutSide queryAllOutgoingInvocations withinMyPackage size.
 	self
-		assert:
-			((self c6FullReferencerInSideOutSide queryAllOutgoingInvocations withinMyPackage atScope: FamixTType)
-				equalsTo: (self c6FullReferencerInSideOutSide queryAllOutgoingInvocations atScope: FamixTType) withinMyPackage)
+		assertCollection: ((self c6FullReferencerInSideOutSide queryAllOutgoingInvocations withinParentUsing: FamixTPackage) atScope: FamixTType)
+		hasSameElements: ((self c6FullReferencerInSideOutSide queryAllOutgoingInvocations atScope: FamixTType) withinParentUsing: FamixTPackage)
 ]
 
 { #category : #allOutgoingInvocations }
 FAMIXClassNavigationChefTest >> testAllOutgoingInvocationsOutOfMyNamespace [
+	self assert: self c6FullReferencerInSideOutSide queryAllOutgoingInvocations outOfMyNamespace size equals: 3.
 	self
-		assert: 3
-		equals:
-			self c6FullReferencerInSideOutSide queryAllOutgoingInvocations
-				outOfMyNamespace size.
-	self
-		assert:
-			((self c6FullReferencerInSideOutSide queryAllOutgoingInvocations
-				outOfMyNamespace atScope: FamixTType)
-				equalsTo:
-					(self c6FullReferencerInSideOutSide queryAllOutgoingInvocations
-						atScope: FamixTType) outOfMyNamespace)
+		assertCollection: (self c6FullReferencerInSideOutSide queryAllOutgoingInvocations outOfMyNamespace atScope: FamixTType)
+		hasSameElements: (self c6FullReferencerInSideOutSide queryAllOutgoingInvocations atScope: FamixTType) outOfMyNamespace
 ]
 
 { #category : #allOutgoingInvocations }
 FAMIXClassNavigationChefTest >> testAllOutgoingInvocationsWithoutSelfLoops [
-	self assert: 13 equals: self c1FullReferencerOutSide queryAllOutgoingInvocations size.
+	self assert: self c1FullReferencerOutSide queryAllOutgoingInvocations size equals: 13.
 	self assert: ((self c1FullReferencerOutSide queryAllOutgoingInvocations atScope: FamixTType) includes: self c1FullReferencerOutSide).
-	self assert: 12 equals: self c1FullReferencerOutSide queryAllOutgoingInvocations withoutSelfLoops size.
+	self assert: self c1FullReferencerOutSide queryAllOutgoingInvocations withoutSelfLoops size equals: 12.
 	self deny: ((self c1FullReferencerOutSide queryAllOutgoingInvocations withoutSelfLoops atScope: FamixTType) includes: self c1FullReferencerOutSide)
 ]
 
-{ #category : #allDependencies }
+{ #category : #tests }
 FAMIXClassNavigationChefTest >> testClientClasses [
-	self assert: (self c14ReferencerOutSideRefereeOutSide queryAllIncoming withoutSelfLoops atScope: FamixTType) size equals: 2.
 	self
-		assert: ((self c14ReferencerOutSideRefereeOutSide queryAllIncoming withoutSelfLoops atScope: FamixTType) equalsTo: (Set with: self c2ReferencerOutSideRefereeInSide with: self c15FullReferencerOutSide)).
-	self assert: (self c3ReferencerInSideRefereeOutSide queryAllIncoming atScope: FamixTType) size equals: 3.
+		assertCollection: (self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTType)
+		hasSameElements: {self c2ReferencerOutSideRefereeInSide . self c15FullReferencerOutSide}.
 	self
-		assert:
-			((self c3ReferencerInSideRefereeOutSide queryAllIncoming atScope: FamixTType)
-				equalsTo: (Set with: self c1FullReferencerOutSide with: self c6FullReferencerInSideOutSide with: self c14ReferencerOutSideRefereeOutSide))
+		assertCollection: (self c3ReferencerInSideRefereeOutSide allClientsAtScope: FamixTType)
+		hasSameElements: {self c1FullReferencerOutSide . self c6FullReferencerInSideOutSide . self c14ReferencerOutSideRefereeOutSide}
 ]
 
-{ #category : #allDependencies }
+{ #category : #tests }
 FAMIXClassNavigationChefTest >> testClientClassesInto [
-	| p1 p2 |
-	p1 := self packageP1FullReferencer.
-	p2 := self packageP2InteractedReferencerReferee.
-	self assert: ((self c14ReferencerOutSideRefereeOutSide queryAllIncoming atScope: FamixTType) within: p2) size equals: 1.
-	self assert: (((self c14ReferencerOutSideRefereeOutSide queryAllIncoming atScope: FamixTType) within: p2) equalsTo: (Set with: self c2ReferencerOutSideRefereeInSide)).
-	self assert: ((self c14ReferencerOutSideRefereeOutSide queryAllIncoming atScope: FamixTType) within: self namespace1InteractedReferencerReferee) size equals: 1.
 	self
-		assert:
-			(((self c14ReferencerOutSideRefereeOutSide queryAllIncoming atScope: FamixTType) within: self namespace1InteractedReferencerReferee) equalsTo: (Set with: self c2ReferencerOutSideRefereeInSide)).
-	self assert: (((self c3ReferencerInSideRefereeOutSide queryAllIncoming atScope: FamixTType) within: p1) equalsTo: (Set with: self c1FullReferencerOutSide)).
-	self assert: ((self c3ReferencerInSideRefereeOutSide queryAllIncoming atScope: FamixTType) within: self namespace1InteractedReferencerReferee) size equals: 2.
+		assertCollection: ((self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTType) within: self packageP2InteractedReferencerReferee)
+		hasSameElements: {self c2ReferencerOutSideRefereeInSide}.
 	self
-		assert:
-			(((self c3ReferencerInSideRefereeOutSide queryAllIncoming atScope: FamixTType) within: self namespace1InteractedReferencerReferee)
-				equalsTo: (Set with: self c1FullReferencerOutSide with: self c6FullReferencerInSideOutSide))
+		assertCollection: ((self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTType) within: self namespace1InteractedReferencerReferee)
+		hasSameElements: {self c2ReferencerOutSideRefereeInSide}.
+	self
+		assertCollection: ((self c3ReferencerInSideRefereeOutSide allClientsAtScope: FamixTType) within: self packageP1FullReferencer)
+		hasSameElements: {self c1FullReferencerOutSide}.
+	self
+		assertCollection: ((self c3ReferencerInSideRefereeOutSide allClientsAtScope: FamixTType) within: self namespace1InteractedReferencerReferee)
+		hasSameElements: {self c1FullReferencerOutSide . self c6FullReferencerInSideOutSide}
 ]
 
-{ #category : #allDependencies }
+{ #category : #tests }
 FAMIXClassNavigationChefTest >> testClientClassesIntoMyNamespace [
-	self assert: (self c14ReferencerOutSideRefereeOutSide queryAllIncoming withoutSelfLoops atScope: FamixTType) withinMyNamespace size equals: 0.
-	self assert: (self c13FullRefereeInSideOutSide queryAllIncoming atScope: FamixTType) withinMyNamespace size equals: 2.
-	self assert: ((self c13FullRefereeInSideOutSide queryAllIncoming atScope: FamixTType) withinMyNamespace equalsTo: (Set with: self c12FullReferencerInSide with: self c13FullRefereeInSideOutSide))
-]
-
-{ #category : #allDependencies }
-FAMIXClassNavigationChefTest >> testClientClassesIntoMyPackage [
-	self assert: (self c14ReferencerOutSideRefereeOutSide queryAllIncoming withoutSelfLoops atScope: FamixTType) withinMyPackage size equals: 0.
-	self assert: (self c13FullRefereeInSideOutSide queryAllIncoming atScope: FamixTType) withinMyPackage size equals: 2.
-	self assert: ((self c13FullRefereeInSideOutSide queryAllIncoming atScope: FamixTType) withinMyPackage equalsTo: (Set with: self c12FullReferencerInSide with: self c13FullRefereeInSideOutSide))
-]
-
-{ #category : #allDependencies }
-FAMIXClassNavigationChefTest >> testClientClassesOutOfMyNamespace [
-	self assert: (self c14ReferencerOutSideRefereeOutSide queryAllIncoming atScope: FamixTType) outOfMyNamespace size equals: 2.
+	self assertEmpty: ((self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTType) withinParentUsing: FamixTNamespace).
 	self
-		assert: ((self c14ReferencerOutSideRefereeOutSide queryAllIncoming atScope: FamixTType) outOfMyNamespace equalsTo: (Set with: self c2ReferencerOutSideRefereeInSide with: self c15FullReferencerOutSide)).
-	self assert: (self c3ReferencerInSideRefereeOutSide queryAllIncoming atScope: FamixTType) outOfMyNamespace size equals: 1.
-	self assert: ((self c3ReferencerInSideRefereeOutSide queryAllIncoming atScope: FamixTType) outOfMyNamespace equalsTo: (Set with: self c14ReferencerOutSideRefereeOutSide))
+		assertCollection: ((self c13FullRefereeInSideOutSide allClientsAtScope: FamixTType) withinParentUsing: FamixTNamespace)
+		hasSameElements: {self c12FullReferencerInSide}.
+	self
+		assertCollection: ((self c13FullRefereeInSideOutSide queryAllIncoming atScope: FamixTType) withinParentUsing: FamixTNamespace)
+		hasSameElements: {self c12FullReferencerInSide . self c13FullRefereeInSideOutSide}
 ]
 
-{ #category : #allDependencies }
+{ #category : #tests }
+FAMIXClassNavigationChefTest >> testClientClassesIntoMyPackage [
+	self assertEmpty: ((self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTType) withinParentUsing: FamixTPackage).
+	self
+		assertCollection: ((self c13FullRefereeInSideOutSide allClientsAtScope: FamixTType) withinParentUsing: FamixTPackage)
+		hasSameElements: {self c12FullReferencerInSide}.
+	self
+		assertCollection: ((self c13FullRefereeInSideOutSide queryAllIncoming atScope: FamixTType) withinParentUsing: FamixTPackage)
+		hasSameElements: {self c12FullReferencerInSide . self c13FullRefereeInSideOutSide}
+]
+
+{ #category : #tests }
+FAMIXClassNavigationChefTest >> testClientClassesOutOfMyNamespace [
+	self
+		assertCollection: (self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTType) outOfMyNamespace
+		hasSameElements: {self c2ReferencerOutSideRefereeInSide . self c15FullReferencerOutSide}.
+	self
+		assertCollection: (self c3ReferencerInSideRefereeOutSide allClientsAtScope: FamixTType) outOfMyNamespace
+		hasSameElements: {self c14ReferencerOutSideRefereeOutSide}
+]
+
+{ #category : #tests }
 FAMIXClassNavigationChefTest >> testClientClassesOutOfMyPackage [
-	self assert: (self c14ReferencerOutSideRefereeOutSide queryAllIncoming atScope: FamixTType) outOfMyPackage size equals: 2.
-	self assert: ((self c14ReferencerOutSideRefereeOutSide queryAllIncoming atScope: FamixTType) outOfMyPackage equalsTo: (Set with: self c2ReferencerOutSideRefereeInSide with: self c15FullReferencerOutSide)).
-	self assert: (self c3ReferencerInSideRefereeOutSide queryAllIncoming atScope: FamixTType) outOfMyPackage size equals: 3.
+	self assert: (self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTType) outOfMyPackage size equals: 2.
+	self assert: ((self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTType) outOfMyPackage equalsTo: (Set with: self c2ReferencerOutSideRefereeInSide with: self c15FullReferencerOutSide)).
+	self assert: (self c3ReferencerInSideRefereeOutSide allClientsAtScope: FamixTType) outOfMyPackage size equals: 3.
 	self
 		assert:
-			((self c3ReferencerInSideRefereeOutSide queryAllIncoming atScope: FamixTType) outOfMyPackage
+			((self c3ReferencerInSideRefereeOutSide allClientsAtScope: FamixTType) outOfMyPackage
 				equalsTo: (Set with: self c1FullReferencerOutSide with: self c6FullReferencerInSideOutSide with: self c14ReferencerOutSideRefereeOutSide))
 ]
 

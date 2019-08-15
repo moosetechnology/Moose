@@ -93,7 +93,7 @@ MooseObjectQueryResult >> withScope: aClassFamix [
 
 { #category : #evaluating }
 MooseObjectQueryResult >> within: aFAMIXEntity [
-	^ self newObjectResultWith: (storage select: [ :obj | (obj atScope: aFAMIXEntity class) includes: aFAMIXEntity ])
+	^ self newObjectResultWith: (storage select: [ :obj | (obj allAtScope: aFAMIXEntity class) includes: aFAMIXEntity ])
 ]
 
 { #category : #filtering }

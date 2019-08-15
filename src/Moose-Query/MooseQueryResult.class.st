@@ -242,22 +242,14 @@ MooseQueryResult >> withScope: aSymbol [
 	^ self subclassResponsibility
 ]
 
-{ #category : #evaluating }
+{ #category : #filtering }
 MooseQueryResult >> within: aFAMIXEntity [
+	"Return the results which are in the entity as parameter."
+
 	^ self subclassResponsibility
 ]
 
 { #category : #filtering }
-MooseQueryResult >> withinMyClass [
-	^ self within: (self receiver atScope: FamixTClass) anyOne
-]
-
-{ #category : #filtering }
-MooseQueryResult >> withinMyNamespace [
-	^ self within: (self receiver atScope: FamixTNamespace) anyOne
-]
-
-{ #category : #filtering }
-MooseQueryResult >> withinMyPackage [
-	^ self within: (self receiver atScope: FamixTPackage) anyOne
+MooseQueryResult >> withinParentUsing: aFamixTrait [
+	^ self within: (self receiver atScope: aFamixTrait) anyOne
 ]
