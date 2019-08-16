@@ -66,6 +66,9 @@ FAMIXClassNavigationChefTest >> testClientClasses [
 		assertCollection: (self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTType)
 		hasSameElements: {self c2ReferencerOutSideRefereeInSide . self c15FullReferencerOutSide}.
 	self
+		assertCollection: self c14ReferencerOutSideRefereeOutSide allClients
+		hasSameElements: (self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTType).
+	self
 		assertCollection: (self c3ReferencerInSideRefereeOutSide allClientsAtScope: FamixTType)
 		hasSameElements: {self c1FullReferencerOutSide . self c6FullReferencerInSideOutSide . self c14ReferencerOutSideRefereeOutSide}
 ]
@@ -131,14 +134,14 @@ FAMIXClassNavigationChefTest >> testClientClassesOutOfMyPackage [
 { #category : #'tests - clients' }
 FAMIXClassNavigationChefTest >> testClientNamespaces [
 	self
-		assertCollection: (self c14ReferencerOutSideRefereeOutSide queryAllIncoming withoutSelfLoops atScope: FamixTNamespace)
+		assertCollection: (self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTNamespace)
 		hasSameElements: {self namespace1InteractedReferencerReferee . self namespace4FullReferencer}
 ]
 
 { #category : #'tests - clients' }
 FAMIXClassNavigationChefTest >> testClientPackages [
 	self
-		assertCollection: (self c14ReferencerOutSideRefereeOutSide queryAllIncoming withoutSelfLoops atScope: FamixTPackage)
+		assertCollection: (self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTPackage)
 		hasSameElements: {self packageP2InteractedReferencerReferee . self packageP8FullReferencer}
 ]
 
@@ -348,55 +351,58 @@ FAMIXClassNavigationChefTest >> testOutgoingReferencesAreEitherPotentialOrSureOr
 { #category : #'tests - providers' }
 FAMIXClassNavigationChefTest >> testProviderClasses [
 	self
-		assertCollection: (self c15FullReferencerOutSide queryAllOutgoing atScope: FamixTType)
-		hasSameElements: {self c14ReferencerOutSideRefereeOutSide . self c18FullRefereeInSideOutSide . self c19FullRefereeOutSide}
+		assertCollection: (self c15FullReferencerOutSide allProvidersAtScope: FamixTType)
+		hasSameElements: {self c14ReferencerOutSideRefereeOutSide . self c18FullRefereeInSideOutSide . self c19FullRefereeOutSide}.
+	self
+		assertCollection: (self c15FullReferencerOutSide allProvidersAtScope: FamixTType)
+		hasSameElements: self c15FullReferencerOutSide allProviders
 ]
 
 { #category : #'tests - providers' }
 FAMIXClassNavigationChefTest >> testProviderClassesInto [
 	self
-		assertCollection: ((self c15FullReferencerOutSide queryAllOutgoing atScope: FamixTType) within: self packageP11FullReferee)
+		assertCollection: ((self c15FullReferencerOutSide allProvidersAtScope: FamixTType) within: self packageP11FullReferee)
 		hasSameElements: {self c19FullRefereeOutSide}.
 	self
-		assertCollection: ((self c15FullReferencerOutSide queryAllOutgoing atScope: FamixTType) within: self namespace6InteractedReferee)
+		assertCollection: ((self c15FullReferencerOutSide allProvidersAtScope: FamixTType) within: self namespace6InteractedReferee)
 		hasSameElements: {self c19FullRefereeOutSide}
 ]
 
 { #category : #'tests - providers' }
 FAMIXClassNavigationChefTest >> testProviderClassesIntoMyNamespace [
-	self assertEmpty: ((self c15FullReferencerOutSide queryAllOutgoing atScope: FamixTType) withinParentUsing: FamixTNamespace)
+	self assertEmpty: ((self c15FullReferencerOutSide allProvidersAtScope: FamixTType) withinParentUsing: FamixTNamespace)
 ]
 
 { #category : #'tests - providers' }
 FAMIXClassNavigationChefTest >> testProviderClassesIntoMyPackage [
-	self assertEmpty: ((self c15FullReferencerOutSide queryAllOutgoing atScope: FamixTType) withinParentUsing: FamixTPackage)
+	self assertEmpty: ((self c15FullReferencerOutSide allProvidersAtScope: FamixTType) withinParentUsing: FamixTPackage)
 ]
 
 { #category : #'tests - providers' }
 FAMIXClassNavigationChefTest >> testProviderClassesOutOfMyNamespace [
 	self
-		assertCollection: (self c15FullReferencerOutSide queryAllOutgoing atScope: FamixTType) outOfMyNamespace
+		assertCollection: (self c15FullReferencerOutSide allProvidersAtScope: FamixTType) outOfMyNamespace
 		hasSameElements: {self c14ReferencerOutSideRefereeOutSide . self c18FullRefereeInSideOutSide . self c19FullRefereeOutSide}
 ]
 
 { #category : #'tests - providers' }
 FAMIXClassNavigationChefTest >> testProviderClassesOutOfMyPackage [
 	self
-		assertCollection: (self c15FullReferencerOutSide queryAllOutgoing atScope: FamixTType) outOfMyPackage
+		assertCollection: (self c15FullReferencerOutSide allProvidersAtScope: FamixTType) outOfMyPackage
 		hasSameElements: {self c14ReferencerOutSideRefereeOutSide . self c18FullRefereeInSideOutSide . self c19FullRefereeOutSide}
 ]
 
 { #category : #'tests - providers' }
 FAMIXClassNavigationChefTest >> testProviderNamespace [
 	self
-		assertCollection: (self c15FullReferencerOutSide queryAllOutgoing atScope: FamixTNamespace)
+		assertCollection: (self c15FullReferencerOutSide allProvidersAtScope: FamixTNamespace)
 		hasSameElements: {self namespace3ReferencerReferee . self namespace5InteractedReferencer . self namespace6InteractedReferee}
 ]
 
 { #category : #'tests - providers' }
 FAMIXClassNavigationChefTest >> testProviderPackages [
 	self
-		assertCollection: (self c15FullReferencerOutSide queryAllOutgoing atScope: FamixTPackage)
+		assertCollection: (self c15FullReferencerOutSide allProvidersAtScope: FamixTPackage)
 		hasSameElements: {self packageP10InteractedReferee . self packageP11FullReferee . self packagePExtensions . self packageP7ReferencerReferee}
 ]
 
