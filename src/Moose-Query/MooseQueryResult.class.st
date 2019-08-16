@@ -19,6 +19,13 @@ Class {
 }
 
 { #category : #'instance creation' }
+MooseQueryResult class >> new: nElements [
+	^ self new
+		storage: (OrderedCollection new: nElements);
+		yourself
+]
+
+{ #category : #'instance creation' }
 MooseQueryResult class >> on: aSourceObject withAll: aCollection [
 
 	^ self new

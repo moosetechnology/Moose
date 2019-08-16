@@ -170,16 +170,13 @@ AbstractFAMIXNavigationTest >> cObject [
 ]
 
 { #category : #'helpers - utilites' }
-AbstractFAMIXNavigationTest >> getMethod: methodNameString from: aFAMIXClass [ 
-	 
-	| mooseName result | 
-
-	mooseName := (aFAMIXClass mooseName asString , '.' 
-		, methodNameString asString) asSymbol. 
+AbstractFAMIXNavigationTest >> getMethod: methodNameString from: aFAMIXClass [
+	| mooseName result |
+	mooseName := (aFAMIXClass mooseName asString , '.' , methodNameString asString) asSymbol.
 
 	result := self model entityNamed: mooseName.
-	
-	self assert: result notNil. 
+
+	self assert: result notNil.
 
 	^ result
 ]
