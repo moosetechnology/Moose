@@ -12,7 +12,7 @@ FAMIXInvocationNavigationTest >> testIsASureInvocation [
 	self assert: invoc1 isASureInvocation.
 
 	invoc2 := method outgoingInvocations detect: [ :each | each signature = 'm5p10c18Mtd1()' ].
-	self assert: invoc2 isASureInvocation not
+	self deny: invoc2 isASureInvocation
 ]
 
 { #category : #tests }

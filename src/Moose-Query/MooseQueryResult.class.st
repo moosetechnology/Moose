@@ -242,3 +242,8 @@ MooseQueryResult >> within: aFAMIXEntity [
 MooseQueryResult >> withinParentUsing: aFamixTrait [
 	^ self within: (self receiver atScope: aFamixTrait) anyOne
 ]
+
+{ #category : #accessing }
+MooseQueryResult >> withoutSelfLoops [
+	^ self subclassResponsibility
+]
