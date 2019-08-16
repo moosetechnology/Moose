@@ -10,9 +10,7 @@ FAMIXClassNavigationChefTest >> testAllIncomingInvocationsIntoMyNamespace [
 	self
 		assertCollection: (self c13FullRefereeInSideOutSide queryAllIncomingInvocations withinParentUsing: FamixTNamespace) opposites
 		hasSameElements:
-			{(self getMethod: 'm2p6c13Mtd3()' from: self c13FullRefereeInSideOutSide).
-			(self getMethod: 'm2p6c13InstCreation()' from: self c13FullRefereeInSideOutSide).
-			(self getMethod: 'm2p6c12Mtd1()' from: self c12FullReferencerInSide)}.
+			{(self getMethod: 'm2p6c13Mtd3()') . (self getMethod: 'm2p6c13InstCreation()') . (self getMethod: 'm2p6c12Mtd1()')}.
 	self
 		assertCollection: ((self c13FullRefereeInSideOutSide queryAllIncomingInvocations withinParentUsing: FamixTNamespace) atScope: FamixTType)
 		hasSameElements: {self c13FullRefereeInSideOutSide . self c12FullReferencerInSide}
@@ -43,7 +41,7 @@ FAMIXClassNavigationChefTest >> testAllOutgoingInvocationsIntoMyPackage [
 		hasSameElements: ((self c6FullReferencerInSideOutSide queryAllOutgoingInvocations atScope: FamixTType) withinParentUsing: FamixTPackage).
 	self
 		assertCollection: (self c6FullReferencerInSideOutSide queryAllOutgoingInvocations withinParentUsing: FamixTPackage) opposites
-		hasSameElements: {(self getMethod: 'm1p3c5Mtd1()' from: self c5ReferencerInSideRefereeInSide)}
+		hasSameElements: {(self getMethod: 'm1p3c5Mtd1()')}
 ]
 
 { #category : #allOutgoingInvocations }
@@ -334,11 +332,8 @@ FAMIXClassNavigationChefTest >> testOppositesOfCompositeQueryResult [
 	self
 		assertCollection: self c6FullReferencerInSideOutSide queryAllOutgoing opposites
 		hasSameElements:
-			{self c3ReferencerInSideRefereeOutSide . self c5ReferencerInSideRefereeInSide . self c11FullRefereeOutSide . (self
-				getMethod: 'm2p5c11InstCreation1()'
-				from: self c11FullRefereeOutSide) . (self getMethod: 'm1p3c5Mtd1()' from: self c5ReferencerInSideRefereeInSide).
-			(self getMethod: 'm1p2c3Mtd3()' from: self c3ReferencerInSideRefereeOutSide).
-			self cObject}
+			{self c3ReferencerInSideRefereeOutSide . self c5ReferencerInSideRefereeInSide . self c11FullRefereeOutSide . (self getMethod: 'm2p5c11InstCreation1()').
+			(self getMethod: 'm1p3c5Mtd1()') . (self getMethod: 'm1p2c3Mtd3()') . self cObject}
 ]
 
 { #category : #'MooseKGB-TestFamix3-integralTests' }
@@ -452,9 +447,7 @@ FAMIXClassNavigationChefTest >> testReferencedMethods [
 	self
 		assertCollection: self c6FullReferencerInSideOutSide queryAllOutgoingInvocations opposites
 		hasSameElements:
-			{(self getMethod: 'm2p5c11InstCreation1()' from: self c11FullRefereeOutSide).
-			(self getMethod: 'm1p2c3Mtd3()' from: self c3ReferencerInSideRefereeOutSide).
-			(self getMethod: 'm1p3c5Mtd1()' from: self c5ReferencerInSideRefereeInSide)}
+			{(self getMethod: 'm2p5c11InstCreation1()') . (self getMethod: 'm1p2c3Mtd3()') . (self getMethod: 'm1p3c5Mtd1()')}
 ]
 
 { #category : #allOutgoingInvocations }
@@ -537,9 +530,7 @@ FAMIXClassNavigationChefTest >> testReferencingClassesOutOfMyPackage [
 FAMIXClassNavigationChefTest >> testReferencingMethods [
 	self
 		assertCollection: self c14ReferencerOutSideRefereeOutSide queryAllIncomingInvocations opposites
-		hasSameElements:
-			{(self getMethod: 'm1p2c2Mtd1()' from: self c2ReferencerOutSideRefereeInSide).
-			(self getMethod: 'm1p2c2Mtd2()' from: self c2ReferencerOutSideRefereeInSide)}
+		hasSameElements: {(self getMethod: 'm1p2c2Mtd1()') . (self getMethod: 'm1p2c2Mtd2()')}
 ]
 
 { #category : #allIncomingInvocations }
@@ -560,16 +551,14 @@ FAMIXClassNavigationChefTest >> testReferencingPackages [
 FAMIXClassNavigationChefTest >> testSourceMethodsInReferencedMethods [
 	self
 		assertCollection: self c6FullReferencerInSideOutSide queryAllOutgoingInvocations outOfMyNamespace sourceMethods
-		hasSameElements:
-			{(self getMethod: 'm1p3c6Mtd1()' from: self c6FullReferencerInSideOutSide).
-			(self getMethod: 'm1p3c6Mtd2()' from: self c6FullReferencerInSideOutSide)}
+		hasSameElements: {(self getMethod: 'm1p3c6Mtd1()') . (self getMethod: 'm1p3c6Mtd2()')}
 ]
 
 { #category : #references }
 FAMIXClassNavigationChefTest >> testSourceMethodsInStaticReferencedClasses [
 	self
 		assertCollection: (self c6FullReferencerInSideOutSide queryOutgoingReferences withinParentUsing: FamixTPackage) sources
-		hasSameElements: {(self getMethod: 'm1p3c6Mtd2()' from: self c6FullReferencerInSideOutSide)}
+		hasSameElements: {(self getMethod: 'm1p3c6Mtd2()')}
 ]
 
 { #category : #staticDependencies }
@@ -824,9 +813,7 @@ FAMIXClassNavigationChefTest >> testStaticReferencingClassesOutOfMyPackage [
 FAMIXClassNavigationChefTest >> testStaticReferencingMethods [
 	self
 		assertCollection: self c14ReferencerOutSideRefereeOutSide queryIncomingReferences opposites
-		hasSameElements:
-			{(self getMethod: 'm1p2c2Mtd1()' from: self c2ReferencerOutSideRefereeInSide).
-			(self getMethod: 'm1p2c2Mtd2()' from: self c2ReferencerOutSideRefereeInSide)}
+		hasSameElements: {(self getMethod: 'm1p2c2Mtd1()') . (self getMethod: 'm1p2c2Mtd2()')}
 ]
 
 { #category : #references }
@@ -888,9 +875,7 @@ FAMIXClassNavigationChefTest >> testSureReferencedClassesOutOfMyNamespace [
 
 { #category : #sureOutgoingInvocations }
 FAMIXClassNavigationChefTest >> testSureReferencedMethods [
-	self
-		assertCollection: self c6FullReferencerInSideOutSide querySureOutgoingInvocations opposites
-		hasSameElements: {(self getMethod: 'm2p5c11InstCreation1()' from: self c11FullRefereeOutSide)}
+	self assertCollection: self c6FullReferencerInSideOutSide querySureOutgoingInvocations opposites hasSameElements: {(self getMethod: 'm2p5c11InstCreation1()')}
 ]
 
 { #category : #sureOutgoingInvocations }
@@ -995,9 +980,7 @@ FAMIXClassNavigationChefTest >> testSureReferencingClassesOutOfMyPackage [
 
 { #category : #sureIncomingInvocations }
 FAMIXClassNavigationChefTest >> testSureReferencingMethods [
-	self
-		assertCollection: self c14ReferencerOutSideRefereeOutSide querySureIncomingInvocations opposites
-		hasSameElements: {(self getMethod: 'm1p2c2Mtd1()' from: self c2ReferencerOutSideRefereeInSide)}
+	self assertCollection: self c14ReferencerOutSideRefereeOutSide querySureIncomingInvocations opposites hasSameElements: {(self getMethod: 'm1p2c2Mtd1()')}
 ]
 
 { #category : #sureIncomingInvocations }
@@ -1020,9 +1003,7 @@ FAMIXClassNavigationChefTest >> testTargetMethodsInReferencingMethods [
 	self
 		assertCollection: self c14ReferencerOutSideRefereeOutSide queryAllIncomingInvocations targetMethods
 		hasSameElements:
-			{(self getMethod: 'm3p7c14Mtd2()' from: self c14ReferencerOutSideRefereeOutSide).
-			(self getMethod: 'm3p7c14Mtd4()' from: self c14ReferencerOutSideRefereeOutSide).
-			(self getMethod: 'm3p7c14InstCreation()' from: self c14ReferencerOutSideRefereeOutSide)}
+			{(self getMethod: 'm3p7c14Mtd2()') . (self getMethod: 'm3p7c14Mtd4()') . (self getMethod: 'm3p7c14InstCreation()')}
 ]
 
 { #category : #union }
@@ -1044,7 +1025,5 @@ FAMIXClassNavigationChefTest >> testWithin [
 	self
 		assertCollection: (self c1FullReferencerOutSide queryAllOutgoingInvocations within: self c13FullRefereeInSideOutSide) opposites
 		hasSameElements:
-			{(self getMethod: 'm2p6c13Mtd2()' from: self c13FullRefereeInSideOutSide).
-			(self getMethod: 'm2p6c13Mtd1:(Object)' from: self c13FullRefereeInSideOutSide).
-			(self getMethod: 'm2p6c13InstCreation()' from: self c13FullRefereeInSideOutSide)}
+			{(self getMethod: 'm2p6c13Mtd2()') . (self getMethod: 'm2p6c13Mtd1:(Object)') . (self getMethod: 'm2p6c13InstCreation()')}
 ]

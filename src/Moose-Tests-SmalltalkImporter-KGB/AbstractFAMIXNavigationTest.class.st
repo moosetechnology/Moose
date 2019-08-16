@@ -170,15 +170,11 @@ AbstractFAMIXNavigationTest >> cObject [
 ]
 
 { #category : #'helpers - utilites' }
-AbstractFAMIXNavigationTest >> getMethod: methodNameString from: aFAMIXClass [
-	| mooseName result |
-	mooseName := (aFAMIXClass mooseName asString , '.' , methodNameString asString) asSymbol.
-
-	result := self model entityNamed: mooseName.
-
-	self assert: result notNil.
-
-	^ result
+AbstractFAMIXNavigationTest >> getMethod: methodNameString [
+	| results |
+	results := self model allMethods select: [ :method | method mooseName endsWith: methodNameString ].
+	results size = 1 ifFalse: [ self error: 'Not one method named ' , methodNameString ].
+	^ results anyOne
 ]
 
 { #category : #'helpers - utilites' }
