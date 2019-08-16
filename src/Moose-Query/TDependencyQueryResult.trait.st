@@ -91,30 +91,8 @@ TDependencyQueryResult >> opposites [
 ]
 
 { #category : #filtering }
-TDependencyQueryResult >> outOfClass: aFAMIXClass [
-	^ self
-		rejectDependencies: [ :dep | 
-			(self opposite: dep) isCollection
-				ifTrue: [ (self opposite: dep) isNotEmpty and: [ (self opposite: dep) anySatisfy: [ :anEntity | (anEntity atScope: FamixTClass) anyOne == aFAMIXClass ] ] ]
-				ifFalse: [ aFAMIXClass == ((self opposite: dep) atScope: FamixTClass) anyOne ] ]
-]
-
-{ #category : #filtering }
-TDependencyQueryResult >> outOfNamespace: aFAMIXNamespace [
-	^ self
-		rejectDependencies: [ :dep | 
-			(self opposite: dep) isCollection
-				ifTrue: [ (self opposite: dep) isNotEmpty and: [ (self opposite: dep) anySatisfy: [ :anEntity | (anEntity atScope: FamixTNamespace) anyOne == aFAMIXNamespace ] ] ]
-				ifFalse: [ aFAMIXNamespace == ((self opposite: dep) atScope: FamixTNamespace) anyOne ] ]
-]
-
-{ #category : #filtering }
-TDependencyQueryResult >> outOfPackage: aFAMIXPackage [
-	^ self
-		rejectDependencies: [ :dep | 
-			(self opposite: dep) isCollection
-				ifTrue: [ (self opposite: dep) isNotEmpty and: [ (self opposite: dep) anySatisfy: [ :anEntity | (anEntity atScope: FamixTPackage) anyOne == aFAMIXPackage ] ] ]
-				ifFalse: [ aFAMIXPackage == ((self opposite: dep) atScope: FamixTPackage) anyOne ] ]
+TDependencyQueryResult >> outOf: aFamixEntity [
+	^ self newAssocResultWith: (self storage reject: [ :dep | (self opposite: dep) asCollection anySatisfy: [ :entity | (entity allAtScope: aFamixEntity class) includes: aFamixEntity ] ])
 ]
 
 { #category : #private }

@@ -153,12 +153,11 @@ FAMIXMethodNavigationChefTest >> testReferencingMethodsOutOf [
 	| c19m2 |
 	c19m2 := self getMethod: 'm6p11c19Mtd2()'.
 	self assert: c19m2 queryAllIncomingInvocations opposites size equals: 3.
-	self assert: (c19m2 queryAllIncomingInvocations opposites outOfClass: self c16FullReferencerOutSideInSide) size equals: 2.
+	self assert: (c19m2 queryAllIncomingInvocations opposites outOf: self c16FullReferencerOutSideInSide) size equals: 2.
 	self
 		assert:
-			((c19m2 queryAllIncomingInvocations opposites outOfClass: self c16FullReferencerOutSideInSide)
-				equalsTo:
-					(Set with: (self getMethod: 'm4p8c15Mtd1()') with: (self getMethod: 'm4p8c15Mtd3()')))
+			((c19m2 queryAllIncomingInvocations opposites outOf: self c16FullReferencerOutSideInSide)
+				equalsTo: (Set with: (self getMethod: 'm4p8c15Mtd1()') with: (self getMethod: 'm4p8c15Mtd3()')))
 ]
 
 { #category : #allIncomingInvocations }

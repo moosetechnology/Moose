@@ -142,33 +142,15 @@ MooseQueryResult >> newObjectResultWith: aCollection [
 ]
 
 { #category : #filtering }
-MooseQueryResult >> outOfClass: aFAMIXClass [ 
-	self subclassResponsibility 
+MooseQueryResult >> outOf: aFAMIXEntity [
+	"Return the results which are out the entity as parameter."
+
+	^ self subclassResponsibility
 ]
 
 { #category : #filtering }
-MooseQueryResult >> outOfMyClass [
-	^ self outOfClass: (self receiver atScope: FamixTClass) anyOne
-]
-
-{ #category : #filtering }
-MooseQueryResult >> outOfMyNamespace [
-	^ self outOfNamespace: (self receiver atScope: FamixTNamespace) anyOne
-]
-
-{ #category : #filtering }
-MooseQueryResult >> outOfMyPackage [
-	^ self outOfPackage: (self receiver atScope: FamixTPackage) anyOne
-]
-
-{ #category : #filtering }
-MooseQueryResult >> outOfNamespace: aFAMIXNamespace [ 
-	self subclassResponsibility 
-]
-
-{ #category : #filtering }
-MooseQueryResult >> outOfPackage: aFAMIXPackage [ 
-	self subclassResponsibility 
+MooseQueryResult >> outOfParentUsing: aFamixTrait [
+	^ self outOf: (self receiver atScope: aFamixTrait) anyOne
 ]
 
 { #category : #accessing }

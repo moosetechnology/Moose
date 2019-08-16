@@ -56,19 +56,9 @@ MooseObjectQueryResult >> atScope: aClassFamix [
 	^ self newObjectResultWith: (self storage inject: OrderedCollection new into: [ :res :entity | entity atScope: aClassFamix in: res ]) asSet
 ]
 
-{ #category : #filtering }
-MooseObjectQueryResult >> outOfClass: aFAMIXClass [
-	^ self newObjectResultWith: (storage reject: [ :obj | aFAMIXClass == (obj atScope: FamixTClass) anyOne ])
-]
-
-{ #category : #filtering }
-MooseObjectQueryResult >> outOfNamespace: aFAMIXNamespace [
-	^ self newObjectResultWith: (storage reject: [ :obj | aFAMIXNamespace == (obj atScope: FamixTNamespace) anyOne ])
-]
-
-{ #category : #filtering }
-MooseObjectQueryResult >> outOfPackage: aFAMIXPackage [
-	^ self newObjectResultWith: (storage reject: [ :obj | aFAMIXPackage == (obj atScope: FamixTPackage) anyOne ])
+{ #category : #evaluating }
+MooseObjectQueryResult >> outOf: aFAMIXEntity [
+	^ self newObjectResultWith: (storage reject: [ :obj | (obj allAtScope: aFAMIXEntity class) includes: aFAMIXEntity ])
 ]
 
 { #category : #filtering }
