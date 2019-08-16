@@ -6,42 +6,21 @@ Class {
 
 { #category : #tests }
 FAMIXMetricsTest >> testNumberOfClasses [
-	"self debug: #testNumberOfClasses"
- 
-	self assert: 2
-			 equals: self packageP6InteractedReferee numberOfClasses .
-			
-	self assert: 4
-			 equals: self packageP3InteractedReferencer numberOfClasses.
-			
-	self assert: 0
-			 equals: self packagePExtensions numberOfClasses  
+	self assert: self packageP6InteractedReferee numberOfClasses equals: 2.
+	self assert: self packageP3InteractedReferencer numberOfClasses equals: 4.
+	self assert: self packagePExtensions numberOfClasses equals: 0
 ]
 
 { #category : #tests }
 FAMIXMetricsTest >> testNumberOfClientPackages [
-	"self debug: #testNumberOfClientPackages"
-
-	self assert: 3
-			 equals: self packageP6InteractedReferee numberOfClientPackages.
-	
-	self assert: 4
-			 equals: self packageP11FullReferee numberOfClientPackages.
-			
-	self assert: 0
-				equals: self packageP1FullReferencer numberOfClientPackages
+	self assert: self packageP6InteractedReferee numberOfClientPackages equals: 3.
+	self assert: self packageP11FullReferee numberOfClientPackages equals: 4.
+	self assert: self packageP1FullReferencer numberOfClientPackages equals: 0
 ]
 
 { #category : #tests }
 FAMIXMetricsTest >> testRelativeImportanceForSystem [
-	"self debug: #testRelativeImportanceForSystem"
-
-	self assert: 3 / 14
-			 equals: self packageP6InteractedReferee relativeImportanceForSystem.
-	
-	self assert: 4 / 14
-			 equals: self packageP11FullReferee relativeImportanceForSystem.
-			
-	self assert: 0
-				equals: self packageP1FullReferencer relativeImportanceForSystem.
+	self assert: self packageP6InteractedReferee relativeImportanceForSystem equals: 3 / 14.
+	self assert: self packageP11FullReferee relativeImportanceForSystem equals: 4 / 14.
+	self assert: self packageP1FullReferencer relativeImportanceForSystem equals: 0
 ]
