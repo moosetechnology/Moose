@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 FAMIXPackageNavigationTest >> testClientClasses [
 	| p5 |
-	p5 := self packageP5FullReferee.
+	p5 := self p5FullReferee.
 	self
 		assert:
 			((p5 allClientsAtScope: FamixTType)
@@ -22,11 +22,11 @@ FAMIXPackageNavigationTest >> testClientClasses [
 { #category : #tests }
 FAMIXPackageNavigationTest >> testClientPackages [
 	| p1 p2 p3 p5 p7 |
-	p1 := self packageP1FullReferencer.
-	p2 := self packageP2InteractedReferencerReferee.
-	p3 := self packageP3InteractedReferencer.
-	p5 := self packageP5FullReferee.
-	p7 := self packageP7ReferencerReferee.
+	p1 := self p1FullReferencer.
+	p2 := self p2InteractedReferencerReferee.
+	p3 := self p3InteractedReferencer.
+	p5 := self p5FullReferee.
+	p7 := self p7ReferencerReferee.
 	self
 		assert:
 			(p5 allClients
@@ -41,18 +41,18 @@ FAMIXPackageNavigationTest >> testClientPackages [
 { #category : #tests }
 FAMIXPackageNavigationTest >> testProviderClasses [
 	| p8 |
-	p8 := self packageP8FullReferencer.
+	p8 := self p8FullReferencer.
 	self assert: ((p8 allProvidersAtScope: FamixTType) equalsTo: (Set with: self c18FullRefereeInSideOutSide with: self c19FullRefereeOutSide with: self c14ReferencerOutSideRefereeOutSide))
 ]
 
 { #category : #tests }
 FAMIXPackageNavigationTest >> testProviderPackages [
 	| p7 p8 p10 p11 pEx |
-	p7 := self packageP7ReferencerReferee.
-	p8 := self packageP8FullReferencer.
-	p10 := self packageP10InteractedReferee.
-	p11 := self packageP11FullReferee.
-	pEx := self packagePExtensions.
+	p7 := self p7ReferencerReferee.
+	p8 := self p8FullReferencer.
+	p10 := self p10InteractedReferee.
+	p11 := self p11FullReferee.
+	pEx := self pExtensions.
 	self
 		assert:
 			((p8 allProvidersAtScope: FamixTPackage)

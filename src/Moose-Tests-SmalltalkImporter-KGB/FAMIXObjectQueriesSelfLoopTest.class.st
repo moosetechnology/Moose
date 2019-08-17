@@ -12,6 +12,6 @@ FAMIXObjectQueriesSelfLoopTest >> testClassObjectTests [
 
 { #category : #tests }
 FAMIXObjectQueriesSelfLoopTest >> testPackageObjectTests [
-	self assertCollection: (self packageP1FullReferencer queryAllIncomingInvocations atScope: FamixTPackage) hasSameElements: {self packageP1FullReferencer}.
-	self deny: ((self packageP1FullReferencer queryAllIncomingInvocations atScope: FamixTType) withoutSelfLoops includes: self packageP1FullReferencer)
+	self assertCollection: (self p1FullReferencer queryAllIncomingInvocations atScope: FamixTPackage) hasSameElements: {self p1FullReferencer}.
+	self deny: ((self p1FullReferencer queryAllIncomingInvocations atScope: FamixTType) withoutSelfLoops includes: self p1FullReferencer)
 ]

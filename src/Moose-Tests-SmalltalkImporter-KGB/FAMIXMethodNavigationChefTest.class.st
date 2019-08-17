@@ -14,10 +14,10 @@ FAMIXMethodNavigationChefTest >> testReferencedClasses [
 { #category : #'tests - outgoing invocations' }
 FAMIXMethodNavigationChefTest >> testReferencedClassesInto [
 	self
-		assertCollection: (((self getMethod: 'm1p1c1Mtd4:(Object)') queryAllOutgoingInvocations atScope: FamixTType) within: self packageP6InteractedReferee)
+		assertCollection: (((self getMethod: 'm1p1c1Mtd4:(Object)') queryAllOutgoingInvocations atScope: FamixTType) within: self p6InteractedReferee)
 		hasSameElements: {self c13FullRefereeInSideOutSide}.
 	self
-		assertCollection: (((self getMethod: 'm1p1c1Mtd4:(Object)') queryAllOutgoingInvocations atScope: FamixTType) within: self namespace2FullReferee)
+		assertCollection: (((self getMethod: 'm1p1c1Mtd4:(Object)') queryAllOutgoingInvocations atScope: FamixTType) within: self n2FullReferee)
 		hasSameElements: {self c13FullRefereeInSideOutSide}
 ]
 
@@ -40,7 +40,7 @@ FAMIXMethodNavigationChefTest >> testReferencedMethodsDefinedInto [
 { #category : #'tests - outgoing invocations' }
 FAMIXMethodNavigationChefTest >> testReferencedMethodsDefinedIntoAndPackagedInto [
 	self
-		assertCollection: (((self getMethod: 'm4p8c15Mtd3()') queryAllOutgoingInvocations opposites within: self c19FullRefereeOutSide) within: self packagePExtensions)
+		assertCollection: (((self getMethod: 'm4p8c15Mtd3()') queryAllOutgoingInvocations opposites within: self c19FullRefereeOutSide) within: self pExtensions)
 		hasSameElements: {(self getMethod: 'm6p11c19InstCreation1()') . (self getMethod: 'm6p11c19Mtd2()')}
 ]
 
@@ -48,14 +48,14 @@ FAMIXMethodNavigationChefTest >> testReferencedMethodsDefinedIntoAndPackagedInto
 FAMIXMethodNavigationChefTest >> testReferencedNamespaces [
 	self
 		assertCollection: ((self getMethod: 'm4p8c15Mtd3()') queryAllOutgoingInvocations atScope: FamixTNamespace)
-		hasSameElements: {self namespace6InteractedReferee}
+		hasSameElements: {self n6InteractedReferee}
 ]
 
 { #category : #'tests - outgoing invocations' }
 FAMIXMethodNavigationChefTest >> testReferencedPackages [
 	self
 		assertCollection: ((self getMethod: 'm4p8c15Mtd3()') queryAllOutgoingInvocations atScope: FamixTPackage)
-		hasSameElements: {self packagePExtensions . self packageP11FullReferee}
+		hasSameElements: {self pExtensions . self p11FullReferee}
 ]
 
 { #category : #'tests - incoming invocations' }
@@ -71,10 +71,10 @@ FAMIXMethodNavigationChefTest >> testReferencingClasses [
 { #category : #'tests - incoming invocations' }
 FAMIXMethodNavigationChefTest >> testReferencingClassesInto [
 	self
-		assertCollection: (((self getMethod: 'm6p11c19Mtd2()') queryAllIncomingInvocations atScope: FamixTType) within: self packageP9FullReferencer)
+		assertCollection: (((self getMethod: 'm6p11c19Mtd2()') queryAllIncomingInvocations atScope: FamixTType) within: self p9FullReferencer)
 		hasSameElements: {self c16FullReferencerOutSideInSide}.
 	self
-		assertCollection: (((self getMethod: 'm6p11c19Mtd2()') queryAllIncomingInvocations atScope: FamixTType) within: self namespace4FullReferencer)
+		assertCollection: (((self getMethod: 'm6p11c19Mtd2()') queryAllIncomingInvocations atScope: FamixTType) within: self n4FullReferencer)
 		hasSameElements: {self c15FullReferencerOutSide}
 ]
 
@@ -96,7 +96,7 @@ FAMIXMethodNavigationChefTest >> testReferencingMethodsDefinedInto [
 FAMIXMethodNavigationChefTest >> testReferencingMethodsDefinedIntoAndPackagedInto [
 	self
 		assertCollection:
-			(((self getMethod: 'm6p11c19Mtd1()') queryAllIncomingInvocations opposites within: (self getMethod: 'm6p11c19Mtd1()') belongsTo) within: self packagePExtensions)
+			(((self getMethod: 'm6p11c19Mtd1()') queryAllIncomingInvocations opposites within: (self getMethod: 'm6p11c19Mtd1()') belongsTo) within: self pExtensions)
 		hasSameElements: {(self getMethod: 'm6p11c19Mtd2()')}
 ]
 
@@ -112,17 +112,17 @@ FAMIXMethodNavigationChefTest >> testReferencingMethodsOutOf [
 FAMIXMethodNavigationChefTest >> testReferencingNamespaces [
 	self
 		assertCollection: ((self getMethod: 'm6p11c19Mtd1()') queryAllIncomingInvocations atScope: FamixTNamespace)
-		hasSameElements: {self namespace6InteractedReferee}
+		hasSameElements: {self n6InteractedReferee}
 ]
 
 { #category : #'tests - incoming invocations' }
 FAMIXMethodNavigationChefTest >> testReferencingPackages [
 	self
 		assertCollection: ((self getMethod: 'm6p11c19Mtd1()') queryAllIncomingInvocations atScope: FamixTPackage)
-		hasSameElements: {self packagePExtensions . self packageP11FullReferee . self packageP12FullReferencer}.
+		hasSameElements: {self pExtensions . self p11FullReferee . self p12FullReferencer}.
 	self
 		assertCollection: ((self getMethod: 'm6p11c19Mtd1()') queryAllIncomingInvocations opposites atScope: FamixTPackage)
-		hasSameElements: {self packagePExtensions . self packageP11FullReferee . self packageP12FullReferencer}
+		hasSameElements: {self pExtensions . self p11FullReferee . self p12FullReferencer}
 ]
 
 { #category : #'tests - references' }
@@ -133,16 +133,16 @@ FAMIXMethodNavigationChefTest >> testStaticReferencedClasses [
 { #category : #'tests - references' }
 FAMIXMethodNavigationChefTest >> testStaticReferencedClassesInto [
 	self
-		assertCollection: ((self getMethod: 'm4p8c15Mtd3()') queryOutgoingReferences opposites within: self packageP11FullReferee)
+		assertCollection: ((self getMethod: 'm4p8c15Mtd3()') queryOutgoingReferences opposites within: self p11FullReferee)
 		hasSameElements: {self c19FullRefereeOutSide}.
 	self
-		assertCollection: ((self getMethod: 'm4p8c15Mtd3()') queryOutgoingReferences opposites within: self namespace6InteractedReferee)
+		assertCollection: ((self getMethod: 'm4p8c15Mtd3()') queryOutgoingReferences opposites within: self n6InteractedReferee)
 		hasSameElements: {self c19FullRefereeOutSide}
 ]
 
 { #category : #'tests - references' }
 FAMIXMethodNavigationChefTest >> testStaticReferencedNamespaces [
-	self assertCollection: ((self getMethod: 'm4p8c15Mtd3()') queryOutgoingReferences atScope: FamixTNamespace) hasSameElements: {self namespace6InteractedReferee}
+	self assertCollection: ((self getMethod: 'm4p8c15Mtd3()') queryOutgoingReferences atScope: FamixTNamespace) hasSameElements: {self n6InteractedReferee}
 ]
 
 { #category : #'tests - references' }
@@ -159,9 +159,9 @@ FAMIXMethodNavigationChefTest >> testSureReferencedClasses [
 
 { #category : #'tests - sure invocations' }
 FAMIXMethodNavigationChefTest >> testSureReferencedClassesInto [
-	self assertEmpty: (((self getMethod: 'm6p12c20Mtd1()') querySureOutgoingInvocations atScope: FamixTType) within: self packagePExtensions).
+	self assertEmpty: (((self getMethod: 'm6p12c20Mtd1()') querySureOutgoingInvocations atScope: FamixTType) within: self pExtensions).
 	self
-		assertCollection: (((self getMethod: 'm6p12c20Mtd1()') querySureOutgoingInvocations atScope: FamixTType) within: self packageP11FullReferee)
+		assertCollection: (((self getMethod: 'm6p12c20Mtd1()') querySureOutgoingInvocations atScope: FamixTType) within: self p11FullReferee)
 		hasSameElements: {self c19FullRefereeOutSide}
 ]
 
@@ -184,14 +184,14 @@ FAMIXMethodNavigationChefTest >> testSureReferencedMethodsDefinedInto [
 { #category : #'tests - sure invocations' }
 FAMIXMethodNavigationChefTest >> testSureReferencedMethodsDefinedIntoAndPackagedInto [
 	self
-		assertEmpty: (((self getMethod: 'm6p11c19Mtd2()') querySureOutgoingInvocations opposites within: self c19FullRefereeOutSide) within: self packagePExtensions).
+		assertEmpty: (((self getMethod: 'm6p11c19Mtd2()') querySureOutgoingInvocations opposites within: self c19FullRefereeOutSide) within: self pExtensions).
 	self
-		assertCollection: (((self getMethod: 'm6p11c19Mtd2()') querySureOutgoingInvocations opposites within: self c19FullRefereeOutSide) within: self packageP11FullReferee)
+		assertCollection: (((self getMethod: 'm6p11c19Mtd2()') querySureOutgoingInvocations opposites within: self c19FullRefereeOutSide) within: self p11FullReferee)
 		hasSameElements: {(self getMethod: 'm6p11c19Mtd1()')}.
 	self
-		assertEmpty: (((self getMethod: 'm6p12c20Mtd1()') querySureOutgoingInvocations opposites within: self c19FullRefereeOutSide) within: self packagePExtensions).
+		assertEmpty: (((self getMethod: 'm6p12c20Mtd1()') querySureOutgoingInvocations opposites within: self c19FullRefereeOutSide) within: self pExtensions).
 	self
-		assertCollection: (((self getMethod: 'm6p12c20Mtd1()') querySureOutgoingInvocations opposites within: self c19FullRefereeOutSide) within: self packageP11FullReferee)
+		assertCollection: (((self getMethod: 'm6p12c20Mtd1()') querySureOutgoingInvocations opposites within: self c19FullRefereeOutSide) within: self p11FullReferee)
 		hasSameElements: {(self getMethod: 'm6p11c19InstCreation()')}
 ]
 
@@ -199,13 +199,13 @@ FAMIXMethodNavigationChefTest >> testSureReferencedMethodsDefinedIntoAndPackaged
 FAMIXMethodNavigationChefTest >> testSureReferencedNamespaces [
 	self
 		assertCollection: ((self getMethod: 'm1p1c1Mtd4:(Object)') querySureOutgoingInvocations atScope: FamixTNamespace)
-		hasSameElements: {self namespace2FullReferee}
+		hasSameElements: {self n2FullReferee}
 ]
 
 { #category : #'tests - sure invocations' }
 FAMIXMethodNavigationChefTest >> testSureReferencedPackages [
-	self assertCollection: ((self getMethod: 'm6p11c19Mtd2()') querySureOutgoingInvocations atScope: FamixTPackage) hasSameElements: {self packageP11FullReferee}.
-	self assertCollection: ((self getMethod: 'm6p12c20Mtd1()') querySureOutgoingInvocations atScope: FamixTPackage) hasSameElements: {self packageP11FullReferee}
+	self assertCollection: ((self getMethod: 'm6p11c19Mtd2()') querySureOutgoingInvocations atScope: FamixTPackage) hasSameElements: {self p11FullReferee}.
+	self assertCollection: ((self getMethod: 'm6p12c20Mtd1()') querySureOutgoingInvocations atScope: FamixTPackage) hasSameElements: {self p11FullReferee}
 ]
 
 { #category : #'tests - sure invocations' }
@@ -218,10 +218,10 @@ FAMIXMethodNavigationChefTest >> testSureReferencingClasses [
 { #category : #'tests - sure invocations' }
 FAMIXMethodNavigationChefTest >> testSureReferencingClassesInto [
 	self
-		assertCollection: (((self getMethod: 'm2p6c13InstCreation()') querySureIncomingInvocations atScope: FamixTType) within: self packageP6InteractedReferee)
+		assertCollection: (((self getMethod: 'm2p6c13InstCreation()') querySureIncomingInvocations atScope: FamixTType) within: self p6InteractedReferee)
 		hasSameElements: {self c12FullReferencerInSide}.
 	self
-		assertCollection: (((self getMethod: 'm2p6c13InstCreation()') querySureIncomingInvocations atScope: FamixTType) within: self namespace1InteractedReferencerReferee)
+		assertCollection: (((self getMethod: 'm2p6c13InstCreation()') querySureIncomingInvocations atScope: FamixTType) within: self n1InteractedReferencerReferee)
 		hasSameElements: {self c1FullReferencerOutSide}
 ]
 
@@ -243,23 +243,23 @@ FAMIXMethodNavigationChefTest >> testSureReferencingMethodsDefinedInto [
 { #category : #'tests - sure invocations' }
 FAMIXMethodNavigationChefTest >> testSureReferencingMethodsDefinedIntoAndPackagedInto [
 	self
-		assertCollection: (((self getMethod: 'm2p6c13InstCreation()') querySureIncomingInvocations opposites within: self c1FullReferencerOutSide) within: self packageP1FullReferencer)
+		assertCollection: (((self getMethod: 'm2p6c13InstCreation()') querySureIncomingInvocations opposites within: self c1FullReferencerOutSide) within: self p1FullReferencer)
 		hasSameElements: {(self getMethod: 'm1p1c1Mtd1()') . (self getMethod: 'm1p1c1Mtd4:(Object)')}.
 	self
 		assertEmpty:
-			(((self getMethod: 'm2p6c13InstCreation()') querySureIncomingInvocations opposites within: self c1FullReferencerOutSide) within: self packageP6InteractedReferee)
+			(((self getMethod: 'm2p6c13InstCreation()') querySureIncomingInvocations opposites within: self c1FullReferencerOutSide) within: self p6InteractedReferee)
 ]
 
 { #category : #'tests - sure invocations' }
 FAMIXMethodNavigationChefTest >> testSureReferencingNamespaces [
 	self
 		assertCollection: ((self getMethod: 'm6p11c19InstCreation()') querySureIncomingInvocations atScope: FamixTNamespace)
-		hasSameElements: {self namespace4FullReferencer . self namespace5InteractedReferencer . self namespace6InteractedReferee}
+		hasSameElements: {self n4FullReferencer . self n5InteractedReferencer . self n6InteractedReferee}
 ]
 
 { #category : #'tests - sure invocations' }
 FAMIXMethodNavigationChefTest >> testSureReferencingPackages [
 	self
 		assertCollection: ((self getMethod: 'm6p11c19InstCreation()') querySureIncomingInvocations atScope: FamixTPackage)
-		hasSameElements: {self packagePExtensions . self packageP8FullReferencer . self packageP9FullReferencer . self packageP12FullReferencer}
+		hasSameElements: {self pExtensions . self p8FullReferencer . self p9FullReferencer . self p12FullReferencer}
 ]
