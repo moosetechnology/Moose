@@ -6,60 +6,29 @@ Class {
 
 { #category : #tests }
 FAMIXPackageNavigationTest >> testClientClasses [
-	| p5 |
-	p5 := self packageP5FullReferee.
 	self
-		assert:
-			((p5 allClientsAtScope: FamixTType)
-				equalsTo:
-					(Set
-						with: self c1FullReferencerOutSide
-						with: self c14ReferencerOutSideRefereeOutSide
-						with: self c6FullReferencerInSideOutSide
-						with: self c3ReferencerInSideRefereeOutSide))
+		assertCollection: (self p5FullReferee allClientsAtScope: FamixTType)
+		hasSameElements:
+			{self c1FullReferencerOutSide . self c14ReferencerOutSideRefereeOutSide . self c6FullReferencerInSideOutSide . self c3ReferencerInSideRefereeOutSide}
 ]
 
 { #category : #tests }
 FAMIXPackageNavigationTest >> testClientPackages [
-	| p1 p2 p3 p5 p7 |
-	p1 := self packageP1FullReferencer.
-	p2 := self packageP2InteractedReferencerReferee.
-	p3 := self packageP3InteractedReferencer.
-	p5 := self packageP5FullReferee.
-	p7 := self packageP7ReferencerReferee.
 	self
-		assert:
-			(p5 allClients
-				equalsTo:
-					(Set
-						with: p1
-						with: p2
-						with: p7
-						with: p3))
+		assertCollection: self p5FullReferee allClients
+		hasSameElements: {self p1FullReferencer . self p2InteractedReferencerReferee . self p7ReferencerReferee . self p3InteractedReferencer}
 ]
 
 { #category : #tests }
 FAMIXPackageNavigationTest >> testProviderClasses [
-	| p8 |
-	p8 := self packageP8FullReferencer.
-	self assert: ((p8 allProvidersAtScope: FamixTType) equalsTo: (Set with: self c18FullRefereeInSideOutSide with: self c19FullRefereeOutSide with: self c14ReferencerOutSideRefereeOutSide))
+	self
+		assertCollection: (self p8FullReferencer allProvidersAtScope: FamixTType)
+		hasSameElements: {self c18FullRefereeInSideOutSide . self c19FullRefereeOutSide . self c14ReferencerOutSideRefereeOutSide}
 ]
 
 { #category : #tests }
 FAMIXPackageNavigationTest >> testProviderPackages [
-	| p7 p8 p10 p11 pEx |
-	p7 := self packageP7ReferencerReferee.
-	p8 := self packageP8FullReferencer.
-	p10 := self packageP10InteractedReferee.
-	p11 := self packageP11FullReferee.
-	pEx := self packagePExtensions.
 	self
-		assert:
-			((p8 allProvidersAtScope: FamixTPackage)
-				equalsTo:
-					(Set
-						with: p10
-						with: p11
-						with: p7
-						with: pEx))
+		assertCollection: (self p8FullReferencer allProvidersAtScope: FamixTPackage)
+		hasSameElements: {self p10InteractedReferee . self p11FullReferee . self p7ReferencerReferee . self pExtensions}
 ]

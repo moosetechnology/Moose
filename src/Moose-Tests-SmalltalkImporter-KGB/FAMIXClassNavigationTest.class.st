@@ -18,14 +18,14 @@ FAMIXClassNavigationTest >> testClientClasses [
 FAMIXClassNavigationTest >> testClientNamespaces [
 	self
 		assertCollection: (self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTNamespace)
-		hasSameElements: {self namespace1InteractedReferencerReferee . self namespace4FullReferencer}
+		hasSameElements: {self n1InteractedReferencerReferee . self n4FullReferencer}
 ]
 
 { #category : #tests }
 FAMIXClassNavigationTest >> testClientPackages [
 	self
 		assertCollection: (self c14ReferencerOutSideRefereeOutSide allClientsAtScope: FamixTPackage)
-		hasSameElements: {self packageP2InteractedReferencerReferee . self packageP8FullReferencer}
+		hasSameElements: {self p2InteractedReferencerReferee . self p8FullReferencer}
 ]
 
 { #category : #tests }
@@ -39,12 +39,12 @@ FAMIXClassNavigationTest >> testProviderClasses [
 FAMIXClassNavigationTest >> testProviderNamespace [
 	self
 		assertCollection: (self c15FullReferencerOutSide allProvidersAtScope: FamixTNamespace)
-		hasSameElements: {self namespace3ReferencerReferee . self namespace5InteractedReferencer . self namespace6InteractedReferee}
+		hasSameElements: {self n3ReferencerReferee . self n5InteractedReferencer . self n6InteractedReferee}
 ]
 
 { #category : #tests }
 FAMIXClassNavigationTest >> testProviderPackages [
 	self
 		assertCollection: (self c15FullReferencerOutSide allProvidersAtScope: FamixTPackage)
-		hasSameElements: {self packageP10InteractedReferee . self packageP11FullReferee . self packagePExtensions . self packageP7ReferencerReferee}
+		hasSameElements: {self p10InteractedReferee . self p11FullReferee . self pExtensions . self p7ReferencerReferee}
 ]

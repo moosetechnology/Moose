@@ -4,36 +4,31 @@ Class {
 	#category : #'Moose-Tests-SmalltalkImporter-KGB-MooseChef'
 }
 
-{ #category : #allDependencies }
+{ #category : #'tests - clients' }
 FAMIXNamespaceNavigationChefTest >> testClientClasses [
 	self
-		assert: (self namespace2FullReferee queryAllIncoming atScope: FamixTType) asSet
-		equals:
-			{self c14ReferencerOutSideRefereeOutSide.
-			self c1FullReferencerOutSide.
-			self c6FullReferencerInSideOutSide.
-			self c3ReferencerInSideRefereeOutSide.
-			self c10FullReferencerInSide.
-			self c11FullRefereeOutSide.
-			self c12FullReferencerInSide.
-			self c13FullRefereeInSideOutSide.
-			self c9FullRefereeInSide} asSet
+		assertCollection: (self n2FullReferee queryAllIncoming atScope: FamixTType)
+		hasSameElements:
+			{self c14ReferencerOutSideRefereeOutSide . self c1FullReferencerOutSide . self c6FullReferencerInSideOutSide . self c3ReferencerInSideRefereeOutSide.
+			self c10FullReferencerInSide . self c11FullRefereeOutSide . self c12FullReferencerInSide . self c13FullRefereeInSideOutSide.
+			self c9FullRefereeInSide}
 ]
 
-{ #category : #allDependencies }
+{ #category : #'tests - clients' }
 FAMIXNamespaceNavigationChefTest >> testClientClassesInto [
-	self assert: (((self namespace2FullReferee queryAllIncoming atScope: FamixTType) within: self namespace3ReferencerReferee) equalsTo: (Set with: self c14ReferencerOutSideRefereeOutSide))
+	self
+		assertCollection: ((self n2FullReferee allClientsAtScope: FamixTType) within: self n3ReferencerReferee)
+		hasSameElements: {self c14ReferencerOutSideRefereeOutSide}
 ]
 
-{ #category : #allDependencies }
+{ #category : #'tests - clients' }
 FAMIXNamespaceNavigationChefTest >> testClientNamespaces [
 	self
-		assert:
-			((self namespace2FullReferee queryAllIncoming atScope: FamixTNamespace)
-				equalsTo: (Set with: self namespace1InteractedReferencerReferee with: self namespace3ReferencerReferee with: self namespace2FullReferee))
+		assertCollection: (self n2FullReferee queryAllIncoming atScope: FamixTNamespace)
+		hasSameElements: {self n1InteractedReferencerReferee . self n3ReferencerReferee . self n2FullReferee}
 ]
 
-{ #category : #'MooseKGB-TestFamix3-integralTests' }
+{ #category : #'tests - references' }
 FAMIXNamespaceNavigationChefTest >> testEachOutgoingReferenceImpliesAnIncomingReference [
 	| modelNamespaces |
 	modelNamespaces := self model allNamespaces.
@@ -42,20 +37,16 @@ FAMIXNamespaceNavigationChefTest >> testEachOutgoingReferenceImpliesAnIncomingRe
 			(modelNamespaces
 				allSatisfy: [ :referencer | 
 					(referencer queryAllOutgoingInvocations atScope: FamixTType)
-						allSatisfy: [ :referenced | 
-							(referenced queryAllIncomingInvocations atScope: FamixTNamespace)
-								includes: referencer ] ]).
+						allSatisfy: [ :referenced | (referenced queryAllIncomingInvocations atScope: FamixTNamespace) includes: referencer ] ]).
 	self
 		assert:
 			(modelNamespaces
 				allSatisfy: [ :referencer | 
 					(referencer queryAllOutgoingInvocations atScope: FamixTNamespace)
-						allSatisfy: [ :referenced | 
-							(referenced queryAllIncomingInvocations atScope: FamixTNamespace)
-								includes: referencer ] ])
+						allSatisfy: [ :referenced | (referenced queryAllIncomingInvocations atScope: FamixTNamespace) includes: referencer ] ])
 ]
 
-{ #category : #'MooseKGB-TestFamix3-integralTests' }
+{ #category : #'tests - references' }
 FAMIXNamespaceNavigationChefTest >> testEachSureOutgoingReferenceImpliesASureIncomingReference [
 	| modelNamespaces |
 	modelNamespaces := self model allNamespaces.
@@ -64,348 +55,214 @@ FAMIXNamespaceNavigationChefTest >> testEachSureOutgoingReferenceImpliesASureInc
 			(modelNamespaces
 				allSatisfy: [ :referencer | 
 					(referencer querySureOutgoingInvocations atScope: FamixTType)
-						allSatisfy: [ :referenced | 
-							(referenced queryAllIncomingInvocations atScope: FamixTNamespace)
-								includes: referencer ] ]).
+						allSatisfy: [ :referenced | (referenced queryAllIncomingInvocations atScope: FamixTNamespace) includes: referencer ] ]).
 	self
 		assert:
 			(modelNamespaces
 				allSatisfy: [ :referencer | 
 					(referencer querySureOutgoingInvocations atScope: FamixTNamespace)
-						allSatisfy: [ :referenced | 
-							(referenced queryAllIncomingInvocations atScope: FamixTNamespace)
-								includes: referencer ] ])
+						allSatisfy: [ :referenced | (referenced queryAllIncomingInvocations atScope: FamixTNamespace) includes: referencer ] ])
 ]
 
-{ #category : #inheritance }
+{ #category : #'tests - inheritance' }
 FAMIXNamespaceNavigationChefTest >> testInheritedByClasses [
 	self
-		assert:
-			((self namespace2FullReferee queryIncomingInheritances
-				atScope: FamixTType)
-				equalsTo:
-					(Set
-						with: self c3ReferencerInSideRefereeOutSide
-						with: self c11FullRefereeOutSide)).
+		assertCollection: (self n2FullReferee queryIncomingInheritances atScope: FamixTType)
+		hasSameElements: {self c3ReferencerInSideRefereeOutSide . self c11FullRefereeOutSide}.
 	self
-		assert:
-			(self namespace2FullReferee queryIncomingInheritances opposites
-				equalsTo:
-					(Set
-						with: self c11FullRefereeOutSide
-						with: self c3ReferencerInSideRefereeOutSide))
+		assertCollection: self n2FullReferee queryIncomingInheritances opposites
+		hasSameElements: {self c11FullRefereeOutSide . self c3ReferencerInSideRefereeOutSide}
 ]
 
-{ #category : #inheritance }
+{ #category : #'tests - inheritance' }
 FAMIXNamespaceNavigationChefTest >> testInheritedByClassesInto [
 	self
-		assert:
-			(((self namespace2FullReferee queryIncomingInheritances atScope: FamixTType) within: self namespace1InteractedReferencerReferee) equalsTo: (Set with: self c3ReferencerInSideRefereeOutSide)).
-	self assert: ((self namespace2FullReferee queryIncomingInheritances atScope: FamixTType) within: self namespace2FullReferee) size equals: 1
+		assertCollection: ((self n2FullReferee queryIncomingInheritances atScope: FamixTType) within: self n1InteractedReferencerReferee)
+		hasSameElements: {self c3ReferencerInSideRefereeOutSide}
 ]
 
-{ #category : #inheritance }
+{ #category : #'tests - inheritance' }
 FAMIXNamespaceNavigationChefTest >> testInheritedByNamespaces [
 	self
-		assert:
-			((self namespace2FullReferee queryIncomingInheritances
-				atScope: FamixTNamespace)
-				equalsTo:
-					(Set
-						with: self namespace1InteractedReferencerReferee
-						with: self namespace2FullReferee))
+		assertCollection: (self n2FullReferee queryIncomingInheritances atScope: FamixTNamespace)
+		hasSameElements: {self n1InteractedReferencerReferee . self n2FullReferee}
 ]
 
-{ #category : #inheritance }
+{ #category : #'tests - inheritance' }
 FAMIXNamespaceNavigationChefTest >> testInheritedClasses [
 	self
-		assert:
-			((self namespace1InteractedReferencerReferee queryOutgoingInheritances
-				atScope: FamixTType)
-				equalsTo:
-					(Set
-						with: self c11FullRefereeOutSide
-						with: self cObject
-						with: self c6FullReferencerInSideOutSide)).
+		assertCollection: (self n1InteractedReferencerReferee queryOutgoingInheritances atScope: FamixTType)
+		hasSameElements: {self c11FullRefereeOutSide . self cObject . self c6FullReferencerInSideOutSide}.
 	self
-		assert:
-			(self namespace1InteractedReferencerReferee queryOutgoingInheritances
-				opposites
-				equalsTo:
-					(Set
-						with: self c6FullReferencerInSideOutSide
-						with: self c11FullRefereeOutSide
-						with: self cObject))
+		assertCollection: self n1InteractedReferencerReferee queryOutgoingInheritances opposites
+		hasSameElements: {self c6FullReferencerInSideOutSide . self c11FullRefereeOutSide . self cObject}
 ]
 
-{ #category : #inheritance }
+{ #category : #'tests - inheritance' }
 FAMIXNamespaceNavigationChefTest >> testInheritedClassesInto [
-	self assert: (((self namespace1InteractedReferencerReferee queryOutgoingInheritances atScope: FamixTType) within: self namespace2FullReferee) equalsTo: (Set with: self c11FullRefereeOutSide))
+	self
+		assertCollection: ((self n1InteractedReferencerReferee queryOutgoingInheritances atScope: FamixTType) within: self n2FullReferee)
+		hasSameElements: {self c11FullRefereeOutSide}
 ]
 
-{ #category : #inheritance }
+{ #category : #'tests - inheritance' }
 FAMIXNamespaceNavigationChefTest >> testInheritedNamespaces [
 	self
-		assert:
-			((self namespace1InteractedReferencerReferee queryOutgoingInheritances
-				atScope: FamixTNamespace)
-				equalsTo:
-					(Set
-						with: self namespace2FullReferee
-						with: self namespaceSmalltalkCore
-						with: self namespace1InteractedReferencerReferee))
+		assertCollection: (self n1InteractedReferencerReferee queryOutgoingInheritances atScope: FamixTNamespace)
+		hasSameElements: {self n2FullReferee . self nSmalltalkCore . self n1InteractedReferencerReferee}
 ]
 
-{ #category : #allDependencies }
+{ #category : #'tests - providers' }
 FAMIXNamespaceNavigationChefTest >> testProviderClasses [
 	self
-		assert:
-			((self namespace1InteractedReferencerReferee queryAllOutgoing atScope: FamixTType)
-				equalsTo:
-					((Set
-						with: self c11FullRefereeOutSide
-						with: self c13FullRefereeInSideOutSide
-						with: self c14ReferencerOutSideRefereeOutSide
-						with: self cObject
-						with: self c7FullRefereeInSide)
-						union:
-							(Set
-								with: self c6FullReferencerInSideOutSide
-								with: self c2ReferencerOutSideRefereeInSide
-								with: self c4FullRefereeInSide
-								with: self c3ReferencerInSideRefereeOutSide
-								with: self c1FullReferencerOutSide
-								with: self c5ReferencerInSideRefereeInSide)))
+		assertCollection: (self n1InteractedReferencerReferee queryAllOutgoing atScope: FamixTType)
+		hasSameElements:
+			{self c11FullRefereeOutSide . self c13FullRefereeInSideOutSide . self c14ReferencerOutSideRefereeOutSide . self cObject . self c7FullRefereeInSide.
+			self c6FullReferencerInSideOutSide . self c2ReferencerOutSideRefereeInSide . self c4FullRefereeInSide . self c3ReferencerInSideRefereeOutSide.
+			self c1FullReferencerOutSide . self c5ReferencerInSideRefereeInSide}
 ]
 
-{ #category : #allDependencies }
+{ #category : #'tests - providers' }
 FAMIXNamespaceNavigationChefTest >> testProviderClassesInto [
 	| invos refs inh |
 	self
-		assert:
-			(((self namespace1InteractedReferencerReferee queryAllOutgoing atScope: FamixTType) within: self namespace2FullReferee)
-				equalsTo: (Set with: self c11FullRefereeOutSide with: self c13FullRefereeInSideOutSide)).
-	self assert: 15 equals: (self namespace1InteractedReferencerReferee queryAllOutgoing within: self namespace2FullReferee) size.
-	invos := (self namespace1InteractedReferencerReferee queryAllOutgoing within: self namespace2FullReferee) select: [ :dep | dep usesFamixTrait: FamixTInvocation ].
+		assertCollection:
+			((self n1InteractedReferencerReferee queryAllOutgoing atScope: FamixTType) within: self n2FullReferee)
+				hasSameElements: {self c11FullRefereeOutSide . self c13FullRefereeInSideOutSide}.
+	self assert: 15 equals: (self n1InteractedReferencerReferee queryAllOutgoing within: self n2FullReferee) size.
+	invos := (self n1InteractedReferencerReferee queryAllOutgoing within: self n2FullReferee) select: [ :dep | dep usesFamixTrait: FamixTInvocation ].
 	self assert: 10 equals: invos size.
-	refs := (self namespace1InteractedReferencerReferee queryAllOutgoing within: self namespace2FullReferee) select: [ :dep | dep usesFamixTrait: FamixTReference ].
+	refs := (self n1InteractedReferencerReferee queryAllOutgoing within: self n2FullReferee) select: [ :dep | dep usesFamixTrait: FamixTReference ].
 	self assert: 4 equals: refs size.
-	inh := (self namespace1InteractedReferencerReferee queryAllOutgoing within: self namespace2FullReferee) select: [ :dep | dep usesFamixTrait: FamixTSubInheritance ].
+	inh := (self n1InteractedReferencerReferee queryAllOutgoing within: self n2FullReferee) select: [ :dep | dep usesFamixTrait: FamixTSubInheritance ].
 	self assert: 1 equals: inh size.
 	self
-		assert:
-			(((self namespace1InteractedReferencerReferee queryAllOutgoing within: self namespace2FullReferee) atScope: FamixTType)
-				equalsTo: (Set with: self c11FullRefereeOutSide with: self c13FullRefereeInSideOutSide))
+		assertCollection:
+			((self n1InteractedReferencerReferee queryAllOutgoing within: self n2FullReferee) atScope: FamixTType)
+				hasSameElements: {self c11FullRefereeOutSide . self c13FullRefereeInSideOutSide}
 ]
 
-{ #category : #allDependencies }
+{ #category : #'tests - providers' }
 FAMIXNamespaceNavigationChefTest >> testProviderClassesOutOf [
 	| invos refs inh acc |
 	self
-		assert:
-			(((self namespace1InteractedReferencerReferee queryAllOutgoing atScope: FamixTType) outOfPackage: self packageP5FullReferee)
-				equalsTo:
-					((Set
-						with: self c13FullRefereeInSideOutSide
-						with: self c14ReferencerOutSideRefereeOutSide
-						with: self cObject
-						with: self c6FullReferencerInSideOutSide
-						with: self c5ReferencerInSideRefereeInSide
-						with: self c7FullRefereeInSide)
-						union:
-							(Set
-								with: self c2ReferencerOutSideRefereeInSide
-								with: self c3ReferencerInSideRefereeOutSide
-								with: self c4FullRefereeInSide
-								with: self c1FullReferencerOutSide))).
-	self assert: 55 equals: (self namespace1InteractedReferencerReferee queryAllOutgoing outOfPackage: self packageP5FullReferee) size.
-	invos := (self namespace1InteractedReferencerReferee queryAllOutgoing outOfPackage: self packageP5FullReferee) select: [ :dep | dep usesFamixTrait: FamixTInvocation ].
+		assertCollection: ((self n1InteractedReferencerReferee queryAllOutgoing atScope: FamixTType) outOf: self p5FullReferee)
+		hasSameElements:
+			{self c13FullRefereeInSideOutSide . self c14ReferencerOutSideRefereeOutSide . self cObject . self c6FullReferencerInSideOutSide.
+			self c5ReferencerInSideRefereeInSide . self c7FullRefereeInSide . self c2ReferencerOutSideRefereeInSide . self c3ReferencerInSideRefereeOutSide.
+			self c4FullRefereeInSide . self c1FullReferencerOutSide}.
+	self assert: 55 equals: (self n1InteractedReferencerReferee queryAllOutgoing outOf: self p5FullReferee) size.
+	invos := (self n1InteractedReferencerReferee queryAllOutgoing outOf: self p5FullReferee) select: [ :dep | dep usesFamixTrait: FamixTInvocation ].
 	self assert: 29 equals: invos size.
-	refs := (self namespace1InteractedReferencerReferee queryAllOutgoing outOfPackage: self packageP5FullReferee) select: [ :dep | dep usesFamixTrait: FamixTReference ].
+	refs := (self n1InteractedReferencerReferee queryAllOutgoing outOf: self p5FullReferee) select: [ :dep | dep usesFamixTrait: FamixTReference ].
 	self assert: 10 equals: refs size.
-	inh := (self namespace1InteractedReferencerReferee queryAllOutgoing outOfPackage: self packageP5FullReferee) select: [ :dep | dep usesFamixTrait: FamixTSubInheritance ].
+	inh := (self n1InteractedReferencerReferee queryAllOutgoing outOf: self p5FullReferee)
+		select: [ :dep | dep usesFamixTrait: FamixTSubInheritance ].
 	self assert: 7 equals: inh size.
-	acc := (self namespace1InteractedReferencerReferee queryAllOutgoing outOfPackage: self packageP5FullReferee) select: [ :dep | dep usesFamixTrait: FamixTAccess ].
+	acc := (self n1InteractedReferencerReferee queryAllOutgoing outOf: self p5FullReferee) select: [ :dep | dep usesFamixTrait: FamixTAccess ].
 	self assert: 9 equals: acc size.
 	self
-		assert:
-			(((self namespace1InteractedReferencerReferee queryAllOutgoing outOfPackage: self packageP5FullReferee) atScope: FamixTType)
-				equalsTo:
-					((Set
-						with: self c13FullRefereeInSideOutSide
-						with: self c14ReferencerOutSideRefereeOutSide
-						with: self cObject
-						with: self c6FullReferencerInSideOutSide
-						with: self c5ReferencerInSideRefereeInSide
-						with: self c7FullRefereeInSide)
-						union:
-							(Set
-								with: self c2ReferencerOutSideRefereeInSide
-								with: self c3ReferencerInSideRefereeOutSide
-								with: self c4FullRefereeInSide
-								with: self c1FullReferencerOutSide)))
+		assertCollection: ((self n1InteractedReferencerReferee queryAllOutgoing outOf: self p5FullReferee) atScope: FamixTType)
+		hasSameElements:
+			{self c13FullRefereeInSideOutSide . self c14ReferencerOutSideRefereeOutSide . self cObject . self c6FullReferencerInSideOutSide.
+			self c5ReferencerInSideRefereeInSide . self c7FullRefereeInSide . self c2ReferencerOutSideRefereeInSide . self c3ReferencerInSideRefereeOutSide.
+			self c4FullRefereeInSide . self c1FullReferencerOutSide}
 ]
 
-{ #category : #allDependencies }
+{ #category : #'tests - providers' }
 FAMIXNamespaceNavigationChefTest >> testProviderNamespaces [
 	self
-		assert:
-			((self namespace1InteractedReferencerReferee queryAllOutgoing atScope: FamixTNamespace)
-				equalsTo:
-					(Set
-						with: self namespace2FullReferee
-						with: self namespace3ReferencerReferee
-						with: self namespaceSmalltalkCore
-						with: self namespace1InteractedReferencerReferee))
+		assertCollection: (self n1InteractedReferencerReferee queryAllOutgoing atScope: FamixTNamespace)
+		hasSameElements: {self n2FullReferee . self n3ReferencerReferee . self nSmalltalkCore . self n1InteractedReferencerReferee}
 ]
 
-{ #category : #allOutgoingInvocations }
+{ #category : #'tests - outgoing invocations' }
 FAMIXNamespaceNavigationChefTest >> testReferencedClasses [
 	self
-		assert:
-			((self namespace1InteractedReferencerReferee
-				queryAllOutgoingInvocations atScope: FamixTType)
-				equalsTo:
-					((Set
-						with: self c11FullRefereeOutSide
-						with: self c14ReferencerOutSideRefereeOutSide
-						with: self c13FullRefereeInSideOutSide
-						with: self c5ReferencerInSideRefereeInSide
-						with: self c7FullRefereeInSide)
-						union:
-							(Set
-								with: self c2ReferencerOutSideRefereeInSide
-								with: self c3ReferencerInSideRefereeOutSide
-								with: self c4FullRefereeInSide
-								with: self c1FullReferencerOutSide)))
+		assertCollection: (self n1InteractedReferencerReferee queryAllOutgoingInvocations atScope: FamixTType)
+		hasSameElements:
+			{self c11FullRefereeOutSide . self c14ReferencerOutSideRefereeOutSide . self c13FullRefereeInSideOutSide . self c5ReferencerInSideRefereeInSide.
+			self c7FullRefereeInSide . self c2ReferencerOutSideRefereeInSide . self c3ReferencerInSideRefereeOutSide . self c4FullRefereeInSide.
+			self c1FullReferencerOutSide}
 ]
 
-{ #category : #allOutgoingInvocations }
+{ #category : #'tests - outgoing invocations' }
 FAMIXNamespaceNavigationChefTest >> testReferencedClassesInto [
 	self
-		assert:
-			(((self namespace1InteractedReferencerReferee queryAllOutgoingInvocations atScope: FamixTType) within: self namespace2FullReferee)
-				equalsTo: (Set with: self c11FullRefereeOutSide with: self c13FullRefereeInSideOutSide))
+		assertCollection: ((self n1InteractedReferencerReferee queryAllOutgoingInvocations atScope: FamixTType) within: self n2FullReferee)
+		hasSameElements: {self c11FullRefereeOutSide . self c13FullRefereeInSideOutSide}
 ]
 
-{ #category : #allOutgoingInvocations }
+{ #category : #'tests - outgoing invocations' }
 FAMIXNamespaceNavigationChefTest >> testReferencedNamespaces [
 	self
-		assert:
-			((self namespace1InteractedReferencerReferee
-				queryAllOutgoingInvocations atScope: FamixTNamespace)
-				equalsTo:
-					(Set
-						with: self namespace2FullReferee
-						with: self namespace3ReferencerReferee
-						with: self namespace1InteractedReferencerReferee))
+		assertCollection: (self n1InteractedReferencerReferee queryAllOutgoingInvocations atScope: FamixTNamespace)
+		hasSameElements: {self n2FullReferee . self n3ReferencerReferee . self n1InteractedReferencerReferee}
 ]
 
-{ #category : #allIncomingInvocations }
+{ #category : #'tests - incoming invocations' }
 FAMIXNamespaceNavigationChefTest >> testReferencingClasses [
 	self
-		assert:
-			((self namespace2FullReferee queryAllIncomingInvocations
-				atScope: FamixTType)
-				equalsTo:
-					((Set
-						with: self c14ReferencerOutSideRefereeOutSide
-						with: self c1FullReferencerOutSide
-						with: self c6FullReferencerInSideOutSide)
-						union:
-							(Set
-								with: self c12FullReferencerInSide
-								with: self c13FullRefereeInSideOutSide
-								with: self c10FullReferencerInSide
-								with: self c11FullRefereeOutSide)))
+		assertCollection: (self n2FullReferee queryAllIncomingInvocations atScope: FamixTType)
+		hasSameElements:
+			{self c14ReferencerOutSideRefereeOutSide . self c1FullReferencerOutSide . self c6FullReferencerInSideOutSide . self c12FullReferencerInSide.
+			self c13FullRefereeInSideOutSide . self c10FullReferencerInSide . self c11FullRefereeOutSide}
 ]
 
-{ #category : #allIncomingInvocations }
+{ #category : #'tests - incoming invocations' }
 FAMIXNamespaceNavigationChefTest >> testReferencingClassesInto [
-	self assert:
-		(((self namespace2FullReferee queryAllIncomingInvocations atScope: FamixTType) within: self namespace3ReferencerReferee) equalsTo: (Set with: self c14ReferencerOutSideRefereeOutSide))
+	self
+		assertCollection: ((self n2FullReferee queryAllIncomingInvocations atScope: FamixTType) within: self n3ReferencerReferee)
+		hasSameElements: {self c14ReferencerOutSideRefereeOutSide}
 ]
 
-{ #category : #allIncomingInvocations }
+{ #category : #'tests - incoming invocations' }
 FAMIXNamespaceNavigationChefTest >> testReferencingNamespaces [
 	self
-		assert:
-			((self namespace2FullReferee queryAllIncomingInvocations
-				atScope: FamixTNamespace)
-				equalsTo:
-					(Set
-						with: self namespace1InteractedReferencerReferee
-						with: self namespace3ReferencerReferee
-						with: self namespace2FullReferee))
+		assertCollection: (self n2FullReferee queryAllIncomingInvocations atScope: FamixTNamespace)
+		hasSameElements: {self n1InteractedReferencerReferee . self n3ReferencerReferee . self n2FullReferee}
 ]
 
-{ #category : #sureOutgoingInvocations }
+{ #category : #'tests - sure invocations' }
 FAMIXNamespaceNavigationChefTest >> testSureReferencedClasses [
 	self
-		assert:
-			((self namespace1InteractedReferencerReferee
-				querySureOutgoingInvocations atScope: FamixTType)
-				equalsTo:
-					(Set
-						with: self c11FullRefereeOutSide
-						with: self c13FullRefereeInSideOutSide
-						with: self c14ReferencerOutSideRefereeOutSide
-						with: self c4FullRefereeInSide))
+		assertCollection: (self n1InteractedReferencerReferee querySureOutgoingInvocations atScope: FamixTType)
+		hasSameElements: {self c11FullRefereeOutSide . self c13FullRefereeInSideOutSide . self c14ReferencerOutSideRefereeOutSide . self c4FullRefereeInSide}
 ]
 
-{ #category : #sureOutgoingInvocations }
+{ #category : #'tests - sure invocations' }
 FAMIXNamespaceNavigationChefTest >> testSureReferencedClassesInto [
 	self
-		assert:
-			(((self namespace1InteractedReferencerReferee querySureOutgoingInvocations atScope: FamixTType) within: self namespace2FullReferee)
-				equalsTo: (Set with: self c11FullRefereeOutSide with: self c13FullRefereeInSideOutSide))
+		assertCollection: ((self n1InteractedReferencerReferee querySureOutgoingInvocations atScope: FamixTType) within: self n2FullReferee)
+		hasSameElements: {self c11FullRefereeOutSide . self c13FullRefereeInSideOutSide}
 ]
 
-{ #category : #sureOutgoingInvocations }
+{ #category : #'tests - sure invocations' }
 FAMIXNamespaceNavigationChefTest >> testSureReferencedNamespaces [
 	self
-		assert:
-			((self namespace1InteractedReferencerReferee
-				querySureOutgoingInvocations atScope: FamixTNamespace)
-				equalsTo:
-					(Set
-						with: self namespace2FullReferee
-						with: self namespace3ReferencerReferee
-						with: self namespace1InteractedReferencerReferee))
+		assertCollection: (self n1InteractedReferencerReferee querySureOutgoingInvocations atScope: FamixTNamespace)
+		hasSameElements: {self n2FullReferee . self n3ReferencerReferee . self n1InteractedReferencerReferee}
 ]
 
-{ #category : #sureIncomingInvocations }
+{ #category : #'tests - sure invocations' }
 FAMIXNamespaceNavigationChefTest >> testSureReferencingClasses [
 	self
-		assert:
-			((self namespace2FullReferee querySureIncomingInvocations
-				atScope: FamixTType)
-				equalsTo:
-					((Set
-						with: self c14ReferencerOutSideRefereeOutSide
-						with: self c1FullReferencerOutSide
-						with: self c6FullReferencerInSideOutSide
-						with: self c11FullRefereeOutSide
-						with: self c13FullRefereeInSideOutSide
-						with: self c12FullReferencerInSide)
-						union: (Set with: self c10FullReferencerInSide)))
+		assertCollection: (self n2FullReferee querySureIncomingInvocations atScope: FamixTType)
+		hasSameElements:
+			{self c14ReferencerOutSideRefereeOutSide . self c1FullReferencerOutSide . self c6FullReferencerInSideOutSide . self c11FullRefereeOutSide.
+			self c13FullRefereeInSideOutSide . self c12FullReferencerInSide . self c10FullReferencerInSide}
 ]
 
-{ #category : #sureIncomingInvocations }
+{ #category : #'tests - sure invocations' }
 FAMIXNamespaceNavigationChefTest >> testSureReferencingClassesInto [
-	self assert:
-		(((self namespace2FullReferee querySureIncomingInvocations atScope: FamixTType) within: self namespace3ReferencerReferee) equalsTo: (Set with: self c14ReferencerOutSideRefereeOutSide))
+	self
+		assertCollection: ((self n2FullReferee querySureIncomingInvocations atScope: FamixTType) within: self n3ReferencerReferee)
+		hasSameElements: {self c14ReferencerOutSideRefereeOutSide}
 ]
 
-{ #category : #sureIncomingInvocations }
+{ #category : #'tests - sure invocations' }
 FAMIXNamespaceNavigationChefTest >> testSureReferencingNamespaces [
 	self
-		assert:
-			((self namespace2FullReferee querySureIncomingInvocations
-				atScope: FamixTNamespace)
-				equalsTo:
-					(Set
-						with: self namespace1InteractedReferencerReferee
-						with: self namespace2FullReferee
-						with: self namespace3ReferencerReferee))
+		assertCollection: (self n2FullReferee querySureIncomingInvocations atScope: FamixTNamespace)
+		hasSameElements: {self n1InteractedReferencerReferee . self n2FullReferee . self n3ReferencerReferee}
 ]

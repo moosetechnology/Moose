@@ -40,7 +40,7 @@ FamixJavaNamespace >> afferentCoupling [
 	<MSEProperty: #afferentCoupling type: #Number>
 	<derived>
 	<MSEComment: 'Afferent Coupling of a namespace Afferent is the number of classes that depend upon this namespace'>
-	^ (self queryAllIncoming atScope: FamixTType) outOfMyNamespace size
+	^ ((self queryAllIncoming atScope: FamixTType) outOfParentUsing: FamixTNamespace) size
 ]
 
 { #category : #'Famix-Extensions-metrics' }
@@ -66,7 +66,7 @@ FamixJavaNamespace >> bunchCohesion [
 	(myClasses := self classes) union: (myClasses flatCollect: [ :c | c allRecursiveTypes ]).
 	myClasses size == 0
 		ifTrue: [ ^ nil ].
-	intraConnectivities := (myClasses collect: [ :c | (c queryOutgoingDependencies atScope: FamixTType) withinMyNamespace ]) inject: 0 into: [ :subTotal :each | subTotal + each size ].
+	intraConnectivities := (myClasses collect: [ :c | (c queryOutgoingDependencies atScope: FamixTType) withinParentUsing: FamixTNamespace ]) inject: 0 into: [ :subTotal :each | subTotal + each size ].
 	^ intraConnectivities / myClasses size squared asFloat
 ]
 
@@ -109,11 +109,11 @@ FamixJavaNamespace >> bunchCouplingWithAll [
 	(myClasses isEmpty or: [ allClasses isEmpty ]) ifTrue: [ ^ nil ].
 
 	"All outgoing dependencies"
-	interConnectivities := (myClasses collect: [ :c | (c queryOutgoingDependencies atScope: FamixTType) outOfMyNamespace ]) inject: 0 into: [ :subTotal :each | subTotal + each size ].
+	interConnectivities := (myClasses collect: [ :c | (c queryOutgoingDependencies atScope: FamixTType) outOfParentUsing: FamixTNamespace ]) inject: 0 into: [ :subTotal :each | subTotal + each size ].
 
 	"Plus all incoming dependencies"
 	interConnectivities := interConnectivities
-		+ ((myClasses collect: [ :c | (c queryIncomingDependencies atScope: FamixTType) outOfMyNamespace ]) inject: 0 into: [ :subTotal :each | subTotal + each size ]).
+		+ ((myClasses collect: [ :c | (c queryIncomingDependencies atScope: FamixTType) outOfParentUsing: FamixTNamespace ]) inject: 0 into: [ :subTotal :each | subTotal + each size ]).
 	^ interConnectivities / (2 * myClasses size * (allClasses size - myClasses size)) asFloat
 ]
 
@@ -160,7 +160,7 @@ FamixJavaNamespace >> efferentCoupling [
 	<MSEProperty: #efferentCoupling type: #Number>
 	<derived>
 	<MSEComment: 'Efferent coupling for a module is the number of classes it depends upon'>
-	^ (self queryOutgoingDependencies outOfMyNamespace atScope: FamixTType) size
+	^ ((self queryOutgoingDependencies outOfParentUsing: FamixTNamespace) atScope: FamixTType) size
 ]
 
 { #category : #'Famix-Extensions-metrics' }
@@ -206,7 +206,7 @@ FamixJavaNamespace >> martinCohesion [
 	myClasses := self classes.
 	myClasses := myClasses union: (myClasses flatCollect: [ :c | c allRecursiveTypes ]).
 	myClasses size == 0 ifTrue: [ ^ nil ].
-	intraConnectivities := (myClasses collect: [ :c | (c queryOutgoingDependencies atScope: FamixTType) withoutSelfLoops withinMyNamespace ]) inject: 0 into: [ :subTotal :each | subTotal + each size ].
+	intraConnectivities := (myClasses collect: [ :c | (c queryOutgoingDependencies atScope: FamixTType) withoutSelfLoops withinParentUsing: FamixTNamespace ]) inject: 0 into: [ :subTotal :each | subTotal + each size ].
 	^ ((intraConnectivities + 1) / myClasses size) asFloat
 ]
 

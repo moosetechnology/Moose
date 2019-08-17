@@ -7,51 +7,42 @@ Class {
 { #category : #tests }
 FAMIXNamespaceNavigationTest >> testClientClasses [
 	self
-		assert:
-			((self namespace2FullReferee allClientsAtScope: FamixTType)
-				equalsTo:
-					(Set
-						with: self c14ReferencerOutSideRefereeOutSide
-						with: self c1FullReferencerOutSide
-						with: self c6FullReferencerInSideOutSide
-						with: self c3ReferencerInSideRefereeOutSide))
+		assertCollection: (self n2FullReferee allClientsAtScope: FamixTType)
+		hasSameElements:
+			{self c14ReferencerOutSideRefereeOutSide . self c1FullReferencerOutSide . self c6FullReferencerInSideOutSide . self c3ReferencerInSideRefereeOutSide}
 ]
 
 { #category : #tests }
 FAMIXNamespaceNavigationTest >> testClientClassesInto [
-	self assert: (((self namespace2FullReferee queryAllIncoming atScope: FamixTType) within: self namespace3ReferencerReferee) equalsTo: (Set with: self c14ReferencerOutSideRefereeOutSide))
+	self
+		assertCollection: ((self n2FullReferee allClientsAtScope: FamixTType) within: self n3ReferencerReferee)
+		hasSameElements: {self c14ReferencerOutSideRefereeOutSide}
 ]
 
 { #category : #tests }
 FAMIXNamespaceNavigationTest >> testClientNamespaces [
-	self assert: ((self namespace2FullReferee allClientsAtScope: FamixTNamespace) equalsTo: (Set with: self namespace1InteractedReferencerReferee with: self namespace3ReferencerReferee))
+	self
+		assertCollection: (self n2FullReferee allClientsAtScope: FamixTNamespace)
+		hasSameElements: {self n1InteractedReferencerReferee . self n3ReferencerReferee}
 ]
 
 { #category : #tests }
 FAMIXNamespaceNavigationTest >> testProviderClasses [
 	self
-		assert:
-			((self namespace1InteractedReferencerReferee allProvidersAtScope: FamixTType)
-				equalsTo:
-					(Set
-						with: self c11FullRefereeOutSide
-						with: self c13FullRefereeInSideOutSide
-						with: self c14ReferencerOutSideRefereeOutSide
-						with: self cObject))
+		assertCollection: (self n1InteractedReferencerReferee allProvidersAtScope: FamixTType)
+		hasSameElements: {self c11FullRefereeOutSide . self c13FullRefereeInSideOutSide . self c14ReferencerOutSideRefereeOutSide . self cObject}
 ]
 
 { #category : #tests }
 FAMIXNamespaceNavigationTest >> testProviderClassesInto [
 	self
-		assert:
-			(((self namespace1InteractedReferencerReferee queryAllOutgoing atScope: FamixTType) within: self namespace2FullReferee)
-				equalsTo: (Set with: self c11FullRefereeOutSide with: self c13FullRefereeInSideOutSide))
+		assertCollection: ((self n1InteractedReferencerReferee allProvidersAtScope: FamixTType) within: self n2FullReferee)
+		hasSameElements: {self c11FullRefereeOutSide . self c13FullRefereeInSideOutSide}
 ]
 
 { #category : #tests }
 FAMIXNamespaceNavigationTest >> testProviderNamespaces [
 	self
-		assert:
-			((self namespace1InteractedReferencerReferee allProvidersAtScope: FamixTNamespace)
-				equalsTo: (Set with: self namespace2FullReferee with: self namespace3ReferencerReferee with: self namespaceSmalltalkCore))
+		assertCollection: (self n1InteractedReferencerReferee allProvidersAtScope: FamixTNamespace)
+		hasSameElements: {self n2FullReferee . self n3ReferencerReferee . self nSmalltalkCore}
 ]
