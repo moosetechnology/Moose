@@ -110,11 +110,9 @@ BaselineOfFamix >> baseline: spec [
 						loads: 'runtimeSupport';
 						repository: 'github://pavel-krivanek/Ring2:v1.2.0/src' ].
 			spec
-				package: 'Famix-MetamodelBuilder-Core'
-					with: [ spec
-						includes: #('Famix-MetamodelBuilder-Core-Pharo7');
-						requires: #('Ring2') ];
-				package: 'Famix-MetamodelBuilder-Core-Pharo7' ].
+				package: 'Famix-MetamodelBuilder-Core' with: [ spec requires: #('Ring2') ];
+				package: 'Moose-Core' with: [ spec includes: #('Famix-Pharo7') ];
+				package: 'Famix-Pharo7' ].
 
 	spec
 		for: #'pharo8.x'

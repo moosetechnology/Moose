@@ -4,50 +4,30 @@ Class {
 	#category : #'Moose-Tests-SmalltalkImporter-KGB-MooseChef'
 }
 
-{ #category : #allDependencies }
+{ #category : #'tests - clients' }
 FAMIXPackageNavigationChefTest >> testClientClasses [
-	| p5 |
-	p5 := self packageP5FullReferee.
 	self
-		assert:
-			((p5 queryAllIncoming atScope: FamixTType)
-				equalsTo:
-					((Set
-						with: self c1FullReferencerOutSide
-						with: self c14ReferencerOutSideRefereeOutSide
-						with: self c6FullReferencerInSideOutSide
-						with: self c3ReferencerInSideRefereeOutSide) union: (Set with: self c11FullRefereeOutSide)))
+		assertCollection: (self p5FullReferee queryAllIncoming atScope: FamixTType)
+		hasSameElements:
+			{self c1FullReferencerOutSide . self c14ReferencerOutSideRefereeOutSide . self c6FullReferencerInSideOutSide . self c3ReferencerInSideRefereeOutSide.
+			self c11FullRefereeOutSide}
 ]
 
-{ #category : #allDependencies }
+{ #category : #'tests - clients' }
 FAMIXPackageNavigationChefTest >> testClientClassesInto [
-	| p1 p5 |
-	p1 := self packageP1FullReferencer.
-	p5 := self packageP5FullReferee.
-	self assert: (((p5 queryAllIncoming atScope: FamixTType) within: p1) equalsTo: (Set with: self c1FullReferencerOutSide))
-]
-
-{ #category : #allDependencies }
-FAMIXPackageNavigationChefTest >> testClientPackages [
-	| p1 p2 p3 p5 p7 |
-	p1 := self packageP1FullReferencer.
-	p2 := self packageP2InteractedReferencerReferee.
-	p3 := self packageP3InteractedReferencer.
-	p5 := self packageP5FullReferee.
-	p7 := self packageP7ReferencerReferee.
 	self
-		assert:
-			((p5 queryAllIncoming atScope: FamixTPackage)
-				equalsTo:
-					(Set
-						with: p1
-						with: p2
-						with: p7
-						with: p3
-						with: p5))
+		assertCollection: ((self p5FullReferee queryAllIncoming atScope: FamixTType) within: self p1FullReferencer)
+		hasSameElements: {self c1FullReferencerOutSide}
 ]
 
-{ #category : #'MooseKGB-TestFamix3-integralTests' }
+{ #category : #'tests - clients' }
+FAMIXPackageNavigationChefTest >> testClientPackages [
+	self
+		assertCollection: (self p5FullReferee queryAllIncoming atScope: FamixTPackage)
+		hasSameElements: {self p1FullReferencer . self p2InteractedReferencerReferee . self p7ReferencerReferee . self p3InteractedReferencer . self p5FullReferee}
+]
+
+{ #category : #'tests - references' }
 FAMIXPackageNavigationChefTest >> testEachOutgoingReferenceImpliesAnIncomingReference [
 	| modelPackages |
 	modelPackages := self model allPackages.
@@ -56,20 +36,16 @@ FAMIXPackageNavigationChefTest >> testEachOutgoingReferenceImpliesAnIncomingRefe
 			(modelPackages
 				allSatisfy: [ :referencer | 
 					(referencer queryAllOutgoingInvocations atScope: FamixTType)
-						allSatisfy: [ :referenced | 
-							(referenced queryAllIncomingInvocations atScope: FamixTPackage)
-								includes: referencer ] ]).
+						allSatisfy: [ :referenced | (referenced queryAllIncomingInvocations atScope: FamixTPackage) includes: referencer ] ]).
 	self
 		assert:
 			(modelPackages
 				allSatisfy: [ :referencer | 
 					(referencer queryAllOutgoingInvocations atScope: FamixTPackage)
-						allSatisfy: [ :referenced | 
-							(referenced queryAllIncomingInvocations atScope: FamixTPackage)
-								includes: referencer ] ])
+						allSatisfy: [ :referenced | (referenced queryAllIncomingInvocations atScope: FamixTPackage) includes: referencer ] ])
 ]
 
-{ #category : #'MooseKGB-TestFamix3-integralTests' }
+{ #category : #'tests - references' }
 FAMIXPackageNavigationChefTest >> testEachStaticOutgoingReferenceImpliesAStaticIncomingReference [
 	| modelPackages |
 	modelPackages := self model allPackages.
@@ -78,20 +54,16 @@ FAMIXPackageNavigationChefTest >> testEachStaticOutgoingReferenceImpliesAStaticI
 			(modelPackages
 				allSatisfy: [ :referencer | 
 					(referencer queryOutgoingReferences atScope: FamixTType)
-						allSatisfy: [ :referenced | 
-							(referenced queryIncomingReferences atScope: FamixTPackage)
-								includes: referencer ] ]).
+						allSatisfy: [ :referenced | (referenced queryIncomingReferences atScope: FamixTPackage) includes: referencer ] ]).
 	self
 		assert:
 			(modelPackages
 				allSatisfy: [ :referencer | 
 					(referencer queryOutgoingReferences atScope: FamixTPackage)
-						allSatisfy: [ :referenced | 
-							(referenced queryIncomingReferences atScope: FamixTPackage)
-								includes: referencer ] ])
+						allSatisfy: [ :referenced | (referenced queryIncomingReferences atScope: FamixTPackage) includes: referencer ] ])
 ]
 
-{ #category : #'MooseKGB-TestFamix3-integralTests' }
+{ #category : #'tests - references' }
 FAMIXPackageNavigationChefTest >> testEachSureOutgoingReferenceImpliesASureIncomingReference [
 	| modelPackages |
 	modelPackages := self model allPackages.
@@ -100,538 +72,284 @@ FAMIXPackageNavigationChefTest >> testEachSureOutgoingReferenceImpliesASureIncom
 			(modelPackages
 				allSatisfy: [ :referencer | 
 					(referencer querySureOutgoingInvocations atScope: FamixTType)
-						allSatisfy: [ :referenced | 
-							(referenced querySureIncomingInvocations atScope: FamixTPackage)
-								includes: referencer ] ]).
+						allSatisfy: [ :referenced | (referenced querySureIncomingInvocations atScope: FamixTPackage) includes: referencer ] ]).
 	self
 		assert:
 			(modelPackages
 				allSatisfy: [ :referencer | 
 					(referencer querySureOutgoingInvocations atScope: FamixTPackage)
-						allSatisfy: [ :referenced | 
-							(referenced querySureIncomingInvocations atScope: FamixTPackage)
-								includes: referencer ] ])
+						allSatisfy: [ :referenced | (referenced querySureIncomingInvocations atScope: FamixTPackage) includes: referencer ] ])
 ]
 
-{ #category : #inheritance }
-FAMIXPackageNavigationChefTest >> testInheritedByClasses [ 
-	 
-	| p6 | 
-	p6 := self packageP6InteractedReferee. 
-	self 
-		assert: 
-			(p6 queryIncomingInheritances opposites equalsTo: (Set with: self c11FullRefereeOutSide))
+{ #category : #'tests - inheritance' }
+FAMIXPackageNavigationChefTest >> testInheritedByClasses [
+	self assertCollection: self p6InteractedReferee queryIncomingInheritances opposites hasSameElements: {self c11FullRefereeOutSide}
 ]
 
-{ #category : #inheritance }
+{ #category : #'tests - inheritance' }
 FAMIXPackageNavigationChefTest >> testInheritedByClassesInto [
-	| p5 p6 |
-	p5 := self packageP5FullReferee.
-	p6 := self packageP6InteractedReferee.
-	self assert: ((p6 queryIncomingInheritances opposites within: p5) equalsTo: (Set with: self c11FullRefereeOutSide))
+	self assertCollection: (self p6InteractedReferee queryIncomingInheritances opposites within: self p5FullReferee) hasSameElements: {self c11FullRefereeOutSide}
 ]
 
-{ #category : #inheritance }
+{ #category : #'tests - inheritance' }
 FAMIXPackageNavigationChefTest >> testInheritedByPackages [
-	| p5 p6 |
-	p5 := self packageP5FullReferee.
-	p6 := self packageP6InteractedReferee.
-	self
-		assert:
-			((p6 queryIncomingInheritances atScope: FamixTPackage)
-				equalsTo: (Set with: p5))
+	self assertCollection: (self p6InteractedReferee queryIncomingInheritances atScope: FamixTPackage) hasSameElements: {self p5FullReferee}
 ]
 
-{ #category : #inheritance }
-FAMIXPackageNavigationChefTest >> testInheritedClasses [ 
-	 
-	| p5 | 
-	p5 := self packageP5FullReferee. 
-	self 
-		assert: 
-			(p5 queryOutgoingInheritances opposites equalsTo: (Set with: self c12FullReferencerInSide))
+{ #category : #'tests - inheritance' }
+FAMIXPackageNavigationChefTest >> testInheritedClasses [
+	self assertCollection: self p5FullReferee queryOutgoingInheritances opposites hasSameElements: {self c12FullReferencerInSide}
 ]
 
-{ #category : #inheritance }
+{ #category : #'tests - inheritance' }
 FAMIXPackageNavigationChefTest >> testInheritedClassesInto [
-	| p5 p6 |
-	p5 := self packageP5FullReferee.
-	p6 := self packageP6InteractedReferee.
-	self assert: ((p5 queryOutgoingInheritances opposites within: p6) equalsTo: (Set with: self c12FullReferencerInSide))
+	self
+		assertCollection: (self p5FullReferee queryOutgoingInheritances opposites within: self p6InteractedReferee)
+		hasSameElements: {self c12FullReferencerInSide}
 ]
 
-{ #category : #inheritance }
+{ #category : #'tests - inheritance' }
 FAMIXPackageNavigationChefTest >> testInheritedPackages [
-	| p5 p6 |
-	p5 := self packageP5FullReferee.
-	p6 := self packageP6InteractedReferee.
-	self
-		assert:
-			((p5 queryOutgoingInheritances atScope: FamixTPackage)
-				equalsTo: (Set with: p6))
+	self assertCollection: (self p5FullReferee queryOutgoingInheritances atScope: FamixTPackage) hasSameElements: {self p6InteractedReferee}
 ]
 
-{ #category : #allDependencies }
+{ #category : #'tests - providers' }
 FAMIXPackageNavigationChefTest >> testProviderClasses [
-	| p8 |
-	p8 := self packageP8FullReferencer.
-	self assert: ((p8 queryAllOutgoing atScope: FamixTType) equalsTo: (Set with: self c18FullRefereeInSideOutSide with: self c19FullRefereeOutSide with: self c14ReferencerOutSideRefereeOutSide))
+	self
+		assertCollection: (self p8FullReferencer queryAllOutgoing atScope: FamixTType)
+		hasSameElements: {self c18FullRefereeInSideOutSide . self c19FullRefereeOutSide . self c14ReferencerOutSideRefereeOutSide}
 ]
 
-{ #category : #allDependencies }
+{ #category : #'tests - providers' }
 FAMIXPackageNavigationChefTest >> testProviderClassesInto [
-	| p8 p11 pEx |
-	p8 := self packageP8FullReferencer.
-	p11 := self packageP11FullReferee.
-	pEx := self packagePExtensions.
-	self assert: (((p8 queryAllOutgoing atScope: FamixTType) within: p11) equalsTo: (Set with: self c19FullRefereeOutSide)).
-	self assert: ((p8 queryAllOutgoing atScope: FamixTType) within: pEx) isEmpty
+	self assertCollection: ((self p8FullReferencer queryAllOutgoing atScope: FamixTType) within: self p11FullReferee) hasSameElements: {self c19FullRefereeOutSide}.
+	self assertEmpty: ((self p8FullReferencer queryAllOutgoing atScope: FamixTType) within: self pExtensions)
 ]
 
-{ #category : #allDependencies }
-FAMIXPackageNavigationChefTest >> testProviderClassesOutOf [
-	| invos refs inh acc |
-	self
-		assert:
-			(((self namespace1InteractedReferencerReferee queryAllOutgoing atScope: FamixTType) outOfPackage: self packageP5FullReferee)
-				equalsTo:
-					((Set
-						with: self c13FullRefereeInSideOutSide
-						with: self c14ReferencerOutSideRefereeOutSide
-						with: self cObject
-						with: self c6FullReferencerInSideOutSide
-						with: self c5ReferencerInSideRefereeInSide
-						with: self c7FullRefereeInSide)
-						union:
-							(Set
-								with: self c2ReferencerOutSideRefereeInSide
-								with: self c3ReferencerInSideRefereeOutSide
-								with: self c4FullRefereeInSide
-								with: self c1FullReferencerOutSide))).
-	self assert: 55 equals: (self namespace1InteractedReferencerReferee queryAllOutgoing outOfPackage: self packageP5FullReferee) size.
-	invos := (self namespace1InteractedReferencerReferee queryAllOutgoing outOfPackage: self packageP5FullReferee) select: [ :dep | dep usesFamixTrait: FamixTInvocation ].
-	self assert: 29 equals: invos size.
-	refs := (self namespace1InteractedReferencerReferee queryAllOutgoing outOfPackage: self packageP5FullReferee) select: [ :dep | dep usesFamixTrait: FamixTReference ].
-	self assert: 10 equals: refs size.
-	inh := (self namespace1InteractedReferencerReferee queryAllOutgoing outOfPackage: self packageP5FullReferee) select: [ :dep | dep usesFamixTrait: FamixTSubInheritance ].
-	self assert: 7 equals: inh size.
-	acc := (self namespace1InteractedReferencerReferee queryAllOutgoing outOfPackage: self packageP5FullReferee) select: [ :dep | dep usesFamixTrait: FamixTAccess ].
-	self assert: 9 equals: acc size.
-	self
-		assert:
-			(((self namespace1InteractedReferencerReferee queryAllOutgoing outOfPackage: self packageP5FullReferee) atScope: FamixTType)
-				equalsTo:
-					((Set
-						with: self c13FullRefereeInSideOutSide
-						with: self c14ReferencerOutSideRefereeOutSide
-						with: self cObject
-						with: self c6FullReferencerInSideOutSide
-						with: self c5ReferencerInSideRefereeInSide
-						with: self c7FullRefereeInSide)
-						union:
-							(Set
-								with: self c2ReferencerOutSideRefereeInSide
-								with: self c3ReferencerInSideRefereeOutSide
-								with: self c4FullRefereeInSide
-								with: self c1FullReferencerOutSide)))
-]
-
-{ #category : #allDependencies }
+{ #category : #'tests - providers' }
 FAMIXPackageNavigationChefTest >> testProviderPackages [
-	| p7 p8 p10 p11 pEx |
-	p7 := self packageP7ReferencerReferee.
-	p8 := self packageP8FullReferencer.
-	p10 := self packageP10InteractedReferee.
-	p11 := self packageP11FullReferee.
-	pEx := self packagePExtensions.
 	self
-		assert:
-			((p8 queryAllOutgoing atScope: FamixTPackage)
-				equalsTo:
-					(Set
-						with: p10
-						with: p11
-						with: p7
-						with: pEx))
+		assertCollection: (self p8FullReferencer queryAllOutgoing atScope: FamixTPackage)
+		hasSameElements: {self p10InteractedReferee . self p11FullReferee . self p7ReferencerReferee . self pExtensions}
 ]
 
-{ #category : #allOutgoingInvocations }
+{ #category : #'tests - outgoing invocations' }
 FAMIXPackageNavigationChefTest >> testReferencedClasses [
 	self
-		assert:
-			((self packageP8FullReferencer queryAllOutgoingInvocations
-				atScope: FamixTType)
-				equalsTo:
-					(Set
-						with: self c18FullRefereeInSideOutSide
-						with: self c19FullRefereeOutSide))
+		assertCollection: (self p8FullReferencer queryAllOutgoingInvocations atScope: FamixTType)
+		hasSameElements: {self c18FullRefereeInSideOutSide . self c19FullRefereeOutSide}
 ]
 
-{ #category : #allOutgoingInvocations }
+{ #category : #'tests - outgoing invocations' }
 FAMIXPackageNavigationChefTest >> testReferencedClassesInto [
-	| p8 p11 pEx |
-	p8 := self packageP8FullReferencer.
-	p11 := self packageP11FullReferee.
-	pEx := self packagePExtensions.
-	self assert: (((p8 queryAllOutgoingInvocations atScope: FamixTType) within: p11) equalsTo: (Set with: self c19FullRefereeOutSide)).
-	self assert: ((p8 queryAllOutgoingInvocations atScope: FamixTType) within: pEx) isEmpty
+	self
+		assertCollection: ((self p8FullReferencer queryAllOutgoingInvocations atScope: FamixTType) within: self p11FullReferee)
+		hasSameElements: {self c19FullRefereeOutSide}.
+	self assertEmpty: ((self p8FullReferencer queryAllOutgoingInvocations atScope: FamixTType) within: self pExtensions)
 ]
 
-{ #category : #allOutgoingInvocations }
+{ #category : #'tests - outgoing invocations' }
 FAMIXPackageNavigationChefTest >> testReferencedPackages [
-	| p8 p10 p11 pEx |
-	p8 := self packageP8FullReferencer.
-	p10 := self packageP10InteractedReferee.
-	p11 := self packageP11FullReferee.
-	pEx := self packagePExtensions.
 	self
-		assert:
-			((p8 queryAllOutgoingInvocations atScope: FamixTPackage)
-				equalsTo: (Set with: p10 with: p11 with: pEx)).
-	self
-		assert:
-			((pEx queryAllOutgoingInvocations atScope: FamixTPackage)
-				equalsTo: (Set with: p11))
+		assertCollection: (self p8FullReferencer queryAllOutgoingInvocations atScope: FamixTPackage)
+		hasSameElements: {self p10InteractedReferee . self p11FullReferee . self pExtensions}.
+	self assertCollection: (self pExtensions queryAllOutgoingInvocations atScope: FamixTPackage) hasSameElements: {self p11FullReferee}
 ]
 
-{ #category : #allIncomingInvocations }
+{ #category : #'tests - incoming invocations' }
 FAMIXPackageNavigationChefTest >> testReferencingClasses [
 	self
-		assert:
-			((self packageP5FullReferee queryAllIncomingInvocations
-				atScope: FamixTType)
-				equalsTo:
-					(Set
-						with: self c1FullReferencerOutSide
-						with: self c14ReferencerOutSideRefereeOutSide
-						with: self c6FullReferencerInSideOutSide
-						with: self c11FullRefereeOutSide))
+		assertCollection: (self p5FullReferee queryAllIncomingInvocations atScope: FamixTType)
+		hasSameElements: {self c1FullReferencerOutSide . self c14ReferencerOutSideRefereeOutSide . self c6FullReferencerInSideOutSide . self c11FullRefereeOutSide}
 ]
 
-{ #category : #allIncomingInvocations }
+{ #category : #'tests - incoming invocations' }
 FAMIXPackageNavigationChefTest >> testReferencingClassesInto [
-	| p1 p5 |
-	p1 := self packageP1FullReferencer.
-	p5 := self packageP5FullReferee.
-	self assert: (((p5 queryAllIncomingInvocations atScope: FamixTType) within: p1) equalsTo: (Set with: self c1FullReferencerOutSide))
+	self
+		assertCollection: ((self p5FullReferee queryAllIncomingInvocations atScope: FamixTType) within: self p1FullReferencer)
+		hasSameElements: {self c1FullReferencerOutSide}
 ]
 
-{ #category : #allIncomingInvocations }
+{ #category : #'tests - incoming invocations' }
 FAMIXPackageNavigationChefTest >> testReferencingPackages [
 	self
-		assert:
-			((self packageP5FullReferee queryAllIncomingInvocations
-				atScope: FamixTPackage)
-				equalsTo:
-					(Set
-						with: self packageP1FullReferencer
-						with: self packageP3InteractedReferencer
-						with: self packageP7ReferencerReferee
-						with: self packageP5FullReferee))
+		assertCollection: (self p5FullReferee queryAllIncomingInvocations atScope: FamixTPackage)
+		hasSameElements: {self p1FullReferencer . self p3InteractedReferencer . self p7ReferencerReferee . self p5FullReferee}
 ]
 
-{ #category : #inheritance }
-FAMIXPackageNavigationChefTest >> testSourceClassesInInheritedClasses [ 
-	| p3 | 
-	p3 := self packageP3InteractedReferencer. 
+{ #category : #'tests - inheritance' }
+FAMIXPackageNavigationChefTest >> testSourceClassesInInheritedClasses [
+	self
+		assertCollection: self p3InteractedReferencer queryOutgoingInheritances sourceClasses
+		hasSameElements: {self c5ReferencerInSideRefereeInSide . self c6FullReferencerInSideOutSide . self c7FullRefereeInSide . self c8FullReferencerInSide}.
 
-	self assert: (p3 queryOutgoingInheritances sourceClasses
-		equalsTo: (Set
-					with: self c5ReferencerInSideRefereeInSide
-					with: self c6FullReferencerInSideOutSide 
-					with: self c7FullRefereeInSide 
-					with: self c8FullReferencerInSide )).
-
-	self assert: (p3 queryOutgoingInheritances withoutSelfLoops sourceClasses
-		equalsTo: (Set
-					with: self c5ReferencerInSideRefereeInSide
-					with: self c6FullReferencerInSideOutSide 
-					with: self c7FullRefereeInSide ))
+	self
+		assertCollection: self p3InteractedReferencer queryOutgoingInheritances withoutSelfLoops sourceClasses
+		hasSameElements: {self c5ReferencerInSideRefereeInSide . self c6FullReferencerInSideOutSide . self c7FullRefereeInSide}
 ]
 
-{ #category : #allOutgoingInvocations }
+{ #category : #'tests - outgoing invocations' }
 FAMIXPackageNavigationChefTest >> testSourceClassesInReferencedClasses [
-	
-	self assert: (self packageP3InteractedReferencer queryAllOutgoingInvocations sourceClasses
-		equalsTo: (Set
-					with: self c5ReferencerInSideRefereeInSide 
-					with: self c6FullReferencerInSideOutSide )).
-
+	self
+		assertCollection: self p3InteractedReferencer queryAllOutgoingInvocations sourceClasses
+		hasSameElements: {self c5ReferencerInSideRefereeInSide . self c6FullReferencerInSideOutSide}
 ]
 
-{ #category : #staticDependencies }
+{ #category : #'tests - static dependencies' }
 FAMIXPackageNavigationChefTest >> testStaticClientClasses [
-	| p5 |
-	p5 := self packageP5FullReferee.
 	self
-		assert:
-			((p5 queryStaticIncomingAssociations atScope: FamixTType)
-				equalsTo:
-					(Set
-						with: self c1FullReferencerOutSide
-						with: self c14ReferencerOutSideRefereeOutSide
-						with: self c6FullReferencerInSideOutSide
-						with: self c3ReferencerInSideRefereeOutSide
-						with: self c11FullRefereeOutSide))
+		assertCollection: (self p5FullReferee queryStaticIncomingAssociations atScope: FamixTType)
+		hasSameElements:
+			{self c1FullReferencerOutSide . self c14ReferencerOutSideRefereeOutSide . self c6FullReferencerInSideOutSide . self c3ReferencerInSideRefereeOutSide.
+			self c11FullRefereeOutSide}
 ]
 
-{ #category : #staticDependencies }
+{ #category : #'tests - static dependencies' }
 FAMIXPackageNavigationChefTest >> testStaticClientClassesInto [
-	| p1 p5 |
-	p1 := self packageP1FullReferencer.
-	p5 := self packageP5FullReferee.
-	self assert: (((p5 queryStaticIncomingAssociations atScope: FamixTType) within: p1) equalsTo: (Set with: self c1FullReferencerOutSide))
+	self
+		assertCollection: ((self p5FullReferee queryStaticIncomingAssociations atScope: FamixTType) within: self p1FullReferencer)
+		hasSameElements: {self c1FullReferencerOutSide}
 ]
 
-{ #category : #staticDependencies }
+{ #category : #'tests - static dependencies' }
 FAMIXPackageNavigationChefTest >> testStaticClientPackages [
-	| p1 p2 p3 p5 p7 |
-	p1 := self packageP1FullReferencer.
-	p2 := self packageP2InteractedReferencerReferee.
-	p3 := self packageP3InteractedReferencer.
-	p5 := self packageP5FullReferee.
-	p7 := self packageP7ReferencerReferee.
 	self
-		assert:
-			((p5 queryStaticIncomingAssociations atScope: FamixTPackage)
-				equalsTo:
-					(Set
-						with: p1
-						with: p2
-						with: p7
-						with: p3
-						with: p5))
+		assertCollection: (self p5FullReferee queryStaticIncomingAssociations atScope: FamixTPackage)
+		hasSameElements: {self p1FullReferencer . self p2InteractedReferencerReferee . self p7ReferencerReferee . self p3InteractedReferencer . self p5FullReferee}
 ]
 
-{ #category : #staticDependencies }
+{ #category : #'tests - static dependencies' }
 FAMIXPackageNavigationChefTest >> testStaticProviderClasses [
-	| p8 |
-	p8 := self packageP8FullReferencer.
 	self
-		assert:
-			((p8 queryStaticOutgoingAssociations atScope: FamixTType)
-				equalsTo:
-					(Set
-						with: self c18FullRefereeInSideOutSide
-						with: self c19FullRefereeOutSide
-						with: self c14ReferencerOutSideRefereeOutSide))
+		assertCollection: (self p8FullReferencer queryStaticOutgoingAssociations atScope: FamixTType)
+		hasSameElements: {self c18FullRefereeInSideOutSide . self c19FullRefereeOutSide . self c14ReferencerOutSideRefereeOutSide}
 ]
 
-{ #category : #staticDependencies }
+{ #category : #'tests - static dependencies' }
 FAMIXPackageNavigationChefTest >> testStaticProviderClassesInto [
-	| p8 p11 pEx |
-	p8 := self packageP8FullReferencer.
-	p11 := self packageP11FullReferee.
-	pEx := self packagePExtensions.
-	self assert: (((p8 queryStaticOutgoingAssociations atScope: FamixTType) within: p11) equalsTo: (Set with: self c19FullRefereeOutSide)).
-	self assert: ((p8 queryStaticOutgoingAssociations atScope: FamixTType) within: pEx) isEmpty
+	self
+		assertCollection: ((self p8FullReferencer queryStaticOutgoingAssociations atScope: FamixTType) within: self p11FullReferee)
+		hasSameElements: {self c19FullRefereeOutSide}.
+	self assertEmpty: ((self p8FullReferencer queryStaticOutgoingAssociations atScope: FamixTType) within: self pExtensions)
 ]
 
-{ #category : #staticDependencies }
+{ #category : #'tests - static dependencies' }
 FAMIXPackageNavigationChefTest >> testStaticProviderPackages [
-	| p7 p8 p10 p11 |
-	p7 := self packageP7ReferencerReferee.
-	p8 := self packageP8FullReferencer.
-	p10 := self packageP10InteractedReferee.
-	p11 := self packageP11FullReferee.
 	self
-		assert:
-			((p8 queryStaticOutgoingAssociations atScope: FamixTPackage)
-				equalsTo: (Set with: p10 with: p11 with: p7))
+		assertCollection: (self p8FullReferencer queryStaticOutgoingAssociations atScope: FamixTPackage)
+		hasSameElements: {self p10InteractedReferee . self p11FullReferee . self p7ReferencerReferee}
 ]
 
-{ #category : #references }
+{ #category : #'tests - references' }
 FAMIXPackageNavigationChefTest >> testStaticReferencedClasses [
-	| p8 |
-	p8 := self packageP8FullReferencer.
 	self
-		assert:
-			((p8 queryOutgoingReferences atScope: FamixTType)
-				equalsTo:
-					(Set
-						with: self c18FullRefereeInSideOutSide
-						with: self c19FullRefereeOutSide))
+		assertCollection: (self p8FullReferencer queryOutgoingReferences atScope: FamixTType)
+		hasSameElements: {self c18FullRefereeInSideOutSide . self c19FullRefereeOutSide}
 ]
 
-{ #category : #references }
+{ #category : #'tests - references' }
 FAMIXPackageNavigationChefTest >> testStaticReferencedClassesInto [
-	| p8 p11 pEx |
-	p8 := self packageP8FullReferencer.
-	p11 := self packageP11FullReferee.
-	pEx := self packagePExtensions.
-	self assert: (((p8 queryOutgoingReferences atScope: FamixTType) within: p11) equalsTo: (Set with: self c19FullRefereeOutSide)).
-	self assert: ((p8 queryOutgoingReferences atScope: FamixTType) within: pEx) isEmpty
+	self
+		assertCollection: ((self p8FullReferencer queryOutgoingReferences atScope: FamixTType) within: self p11FullReferee)
+		hasSameElements: {self c19FullRefereeOutSide}.
+	self assertEmpty: ((self p8FullReferencer queryOutgoingReferences atScope: FamixTType) within: self pExtensions)
 ]
 
-{ #category : #references }
+{ #category : #'tests - references' }
 FAMIXPackageNavigationChefTest >> testStaticReferencedPackages [
-	| p8 p10 p11 |
-	p8 := self packageP8FullReferencer.
-	p10 := self packageP10InteractedReferee.
-	p11 := self packageP11FullReferee.
 	self
-		assert:
-			((p8 queryOutgoingReferences atScope: FamixTPackage)
-				equalsTo: (Set with: p10 with: p11))
+		assertCollection: (self p8FullReferencer queryOutgoingReferences atScope: FamixTPackage)
+		hasSameElements: {self p10InteractedReferee . self p11FullReferee}
 ]
 
-{ #category : #references }
+{ #category : #'tests - references' }
 FAMIXPackageNavigationChefTest >> testStaticReferencingClasses [
-	| p5 |
-	p5 := self packageP5FullReferee.
 	self
-		assert:
-			((p5 queryIncomingReferences atScope: FamixTType)
-				equalsTo:
-					(Set
-						with: self c1FullReferencerOutSide
-						with: self c14ReferencerOutSideRefereeOutSide
-						with: self c6FullReferencerInSideOutSide
-						with: self c11FullRefereeOutSide))
+		assertCollection: (self p5FullReferee queryIncomingReferences atScope: FamixTType)
+		hasSameElements: {self c1FullReferencerOutSide . self c14ReferencerOutSideRefereeOutSide . self c6FullReferencerInSideOutSide . self c11FullRefereeOutSide}
 ]
 
-{ #category : #references }
+{ #category : #'tests - references' }
 FAMIXPackageNavigationChefTest >> testStaticReferencingClassesInto [
-	| p1 p5 |
-	p1 := self packageP1FullReferencer.
-	p5 := self packageP5FullReferee.
-	self assert: (((p5 queryIncomingReferences atScope: FamixTType) within: p1) equalsTo: (Set with: self c1FullReferencerOutSide))
+	self
+		assertCollection: ((self p5FullReferee queryIncomingReferences atScope: FamixTType) within: self p1FullReferencer)
+		hasSameElements: {self c1FullReferencerOutSide}
 ]
 
-{ #category : #references }
+{ #category : #'tests - references' }
 FAMIXPackageNavigationChefTest >> testStaticReferencingPackages [
-	| p1 p3 p5 p7 |
-	p1 := self packageP1FullReferencer.
-	p3 := self packageP3InteractedReferencer.
-	p5 := self packageP5FullReferee.
-	p7 := self packageP7ReferencerReferee.
 	self
-		assert:
-			((p5 queryIncomingReferences atScope: FamixTPackage)
-				equalsTo:
-					(Set
-						with: p1
-						with: p7
-						with: p3
-						with: p5))
+		assertCollection: (self p5FullReferee queryIncomingReferences atScope: FamixTPackage)
+		hasSameElements: {self p1FullReferencer . self p7ReferencerReferee . self p3InteractedReferencer . self p5FullReferee}
 ]
 
-{ #category : #sureOutgoingInvocations }
+{ #category : #'tests - sure invocations' }
 FAMIXPackageNavigationChefTest >> testSureReferencedClasses [
-	| p8 |
-	p8 := self packageP8FullReferencer.
 	self
-		assert:
-			((p8 querySureOutgoingInvocations atScope: FamixTType)
-				equalsTo:
-					(Set
-						with: self c18FullRefereeInSideOutSide
-						with: self c19FullRefereeOutSide))
+		assertCollection: (self p8FullReferencer querySureOutgoingInvocations atScope: FamixTType)
+		hasSameElements: {self c18FullRefereeInSideOutSide . self c19FullRefereeOutSide}
 ]
 
-{ #category : #'MooseKGB-TestFamix3-integralTests' }
+{ #category : #'tests - references' }
 FAMIXPackageNavigationChefTest >> testSureReferencedClassesIncludeAllStaticReferencedClasses [
 	self
 		assert:
-			(self model allPackages
-				allSatisfy: [ :referencer | 
-					referencer querySureOutgoingAssociations
-						includesAll: referencer queryStaticOutgoingAssociations ])
+			(self model allPackages allSatisfy: [ :referencer | referencer querySureOutgoingAssociations includesAll: referencer queryStaticOutgoingAssociations ])
 ]
 
-{ #category : #sureOutgoingInvocations }
+{ #category : #'tests - sure invocations' }
 FAMIXPackageNavigationChefTest >> testSureReferencedClassesInto [
-	| p8 p11 pEx |
-	p8 := self packageP8FullReferencer.
-	p11 := self packageP11FullReferee.
-	pEx := self packagePExtensions.
-	self assert: (((p8 querySureOutgoingInvocations atScope: FamixTType) within: p11) equalsTo: (Set with: self c19FullRefereeOutSide)).
-	self assert: ((p8 querySureOutgoingInvocations atScope: FamixTType) within: pEx) isEmpty
-]
-
-{ #category : #sureOutgoingInvocations }
-FAMIXPackageNavigationChefTest >> testSureReferencedPackages [
-	| p8 p10 p11 pEx |
-	p8 := self packageP8FullReferencer.
-	p10 := self packageP10InteractedReferee.
-	p11 := self packageP11FullReferee.
-	pEx := self packagePExtensions.
 	self
-		assert:
-			((p8 querySureOutgoingInvocations atScope: FamixTPackage)
-				equalsTo: (Set with: p10 with: p11 with: pEx))
+		assertCollection: ((self p8FullReferencer querySureOutgoingInvocations atScope: FamixTType) within: self p11FullReferee)
+		hasSameElements: {self c19FullRefereeOutSide}.
+	self assertEmpty: ((self p8FullReferencer querySureOutgoingInvocations atScope: FamixTType) within: self pExtensions)
 ]
 
-{ #category : #sureIncomingInvocations }
+{ #category : #'tests - sure invocations' }
+FAMIXPackageNavigationChefTest >> testSureReferencedPackages [
+	self
+		assertCollection: (self p8FullReferencer querySureOutgoingInvocations atScope: FamixTPackage)
+		hasSameElements: {self p10InteractedReferee . self p11FullReferee . self pExtensions}
+]
+
+{ #category : #'tests - sure invocations' }
 FAMIXPackageNavigationChefTest >> testSureReferencingClasses [
 	self
-		assert:
-			((self packageP5FullReferee querySureIncomingInvocations
-				atScope: FamixTType)
-				equalsTo:
-					(Set
-						with: self c1FullReferencerOutSide
-						with: self c14ReferencerOutSideRefereeOutSide
-						with: self c6FullReferencerInSideOutSide
-						with: self c11FullRefereeOutSide))
+		assertCollection: (self p5FullReferee querySureIncomingInvocations atScope: FamixTType)
+		hasSameElements: {self c1FullReferencerOutSide . self c14ReferencerOutSideRefereeOutSide . self c6FullReferencerInSideOutSide . self c11FullRefereeOutSide}
 ]
 
-{ #category : #'MooseKGB-TestFamix3-integralTests' }
-FAMIXPackageNavigationChefTest >> testSureReferencingClassesIncludeAllStaticReferencingClasses [ 
-	 
-	| modelPackages | 
-	modelPackages := self model allPackages. 
-	self 
-		assert: 
-			(modelPackages 
-				allSatisfy: 
-					[:referencer |  
-					referencer querySureIncomingAssociations
-						includesAll: referencer queryStaticIncomingAssociations])
+{ #category : #'tests - references' }
+FAMIXPackageNavigationChefTest >> testSureReferencingClassesIncludeAllStaticReferencingClasses [
+	self
+		assert: (self model allPackages allSatisfy: [ :referencer | referencer querySureIncomingAssociations includesAll: referencer queryStaticIncomingAssociations ])
 ]
 
-{ #category : #sureIncomingInvocations }
+{ #category : #'tests - sure invocations' }
 FAMIXPackageNavigationChefTest >> testSureReferencingClassesInto [
-	| p1 p5 |
-	p1 := self packageP1FullReferencer.
-	p5 := self packageP5FullReferee.
-	self assert: (((p5 querySureIncomingInvocations atScope: FamixTType) within: p1) equalsTo: (Set with: self c1FullReferencerOutSide))
+	self
+		assertCollection: ((self p5FullReferee querySureIncomingInvocations atScope: FamixTType) within: self p1FullReferencer)
+		hasSameElements: {self c1FullReferencerOutSide}
 ]
 
-{ #category : #sureIncomingInvocations }
+{ #category : #'tests - sure invocations' }
 FAMIXPackageNavigationChefTest >> testSureReferencingPackages [
 	self
-		assert:
-			((self packageP5FullReferee querySureIncomingInvocations
-				atScope: FamixTPackage)
-				equalsTo:
-					(Set
-						with: self packageP1FullReferencer
-						with: self packageP7ReferencerReferee
-						with: self packageP3InteractedReferencer
-						with: self packageP5FullReferee))
+		assertCollection: (self p5FullReferee querySureIncomingInvocations atScope: FamixTPackage)
+		hasSameElements: {self p1FullReferencer . self p7ReferencerReferee . self p3InteractedReferencer . self p5FullReferee}
 ]
 
-{ #category : #allIncomingInvocations }
+{ #category : #'tests - incoming invocations' }
 FAMIXPackageNavigationChefTest >> testTargetClassesInReferencingClasses [
-
-	self assert: (self packageP5FullReferee queryAllIncomingInvocations targetClasses
-		equalsTo: (Set with: self c11FullRefereeOutSide))
+	self assertCollection: self p5FullReferee queryAllIncomingInvocations targetClasses hasSameElements: {self c11FullRefereeOutSide}
 ]
 
-{ #category : #references }
+{ #category : #'tests - references' }
 FAMIXPackageNavigationChefTest >> testTargetClassesInStaticReferencingClasses [
- 
-	| p2 |
-	p2 := self packageP2InteractedReferencerReferee. 
-
-	self 
-		assert: (p2 queryIncomingReferences targetClasses
-		equalsTo: (Set
-					with: self c2ReferencerOutSideRefereeInSide
-					with: self c3ReferencerInSideRefereeOutSide
-					with: self c4FullRefereeInSide )).
-	self 
-		assert: (p2 queryIncomingReferences withoutSelfLoops targetClasses
-		equalsTo: (Set with: self c3ReferencerInSideRefereeOutSide )).
+	self
+		assertCollection: self p2InteractedReferencerReferee queryIncomingReferences targetClasses
+		hasSameElements: {self c2ReferencerOutSideRefereeInSide . self c3ReferencerInSideRefereeOutSide . self c4FullRefereeInSide}.
+	self
+		assertCollection: self p2InteractedReferencerReferee queryIncomingReferences withoutSelfLoops targetClasses
+		hasSameElements: {self c3ReferencerInSideRefereeOutSide}
 ]

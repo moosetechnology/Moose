@@ -34,7 +34,7 @@ FamixTCohesionCouplingMetrics >> afferentCoupling [
 	<derived>
 	<MSEComment:
 		'Afferent Coupling of a namespace Afferent is the number of classes that depend upon this namespace'>
-	^ ((self queryAllIncoming outOfMyPackage atScope: FamixTType) collect: [ :e | e isClassSide ifTrue: [ e instanceSide ] ifFalse: [ e ] ]) asSet  size
+	^ (((self queryAllIncoming outOfParentUsing: FamixTPackage) atScope: FamixTType) collect: [ :e | e isClassSide ifTrue: [ e instanceSide ] ifFalse: [ e ] ]) asSet  size
 ]
 
 { #category : #metrics }
@@ -61,7 +61,7 @@ FamixTCohesionCouplingMetrics >> efferentCoupling [
 	<derived>
 	<MSEComment: 'Efferent Coupling of a package'>
 
-	^ ((self queryAllOutgoing outOfMyPackage atScope: FamixTType) collect: [ :e | e isClassSide ifTrue: [ e instanceSide ] ifFalse: [ e ] ] ) asSet size
+	^ (((self queryAllOutgoing outOfParentUsing: FamixTPackage) atScope: FamixTType) collect: [ :e | e isClassSide ifTrue: [ e instanceSide ] ifFalse: [ e ] ] ) asSet size
 ]
 
 { #category : #metrics }
@@ -92,7 +92,7 @@ FamixTCohesionCouplingMetrics >> martinCohesion [
 	myClasses := (myClasses union: (myClasses flatCollect: [ :c | c allRecursiveTypes ])) select: [ :c | c isInstanceSide ].
 	myClasses size == 0
 		ifTrue: [ ^ nil ].
-	intraConnectivities := (myClasses collect: [ :c | (c queryOutgoingDependencies atScope: FamixTType) withoutSelfLoops withinMyNamespace ])
+	intraConnectivities := (myClasses collect: [ :c | (c queryOutgoingDependencies atScope: FamixTType) withoutSelfLoops withinParentUsing: FamixTNamespace ])
 		inject: 0
 		into: [ :subTotal :each | subTotal + (each select: [ :c | c isInstanceSide ]) size ].
 	^ ((intraConnectivities + 1) / myClasses size) asFloat
