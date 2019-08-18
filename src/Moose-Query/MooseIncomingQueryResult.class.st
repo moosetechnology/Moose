@@ -24,21 +24,11 @@ MooseIncomingQueryResult >> opposite: aDependency [
 ]
 
 { #category : #accessing }
-MooseIncomingQueryResult >> targetClasses [
-	"flatten targets as we receive candidates instead of single elements for incoming invocations"
-
-	^ self targets deepFlatten flatCollectAsSet: [ :e | e atScope: FamixTClass ]
-]
-
-{ #category : #accessing }
-MooseIncomingQueryResult >> targetMethods [
-	"Only valid if dependencies are invocations"
-	
-	^ storage flatCollectAsSet: [ :invo | invo candidates ]
-]
-
-{ #category : #accessing }
 MooseIncomingQueryResult >> targets [
+	^ (self collectAsSet: #to) flattened
+]
 
-	^ self collectAsSet: #to
+{ #category : #accessing }
+MooseIncomingQueryResult >> targetsAtScope: aTraitOrClass [
+	^ self targets flatCollectAsSet: [ :e | e atScope: aTraitOrClass ]
 ]

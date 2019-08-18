@@ -1015,9 +1015,8 @@ FAMIXClassNavigationChefTest >> testSureReferencingPackages [
 { #category : #'tests - incoming invocations' }
 FAMIXClassNavigationChefTest >> testTargetMethodsInReferencingMethods [
 	self
-		assertCollection: self c14ReferencerOutSideRefereeOutSide queryAllIncomingInvocations targetMethods
-		hasSameElements:
-			{(self getMethod: 'm3p7c14Mtd2()') . (self getMethod: 'm3p7c14Mtd4()') . (self getMethod: 'm3p7c14InstCreation()')}
+		assertCollection: (self c14ReferencerOutSideRefereeOutSide queryAllIncomingInvocations targetsAtScope: FamixTMethod)
+		hasSameElements: {(self getMethod: 'm3p7c14Mtd2()') . (self getMethod: 'm3p7c14Mtd4()') . (self getMethod: 'm3p7c14InstCreation()')}
 ]
 
 { #category : #tests }
