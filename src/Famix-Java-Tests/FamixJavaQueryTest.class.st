@@ -16,7 +16,10 @@ Class {
 		'pr1',
 		'pr2',
 		'at1',
-		'at2'
+		'at2',
+		'annotationType1',
+		'annotationInstance1',
+		'annotationInstanceAttribute1'
 	],
 	#category : #'Famix-Java-Tests'
 }
@@ -191,7 +194,25 @@ FamixJavaQueryTest >> setUp [
 		declaredType: c2;
 		yourself.
 
-	self model: (FamixJavaMooseModel withAll: {p1 . p2 . c1 . c2 . c3 . m1 . m2 . m3 . m4 . v1 . at1 . at2 . pr1 . pr2})
+
+	annotationType1 := FamixJavaAnnotationType new
+		stub: true;
+		name: 'annotationType1';
+		yourself.
+
+	annotationInstance1 := FamixJavaAnnotationInstance new
+		stub: true;
+		annotationType: annotationType1;
+		annotatedEntity: at1;
+		yourself.
+
+	annotationInstanceAttribute1 := FamixJavaAnnotationInstanceAttribute new
+		stub: true;
+		parentAnnotationInstance: annotationInstance1;
+		value: 'instanceAttribute1Value';
+		yourself.
+
+	self model: (FamixJavaMooseModel withAll: {p1 . p2 . c1 . c2 . c3 . m1 . m2 . m3 . m4 . v1 . at1 . at2 . pr1 . pr2 . annotationType1 . annotationInstance1 . annotationInstanceAttribute1})
 ]
 
 { #category : #'tests - class' }
@@ -228,6 +249,16 @@ FamixJavaQueryTest >> testFamixClassOutgoingTypeDeclarations [
 FamixJavaQueryTest >> testFamixClassTypeDeclarationsWithoutSelfLoops [
 	self assertCollection: (c3 queryIncomingTypeDeclarations withoutSelfLoops atScope: FamixTType) hasSameElements: {c1 . c2}.
 	self assertCollection: (c3 queryOutgoingTypeDeclarations withoutSelfLoops atScope: FamixTType) hasSameElements: {c2}
+]
+
+{ #category : #'tests - class' }
+FamixJavaQueryTest >> testFamixJavaAnnotationInstanceAttributeCanHaveIncoming [
+	self assert: annotationInstanceAttribute1 incomingMSEProperties isCollection
+]
+
+{ #category : #'tests - class' }
+FamixJavaQueryTest >> testFamixJavaAnnotationInstanceAttributeCanHaveOutgoing [
+	self assert: annotationInstanceAttribute1 outgoingMSEProperties isCollection
 ]
 
 { #category : #'tests - method' }
