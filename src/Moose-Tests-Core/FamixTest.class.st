@@ -8,24 +8,24 @@ Class {
 FamixTest >> classWithUnknownAttribute [
 	^ '
 (
-	(FAMIX.Class (id: 1)
+	(Famix-Test3-Entities.Class (id: 1)
 		(name ''AClass'') 
 		(unknownMetric 3)
 	)
-	(FAMIX.Class (id: 2)
+	(Famix-Test3-Entities.Class (id: 2)
 		(name ''SuperClass'')
 	)
-	(FAMIX.Inheritance (id: 3)
-		(subclass (ref: 1))
-		(superclass (ref: 2))
+	(Famix-Test3-Entities.Reference (id: 3)
+		(source (ref: 4))
+		(target (ref: 2))
 	)
-	(FAMIX.Method
+	(Famix-Test3-Entities.Method (id: 4)
 		(name ''aMethod'') 
 		(parentType (ref: 1))
 	)
 )'
 
-	"(FAMIX.UnknownElement (id: 3))"
+	"(Famix-Test3-Entities.UnknownElement (id: 3))"
 ]
 
 { #category : #tests }
@@ -33,10 +33,10 @@ FamixTest >> oneClassAndOneMethod [
 	
 	^'
 (
-	(FAMIX.Class (id: 1)
+	(Famix-Test3-Entities.Class (id: 1)
 		(name ''AClass'') 
 	)
-	(FAMIX.Method
+	(Famix-Test3-Entities.Method
 		(name ''aMethod'') 
 		(parentType (ref: 1))
 	)
@@ -52,14 +52,12 @@ FamixTest >> testMSEImport [
 
 	| importer model |
 	"MooseModel resetMeta."
-	
 	importer := FMImporter new.
-	importer repository: FamixCompatibilityGenerator newRepository.
+	importer repository: FamixTest3Generator newRepository.
 	importer fromString: self oneClassAndOneMethod.
-	importer nameTranslator: FamixCompatibilityGenerator translationDictionary.
 	importer run.
 	self assert: importer repository elements size equals: 2.
-	model := MooseModel new.
+	model := FamixTest3MooseModel new.
 	importer repository elements do: [ :each | model add: each ].
 	self assert: model allClasses size equals: 1.
 	self assert: model allMethods size equals: 1
@@ -68,20 +66,18 @@ FamixTest >> testMSEImport [
 { #category : #tests }
 FamixTest >> testRobustMSEImport [
 	| importer model |
-	
 	"MooseModel resetMeta."
 	importer := FMImporter new.
-	importer repository: FamixCompatibilityGenerator newRepository.
+	importer repository: FamixTest3Generator newRepository.
 	importer fromString: self classWithUnknownAttribute.
-	importer nameTranslator: FamixCompatibilityGenerator translationDictionary.
 	importer run.
-	
+
 	self assert: importer repository elements size equals: 4.
-	model := MooseModel new.
+	model := FamixTest3MooseModel new.
 	importer repository elements do: [ :each | model add: each ].
 	self assert: model allClasses size equals: 2.
 	self assert: model allMethods size equals: 1.
-	self assert: model allInheritanceDefinitions size equals: 1
+	self assert: model allReferences size equals: 1
 ]
 
 { #category : #tests }

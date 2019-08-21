@@ -6,13 +6,20 @@ Class {
 
 { #category : #tests }
 MooseGroupTest >> testAddLast [
-	| group |
+	| group entity class method |
 	group := MooseGroup new.
-	group addLast: MooseEntity new.
-	group addLast: MooseEntity new.
-	group addLast: MooseEntity new.
-	self assert: (group allSatisfy: [ :c | c class == MooseEntity ]).
-	self deny: (group allSatisfy: [ :c | c = 10 ])
+	group addLast: (entity := FamixTest1Entity new).
+	self assert: group last identicalTo: entity.
+
+	group addLast: (class := FamixTest1Class new).
+	self assert: group last identicalTo: class.
+
+	group addLast: (method := FamixTest1Method new).
+	self assert: group last identicalTo: method.
+
+	self assert: (group at: 1) identicalTo: entity.
+	self assert: (group at: 2) identicalTo: class.
+	self assert: (group at: 3) identicalTo: method
 ]
 
 { #category : #tests }
@@ -193,7 +200,7 @@ MooseGroupTest >> testCopy [
 
 { #category : #tests }
 MooseGroupTest >> testCount [
-	self assert: (self twoClasses count: [ :el | el class == FAMIXClass ]) equals: 2
+	self assert: (self twoClasses count: [ :el | el class == FamixTest1Class ]) equals: 2
 ]
 
 { #category : #tests }
@@ -621,10 +628,10 @@ MooseGroupTest >> testWithIndexDo [
 { #category : #utility }
 MooseGroupTest >> twoClasses [
 	| classA classB |
-	classA := FAMIXClass new.
-	classA addMethod: FAMIXMethod new.
-	classB := FAMIXClass new.
-	classB addMethod: FAMIXMethod new.
-	classB addMethod: FAMIXMethod new.
-	^ FAMIXTypeGroup withAll: {classA . classB}.
+	classA := FamixTest1Class new.
+	classA addMethod: FamixTest1Method new.
+	classB := FamixTest1Class new.
+	classB addMethod: FamixTest1Method new.
+	classB addMethod: FamixTest1Method new.
+	^ FAMIXClassGroup withAll: {classA . classB}
 ]
