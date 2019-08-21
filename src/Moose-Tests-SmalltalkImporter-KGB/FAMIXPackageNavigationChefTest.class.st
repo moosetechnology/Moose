@@ -180,18 +180,18 @@ FAMIXPackageNavigationChefTest >> testReferencingPackages [
 { #category : #'tests - inheritance' }
 FAMIXPackageNavigationChefTest >> testSourceClassesInInheritedClasses [
 	self
-		assertCollection: self p3InteractedReferencer queryOutgoingInheritances sourceClasses
+		assertCollection: (self p3InteractedReferencer queryOutgoingInheritances sourcesAtScope: FamixTClass)
 		hasSameElements: {self c5ReferencerInSideRefereeInSide . self c6FullReferencerInSideOutSide . self c7FullRefereeInSide . self c8FullReferencerInSide}.
 
 	self
-		assertCollection: self p3InteractedReferencer queryOutgoingInheritances withoutSelfLoops sourceClasses
+		assertCollection: (self p3InteractedReferencer queryOutgoingInheritances withoutSelfLoops sourcesAtScope: FamixTClass)
 		hasSameElements: {self c5ReferencerInSideRefereeInSide . self c6FullReferencerInSideOutSide . self c7FullRefereeInSide}
 ]
 
 { #category : #'tests - outgoing invocations' }
 FAMIXPackageNavigationChefTest >> testSourceClassesInReferencedClasses [
 	self
-		assertCollection: self p3InteractedReferencer queryAllOutgoingInvocations sourceClasses
+		assertCollection: (self p3InteractedReferencer queryAllOutgoingInvocations sourcesAtScope: FamixTClass)
 		hasSameElements: {self c5ReferencerInSideRefereeInSide . self c6FullReferencerInSideOutSide}
 ]
 
@@ -341,15 +341,15 @@ FAMIXPackageNavigationChefTest >> testSureReferencingPackages [
 
 { #category : #'tests - incoming invocations' }
 FAMIXPackageNavigationChefTest >> testTargetClassesInReferencingClasses [
-	self assertCollection: self p5FullReferee queryAllIncomingInvocations targetClasses hasSameElements: {self c11FullRefereeOutSide}
+	self assertCollection: (self p5FullReferee queryAllIncomingInvocations targetsAtScope: FamixTClass) hasSameElements: {self c11FullRefereeOutSide}
 ]
 
 { #category : #'tests - references' }
 FAMIXPackageNavigationChefTest >> testTargetClassesInStaticReferencingClasses [
 	self
-		assertCollection: self p2InteractedReferencerReferee queryIncomingReferences targetClasses
+		assertCollection: (self p2InteractedReferencerReferee queryIncomingReferences targetsAtScope: FamixTClass)
 		hasSameElements: {self c2ReferencerOutSideRefereeInSide . self c3ReferencerInSideRefereeOutSide . self c4FullRefereeInSide}.
 	self
-		assertCollection: self p2InteractedReferencerReferee queryIncomingReferences withoutSelfLoops targetClasses
+		assertCollection: (self p2InteractedReferencerReferee queryIncomingReferences withoutSelfLoops targetsAtScope: FamixTClass)
 		hasSameElements: {self c3ReferencerInSideRefereeOutSide}
 ]

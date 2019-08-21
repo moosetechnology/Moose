@@ -962,8 +962,8 @@ FamixGenerator >> defineHierarchy [
 	tAnnotationInstance --|> #TEntityMetaLevelDependency.
 	tAnnotationInstance --|> #TDependencyQueries.
 
-	tAnnotationInstance --|> #TEntityMetaLevelDependency.
-	tAnnotationInstance --|> #TDependencyQueries.
+	tAnnotationInstanceAttribute --|> #TEntityMetaLevelDependency.
+	tAnnotationInstanceAttribute --|> #TDependencyQueries.
 
 	tCohesionCouplingMetrics --|> tPackage.
 
