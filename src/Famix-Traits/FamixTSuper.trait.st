@@ -24,6 +24,7 @@ FamixTSuper >> addSub: anObject [
 
 { #category : #accessing }
 FamixTSuper >> subs [
+	"Relation named: #subs type: #FamixTSub opposite: #supers"
 
 	<generated>
 	^ subs

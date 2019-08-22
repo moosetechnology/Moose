@@ -17,6 +17,7 @@ FamixTNamespaceEntity classSide >> annotation [
 
 { #category : #accessing }
 FamixTNamespaceEntity >> parentNamespace [
+	"Relation named: #parentNamespace type: #FamixTNamespace opposite: #namespaceEntities"
 
 	<generated>
 	^ parentNamespace

@@ -36,6 +36,7 @@ FamixTWithParameters >> numberOfParameters: aNumber [
 
 { #category : #accessing }
 FamixTWithParameters >> parameters [
+	"Relation named: #parameters type: #FamixTParameter opposite: #parentBehaviouralEntity"
 
 	<generated>
 	<MSEComment: 'List of formal parameters declared by this behaviour.'>

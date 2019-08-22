@@ -23,6 +23,7 @@ FamixTWithNamespaces >> addNamespace: anObject [
 
 { #category : #accessing }
 FamixTWithNamespaces >> namespaces [
+	"Relation named: #namespaces type: #FamixTNamespace opposite: #namespaceOwner"
 
 	<generated>
 	^ namespaces

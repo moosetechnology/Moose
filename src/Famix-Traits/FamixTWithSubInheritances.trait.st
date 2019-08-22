@@ -22,6 +22,7 @@ FamixTWithSubInheritances >> addSuperInheritance: anInheritance [
 
 { #category : #accessing }
 FamixTWithSubInheritances >> superInheritances [
+	"Relation named: #superInheritances type: #FamixTSubInheritance opposite: #subclass"
 
 	<generated>
 	<MSEComment: 'Superinheritance relationships, i.e. known superclasses of this type.'>

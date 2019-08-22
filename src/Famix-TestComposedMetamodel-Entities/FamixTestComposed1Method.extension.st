@@ -2,6 +2,7 @@ Extension { #name : #FamixTestComposed1Method }
 
 { #category : #'*Famix-TestComposedMetamodel-Entities-accessing' }
 FamixTestComposed1Method >> entity [
+	"Relation named: #entity type: #FamixTestComposed1Entity opposite: #method"
 
 	<generated>
 	<MSEProperty: #entity type: #Object>

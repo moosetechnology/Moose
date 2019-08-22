@@ -46,6 +46,7 @@ FamixTNamespace >> isNamespace [
 
 { #category : #accessing }
 FamixTNamespace >> namespaceEntities [
+	"Relation named: #namespaceEntities type: #FamixTNamespaceEntity opposite: #parentNamespace"
 
 	<generated>
 	^ namespaceEntities
@@ -61,6 +62,7 @@ FamixTNamespace >> namespaceEntities: anObject [
 
 { #category : #accessing }
 FamixTNamespace >> namespaceOwner [
+	"Relation named: #namespaceOwner type: #FamixTWithNamespaces opposite: #namespaces"
 
 	<generated>
 	^ namespaceOwner

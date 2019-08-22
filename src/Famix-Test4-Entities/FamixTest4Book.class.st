@@ -41,10 +41,10 @@ FamixTest4Book >> belongsTo: anObject [
 
 { #category : #accessing }
 FamixTest4Book >> person [
+	"Relation named: #person type: #FamixTest4Person opposite: #books"
 
 	<generated>
 	<container>
-
 	^ person
 ]
 

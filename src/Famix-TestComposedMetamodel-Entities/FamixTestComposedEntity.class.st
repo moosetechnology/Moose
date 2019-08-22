@@ -22,6 +22,7 @@ FamixTestComposedEntity class >> metamodel [
 
 { #category : #accessing }
 FamixTestComposedEntity >> method [
+	"Relation named: #method type: #FamixTestComposedMethod opposite: #entity"
 
 	<generated>
 	<MSEProperty: #method type: #Object>

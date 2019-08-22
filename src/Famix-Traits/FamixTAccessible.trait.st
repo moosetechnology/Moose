@@ -57,6 +57,7 @@ FamixTAccessible >> globalAccesses [
 
 { #category : #accessing }
 FamixTAccessible >> incomingAccesses [
+	"Relation named: #incomingAccesses type: #FamixTAccess opposite: #variable"
 
 	<generated>
 	<MSEComment: 'All Famix accesses pointing to this structural entity'>

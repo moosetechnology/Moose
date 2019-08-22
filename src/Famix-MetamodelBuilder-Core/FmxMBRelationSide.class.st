@@ -37,17 +37,13 @@ FmxMBRelationSide >> asRelationSideNamed: aPropertyName [
 
 { #category : #generating }
 FmxMBRelationSide >> asSlot [
-	| slotName opposite |
 	self hasRelation ifFalse: [ FmxMBIncompletePropertyDefiniton signal ].
 
-	slotName := self name.
-	opposite := self otherSide.
-
 	^ self builder environment
-		slotNamed: slotName asSymbol
+		slotNamed: self name asSymbol
 		cardinality: self cardinality
-		type: (self builder configuration prefix , opposite relatedEntityName) asSymbol
-		opposite: opposite name asSymbol
+		type: self oppositeType
+		opposite: self oppositeName
 ]
 
 { #category : #accessing }
@@ -256,15 +252,22 @@ FmxMBRelationSide >> one [
 ]
 
 { #category : #accessing }
+FmxMBRelationSide >> oppositeName [
+	^ self otherSide name asSymbol
+]
+
+{ #category : #accessing }
+FmxMBRelationSide >> oppositeType [
+	^ (self builder configuration prefix , self otherSide relatedEntityName) asSymbol
+]
+
+{ #category : #accessing }
 FmxMBRelationSide >> otherSide [
-
 	| aFromSide |
-	
 	aFromSide := self relation from.
-
-	^ (aFromSide == self)
+	^ aFromSide == self
 		ifTrue: [ self relation to ]
-		ifFalse: [ aFromSide ]		
+		ifFalse: [ aFromSide ]
 ]
 
 { #category : #private }
@@ -285,7 +288,7 @@ FmxMBRelationSide >> propertyName [
 	^ self relatedClass propertyName
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FmxMBRelationSide >> providesPrimaryContainer [
 
 	^ self additionalProperties at: #providesPrimaryContainer ifAbsent: [ true ]

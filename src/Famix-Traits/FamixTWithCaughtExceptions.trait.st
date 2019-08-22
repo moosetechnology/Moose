@@ -23,6 +23,7 @@ FamixTWithCaughtExceptions >> addCaughtException: aCaughtException [
 
 { #category : #accessing }
 FamixTWithCaughtExceptions >> caughtExceptions [
+	"Relation named: #caughtExceptions type: #FamixTCaughtException opposite: #definingEntity"
 
 	<generated>
 	<MSEComment: 'The exceptions caught by the method'>

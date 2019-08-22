@@ -22,6 +22,7 @@ FamixTWithDereferencedInvocations >> addDereferencedInvocation: aDeferencedInvoc
 
 { #category : #accessing }
 FamixTWithDereferencedInvocations >> dereferencedInvocations [
+	"Relation named: #dereferencedInvocations type: #FamixTDereferencedInvocation opposite: #referencer"
 
 	<generated>
 	<MSEComment: 'List of invocations performed on BehaviouralEntities referenced by this entity'>

@@ -39,6 +39,7 @@ FamixTest4School >> addTeachers: anObject [
 
 { #category : #accessing }
 FamixTest4School >> principal [
+	"Relation named: #principal type: #FamixTest4Principal opposite: #school"
 
 	<generated>
 	^ principal
@@ -61,6 +62,7 @@ FamixTest4School >> principalGroup [
 
 { #category : #accessing }
 FamixTest4School >> rooms [
+	"Relation named: #rooms type: #FamixTest4Room opposite: #school"
 
 	<generated>
 	^ rooms
@@ -83,6 +85,7 @@ FamixTest4School >> roomsGroup [
 
 { #category : #accessing }
 FamixTest4School >> students [
+	"Relation named: #students type: #FamixTest4Student opposite: #school"
 
 	<generated>
 	^ students
@@ -105,6 +108,7 @@ FamixTest4School >> studentsGroup [
 
 { #category : #accessing }
 FamixTest4School >> teachers [
+	"Relation named: #teachers type: #FamixTest4Teacher opposite: #school"
 
 	<generated>
 	^ teachers

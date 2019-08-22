@@ -20,6 +20,7 @@ FamixTThrownException classSide >> annotation [
 
 { #category : #accessing }
 FamixTThrownException >> definingEntity [
+	"Relation named: #definingEntity type: #FamixTWithThrownExceptions opposite: #thrownExceptions"
 
 	<generated>
 	^ definingEntity

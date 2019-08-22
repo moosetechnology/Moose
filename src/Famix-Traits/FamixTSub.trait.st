@@ -17,6 +17,7 @@ FamixTSub classSide >> annotation [
 
 { #category : #accessing }
 FamixTSub >> supers [
+	"Relation named: #supers type: #FamixTSuper opposite: #subs"
 
 	<generated>
 	^ supers

@@ -22,6 +22,7 @@ FamixTWithReferences >> addOutgoingReference: aReference [
 
 { #category : #accessing }
 FamixTWithReferences >> outgoingReferences [
+	"Relation named: #outgoingReferences type: #FamixTReference opposite: #source"
 
 	<generated>
 	<MSEComment: 'References from this entity to other entities.'>

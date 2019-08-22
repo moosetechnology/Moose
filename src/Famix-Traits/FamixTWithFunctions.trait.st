@@ -23,6 +23,7 @@ FamixTWithFunctions >> addFunction: anObject [
 
 { #category : #accessing }
 FamixTWithFunctions >> functions [
+	"Relation named: #functions type: #FamixTFunction opposite: #functionOwner"
 
 	<generated>
 	<MSEComment: 'Functions defined in the container, if any.'>

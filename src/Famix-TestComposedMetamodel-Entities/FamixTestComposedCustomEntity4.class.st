@@ -22,6 +22,7 @@ FamixTestComposedCustomEntity4 class >> metamodel [
 
 { #category : #accessing }
 FamixTestComposedCustomEntity4 >> c24s [
+	"Relation named: #c24s type: #FamixTestComposedCustomEntity4 opposite: #c4s"
 
 	<generated>
 	<MSEProperty: #c24s type: #Object>
@@ -37,6 +38,7 @@ FamixTestComposedCustomEntity4 >> c24s: anObject [
 
 { #category : #accessing }
 FamixTestComposedCustomEntity4 >> customEntities4 [
+	"Relation named: #customEntities4 type: #FamixTestComposedCustomEntity4 opposite: #customEntities4"
 
 	<generated>
 	<MSEProperty: #customEntities4 type: #Object>

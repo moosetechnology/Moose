@@ -20,6 +20,7 @@ FamixTSourceAnchor classSide >> annotation [
 
 { #category : #accessing }
 FamixTSourceAnchor >> element [
+	"Relation named: #element type: #FamixTWithSourceAnchor opposite: #sourceAnchor"
 
 	<generated>
 	<MSEComment: 'Enable the accessibility to the famix entity that this class is a source pointer for'>

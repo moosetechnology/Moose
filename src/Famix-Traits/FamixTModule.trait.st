@@ -28,6 +28,7 @@ FamixTModule >> addModuleEntity: anObject [
 
 { #category : #accessing }
 FamixTModule >> moduleEntities [
+	"Relation named: #moduleEntities type: #FamixTDefinedInModule opposite: #parentModule"
 
 	<generated>
 	^ moduleEntities

@@ -2,6 +2,7 @@ Extension { #name : #FamixTestComposed2CustomEntity5 }
 
 { #category : #'*Famix-TestComposedMetamodel-Entities-accessing' }
 FamixTestComposed2CustomEntity5 >> associations [
+	"Relation named: #associations type: #FamixTestComposed2Association opposite: #c25"
 
 	<generated>
 	<MSEProperty: #associations type: #Object>

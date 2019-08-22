@@ -30,6 +30,7 @@ FamixTWithFileIncludes >> addOutgoingIncludeRelation: anObject [
 
 { #category : #accessing }
 FamixTWithFileIncludes >> incomingIncludeRelations [
+	"Relation named: #incomingIncludeRelations type: #FamixTFileInclude opposite: #target"
 
 	<generated>
 	<MSEComment: 'The include entities that have this file as a target.'>
@@ -46,6 +47,7 @@ FamixTWithFileIncludes >> incomingIncludeRelations: anObject [
 
 { #category : #accessing }
 FamixTWithFileIncludes >> outgoingIncludeRelations [
+	"Relation named: #outgoingIncludeRelations type: #FamixTFileInclude opposite: #source"
 
 	<generated>
 	<MSEComment: 'The include entities that have this file as a source.'>

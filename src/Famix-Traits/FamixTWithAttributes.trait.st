@@ -22,6 +22,7 @@ FamixTWithAttributes >> addAttribute: anAttribute [
 
 { #category : #accessing }
 FamixTWithAttributes >> attributes [
+	"Relation named: #attributes type: #FamixTAttribute opposite: #parentType"
 
 	<generated>
 	<MSEComment: 'List of attributes declared by this type.'>

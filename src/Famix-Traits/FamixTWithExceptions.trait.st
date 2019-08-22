@@ -23,6 +23,7 @@ FamixTWithExceptions >> addException: anObject [
 
 { #category : #accessing }
 FamixTWithExceptions >> exceptions [
+	"Relation named: #exceptions type: #FamixTException opposite: #exceptionClass"
 
 	<generated>
 	<MSEComment: 'Exceptions which class is myself.'>

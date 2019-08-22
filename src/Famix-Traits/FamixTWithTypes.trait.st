@@ -55,6 +55,7 @@ FamixTWithTypes >> fanOut: aNumber [
 
 { #category : #accessing }
 FamixTWithTypes >> types [
+	"Relation named: #types type: #FamixTType opposite: #typeContainer"
 
 	<generated>
 	<MSEComment: 'Types contained (declared) in this entity, if any.

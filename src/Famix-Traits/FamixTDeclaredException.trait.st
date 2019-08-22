@@ -20,6 +20,7 @@ FamixTDeclaredException classSide >> annotation [
 
 { #category : #accessing }
 FamixTDeclaredException >> definingEntity [
+	"Relation named: #definingEntity type: #FamixTWithDeclaredExceptions opposite: #declaredExceptions"
 
 	<generated>
 	^ definingEntity
