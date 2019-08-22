@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixStSourceAnchor,
 	#superclass : #FamixStEntity,
-	#traits : 'FamixTSourceAnchor + FamixTWithImmediateSource + TDependencyQueries + TEntityMetaLevelDependency',
-	#classTraits : 'FamixTSourceAnchor classTrait + FamixTWithImmediateSource classTrait + TDependencyQueries classTrait + TEntityMetaLevelDependency classTrait',
+	#traits : 'FamixTSourceAnchor + FamixTWithImmediateSource',
+	#classTraits : 'FamixTSourceAnchor classTrait + FamixTWithImmediateSource classTrait',
 	#instVars : [
 		'#pharoEntity'
 	],

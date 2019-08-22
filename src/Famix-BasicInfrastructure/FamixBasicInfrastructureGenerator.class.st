@@ -60,9 +60,6 @@ FamixBasicInfrastructureGenerator >> defineHierarchy [
 
 	sourceAnchor --|> entity.
 	sourceAnchor --|> #TSourceAnchor.
-	
-	sourceAnchor --|> #TEntityMetaLevelDependency.
-	sourceAnchor --|> #TDependencyQueries.
 
 	sourceLanguage --|> entity.
 	sourceLanguage --|> #TSourceLanguage.

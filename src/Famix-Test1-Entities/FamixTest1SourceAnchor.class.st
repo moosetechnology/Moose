@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixTest1SourceAnchor,
 	#superclass : #FamixTest1Entity,
-	#traits : 'FamixTSourceAnchor + TDependencyQueries + TEntityMetaLevelDependency',
-	#classTraits : 'FamixTSourceAnchor classTrait + TDependencyQueries classTrait + TEntityMetaLevelDependency classTrait',
+	#traits : 'FamixTSourceAnchor',
+	#classTraits : 'FamixTSourceAnchor classTrait',
 	#category : #'Famix-Test1-Entities-Entities'
 }
 
