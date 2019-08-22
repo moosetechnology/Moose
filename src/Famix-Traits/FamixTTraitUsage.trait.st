@@ -42,6 +42,8 @@ FamixTTraitUsage >> trait [
 	<generated>
 	<source>
 
+	"Relation named: #trait type: #FamixTTrait opposite: #incomingTraitUsages"
+
 	^ trait
 ]
 
@@ -58,6 +60,8 @@ FamixTTraitUsage >> user [
 
 	<generated>
 	<target>
+
+	"Relation named: #user type: #FamixTTraitUser opposite: #outgoingTraitUsages"
 
 	^ user
 ]

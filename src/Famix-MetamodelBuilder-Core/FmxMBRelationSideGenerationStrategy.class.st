@@ -27,25 +27,6 @@ FmxMBRelationSideGenerationStrategy >> compileMethod: methodSource for: aRelatio
 	
 ]
 
-{ #category : #generation }
-FmxMBRelationSideGenerationStrategy >> generateContainerInfosOn: stream [
-	stream
-		tab;
-		nextPutAll: '<container>';
-		cr;
-		cr;
-		tab;
-		nextPutAll: '"Relation named: #';
-		nextPutAll: relationSide name;
-		nextPutAll: ' type: #';
-		nextPutAll: relationSide oppositeType;
-		nextPutAll: ' opposite: #';
-		nextPutAll: relationSide oppositeName;
-		nextPutAll: '"';
-		cr;
-		cr
-]
-
 { #category : #accessing }
 FmxMBRelationSideGenerationStrategy >> generateGetterCoreIn: aClassOrTrait on: aStream for: aRelationSide [
 	^ self subclassResponsibility
@@ -71,7 +52,12 @@ FmxMBRelationSideGenerationStrategy >> generateGetterIn: aClassOrTrait for: aRel
 						tab;
 						nextPutAll: commentDefinition;
 						cr ].
-			aRelationSide isContainer ifTrue: [ self generateContainerInfosOn: s ].
+			aRelationSide isContainer
+				ifTrue: [ s
+						tab;
+						nextPutAll: '<container>';
+						cr;
+						cr ].
 			aRelationSide isDerived
 				ifTrue: [ s
 						tab;
@@ -88,6 +74,18 @@ FmxMBRelationSideGenerationStrategy >> generateGetterIn: aClassOrTrait for: aRel
 				ifTrue: [ s
 						tab;
 						nextPutAll: '<target>';
+						cr;
+						cr ].
+			aRelationSide hasRelation
+				ifTrue: [ s
+						tab;
+						nextPutAll: '"Relation named: #';
+						nextPutAll: relationSide name;
+						nextPutAll: ' type: #';
+						nextPutAll: relationSide oppositeType;
+						nextPutAll: ' opposite: #';
+						nextPutAll: relationSide oppositeName;
+						nextPutAll: '"';
 						cr;
 						cr ].
 

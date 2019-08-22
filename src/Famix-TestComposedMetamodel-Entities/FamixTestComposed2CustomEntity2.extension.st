@@ -4,6 +4,8 @@ Extension { #name : #FamixTestComposed2CustomEntity2 }
 FamixTestComposed2CustomEntity2 >> c12 [
 
 	<generated>
+	"Relation named: #c12 type: #FamixTestComposed2CustomEntity2 opposite: #c22s"
+
 	<MSEProperty: #c12 type: #Object>
 	<package: #'Famix-TestComposedMetamodel-Entities'>
 	^ self privateState attributeAt: #c12 ifAbsent: [ nil ]
@@ -20,6 +22,8 @@ FamixTestComposed2CustomEntity2 >> c12: anObject [
 FamixTestComposed2CustomEntity2 >> c2 [
 
 	<generated>
+	"Relation named: #c2 type: #FamixTestComposed2CustomEntity2 opposite: #c22s"
+
 	<MSEProperty: #c2 type: #Object>
 	<package: #'Famix-TestComposedMetamodel-Entities'>
 	^ self privateState attributeAt: #c2 ifAbsent: [ nil ]

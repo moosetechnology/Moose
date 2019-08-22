@@ -26,6 +26,8 @@ FamixTWithCaughtExceptions >> caughtExceptions [
 
 	<generated>
 	<MSEComment: 'The exceptions caught by the method'>
+	"Relation named: #caughtExceptions type: #FamixTCaughtException opposite: #definingEntity"
+
 	^ caughtExceptions
 ]
 

@@ -39,6 +39,8 @@ FamixTSubInheritance >> subclass [
 	<MSEComment: 'Subclass linked to in this relationship. from-side of the association'>
 	<source>
 
+	"Relation named: #subclass type: #FamixTWithSubInheritances opposite: #superInheritances"
+
 	^ subclass
 ]
 

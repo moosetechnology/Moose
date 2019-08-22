@@ -26,6 +26,8 @@ FamixTWithAnnotationTypes >> definedAnnotationTypes [
 
 	<generated>
 	<MSEComment: 'The container in which the AnnotationTypes may be declared'>
+	"Relation named: #definedAnnotationTypes type: #FamixTAnnotationType opposite: #annotationTypesContainer"
+
 	^ definedAnnotationTypes
 ]
 

@@ -56,6 +56,8 @@ FamixTInvocation >> candidates [
 	<MSEComment: 'List of candidate behavioural entities for receiving the invocation'>
 	<target>
 
+	"Relation named: #candidates type: #FamixTInvocable opposite: #incomingInvocations"
+
 	^ candidates
 ]
 
@@ -89,6 +91,8 @@ FamixTInvocation >> receiver [
 
 	<generated>
 	<MSEComment: 'Named entity (variable, class...) receiving the invocation. to-side of the association'>
+	"Relation named: #receiver type: #FamixTInvocationsReceiver opposite: #receivingInvocations"
+
 	^ receiver
 ]
 
@@ -106,6 +110,8 @@ FamixTInvocation >> sender [
 	<generated>
 	<MSEComment: 'Behavioural entity making the call. from-side of the association'>
 	<source>
+
+	"Relation named: #sender type: #FamixTWithInvocations opposite: #outgoingInvocations"
 
 	^ sender
 ]

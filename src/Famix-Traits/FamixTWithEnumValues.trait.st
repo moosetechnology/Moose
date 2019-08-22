@@ -25,6 +25,8 @@ FamixTWithEnumValues >> addEnumValue: anObject [
 FamixTWithEnumValues >> enumValues [
 
 	<generated>
+	"Relation named: #enumValues type: #FamixTEnumValue opposite: #parentEnum"
+
 	^ enumValues
 ]
 

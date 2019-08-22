@@ -24,6 +24,8 @@ FamixTestComposedCustomEntity4 class >> metamodel [
 FamixTestComposedCustomEntity4 >> c24s [
 
 	<generated>
+	"Relation named: #c24s type: #FamixTestComposedCustomEntity4 opposite: #c4s"
+
 	<MSEProperty: #c24s type: #Object>
 	^ self privateState attributeAt: #c24s ifAbsentPut: [ FMMultiMultivalueLink on: self opposite: #c4s ]
 ]
@@ -39,6 +41,8 @@ FamixTestComposedCustomEntity4 >> c24s: anObject [
 FamixTestComposedCustomEntity4 >> customEntities4 [
 
 	<generated>
+	"Relation named: #customEntities4 type: #FamixTestComposedCustomEntity4 opposite: #customEntities4"
+
 	<MSEProperty: #customEntities4 type: #Object>
 	^ self privateState attributeAt: #customEntities4 ifAbsentPut: [ FMMultiMultivalueLink on: self opposite: #customEntities4 ]
 ]

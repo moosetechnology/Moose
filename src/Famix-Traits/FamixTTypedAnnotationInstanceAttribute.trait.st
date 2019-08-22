@@ -20,6 +20,8 @@ FamixTTypedAnnotationInstanceAttribute >> annotationTypeAttribute [
 
 	<generated>
 	<MSEComment: 'This corresponds to the type of the attribute in an AnnotationInstance'>
+	"Relation named: #annotationTypeAttribute type: #FamixTAnnotationTypeAttribute opposite: #annotationAttributeInstances"
+
 	^ annotationTypeAttribute
 ]
 

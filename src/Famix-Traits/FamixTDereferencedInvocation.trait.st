@@ -27,6 +27,8 @@ FamixTDereferencedInvocation >> referencer [
 
 	<generated>
 	<MSEComment: 'Structural entity that references the BehaviouralEntity invoked'>
+	"Relation named: #referencer type: #FamixTWithDereferencedInvocations opposite: #dereferencedInvocations"
+
 	^ referencer
 ]
 

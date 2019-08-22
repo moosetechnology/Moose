@@ -31,6 +31,8 @@ FamixTComment >> container [
 
 	<generated>
 	<MSEComment: 'Source code entity containing the comment'>
+	"Relation named: #container type: #FamixTWithComments opposite: #comments"
+
 	^ container
 ]
 

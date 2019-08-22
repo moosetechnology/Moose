@@ -30,6 +30,8 @@ FamixTModule >> addModuleEntity: anObject [
 FamixTModule >> moduleEntities [
 
 	<generated>
+	"Relation named: #moduleEntities type: #FamixTDefinedInModule opposite: #parentModule"
+
 	^ moduleEntities
 ]
 

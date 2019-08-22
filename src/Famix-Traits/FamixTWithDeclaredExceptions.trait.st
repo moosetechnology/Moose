@@ -25,6 +25,8 @@ FamixTWithDeclaredExceptions >> declaredExceptions [
 
 	<generated>
 	<MSEComment: 'The exceptions declared by the method'>
+	"Relation named: #declaredExceptions type: #FamixTDeclaredException opposite: #definingEntity"
+
 	^ declaredExceptions
 ]
 

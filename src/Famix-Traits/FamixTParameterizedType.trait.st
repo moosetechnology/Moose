@@ -30,6 +30,8 @@ FamixTParameterizedType >> parameterizableClass [
 
 	<generated>
 	<MSEComment: 'Base type of this parameterized type.'>
+	"Relation named: #parameterizableClass type: #FamixTWithParameterizedTypes opposite: #parameterizedTypes"
+
 	^ parameterizableClass
 ]
 

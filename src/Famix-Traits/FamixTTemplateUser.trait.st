@@ -19,6 +19,8 @@ FamixTTemplateUser classSide >> annotation [
 FamixTTemplateUser >> template [
 
 	<generated>
+	"Relation named: #template type: #FamixTTemplate opposite: #templateUsers"
+
 	^ template
 ]
 

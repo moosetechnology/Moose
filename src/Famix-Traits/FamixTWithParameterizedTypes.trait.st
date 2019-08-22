@@ -25,6 +25,8 @@ FamixTWithParameterizedTypes >> addParameterizedType: anObject [
 FamixTWithParameterizedTypes >> parameterizedTypes [
 
 	<generated>
+	"Relation named: #parameterizedTypes type: #FamixTParameterizedType opposite: #parameterizableClass"
+
 	^ parameterizedTypes
 ]
 

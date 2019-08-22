@@ -21,6 +21,8 @@ FamixTFileInclude >> source [
 
 	<generated>
 	<MSEComment: 'The file that is including'>
+	"Relation named: #source type: #FamixTWithFileIncludes opposite: #outgoingIncludeRelations"
+
 	^ source
 ]
 
@@ -37,6 +39,8 @@ FamixTFileInclude >> target [
 
 	<generated>
 	<MSEComment: 'The file that is included'>
+	"Relation named: #target type: #FamixTWithFileIncludes opposite: #incomingIncludeRelations"
+
 	^ target
 ]
 

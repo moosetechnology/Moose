@@ -23,6 +23,8 @@ FamixTCompilationUnit >> compilationUnitOwner [
 
 	<generated>
 	<MSEComment: 'The compilation unit that defines this module'>
+	"Relation named: #compilationUnitOwner type: #FamixTWithCompilationUnit opposite: #compilationUnit"
+
 	^ compilationUnitOwner
 ]
 

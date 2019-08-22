@@ -26,6 +26,8 @@ FamixTWithFiles >> containerFiles [
 
 	<generated>
 	<MSEComment: 'List of files containing the entity'>
+	"Relation named: #containerFiles type: #FamixTFile opposite: #entities"
+
 	^ containerFiles
 ]
 

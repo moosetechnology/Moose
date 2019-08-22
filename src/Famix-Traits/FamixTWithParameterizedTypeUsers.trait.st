@@ -27,6 +27,8 @@ FamixTWithParameterizedTypeUsers >> addArgument: anObject [
 FamixTWithParameterizedTypeUsers >> arguments [
 
 	<generated>
+	"Relation named: #arguments type: #FamixTParameterizedTypeUser opposite: #argumentsInParameterizedTypes"
+
 	^ arguments
 ]
 

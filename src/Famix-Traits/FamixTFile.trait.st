@@ -36,6 +36,8 @@ FamixTFile >> entities [
 
 	<generated>
 	<MSEComment: 'List of entities defined in the file'>
+	"Relation named: #entities type: #FamixTWithFiles opposite: #containerFiles"
+
 	^ entities
 ]
 

@@ -19,6 +19,8 @@ FamixTWithCompilationUnit classSide >> annotation [
 FamixTWithCompilationUnit >> compilationUnit [
 
 	<generated>
+	"Relation named: #compilationUnit type: #FamixTCompilationUnit opposite: #compilationUnitOwner"
+
 	^ compilationUnit
 ]
 

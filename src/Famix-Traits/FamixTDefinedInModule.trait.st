@@ -20,6 +20,8 @@ FamixTDefinedInModule >> parentModule [
 
 	<generated>
 	<MSEComment: 'Module that contains the definition of this entity'>
+	"Relation named: #parentModule type: #FamixTModule opposite: #moduleEntities"
+
 	^ parentModule
 ]
 

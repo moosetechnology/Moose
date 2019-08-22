@@ -25,6 +25,8 @@ FamixTWithAttributes >> attributes [
 
 	<generated>
 	<MSEComment: 'List of attributes declared by this type.'>
+	"Relation named: #attributes type: #FamixTAttribute opposite: #parentType"
+
 	^ attributes
 ]
 

@@ -19,6 +19,8 @@ FamixTSub classSide >> annotation [
 FamixTSub >> supers [
 
 	<generated>
+	"Relation named: #supers type: #FamixTSuper opposite: #subs"
+
 	^ supers
 ]
 

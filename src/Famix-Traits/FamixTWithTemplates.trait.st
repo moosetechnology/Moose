@@ -25,6 +25,8 @@ FamixTWithTemplates >> addTemplate: anObject [
 FamixTWithTemplates >> templates [
 
 	<generated>
+	"Relation named: #templates type: #FamixTTemplate opposite: #templateOwner"
+
 	^ templates
 ]
 

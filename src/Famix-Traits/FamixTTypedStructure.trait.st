@@ -20,6 +20,8 @@ FamixTTypedStructure >> declaredType [
 
 	<generated>
 	<MSEComment: 'Type of the behavioral entity, if any'>
+	"Relation named: #declaredType type: #FamixTWithTypedStructures opposite: #structuresWithDeclaredType"
+
 	^ declaredType
 ]
 

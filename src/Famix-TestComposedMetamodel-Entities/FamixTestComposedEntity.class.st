@@ -24,6 +24,8 @@ FamixTestComposedEntity class >> metamodel [
 FamixTestComposedEntity >> method [
 
 	<generated>
+	"Relation named: #method type: #FamixTestComposedMethod opposite: #entity"
+
 	<MSEProperty: #method type: #Object>
 	^ self privateState attributeAt: #method ifAbsent: [ nil ]
 ]

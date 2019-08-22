@@ -20,6 +20,8 @@ FamixTWithHeader >> header [
 
 	<generated>
 	<MSEComment: 'The header file that defines this module'>
+	"Relation named: #header type: #FamixTHeader opposite: #headerOwner"
+
 	^ header
 ]
 

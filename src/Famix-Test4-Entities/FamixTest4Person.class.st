@@ -26,6 +26,8 @@ FamixTest4Person >> addBooks: anObject [
 FamixTest4Person >> books [
 
 	<generated>
+	"Relation named: #books type: #FamixTest4Book opposite: #person"
+
 	^ books
 ]
 

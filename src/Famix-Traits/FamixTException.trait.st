@@ -23,6 +23,8 @@ FamixTException >> exceptionClass [
 
 	<generated>
 	<MSEComment: 'Class to which the exception points. It is specific to Java'>
+	"Relation named: #exceptionClass type: #FamixTWithExceptions opposite: #exceptions"
+
 	^ exceptionClass
 ]
 

@@ -25,6 +25,8 @@ FamixTWithMethods >> methods [
 
 	<generated>
 	<MSEComment: 'Methods declared by this type.'>
+	"Relation named: #methods type: #FamixTMethod opposite: #parentType"
+
 	^ methods
 ]
 

@@ -21,6 +21,8 @@ FamixTestComposedAssociation >> c15 [
 	<generated>
 	<target>
 
+	"Relation named: #c15 type: #FamixTestComposedCustomEntity5 opposite: #associations"
+
 	<MSEProperty: #c15 type: #Object>
 	^ self privateState attributeAt: #c15 ifAbsent: [ nil ]
 ]
@@ -37,6 +39,8 @@ FamixTestComposedAssociation >> c25 [
 
 	<generated>
 	<source>
+
+	"Relation named: #c25 type: #FamixTestComposedCustomEntity5 opposite: #associations"
 
 	<MSEProperty: #c25 type: #Object>
 	^ self privateState attributeAt: #c25 ifAbsent: [ nil ]

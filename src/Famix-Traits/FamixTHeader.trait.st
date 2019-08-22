@@ -22,6 +22,8 @@ FamixTHeader classSide >> annotation [
 FamixTHeader >> headerOwner [
 
 	<generated>
+	"Relation named: #headerOwner type: #FamixTWithHeader opposite: #header"
+
 	^ headerOwner
 ]
 

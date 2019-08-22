@@ -70,6 +70,8 @@ FamixTWithSourceAnchor >> sourceAnchor [
 
 	<generated>
 	<MSEComment: 'SourceAnchor entity linking to the original source code for this entity'>
+	"Relation named: #sourceAnchor type: #FamixTSourceAnchor opposite: #element"
+
 	^ sourceAnchor
 ]
 

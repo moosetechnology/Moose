@@ -22,6 +22,8 @@ FamixTCaughtException classSide >> annotation [
 FamixTCaughtException >> definingEntity [
 
 	<generated>
+	"Relation named: #definingEntity type: #FamixTWithCaughtExceptions opposite: #caughtExceptions"
+
 	^ definingEntity
 ]
 

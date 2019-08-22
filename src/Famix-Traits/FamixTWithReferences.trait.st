@@ -25,6 +25,8 @@ FamixTWithReferences >> outgoingReferences [
 
 	<generated>
 	<MSEComment: 'References from this entity to other entities.'>
+	"Relation named: #outgoingReferences type: #FamixTReference opposite: #source"
+
 	^ outgoingReferences
 ]
 

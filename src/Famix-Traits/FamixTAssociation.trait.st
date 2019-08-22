@@ -47,6 +47,8 @@ FamixTAssociation >> next [
 
 	<generated>
 	<MSEComment: 'Next association in an ordered collection of associations. Currently not supported by the Moose importer'>
+	"Relation named: #next type: #FamixTAssociation opposite: #previous"
+
 	^ next
 ]
 
@@ -63,6 +65,8 @@ FamixTAssociation >> previous [
 
 	<generated>
 	<MSEComment: 'Previous association in an ordered collection of associations. Currently not supported by the Moose importer'>
+	"Relation named: #previous type: #FamixTAssociation opposite: #next"
+
 	^ previous
 ]
 

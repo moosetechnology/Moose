@@ -26,6 +26,8 @@ FamixTTraitUser >> addOutgoingTraitUsage: anObject [
 FamixTTraitUser >> outgoingTraitUsages [
 
 	<generated>
+	"Relation named: #outgoingTraitUsages type: #FamixTTraitUsage opposite: #user"
+
 	^ outgoingTraitUsages
 ]
 

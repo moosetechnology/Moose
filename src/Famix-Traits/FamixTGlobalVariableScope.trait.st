@@ -25,6 +25,8 @@ FamixTGlobalVariableScope >> globalVariables [
 
 	<generated>
 	<MSEComment: 'Global variables defined in the scope, if any.'>
+	"Relation named: #globalVariables type: #FamixTGlobalVariable opposite: #parentScope"
+
 	^ globalVariables
 ]
 

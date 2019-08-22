@@ -58,6 +58,8 @@ FamixTReference >> source [
 	<MSEComment: 'Source entity making the reference. from-side of the association'>
 	<source>
 
+	"Relation named: #source type: #FamixTWithReferences opposite: #outgoingReferences"
+
 	^ source
 ]
 
@@ -75,6 +77,8 @@ FamixTReference >> target [
 	<generated>
 	<MSEComment: 'Target entity referenced. to-side of the association'>
 	<target>
+
+	"Relation named: #target type: #FamixTReferenceable opposite: #incomingReferences"
 
 	^ target
 ]

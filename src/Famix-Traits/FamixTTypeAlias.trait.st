@@ -26,6 +26,8 @@ FamixTTypeAlias >> aliasedType [
 
 	<generated>
 	<MSEComment: 'Points to the actual type.'>
+	"Relation named: #aliasedType type: #FamixTWithTypeAliases opposite: #typeAliases"
+
 	^ aliasedType
 ]
 

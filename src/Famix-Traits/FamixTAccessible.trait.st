@@ -60,6 +60,8 @@ FamixTAccessible >> incomingAccesses [
 
 	<generated>
 	<MSEComment: 'All Famix accesses pointing to this structural entity'>
+	"Relation named: #incomingAccesses type: #FamixTAccess opposite: #variable"
+
 	^ incomingAccesses
 ]
 

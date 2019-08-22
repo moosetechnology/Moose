@@ -25,6 +25,8 @@ FamixTWithPackages >> addPackage: anObject [
 FamixTWithPackages >> packages [
 
 	<generated>
+	"Relation named: #packages type: #FamixTPackage opposite: #packageOwner"
+
 	^ packages
 ]
 

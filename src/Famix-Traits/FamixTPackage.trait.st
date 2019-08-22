@@ -39,6 +39,8 @@ FamixTPackage >> addChildEntity: anObject [
 FamixTPackage >> childEntities [
 
 	<generated>
+	"Relation named: #childEntities type: #FamixTPackageable opposite: #parentPackage"
+
 	^ childEntities
 ]
 
@@ -61,6 +63,8 @@ FamixTPackage >> isPackage [
 FamixTPackage >> packageOwner [
 
 	<generated>
+	"Relation named: #packageOwner type: #FamixTWithPackages opposite: #packages"
+
 	^ packageOwner
 ]
 

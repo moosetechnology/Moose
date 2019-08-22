@@ -27,6 +27,8 @@ FamixTTemplate >> addTemplateUser: anObject [
 FamixTTemplate >> templateOwner [
 
 	<generated>
+	"Relation named: #templateOwner type: #FamixTWithTemplates opposite: #templates"
+
 	^ templateOwner
 ]
 
@@ -42,6 +44,8 @@ FamixTTemplate >> templateOwner: anObject [
 FamixTTemplate >> templateUsers [
 
 	<generated>
+	"Relation named: #templateUsers type: #FamixTTemplateUser opposite: #template"
+
 	^ templateUsers
 ]
 

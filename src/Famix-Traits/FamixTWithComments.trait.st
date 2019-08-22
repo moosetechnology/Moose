@@ -27,6 +27,8 @@ FamixTWithComments >> comments [
 
 	<generated>
 	<MSEComment: 'list of comments defined in the entity'>
+	"Relation named: #comments type: #FamixTComment opposite: #container"
+
 	^ comments
 ]
 

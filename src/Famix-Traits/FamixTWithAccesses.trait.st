@@ -20,6 +20,8 @@ FamixTWithAccesses >> accesses [
 
 	<generated>
 	<MSEComment: 'Accesses to variables made by this behaviour.'>
+	"Relation named: #accesses type: #FamixTAccess opposite: #accessor"
+
 	^ accesses
 ]
 

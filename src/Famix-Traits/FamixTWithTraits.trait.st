@@ -25,6 +25,8 @@ FamixTWithTraits >> addTrait: anObject [
 FamixTWithTraits >> traits [
 
 	<generated>
+	"Relation named: #traits type: #FamixTTrait opposite: #traitOwner"
+
 	^ traits
 ]
 

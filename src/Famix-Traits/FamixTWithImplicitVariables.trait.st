@@ -25,6 +25,8 @@ FamixTWithImplicitVariables >> implicitVariables [
 
 	<generated>
 	<MSEComment: 'Implicit variables used locally by this behaviour.'>
+	"Relation named: #implicitVariables type: #FamixTImplicitVariable opposite: #parentBehaviouralEntity"
+
 	^ implicitVariables
 ]
 

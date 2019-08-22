@@ -76,6 +76,8 @@ FamixTest4Student >> schoolGroup [
 FamixTest4Student >> teachers [
 
 	<generated>
+	"Relation named: #teachers type: #FamixTest4Teacher opposite: #students"
+
 	^ teachers
 ]
 

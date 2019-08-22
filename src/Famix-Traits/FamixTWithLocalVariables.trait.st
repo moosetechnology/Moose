@@ -25,6 +25,8 @@ FamixTWithLocalVariables >> localVariables [
 
 	<generated>
 	<MSEComment: 'Variables locally defined by this behaviour.'>
+	"Relation named: #localVariables type: #FamixTLocalVariable opposite: #parentBehaviouralEntity"
+
 	^ localVariables
 ]
 

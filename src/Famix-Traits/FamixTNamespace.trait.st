@@ -48,6 +48,8 @@ FamixTNamespace >> isNamespace [
 FamixTNamespace >> namespaceEntities [
 
 	<generated>
+	"Relation named: #namespaceEntities type: #FamixTNamespaceEntity opposite: #parentNamespace"
+
 	^ namespaceEntities
 ]
 
@@ -63,6 +65,8 @@ FamixTNamespace >> namespaceEntities: anObject [
 FamixTNamespace >> namespaceOwner [
 
 	<generated>
+	"Relation named: #namespaceOwner type: #FamixTWithNamespaces opposite: #namespaces"
+
 	^ namespaceOwner
 ]
 

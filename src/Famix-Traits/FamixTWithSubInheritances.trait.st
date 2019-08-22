@@ -25,6 +25,8 @@ FamixTWithSubInheritances >> superInheritances [
 
 	<generated>
 	<MSEComment: 'Superinheritance relationships, i.e. known superclasses of this type.'>
+	"Relation named: #superInheritances type: #FamixTSubInheritance opposite: #subclass"
+
 	^ superInheritances
 ]
 

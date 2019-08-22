@@ -20,6 +20,8 @@ FamixTWithSourceLanguage >> declaredSourceLanguage [
 
 	<generated>
 	<MSEComment: 'The declared SourceLanguage for the source code of this entity'>
+	"Relation named: #declaredSourceLanguage type: #FamixTSourceLanguage opposite: #sourcedEntities"
+
 	^ declaredSourceLanguage
 ]
 

@@ -34,6 +34,8 @@ FamixTWithTypeAliases >> typeAliases [
 
 	<generated>
 	<MSEComment: 'Aliases'>
+	"Relation named: #typeAliases type: #FamixTTypeAlias opposite: #aliasedType"
+
 	^ typeAliases
 ]
 

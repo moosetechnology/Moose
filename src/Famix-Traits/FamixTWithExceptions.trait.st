@@ -26,6 +26,8 @@ FamixTWithExceptions >> exceptions [
 
 	<generated>
 	<MSEComment: 'Exceptions which class is myself.'>
+	"Relation named: #exceptions type: #FamixTException opposite: #exceptionClass"
+
 	^ exceptions
 ]
 

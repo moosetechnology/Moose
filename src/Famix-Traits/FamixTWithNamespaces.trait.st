@@ -25,6 +25,8 @@ FamixTWithNamespaces >> addNamespace: anObject [
 FamixTWithNamespaces >> namespaces [
 
 	<generated>
+	"Relation named: #namespaces type: #FamixTNamespace opposite: #namespaceOwner"
+
 	^ namespaces
 ]
 

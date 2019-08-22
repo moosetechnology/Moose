@@ -22,6 +22,8 @@ FamixTThrownException classSide >> annotation [
 FamixTThrownException >> definingEntity [
 
 	<generated>
+	"Relation named: #definingEntity type: #FamixTWithThrownExceptions opposite: #thrownExceptions"
+
 	^ definingEntity
 ]
 

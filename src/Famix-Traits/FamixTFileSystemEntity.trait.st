@@ -39,6 +39,8 @@ FamixTFileSystemEntity classSide >> systemFolderSeparatorString [
 FamixTFileSystemEntity >> parentFolder [
 
 	<generated>
+	"Relation named: #parentFolder type: #FamixTFolder opposite: #childrenFileSystemEntities"
+
 	^ parentFolder
 ]
 

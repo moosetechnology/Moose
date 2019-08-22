@@ -52,6 +52,8 @@ FamixTFolder >> childrenFileSystemEntities [
 
 	<generated>
 	<MSEComment: 'List of entities contained in this folder.'>
+	"Relation named: #childrenFileSystemEntities type: #FamixTFileSystemEntity opposite: #parentFolder"
+
 	^ childrenFileSystemEntities
 ]
 
