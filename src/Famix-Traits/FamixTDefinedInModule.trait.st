@@ -17,11 +17,10 @@ FamixTDefinedInModule classSide >> annotation [
 
 { #category : #accessing }
 FamixTDefinedInModule >> parentModule [
+	"Relation named: #parentModule type: #FamixTModule opposite: #moduleEntities"
 
 	<generated>
 	<MSEComment: 'Module that contains the definition of this entity'>
-	"Relation named: #parentModule type: #FamixTModule opposite: #moduleEntities"
-
 	^ parentModule
 ]
 

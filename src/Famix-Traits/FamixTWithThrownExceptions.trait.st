@@ -22,11 +22,10 @@ FamixTWithThrownExceptions >> addThrownException: anObject [
 
 { #category : #accessing }
 FamixTWithThrownExceptions >> thrownExceptions [
+	"Relation named: #thrownExceptions type: #FamixTThrownException opposite: #definingEntity"
 
 	<generated>
 	<MSEComment: 'The exceptions thrown by the method'>
-	"Relation named: #thrownExceptions type: #FamixTThrownException opposite: #definingEntity"
-
 	^ thrownExceptions
 ]
 

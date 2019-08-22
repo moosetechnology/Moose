@@ -24,11 +24,10 @@ FamixTWithComments >> addComment: aComment [
 
 { #category : #accessing }
 FamixTWithComments >> comments [
+	"Relation named: #comments type: #FamixTComment opposite: #container"
 
 	<generated>
 	<MSEComment: 'list of comments defined in the entity'>
-	"Relation named: #comments type: #FamixTComment opposite: #container"
-
 	^ comments
 ]
 

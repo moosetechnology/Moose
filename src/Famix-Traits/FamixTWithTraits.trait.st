@@ -23,10 +23,9 @@ FamixTWithTraits >> addTrait: anObject [
 
 { #category : #accessing }
 FamixTWithTraits >> traits [
-
-	<generated>
 	"Relation named: #traits type: #FamixTTrait opposite: #traitOwner"
 
+	<generated>
 	^ traits
 ]
 

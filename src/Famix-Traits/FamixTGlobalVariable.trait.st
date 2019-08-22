@@ -31,13 +31,11 @@ FamixTGlobalVariable classSide >> famixTGlobalVariableRelatedGroup [
 
 { #category : #accessing }
 FamixTGlobalVariable >> parentScope [
+	"Relation named: #parentScope type: #FamixTGlobalVariableScope opposite: #globalVariables"
 
 	<generated>
 	<MSEComment: 'Scope declaring the global variable. belongsTo implementation'>
 	<container>
-
-	"Relation named: #parentScope type: #FamixTGlobalVariableScope opposite: #globalVariables"
-
 	^ parentScope
 ]
 

@@ -37,11 +37,10 @@ FamixTWithTypedStructures >> incomingTypeDeclarations [
 
 { #category : #accessing }
 FamixTWithTypedStructures >> structuresWithDeclaredType [
+	"Relation named: #structuresWithDeclaredType type: #FamixTTypedStructure opposite: #declaredType"
 
 	<generated>
 	<MSEComment: 'Structural entities that have this type as declaredType'>
-	"Relation named: #structuresWithDeclaredType type: #FamixTTypedStructure opposite: #declaredType"
-
 	^ structuresWithDeclaredType
 ]
 

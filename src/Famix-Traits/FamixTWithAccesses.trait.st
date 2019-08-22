@@ -17,11 +17,10 @@ FamixTWithAccesses classSide >> annotation [
 
 { #category : #accessing }
 FamixTWithAccesses >> accesses [
+	"Relation named: #accesses type: #FamixTAccess opposite: #accessor"
 
 	<generated>
 	<MSEComment: 'Accesses to variables made by this behaviour.'>
-	"Relation named: #accesses type: #FamixTAccess opposite: #accessor"
-
 	^ accesses
 ]
 

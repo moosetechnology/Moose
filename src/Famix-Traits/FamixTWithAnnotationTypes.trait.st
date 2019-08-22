@@ -23,11 +23,10 @@ FamixTWithAnnotationTypes >> addDefinedAnnotationType: aDefinedAnnotationType [
 
 { #category : #accessing }
 FamixTWithAnnotationTypes >> definedAnnotationTypes [
+	"Relation named: #definedAnnotationTypes type: #FamixTAnnotationType opposite: #annotationTypesContainer"
 
 	<generated>
 	<MSEComment: 'The container in which the AnnotationTypes may be declared'>
-	"Relation named: #definedAnnotationTypes type: #FamixTAnnotationType opposite: #annotationTypesContainer"
-
 	^ definedAnnotationTypes
 ]
 

@@ -22,10 +22,9 @@ FamixTestComposedCustomEntity1 class >> metamodel [
 
 { #category : #accessing }
 FamixTestComposedCustomEntity1 >> c21 [
-
-	<generated>
 	"Relation named: #c21 type: #FamixTestComposedCustomEntity1 opposite: #c1"
 
+	<generated>
 	<MSEProperty: #c21 type: #Object>
 	^ self privateState attributeAt: #c21 ifAbsent: [ nil ]
 ]
@@ -46,10 +45,9 @@ FamixTestComposedCustomEntity1 >> c21: anObject [
 
 { #category : #accessing }
 FamixTestComposedCustomEntity1 >> customEntity1 [
-
-	<generated>
 	"Relation named: #customEntity1 type: #FamixTestComposedCustomEntity1 opposite: #customEntity1"
 
+	<generated>
 	<MSEProperty: #customEntity1 type: #Object>
 	^ self privateState attributeAt: #customEntity1 ifAbsent: [ nil ]
 ]

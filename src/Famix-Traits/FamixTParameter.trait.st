@@ -22,13 +22,11 @@ FamixTParameter classSide >> annotation [
 
 { #category : #accessing }
 FamixTParameter >> parentBehaviouralEntity [
+	"Relation named: #parentBehaviouralEntity type: #FamixTWithParameters opposite: #parameters"
 
 	<generated>
 	<MSEComment: 'Behavioural entity containing this parameter. belongsTo implementation'>
 	<container>
-
-	"Relation named: #parentBehaviouralEntity type: #FamixTWithParameters opposite: #parameters"
-
 	^ parentBehaviouralEntity
 ]
 

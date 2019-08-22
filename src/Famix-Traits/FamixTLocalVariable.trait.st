@@ -22,13 +22,11 @@ FamixTLocalVariable classSide >> annotation [
 
 { #category : #accessing }
 FamixTLocalVariable >> parentBehaviouralEntity [
+	"Relation named: #parentBehaviouralEntity type: #FamixTWithLocalVariables opposite: #localVariables"
 
 	<generated>
 	<MSEComment: 'Behavioural entity declaring this local variable. belongsTo implementation'>
 	<container>
-
-	"Relation named: #parentBehaviouralEntity type: #FamixTWithLocalVariables opposite: #localVariables"
-
 	^ parentBehaviouralEntity
 ]
 

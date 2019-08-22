@@ -175,13 +175,11 @@ FamixTMethod >> numberOfMessageSends: aNumber [
 
 { #category : #accessing }
 FamixTMethod >> parentType [
+	"Relation named: #parentType type: #FamixTWithMethods opposite: #methods"
 
 	<generated>
 	<MSEComment: 'Type declaring the method. It provides the implementation for belongsTo.'>
 	<container>
-
-	"Relation named: #parentType type: #FamixTWithMethods opposite: #methods"
-
 	^ parentType
 ]
 

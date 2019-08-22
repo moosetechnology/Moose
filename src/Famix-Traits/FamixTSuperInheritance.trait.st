@@ -24,13 +24,11 @@ FamixTSuperInheritance >> isInheritance [
 
 { #category : #accessing }
 FamixTSuperInheritance >> superclass [
+	"Relation named: #superclass type: #FamixTWithSuperInheritances opposite: #subInheritances"
 
 	<generated>
 	<MSEComment: 'Superclass linked to in this relationship. to-side of the association'>
 	<target>
-
-	"Relation named: #superclass type: #FamixTWithSuperInheritances opposite: #subInheritances"
-
 	^ superclass
 ]
 

@@ -41,8 +41,19 @@ FmxMBRelationSideGenerationStrategy >> generateGetterIn: aClassOrTrait for: aRel
 		streamContents: [ :s | 
 			s
 				nextPutAll: aRelationSide name;
-				cr;
 				cr.
+			aRelationSide hasRelation
+				ifTrue: [ s
+						tab;
+						nextPutAll: '"Relation named: #';
+						nextPutAll: relationSide name;
+						nextPutAll: ' type: #';
+						nextPutAll: relationSide oppositeType;
+						nextPutAll: ' opposite: #';
+						nextPutAll: relationSide oppositeName;
+						nextPutAll: '"';
+						cr;
+						cr ].
 			s
 				tab;
 				nextPutAll: '<generated>';
@@ -56,37 +67,21 @@ FmxMBRelationSideGenerationStrategy >> generateGetterIn: aClassOrTrait for: aRel
 				ifTrue: [ s
 						tab;
 						nextPutAll: '<container>';
-						cr;
 						cr ].
 			aRelationSide isDerived
 				ifTrue: [ s
 						tab;
 						nextPutAll: '<derived>';
-						cr;
 						cr ].
 			aRelationSide isSource
 				ifTrue: [ s
 						tab;
 						nextPutAll: '<source>';
-						cr;
 						cr ].
 			aRelationSide isTarget
 				ifTrue: [ s
 						tab;
 						nextPutAll: '<target>';
-						cr;
-						cr ].
-			aRelationSide hasRelation
-				ifTrue: [ s
-						tab;
-						nextPutAll: '"Relation named: #';
-						nextPutAll: relationSide name;
-						nextPutAll: ' type: #';
-						nextPutAll: relationSide oppositeType;
-						nextPutAll: ' opposite: #';
-						nextPutAll: relationSide oppositeName;
-						nextPutAll: '"';
-						cr;
 						cr ].
 
 			self generateGetterCoreIn: aClassOrTrait on: s for: aRelationSide ].

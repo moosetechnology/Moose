@@ -22,10 +22,9 @@ FamixTestComposedCustomEntity2 class >> metamodel [
 
 { #category : #accessing }
 FamixTestComposedCustomEntity2 >> c22s [
-
-	<generated>
 	"Relation named: #c22s type: #FamixTestComposedCustomEntity2 opposite: #c2"
 
+	<generated>
 	<MSEProperty: #c22s type: #Object>
 	^ self privateState attributeAt: #c22s ifAbsentPut: [ FMMultivalueLink on: self opposite: #c2: ]
 ]
@@ -39,10 +38,9 @@ FamixTestComposedCustomEntity2 >> c22s: anObject [
 
 { #category : #accessing }
 FamixTestComposedCustomEntity2 >> customEntities2 [
-
-	<generated>
 	"Relation named: #customEntities2 type: #FamixTestComposedCustomEntity2 opposite: #customEntity2"
 
+	<generated>
 	<MSEProperty: #customEntities2 type: #Object>
 	^ self privateState attributeAt: #customEntities2 ifAbsentPut: [ FMMultivalueLink on: self opposite: #customEntity2: ]
 ]

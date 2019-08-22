@@ -31,11 +31,10 @@ FamixTWithTypeAliases >> allTypeAliases [
 
 { #category : #accessing }
 FamixTWithTypeAliases >> typeAliases [
+	"Relation named: #typeAliases type: #FamixTTypeAlias opposite: #aliasedType"
 
 	<generated>
 	<MSEComment: 'Aliases'>
-	"Relation named: #typeAliases type: #FamixTTypeAlias opposite: #aliasedType"
-
 	^ typeAliases
 ]
 

@@ -20,13 +20,11 @@ FamixTFunction classSide >> annotation [
 
 { #category : #accessing }
 FamixTFunction >> functionOwner [
+	"Relation named: #functionOwner type: #FamixTWithFunctions opposite: #functions"
 
 	<generated>
 	<MSEComment: 'The container defining the function. The function is placed in a container, because certain languages can nest functions in functions.'>
 	<container>
-
-	"Relation named: #functionOwner type: #FamixTWithFunctions opposite: #functions"
-
 	^ functionOwner
 ]
 

@@ -30,13 +30,11 @@ FamixTAttribute >> isAttribute [
 
 { #category : #accessing }
 FamixTAttribute >> parentType [
+	"Relation named: #parentType type: #FamixTWithAttributes opposite: #attributes"
 
 	<generated>
 	<MSEComment: 'Type declaring the attribute. belongsTo implementation'>
 	<container>
-
-	"Relation named: #parentType type: #FamixTWithAttributes opposite: #attributes"
-
 	^ parentType
 ]
 

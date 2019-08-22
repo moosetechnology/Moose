@@ -28,11 +28,10 @@ FamixTComment classSide >> content: aString [
 
 { #category : #accessing }
 FamixTComment >> container [
+	"Relation named: #container type: #FamixTWithComments opposite: #comments"
 
 	<generated>
 	<MSEComment: 'Source code entity containing the comment'>
-	"Relation named: #container type: #FamixTWithComments opposite: #comments"
-
 	^ container
 ]
 

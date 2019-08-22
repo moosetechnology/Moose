@@ -22,11 +22,10 @@ FamixTWithAnnotationInstanceAttributes >> addAttribute: anAttribute [
 
 { #category : #accessing }
 FamixTWithAnnotationInstanceAttributes >> attributes [
+	"Relation named: #attributes type: #FamixTAnnotationInstanceAttribute opposite: #parentAnnotationInstance"
 
 	<generated>
 	<MSEComment: 'This corresponds to the actual values of the attributes in an AnnotationInstance'>
-	"Relation named: #attributes type: #FamixTAnnotationInstanceAttribute opposite: #parentAnnotationInstance"
-
 	^ attributes
 ]
 

@@ -54,11 +54,10 @@ FamixTScopingEntity >> allParentScopesDo: aBlock [
 
 { #category : #accessing }
 FamixTScopingEntity >> childScopes [
+	"Relation named: #childScopes type: #FamixTScopingEntity opposite: #parentScope"
 
 	<generated>
 	<MSEComment: 'Child scopes embedded in this scope, if any.'>
-	"Relation named: #childScopes type: #FamixTScopingEntity opposite: #parentScope"
-
 	^ childScopes
 ]
 
@@ -77,13 +76,11 @@ FamixTScopingEntity >> isRoot [
 
 { #category : #accessing }
 FamixTScopingEntity >> parentScope [
+	"Relation named: #parentScope type: #FamixTScopingEntity opposite: #childScopes"
 
 	<generated>
 	<MSEComment: 'Parent scope embedding this scope, if any.'>
 	<container>
-
-	"Relation named: #parentScope type: #FamixTScopingEntity opposite: #childScopes"
-
 	^ parentScope
 ]
 

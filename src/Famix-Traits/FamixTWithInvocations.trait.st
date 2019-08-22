@@ -22,11 +22,10 @@ FamixTWithInvocations >> addOutgoingInvocation: anInvocation [
 
 { #category : #accessing }
 FamixTWithInvocations >> outgoingInvocations [
+	"Relation named: #outgoingInvocations type: #FamixTInvocation opposite: #sender"
 
 	<generated>
 	<MSEComment: 'Outgoing invocations sent by this behaviour.'>
-	"Relation named: #outgoingInvocations type: #FamixTInvocation opposite: #sender"
-
 	^ outgoingInvocations
 ]
 

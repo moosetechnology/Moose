@@ -40,13 +40,11 @@ FamixTAnnotationType >> addInstance: anObject [
 
 { #category : #accessing }
 FamixTAnnotationType >> annotationTypesContainer [
+	"Relation named: #annotationTypesContainer type: #FamixTWithAnnotationTypes opposite: #definedAnnotationTypes"
 
 	<generated>
 	<MSEComment: 'Container in which an AnnotationType may reside'>
 	<container>
-
-	"Relation named: #annotationTypesContainer type: #FamixTWithAnnotationTypes opposite: #definedAnnotationTypes"
-
 	^ annotationTypesContainer
 ]
 
@@ -67,11 +65,10 @@ FamixTAnnotationType >> annotationTypesContainerGroup [
 
 { #category : #accessing }
 FamixTAnnotationType >> instances [
+	"Relation named: #instances type: #FamixTTypedAnnotationInstance opposite: #annotationType"
 
 	<generated>
 	<MSEComment: 'Annotations of this type'>
-	"Relation named: #instances type: #FamixTTypedAnnotationInstance opposite: #annotationType"
-
 	^ instances
 ]
 

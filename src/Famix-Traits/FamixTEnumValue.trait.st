@@ -43,13 +43,11 @@ FamixTEnumValue >> mooseNameSeparator [
 
 { #category : #accessing }
 FamixTEnumValue >> parentEnum [
+	"Relation named: #parentEnum type: #FamixTWithEnumValues opposite: #enumValues"
 
 	<generated>
 	<MSEComment: 'The Enum declaring this value. It offers the implementation of belongsTo'>
 	<container>
-
-	"Relation named: #parentEnum type: #FamixTWithEnumValues opposite: #enumValues"
-
 	^ parentEnum
 ]
 

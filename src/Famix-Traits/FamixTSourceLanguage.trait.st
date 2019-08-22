@@ -35,11 +35,10 @@ FamixTSourceLanguage >> isAttached [
 
 { #category : #accessing }
 FamixTSourceLanguage >> sourcedEntities [
+	"Relation named: #sourcedEntities type: #FamixTWithSourceLanguage opposite: #declaredSourceLanguage"
 
 	<generated>
 	<MSEComment: 'References to the entities saying explicitly that are written in this language.'>
-	"Relation named: #sourcedEntities type: #FamixTWithSourceLanguage opposite: #declaredSourceLanguage"
-
 	^ sourcedEntities
 ]
 

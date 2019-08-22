@@ -33,11 +33,10 @@ FamixTFile >> addEntity: famixEntity [
 
 { #category : #accessing }
 FamixTFile >> entities [
+	"Relation named: #entities type: #FamixTWithFiles opposite: #containerFiles"
 
 	<generated>
 	<MSEComment: 'List of entities defined in the file'>
-	"Relation named: #entities type: #FamixTWithFiles opposite: #containerFiles"
-
 	^ entities
 ]
 

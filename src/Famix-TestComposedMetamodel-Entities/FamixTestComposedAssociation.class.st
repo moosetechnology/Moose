@@ -17,12 +17,10 @@ FamixTestComposedAssociation class >> annotation [
 
 { #category : #accessing }
 FamixTestComposedAssociation >> c15 [
+	"Relation named: #c15 type: #FamixTestComposedCustomEntity5 opposite: #associations"
 
 	<generated>
 	<target>
-
-	"Relation named: #c15 type: #FamixTestComposedCustomEntity5 opposite: #associations"
-
 	<MSEProperty: #c15 type: #Object>
 	^ self privateState attributeAt: #c15 ifAbsent: [ nil ]
 ]
@@ -36,12 +34,10 @@ FamixTestComposedAssociation >> c15: anObject [
 
 { #category : #accessing }
 FamixTestComposedAssociation >> c25 [
+	"Relation named: #c25 type: #FamixTestComposedCustomEntity5 opposite: #associations"
 
 	<generated>
 	<source>
-
-	"Relation named: #c25 type: #FamixTestComposedCustomEntity5 opposite: #associations"
-
 	<MSEProperty: #c25 type: #Object>
 	^ self privateState attributeAt: #c25 ifAbsent: [ nil ]
 ]

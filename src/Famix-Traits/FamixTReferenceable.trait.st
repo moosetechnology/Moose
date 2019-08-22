@@ -22,11 +22,10 @@ FamixTReferenceable >> addIncomingReference: aReference [
 
 { #category : #accessing }
 FamixTReferenceable >> incomingReferences [
+	"Relation named: #incomingReferences type: #FamixTReference opposite: #target"
 
 	<generated>
 	<MSEComment: 'References to this entity by other entities.'>
-	"Relation named: #incomingReferences type: #FamixTReference opposite: #target"
-
 	^ incomingReferences
 ]
 

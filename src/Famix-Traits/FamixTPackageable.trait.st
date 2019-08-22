@@ -22,13 +22,11 @@ FamixTPackageable >> isExtension [
 
 { #category : #accessing }
 FamixTPackageable >> parentPackage [
+	"Relation named: #parentPackage type: #FamixTPackage opposite: #childEntities"
 
 	<generated>
 	<MSEComment: 'Package containing the entity in the code structure (if applicable)'>
 	<container>
-
-	"Relation named: #parentPackage type: #FamixTPackage opposite: #childEntities"
-
 	^ parentPackage
 ]
 

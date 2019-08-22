@@ -28,10 +28,9 @@ FamixTTrait >> addIncomingTraitUsage: anObject [
 
 { #category : #accessing }
 FamixTTrait >> incomingTraitUsages [
-
-	<generated>
 	"Relation named: #incomingTraitUsages type: #FamixTTraitUsage opposite: #trait"
 
+	<generated>
 	^ incomingTraitUsages
 ]
 
@@ -45,10 +44,9 @@ FamixTTrait >> incomingTraitUsages: anObject [
 
 { #category : #accessing }
 FamixTTrait >> traitOwner [
-
-	<generated>
 	"Relation named: #traitOwner type: #FamixTWithTraits opposite: #traits"
 
+	<generated>
 	^ traitOwner
 ]
 

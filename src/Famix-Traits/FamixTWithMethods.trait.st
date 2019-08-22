@@ -22,11 +22,10 @@ FamixTWithMethods >> addMethod: aMethod [
 
 { #category : #accessing }
 FamixTWithMethods >> methods [
+	"Relation named: #methods type: #FamixTMethod opposite: #parentType"
 
 	<generated>
 	<MSEComment: 'Methods declared by this type.'>
-	"Relation named: #methods type: #FamixTMethod opposite: #parentType"
-
 	^ methods
 ]
 
