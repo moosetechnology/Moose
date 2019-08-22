@@ -45,6 +45,8 @@ FamixTAnnotationType >> annotationTypesContainer [
 	<MSEComment: 'Container in which an AnnotationType may reside'>
 	<container>
 
+	"Relation named: #annotationTypesContainer type: #FamixTWithAnnotationTypes opposite: #definedAnnotationTypes"
+
 	^ annotationTypesContainer
 ]
 

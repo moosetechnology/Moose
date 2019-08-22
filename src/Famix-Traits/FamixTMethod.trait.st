@@ -180,6 +180,8 @@ FamixTMethod >> parentType [
 	<MSEComment: 'Type declaring the method. It provides the implementation for belongsTo.'>
 	<container>
 
+	"Relation named: #parentType type: #FamixTWithMethods opposite: #methods"
+
 	^ parentType
 ]
 

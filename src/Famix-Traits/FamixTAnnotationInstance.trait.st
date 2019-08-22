@@ -45,6 +45,8 @@ FamixTAnnotationInstance >> annotatedEntity [
 	<MSEComment: 'The NamedEntity on which the annotation occurs.'>
 	<container>
 
+	"Relation named: #annotatedEntity type: #FamixTWithAnnotationInstances opposite: #annotationInstances"
+
 	^ annotatedEntity
 ]
 

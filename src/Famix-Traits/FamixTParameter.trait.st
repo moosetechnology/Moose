@@ -27,6 +27,8 @@ FamixTParameter >> parentBehaviouralEntity [
 	<MSEComment: 'Behavioural entity containing this parameter. belongsTo implementation'>
 	<container>
 
+	"Relation named: #parentBehaviouralEntity type: #FamixTWithParameters opposite: #parameters"
+
 	^ parentBehaviouralEntity
 ]
 

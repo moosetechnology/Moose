@@ -52,6 +52,8 @@ FamixTest4Teacher >> school [
 	<generated>
 	<container>
 
+	"Relation named: #school type: #FamixTest4School opposite: #teachers"
+
 	^ school
 ]
 

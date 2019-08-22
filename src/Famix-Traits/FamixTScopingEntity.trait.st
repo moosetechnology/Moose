@@ -80,6 +80,8 @@ FamixTScopingEntity >> parentScope [
 	<MSEComment: 'Parent scope embedding this scope, if any.'>
 	<container>
 
+	"Relation named: #parentScope type: #FamixTScopingEntity opposite: #childScopes"
+
 	^ parentScope
 ]
 

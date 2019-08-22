@@ -34,6 +34,8 @@ FamixTImplicitVariable >> parentBehaviouralEntity [
 	<MSEComment: 'The behaviour containing this implicit variable. belongsTo implementation'>
 	<container>
 
+	"Relation named: #parentBehaviouralEntity type: #FamixTWithImplicitVariables opposite: #implicitVariables"
+
 	^ parentBehaviouralEntity
 ]
 

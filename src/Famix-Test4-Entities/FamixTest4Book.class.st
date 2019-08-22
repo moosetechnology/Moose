@@ -45,6 +45,8 @@ FamixTest4Book >> person [
 	<generated>
 	<container>
 
+	"Relation named: #person type: #FamixTest4Person opposite: #books"
+
 	^ person
 ]
 

@@ -29,6 +29,8 @@ FamixTestComposed1CustomEntity1 >> customEntity1 [
 	<generated>
 	<container>
 
+	"Relation named: #customEntity1 type: #FamixTestComposed1CustomEntity1 opposite: #customEntity1"
+
 	<MSEProperty: #customEntity1 type: #Object>
 	<package: #'Famix-TestComposedMetamodel-Entities'>
 	^ self privateState attributeAt: #customEntity1 ifAbsent: [ nil ]

@@ -35,6 +35,8 @@ FamixTAttribute >> parentType [
 	<MSEComment: 'Type declaring the attribute. belongsTo implementation'>
 	<container>
 
+	"Relation named: #parentType type: #FamixTWithAttributes opposite: #attributes"
+
 	^ parentType
 ]
 

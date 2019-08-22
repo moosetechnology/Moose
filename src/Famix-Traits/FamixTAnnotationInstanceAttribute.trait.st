@@ -36,6 +36,8 @@ FamixTAnnotationInstanceAttribute >> parentAnnotationInstance [
 	<MSEComment: 'The instance of the annotation in which the attribute is used.'>
 	<container>
 
+	"Relation named: #parentAnnotationInstance type: #FamixTWithAnnotationInstanceAttributes opposite: #attributes"
+
 	^ parentAnnotationInstance
 ]
 
