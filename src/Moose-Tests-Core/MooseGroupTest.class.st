@@ -27,33 +27,39 @@ MooseGroupTest >> testAllModelMethod [
 	| model |
 	model := self twoClasses.
 	self assert: model allModelMethods entities size equals: 3.
-	self
-		assert:
-			(model allModelMethods entities includesAll: model allMethods entities)
+	self assert: (model allModelMethods entities includesAll: model allMethods entities).
+	self flag: #todo. "Once this bug will be fixed, we should add an assertion with stubs methods.https://github.com/moosetechnology/Moose/issues/1800"
 ]
 
 { #category : #tests }
 MooseGroupTest >> testAllSatisfy [
-
 	| group |
 	group := MooseGroup new.
-	group add: MooseEntity new.
-	group add: MooseEntity new.
-	group add: MooseEntity new.
+	3 timesRepeat: [ group add: MooseEntity new ].
 
-	self assert: (group allSatisfy: [ :c | c class == MooseEntity ] ).
-	self deny: (group allSatisfy: [ :c | c = 10 ] ).
+	self assert: (group allSatisfy: [ :c | c class == MooseEntity ]).
+	self deny: (group allSatisfy: [ :c | c = 10 ])
 ]
 
 { #category : #tests }
-MooseGroupTest >> testAllWithSubTypesOfInModel [
+MooseGroupTest >> testAllWithSubTypesOf [
 	| model |
-	model := FamixJavaMooseModel new.
-	model addAll: { FamixJavaClass new. FamixJavaParameterizableClass new }.
-	self assert: (model allWithSubTypesOf: FamixJavaClass) size equals: 2.
-	self assert: (model allWithSubTypesOf: FamixJavaParameterizableClass) size equals: 1.
-	self assert: (model allUsing: FamixTClass) size equals: 2.
+	model := FamixTest3MooseModel new.
+	model addAll: {FamixTest3Class new . FamixTest3Type new}.
+	self assert: (model allWithSubTypesOf: FamixTest3Type) size equals: 2.
+	self assert: (model allWithSubTypesOf: FamixTest3Class) size equals: 1.
 	self assert: (model allWithSubTypesOf: MooseEntity) size equals: 2
+]
+
+{ #category : #tests }
+MooseGroupTest >> testAllWithType [
+	| model |
+	model := FamixTest3MooseModel new.
+	model addAll: {FamixTest3Class new . FamixTest3Type new}.
+	self assert: (model allWithType: FamixTest3Class) size equals: 1.
+	self assert: (model allWithType: FamixTest3Type) size equals: 1.
+	self should: [ (model allWithType: FamixTClass) size ] raise: MooseAllWithTypeOnTrait.
+	self assert: (model allWithType: Object) isEmpty
 ]
 
 { #category : #tests }
@@ -74,17 +80,6 @@ MooseGroupTest >> testAllWithTypeAtSetup [
 	self assert: (group allWithType: SmallInteger) size equals: 1.
 	self assert: (group allWithType: ByteSymbol) size equals: 1.
 	self assert: (group allWithType: Object) isEmpty
-]
-
-{ #category : #tests }
-MooseGroupTest >> testAllWithTypeInModel [
-	| model |
-	model := FamixJavaMooseModel new.
-	model addAll: { FamixJavaClass new. FamixJavaParameterizableClass new }.
-	self assert: (model allWithType: FamixJavaClass) size equals: 1.
-	self assert: (model allWithType: FamixJavaParameterizableClass) size equals: 1.
-	self should: [ (model allWithType: FamixTClass) size ] raise: MooseAllWithTypeOnTrait.
-	self assert: (model allWithType: Object) isEmpty
 ]
 
 { #category : #tests }
@@ -623,6 +618,16 @@ MooseGroupTest >> testWithIndexDo [
 			2}.
 			{el3.
 			3}}
+]
+
+{ #category : #tests }
+MooseGroupTest >> testallUsing [
+	| model |
+	model := FamixTest3MooseModel new.
+	model addAll: {FamixTest3Class new . FamixTest3Type new}.
+	self should: [ model allUsing: FamixTest3Type ] raise: MooseAllUsingOnClass.
+	self assert: (model allUsing: FamixTClass) size equals: 1.
+	self assert: (model allUsing: FamixTType) size equals: 2
 ]
 
 { #category : #utility }

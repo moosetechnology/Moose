@@ -81,39 +81,40 @@ MooseAbstractGroup >> allUsing: aTrait [
 ]
 
 { #category : #groups }
-MooseAbstractGroup >> allUsing: aTrait ofGroupClass: aGroupSmalltalkClass [
-	^ aGroupSmalltalkClass
+MooseAbstractGroup >> allUsing: aTrait ofGroupClass: aGroupClass [
+	aTrait isTrait ifFalse: [ MooseAllUsingOnClass signal ].
+	^ aGroupClass
 		withAll: ((aTrait allUsers flattened flatCollect: #withAllSubclasses) asSet flatCollect: [ :each | self entityStorage selectAllWithType: each ])
 		withDescription: 'All ' , aTrait name asLowercase asEnglishPlural
 ]
 
 { #category : #groups }
-MooseAbstractGroup >> allWithSubTypesOf: aSmalltalkClass [
-	^ self allWithSubTypesOf: aSmalltalkClass ofGroupClass: MooseGroup 
+MooseAbstractGroup >> allWithSubTypesOf: aFamixClass [
+	^ self allWithSubTypesOf: aFamixClass ofGroupClass: MooseGroup 
 ]
 
 { #category : #groups }
-MooseAbstractGroup >> allWithSubTypesOf: aSmalltalkClass ofGroupClass: aGroupSmalltalkClass [
-	aSmalltalkClass isTrait ifTrue: [ MooseAllWithTypeOnTrait signal ].
-	^ aGroupSmalltalkClass
-		withAll: ((aSmalltalkClass withAllSubclasses) asSet flatCollect: [ :each | self entityStorage selectAllWithType: each ])
-		withDescription: 'All ' , aSmalltalkClass name asLowercase asEnglishPlural
+MooseAbstractGroup >> allWithSubTypesOf: aFamixClass ofGroupClass: aGroupClass [
+	aFamixClass isTrait ifTrue: [ MooseAllWithTypeOnTrait signal ].
+	^ aGroupClass
+		withAll: ((aFamixClass withAllSubclasses) asSet flatCollect: [ :each | self entityStorage selectAllWithType: each ])
+		withDescription: 'All ' , aFamixClass name asLowercase asEnglishPlural
 ]
 
 { #category : #groups }
-MooseAbstractGroup >> allWithType: aSmalltalkType [
-	^ self allWithType: aSmalltalkType ofGroupClass: MooseGroup 
+MooseAbstractGroup >> allWithType: aFamixClass [
+	^ self allWithType: aFamixClass ofGroupClass: MooseGroup 
 ]
 
 { #category : #groups }
-MooseAbstractGroup >> allWithType: aSmalltalkClass ofGroupClass: aGroupSmalltalkClass [
-	aSmalltalkClass isTrait ifTrue: [ MooseAllWithTypeOnTrait signal ].
+MooseAbstractGroup >> allWithType: aFamixClass ofGroupClass: aGroupClass [
+	aFamixClass isTrait ifTrue: [ MooseAllWithTypeOnTrait signal ].
 	^ self privateState 
-		cacheAt: aSmalltalkClass
+		cacheAt: aFamixClass
 		ifAbsentPut: [
-			aGroupSmalltalkClass 
-				withAll: (self entityStorage selectAllWithType: aSmalltalkClass)
-				withDescription: 'All ' , aSmalltalkClass name asLowercase asEnglishPlural ]
+			aGroupClass 
+				withAll: (self entityStorage selectAllWithType: aFamixClass)
+				withDescription: 'All ' , aFamixClass name asLowercase asEnglishPlural ]
 ]
 
 { #category : #accessing }
