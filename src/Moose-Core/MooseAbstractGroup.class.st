@@ -76,9 +76,8 @@ MooseAbstractGroup >> allModels [
 ]
 
 { #category : #'public interface' }
-MooseAbstractGroup >> allSatisfy: aBlock [ 
-	 
-	^self entities allSatisfy: aBlock
+MooseAbstractGroup >> allSatisfy: aBlock [
+	^ self entities allSatisfy: aBlock
 ]
 
 { #category : #groups }
