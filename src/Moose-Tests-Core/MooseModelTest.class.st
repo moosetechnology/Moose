@@ -3,12 +3,17 @@ Just a test about mooseModel root and so on.
 "
 Class {
 	#name : #MooseModelTest,
-	#superclass : #TestCase,
+	#superclass : #MooseAbstractGroupTest,
 	#instVars : [
 		'model'
 	],
 	#category : #'Moose-Tests-Core'
 }
+
+{ #category : #helpers }
+MooseModelTest >> actualClass [
+	^ MooseModel
+]
 
 { #category : #running }
 MooseModelTest >> setUp [

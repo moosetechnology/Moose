@@ -56,6 +56,12 @@ MooseAbstractGroup >> addAll: aCollectionOfItems [
 	^ self subclassResponsibility
 ]
 
+{ #category : #'adding/removing' }
+MooseAbstractGroup >> addLast: anEntity [ 
+	 
+	^self add: anEntity
+]
+
 { #category : #accessing }
 MooseAbstractGroup >> allContainers [
 	<navigation: 'All containers'>

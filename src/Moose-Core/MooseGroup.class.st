@@ -89,12 +89,6 @@ MooseGroup >> addAll: collection [
 	self updateTypeAccordingToEntities
 ]
 
-{ #category : #'adding/removing' }
-MooseGroup >> addLast: anEntity [ 
-	 
-	^self add: anEntity
-]
-
 { #category : #'public interface' }
 MooseGroup >> average: aSymbolOrBlock [ 
 	 
