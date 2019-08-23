@@ -1,5 +1,5 @@
 Class {
-	#name : #FamixTest3Types,
+	#name : #FamixTest3Type,
 	#superclass : #FamixTest3NamedEntity,
 	#traits : 'FamixTType',
 	#classTraits : 'FamixTType classTrait',
@@ -7,23 +7,23 @@ Class {
 }
 
 { #category : #meta }
-FamixTest3Types class >> annotation [
+FamixTest3Type class >> annotation [
 
-	<MSEClass: #Types super: #FamixTest3NamedEntity>
+	<MSEClass: #Type super: #FamixTest3NamedEntity>
 	<package: #'Famix-Test3-Entities'>
 	<generated>
 	^self
 ]
 
 { #category : #meta }
-FamixTest3Types class >> requirements [
+FamixTest3Type class >> requirements [
 
 	<generated>
 	^ { FamixTest3PrimitiveType }
 ]
 
 { #category : #accessing }
-FamixTest3Types >> belongsTo [
+FamixTest3Type >> belongsTo [
 
 	<generated>
 	^ self typeContainer
@@ -31,7 +31,7 @@ FamixTest3Types >> belongsTo [
 ]
 
 { #category : #accessing }
-FamixTest3Types >> belongsTo: anObject [
+FamixTest3Type >> belongsTo: anObject [
 
 	<generated>
 	self typeContainer: anObject
