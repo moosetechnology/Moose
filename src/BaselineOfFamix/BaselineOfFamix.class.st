@@ -23,6 +23,7 @@ BaselineOfFamix >> baseline: spec [
 		do: [ "Dependencies"
 			self
 				deepTraverser: spec;
+				treeQuery: spec;
 				fame: spec;
 				kgbTestResources: spec;
 				collectionExtensions: spec;
@@ -34,7 +35,7 @@ BaselineOfFamix >> baseline: spec [
 
 			"Packages"
 			spec
-				package: 'Moose-Query' with: [ spec requires: #('Fame' 'DeepTraverser' 'CollectionExtensions') ];
+				package: 'Moose-Query' with: [ spec requires: #('Fame' 'DeepTraverser' 'CollectionExtensions' 'TreeQuery') ];
 				package: 'Moose-Core' with: [ spec requires: #('Fame' 'Moose-Query') ];
 				package: 'Moose-Query-Extensions' with: [ spec requires: #('Moose-Query' 'Famix-Traits') ];
 				package: 'Famix-Groups' with: [ spec requires: #('Moose-Core' 'NeoCSV') ];
@@ -180,4 +181,9 @@ BaselineOfFamix >> roelTyper: spec [
 { #category : #dependencies }
 BaselineOfFamix >> talents: spec [
 	spec baseline: 'Talents' with: [ spec repository: repository ]
+]
+
+{ #category : #dependencies }
+BaselineOfFamix >> treeQuery: spec [
+	spec baseline: 'TreeQuery' with: [ spec repository: 'github://juliendelplanque/TreeQuery:v1.x.x/src' ]
 ]
