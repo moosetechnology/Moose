@@ -27,6 +27,7 @@ FamixTParameterizedType classSide >> annotation [
 
 { #category : #accessing }
 FamixTParameterizedType >> parameterizableClass [
+	"Relation named: #parameterizableClass type: #FamixTWithParameterizedTypes opposite: #parameterizedTypes"
 
 	<generated>
 	<MSEComment: 'Base type of this parameterized type.'>

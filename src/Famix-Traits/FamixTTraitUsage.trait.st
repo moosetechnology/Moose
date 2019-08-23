@@ -38,10 +38,10 @@ FamixTTraitUsage >> to: anObject [
 
 { #category : #accessing }
 FamixTTraitUsage >> trait [
+	"Relation named: #trait type: #FamixTTrait opposite: #incomingTraitUsages"
 
 	<generated>
 	<source>
-
 	^ trait
 ]
 
@@ -55,10 +55,10 @@ FamixTTraitUsage >> trait: anObject [
 
 { #category : #accessing }
 FamixTTraitUsage >> user [
+	"Relation named: #user type: #FamixTTraitUser opposite: #outgoingTraitUsages"
 
 	<generated>
 	<target>
-
 	^ user
 ]
 

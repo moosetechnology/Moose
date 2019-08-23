@@ -17,6 +17,7 @@ FamixTTypedAnnotationInstance classSide >> annotation [
 
 { #category : #accessing }
 FamixTTypedAnnotationInstance >> annotationType [
+	"Relation named: #annotationType type: #FamixTAnnotationType opposite: #instances"
 
 	<generated>
 	<MSEComment: 'Refers to the type of an annotation. (In some languages, Java and C#, an annotation as an explicit type). '>

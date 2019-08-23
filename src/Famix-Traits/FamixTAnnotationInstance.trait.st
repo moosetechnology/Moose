@@ -40,11 +40,11 @@ FamixTAnnotationInstance classSide >> famixTAnnotationInstanceRelatedGroup [
 
 { #category : #accessing }
 FamixTAnnotationInstance >> annotatedEntity [
+	"Relation named: #annotatedEntity type: #FamixTWithAnnotationInstances opposite: #annotationInstances"
 
 	<generated>
 	<MSEComment: 'The NamedEntity on which the annotation occurs.'>
 	<container>
-
 	^ annotatedEntity
 ]
 

@@ -22,6 +22,7 @@ FamixTWithLocalVariables >> addLocalVariable: aLocalVariable [
 
 { #category : #accessing }
 FamixTWithLocalVariables >> localVariables [
+	"Relation named: #localVariables type: #FamixTLocalVariable opposite: #parentBehaviouralEntity"
 
 	<generated>
 	<MSEComment: 'Variables locally defined by this behaviour.'>

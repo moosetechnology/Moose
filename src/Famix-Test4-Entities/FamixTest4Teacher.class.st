@@ -48,10 +48,10 @@ FamixTest4Teacher >> belongsTo: anObject [
 
 { #category : #accessing }
 FamixTest4Teacher >> school [
+	"Relation named: #school type: #FamixTest4School opposite: #teachers"
 
 	<generated>
 	<container>
-
 	^ school
 ]
 
@@ -72,6 +72,7 @@ FamixTest4Teacher >> schoolGroup [
 
 { #category : #accessing }
 FamixTest4Teacher >> students [
+	"Relation named: #students type: #FamixTest4Student opposite: #teachers"
 
 	<generated>
 	^ students

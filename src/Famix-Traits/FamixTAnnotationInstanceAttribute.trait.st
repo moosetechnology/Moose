@@ -31,11 +31,11 @@ FamixTAnnotationInstanceAttribute classSide >> annotation [
 
 { #category : #accessing }
 FamixTAnnotationInstanceAttribute >> parentAnnotationInstance [
+	"Relation named: #parentAnnotationInstance type: #FamixTWithAnnotationInstanceAttributes opposite: #attributes"
 
 	<generated>
 	<MSEComment: 'The instance of the annotation in which the attribute is used.'>
 	<container>
-
 	^ parentAnnotationInstance
 ]
 

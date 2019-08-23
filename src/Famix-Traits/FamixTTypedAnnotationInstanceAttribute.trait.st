@@ -17,6 +17,7 @@ FamixTTypedAnnotationInstanceAttribute classSide >> annotation [
 
 { #category : #accessing }
 FamixTTypedAnnotationInstanceAttribute >> annotationTypeAttribute [
+	"Relation named: #annotationTypeAttribute type: #FamixTAnnotationTypeAttribute opposite: #annotationAttributeInstances"
 
 	<generated>
 	<MSEComment: 'This corresponds to the type of the attribute in an AnnotationInstance'>

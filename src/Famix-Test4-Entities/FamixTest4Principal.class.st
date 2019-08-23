@@ -41,10 +41,10 @@ FamixTest4Principal >> belongsTo: anObject [
 
 { #category : #accessing }
 FamixTest4Principal >> school [
+	"Relation named: #school type: #FamixTest4School opposite: #principal"
 
 	<generated>
 	<container>
-
 	^ school
 ]
 

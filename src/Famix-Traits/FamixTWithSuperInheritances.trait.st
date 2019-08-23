@@ -36,6 +36,7 @@ FamixTWithSuperInheritances >> numberOfSubclasses: aNumber [
 
 { #category : #accessing }
 FamixTWithSuperInheritances >> subInheritances [
+	"Relation named: #subInheritances type: #FamixTSuperInheritance opposite: #superclass"
 
 	<generated>
 	<MSEComment: 'Subinheritance relationships, i.e. known subclasses of this type.'>

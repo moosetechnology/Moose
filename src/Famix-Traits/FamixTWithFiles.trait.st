@@ -23,6 +23,7 @@ FamixTWithFiles >> addContainerFile: anObject [
 
 { #category : #accessing }
 FamixTWithFiles >> containerFiles [
+	"Relation named: #containerFiles type: #FamixTFile opposite: #entities"
 
 	<generated>
 	<MSEComment: 'List of files containing the entity'>

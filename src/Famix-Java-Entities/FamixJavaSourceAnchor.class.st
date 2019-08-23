@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaSourceAnchor,
 	#superclass : #FamixJavaEntity,
-	#traits : 'FamixTSourceAnchor + TDependencyQueries + TEntityMetaLevelDependency',
-	#classTraits : 'FamixTSourceAnchor classTrait + TDependencyQueries classTrait + TEntityMetaLevelDependency classTrait',
+	#traits : 'FamixTSourceAnchor',
+	#classTraits : 'FamixTSourceAnchor classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 

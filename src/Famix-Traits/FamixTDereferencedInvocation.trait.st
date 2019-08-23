@@ -24,6 +24,7 @@ FamixTDereferencedInvocation classSide >> annotation [
 
 { #category : #accessing }
 FamixTDereferencedInvocation >> referencer [
+	"Relation named: #referencer type: #FamixTWithDereferencedInvocations opposite: #dereferencedInvocations"
 
 	<generated>
 	<MSEComment: 'Structural entity that references the BehaviouralEntity invoked'>

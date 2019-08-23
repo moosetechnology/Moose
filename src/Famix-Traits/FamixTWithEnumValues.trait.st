@@ -23,6 +23,7 @@ FamixTWithEnumValues >> addEnumValue: anObject [
 
 { #category : #accessing }
 FamixTWithEnumValues >> enumValues [
+	"Relation named: #enumValues type: #FamixTEnumValue opposite: #parentEnum"
 
 	<generated>
 	^ enumValues

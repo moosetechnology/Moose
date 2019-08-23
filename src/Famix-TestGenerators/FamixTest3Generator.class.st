@@ -31,7 +31,7 @@ FamixTest3Generator >> defineClasses [
 
 	classEntity := builder newClassNamed: #Class.
 	method := builder newClassNamed: #Method.
-	type := builder newClassNamed: #Types.
+	type := builder newClassNamed: #Type.
 	primitiveType := builder newClassNamed: #PrimitiveType.
 	reference := builder newClassNamed: #Reference.
 	invocation := builder newClassNamed: #Invocation.

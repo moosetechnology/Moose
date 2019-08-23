@@ -44,6 +44,7 @@ FamixTAssociation >> isAssociation [
 
 { #category : #accessing }
 FamixTAssociation >> next [
+	"Relation named: #next type: #FamixTAssociation opposite: #previous"
 
 	<generated>
 	<MSEComment: 'Next association in an ordered collection of associations. Currently not supported by the Moose importer'>
@@ -60,6 +61,7 @@ FamixTAssociation >> next: anObject [
 
 { #category : #accessing }
 FamixTAssociation >> previous [
+	"Relation named: #previous type: #FamixTAssociation opposite: #next"
 
 	<generated>
 	<MSEComment: 'Previous association in an ordered collection of associations. Currently not supported by the Moose importer'>

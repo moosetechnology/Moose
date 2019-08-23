@@ -37,6 +37,7 @@ FamixTFileSystemEntity classSide >> systemFolderSeparatorString [
 
 { #category : #accessing }
 FamixTFileSystemEntity >> parentFolder [
+	"Relation named: #parentFolder type: #FamixTFolder opposite: #childrenFileSystemEntities"
 
 	<generated>
 	^ parentFolder

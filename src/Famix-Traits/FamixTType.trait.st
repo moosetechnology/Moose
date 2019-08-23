@@ -122,11 +122,11 @@ FamixTType >> realType [
 
 { #category : #accessing }
 FamixTType >> typeContainer [
+	"Relation named: #typeContainer type: #FamixTWithTypes opposite: #types"
 
 	<generated>
 	<MSEComment: 'Container entity to which this type belongs to. Container is a namespace, not a package (Smalltalk).'>
 	<container>
-
 	^ typeContainer
 ]
 

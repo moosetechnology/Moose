@@ -56,6 +56,7 @@ FamixTWithMethods >> lookUp: aMethodSignature [
 
 { #category : #accessing }
 FamixTWithMethods >> methods [
+	"Relation named: #methods type: #FamixTMethod opposite: #parentType"
 
 	<generated>
 	<MSEComment: 'Methods declared by this type.'>

@@ -22,6 +22,7 @@ FamixTGlobalVariableScope >> addGlobalVariable: aGlobalVariable [
 
 { #category : #accessing }
 FamixTGlobalVariableScope >> globalVariables [
+	"Relation named: #globalVariables type: #FamixTGlobalVariable opposite: #parentScope"
 
 	<generated>
 	<MSEComment: 'Global variables defined in the scope, if any.'>

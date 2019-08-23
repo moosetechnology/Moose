@@ -23,6 +23,7 @@ FamixTTypeAlias classSide >> annotation [
 
 { #category : #accessing }
 FamixTTypeAlias >> aliasedType [
+	"Relation named: #aliasedType type: #FamixTWithTypeAliases opposite: #typeAliases"
 
 	<generated>
 	<MSEComment: 'Points to the actual type.'>

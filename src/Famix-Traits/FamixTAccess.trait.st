@@ -33,11 +33,11 @@ FamixTAccess classSide >> annotation [
 
 { #category : #accessing }
 FamixTAccess >> accessor [
+	"Relation named: #accessor type: #FamixTWithAccesses opposite: #accesses"
 
 	<generated>
 	<MSEComment: 'Behavioural entity making the access to the variable. from-side of the association'>
 	<source>
-
 	^ accessor
 ]
 
@@ -111,11 +111,11 @@ FamixTAccess >> to: aVariable [
 
 { #category : #accessing }
 FamixTAccess >> variable [
+	"Relation named: #variable type: #FamixTAccessible opposite: #incomingAccesses"
 
 	<generated>
 	<MSEComment: 'Variable accessed. to-side of the association'>
 	<target>
-
 	^ variable
 ]
 

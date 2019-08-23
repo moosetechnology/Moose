@@ -22,6 +22,7 @@ FamixTWithDeclaredExceptions >> addDeclaredException: aDeclaredException [
 
 { #category : #accessing }
 FamixTWithDeclaredExceptions >> declaredExceptions [
+	"Relation named: #declaredExceptions type: #FamixTDeclaredException opposite: #definingEntity"
 
 	<generated>
 	<MSEComment: 'The exceptions declared by the method'>

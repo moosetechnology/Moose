@@ -20,6 +20,7 @@ FamixTHeader classSide >> annotation [
 
 { #category : #accessing }
 FamixTHeader >> headerOwner [
+	"Relation named: #headerOwner type: #FamixTWithHeader opposite: #header"
 
 	<generated>
 	^ headerOwner
