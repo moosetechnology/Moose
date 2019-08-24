@@ -175,6 +175,12 @@ MooseAbstractGroup >> at: anIndex [
 	^ self entities at: anIndex
 ]
 
+{ #category : #'public interface' }
+MooseAbstractGroup >> average: aSymbolOrBlock [ 
+	 
+	^ (self sumNumbers: aSymbolOrBlock) / self size
+]
+
 { #category : #enumerating }
 MooseAbstractGroup >> collect: aBlock [ 
 	^ self entities collect: aBlock

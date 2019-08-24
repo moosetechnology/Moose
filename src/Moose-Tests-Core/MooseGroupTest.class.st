@@ -19,16 +19,6 @@ MooseGroupTest >> testAllModelMethod [
 ]
 
 { #category : #tests }
-MooseGroupTest >> testAnySatisfy [
-	group add: MooseEntity new.
-	group add: MooseEntity new.
-	group add: MooseEntity new.
-
-	self assert: (group anySatisfy: [ :c | c class == MooseEntity ]).
-	self deny: (group anySatisfy: [ :c | c = 10 ])
-]
-
-{ #category : #tests }
 MooseGroupTest >> testAsMooseGroup [
 	group := #(1 2 3) asMooseGroup.
 	self assert: (group isKindOf: MooseGroup).
@@ -47,40 +37,6 @@ MooseGroupTest >> testAsMooseGroupWithClasses [
 	self shouldnt: [ group := {Object} asMooseGroup ] raise: Error.
 	self assert: group size equals: 1.
 	self assert: group anyOne equals: Object
-]
-
-{ #category : #tests }
-MooseGroupTest >> testAtIfAbsentIfPresent [
-	| result |
-	group add: (FAMIXClass new name: 'A').
-	result := group entityNamed: 'X' ifAbsent: [ 42 ] ifPresent: [ :i |  ].
-	self assert: result equals: 42.
-	result := group entityNamed: 'A' ifAbsent: [ nil ] ifPresent: [ :cls | cls name ].
-	self assert: result equals: 'A'
-]
-
-{ #category : #tests }
-MooseGroupTest >> testAtIfAbsentPut [
-	| classA |
-	classA := FAMIXClass new name: 'A'.
-	group entityNamed: 'X' ifAbsentPut: classA.
-	self assert: group size equals: 1.
-	self assert: group first identicalTo: classA
-]
-
-{ #category : #tests }
-MooseGroupTest >> testAverage [
-	| classes classA classB |
-	classA := FAMIXClass new.
-	classA addMethod: FAMIXMethod new.
-	classB := FAMIXClass new.
-	classB addMethod: FAMIXMethod new.
-	classB addMethod: FAMIXMethod new.
-	classes := FAMIXTypeGroup
-		withAll:
-			{classA.
-			classB}.
-	self assert: (classes average: #numberOfMethods) equals: 1.5
 ]
 
 { #category : #tests }

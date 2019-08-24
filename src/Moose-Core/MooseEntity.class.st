@@ -442,8 +442,9 @@ MooseEntity >> metamodel [
 
 { #category : #accessing }
 MooseEntity >> mooseDescription [
-
-	^ self mooseModel ifNotNil: [:mooseModel | mooseModel metamodel descriptionOf: self class instanceSide ] ifNil: [ super mooseDescription ]  
+	^ self mooseModel
+		ifNil: [ super mooseDescription ]
+		ifNotNil: #mooseDescription
 ]
 
 { #category : #printing }

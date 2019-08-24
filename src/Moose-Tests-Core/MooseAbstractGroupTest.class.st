@@ -97,6 +97,53 @@ MooseAbstractGroupTest >> testAllWithTypeAtSetup [
 ]
 
 { #category : #tests }
+MooseAbstractGroupTest >> testAnySatisfy [
+	3 timesRepeat: [ group add: MooseEntity new ].
+
+	self assert: (group anySatisfy: [ :c | c class == MooseEntity ]).
+	self deny: (group anySatisfy: [ :c | c = 10 ])
+]
+
+{ #category : #tests }
+MooseAbstractGroupTest >> testAverage [
+	| classA classB |
+	classA := FamixTest3Class new
+		addMethod: FamixTest3Method new;
+		yourself.
+	classB := FamixTest3Class new
+		addMethod: FamixTest3Method new;
+		addMethod: FamixTest3Method new;
+		yourself.
+	group addAll: {classA . classB}.
+	self assert: (group average: #numberOfMethods) equals: 1.5
+]
+
+{ #category : #tests }
+MooseAbstractGroupTest >> testEntityNamedIfAbsentIfPresent [
+	| result class |
+	group add: (class := FamixTest3Class named: 'A').
+	result := group entityNamed: 'X' ifAbsent: [ 42 ] ifPresent: [ :i | self fail ].
+	self assert: result equals: 42.
+	result := group entityNamed: class mooseName ifAbsent: [ self fail ] ifPresent: [ :cls | cls name ].
+	self assert: result equals: class mooseName
+]
+
+{ #category : #tests }
+MooseAbstractGroupTest >> testEntityNamedIfAbsentPut [
+	| class result |
+	class := FamixTest3Class named: 'A'.
+	result := group entityNamed: 'X' ifAbsentPut: class.
+	self assert: group size equals: 1.
+	self assert: group first identicalTo: class.
+	self assert: result equals: class.
+	self flag: #todo. "The logic of this method is really weird. We should see what to do... https://github.com/moosetechnology/Moose/issues/1808"
+	"result := group entityNamed: 'X' ifAbsentPut: class.
+	self assert: group size equals: 1.
+	self assert: group first identicalTo: class.
+	self assert: result equals: class."
+]
+
+{ #category : #tests }
 MooseAbstractGroupTest >> testNumberOfPackages [
 	self assert: group numberOfPackages equals: 0
 ]

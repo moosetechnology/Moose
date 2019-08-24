@@ -89,12 +89,6 @@ MooseGroup >> addAll: collection [
 	self updateTypeAccordingToEntities
 ]
 
-{ #category : #'public interface' }
-MooseGroup >> average: aSymbolOrBlock [ 
-	 
-	^ (self sumNumbers: aSymbolOrBlock) / self size
-]
-
 { #category : #private }
 MooseGroup >> changeTypeTo: aSmalltalkClass [
 	| group | 
@@ -196,8 +190,9 @@ MooseGroup >> min: aSymbolOrBlock [
 
 { #category : #accessing }
 MooseGroup >> mooseDescription [
-
-	^ self mooseModel ifNil: [ FM3NullDescription new ] ifNotNil: [ :mooseModel | mooseModel metamodel descriptionOf: self class instanceSide]  
+	^ self mooseModel
+		ifNil: [ FM3NullDescription new ]
+		ifNotNil: #mooseDescription
 ]
 
 { #category : #accessing }
