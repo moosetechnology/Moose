@@ -444,7 +444,7 @@ MooseEntity >> metamodel [
 MooseEntity >> mooseDescription [
 	^ self mooseModel
 		ifNil: [ super mooseDescription ]
-		ifNotNil: #mooseDescription
+		ifNotNil: [ :model | model mooseDescriptionFor: self class ]
 ]
 
 { #category : #printing }

@@ -494,8 +494,12 @@ MooseModel >> metamodel: anObject [
 
 { #category : #accessing }
 MooseModel >> mooseDescription [
+	^ self mooseDescriptionFor: self class
+]
 
-	^ self metamodel descriptionOf: self class instanceSide
+{ #category : #accessing }
+MooseModel >> mooseDescriptionFor: class [
+	^ self metamodel descriptionOf: class instanceSide
 ]
 
 { #category : #accessing }
