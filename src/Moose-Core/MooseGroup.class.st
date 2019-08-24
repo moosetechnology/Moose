@@ -31,11 +31,6 @@ MooseGroup class >> new: capacity [
 ]
 
 { #category : #'instance creation' }
-MooseGroup class >> with: anEntity [
-	^ anEntity ifNil: [ self new ] ifNotNil: [ self withAll: (Array with: anEntity) ]
-]
-
-{ #category : #'instance creation' }
 MooseGroup class >> with: anEntity withDescription: aDescription [ 
 	 
 	^(self with: anEntity) description: aDescription

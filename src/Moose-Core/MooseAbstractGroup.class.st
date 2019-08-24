@@ -25,6 +25,11 @@ MooseAbstractGroup class >> annotation [
 ]
 
 { #category : #'instance creation' }
+MooseAbstractGroup class >> with: anEntity [
+	^ anEntity ifNil: [ self new ] ifNotNil: [ self withAll: (Array with: anEntity) ]
+]
+
+{ #category : #'instance creation' }
 MooseAbstractGroup class >> withAll: aCollection [
 	"Create a new collection containing all the elements from aCollection."
 

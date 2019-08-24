@@ -119,6 +119,61 @@ MooseAbstractGroupTest >> testAverage [
 ]
 
 { #category : #tests }
+MooseAbstractGroupTest >> testCollect [
+	#('A' 'B' 'C') do: [ :each | group add: (FamixTest3Method named: each) ].
+	self assertCollection: (group collect: #name) entities hasSameElements: #('A' 'B' 'C')
+]
+
+{ #category : #tests }
+MooseAbstractGroupTest >> testContains [
+	3 timesRepeat: [ group add: MooseEntity new ].
+
+	self assert: (group contains: [ :c | c class == MooseEntity ]).
+	self deny: (group contains: [ :c | c = 10 ])
+]
+
+{ #category : #tests }
+MooseAbstractGroupTest >> testCopy [
+	| copy |
+	group := self actualClass with: FamixTest3Method new.
+	copy := group copy.
+	self deny: copy identicalTo: group.
+	self deny: copy entities identicalTo: group entities.
+	self assert: copy entities equals: group entities.
+	self deny: copy entityStorage identicalTo: group entityStorage.
+	copy add: FamixTest3Method new.
+	self assert: copy size equals: 2.
+	self assert: group size equals: 1
+]
+
+{ #category : #tests }
+MooseAbstractGroupTest >> testCount [
+	self assert: (self twoClasses count: [ :el | el class == FamixTest1Class ]) equals: 2
+]
+
+{ #category : #tests }
+MooseAbstractGroupTest >> testDetect [
+	| b |
+	group add: (FamixTest3Method named: 'A').
+	group add: (b := FamixTest3Method named: 'B').
+	group add: (FamixTest3Method named: 'C').
+	self assert: (group detect: [ :el | el name = 'B' ]) identicalTo: b
+]
+
+{ #category : #tests }
+MooseAbstractGroupTest >> testDifference [
+	group addAll: #(1 2 3).
+	self assertCollection: (group difference: (self actualClass withAll: #(2 4))) hasSameElements: #(1 3).
+	self assertCollection: ((self actualClass withAll: #(2 4)) difference: group) hasSameElements: #(4)
+]
+
+{ #category : #tests }
+MooseAbstractGroupTest >> testDifferenceWithRealCollection [
+	group addAll: #(1 2 3).
+	self assertCollection: (group difference: #(2)) hasSameElements: #(1 3)
+]
+
+{ #category : #tests }
 MooseAbstractGroupTest >> testEntityNamedIfAbsentIfPresent [
 	| result class |
 	group add: (class := FamixTest3Class named: 'A').
@@ -146,4 +201,15 @@ MooseAbstractGroupTest >> testEntityNamedIfAbsentPut [
 { #category : #tests }
 MooseAbstractGroupTest >> testNumberOfPackages [
 	self assert: group numberOfPackages equals: 0
+]
+
+{ #category : #utility }
+MooseAbstractGroupTest >> twoClasses [
+	| classA classB |
+	classA := FamixTest1Class new.
+	classA addMethod: FamixTest1Method new.
+	classB := FamixTest1Class new.
+	classB addMethod: FamixTest1Method new.
+	classB addMethod: FamixTest1Method new.
+	^ self actualClass withAll: {classA . classB}
 ]

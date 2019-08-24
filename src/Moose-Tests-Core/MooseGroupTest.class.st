@@ -40,71 +40,8 @@ MooseGroupTest >> testAsMooseGroupWithClasses [
 ]
 
 { #category : #tests }
-MooseGroupTest >> testCollect [
-	group add: MooseEntity new.
-	group add: MooseEntity new.
-	group add: MooseEntity new.
-	self assert: (group collect: #name) entities asArray equals: #(#noname #noname #noname)
-]
-
-{ #category : #tests }
-MooseGroupTest >> testContains [
-	| el1 el2 |
-	group add: (el1 := MooseEntity new).
-	group add: (el2 := MooseEntity new).
-	group add: MooseEntity new.
-
-	self assert: (group anySatisfy: [ :el | el1 == el ]).
-	self assert: (group anySatisfy: [ :el | el2 == el ]).
-	self deny: (group anySatisfy: [ :el | 100 == el ])
-]
-
-{ #category : #tests }
-MooseGroupTest >> testCopy [
-	| copy |
-	group := MooseGroup with: 1.
-	copy := group copy.
-	self assert: copy ~~ group.
-	self assert: copy entities ~~ group entities.
-	self assert: copy entities equals: group entities.
-	self assert: copy entityStorage ~~ group entityStorage.
-	copy add: 2.
-	self assert: copy size equals: 2.
-	self assert: group size equals: 1
-]
-
-{ #category : #tests }
-MooseGroupTest >> testCount [
-	self assert: (self twoClasses count: [ :el | el class == FamixTest1Class ]) equals: 2
-]
-
-{ #category : #tests }
 MooseGroupTest >> testDefaultStorage [
-	self assert: (MooseGroup new entityStorage isKindOf: MooseGroupRuntimeStorage)
-]
-
-{ #category : #tests }
-MooseGroupTest >> testDetect [
-	| el1 v |
-	group add: (el1 := MooseEntity new).
-	group add: MooseEntity new.
-	group add: MooseEntity new.
-
-	v := group detect: [ :el | el == el1 ].
-	self assert: v == el1
-]
-
-{ #category : #tests }
-MooseGroupTest >> testDifference [
-	group := #(1 2 3) asMooseGroup.
-	self assertCollection: (group difference: #(2 4) asMooseGroup) hasSameElements: #(1 3).
-	self assertCollection: (#(2 4) asMooseGroup difference: group) hasSameElements: #(4)
-]
-
-{ #category : #tests }
-MooseGroupTest >> testDifferenceWithRealCollection [
-	group := #(1 2 3) asMooseGroup.
-	self assertCollection: (group difference: #(2)) hasSameElements: #(1 3)
+	self assert: (group entityStorage isKindOf: MooseGroupRuntimeStorage)
 ]
 
 { #category : #tests }
@@ -398,15 +335,4 @@ MooseGroupTest >> testWithIndexDo [
 	group add: (el3 := MooseEntity new).
 	group withIndexDo: [ :x :i | t add: {x . i} ].
 	self assert: t asArray equals: {{el1 . 1} . {el2 . 2} . {el3 . 3}}
-]
-
-{ #category : #utility }
-MooseGroupTest >> twoClasses [
-	| classA classB |
-	classA := FamixTest1Class new.
-	classA addMethod: FamixTest1Method new.
-	classB := FamixTest1Class new.
-	classB addMethod: FamixTest1Method new.
-	classB addMethod: FamixTest1Method new.
-	^ FAMIXClassGroup withAll: {classA . classB}
 ]
