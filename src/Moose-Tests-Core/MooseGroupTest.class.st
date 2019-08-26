@@ -47,87 +47,35 @@ MooseGroupTest >> testDefaultStorage [
 { #category : #tests }
 MooseGroupTest >> testDistribution [
 	| referenceGroupOfGroups |
-	referenceGroupOfGroups := MooseGroup new.
-	referenceGroupOfGroups add: (MooseGroup withAll: #(1 2 3)).
-	referenceGroupOfGroups add: (MooseGroup withAll: #(4 5 6 7 8)).
+	referenceGroupOfGroups := self actualClass new.
+	referenceGroupOfGroups add: (self actualClass withAll: #(1 2 3)).
+	referenceGroupOfGroups add: (self actualClass withAll: #(4 5 6 7 8)).
 	self assert: (group distributionOverAGroupOfGroups: referenceGroupOfGroups) equals: 0.
-	group := MooseGroup withAll: #(1 2 3).
+	group := self actualClass withAll: #(1 2 3).
 	self assert: (group distributionOverAGroupOfGroups: referenceGroupOfGroups) equals: 1.
-	group := MooseGroup withAll: #(1 2).
+	group := self actualClass withAll: #(1 2).
 	self assert: (group distributionOverAGroupOfGroups: referenceGroupOfGroups) equals: 2 / 3.
-	group := MooseGroup withAll: #(1 2 4 5).
+	group := self actualClass withAll: #(1 2 4 5).
 	self assert: (group distributionOverAGroupOfGroups: referenceGroupOfGroups) equals: 2 / 3 + (2 / 5)
 ]
 
 { #category : #tests }
 MooseGroupTest >> testDistributionAndEncapsulation [
 	| referenceGroupOfGroups |
-	referenceGroupOfGroups := MooseGroup new.
-	referenceGroupOfGroups add: (MooseGroup withAll: #(1 2 3)).
-	referenceGroupOfGroups add: (MooseGroup withAll: #(4 5 6 7 8)).
+	referenceGroupOfGroups := self actualClass new.
+	referenceGroupOfGroups add: (self actualClass withAll: #(1 2 3)).
+	referenceGroupOfGroups add: (self actualClass withAll: #(4 5 6 7 8)).
 	self assert: (group distributionOverAGroupOfGroups: referenceGroupOfGroups) equals: 0.
 	self assert: (group encapsulationOfAGroupOfGroups: referenceGroupOfGroups) equals: 0.
-	group := MooseGroup withAll: #(1 2 3).
+	group := self actualClass withAll: #(1 2 3).
 	self assert: (group distributionOverAGroupOfGroups: referenceGroupOfGroups) equals: 1.
 	self assert: (group encapsulationOfAGroupOfGroups: referenceGroupOfGroups) equals: 1.
-	group := MooseGroup withAll: #(1 2).
+	group := self actualClass withAll: #(1 2).
 	self assert: (group distributionOverAGroupOfGroups: referenceGroupOfGroups) equals: 2 / 3.
 	self assert: (group encapsulationOfAGroupOfGroups: referenceGroupOfGroups) equals: 2 / 3.
-	group := MooseGroup withAll: #(1 2 4 5).
+	group := self actualClass withAll: #(1 2 4 5).
 	self assert: (group distributionOverAGroupOfGroups: referenceGroupOfGroups) equals: 2 / 3 + (2 / 5).
 	self assert: (group encapsulationOfAGroupOfGroups: referenceGroupOfGroups) equals: 4 / 12 + (4 / 20)
-]
-
-{ #category : #tests }
-MooseGroupTest >> testDoWithIndex [
-	| t el1 el2 el3 |
-	t := OrderedCollection new.
-	group add: (el1 := MooseEntity new).
-	group add: (el2 := MooseEntity new).
-	group add: (el3 := MooseEntity new).
-	group doWithIndex: [ :x :i | t add: {x . i} ].
-	self assert: t asArray equals: {{el1 . 1} . {el2 . 2} . {el3 . 3}}
-]
-
-{ #category : #tests }
-MooseGroupTest >> testDoWithIndexAndWithIndexDo [
-	"Isn't that odd? Legacy method?"
-
-	| t |
-	t := OrderedCollection new.
-	group add: MooseEntity new.
-	group add: MooseEntity new.
-	group add: MooseEntity new.
-	self
-		assert: (group doWithIndex: [ :x :i | t add: {x . i} ])
-		equals: (group withIndexDo: [ :x :i | t add: {x . i} ])
-]
-
-{ #category : #tests }
-MooseGroupTest >> testEntitiesDo [
-	| t el1 el2 el3 |
-	t := OrderedCollection new.
-	group add: (el1 := MooseEntity new).
-	group add: (el2 := MooseEntity new).
-	group add: (el3 := MooseEntity new).
-	group entitiesDo: [ :e | t add: e ].
-	self assert: t asArray equals: {el1 . el2 . el3}
-]
-
-{ #category : #tests }
-MooseGroupTest >> testEnumeration [
-	| el1 el2 el3 |
-	group add: (el1 := MooseEntity new).
-	group add: (el2 := MooseEntity new).
-	group add: (el3 := MooseEntity new).
-
-	self assert: group first identicalTo: el1.
-	self assert: group second identicalTo: el2.
-	self assert: group third identicalTo: el3.
-
-	self assert: group first identicalTo: (group at: 1).
-	self assert: group second identicalTo: (group at: 2).
-	self assert: group third identicalTo: (group at: 3)
 ]
 
 { #category : #tests }
@@ -136,75 +84,13 @@ MooseGroupTest >> testExplicitEmptyCreation [
 ]
 
 { #category : #tests }
-MooseGroupTest >> testFirst [
-	| el1 el2 el3 |
-	group add: (el1 := MooseEntity new).
-	group add: el1.
-	group add: (el2 := MooseEntity new).
-	group add: (el3 := MooseEntity new).
-	self assert: group first identicalTo: el1.
-	self assert: (group first: 2) asArray equals: {el1 . el1}.
-	self assert: (group first: 4) asArray equals: {el1 . el1 . el2 . el3}.
-	self should: [ group first: 5 ] raise: Error
-]
-
-{ #category : #tests }
-MooseGroupTest >> testGroupSize [
-	| classes |
-	classes := self twoClasses.
-	group addAll: classes.
-	self assert: group numberOfItems equals: classes size.
-	self assert: group size equals: 2
-]
-
-{ #category : #tests }
-MooseGroupTest >> testGroupedBy [
-	| v |
-	group addAll: (1 to: 5).
-	self assert: group size equals: 5.
-	v := group groupedBy: #odd.
-	self assert: v isDictionary.
-	self assert: v keys size equals: 2.
-	self assert: (v values first isKindOf: MooseGroup).
-	self assert: (v values second isKindOf: MooseGroup).
-	self assert: (v at: true) asArray equals: #(1 3 5).
-	self assert: (v at: false) asArray equals: #(2 4)
-]
-
-{ #category : #tests }
-MooseGroupTest >> testIndexOf [
-	| el1 el2 el3 |
-	group add: (el1 := MooseEntity new).
-	group add: el1.
-	group add: (el2 := MooseEntity new).
-	group add: (el3 := MooseEntity new).
-	self assert: (group indexOf: el1) equals: 1.
-	self assert: (group indexOf: el2) equals: 3.
-	self assert: (group indexOf: el3) equals: 4
-]
-
-{ #category : #tests }
 MooseGroupTest >> testInitialization [
 	| group1 group2 |
-	group1 := MooseGroup with: 1.
-	group2 := MooseGroup with: 1 withDescription: 'Group number 2'.
+	group1 := self actualClass with: 1.
+	group2 := self actualClass with: 1 withDescription: 'Group number 2'.
 	self assert: group1 entities equals: group2 entities.
 	self assert: group2 description equals: 'Group number 2'.
 	self assert: group1 description equals: 'Group'
-]
-
-{ #category : #tests }
-MooseGroupTest >> testIntersection [
-	group := #(1 2 3) asMooseGroup.
-	self assertCollection: (group intersection: #(2 3 4) asMooseGroup) hasSameElements: #(2 3).
-	self assertCollection: (#(2 3 4) asMooseGroup intersection: group) hasSameElements: #(2 3)
-]
-
-{ #category : #tests }
-MooseGroupTest >> testIntersectionWithRealCollection [
-	group := #(1 2 3) asMooseGroup.
-	self assertCollection: (group intersection: #(2 3 4)) hasSameElements: #(2 3).
-	self assertCollection: (#(2 3 4) intersection: group) hasSameElements: #(2 3)
 ]
 
 { #category : #tests }

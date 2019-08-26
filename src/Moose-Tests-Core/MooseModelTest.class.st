@@ -114,23 +114,13 @@ MooseModelTest >> testCollect [
 ]
 
 { #category : #tests }
-MooseModelTest >> testDifference [
-	| group2 el1 el2 el3 |
-	group := MooseModel new.
-	group add: (el1 := MooseEntity new).
-	group add: (el2 := MooseEntity new).
-	group add: (el3 := MooseEntity new).
-	group2 := MooseModel new.
-	group2 add: MooseEntity new.
-	self assert: (group difference: group2) entities asSet equals: group entities asSet.
-	self assert: (group difference: MooseModel new) entities asSet equals: group entities asSet.
-	self assert: (group difference: group) entities isEmpty.
-	group2 add: el1.
-	self assert: (group difference: group2) entities size equals: 2.
-	self assert: ((group difference: group2) entities includesAll: {el2 . el3}).
-	group add: el1.
-	self assert: (group difference: group2) entities size equals: 2.
-	self assert: ((group difference: group2) entities includesAll: {el2 . el3})
+MooseModelTest >> testDifferenceWithRealCollection [
+	"A MooseModel should only contains Moose entities."
+
+	self
+		should: [ group addAll: #(1 2 3).
+			self assertCollection: (group difference: #(2)) hasSameElements: #(1 3) ]
+		raise: Error
 ]
 
 { #category : #tests }
@@ -187,17 +177,13 @@ MooseModelTest >> testExportMetamodelTo [
 ]
 
 { #category : #tests }
-MooseModelTest >> testIntersect [
-	| group2 el1 |
-	group add: (el1 := MooseEntity new).
-	group add: MooseEntity new.
-	group add: MooseEntity new.
-	group2 := MooseModel new.
-	group2 add: MooseEntity new.
-	group2 add: el1.
-	self assert: (group intersection: MooseModel new) entities isEmpty.
-	self assert: (group intersection: group2) entities asArray equals: {el1}.
-	self assertEmpty: (MooseModel new intersection: MooseModel new) entities
+MooseModelTest >> testIntersectionWithRealCollection [
+	"A MooseModel should only contains Moose entities."
+
+	self
+		should: [ group addAll: #(1 2 3).
+			group intersection: #(2 3 4) ]
+		raise: Error
 ]
 
 { #category : #tests }
