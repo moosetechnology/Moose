@@ -376,6 +376,25 @@ MooseAbstractGroupTest >> testSelect [
 ]
 
 { #category : #tests }
+MooseAbstractGroupTest >> testUnion [
+	| group2 el1 el2 el3 el4 |
+	group add: (el1 := MooseEntity new).
+	group add: (el2 := MooseEntity new).
+	group add: (el3 := MooseEntity new).
+	group2 := self actualClass with: (el4 := MooseEntity new).
+	self assertCollection: (group union: group2) hasSameElements: {el1 . el2 . el3 . el4}.
+	self assertCollection: (group2 union: group) hasSameElements: {el1 . el2 . el3 . el4}.
+	self assert: (group2 union: group) ~= (group union: group2)
+]
+
+{ #category : #tests }
+MooseAbstractGroupTest >> testUnionWithRealCollection [
+	group addAll: #(1 2 3).
+	self assertCollection: (group union: #(2 3 4)) hasSameElements: #(1 2 3 4).
+	self assertCollection: (#(2 3 4) union: group) hasSameElements: #(1 2 3 4)
+]
+
+{ #category : #tests }
 MooseAbstractGroupTest >> testWithIndexDo [
 	| t el1 el2 el3 |
 	group add: (el1 := MooseEntity new).

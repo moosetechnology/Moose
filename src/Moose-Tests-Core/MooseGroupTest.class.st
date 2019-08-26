@@ -115,41 +115,6 @@ MooseGroupTest >> testObjectAsMooseGroup [
 
 { #category : #tests }
 MooseGroupTest >> testSort [
-	| sorted |
-	group := MooseGroup withAll: #(4 3 1 2).
-	sorted := group sorted: [ :a :b | a < b ].
-	self assert: sorted entities asArray equals: #(1 2 3 4)
-]
-
-{ #category : #tests }
-MooseGroupTest >> testUnion [
-	| group2 group3 el1 el2 el3 el4 |
-	group add: (el1 := MooseEntity new).
-	group add: (el2 := MooseEntity new).
-	group add: (el3 := MooseEntity new).
-	group2 := MooseGroup new.
-	group2 add: (el4 := MooseEntity new).
-	group3 := group union: group2.
-	self assert: (group3 includesAll: {el1 . el2 . el3 . el4}).
-	self assert: group3 size equals: 4.
-	self assert: ((group2 union: group) includesAll: {el1 . el2 . el3 . el4}).
-	self assert: (group2 union: group) ~= (group union: group2)
-]
-
-{ #category : #tests }
-MooseGroupTest >> testUnionWithRealCollection [
-	group := #(1 2 3) asMooseGroup.
-	self assertCollection: (group union: #(2 3 4)) hasSameElements: #(1 2 3 4).
-	self assertCollection: (#(2 3 4) union: group) hasSameElements: #(1 2 3 4)
-]
-
-{ #category : #tests }
-MooseGroupTest >> testWithIndexDo [
-	| t el1 el2 el3 |
-	t := OrderedCollection new.
-	group add: (el1 := MooseEntity new).
-	group add: (el2 := MooseEntity new).
-	group add: (el3 := MooseEntity new).
-	group withIndexDo: [ :x :i | t add: {x . i} ].
-	self assert: t asArray equals: {{el1 . 1} . {el2 . 2} . {el3 . 3}}
+	group addAll: #(4 3 1 2).
+	self assertCollection: (group sorted: #yourself ascending) hasSameElements: #(1 2 3 4)
 ]

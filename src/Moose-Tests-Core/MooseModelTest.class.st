@@ -338,6 +338,14 @@ MooseModelTest >> testUnion2 [
 ]
 
 { #category : #tests }
+MooseModelTest >> testUnionWithRealCollection [
+	self
+		should: [ group addAll: #(1 2 3).
+			group union: #(2 3 4) ]
+		raise: Error
+]
+
+{ #category : #tests }
 MooseModelTest >> testUnknownFAMIXClass [
 	self assert: (group unknownFAMIXClass isKindOf: FAMIXClass).
 	self assert: group unknownFAMIXClass identicalTo: group unknownFAMIXClass.
