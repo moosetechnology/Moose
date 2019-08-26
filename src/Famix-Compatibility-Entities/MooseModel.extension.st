@@ -1,15 +1,6 @@
 Extension { #name : #MooseModel }
 
 { #category : #'*Famix-Compatibility-Entities' }
-MooseModel >> ensureClassesAndNamespaces [
-	<menuItem: 'Ensure Classes and Namespaces' category: 'Utilities'>
-	self allMethods
-		do: [ :each | each parentType ifNil: [ each parentType: self unknownFAMIXClass ] ].
-	self allClasses
-		do: [ :each | each container ifNil: [ each container: self unknownFAMIXNamespace ] ]
-]
-
-{ #category : #'*Famix-Compatibility-Entities' }
 MooseModel >> inferNamespaceParentsBasedOnNames [
 	<menuItem: 'Infer Namespace Parents Based on Names' category: 'Utilities'>
 	| parent parentNameSize currentPosition parentName namespaces |
@@ -44,30 +35,4 @@ MooseModel >> inferNamespaceParentsBasedOnNames [
 		] description: 'Infer namespace parents based on names' length: (namespaces size * 2);
 	runWithProgress.
 	^ self allNamespaces
-]
-
-{ #category : #'*Famix-Compatibility-Entities' }
-MooseModel >> unknownFAMIXClass [
-	^ self allClasses 
-		detect: [:each | each mooseName = #'unknownNamespace::UnknownClass'] 
-		ifNone: [
-			self add: (
-				FAMIXClass new 
-					name: 'UnknownClass'; 
-					container: self unknownFAMIXNamespace; 
-					isStub: true; 
-					yourself)
-		]
-]
-
-{ #category : #'*Famix-Compatibility-Entities' }
-MooseModel >> unknownFAMIXNamespace [
-	^ self allNamespaces
-		detect: [ :each | each mooseName = #unknownNamespace ]
-		ifNone: [ self
-				add:
-					(FAMIXNamespace new
-						name: 'unknownNamespace';
-						isStub: true;
-						yourself) ]
 ]

@@ -14,11 +14,8 @@ MooseModelTest >> actualClass [
 
 { #category : #tests }
 MooseModelTest >> testAdd [
-	| entity |
-	entity := MooseEntity new.
-	group add: entity.
-	self assert: group entities size equals: 1.
-	self assert: entity mooseModel identicalTo: group
+	super testAdd.
+	self assert: group first mooseModel identicalTo: group
 ]
 
 { #category : #tests }
@@ -72,15 +69,15 @@ MooseModelTest >> testBookmarkAsRaisesAnnouncement [
 { #category : #tests }
 MooseModelTest >> testCacheInvalidationAfterAdd [
 	self assertEmpty: group allClasses.
-	group add: FAMIXClass new.
+	group add: FamixTest3Class new.
 	self assert: group allClasses size equals: 1
 ]
 
 { #category : #tests }
 MooseModelTest >> testCacheInvalidationAfterMultipleAddRemove [
 	| classA classB |
-	classA := FAMIXClass new name: 'ClassA'.
-	classB := FAMIXClass new name: 'ClassB'.
+	classA := FamixTest3Class named: 'ClassA'.
+	classB := FamixTest3Class named: 'ClassB'.
 	group add: classA.
 	self assert: group allClasses size equals: 1.
 	group add: classB.
@@ -98,19 +95,11 @@ MooseModelTest >> testCacheInvalidationAfterMultipleAddRemove [
 { #category : #tests }
 MooseModelTest >> testCacheInvalidationAfterRemove [
 	| class |
-	class := FAMIXClass new name: 'AClass'.
+	class := FamixTest3Class named: 'AClass'.
 	group add: class.
 	self assert: group allClasses size equals: 1.
 	group remove: class.
 	self assertEmpty: group allClasses
-]
-
-{ #category : #tests }
-MooseModelTest >> testCollect [
-	group add: MooseEntity new.
-	group add: MooseEntity new.
-	group add: MooseEntity new.
-	self assert: (group collect: #name) asArray equals: #(#noname #noname #noname)
 ]
 
 { #category : #tests }
@@ -121,33 +110,6 @@ MooseModelTest >> testDifferenceWithRealCollection [
 		should: [ group addAll: #(1 2 3).
 			self assertCollection: (group difference: #(2)) hasSameElements: #(1 3) ]
 		raise: Error
-]
-
-{ #category : #tests }
-MooseModelTest >> testDoSeparatedBy [
-	| t el1 el2 el3 |
-	t := OrderedCollection new.
-	group add: (el1 := MooseEntity new).
-	group add: (el2 := MooseEntity new).
-	group add: (el3 := MooseEntity new).
-	group do: [ :x | t add: x ] separatedBy: [ t add: 10 ].
-	self assert: t asArray equals: {el1 . 10 . el2 . 10 . el3}
-]
-
-{ #category : #tests }
-MooseModelTest >> testEnsureClassesAndNamespaces [
-	| aMethod |
-	group add: (aMethod := FAMIXMethod new).
-	self assert: aMethod parentType isNil.
-	self should: [ aMethod parentScope isNil ] raise: Error.
-
-
-	group ensureClassesAndNamespaces.
-	self deny: aMethod parentType isNil.
-	self deny: aMethod parentScope isNil.
-
-	self assert: aMethod parentType == group unknownFAMIXClass.
-	self assert: aMethod parentScope == group unknownFAMIXNamespace
 ]
 
 { #category : #tests }
@@ -343,13 +305,6 @@ MooseModelTest >> testUnionWithRealCollection [
 		should: [ group addAll: #(1 2 3).
 			group union: #(2 3 4) ]
 		raise: Error
-]
-
-{ #category : #tests }
-MooseModelTest >> testUnknownFAMIXClass [
-	self assert: (group unknownFAMIXClass isKindOf: FAMIXClass).
-	self assert: group unknownFAMIXClass identicalTo: group unknownFAMIXClass.
-	self assert: group unknownFAMIXClass isStub
 ]
 
 { #category : #tests }

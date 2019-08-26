@@ -29,6 +29,15 @@ MooseAbstractGroupTest >> setUp [
 ]
 
 { #category : #tests }
+MooseAbstractGroupTest >> testAdd [
+	| entity |
+	entity := MooseEntity new.
+	group add: entity.
+	self assert: group size equals: 1.
+	self assert: group first identicalTo: entity
+]
+
+{ #category : #tests }
 MooseAbstractGroupTest >> testAddLast [
 	| entity class method |
 	group addLast: (entity := FamixTest1Entity new).
@@ -121,7 +130,7 @@ MooseAbstractGroupTest >> testAverage [
 { #category : #tests }
 MooseAbstractGroupTest >> testCollect [
 	#('A' 'B' 'C') do: [ :each | group add: (FamixTest3Method named: each) ].
-	self assertCollection: (group collect: #name) entities hasSameElements: #('A' 'B' 'C')
+	self assertCollection: (group collect: #name) hasSameElements: #('A' 'B' 'C')
 ]
 
 { #category : #tests }
@@ -181,6 +190,17 @@ MooseAbstractGroupTest >> testDifference [
 MooseAbstractGroupTest >> testDifferenceWithRealCollection [
 	group addAll: #(1 2 3).
 	self assertCollection: (group difference: #(2)) hasSameElements: #(1 3)
+]
+
+{ #category : #tests }
+MooseAbstractGroupTest >> testDoSeparatedBy [
+	| t el1 el2 el3 |
+	t := OrderedCollection new.
+	group add: (el1 := MooseEntity new).
+	group add: (el2 := MooseEntity new).
+	group add: (el3 := MooseEntity new).
+	group do: [ :x | t add: x ] separatedBy: [ t add: 10 ].
+	self assertCollection: t hasSameElements: {el1 . 10 . el2 . 10 . el3}
 ]
 
 { #category : #tests }
