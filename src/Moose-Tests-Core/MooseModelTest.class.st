@@ -308,17 +308,6 @@ MooseModelTest >> testRootUniqueness [
 ]
 
 { #category : #tests }
-MooseModelTest >> testSelect [
-	| el1 v |
-	group add: (el1 := MooseEntity new).
-	group add: MooseEntity new.
-	group add: MooseEntity new.
-	v := group select: [ :el | el == el1 ].
-	self assert: v size equals: 1.
-	self assert: v first identicalTo: el1
-]
-
-{ #category : #tests }
 MooseModelTest >> testUnion [
 	| group2 model3 el1 el2 el3 el4 |
 	group add: (el1 := MooseEntity new).

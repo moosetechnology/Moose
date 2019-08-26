@@ -216,21 +216,6 @@ MooseAbstractGroupTest >> testEntityNamedIfAbsentIfPresent [
 ]
 
 { #category : #tests }
-MooseAbstractGroupTest >> testEntityNamedIfAbsentPut [
-	| class result |
-	class := FamixTest3Class named: 'A'.
-	result := group entityNamed: 'X' ifAbsentPut: class.
-	self assert: group size equals: 1.
-	self assert: group first identicalTo: class.
-	self assert: result equals: class.
-	self flag: #todo. "The logic of this method is really weird. We should see what to do... https://github.com/moosetechnology/Moose/issues/1808"
-	"result := group entityNamed: 'X' ifAbsentPut: class.
-	self assert: group size equals: 1.
-	self assert: group first identicalTo: class.
-	self assert: result equals: class."
-]
-
-{ #category : #tests }
 MooseAbstractGroupTest >> testEnumeration [
 	| el1 el2 el3 |
 	group add: (el1 := MooseEntity new).
@@ -319,8 +304,75 @@ MooseAbstractGroupTest >> testIntersectionWithRealCollection [
 ]
 
 { #category : #tests }
+MooseAbstractGroupTest >> testIsCollection [
+	self assert: group isCollection
+]
+
+{ #category : #tests }
+MooseAbstractGroupTest >> testLast [
+	| el1 el2 el3 |
+	group add: (el1 := MooseEntity new).
+	group add: el1.
+	group add: (el2 := MooseEntity new).
+	group add: (el3 := MooseEntity new).
+	self assert: group last identicalTo: el3.
+	self assertCollection: (group last: 2) hasSameElements: {el2 . el3}.
+	self assertCollection: (group last: 4) hasSameElements: {el1 . el1 . el2 . el3}.
+	self should: [ group last: 5 ] raise: Error
+]
+
+{ #category : #tests }
 MooseAbstractGroupTest >> testNumberOfPackages [
 	self assert: group numberOfPackages equals: 0
+]
+
+{ #category : #tests }
+MooseAbstractGroupTest >> testOccurenceOf [
+	| el1 el2 |
+	group add: (el1 := MooseEntity new).
+	group add: el1.
+	group add: (el2 := MooseEntity new).
+	group add: MooseEntity new.
+	self assert: (group occurrencesOf: el1) equals: 2.
+	self assert: (group occurrencesOf: el2) equals: 1.
+	self assert: (group occurrencesOf: MooseEntity new) isZero
+]
+
+{ #category : #tests }
+MooseAbstractGroupTest >> testReadStream [
+	| el1 el2 el3 stream |
+	group add: (el1 := MooseEntity new).
+	group add: el1.
+	group add: (el2 := MooseEntity new).
+	group add: (el3 := MooseEntity new).
+
+	stream := group readStream.
+	self assert: stream isStream.
+	self assert: stream next identicalTo: el1.
+	self assert: stream next identicalTo: el1.
+	self assert: stream next identicalTo: el2.
+	self assert: stream next identicalTo: el3
+]
+
+{ #category : #tests }
+MooseAbstractGroupTest >> testReject [
+	| el1 el2 el3 v |
+	group add: (el1 := MooseEntity new).
+	group add: (el2 := MooseEntity new).
+	group add: (el3 := MooseEntity new).
+	v := group reject: [ :el | el == el1 ].
+	self assertCollection: v entities hasSameElements: {el2 . el3}
+]
+
+{ #category : #tests }
+MooseAbstractGroupTest >> testSelect [
+	| el1 v |
+	group add: (el1 := MooseEntity new).
+	group add: MooseEntity new.
+	group add: MooseEntity new.
+	v := group select: [ :el | el == el1 ].
+	self assert: v size equals: 1.
+	self assert: v first identicalTo: el1
 ]
 
 { #category : #tests }

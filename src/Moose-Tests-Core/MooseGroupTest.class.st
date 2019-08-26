@@ -94,24 +94,6 @@ MooseGroupTest >> testInitialization [
 ]
 
 { #category : #tests }
-MooseGroupTest >> testIsCollection [
-	self assert: group isCollection
-]
-
-{ #category : #tests }
-MooseGroupTest >> testLast [
-	| el1 el2 el3 |
-	group add: (el1 := MooseEntity new).
-	group add: el1.
-	group add: (el2 := MooseEntity new).
-	group add: (el3 := MooseEntity new).
-	self assert: group last identicalTo: el3.
-	self assert: (group last: 2) asArray equals: {el2 . el3}.
-	self assert: (group last: 4) asArray equals: {el1 . el1 . el2 . el3}.
-	self should: [ group last: 5 ] raise: Error
-]
-
-{ #category : #tests }
 MooseGroupTest >> testNumberOfPackages [
 	self assert: group numberOfPackages equals: 0.
 	group add: FAMIXPackage new.
@@ -129,57 +111,6 @@ MooseGroupTest >> testObjectAsMooseGroup [
 	self assert: (group isKindOf: MooseGroup).
 	self assert: group size equals: 1.
 	self assert: group first equals: 42
-]
-
-{ #category : #tests }
-MooseGroupTest >> testOccurenceOf [
-	| el1 el2 |
-	group add: (el1 := MooseEntity new).
-	group add: el1.
-	group add: (el2 := MooseEntity new).
-	group add: MooseEntity new.
-	self assert: (group occurrencesOf: el1) equals: 2.
-	self assert: (group occurrencesOf: el2) equals: 1.
-	self assert: (group occurrencesOf: MooseEntity new) isZero
-]
-
-{ #category : #tests }
-MooseGroupTest >> testReadStream [
-	| el1 el2 el3 stream |
-	group add: (el1 := MooseEntity new).
-	group add: el1.
-	group add: (el2 := MooseEntity new).
-	group add: (el3 := MooseEntity new).
-
-	stream := group readStream.
-	self assert: stream isStream.
-	self assert: stream next identicalTo: el1.
-	self assert: stream next identicalTo: el1.
-	self assert: stream next identicalTo: el2.
-	self assert: stream next identicalTo: el3
-]
-
-{ #category : #tests }
-MooseGroupTest >> testReject [
-	| el1 el2 el3 v |
-	group add: (el1 := MooseEntity new).
-	group add: (el2 := MooseEntity new).
-	group add: (el3 := MooseEntity new).
-	v := group reject: [ :el | el == el1 ].
-	self assert: v size equals: 2.
-	self assert: (v entities includesAll: {el2 . el3})
-]
-
-{ #category : #tests }
-MooseGroupTest >> testSelect [
-	| el1 v |
-	group add: (el1 := MooseEntity new).
-	group add: MooseEntity new.
-	group add: MooseEntity new.
-	v := group select: [ :el | el == el1 ].
-	self assert: v size equals: 1.
-	self assert: v first identicalTo: el1.
-	self assert: v entities equals: (group selectByExpression: [ :el | el == el1 ]) entities
 ]
 
 { #category : #tests }

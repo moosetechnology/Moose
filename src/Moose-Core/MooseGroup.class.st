@@ -240,12 +240,6 @@ MooseGroup >> printOn: aStream [
 "	
 ]
 
-{ #category : #'adding/removing' }
-MooseGroup >> readStream [ 
-	 
-	^self entities readStream
-]
-
 { #category : #enumerating }
 MooseGroup >> reject: aBlock [
 	^ self species withAll: (self entities reject: aBlock)
@@ -268,17 +262,6 @@ MooseGroup >> removeAll: collection [
 { #category : #enumerating }
 MooseGroup >> select: aBlock [
 	^ self species withAll: (self entities select: aBlock)
-]
-
-{ #category : #'public interface' }
-MooseGroup >> selectByExpression: anExpression [ 
-	^ self select: anExpression 
-"	| resultCollection | 
-	resultCollection := self entities select: [:each | anExpression value: each value: self]. 
-	^self species 
-		withAll: resultCollection 
-		withDescription: 
-			self description , ' selected by ' , anExpression printString"
 ]
 
 { #category : #'public interface' }

@@ -320,11 +320,6 @@ MooseAbstractGroup >> entityNamed: aMooseName ifAbsent: aBlock ifPresent: anothe
 		ifFalse: [anotherBlock value: entity]
 ]
 
-{ #category : #'public interface' }
-MooseAbstractGroup >> entityNamed: aMooseName ifAbsentPut: aValue [ 
-	^ self entityNamed: aMooseName ifAbsent: [self add: aValue]
-]
-
 { #category : #private }
 MooseAbstractGroup >> entityStorage [ 
 	 
@@ -547,6 +542,11 @@ MooseAbstractGroup >> printOn: aStream [
 	aStream nextPut: $(. 
 	aStream nextPutAll: self size printString. 
 	aStream nextPut: $)
+]
+
+{ #category : #'adding/removing' }
+MooseAbstractGroup >> readStream [
+	^ self entities readStream
 ]
 
 { #category : #enumerating }
