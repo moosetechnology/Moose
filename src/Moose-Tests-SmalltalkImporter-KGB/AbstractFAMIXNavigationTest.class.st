@@ -6,7 +6,7 @@ Class {
 
 { #category : #accessing }
 AbstractFAMIXNavigationTest class >> resources [
-	^ {FAMIXNavigationPluginTestsResource}
+	^ {FamixStNavigationTestResource}
 ]
 
 { #category : #'helpers - classes' }
@@ -180,7 +180,7 @@ AbstractFAMIXNavigationTest >> getMethod: methodNameString [
 { #category : #'helpers - utilites' }
 AbstractFAMIXNavigationTest >> model [ 
 	 
-	^FAMIXNavigationPluginTestsResource current model
+	^FamixStNavigationTestResource current model
 ]
 
 { #category : #'helpers - packages' }

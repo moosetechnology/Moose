@@ -227,7 +227,7 @@ MooseImportFromSmalltalkImageWizard >> listOfInvocationStrategies [
 { #category : #accessing }
 MooseImportFromSmalltalkImageWizard >> listOfMetamodelFactories [
 
-	^ { SmalltalkMetamodelFactory. SmalltalkCompatibilityMetamodelFactory }
+	^ { SmalltalkMetamodelFactory. PharoSmalltalkMetamodelFactory }
 ]
 
 { #category : #accessing }
