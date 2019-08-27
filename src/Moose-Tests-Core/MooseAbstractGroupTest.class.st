@@ -359,6 +359,13 @@ MooseAbstractGroupTest >> testOccurenceOf [
 ]
 
 { #category : #tests }
+MooseAbstractGroupTest >> testPropertyNamed [
+	self assert: (group propertyNamed: #UNKNOWN) isNil.
+	group propertyNamed: 'UNKNOWN' put: 10.
+	self assert: (group propertyNamed: #UNKNOWN) equals: 10
+]
+
+{ #category : #tests }
 MooseAbstractGroupTest >> testReadStream [
 	| el1 el2 el3 stream |
 	group add: (el1 := MooseEntity new).
@@ -381,7 +388,30 @@ MooseAbstractGroupTest >> testReject [
 	group add: (el2 := MooseEntity new).
 	group add: (el3 := MooseEntity new).
 	v := group reject: [ :el | el == el1 ].
-	self assertCollection: v entities hasSameElements: {el2 . el3}
+	self assertCollection: v hasSameElements: {el2 . el3}
+]
+
+{ #category : #tests }
+MooseAbstractGroupTest >> testRemoveAll [
+	| el1 el2 el3 |
+	group add: (el1 := MooseEntity new).
+	group add: (el2 := MooseEntity new).
+	group add: (el3 := MooseEntity new).
+
+	group removeAll: {el1 . el2 . el3}.
+	self assertEmpty: group
+]
+
+{ #category : #tests }
+MooseAbstractGroupTest >> testRemoveAll2 [
+	| el1 el2 el3 |
+	group add: (el1 := MooseEntity new).
+	group add: el1.
+	group add: (el2 := MooseEntity new).
+	group add: (el3 := MooseEntity new).
+	group removeAll: {el1 . el2 . el3}.
+	self denyEmpty: group.
+	self assertCollection: group entities hasSameElements: {el1}
 ]
 
 { #category : #tests }

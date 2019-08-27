@@ -113,29 +113,8 @@ MooseModelTest >> testDifferenceWithRealCollection [
 ]
 
 { #category : #tests }
-MooseModelTest >> testExport [
-	| stream |
-	stream := WriteStream on: String new.
-	group exportTo: stream.
-	self assert: stream contents equals: '()'.
-	group add: (FAMIXClass new name: 'Foo').
-	stream := WriteStream on: String new.
-	group exportTo: stream.
-	self
-		assert: stream contents
-		equals:
-			'(
-	(FAMIX.Class (id: 1)
-		(name ''Foo'')))'
-]
-
-{ #category : #tests }
 MooseModelTest >> testExportMetamodelTo [
-
-	| stream |
-	stream := WriteStream on: String new.
-	self shouldnt: [group exportMetamodelTo: stream]  raise: Error.
-	self deny: stream isEmpty
+	self denyEmpty: (String streamContents: [ :s | group exportMetamodelTo: s ])
 ]
 
 { #category : #tests }
@@ -156,50 +135,15 @@ MooseModelTest >> testPrintOn [
 	group name: 'hello2'.
 	group add: MooseEntity new.
 	self assert: group printString equals: 'a MooseModel #hello2(1)'.
-	self assert: MooseModel meta printString equals: 'a FMMetaRepository'
+	self assert: self actualClass meta printString equals: 'a FMMetaRepository'
 ]
 
 { #category : #tests }
 MooseModelTest >> testReferenceModel [
 	| parentModel |
-	parentModel := MooseModel new.
-	parentModel add: group.
+	parentModel := self actualClass with: group.
 	self assert: group localMooseModel identicalTo: group.
 	self assert: group mooseModel identicalTo: parentModel
-]
-
-{ #category : #tests }
-MooseModelTest >> testReject [
-	| el1 el2 el3 v |
-	group add: (el1 := MooseEntity new).
-	group add: (el2 := MooseEntity new).
-	group add: (el3 := MooseEntity new).
-	v := group reject: [ :el | el == el1 ].
-	self assert: v size equals: 2.
-	self assert: (v includesAll: {el2 . el3})
-]
-
-{ #category : #tests }
-MooseModelTest >> testRemoveAll [
-	| el1 el2 el3 |
-	group add: (el1 := MooseEntity new).
-	group add: (el2 := MooseEntity new).
-	group add: (el3 := MooseEntity new).
-
-	group removeAll: {el1 . el2 . el3}.
-	self assertEmpty: group
-]
-
-{ #category : #tests }
-MooseModelTest >> testRemoveAll2 [
-	| el1 el2 el3 |
-	group add: (el1 := MooseEntity new).
-	group add: el1.
-	group add: (el2 := MooseEntity new).
-	group add: (el3 := MooseEntity new).
-	group removeAll: {el1 . el2 . el3}.
-	self denyEmpty: group.
-	self assert: group entities asArray equals: {el1}
 ]
 
 { #category : #tests }
@@ -216,11 +160,10 @@ MooseModelTest >> testRemoveAnnouncement [
 { #category : #tests }
 MooseModelTest >> testRemoveFromModel [
 	| parentModel |
-	parentModel := MooseModel new.
-	parentModel add: group.
+	parentModel := self actualClass with: group.
 	self assert: group mooseModel identicalTo: parentModel.
 	self assert: group removeFromModel identicalTo: group.
-	self assertEmpty: parentModel entities
+	self assertEmpty: parentModel
 ]
 
 { #category : #tests }
@@ -229,11 +172,9 @@ MooseModelTest >> testRemoveModelNamedFromRoot [
 
 	| group2 parentModel res |
 	group name: 'zork'.
-	group2 := MooseModel new.
+	group2 := self actualClass new.
 	group2 name: 'baz'.
-	parentModel := MooseModel new.
-	parentModel add: group.
-	parentModel add: group2.
+	parentModel := self actualClass withAll: {group . group2}.
 	self assert: group mooseModel identicalTo: parentModel.
 	self assert: group2 mooseModel identicalTo: parentModel.
 	self assert: parentModel size equals: 2.
@@ -261,42 +202,12 @@ MooseModelTest >> testRootFolder [
 
 { #category : #tests }
 MooseModelTest >> testRootModel [
-	self assert: MooseModel new mooseID > 0
+	self assert: self actualClass new mooseID > 0
 ]
 
 { #category : #tests }
 MooseModelTest >> testRootUniqueness [
-	self assert: MooseModel root identicalTo: MooseModel root
-]
-
-{ #category : #tests }
-MooseModelTest >> testUnion [
-	| group2 model3 el1 el2 el3 el4 |
-	group add: (el1 := MooseEntity new).
-	group add: (el2 := MooseEntity new).
-	group add: (el3 := MooseEntity new).
-	group2 := MooseModel new.
-	group2 add: (el4 := MooseEntity new).
-	model3 := group union: group2.
-	self assert: (model3 entities includesAll: {el1 . el2 . el3 . el4}).
-	self assert: model3 entities size equals: 4.
-	self assert: ((group2 union: group) entities includesAll: {el1 . el2 . el3 . el4}).
-	self assert: (group2 union: group) ~= (group union: group2)
-]
-
-{ #category : #tests }
-MooseModelTest >> testUnion2 [
-	| group2 group3 el1 el2 el3 el4 |
-	group add: (el1 := MooseEntity new).
-	group add: (el2 := MooseEntity new).
-	group add: (el3 := MooseEntity new).
-	group2 := MooseGroup new.
-	group2 add: (el4 := MooseEntity new).
-	group3 := group union: group2.
-	self assert: (group3 entities includesAll: {el1 . el2 . el3 . el4}).
-	self assert: group3 entities size equals: 4.
-	self assert: ((group2 union: group) entities includesAll: {el1 . el2 . el3 . el4}).
-	self assert: (group2 union: group) ~= (group union: group2)
+	self assert: self actualClass root identicalTo: MooseModel root
 ]
 
 { #category : #tests }
@@ -305,18 +216,4 @@ MooseModelTest >> testUnionWithRealCollection [
 		should: [ group addAll: #(1 2 3).
 			group union: #(2 3 4) ]
 		raise: Error
-]
-
-{ #category : #tests }
-MooseModelTest >> testUnknownFAMIXNamespace [
-	self assert: (group unknownFAMIXNamespace isKindOf: FAMIXNamespace).
-	self assert: group unknownFAMIXNamespace identicalTo: group unknownFAMIXNamespace.
-	self assert: group unknownFAMIXNamespace isStub
-]
-
-{ #category : #tests }
-MooseModelTest >> testUnknownProperty [
-	self assert: (group propertyNamed: #UNKNOWN) isNil.
-	group propertyNamed: 'UNKNOWN' put: 10.
-	self assert: (group propertyNamed: #UNKNOWN) equals: 10
 ]
