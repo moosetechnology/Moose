@@ -25,14 +25,14 @@ MooseQueryComparedToMooseQueryTest >> testIncomingAccesses [
 				createIncomingQueryResultWith: (class2 attributes flatCollect: [ :each | each incomingAccesses ]))
 				asSet.
 	self
-		assert: (method2 queryIncoming: FAMIXAccess) asSet
+		assert: (method2 queryIncoming: FamixJavaAccess) asSet
 		equals:
 			(method2
 				createIncomingQueryResultWith:
 					((method2 parameters flatCollect: #incomingAccesses) asOrderedCollection
 						addAll: (method2 localVariables flatCollect: #incomingAccesses);
 						yourself)) asSet.
-	self assert: (localVariable queryIncoming: FAMIXAccess) asSet equals: localVariable incomingAccesses asSet
+	self assert: (localVariable queryIncoming: FamixJavaAccess) asSet equals: localVariable incomingAccesses asSet
 ]
 
 { #category : #tests }
@@ -53,9 +53,7 @@ MooseQueryComparedToMooseQueryTest >> testIncomingInheritances [
 MooseQueryComparedToMooseQueryTest >> testIncomingInvocations [
 	"queryIncoming: is equivalent to query: #in with:"
 
-	self
-		assert: (method2 queryIncoming: FamixTInvocation) asSet
-		equals: (method2 createIncomingQueryResultWith: method2 incomingInvocations) asSet.
+	self assert: (method2 queryIncoming: FamixTInvocation) asSet equals: (method2 createIncomingQueryResultWith: method2 incomingInvocations) asSet.
 	self
 		assert: (class2 queryIncoming: FamixTInvocation) asSet
 		equals: (class2 createIncomingQueryResultWith: (class2 methods flatCollect: [ :m | m incomingInvocations ])) asSet.
@@ -64,8 +62,7 @@ MooseQueryComparedToMooseQueryTest >> testIncomingInvocations [
 		equals: (package2 createIncomingQueryResultWith: (package2 methods flatCollect: [ :m | m incomingInvocations ])) asSet.
 	self
 		assert: (namespace queryIncoming: FamixTInvocation) asSet
-		equals:
-			(namespace createIncomingQueryResultWith: (namespace methods flatCollect: [ :c | c incomingInvocations ])) asSet.
+		equals: (namespace createIncomingQueryResultWith: ((namespace toScope: FamixTMethod) flatCollect: [ :c | c incomingInvocations ])) asSet
 ]
 
 { #category : #tests }
@@ -101,13 +98,9 @@ MooseQueryComparedToMooseQueryTest >> testOutgoingAccesses [
 		equals: (package2 createOutgoingQueryResultWith: (package2 methods flatCollect: [ :m | m accesses ])) asSet.
 	self
 		assert: (namespace queryOutgoing: FamixTAccess) asSet
-		equals: (namespace createOutgoingQueryResultWith: (namespace methods flatCollect: [ :m | m accesses ])) asSet.
-	self
-		assert: (class2 queryOutgoing: FamixTAccess) asSet
-		equals: (class2 createOutgoingQueryResultWith: (class2 methods flatCollect: [ :m | m accesses ])) asSet.
-	self
-		assert: (method2 queryOutgoing: FamixTAccess) asSet
-		equals: (method2 createOutgoingQueryResultWith: method2 accesses) asSet
+		equals: (namespace createOutgoingQueryResultWith: ((namespace toScope: FamixTMethod) flatCollect: [ :m | m accesses ])) asSet.
+	self assert: (class2 queryOutgoing: FamixTAccess) asSet equals: (class2 createOutgoingQueryResultWith: (class2 methods flatCollect: [ :m | m accesses ])) asSet.
+	self assert: (method2 queryOutgoing: FamixTAccess) asSet equals: (method2 createOutgoingQueryResultWith: method2 accesses) asSet
 ]
 
 { #category : #tests }
@@ -124,9 +117,15 @@ MooseQueryComparedToMooseQueryTest >> testOutgoingInheritances [
 { #category : #tests }
 MooseQueryComparedToMooseQueryTest >> testOutgoingInvocations [
 	self assert: (method2 queryOutgoing: FamixTInvocation) asSet equals: (method2 createOutgoingQueryResultWith: method2 outgoingInvocations) asSet.
-	self assert: (class2 queryOutgoing: FamixTInvocation) asSet equals: (class2 createOutgoingQueryResultWith: (class2 methods flatCollect: [ :m | m outgoingInvocations ])) asSet.
-	self assert: (package2 queryOutgoing: FamixTInvocation) asSet equals: (package2 createOutgoingQueryResultWith: (package2 methods flatCollect: [ :m | m outgoingInvocations ])) asSet.
-	self assert: (namespace queryOutgoing: FamixTInvocation) asSet equals: (namespace createOutgoingQueryResultWith: (namespace methods flatCollect: [ :c | c outgoingInvocations ])) asSet
+	self
+		assert: (class2 queryOutgoing: FamixTInvocation) asSet
+		equals: (class2 createOutgoingQueryResultWith: (class2 methods flatCollect: [ :m | m outgoingInvocations ])) asSet.
+	self
+		assert: (package2 queryOutgoing: FamixTInvocation) asSet
+		equals: (package2 createOutgoingQueryResultWith: (package2 methods flatCollect: [ :m | m outgoingInvocations ])) asSet.
+	self
+		assert: (namespace queryOutgoing: FamixTInvocation) asSet
+		equals: (namespace createOutgoingQueryResultWith: ((namespace toScope: FamixTMethod) flatCollect: [ :c | c outgoingInvocations ])) asSet
 ]
 
 { #category : #tests }
