@@ -16,7 +16,7 @@ OldFamixTSourceLanguageTest >> setUp [
 
 	super setUp.
 
-	model := MooseModel new.
+	model := FamixTest1MooseModel new.
 	m1 := FamixTest1Method named: 'method1'.
 	m2 := FamixTest1Method named: 'method2'.
 	lang := FamixTest1SourceLanguage new.
