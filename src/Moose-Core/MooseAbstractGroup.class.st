@@ -25,6 +25,11 @@ MooseAbstractGroup class >> annotation [
 ]
 
 { #category : #'instance creation' }
+MooseAbstractGroup class >> with: anEntity [
+	^ anEntity ifNil: [ self new ] ifNotNil: [ self withAll: (Array with: anEntity) ]
+]
+
+{ #category : #'instance creation' }
 MooseAbstractGroup class >> withAll: aCollection [
 	"Create a new collection containing all the elements from aCollection."
 
@@ -56,6 +61,12 @@ MooseAbstractGroup >> addAll: aCollectionOfItems [
 	^ self subclassResponsibility
 ]
 
+{ #category : #'adding/removing' }
+MooseAbstractGroup >> addLast: anEntity [ 
+	 
+	^self add: anEntity
+]
+
 { #category : #accessing }
 MooseAbstractGroup >> allContainers [
 	<navigation: 'All containers'>
@@ -70,9 +81,8 @@ MooseAbstractGroup >> allModels [
 ]
 
 { #category : #'public interface' }
-MooseAbstractGroup >> allSatisfy: aBlock [ 
-	 
-	^self entities allSatisfy: aBlock
+MooseAbstractGroup >> allSatisfy: aBlock [
+	^ self entities allSatisfy: aBlock
 ]
 
 { #category : #groups }
@@ -168,6 +178,12 @@ MooseAbstractGroup >> asSortedCollection: aSortBlock [
 { #category : #accessing }
 MooseAbstractGroup >> at: anIndex [
 	^ self entities at: anIndex
+]
+
+{ #category : #'public interface' }
+MooseAbstractGroup >> average: aSymbolOrBlock [ 
+	 
+	^ (self sumNumbers: aSymbolOrBlock) / self size
 ]
 
 { #category : #enumerating }
@@ -302,11 +318,6 @@ MooseAbstractGroup >> entityNamed: aMooseName ifAbsent: aBlock ifPresent: anothe
 	^ entity isNil 
 		ifTrue: [aBlock value]
 		ifFalse: [anotherBlock value: entity]
-]
-
-{ #category : #'public interface' }
-MooseAbstractGroup >> entityNamed: aMooseName ifAbsentPut: aValue [ 
-	^ self entityNamed: aMooseName ifAbsent: [self add: aValue]
 ]
 
 { #category : #private }
@@ -531,6 +542,11 @@ MooseAbstractGroup >> printOn: aStream [
 	aStream nextPut: $(. 
 	aStream nextPutAll: self size printString. 
 	aStream nextPut: $)
+]
+
+{ #category : #'adding/removing' }
+MooseAbstractGroup >> readStream [
+	^ self entities readStream
 ]
 
 { #category : #enumerating }

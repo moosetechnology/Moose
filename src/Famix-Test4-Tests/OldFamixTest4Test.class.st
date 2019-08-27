@@ -24,7 +24,7 @@ OldFamixTest4Test >> setUp [
 
 	super setUp.
 	
-	model := MooseModel new.
+	model := FamixTest4MooseModel new.
 	model metamodel: FamixTest4Generator metamodel.
 	
 	school := FamixTest4School new.
