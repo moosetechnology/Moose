@@ -78,7 +78,7 @@ MooseModel class >> gtExampleGTModel [
 	model := self new.
 	model name: 'GT-*'.
 	importer := MoosePharoImporterTask new.
-	importer factory: SmalltalkCompatibilityMetamodelFactory.
+	importer factory: PharoSmalltalkMetamodelFactory.
 	importer importingContext mergeClassAndMetaclass.
 	importer runCandidateOperator.
 	importer model: model.

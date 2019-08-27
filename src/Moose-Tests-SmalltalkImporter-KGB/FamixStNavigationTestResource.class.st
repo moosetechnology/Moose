@@ -1,11 +1,11 @@
 Class {
-	#name : #FAMIXNavigationPluginTestsResource,
+	#name : #FamixStNavigationTestResource,
 	#superclass : #MooseModelTestResourceWithSmalltalkDependency,
 	#category : #'Moose-Tests-SmalltalkImporter-KGB'
 }
 
 { #category : #utilites }
-FAMIXNavigationPluginTestsResource >> getMethod: methodNameString from: aFAMIXClass [ 
+FamixStNavigationTestResource >> getMethod: methodNameString from: aFAMIXClass [ 
 	 
 	| mooseName | 
 	mooseName := (aFAMIXClass mooseName asString , '.' 
@@ -14,7 +14,7 @@ FAMIXNavigationPluginTestsResource >> getMethod: methodNameString from: aFAMIXCl
 ]
 
 { #category : #hook }
-FAMIXNavigationPluginTestsResource >> importModel [ 
+FamixStNavigationTestResource >> importModel [ 
 
 	| importer classes namespaces | 
 	
