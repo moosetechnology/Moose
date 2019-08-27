@@ -144,8 +144,3 @@ FamixTType >> typeContainerGroup [
 	<navigation: 'TypeContainer'>
 	^ MooseGroup with: self typeContainer
 ]
-
-{ #category : #'moosechef-scoping-filtering' }
-FamixTType >> typeScope [ 
-	^self.
-]
