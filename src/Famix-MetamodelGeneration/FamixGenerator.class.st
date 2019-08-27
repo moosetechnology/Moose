@@ -971,6 +971,7 @@ FamixGenerator >> defineHierarchy [
 	tClass inheritsFromTrait: tNamed without: #(#mooseNameOn:).
 	tClass --|> tType.
 	tClass --|> #TPackageable.
+	tClass --|> #TInvocationsReceiver.
 	tClass --|> #TWithComments.
 	
 	tGlobalVariable --|> tStructuralEntity.
