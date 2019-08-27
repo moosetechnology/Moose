@@ -129,10 +129,7 @@ Class {
 		'tMultipleFileAnchor',
 		'tCohesionCouplingMetrics',
 		'tWithTraits',
-		'tWithFileIncludes',
-		'tDependencyQueries',
-		'tEntityMetaLevelDependency',
-		'tOODependencyQueries'
+		'tWithFileIncludes'
 	],
 	#category : #'Famix-MetamodelGeneration'
 }
@@ -984,8 +981,8 @@ FamixGenerator >> defineHierarchy [
 	tLocalVariable --|> tStructuralEntity.
 
 	
-	tNamed --|> tDependencyQueries.
-	tNamed --|> tEntityMetaLevelDependency.	
+	tNamed --|> #TDependencyQueries.
+	tNamed --|> #TEntityMetaLevelDependency.	
 	tNamed --|> #TSourceEntity.
 	
 	tMethod --|> #TWithParameters.
@@ -1008,11 +1005,11 @@ FamixGenerator >> defineHierarchy [
 	tStructuralEntity --|> #TAccessible.
 	tStructuralEntity --|> #TInvocationsReceiver.
 	tStructuralEntity --|> #TTypedStructure.
-	
+
 	tSourceEntity --|> #TWithSourceAnchor.
 	tSourceEntity --|> #TWithSourceLanguage.
 
-	tType --|> tOODependencyQueries.
+	tType --|> #TOODependencyQueries.
 	tType --|> #TReferenceable.
 	tType --|> #TWithTypedStructures
 ]
@@ -1413,11 +1410,7 @@ FamixGenerator >> defineRelations [
 
 { #category : #definition }
 FamixGenerator >> defineTraits [
-
 	super defineTraits.
-	tDependencyQueries := self remoteTrait: #TDependencyQueries withPrefix: 'Moose-Query'. 
-	tOODependencyQueries := self remoteTrait: #TOODependencyQueries withPrefix: 'Moose-Query'. 
-	tEntityMetaLevelDependency := self remoteTrait: #TEntityMetaLevelDependency withPrefix: 'Moose-Query'.
 	
 	tAccess := builder newTraitNamed: #TAccess.
 	tAccess comment: self commentForTAccess.
@@ -1572,9 +1565,6 @@ FamixGenerator >> defineTraits [
 
 	tSourceAnchor := builder newTraitNamed: #TSourceAnchor.
 	tSourceAnchor comment: self commentForTSourceAnchor.
-	
-	tSourceEntity := builder newTraitNamed: #TSourceEntity.
-	tSourceEntity comment: self commentForTSourceEntity.
 
 	tSourceEntity := builder newTraitNamed: #TSourceEntity.
 	tSourceEntity comment: self commentForTSourceEntity.
