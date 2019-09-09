@@ -314,7 +314,7 @@ FmxMBClass >> isRoot [
 { #category : #generating }
 FmxMBClass >> primaryContainerProperties [
 	| primaryContainers |
-	primaryContainers := ((self allTraits copyWithoutAll: self usedTraitsWithoutPrimaryContainers) flatCollect: #sides) select: #isContainer.
+	primaryContainers := ((self allTraits copyWithoutAll: self usedTraitsWithoutPrimaryContainers) flatCollect: #sides) select: [:side | side isContainer and: [ side providesPrimaryContainer ] ].
 
 	primaryContainers addAll: ((self properties select: #isContainer) select: #providesPrimaryContainer).
 
