@@ -410,7 +410,7 @@ MooseModel >> importFromMSEStream: aStream [
 	"
 
 	| repository |
-	repository := self class importFrom: aStream.
+	repository := self class importFrom: aStream withMetamodel: self metamodel.
 	self silentlyAddAll: repository elements.
 	self entityStorage forRuntime.
 	self name: (aStream localName removeSuffix: '.mse').
