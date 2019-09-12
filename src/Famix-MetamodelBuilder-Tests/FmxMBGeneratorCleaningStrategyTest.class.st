@@ -41,7 +41,8 @@ FmxMBGeneratorCleaningStrategyTest >> generateClasses [
 			class addToComposition: FamixTestExternalTraits.
 			class addInstVarNamed: 'bananaTree'.
 			class addClassVarNamed: 'Fuhrmanator'.
-			class class addInstVarNamed: 'grandFrais' ]
+			class class addInstVarNamed: 'grandFrais'.
+			(class slotNamed: #fursonas) inClass: #FmxTestCleaningStrategyFmxTestEntity	"Here we change the type of the slot to ensure it is regenerated correctly" ]
 		ifAbsent: [ self fail ].
 	Object
 		subclass: #FmxCleanerTestAddedClass
@@ -64,12 +65,13 @@ FmxMBGeneratorCleaningStrategyTest >> generateClasses [
 	<package: #'',  self packageName , ''>
 	<generated>
 	^self'.
-	
+
 	"We add a Trait with Famix pragma to ensure it is deleted after the generation."
-	generatedTraitToRemove := Trait named: #FmxCleanerTestTAddedClassFromFamix
-	 uses: { }
-	 slots: {  }
-	 package:  self packageName.
+	generatedTraitToRemove := Trait
+		named: #FmxCleanerTestTAddedClassFromFamix
+		uses: {}
+		slots: {}
+		package: self packageName.
 	generatedTraitToRemove class
 		compile:
 			'annotation
@@ -78,7 +80,7 @@ FmxMBGeneratorCleaningStrategyTest >> generateClasses [
 	<package: #'',  self packageName , ''>
 	<generated>
 	^self'.
-	
+
 	"We change the superclass of this class to ensure regeneration will update it. Check non regression for: https://github.com/moosetechnology/Moose/issues/1668"
 	self class environment
 		at: #FmxTestCleaningStrategyFmxTestEntityWithDifferentSuperclass
@@ -124,7 +126,9 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningCleaning [
 			self assert: (class traitComposition allTraits anySatisfy: [ :trait | trait name = #FamixTestExternalTraits ]).
 			self assert: (class hasInstVarNamed: #bananaTree).
 			self assert: (class hasClassVarNamed: #Fuhrmanator).
-			self assert: (class class hasInstVarNamed: #grandFrais) ]
+			self assert: (class class hasInstVarNamed: #grandFrais).
+			self assert: (class hasInstVarNamed: #fursonas).
+			self assert: (class slotNamed: #fursonas) definitionString equals: '#fursonas => FMMany type: #FmxTestCleaningStrategyFmxTestEntity opposite: #furry' ]
 		ifAbsent: [ self fail ].
 
 	"Before the generation, the superclass should not be updated."
@@ -158,7 +162,9 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningGeneration [
 			self assert: (class traitComposition allTraits anySatisfy: [ :trait | trait name = #FamixTestExternalTraits ]).
 			self assert: (class hasInstVarNamed: #bananaTree).
 			self assert: (class hasClassVarNamed: #Fuhrmanator).
-			self assert: (class class hasInstVarNamed: #grandFrais) ]
+			self assert: (class class hasInstVarNamed: #grandFrais).
+			self assert: (class hasInstVarNamed: #fursonas).
+			self assert: (class slotNamed: #fursonas) definitionString equals: '#fursonas => FMMany type: #FmxTestCleaningStrategyFmxTestEntityWithDifferentSuperclass opposite: #furry' ]
 		ifAbsent: [ self fail ].
 
 	"After the generation, the superclass should be updated to be the one described in the generator."
@@ -203,7 +209,9 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateTotalCleaningGeneration [
 			self deny: (class localMethods anySatisfy: [ :method | method selector = #generatedBanana ]).
 			self deny: (class hasInstVarNamed: #bananaTree).
 			self deny: (class hasClassVarNamed: #Fuhrmanator).
-			self deny: (class class hasInstVarNamed: #grandFrais) ]
+			self deny: (class class hasInstVarNamed: #grandFrais).
+			self assert: (class hasInstVarNamed: #fursonas).
+			self assert: (class slotNamed: #fursonas) definitionString equals: '#fursonas => FMMany type: #FmxTestCleaningStrategyFmxTestEntityWithDifferentSuperclass opposite: #furry' ]
 		ifAbsent: [ self fail ].
 
 	"After the generation, the superclass should be updated."

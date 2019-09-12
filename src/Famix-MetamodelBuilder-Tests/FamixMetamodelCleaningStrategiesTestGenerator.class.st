@@ -51,7 +51,8 @@ FamixMetamodelCleaningStrategiesTestGenerator >> defineProperties [
 { #category : #definition }
 FamixMetamodelCleaningStrategiesTestGenerator >> defineRelations [
 	super defineRelations.
-	fmx <>- fmx
+	fmx <>- fmx.
+	(fmx2 property: #furry) *- (fmx property: #fursonas) 
 ]
 
 { #category : #definition }
