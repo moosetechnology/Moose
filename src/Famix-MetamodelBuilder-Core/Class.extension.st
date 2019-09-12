@@ -31,11 +31,13 @@ Class >> needToAdaptTo: aRGClass [
 	generatedTraitNames := self generatedTraitNames.
 
 	"We need to manage the cases where it will be things like `FamixJavaTStructuralEntity - {#mooseNameOn:}`"
-	generatedTraitDefinitions := self traitComposition rootMembers select: [ :member | generatedTraitNames includes: member name ] thenCollect: #traitCompositionExpression.
+	generatedTraitDefinitions := self traitComposition rootMembers
+		select: [ :member | generatedTraitNames includes: member name ]
+		thenCollect: #traitCompositionExpression.
 
 	(generatedTraitDefinitions equalsTo: aRGClass traitsDefinitions) ifFalse: [ ^ true ].
 
-	(self generatedSlotNames equalsTo: (aRGClass slots collect: #name)) ifFalse: [ ^ true ].
+	((self generatedSlots collect: #definitionString) equalsTo: (aRGClass slots collect: #definitionString)) ifFalse: [ ^ true ].
 
 	^ (self superclass ifNil: [ Trait ]) name ~= aRGClass superclass name
 ]

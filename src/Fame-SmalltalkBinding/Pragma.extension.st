@@ -2,14 +2,11 @@ Extension { #name : #Pragma }
 
 { #category : #'*Fame-SmalltalkBinding' }
 Pragma class >> inMethod: compiledMethod named: keyword [
-
 	| all keywords selection |
 	all := compiledMethod pragmas.
-	keyword isArray
-		ifTrue:[ keywords := keyword ]
-		ifFalse: [ keywords := Array with: keyword ].
-	selection := all select: [ :each | keywords includes: each keyword ].
+	keyword isArray ifTrue: [ keywords := keyword ] ifFalse: [ keywords := Array with: keyword ].
+	selection := all select: [ :each | keywords includes: each selector ].
 	selection size > 1 ifTrue: [ Error signal ].
-	selection size = 0 ifTrue: [ ^nil ].
-	^selection first
+	selection size = 0 ifTrue: [ ^ nil ].
+	^ selection first
 ]
