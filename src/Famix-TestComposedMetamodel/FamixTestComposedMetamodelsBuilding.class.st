@@ -15,43 +15,39 @@ Class {
 
 { #category : #running }
 FamixTestComposedMetamodelsBuilding >> setUp [
-
 	super setUp.
 
 	composedBuilder := FamixMetamodelBuilder new.
 	env := FmxMBRingEnvironment for: composedBuilder.
 	composedBuilder environment: env.
-	composedBuilder configuration	
+	composedBuilder configuration
 		prefix: 'TstComposed';
-		packageName: 'TstComposed'.	
-			
+		packageName: 'TstComposed'.
+
 	builder1 := FamixMetamodelBuilder forTesting.
 	builder1 environment: env.
-	builder1 configuration	
+	builder1 configuration
 		prefix: 'Tst1';
-		packageName: 'Tst1'.	
-			
+		packageName: 'Tst1'.
+
 	builder2 := FamixMetamodelBuilder forTesting.
 	builder2 environment: env.
-	builder2 configuration	
+	builder2 configuration
 		prefix: 'Tst2';
-		packageName: 'Tst2'.	
+		packageName: 'Tst2'.
 
 	method := builder1 newClassNamed: #Method.
 	methodNode := builder2 newClassNamed: #MethodNode.
 	binding := composedBuilder newClassNamed: #Binding.
-	
+
 	builder1 generate.
 	builder2 generate.
-	
+
 	"reuse the builders for keeping of remote elements"
 	builder1 parentBuilder: composedBuilder.
 	builder2 parentBuilder: composedBuilder.
 	method isRemote: true.
-	methodNode isRemote: true.
-	
-
-
+	methodNode isRemote: true
 ]
 
 { #category : #running }
