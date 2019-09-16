@@ -57,6 +57,11 @@ FMNullMultivalueLink >> isNotEmpty [
 ]
 
 { #category : #accessing }
+FMNullMultivalueLink >> iterator [
+	^ OrderedCollection new iterator
+]
+
+{ #category : #accessing }
 FMNullMultivalueLink >> last [
 	^self errorSubscriptBounds: 0
 ]
