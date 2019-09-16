@@ -24,6 +24,7 @@ BaselineOfFamix >> baseline: spec [
 			self
 				deepTraverser: spec;
 				treeQuery: spec;
+				iterators: spec;
 				fame: spec;
 				kgbTestResources: spec;
 				collectionExtensions: spec;
@@ -36,10 +37,12 @@ BaselineOfFamix >> baseline: spec [
 			"Packages"
 			spec
 				package: 'Moose-Query' with: [ spec requires: #('Fame' 'DeepTraverser' 'CollectionExtensions') ];
+				package: 'Moose-Iterators' with: [ spec requires: #('Iterators' 'Fame') ];
+				package: 'Moose-Iterators-Tests' with: [ spec requires: #('Moose-Iterators') ];
 				package: 'Moose-Core' with: [ spec requires: #('Fame' 'Moose-Query') ];
 				package: 'Moose-Query-Extensions' with: [ spec requires: #('Moose-Query' 'Famix-Traits') ];
 				package: 'Famix-Groups' with: [ spec requires: #('Moose-Core' 'NeoCSV') ];
-				package: 'Famix-Traits' with: [ spec requires: #('Famix-Groups' 'Moose-Core' 'TreeQuery') ];
+				package: 'Famix-Traits' with: [ spec requires: #('Famix-Groups' 'Moose-Core' 'TreeQuery' 'Moose-Iterators') ];
 				package: 'Famix-MetamodelBuilder-Core' with: [ spec requires: #('Famix-Traits') ];
 				package: 'Famix-MetamodelGeneration' with: [ spec requires: #('Famix-MetamodelBuilder-Core') ];
 				package: 'Famix-BasicInfrastructure' with: [ spec requires: #('Famix-MetamodelBuilder-Core') ];
@@ -100,7 +103,7 @@ BaselineOfFamix >> baseline: spec [
 				group: 'Importers' with: #('Moose-GenericImporter' 'Moose-SmalltalkImporter');
 				group: 'Tests'
 					with:
-					#('Famix-Tests' 'Moose-Query-Test' 'Moose-Tests-Core' 'Famix-Smalltalk-Utils-Tests' 'Moose-Tests-SmalltalkImporter-LAN' 'Moose-Tests-SmalltalkImporter-Core' 'Moose-Tests-SmalltalkImporter-KGB' 'Famix-Java-Tests' 'Famix-Groups-Tests' 'Famix-Compatibility-Tests-C' 'Famix-Compatibility-Tests-Java' 'Famix-Compatibility-Tests-Core' 'Famix-Compatibility-Tests-Extensions' 'Famix-PharoSmalltalk-Tests' 'Famix-TestGenerators' 'Famix-MetamodelBuilder-Tests' 'Famix-Test1-Entities' 'Famix-Test1-Tests' 'Famix-Test2-Entities' 'Famix-Test2-Tests' 'Famix-Test3-Entities' 'Famix-Test3-Tests' 'Famix-Test4-Entities' 'Famix-Test4-Tests' 'Famix-TestComposedSubmetamodel1-Entities' 'Famix-TestComposedSubmetamodel2-Entities' 'Famix-TestComposedMetamodel-Entities' 'Famix-TestComposedMetamodel' 'Famix-TestComposedComposedMetamodel-Entities' 'Famix-TestComposed3Metamodel-Entities') ].
+					#('Famix-Tests' 'Moose-Query-Test' 'Moose-Tests-Core' 'Famix-Smalltalk-Utils-Tests' 'Moose-Tests-SmalltalkImporter-LAN' 'Moose-Tests-SmalltalkImporter-Core' 'Moose-Tests-SmalltalkImporter-KGB' 'Famix-Java-Tests' 'Famix-Groups-Tests' 'Famix-Compatibility-Tests-C' 'Famix-Compatibility-Tests-Java' 'Famix-Compatibility-Tests-Core' 'Famix-Compatibility-Tests-Extensions' 'Famix-PharoSmalltalk-Tests' 'Famix-TestGenerators' 'Famix-MetamodelBuilder-Tests' 'Famix-Test1-Entities' 'Famix-Test1-Tests' 'Famix-Test2-Entities' 'Famix-Test2-Tests' 'Famix-Test3-Entities' 'Famix-Test3-Tests' 'Famix-Test4-Entities' 'Famix-Test4-Tests' 'Famix-TestComposedSubmetamodel1-Entities' 'Famix-TestComposedSubmetamodel2-Entities' 'Famix-TestComposedMetamodel-Entities' 'Famix-TestComposedMetamodel' 'Famix-TestComposedComposedMetamodel-Entities' 'Famix-TestComposed3Metamodel-Entities' 'Moose-Iterators-Tests') ].
 
 	"We need different versions of Ring for Pharo 7 and 8."
 	spec
@@ -138,6 +141,11 @@ BaselineOfFamix >> deepTraverser: spec [
 { #category : #dependencies }
 BaselineOfFamix >> fame: spec [
 	spec baseline: 'Fame' with: [ spec repository: repository ]
+]
+
+{ #category : #dependencies }
+BaselineOfFamix >> iterators: spec [
+	spec baseline: 'Iterators' with: [ spec repository: 'github://juliendelplanque/Iterators:v1.x.x/src' ]
 ]
 
 { #category : #dependencies }
