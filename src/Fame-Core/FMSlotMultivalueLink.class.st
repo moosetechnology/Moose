@@ -93,6 +93,11 @@ FMSlotMultivalueLink >> inverseRemove: anObject [
 	^values remove: anObject
 ]
 
+{ #category : #accessing }
+FMSlotMultivalueLink >> iterator [
+	^ values iterator
+]
+
 { #category : #'accessing-computed' }
 FMSlotMultivalueLink >> last [
 	^ values last

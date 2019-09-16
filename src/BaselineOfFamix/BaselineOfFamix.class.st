@@ -23,8 +23,6 @@ BaselineOfFamix >> baseline: spec [
 		do: [ "Dependencies"
 			self
 				deepTraverser: spec;
-				treeQuery: spec;
-				iterators: spec;
 				fame: spec;
 				kgbTestResources: spec;
 				collectionExtensions: spec;
@@ -37,12 +35,10 @@ BaselineOfFamix >> baseline: spec [
 			"Packages"
 			spec
 				package: 'Moose-Query' with: [ spec requires: #('Fame' 'DeepTraverser' 'CollectionExtensions') ];
-				package: 'Moose-Iterators' with: [ spec requires: #('Iterators' 'Fame') ];
-				package: 'Moose-Iterators-Tests' with: [ spec requires: #('Moose-Iterators') ];
 				package: 'Moose-Core' with: [ spec requires: #('Fame' 'Moose-Query') ];
 				package: 'Moose-Query-Extensions' with: [ spec requires: #('Moose-Query' 'Famix-Traits') ];
 				package: 'Famix-Groups' with: [ spec requires: #('Moose-Core' 'NeoCSV') ];
-				package: 'Famix-Traits' with: [ spec requires: #('Famix-Groups' 'Moose-Core' 'TreeQuery' 'Moose-Iterators') ];
+				package: 'Famix-Traits' with: [ spec requires: #('Famix-Groups' 'Moose-Core') ];
 				package: 'Famix-MetamodelBuilder-Core' with: [ spec requires: #('Famix-Traits') ];
 				package: 'Famix-MetamodelGeneration' with: [ spec requires: #('Famix-MetamodelBuilder-Core') ];
 				package: 'Famix-BasicInfrastructure' with: [ spec requires: #('Famix-MetamodelBuilder-Core') ];
@@ -144,11 +140,6 @@ BaselineOfFamix >> fame: spec [
 ]
 
 { #category : #dependencies }
-BaselineOfFamix >> iterators: spec [
-	spec baseline: 'Iterators' with: [ spec repository: 'github://juliendelplanque/Iterators:v1.x.x/src' ]
-]
-
-{ #category : #dependencies }
 BaselineOfFamix >> kgbTestResources: spec [
 	spec baseline: 'KGBTestResources' with: [ spec repository: repository ]
 ]
@@ -189,9 +180,4 @@ BaselineOfFamix >> roelTyper: spec [
 { #category : #dependencies }
 BaselineOfFamix >> talents: spec [
 	spec baseline: 'Talents' with: [ spec repository: repository ]
-]
-
-{ #category : #dependencies }
-BaselineOfFamix >> treeQuery: spec [
-	spec baseline: 'TreeQuery' with: [ spec repository: 'github://juliendelplanque/TreeQuery:v1.x.x/src' ]
 ]
