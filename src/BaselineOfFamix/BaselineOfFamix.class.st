@@ -102,27 +102,15 @@ BaselineOfFamix >> baseline: spec [
 					with:
 					#('Famix-Tests' 'Moose-Query-Test' 'Moose-Tests-Core' 'Famix-Smalltalk-Utils-Tests' 'Moose-Tests-SmalltalkImporter-LAN' 'Moose-Tests-SmalltalkImporter-Core' 'Moose-Tests-SmalltalkImporter-KGB' 'Famix-Java-Tests' 'Famix-Groups-Tests' 'Famix-Compatibility-Tests-C' 'Famix-Compatibility-Tests-Java' 'Famix-Compatibility-Tests-Core' 'Famix-Compatibility-Tests-Extensions' 'Famix-PharoSmalltalk-Tests' 'Famix-TestGenerators' 'Famix-MetamodelBuilder-Tests' 'Famix-Test1-Entities' 'Famix-Test1-Tests' 'Famix-Test2-Entities' 'Famix-Test2-Tests' 'Famix-Test3-Entities' 'Famix-Test3-Tests' 'Famix-Test4-Entities' 'Famix-Test4-Tests' 'Famix-TestComposedSubmetamodel1-Entities' 'Famix-TestComposedSubmetamodel2-Entities' 'Famix-TestComposedMetamodel-Entities' 'Famix-TestComposedMetamodel' 'Famix-TestComposedComposedMetamodel-Entities' 'Famix-TestComposed3Metamodel-Entities') ].
 
-	"We need different versions of Ring for Pharo 7 and 8."
 	spec
 		for: #'pharo7.x'
-		do: [ spec
-				baseline: 'Ring2'
-				with: [ spec
-						loads: 'runtimeSupport';
-						repository: 'github://pavel-krivanek/Ring2:v1.2.0/src' ].
+		do: [
+			self ring2: spec.
+
 			spec
 				package: 'Famix-MetamodelBuilder-Core' with: [ spec requires: #('Ring2') ];
 				package: 'Moose-Core' with: [ spec includes: #('Famix-Pharo7') ];
-				package: 'Famix-Pharo7' ].
-
-	spec
-		for: #'pharo8.x'
-		do: [ spec
-				baseline: 'Ring2'
-				with: [ spec
-						loads: 'runtimeSupport';
-						repository: 'github://pavel-krivanek/Ring2:RGPackageRenamed/src' ].
-			spec package: 'Famix-MetamodelBuilder-Core' with: [ spec requires: #('Ring2') ] ]
+				package: 'Famix-Pharo7' ]
 ]
 
 { #category : #dependencies }
@@ -171,6 +159,15 @@ BaselineOfFamix >> projectClass [
 { #category : #dependencies }
 BaselineOfFamix >> referenceTestResources: spec [
 	spec baseline: 'ReferenceTestResources' with: [ spec repository: repository ]
+]
+
+{ #category : #baseline }
+BaselineOfFamix >> ring2: spec [
+	spec
+		baseline: 'Ring2'
+		with: [ spec
+				loads: 'runtimeSupport';
+				repository: 'github://pavel-krivanek/Ring2:v1.2.0/src' ]
 ]
 
 { #category : #dependencies }
