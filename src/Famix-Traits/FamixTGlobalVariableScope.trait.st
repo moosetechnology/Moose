@@ -26,6 +26,7 @@ FamixTGlobalVariableScope >> globalVariables [
 
 	<generated>
 	<MSEComment: 'Global variables defined in the scope, if any.'>
+	<derived>
 	^ globalVariables
 ]
 

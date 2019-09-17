@@ -198,7 +198,6 @@ FMRelationSlot >> moosePropertyFor: anOwningClassName multivalued: aBoolean [
 		mooseProperty setImplementingSelector: self name. "should be a link to slot"
 
 		mooseProperty isMultivalued: aBoolean.
-		mooseProperty isDerived: true.
 		
 		mooseProperty privOpposite: self inverseSlot mooseProperty ].
 	

@@ -27,6 +27,7 @@ FamixTWithFunctions >> functions [
 
 	<generated>
 	<MSEComment: 'Functions defined in the container, if any.'>
+	<derived>
 	^ functions
 ]
 

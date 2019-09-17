@@ -37,6 +37,7 @@ FamixTFile >> entities [
 
 	<generated>
 	<MSEComment: 'List of entities defined in the file'>
+	<derived>
 	^ entities
 ]
 

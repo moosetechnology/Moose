@@ -26,6 +26,7 @@ FamixTWithTemplates >> templates [
 	"Relation named: #templates type: #FamixTTemplate opposite: #templateOwner"
 
 	<generated>
+	<derived>
 	^ templates
 ]
 

@@ -34,6 +34,7 @@ FamixTWithFileIncludes >> incomingIncludeRelations [
 
 	<generated>
 	<MSEComment: 'The include entities that have this file as a target.'>
+	<derived>
 	^ incomingIncludeRelations
 ]
 
@@ -51,6 +52,7 @@ FamixTWithFileIncludes >> outgoingIncludeRelations [
 
 	<generated>
 	<MSEComment: 'The include entities that have this file as a source.'>
+	<derived>
 	^ outgoingIncludeRelations
 ]
 

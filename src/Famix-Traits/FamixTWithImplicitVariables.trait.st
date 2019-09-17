@@ -26,6 +26,7 @@ FamixTWithImplicitVariables >> implicitVariables [
 
 	<generated>
 	<MSEComment: 'Implicit variables used locally by this behaviour.'>
+	<derived>
 	^ implicitVariables
 ]
 

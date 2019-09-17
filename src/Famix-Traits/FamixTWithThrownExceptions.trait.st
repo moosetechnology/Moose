@@ -26,6 +26,7 @@ FamixTWithThrownExceptions >> thrownExceptions [
 
 	<generated>
 	<MSEComment: 'The exceptions thrown by the method'>
+	<derived>
 	^ thrownExceptions
 ]
 

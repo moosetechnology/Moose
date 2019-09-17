@@ -26,6 +26,7 @@ FamixTInvocationsReceiver >> receivingInvocations [
 
 	<generated>
 	<MSEComment: 'List of invocations performed on this entity (considered as the receiver)'>
+	<derived>
 	^ receivingInvocations
 ]
 

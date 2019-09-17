@@ -27,6 +27,7 @@ FamixTest4Person >> books [
 	"Relation named: #books type: #FamixTest4Book opposite: #person"
 
 	<generated>
+	<derived>
 	^ books
 ]
 

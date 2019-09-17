@@ -42,6 +42,7 @@ FamixTest4School >> principal [
 	"Relation named: #principal type: #FamixTest4Principal opposite: #school"
 
 	<generated>
+	<derived>
 	^ principal
 ]
 
@@ -65,6 +66,7 @@ FamixTest4School >> rooms [
 	"Relation named: #rooms type: #FamixTest4Room opposite: #school"
 
 	<generated>
+	<derived>
 	^ rooms
 ]
 
@@ -88,6 +90,7 @@ FamixTest4School >> students [
 	"Relation named: #students type: #FamixTest4Student opposite: #school"
 
 	<generated>
+	<derived>
 	^ students
 ]
 
@@ -111,6 +114,7 @@ FamixTest4School >> teachers [
 	"Relation named: #teachers type: #FamixTest4Teacher opposite: #school"
 
 	<generated>
+	<derived>
 	^ teachers
 ]
 

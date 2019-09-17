@@ -53,6 +53,7 @@ FamixTFolder >> childrenFileSystemEntities [
 
 	<generated>
 	<MSEComment: 'List of entities contained in this folder.'>
+	<derived>
 	^ childrenFileSystemEntities
 ]
 

@@ -154,11 +154,9 @@ FMRepositoryVisitor >> run [
 
 { #category : #exporting }
 FMRepositoryVisitor >> shouldIgnoreProperty: property [
+	(repository metamodel includes: property) ifFalse: [ ^ true ].
 
-	(((repository metamodel includes: property) and: [property isContainer]))
-		ifTrue: [ ^ false ].
-		
-	^ (repository metamodel includes: property) not or: [ property isDerived ]
+	^ property isDerived
 ]
 
 { #category : #exporting }

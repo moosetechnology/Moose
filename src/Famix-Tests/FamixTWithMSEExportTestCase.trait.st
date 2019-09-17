@@ -36,5 +36,6 @@ FamixTWithMSEExportTestCase >> setUpImportedModel [
 	self setUp.
 	tempFile := (FileSystem memory / 'files-test.mse') ensureCreateFile.
 	tempFile writeStreamDo: [ :s | model exportToMSEStream: s ].
-	model := tempFile readStreamDo: [ :s | model class importFromMSEStream: s ]
+	model := tempFile readStreamDo: [ :s | model class importFromMSEStream: s ].
+	model name: 'IMPORTED FROM MSE' , model name
 ]

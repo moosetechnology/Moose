@@ -40,6 +40,7 @@ FamixTPackage >> childEntities [
 	"Relation named: #childEntities type: #FamixTPackageable opposite: #parentPackage"
 
 	<generated>
+	<derived>
 	^ childEntities
 ]
 

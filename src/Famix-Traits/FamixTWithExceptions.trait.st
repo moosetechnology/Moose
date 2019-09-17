@@ -27,6 +27,7 @@ FamixTWithExceptions >> exceptions [
 
 	<generated>
 	<MSEComment: 'Exceptions which class is myself.'>
+	<derived>
 	^ exceptions
 ]
 

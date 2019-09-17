@@ -49,6 +49,7 @@ FamixTNamespace >> namespaceEntities [
 	"Relation named: #namespaceEntities type: #FamixTNamespaceEntity opposite: #parentNamespace"
 
 	<generated>
+	<derived>
 	^ namespaceEntities
 ]
 
