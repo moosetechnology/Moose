@@ -90,35 +90,34 @@ FMEquationSystemExample class >> modelString [
 FMEquationSystemExample >> testAllSubclasses [
 	| metarepo |
 	metarepo := self class createMetamodel.
-	(metarepo elementNamed: 'EQ.Expression') notNil should beTrue.
-	(metarepo elementNamed: 'EQ.Expression') allSubclasses size should = 4
+	self assert: (metarepo elementNamed: 'EQ.Expression') notNil.
+	self assert: (metarepo elementNamed: 'EQ.Expression') allSubclasses size equals: 4
 ]
 
 { #category : #running }
 FMEquationSystemExample >> testCreateModel [
-
 	| metarepo repo |
 	metarepo := self class createMetamodel.
 	repo := FMRepository with: metarepo.
 	repo importString: self class modelString.
-	^repo
+	^ repo
 ]
 
 { #category : #running }
 FMEquationSystemExample >> testMetamodel [
 	| metarepo |
 	metarepo := self class createMetamodel.
-	metarepo elements size should = 19.
-	metarepo packages size should = 1.
-	metarepo classes size should = 9.
-	metarepo properties size should = 9
+	self assert: metarepo elements size equals: 19.
+	self assert: metarepo packages size equals: 1.
+	self assert: metarepo classes size equals: 9.
+	self assert: metarepo properties size equals: 9
 ]
 
 { #category : #running }
 FMEquationSystemExample >> testMetamodelContainsCompound [
 	| metarepo |
 	metarepo := self class createMetamodel.
-	(metarepo elementNamed: 'EQ.Compound') notNil should beTrue
+	self assert: (metarepo elementNamed: 'EQ.Compound') notNil
 ]
 
 { #category : #running }
@@ -126,6 +125,6 @@ FMEquationSystemExample >> testPrintString [
 	| repo systems |
 	repo := self testCreateModel.
 	systems := repo selectKindOf: EQEquationSystem.
-	systems size should = 1.
-	systems anyOne printString should = 'X1 = (X2 + X3)\X2 = (X5 + (X3 + X1))\X3 = (X5 + (7 * 5))\' withCRs
+	self assert: systems size equals: 1.
+	self assert: systems anyOne printString equals: 'X1 = (X2 + X3)\X2 = (X5 + (X3 + X1))\X3 = (X5 + (7 * 5))\' withCRs
 ]
