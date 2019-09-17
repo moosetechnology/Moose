@@ -103,10 +103,11 @@ FMRepositoryVisitor >> indexOf: each [
 	^index at: each ifAbsentPut: [ index size + 1 ]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 FMRepositoryVisitor >> initialize [
-	"Gofer new squeaksource: 'ht'; addPackage: 'Hashtable'; load."
-	index := IdentityHashTable new.
+	"We use IdentityHashTable because it is more performant than IdentityDictionary for big collections."
+
+	index := IdentityHashTable new
 ]
 
 { #category : #private }

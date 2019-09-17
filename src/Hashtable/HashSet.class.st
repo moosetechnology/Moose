@@ -1,3 +1,8 @@
+"
+I am a replacement for Set that uses chaining instead of linear probing for collision resolution.
+
+This results in a much better performance for big Collections.
+"
 Class {
 	#name : #HashSet,
 	#superclass : #HashTable,

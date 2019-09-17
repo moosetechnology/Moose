@@ -1,3 +1,8 @@
+"
+I am a replacement for Dictionary that uses chaining instead of linear probing for collision resolution.
+
+This results in a much better performance for big Collections.
+"
 Class {
 	#name : #HashTable,
 	#superclass : #Collection,
