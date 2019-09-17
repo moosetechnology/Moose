@@ -26,6 +26,7 @@ FamixTWithAttributes >> attributes [
 
 	<generated>
 	<MSEComment: 'List of attributes declared by this type.'>
+	<derived>
 	^ attributes
 ]
 

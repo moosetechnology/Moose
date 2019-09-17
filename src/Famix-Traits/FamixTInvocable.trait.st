@@ -26,6 +26,7 @@ FamixTInvocable >> incomingInvocations [
 
 	<generated>
 	<MSEComment: 'Incoming invocations from other behaviours computed by the candidate operator.'>
+	<derived>
 	^ incomingInvocations
 ]
 

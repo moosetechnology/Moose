@@ -22,6 +22,7 @@ FamixTestComposed1CustomEntity3 >> customEntities3 [
 	"Relation named: #customEntities3 type: #FamixTestComposed1CustomEntity3 opposite: #customEntity3"
 
 	<generated>
+	<derived>
 	<MSEProperty: #customEntities3 type: #Object>
 	<package: #'Famix-TestComposedMetamodel-Entities'>
 	^ self privateState attributeAt: #customEntities3 ifAbsentPut: [ FMMultivalueLink on: self opposite: #customEntity3: ]

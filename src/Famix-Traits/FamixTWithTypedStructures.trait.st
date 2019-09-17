@@ -41,6 +41,7 @@ FamixTWithTypedStructures >> structuresWithDeclaredType [
 
 	<generated>
 	<MSEComment: 'Structural entities that have this type as declaredType'>
+	<derived>
 	^ structuresWithDeclaredType
 ]
 

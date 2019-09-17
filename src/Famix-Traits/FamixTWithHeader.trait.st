@@ -21,6 +21,7 @@ FamixTWithHeader >> header [
 
 	<generated>
 	<MSEComment: 'The header file that defines this module'>
+	<derived>
 	^ header
 ]
 

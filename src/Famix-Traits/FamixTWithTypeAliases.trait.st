@@ -35,6 +35,7 @@ FamixTWithTypeAliases >> typeAliases [
 
 	<generated>
 	<MSEComment: 'Aliases'>
+	<derived>
 	^ typeAliases
 ]
 

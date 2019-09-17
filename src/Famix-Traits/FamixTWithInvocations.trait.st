@@ -26,6 +26,7 @@ FamixTWithInvocations >> outgoingInvocations [
 
 	<generated>
 	<MSEComment: 'Outgoing invocations sent by this behaviour.'>
+	<derived>
 	^ outgoingInvocations
 ]
 

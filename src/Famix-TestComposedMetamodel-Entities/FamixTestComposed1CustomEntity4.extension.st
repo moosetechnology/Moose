@@ -5,6 +5,7 @@ FamixTestComposed1CustomEntity4 >> c24s [
 	"Relation named: #c24s type: #FamixTestComposed1CustomEntity4 opposite: #c14s"
 
 	<generated>
+	<derived>
 	<MSEProperty: #c24s type: #Object>
 	<package: #'Famix-TestComposedMetamodel-Entities'>
 	^ self privateState attributeAt: #c24s ifAbsentPut: [ FMMultiMultivalueLink on: self opposite: #c14s ]

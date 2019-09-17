@@ -26,6 +26,7 @@ FamixTWithMethods >> methods [
 
 	<generated>
 	<MSEComment: 'Methods declared by this type.'>
+	<derived>
 	^ methods
 ]
 

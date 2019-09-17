@@ -26,6 +26,7 @@ FamixTWithAnnotationInstanceAttributes >> attributes [
 
 	<generated>
 	<MSEComment: 'This corresponds to the actual values of the attributes in an AnnotationInstance'>
+	<derived>
 	^ attributes
 ]
 

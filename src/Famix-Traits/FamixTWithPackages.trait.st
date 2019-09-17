@@ -26,6 +26,7 @@ FamixTWithPackages >> packages [
 	"Relation named: #packages type: #FamixTPackage opposite: #packageOwner"
 
 	<generated>
+	<derived>
 	^ packages
 ]
 

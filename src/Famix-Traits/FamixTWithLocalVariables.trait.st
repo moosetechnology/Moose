@@ -26,6 +26,7 @@ FamixTWithLocalVariables >> localVariables [
 
 	<generated>
 	<MSEComment: 'Variables locally defined by this behaviour.'>
+	<derived>
 	^ localVariables
 ]
 

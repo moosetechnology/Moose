@@ -21,6 +21,7 @@ FamixTWithAccesses >> accesses [
 
 	<generated>
 	<MSEComment: 'Accesses to variables made by this behaviour.'>
+	<derived>
 	^ accesses
 ]
 

@@ -39,6 +39,7 @@ FamixTSourceLanguage >> sourcedEntities [
 
 	<generated>
 	<MSEComment: 'References to the entities saying explicitly that are written in this language.'>
+	<derived>
 	^ sourcedEntities
 ]
 

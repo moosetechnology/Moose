@@ -26,6 +26,7 @@ FamixTWithParameterizedTypes >> parameterizedTypes [
 	"Relation named: #parameterizedTypes type: #FamixTParameterizedType opposite: #parameterizableClass"
 
 	<generated>
+	<derived>
 	^ parameterizedTypes
 ]
 

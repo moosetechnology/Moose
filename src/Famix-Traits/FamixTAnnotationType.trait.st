@@ -69,6 +69,7 @@ FamixTAnnotationType >> instances [
 
 	<generated>
 	<MSEComment: 'Annotations of this type'>
+	<derived>
 	^ instances
 ]
 

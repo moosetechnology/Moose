@@ -156,6 +156,7 @@ FmxMBRelationSideTrait >> manyToMany: aRelationSide [
 	ownSide := self asRelationSideNamed: aRelationSide pluralPropertyName.
 	oppositeSide := aRelationSide asRelationSideNamed: self pluralPropertyName.
 	ownSide many.
+	ownSide derived.
 	oppositeSide many.
 	aRelation := self relationFrom: ownSide to: oppositeSide.
 	self builder configuration navigationForNonContainers
@@ -179,6 +180,7 @@ FmxMBRelationSideTrait >> manyToOne: aRelationSide [
 	ownSide := self asRelationSideNamed: aRelationSide singularPropertyName.
 	oppositeSide := aRelationSide asRelationSideNamed: self pluralPropertyName.
 	oppositeSide many.
+	oppositeSide derived.
 	aRelation := self relationFrom: ownSide to: oppositeSide.
 	self builder configuration navigationForNonContainers
 		ifTrue: [ aRelation withNavigation ].
@@ -214,6 +216,7 @@ FmxMBRelationSideTrait >> oneToMany: aRelationSide [
 	ownSide := self asRelationSideNamed: aRelationSide pluralPropertyName.
 	oppositeSide := aRelationSide asRelationSideNamed: self singularPropertyName.
 	ownSide many.
+	ownSide derived.
 	aRelation := self relationFrom: ownSide to: oppositeSide.
 	self builder configuration navigationForNonContainers
 		ifTrue: [ aRelation withNavigation ].
@@ -235,7 +238,7 @@ FmxMBRelationSideTrait >> oneToOne: aRelationSide [
 	
 	ownSide := self asRelationSideNamed: aRelationSide propertyName.
 	oppositeSide := aRelationSide asRelationSideNamed: self propertyName.
-	 	
+	oppositeSide derived.
 	aRelation := self relationFrom: ownSide to: oppositeSide.
 	self builder configuration navigationForNonContainers
 		ifTrue: [ aRelation withNavigation ].

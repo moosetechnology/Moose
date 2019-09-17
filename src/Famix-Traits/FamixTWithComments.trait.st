@@ -28,6 +28,7 @@ FamixTWithComments >> comments [
 
 	<generated>
 	<MSEComment: 'list of comments defined in the entity'>
+	<derived>
 	^ comments
 ]
 

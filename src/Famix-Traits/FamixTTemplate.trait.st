@@ -44,6 +44,7 @@ FamixTTemplate >> templateUsers [
 	"Relation named: #templateUsers type: #FamixTTemplateUser opposite: #template"
 
 	<generated>
+	<derived>
 	^ templateUsers
 ]
 

@@ -31,6 +31,7 @@ FamixTModule >> moduleEntities [
 	"Relation named: #moduleEntities type: #FamixTDefinedInModule opposite: #parentModule"
 
 	<generated>
+	<derived>
 	^ moduleEntities
 ]
 
