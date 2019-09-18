@@ -219,7 +219,7 @@ FMPragmaProcessor >> processClass: aClass ifPragmaAbsent: anErrorBlock [
 	classDict at: aClass put: meta.
 	aClass methods do: [ :each | self processCompiledMethod: each ].
 	aClass slots do: [ :each | self processSlot: each in: aClass].
-	meta isFM3Class should beTrue.
+	self assert: meta isFM3Class.
 	^ meta
 ]
 
@@ -234,7 +234,7 @@ FMPragmaProcessor >> processCompiledMethod: aMethod [
 		ifTrue: [ aMethod compileAndInstallCompiledMethod.
 			method := aMethod compiledMethod ].
 
-	method isCompiledMethod should beTrue.
+	self assert: method isCompiledMethod.
 	pragma := Pragma inMethod: method named: #(#MSEProperty:type:opposite: #MSEProperty:type:).
 	pragma ifNil: [ ^ self ].
 	prop := FM3PropertyDescription new.

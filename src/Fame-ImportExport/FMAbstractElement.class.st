@@ -34,10 +34,8 @@ FMAbstractElement >> name: anObject [
 FMAbstractElement >> packageName [
 	| pos |
 	pos := name lastIndexOf: $..
-	pos should > 0.
-	^ name 
-		copyFrom: 1
-		to: pos - 1
+	self assert: pos > 0.
+	^ name copyFrom: 1 to: pos - 1
 ]
 
 { #category : #accessing }
@@ -55,8 +53,6 @@ FMAbstractElement >> serial: anInteger [
 FMAbstractElement >> simpleName [
 	| pos |
 	pos := name lastIndexOf: $..
-	pos should > 0.
-	^ name 
-		copyFrom: pos + 1
-		to: name size
+	self assert: pos > 0.
+	^ name copyFrom: pos + 1 to: name size
 ]

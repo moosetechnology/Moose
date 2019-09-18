@@ -106,7 +106,7 @@ FMLibraryExample >> testGlobalMainTower [
 FMLibraryExample >> testMetaMetamodelIsaM3Repository [
 	| mm |
 	mm := self testPragmasAsMetamodel.
-	mm metamodel should not = mm.
+	self deny: mm metamodel equals: mm.
 	self assert: mm metamodel metamodel equals: mm metamodel
 ]
 
@@ -114,27 +114,27 @@ FMLibraryExample >> testMetaMetamodelIsaM3Repository [
 FMLibraryExample >> testMetamodelSmalltalkBinding [
 	| mm b p lib |
 	mm := self testPragmasAsMetamodel.
-	mm elements anyOne should beKindOf: FM3Element.
+	self assert: (mm elements anyOne isKindOf: FM3Element).
 	self assert: mm packages anyOne isFM3Package.
 	self assert: mm classes anyOne isFM3Class.
 	self assert: mm properties anyOne isFM3Property.
 	b := mm elementNamed: 'LIB.Book'.
 	self assert: b notNil.
-	b should beKindOf: FM3MetaDescription.
+	self assert: (b isKindOf: FM3MetaDescription).
 	self assert: b name equals: #Book.
 	self assert: b package name equals: #LIB.
 	self assert: b attributes size equals: 2.
 	self assert: b implementingClass equals: LIBBook.
 	p := mm elementNamed: 'LIB.Person'.
 	self assert: p notNil.
-	p should beKindOf: FM3MetaDescription.
+	self assert: (p isKindOf: FM3MetaDescription).
 	self assert: p name equals: #Person.
 	self assert: p package name equals: #LIB.
 	self assert: p attributes size equals: 2.
 	self assert: p implementingClass equals: LIBPerson.
 	lib := mm elementNamed: 'LIB.Library'.
 	self assert: lib notNil.
-	lib should beKindOf: FM3MetaDescription.
+	self assert: (lib isKindOf: FM3MetaDescription).
 	self assert: lib name equals: #Library.
 	self assert: lib package name equals: #LIB.
 	self assert: lib attributes size equals: 2.
@@ -198,11 +198,13 @@ FMLibraryExample >> testPrintMetamodel [
 	| mm string |
 	mm := self testPragmasAsMetamodel.
 	string := mm exportString.
-	string should
-		beginWith:
-			'(
+	self
+		assert:
+			(string
+				beginsWith:
+					'(
 	(FM3.Package (id: 1)
-		(name ''LIB'')'
+		(name ''LIB'')')
 ]
 
 { #category : #examples }
@@ -210,10 +212,12 @@ FMLibraryExample >> testPrintModel [
 	| m string |
 	m := self testSCGLibraryAsModel.
 	string := m exportString.
-	string should
-		beginWith:
-			'(
-	(LIB.Library (id:'
+	self
+		assert:
+			(string
+				beginsWith:
+					'(
+	(LIB.Library (id:')
 ]
 
 { #category : #examples }

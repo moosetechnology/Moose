@@ -776,7 +776,7 @@ FMMSEParserTest >> testFullDocument [
 	p fromString: self class famix30mse.
 	p Document.
 	self assert: r contents first equals: #(#beginDocument).
-	r contents size should > 200.	" = many"
+	self assert: r contents size > 200.	" = many"
 	self assert: r contents last equals: #(#endDocument).
 	self assert: p atEnd
 ]
