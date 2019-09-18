@@ -79,7 +79,7 @@ FMPragmaProcessorTest >> testSimple [
 	processor run.
 	self assert: processor elements size equals: originalSize + 2.
 	rep := processor asMetamodel.
-	rep should beKindOf: FMRepository.
+	self assert: (rep isKindOf: FMRepository).
 	self assert: rep elements size equals: originalSize + 2.
 	elements := rep classes.
 	self assert: elements size equals: originalSize + 1.
