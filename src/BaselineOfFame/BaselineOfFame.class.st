@@ -22,12 +22,11 @@ BaselineOfFame >> baseline: spec [
 				hashtable: spec;
 				mocketry: spec;
 				iterators: spec;
-				treeQuery: spec;
-				stateSpecs: spec.
+				treeQuery: spec.
 
 			"Packages"
 			spec
-				package: 'Fame-Core' with: [ spec requires: #('Hashtable' 'StateSpecs' 'TreeQuery' 'Iterators') ];
+				package: 'Fame-Core' with: [ spec requires: #('Hashtable' 'TreeQuery' 'Iterators') ];
 				package: 'Fame-Rules';
 				package: 'Fame-ImportExport' with: [ spec requires: #('Fame-Core') ];
 				package: 'Fame-SmalltalkBinding' with: [ spec requires: #('Fame-Core') ];
@@ -66,11 +65,6 @@ BaselineOfFame >> packageRepositoryURL [
 { #category : #accessing }
 BaselineOfFame >> projectClass [
 	^ MetacelloCypressBaselineProject
-]
-
-{ #category : #dependencies }
-BaselineOfFame >> stateSpecs: spec [
-	spec baseline: 'StateSpecs' with: [ spec repository: repository ]
 ]
 
 { #category : #dependencies }

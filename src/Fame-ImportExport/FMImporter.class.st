@@ -16,19 +16,15 @@ Class {
 }
 
 { #category : #private }
-FMImporter >> assign: element to: serial [ 
+FMImporter >> assign: element to: serial [
 	| todo |
-	serialDict 
-		at: serial
-		put: element.
-	todo := reminderDict 
-		removeKey: serial
-		ifAbsent: [ ^ self ].
-	todo do: 
-		[ :each | 
-		each resolve: element.
-		tally := tally - 1.
-		tally should >= 0 ]
+	serialDict at: serial put: element.
+	todo := reminderDict removeKey: serial ifAbsent: [ ^ self ].
+	todo
+		do: [ :each | 
+			each resolve: element.
+			tally := tally - 1.
+			self assert: tally >= 0 ]
 ]
 
 { #category : #parsing }
@@ -75,9 +71,9 @@ FMImporter >> endAttribute: name [
 
 { #category : #parsing }
 FMImporter >> endDocument [
-	stack isEmpty should beTrue.
+	self assert: stack isEmpty.
 	stack := nil.
-	tally should = 0.
+	self assert: tally = 0.
 	model addAll: elements
 ]
 
