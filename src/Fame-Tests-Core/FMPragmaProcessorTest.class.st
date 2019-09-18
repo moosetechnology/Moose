@@ -10,44 +10,43 @@ FMPragmaProcessorTest >> testAnnotationTypes [
 	repo := FMMetaRepository fm3.
 	package := repo elementNamed: 'FM3'.
 	class := repo elementNamed: 'FM3.Element'.
-	class isFM3Class should beTrue.
-	class superclass should = FM3 object.
-	class implementingClass should = FM3Element.
-	(class at: 'name') isFM3Property should beTrue.
-	(class at: 'name') name should = #name.
-	(class at: 'name') mmClass should = class.
-	(class at: 'name') owner should = class.
-	(class at: 'name') type should = FM3 string.
-	(class at: 'name') isContainer should beFalse.
-	(class at: 'name') isMultivalued should beFalse.
-	(class at: 'name') isComposite should beFalse.
-	(class at: 'name') hasOpposite should beFalse.
-	class owner should = package.	"We now test properties"
+	self assert: class isFM3Class.
+	self assert: class superclass equals: FM3 object.
+	self assert: class implementingClass equals: FM3Element.
+	self assert: (class at: 'name') isFM3Property.
+	self assert: (class at: 'name') name equals: #name.
+	self assert: (class at: 'name') mmClass equals: class.
+	self assert: (class at: 'name') owner equals: class.
+	self assert: (class at: 'name') type equals: FM3 string.
+	self deny: (class at: 'name') isContainer.
+	self deny: (class at: 'name') isMultivalued.
+	self deny: (class at: 'name') isComposite.
+	self deny: (class at: 'name') hasOpposite.
+	self assert: class owner equals: package.	"We now test properties"
 	class := package at: 'Property'.
-	class isFM3Class should beTrue.
-	class superclass should = (package at: 'Element').
-	class implementingClass should = FM3PropertyDescription.
-	(class at: 'opposite') isFM3Property should beTrue.
-	(class at: 'opposite') name should = #opposite.
-	(class at: 'opposite') mmClass should = class.
-	(class at: 'opposite') owner should = class.
-	(class at: 'opposite') type should = class.
-	(class at: 'opposite') isContainer should beFalse.
-	(class at: 'opposite') isMultivalued should beFalse.
-	(class at: 'opposite') isComposite should beFalse.
-	(class at: 'opposite') hasOpposite should beTrue.
-	(class at: 'opposite') opposite should = (class at: 'opposite').	"We now test the container property of FM3's properties"
+	self assert: class isFM3Class.
+	self assert: class superclass equals: (package at: 'Element').
+	self assert: class implementingClass equals: FM3PropertyDescription.
+	self assert: (class at: 'opposite') isFM3Property.
+	self assert: (class at: 'opposite') name equals: #opposite.
+	self assert: (class at: 'opposite') mmClass equals: class.
+	self assert: (class at: 'opposite') owner equals: class.
+	self assert: (class at: 'opposite') type equals: class.
+	self deny: (class at: 'opposite') isContainer.
+	self deny: (class at: 'opposite') isMultivalued.
+	self deny: (class at: 'opposite') isComposite.
+	self assert: (class at: 'opposite') hasOpposite.
+	self assert: (class at: 'opposite') opposite equals: (class at: 'opposite').	"We now test the container property of FM3's properties"
 	property := (package at: 'Property') at: 'class'.
-	property isContainer should beTrue.
+	self assert: property isContainer.
 	properties := (package at: 'Property') allAttributes copyWithout: property.
-	(properties noneSatisfy: #isContainer) should beTrue.
+	self assert: (properties noneSatisfy: #isContainer).
 	properties := (package at: 'Package') allAttributes.
-	(properties noneSatisfy: #isContainer) should beTrue.
+	self assert: (properties noneSatisfy: #isContainer).
 	property := (package at: 'Class') at: 'package'.
-	property isContainer should beTrue.
+	self assert: property isContainer.
 	properties := (package at: 'Class') allAttributes copyWithout: property.
-	(properties noneSatisfy: #isContainer) should beTrue.
-
+	self assert: (properties noneSatisfy: #isContainer)
 ]
 
 { #category : #running }
@@ -55,10 +54,10 @@ FMPragmaProcessorTest >> testBuildFM3 [
 	| processor all |
 	processor := FMPragmaProcessor new.
 	processor buildFM3.	"There are some elements."
-	processor elements isEmpty should beFalse.	"There is one and only one package."
+	self denyEmpty: processor elements.	"There is one and only one package."
 	all := processor packages.
-	all size should = 1.
-	all anyOne name should = #FM3	"We do not test more here, please refer to FMMetaRepositoryTest for more FM3 tests..."
+	self assert: all size equals: 1.
+	self assert: all anyOne name equals: #FM3	"We do not test more here, please refer to FMMetaRepositoryTest for more FM3 tests..."
 ]
 
 { #category : #running }
@@ -66,7 +65,7 @@ FMPragmaProcessorTest >> testEmptyProcessor [
 	| processor |
 	processor := FMPragmaProcessor new.
 	"An empty processor knows all primitives, but does not contain them as elements!"
-	processor elements size should = 0
+	self assert: processor elements size equals: 0
 ]
 
 { #category : #running }
@@ -78,18 +77,18 @@ FMPragmaProcessorTest >> testSimple [
 	originalSize := processor elements size.
 	processor queue: FMPragmaProcessorTestDummy.
 	processor run.
-	processor elements size should = (originalSize + 2).
+	self assert: processor elements size equals: originalSize + 2.
 	rep := processor asMetamodel.
 	rep should beKindOf: FMRepository.
-	rep elements size should = (originalSize + 2).
+	self assert: rep elements size equals: originalSize + 2.
 	elements := rep classes.
-	elements size should = (originalSize + 1).
+	self assert: elements size equals: originalSize + 1.
 	props := rep properties.
-	props size should = 1.
-	props anyOne mmClass notNil should beTrue.
-	elements should include: props anyOne mmClass.
+	self assert: props size equals: 1.
+	self assert: props anyOne mmClass notNil.
+	self assert: (elements includes: props anyOne mmClass).
 	mmClass := props anyOne mmClass.
-	mmClass name should = #FMAnnotationTest.
-	mmClass superclass name should = #Object.
-	props anyOne type name should = #Boolean
+	self assert: mmClass name equals: #FMAnnotationTest.
+	self assert: mmClass superclass name equals: #Object.
+	self assert: props anyOne type name equals: #Boolean
 ]

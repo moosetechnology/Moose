@@ -11,7 +11,7 @@ FMModelBuilderTest >> testDocument [
 	m := FMModelBuilder new client: client.
 	m document: [  ].
 	s := client stream contents.
-	s should = '()'
+	self assert: s equals: '()'
 ]
 
 { #category : #running }
@@ -19,15 +19,12 @@ FMModelBuilderTest >> testPerson [
 	| client m s |
 	client := FMMSEPrinter new onString.
 	m := FMModelBuilder new client: client.
-	m document: 
-		[ m 
-			new: #Person
-			with: 
-				[ m 
-					a: #name
-					of: 'John Doe' ] ].
+	m document: [ m new: #Person with: [ m a: #name of: 'John Doe' ] ].
 	s := client stream contents.
-	s should = '(
+	self
+		assert: s
+		equals:
+			'(
 	(Person
 		(name ''John Doe'')))'
 ]
@@ -37,27 +34,21 @@ FMModelBuilderTest >> testPersonWithDog [
 	| client m s |
 	client := FMMSEPrinter new onString.
 	m := FMModelBuilder new client: client.
-	m document: 
-		[ m 
-			new: #Person
-			with: 
-				[ m 
-					a: #name
-					of: 'John Doe'.
-				m 
-					a: #dog
-					of: 
-						[ m 
-							new: #Dog
-							with: 
-								[ m 
-									a: #color
-									of: 'brown'.
-								m 
-									an: #age
-									of: 5 ] ] ] ].
+	m
+		document: [ m
+				new: #Person
+				with: [ m a: #name of: 'John Doe'.
+					m
+						a: #dog
+						of: [ m
+								new: #Dog
+								with: [ m a: #color of: 'brown'.
+									m an: #age of: 5 ] ] ] ].
 	s := client stream contents.
-	s should = '(
+	self
+		assert: s
+		equals:
+			'(
 	(Person
 		(name ''John Doe'')
 		(dog
@@ -71,28 +62,21 @@ FMModelBuilderTest >> testPersonWithDogUsingIdReferences [
 	| client m s |
 	client := FMMSEPrinter new onString.
 	m := FMModelBuilder new client: client.
-	m document: 
-		[ m 
-			new: #Person
-			with: 
-				[ m 
-					a: #name
-					of: 'John Doe'.
-				m 
-					a: #dog
-					of: [ m ref: 42 ] ].
-		m 
-			new: #Dog
-			with: 
-				[ m id: 42.
-				m 
-					a: #color
-					of: 'brown'.
-				m 
-					an: #age
-					of: 5 ] ].
+	m
+		document: [ m
+				new: #Person
+				with: [ m a: #name of: 'John Doe'.
+					m a: #dog of: [ m ref: 42 ] ].
+			m
+				new: #Dog
+				with: [ m id: 42.
+					m a: #color of: 'brown'.
+					m an: #age of: 5 ] ].
 	s := client stream contents.
-	s should = '(
+	self
+		assert: s
+		equals:
+			'(
 	(Person
 		(name ''John Doe'')
 		(dog (ref: 42)))
@@ -106,18 +90,16 @@ FMModelBuilderTest >> testPersonWithNicknames [
 	| client m s |
 	client := FMMSEPrinter new onString.
 	m := FMModelBuilder new client: client.
-	m document: 
-		[ m 
-			new: #Person
-			with: 
-				[ m 
-					a: #name
-					of: 'John Doe'.
-				m 
-					a: #nick
-					of: #('Joe' 'hack3r' 'dowey' ) ] ].
+	m
+		document: [ m
+				new: #Person
+				with: [ m a: #name of: 'John Doe'.
+					m a: #nick of: #('Joe' 'hack3r' 'dowey') ] ].
 	s := client stream contents.
-	s should = '(
+	self
+		assert: s
+		equals:
+			'(
 	(Person
 		(name ''John Doe'')
 		(nick ''Joe'' ''hack3r'' ''dowey'')))'

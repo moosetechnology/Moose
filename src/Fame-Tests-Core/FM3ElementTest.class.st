@@ -16,9 +16,9 @@ FM3ElementTest >> setUp [
 
 { #category : #running }
 FM3ElementTest >> testFullNameIsString [
-	(tower metaMetamodel elementNamed: 'FM3') fullName isString should beTrue.
-	(tower metaMetamodel elementNamed: 'FM3.Property') fullName isString should beTrue.
-	(tower metaMetamodel elementNamed: 'FM3.Property.opposite') fullName isString should beTrue
+	self assert: (tower metaMetamodel elementNamed: 'FM3') fullName isString.
+	self assert: (tower metaMetamodel elementNamed: 'FM3.Property') fullName isString.
+	self assert: (tower metaMetamodel elementNamed: 'FM3.Property.opposite') fullName isString
 ]
 
 { #category : #running }
@@ -26,7 +26,7 @@ FM3ElementTest >> testFullNameOfNonameIsNil [
 	| noname |
 	noname := FM3PackageDescription new.
 	self shouldnt: [ noname fullName ] raise: Error.
-	noname fullName isNil should beTrue
+	self assert: noname fullName isNil
 ]
 
 { #category : #running }
@@ -37,21 +37,19 @@ FM3ElementTest >> testFullNameOfNonameOwnerIsNil [
 	child package: noname.
 	child name: 'Child'.
 	self shouldnt: [ child fullName ] raise: Error.
-	child fullName isNil should beTrue
+	self assert: child fullName isNil
 ]
 
 { #category : #running }
 FM3ElementTest >> testNameIsSymbol [
-	(tower metaMetamodel elementNamed: 'FM3') name isSymbol should beTrue.
-	(tower metaMetamodel elementNamed: 'FM3.Property') name isSymbol should beTrue.
-	(tower metaMetamodel elementNamed: 'FM3.Property.opposite') name isSymbol should beTrue
+	self assert: (tower metaMetamodel elementNamed: 'FM3') name isSymbol.
+	self assert: (tower metaMetamodel elementNamed: 'FM3.Property') name isSymbol.
+	self assert: (tower metaMetamodel elementNamed: 'FM3.Property.opposite') name isSymbol
 ]
 
 { #category : #running }
 FM3ElementTest >> testPrintString [
-
 	| noname |
 	noname := FM3Element new.
-	self shouldnt: [ noname printString ] raise: Error.
-	
+	self shouldnt: [ noname printString ] raise: Error
 ]

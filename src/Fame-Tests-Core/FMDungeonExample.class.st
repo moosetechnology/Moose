@@ -52,35 +52,35 @@ FMDungeonExample >> testDragonHoard [
 	b := (t metamodel elementNamed: 'RPG.Dragon') createInstance.
 	x := (t metamodel elementNamed: 'RPG.Treasure') createInstance.
 	y := (t metamodel elementNamed: 'RPG.Treasure') createInstance.
-	a hoard isCollection should beTrue.
-	a hoard isEmpty should beTrue.
-	b hoard isCollection should beTrue.
-	b hoard isEmpty should beTrue.
-	x keeper isCollection should beFalse.
-	x keeper isNil should beTrue.
-	y keeper isCollection should beFalse.
-	y keeper isNil should beTrue.
+	self assert: a hoard isCollection.
+	self assertEmpty: a hoard.
+	self assert: b hoard isCollection.
+	self assertEmpty: b hoard.
+	self deny: x keeper isCollection.
+	self assert: x keeper isNil.
+	self deny: y keeper isCollection.
+	self assert: y keeper isNil.
 	a hoard add: x.
-	x keeper should = a.
-	a hoard size should = 1.
-	a hoard should include: x.
+	self assert: x keeper equals: a.
+	self assert: a hoard size equals: 1.
+	self assert: (a hoard includes: x).
 	a hoard add: y.
-	y keeper should = a.
-	a hoard size should = 2.
-	a hoard should include: y.
+	self assert: y keeper equals: a.
+	self assert: a hoard size equals: 2.
+	self assert: (a hoard includes: y).
 	a hoard add: y.
-	y keeper should = a.
-	a hoard size should = 2.
+	self assert: y keeper equals: a.
+	self assert: a hoard size equals: 2.
 	b hoard add: y.
-	y keeper should = b.
-	b hoard size should = 1.
-	b hoard should include: y.
-	a hoard size should = 1.
-	a hoard should not include: y.
+	self assert: y keeper equals: b.
+	self assert: b hoard size equals: 1.
+	self assert: (b hoard includes: y).
+	self assert: a hoard size equals: 1.
+	self deny: (a hoard includes: y).
 	b hoard remove: y.
-	y keeper isNil should beTrue.
-	b hoard size should = 0.
-	b hoard should not include: y
+	self assert: y keeper isNil.
+	self assertEmpty: b hoard.
+	self deny: (b hoard includes: y)
 ]
 
 { #category : #running }
@@ -90,55 +90,55 @@ FMDungeonExample >> testDragonKilledBy [
 	b := (t metamodel elementNamed: 'RPG.Dragon') createInstance.
 	x := (t metamodel elementNamed: 'RPG.Hero') createInstance.
 	y := (t metamodel elementNamed: 'RPG.Hero') createInstance.
-	a killedBy isCollection should beTrue.
-	a killedBy isEmpty should beTrue.
-	b killedBy isCollection should beTrue.
-	b killedBy isEmpty should beTrue.
-	x kills isCollection should beTrue.
-	x kills isEmpty should beTrue.
-	y kills isCollection should beTrue.
-	y kills isEmpty should beTrue.
+	self assert: a killedBy isCollection.
+	self assertEmpty: a killedBy.
+	self assert: b killedBy isCollection.
+	self assertEmpty: b killedBy.
+	self assert: x kills isCollection.
+	self assertEmpty: x kills.
+	self assert: y kills isCollection.
+	self assertEmpty: y kills.
 	a killedBy add: x.
-	a killedBy should include: x.
-	a killedBy size should = 1.
-	b killedBy size should = 0.
-	x kills size should = 1.
-	y kills size should = 0.
+	self assert: (a killedBy includes: x).
+	self assert: a killedBy size equals: 1.
+	self assert: b killedBy size equals: 0.
+	self assert: x kills size equals: 1.
+	self assert: y kills size equals: 0.
 	a killedBy add: y.
-	a killedBy should include: y.
-	a killedBy size should = 2.
-	b killedBy size should = 0.
-	x kills size should = 1.
-	y kills size should = 1.
+	self assert: (a killedBy includes: y).
+	self assert: a killedBy size equals: 2.
+	self assert: b killedBy size equals: 0.
+	self assert: x kills size equals: 1.
+	self assert: y kills size equals: 1.
 	b killedBy add: x.
-	b killedBy should include: x.
-	a killedBy size should = 2.
-	b killedBy size should = 1.
-	x kills size should = 2.
-	y kills size should = 1.
+	self assert: (b killedBy includes: x).
+	self assert: a killedBy size equals: 2.
+	self assert: b killedBy size equals: 1.
+	self assert: x kills size equals: 2.
+	self assert: y kills size equals: 1.
 	b killedBy add: y.
-	b killedBy should include: y.
-	a killedBy size should = 2.
-	b killedBy size should = 2.
-	x kills size should = 2.
-	y kills size should = 2.
+	self assert: (b killedBy includes: y).
+	self assert: a killedBy size equals: 2.
+	self assert: b killedBy size equals: 2.
+	self assert: x kills size equals: 2.
+	self assert: y kills size equals: 2.
 	b killedBy add: y.	"repeated adding should not change anything"
-	a killedBy size should = 2.
-	b killedBy size should = 2.
-	x kills size should = 2.
-	y kills size should = 2.
+	self assert: a killedBy size equals: 2.
+	self assert: b killedBy size equals: 2.
+	self assert: x kills size equals: 2.
+	self assert: y kills size equals: 2.
 	b killedBy remove: y.
-	b killedBy should not include: y.
-	a killedBy size should = 2.
-	b killedBy size should = 1.
-	x kills size should = 2.
-	y kills size should = 1.
+	self deny: (b killedBy includes: y).
+	self assert: a killedBy size equals: 2.
+	self assert: b killedBy size equals: 1.
+	self assert: x kills size equals: 2.
+	self assert: y kills size equals: 1.
 	a killedBy remove: y.
-	a killedBy should not include: y.
-	a killedBy size should = 1.
-	b killedBy size should = 1.
-	x kills size should = 2.
-	y kills size should = 0
+	self deny: (a killedBy includes: y).
+	self assert: a killedBy size equals: 1.
+	self assert: b killedBy size equals: 1.
+	self assert: x kills size equals: 2.
+	self assert: y kills size equals: 0
 ]
 
 { #category : #running }
@@ -148,55 +148,55 @@ FMDungeonExample >> testHeroKills [
 	b := (t metamodel elementNamed: 'RPG.Dragon') createInstance.
 	x := (t metamodel elementNamed: 'RPG.Hero') createInstance.
 	y := (t metamodel elementNamed: 'RPG.Hero') createInstance.
-	a killedBy isCollection should beTrue.
-	a killedBy isEmpty should beTrue.
-	b killedBy isCollection should beTrue.
-	b killedBy isEmpty should beTrue.
-	x kills isCollection should beTrue.
-	x kills isEmpty should beTrue.
-	y kills isCollection should beTrue.
-	y kills isEmpty should beTrue.
+	self assert: a killedBy isCollection.
+	self assertEmpty: a killedBy.
+	self assert: b killedBy isCollection.
+	self assertEmpty: b killedBy.
+	self assert: x kills isCollection.
+	self assertEmpty: x kills.
+	self assert: y kills isCollection.
+	self assertEmpty: y kills.
 	x kills add: a.
-	a killedBy should include: x.
-	a killedBy size should = 1.
-	b killedBy size should = 0.
-	x kills size should = 1.
-	y kills size should = 0.
+	self assert: (a killedBy includes: x).
+	self assert: a killedBy size equals: 1.
+	self assert: b killedBy size equals: 0.
+	self assert: x kills size equals: 1.
+	self assert: y kills size equals: 0.
 	y kills add: a.
-	a killedBy should include: y.
-	a killedBy size should = 2.
-	b killedBy size should = 0.
-	x kills size should = 1.
-	y kills size should = 1.
+	self assert: (a killedBy includes: y).
+	self assert: a killedBy size equals: 2.
+	self assert: b killedBy size equals: 0.
+	self assert: x kills size equals: 1.
+	self assert: y kills size equals: 1.
 	x kills add: b.
-	b killedBy should include: x.
-	a killedBy size should = 2.
-	b killedBy size should = 1.
-	x kills size should = 2.
-	y kills size should = 1.
+	self assert: (b killedBy includes: x).
+	self assert: a killedBy size equals: 2.
+	self assert: b killedBy size equals: 1.
+	self assert: x kills size equals: 2.
+	self assert: y kills size equals: 1.
 	y kills add: b.
-	b killedBy should include: y.
-	a killedBy size should = 2.
-	b killedBy size should = 2.
-	x kills size should = 2.
-	y kills size should = 2.
+	self assert: (b killedBy includes: y).
+	self assert: a killedBy size equals: 2.
+	self assert: b killedBy size equals: 2.
+	self assert: x kills size equals: 2.
+	self assert: y kills size equals: 2.
 	y kills add: b.	"repeated adding should not change anything"
-	a killedBy size should = 2.
-	b killedBy size should = 2.
-	x kills size should = 2.
-	y kills size should = 2.
+	self assert: a killedBy size equals: 2.
+	self assert: b killedBy size equals: 2.
+	self assert: x kills size equals: 2.
+	self assert: y kills size equals: 2.
 	y kills remove: b.
-	b killedBy should not include: y.
-	a killedBy size should = 2.
-	b killedBy size should = 1.
-	x kills size should = 2.
-	y kills size should = 1.
+	self deny: (b killedBy includes: y).
+	self assert: a killedBy size equals: 2.
+	self assert: b killedBy size equals: 1.
+	self assert: x kills size equals: 2.
+	self assert: y kills size equals: 1.
 	y kills remove: a.
-	a killedBy should not include: y.
-	a killedBy size should = 1.
-	b killedBy size should = 1.
-	x kills size should = 2.
-	y kills size should = 0
+	self deny: (a killedBy includes: y).
+	self assert: a killedBy size equals: 1.
+	self assert: b killedBy size equals: 1.
+	self assert: x kills size equals: 2.
+	self assert: y kills size equals: 0
 ]
 
 { #category : #running }
@@ -206,34 +206,34 @@ FMDungeonExample >> testHeroTalisman [
 	b := (t metamodel elementNamed: 'RPG.Hero') createInstance.
 	x := (t metamodel elementNamed: 'RPG.Treasure') createInstance.
 	y := (t metamodel elementNamed: 'RPG.Treasure') createInstance.
-	a talisman isCollection should beFalse.
-	a talisman isNil should beTrue.
-	b talisman isCollection should beFalse.
-	b talisman isNil should beTrue.
-	x owner isCollection should beFalse.
-	x owner isNil should beTrue.
-	y owner isCollection should beFalse.
-	y owner isNil should beTrue.
+	self deny: a talisman isCollection.
+	self assert: a talisman isNil.
+	self deny: b talisman isCollection.
+	self assert: b talisman isNil.
+	self deny: x owner isCollection.
+	self assert: x owner isNil.
+	self deny: y owner isCollection.
+	self assert: y owner isNil.
 	a talisman: x.
-	a talisman should = x.
-	b talisman isNil should beTrue.
-	x owner should = a.
-	y owner isNil should beTrue.
+	self assert: a talisman equals: x.
+	self assert: b talisman isNil.
+	self assert: x owner equals: a.
+	self assert: y owner isNil.
 	a talisman: y.
-	a talisman should = y.
-	b talisman isNil should beTrue.
-	x owner isNil should beTrue.
-	y owner should = a.
+	self assert: a talisman equals: y.
+	self assert: b talisman isNil.
+	self assert: x owner isNil.
+	self assert: y owner equals: a.
 	b talisman: y.
-	a talisman isNil should beTrue.
-	b talisman should = y.
-	x owner isNil should beTrue.
-	y owner should = b.
+	self assert: a talisman isNil.
+	self assert: b talisman equals: y.
+	self assert: x owner isNil.
+	self assert: y owner equals: b.
 	b talisman: nil.
-	a talisman isNil should beTrue.
-	b talisman isNil should beTrue.
-	x owner isNil should beTrue.
-	y owner isNil should beTrue
+	self assert: a talisman isNil.
+	self assert: b talisman isNil.
+	self assert: x owner isNil.
+	self assert: y owner isNil
 ]
 
 { #category : #running }
@@ -242,28 +242,28 @@ FMDungeonExample >> testHeroTwin [
 	a := (t metamodel elementNamed: 'RPG.Hero') createInstance.
 	b := (t metamodel elementNamed: 'RPG.Hero') createInstance.
 	c := (t metamodel elementNamed: 'RPG.Hero') createInstance.
-	a twin isCollection should beFalse.
-	a twin isNil should beTrue.
-	b twin isCollection should beFalse.
-	b twin isNil should beTrue.
-	c twin isCollection should beFalse.
-	c twin isNil should beTrue.
+	self deny: a twin isCollection.
+	self assert: a twin isNil.
+	self deny: b twin isCollection.
+	self assert: b twin isNil.
+	self deny: c twin isCollection.
+	self assert: c twin isNil.
 	a twin: b.
-	a twin should = b.
-	b twin should = a.
-	c twin isNil should beTrue.
+	self assert: a twin equals: b.
+	self assert: b twin equals: a.
+	self assert: c twin isNil.
 	a twin: c.
-	a twin should = c.
-	b twin isNil should beTrue.
-	c twin should = a.
+	self assert: a twin equals: c.
+	self assert: b twin isNil.
+	self assert: c twin equals: a.
 	b twin: c.
-	a twin isNil should beTrue.
-	b twin should = c.
-	c twin should = b.
+	self assert: a twin isNil.
+	self assert: b twin equals: c.
+	self assert: c twin equals: b.
 	b twin: nil.
-	a twin isNil should beTrue.
-	b twin isNil should beTrue.
-	c twin isNil should beTrue
+	self assert: a twin isNil.
+	self assert: b twin isNil.
+	self assert: c twin isNil
 ]
 
 { #category : #running }
@@ -273,35 +273,35 @@ FMDungeonExample >> testTreasureKeeper [
 	b := (t metamodel elementNamed: 'RPG.Dragon') createInstance.
 	x := (t metamodel elementNamed: 'RPG.Treasure') createInstance.
 	y := (t metamodel elementNamed: 'RPG.Treasure') createInstance.
-	a hoard isCollection should beTrue.
-	a hoard isEmpty should beTrue.
-	b hoard isCollection should beTrue.
-	b hoard isEmpty should beTrue.
-	x keeper isCollection should beFalse.
-	x keeper isNil should beTrue.
-	y keeper isCollection should beFalse.
-	y keeper isNil should beTrue.
+	self assert: a hoard isCollection.
+	self assertEmpty: a hoard.
+	self assert: b hoard isCollection.
+	self assertEmpty: b hoard.
+	self deny: x keeper isCollection.
+	self assert: x keeper isNil.
+	self deny: y keeper isCollection.
+	self assert: y keeper isNil.
 	x keeper: a.
-	x keeper should = a.
-	a hoard size should = 1.
-	a hoard should include: x.
+	self assert: x keeper equals: a.
+	self assert: a hoard size equals: 1.
+	self assert: (a hoard includes: x).
 	y keeper: a.
-	y keeper should = a.
-	a hoard size should = 2.
-	a hoard should include: y.
+	self assert: y keeper equals: a.
+	self assert: a hoard size equals: 2.
+	self assert: (a hoard includes: y).
 	y keeper: a.
-	y keeper should = a.
-	a hoard size should = 2.
+	self assert: y keeper equals: a.
+	self assert: a hoard size equals: 2.
 	y keeper: b.
-	y keeper should = b.
-	b hoard size should = 1.
-	b hoard should include: y.
-	a hoard size should = 1.
-	a hoard should not include: y.
+	self assert: y keeper equals: b.
+	self assert: b hoard size equals: 1.
+	self assert: (b hoard includes: y).
+	self assert: a hoard size equals: 1.
+	self deny: (a hoard includes: y).
 	y keeper: nil.
-	y keeper isNil should beTrue.
-	b hoard size should = 0.
-	b hoard should not include: y
+	self assert: y keeper isNil.
+	self assert: b hoard size equals: 0.
+	self deny: (b hoard includes: y)
 ]
 
 { #category : #running }
@@ -311,32 +311,32 @@ FMDungeonExample >> testTreasureOwner [
 	b := (t metamodel elementNamed: 'RPG.Hero') createInstance.
 	x := (t metamodel elementNamed: 'RPG.Treasure') createInstance.
 	y := (t metamodel elementNamed: 'RPG.Treasure') createInstance.
-	a talisman isCollection should beFalse.
-	a talisman isNil should beTrue.
-	b talisman isCollection should beFalse.
-	b talisman isNil should beTrue.
-	x owner isCollection should beFalse.
-	x owner isNil should beTrue.
-	y owner isCollection should beFalse.
-	y owner isNil should beTrue.
+	self deny: a talisman isCollection.
+	self assert: a talisman isNil.
+	self deny: b talisman isCollection.
+	self assert: b talisman isNil.
+	self deny: x owner isCollection.
+	self assert: x owner isNil.
+	self deny: y owner isCollection.
+	self assert: y owner isNil.
 	x owner: a.
-	a talisman should = x.
-	b talisman isNil should beTrue.
-	x owner should = a.
-	y owner isNil should beTrue.
+	self assert: a talisman equals: x.
+	self assert: b talisman isNil.
+	self assert: x owner equals: a.
+	self assert: y owner isNil.
 	y owner: a.
-	a talisman should = y.
-	b talisman isNil should beTrue.
-	x owner isNil should beTrue.
-	y owner should = a.
+	self assert: a talisman equals: y.
+	self assert: b talisman isNil.
+	self assert: x owner isNil.
+	self assert: y owner equals: a.
 	y owner: b.
-	a talisman isNil should beTrue.
-	b talisman should = y.
-	x owner isNil should beTrue.
-	y owner should = b.
+	self assert: a talisman isNil.
+	self assert: b talisman equals: y.
+	self assert: x owner isNil.
+	self assert: y owner equals: b.
 	y owner: nil.
-	a talisman isNil should beTrue.
-	b talisman isNil should beTrue.
-	x owner isNil should beTrue.
-	y owner isNil should beTrue
+	self assert: a talisman isNil.
+	self assert: b talisman isNil.
+	self assert: x owner isNil.
+	self assert: y owner isNil
 ]

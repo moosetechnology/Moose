@@ -18,20 +18,20 @@ FM3PropertyDescriptionTest >> setUp [
 FM3PropertyDescriptionTest >> testClassHasOpposite [
 	| e |
 	e := tower metaMetamodel elementNamed: 'FM3.Property.class'.
-	e hasOpposite should beTrue.
-	e opposite fullName should = 'FM3.Class.attributes'
+	self assert: e hasOpposite.
+	self assert: e opposite fullName equals: 'FM3.Class.attributes'
 ]
 
 { #category : #running }
 FM3PropertyDescriptionTest >> testIsCompositeDerived [
 	| e |
 	e := tower metaMetamodel elementNamed: 'FM3.Property.composite'.
-	e isDerived should beTrue
+	self assert: e isDerived
 ]
 
 { #category : #running }
 FM3PropertyDescriptionTest >> testTypeHasOpposite [
 	| e |
 	e := tower metaMetamodel elementNamed: 'FM3.Property.type'.
-	e hasOpposite should beFalse
+	self deny: e hasOpposite
 ]
