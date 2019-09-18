@@ -34,7 +34,12 @@ Class {
 		'type',
 		'unknownVariable',
 		'parameterizedType',
-		'tStructuralEntity'
+		'tStructuralEntity',
+		'property',
+		'propertyAccessor',
+		'struct',
+		'delegate',
+		'event'
 	],
 	#category : #'Famix-CSharp-Generator'
 }
@@ -68,6 +73,14 @@ FamixCSharpGenerator >> defineClasses [
 	annotationType := builder newClassNamed: #AnnotationType.
 	annotationTypeAttribute := builder newClassNamed: #AnnotationTypeAttribute.
 	attribute := builder newClassNamed: #Attribute.
+	
+	property := builder newClassNamed:#Property.
+	propertyAccessor := builder newClassNamed:#PropertyAccessor.
+	struct := builder newClassNamed:#Struct.
+	delegate := builder newClassNamed:#Delegate.
+	event := builder newClassNamed: #Event.
+
+
 	caughtException := builder newClassNamed: #CaughtException.
 	class := builder newClassNamed: #Class.
 	containerEntity := builder newClassNamed: #ContainerEntity.
@@ -148,13 +161,24 @@ FamixCSharpGenerator >> defineHierarchy [
 	attribute --|> tStructuralEntity.
 	attribute --|> #TAttribute.
 	attribute --|> #TWithClassScope.
-
+	
 	method --|> containerEntity.
 	method --|> #TMethod.
 	method --|> #TWithThrownExceptions.
 	method --|> #TWithDeclaredExceptions.
 	method --|> #TWithCaughtExceptions.
 	method --|> #TWithStatements.
+
+
+" ICIIIIIIIIIIIII "
+	property --|> localVariable.
+	propertyAccessor --|> method.
+	struct  --|> #TType. 
+	delegate --|> #TType. 
+	event --|> method. 
+	event --|> #TWithMethods.
+
+
 
 	caughtException --|> exception.
 	caughtException --|> #TCaughtException.
@@ -253,6 +277,15 @@ FamixCSharpGenerator >> defineHierarchy [
 	
 
 
+]
+
+{ #category : #definition }
+FamixCSharpGenerator >> defineProperties [
+	super defineProperties.
+	(property property: #setter type: #FamixCSharpPropertyAccessor)
+		comment: 'Setter of a property'.
+	(property property: #getter type:  #FamixCSharpPropertyAccessor)
+		comment: 'Getter of a property'
 ]
 
 { #category : #definition }

@@ -15,6 +15,13 @@ FamixCSharpMethod class >> annotation [
 	^self
 ]
 
+{ #category : #meta }
+FamixCSharpMethod class >> requirements [
+
+	<generated>
+	^ { FamixCSharpEvent }
+]
+
 { #category : #accessing }
 FamixCSharpMethod >> belongsTo [
 

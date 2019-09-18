@@ -103,6 +103,13 @@ FamixCSharpImportingContext >> importDeclaredException [
 ]
 
 { #category : #testing }
+FamixCSharpImportingContext >> importDelegate [
+
+	<generated>
+	^ self import: FamixCSharpDelegate
+]
+
+{ #category : #testing }
 FamixCSharpImportingContext >> importEntity [
 
 	<generated>
@@ -121,6 +128,13 @@ FamixCSharpImportingContext >> importEnumValue [
 
 	<generated>
 	^ self import: FamixCSharpEnumValue
+]
+
+{ #category : #testing }
+FamixCSharpImportingContext >> importEvent [
+
+	<generated>
+	^ self import: FamixCSharpEvent
 ]
 
 { #category : #testing }
@@ -264,6 +278,20 @@ FamixCSharpImportingContext >> importPrimitiveType [
 ]
 
 { #category : #testing }
+FamixCSharpImportingContext >> importProperty [
+
+	<generated>
+	^ self import: FamixCSharpProperty
+]
+
+{ #category : #testing }
+FamixCSharpImportingContext >> importPropertyAccessor [
+
+	<generated>
+	^ self import: FamixCSharpPropertyAccessor
+]
+
+{ #category : #testing }
 FamixCSharpImportingContext >> importReference [
 
 	<generated>
@@ -303,6 +331,13 @@ FamixCSharpImportingContext >> importSourcedEntity [
 
 	<generated>
 	^ self import: FamixCSharpSourcedEntity
+]
+
+{ #category : #testing }
+FamixCSharpImportingContext >> importStruct [
+
+	<generated>
+	^ self import: FamixCSharpStruct
 ]
 
 { #category : #testing }
@@ -432,6 +467,13 @@ FamixCSharpImportingContext >> shouldImportDeclaredException [
 ]
 
 { #category : #testing }
+FamixCSharpImportingContext >> shouldImportDelegate [
+
+	<generated>
+	^ self shouldImport: FamixCSharpDelegate
+]
+
+{ #category : #testing }
 FamixCSharpImportingContext >> shouldImportEntity [
 
 	<generated>
@@ -450,6 +492,13 @@ FamixCSharpImportingContext >> shouldImportEnumValue [
 
 	<generated>
 	^ self shouldImport: FamixCSharpEnumValue
+]
+
+{ #category : #testing }
+FamixCSharpImportingContext >> shouldImportEvent [
+
+	<generated>
+	^ self shouldImport: FamixCSharpEvent
 ]
 
 { #category : #testing }
@@ -593,6 +642,20 @@ FamixCSharpImportingContext >> shouldImportPrimitiveType [
 ]
 
 { #category : #testing }
+FamixCSharpImportingContext >> shouldImportProperty [
+
+	<generated>
+	^ self shouldImport: FamixCSharpProperty
+]
+
+{ #category : #testing }
+FamixCSharpImportingContext >> shouldImportPropertyAccessor [
+
+	<generated>
+	^ self shouldImport: FamixCSharpPropertyAccessor
+]
+
+{ #category : #testing }
 FamixCSharpImportingContext >> shouldImportReference [
 
 	<generated>
@@ -632,6 +695,13 @@ FamixCSharpImportingContext >> shouldImportSourcedEntity [
 
 	<generated>
 	^ self shouldImport: FamixCSharpSourcedEntity
+]
+
+{ #category : #testing }
+FamixCSharpImportingContext >> shouldImportStruct [
+
+	<generated>
+	^ self shouldImport: FamixCSharpStruct
 ]
 
 { #category : #testing }
