@@ -30,12 +30,12 @@ FamixJavaTest >> testImportAnnotations [
 		do: [ :i | 
 			self assert: (i annotationType instances includes: i).
 			self assert: (i annotatedEntity annotationInstances includes: i) ].
-	self assert: (model allAnnotationTypes entityNamed: #aNamespace::AnAnnotation) instances size equals: 2.
-	self assert: (model allAnnotationTypes entityNamed: #aNamespace::AnotherAnnotation) instances size equals: 1.
+	self assert: (model allAnnotationTypes entityNamed: #'aNamespace::AnAnnotation') instances size equals: 2.
+	self assert: (model allAnnotationTypes entityNamed: #'aNamespace::AnotherAnnotation') instances size equals: 1.
 	model allAnnotationTypes
 		do: [ :each | 
 			self assert: (each container definedAnnotationTypes includes: each).
-			self assert: each container == each belongsTo ]
+			self assert: each container identicalTo: each belongsTo ]
 ]
 
 { #category : #tests }
