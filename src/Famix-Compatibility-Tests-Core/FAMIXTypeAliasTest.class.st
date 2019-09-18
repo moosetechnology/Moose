@@ -22,9 +22,9 @@ FAMIXTypeAliasTest >> testAliasOpposite [
 	alias := self actualClass new
 		aliasedType: type;
 		yourself.
-	self assert: alias aliasedType == type.
+	self assert: alias aliasedType identicalTo: type.
 	self assert: type typeAliases size equals: 1.
-	self assert: type typeAliases first == alias
+	self assert: type typeAliases first identicalTo: alias
 ]
 
 { #category : #tests }

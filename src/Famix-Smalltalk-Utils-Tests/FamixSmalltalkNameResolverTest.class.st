@@ -38,7 +38,7 @@ FamixSmalltalkNameResolverTest >> testGroupedBy [
 { #category : #tests }
 FamixSmalltalkNameResolverTest >> testResolvingName [
 	self assert: (self actualClass smalltalkClassFromFamixClassName: #Object ifAbsent: [  ]) equals: Object.
-	self assert: (self actualClass smalltalkClassFromFamixClassName: #FooBarZorkAbsent ifAbsent: [ 10 ]) == 10
+	self assert: (self actualClass smalltalkClassFromFamixClassName: #FooBarZorkAbsent ifAbsent: [ 10 ]) identicalTo: 10
 ]
 
 { #category : #tests }

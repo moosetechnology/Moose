@@ -313,7 +313,7 @@ FamixModelExtractionTest >> testNumberOfFormalParameters [
 { #category : #tests }
 FamixModelExtractionTest >> testReferenceModel [
 	self assert: self model mooseModel isNil.
-	self assert: self model localMooseModel == self model.
+	self assert: self model localMooseModel identicalTo: self model
 ]
 
 { #category : #tests }

@@ -234,39 +234,31 @@ FmxMBTraitTest >> testCustomPackageForUserClasses [
 
 { #category : #tests }
 FmxMBTraitTest >> testCustomPackageForUserClassesChanged [
-
-	| simpleClass generated generatedAccess  |
-	
+	| simpleClass generated generatedAccess |
 	builder configuration packageName: 'Custom'.
-	
-	simpleClass := builder newTraitNamed: #TComment.	
+
+	simpleClass := builder newTraitNamed: #TComment.
 
 	builder configuration packageName: 'Custom2'.
 
-	simpleClass := builder newTraitNamed: #TAccess.	
+	simpleClass := builder newTraitNamed: #TAccess.
 
 	builder generate.
 	generated := builder testingEnvironment ask classNamed: 'TstTComment'.
 	generatedAccess := builder testingEnvironment ask classNamed: 'TstTAccess'.
 
-	self assert: (generated package name = #Custom).
-	self assert: (generatedAccess package name = #Custom2).
-
-
-	
+	self assert: generated package name equals: #Custom.
+	self assert: generatedAccess package name equals: #Custom2
 ]
 
 { #category : #tests }
 FmxMBTraitTest >> testDefaultPackageForUserClasses [
-
-	| simpleClass  userClass |
-	
-	simpleClass := builder newTraitNamed: #TComment.	
+	| simpleClass userClass |
+	simpleClass := builder newTraitNamed: #TComment.
 	builder generate.
 	userClass := builder testingEnvironment ask classNamed: 'TstTComment'.
 
-	self assert: (userClass package name = #Tst).
-	
+	self assert: userClass package name equals: #Tst
 ]
 
 { #category : #tests }

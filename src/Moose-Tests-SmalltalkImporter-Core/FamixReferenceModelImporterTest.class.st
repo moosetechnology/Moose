@@ -684,8 +684,9 @@ FamixReferenceModelImporterTest >> testMethodReification [
 { #category : #'reference model reification' }
 FamixReferenceModelImporterTest >> testNameResolverNamespaceName [
 	"self debug: #testNameResolverNamespaceName"
-	self assert: ((FamixSmalltalkNameResolver uniqueNameForNamespaceNamed: #ReferenceModel scope: #'SCG::Moose') == #'SCG::Moose::ReferenceModel').
-	self assert: ((FamixSmalltalkNameResolver uniqueNameForNamespaceNamed: #Moose scope: #SCG) ==  #'SCG::Moose')
+
+	self assert: (FamixSmalltalkNameResolver uniqueNameForNamespaceNamed: #ReferenceModel scope: #'SCG::Moose') identicalTo: #'SCG::Moose::ReferenceModel'.
+	self assert: (FamixSmalltalkNameResolver uniqueNameForNamespaceNamed: #Moose scope: #SCG) identicalTo: #'SCG::Moose'
 ]
 
 { #category : #'reference model reification' }
