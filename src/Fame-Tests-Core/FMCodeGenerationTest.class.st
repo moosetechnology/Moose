@@ -8,14 +8,15 @@ Class {
 FMCodeGenerationTest >> testClassNamePrefix [
 	| gen |
 	gen := FMDefaultCodeGenerator new.
-	gen classNamePrefix should = ''.
+	self assert: gen classNamePrefix equals: ''.
 	gen classNamePrefix: 'Zork'.
-	gen classNamePrefix should = 'Zork'
+	self assert: gen classNamePrefix equals: 'Zork'
 ]
 
 { #category : #running }
 FMCodeGenerationTest >> testComplexGeneration [
 	"self run: #testComplexGeneration"
+
 	| tower generator |
 	tower := FMTower new.
 	tower metamodel importString: FMMSEParserTest famix30mse.
@@ -23,7 +24,7 @@ FMCodeGenerationTest >> testComplexGeneration [
 	"We generate Smalltalk classes from the classes contained in the repository"
 	generator := FMDefaultCodeGenerator new.
 	generator visit: tower metamodel.
-	generator model changes changesSize should > 0.
+	self assert: generator model changes changesSize > 0.
 	generator previewChangesIfShiftPressed
 ]
 
@@ -31,18 +32,18 @@ FMCodeGenerationTest >> testComplexGeneration [
 FMCodeGenerationTest >> testDefaultCategory [
 	| gen |
 	gen := FMDefaultCodeGenerator new.
-	gen defaultCategory isNil should beTrue.
+	self assert: gen defaultCategory isNil.
 	gen defaultCategory: 'Fame-Example'.
-	gen defaultCategory should = 'Fame-Example'
+	self assert: gen defaultCategory equals: 'Fame-Example'
 ]
 
 { #category : #running }
 FMCodeGenerationTest >> testDefaultClass [
 	| gen |
 	gen := FMDefaultCodeGenerator new.
-	gen defaultSuperclass name should = #Object.
+	self assert: gen defaultSuperclass name equals: #Object.
 	gen defaultSuperclass: LIBRoot.
-	gen defaultSuperclass name should = #LIBRoot
+	self assert: gen defaultSuperclass name equals: #LIBRoot
 ]
 
 { #category : #running }
@@ -85,9 +86,9 @@ FMCodeGenerationTest >> testSimpleGeneration [
 	gen classNamePrefix: 'Zork'.	"random prefix Zork"
 	gen visit: tower metamodel.
 	gen previewChangesIfShiftPressed.
-	gen model changes changesSize should > 0.
-	(gen model changes changes collect: #changeClassName) asSet size should = 3.
-	(gen model changes changes collect: #changeClassName) should include: #ZorkLIBBook.
-	(gen model changes changes collect: #changeClassName) should include: #ZorkLIBPerson.
-	(gen model changes changes collect: #changeClassName) should include: #ZorkLIBLibrary 
+	self assert: gen model changes changesSize > 0.
+	self assert: (gen model changes changes collect: #changeClassName) asSet size equals: 3.
+	self assert: ((gen model changes changes collect: #changeClassName) includes: #ZorkLIBBook).
+	self assert: ((gen model changes changes collect: #changeClassName) includes: #ZorkLIBPerson).
+	self assert: ((gen model changes changes collect: #changeClassName) includes: #ZorkLIBLibrary)
 ]

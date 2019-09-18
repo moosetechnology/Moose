@@ -151,164 +151,149 @@ FMMetaRepositoryFilterTest >> setUp [
 
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testAnnotationTypes [
-
 	| repo package class property properties visitor repoFM3 |
-	
 	repoFM3 := FMMetaRepository fm3.
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: repoFM3;
 		classes: repoFM3 classes.
 	visitor run.
 	repo := visitor newMetaRepository.
-	
+
 	package := repo elementNamed: 'FM3'.
 	class := repo elementNamed: 'FM3.Element'.
-	class isFM3Class should beTrue.
-	class superclass should = FM3 object.
-	class implementingClass should = FM3Element.
-	(class at: 'name') isFM3Property should beTrue.
-	(class at: 'name') name should = #name.
-	(class at: 'name') mmClass should = class.
-	(class at: 'name') owner should = class.
-	(class at: 'name') type should = FM3 string.
-	(class at: 'name') isContainer should beFalse.
-	(class at: 'name') isMultivalued should beFalse.
-	(class at: 'name') isComposite should beFalse.
-	(class at: 'name') hasOpposite should beFalse.
-	class owner should = package.	"We now test properties"
+	self assert: class isFM3Class.
+	self assert: class superclass equals: FM3 object.
+	self assert: class implementingClass equals: FM3Element.
+	self assert: (class at: 'name') isFM3Property.
+	self assert: (class at: 'name') name equals: #name.
+	self assert: (class at: 'name') mmClass equals: class.
+	self assert: (class at: 'name') owner equals: class.
+	self assert: (class at: 'name') type equals: FM3 string.
+	self deny: (class at: 'name') isContainer.
+	self deny: (class at: 'name') isMultivalued.
+	self deny: (class at: 'name') isComposite.
+	self deny: (class at: 'name') hasOpposite.
+	self assert: class owner equals: package.	"We now test properties"
 	class := package at: 'Property'.
-	class isFM3Class should beTrue.
-	class superclass should = (package at: 'Element').
-	class implementingClass should = FM3PropertyDescription.
-	(class at: 'opposite') isFM3Property should beTrue.
-	(class at: 'opposite') name should = #opposite.
-	(class at: 'opposite') mmClass should = class.
-	(class at: 'opposite') owner should = class.
-	(class at: 'opposite') type should = class.
-	(class at: 'opposite') isContainer should beFalse.
-	(class at: 'opposite') isMultivalued should beFalse.
-	(class at: 'opposite') isComposite should beFalse.
-	(class at: 'opposite') hasOpposite should beTrue.
-	(class at: 'opposite') opposite should = (class at: 'opposite').	"We now test the container property of FM3's properties"
+	self assert: class isFM3Class.
+	self assert: class superclass equals: (package at: 'Element').
+	self assert: class implementingClass equals: FM3PropertyDescription.
+	self assert: (class at: 'opposite') isFM3Property.
+	self assert: (class at: 'opposite') name equals: #opposite.
+	self assert: (class at: 'opposite') mmClass equals: class.
+	self assert: (class at: 'opposite') owner equals: class.
+	self assert: (class at: 'opposite') type equals: class.
+	self deny: (class at: 'opposite') isContainer.
+	self deny: (class at: 'opposite') isMultivalued.
+	self deny: (class at: 'opposite') isComposite.
+	self assert: (class at: 'opposite') hasOpposite.
+	self assert: (class at: 'opposite') opposite equals: (class at: 'opposite').	"We now test the container property of FM3's properties"
 	property := (package at: 'Property') at: 'class'.
-	property isContainer should beTrue.
+	self assert: property isContainer.
 	properties := (package at: 'Property') allAttributes copyWithout: property.
-	(properties noneSatisfy: #isContainer) should beTrue.
+	self assert: (properties noneSatisfy: #isContainer).
 	properties := (package at: 'Package') allAttributes.
-	(properties noneSatisfy: #isContainer) should beTrue.
+	self assert: (properties noneSatisfy: #isContainer).
 	property := (package at: 'Class') at: 'package'.
-	property isContainer should beTrue.
+	self assert: property isContainer.
 	properties := (package at: 'Class') allAttributes copyWithout: property.
-	(properties noneSatisfy: #isContainer) should beTrue.
-
+	self assert: (properties noneSatisfy: #isContainer)
 ]
 
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testBookMetamodel [
-	
 	| or m repo fm3 visitor repoFM3 |
-	
 	repoFM3 := FMMetaRepository fm3.
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: repoFM3;
 		classes: repoFM3 classes.
 	visitor run.
 	fm3 := visitor newMetaRepository.
-	
+
 	or := FMImporter new repository: (FMMetaRepository with: fm3).
 	m := FMModelBuilder new client: or.
 	m document: [ m new: 'FM3.Class' with: [ m a: #name of: 'Book' ] ].
 	repo := or repository asMetarepository.
-	repo elements isEmpty should beFalse.
-	repo elements size should = 1.
-	repo elements anyOne name should = #Book
+	self denyEmpty: repo elements.
+	self assert: repo elements size equals: 1.
+	self assert: repo elements anyOne name equals: #Book
 ]
 
 { #category : #'tests-basic' }
 FMMetaRepositoryFilterTest >> testClassWithoutPackage [
-	
 	| aClassWithoutPackage repo visitor |
 	aClassWithoutPackage := FM3MetaDescription new.
 	aClassWithoutPackage name: 'AClass'.
 	repo := FMMetaRepository with: FMMetaRepository fm3.
 	repo add: aClassWithoutPackage.
-	
+
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: repo;
 		classes: {aClassWithoutPackage}.
-	self shouldnt: [visitor run ] raise: Error
+	self shouldnt: [ visitor run ] raise: Error
 ]
 
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testExportAsMSE [
-	
 	| repo visitor repoFM3 printer |
-	
 	repoFM3 := FMMetaRepository fm3.
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: repoFM3;
 		classes: repoFM3 classes.
 	visitor run.
 	repo := visitor newMetaRepository.
-	
+
 	printer := FMMSEPrinter new onString.
 	repo accept: printer.
-	printer stream contents isString should beTrue.
-	printer stream contents first should = $(
+	self assert: printer stream contents isString.
+	self assert: printer stream contents first equals: $(
 ]
 
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testExportAsXML [
-	
 	| repo visitor repoFM3 printer |
-	
 	repoFM3 := FMMetaRepository fm3.
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: repoFM3;
 		classes: repoFM3 classes.
 	visitor run.
 	repo := visitor newMetaRepository.
-	
+
 	printer := FMXMLPrinter new onString.
 	repo accept: printer.
-	printer stream contents isString should beTrue.
-	printer stream contents first should = $<
+	self assert: printer stream contents isString.
+	self assert: printer stream contents first equals: $<
 ]
 
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testFM3 [
 	| fm3 repoFM3 visitor |
-	
 	repoFM3 := FMMetaRepository fm3.
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: repoFM3;
 		classes: repoFM3 classes.
 	visitor run.
 	fm3 := visitor newMetaRepository.
-	
-	fm3 notNil should beTrue.
-	fm3 metamodel should = fm3
+	self assert: fm3 notNil.
+	self assert: fm3 metamodel equals: fm3
 ]
 
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testFM3Classes [
-	
 	| fm3 visitor repoFM3 |
-	
 	repoFM3 := FMMetaRepository fm3.
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: repoFM3;
 		classes: repoFM3 classes.
 	visitor run.
 	fm3 := visitor newMetaRepository.
-	
-	(fm3 descriptionOf: FM3Element) notNil should beTrue.
-	(fm3 descriptionOf: FM3PropertyDescription) notNil should beTrue.
-	(fm3 descriptionOf: FM3PackageDescription) notNil should beTrue.
-	(fm3 descriptionOf: FM3MetaDescription) notNil should beTrue.
+	self assert: (fm3 descriptionOf: FM3Element) notNil.
+	self assert: (fm3 descriptionOf: FM3PropertyDescription) notNil.
+	self assert: (fm3 descriptionOf: FM3PackageDescription) notNil.
+	self assert: (fm3 descriptionOf: FM3MetaDescription) notNil.
 	"No longer true Updated test since descriptionOf: can return nil"
-	(fm3 descriptionOf: FMMetaRepositoryTest) isNil should beTrue.
-"	self should: [ fm3 descriptionOf: FMMetaRepositoryTest ] raise: Error"
+	self assert: (fm3 descriptionOf: FMMetaRepositoryTest) isNil
+	"	self should: [ fm3 descriptionOf: FMMetaRepositoryTest ] raise: Error"
 ]
 
 { #category : #'tests-metarepository' }
@@ -316,44 +301,43 @@ FMMetaRepositoryFilterTest >> testFM3IsComplete [
 	"More information about FM3 may be found on http://smallwiki.unibe.ch/fame/fm3/"
 
 	| repo names visitor repoFM3 |
-	
 	repoFM3 := FMMetaRepository fm3.
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: repoFM3;
 		classes: repoFM3 classes.
 	visitor run.
 	repo := visitor newMetaRepository.
-	
-	repo notNil should beTrue.	"boot strapping FM3 does internally run the pragma processor"
+	self assert: repo notNil.	"boot strapping FM3 does internally run the pragma processor"
 	names := repo elements collect: [ :each | each fullName ].	"The package"
-	names should include: 'FM3'.
-	(repo elements detect: [ :el | el fullName = 'FM3.Class.package' ]) opposite should =
-			(repo elements detect: [ :el | el fullName = 'FM3.Package.classes' ]).	"The superclass of everything"	"name, fullName, and owner are the 3 properties that define an element"
-	names should include: 'FM3.Element'.
-	names should include: 'FM3.Element.name'.
-	names should include: 'FM3.Element.fullName'.
-	names should include: 'FM3.Element.owner'.
-	names should include: 'FM3.Class'.
-	names should include: 'FM3.Class.abstract'.
-	names should include: 'FM3.Class.primitive'.
-	names should include: 'FM3.Class.root'.
-	names should include: 'FM3.Class.superclass'.
-	names should include: 'FM3.Class.package'.
-	names should include: 'FM3.Class.allAttributes'.
-	names should include: 'FM3.Class.attributes'.
-	names should include: 'FM3.Property'.
-	names should include: 'FM3.Property.composite'.
-	names should include: 'FM3.Property.container'.
-	names should include: 'FM3.Property.derived'.
-	names should include: 'FM3.Property.multivalued'.
-	names should include: 'FM3.Property.class'.
-	names should include: 'FM3.Property.package'.
-	names should include: 'FM3.Property.type'.
-	names should include: 'FM3.Property.opposite'.
-	names should include: 'FM3.Package'.
-	names should include: 'FM3.Package.extensions'.
-	names should include: 'FM3.Package.classes'.
-	(names select: [ :n | n beginsWith: 'FM3.' ]) size should = 25
+	self assert: (names includes: 'FM3').
+	self
+		assert: (repo elements detect: [ :el | el fullName = 'FM3.Class.package' ]) opposite
+		equals: (repo elements detect: [ :el | el fullName = 'FM3.Package.classes' ]).	"The superclass of everything"	"name, fullName, and owner are the 3 properties that define an element"
+	self assert: (names includes: 'FM3.Element').
+	self assert: (names includes: 'FM3.Element.name').
+	self assert: (names includes: 'FM3.Element.fullName').
+	self assert: (names includes: 'FM3.Element.owner').
+	self assert: (names includes: 'FM3.Class').
+	self assert: (names includes: 'FM3.Class.abstract').
+	self assert: (names includes: 'FM3.Class.primitive').
+	self assert: (names includes: 'FM3.Class.root').
+	self assert: (names includes: 'FM3.Class.superclass').
+	self assert: (names includes: 'FM3.Class.package').
+	self assert: (names includes: 'FM3.Class.allAttributes').
+	self assert: (names includes: 'FM3.Class.attributes').
+	self assert: (names includes: 'FM3.Property').
+	self assert: (names includes: 'FM3.Property.composite').
+	self assert: (names includes: 'FM3.Property.container').
+	self assert: (names includes: 'FM3.Property.derived').
+	self assert: (names includes: 'FM3.Property.multivalued').
+	self assert: (names includes: 'FM3.Property.class').
+	self assert: (names includes: 'FM3.Property.package').
+	self assert: (names includes: 'FM3.Property.type').
+	self assert: (names includes: 'FM3.Property.opposite').
+	self assert: (names includes: 'FM3.Package').
+	self assert: (names includes: 'FM3.Package.extensions').
+	self assert: (names includes: 'FM3.Package.classes').
+	self assert: (names select: [ :n | n beginsWith: 'FM3.' ]) size equals: 25
 ]
 
 { #category : #'tests-metarepository' }
@@ -361,7 +345,6 @@ FMMetaRepositoryFilterTest >> testFM3NewVersion [
 	"The current implementation of FameSystem does not provide a scope for its repository"
 
 	| repo names visitor repoFM3 |
-	
 	repoFM3 := FMMetaRepository fm3.
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: repoFM3;
@@ -370,452 +353,404 @@ FMMetaRepositoryFilterTest >> testFM3NewVersion [
 	repo := visitor newMetaRepository.
 
 	names := repo elements collect: [ :each | each fullName ].	"The package"
-	names should include: 'FM3'.	"The superclass of everything"	"name, fullName, and owner are the 3 properties that define an element"
-	names should include: 'FM3.Element'.
-	names should include: 'FM3.Element.name'.
-	names should include: 'FM3.Element.fullName'.
-	names should include: 'FM3.Element.owner'.
-	names should include: 'FM3.Class'.
-	names should include: 'FM3.Class.abstract'.
-	names should include: 'FM3.Class.primitive'.
-	names should include: 'FM3.Class.root'.
-	names should include: 'FM3.Class.superclass'.
-	names should include: 'FM3.Class.subclasses'.
-	names should include: 'FM3.Class.package'.
-	names should include: 'FM3.Class.allAttributes'.
-	names should include: 'FM3.Class.attributes'.
-	names should include: 'FM3.Property'.
-	names should include: 'FM3.Property.composite'.
-	names should include: 'FM3.Property.container'.
-	names should include: 'FM3.Property.derived'.
-	names should include: 'FM3.Property.multivalued'.
-	names should include: 'FM3.Property.class'.
-	names should include: 'FM3.Property.package'.
-	names should include: 'FM3.Property.type'.
-	names should include: 'FM3.Property.opposite'.
-	names should include: 'FM3.Package'.
-	names should include: 'FM3.Package.extensions'.
-	names should include: 'FM3.Package.classes'.
-	(names select: [ :n | n beginsWith: 'FM3' ]) size should = 26
+	self assert: (names includes: 'FM3').	"The superclass of everything"	"name, fullName, and owner are the 3 properties that define an element"
+	self assert: (names includes: 'FM3.Element').
+	self assert: (names includes: 'FM3.Element.name').
+	self assert: (names includes: 'FM3.Element.fullName').
+	self assert: (names includes: 'FM3.Element.owner').
+	self assert: (names includes: 'FM3.Class').
+	self assert: (names includes: 'FM3.Class.abstract').
+	self assert: (names includes: 'FM3.Class.primitive').
+	self assert: (names includes: 'FM3.Class.root').
+	self assert: (names includes: 'FM3.Class.superclass').
+	self assert: (names includes: 'FM3.Class.subclasses').
+	self assert: (names includes: 'FM3.Class.package').
+	self assert: (names includes: 'FM3.Class.allAttributes').
+	self assert: (names includes: 'FM3.Class.attributes').
+	self assert: (names includes: 'FM3.Property').
+	self assert: (names includes: 'FM3.Property.composite').
+	self assert: (names includes: 'FM3.Property.container').
+	self assert: (names includes: 'FM3.Property.derived').
+	self assert: (names includes: 'FM3.Property.multivalued').
+	self assert: (names includes: 'FM3.Property.class').
+	self assert: (names includes: 'FM3.Property.package').
+	self assert: (names includes: 'FM3.Property.type').
+	self assert: (names includes: 'FM3.Property.opposite').
+	self assert: (names includes: 'FM3.Package').
+	self assert: (names includes: 'FM3.Package.extensions').
+	self assert: (names includes: 'FM3.Package.classes').
+	self assert: (names select: [ :n | n beginsWith: 'FM3' ]) size equals: 26
 ]
 
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testImporter [
-
 	| fm3 repoFM3 visitor string repo imp |
-	
 	repoFM3 := FMMetaRepository fm3.
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: repoFM3;
 		classes: repoFM3 classes.
 	visitor run.
 	fm3 := visitor newMetaRepository.
-	
+
 	string := '((FM3.Package (id: 1) (name ''Office'')))'.
 	repo := FMMetaRepository with: fm3.
 	imp := FMImporter new.
 	imp repository: repo.
 	imp fromString: string.
 	imp run.
-	repo elements size should = 1.
-	repo elements anyOne name should = #Office.
-	repo elements anyOne fullName should = 'Office'.
+	self assert: repo elements size equals: 1.
+	self assert: repo elements anyOne name equals: #Office.
+	self assert: repo elements anyOne fullName equals: 'Office'
 ]
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeEQCompound [
-
 	| repo names visitor |
-	
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: eqModel;
-		classes: {eqModel descriptionOf: EQCompound}.
+		classes: {(eqModel descriptionOf: EQCompound)}.
 	visitor run.
 
 	repo := visitor newMetaRepository.
 	names := repo elements collect: #fullName.
-	names should include: 'EQ'.
-	names should include: 'EQ.Expression'.
-	names should include: 'EQ.Operator'.
-	names should include: 'EQ.Expression'.
-	names should include: 'EQ.Identifier'.
-	names should include: 'EQ.Compound'.
-	names should include: 'EQ.Simple'.
-	names should include: 'EQ.Numerical'.
-	names should include: 'EQ.Variable'.
-	
-	names should not include: 'EQ.EquationSystem'.
+	self assert: (names includes: 'EQ').
+	self assert: (names includes: 'EQ.Expression').
+	self assert: (names includes: 'EQ.Operator').
+	self assert: (names includes: 'EQ.Expression').
+	self assert: (names includes: 'EQ.Identifier').
+	self assert: (names includes: 'EQ.Compound').
+	self assert: (names includes: 'EQ.Simple').
+	self assert: (names includes: 'EQ.Numerical').
+	self assert: (names includes: 'EQ.Variable').
+	self deny: (names includes: 'EQ.EquationSystem')
 ]
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeEQEquation [
-
 	| repo names visitor |
-	
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: eqModel;
-		classes: {eqModel descriptionOf: EQEquation}.
+		classes: {(eqModel descriptionOf: EQEquation)}.
 	visitor run.
 
 	repo := visitor newMetaRepository.
 	names := repo elements collect: #fullName.
-	names should include: 'EQ'.
-	names should include: 'EQ.Equation'.
-	names should include: 'EQ.Expression'.
-	names should include: 'EQ.Identifier'.
-	names should include: 'EQ.Compound'.
-	names should include: 'EQ.Simple'.
-	names should include: 'EQ.Numerical'.
-	names should include: 'EQ.Variable'.
-	names should include: 'EQ.Operator'.
-	
-	names should not include: 'EQ.EquationSystem'.
+	self assert: (names includes: 'EQ').
+	self assert: (names includes: 'EQ.Equation').
+	self assert: (names includes: 'EQ.Expression').
+	self assert: (names includes: 'EQ.Identifier').
+	self assert: (names includes: 'EQ.Compound').
+	self assert: (names includes: 'EQ.Simple').
+	self assert: (names includes: 'EQ.Numerical').
+	self assert: (names includes: 'EQ.Variable').
+	self assert: (names includes: 'EQ.Operator').
+	self deny: (names includes: 'EQ.EquationSystem')
 ]
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeEQEquationSystem [
-
 	| repo names visitor |
-	
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: eqModel;
-		classes: {eqModel descriptionOf: EQEquationSystem}.
+		classes: {(eqModel descriptionOf: EQEquationSystem)}.
 	visitor run.
 
 	repo := visitor newMetaRepository.
 	names := repo elements collect: #fullName.
-	names should include: 'EQ'.
-	names should include: 'EQ.Equation'.
-	names should include: 'EQ.EquationSystem'.
-	names should include: 'EQ.Variable'.
-	names should include: 'EQ.Expression'.
-	names should include: 'EQ.Identifier'.
-	names should include: 'EQ.Compound'.
-	names should include: 'EQ.Simple'.
-	names should include: 'EQ.Numerical'.
-	names should include: 'EQ.Operator'
+	self assert: (names includes: 'EQ').
+	self assert: (names includes: 'EQ.Equation').
+	self assert: (names includes: 'EQ.EquationSystem').
+	self assert: (names includes: 'EQ.Variable').
+	self assert: (names includes: 'EQ.Expression').
+	self assert: (names includes: 'EQ.Identifier').
+	self assert: (names includes: 'EQ.Compound').
+	self assert: (names includes: 'EQ.Simple').
+	self assert: (names includes: 'EQ.Numerical').
+	self assert: (names includes: 'EQ.Operator')
 ]
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeEQExpression [
-
 	| repo names visitor |
-	
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: eqModel;
-		classes: {eqModel descriptionOf: EQExpression}.
+		classes: {(eqModel descriptionOf: EQExpression)}.
 	visitor run.
 
 	repo := visitor newMetaRepository.
 	names := repo elements collect: #fullName.
-	names should include: 'EQ'.
-	names should include: 'EQ.Expression'.
-	
-	names should not include: 'EQ.Equation'.
-	names should not include: 'EQ.Variable'.
-	names should not include: 'EQ.Identifier'.
-	names should not include: 'EQ.Compound'.
-	names should not include: 'EQ.Simple'.
-	names should not include: 'EQ.Numerical'.
-	names should not include: 'EQ.Operator'.
-	names should not include: 'EQ.EquationSystem'.
+	self assert: (names includes: 'EQ').
+	self assert: (names includes: 'EQ.Expression').
+	self deny: (names includes: 'EQ.Equation').
+	self deny: (names includes: 'EQ.Variable').
+	self deny: (names includes: 'EQ.Identifier').
+	self deny: (names includes: 'EQ.Compound').
+	self deny: (names includes: 'EQ.Simple').
+	self deny: (names includes: 'EQ.Numerical').
+	self deny: (names includes: 'EQ.Operator').
+	self deny: (names includes: 'EQ.EquationSystem')
 ]
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeEQIdentifier [
-
 	| repo names visitor |
-	
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: eqModel;
-		classes: {eqModel descriptionOf: EQIdentifier}.
+		classes: {(eqModel descriptionOf: EQIdentifier)}.
 	visitor run.
 
 	repo := visitor newMetaRepository.
 	names := repo elements collect: #fullName.
-	names should include: 'EQ'.
-	names should include: 'EQ.Identifier'.
-	
-	names should not include: 'EQ.Expression'.
-	names should not include: 'EQ.Equation'.
-	names should not include: 'EQ.Variable'.
-	names should not include: 'EQ.Compound'.
-	names should not include: 'EQ.Simple'.
-	names should not include: 'EQ.Numerical'.
-	names should not include: 'EQ.Operator'.
-	names should not include: 'EQ.EquationSystem'.
+	self assert: (names includes: 'EQ').
+	self assert: (names includes: 'EQ.Identifier').
+	self deny: (names includes: 'EQ.Expression').
+	self deny: (names includes: 'EQ.Equation').
+	self deny: (names includes: 'EQ.Variable').
+	self deny: (names includes: 'EQ.Compound').
+	self deny: (names includes: 'EQ.Simple').
+	self deny: (names includes: 'EQ.Numerical').
+	self deny: (names includes: 'EQ.Operator').
+	self deny: (names includes: 'EQ.EquationSystem')
 ]
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeEQNumerical [
-
 	| repo names visitor |
-	
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: eqModel;
-		classes: {eqModel descriptionOf: EQNumerical}.
+		classes: {(eqModel descriptionOf: EQNumerical)}.
 	visitor run.
 
 	repo := visitor newMetaRepository.
 	names := repo elements collect: #fullName.
-	names should include: 'EQ'.
-	names should include: 'EQ.Simple'.
-	names should include: 'EQ.Expression'.
-	names should include: 'EQ.Numerical'.
-	
-	names should not include: 'EQ.Equation'.
-	names should not include: 'EQ.Variable'.
-	names should not include: 'EQ.Identifier'.
-	names should not include: 'EQ.Compound'.
-	names should not include: 'EQ.Operator'.
-	names should not include: 'EQ.EquationSystem'.
+	self assert: (names includes: 'EQ').
+	self assert: (names includes: 'EQ.Simple').
+	self assert: (names includes: 'EQ.Expression').
+	self assert: (names includes: 'EQ.Numerical').
+	self deny: (names includes: 'EQ.Equation').
+	self deny: (names includes: 'EQ.Variable').
+	self deny: (names includes: 'EQ.Identifier').
+	self deny: (names includes: 'EQ.Compound').
+	self deny: (names includes: 'EQ.Operator').
+	self deny: (names includes: 'EQ.EquationSystem')
 ]
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeEQOperator [
-
 	| repo names visitor |
-	
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: eqModel;
-		classes: {eqModel descriptionOf: EQOperator}.
+		classes: {(eqModel descriptionOf: EQOperator)}.
 	visitor run.
 
 	repo := visitor newMetaRepository.
 	names := repo elements collect: #fullName.
-	names should include: 'EQ'.
-	names should include: 'EQ.Operator'.
-	
-	names should not include: 'EQ.Expression'.
-	names should not include: 'EQ.Equation'.
-	names should not include: 'EQ.Variable'.
-	names should not include: 'EQ.Compound'.
-	names should not include: 'EQ.Simple'.
-	names should not include: 'EQ.Numerical'.
-	names should not include: 'EQ.Identifier'.
-	names should not include: 'EQ.EquationSystem'.
+	self assert: (names includes: 'EQ').
+	self assert: (names includes: 'EQ.Operator').
+	self deny: (names includes: 'EQ.Expression').
+	self deny: (names includes: 'EQ.Equation').
+	self deny: (names includes: 'EQ.Variable').
+	self deny: (names includes: 'EQ.Compound').
+	self deny: (names includes: 'EQ.Simple').
+	self deny: (names includes: 'EQ.Numerical').
+	self deny: (names includes: 'EQ.Identifier').
+	self deny: (names includes: 'EQ.EquationSystem')
 ]
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeEQSimple [
-
 	| repo names visitor |
-	
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: eqModel;
-		classes: {eqModel descriptionOf: EQSimple}.
+		classes: {(eqModel descriptionOf: EQSimple)}.
 	visitor run.
 
 	repo := visitor newMetaRepository.
 	names := repo elements collect: #fullName.
-	names should include: 'EQ'.
-	names should include: 'EQ.Simple'.
-	names should include: 'EQ.Expression'.
-	
-	names should not include: 'EQ.Equation'.
-	names should not include: 'EQ.Variable'.
-	names should not include: 'EQ.Identifier'.
-	names should not include: 'EQ.Compound'.
-	names should not include: 'EQ.Numerical'.
-	names should not include: 'EQ.Operator'.
-	names should not include: 'EQ.EquationSystem'.
+	self assert: (names includes: 'EQ').
+	self assert: (names includes: 'EQ.Simple').
+	self assert: (names includes: 'EQ.Expression').
+	self deny: (names includes: 'EQ.Equation').
+	self deny: (names includes: 'EQ.Variable').
+	self deny: (names includes: 'EQ.Identifier').
+	self deny: (names includes: 'EQ.Compound').
+	self deny: (names includes: 'EQ.Numerical').
+	self deny: (names includes: 'EQ.Operator').
+	self deny: (names includes: 'EQ.EquationSystem')
 ]
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeEQVariable [
-
 	| repo names visitor |
-	
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: eqModel;
-		classes: {eqModel descriptionOf: EQVariable}.
+		classes: {(eqModel descriptionOf: EQVariable)}.
 	visitor run.
 
 	repo := visitor newMetaRepository.
 	names := repo elements collect: #fullName.
-	names should include: 'EQ'.
-	names should include: 'EQ.Variable'.
-	names should include: 'EQ.Simple'.
-	names should include: 'EQ.Expression'.
-	names should include: 'EQ.Identifier'.
-	
-	names should not include: 'EQ.Equation'.
-	names should not include: 'EQ.Numerical'.
-	names should not include: 'EQ.Compound'.
-	names should not include: 'EQ.Operator'.
-	names should not include: 'EQ.EquationSystem'.
+	self assert: (names includes: 'EQ').
+	self assert: (names includes: 'EQ.Variable').
+	self assert: (names includes: 'EQ.Simple').
+	self assert: (names includes: 'EQ.Expression').
+	self assert: (names includes: 'EQ.Identifier').
+	self deny: (names includes: 'EQ.Equation').
+	self deny: (names includes: 'EQ.Numerical').
+	self deny: (names includes: 'EQ.Compound').
+	self deny: (names includes: 'EQ.Operator').
+	self deny: (names includes: 'EQ.EquationSystem')
 ]
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeLIBBook [
-
 	| repo names visitor |
-	
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: libModel;
-		classes: {libModel descriptionOf: LIBBook}.
+		classes: {(libModel descriptionOf: LIBBook)}.
 	visitor run.
 
 	repo := visitor newMetaRepository.
 	names := repo elements collect: #fullName.
-	names should include: 'LIB'.
-	names should include: 'LIB.Person'.
-	names should include: 'LIB.Book'.
-	
-	names should not include: 'LIB.Library'.
+	self assert: (names includes: 'LIB').
+	self assert: (names includes: 'LIB.Person').
+	self assert: (names includes: 'LIB.Book').
+	self deny: (names includes: 'LIB.Library')
 ]
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeLIBLibrary [
-
 	| repo names visitor |
-	
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: libModel;
-		classes: {libModel descriptionOf: LIBLibrary}.
+		classes: {(libModel descriptionOf: LIBLibrary)}.
 	visitor run.
 
 	repo := visitor newMetaRepository.
 	names := repo elements collect: #fullName.
-	names should include: 'LIB'.
-	names should include: 'LIB.Library'.
-	names should include: 'LIB.Person'.
-	names should include: 'LIB.Book'.
+	self assert: (names includes: 'LIB').
+	self assert: (names includes: 'LIB.Library').
+	self assert: (names includes: 'LIB.Person').
+	self assert: (names includes: 'LIB.Book')
 ]
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeLIBPerson [
-
 	| repo names visitor |
-	
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: libModel;
-		classes: {libModel descriptionOf: LIBPerson}.
+		classes: {(libModel descriptionOf: LIBPerson)}.
 	visitor run.
 
 	repo := visitor newMetaRepository.
 	names := repo elements collect: #fullName.
-	names should include: 'LIB'.
-	names should include: 'LIB.Person'.
-	names should include: 'LIB.Book'.
-	
-	names should not include: 'LIB.Library'.
+	self assert: (names includes: 'LIB').
+	self assert: (names includes: 'LIB.Person').
+	self assert: (names includes: 'LIB.Book').
+	self deny: (names includes: 'LIB.Library')
 ]
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeRPGDragon [
-
 	| repo names visitor |
-	
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: rpgModel;
-		classes: {rpgModel descriptionOf: RPGDragon}.
+		classes: {(rpgModel descriptionOf: RPGDragon)}.
 	visitor run.
 
 	repo := visitor newMetaRepository.
 	names := repo elements collect: #fullName.
-	names should include: 'RPG'.
-	names should include: 'RPG.Dragon'.
-	names should include: 'RPG.Hero'.
-	names should include: 'RPG.Treasure'.
+	self assert: (names includes: 'RPG').
+	self assert: (names includes: 'RPG.Dragon').
+	self assert: (names includes: 'RPG.Hero').
+	self assert: (names includes: 'RPG.Treasure')
 ]
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeRPGHero [
-
 	| repo names visitor |
-	
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: rpgModel;
-		classes: {rpgModel descriptionOf: RPGHero}.
+		classes: {(rpgModel descriptionOf: RPGHero)}.
 	visitor run.
 
 	repo := visitor newMetaRepository.
 	names := repo elements collect: #fullName.
-	names should include: 'RPG'.
-	names should include: 'RPG.Dragon'.
-	names should include: 'RPG.Hero'.
-	names should include: 'RPG.Treasure'.
+	self assert: (names includes: 'RPG').
+	self assert: (names includes: 'RPG.Dragon').
+	self assert: (names includes: 'RPG.Hero').
+	self assert: (names includes: 'RPG.Treasure')
 ]
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeRPGTreasure [
-
 	| repo names visitor |
-	
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: rpgModel;
-		classes: {rpgModel descriptionOf: RPGTreasure}.
+		classes: {(rpgModel descriptionOf: RPGTreasure)}.
 	visitor run.
 
 	repo := visitor newMetaRepository.
 	names := repo elements collect: #fullName.
-	names should include: 'RPG'.
-	names should include: 'RPG.Dragon'.
-	names should include: 'RPG.Hero'.
-	names should include: 'RPG.Treasure'.
+	self assert: (names includes: 'RPG').
+	self assert: (names includes: 'RPG.Dragon').
+	self assert: (names includes: 'RPG.Hero').
+	self assert: (names includes: 'RPG.Treasure')
 ]
 
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testResolving [
-	
 	| or m fm3 visitor repoFM3 |
-	
 	repoFM3 := FMMetaRepository fm3.
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: repoFM3;
 		classes: repoFM3 classes.
 	visitor run.
 	fm3 := visitor newMetaRepository.
-	
+
 	or := FMImporter new repository: (FMMetaRepository with: fm3).
 	m := FMModelBuilder new client: or.
 	m document: [ m new: 'FM3.Class' with: [ m a: #name of: 'MyName' ] ].
-	or repository elements isEmpty should beFalse.
-	or repository elements size should = 1.
-	or repository elements anyOne isFM3Class should beTrue
+	self denyEmpty: or repository elements.
+	self assert: or repository elements size equals: 1.
+	self assert: or repository elements anyOne isFM3Class
 ]
 
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testResolvingId [
-	
 	| or m fm3 visitor repoFM3 |
-	
 	repoFM3 := FMMetaRepository fm3.
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: repoFM3;
 		classes: repoFM3 classes.
 	visitor run.
 	fm3 := visitor newMetaRepository.
-	
+
 	or := FMImporter new repository: (FMMetaRepository with: fm3).
 	m := FMModelBuilder new client: or.
-	m document:
-			[ m new: 'FM3.Class'
-				with:
-					[ m id: 3.
+	m
+		document: [ m
+				new: 'FM3.Class'
+				with: [ m id: 3.
 					m a: #name of: 'MyName'.
 					m a: #superclass of: [ m ref: 2 ] ].
-			m new: 'FM3.Class'
-				with:
-					[ m id: 2.
+			m
+				new: 'FM3.Class'
+				with: [ m id: 2.
 					m a: #name of: 'MyName2' ] ].
-	or repository elements isEmpty should beFalse.
-	or repository elements size should = 2
+	self denyEmpty: or repository elements.
+	self assert: or repository elements size equals: 2
 ]
 
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testResolvingMultiArgs [
-	
 	| or pack ref2 ref4 ref5 repo fm3 visitor repoFM3 |
-	
 	repoFM3 := FMMetaRepository fm3.
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: repoFM3;
 		classes: repoFM3 classes.
 	visitor run.
 	fm3 := visitor newMetaRepository.
-	
+
 	or := FMImporter new repository: (FMMetaRepository with: fm3).
 	or beginDocument.
 	or beginElement: 'FM3.Package'.
@@ -856,17 +791,17 @@ FMMetaRepositoryFilterTest >> testResolvingMultiArgs [
 	or endElement: 'FM3.Class'.
 	or endDocument.
 	repo := or repository asMetarepository.
-	repo elements isEmpty should beFalse.
-	repo elements size should = 4.
+	self denyEmpty: repo elements.
+	self assert: repo elements size equals: 4.
 	pack := repo at: 'MyPackage'.
 	ref2 := pack at: 'MyName2'.
 	ref4 := pack at: 'MyName4'.
 	ref5 := pack at: 'MyName5'.
-	pack notNil should beTrue.
-	ref2 notNil should beTrue.
-	ref4 notNil should beTrue.
-	ref5 notNil should beTrue.
-	pack classes should include: ref2.
-	pack classes should include: ref4.
-	pack classes should include: ref5
+	self assert: pack notNil.
+	self assert: ref2 notNil.
+	self assert: ref4 notNil.
+	self assert: ref5 notNil.
+	self assert: (pack classes includes: ref2).
+	self assert: (pack classes includes: ref4).
+	self assert: (pack classes includes: ref5)
 ]

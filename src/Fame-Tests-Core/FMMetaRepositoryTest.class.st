@@ -10,16 +10,16 @@ FMMetaRepositoryTest >> testElementNamed [
 	tower := FMTower new.
 	m2 := tower metamodel.
 	m2 importString: '((FM3.Package (name ''EG'') (classes (FM3.Class (name ''Boe'')))))'.
-	(m2 elementNamed: 'EG') notNil should beTrue.
-	(m2 elementNamed: 'EG.Boe') notNil should beTrue
+	self assert: (m2 elementNamed: 'EG') notNil.
+	self assert: (m2 elementNamed: 'EG.Boe') notNil
 ]
 
 { #category : #running }
 FMMetaRepositoryTest >> testFM3 [
 	| fm3 |
 	fm3 := FMMetaRepository fm3.
-	fm3 notNil should beTrue.
-	fm3 metamodel should = fm3
+	self assert: fm3 notNil.
+	self assert: fm3 metamodel equals: fm3
 ]
 
 { #category : #running }
@@ -28,39 +28,40 @@ FMMetaRepositoryTest >> testFM3IsComplete [
 
 	| repo names |
 	repo := FMMetaRepository fm3.
-	repo notNil should beTrue.	"boot strapping FM3 does internally run the pragma processor"
+	self assert: repo notNil.	"boot strapping FM3 does internally run the pragma processor"
 	names := repo elements collect: [ :each | each fullName ].	"The package"
-	names should include: 'FM3'.
-	(repo elements detect: [ :el | el fullName = 'FM3.Class.package' ]) opposite should =
-			(repo elements detect: [ :el | el fullName = 'FM3.Package.classes' ]).	
+	self assert: (names includes: 'FM3').
+	self
+		assert: (repo elements detect: [ :el | el fullName = 'FM3.Class.package' ]) opposite
+		equals: (repo elements detect: [ :el | el fullName = 'FM3.Package.classes' ]).
 	"The superclass of everything"	"name, fullName, and owner are the 3 properties that define an element"
-	names should include: 'FM3.Element'.
-	names should include: 'FM3.Element.name'.
-	names should include: 'FM3.Element.fullName'.
-	names should include: 'FM3.Element.owner'.
-	names should include: 'FM3.Class'.
-	names should include: 'FM3.Class.abstract'.
-	names should include: 'FM3.Class.primitive'.
-	names should include: 'FM3.Class.root'.
-	names should include: 'FM3.Class.superclass'.
-	names should include: 'FM3.Class.subclasses'.
-	names should include: 'FM3.Class.package'.
-	names should include: 'FM3.Class.allAttributes'.
-	names should include: 'FM3.Class.attributes'.
-	names should include: 'FM3.Property'.
-	names should include: 'FM3.Property.composite'.
-	names should include: 'FM3.Property.container'.
-	names should include: 'FM3.Property.derived'.
-	names should include: 'FM3.Property.multivalued'.
-	names should include: 'FM3.Property.class'.
-	names should include: 'FM3.Property.package'.
-	names should include: 'FM3.Property.type'.
-	names should include: 'FM3.Property.opposite'.
-	names should include: 'FM3.Package'.
-	names should include: 'FM3.Package.extensions'.
-	names should include: 'FM3.Package.classes'.
-	names size should = 26.
-	(names select: [ :n | n beginsWith: 'FM3.' ]) size should = 25
+	self assert: (names includes: 'FM3.Element').
+	self assert: (names includes: 'FM3.Element.name').
+	self assert: (names includes: 'FM3.Element.fullName').
+	self assert: (names includes: 'FM3.Element.owner').
+	self assert: (names includes: 'FM3.Class').
+	self assert: (names includes: 'FM3.Class.abstract').
+	self assert: (names includes: 'FM3.Class.primitive').
+	self assert: (names includes: 'FM3.Class.root').
+	self assert: (names includes: 'FM3.Class.superclass').
+	self assert: (names includes: 'FM3.Class.subclasses').
+	self assert: (names includes: 'FM3.Class.package').
+	self assert: (names includes: 'FM3.Class.allAttributes').
+	self assert: (names includes: 'FM3.Class.attributes').
+	self assert: (names includes: 'FM3.Property').
+	self assert: (names includes: 'FM3.Property.composite').
+	self assert: (names includes: 'FM3.Property.container').
+	self assert: (names includes: 'FM3.Property.derived').
+	self assert: (names includes: 'FM3.Property.multivalued').
+	self assert: (names includes: 'FM3.Property.class').
+	self assert: (names includes: 'FM3.Property.package').
+	self assert: (names includes: 'FM3.Property.type').
+	self assert: (names includes: 'FM3.Property.opposite').
+	self assert: (names includes: 'FM3.Package').
+	self assert: (names includes: 'FM3.Package.extensions').
+	self assert: (names includes: 'FM3.Package.classes').
+	self assert: names size equals: 26.
+	self assert: (names select: [ :n | n beginsWith: 'FM3.' ]) size equals: 25
 ]
 
 { #category : #running }
@@ -72,8 +73,8 @@ FMMetaRepositoryTest >> testImportExtension [
 	imp repository: repo.
 	imp fromString: string.
 	imp run.
-	repo elements size should = 2.
-	(repo elementNamed: 'Office.Employee') package should = (repo elementNamed: 'Office').
+	self assert: repo elements size equals: 2.
+	self assert: (repo elementNamed: 'Office.Employee') package equals: (repo elementNamed: 'Office').
 	^ repo
 ]
 
@@ -86,9 +87,9 @@ FMMetaRepositoryTest >> testImporter [
 	imp repository: repo.
 	imp fromString: string.
 	imp run.
-	repo elements size should = 1.
-	repo elements anyOne name should = #Office.
-	repo elements anyOne fullName should = 'Office'.
+	self assert: repo elements size equals: 1.
+	self assert: repo elements anyOne name equals: #Office.
+	self assert: repo elements anyOne fullName equals: 'Office'.
 	^ repo
 ]
 
@@ -99,8 +100,8 @@ FMMetaRepositoryTest >> testReadEmptyProperties [
 	m2 := tower metamodel.
 	m2 importString: '((FM3.Package))'.
 	package := m2 elements anyOne.
-	(m2 get: 'name' element: package) isEmpty should beTrue.
-	(m2 get: 'classes' element: package) isEmpty should beTrue.
+	self assertEmpty: (m2 get: 'name' element: package).
+	self assertEmpty: (m2 get: 'classes' element: package).
 	^ m2
 ]
 
@@ -109,11 +110,6 @@ FMMetaRepositoryTest >> testWriteProperties [
 	| m2 package |
 	m2 := self testReadEmptyProperties.
 	package := m2 elements anyOne.
-	m2 
-		set: 'name'
-		element: package
-		values: (Array with: 'Eg').
-	(m2 
-		get: 'name'
-		element: package) size should = 1
+	m2 set: 'name' element: package values: (Array with: 'Eg').
+	self assert: (m2 get: 'name' element: package) size equals: 1
 ]

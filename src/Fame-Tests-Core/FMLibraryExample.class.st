@@ -9,15 +9,9 @@ FMLibraryExample >> testAddingM2ElementToM2RepositoryMustFail [
 	| mm lib |
 	mm := self testPragmasAsMetamodel.
 	lib := self testCreateSCGLibrary.
-	self 
-		should: [ mm add: lib ]
-		raise: Error.
-	self 
-		should: [ mm add: lib librarian ]
-		raise: Error.
-	self 
-		should: [ mm add: lib books anyOne ]
-		raise: Error
+	self should: [ mm add: lib ] raise: Error.
+	self should: [ mm add: lib librarian ] raise: Error.
+	self should: [ mm add: lib books anyOne ] raise: Error
 ]
 
 { #category : #running }
@@ -26,19 +20,19 @@ FMLibraryExample >> testBookstore [
 	tower := FMTower new.
 	tower metamodel importString: FMMSEParserTest sampleMetaMse.
 	names := tower metamodel elements collect: [ :each | each fullName ].
-	names should include: 'LIB'.
-	names should include: 'LIB.Person'.
-	names should include: 'LIB.Person.name'.
-	names should include: 'LIB.Book'.
-	names should include: 'LIB.Book.authors'.
-	names should include: 'LIB.Library'.
-	names should include: 'LIB.Library.librarian'.
-	names should include: 'LIB.Library.books'.
-	(tower metamodel elements detect: [ :each | each fullName = 'LIB.Library.books' ]) type should =
-			(tower metamodel elements detect: [ :each | each fullName = 'LIB.Book' ]).
-	(tower metamodel elements detect: [ :each | each fullName = 'LIB.Person.name' ]) type should =
-			(FMMetaRepository fm3 elementNamed: 'String').
-	names size should = 10
+	self assert: (names includes: 'LIB').
+	self assert: (names includes: 'LIB.Person').
+	self assert: (names includes: 'LIB.Person.name').
+	self assert: (names includes: 'LIB.Book').
+	self assert: (names includes: 'LIB.Book.authors').
+	self assert: (names includes: 'LIB.Library').
+	self assert: (names includes: 'LIB.Library.librarian').
+	self assert: (names includes: 'LIB.Library.books').
+	self
+		assert: (tower metamodel elements detect: [ :each | each fullName = 'LIB.Library.books' ]) type
+		equals: (tower metamodel elements detect: [ :each | each fullName = 'LIB.Book' ]).
+	self assert: (tower metamodel elements detect: [ :each | each fullName = 'LIB.Person.name' ]) type equals: (FMMetaRepository fm3 elementNamed: 'String').
+	self assert: names size equals: 10
 ]
 
 { #category : #running }
@@ -48,23 +42,22 @@ FMLibraryExample >> testBookstore2 [
 	repo := tower metamodel.
 	tower metamodel importString: FMMSEParserTest sampleMetaMse.
 	package := repo at: 'LIB'.
-	package isFM3Package should beTrue.
+	self assert: package isFM3Package.
 	class := package classNamed: 'Book'.
-	class isFM3Class should beTrue.	"The superclass of Book should be Object"
+	self assert: class isFM3Class.	"The superclass of Book should be Object"
 	objectMetaDescription := class superclass.
-	objectMetaDescription notNil should beTrue.
-	objectMetaDescription name should = #Object.
+	self assert: objectMetaDescription notNil.
+	self assert: objectMetaDescription name equals: #Object.
 	attribute := class at: 'authors'.
-	attribute isFM3Property should beTrue.
-	attribute name should = #authors.
-	attribute isMultivalued should = true.
-	attribute isContainer should = false.
-	attribute isDerived should = false.	"self assert: (attribute package == package)."
-	FM3 note:
-			'Maybe we should rename package to extensionPackage, and make package be derived from [ package or class package ].'.
-	attribute mmClass should = class.
-	attribute type should = (package classNamed: 'Person').
-	attribute opposite notNil should beTrue
+	self assert: attribute isFM3Property.
+	self assert: attribute name equals: #authors.
+	self assert: attribute isMultivalued equals: true.
+	self assert: attribute isContainer equals: false.
+	self assert: attribute isDerived equals: false.	"self assert: (attribute package == package)."
+	FM3 note: 'Maybe we should rename package to extensionPackage, and make package be derived from [ package or class package ].'.
+	self assert: attribute mmClass equals: class.
+	self assert: attribute type equals: (package classNamed: 'Person').
+	self assert: attribute opposite notNil
 ]
 
 { #category : #examples }
@@ -77,23 +70,26 @@ FMLibraryExample >> testCreateSCGLibrary [
 	a5 := LIBPerson new name: 'Kent Beck'.
 	lib := LIBLibrary new
 		librarian: (LIBPerson new name: 'Adrian Kuhn');
-		books: (Array 
-				with: (LIBBook new
+		books:
+			(Array
+				with:
+					(LIBBook new
 						title: 'Design Patterns';
-						authors: (Array 
+						authors:
+							(Array
 								with: a1
 								with: a2
 								with: a3
 								with: a4))
-				with: (LIBBook new
+				with:
+					(LIBBook new
 						title: 'Eclipse: Principles, Patterns, and Plug-Ins';
-						authors: (Array 
-								with: a1
-								with: a5))
-				with: (LIBBook new
+						authors: (Array with: a1 with: a5))
+				with:
+					(LIBBook new
 						title: 'Smalltalk Best Practice Patterns';
 						authors: (Array with: a5))).
-	lib books size should = 3.
+	self assert: lib books size equals: 3.
 	^ lib
 ]
 
@@ -103,7 +99,7 @@ FMLibraryExample >> testGlobalMainTower [
 	lib := self testCreateSCGLibrary.
 	ttt := lib class reset mainLibrary.	"---- has global side-effect!"
 	ttt model add: lib.
-	ttt metamodel elements should include: ttt model elements anyOne metaDescription
+	self assert: (ttt metamodel elements includes: ttt model elements anyOne metaDescription)
 ]
 
 { #category : #examples }
@@ -111,7 +107,7 @@ FMLibraryExample >> testMetaMetamodelIsaM3Repository [
 	| mm |
 	mm := self testPragmasAsMetamodel.
 	mm metamodel should not = mm.
-	mm metamodel metamodel should = mm metamodel
+	self assert: mm metamodel metamodel equals: mm metamodel
 ]
 
 { #category : #examples }
@@ -119,32 +115,32 @@ FMLibraryExample >> testMetamodelSmalltalkBinding [
 	| mm b p lib |
 	mm := self testPragmasAsMetamodel.
 	mm elements anyOne should beKindOf: FM3Element.
-	mm packages anyOne isFM3Package should beTrue.
-	mm classes anyOne isFM3Class should beTrue.
-	mm properties anyOne isFM3Property should beTrue.
+	self assert: mm packages anyOne isFM3Package.
+	self assert: mm classes anyOne isFM3Class.
+	self assert: mm properties anyOne isFM3Property.
 	b := mm elementNamed: 'LIB.Book'.
-	b notNil should beTrue.
+	self assert: b notNil.
 	b should beKindOf: FM3MetaDescription.
-	b name should = #Book.
-	b package name should = #LIB.
-	b attributes size should = 2.
-	b implementingClass should = LIBBook.
+	self assert: b name equals: #Book.
+	self assert: b package name equals: #LIB.
+	self assert: b attributes size equals: 2.
+	self assert: b implementingClass equals: LIBBook.
 	p := mm elementNamed: 'LIB.Person'.
-	p notNil should beTrue.
+	self assert: p notNil.
 	p should beKindOf: FM3MetaDescription.
-	p name should = #Person.
-	p package name should = #LIB.
-	p attributes size should = 2.
-	p implementingClass should = LIBPerson.
+	self assert: p name equals: #Person.
+	self assert: p package name equals: #LIB.
+	self assert: p attributes size equals: 2.
+	self assert: p implementingClass equals: LIBPerson.
 	lib := mm elementNamed: 'LIB.Library'.
-	lib notNil should beTrue.
+	self assert: lib notNil.
 	lib should beKindOf: FM3MetaDescription.
-	lib name should = #Library.
-	lib package name should = #LIB.
-	lib attributes size should = 2.
-	lib implementingClass should = LIBLibrary.
-	b package should = lib package.
-	p package should = lib package.
+	self assert: lib name equals: #Library.
+	self assert: lib package name equals: #LIB.
+	self assert: lib attributes size equals: 2.
+	self assert: lib implementingClass equals: LIBLibrary.
+	self assert: b package equals: lib package.
+	self assert: p package equals: lib package.
 	^ mm
 ]
 
@@ -152,18 +148,15 @@ FMLibraryExample >> testMetamodelSmalltalkBinding [
 FMLibraryExample >> testPragmaProcessing [
 	| pp |
 	pp := FMPragmaProcessor new.
-	pp queue:
-			(Array with: LIBBook
-				with: LIBLibrary
-				with: LIBPerson).
+	pp queue: (Array with: LIBBook with: LIBLibrary with: LIBPerson).
 	pp run.
-	pp elements isEmpty should beFalse.
-	pp packages isEmpty should beFalse.
-	pp packages size should = 1.
-	pp packages anyOne name should = #LIB.
-	pp classes isEmpty should beFalse.
-	pp classes size should = 3.
-	pp properties isEmpty should beFalse.
+	self denyEmpty: pp elements.
+	self denyEmpty: pp packages.
+	self assert: pp packages size equals: 1.
+	self assert: pp packages anyOne name equals: #LIB.
+	self denyEmpty: pp classes.
+	self assert: pp classes size equals: 3.
+	self denyEmpty: pp properties.
 	^ pp
 ]
 
@@ -171,15 +164,15 @@ FMLibraryExample >> testPragmaProcessing [
 FMLibraryExample >> testPragmasAsMetamodel [
 	| mm |
 	mm := self testPragmaProcessing asMetamodel.
-	mm class should = FMMetaRepository.
-	mm elements isEmpty should beFalse.
-	mm packages isEmpty should beFalse.
-	mm packages size should = 1.
-	mm packages anyOne name should = #LIB.
-	mm classes isEmpty should beFalse.
-	mm classes size should = 3.
-	(mm elementNamed: 'LIB.Book.authors') hasOpposite should beTrue.
-	(mm elementNamed: 'LIB.Book.authors') opposite should = (mm elementNamed: 'LIB.Person.books').
+	self assert: mm class equals: FMMetaRepository.
+	self denyEmpty: mm elements.
+	self denyEmpty: mm packages.
+	self assert: mm packages size equals: 1.
+	self assert: mm packages anyOne name equals: #LIB.
+	self denyEmpty: mm classes.
+	self assert: mm classes size equals: 3.
+	self assert: (mm elementNamed: 'LIB.Book.authors') hasOpposite.
+	self assert: (mm elementNamed: 'LIB.Book.authors') opposite equals: (mm elementNamed: 'LIB.Person.books').
 	^ mm
 ]
 
@@ -187,16 +180,16 @@ FMLibraryExample >> testPragmasAsMetamodel [
 FMLibraryExample >> testPragmasAsTower [
 	| tower |
 	tower := self testPragmaProcessing asTower.
-	tower metaMetamodel metamodel should = tower metaMetamodel.
-	tower metamodel metamodel should = tower metaMetamodel.
-	tower model metamodel should = tower metamodel.
-	tower metaMetamodel elements isEmpty should beFalse.
-	tower metamodel elements isEmpty should beFalse.
-	tower model elements isEmpty should beTrue.	"must be empty"
-	tower metaMetamodel packages size should = 1.
-	tower metaMetamodel packages anyOne name should = #FM3.
-	tower metamodel packages size should = 1.
-	tower metamodel packages anyOne name should = #LIB.
+	self assert: tower metaMetamodel metamodel equals: tower metaMetamodel.
+	self assert: tower metamodel metamodel equals: tower metaMetamodel.
+	self assert: tower model metamodel equals: tower metamodel.
+	self denyEmpty: tower metaMetamodel elements.
+	self denyEmpty: tower metamodel elements.
+	self assertEmpty: tower model elements.	"must be empty"
+	self assert: tower metaMetamodel packages size equals: 1.
+	self assert: tower metaMetamodel packages anyOne name equals: #FM3.
+	self assert: tower metamodel packages size equals: 1.
+	self assert: tower metamodel packages anyOne name equals: #LIB.
 	^ tower
 ]
 
@@ -205,20 +198,22 @@ FMLibraryExample >> testPrintMetamodel [
 	| mm string |
 	mm := self testPragmasAsMetamodel.
 	string := mm exportString.
-	string should beginWith: '(
+	string should
+		beginWith:
+			'(
 	(FM3.Package (id: 1)
 		(name ''LIB'')'
-
 ]
 
 { #category : #examples }
 FMLibraryExample >> testPrintModel [
 	| m string |
-	m := self testSCGLibraryAsModel. 
+	m := self testSCGLibraryAsModel.
 	string := m exportString.
-	string should beginWith: '(
+	string should
+		beginWith:
+			'(
 	(LIB.Library (id:'
-
 ]
 
 { #category : #examples }
@@ -228,8 +223,8 @@ FMLibraryExample >> testSCGLibraryAsModel [
 	lib := self testCreateSCGLibrary.
 	m := FMRepository with: mm.
 	m add: lib.
-	m metamodel should = mm.
-	m elements notEmpty should beTrue.	"----------------- KNOWN TO FAIL ----------------
+	self assert: m metamodel equals: mm.
+	self assert: m elements notEmpty.	"----------------- KNOWN TO FAIL ----------------
 	should implement a #complete method
 	self assert: (m elements size = --------------"
 	1 + 1 + 3 + 5.	"library"	"librarian"	"books"	"authors"
