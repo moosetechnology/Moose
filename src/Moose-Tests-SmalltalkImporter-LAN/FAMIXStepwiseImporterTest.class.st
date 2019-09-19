@@ -171,21 +171,25 @@ FAMIXStepwiseImporterTest >> testImportClassAndMethodAndMergeItsMetaclass [
 { #category : #tests }
 FAMIXStepwiseImporterTest >> testImportLANPackage [
 	"self debug: #testImportLANPackage"
-	
+
 	| model class package |
-	model := MooseModel new.	
+	model := MooseModel new.
 	self newPharoImporterTask
 		importerClass: SmalltalkImporter;
-		doNotRunCandidateOperator; 
-		importingContext: (MooseImportingContext new importClass; importPackage; yourself);
+		doNotRunCandidateOperator;
+		importingContext:
+			(MooseImportingContext new
+				importClass;
+				importPackage;
+				yourself);
 		model: model;
 		addFromPackageNamed: #'Moose-TestResources-LAN';
 		run;
 		yourself.
-	self deny: (model allPackages isEmpty).
+	self deny: model allPackages isEmpty.
 	package := model entityNamed: #'Moose-TestResources-LAN'.
-	class := model entityNamed: #'Smalltalk::LANNode'. 
-	self assert: class parentPackage == package
+	class := model entityNamed: #'Smalltalk::LANNode'.
+	self assert: class parentPackage identicalTo: package
 ]
 
 { #category : #tests }
@@ -216,8 +220,8 @@ FAMIXStepwiseImporterTest >> testImportMethodBody [
 	self assert: famixClassNode methods size equals: LANNode methodDict size + LANNode class methodDict size.	"Browser Node>>nextNode to see the code that has been imported"
 	nextNodeMethod := famixClassNode methods detect: [ :fm | fm name == #nextNode ].
 	self assert: nextNodeMethod parameters isEmpty.
-	self assert: nextNodeMethod signature == #'nextNode()'.
-	self assert: nextNodeMethod mooseName == #'Smalltalk::LANNode.nextNode()'.
+	self assert: nextNodeMethod signature identicalTo: #'nextNode()'.
+	self assert: nextNodeMethod mooseName identicalTo: #'Smalltalk::LANNode.nextNode()'.
 	nameMethod := famixClassNode methods detect: [ :fm | fm name == #name: ].
 	self assert: nameMethod parameters size equals: 1.
 	xFormalParameter := nameMethod parameters at: 1.

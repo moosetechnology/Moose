@@ -102,9 +102,9 @@ MooseMSEImporterTest >> testSimple [
 	self assert: mooseModel entities notEmpty.
 	self assert: (mooseModel allClasses collect: #name) asSortedCollection asArray equals: {'ClassA' . 'ClassB'}.
 	self assert: (mooseModel allPackages collect: #name) asArray equals: {'aPackage' . 'aPackage'}.
-	classA := mooseModel entityNamed: #aNamespace::ClassA.
+	classA := mooseModel entityNamed: #'aNamespace::ClassA'.
 	self assert: classA notNil.
-	self assert: classA container == (mooseModel entityNamed: #aNamespace).
+	self assert: classA container identicalTo: (mooseModel entityNamed: #aNamespace).
 	self assert: classA methods size equals: 1.	"====="
 	self shouldnt: [ self readMSEStream: mooseSample modelVersion2 readStream ] raise: Error.
 	self shouldnt: [ self readMSEStream: mooseSample modelVersion3 readStream ] raise: Error.

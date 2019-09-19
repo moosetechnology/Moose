@@ -25,7 +25,7 @@ FMDanglingReference >> initialize: aFutureAttribute [
 
 { #category : #parsing }
 FMDanglingReference >> resolve: element [
-	element notNil should beTrue.
+	self assert: element isNotNil.
 	owner values at: pos put: element.
 	owner count: owner count - 1.
 	owner maybeEnd

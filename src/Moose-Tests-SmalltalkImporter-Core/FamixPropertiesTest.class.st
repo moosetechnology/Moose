@@ -280,13 +280,9 @@ FamixPropertiesTest >> testMethodsSimpleProperties [
 
 { #category : #testing }
 FamixPropertiesTest >> testNoDuplicatesOfClassVariables [
-	self
-		assert: ((self model entityNamed: #Smalltalk::Object) attributes contains: [ :each | each name = #DependentsFields ]).
-	self
-		assert:
-			(self model entityNamed: #Smalltalk::Object) attributes first
-				== (self model entityNamed: #Smalltalk::Object) attributes last.
-	self assert: (self model entityNamed: #Smalltalk::Object) attributes size equals: 1
+	self assert: ((self model entityNamed: #'Smalltalk::Object') attributes contains: [ :each | each name = #DependentsFields ]).
+	self assert: (self model entityNamed: #'Smalltalk::Object') attributes first identicalTo: (self model entityNamed: #'Smalltalk::Object') attributes last.
+	self assert: (self model entityNamed: #'Smalltalk::Object') attributes size equals: 1
 ]
 
 { #category : #testing }

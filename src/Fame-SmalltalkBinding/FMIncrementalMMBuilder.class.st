@@ -178,7 +178,7 @@ FMIncrementalMMBuilder >> pragmaProperty: aSymbol in: aClass [
 FMIncrementalMMBuilder >> pragmaProperty: aSymbol in: aClass followOpposite: aBoolean [
 	| aMethod pragma propName propType opposite multi derived |
 	aMethod := aClass lookupSelector: aSymbol.
-	aMethod isCompiledMethod should beTrue.
+	self assert: aMethod isCompiledMethod.
 	pragma := Pragma inMethod: aMethod named: #(#MSEProperty:type:opposite: #MSEProperty:type:).
 	pragma isNil ifTrue: [ self error: 'No Fame pragma in ' , aSymbol ].
 	propName := (pragma argumentAt: 1) asString.

@@ -75,7 +75,7 @@ FMInferencer >> endAttribute: name [
 
 { #category : #parsing }
 FMInferencer >> endDocument [
-	stack isEmpty should beTrue.
+	self assert: stack isEmpty.
 	self resolveReferences
 ]
 
