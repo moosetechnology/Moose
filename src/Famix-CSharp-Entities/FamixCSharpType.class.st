@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixCSharpType,
 	#superclass : #FamixCSharpContainerEntity,
-	#traits : 'FamixTClassHierarchyNavigation + FamixTParameterizedTypeUser + FamixTType + FamixTWithTypeAliases + FamixTWithSubInheritances + FamixTWithSuperInheritances + FamixTWithAttributes',
-	#classTraits : 'FamixTClassHierarchyNavigation classTrait + FamixTParameterizedTypeUser classTrait + FamixTType classTrait + FamixTWithTypeAliases classTrait + FamixTWithSubInheritances classTrait + FamixTWithSuperInheritances classTrait + FamixTWithAttributes classTrait',
+	#traits : 'FamixCSharpTWithProperties + FamixTClassHierarchyNavigation + FamixTContainingWithStatementsGlue + FamixTParameterizedTypeUser + FamixTType + FamixTWithAttributes + FamixTWithMethods + FamixTWithMethodsWithModifiersGlue + FamixTWithSubInheritances + FamixTWithSuperInheritances + FamixTWithTypeAliases',
+	#classTraits : 'FamixCSharpTWithProperties classTrait + FamixTClassHierarchyNavigation classTrait + FamixTContainingWithStatementsGlue classTrait + FamixTParameterizedTypeUser classTrait + FamixTType classTrait + FamixTWithAttributes classTrait + FamixTWithMethods classTrait + FamixTWithMethodsWithModifiersGlue classTrait + FamixTWithSubInheritances classTrait + FamixTWithSuperInheritances classTrait + FamixTWithTypeAliases classTrait',
 	#category : #'Famix-CSharp-Entities-Entities'
 }
 

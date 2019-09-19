@@ -19,7 +19,7 @@ FamixCSharpAttribute class >> annotation [
 FamixCSharpAttribute class >> requirements [
 
 	<generated>
-	^ { FamixCSharpClass }
+	^ { FamixCSharpAnnotationTypeAttribute. FamixCSharpClass. FamixCSharpType }
 ]
 
 { #category : #accessing }

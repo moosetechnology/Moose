@@ -173,6 +173,7 @@ FamixCSharpGenerator >> defineHierarchy [
 
 " ICIIIIIIIIIIIII "
 	property --|> localVariable.
+	property --|> #TAttribute.
 	propertyAccessor --|> method.
 	struct  --|> type. 
 	delegate --|> type. 

@@ -19,6 +19,29 @@ FamixCSharpProperty class >> annotation [
 	^self
 ]
 
+{ #category : #meta }
+FamixCSharpProperty class >> requirements [
+
+	<generated>
+	^ { FamixCSharpAnnotationTypeAttribute. FamixCSharpClass. FamixCSharpType }
+]
+
+{ #category : #accessing }
+FamixCSharpProperty >> belongsTo [
+
+	<generated>
+	^ self parentType
+
+]
+
+{ #category : #accessing }
+FamixCSharpProperty >> belongsTo: anObject [
+
+	<generated>
+	self parentType: anObject
+
+]
+
 { #category : #accessing }
 FamixCSharpProperty >> getter [
 

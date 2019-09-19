@@ -19,7 +19,7 @@ FamixCSharpMethod class >> annotation [
 FamixCSharpMethod class >> requirements [
 
 	<generated>
-	^ { FamixCSharpEvent }
+	^ { FamixCSharpEvent. FamixCSharpType }
 ]
 
 { #category : #accessing }
