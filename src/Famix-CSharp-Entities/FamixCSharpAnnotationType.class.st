@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixCSharpAnnotationType,
 	#superclass : #FamixCSharpType,
-	#traits : 'FamixTAnnotationType',
-	#classTraits : 'FamixTAnnotationType classTrait',
+	#traits : 'FamixTAnnotationType + FamixTWithMethods',
+	#classTraits : 'FamixTAnnotationType classTrait + FamixTWithMethods classTrait',
 	#category : #'Famix-CSharp-Entities-Entities'
 }
 

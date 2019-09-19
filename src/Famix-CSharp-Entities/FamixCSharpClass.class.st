@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixCSharpClass,
 	#superclass : #FamixCSharpType,
-	#traits : 'FamixTClass + FamixTLCOMMetrics + FamixTWithExceptions',
-	#classTraits : 'FamixTClass classTrait + FamixTLCOMMetrics classTrait + FamixTWithExceptions classTrait',
+	#traits : 'FamixCSharpTWithProperties + FamixTClass + FamixTLCOMMetrics + FamixTWithAttributes + FamixTWithExceptions',
+	#classTraits : 'FamixCSharpTWithProperties classTrait + FamixTClass classTrait + FamixTLCOMMetrics classTrait + FamixTWithAttributes classTrait + FamixTWithExceptions classTrait',
 	#category : #'Famix-CSharp-Entities-Entities'
 }
 

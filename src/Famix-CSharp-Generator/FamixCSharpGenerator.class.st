@@ -154,6 +154,7 @@ FamixCSharpGenerator >> defineHierarchy [
 	annotationType --|> #TAnnotationType.
 
 	annotationTypeAttribute --|> attribute.
+	annotationTypeAttribute --|> #TWithAttributes.
 	annotationTypeAttribute --|> #TAnnotationTypeAttribute.
 	annotationTypeAttribute --|> #TTypedAnnotationInstanceAttribute.
 
@@ -173,8 +174,8 @@ FamixCSharpGenerator >> defineHierarchy [
 " ICIIIIIIIIIIIII "
 	property --|> localVariable.
 	propertyAccessor --|> method.
-	struct  --|> #TType. 
-	delegate --|> #TType. 
+	struct  --|> type. 
+	delegate --|> type. 
 	event --|> method. 
 	event --|> #TWithMethods.
 
@@ -187,6 +188,11 @@ FamixCSharpGenerator >> defineHierarchy [
 	class --|> #TWithExceptions.
 	class --|> #TClass.
 	class --|> #TLCOMMetrics.
+	class --|> #TWithAttributes.
+	class --|> #TWithProperties.
+	
+	
+	
 
 	containerEntity --|> namedEntity.
 	containerEntity --|> #TWithTypes.
@@ -265,9 +271,15 @@ FamixCSharpGenerator >> defineHierarchy [
 
 	type --|> containerEntity.
 	type --|> #TType.
+	type --|> #TWithMethods.
 	type --|> #TWithTypeAliases.
 	type --|> #TParameterizedTypeUser.
 	type --|> #TClassHierarchyNavigation. 
+	type --|> #TWithAttributes.
+	type --|> #TWithProperties.
+	type --|> #TWithSubInheritances.
+	type --|> #TWithSuperInheritances.
+
 
 	tStructuralEntity --|> #TStructuralEntity.
 	tStructuralEntity --|> #TWithDereferencedInvocations.

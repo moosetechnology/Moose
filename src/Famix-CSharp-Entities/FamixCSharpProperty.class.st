@@ -1,6 +1,8 @@
 Class {
 	#name : #FamixCSharpProperty,
 	#superclass : #FamixCSharpLocalVariable,
+	#traits : 'FamixTAttribute',
+	#classTraits : 'FamixTAttribute classTrait',
 	#instVars : [
 		'#getter => FMProperty',
 		'#setter => FMProperty'

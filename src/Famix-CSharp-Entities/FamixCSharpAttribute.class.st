@@ -15,6 +15,13 @@ FamixCSharpAttribute class >> annotation [
 	^self
 ]
 
+{ #category : #meta }
+FamixCSharpAttribute class >> requirements [
+
+	<generated>
+	^ { FamixCSharpClass }
+]
+
 { #category : #accessing }
 FamixCSharpAttribute >> belongsTo [
 

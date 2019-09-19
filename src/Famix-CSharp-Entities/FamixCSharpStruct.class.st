@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixCSharpStruct,
-	#superclass : #MooseEntity,
+	#superclass : #FamixCSharpType,
 	#traits : 'FamixTType',
 	#classTraits : 'FamixTType classTrait',
 	#category : #'Famix-CSharp-Entities-Entities'
