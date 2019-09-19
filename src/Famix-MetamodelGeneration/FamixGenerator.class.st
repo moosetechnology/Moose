@@ -1175,7 +1175,9 @@ FamixGenerator >> defineRelations [
 	((tFolder property: #childrenFileSystemEntities)
 			comment: 'List of entities contained in this folder.')
 		-*
-	((tFileSystemEntity property: #parentFolder)).
+	((tFileSystemEntity property: #parentFolder)
+		comment: 'Folder entity containing this file.';
+		container).
 
 	((tFile property: #entities)
 			comment: 'List of entities defined in the file')

@@ -14,3 +14,26 @@ FamixTest1AbstractFile class >> annotation [
 	<generated>
 	^self
 ]
+
+{ #category : #meta }
+FamixTest1AbstractFile class >> requirements [
+
+	<generated>
+	^ { FamixTest1Folder }
+]
+
+{ #category : #accessing }
+FamixTest1AbstractFile >> belongsTo [
+
+	<generated>
+	^ self parentFolder
+
+]
+
+{ #category : #accessing }
+FamixTest1AbstractFile >> belongsTo: anObject [
+
+	<generated>
+	self parentFolder: anObject
+
+]
