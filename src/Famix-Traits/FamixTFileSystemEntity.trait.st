@@ -40,6 +40,8 @@ FamixTFileSystemEntity >> parentFolder [
 	"Relation named: #parentFolder type: #FamixTFolder opposite: #childrenFileSystemEntities"
 
 	<generated>
+	<MSEComment: 'Folder entity containing this file.'>
+	<container>
 	^ parentFolder
 ]
 
@@ -50,4 +52,11 @@ FamixTFileSystemEntity >> parentFolder: anObject [
 	self resetMooseName.
 	
 
+]
+
+{ #category : #navigation }
+FamixTFileSystemEntity >> parentFolderGroup [
+	<generated>
+	<navigation: 'ParentFolder'>
+	^ MooseGroup with: self parentFolder
 ]

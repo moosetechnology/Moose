@@ -15,10 +15,25 @@ FamixJavaAbstractFile class >> annotation [
 	^self
 ]
 
+{ #category : #meta }
+FamixJavaAbstractFile class >> requirements [
+
+	<generated>
+	^ { FamixJavaFolder }
+]
+
 { #category : #'as yet unclassified' }
 FamixJavaAbstractFile >> belongsTo [
 	<navigation: 'parent folder'>
 	^ self parentFolder
+]
+
+{ #category : #accessing }
+FamixJavaAbstractFile >> belongsTo: anObject [
+
+	<generated>
+	self parentFolder: anObject
+
 ]
 
 { #category : #'as yet unclassified' }
