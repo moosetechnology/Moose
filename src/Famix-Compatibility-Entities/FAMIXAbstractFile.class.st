@@ -15,10 +15,27 @@ FAMIXAbstractFile class >> annotation [
 	^self
 ]
 
+{ #category : #meta }
+FAMIXAbstractFile class >> requirements [
+
+	<generated>
+	^ { FAMIXFolder }
+]
+
 { #category : #accessing }
 FAMIXAbstractFile >> belongsTo [
-	<navigation: 'parent folder'>
+
+	<generated>
 	^ self parentFolder
+
+]
+
+{ #category : #accessing }
+FAMIXAbstractFile >> belongsTo: anObject [
+
+	<generated>
+	self parentFolder: anObject
+
 ]
 
 { #category : #accessing }

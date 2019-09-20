@@ -1,5 +1,5 @@
 Class {
-	#name : #OldFamixTest2Test,
+	#name : #FamixTest2Test,
 	#superclass : #TestCase,
 	#instVars : [
 		'model',
@@ -18,7 +18,7 @@ Class {
 }
 
 { #category : #running }
-OldFamixTest2Test >> setUp [
+FamixTest2Test >> setUp [
 
 	super setUp.
 
@@ -48,7 +48,7 @@ OldFamixTest2Test >> setUp [
 ]
 
 { #category : #running }
-OldFamixTest2Test >> testInheritances [
+FamixTest2Test >> testInheritances [
 
 	self assertCollection: (c1 subInheritances collect: #subclass) hasSameElements: { c2. c3 }.
 	self assertCollection: (c2 subInheritances collect: #subclass) hasSameElements: { c4. c5 }.	
