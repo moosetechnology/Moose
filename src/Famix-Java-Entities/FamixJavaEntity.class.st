@@ -37,13 +37,6 @@ FamixJavaEntity class >> metamodel [
 	^ (self class environment at: #FamixJavaGenerator) metamodel
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaEntity >> belongsTo [
-	"Return the primary container of the entity if it exist"
-	
-	^ self subclassResponsibility
-]
-
 { #category : #testing }
 FamixJavaEntity >> isAccess [
 

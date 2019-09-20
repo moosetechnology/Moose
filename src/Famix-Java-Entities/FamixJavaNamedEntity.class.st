@@ -22,12 +22,6 @@ FamixJavaNamedEntity class >> requirements [
 	^ { FamixJavaPackage }
 ]
 
-{ #category : #deprecated }
-FamixJavaNamedEntity >> belongsTo [
-	
-	^self subclassResponsibility
-]
-
 { #category : #accessing }
 FamixJavaNamedEntity >> belongsTo: anObject [
 

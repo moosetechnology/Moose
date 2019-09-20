@@ -36,8 +36,3 @@ FamixStScopingEntity >> allClasses [
 	self withAllChildScopesDo: [ :each | result addAll: each classes ].
 	^ result
 ]
-
-{ #category : #accessing }
-FamixStScopingEntity >> belongsTo [
-	^ self parentScope ifNil: [ self parentPackage ]
-]

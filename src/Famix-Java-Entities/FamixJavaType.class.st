@@ -49,11 +49,6 @@ FamixJavaType >> anySuperclass [
 ]
 
 { #category : #accessing }
-FamixJavaType >> belongsTo [
-	^ self container ifNil: [ self parentPackage ]
-]
-
-{ #category : #accessing }
 FamixJavaType >> container [
 
 	<MSEProperty: #container type: #FamixJavaContainerEntity>

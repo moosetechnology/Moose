@@ -50,12 +50,6 @@ FAMIXScopingEntity >> allClassesGroup [
 	^ FAMIXTypeGroup withAll: self allClasses withDescription: 'All classes from ', self printString
 ]
 
-{ #category : #accessing }
-FAMIXScopingEntity >> belongsTo [
-
-	^ self parentScope ifNil: [ self parentPackage ]
-]
-
 { #category : #'Famix-Extensions-metrics' }
 FAMIXScopingEntity >> bunchCohesion [
 	"Computing cohesion (Bunch formula)"

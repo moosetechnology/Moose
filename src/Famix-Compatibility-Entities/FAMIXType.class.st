@@ -57,11 +57,6 @@ FAMIXType >> anySuperclass [
 	^ nil
 ]
 
-{ #category : #accessing }
-FAMIXType >> belongsTo [
-	^ self container ifNil: [ self parentPackage ]
-]
-
 { #category : #'Famix-Smalltalk' }
 FAMIXType >> classSide [
 	^self isClassSide

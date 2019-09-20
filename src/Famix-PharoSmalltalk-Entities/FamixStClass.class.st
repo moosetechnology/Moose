@@ -26,11 +26,6 @@ FamixStClass >> accessedAttributes [
 ]
 
 { #category : #accessing }
-FamixStClass >> belongsTo [
-	^ self typeContainer
-]
-
-{ #category : #accessing }
 FamixStClass >> belongsTo: anObject [
 	self typeContainer: anObject
 ]

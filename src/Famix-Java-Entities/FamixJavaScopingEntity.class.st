@@ -50,12 +50,6 @@ FamixJavaScopingEntity >> allClassesGroup [
 	^ FAMIXTypeGroup withAll: self allClasses withDescription: 'All classes from ', self printString
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaScopingEntity >> belongsTo [
-	
-	^ self parentScope ifNil: [ self parentPackage ]
-]
-
 { #category : #'Famix-Extensions-metrics' }
 FamixJavaScopingEntity >> bunchCohesion [
 	"Computing cohesion (Bunch formula)"
