@@ -56,14 +56,6 @@ FamixJavaScopingEntity >> belongsTo [
 	^ self parentScope ifNil: [ self parentPackage ]
 ]
 
-{ #category : #accessing }
-FamixJavaScopingEntity >> belongsTo: anObject [
-
-	<generated>
-	self parentScope: anObject
-
-]
-
 { #category : #'Famix-Extensions-metrics' }
 FamixJavaScopingEntity >> bunchCohesion [
 	"Computing cohesion (Bunch formula)"

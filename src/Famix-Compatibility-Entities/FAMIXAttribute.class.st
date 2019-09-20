@@ -38,22 +38,6 @@ FAMIXAttribute >> beSharedVariable [
 ]
 
 { #category : #accessing }
-FAMIXAttribute >> belongsTo [
-
-	<generated>
-	^ self parentType
-
-]
-
-{ #category : #accessing }
-FAMIXAttribute >> belongsTo: anObject [
-
-	<generated>
-	self parentType: anObject
-
-]
-
-{ #category : #accessing }
 FAMIXAttribute >> hasClassScope [
 	<MSEProperty: #hasClassScope type: #Boolean>
 	<MSEComment: 'True if class-side attribute'>

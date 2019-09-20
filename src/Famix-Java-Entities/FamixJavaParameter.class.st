@@ -15,22 +15,6 @@ FamixJavaParameter class >> annotation [
 	^self
 ]
 
-{ #category : #accessing }
-FamixJavaParameter >> belongsTo [
-
-	<generated>
-	^ self parentBehaviouralEntity
-
-]
-
-{ #category : #accessing }
-FamixJavaParameter >> belongsTo: anObject [
-
-	<generated>
-	self parentBehaviouralEntity: anObject
-
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaParameter >> mooseNameOn: stream [ 
 	| parent |

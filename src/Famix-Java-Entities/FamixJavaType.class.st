@@ -54,14 +54,6 @@ FamixJavaType >> belongsTo [
 ]
 
 { #category : #accessing }
-FamixJavaType >> belongsTo: anObject [
-
-	<generated>
-	self typeContainer: anObject
-
-]
-
-{ #category : #accessing }
 FamixJavaType >> container [
 
 	<MSEProperty: #container type: #FamixJavaContainerEntity>

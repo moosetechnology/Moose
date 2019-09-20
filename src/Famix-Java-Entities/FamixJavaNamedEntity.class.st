@@ -22,7 +22,7 @@ FamixJavaNamedEntity class >> requirements [
 	^ { FamixJavaPackage }
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #deprecated }
 FamixJavaNamedEntity >> belongsTo [
 	
 	^self subclassResponsibility

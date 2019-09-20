@@ -22,22 +22,6 @@ FamixStNamedEntity class >> requirements [
 	^ { FamixStPackage }
 ]
 
-{ #category : #accessing }
-FamixStNamedEntity >> belongsTo [
-
-	<generated>
-	^ self parentPackage
-
-]
-
-{ #category : #accessing }
-FamixStNamedEntity >> belongsTo: anObject [
-
-	<generated>
-	self parentPackage: anObject
-
-]
-
 { #category : #'Famix-Extensions' }
 FamixStNamedEntity >> stubFormattedName [
 	 ^ self isStub 

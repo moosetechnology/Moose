@@ -22,22 +22,6 @@ FamixStAnnotationType class >> requirements [
 	^ { FamixStContainerEntity }
 ]
 
-{ #category : #accessing }
-FamixStAnnotationType >> belongsTo [
-
-	<generated>
-	^ self annotationTypesContainer
-
-]
-
-{ #category : #accessing }
-FamixStAnnotationType >> belongsTo: anObject [
-
-	<generated>
-	self annotationTypesContainer: anObject
-
-]
-
 { #category : #compatibility }
 FamixStAnnotationType >> directSubclasses [
 	^ OrderedCollection new

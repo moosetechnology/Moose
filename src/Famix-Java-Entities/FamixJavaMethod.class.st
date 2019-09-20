@@ -25,22 +25,6 @@ FamixJavaMethod >> accessedAttributes [
 ]
 
 { #category : #accessing }
-FamixJavaMethod >> belongsTo [
-
-	<generated>
-	^ self parentType
-
-]
-
-{ #category : #accessing }
-FamixJavaMethod >> belongsTo: anObject [
-
-	<generated>
-	self parentType: anObject
-
-]
-
-{ #category : #accessing }
 FamixJavaMethod >> category [
 	<MSEProperty: #category type: #String>
 	<MSEComment: 'Category of the method'>

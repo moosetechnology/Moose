@@ -18,22 +18,6 @@ FamixJavaAttribute class >> annotation [
 	^self
 ]
 
-{ #category : #accessing }
-FamixJavaAttribute >> belongsTo [
-
-	<generated>
-	^ self parentType
-
-]
-
-{ #category : #accessing }
-FamixJavaAttribute >> belongsTo: anObject [
-
-	<generated>
-	self parentType: anObject
-
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaAttribute >> hasClassScope [
 	<MSEProperty: #hasClassScope type: #Boolean>

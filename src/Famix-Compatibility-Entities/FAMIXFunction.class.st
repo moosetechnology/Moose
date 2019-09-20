@@ -23,22 +23,6 @@ FAMIXFunction class >> requirements [
 ]
 
 { #category : #accessing }
-FAMIXFunction >> belongsTo [
-
-	<generated>
-	^ self functionOwner
-
-]
-
-{ #category : #accessing }
-FAMIXFunction >> belongsTo: anObject [
-
-	<generated>
-	self functionOwner: anObject
-
-]
-
-{ #category : #accessing }
 FAMIXFunction >> container [
 	^ self functionOwner
 ]

@@ -21,19 +21,3 @@ FamixJavaEnumValue class >> requirements [
 	<generated>
 	^ { FamixJavaEnum }
 ]
-
-{ #category : #accessing }
-FamixJavaEnumValue >> belongsTo [
-
-	<generated>
-	^ self parentEnum
-
-]
-
-{ #category : #accessing }
-FamixJavaEnumValue >> belongsTo: anObject [
-
-	<generated>
-	self parentEnum: anObject
-
-]

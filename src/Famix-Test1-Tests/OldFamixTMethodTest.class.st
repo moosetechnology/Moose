@@ -45,14 +45,7 @@ OldFamixTMethodTest >> setUp [
 
 { #category : #tests }
 OldFamixTMethodTest >> testBelongsTo [
-
-	self assert: m1 belongsTo equals: c1.
-	
-	m1 belongsTo: c2.
-	self assert: m1 parentType equals: c2.
-	self assert: c1 numberOfMethods equals: 0.
-	self assert: (c2 methods includes: m1).
-
+	self assert: m1 belongsTo equals: c1
 ]
 
 { #category : #tests }

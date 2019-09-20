@@ -502,6 +502,22 @@ TEntityMetaLevelDependency >> atScope: aClassFAMIX until: rejectBlock [
 	^ (self atScope: aClassFAMIX in: OrderedCollection new until: rejectBlock) asSet asArray
 ]
 
+{ #category : #deprecated }
+TEntityMetaLevelDependency >> belongsTo [
+	"Return the primary container of the entity if it exist"
+
+	"/!\ Please do not use me. 
+	It does not make sense to have a 'primary' container since the models do not have a containment tree but a containment DAG. 
+	This method will be deprecated in the future when we will rewrite the users to use #parents."
+
+	^ self parents ifNotEmpty: #anyOne ifEmpty: [ nil ]
+]
+
+{ #category : #deprecated }
+TEntityMetaLevelDependency >> belongsTo: anEntity [
+	self deprecated: 'belongsTo will be removed in the future. Use the explicit setter for the property you''re trying to set instead. Such has #parentScope, #typeContainer, ...'
+]
+
 { #category : #accessing }
 TEntityMetaLevelDependency >> children [
 	| res |

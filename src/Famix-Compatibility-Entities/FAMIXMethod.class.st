@@ -44,22 +44,6 @@ FAMIXMethod >> accessedAttributes [
 	^ (self queryOutgoingAccesses opposites withinParentUsing: FamixTClass) asSet select: #isAttribute
 ]
 
-{ #category : #accessing }
-FAMIXMethod >> belongsTo [
-
-	<generated>
-	^ self parentType
-
-]
-
-{ #category : #accessing }
-FAMIXMethod >> belongsTo: anObject [
-
-	<generated>
-	self parentType: anObject
-
-]
-
 { #category : #'Famix-Smalltalk' }
 FAMIXMethod >> category [
 	<MSEProperty: #category type: #String>

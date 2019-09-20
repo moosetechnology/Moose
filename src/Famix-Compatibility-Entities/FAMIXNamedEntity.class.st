@@ -27,7 +27,7 @@ FAMIXNamedEntity class >> requirements [
 	^ { FAMIXPackage }
 ]
 
-{ #category : #accessing }
+{ #category : #deprecated }
 FAMIXNamedEntity >> belongsTo [
 	
 	^self subclassResponsibility
