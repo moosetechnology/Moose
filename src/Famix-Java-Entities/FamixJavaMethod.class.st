@@ -202,6 +202,19 @@ FamixJavaMethod >> isSurelyInvokedBy: aFAMIXMethod [
 	^false
 ]
 
+{ #category : #printing }
+FamixJavaMethod >> mooseNameOn: stream [ 
+	| parent |
+	parent := self belongsTo.
+	parent ifNotNil: 
+		[ parent mooseNameOn: stream.
+		stream nextPut: $. ].
+	self signature
+		ifNotNil: [ stream nextPutAll: self signature ]
+		ifNil: [ 
+			self name ifNotNil: [ stream nextPutAll: self name] ]
+]
+
 { #category : #accessing }
 FamixJavaMethod >> numberOfAccesses [
 	<MSEProperty: #numberOfAccesses type: #Number>
