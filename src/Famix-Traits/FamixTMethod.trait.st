@@ -164,8 +164,8 @@ FamixTMethod >> mooseNameOn: stream [
 			parent mooseNameOn: stream.
 			stream nextPut: $. ].
 	self signature
-		ifNotNil: [ :aSignature | stream nextPutAll: aSignature ]
-		ifNil: [  self name ifNotNil: [ :aName | stream nextPutAll: aName ] ]
+		ifNotNil: [ :sign | stream nextPutAll: sign ]
+		ifNil: [ stream nextPutAll: self name ]
 ]
 
 { #category : #metrics }
