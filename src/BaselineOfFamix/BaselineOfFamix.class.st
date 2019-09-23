@@ -114,7 +114,11 @@ BaselineOfFamix >> baseline: spec [
 
 { #category : #dependencies }
 BaselineOfFamix >> collectionExtensions: spec [
-	spec baseline: 'CollectionExtensions' with: [ spec repository: repository ]
+	spec
+		baseline: 'CollectionExtensions'
+		with: [ spec
+				loads: 'Core';
+				repository: 'github://pharo-contributions/CollectionExtensions:v1.x.x/src' ]
 ]
 
 { #category : #dependencies }

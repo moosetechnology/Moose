@@ -6,7 +6,7 @@ Class {
 
 { #category : #running }
 MooseModelDescriptionTest >> msePropertyPragmaFor: aMethod [
-	^ aMethod pragmas detect: [:p | p keyword = #MSEProperty:type:opposite:] ifNone: [ nil ]
+	^ aMethod pragmas detect: [ :p | p selector = #MSEProperty:type:opposite: ] ifNone: [ nil ]
 ]
 
 { #category : #tests }
