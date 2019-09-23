@@ -378,28 +378,6 @@ FmxMBClassTest >> testMultipleClasses [
 
 ]
 
-{ #category : #tests }
-FmxMBClassTest >> testPrimaryContainerWithoutTraits [
-
-	| method package class env |
-	
-	package := builder newClassNamed: #Package.    
-	method := builder newClassNamed: #Method.    
-	class := builder newClassNamed: #Class.    
-
-	(package <>-* class). 
-	(class <>-* method). 
-	(package <>-* method) withoutPrimaryContainer.
-
-	builder generate.
-	
-	env := builder environment ringEnvironment.
-	
-	self assert: ((env ask classNamed: #TstPackage) methodNamed: 'belongsTo') isNil.
-	self assert: (((env ask classNamed: #TstMethod) methodNamed: 'belongsTo') sourceCode includesSubstring: '^ self class').
-	self assert: (((env ask classNamed: #TstClass) methodNamed: 'belongsTo') sourceCode includesSubstring: '^ self package').
-]
-
 { #category : #'tests - names' }
 FmxMBClassTest >> testRelatedOwnerTraitName [
 

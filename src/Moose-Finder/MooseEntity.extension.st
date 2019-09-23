@@ -241,5 +241,7 @@ MooseEntity >> openInGlamorousEditor [
 { #category : #'*Moose-Finder' }
 MooseEntity >> spotterProcessorsFor: aSpotterStep [
 	super spotterProcessorsFor: aSpotterStep.
-	[ self mooseSpecificSpotterProcessorsFor: aSpotterStep ] on: NotInitializedMooseDescriptionError do: [ Transcript crLog: 'The entity description is not present in its moose model metamodel' ]
+	[ self mooseSpecificSpotterProcessorsFor: aSpotterStep ]
+		on: NotInitializedMooseDescriptionError
+		do: [ Transcript crTrace: 'The entity description is not present in its moose model metamodel' ]
 ]

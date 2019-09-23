@@ -16,21 +16,20 @@ FAMIXStepwiseImporterTest >> defaultTimeLimit [
 FAMIXStepwiseImporterTest >> testCheckFormalParameterIsCreated [
 	"self debug: #testCheckFormalParameterIsCreated"
 
-	| importTask importer mseFormalParameter model |
-	model := MooseModel new.
-	importTask := self newPharoImporterTask.
-	importTask importerClass: SmalltalkImporter.
-	importTask
+	| mseFormalParameter model |
+	model := FamixStMooseModel new.
+	self newPharoImporterTask
+		importerClass: SmalltalkImporter;
 		importingContext:
 			(MooseImportingContext new
 				importImplicitVariable;
 				importAccess;
 				mergeClassAndMetaclass;
-				yourself).
-	importTask doNotRunCandidateOperator.
-	importTask addClass: LANNode.
-	importTask model: model.
-	importer := importTask run.
+				yourself);
+		doNotRunCandidateOperator;
+		addClass: LANNode;
+		model: model;
+		run.
 	mseFormalParameter := model entityNamed: #'Smalltalk::LANNode.nextNode:(Object).aNode'.
 	self assert: mseFormalParameter name equals: #aNode
 ]
@@ -39,21 +38,20 @@ FAMIXStepwiseImporterTest >> testCheckFormalParameterIsCreated [
 FAMIXStepwiseImporterTest >> testCheckSelfIsCreated [
 	"self debug: #testCheckSelfIsCreated"
 
-	| importTask importer model mseSelf |
-	model := MooseModel new.
-	importTask := self newPharoImporterTask.
-	importTask importerClass: SmalltalkImporter.
-	importTask
+	| model mseSelf |
+	model := FamixStMooseModel new.
+	self newPharoImporterTask
+		importerClass: SmalltalkImporter;
 		importingContext:
 			(MooseImportingContext new
 				importImplicitVariable;
 				importAccess;
 				mergeClassAndMetaclass;
-				yourself).
-	importTask doNotRunCandidateOperator.
-	importTask addClass: LANNode.
-	importTask model: model.
-	importer := importTask run.
+				yourself);
+		doNotRunCandidateOperator;
+		addClass: LANNode;
+		model: model;
+		run.
 	mseSelf := model entityNamed: #'Smalltalk::LANNode.send:(Object).self'.
 	self assert: mseSelf name equals: 'self'	"mseMethod :=  model entityNamed:  #'Smalltalk::Node.send:(Object)'."	"apparently I cannot access #'Smalltalk::Node.send:(Object).self'"	"self assert: (mseMethod outgoingAccesses byName: 'Smalltalk::Node.self' ifAbsent: [] ) notEmpty."
 ]
