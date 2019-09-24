@@ -39,12 +39,12 @@ FamixTest3Test >> inv1 [
 
 { #category : #accessing }
 FamixTest3Test >> m1 [
-	^ model entityNamed: #m1
+	^ model entityNamed: 'Class1.m1'
 ]
 
 { #category : #accessing }
 FamixTest3Test >> m2 [
-	^ model entityNamed: #m2
+	^ model entityNamed: 'Class2.m2'
 ]
 
 { #category : #accessing }

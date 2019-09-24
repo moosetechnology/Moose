@@ -202,19 +202,6 @@ FamixStMethod >> isSurelyInvokedBy: aFAMIXMethod [
 	^false
 ]
 
-{ #category : #'Famix-Extensions-metrics-support' }
-FamixStMethod >> mooseNameOn: stream [ 
-	| parent |
-	parent := self belongsTo.
-	parent ifNotNil: 
-		[ parent mooseNameOn: stream.
-		stream nextPut: $. ].
-	self signature
-		ifNotNil: [ stream nextPutAll: self signature ]
-		ifNil: [ 
-			self name ifNotNil: [ stream nextPutAll: self name] ]
-]
-
 { #category : #'Famix-Extensions-private' }
 FamixStMethod >> numberOfAccesses [
 	<MSEProperty: #numberOfAccesses type: #Number>
