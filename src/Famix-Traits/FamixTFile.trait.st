@@ -36,7 +36,7 @@ FamixTFile >> addEntity: famixEntity [
 { #category : #accessing }
 FamixTFile >> averageNumberOfCharactersPerLine [
 	<MSEProperty: #averageNumberOfCharactersPerLine type: #Number>
-	<MSEComment: 'Average number of characters per lline of text in a file.'>
+	<MSEComment: 'Average number of characters per line of text in a file.'>
 	<derived>
 	^ self
 		lookUpPropertyNamed: #averageNumberOfCharactersPerLine
