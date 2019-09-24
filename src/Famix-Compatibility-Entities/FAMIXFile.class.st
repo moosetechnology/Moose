@@ -1,6 +1,6 @@
 Class {
 	#name : #FAMIXFile,
-	#superclass : #FAMIXAbstractFile,
+	#superclass : #FAMIXNamedEntity,
 	#traits : 'FamixTFile',
 	#classTraits : 'FamixTFile classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXFile class >> annotation [
 
-	<MSEClass: #File super: #FAMIXAbstractFile>
+	<MSEClass: #File super: #FAMIXNamedEntity>
 	<package: #FAMIX>
 	<generated>
 	^self
