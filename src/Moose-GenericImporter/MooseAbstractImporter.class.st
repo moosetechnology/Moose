@@ -26,9 +26,8 @@ MooseAbstractImporter class >> targetModel: aMooseModel [
 ]
 
 { #category : #'Moose deprecated' }
-MooseAbstractImporter >> closeLog [ 
-	 
-	Transcript == self errorLog ifFalse: [self errorLog close]
+MooseAbstractImporter >> closeLog [
+	Transcript == self errorLog ifFalse: [ self errorLog close ]
 ]
 
 { #category : #accessing }
@@ -57,14 +56,12 @@ MooseAbstractImporter >> errorLogFileNamed: aString [
 ]
 
 { #category : #accessing }
-MooseAbstractImporter >> importingContext [ 
-	 
-	^importingContext
+MooseAbstractImporter >> importingContext [
+	^ importingContext
 ]
 
 { #category : #accessing }
-MooseAbstractImporter >> importingContext: anObject [ 
-	 
+MooseAbstractImporter >> importingContext: anObject [
 	importingContext := anObject
 ]
 
@@ -100,9 +97,8 @@ MooseAbstractImporter >> targetModel: anObject [
 ]
 
 { #category : #'Moose deprecated' }
-MooseAbstractImporter >> writeLog: aString [ 
-	 
-	(self errorLog) 
-		nextPutAll: aString; 
+MooseAbstractImporter >> writeLog: aString [
+	self errorLog
+		nextPutAll: aString;
 		cr
 ]

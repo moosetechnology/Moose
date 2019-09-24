@@ -69,6 +69,7 @@ Class {
 		'tTypedAnnotationInstance',
 		'tTypedAnnotationInstanceAttribute',
 		'tTypedStructure',
+		'tUnknownSourceLanguage',
 		'tWithAccesses',
 		'tWithAnnotationInstanceAttributes',
 		'tWithAnnotationInstances',
@@ -1614,6 +1615,8 @@ FamixGenerator >> defineTraits [
 
 	tTypedStructure := builder newTraitNamed: #TTypedStructure.
 	tTypedStructure comment: self commentForTTypedStructure.
+	
+	tUnknownSourceLanguage := builder newTraitNamed: #TUnknownSourceLanguage.
 
 	tWithAccesses := builder newTraitNamed: #TWithAccesses.
 	tWithAccesses comment: self commentForTWithAccesses.

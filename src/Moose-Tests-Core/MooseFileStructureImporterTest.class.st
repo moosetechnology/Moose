@@ -15,9 +15,15 @@ MooseFileStructureImporterTest >> createDirectory: aString [
 ]
 
 { #category : #setup }
-MooseFileStructureImporterTest >> createFile: aString [
+MooseFileStructureImporterTest >> createEmptyFileNamed: aString [
 	self toDelete addFirst: aString.
-	^ aString asFileReference writeStream
+	aString asFileReference ensureCreateFile
+]
+
+{ #category : #setup }
+MooseFileStructureImporterTest >> createFileNamed: aString content: aBlock [
+	self toDelete addFirst: aString.
+	aString asFileReference writeStreamDo: aBlock
 ]
 
 { #category : #setup }
@@ -32,34 +38,34 @@ MooseFileStructureImporterTest >> foldersString [
 
 { #category : #running }
 MooseFileStructureImporterTest >> setUp [
-	| stream file |
 	super setUp.
 	toDelete := OrderedCollection new.
 	self createDirectory: self foldersString.
 	self createDirectory: self subFolderAString.
 	self createDirectory: self subFolderBString.
-	(self createFile: (self subFolderAString , 'emptyFile')) close.
-	(self createFile: (self subFolderBString , 'emptyFile')) close.
-	(self createFile: (self foldersString , 'emptyFile')) close.
-	file := self createFile: (self foldersString , 'fileWith9Chars2Lines').
-	stream := file.
-	stream
-		nextPutAll: '123456';
-		cr;
-		nextPutAll: '789'.
-	stream close.
-	file := self createFile: (self foldersString , 'fileWith9Chars4Lines2EmptyLines').
-	stream := file.
-	stream
-		nextPutAll: '123456';cr;
-		cr;
-		cr;
-		nextPutAll: '789'.
-	stream close.
-	model := MooseModel new.
-	(MooseFileStructureImporter new)
+	self createEmptyFileNamed: self subFolderAString , 'emptyFile'.
+	self createEmptyFileNamed: self subFolderBString , 'emptyFile'.
+	self createEmptyFileNamed: self foldersString , 'emptyFile'.
+	self
+		createFileNamed: self foldersString , 'fileWith9Chars2Lines'
+		content: [ :stream | 
+			stream
+				nextPutAll: '123456';
+				cr;
+				nextPutAll: '789' ].
+	self
+		createFileNamed: self foldersString , 'fileWith9Chars4Lines2EmptyLines'
+		content: [ :stream | 
+			stream
+				nextPutAll: '123456';
+				cr;
+				cr;
+				cr;
+				nextPutAll: '789' ].
+	model := FamixTest1MooseModel new.
+	MooseFileStructureImporter new
 		mooseModel: model;
-		completeImport: (OrderedCollection with: 'folders').
+		completeImport: (OrderedCollection with: 'folders')
 ]
 
 { #category : #setup }
@@ -73,9 +79,8 @@ MooseFileStructureImporterTest >> subFolderBString [
 ]
 
 { #category : #running }
-MooseFileStructureImporterTest >> tearDown [ 
-	"self new tearDown"
-	toDelete do: [:each | self filesystem delete: each ].
+MooseFileStructureImporterTest >> tearDown [
+	toDelete do: [ :each | self filesystem delete: each ].
 	super tearDown
 ]
 
@@ -84,7 +89,7 @@ MooseFileStructureImporterTest >> testFiles [
 	| files file |
 	files := model allFiles.
 	self assert: files size equals: 5.
-	self assert: (files select: [ :each | each belongsTo isNil ]) size equals: 0.
+	self assertEmpty: (files select: #isRoot).
 	file := files entityNamed: #'folders/emptyFile'.
 	self assert: (file propertyNamed: #totalNumberOfLinesOfText) equals: 1.
 	self assert: (file propertyNamed: #numberOfLinesOfText) equals: 1.
@@ -128,7 +133,7 @@ MooseFileStructureImporterTest >> testFolders [
 { #category : #testing }
 MooseFileStructureImporterTest >> testMetrics [
 	| file |
-	file := FAMIXFile new.
+	file := FamixTest1File new.
 	self assert: file numberOfLinesOfText isZero.
 	self assert: file numberOfBytes isZero.
 	self assert: file numberOfCharacters isZero.

@@ -57,22 +57,21 @@ FamixBasicInfrastructureGenerator >> defineClasses [
 
 { #category : #definition }
 FamixBasicInfrastructureGenerator >> defineHierarchy [
-
 	sourceAnchor --|> entity.
 	sourceAnchor --|> #TSourceAnchor.
 
 	sourceLanguage --|> entity.
 	sourceLanguage --|> #TSourceLanguage.
-	
+
 	sourcedEntity --|> entity.
 	sourcedEntity --|> #TSourceEntity.
 	sourcedEntity --|> #TWithComments.
-	
+
 	association --|> sourcedEntity.
 	association --|> #TAssociation.
-	
+
 	association --|> #TAssociationMetaLevelDependency.
-	
+
 	comment --|> sourcedEntity.
 	comment --|> #TComment.
 
@@ -80,10 +79,11 @@ FamixBasicInfrastructureGenerator >> defineHierarchy [
 	namedEntity --|> #TNamed.
 	namedEntity --|> #TDependencyQueries.
 	namedEntity --|> #TEntityMetaLevelDependency.
-	
+
 	sourceTextAnchor --|> sourceAnchor.
 	sourceTextAnchor --|> #TWithImmediateSource.
-	
+
 	unknownSourceLanguage --|> sourceLanguage.
+	unknownSourceLanguage --|> #TUnknownSourceLanguage.
 	unknownSourceLanguage --|> #TSourceLanguage
 ]

@@ -1,8 +1,8 @@
 Class {
 	#name : #FAMIXUnknownSourceLanguage,
 	#superclass : #FAMIXSourceLanguage,
-	#traits : 'FamixTSourceLanguage',
-	#classTraits : 'FamixTSourceLanguage classTrait',
+	#traits : 'FamixTSourceLanguage + FamixTUnknownSourceLanguage',
+	#classTraits : 'FamixTSourceLanguage classTrait + FamixTUnknownSourceLanguage classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 

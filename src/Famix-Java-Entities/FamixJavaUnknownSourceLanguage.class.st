@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaUnknownSourceLanguage,
 	#superclass : #FamixJavaSourceLanguage,
-	#traits : 'FamixTSourceLanguage',
-	#classTraits : 'FamixTSourceLanguage classTrait',
+	#traits : 'FamixTSourceLanguage + FamixTUnknownSourceLanguage',
+	#classTraits : 'FamixTSourceLanguage classTrait + FamixTUnknownSourceLanguage classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 

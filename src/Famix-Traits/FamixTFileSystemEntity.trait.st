@@ -64,6 +64,11 @@ FamixTFileSystemEntity >> ifNotFolder: aBlock1 ifFolder: aBlock2 [
 ]
 
 { #category : #testing }
+FamixTFileSystemEntity >> isFolder [
+	^ false
+]
+
+{ #category : #testing }
 FamixTFileSystemEntity >> isRoot [
 	^ self parentFolder isNil
 ]

@@ -25,17 +25,17 @@ MooseModelDescriptionTest >> notTested_AllPropertyCommented [
 ]
 
 { #category : #tests }
-MooseModelDescriptionTest >> testAsMooseDescription [	
-	self assert: (FAMIXClass asMooseDescription isKindOf: FM3MetaDescription).
+MooseModelDescriptionTest >> testAsMooseDescription [
+	self assert: (FamixTest1Class asMooseDescription isKindOf: FM3MetaDescription)
 ]
 
 { #category : #tests }
 MooseModelDescriptionTest >> testAsMooseDescriptionAttributes [
-	| fc ft |
-	fc := FAMIXClass asMooseDescription.
-	ft := FAMIXType asMooseDescription.
-	self assert: (ft attributes anySatisfy: [:each | each name = #methods]).
-	self assert: (fc allAttributes anySatisfy: [:each | each name = #methods])
+	| classDescription typeDescription |
+	classDescription := FamixTest3Class asMooseDescription.
+	typeDescription := FamixTest3Type asMooseDescription.
+	self assert: (typeDescription attributes anySatisfy: [ :each | each name = #typeContainer ]).
+	self assert: (classDescription allAttributes anySatisfy: [ :each | each name = #methods ])
 ]
 
 { #category : #tests }
