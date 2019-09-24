@@ -89,6 +89,11 @@ FamixTFolder >> foldersGroup [
 	^FAMIXFolderGroup withAll: self folders withDescription: 'Folders'
 ]
 
+{ #category : #testing }
+FamixTFolder >> isFolder [
+	^ true
+]
+
 { #category : #properties }
 FamixTFolder >> numberOfEmptyLinesOfText [
 	<MSEProperty: #numberOfEmptyLinesOfText type: #Number>
