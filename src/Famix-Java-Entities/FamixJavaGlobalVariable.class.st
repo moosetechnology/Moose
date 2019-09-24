@@ -22,22 +22,6 @@ FamixJavaGlobalVariable class >> requirements [
 	^ { FamixJavaScopingEntity }
 ]
 
-{ #category : #accessing }
-FamixJavaGlobalVariable >> belongsTo [
-
-	<generated>
-	^ self parentScope
-
-]
-
-{ #category : #accessing }
-FamixJavaGlobalVariable >> belongsTo: anObject [
-
-	<generated>
-	self parentScope: anObject
-
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaGlobalVariable >> isPrivate [
 	^ self isPublic not

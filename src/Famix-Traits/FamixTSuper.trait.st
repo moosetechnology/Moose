@@ -27,6 +27,7 @@ FamixTSuper >> subs [
 	"Relation named: #subs type: #FamixTSub opposite: #supers"
 
 	<generated>
+	<derived>
 	^ subs
 ]
 

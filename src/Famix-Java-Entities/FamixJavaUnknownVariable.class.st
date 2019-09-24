@@ -14,8 +14,3 @@ FamixJavaUnknownVariable class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #'as yet unclassified' }
-FamixJavaUnknownVariable >> belongsTo [
-	^ nil
-]

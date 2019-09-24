@@ -31,7 +31,11 @@ BaselineOfMooseIDE >> baseline: spec [
 
 { #category : #baselines }
 BaselineOfMooseIDE >> mooseAlgos: spec [
-	spec baseline: 'MooseAlgos' with: [ spec repository: self packageRepositoryURL ]
+	spec
+		baseline: 'MooseAlgos'
+		with: [ spec
+				loads: 'Core';
+				repository: 'github://moosetechnology/MooseAlgos:v1.x.x/src' ]
 ]
 
 { #category : #baselines }

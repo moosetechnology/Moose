@@ -55,11 +55,11 @@ FMAbstractAttribute >> name: anObject [
 FMAbstractAttribute >> resolveReferences: index [
 	| references elem count |
 	references := elements asSet select: #isNumber.
-	references do:
-			[ :ref | 
+	references
+		do: [ :ref | 
 			elem := index at: ref.
 			count := elements occurrencesOf: ref.
-			elem notNil should beTrue.
+			self assert: elem isNotNil.
 			elements removeAllOccurrencesOf: ref ifAbsent: nil.
 			elements add: elem withOccurrences: count ]
 ]

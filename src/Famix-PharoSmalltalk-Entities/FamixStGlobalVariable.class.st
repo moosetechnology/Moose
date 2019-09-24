@@ -21,19 +21,3 @@ FamixStGlobalVariable class >> requirements [
 	<generated>
 	^ { FamixStScopingEntity }
 ]
-
-{ #category : #accessing }
-FamixStGlobalVariable >> belongsTo [
-
-	<generated>
-	^ self parentScope
-
-]
-
-{ #category : #accessing }
-FamixStGlobalVariable >> belongsTo: anObject [
-
-	<generated>
-	self parentScope: anObject
-
-]

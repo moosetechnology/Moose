@@ -40,6 +40,7 @@ FamixTWithParameters >> parameters [
 
 	<generated>
 	<MSEComment: 'List of formal parameters declared by this behaviour.'>
+	<derived>
 	^ parameters
 ]
 

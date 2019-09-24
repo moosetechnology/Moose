@@ -27,22 +27,6 @@ FamixStMethod >> accessedAttributes [
 	^ (self queryOutgoingAccesses opposites withinParentUsing: FamixTClass) asSet select: #isAttribute
 ]
 
-{ #category : #accessing }
-FamixStMethod >> belongsTo [
-
-	<generated>
-	^ self parentType
-
-]
-
-{ #category : #accessing }
-FamixStMethod >> belongsTo: anObject [
-
-	<generated>
-	self parentType: anObject
-
-]
-
 { #category : #'Famix-Extensions-metrics-support' }
 FamixStMethod >> category: aString [
 
@@ -200,19 +184,6 @@ FamixStMethod >> isSurelyInvokedBy: aFAMIXMethod [
 			]).
 		].
 	^false
-]
-
-{ #category : #'Famix-Extensions-metrics-support' }
-FamixStMethod >> mooseNameOn: stream [ 
-	| parent |
-	parent := self belongsTo.
-	parent ifNotNil: 
-		[ parent mooseNameOn: stream.
-		stream nextPut: $. ].
-	self signature
-		ifNotNil: [ stream nextPutAll: self signature ]
-		ifNil: [ 
-			self name ifNotNil: [ stream nextPutAll: self name] ]
 ]
 
 { #category : #'Famix-Extensions-private' }

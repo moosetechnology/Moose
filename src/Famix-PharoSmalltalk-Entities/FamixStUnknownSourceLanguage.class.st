@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixStUnknownSourceLanguage,
 	#superclass : #FamixStSourceLanguage,
-	#traits : 'FamixTSourceLanguage',
-	#classTraits : 'FamixTSourceLanguage classTrait',
+	#traits : 'FamixTSourceLanguage + FamixTUnknownSourceLanguage',
+	#classTraits : 'FamixTSourceLanguage classTrait + FamixTUnknownSourceLanguage classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 

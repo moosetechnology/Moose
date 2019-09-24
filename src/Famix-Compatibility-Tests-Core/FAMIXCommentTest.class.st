@@ -15,7 +15,7 @@ FAMIXCommentTest >> testAddingComment [
 	self skip: 'A generated test replaces this one'.
 	cls := FAMIXClass new.
 	cls name: 'AClass'.
-	self assert: cls mooseName == #AClass.
+	self assert: cls mooseName identicalTo: #AClass.
 	self assert: cls comments isEmpty.
 	cls addComment: (FAMIXComment content: 'This is a comment').
 	self assert: (cls comments allSatisfy: [ :c | c isKindOf: FAMIXComment ]).

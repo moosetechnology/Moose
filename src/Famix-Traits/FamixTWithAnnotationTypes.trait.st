@@ -27,6 +27,7 @@ FamixTWithAnnotationTypes >> definedAnnotationTypes [
 
 	<generated>
 	<MSEComment: 'The container in which the AnnotationTypes may be declared'>
+	<derived>
 	^ definedAnnotationTypes
 ]
 

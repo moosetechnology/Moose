@@ -27,6 +27,7 @@ FamixTWithCaughtExceptions >> caughtExceptions [
 
 	<generated>
 	<MSEComment: 'The exceptions caught by the method'>
+	<derived>
 	^ caughtExceptions
 ]
 

@@ -97,22 +97,6 @@ FmxMBBehaviorTest >> testDefaultSuperclass [
 ]
 
 { #category : #tests }
-FmxMBBehaviorTest >> testMultipleContainers [
-
-	| method package class |
-	
-	package := builder newClassNamed: #Package.    
-	method := builder newClassNamed: #Method.    
-	class := builder newClassNamed: #Class.    
-
-	(package <>-* class). 
-	(class <>-* method). 
-	(package <>-* method).
-
-	self assert: method primaryContainerProperties size > 1.
-]
-
-{ #category : #tests }
 FmxMBBehaviorTest >> testPluralOf [
 
 	| behavior | 

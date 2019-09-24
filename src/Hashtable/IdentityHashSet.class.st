@@ -1,8 +1,7 @@
 "
-Implementation:
-copy methods from IdentifyHashTable here
+I am a replacement for IdentitySet that uses chaining instead of linear probing for collision resolution.
 
-Yes this is ugly, give me Traits and I will fix it.
+This results in a much better performance for big Collections.
 "
 Class {
 	#name : #IdentityHashSet,

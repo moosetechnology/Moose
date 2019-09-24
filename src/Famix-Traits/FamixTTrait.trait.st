@@ -31,6 +31,7 @@ FamixTTrait >> incomingTraitUsages [
 	"Relation named: #incomingTraitUsages type: #FamixTTraitUsage opposite: #trait"
 
 	<generated>
+	<derived>
 	^ incomingTraitUsages
 ]
 

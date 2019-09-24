@@ -6,8 +6,5 @@ Class {
 
 { #category : #tests }
 FAMIXLintRuleTest >> testRules [
-	{
-		FAMIXMetaModelClassesNotDeclaredInFameRule new.
-		FAMIXMetaModelClassesShouldNotOverrideRule new }
-		do: [ :rule | RBSmalllintChecker runRule: rule ].
+	{FAMIXMetaModelClassesNotDeclaredInFameRule . FAMIXMetaModelClassesShouldNotOverrideRule} do: [ :rule | RBSmalllintChecker runRule: rule new ]
 ]

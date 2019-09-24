@@ -23,22 +23,6 @@ FAMIXAnnotationInstance class >> requirements [
 ]
 
 { #category : #accessing }
-FAMIXAnnotationInstance >> belongsTo [
-
-	<generated>
-	^ self annotatedEntity
-
-]
-
-{ #category : #accessing }
-FAMIXAnnotationInstance >> belongsTo: anObject [
-
-	<generated>
-	self annotatedEntity: anObject
-
-]
-
-{ #category : #accessing }
 FAMIXAnnotationInstance >> mooseNameOn: aStream [
 	self annotationType notNil ifTrue: [
 		self annotationType mooseNameOn: aStream ].

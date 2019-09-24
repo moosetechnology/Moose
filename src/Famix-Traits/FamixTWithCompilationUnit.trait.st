@@ -20,6 +20,7 @@ FamixTWithCompilationUnit >> compilationUnit [
 	"Relation named: #compilationUnit type: #FamixTCompilationUnit opposite: #compilationUnitOwner"
 
 	<generated>
+	<derived>
 	^ compilationUnit
 ]
 

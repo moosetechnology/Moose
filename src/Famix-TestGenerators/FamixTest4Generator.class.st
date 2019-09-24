@@ -62,7 +62,6 @@ FamixTest4Generator >> defineClasses [
 
 { #category : #definition }
 FamixTest4Generator >> defineHierarchy [
-
 	super defineHierarchy.
 
 	book --|> entity.

@@ -31,22 +31,6 @@ FamixStAttribute >> beSharedVariable [
 	self propertyNamed: #sharedVariable put: true 
 ]
 
-{ #category : #accessing }
-FamixStAttribute >> belongsTo [
-
-	<generated>
-	^ self parentType
-
-]
-
-{ #category : #accessing }
-FamixStAttribute >> belongsTo: anObject [
-
-	<generated>
-	self parentType: anObject
-
-]
-
 { #category : #testing }
 FamixStAttribute >> hasClassScope [
 	<MSEProperty: #hasClassScope type: #Boolean>

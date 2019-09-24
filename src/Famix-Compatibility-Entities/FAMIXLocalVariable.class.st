@@ -22,22 +22,6 @@ FAMIXLocalVariable class >> requirements [
 	^ { FAMIXBehaviouralEntity }
 ]
 
-{ #category : #accessing }
-FAMIXLocalVariable >> belongsTo [
-
-	<generated>
-	^ self parentBehaviouralEntity
-
-]
-
-{ #category : #accessing }
-FAMIXLocalVariable >> belongsTo: anObject [
-
-	<generated>
-	self parentBehaviouralEntity: anObject
-
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXLocalVariable >> mooseNameOn: stream [ 
 	| parent |

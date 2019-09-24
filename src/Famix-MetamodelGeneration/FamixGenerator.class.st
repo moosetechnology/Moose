@@ -69,6 +69,7 @@ Class {
 		'tTypedAnnotationInstance',
 		'tTypedAnnotationInstanceAttribute',
 		'tTypedStructure',
+		'tUnknownSourceLanguage',
 		'tWithAccesses',
 		'tWithAnnotationInstanceAttributes',
 		'tWithAnnotationInstances',
@@ -955,7 +956,7 @@ FamixGenerator >> defineHierarchy [
 	super defineHierarchy.
 
 	tAttribute --|> tStructuralEntity.
-	
+
 	tAnnotationInstance --|> #TEntityMetaLevelDependency.
 	tAnnotationInstance --|> #TDependencyQueries.
 
@@ -973,11 +974,15 @@ FamixGenerator >> defineHierarchy [
 	tClass --|> #TPackageable.
 	tClass --|> #TInvocationsReceiver.
 	tClass --|> #TWithComments.
-	
+
+	tFile --|> tFileSystemEntity.
+
+	tFolder --|> tFileSystemEntity.
+
 	tGlobalVariable --|> tStructuralEntity.
-	
+
 	tImplicitVariable --|> tStructuralEntity.
-	
+
 	tLocalVariable --|> tStructuralEntity.
 
 	
@@ -1187,7 +1192,9 @@ FamixGenerator >> defineRelations [
 	((tFolder property: #childrenFileSystemEntities)
 			comment: 'List of entities contained in this folder.')
 		-*
-	((tFileSystemEntity property: #parentFolder)).
+	((tFileSystemEntity property: #parentFolder)
+		comment: 'Folder entity containing this file.';
+		container).
 
 	((tFile property: #entities)
 			comment: 'List of entities defined in the file')
@@ -1621,6 +1628,8 @@ FamixGenerator >> defineTraits [
 
 	tTypedStructure := builder newTraitNamed: #TTypedStructure.
 	tTypedStructure comment: self commentForTTypedStructure.
+	
+	tUnknownSourceLanguage := builder newTraitNamed: #TUnknownSourceLanguage.
 
 	tWithAccesses := builder newTraitNamed: #TWithAccesses.
 	tWithAccesses comment: self commentForTWithAccesses.

@@ -27,56 +27,50 @@ MooseEntityTest >> testAllMooseNameOn [
 
 { #category : #tests }
 MooseEntityTest >> testAllPrintOn [
-	| t str ins |
+	| t ins |
 	MooseEntity withAllSubclasses
 		do: [ :cls | 
-			cls hasAbstractMethods ifFalse: [
-				str := WriteStream on: String new.
-				ins := cls new.
-				self shouldnt: [ t := ins printString ] raise: Error.
-				self assert: t isByteString.
-				ins printOn: str.
-				self assert: str contents equals: t ] ]
+			cls hasAbstractMethods
+				ifFalse: [ ins := cls new.
+					self shouldnt: [ t := ins printString ] raise: Error.
+					self assert: t isByteString.
+					self assert: (String streamContents: [ :s | ins printOn: s ]) equals: t ] ]
 ]
 
 { #category : #tests }
 MooseEntityTest >> testAllPrinting [
-	| str entity |
+	| entity |
 	MooseEntity withAllSubclasses
 		do: [ :cls | 
-			cls hasAbstractMethods ifFalse: [
-				str := WriteStream on: String new.
-				entity := cls new.
-				entity printOn: str.
-				self assert: str contents equals: entity printString ] ]
+			cls hasAbstractMethods
+				ifFalse: [ entity := cls new.
+					self assert: (String streamContents: [ :s | entity printOn: s ]) equals: entity printString ] ]
 ]
 
 { #category : #tests }
 MooseEntityTest >> testAllPropertySelectors [
 	| model class |
-	model := MooseModel new.
-	self assert: (FAMIXEntity allPropertySelectorsComputableIn: model) equals: IdentityDictionary new.
+	model := FamixTest1MooseModel new.
+	self assert: (FamixTest1Entity allPropertySelectorsComputableIn: model) equals: IdentityDictionary new.
 	model := FAMIXTypeGroup new.
-	class := FAMIXClass new name: 'AClass'.
+	class := FamixTest1Class named: 'AClass'.
 	model add: class.
-	self assert: (FAMIXEntity allPropertySelectorsComputableIn: model) equals: IdentityDictionary new.
+	self assert: (FamixTest1Entity allPropertySelectorsComputableIn: model) equals: IdentityDictionary new.
 	model := MooseAbstractGroup new.
-	class := FAMIXClass new name: 'AClass'.
+	class := FamixTest1Class named: 'AClass'.
 	model add: class.
-	self assert: (FAMIXEntity allPropertySelectorsComputableIn: model) equals: IdentityDictionary new
+	self assert: (FamixTest1Entity allPropertySelectorsComputableIn: model) equals: IdentityDictionary new
 ]
 
 { #category : #tests }
 MooseEntityTest >> testAnnotation [
 	| methodProperty |
-	MooseEntity allSubclassesDo: [ :cls |
-		self assert: cls annotation == cls.
-	].
+	MooseEntity allSubclassesDo: [ :cls | self assert: cls annotation identicalTo: cls ].
 
-	self assert: MooseEntity annotation == MooseEntity.
-	
+	self assert: MooseEntity annotation identicalTo: MooseEntity.
+
 	methodProperty := (MooseEntity class >> #annotation) properties.
-	self assert:  (methodProperty includesKey: #abstract)
+	self assert: (methodProperty includesKey: #abstract)
 ]
 
 { #category : #tests }
@@ -92,19 +86,19 @@ MooseEntityTest >> testBookmark [
 { #category : #tests }
 MooseEntityTest >> testEntityBackLink [
 	"self debug: #testEntityBackLink"
-	
+
 	| e r |
 	e := MooseEntity new.
 	r := e privateState entity.
-	self assert: (r == e)
+	self assert: r identicalTo: e
 ]
 
 { #category : #tests }
 MooseEntityTest >> testGroupFor [
 	| entity1 entity2 model classGroup methodGroup |
-	entity1 := FAMIXClass new.
-	entity2 := FAMIXClass new.
-	model := MooseModel new.
+	entity1 := FamixTest1Class new.
+	entity2 := FamixTest1Class new.
+	model := FamixTest1MooseModel new.
 	model addAll: {entity1 . entity2}.
 	classGroup := model groupFor: #allClasses.
 	self assert: classGroup class identicalTo: FAMIXClassGroup.
@@ -133,44 +127,40 @@ MooseEntityTest >> testIsStub [
 { #category : #tests }
 MooseEntityTest >> testLocalMooseModel [
 	| element model |
-	
 	element := MooseEntity new.
 	model := MooseModel new.
-	
+
 	"self assert: (element mooseModel isNil)."
 	model add: element.
-	self assert: (element mooseModel == model).
-	self assert: (element localMooseModel == model).
+	self assert: element mooseModel identicalTo: model.
+	self assert: element localMooseModel identicalTo: model.
 
 	model := MooseModel new.
-	self assert: (model localMooseModel == model)
+	self assert: model localMooseModel identicalTo: model
 ]
 
 { #category : #tests }
 MooseEntityTest >> testMooseModel [
 	| element model |
-	
 	element := MooseEntity new.
 	model := MooseModel new.
-	
-	model add: element.
-	self assert: (element mooseModel == model).
 
+	model add: element.
+	self assert: element mooseModel identicalTo: model
 ]
 
 { #category : #tests }
 MooseEntityTest >> testMooseModelAccessor [
 	| entity model |
 	entity := MooseEntity new.
-"	self assert: (MooseModel ownerOf: entity) isNil. 
+	"	self assert: (MooseModel ownerOf: entity) isNil. 
 	self assert: (entity mooseModel isNil).
 "
 	model := MooseModel new.
-	self assert: (model isEmpty).
+	self assert: model isEmpty.
 	entity mooseModel: model.
-	self assert: (entity mooseModel == model).
-	self deny: (model isEmpty)
-	
+	self assert: entity mooseModel identicalTo: model.
+	self deny: model isEmpty
 ]
 
 { #category : #tests }
@@ -213,22 +203,19 @@ MooseEntityTest >> testPrivateSetMooseModel [
 	entity := MooseEntity new.
 	model := MooseModel new.
 	entity privateSetMooseModel: model.
-	self assert: (entity mooseModel == model).
-
+	self assert: entity mooseModel identicalTo: model
 ]
 
 { #category : #tests }
 MooseEntityTest >> testPrivateStateMutator [
-
 	| entity state mooseState |
 	entity := MooseEntity new.
 	state := entity privateState.
 	self assert: state notNil.
-	
+
 	mooseState := MooseMemoryEfficientState new.
 	entity privateState: mooseState.
-	self assert: (entity privateState == mooseState).
-
+	self assert: entity privateState identicalTo: mooseState
 ]
 
 { #category : #tests }

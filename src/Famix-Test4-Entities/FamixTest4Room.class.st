@@ -24,22 +24,6 @@ FamixTest4Room class >> requirements [
 ]
 
 { #category : #accessing }
-FamixTest4Room >> belongsTo [
-
-	<generated>
-	^ self school
-
-]
-
-{ #category : #accessing }
-FamixTest4Room >> belongsTo: anObject [
-
-	<generated>
-	self school: anObject
-
-]
-
-{ #category : #accessing }
 FamixTest4Room >> school [
 	"Relation named: #school type: #FamixTest4School opposite: #rooms"
 

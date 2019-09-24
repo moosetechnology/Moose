@@ -32,22 +32,6 @@ FamixJavaMethod >> accessedAttributes [
 ]
 
 { #category : #accessing }
-FamixJavaMethod >> belongsTo [
-
-	<generated>
-	^ self parentType
-
-]
-
-{ #category : #accessing }
-FamixJavaMethod >> belongsTo: anObject [
-
-	<generated>
-	self parentType: anObject
-
-]
-
-{ #category : #accessing }
 FamixJavaMethod >> category [
 	<MSEProperty: #category type: #String>
 	<MSEComment: 'Category of the method'>
@@ -223,19 +207,6 @@ FamixJavaMethod >> isSurelyInvokedBy: aFAMIXMethod [
 			]).
 		].
 	^false
-]
-
-{ #category : #printing }
-FamixJavaMethod >> mooseNameOn: stream [ 
-	| parent |
-	parent := self belongsTo.
-	parent ifNotNil: 
-		[ parent mooseNameOn: stream.
-		stream nextPut: $. ].
-	self signature
-		ifNotNil: [ stream nextPutAll: self signature ]
-		ifNil: [ 
-			self name ifNotNil: [ stream nextPutAll: self name] ]
 ]
 
 { #category : #accessing }

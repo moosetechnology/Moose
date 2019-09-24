@@ -123,6 +123,11 @@ FMMultivalueLink >> hash [
 	^ hash
 ]
 
+{ #category : #accessing }
+FMMultivalueLink >> iterator [
+	^ values iterator
+]
+
 { #category : #'accessing-computed' }
 FMMultivalueLink >> last [
 	^ values last

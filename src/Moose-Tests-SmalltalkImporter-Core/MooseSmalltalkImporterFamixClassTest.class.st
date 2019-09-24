@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 MooseSmalltalkImporterFamixClassTest >> testIsTestCase [
 	| mooseModel |
-	mooseModel := MooseModel new.
+	mooseModel := FamixStMooseModel new.
 	self newPharoImporterTask
 		importerClass: SmalltalkImporter;
 		model: mooseModel;

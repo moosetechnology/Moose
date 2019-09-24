@@ -23,19 +23,11 @@ MooseEntity >> bookmarkEntity [
 MooseEntity >> complexPropertyPragmas [
 	| navProps definedProps |
 	self mooseDescription
-		ifNil: [ NotInitializedMooseDescriptionError
-				signal:
-					'Moose description are not initialized. Have you refreshed the meta-model? (e.g., MooseModel resetMeta)' ].
-	navProps := (Pragma
-		allNamed: #navigation:
-		from: self class
-		to: MooseEntity)
-		sorted: [ :a :b | (a argumentAt: 1) < (b argumentAt: 1) ].
-	definedProps := (self mooseDescription allAttributes
-		reject: [ :a | a type isPrimitive ])
-		flatCollect: [ :prop | 
-			(prop mmClass implementingClass >> prop implementingSelector) pragmas
-				select: [ :each | each keyword beginsWith: 'MSEProperty:' ] ].
+		ifNil:
+			[ NotInitializedMooseDescriptionError signal: 'Moose description are not initialized. Have you refreshed the meta-model? (e.g., MooseModel resetMeta)' ].
+	navProps := (Pragma allNamed: #navigation: from: self class to: MooseEntity) sorted: [ :a :b | (a argumentAt: 1) < (b argumentAt: 1) ].
+	definedProps := (self mooseDescription allAttributes reject: [ :a | a type isPrimitive ])
+		flatCollect: [ :prop | (prop mmClass implementingClass >> prop implementingSelector) pragmas select: [ :each | each selector beginsWith: 'MSEProperty:' ] ].
 	^ (OrderedCollection withAll: definedProps)
 		addAll: navProps;
 		yourself
@@ -249,5 +241,7 @@ MooseEntity >> openInGlamorousEditor [
 { #category : #'*Moose-Finder' }
 MooseEntity >> spotterProcessorsFor: aSpotterStep [
 	super spotterProcessorsFor: aSpotterStep.
-	[ self mooseSpecificSpotterProcessorsFor: aSpotterStep ] on: NotInitializedMooseDescriptionError do: [ Transcript crLog: 'The entity description is not present in its moose model metamodel' ]
+	[ self mooseSpecificSpotterProcessorsFor: aSpotterStep ]
+		on: NotInitializedMooseDescriptionError
+		do: [ Transcript crTrace: 'The entity description is not present in its moose model metamodel' ]
 ]

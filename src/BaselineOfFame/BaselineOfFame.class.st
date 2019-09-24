@@ -13,21 +13,20 @@ Class {
 { #category : #baseline }
 BaselineOfFame >> baseline: spec [
 	<baseline>
-
 	repository := self packageRepositoryURL.
 
 	spec
 		for: #common
-		do: [
-			"Dependencies"
+		do: [ "Dependencies"
 			self
 				hashtable: spec;
 				mocketry: spec;
-				stateSpecs: spec.
-				
+				iterators: spec;
+				treeQuery: spec.
+
 			"Packages"
 			spec
-				package: 'Fame-Core' with: [ spec requires: #('Hashtable' 'StateSpecs') ];
+				package: 'Fame-Core' with: [ spec requires: #('Hashtable' 'TreeQuery' 'Iterators') ];
 				package: 'Fame-Rules';
 				package: 'Fame-ImportExport' with: [ spec requires: #('Fame-Core') ];
 				package: 'Fame-SmalltalkBinding' with: [ spec requires: #('Fame-Core') ];
@@ -43,6 +42,11 @@ BaselineOfFame >> baseline: spec [
 { #category : #dependencies }
 BaselineOfFame >> hashtable: spec [
 	spec baseline: 'Hashtable' with: [ spec repository: repository ]
+]
+
+{ #category : #dependencies }
+BaselineOfFame >> iterators: spec [
+	spec baseline: 'Iterators' with: [ spec repository: 'github://juliendelplanque/Iterators:v1.x.x/src' ]
 ]
 
 { #category : #dependencies }
@@ -64,6 +68,6 @@ BaselineOfFame >> projectClass [
 ]
 
 { #category : #dependencies }
-BaselineOfFame >> stateSpecs: spec [
-	spec baseline: 'StateSpecs' with: [ spec repository: repository ]
+BaselineOfFame >> treeQuery: spec [
+	spec baseline: 'TreeQuery' with: [ spec repository: 'github://juliendelplanque/TreeQuery:v1.x.x/src' ]
 ]

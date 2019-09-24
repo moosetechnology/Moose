@@ -141,5 +141,5 @@ FamixParameterizedTypeTest >> testMooseName [
 
 { #category : #tests }
 FamixParameterizedTypeTest >> testParameterizableClass [
-	self assert: model allParameterizableClasses anyOne parameterizedTypes size = 2
+	self assert: model allParameterizableClasses anyOne parameterizedTypes size equals: 2
 ]

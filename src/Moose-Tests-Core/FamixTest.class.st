@@ -58,7 +58,7 @@ FamixTest >> testMSEImport [
 	importer run.
 	self assert: importer repository elements size equals: 2.
 	model := FamixTest3MooseModel new.
-	importer repository elements do: [ :each | model add: each ].
+	model addAll: importer repository elements.
 	self assert: model allClasses size equals: 1.
 	self assert: model allMethods size equals: 1
 ]
@@ -74,7 +74,7 @@ FamixTest >> testRobustMSEImport [
 
 	self assert: importer repository elements size equals: 4.
 	model := FamixTest3MooseModel new.
-	importer repository elements do: [ :each | model add: each ].
+	model addAll: importer repository elements.
 	self assert: model allClasses size equals: 2.
 	self assert: model allMethods size equals: 1.
 	self assert: model allReferences size equals: 1
@@ -83,34 +83,27 @@ FamixTest >> testRobustMSEImport [
 { #category : #tests }
 FamixTest >> testSlot [
 	| fClass fMethod |
-	fClass := FAMIXClass new.
-	fMethod := FAMIXMethod new.
+	fClass := FamixTest3Class new.
+	fMethod := FamixTest3Method new.
 	fMethod parentType: fClass.
 	self assert: (fClass methods at: 1) equals: fMethod
 ]
 
 { #category : #tests }
 FamixTest >> testSourcesAnchorsAreNotDuplicatedAfterExport [
-	| model package tempFile importedModel ws |
-	model := FamixJavaMooseModel new name: 'Perdu'.
-	package := FamixJavaPackage new
-		name: 'Package';
-		mooseModel: model;
-		yourself.
-	FamixJavaClass new
+	| model tempFile importedModel |
+	model := FamixTest3MooseModel new name: 'Perdu'.
+	FamixTest3Class new
 		name: 'Class';
-		parentPackage: package;
 		sourceAnchor:
-			(FamixJavaSourceTextAnchor new
+			(FamixTest3SourceTextAnchor new
 				source: 'some text';
 				mooseModel: model;
 				yourself);
 		mooseModel: model.
 	tempFile := (FileSystem memory / 'export-test.mse') ensureCreateFile.
-	ws := tempFile writeStream.
-	model exportToMSEStream: ws.
-	ws close; flush.
-	importedModel := FamixJavaMooseModel new importFromMSEStream: tempFile readStream.
+	tempFile writeStreamDo: [ :s | model exportToMSEStream: s ].
+	importedModel := FamixTest3MooseModel new importFromMSEStream: tempFile readStream.
 	self assert: importedModel size equals: model size.
 	self assert: importedModel allClasses anyOne sourceAnchor notNil
 ]

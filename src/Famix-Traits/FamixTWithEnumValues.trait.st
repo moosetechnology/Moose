@@ -26,6 +26,7 @@ FamixTWithEnumValues >> enumValues [
 	"Relation named: #enumValues type: #FamixTEnumValue opposite: #parentEnum"
 
 	<generated>
+	<derived>
 	^ enumValues
 ]
 

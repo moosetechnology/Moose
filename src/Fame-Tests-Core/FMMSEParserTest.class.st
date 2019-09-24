@@ -483,13 +483,13 @@ FMMSEParserTest >> testAttribute [
 	r reset.
 	p fromString: '(name)'.
 	p Attribute.
-	r contents should = a.
-	p atEnd should beTrue.
+	self assert: r contents equals: a.
+	self assert: p atEnd.
 	r reset.
 	p fromString: '(  name  )  '.
 	p Attribute.
-	r contents should = a.
-	p atEnd should beTrue
+	self assert: r contents equals: a.
+	self assert: p atEnd
 ]
 
 { #category : #running }
@@ -498,13 +498,13 @@ FMMSEParserTest >> testAttributeNameWithUnderscore [
 	r reset.
 	p fromString: '(name_with_underscore)'.
 	p Attribute.
-	r contents should = a.
-	p atEnd should beTrue.
+	self assert: r contents equals: a.
+	self assert: p atEnd.
 	r reset.
 	p fromString: '(  name_with_underscore  )  '.
 	p Attribute.
-	r contents should = a.
-	p atEnd should beTrue
+	self assert: r contents equals: a.
+	self assert: p atEnd
 ]
 
 { #category : #running }
@@ -513,13 +513,13 @@ FMMSEParserTest >> testAttributeWithBoolean [
 	r reset.
 	p fromString: '(name true false)'.
 	p Attribute.
-	r contents should = a.
-	p atEnd should beTrue.
+	self assert: r contents equals: a.
+	self assert: p atEnd.
 	r reset.
 	p fromString: '(  name   true   false  )  '.
 	p Attribute.
-	r contents should = a.
-	p atEnd should beTrue
+	self assert: r contents equals: a.
+	self assert: p atEnd
 ]
 
 { #category : #running }
@@ -528,13 +528,13 @@ FMMSEParserTest >> testAttributeWithElements [
 	r reset.
 	p fromString: '(name(Foo)(Bar))'.
 	p Attribute.
-	r contents should = a.
-	p atEnd should beTrue.
+	self assert: r contents equals: a.
+	self assert: p atEnd.
 	r reset.
 	p fromString: '(  name  (  Foo  )  (  Bar  )     )  '.
 	p Attribute.
-	r contents should = a.
-	p atEnd should beTrue
+	self assert: r contents equals: a.
+	self assert: p atEnd
 ]
 
 { #category : #running }
@@ -543,13 +543,13 @@ FMMSEParserTest >> testAttributeWithNumbers [
 	r reset.
 	p fromString: '(name 1 2 3)'.
 	p Attribute.
-	r contents should = a.
-	p atEnd should beTrue.
+	self assert: r contents equals: a.
+	self assert: p atEnd.
 	r reset.
 	p fromString: '(  name    1    2    3  )  '.
 	p Attribute.
-	r contents should = a.
-	p atEnd should beTrue
+	self assert: r contents equals: a.
+	self assert: p atEnd
 ]
 
 { #category : #running }
@@ -558,13 +558,13 @@ FMMSEParserTest >> testAttributeWithReferences [
 	r reset.
 	p fromString: '(name(ref:2)(ref:3))'.
 	p Attribute.
-	r contents should = a.
-	p atEnd should beTrue.
+	self assert: r contents equals: a.
+	self assert: p atEnd.
 	r reset.
 	p fromString: '(  name  (  ref:  2  )  (  ref:  3  )     )  '.
 	p Attribute.
-	r contents should = a.
-	p atEnd should beTrue
+	self assert: r contents equals: a.
+	self assert: p atEnd
 ]
 
 { #category : #running }
@@ -573,13 +573,13 @@ FMMSEParserTest >> testAttributeWithStrings [
 	r reset.
 	p fromString: '(name ''bar'' ''ba'' ''rossa'')'.
 	p Attribute.
-	r contents should = a.
-	p atEnd should beTrue.
+	self assert: r contents equals: a.
+	self assert: p atEnd.
 	r reset.
 	p fromString: '(  name  ''bar''      ''ba''      ''rossa'')  '.
 	p Attribute.
-	r contents should = a.
-	p atEnd should beTrue
+	self assert: r contents equals: a.
+	self assert: p atEnd
 ]
 
 { #category : #running }
@@ -588,36 +588,36 @@ FMMSEParserTest >> testAttributeWithStrings2 [
 	r reset.
 	p fromString: '(name ''bar''''ba''''rossa'')'.
 	p Attribute.
-	r contents should = a.
-	p atEnd should beTrue.
+	self assert: r contents equals: a.
+	self assert: p atEnd.
 	r reset.
 	p fromString: '(  name  ''bar''''ba''''rossa''     )  '.
 	p Attribute.
-	r contents should = a.
-	p atEnd should beTrue
+	self assert: r contents equals: a.
+	self assert: p atEnd
 ]
 
 { #category : #running }
 FMMSEParserTest >> testBacktracking [
 	| pos |
 	p fromString: 'abcdefg'.
-	p peek should = $a.
-	p next should = $b.
+	self assert: p peek equals: $a.
+	self assert: p next equals: $b.
 	pos := p pos.
-	p peek should = $b.
-	p next should = $c.
-	p next should = $d.
-	p next should = $e.
+	self assert: p peek equals: $b.
+	self assert: p next equals: $c.
+	self assert: p next equals: $d.
+	self assert: p next equals: $e.
 	p backtrack: pos.
-	p peek should = $b.
-	p next should = $c.
-	p next should = $d.
-	p next should = $e
+	self assert: p peek equals: $b.
+	self assert: p next equals: $c.
+	self assert: p next equals: $d.
+	self assert: p next equals: $e
 ]
 
 { #category : #running }
 FMMSEParserTest >> testClient [
-	p client should = r
+	self assert: p client equals: r
 ]
 
 { #category : #running }
@@ -626,13 +626,13 @@ FMMSEParserTest >> testElement [
 	r reset.
 	p fromString: '(Foo)'.
 	p Element.
-	r contents should = a.
-	p atEnd should beTrue.
+	self assert: r contents equals: a.
+	self assert: p atEnd.
 	r reset.
 	p fromString: '(  Foo  )  '.
 	p Element.
-	r contents should = a.
-	p atEnd should beTrue
+	self assert: r contents equals: a.
+	self assert: p atEnd
 ]
 
 { #category : #running }
@@ -641,13 +641,13 @@ FMMSEParserTest >> testElementWithAttributes [
 	r reset.
 	p fromString: '(Foo(name)(count))'.
 	p Element.
-	r contents should = a.
-	p atEnd should beTrue.
+	self assert: r contents equals: a.
+	self assert: p atEnd.
 	r reset.
 	p fromString: '(  Foo  (  name  )  (  count  )  )  '.
 	p Element.
-	r contents should = a.
-	p atEnd should beTrue
+	self assert: r contents equals: a.
+	self assert: p atEnd
 ]
 
 { #category : #running }
@@ -656,13 +656,13 @@ FMMSEParserTest >> testElementWithAttributesAndID [
 	r reset.
 	p fromString: '(Foo(id:42)(name)(count))'.
 	p Element.
-	r contents should = a.
-	p atEnd should beTrue.
+	self assert: r contents equals: a.
+	self assert: p atEnd.
 	r reset.
 	p fromString: '(  Foo  (  id:  42  )  (  name  )  (  count  )  )  '.
 	p Element.
-	r contents should = a.
-	p atEnd should beTrue
+	self assert: r contents equals: a.
+	self assert: p atEnd
 ]
 
 { #category : #running }
@@ -671,28 +671,28 @@ FMMSEParserTest >> testElementWithID [
 	r reset.
 	p fromString: '(Foo(id:42))'.
 	p Element.
-	r contents should = a.
-	p atEnd should beTrue.
+	self assert: r contents equals: a.
+	self assert: p atEnd.
 	r reset.
 	p fromString: '(  Foo  (  id:  42  )  )  '.
 	p Element.
-	r contents should = a.
-	p atEnd should beTrue
+	self assert: r contents equals: a.
+	self assert: p atEnd
 ]
 
 { #category : #running }
 FMMSEParserTest >> testEmptyDocument [
 	p fromString: ''.
 	p Document.
-	r contents should = #(#(#beginDocument) #(#endDocument)).
-	p atEnd should beTrue
+	self assert: r contents equals: #(#(#beginDocument) #(#endDocument)).
+	self assert: p atEnd
 ]
 
 { #category : #running }
 FMMSEParserTest >> testEmptyExportString [
 	p fromString: ''.
 	p Document.
-	r exportString should = '()'
+	self assert: r exportString equals: '()'
 ]
 
 { #category : #running }
@@ -701,73 +701,73 @@ FMMSEParserTest >> testFamixModel [
 	repo := FMTower new metamodel.
 	repo importString: self class famix30mse.
 	names := repo elements collect: [ :each | each fullName ].
-	names size should = 70.
-	names should include: 'FAMIX.Access'.
-	names should include: 'FAMIX.Method'.
-	names should include: 'FAMIX.NamedEntity.belongsTo'.
-	names should include: 'FAMIX.Class'.
-	names should include: 'FAMIX'.
-	names should include: 'FAMIX.Entity.sourceAnchor'.
-	names should include: 'FAMIX.Access.accessor'.
-	names should include: 'FAMIX.Type.methods'.
-	names should include: 'FAMIX.Package.childNamedEntities'.
-	names should include: 'FAMIX.Type.attributes'.
-	names should include: 'FAMIX.Attribute.parentClass'.
-	names should include: 'FAMIX.GlobalVariable'.
-	names should include: 'FAMIX.ScopingEntity.parentNamespace'.
-	names should include: 'FAMIX.Type'.
-	names should include: 'FAMIX.Parameter'.
-	names should include: 'FAMIX.Access.isRead'.
-	names should include: 'FAMIX.Attribute'.
-	names should include: 'FAMIX.ContainerEntity.incomingReferences'.
-	names should include: 'FAMIX.Method.parentClass'.
-	names should include: 'FAMIX.BehaviouralEntity'.
-	names should include: 'FAMIX.BehaviouralEntity.incomingInvocations'.
-	names should include: 'FAMIX.StructuralEntity'.
-	names should include: 'FAMIX.Access.isWrite'.
-	names should include: 'FAMIX.Invocation.sender'.
-	names should include: 'FAMIX.ScopingEntity.globalVariables'.
-	names should include: 'FAMIX.ContainerEntity'.
-	names should include: 'FAMIX.ScopingEntity'.	"self assert: (names includes: 'FAMIX.Invocation.above')."
-	names should include: 'FAMIX.Association'.
-	names should include: 'FAMIX.StructuralEntity.declaredType'.
-	names should include: 'FAMIX.Invocation.receiver'.
-	names should include: 'FAMIX.Package'.
-	names should include: 'FAMIX.ScopingEntity.childNamespaces'.
-	names should include: 'FAMIX.Entity'.
-	names should include: 'FAMIX.Reference.from'.
-	names should include: 'FAMIX.ContainerEntity.outgoingReferences'.
-	names should include: 'FAMIX.BehaviouralEntity.localVariables'.
-	names should include: 'FAMIX.Invocation.candidates'.
-	names should include: 'FAMIX.Invocation.receiverSourceCode'.
-	names should include: 'FAMIX.NamedEntity.name'.
-	names should include: 'FAMIX.NamedEntity.receivingInvocations'.
-	names should include: 'FAMIX.StructuralEntity.incomingAccesses'.
-	names should include: 'FAMIX.LeafEntity'.
-	names should include: 'FAMIX.Class.isAbstract'.
-	names should include: 'FAMIX.BehaviouralEntity.signature'.
-	names should include: 'FAMIX.Inheritance.subclass'.
-	names should include: 'FAMIX.Reference'.
-	names should include: 'FAMIX.BehaviouralEntity.outgoingInvocations'.
-	names should include: 'FAMIX.Access.variable'.
-	names should include: 'FAMIX.LocalVariable.parentBehaviouralEntity'.
-	names should include: 'FAMIX.LocalVariable'.
-	names should include: 'FAMIX.BehaviouralEntity.outgoingAccesses'.
-	names should include: 'FAMIX.Inheritance'.
-	names should include: 'FAMIX.Parameter.parentBehaviouralEntity'.	"... and tons more ... "
+	self assert: names size equals: 70.
+	self assert: (names includes: 'FAMIX.Access').
+	self assert: (names includes: 'FAMIX.Method').
+	self assert: (names includes: 'FAMIX.NamedEntity.belongsTo').
+	self assert: (names includes: 'FAMIX.Class').
+	self assert: (names includes: 'FAMIX').
+	self assert: (names includes: 'FAMIX.Entity.sourceAnchor').
+	self assert: (names includes: 'FAMIX.Access.accessor').
+	self assert: (names includes: 'FAMIX.Type.methods').
+	self assert: (names includes: 'FAMIX.Package.childNamedEntities').
+	self assert: (names includes: 'FAMIX.Type.attributes').
+	self assert: (names includes: 'FAMIX.Attribute.parentClass').
+	self assert: (names includes: 'FAMIX.GlobalVariable').
+	self assert: (names includes: 'FAMIX.ScopingEntity.parentNamespace').
+	self assert: (names includes: 'FAMIX.Type').
+	self assert: (names includes: 'FAMIX.Parameter').
+	self assert: (names includes: 'FAMIX.Access.isRead').
+	self assert: (names includes: 'FAMIX.Attribute').
+	self assert: (names includes: 'FAMIX.ContainerEntity.incomingReferences').
+	self assert: (names includes: 'FAMIX.Method.parentClass').
+	self assert: (names includes: 'FAMIX.BehaviouralEntity').
+	self assert: (names includes: 'FAMIX.BehaviouralEntity.incomingInvocations').
+	self assert: (names includes: 'FAMIX.StructuralEntity').
+	self assert: (names includes: 'FAMIX.Access.isWrite').
+	self assert: (names includes: 'FAMIX.Invocation.sender').
+	self assert: (names includes: 'FAMIX.ScopingEntity.globalVariables').
+	self assert: (names includes: 'FAMIX.ContainerEntity').
+	self assert: (names includes: 'FAMIX.ScopingEntity').	"self assert: (names includes: 'FAMIX.Invocation.above')."
+	self assert: (names includes: 'FAMIX.Association').
+	self assert: (names includes: 'FAMIX.StructuralEntity.declaredType').
+	self assert: (names includes: 'FAMIX.Invocation.receiver').
+	self assert: (names includes: 'FAMIX.Package').
+	self assert: (names includes: 'FAMIX.ScopingEntity.childNamespaces').
+	self assert: (names includes: 'FAMIX.Entity').
+	self assert: (names includes: 'FAMIX.Reference.from').
+	self assert: (names includes: 'FAMIX.ContainerEntity.outgoingReferences').
+	self assert: (names includes: 'FAMIX.BehaviouralEntity.localVariables').
+	self assert: (names includes: 'FAMIX.Invocation.candidates').
+	self assert: (names includes: 'FAMIX.Invocation.receiverSourceCode').
+	self assert: (names includes: 'FAMIX.NamedEntity.name').
+	self assert: (names includes: 'FAMIX.NamedEntity.receivingInvocations').
+	self assert: (names includes: 'FAMIX.StructuralEntity.incomingAccesses').
+	self assert: (names includes: 'FAMIX.LeafEntity').
+	self assert: (names includes: 'FAMIX.Class.isAbstract').
+	self assert: (names includes: 'FAMIX.BehaviouralEntity.signature').
+	self assert: (names includes: 'FAMIX.Inheritance.subclass').
+	self assert: (names includes: 'FAMIX.Reference').
+	self assert: (names includes: 'FAMIX.BehaviouralEntity.outgoingInvocations').
+	self assert: (names includes: 'FAMIX.Access.variable').
+	self assert: (names includes: 'FAMIX.LocalVariable.parentBehaviouralEntity').
+	self assert: (names includes: 'FAMIX.LocalVariable').
+	self assert: (names includes: 'FAMIX.BehaviouralEntity.outgoingAccesses').
+	self assert: (names includes: 'FAMIX.Inheritance').
+	self assert: (names includes: 'FAMIX.Parameter.parentBehaviouralEntity').	"... and tons more ... "
 	famixPackage := repo at: 'FAMIX'.
-	famixPackage isFM3Package should beTrue.
+	self assert: famixPackage isFM3Package.
 	accessClass := famixPackage classNamed: 'Access'.
-	accessClass isFM3Class should beTrue.
+	self assert: accessClass isFM3Class.
 	accessorProperty := accessClass attributeNamed: 'accessor'.
-	accessorProperty isFM3Property should beTrue.
-	accessorProperty name should = #accessor.
-	accessorProperty opposite notNil should beTrue.
+	self assert: accessorProperty isFM3Property.
+	self assert: accessorProperty name equals: #accessor.
+	self assert: accessorProperty opposite notNil.
 	behaviouralEntity := famixPackage classNamed: 'BehaviouralEntity'.
-	behaviouralEntity isFM3Class should beTrue.
+	self assert: behaviouralEntity isFM3Class.
 	outgoingAccesses := behaviouralEntity attributeNamed: 'outgoingAccesses'.
-	outgoingAccesses isFM3Property should beTrue.
-	accessorProperty opposite should = outgoingAccesses
+	self assert: outgoingAccesses isFM3Property.
+	self assert: accessorProperty opposite equals: outgoingAccesses
 ]
 
 { #category : #running }
@@ -775,171 +775,163 @@ FMMSEParserTest >> testFullDocument [
 	r reset.
 	p fromString: self class famix30mse.
 	p Document.
-	r contents first should = #(#beginDocument).
-	r contents size should > 200.	" = many"
-	r contents last should = #(#endDocument).
-	p atEnd should beTrue
+	self assert: r contents first equals: #(#beginDocument).
+	self assert: r contents size > 200.	" = many"
+	self assert: r contents last equals: #(#endDocument).
+	self assert: p atEnd
 ]
 
 { #category : #running }
 FMMSEParserTest >> testFullName [
 	p fromString: 'Foo'.
 	r := p tFULLNAME.
-	r should = 'Foo'.
-	p atEnd should beTrue.
+	self assert: r equals: 'Foo'.
+	self assert: p atEnd.
 	p fromString: 'A'.
 	r := p tFULLNAME.
-	r should = 'A'.
-	p atEnd should beTrue
+	self assert: r equals: 'A'.
+	self assert: p atEnd
 ]
 
 { #category : #running }
 FMMSEParserTest >> testFullName2 [
 	p fromString: 'Foo.Bar'.
 	r := p tFULLNAME.
-	r should = 'Foo.Bar'.
-	p atEnd should beTrue.
+	self assert: r equals: 'Foo.Bar'.
+	self assert: p atEnd.
 	p fromString: 'A.b'.
 	r := p tFULLNAME.
-	r should = 'A.b'.
-	p atEnd should beTrue
+	self assert: r equals: 'A.b'.
+	self assert: p atEnd
 ]
 
 { #category : #running }
 FMMSEParserTest >> testFullName3 [
 	p fromString: 'Foo.Bar.Qux'.
 	r := p tFULLNAME.
-	r should = 'Foo.Bar.Qux'.
-	p atEnd should beTrue.
+	self assert: r equals: 'Foo.Bar.Qux'.
+	self assert: p atEnd.
 	p fromString: 'A.b.q'.
 	r := p tFULLNAME.
-	r should = 'A.b.q'.
-	p atEnd should beTrue
+	self assert: r equals: 'A.b.q'.
+	self assert: p atEnd
 ]
 
 { #category : #running }
 FMMSEParserTest >> testFullNameDotDotFails [
 	p fromString: 'Foo..Bar'.
-	self 
-		should: [ p tFULLNAME ]
-		raise: Error
+	self should: [ p tFULLNAME ] raise: Error
 ]
 
 { #category : #running }
 FMMSEParserTest >> testFullNameTrailingDotFails [
 	p fromString: 'Foo.'.
-	self 
-		should: [ p tFULLNAME ]
-		raise: Error
+	self should: [ p tFULLNAME ] raise: Error
 ]
 
 { #category : #running }
 FMMSEParserTest >> testMatchString [
 	p fromString: '''Lorem'''.
 	r := p String.
-	r should = 'Lorem'.
-	p atEnd should beTrue.
+	self assert: r equals: 'Lorem'.
+	self assert: p atEnd.
 	p fromString: '''Eo''ipso'''.
 	r := p String.
-	r should = 'Eo'.
-	p peek should = $i.
+	self assert: r equals: 'Eo'.
+	self assert: p peek equals: $i.
 	p fromString: '''Eo''''ipso'''.
 	r := p String.
-	r should = 'Eo''ipso'.
-	p atEnd should beTrue
+	self assert: r equals: 'Eo''ipso'.
+	self assert: p atEnd
 ]
 
 { #category : #running }
 FMMSEParserTest >> testNumber [
 	p fromString: '14'.
 	r := p Number.
-	r should = 14.
-	p atEnd should beTrue.
+	self assert: r equals: 14.
+	self assert: p atEnd.
 	p fromString: '-23x'.
 	r := p Number.
-	r should = -23.
-	p peek should = $x.
+	self assert: r equals: -23.
+	self assert: p peek equals: $x.
 	p fromString: '1'.
 	r := p Number.
-	r should = 1.
-	p atEnd should beTrue.
+	self assert: r equals: 1.
+	self assert: p atEnd.
 	p fromString: '-1'.
 	r := p Number.
-	r should = -1.
-	p atEnd should beTrue
+	self assert: r equals: -1.
+	self assert: p atEnd
 ]
 
 { #category : #running }
 FMMSEParserTest >> testNumber2 [
 	p fromString: '12.91'.
 	r := p Number.
-	p atEnd should beTrue.
-	r should = 12.91.
+	self assert: p atEnd.
+	self assert: r equals: 12.91.
 	p fromString: '-47.11'.
 	r := p Number.
-	r should = -47.11.
-	p atEnd should beTrue.
+	self assert: r equals: -47.11.
+	self assert: p atEnd.
 	p fromString: '1.1'.
 	r := p Number.
-	r should = 1.1.
-	p atEnd should beTrue.
+	self assert: r equals: 1.1.
+	self assert: p atEnd.
 	p fromString: '-1.1'.
 	r := p Number.
-	r should = -1.1.
-	p atEnd should beTrue
+	self assert: r equals: -1.1.
+	self assert: p atEnd
 ]
 
 { #category : #running }
 FMMSEParserTest >> testNumber3 [
 	p fromString: '12.91e33'.
 	r := p Number.
-	p atEnd should beTrue.
-	r should = 1.291e34.
+	self assert: p atEnd.
+	self assert: r equals: 1.291e34.
 	p fromString: '-47.11e22'.
 	r := p Number.
-	r should = -4.711e23.
-	p atEnd should beTrue.
+	self assert: r equals: -4.711e23.
+	self assert: p atEnd.
 	p fromString: '-23.11e-15'.
 	r := p Number.
-	r should = -2.311e-14.
-	p atEnd should beTrue.
+	self assert: r equals: -2.311e-14.
+	self assert: p atEnd.
 	p fromString: '1.1e2'.
 	r := p Number.
-	r should = 110.0.
-	p atEnd should beTrue.
+	self assert: r equals: 110.0.
+	self assert: p atEnd.
 	p fromString: '-1.1e2'.
 	r := p Number.
-	r should = -110.0.
-	p atEnd should beTrue
+	self assert: r equals: -110.0.
+	self assert: p atEnd
 ]
 
 { #category : #running }
 FMMSEParserTest >> testNumberTrailingDotFails [
 	p fromString: '12.'.
-	self 
-		should: [ p Number ]
-		raise: Error
+	self should: [ p Number ] raise: Error
 ]
 
 { #category : #running }
 FMMSEParserTest >> testNumberTrailingLetterFails [
 	p fromString: '12.11e'.
-	self 
-		should: [ p Number ]
-		raise: Error
+	self should: [ p Number ] raise: Error
 ]
 
 { #category : #running }
 FMMSEParserTest >> testSerial [
 	p fromString: '(id:42)'.
 	p Serial.
-	r contents should = #(#(#serial: 42)).
-	p atEnd should beTrue.
+	self assert: r contents equals: #(#(#serial: 42)).
+	self assert: p atEnd.
 	self setUp.
 	p fromString: '(  id:  42  )'.
 	p Serial.
-	r contents should = #(#(#serial: 42)).
-	p atEnd should beTrue.
+	self assert: r contents equals: #(#(#serial: 42)).
+	self assert: p atEnd.
 	self setUp
 ]
 
@@ -947,13 +939,13 @@ FMMSEParserTest >> testSerial [
 FMMSEParserTest >> testSimpleDocument [
 	p fromString: '()'.
 	p Document.
-	r contents should = #(#(#beginDocument) #(#endDocument)).
-	p atEnd should beTrue.
+	self assert: r contents equals: #(#(#beginDocument) #(#endDocument)).
+	self assert: p atEnd.
 	r reset.
 	p fromString: '  (  )  '.
 	p Document.
-	r contents should = #(#(#beginDocument) #(#endDocument)).
-	p atEnd should beTrue
+	self assert: r contents equals: #(#(#beginDocument) #(#endDocument)).
+	self assert: p atEnd
 ]
 
 { #category : #running }
@@ -961,26 +953,22 @@ FMMSEParserTest >> testValueFloat [
 	r reset.
 	p fromString: '3.14'.
 	p Value.
-	r contents should = #(#(#primitive: 3.14)).
-	p atEnd should beTrue
+	self assert: r contents equals: #(#(#primitive: 3.14)).
+	self assert: p atEnd
 ]
 
 { #category : #running }
 FMMSEParserTest >> testValueFloatError [
 	r reset.
 	p fromString: '3.14e$'.
-	self 
-		should: [ p Value ]
-		raise: FMSyntaxError
+	self should: [ p Value ] raise: FMSyntaxError
 ]
 
 { #category : #running }
 FMMSEParserTest >> testValueFloatError2 [
 	r reset.
 	p fromString: '1..2'.
-	self 
-		should: [ p Value ]
-		raise: FMSyntaxError
+	self should: [ p Value ] raise: FMSyntaxError
 ]
 
 { #category : #running }
@@ -988,8 +976,8 @@ FMMSEParserTest >> testValueFloatWithExponent [
 	r reset.
 	p fromString: '1.291e3'.
 	p Value.
-	r contents should = #(#(#primitive: 1291)).
-	p atEnd should beTrue
+	self assert: r contents equals: #(#(#primitive: 1291)).
+	self assert: p atEnd
 ]
 
 { #category : #running }
@@ -997,8 +985,8 @@ FMMSEParserTest >> testValueNegativeNumber [
 	r reset.
 	p fromString: '-42'.
 	p Value.
-	r contents should = #(#(#primitive: -42)).
-	p atEnd should beTrue
+	self assert: r contents equals: #(#(#primitive: -42)).
+	self assert: p atEnd
 ]
 
 { #category : #running }
@@ -1006,8 +994,8 @@ FMMSEParserTest >> testValueNegativeNumberError [
 	r reset.
 	p fromString: '--42'.
 	p Value.
-	r contents isEmpty should beTrue.
-	p pos should = 1
+	self assertEmpty: r contents.
+	self assert: p pos equals: 1
 ]
 
 { #category : #running }
@@ -1015,8 +1003,8 @@ FMMSEParserTest >> testValueNumber [
 	r reset.
 	p fromString: '13'.
 	p Value.
-	r contents should = #(#(#primitive: 13)).
-	p atEnd should beTrue
+	self assert: r contents equals: #(#(#primitive: 13)).
+	self assert: p atEnd
 ]
 
 { #category : #running }
@@ -1024,8 +1012,8 @@ FMMSEParserTest >> testValueReference [
 	r reset.
 	p fromString: '(ref: 24)'.
 	p Value.
-	r contents should = #(#(#referenceNumber: 24)).
-	p atEnd should beTrue
+	self assert: r contents equals: #(#(#referenceNumber: 24)).
+	self assert: p atEnd
 ]
 
 { #category : #running }
@@ -1033,8 +1021,8 @@ FMMSEParserTest >> testValueReferenceBigInteger [
 	r reset.
 	p fromString: '(ref: 112233445566778899)'.
 	p Value.
-	r contents should = #(#(#referenceNumber: 112233445566778899)).
-	p atEnd should beTrue
+	self assert: r contents equals: #(#(#referenceNumber: 112233445566778899)).
+	self assert: p atEnd
 ]
 
 { #category : #running }
@@ -1042,8 +1030,8 @@ FMMSEParserTest >> testValueReferenceFullName [
 	r reset.
 	p fromString: '(ref: EG.Foo)'.
 	p Value.
-	r contents should = #(#(#referenceName: 'EG.Foo')).
-	p atEnd should beTrue
+	self assert: r contents equals: #(#(#referenceName: 'EG.Foo')).
+	self assert: p atEnd
 ]
 
 { #category : #running }
@@ -1051,15 +1039,13 @@ FMMSEParserTest >> testValueReferenceName [
 	r reset.
 	p fromString: '(ref: Foo)'.
 	p Value.
-	r contents should = #(#(#referenceName: 'Foo')).
-	p atEnd should beTrue
+	self assert: r contents equals: #(#(#referenceName: 'Foo')).
+	self assert: p atEnd
 ]
 
 { #category : #running }
 FMMSEParserTest >> testValueReferenceStringError [
 	r reset.
 	p fromString: '(ref: ''String'')'.
-	self 
-		should: [ p Value ]
-		raise: FMSyntaxError
+	self should: [ p Value ] raise: FMSyntaxError
 ]

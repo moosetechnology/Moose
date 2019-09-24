@@ -26,6 +26,7 @@ FamixTWithDereferencedInvocations >> dereferencedInvocations [
 
 	<generated>
 	<MSEComment: 'List of invocations performed on BehaviouralEntities referenced by this entity'>
+	<derived>
 	^ dereferencedInvocations
 ]
 

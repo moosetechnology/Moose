@@ -11,7 +11,9 @@ MooseAbstractToolEntry class >> allToolClasses [
 
 { #category : #'world menu' }
 MooseAbstractToolEntry class >> allToolPragma [
-	^ (PragmaCollector filter: [:prg | prg keyword = 'mooseTool:']) reset; collected
+	^ (PragmaCollector filter: [ :prg | prg selector = 'mooseTool:' ])
+		reset;
+		collected
 ]
 
 { #category : #testing }

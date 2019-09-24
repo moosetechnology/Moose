@@ -20,13 +20,6 @@ FAMIXEntity class >> metamodel [
 	^ (self class environment at: #FamixCompatibilityGenerator) metamodel
 ]
 
-{ #category : #accessing }
-FAMIXEntity >> belongsTo [
-	"Return the primary container of the entity if it exist"
-	
-	^ self subclassResponsibility
-]
-
 { #category : #testing }
 FAMIXEntity >> isAccess [
 

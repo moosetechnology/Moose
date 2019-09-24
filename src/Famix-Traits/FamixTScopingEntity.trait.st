@@ -58,6 +58,7 @@ FamixTScopingEntity >> childScopes [
 
 	<generated>
 	<MSEComment: 'Child scopes embedded in this scope, if any.'>
+	<derived>
 	^ childScopes
 ]
 

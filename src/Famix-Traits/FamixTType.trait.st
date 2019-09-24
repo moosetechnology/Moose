@@ -33,6 +33,11 @@ FamixTType classSide >> famixTTypeRelatedGroup [
 	^ FAMIXTypeGroup
 ]
 
+{ #category : #deprecated }
+FamixTType >> belongsTo [
+	^ self parentPackage ifNil: [ self parents ifNotEmpty: #anyOne ifEmpty: [ nil ] ]
+]
+
 { #category : #metrics }
 FamixTType >> fanIn [
 	<MSEProperty: #fanIn type: #Number>

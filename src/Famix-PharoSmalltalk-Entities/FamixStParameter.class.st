@@ -16,22 +16,6 @@ FamixStParameter class >> annotation [
 ]
 
 { #category : #accessing }
-FamixStParameter >> belongsTo [
-
-	<generated>
-	^ self parentBehaviouralEntity
-
-]
-
-{ #category : #accessing }
-FamixStParameter >> belongsTo: anObject [
-
-	<generated>
-	self parentBehaviouralEntity: anObject
-
-]
-
-{ #category : #accessing }
 FamixStParameter >> mooseNameOn: stream [ 
 	| parent |
 	parent := self parentBehaviouralEntity.

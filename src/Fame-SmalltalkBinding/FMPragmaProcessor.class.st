@@ -219,7 +219,7 @@ FMPragmaProcessor >> processClass: aClass ifPragmaAbsent: anErrorBlock [
 	classDict at: aClass put: meta.
 	aClass methods do: [ :each | self processCompiledMethod: each ].
 	aClass slots do: [ :each | self processSlot: each in: aClass].
-	meta isFM3Class should beTrue.
+	self assert: meta isFM3Class.
 	^ meta
 ]
 
@@ -234,7 +234,7 @@ FMPragmaProcessor >> processCompiledMethod: aMethod [
 		ifTrue: [ aMethod compileAndInstallCompiledMethod.
 			method := aMethod compiledMethod ].
 
-	method isCompiledMethod should beTrue.
+	self assert: method isCompiledMethod.
 	pragma := Pragma inMethod: method named: #(#MSEProperty:type:opposite: #MSEProperty:type:).
 	pragma ifNil: [ ^ self ].
 	prop := FM3PropertyDescription new.
@@ -250,7 +250,7 @@ FMPragmaProcessor >> processCompiledMethod: aMethod [
 	typeDict at: prop put: (pragma argumentAt: 2).
 	mmClassDict at: prop put: method methodClass.
 	prop setImplementingSelector: method selector.
-	pragma keyword = #MSEProperty:type:opposite: ifTrue: [ oppositeDict at: prop put: (pragma argumentAt: 3) ].
+	pragma selector = #MSEProperty:type:opposite: ifTrue: [ oppositeDict at: prop put: (pragma argumentAt: 3) ].
 	(Pragma inMethod: method named: #container) ifNotNil: [ prop isContainer: true ].
 	(Pragma inMethod: method named: #derived) ifNotNil: [ prop isDerived: true ].
 	(Pragma inMethod: method named: #source) ifNotNil: [ prop isSource: true ].
@@ -258,7 +258,8 @@ FMPragmaProcessor >> processCompiledMethod: aMethod [
 	(Pragma inMethod: method named: #multivalued)
 		ifNotNil: [ self
 				assert: prop isContainer not
-				description: 'It is not possible to have <multivalue> and <container> on the same method. container represents a aggregation UML link that is incompatible with the multivalue kind of the link'.
+				description:
+					'It is not possible to have <multivalue> and <container> on the same method. container represents a aggregation UML link that is incompatible with the multivalue kind of the link'.
 			prop isMultivalued: true ].
 	(Pragma inMethod: method named: #key:) ifNotNil: [ :p | prop key: (p argumentAt: 1) ].
 	elements add: prop

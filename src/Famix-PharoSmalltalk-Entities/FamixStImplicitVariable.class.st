@@ -15,22 +15,6 @@ FamixStImplicitVariable class >> annotation [
 	^self
 ]
 
-{ #category : #accessing }
-FamixStImplicitVariable >> belongsTo [
-
-	<generated>
-	^ self parentBehaviouralEntity
-
-]
-
-{ #category : #accessing }
-FamixStImplicitVariable >> belongsTo: anObject [
-
-	<generated>
-	self parentBehaviouralEntity: anObject
-
-]
-
 { #category : #testing }
 FamixStImplicitVariable >> isSelf [
 	^ self name = #self

@@ -15,22 +15,6 @@ FamixJavaLocalVariable class >> annotation [
 	^self
 ]
 
-{ #category : #accessing }
-FamixJavaLocalVariable >> belongsTo [
-
-	<generated>
-	^ self parentBehaviouralEntity
-
-]
-
-{ #category : #accessing }
-FamixJavaLocalVariable >> belongsTo: anObject [
-
-	<generated>
-	self parentBehaviouralEntity: anObject
-
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaLocalVariable >> mooseNameOn: stream [ 
 	| parent |

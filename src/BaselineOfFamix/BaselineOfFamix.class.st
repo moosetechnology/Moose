@@ -23,7 +23,6 @@ BaselineOfFamix >> baseline: spec [
 		do: [ "Dependencies"
 			self
 				deepTraverser: spec;
-				treeQuery: spec;
 				fame: spec;
 				kgbTestResources: spec;
 				collectionExtensions: spec;
@@ -39,7 +38,7 @@ BaselineOfFamix >> baseline: spec [
 				package: 'Moose-Core' with: [ spec requires: #('Fame' 'Moose-Query') ];
 				package: 'Moose-Query-Extensions' with: [ spec requires: #('Moose-Query' 'Famix-Traits') ];
 				package: 'Famix-Groups' with: [ spec requires: #('Moose-Core' 'NeoCSV') ];
-				package: 'Famix-Traits' with: [ spec requires: #('Famix-Groups' 'Moose-Core' 'TreeQuery') ];
+				package: 'Famix-Traits' with: [ spec requires: #('Famix-Groups' 'Moose-Core') ];
 				package: 'Famix-MetamodelBuilder-Core' with: [ spec requires: #('Famix-Traits') ];
 				package: 'Famix-MetamodelGeneration' with: [ spec requires: #('Famix-MetamodelBuilder-Core') ];
 				package: 'Famix-BasicInfrastructure' with: [ spec requires: #('Famix-MetamodelBuilder-Core') ];
@@ -102,32 +101,24 @@ BaselineOfFamix >> baseline: spec [
 					with:
 					#('Famix-Tests' 'Moose-Query-Test' 'Moose-Tests-Core' 'Famix-Smalltalk-Utils-Tests' 'Moose-Tests-SmalltalkImporter-LAN' 'Moose-Tests-SmalltalkImporter-Core' 'Moose-Tests-SmalltalkImporter-KGB' 'Famix-Java-Tests' 'Famix-Groups-Tests' 'Famix-Compatibility-Tests-C' 'Famix-Compatibility-Tests-Java' 'Famix-Compatibility-Tests-Core' 'Famix-Compatibility-Tests-Extensions' 'Famix-PharoSmalltalk-Tests' 'Famix-TestGenerators' 'Famix-MetamodelBuilder-Tests' 'Famix-Test1-Entities' 'Famix-Test1-Tests' 'Famix-Test2-Entities' 'Famix-Test2-Tests' 'Famix-Test3-Entities' 'Famix-Test3-Tests' 'Famix-Test4-Entities' 'Famix-Test4-Tests' 'Famix-TestComposedSubmetamodel1-Entities' 'Famix-TestComposedSubmetamodel2-Entities' 'Famix-TestComposedMetamodel-Entities' 'Famix-TestComposedMetamodel' 'Famix-TestComposedComposedMetamodel-Entities' 'Famix-TestComposed3Metamodel-Entities') ].
 
-	"We need different versions of Ring for Pharo 7 and 8."
 	spec
 		for: #'pharo7.x'
-		do: [ spec
-				baseline: 'Ring2'
-				with: [ spec
-						loads: 'runtimeSupport';
-						repository: 'github://pavel-krivanek/Ring2:v1.2.0/src' ].
+		do: [
+			self ring2: spec.
+
 			spec
 				package: 'Famix-MetamodelBuilder-Core' with: [ spec requires: #('Ring2') ];
 				package: 'Moose-Core' with: [ spec includes: #('Famix-Pharo7') ];
-				package: 'Famix-Pharo7' ].
-
-	spec
-		for: #'pharo8.x'
-		do: [ spec
-				baseline: 'Ring2'
-				with: [ spec
-						loads: 'runtimeSupport';
-						repository: 'github://pavel-krivanek/Ring2:RGPackageRenamed/src' ].
-			spec package: 'Famix-MetamodelBuilder-Core' with: [ spec requires: #('Ring2') ] ]
+				package: 'Famix-Pharo7' ]
 ]
 
 { #category : #dependencies }
 BaselineOfFamix >> collectionExtensions: spec [
-	spec baseline: 'CollectionExtensions' with: [ spec repository: repository ]
+	spec
+		baseline: 'CollectionExtensions'
+		with: [ spec
+				loads: 'Core';
+				repository: 'github://pharo-contributions/CollectionExtensions:v1.x.x/src' ]
 ]
 
 { #category : #dependencies }
@@ -173,6 +164,15 @@ BaselineOfFamix >> referenceTestResources: spec [
 	spec baseline: 'ReferenceTestResources' with: [ spec repository: repository ]
 ]
 
+{ #category : #baseline }
+BaselineOfFamix >> ring2: spec [
+	spec
+		baseline: 'Ring2'
+		with: [ spec
+				loads: 'runtimeSupport';
+				repository: 'github://pavel-krivanek/Ring2:v1.2.0/src' ]
+]
+
 { #category : #dependencies }
 BaselineOfFamix >> roelTyper: spec [
 	spec baseline: 'RoelTyper' with: [ spec repository: repository ]
@@ -181,9 +181,4 @@ BaselineOfFamix >> roelTyper: spec [
 { #category : #dependencies }
 BaselineOfFamix >> talents: spec [
 	spec baseline: 'Talents' with: [ spec repository: repository ]
-]
-
-{ #category : #dependencies }
-BaselineOfFamix >> treeQuery: spec [
-	spec baseline: 'TreeQuery' with: [ spec repository: 'github://juliendelplanque/TreeQuery:v1.x.x/src' ]
 ]

@@ -30,8 +30,7 @@ FamixTestComposedMetamodels >> setUp [
 
 	super setUp.
 
-	model := MooseModel new.
-	model metamodel: FamixTestComposedGenerator metamodel.
+	model := FamixTestComposedMooseModel new.
 	
 	remoteMethod := FamixTestComposed1Method new.
 	entity := FamixTestComposedEntity new.

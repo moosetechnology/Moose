@@ -26,6 +26,7 @@ FamixTWithTraits >> traits [
 	"Relation named: #traits type: #FamixTTrait opposite: #traitOwner"
 
 	<generated>
+	<derived>
 	^ traits
 ]
 

@@ -22,22 +22,6 @@ FamixJavaAnnotationInstanceAttribute class >> requirements [
 	^ { FamixJavaAnnotationInstance }
 ]
 
-{ #category : #accessing }
-FamixJavaAnnotationInstanceAttribute >> belongsTo [
-
-	<generated>
-	^ self parentAnnotationInstance
-
-]
-
-{ #category : #accessing }
-FamixJavaAnnotationInstanceAttribute >> belongsTo: anObject [
-
-	<generated>
-	self parentAnnotationInstance: anObject
-
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaAnnotationInstanceAttribute >> name [ 
 	^ self annotationTypeAttribute notNil 

@@ -6,6 +6,8 @@ Trait {
 	#instVars : [
 		'#childrenFileSystemEntities => FMMany type: #FamixTFileSystemEntity opposite: #parentFolder'
 	],
+	#traits : 'FamixTFileSystemEntity',
+	#classTraits : 'FamixTFileSystemEntity classTrait',
 	#category : #'Famix-Traits-File'
 }
 
@@ -53,6 +55,7 @@ FamixTFolder >> childrenFileSystemEntities [
 
 	<generated>
 	<MSEComment: 'List of entities contained in this folder.'>
+	<derived>
 	^ childrenFileSystemEntities
 ]
 
@@ -84,6 +87,11 @@ FamixTFolder >> folders [
 FamixTFolder >> foldersGroup [
 	<navigation: 'Folders'>
 	^FAMIXFolderGroup withAll: self folders withDescription: 'Folders'
+]
+
+{ #category : #testing }
+FamixTFolder >> isFolder [
+	^ true
 ]
 
 { #category : #properties }

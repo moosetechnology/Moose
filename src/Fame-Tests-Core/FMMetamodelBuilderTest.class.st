@@ -19,13 +19,13 @@ FMMetamodelBuilderTest >> setUp [
 
 { #category : #running }
 FMMetamodelBuilderTest >> testClasses [
-	metamodel classes size should = 3.
-	(metamodel elementNamed: 'RPG.Dragon') notNil should beTrue.
-	(metamodel elementNamed: 'RPG.Dragon') isFM3Class should beTrue.
-	(metamodel elementNamed: 'RPG.Treasure') notNil should beTrue.
-	(metamodel elementNamed: 'RPG.Treasure') isFM3Class should beTrue.
-	(metamodel elementNamed: 'RPG.Hero') notNil should beTrue.
-	(metamodel elementNamed: 'RPG.Hero') isFM3Class should beTrue
+	self assert: metamodel classes size equals: 3.
+	self assert: (metamodel elementNamed: 'RPG.Dragon') notNil.
+	self assert: (metamodel elementNamed: 'RPG.Dragon') isFM3Class.
+	self assert: (metamodel elementNamed: 'RPG.Treasure') notNil.
+	self assert: (metamodel elementNamed: 'RPG.Treasure') isFM3Class.
+	self assert: (metamodel elementNamed: 'RPG.Hero') notNil.
+	self assert: (metamodel elementNamed: 'RPG.Hero') isFM3Class
 ]
 
 { #category : #running }
@@ -33,12 +33,12 @@ FMMetamodelBuilderTest >> testDragonHoardsTreasures [
 	| a b |
 	a := metamodel elementNamed: 'RPG.Dragon.hoard'.
 	b := metamodel elementNamed: 'RPG.Treasure.keeper'.
-	a opposite should = b.
-	b opposite should = a.
-	a type should = b mmClass.
-	b type should = a mmClass.
-	a isMultivalued should beTrue.
-	b isMultivalued should beFalse
+	self assert: a opposite equals: b.
+	self assert: b opposite equals: a.
+	self assert: a type equals: b mmClass.
+	self assert: b type equals: a mmClass.
+	self assert: a isMultivalued.
+	self deny: b isMultivalued
 ]
 
 { #category : #running }
@@ -46,21 +46,21 @@ FMMetamodelBuilderTest >> testDragonsKilledByHeros [
 	| a b |
 	a := metamodel elementNamed: 'RPG.Dragon.killedBy'.
 	b := metamodel elementNamed: 'RPG.Hero.kills'.
-	a opposite should = b.
-	b opposite should = a.
-	a type should = b mmClass.
-	b type should = a mmClass.
-	a isMultivalued should beTrue.
-	b isMultivalued should beTrue
+	self assert: a opposite equals: b.
+	self assert: b opposite equals: a.
+	self assert: a type equals: b mmClass.
+	self assert: b type equals: a mmClass.
+	self assert: a isMultivalued.
+	self assert: b isMultivalued
 ]
 
 { #category : #running }
 FMMetamodelBuilderTest >> testHeroHasTwinHero [
 	| a |
 	a := metamodel elementNamed: 'RPG.Hero.twin'.
-	a opposite should = a.
-	a type should = a mmClass.
-	a isMultivalued should beFalse
+	self assert: a opposite equals: a.
+	self assert: a type equals: a mmClass.
+	self deny: a isMultivalued
 ]
 
 { #category : #running }
@@ -68,36 +68,36 @@ FMMetamodelBuilderTest >> testHeroOwnsTalisman [
 	| a b |
 	a := metamodel elementNamed: 'RPG.Treasure.owner'.
 	b := metamodel elementNamed: 'RPG.Hero.talisman'.
-	a opposite should = b.
-	b opposite should = a.
-	a type should = b mmClass.
-	b type should = a mmClass.
-	a isMultivalued should beFalse.
-	b isMultivalued should beFalse
+	self assert: a opposite equals: b.
+	self assert: b opposite equals: a.
+	self assert: a type equals: b mmClass.
+	self assert: b type equals: a mmClass.
+	self deny: a isMultivalued.
+	self deny: b isMultivalued
 ]
 
 { #category : #running }
 FMMetamodelBuilderTest >> testPackages [
-	metamodel packages size should = 1.
-	metamodel packages anyOne name isSymbol should beTrue.
-	metamodel packages anyOne name should = #RPG
+	self assert: metamodel packages size equals: 1.
+	self assert: metamodel packages anyOne name isSymbol.
+	self assert: metamodel packages anyOne name equals: #RPG
 ]
 
 { #category : #running }
 FMMetamodelBuilderTest >> testProperties [
-	metamodel properties size should = 7.
-	(metamodel elementNamed: 'RPG.Dragon.hoard') notNil should beTrue.
-	(metamodel elementNamed: 'RPG.Dragon.hoard') isFM3Property should beTrue.
-	(metamodel elementNamed: 'RPG.Dragon.killedBy') notNil should beTrue.
-	(metamodel elementNamed: 'RPG.Dragon.killedBy') isFM3Property should beTrue.
-	(metamodel elementNamed: 'RPG.Treasure.keeper') notNil should beTrue.
-	(metamodel elementNamed: 'RPG.Treasure.keeper') isFM3Property should beTrue.
-	(metamodel elementNamed: 'RPG.Treasure.owner') notNil should beTrue.
-	(metamodel elementNamed: 'RPG.Treasure.owner') isFM3Property should beTrue.
-	(metamodel elementNamed: 'RPG.Hero.twin') notNil should beTrue.
-	(metamodel elementNamed: 'RPG.Hero.twin') isFM3Property should beTrue.
-	(metamodel elementNamed: 'RPG.Hero.kills') notNil should beTrue.
-	(metamodel elementNamed: 'RPG.Hero.kills') isFM3Property should beTrue.
-	(metamodel elementNamed: 'RPG.Hero.talisman') notNil should beTrue.
-	(metamodel elementNamed: 'RPG.Hero.talisman') isFM3Property should beTrue
+	self assert: metamodel properties size equals: 7.
+	self assert: (metamodel elementNamed: 'RPG.Dragon.hoard') notNil.
+	self assert: (metamodel elementNamed: 'RPG.Dragon.hoard') isFM3Property.
+	self assert: (metamodel elementNamed: 'RPG.Dragon.killedBy') notNil.
+	self assert: (metamodel elementNamed: 'RPG.Dragon.killedBy') isFM3Property.
+	self assert: (metamodel elementNamed: 'RPG.Treasure.keeper') notNil.
+	self assert: (metamodel elementNamed: 'RPG.Treasure.keeper') isFM3Property.
+	self assert: (metamodel elementNamed: 'RPG.Treasure.owner') notNil.
+	self assert: (metamodel elementNamed: 'RPG.Treasure.owner') isFM3Property.
+	self assert: (metamodel elementNamed: 'RPG.Hero.twin') notNil.
+	self assert: (metamodel elementNamed: 'RPG.Hero.twin') isFM3Property.
+	self assert: (metamodel elementNamed: 'RPG.Hero.kills') notNil.
+	self assert: (metamodel elementNamed: 'RPG.Hero.kills') isFM3Property.
+	self assert: (metamodel elementNamed: 'RPG.Hero.talisman') notNil.
+	self assert: (metamodel elementNamed: 'RPG.Hero.talisman') isFM3Property
 ]

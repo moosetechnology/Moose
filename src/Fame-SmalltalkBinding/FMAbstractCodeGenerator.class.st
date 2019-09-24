@@ -54,9 +54,8 @@ FMAbstractCodeGenerator >> acceptFameProperty: fameProperty [
 { #category : #'compiling-names' }
 FMAbstractCodeGenerator >> annotationStringForProperty: property [
 	| ann |
-	property type notNil should beTrue.
-	ann := '%<MSEProperty: <1s> type: <2s>' expandMacrosWith: property name asSymbol printString
-		with: (self classNameFor: property type) printString.
+	self assert: property type isNotNil.
+	ann := '%<MSEProperty: <1s> type: <2s>' expandMacrosWith: property name asSymbol printString with: (self classNameFor: property type) printString.
 	property hasOpposite ifTrue: [ ann := ann , ' opposite: ' , (self oppositeNameFor: property) printString ].
 	ann := ann , '>'.
 	property isMultivalued ifTrue: [ ann := ann , ' <multivalued>' ].
@@ -165,10 +164,10 @@ FMAbstractCodeGenerator >> ensureClass: fameClass superclass: rbSuperclass [
 	| rbClass0 className |
 	className := self classNameFor: fameClass.
 	rbClass0 := model classNamed: className.
-	rbClass0 isNil ifTrue:
-			[ self compileClass: fameClass superclass: rbSuperclass.
+	rbClass0
+		ifNil: [ self compileClass: fameClass superclass: rbSuperclass.
 			rbClass0 := model classNamed: className ].
-	rbClass0 notNil should beTrue.
+	self assert: rbClass0 isNotNil.
 	^ rbClass0
 ]
 

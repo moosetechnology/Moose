@@ -14,19 +14,3 @@ FamixTest1Attribute class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #accessing }
-FamixTest1Attribute >> belongsTo [
-
-	<generated>
-	^ self parentType
-
-]
-
-{ #category : #accessing }
-FamixTest1Attribute >> belongsTo: anObject [
-
-	<generated>
-	self parentType: anObject
-
-]

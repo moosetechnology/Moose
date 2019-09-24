@@ -16,21 +16,21 @@ FMTowerTest >> setUp [
 
 { #category : #running }
 FMTowerTest >> testIsEmpty [
-	tower model isEmpty should beTrue.
-	tower metamodel isEmpty should beTrue.
-	tower metaMetamodel isEmpty should beFalse
+	self assert: tower model isEmpty.
+	self assert: tower metamodel isEmpty.
+	self deny: tower metaMetamodel isEmpty
 ]
 
 { #category : #running }
 FMTowerTest >> testIsMetaMetamodel [
-	tower model isMetaMetamodel should beFalse.
-	tower metamodel isMetaMetamodel should beFalse.
-	tower metaMetamodel isMetamodel should beTrue
+	self deny: tower model isMetaMetamodel.
+	self deny: tower metamodel isMetaMetamodel.
+	self assert: tower metaMetamodel isMetamodel
 ]
 
 { #category : #running }
 FMTowerTest >> testIsMetamodel [
-	tower model isMetamodel should beFalse.
-	tower metamodel isMetamodel should beTrue.
-	tower metaMetamodel isMetamodel should beTrue
+	self deny: tower model isMetamodel.
+	self assert: tower metamodel isMetamodel.
+	self assert: tower metaMetamodel isMetamodel
 ]

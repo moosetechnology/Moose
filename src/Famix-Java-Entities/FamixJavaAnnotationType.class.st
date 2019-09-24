@@ -33,22 +33,6 @@ FamixJavaAnnotationType >> annotatedEntitiesGroup [
 	^ self annotatedEntities asMooseGroup
 ]
 
-{ #category : #accessing }
-FamixJavaAnnotationType >> belongsTo [
-
-	<generated>
-	^ self annotationTypesContainer
-
-]
-
-{ #category : #accessing }
-FamixJavaAnnotationType >> belongsTo: anObject [
-
-	<generated>
-	self annotationTypesContainer: anObject
-
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaAnnotationType >> typeContainer [
 

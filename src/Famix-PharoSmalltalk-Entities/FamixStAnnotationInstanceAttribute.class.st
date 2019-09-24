@@ -23,22 +23,6 @@ FamixStAnnotationInstanceAttribute class >> requirements [
 ]
 
 { #category : #accessing }
-FamixStAnnotationInstanceAttribute >> belongsTo [
-
-	<generated>
-	^ self parentAnnotationInstance
-
-]
-
-{ #category : #accessing }
-FamixStAnnotationInstanceAttribute >> belongsTo: anObject [
-
-	<generated>
-	self parentAnnotationInstance: anObject
-
-]
-
-{ #category : #accessing }
 FamixStAnnotationInstanceAttribute >> name [ 
 	^ self annotationTypeAttribute notNil 
 		ifTrue: [ self annotationTypeAttribute name ]

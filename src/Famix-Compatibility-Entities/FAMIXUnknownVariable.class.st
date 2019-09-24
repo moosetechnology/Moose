@@ -12,8 +12,3 @@ FAMIXUnknownVariable class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #accessing }
-FAMIXUnknownVariable >> belongsTo [
-	^ nil
-]

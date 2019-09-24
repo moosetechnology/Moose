@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixTest1File,
-	#superclass : #FamixTest1AbstractFile,
+	#superclass : #FamixTest1NamedEntity,
 	#traits : 'FamixTFile',
 	#classTraits : 'FamixTFile classTrait',
 	#category : #'Famix-Test1-Entities-Entities'
@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixTest1File class >> annotation [
 
-	<MSEClass: #File super: #FamixTest1AbstractFile>
+	<MSEClass: #File super: #FamixTest1NamedEntity>
 	<package: #'Famix-Test1-Entities'>
 	<generated>
 	^self

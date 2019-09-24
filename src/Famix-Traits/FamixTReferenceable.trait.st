@@ -26,6 +26,7 @@ FamixTReferenceable >> incomingReferences [
 
 	<generated>
 	<MSEComment: 'References to this entity by other entities.'>
+	<derived>
 	^ incomingReferences
 ]
 

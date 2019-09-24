@@ -22,22 +22,6 @@ FamixJavaAnnotationInstance class >> requirements [
 	^ { FamixJavaAttribute. FamixJavaClass. FamixJavaMethod. FamixJavaNamedEntity }
 ]
 
-{ #category : #accessing }
-FamixJavaAnnotationInstance >> belongsTo [
-
-	<generated>
-	^ self annotatedEntity
-
-]
-
-{ #category : #accessing }
-FamixJavaAnnotationInstance >> belongsTo: anObject [
-
-	<generated>
-	self annotatedEntity: anObject
-
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaAnnotationInstance >> mooseNameOn: aStream [
 	self annotationType notNil ifTrue: [
