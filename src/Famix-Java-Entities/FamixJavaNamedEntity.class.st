@@ -22,13 +22,6 @@ FamixJavaNamedEntity class >> requirements [
 	^ { FamixJavaPackage }
 ]
 
-{ #category : #accessing }
-FamixJavaNamedEntity >> belongsTo: anObject [
-
-	^self subclassResponsibility
-
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaNamedEntity >> stubFormattedName [
 	 ^ self isStub 
