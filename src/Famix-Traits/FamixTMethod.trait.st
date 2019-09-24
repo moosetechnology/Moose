@@ -157,6 +157,17 @@ FamixTMethod >> kind: anObject [
 
 ]
 
+{ #category : #printing }
+FamixTMethod >> mooseNameOn: stream [
+	self parentType
+		ifNotNil: [ :parent | 
+			parent mooseNameOn: stream.
+			stream nextPut: $. ].
+	self signature
+		ifNotNil: [ :aSignature | stream nextPutAll: aSignature ]
+		ifNil: [ self name ifNotNil: [ :aName | stream nextPutAll: aName ] ]
+]
+
 { #category : #metrics }
 FamixTMethod >> numberOfMessageSends [
 	<MSEProperty: #numberOfMessageSends type: #Number>
