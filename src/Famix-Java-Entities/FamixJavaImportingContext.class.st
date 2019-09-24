@@ -5,13 +5,6 @@ Class {
 }
 
 { #category : #testing }
-FamixJavaImportingContext >> importAbstractFile [
-
-	<generated>
-	^ self import: FamixJavaAbstractFile
-]
-
-{ #category : #testing }
 FamixJavaImportingContext >> importAbstractFileAnchor [
 
 	<generated>
@@ -331,13 +324,6 @@ FamixJavaImportingContext >> importUnknownVariable [
 
 	<generated>
 	^ self import: FamixJavaUnknownVariable
-]
-
-{ #category : #testing }
-FamixJavaImportingContext >> shouldImportAbstractFile [
-
-	<generated>
-	^ self shouldImport: FamixJavaAbstractFile
 ]
 
 { #category : #testing }

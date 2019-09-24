@@ -955,7 +955,7 @@ FamixGenerator >> defineHierarchy [
 	super defineHierarchy.
 
 	tAttribute --|> tStructuralEntity.
-	
+
 	tAnnotationInstance --|> #TEntityMetaLevelDependency.
 	tAnnotationInstance --|> #TDependencyQueries.
 
@@ -973,11 +973,15 @@ FamixGenerator >> defineHierarchy [
 	tClass --|> #TPackageable.
 	tClass --|> #TInvocationsReceiver.
 	tClass --|> #TWithComments.
-	
+
+	tFile --|> tFileSystemEntity.
+
+	tFolder --|> tFileSystemEntity.
+
 	tGlobalVariable --|> tStructuralEntity.
-	
+
 	tImplicitVariable --|> tStructuralEntity.
-	
+
 	tLocalVariable --|> tStructuralEntity.
 
 	tMethod --|> #TWithParameters.
@@ -989,15 +993,15 @@ FamixGenerator >> defineHierarchy [
 	tMethod --|> #TWithImplicitVariables.
 	tMethod --|> #TWithSignature.
 	tMethod --|> #TWithClassScope.
-	tMethod --|> #TTypedStructure.	
-	
+	tMethod --|> #TTypedStructure.
+
 	tParameter --|> tStructuralEntity.
 
 	tStructuralEntity --|> tNamed.
 	tStructuralEntity --|> #TAccessible.
 	tStructuralEntity --|> #TInvocationsReceiver.
 	tStructuralEntity --|> #TTypedStructure.
-	
+
 	tSourceEntity --|> #TWithSourceAnchor.
 	tSourceEntity --|> #TWithSourceLanguage.
 

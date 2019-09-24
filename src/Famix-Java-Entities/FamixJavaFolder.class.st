@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixJavaFolder,
-	#superclass : #FamixJavaAbstractFile,
+	#superclass : #FamixJavaNamedEntity,
 	#traits : 'FamixTFolder',
 	#classTraits : 'FamixTFolder classTrait',
 	#category : #'Famix-Java-Entities-Entities'
@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaFolder class >> annotation [
 
-	<MSEClass: #Folder super: #FamixJavaAbstractFile>
+	<MSEClass: #Folder super: #FamixJavaNamedEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self

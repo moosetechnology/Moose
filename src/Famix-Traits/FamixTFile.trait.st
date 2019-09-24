@@ -6,6 +6,8 @@ Trait {
 	#instVars : [
 		'#entities => FMMany type: #FamixTWithFiles opposite: #containerFiles'
 	],
+	#traits : 'FamixTFileSystemEntity',
+	#classTraits : 'FamixTFileSystemEntity classTrait',
 	#category : #'Famix-Traits-File'
 }
 
@@ -63,13 +65,13 @@ FamixTFile >> exists [
 
 { #category : #testing }
 FamixTFile >> fileExists [
-	name ifNil: [ ^ false ].
+	self name ifNil: [ ^ false ].
 	^ self fileReference exists
 ]
 
-{ #category : #enumerating }
+{ #category : #testing }
 FamixTFile >> ifFileExistsDo: aBlock [
-	name ifNil: [ ^ aBlock value ].
+	self name ifNil: [ ^ aBlock value ].
 	^ self fileExists ifTrue: [ aBlock value ]
 ]
 
@@ -131,11 +133,9 @@ FamixTFile >> totalNumberOfLinesOfText [
 	<derived>
 	^ self
 		lookUpPropertyNamed: #totalNumberOfLinesOfText
-		computedAs: [ 
-			self sourceText isEmpty
+		computedAs: [ self sourceText isEmpty
 				ifFalse: [ self sourceText lineCount ]
-				ifTrue: [ 
-					(name notNil and: [ self exists ])
-						ifTrue: [ (self sourceText select: [ :each | each = Character cr ]) size + 1 ]
-						ifFalse: [ 0 ] ] ]
+				ifTrue: [ (self name isNotNil and: [ self exists ])
+					ifTrue: [ (self sourceText select: [ :each | each = Character cr ]) size + 1 ]
+					ifFalse: [ 0 ] ] ]
 ]
