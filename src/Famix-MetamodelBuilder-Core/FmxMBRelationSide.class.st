@@ -85,36 +85,6 @@ FmxMBRelationSide >> from [
 ]
 
 { #category : #generating }
-FmxMBRelationSide >> generateExtendedContainerMethodsIn: aClassOrTrait [
-
-	| methodSource |
-	
-	methodSource := String streamContents: [ :s |
-		s nextPutAll: 'belongsTo'; cr; cr.
-		s tab; nextPutAll: '<generated>'; cr.
-		s tab; nextPutAll: '^ self '; nextPutAll: self name; cr ].
-		
-	self builder environment compile: methodSource in: aClassOrTrait classified: 'accessing'.	
-
-	methodSource := String streamContents: [ :s |
-		s nextPutAll: 'belongsTo: anObject'; cr; cr.
-		s tab; nextPutAll: '<generated>'; cr.
-		s tab; nextPutAll: 'self '; nextPutAll: self name; nextPutAll: ': anObject'; cr ].
-		
-	self builder environment compile: methodSource in: aClassOrTrait classified: 'accessing'.	
-
-
-]
-
-{ #category : #generating }
-FmxMBRelationSide >> generateExtendedContainersIn: aClassOrTrait [
-
-	(self additionalProperties at: #primaryContainer ifAbsent: [ false ])
-		ifTrue: [ 
-			self generateExtendedContainerMethodsIn: aClassOrTrait ]
-]
-
-{ #category : #generating }
 FmxMBRelationSide >> generateGetterIn: aClassOrTrait [
 
 	^ generationStrategy generateGetterIn: aClassOrTrait for: self
@@ -286,13 +256,6 @@ FmxMBRelationSide >> producesSlot [
 FmxMBRelationSide >> propertyName [
 
 	^ self relatedClass propertyName
-]
-
-{ #category : #testing }
-FmxMBRelationSide >> providesPrimaryContainer [
-
-	^ self additionalProperties at: #providesPrimaryContainer ifAbsent: [ true ]
-	
 ]
 
 { #category : #accessing }

@@ -11,7 +11,7 @@ LANSmalltalkAccessTest >> testWhenDistinguishingClassAndMetaclassAccessWorks [
 	"this test tests that we can access smalltalk class and compiledMethod from famix when the class and metaclasses are not merged"
 
 	| model |
-	model := MooseModel new.
+	model := FamixStMooseModel new.
 	self newPharoImporterTask
 		importerClass: SmalltalkImporter;
 		model: model;
@@ -37,7 +37,7 @@ LANSmalltalkAccessTest >> testWhenMergingClassAndMetaclassAccessWorks [
 	"this test tests that we can access smalltalk class and compiledMethod from famix when the class and metaclasses are  merged"
 
 	| model importer |
-	model := MooseModel new.
+	model := FamixStMooseModel new.
 	importer := self newPharoImporterTask.
 	importer importerClass: SmalltalkImporter.
 	importer importingContext mergeClassAndMetaclass.

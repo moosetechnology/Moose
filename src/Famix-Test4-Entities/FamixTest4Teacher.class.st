@@ -31,22 +31,6 @@ FamixTest4Teacher >> addStudents: anObject [
 ]
 
 { #category : #accessing }
-FamixTest4Teacher >> belongsTo [
-
-	<generated>
-	^ self school
-
-]
-
-{ #category : #accessing }
-FamixTest4Teacher >> belongsTo: anObject [
-
-	<generated>
-	self school: anObject
-
-]
-
-{ #category : #accessing }
 FamixTest4Teacher >> school [
 	"Relation named: #school type: #FamixTest4School opposite: #teachers"
 

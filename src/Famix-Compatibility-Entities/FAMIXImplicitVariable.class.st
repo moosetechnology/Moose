@@ -22,22 +22,6 @@ FAMIXImplicitVariable class >> requirements [
 	^ { FAMIXBehaviouralEntity }
 ]
 
-{ #category : #accessing }
-FAMIXImplicitVariable >> belongsTo [
-
-	<generated>
-	^ self parentBehaviouralEntity
-
-]
-
-{ #category : #accessing }
-FAMIXImplicitVariable >> belongsTo: anObject [
-
-	<generated>
-	self parentBehaviouralEntity: anObject
-
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXImplicitVariable >> isSelf [
 	^ self name = #self

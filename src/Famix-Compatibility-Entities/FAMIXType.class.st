@@ -57,19 +57,6 @@ FAMIXType >> anySuperclass [
 	^ nil
 ]
 
-{ #category : #accessing }
-FAMIXType >> belongsTo [
-	^ self container ifNil: [ self parentPackage ]
-]
-
-{ #category : #accessing }
-FAMIXType >> belongsTo: anObject [
-
-	<generated>
-	self typeContainer: anObject
-
-]
-
 { #category : #'Famix-Smalltalk' }
 FAMIXType >> classSide [
 	^self isClassSide

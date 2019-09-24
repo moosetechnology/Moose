@@ -22,22 +22,6 @@ FAMIXGlobalVariable class >> requirements [
 	^ { FAMIXScopingEntity }
 ]
 
-{ #category : #accessing }
-FAMIXGlobalVariable >> belongsTo [
-
-	<generated>
-	^ self parentScope
-
-]
-
-{ #category : #accessing }
-FAMIXGlobalVariable >> belongsTo: anObject [
-
-	<generated>
-	self parentScope: anObject
-
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXGlobalVariable >> isPrivate [
 	^ self isPublic not

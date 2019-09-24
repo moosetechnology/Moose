@@ -190,7 +190,6 @@ FmxMBClass >> generate [
 	self generateAnnotationIn: aClass as: self name superclass: nil.
 	
 	self generateTestingMethodsIn: aClass.
-	self generateContainerMethodsIn: aClass.
 	self generateRootMetamodelMethodIn: aClass. 	
 
 	self generateRequirementsFor: aClass.
@@ -200,16 +199,6 @@ FmxMBClass >> generate [
 	
 	self generateNavigationGroupsFor: aClass.
 	self generateAddToCollectionFor: aClass
-]
-
-{ #category : #generating }
-FmxMBClass >> generateContainerMethodsIn: aClass [
-	| primaryContainerProperties |
-	primaryContainerProperties := self primaryContainerProperties.
-
-	primaryContainerProperties size > 1 ifTrue: [ self error: aClass name , ' defines more than one primary container: ' , ((primaryContainerProperties collect: #name) sorted joinUsing: ', ') ].
-
-	primaryContainerProperties do: [ :aSide | aSide generateExtendedContainerMethodsIn: aClass ]
 ]
 
 { #category : #generating }
@@ -309,16 +298,6 @@ FmxMBClass >> isMetamodelClass [
 FmxMBClass >> isRoot [
 
 	^ self classGeneralization isNil
-]
-
-{ #category : #generating }
-FmxMBClass >> primaryContainerProperties [
-	| primaryContainers |
-	primaryContainers := ((self allTraits copyWithoutAll: self usedTraitsWithoutPrimaryContainers) flatCollect: #sides) select: [:side | side isContainer and: [ side providesPrimaryContainer ] ].
-
-	primaryContainers addAll: ((self properties select: #isContainer) select: #providesPrimaryContainer).
-
-	^ primaryContainers
 ]
 
 { #category : #'name conversion' }

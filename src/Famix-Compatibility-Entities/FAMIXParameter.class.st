@@ -22,22 +22,6 @@ FAMIXParameter class >> requirements [
 	^ { FAMIXBehaviouralEntity }
 ]
 
-{ #category : #accessing }
-FAMIXParameter >> belongsTo [
-
-	<generated>
-	^ self parentBehaviouralEntity
-
-]
-
-{ #category : #accessing }
-FAMIXParameter >> belongsTo: anObject [
-
-	<generated>
-	self parentBehaviouralEntity: anObject
-
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXParameter >> mooseNameOn: stream [ 
 	| parent |

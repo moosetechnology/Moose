@@ -27,19 +27,6 @@ FAMIXNamedEntity class >> requirements [
 	^ { FAMIXPackage }
 ]
 
-{ #category : #accessing }
-FAMIXNamedEntity >> belongsTo [
-	
-	^self subclassResponsibility
-]
-
-{ #category : #accessing }
-FAMIXNamedEntity >> belongsTo: anObject [
-
-	^self subclassResponsibility
-
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXNamedEntity >> stubFormattedName [
 	 ^ self isStub 

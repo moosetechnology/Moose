@@ -23,19 +23,6 @@ FamixJavaNamedEntity class >> requirements [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaNamedEntity >> belongsTo [
-	
-	^self subclassResponsibility
-]
-
-{ #category : #accessing }
-FamixJavaNamedEntity >> belongsTo: anObject [
-
-	^self subclassResponsibility
-
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaNamedEntity >> stubFormattedName [
 	 ^ self isStub 
 		ifTrue: [ Text 

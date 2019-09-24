@@ -94,12 +94,6 @@ FmxMBBehavior >> asRelationSideNamed: aPropertyName [
 	^ self property: aPropertyName
 ]
 
-{ #category : #testing }
-FmxMBBehavior >> canProvidePrimaryContainer [
-
-	^ additionalProperties at: #providesPrimaryContainer ifAbsent: [ true ]
-]
-
 { #category : #accessing }
 FmxMBBehavior >> classGeneralization [
 	^ self subclassResponsibility
@@ -491,27 +485,9 @@ FmxMBBehavior >> traitGeneralizations [
 ]
 
 { #category : #accessing }
-FmxMBBehavior >> usedTraitsWithoutPrimaryContainers [
-
-	"all traits that were used without primary container"
-	
-	^ self additionalProperties at: #usedTraitsWithoutPrimaryContainers ifAbsentPut: [ Set new ]
-]
-
-{ #category : #accessing }
 FmxMBBehavior >> uses: aTrait [
 
 	^ self generalization: aTrait
-]
-
-{ #category : #accessing }
-FmxMBBehavior >> usesWithoutPrimaryContainer: aTrait [
-
-	| traitEntity |
-	
-	traitEntity := self generalization: aTrait.
-	self usedTraitsWithoutPrimaryContainers add: aTrait.
-	^ traitEntity
 ]
 
 { #category : #'testing selectors' }

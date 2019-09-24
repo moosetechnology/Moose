@@ -15,22 +15,6 @@ FamixJavaImplicitVariable class >> annotation [
 	^self
 ]
 
-{ #category : #accessing }
-FamixJavaImplicitVariable >> belongsTo [
-
-	<generated>
-	^ self parentBehaviouralEntity
-
-]
-
-{ #category : #accessing }
-FamixJavaImplicitVariable >> belongsTo: anObject [
-
-	<generated>
-	self parentBehaviouralEntity: anObject
-
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaImplicitVariable >> mooseNameOn: stream [ 
 	| parent |

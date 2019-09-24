@@ -23,20 +23,6 @@ FamixJavaAbstractFile class >> requirements [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaAbstractFile >> belongsTo [
-	<navigation: 'parent folder'>
-	^ self parentFolder
-]
-
-{ #category : #accessing }
-FamixJavaAbstractFile >> belongsTo: anObject [
-
-	<generated>
-	self parentFolder: anObject
-
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaAbstractFile >> fileReference [ 
 	^ (FileSystem disk referenceTo: (self mooseName copyReplaceAll: self class famixFolderSeparatorString with: FileSystem disk delimiter asString))
 ]

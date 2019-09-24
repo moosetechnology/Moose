@@ -36,16 +36,3 @@ FamixStScopingEntity >> allClasses [
 	self withAllChildScopesDo: [ :each | result addAll: each classes ].
 	^ result
 ]
-
-{ #category : #accessing }
-FamixStScopingEntity >> belongsTo [
-	^ self parentScope ifNil: [ self parentPackage ]
-]
-
-{ #category : #accessing }
-FamixStScopingEntity >> belongsTo: anObject [
-
-	<generated>
-	self parentScope: anObject
-
-]

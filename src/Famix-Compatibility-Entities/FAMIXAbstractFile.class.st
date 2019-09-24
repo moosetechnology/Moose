@@ -23,22 +23,6 @@ FAMIXAbstractFile class >> requirements [
 ]
 
 { #category : #accessing }
-FAMIXAbstractFile >> belongsTo [
-
-	<generated>
-	^ self parentFolder
-
-]
-
-{ #category : #accessing }
-FAMIXAbstractFile >> belongsTo: anObject [
-
-	<generated>
-	self parentFolder: anObject
-
-]
-
-{ #category : #accessing }
 FAMIXAbstractFile >> fileReference [ 
 	^ (FileSystem disk referenceTo: (self mooseName copyReplaceAll: self class famixFolderSeparatorString with: FileSystem disk delimiter asString))
 ]
