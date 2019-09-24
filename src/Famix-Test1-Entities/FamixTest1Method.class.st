@@ -30,14 +30,3 @@ FamixTest1Method >> belongsTo: anObject [
 	self parentType: anObject
 
 ]
-
-{ #category : #printing }
-FamixTest1Method >> mooseNameOn: stream [  
-
-	| parent |
-	parent := self belongsTo.
-	parent ifNotNil: 
-		[ parent mooseNameOn: stream.
-		stream nextPut: $. ].
-		self name ifNotNil: [ stream nextPutAll: self name]
-]
