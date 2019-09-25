@@ -65,8 +65,8 @@ FamixMetamodelGenerator class >> basicFamixTraits [
 
 { #category : #accessing }
 FamixMetamodelGenerator class >> basicMetamodelClasses [
-
-	^ ({ Trait. 	Class. ClassDescription. Behavior. MooseEntity. FmxImportingContext. FamixTSourceLanguage. FamixTWithSourceLanguage}, MooseAbstractGroup withAllSubclasses) asOrderedCollection.
+	^ ({Trait . Class . ClassDescription . Behavior . MooseEntity . FmxImportingContext . MooseAbstractGroup . MooseModel . FamixTSourceLanguage.
+	FamixTWithSourceLanguage} , MooseGroup withAllSubclasses) asOrderedCollection
 ]
 
 { #category : #accessing }
@@ -233,8 +233,7 @@ FamixMetamodelGenerator class >> resetMetamodel [
 	self submetamodels do: #resetMetamodel.
 	FMRelationSlot allSubInstancesDo: #resetMooseProperty.
 
-	classes := self packageName asPackage definedClasses select: [ :each | each inheritsFrom: MooseEntity ].
-	classes addAll: (self packageName asPackage definedClasses select: [ :class | class isTrait and: [ class isMetamodelEntity ] ]).
+	classes := self packageName asPackage definedClasses asSet select: #isMetamodelEntity.
 
 	classes addAll: self basicMetamodelClasses.
 
