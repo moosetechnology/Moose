@@ -51,7 +51,11 @@ BaselineOfFame >> iterators: spec [
 
 { #category : #dependencies }
 BaselineOfFame >> mocketry: spec [
-	spec baseline: 'Mocketry' with: [ spec repository: repository ]
+	spec
+		baseline: 'Mocketry'
+		with: [ spec
+				loads: #('Core');
+				repository: 'github://dionisiydk/Mocketry:v6.0.x' ]
 ]
 
 { #category : #accessing }
