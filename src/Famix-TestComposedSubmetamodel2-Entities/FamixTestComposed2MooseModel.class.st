@@ -6,7 +6,7 @@ Class {
 
 { #category : #initialization }
 FamixTestComposed2MooseModel >> initialize [
-		<generated>
-		super initialize.
-		self metamodel: (self class environment at: #FamixTestComposedSubmetamodel2Generator) metamodel
+	<generated>
+	super initialize.
+	self metamodel: (self class environment at: #FamixTestComposedSubmetamodel2Generator) metamodel
 ]

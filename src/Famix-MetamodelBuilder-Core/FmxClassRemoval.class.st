@@ -28,21 +28,21 @@ Class {
 { #category : #'instance creation' }
 FmxClassRemoval class >> class: aClass [
 	^ self new
-		class: aClass;
+		classToRemove: aClass;
 		yourself
 ]
 
 { #category : #accessing }
 FmxClassRemoval >> apply [
-	self class removeFromSystem
+	self classToRemove removeFromSystem
 ]
 
 { #category : #accessing }
-FmxClassRemoval >> class [
+FmxClassRemoval >> classToRemove [
 	^ class
 ]
 
 { #category : #accessing }
-FmxClassRemoval >> class: anObject [
+FmxClassRemoval >> classToRemove: anObject [
 	class := anObject
 ]

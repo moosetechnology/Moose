@@ -6,7 +6,7 @@ Class {
 
 { #category : #initialization }
 FamixStMooseModel >> initialize [
-		<generated>
-		super initialize.
-		self metamodel: (self class environment at: #FamixPharoSmalltalkGenerator) metamodel
+	<generated>
+	super initialize.
+	self metamodel: (self class environment at: #FamixPharoSmalltalkGenerator) metamodel
 ]
