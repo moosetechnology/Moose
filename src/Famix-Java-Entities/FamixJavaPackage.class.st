@@ -99,7 +99,7 @@ FamixJavaPackage >> bunchCouplingWithAll [
 	myClasses := self classes.
 	myClasses := myClasses union: (myClasses flatCollect: [ :c | c allRecursiveTypes ]).
 	allClasses := self mooseModel allModelClasses.
-	myClasses size == 0 ifTrue: [ ^ nil ].
+	myClasses ifEmpty: [ ^ nil ].
 
 	"All outgoing dependencies"
 	interConnectivities := (myClasses collect: [ :c | (c queryOutgoingDependencies atScope: FamixTType) outOfParentUsing: FamixTPackage ]) inject: 0 into: [ :subTotal :each | subTotal + each size ].

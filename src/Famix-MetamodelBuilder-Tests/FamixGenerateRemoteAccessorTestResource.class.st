@@ -50,7 +50,7 @@ FamixGenerateRemoteAccessorTestResource >> setUp [
 	Do not remove them (or change the all the tests)"
 	entityA := (self classNamed: #FmxTestGenerateAccessorAEntityA) new.
 	entityB := (self classNamed: #FmxTestGenerateAccessorBEntityB) new.
-	(self classNamed: #FmxTestGenerateAccessorABMooseModel) new addAll: {entityA . entityB}
+	(self classNamed: #FmxTestGenerateAccessorABModel) new addAll: {entityA . entityB}
 ]
 
 { #category : #running }
