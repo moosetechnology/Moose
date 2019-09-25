@@ -19,7 +19,7 @@ OldFamixTest1TestIssue19 >> setUp [
 
 	super setUp.
 
-	model := FamixTest1MooseModel new.
+	model := FamixTest1Model new.
 	c1 := FamixTest1Class named: 'Class1'.
 	c2 := FamixTest1Class named: 'Class2'.
 	m1 := FamixTest1Method named: 'method1'.

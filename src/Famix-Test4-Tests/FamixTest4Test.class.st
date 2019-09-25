@@ -23,7 +23,7 @@ Class {
 FamixTest4Test >> setUp [
 	super setUp.
 
-	model := FamixTest4MooseModel new.
+	model := FamixTest4Model new.
 
 	school := FamixTest4School new.
 	classroom1 := FamixTest4Classroom new.

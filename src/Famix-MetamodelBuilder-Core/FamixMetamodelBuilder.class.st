@@ -232,33 +232,34 @@ FamixMetamodelBuilder >> generateImportingContext [
 
 { #category : #generating }
 FamixMetamodelBuilder >> generateMooseModel [
-	| mooseModelName model |
-	mooseModelName := (self configuration prefix , 'MooseModel') asSymbol.
-	mooseModelName = #MooseModel ifTrue: [ ^ self ].
+	self configuration prefix
+		ifNotEmpty: [ :prefix | 
+			| mooseModelName model |
+			mooseModelName := (prefix , 'Model') asSymbol.
 
-	model := self environment
-		createClassNamed: mooseModelName
-		superclass: MooseModel
-		traitNames: #()
-		slots: #()
-		in: configuration packageName
-		overwrite: false.
+			model := self environment
+				createClassNamed: mooseModelName
+				superclass: MooseModel
+				traitNames: #()
+				slots: #()
+				in: configuration packageName
+				overwrite: false.
 
-	model
-		compile:
-			('initialize
+			model
+				compile:
+					('initialize
 	<generated>
 	super initialize.
 	self metamodel: (self class environment at: #{1}) metamodel' format: {self generator class name})
-		classified: 'initialization'.
+				classified: 'initialization'.
 
-	model classSide
-		compile:
-			('annotation
+			model classSide
+				compile:
+					('annotation
 	<MSEClass: #{1} super: #MooseModel>
 	<package: {2}>
 	<generated>' format: {mooseModelName . self safeAnnotationPackageName})
-		classified: 'meta'
+				classified: 'meta' ]
 ]
 
 { #category : #generating }

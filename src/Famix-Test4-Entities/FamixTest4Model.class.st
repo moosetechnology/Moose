@@ -1,18 +1,18 @@
 Class {
-	#name : #FamixTest4MooseModel,
+	#name : #FamixTest4Model,
 	#superclass : #MooseModel,
 	#category : #'Famix-Test4-Entities'
 }
 
 { #category : #meta }
-FamixTest4MooseModel class >> annotation [
-	<MSEClass: #FamixTest4MooseModel super: #MooseModel>
+FamixTest4Model class >> annotation [
+	<MSEClass: #FamixTest4Model super: #MooseModel>
 	<package: #'Famix-Test4-Entities'>
 	<generated>
 ]
 
 { #category : #initialization }
-FamixTest4MooseModel >> initialize [
+FamixTest4Model >> initialize [
 	<generated>
 	super initialize.
 	self metamodel: (self class environment at: #FamixTest4Generator) metamodel

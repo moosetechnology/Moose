@@ -62,7 +62,7 @@ MooseFileStructureImporterTest >> setUp [
 				cr;
 				cr;
 				nextPutAll: '789' ].
-	model := FamixTest1MooseModel new.
+	model := FamixTest1Model new.
 	MooseFileStructureImporter new
 		mooseModel: model;
 		completeImport: (OrderedCollection with: 'folders')

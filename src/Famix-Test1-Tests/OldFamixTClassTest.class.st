@@ -21,7 +21,7 @@ OldFamixTClassTest >> setUp [
 
 	super setUp.
 
-	model := FamixTest1MooseModel new.
+	model := FamixTest1Model new.
 	model metamodel: FamixTest1Class metamodel.	
 	c1 := FamixTest1Class named: 'Class1'.
 	c2 := FamixTest1Class named: 'Class2'.

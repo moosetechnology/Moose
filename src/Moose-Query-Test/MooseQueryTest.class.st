@@ -37,7 +37,7 @@ MooseQueryTest >> model [
 { #category : #running }
 MooseQueryTest >> setUp [
 	super setUp.
-	model := FamixJavaMooseModel new.
+	model := FamixJavaModel new.
 	package1 := FamixJavaPackage new name: 'package1' ; mooseModel: model.
 	package2 := FamixJavaPackage new name: 'package2' ; mooseModel: model.
 	isolatedPackage := FamixJavaPackage new name: 'isolatedPackage' ; mooseModel: model.

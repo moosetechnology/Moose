@@ -17,7 +17,7 @@ FAMIXStepwiseImporterTest >> testCheckFormalParameterIsCreated [
 	"self debug: #testCheckFormalParameterIsCreated"
 
 	| mseFormalParameter model |
-	model := FamixStMooseModel new.
+	model := FamixStModel new.
 	self newPharoImporterTask
 		importerClass: SmalltalkImporter;
 		importingContext:
@@ -39,7 +39,7 @@ FAMIXStepwiseImporterTest >> testCheckSelfIsCreated [
 	"self debug: #testCheckSelfIsCreated"
 
 	| model mseSelf |
-	model := FamixStMooseModel new.
+	model := FamixStModel new.
 	self newPharoImporterTask
 		importerClass: SmalltalkImporter;
 		importingContext:

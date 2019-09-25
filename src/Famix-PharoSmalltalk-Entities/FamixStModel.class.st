@@ -1,18 +1,18 @@
 Class {
-	#name : #FamixStMooseModel,
+	#name : #FamixStModel,
 	#superclass : #MooseModel,
 	#category : #'Famix-PharoSmalltalk-Entities'
 }
 
 { #category : #meta }
-FamixStMooseModel class >> annotation [
-	<MSEClass: #FamixStMooseModel super: #MooseModel>
+FamixStModel class >> annotation [
+	<MSEClass: #FamixStModel super: #MooseModel>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 ]
 
 { #category : #initialization }
-FamixStMooseModel >> initialize [
+FamixStModel >> initialize [
 	<generated>
 	super initialize.
 	self metamodel: (self class environment at: #FamixPharoSmalltalkGenerator) metamodel

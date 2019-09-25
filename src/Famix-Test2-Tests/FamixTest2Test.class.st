@@ -22,7 +22,7 @@ FamixTest2Test >> setUp [
 
 	super setUp.
 
-	model := FamixTest2MooseModel new.
+	model := FamixTest2Model new.
 	c1 := FamixTest2Class named: 'Class1'.
 	c2 := FamixTest2Class named: 'Class2'.
 	c3 := FamixTest2Class named: 'Class3'.
