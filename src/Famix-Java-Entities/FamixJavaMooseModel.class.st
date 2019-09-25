@@ -6,7 +6,7 @@ Class {
 
 { #category : #initialization }
 FamixJavaMooseModel >> initialize [
-		<generated>
-		super initialize.
-		self metamodel: (self class environment at: #FamixJavaGenerator) metamodel
+	<generated>
+	super initialize.
+	self metamodel: (self class environment at: #FamixJavaGenerator) metamodel
 ]

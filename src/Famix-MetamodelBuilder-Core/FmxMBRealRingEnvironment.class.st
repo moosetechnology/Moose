@@ -57,9 +57,9 @@ FmxMBRealRingEnvironment >> createMooseModel [
 	initialize := RGMethod new
 		sourceCode:
 			('initialize
-		<generated>
-		super initialize.
-		self metamodel: (self class environment at: #{1}) metamodel' format: {self builder generator class name});
+	<generated>
+	super initialize.
+	self metamodel: (self class environment at: #{1}) metamodel' format: {self builder generator class name});
 		protocol: #initialization;
 		name: #initialize;
 		yourself.
