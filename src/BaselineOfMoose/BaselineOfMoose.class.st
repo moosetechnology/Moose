@@ -127,7 +127,6 @@ BaselineOfMoose >> groups: spec [
 	).
 	spec group: 'AdditionalTools' with: #(
 		Parsing
-		MooseXMLParser
 		MooseMiscs
 		MooseIDE
 	).
@@ -202,9 +201,6 @@ BaselineOfMoose >> newGroups: spec [
 		MooseSmaCCUI
 		MoosePetitParserUI
 	).
-	
-	
-	
 
 ]
 
