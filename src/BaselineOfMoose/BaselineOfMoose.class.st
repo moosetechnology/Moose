@@ -127,7 +127,7 @@ BaselineOfMoose >> groups: spec [
 		Famix
 	).
 	spec group: 'MooseIDEGroup' with: #(
-		BasicMetamodellingWithRoassal
+		BasicMetamodelling
 		MooseIDE
 	).
 	spec group: 'Parsing' with: #(
