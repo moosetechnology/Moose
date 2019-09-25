@@ -4,6 +4,13 @@ Class {
 	#category : #'Famix-Java-Entities'
 }
 
+{ #category : #meta }
+FamixJavaMooseModel class >> annotation [
+	<MSEClass: #FamixJavaMooseModel super: #MooseModel>
+	<package: #'Famix-Java-Entities'>
+	<generated>
+]
+
 { #category : #initialization }
 FamixJavaMooseModel >> initialize [
 	<generated>
