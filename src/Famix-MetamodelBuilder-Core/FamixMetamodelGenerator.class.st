@@ -406,11 +406,6 @@ FamixMetamodelGenerator >> initialize [
 
 ]
 
-{ #category : #accessing }
-FamixMetamodelGenerator >> mooseModelName [
-	^ self prefix , 'MooseModel'
-]
-
 { #category : #definition }
 FamixMetamodelGenerator >> newBuilder [
 

@@ -18,7 +18,7 @@ MoosePharoImporterTaskTest >> testDefaultModel [
 MoosePharoImporterTaskTest >> testImportedModelHasSmalltalkMetamodel [
 	| model |
 	model := MoosePharoImporterTask new
-		model: FamixStMooseModel new;
+		model: FamixStModel new;
 		factory: SmalltalkMetamodelFactory;
 		addFromPackageNamed: 'Moose-Tests-SmalltalkImporter-Core';
 		basicRun.

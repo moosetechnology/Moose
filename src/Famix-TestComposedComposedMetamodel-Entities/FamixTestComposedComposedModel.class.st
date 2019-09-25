@@ -1,18 +1,18 @@
 Class {
-	#name : #FamixTestComposedComposedMooseModel,
+	#name : #FamixTestComposedComposedModel,
 	#superclass : #MooseModel,
 	#category : #'Famix-TestComposedComposedMetamodel-Entities'
 }
 
 { #category : #meta }
-FamixTestComposedComposedMooseModel class >> annotation [
-	<MSEClass: #FamixTestComposedComposedMooseModel super: #MooseModel>
+FamixTestComposedComposedModel class >> annotation [
+	<MSEClass: #FamixTestComposedComposedModel super: #MooseModel>
 	<package: #'Famix-TestComposedComposedMetamodel-Entities'>
 	<generated>
 ]
 
 { #category : #initialization }
-FamixTestComposedComposedMooseModel >> initialize [
+FamixTestComposedComposedModel >> initialize [
 	<generated>
 	super initialize.
 	self metamodel: (self class environment at: #FamixTestComposedComposedGenerator) metamodel
