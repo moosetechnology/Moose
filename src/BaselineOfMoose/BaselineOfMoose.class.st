@@ -18,8 +18,6 @@ BaselineOfMoose >> baseline: spec [
 		for: #common
 		do: [ " Meta Model"
 			self famix: spec.
-			" Roassal "
-			self baselineRoassal2: spec.
 			"IDE"
 			self mooseIDE: spec.
 			" Petit parser with/without UI"
@@ -60,11 +58,6 @@ BaselineOfMoose >> baselinePetitParserUI: spec [
 		project: 'MoosePetitParserUI'
 		copyFrom: 'MoosePetitParser'
 		with: [ spec loads: 'UI' ]
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineRoassal2: spec [
-	spec baseline: 'MooseRoassal' with: [ spec repository: repository ]
 ]
 
 { #category : #baseline }
