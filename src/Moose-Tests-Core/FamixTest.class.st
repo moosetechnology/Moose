@@ -57,7 +57,7 @@ FamixTest >> testMSEImport [
 	importer fromString: self oneClassAndOneMethod.
 	importer run.
 	self assert: importer repository elements size equals: 2.
-	model := FamixTest3MooseModel new.
+	model := FamixTest3Model new.
 	model addAll: importer repository elements.
 	self assert: model allClasses size equals: 1.
 	self assert: model allMethods size equals: 1
@@ -73,7 +73,7 @@ FamixTest >> testRobustMSEImport [
 	importer run.
 
 	self assert: importer repository elements size equals: 4.
-	model := FamixTest3MooseModel new.
+	model := FamixTest3Model new.
 	model addAll: importer repository elements.
 	self assert: model allClasses size equals: 2.
 	self assert: model allMethods size equals: 1.
@@ -92,7 +92,7 @@ FamixTest >> testSlot [
 { #category : #tests }
 FamixTest >> testSourcesAnchorsAreNotDuplicatedAfterExport [
 	| model tempFile importedModel |
-	model := FamixTest3MooseModel new name: 'Perdu'.
+	model := FamixTest3Model new name: 'Perdu'.
 	FamixTest3Class new
 		name: 'Class';
 		sourceAnchor:
@@ -103,7 +103,7 @@ FamixTest >> testSourcesAnchorsAreNotDuplicatedAfterExport [
 		mooseModel: model.
 	tempFile := (FileSystem memory / 'export-test.mse') ensureCreateFile.
 	tempFile writeStreamDo: [ :s | model exportToMSEStream: s ].
-	importedModel := FamixTest3MooseModel new importFromMSEStream: tempFile readStream.
+	importedModel := FamixTest3Model new importFromMSEStream: tempFile readStream.
 	self assert: importedModel size equals: model size.
 	self assert: importedModel allClasses anyOne sourceAnchor notNil
 ]

@@ -14,7 +14,7 @@ Class {
 FamixTestComposedMetamodelsWithMooseQuery >> setUp [
 	super setUp.
 
-	model := FamixTestComposedMooseModel new.
+	model := FamixTestComposedModel new.
 
 	association := FamixTestComposedAssociation new.
 

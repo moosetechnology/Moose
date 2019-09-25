@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 MooseSmalltalkImporterRoelTyperTest >> testASTCore [
 	| model importer |
-	model := FamixStMooseModel new.
+	model := FamixStModel new.
 	self timeLimit: 60 seconds.
 	importer := self newPharoImporterTask.
 	importer importingContext

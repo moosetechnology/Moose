@@ -1,18 +1,18 @@
 Class {
-	#name : #FamixJavaMooseModel,
+	#name : #FamixJavaModel,
 	#superclass : #MooseModel,
 	#category : #'Famix-Java-Entities'
 }
 
 { #category : #meta }
-FamixJavaMooseModel class >> annotation [
-	<MSEClass: #FamixJavaMooseModel super: #MooseModel>
+FamixJavaModel class >> annotation [
+	<MSEClass: #FamixJavaModel super: #MooseModel>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 ]
 
 { #category : #initialization }
-FamixJavaMooseModel >> initialize [
+FamixJavaModel >> initialize [
 	<generated>
 	super initialize.
 	self metamodel: (self class environment at: #FamixJavaGenerator) metamodel

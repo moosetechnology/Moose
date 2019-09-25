@@ -50,7 +50,7 @@ MooseEntityTest >> testAllPrinting [
 { #category : #tests }
 MooseEntityTest >> testAllPropertySelectors [
 	| model class |
-	model := FamixTest1MooseModel new.
+	model := FamixTest1Model new.
 	self assert: (FamixTest1Entity allPropertySelectorsComputableIn: model) equals: IdentityDictionary new.
 	model := FAMIXTypeGroup new.
 	class := FamixTest1Class named: 'AClass'.
@@ -98,7 +98,7 @@ MooseEntityTest >> testGroupFor [
 	| entity1 entity2 model classGroup methodGroup |
 	entity1 := FamixTest1Class new.
 	entity2 := FamixTest1Class new.
-	model := FamixTest1MooseModel new.
+	model := FamixTest1Model new.
 	model addAll: {entity1 . entity2}.
 	classGroup := model groupFor: #allClasses.
 	self assert: classGroup class identicalTo: FAMIXClassGroup.

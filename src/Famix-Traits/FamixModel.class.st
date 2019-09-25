@@ -1,18 +1,18 @@
 Class {
-	#name : #FamixMooseModel,
+	#name : #FamixModel,
 	#superclass : #MooseModel,
 	#category : #'Famix-Traits'
 }
 
 { #category : #meta }
-FamixMooseModel class >> annotation [
-	<MSEClass: #FamixMooseModel super: #MooseModel>
+FamixModel class >> annotation [
+	<MSEClass: #FamixModel super: #MooseModel>
 	<package: #'Famix-Traits'>
 	<generated>
 ]
 
 { #category : #initialization }
-FamixMooseModel >> initialize [
+FamixModel >> initialize [
 	<generated>
 	super initialize.
 	self metamodel: (self class environment at: #FamixGenerator) metamodel

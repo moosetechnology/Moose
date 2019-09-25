@@ -9,7 +9,7 @@ Class {
 
 { #category : #helpers }
 FamixTest3MooseModelTest >> actualClass [
-	^ FamixTest3MooseModel
+	^ FamixTest3Model
 ]
 
 { #category : #tests }

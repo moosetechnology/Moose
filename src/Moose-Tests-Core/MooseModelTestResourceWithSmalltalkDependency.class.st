@@ -12,7 +12,7 @@ MooseModelTestResourceWithSmalltalkDependency >> metamodelFactory [
 
 { #category : #setup }
 MooseModelTestResourceWithSmalltalkDependency >> modelClass [
-	^ FamixStMooseModel
+	^ FamixStModel
 ]
 
 { #category : #'as yet unclassified' }

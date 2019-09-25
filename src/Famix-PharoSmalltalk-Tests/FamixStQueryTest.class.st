@@ -190,7 +190,7 @@ FamixStQueryTest >> setUp [
 		declaredType: c2;
 		yourself.
 
-	self model: (FamixStMooseModel withAll: {p1 . p2 . c1 . c2 . c3 . m1 . m2 . m3 . m4 . v1 . at1 . at2 . pr1 . pr2})
+	self model: (FamixStModel withAll: {p1 . p2 . c1 . c2 . c3 . m1 . m2 . m3 . m4 . v1 . at1 . at2 . pr1 . pr2})
 ]
 
 { #category : #'tests - class' }

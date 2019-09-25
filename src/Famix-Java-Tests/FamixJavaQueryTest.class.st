@@ -212,7 +212,7 @@ FamixJavaQueryTest >> setUp [
 		value: 'instanceAttribute1Value';
 		yourself.
 
-	self model: (FamixJavaMooseModel withAll: {p1 . p2 . c1 . c2 . c3 . m1 . m2 . m3 . m4 . v1 . at1 . at2 . pr1 . pr2 . annotationType1 . annotationInstance1 . annotationInstanceAttribute1})
+	self model: (FamixJavaModel withAll: {p1 . p2 . c1 . c2 . c3 . m1 . m2 . m3 . m4 . v1 . at1 . at2 . pr1 . pr2 . annotationType1 . annotationInstance1 . annotationInstanceAttribute1})
 ]
 
 { #category : #'tests - class' }
