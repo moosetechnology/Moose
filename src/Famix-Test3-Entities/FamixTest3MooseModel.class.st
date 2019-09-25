@@ -4,6 +4,13 @@ Class {
 	#category : #'Famix-Test3-Entities'
 }
 
+{ #category : #meta }
+FamixTest3MooseModel class >> annotation [
+	<MSEClass: #FamixTest3MooseModel super: #MooseModel>
+	<package: #'Famix-Test3-Entities'>
+	<generated>
+]
+
 { #category : #initialization }
 FamixTest3MooseModel >> initialize [
 	<generated>

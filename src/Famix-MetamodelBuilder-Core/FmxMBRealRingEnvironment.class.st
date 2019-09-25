@@ -28,8 +28,7 @@ FmxMBRealRingEnvironment >> collectChangesToApply [
 
 	self recordPackagesChangesFor: resolvedPackages.
 	self recordClassesChangesFor: resolvedClasses.
-	self recordRemovalOfGeneratedEntitiesIn: resolvedPackages notPresentIn: resolvedClasses.
-	self createMooseModel
+	self recordRemovalOfGeneratedEntitiesIn: resolvedPackages notPresentIn: resolvedClasses
 ]
 
 { #category : #installing }
@@ -37,35 +36,6 @@ FmxMBRealRingEnvironment >> compile: aSource in: aClass classified: aProtocol pa
 
 	aClass compile: aSource classified: '*', aPackageName, '-', aProtocol.
 
-]
-
-{ #category : #accessing }
-FmxMBRealRingEnvironment >> createMooseModel [
-	| mooseModelName initialize |
-	mooseModelName := (self builder configuration prefix , 'MooseModel') asSymbol.
-	mooseModelName = #MooseModel ifTrue: [ ^ self ].
-	self class environment
-		at: mooseModelName
-		ifAbsent: [ changesToApply
-				add:
-					(FmxClassAddition
-						definition:
-							('MooseModel subclass: #{1}
-	instanceVariableNames: ''''
-	classVariableNames: ''''
-	package: ''{2}''' format: {mooseModelName . self builder configuration packageName})) ].
-	initialize := RGMethod new
-		sourceCode:
-			('initialize
-	<generated>
-	super initialize.
-	self metamodel: (self class environment at: #{1}) metamodel' format: {self builder generator class name});
-		protocol: #initialization;
-		name: #initialize;
-		yourself.
-
-	(self class environment at: mooseModelName ifPresent: [ :class | class needToAdaptToMethod: initialize ] ifAbsent: [ true ])
-		ifTrue: [ changesToApply add: (FmxMethodAdditions className: mooseModelName isClassSide: false rgMethods: {initialize}) ]
 ]
 
 { #category : #installing }
