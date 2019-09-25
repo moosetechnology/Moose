@@ -28,8 +28,7 @@ BaselineOfMoose >> baseline: spec [
 			self baselineSmaCCUI: spec.
 			self baselineSmaCCJava: spec.
 			self baselineSmaCCJavaUI: spec.
-			" XMLWriter / Miscelaneous (Merlin, Wizard, etc)"
-			self baselineXMLParser: spec.
+			"Miscelaneous (Merlin, Wizard, etc)"
 			self baselineMiscs: spec.
 			self groups: spec.
 			self newGroups: spec ].
@@ -97,15 +96,6 @@ BaselineOfMoose >> baselineSmaCCUI: spec [
 		project: 'MooseSmaCCUI'
 		copyFrom: 'MooseSmaCC'
 		with: [ spec loads: 'FullUI' ]
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineXMLParser: spec [
-	spec
-		baseline: 'MooseXMLParser'
-		with: [ spec
-				repository: repository;
-				loads: #Core ]
 ]
 
 { #category : #private }
