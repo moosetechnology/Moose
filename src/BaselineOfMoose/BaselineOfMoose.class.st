@@ -18,8 +18,6 @@ BaselineOfMoose >> baseline: spec [
 		for: #common
 		do: [ " Meta Model"
 			self famix: spec.
-			" Roassal "
-			self baselineRoassal2: spec.
 			"IDE"
 			self mooseIDE: spec.
 			" Petit parser with/without UI"
@@ -30,8 +28,7 @@ BaselineOfMoose >> baseline: spec [
 			self baselineSmaCCUI: spec.
 			self baselineSmaCCJava: spec.
 			self baselineSmaCCJavaUI: spec.
-			" XMLWriter / Miscelaneous (Merlin, Wizard, etc)"
-			self baselineXMLParser: spec.
+			"Miscelaneous (Merlin, Wizard, etc)"
 			self baselineMiscs: spec.
 			self groups: spec.
 			self newGroups: spec ].
@@ -60,11 +57,6 @@ BaselineOfMoose >> baselinePetitParserUI: spec [
 		project: 'MoosePetitParserUI'
 		copyFrom: 'MoosePetitParser'
 		with: [ spec loads: 'UI' ]
-]
-
-{ #category : #baseline }
-BaselineOfMoose >> baselineRoassal2: spec [
-	spec baseline: 'MooseRoassal' with: [ spec repository: repository ]
 ]
 
 { #category : #baseline }
@@ -106,15 +98,6 @@ BaselineOfMoose >> baselineSmaCCUI: spec [
 		with: [ spec loads: 'FullUI' ]
 ]
 
-{ #category : #baseline }
-BaselineOfMoose >> baselineXMLParser: spec [
-	spec
-		baseline: 'MooseXMLParser'
-		with: [ spec
-				repository: repository;
-				loads: #Core ]
-]
-
 { #category : #private }
 BaselineOfMoose >> defineGroup: groupName in: spec with: packages [
 
@@ -133,12 +116,8 @@ BaselineOfMoose >> groups: spec [
 	spec group: 'BasicMetamodelling' with: #(
 		Famix
 	).
-	spec group: 'BasicMetamodellingWithRoassal' with: #(
-		BasicMetamodelling
-		MooseRoassal
-	).
 	spec group: 'MooseIDEGroup' with: #(
-		BasicMetamodellingWithRoassal
+		BasicMetamodelling
 		MooseIDE
 	).
 	spec group: 'Parsing' with: #(
@@ -148,7 +127,6 @@ BaselineOfMoose >> groups: spec [
 	).
 	spec group: 'AdditionalTools' with: #(
 		Parsing
-		MooseXMLParser
 		MooseMiscs
 		MooseIDE
 	).
@@ -178,8 +156,6 @@ BaselineOfMoose >> newGroups: spec [
 	"Famix-Java and UI"
 	spec group: 'JavaUI' with: #(
 		Core
-		MooseRoassal
-		MooseFinder
 		MooseSmaCCJavaUI
 		MooseIDE
 	).
@@ -192,15 +168,12 @@ BaselineOfMoose >> newGroups: spec [
 	"Famix petit parser and UI"
 	spec group: 'CorePetitParserUI' with: #(
 		Core
-		MooseRoassal
-		MooseFinder
 		MooseIDE
 		MoosePetitParserUI
 	).
 	
 	spec group: 'GraphicTools' with: #(
 		Core
-		MooseFinder
 		MooseIDE
 		MooseMiscs
 	).
@@ -213,8 +186,6 @@ BaselineOfMoose >> newGroups: spec [
 	"Famix and SmaCC-UI"
 	spec group: 'CoreSmaCCUI' with: #(
 		Core
-		MooseRoassal
-		MooseFinder
 		MooseIDE
 		MooseSmaCCUI
 	).
@@ -226,15 +197,10 @@ BaselineOfMoose >> newGroups: spec [
 	
 	spec group: 'CoreParsersUI' with: #(
 		Core
-		MooseRoassal
-		MooseFinder
 		MooseIDE
 		MooseSmaCCUI
 		MoosePetitParserUI
 	).
-	
-	
-	
 
 ]
 
