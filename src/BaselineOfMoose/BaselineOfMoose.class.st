@@ -126,10 +126,6 @@ BaselineOfMoose >> groups: spec [
 	spec group: 'BasicMetamodelling' with: #(
 		Famix
 	).
-	spec group: 'BasicMetamodellingWithRoassal' with: #(
-		BasicMetamodelling
-		MooseRoassal
-	).
 	spec group: 'MooseIDEGroup' with: #(
 		BasicMetamodellingWithRoassal
 		MooseIDE
@@ -171,8 +167,6 @@ BaselineOfMoose >> newGroups: spec [
 	"Famix-Java and UI"
 	spec group: 'JavaUI' with: #(
 		Core
-		MooseRoassal
-		MooseFinder
 		MooseSmaCCJavaUI
 		MooseIDE
 	).
@@ -185,15 +179,12 @@ BaselineOfMoose >> newGroups: spec [
 	"Famix petit parser and UI"
 	spec group: 'CorePetitParserUI' with: #(
 		Core
-		MooseRoassal
-		MooseFinder
 		MooseIDE
 		MoosePetitParserUI
 	).
 	
 	spec group: 'GraphicTools' with: #(
 		Core
-		MooseFinder
 		MooseIDE
 		MooseMiscs
 	).
@@ -206,8 +197,6 @@ BaselineOfMoose >> newGroups: spec [
 	"Famix and SmaCC-UI"
 	spec group: 'CoreSmaCCUI' with: #(
 		Core
-		MooseRoassal
-		MooseFinder
 		MooseIDE
 		MooseSmaCCUI
 	).
@@ -219,8 +208,6 @@ BaselineOfMoose >> newGroups: spec [
 	
 	spec group: 'CoreParsersUI' with: #(
 		Core
-		MooseRoassal
-		MooseFinder
 		MooseIDE
 		MooseSmaCCUI
 		MoosePetitParserUI
