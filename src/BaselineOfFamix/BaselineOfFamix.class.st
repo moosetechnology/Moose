@@ -123,7 +123,11 @@ BaselineOfFamix >> collectionExtensions: spec [
 
 { #category : #dependencies }
 BaselineOfFamix >> deepTraverser: spec [
-	spec baseline: 'DeepTraverser' with: [ spec repository: repository ]
+	spec
+		baseline: 'DeepTraverser'
+		with: [ spec
+				loads: 'Core';
+				repository: 'github://pharo-contributions/DeepTraverser:v1.x.x/src' ]
 ]
 
 { #category : #dependencies }
@@ -138,7 +142,11 @@ BaselineOfFamix >> kgbTestResources: spec [
 
 { #category : #dependencies }
 BaselineOfFamix >> neoCSV: spec [
-	spec baseline: 'NeoCSV' with: [ spec repository: repository ]
+	spec
+		baseline: 'NeoCSV'
+		with: [ spec
+				loads: 'core';
+				repository: 'github://svenvc/NeoCSV/repository' ]
 ]
 
 { #category : #dependencies }
@@ -180,5 +188,9 @@ BaselineOfFamix >> roelTyper: spec [
 
 { #category : #dependencies }
 BaselineOfFamix >> talents: spec [
-	spec baseline: 'Talents' with: [ spec repository: repository ]
+	spec
+		baseline: 'Talents'
+		with: [ spec
+				loads: 'core';
+				repository: 'github://tesonep/pharo-talents:v2.0.0/src' ]
 ]
