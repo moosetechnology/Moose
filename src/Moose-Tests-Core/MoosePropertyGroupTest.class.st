@@ -1,20 +1,15 @@
 Class {
 	#name : #MoosePropertyGroupTest,
 	#superclass : #TestCase,
-	#category : #'Moose-Tests-SmalltalkImporter-LAN'
+	#category : #'Moose-Tests-Core'
 }
-
-{ #category : #utility }
-MoosePropertyGroupTest >> model [
-	" to debug and avoid caching behavior: LANPackageTestResource reset."
-	^ LANPackageTestResource current model 
-]
 
 { #category : #tests }
 MoosePropertyGroupTest >> testBasic [
 	| allClasses propertyGroup |
-	allClasses := {(FAMIXClass new numberOfLinesOfCode: 10) . (FAMIXClass new numberOfLinesOfCode: 20) . (FAMIXClass new numberOfLinesOfCode: 30)} asMooseGroup.
+	allClasses := {(FamixTest1Class new numberOfLinesOfCode: 10) . (FamixTest1Class new numberOfLinesOfCode: 20). (FamixTest1Class new numberOfLinesOfCode: 30)} asMooseGroup.
 	propertyGroup := MoosePropertyGroup withAll: (allClasses copyFrom: 1 to: 2) from: allClasses using: #numberOfLinesOfCode.
+
 	self assert: propertyGroup originalGroup identicalTo: allClasses.
 	self assert: propertyGroup property identicalTo: #numberOfLinesOfCode.
 	self assert: propertyGroup propertyRatio equals: 0.5.
