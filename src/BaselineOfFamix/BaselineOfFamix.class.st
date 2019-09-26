@@ -192,5 +192,5 @@ BaselineOfFamix >> talents: spec [
 		baseline: 'Talents'
 		with: [ spec
 				loads: 'core';
-				repository: 'github://ptesonep/pharo-talents/:v2.0.0/src' ]
+				repository: 'github://ptesonep/pharo-talents:v2.0.0/src' ]
 ]
