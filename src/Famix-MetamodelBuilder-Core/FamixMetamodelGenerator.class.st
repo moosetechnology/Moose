@@ -231,8 +231,9 @@ FamixMetamodelGenerator class >> resetMetamodel [
 	"Collect all classes containing properties useful to the MM."
 	classes := (self packageName asPackage definedClasses asSet select: #isMetamodelEntity)
 		addAll: self basicMetamodelClasses;
-		addAll: (self submetamodels flatCollect: [ :submetamodel | submetamodel metamodel classes collect: #implementingClass ]);
 		yourself.
+
+	self allSubmetamodels do: [ :submetamodel | classes addAll: (submetamodel metamodel classes collect: #implementingClass) ].
 
 	"We need to reset the moose properties of each slot before building the tower."
 	(classes flatCollect: [ :class | class slots select: #isFMRelationSlot ]) do: #resetMooseProperty.
