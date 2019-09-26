@@ -64,6 +64,6 @@ BaselineOfMooseIDE >> roassal2: spec [
 	spec
 		baseline: 'Roassal2'
 		with: [ spec
-				loads: 'Core';
+				loads: 'Minimal';
 				repository: 'github://ObjectProfile/Roassal2:c1da8614c951008ea501f126ef3ccf25d73580ac/src' ]
 ]
