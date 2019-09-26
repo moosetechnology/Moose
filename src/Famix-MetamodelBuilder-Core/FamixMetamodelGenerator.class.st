@@ -227,17 +227,16 @@ FamixMetamodelGenerator class >> prefix [
 
 { #category : #accessing }
 FamixMetamodelGenerator class >> resetMetamodel [
-	" self resetMetamodel"
-
 	| classes tower elements |
-	self submetamodels do: #resetMetamodel.
-	FMRelationSlot allSubInstancesDo: #resetMooseProperty.
+	"Collect all classes containing properties useful to the MM."
+	classes := (self packageName asPackage definedClasses asSet select: #isMetamodelEntity)
+		addAll: self basicMetamodelClasses;
+		yourself.
 
-	classes := self packageName asPackage definedClasses asSet select: #isMetamodelEntity.
+	self allSubmetamodels do: [ :submetamodel | classes addAll: (submetamodel metamodel classes collect: #implementingClass) ].
 
-	classes addAll: self basicMetamodelClasses.
-
-	classes addAll: (self submetamodels flatCollect: [ :submetamodel | submetamodel metamodel classes collect: #implementingClass ]).
+	"We need to reset the moose properties of each slot before building the tower."
+	(classes flatCollect: [ :class | class slots select: #isFMRelationSlot ]) do: #resetMooseProperty.
 
 	tower := MooseModel metaBuilder: classes.
 	self metamodel: tower metamodel.
@@ -245,15 +244,15 @@ FamixMetamodelGenerator class >> resetMetamodel [
 	elements := self submetamodels flatCollect: [ :each | each metamodel elements ].
 
 	elements do: [ :each | metamodel elementNamed: each fullName ifAbsent: [ metamodel add: each ] ].
-	
+
 	self allSubmetamodels do: [ :submetamodel | submetamodel modifyMetamodel: metamodel ].
 	self modifyMetamodel: metamodel.
 
 	metamodel additionalProperties at: #wantsAllEntitiesNavigation put: self wantsAllEntitiesNavigation.
-	
+
 	"MooseEntity has a cache for some infos. When we regenerate a MM we need to flush this cache."
 	classes do: #resetMooseEntityCache.
-	
+
 	^ metamodel
 ]
 
