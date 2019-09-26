@@ -169,7 +169,7 @@ MooseMetaBrowser >> commentOFMethod: method [
 { #category : #private }
 MooseMetaBrowser >> commentOfProperty: fm3Prop [
 		| commentPrag |
-	fm3Prop mmClass implementingClass isNil ifTrue: [^ ''].
+	fm3Prop implementingClass ifNil: [^ ''].
 	commentPrag := Pragma inMethod: fm3Prop compiledMethod named: #MSEComment:.
 	^ commentPrag ifNil: [ '' ] ifNotNil: [ commentPrag argumentAt: 1 ]
 ]
@@ -178,19 +178,19 @@ MooseMetaBrowser >> commentOfProperty: fm3Prop [
 MooseMetaBrowser >> commentsIn: a [
 	a text
 		title: 'Comment' translated;
-		display: [ :fm3Class | fm3Class implementingClass isNil ifTrue: [''] ifFalse: [fm3Class implementingClass comment] ];
+		display: [ :fm3Class | fm3Class implementingClass ifNil: [ '' ] ifNotNil: [ :class | class comment ] ];
 		useExplicitNotNil;
-		when: [ :fm3Class :fm3Prop | fm3Class notNil and: [ fm3Prop isNil ]];
-		act: [:text :fm3Class | fm3Class implementingClass ifNotNil: [fm3Class implementingClass comment: text text] ] 
-			icon: MooseIcons mooseAccept 
+		when: [ :fm3Class :fm3Prop | fm3Class notNil and: [ fm3Prop isNil ] ];
+		act: [ :text :fm3Class | fm3Class implementingClass ifNotNil: [ :class | class comment: text text ] ]
+			icon: MooseIcons mooseAccept
 			on: $s
 			entitled: 'Accept'.
 	a text
 		title: 'Comment' translated;
 		display: [ :fm3Class :fm3Prop | self commentOfProperty: fm3Prop ];
-		act: [:text :fm3Class :fm3Prop | self acceptComment: text text asString ofProperty: fm3Prop ] 
+		act: [ :text :fm3Class :fm3Prop | self acceptComment: text text asString ofProperty: fm3Prop ]
 			icon: MooseIcons mooseAccept
-			on: $s 
+			on: $s
 			entitled: 'Accept';
 		when: [ :fm3Class :fm3Prop | fm3Prop notNil ]
 ]
@@ -239,10 +239,7 @@ MooseMetaBrowser >> metamodelMapIn: a [
 MooseMetaBrowser >> methodCommentsIn: a [
 	a text
 		title: 'Comment' translated;
-		display: [ :fm3Class | 
-			fm3Class implementingClass isNil
-				ifTrue: [ '' ]
-				ifFalse: [ fm3Class implementingClass comment ] ];
+		display: [ :fm3Class | fm3Class implementingClass ifNil: [ '' ] ifNotNil: [ :class | class comment ] ];
 		useExplicitNotNil;
 		when: [ :fm3Class :compiledMethod | fm3Class notNil and: [ compiledMethod isNil ] ];
 		act: [ :text :fm3Class | fm3Class implementingClass ifNotNil: [ fm3Class implementingClass comment: text text ] ]
