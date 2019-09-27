@@ -243,18 +243,12 @@ MooseModel class >> ownerOf: element [
 
 { #category : #'root model' }
 MooseModel class >> resetRoot [
-
-	rootModel := nil
+	MooseModelRoot resetRoot
 ]
 
 { #category : #'root model' }
-MooseModel class >> root [ 
-	 
-	^ rootModel 
-		ifNil: 
-			[ rootModel := (self new) 
-				name: 'Root'; 
-				yourself ]
+MooseModel class >> root [
+	^ MooseModelRoot root
 ]
 
 { #category : #'entity collection' }
