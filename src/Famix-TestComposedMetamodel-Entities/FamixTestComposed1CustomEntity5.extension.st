@@ -2,7 +2,7 @@ Extension { #name : #FamixTestComposed1CustomEntity5 }
 
 { #category : #'*Famix-TestComposedMetamodel-Entities-accessing' }
 FamixTestComposed1CustomEntity5 >> associations [
-	"Relation named: #associations type: #FamixTestComposed1Association opposite: #c15"
+	"Relation named: #associations type: #FamixTestComposedAssociation opposite: #c15"
 
 	<generated>
 	<derived>

@@ -22,7 +22,7 @@ FamixTestComposedCustomEntity3 class >> metamodel [
 
 { #category : #accessing }
 FamixTestComposedCustomEntity3 >> c23 [
-	"Relation named: #c23 type: #FamixTestComposedCustomEntity3 opposite: #c3s"
+	"Relation named: #c23 type: #FamixTestComposed2CustomEntity3 opposite: #c3s"
 
 	<generated>
 	<MSEProperty: #c23 type: #Object>
@@ -38,7 +38,7 @@ FamixTestComposedCustomEntity3 >> c23: anObject [
 
 { #category : #accessing }
 FamixTestComposedCustomEntity3 >> customEntity3 [
-	"Relation named: #customEntity3 type: #FamixTestComposedCustomEntity3 opposite: #customEntities3"
+	"Relation named: #customEntity3 type: #FamixTestComposed1CustomEntity3 opposite: #customEntities3"
 
 	<generated>
 	<MSEProperty: #customEntity3 type: #Object>
