@@ -1,23 +1,20 @@
 Class {
-	#name : #OldFamixTClassTest,
+	#name : #FamixClassTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'model',
 		'c1',
 		'c2',
-		'c3',
 		'm1',
 		'm2',
-		'm3',
 		'anchor1',
-		'anchor2',
-		'anchor3'
+		'anchor2'
 	],
 	#category : #'Famix-Test1-Tests'
 }
 
 { #category : #running }
-OldFamixTClassTest >> setUp [
+FamixClassTest >> setUp [
 
 	super setUp.
 
@@ -27,24 +24,16 @@ OldFamixTClassTest >> setUp [
 	c2 := FamixTest1Class named: 'Class2'.
 	m1 := FamixTest1Method named: 'method1'.
 	m2 := FamixTest1Method named: 'method2'.
-	m3 := FamixTest1Method named: 'method3'.
 	anchor1 := FamixTest1SourceTextAnchor new source: 'method1\source1' withCRs .
 	anchor2 := FamixTest1SourceTextAnchor new source: 'method2\source2a\source2b' withCRs.
-	anchor3 := FamixTest1SourceTextAnchor new source: 'method3\source3a\source3b\source3c' withCRs.
+	model addAll: { c1. c2. m1. m2. anchor1. anchor2 }.
 	
-	model addAll: { c1. c2. m1. m2. m3. anchor1. anchor2 }.
-	
-	c1 addMethod: m1.
-	m2 parentType: c2. "opposite way"
-	c2 addMethod: m3.
-	m1 sourceAnchor: anchor1.
-	m2 sourceAnchor: anchor2.
-	m3 sourceAnchor: anchor3.
+
 
 ]
 
 { #category : #tests }
-OldFamixTClassTest >> testIsClass [
+FamixClassTest >> testIsClass [
 
 	self assert: c1 isClass. 	
 	self assert: c2 isClass. 
@@ -55,18 +44,7 @@ OldFamixTClassTest >> testIsClass [
 ]
 
 { #category : #tests }
-OldFamixTClassTest >> testIsInterface [
-	self skip.
-	"isInterface is no more in the TClass traits since in some languages as Smalltalk, there is no interface"
-	self deny: c1 isInterface.
-	c1 isInterface: true.
-	self assert: c1 isInterface.
-	
-
-]
-
-{ #category : #tests }
-OldFamixTClassTest >> testIsTestCase [
+FamixClassTest >> testIsTestCase [
 
 	self deny: c1 isTestCase.
 	c1 isTestCase: true.
@@ -76,7 +54,7 @@ OldFamixTClassTest >> testIsTestCase [
 ]
 
 { #category : #tests }
-OldFamixTClassTest >> testWeightOfAClass [
+FamixClassTest >> testWeightOfAClass [
 
 	self assert: c1 weightOfAClass equals: model notExistentMetricValue.
 	c1 weightOfAClass: 100.
