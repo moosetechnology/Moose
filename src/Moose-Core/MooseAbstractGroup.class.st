@@ -462,6 +462,11 @@ MooseAbstractGroup >> isNotEmpty [
 	^ self isEmpty not
 ]
 
+{ #category : #accessing }
+MooseAbstractGroup >> iterator [
+	^ self entityStorage iterator
+]
+
 { #category : #'Famix-Java' }
 MooseAbstractGroup >> javaEntityNamed: aSymbol [ 
 	 

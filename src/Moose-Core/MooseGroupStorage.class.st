@@ -118,6 +118,11 @@ MooseGroupStorage >> initialize: aSize [
 	self subclassResponsibility
 ]
 
+{ #category : #accessing }
+MooseGroupStorage >> iterator [
+	^ self elements iterator
+]
+
 { #category : #removing }
 MooseGroupStorage >> remove: anElement [ 
 	 
