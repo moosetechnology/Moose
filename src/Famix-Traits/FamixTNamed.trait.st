@@ -52,6 +52,6 @@ FamixTNamed >> name: anObject [
 
 { #category : #accessing }
 FamixTNamed >> resetMooseName [
-	super resetMooseName ifTrue: [ self children do: [ :entity | entity resetMooseName ] ].
+	(super resetMooseName and: [ self isComposedBy: TEntityMetaLevelDependency ]) ifTrue: [ self children do: [ :entity | entity resetMooseName ] ].
 	^ false
 ]
