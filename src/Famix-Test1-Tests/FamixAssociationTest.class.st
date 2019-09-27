@@ -4,16 +4,9 @@ Class {
 	#instVars : [
 		'model',
 		'c1',
-		'c2',
-		'c3',
 		'm1',
-		'm2',
-		'm3',
 		'anchor1',
-		'anchor2',
-		'anchor3',
-		'association1',
-		'association2'
+		'association1'
 	],
 	#category : #'Famix-Test1-Tests'
 }
