@@ -50,8 +50,13 @@ FamixTWithComments >> numberOfComments [
 	<MSEProperty: #numberOfComments type: #Number>
 	<derived>
 	<MSEComment: 'The number of comments in a class'>
-	self flag: #todo.	"Cyril: I am not a big fan of this implementation... We should revisit it."
-	^ self lookUpPropertyNamed: #numberOfComments computedAs: [ self comments size + (self methods asArray inject: 0 into: [ :sum :el | el numberOfComments + sum ]) ]
+	^ self
+		lookUpPropertyNamed: #numberOfComments
+		computedAs: [ self comments size
+				+
+					(self children asArray
+						inject: 0
+						into: [ :sum :el | el numberOfComments + sum ]) ]
 ]
 
 { #category : #accessing }
