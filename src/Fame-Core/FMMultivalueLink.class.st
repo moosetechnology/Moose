@@ -89,6 +89,11 @@ FMMultivalueLink >> at: index [
 	^values at: index
 ]
 
+{ #category : #iterators }
+FMMultivalueLink >> basicIterator [
+	^ values basicIterator
+]
+
 { #category : #accessing }
 FMMultivalueLink >> byName: name [
 	^ self byName: name ifAbsent: [ self errorNotFound: name ]
@@ -123,7 +128,7 @@ FMMultivalueLink >> hash [
 	^ hash
 ]
 
-{ #category : #accessing }
+{ #category : #iterators }
 FMMultivalueLink >> iterator [
 	^ values iterator
 ]

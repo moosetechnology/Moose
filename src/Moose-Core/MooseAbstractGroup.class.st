@@ -186,6 +186,11 @@ MooseAbstractGroup >> average: aSymbolOrBlock [
 	^ (self sumNumbers: aSymbolOrBlock) / self size
 ]
 
+{ #category : #iterators }
+MooseAbstractGroup >> basicIterator [
+	^ self entityStorage basicIterator
+]
+
 { #category : #enumerating }
 MooseAbstractGroup >> collect: aBlock [ 
 	^ self entities collect: aBlock
@@ -462,7 +467,7 @@ MooseAbstractGroup >> isNotEmpty [
 	^ self isEmpty not
 ]
 
-{ #category : #accessing }
+{ #category : #iterators }
 MooseAbstractGroup >> iterator [
 	^ self entityStorage iterator
 ]
