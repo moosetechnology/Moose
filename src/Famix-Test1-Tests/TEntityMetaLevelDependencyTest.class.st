@@ -175,9 +175,6 @@ TEntityMetaLevelDependencyTest >> testChildren [
 	self assertCollection: m1 children hasSameElements: { }.
 	self assertCollection: c1 children hasSameElements: { m1. a1 }.
 	self assertCollection: c2 children hasSameElements: { m2. m3 }.
-	self assertCollection: anchor1 children hasSameElements: { }.
-	
-
 ]
 
 { #category : #tests }
