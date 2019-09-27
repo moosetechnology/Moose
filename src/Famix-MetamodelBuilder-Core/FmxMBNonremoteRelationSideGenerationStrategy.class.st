@@ -1,11 +1,11 @@
 Class {
-	#name : #FmxMBNonremoteRelationSideGenerationStrategy,
+	#name : #FmxMBNonRemoteRelationSideGenerationStrategy,
 	#superclass : #FmxMBRelationSideGenerationStrategy,
 	#category : #'Famix-MetamodelBuilder-Core-Implementation'
 }
 
 { #category : #printing }
-FmxMBNonremoteRelationSideGenerationStrategy >> generateGetterCoreIn: aClassOrTrait on: aStream for: aRelationSide [
+FmxMBNonRemoteRelationSideGenerationStrategy >> generateGetterCoreIn: aClassOrTrait on: aStream for: aRelationSide [
 
 	aStream tab; nextPutAll: ('<MSEProperty: #{1} type: #Object>' format: {aRelationSide name}).
 	aStream cr.
@@ -33,7 +33,7 @@ FmxMBNonremoteRelationSideGenerationStrategy >> generateGetterCoreIn: aClassOrTr
 ]
 
 { #category : #printing }
-FmxMBNonremoteRelationSideGenerationStrategy >> generateSetterCoreIn: aClassOrTrait on: aStream for: aRelationSide [
+FmxMBNonRemoteRelationSideGenerationStrategy >> generateSetterCoreIn: aClassOrTrait on: aStream for: aRelationSide [
 
 	((aRelationSide cardinality = #one) and: [aRelationSide otherSide cardinality = #one])
 		ifTrue: [ 
@@ -64,7 +64,7 @@ FmxMBNonremoteRelationSideGenerationStrategy >> generateSetterCoreIn: aClassOrTr
 ]
 
 { #category : #printing }
-FmxMBNonremoteRelationSideGenerationStrategy >> producesSlot [
+FmxMBNonRemoteRelationSideGenerationStrategy >> producesSlot [
 
 	^ false
 ]

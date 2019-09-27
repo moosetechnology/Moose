@@ -181,7 +181,7 @@ FmxMBRelationSide >> isTarget [
 { #category : #converting }
 FmxMBRelationSide >> makeNonremote [
 
-	self generationStrategy: (FmxMBNonremoteRelationSideGenerationStrategy for: self)
+	self generationStrategy: (FmxMBNonRemoteRelationSideGenerationStrategy for: self)
 ]
 
 { #category : #converting }
@@ -228,7 +228,7 @@ FmxMBRelationSide >> oppositeName [
 
 { #category : #accessing }
 FmxMBRelationSide >> oppositeType [
-	^ (self builder configuration prefix , self otherSide relatedEntityName) asSymbol
+	^ (self otherSide builder configuration prefix , self otherSide relatedEntityName) asSymbol
 ]
 
 { #category : #accessing }

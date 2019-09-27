@@ -17,7 +17,7 @@ FamixTestComposedAssociation class >> annotation [
 
 { #category : #accessing }
 FamixTestComposedAssociation >> c15 [
-	"Relation named: #c15 type: #FamixTestComposedCustomEntity5 opposite: #associations"
+	"Relation named: #c15 type: #FamixTestComposed1CustomEntity5 opposite: #associations"
 
 	<generated>
 	<target>
@@ -34,7 +34,7 @@ FamixTestComposedAssociation >> c15: anObject [
 
 { #category : #accessing }
 FamixTestComposedAssociation >> c25 [
-	"Relation named: #c25 type: #FamixTestComposedCustomEntity5 opposite: #associations"
+	"Relation named: #c25 type: #FamixTestComposed2CustomEntity5 opposite: #associations"
 
 	<generated>
 	<source>
