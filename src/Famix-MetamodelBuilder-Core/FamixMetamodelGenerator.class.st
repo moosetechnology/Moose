@@ -52,8 +52,7 @@ FamixMetamodelGenerator class >> addSubmetamodelsToGenerateFrom: aCollection to:
 
 { #category : #accessing }
 FamixMetamodelGenerator class >> allSubmetamodels [
-
-	^ {self submetamodels . self submetamodels collect: #allSubmetamodels} flattened
+	^ {self submetamodels . (self submetamodels collect: #allSubmetamodels)} flattened asSet
 ]
 
 { #category : #accessing }
