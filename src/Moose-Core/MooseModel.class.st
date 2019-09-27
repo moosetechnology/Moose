@@ -91,14 +91,20 @@ MooseModel class >> importFrom: aStream filteredBy: anImportingContext [
 
 { #category : #'import-export' }
 MooseModel class >> importFrom: aStream withMetamodel: aMetamodel [
-
-	| tower importer |
+	| tower importer areWarningsEnabled |
 	tower := FMCompleteTower new.
 	tower metamodel addAll: aMetamodel elements.
 	importer := MSEImporter new.
 	importer repository: tower model.
 	importer stream: aStream.
-	importer run.
+
+	"We are currently updating the meta models and most parsers are not up to date.
+	We disable warnings to avoid all deprecation warnings during the transition phase."
+	areWarningsEnabled := Deprecation raiseWarning.
+	[ Deprecation raiseWarning: false.
+	importer run ]
+		ensure: [ Deprecation raiseWarning: areWarningsEnabled ].
+
 	tower model updateCache.
 	^ tower model
 ]
