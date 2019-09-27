@@ -45,6 +45,11 @@ MooseGroupTest >> testDefaultStorage [
 ]
 
 { #category : #tests }
+MooseGroupTest >> testDefaultStorageIterator [
+	self assert: group entityStorage iterator class equals: IteratorWithCollectionAPI
+]
+
+{ #category : #tests }
 MooseGroupTest >> testDistribution [
 	| referenceGroupOfGroups |
 	referenceGroupOfGroups := self actualClass new.
