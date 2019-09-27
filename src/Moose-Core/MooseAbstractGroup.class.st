@@ -320,6 +320,18 @@ MooseAbstractGroup >> entityNamed: aMooseName ifAbsent: aBlock ifPresent: anothe
 		ifFalse: [anotherBlock value: entity]
 ]
 
+{ #category : #'public interface' }
+MooseAbstractGroup >> entityNamed: aMooseName ifAbsentPut: aValuable [
+	^ self
+		entityNamed: aMooseName
+		ifAbsent: [ | entity |
+			entity := aValuable value.
+			self
+				assert: entity mooseName = aMooseName
+				description: 'The provided entity must have the same mooseName to be consistent'.
+			self add: entity ]
+]
+
 { #category : #private }
 MooseAbstractGroup >> entityStorage [ 
 	 
