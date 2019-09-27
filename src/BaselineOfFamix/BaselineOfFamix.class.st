@@ -105,10 +105,10 @@ BaselineOfFamix >> baseline: spec [
 		for: #'pharo7.x'
 		do: [
 			self ring2: spec.
-
+			self parametrizedTests: spec. 
 			spec
 				package: 'Famix-MetamodelBuilder-Core' with: [ spec requires: #('Ring2') ];
-				package: 'Moose-Core' with: [ spec includes: #('Famix-Pharo7') ];
+				package: 'Moose-Core' with: [ spec includes: #('Famix-Pharo7' 'ParametrizedTests') ];
 				package: 'Famix-Pharo7' ]
 ]
 
@@ -160,6 +160,13 @@ BaselineOfFamix >> packageRepositoryURL [
 		ifEmpty: [ | packageName |
 			packageName := self class package name.
 			'tonel://' , (IceRepository registry detect: [ :repo | repo workingCopy packageNames includes: packageName ] ifFound: [ :repo | repo location pathString , '/' , repo subdirectory ] ifNone: [ '' ]) ]
+]
+
+{ #category : #baseline }
+BaselineOfFamix >> parametrizedTests: spec [
+	spec
+		baseline: 'ParametrizedTests'
+		with: [ spec repository: 'github://tesonep/ParametrizedTests/src' ]
 ]
 
 { #category : #accessing }
