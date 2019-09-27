@@ -44,19 +44,13 @@ OldFamixTest1TestIssue22 >> setUp [
 
 { #category : #tests }
 OldFamixTest1TestIssue22 >> testNumberOfComments [
-	<expectedFailure>
-	| comment |
-	comment := FamixTest1Comment new.
-
-	"https://github.com/pavel-krivanek/Moose/issues/22"
-	"FamixTWithCommentsTest>>#testNumberOfComments"
 	self assert: c1 numberOfComments equals: 0.
 	c1 resetPrivateState.
-	c1 addComment: comment.
-	self assert: c1 numberOfComments equals: 2.
+	c1 addComment: FamixTest1Comment new.
+	self assert: c1 numberOfComments equals: 1.
 	c1 resetPrivateState.
-	c1 addComment: comment.
-	self assert: c1 numberOfComments equals: 3.
+	c1 addComment: FamixTest1Comment new.
+	self assert: c1 numberOfComments equals: 2.
 	c1 resetPrivateState.
 	c1 numberOfComments: 100.
 	self assert: c1 numberOfComments equals: 100
