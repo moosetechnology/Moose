@@ -45,6 +45,11 @@ MooseGroupTest >> testDefaultStorage [
 ]
 
 { #category : #tests }
+MooseGroupTest >> testDefaultStorageIterator [
+	self assert: group entityStorage iterator class equals: IteratorWithCollectionAPI
+]
+
+{ #category : #tests }
 MooseGroupTest >> testDistribution [
 	| referenceGroupOfGroups |
 	referenceGroupOfGroups := self actualClass new.
@@ -76,6 +81,27 @@ MooseGroupTest >> testDistributionAndEncapsulation [
 	group := self actualClass withAll: #(1 2 4 5).
 	self assert: (group distributionOverAGroupOfGroups: referenceGroupOfGroups) equals: 2 / 3 + (2 / 5).
 	self assert: (group encapsulationOfAGroupOfGroups: referenceGroupOfGroups) equals: 4 / 12 + (4 / 20)
+]
+
+{ #category : #tests }
+MooseGroupTest >> testEntityNamedIfAbsentPutWithCorrectEntityAsParameter [
+	| testClass |
+	testClass := FamixTest1Class new.
+	testClass name: 'MyTestMethod'.
+	self
+		assert: (group entityNamed: 'MyTestMethod' ifAbsentPut: [ testClass ])
+		identicalTo: testClass
+]
+
+{ #category : #tests }
+MooseGroupTest >> testEntityNamedIfAbsentPutWithIncorrectEntityAsParameter [
+	| testClass |
+	testClass := FamixTest1Class new.
+	testClass name: 'MyTestMethod'.
+	self
+		should:
+			[ group entityNamed: 'NonExistingMooseName' ifAbsentPut: [ testClass ] ]
+		raise: Error
 ]
 
 { #category : #tests }

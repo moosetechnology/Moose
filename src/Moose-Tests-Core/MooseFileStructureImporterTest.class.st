@@ -62,7 +62,7 @@ MooseFileStructureImporterTest >> setUp [
 				cr;
 				cr;
 				nextPutAll: '789' ].
-	model := FamixTest1MooseModel new.
+	model := FamixTest1Model new.
 	MooseFileStructureImporter new
 		mooseModel: model;
 		completeImport: (OrderedCollection with: 'folders')
@@ -82,6 +82,42 @@ MooseFileStructureImporterTest >> subFolderBString [
 MooseFileStructureImporterTest >> tearDown [
 	toDelete do: [ :each | self filesystem delete: each ].
 	super tearDown
+]
+
+{ #category : #testing }
+MooseFileStructureImporterTest >> testCRLFSupportForFile [
+	| file |
+	file := FamixTest1File new.
+	file
+		sourceText:
+			(String
+				streamContents: [ :s | 
+					s << 'Proudly tested by'.
+					s crlf.
+					s << 'Guillaume'.
+					s crlf.
+					s << 'Honore'.
+					s crlf.
+					s << 'Hayatou' ]).
+	self assert: file totalNumberOfLinesOfText equals: 4
+]
+
+{ #category : #testing }
+MooseFileStructureImporterTest >> testCRSupportForFile [
+	| file |
+	file := FamixTest1File new.
+	file
+		sourceText:
+			(String
+				streamContents: [ :s | 
+					s << 'Proudly tested by'.
+					s cr.
+					s << 'Guillaume'.
+					s cr.
+					s << 'Honore'.
+					s cr.
+					s << 'Hayatou' ]).
+	self assert: file totalNumberOfLinesOfText equals: 4
 ]
 
 { #category : #testing }
@@ -131,6 +167,24 @@ MooseFileStructureImporterTest >> testFolders [
 ]
 
 { #category : #testing }
+MooseFileStructureImporterTest >> testLFSupportForFile [
+	| file |
+	file := FamixTest1File new.
+	file
+		sourceText:
+			(String
+				streamContents: [ :s | 
+					s << 'Proudly tested by'.
+					s lf.
+					s << 'Guillaume'.
+					s lf.
+					s << 'Honore'.
+					s lf.
+					s << 'Hayatou' ]).
+	self assert: file totalNumberOfLinesOfText equals: 4
+]
+
+{ #category : #testing }
 MooseFileStructureImporterTest >> testMetrics [
 	| file |
 	file := FamixTest1File new.
@@ -139,6 +193,24 @@ MooseFileStructureImporterTest >> testMetrics [
 	self assert: file numberOfCharacters isZero.
 	self assert: file numberOfKiloBytes isZero.
 	self assert: file totalNumberOfLinesOfText isZero
+]
+
+{ #category : #testing }
+MooseFileStructureImporterTest >> testMixedCRLFSupportForFile [
+	| file |
+	file := FamixTest1File new.
+	file
+		sourceText:
+			(String
+				streamContents: [ :s | 
+					s << 'Proudly tested by'.
+					s cr.
+					s << 'Guillaume'.
+					s crlf.
+					s << 'Honore'.
+					s lf.
+					s << 'Hayatou' ]).
+	self assert: file totalNumberOfLinesOfText equals: 4
 ]
 
 { #category : #testing }

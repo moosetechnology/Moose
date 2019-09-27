@@ -30,7 +30,7 @@ FamixTestComposedMetamodels >> setUp [
 
 	super setUp.
 
-	model := FamixTestComposedMooseModel new.
+	model := FamixTestComposedModel new.
 	
 	remoteMethod := FamixTestComposed1Method new.
 	entity := FamixTestComposedEntity new.
@@ -58,14 +58,14 @@ FamixTestComposedMetamodels >> setUp [
 
 { #category : #running }
 FamixTestComposedMetamodels >> testGenerationOfComposedMetamodel [
-
 	| aGenerator env |
-	
 	aGenerator := FamixTestComposedGenerator new beForTesting generate.
 	env := aGenerator builder environment ringEnvironment.
-	
-	self assert: ((((env ask behaviorNamed: #FamixTestComposedCustomEntity1) methodNamed: #customEntity1) sourceCode includesSubstring: 
-'MSEProperty: #customEntity1 type: #Object'))
+
+	self
+		assert:
+			(((env ask behaviorNamed: #FamixTestComposedCustomEntity1) methodNamed: #customEntity1) sourceCode
+				includesSubstring: '<MSEProperty: #customEntity1 type: #FamixTestComposed1CustomEntity1 opposite: #customEntity1>')
 ]
 
 { #category : #running }

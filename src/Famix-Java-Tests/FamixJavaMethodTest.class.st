@@ -1,37 +1,44 @@
 Class {
 	#name : #FamixJavaMethodTest,
-	#superclass : #FamixJavaNamedEntityTest,
+	#superclass : #TestCase,
+	#instVars : [
+		'method'
+	],
 	#category : #'Famix-Java-Tests'
 }
 
-{ #category : #helpers }
-FamixJavaMethodTest >> actualClass [ 
-		^ FamixJavaMethod
+{ #category : #running }
+FamixJavaMethodTest >> setUp [
+	method := FamixJavaMethod new
 ]
 
-{ #category : #testing }
-FamixJavaMethodTest >> testIsConstructor [
-	self
-		assert:
-			(self actualClass new
-				isConstructor: true;
-				isConstructor).
-	self
-		deny:
-			(self actualClass new
-				isConstructor: true;
-				isConstructor: false;
-				isConstructor).
-	self
-		assert:
-			(self actualClass new
-				isConstructor: true;
-				isConstructor: false;
-				isConstructor: true;
-				isConstructor)
+{ #category : #running }
+FamixJavaMethodTest >> testDefaultIsStub [
+	self deny: method isStub
 ]
 
-{ #category : #testing }
-FamixJavaMethodTest >> testIsConstructorByKind [
-	self assert: (self actualClass new kind: 'constructor'; isConstructor)
+{ #category : #running }
+FamixJavaMethodTest >> testIsNotStubWhenParentIsNotStub [
+	| aClass |
+	aClass := FamixJavaClass new.
+	method parentType: aClass.
+	aClass isStub: false.
+	self deny: aClass isStub.
+	self deny: method isStub
+]
+
+{ #category : #running }
+FamixJavaMethodTest >> testIsStubWhenParentIsStub [
+	| aClass |
+	aClass := FamixJavaClass new.
+	method parentType: aClass.
+	aClass isStub: true.
+	self assert: aClass isStub.
+	self assert: method isStub
+]
+
+{ #category : #running }
+FamixJavaMethodTest >> testSettingIsStub [
+	method isStub: true.
+	self assert: method isStub
 ]

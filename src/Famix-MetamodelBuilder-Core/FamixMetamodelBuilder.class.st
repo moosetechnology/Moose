@@ -231,6 +231,38 @@ FamixMetamodelBuilder >> generateImportingContext [
 ]
 
 { #category : #generating }
+FamixMetamodelBuilder >> generateMooseModel [
+	self configuration prefix
+		ifNotEmpty: [ :prefix | 
+			| mooseModelName model |
+			mooseModelName := (prefix , 'Model') asSymbol.
+
+			model := self environment
+				createClassNamed: mooseModelName
+				superclass: MooseModel
+				traitNames: #()
+				slots: #()
+				in: configuration packageName
+				overwrite: false.
+
+			model
+				compile:
+					('initialize
+	<generated>
+	super initialize.
+	self metamodel: (self class environment at: #{1}) metamodel' format: {self generator class name})
+				classified: 'initialization'.
+
+			model classSide
+				compile:
+					('annotation
+	<MSEClass: #{1} super: #MooseModel>
+	<package: {2}>
+	<generated>' format: {mooseModelName . self safeAnnotationPackageName})
+				classified: 'meta' ]
+]
+
+{ #category : #generating }
 FamixMetamodelBuilder >> generateRemotes [
 	self traits do: [ :each | each generateRemotes ].
 	self sortedClasses do: [ :each | each generateRemotes ].
@@ -423,7 +455,8 @@ FamixMetamodelBuilder >> prepareGeneration [
 	self sortedClasses do: [ :each | self testingSelectorsMapping at: each put: each testingSelectors ].
 	self traits do: [ :each | each generate ].
 	self sortedClasses do: [ :each | each generate ].
-	self behaviorsCount > 0 ifTrue: [ self generateImportingContext ]
+	self behaviorsCount > 0 ifTrue: [ self generateImportingContext ].
+	self generateMooseModel
 ]
 
 { #category : #printing }

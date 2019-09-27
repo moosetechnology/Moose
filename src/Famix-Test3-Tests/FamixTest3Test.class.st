@@ -67,7 +67,7 @@ FamixTest3Test >> setUp [
 	| c1 c2 m1 m2 pt1 pt2 ref1 ref2 inv1 |
 	super setUp.
 
-	model := FamixTest3MooseModel new.
+	model := FamixTest3Model new.
 
 	c1 := FamixTest3Class named: 'Class1'.
 	c2 := FamixTest3Class named: 'Class2'.

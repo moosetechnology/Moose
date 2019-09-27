@@ -47,13 +47,7 @@ FM3PropertyDescription class >> gtExampleBasic [
 
 { #category : #'accessing-query' }
 FM3PropertyDescription >> compiledMethod [
-
-	^ self mmClass 
-		ifNotNil: [ :aClass | aClass implementingClass methodNamed: self implementingSelector ]
-		ifNil: [ ^ nil ].
-
-
-	
+	^ self mmClass ifNotNil: [ :aClass | aClass implementingClass >> self implementingSelector ]
 ]
 
 { #category : #'accessing-meta' }
@@ -119,6 +113,13 @@ FM3PropertyDescription >> hasOpposite [
 { #category : #testing }
 FM3PropertyDescription >> hasOwner [
 	^ self hasMmClass
+]
+
+{ #category : #accessing }
+FM3PropertyDescription >> implementingClass [
+	"Return the real class implementing the selector of the property."
+
+	^ self mmClass implementingClass
 ]
 
 { #category : #accessing }
@@ -258,6 +259,14 @@ FM3PropertyDescription >> opposite: new [
 		opposite := new.
 		old notNil ifTrue: [ old opposite: nil ].
 		new notNil ifTrue: [ new opposite: self ]]
+]
+
+{ #category : #accessing }
+FM3PropertyDescription >> originClass [
+	"Return the origin class implementing the selector of the property.
+	This mean that if the property is defined in a trait named Foo used in a class Bar, implementingClass will return Bar while originClass will return Foo."
+
+	^ self implementingClass findOriginClassOf: self compiledMethod
 ]
 
 { #category : #accessing }

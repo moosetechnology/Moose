@@ -2,7 +2,7 @@ Extension { #name : #FM3PropertyDescription }
 
 { #category : #'*Moose-Finder' }
 FM3PropertyDescription >> methodClass [
-	^ self mmClass implementingClass
+	^ self implementingClass
 ]
 
 { #category : #'*Moose-Finder' }

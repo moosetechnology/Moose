@@ -82,9 +82,9 @@ FAMIXExtensionMetricTest >> importPackages [
 { #category : #running }
 FAMIXExtensionMetricTest >> setUp [
 	super setUp.
-	model1 := FamixStMooseModel new.
-	model2 := FamixStMooseModel new.
-	lcomModel := FamixStMooseModel new.
+	model1 := FamixStModel new.
+	model2 := FamixStModel new.
+	lcomModel := FamixStModel new.
 
 	self importModels.
 	self importPackages.

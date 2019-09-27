@@ -105,10 +105,10 @@ BaselineOfFamix >> baseline: spec [
 		for: #'pharo7.x'
 		do: [
 			self ring2: spec.
-
+			self parametrizedTests: spec. 
 			spec
 				package: 'Famix-MetamodelBuilder-Core' with: [ spec requires: #('Ring2') ];
-				package: 'Moose-Core' with: [ spec includes: #('Famix-Pharo7') ];
+				package: 'Moose-Core' with: [ spec includes: #('Famix-Pharo7' 'ParametrizedTests') ];
 				package: 'Famix-Pharo7' ]
 ]
 
@@ -123,7 +123,11 @@ BaselineOfFamix >> collectionExtensions: spec [
 
 { #category : #dependencies }
 BaselineOfFamix >> deepTraverser: spec [
-	spec baseline: 'DeepTraverser' with: [ spec repository: repository ]
+	spec
+		baseline: 'DeepTraverser'
+		with: [ spec
+				loads: 'Core';
+				repository: 'github://pharo-contributions/DeepTraverser:v1.x.x/src' ]
 ]
 
 { #category : #dependencies }
@@ -138,7 +142,11 @@ BaselineOfFamix >> kgbTestResources: spec [
 
 { #category : #dependencies }
 BaselineOfFamix >> neoCSV: spec [
-	spec baseline: 'NeoCSV' with: [ spec repository: repository ]
+	spec
+		baseline: 'NeoCSV'
+		with: [ spec
+				loads: 'core';
+				repository: 'github://svenvc/NeoCSV/repository' ]
 ]
 
 { #category : #dependencies }
@@ -152,6 +160,13 @@ BaselineOfFamix >> packageRepositoryURL [
 		ifEmpty: [ | packageName |
 			packageName := self class package name.
 			'tonel://' , (IceRepository registry detect: [ :repo | repo workingCopy packageNames includes: packageName ] ifFound: [ :repo | repo location pathString , '/' , repo subdirectory ] ifNone: [ '' ]) ]
+]
+
+{ #category : #baseline }
+BaselineOfFamix >> parametrizedTests: spec [
+	spec
+		baseline: 'ParametrizedTests'
+		with: [ spec repository: 'github://tesonep/ParametrizedTests/src' ]
 ]
 
 { #category : #accessing }
@@ -180,5 +195,9 @@ BaselineOfFamix >> roelTyper: spec [
 
 { #category : #dependencies }
 BaselineOfFamix >> talents: spec [
-	spec baseline: 'Talents' with: [ spec repository: repository ]
+	spec
+		baseline: 'Talents'
+		with: [ spec
+				loads: 'core';
+				repository: 'github://tesonep/pharo-talents:v2.0.0/src' ]
 ]

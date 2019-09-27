@@ -173,16 +173,6 @@ FmxMBBuilderTest >> testDoNotGenerateCurrent [
 ]
 
 { #category : #tests }
-FmxMBBuilderTest >> testEmptyBuilder [
-
-	| classesCount |
-	classesCount := builder testingEnvironment ask allClasses size.
-	builder generate.
-	self assert: builder testingEnvironment ask allClasses size equals: classesCount.
-
-]
-
-{ #category : #tests }
 FmxMBBuilderTest >> testEnsureClassNamed [
 
 	| c1 |

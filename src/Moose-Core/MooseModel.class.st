@@ -13,7 +13,6 @@ Class {
 		'MostRecentOwner'
 	],
 	#classInstVars : [
-		'rootModel',
 		'metaTower'
 	],
 	#category : #'Moose-Core'
@@ -91,14 +90,20 @@ MooseModel class >> importFrom: aStream filteredBy: anImportingContext [
 
 { #category : #'import-export' }
 MooseModel class >> importFrom: aStream withMetamodel: aMetamodel [
-
-	| tower importer |
+	| tower importer areWarningsEnabled |
 	tower := FMCompleteTower new.
 	tower metamodel addAll: aMetamodel elements.
 	importer := MSEImporter new.
 	importer repository: tower model.
 	importer stream: aStream.
-	importer run.
+
+	"We are currently updating the meta models and most parsers are not up to date.
+	We disable warnings to avoid all deprecation warnings during the transition phase."
+	areWarningsEnabled := Deprecation raiseWarning.
+	[ Deprecation raiseWarning: false.
+	importer run ]
+		ensure: [ Deprecation raiseWarning: areWarningsEnabled ].
+
 	tower model updateCache.
 	^ tower model
 ]
@@ -251,18 +256,12 @@ MooseModel class >> ownerOf: element [
 
 { #category : #'root model' }
 MooseModel class >> resetRoot [
-
-	rootModel := nil
+	MooseModelRoot resetRoot
 ]
 
 { #category : #'root model' }
-MooseModel class >> root [ 
-	 
-	^ rootModel 
-		ifNil: 
-			[ rootModel := (self new) 
-				name: 'Root'; 
-				yourself ]
+MooseModel class >> root [
+	^ MooseModelRoot root
 ]
 
 { #category : #'entity collection' }

@@ -16,7 +16,7 @@ FmxMBGeneratorTest >> testGenerateMooseModelSubclass [
 
 	FamixTest1Generator new generate.
 	self assert: ('Famix-Test1-Entities' asPackage definedClasses anySatisfy: [ :c | c superclass = MooseModel]).
-	self assert: ('Famix-Test1-Entities' asPackage definedClasses anySatisfy: [ :c | c name = 'FamixTest1MooseModel'])
+	self assert: ('Famix-Test1-Entities' asPackage definedClasses anySatisfy: [ :c | c name = 'FamixTest1Model'])
 ]
 
 { #category : #tests }
@@ -32,7 +32,7 @@ FmxMBGeneratorTest >> testGeneratorsAreUpToDate [
 FmxMBGeneratorTest >> testMooseModelSubclassHasInitialize [
 	| mooseModel |
 	FamixTest1Generator new generate.
-	mooseModel := 'FamixTest1MooseModel' asClass.
+	mooseModel := 'FamixTest1Model' asClass.
 	self
 		assert: (mooseModel methods anySatisfy: [ :m | m selector = 'initialize' ])
 ]
@@ -41,7 +41,7 @@ FmxMBGeneratorTest >> testMooseModelSubclassHasInitialize [
 FmxMBGeneratorTest >> testMooseModelSubclassHasMetaModel [
 	| mooseModel |
 	FamixTest1Generator new generate.
-	mooseModel := 'FamixTest1MooseModel' asClass new.
+	mooseModel := 'FamixTest1Model' asClass new.
 	self
 		assert: mooseModel metamodel
 		equals: FamixTest1Generator metamodel

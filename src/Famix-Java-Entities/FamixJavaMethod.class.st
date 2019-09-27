@@ -187,6 +187,12 @@ FamixJavaMethod >> isOverriding [
 		each isInterface not and: [each understands: self signature]]
 ]
 
+{ #category : #printing }
+FamixJavaMethod >> isStub [
+	^ super isStub
+		or: [ self parentType notNil and: [ self parentType isStub ] ]
+]
+
 { #category : #testing }
 FamixJavaMethod >> isSurelyInvokedBy: aFAMIXMethod [ 
 	 

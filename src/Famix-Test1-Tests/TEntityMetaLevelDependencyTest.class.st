@@ -23,7 +23,7 @@ TEntityMetaLevelDependencyTest >> setUp [
 
 	super setUp.
 
-	model := FamixTest1MooseModel new.
+	model := FamixTest1Model new.
 	c1 := FamixTest1Class named: 'Class1'.
 	c2 := FamixTest1Class named: 'Class2'.
 	m1 := FamixTest1Method named: 'method1'.
@@ -175,9 +175,6 @@ TEntityMetaLevelDependencyTest >> testChildren [
 	self assertCollection: m1 children hasSameElements: { }.
 	self assertCollection: c1 children hasSameElements: { m1. a1 }.
 	self assertCollection: c2 children hasSameElements: { m2. m3 }.
-	self assertCollection: anchor1 children hasSameElements: { }.
-	
-
 ]
 
 { #category : #tests }
