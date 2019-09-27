@@ -1,7 +1,7 @@
 Class {
 	#name : #MooseModelTestResourceWithSmalltalkDependency,
 	#superclass : #MooseModelTestResource,
-	#category : #'Moose-Tests-Core'
+	#category : #'Famix-PharoSmalltalk-Tests'
 }
 
 { #category : #'as yet unclassified' }
