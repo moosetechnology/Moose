@@ -10,7 +10,7 @@ Class {
 		'tally',
 		'reminderDict',
 		'serialDict',
-		'nameTranslator'
+		'translationUnit'
 	],
 	#category : #'Fame-ImportExport'
 }
@@ -45,14 +45,9 @@ FMImporter >> beginDocument [
 ]
 
 { #category : #parsing }
-FMImporter >> beginElement: name [ 
-	
+FMImporter >> beginElement: name [
 	| translatedName |
-	
-	translatedName := self nameTranslator
-		ifNotNil: [ :aTranslator | aTranslator at: name ifAbsent: [ name ]]
-		ifNil: [ name ].
-	
+	translatedName := self translationUnit translate: name.
 	stack push: (FMFutureElement with: self name: translatedName)
 ]
 
@@ -100,6 +95,12 @@ FMImporter >> index [
 ]
 
 { #category : #accessing }
+FMImporter >> initialize [
+	super initialize.
+	translationUnit := FMNullTranslationUnit new
+]
+
+{ #category : #accessing }
 FMImporter >> metamodel [
 	^metamodel
 ]
@@ -109,14 +110,25 @@ FMImporter >> model [
 	^model
 ]
 
-{ #category : #accessing }
+{ #category : #deprecated }
 FMImporter >> nameTranslator [
-	^ nameTranslator
+	self deprecated: 'Use #translationUnit instead'.
+	^ translationUnit dictionary
 ]
 
-{ #category : #accessing }
+{ #category : #deprecated }
 FMImporter >> nameTranslator: anObject [
-	nameTranslator := anObject
+	self
+		deprecated: 'Use FMDictionaryTranslationUnit instead'
+		transformWith:
+			'`@receiver nameTranslator: `@arg'
+				->
+			'`@receiver translationUnit: (FMDictionaryTranslationUnit new
+													dictionary:  `@arg;
+													yourself)'.
+	translationUnit := FMDictionaryTranslationUnit new
+		dictionary: anObject;
+		yourself
 ]
 
 { #category : #parsing }
@@ -178,4 +190,14 @@ FMImporter >> stream: aReadStream [
 
 	stream := aReadStream 
 	
+]
+
+{ #category : #accessing }
+FMImporter >> translationUnit [
+	^ translationUnit
+]
+
+{ #category : #accessing }
+FMImporter >> translationUnit: aTranslationUnit [
+	translationUnit := aTranslationUnit
 ]
