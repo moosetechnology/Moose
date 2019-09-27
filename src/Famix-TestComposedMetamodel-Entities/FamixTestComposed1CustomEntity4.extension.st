@@ -6,7 +6,7 @@ FamixTestComposed1CustomEntity4 >> c24s [
 
 	<generated>
 	<derived>
-	<MSEProperty: #c24s type: #Object>
+	<MSEProperty: #c24s type: #FamixTestComposed2CustomEntity4 opposite: #c14s>
 	<package: #'Famix-TestComposedMetamodel-Entities'>
 	^ self privateState attributeAt: #c24s ifAbsentPut: [ FMMultiMultivalueLink on: self opposite: #c14s ]
 ]
@@ -23,7 +23,7 @@ FamixTestComposed1CustomEntity4 >> customEntities4 [
 	"Relation named: #customEntities4 type: #FamixTestComposedCustomEntity4 opposite: #customEntities4"
 
 	<generated>
-	<MSEProperty: #customEntities4 type: #Object>
+	<MSEProperty: #customEntities4 type: #FamixTestComposedCustomEntity4 opposite: #customEntities4>
 	<package: #'Famix-TestComposedMetamodel-Entities'>
 	^ self privateState attributeAt: #customEntities4 ifAbsentPut: [ FMMultiMultivalueLink on: self opposite: #customEntities4 ]
 ]

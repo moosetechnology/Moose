@@ -43,7 +43,8 @@ Class {
 		'oppositeDict',
 		'packPropDict',
 		'mmClassDict',
-		'queue'
+		'queue',
+		'implementingPackages'
 	],
 	#classVars : [
 		'ShouldValidateMetaModel'
@@ -176,6 +177,13 @@ FMPragmaProcessor >> initialize [
 		put: FM3MetaDescription object
 ]
 
+{ #category : #private }
+FMPragmaProcessor >> methodsToProcessFrom: aClass [
+	"We need to process the methods from the class and the extensions methods comming from the packages containing the entites. We should reject extension methods comming from other packages."
+
+	^ aClass methods select: [ :method | method isExtension not or: [ implementingPackages includes: method package ] ]
+]
+
 { #category : #accessing }
 FMPragmaProcessor >> packages [
 	^ elements select: [ :e | e isFM3Package ]
@@ -206,19 +214,17 @@ FMPragmaProcessor >> processClass: aClass ifPragmaAbsent: anErrorBlock [
 	superclassDict at: meta put: superclassName.
 	meta setImplementingClass: aClass.
 	pragma
-		ifNotEmpty: [ (Pragma inMethod: pragma first method named: #abstract)
-				ifNotNil: [ meta isAbstract: true ].
+		ifNotEmpty: [ (Pragma inMethod: pragma first method named: #abstract) ifNotNil: [ meta isAbstract: true ].
 			(Pragma inMethod: pragma first method named: #package:)
 				ifNotNil: [ :p | 
 					| packageName |
 					packageName := p argumentAt: 1.
-					(self allowPackageNamed: packageName)
-						ifFalse: [ ^ self ].
+					(self allowPackageNamed: packageName) ifFalse: [ ^ self ].
 					packMetaDict at: meta put: packageName asString ] ].
 	elements add: meta.
 	classDict at: aClass put: meta.
-	aClass methods do: [ :each | self processCompiledMethod: each ].
-	aClass slots do: [ :each | self processSlot: each in: aClass].
+	(self methodsToProcessFrom: aClass) do: [ :each | self processCompiledMethod: each ].
+	aClass slots do: [ :each | self processSlot: each in: aClass ].
 	self assert: meta isFM3Class.
 	^ meta
 ]
@@ -356,6 +362,7 @@ FMPragmaProcessor >> resolveObjectReferences [
 
 { #category : #running }
 FMPragmaProcessor >> run [
+	implementingPackages := (queue collectAsSet: #package).
 	queue do: [ :cls | self processClass: cls ].
 	self resolveObjectReferences.
 	self class shouldValidateMetaModel

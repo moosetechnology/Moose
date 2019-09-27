@@ -26,7 +26,7 @@ FamixTestComposedCustomEntity2 >> c22s [
 
 	<generated>
 	<derived>
-	<MSEProperty: #c22s type: #Object>
+	<MSEProperty: #c22s type: #FamixTestComposed2CustomEntity2 opposite: #c2>
 	^ self privateState attributeAt: #c22s ifAbsentPut: [ FMMultivalueLink on: self opposite: #c2: ]
 ]
 
@@ -43,7 +43,7 @@ FamixTestComposedCustomEntity2 >> customEntities2 [
 
 	<generated>
 	<derived>
-	<MSEProperty: #customEntities2 type: #Object>
+	<MSEProperty: #customEntities2 type: #FamixTestComposed1CustomEntity2 opposite: #customEntity2>
 	^ self privateState attributeAt: #customEntities2 ifAbsentPut: [ FMMultivalueLink on: self opposite: #customEntity2: ]
 ]
 

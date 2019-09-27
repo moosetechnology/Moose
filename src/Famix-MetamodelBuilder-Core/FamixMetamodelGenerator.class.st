@@ -80,37 +80,6 @@ FamixMetamodelGenerator class >> composedMetaModels [
 	^ self allSubclasses select: [ :mm | mm isAbstract not and: [ mm isComposed ] ]
 ]
 
-{ #category : #accessing }
-FamixMetamodelGenerator class >> fixRemoteMetamodelRelationsIn: aMetamodel [
-
-	"Description of relations that are created between composed meta-models are not 
-	correct because they are created only from the information that the describing 
-	method provide. It needs to be fixed using the information that the builder 
-	provides."
-
-	| remoteRelations aBuilder |
-	
-	aBuilder := self builderWithDefinitions.
-	remoteRelations := aBuilder relations select: [ :aRelation | aRelation sides anySatisfy: #isRemote ].
-	
-	remoteRelations do: [ :aRelation |
-		| class1 class2 property1 property2 |
-		
-		class1 := Smalltalk globals at: aRelation side relatedEntity fullName.
-		class2 := Smalltalk globals at: aRelation oppositeSide relatedEntity fullName.
-			
-		property1 := (aMetamodel descriptionOf: class1) attributeNamed: aRelation side name.
-		property2 := (aMetamodel descriptionOf: class2) attributeNamed: aRelation oppositeSide name.
-		property1 opposite: property2.
-		property2 opposite: property1.
-		property1 type setImplementingClass: class2.	
-		property2 type setImplementingClass: class1.
-	]
-	
-
-
-]
-
 { #category : #generation }
 FamixMetamodelGenerator class >> generate [
 
@@ -190,11 +159,6 @@ FamixMetamodelGenerator class >> metamodelsToGenerate [
 ]
 
 { #category : #accessing }
-FamixMetamodelGenerator class >> modifyMetamodel: aMetamodel [
-	self submetamodels ifNotEmpty: [ self fixRemoteMetamodelRelationsIn: aMetamodel ]
-]
-
-{ #category : #accessing }
 FamixMetamodelGenerator class >> newRepository [
 
 	| tower |
@@ -244,9 +208,6 @@ FamixMetamodelGenerator class >> resetMetamodel [
 	elements := self submetamodels flatCollect: [ :each | each metamodel elements ].
 
 	elements do: [ :each | metamodel elementNamed: each fullName ifAbsent: [ metamodel add: each ] ].
-
-	self allSubmetamodels do: [ :submetamodel | submetamodel modifyMetamodel: metamodel ].
-	self modifyMetamodel: metamodel.
 
 	metamodel additionalProperties at: #wantsAllEntitiesNavigation put: self wantsAllEntitiesNavigation.
 
