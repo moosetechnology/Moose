@@ -7,8 +7,8 @@ Class {
 { #category : #printing }
 FmxMBNonRemoteRelationSideGenerationStrategy >> generateGetterCoreIn: aClassOrTrait on: aStream for: aRelationSide [
 
-	aStream tab; nextPutAll: ('<MSEProperty: #{1} type: #Object>' format: {aRelationSide name}).
-	aStream cr.
+	 aStream tab; nextPutAll: ('<MSEProperty: #{1} type: #{2} opposite: #{3}>' format: {aRelationSide name. aRelationSide oppositeType. aRelationSide oppositeName}).
+    aStream cr.
 	
 	aRelationSide remoteBuilderDo: [ :aRemoteBuilder |
 		aStream tab; nextPutAll: ('<package: #''{1}''>' format: {aRemoteBuilder generator packageName}).
