@@ -142,12 +142,13 @@ FmxMBBehavior >> generateAccessors [
 
 { #category : #generating }
 FmxMBBehavior >> generateAddToCollectionFor: aClass [
-	| sideName |
-	self allNavigationGroups
-		do: [ :aGroup | 
-			sideName := aGroup entity name.
-			aGroup entity isMany
-				ifTrue: [ self builder environment
+	self relations
+		collect: #side
+		thenDo: [ :side | 
+			side isMany
+				ifTrue: [ | sideName |
+					sideName := side name.
+					self builder environment
 						compile:
 							('add{1}: anObject
 	<generated>
