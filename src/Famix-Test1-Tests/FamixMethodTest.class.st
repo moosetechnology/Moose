@@ -1,23 +1,21 @@
 Class {
-	#name : #OldFamixTMethodTest,
+	#name : #FamixMethodTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'model',
 		'c1',
 		'c2',
-		'c3',
 		'm1',
 		'm2',
 		'm3',
 		'anchor1',
-		'anchor2',
-		'anchor3'
+		'anchor2'
 	],
 	#category : #'Famix-Test1-Tests'
 }
 
 { #category : #running }
-OldFamixTMethodTest >> setUp [
+FamixMethodTest >> setUp [
 
 	super setUp.
 
@@ -30,8 +28,6 @@ OldFamixTMethodTest >> setUp [
 	m3 := FamixTest1Method named: 'method3'.
 	anchor1 := FamixTest1SourceTextAnchor new source: 'method1\source1' withCRs .
 	anchor2 := FamixTest1SourceTextAnchor new source: 'method2\source2a\source2b' withCRs.
-	anchor3 := FamixTest1SourceTextAnchor new source: 'method3\source3a\source3b\source3c' withCRs.
-	
 	model addAll: { c1. c2. m1. m2. m3. anchor1. anchor2 }.
 	
 	c1 addMethod: m1.
@@ -39,17 +35,16 @@ OldFamixTMethodTest >> setUp [
 	c2 addMethod: m3.
 	m1 sourceAnchor: anchor1.
 	m2 sourceAnchor: anchor2.
-	m3 sourceAnchor: anchor3.
 
 ]
 
 { #category : #tests }
-OldFamixTMethodTest >> testBelongsTo [
+FamixMethodTest >> testBelongsTo [
 	self assert: m1 belongsTo equals: c1
 ]
 
 { #category : #tests }
-OldFamixTMethodTest >> testComputeNumberOfLinesOfCode [
+FamixMethodTest >> testComputeNumberOfLinesOfCode [
 
 	| withoutSource |
 	
@@ -61,7 +56,7 @@ OldFamixTMethodTest >> testComputeNumberOfLinesOfCode [
 ]
 
 { #category : #tests }
-OldFamixTMethodTest >> testCyclomaticComplexity [
+FamixMethodTest >> testCyclomaticComplexity [
 
 	self assert: m1 cyclomaticComplexity equals: model notExistentMetricValue.
 	m1 cyclomaticComplexity: 100.
@@ -70,7 +65,7 @@ OldFamixTMethodTest >> testCyclomaticComplexity [
 ]
 
 { #category : #tests }
-OldFamixTMethodTest >> testIsClass [
+FamixMethodTest >> testIsClass [
 
 	self assert: c1 isClass. 	
 	self assert: c2 isClass. 
@@ -81,7 +76,7 @@ OldFamixTMethodTest >> testIsClass [
 ]
 
 { #category : #tests }
-OldFamixTMethodTest >> testIsClassSide [
+FamixMethodTest >> testIsClassSide [
 
 	m1 isClassSide: true.
 	self assert: m1 isClassSide .
@@ -89,7 +84,7 @@ OldFamixTMethodTest >> testIsClassSide [
 ]
 
 { #category : #tests }
-OldFamixTMethodTest >> testIsConstant [
+FamixMethodTest >> testIsConstant [
 
 	self deny: m1 isConstant.
 	m1 kind: #constant.
@@ -98,7 +93,7 @@ OldFamixTMethodTest >> testIsConstant [
 ]
 
 { #category : #tests }
-OldFamixTMethodTest >> testIsConstructor [
+FamixMethodTest >> testIsConstructor [
 
 	self deny: m1 isConstructor.
 	m1 isConstructor: true.
@@ -107,7 +102,7 @@ OldFamixTMethodTest >> testIsConstructor [
 ]
 
 { #category : #tests }
-OldFamixTMethodTest >> testIsGetter [
+FamixMethodTest >> testIsGetter [
 
 	self deny: m1 isGetter.
 	m1 kind: #getter.
@@ -116,14 +111,14 @@ OldFamixTMethodTest >> testIsGetter [
 ]
 
 { #category : #tests }
-OldFamixTMethodTest >> testIsMethod [
+FamixMethodTest >> testIsMethod [
 
 	self assert: m1 isMethod.
 	self deny: c1 isMethod.
 ]
 
 { #category : #tests }
-OldFamixTMethodTest >> testIsPureAccessor [
+FamixMethodTest >> testIsPureAccessor [
 
 	self deny: m1 isPureAccessor.
 	m1 kind: #getter.
@@ -134,7 +129,7 @@ OldFamixTMethodTest >> testIsPureAccessor [
 ]
 
 { #category : #tests }
-OldFamixTMethodTest >> testIsSetter [
+FamixMethodTest >> testIsSetter [
 
 	self deny: m1 isSetter.
 	m1 kind: #setter.
@@ -143,7 +138,7 @@ OldFamixTMethodTest >> testIsSetter [
 ]
 
 { #category : #tests }
-OldFamixTMethodTest >> testKind [
+FamixMethodTest >> testKind [
 
 	m1 kind: #constant.
 	self assert: m1 kind equals: #constant.
@@ -151,7 +146,7 @@ OldFamixTMethodTest >> testKind [
 ]
 
 { #category : #tests }
-OldFamixTMethodTest >> testNumberOfLinesOfCode [
+FamixMethodTest >> testNumberOfLinesOfCode [
 
 	self assert: m1 numberOfLinesOfCode equals: 2.
 	self assert: m2 numberOfLinesOfCode equals: 3.
@@ -163,7 +158,7 @@ OldFamixTMethodTest >> testNumberOfLinesOfCode [
 ]
 
 { #category : #tests }
-OldFamixTMethodTest >> testNumberOfMessageSends [
+FamixMethodTest >> testNumberOfMessageSends [
 
 	self assert: m1 numberOfMessageSends equals: model notExistentMetricValue.
 	m1 numberOfMessageSends: 100.
@@ -172,14 +167,14 @@ OldFamixTMethodTest >> testNumberOfMessageSends [
 ]
 
 { #category : #tests }
-OldFamixTMethodTest >> testParentType [
+FamixMethodTest >> testParentType [
 
 	self assertCollection: m1 parentType equals: c1.
 	self assertCollection: m2 parentType equals: c2.
 ]
 
 { #category : #tests }
-OldFamixTMethodTest >> testParentTypeIsStub [
+FamixMethodTest >> testParentTypeIsStub [
 
 	self deny: m1 parentTypeIsStub.
 	c1 stub: true.
@@ -188,7 +183,7 @@ OldFamixTMethodTest >> testParentTypeIsStub [
 ]
 
 { #category : #tests }
-OldFamixTMethodTest >> testRelations [
+FamixMethodTest >> testRelations [
 
 	self assertCollection: c1 methods hasSameElements:  { m1 }.	
 	self assertCollection: c2 methods hasSameElements:  { m2. m3 }.
