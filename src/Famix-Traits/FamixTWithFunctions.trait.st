@@ -21,6 +21,12 @@ FamixTWithFunctions >> addFunction: anObject [
 
 ]
 
+{ #category : #adding }
+FamixTWithFunctions >> addFunctions: anObject [
+	<generated>
+	^ self functions add: anObject
+]
+
 { #category : #accessing }
 FamixTWithFunctions >> functions [
 	"Relation named: #functions type: #FamixTFunction opposite: #functionOwner"

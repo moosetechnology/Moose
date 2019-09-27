@@ -39,6 +39,12 @@ FamixTAnnotationTypeAttribute >> addAnnotationAttributeInstance: anObject [
 
 ]
 
+{ #category : #adding }
+FamixTAnnotationTypeAttribute >> addAnnotationAttributeInstances: anObject [
+	<generated>
+	^ self annotationAttributeInstances add: anObject
+]
+
 { #category : #accessing }
 FamixTAnnotationTypeAttribute >> annotationAttributeInstances [
 	"Relation named: #annotationAttributeInstances type: #FamixTTypedAnnotationInstanceAttribute opposite: #annotationTypeAttribute"

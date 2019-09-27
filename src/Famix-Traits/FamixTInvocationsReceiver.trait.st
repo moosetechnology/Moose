@@ -20,6 +20,12 @@ FamixTInvocationsReceiver >> addReceivingInvocation: anInvocation [
 	receivingInvocations add: anInvocation
 ]
 
+{ #category : #adding }
+FamixTInvocationsReceiver >> addReceivingInvocations: anObject [
+	<generated>
+	^ self receivingInvocations add: anObject
+]
+
 { #category : #accessing }
 FamixTInvocationsReceiver >> receivingInvocations [
 	"Relation named: #receivingInvocations type: #FamixTInvocation opposite: #receiver"

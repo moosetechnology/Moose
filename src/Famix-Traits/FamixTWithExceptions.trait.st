@@ -21,6 +21,12 @@ FamixTWithExceptions >> addException: anObject [
 
 ]
 
+{ #category : #adding }
+FamixTWithExceptions >> addExceptions: anObject [
+	<generated>
+	^ self exceptions add: anObject
+]
+
 { #category : #accessing }
 FamixTWithExceptions >> exceptions [
 	"Relation named: #exceptions type: #FamixTException opposite: #exceptionClass"

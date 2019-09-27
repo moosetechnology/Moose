@@ -21,6 +21,12 @@ FamixTWithPackages >> addPackage: anObject [
 
 ]
 
+{ #category : #adding }
+FamixTWithPackages >> addPackages: anObject [
+	<generated>
+	^ self packages add: anObject
+]
+
 { #category : #accessing }
 FamixTWithPackages >> packages [
 	"Relation named: #packages type: #FamixTPackage opposite: #packageOwner"

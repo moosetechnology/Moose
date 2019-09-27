@@ -20,6 +20,12 @@ FamixTWithDereferencedInvocations >> addDereferencedInvocation: aDeferencedInvoc
 	dereferencedInvocations add: aDeferencedInvocation 
 ]
 
+{ #category : #adding }
+FamixTWithDereferencedInvocations >> addDereferencedInvocations: anObject [
+	<generated>
+	^ self dereferencedInvocations add: anObject
+]
+
 { #category : #accessing }
 FamixTWithDereferencedInvocations >> dereferencedInvocations [
 	"Relation named: #dereferencedInvocations type: #FamixTDereferencedInvocation opposite: #referencer"

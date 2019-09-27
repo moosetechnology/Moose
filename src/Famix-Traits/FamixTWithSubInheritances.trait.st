@@ -20,6 +20,12 @@ FamixTWithSubInheritances >> addSuperInheritance: anInheritance [
 	superInheritances add: anInheritance
 ]
 
+{ #category : #adding }
+FamixTWithSubInheritances >> addSuperInheritances: anObject [
+	<generated>
+	^ self superInheritances add: anObject
+]
+
 { #category : #accessing }
 FamixTWithSubInheritances >> superInheritances [
 	"Relation named: #superInheritances type: #FamixTSubInheritance opposite: #subclass"

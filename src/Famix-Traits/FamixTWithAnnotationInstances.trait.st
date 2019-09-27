@@ -20,6 +20,12 @@ FamixTWithAnnotationInstances >> addAnnotationInstance: anAnnotationInstance [
 	annotationInstances add: anAnnotationInstance
 ]
 
+{ #category : #adding }
+FamixTWithAnnotationInstances >> addAnnotationInstances: anObject [
+	<generated>
+	^ self annotationInstances add: anObject
+]
+
 { #category : #'Famix-Java' }
 FamixTWithAnnotationInstances >> allAnnotationInstances [
 	| result |

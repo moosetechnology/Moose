@@ -20,6 +20,12 @@ FamixTGlobalVariableScope >> addGlobalVariable: aGlobalVariable [
 	globalVariables add: aGlobalVariable
 ]
 
+{ #category : #adding }
+FamixTGlobalVariableScope >> addGlobalVariables: anObject [
+	<generated>
+	^ self globalVariables add: anObject
+]
+
 { #category : #accessing }
 FamixTGlobalVariableScope >> globalVariables [
 	"Relation named: #globalVariables type: #FamixTGlobalVariable opposite: #parentScope"

@@ -21,6 +21,12 @@ FamixTWithTemplates >> addTemplate: anObject [
 
 ]
 
+{ #category : #adding }
+FamixTWithTemplates >> addTemplates: anObject [
+	<generated>
+	^ self templates add: anObject
+]
+
 { #category : #accessing }
 FamixTWithTemplates >> templates [
 	"Relation named: #templates type: #FamixTTemplate opposite: #templateOwner"

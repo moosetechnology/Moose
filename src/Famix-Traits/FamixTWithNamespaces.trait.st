@@ -21,6 +21,12 @@ FamixTWithNamespaces >> addNamespace: anObject [
 
 ]
 
+{ #category : #adding }
+FamixTWithNamespaces >> addNamespaces: anObject [
+	<generated>
+	^ self namespaces add: anObject
+]
+
 { #category : #accessing }
 FamixTWithNamespaces >> namespaces [
 	"Relation named: #namespaces type: #FamixTNamespace opposite: #namespaceOwner"

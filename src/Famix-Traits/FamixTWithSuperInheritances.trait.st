@@ -20,6 +20,12 @@ FamixTWithSuperInheritances >> addSubInheritance: anInheritance [
 	subInheritances add: anInheritance
 ]
 
+{ #category : #adding }
+FamixTWithSuperInheritances >> addSubInheritances: anObject [
+	<generated>
+	^ self subInheritances add: anObject
+]
+
 { #category : #metrics }
 FamixTWithSuperInheritances >> numberOfSubclasses [
 	<MSEProperty: #numberOfSubclasses type: #Number>

@@ -21,6 +21,12 @@ FamixTWithTypeAliases >> addTypeAlias: anObject [
 
 ]
 
+{ #category : #adding }
+FamixTWithTypeAliases >> addTypeAliases: anObject [
+	<generated>
+	^ self typeAliases add: anObject
+]
+
 { #category : #accessing }
 FamixTWithTypeAliases >> allTypeAliases [
 	| all |

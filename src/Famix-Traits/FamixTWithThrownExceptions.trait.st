@@ -20,6 +20,12 @@ FamixTWithThrownExceptions >> addThrownException: anObject [
 	thrownExceptions add: anObject
 ]
 
+{ #category : #adding }
+FamixTWithThrownExceptions >> addThrownExceptions: anObject [
+	<generated>
+	^ self thrownExceptions add: anObject
+]
+
 { #category : #accessing }
 FamixTWithThrownExceptions >> thrownExceptions [
 	"Relation named: #thrownExceptions type: #FamixTThrownException opposite: #definingEntity"

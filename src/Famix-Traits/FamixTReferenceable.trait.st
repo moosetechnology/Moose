@@ -20,6 +20,12 @@ FamixTReferenceable >> addIncomingReference: aReference [
 	incomingReferences add: aReference
 ]
 
+{ #category : #adding }
+FamixTReferenceable >> addIncomingReferences: anObject [
+	<generated>
+	^ self incomingReferences add: anObject
+]
+
 { #category : #accessing }
 FamixTReferenceable >> incomingReferences [
 	"Relation named: #incomingReferences type: #FamixTReference opposite: #target"

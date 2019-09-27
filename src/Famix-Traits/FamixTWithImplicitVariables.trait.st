@@ -20,6 +20,12 @@ FamixTWithImplicitVariables >> addImplicitVariable: anImplicitVariable [
 	implicitVariables add: anImplicitVariable
 ]
 
+{ #category : #adding }
+FamixTWithImplicitVariables >> addImplicitVariables: anObject [
+	<generated>
+	^ self implicitVariables add: anObject
+]
+
 { #category : #accessing }
 FamixTWithImplicitVariables >> implicitVariables [
 	"Relation named: #implicitVariables type: #FamixTImplicitVariable opposite: #parentBehaviouralEntity"

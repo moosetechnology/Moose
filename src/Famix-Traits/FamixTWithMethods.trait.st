@@ -20,6 +20,12 @@ FamixTWithMethods >> addMethod: aMethod [
 	methods add: aMethod
 ]
 
+{ #category : #adding }
+FamixTWithMethods >> addMethods: anObject [
+	<generated>
+	^ self methods add: anObject
+]
+
 { #category : #accessing }
 FamixTWithMethods >> methods [
 	"Relation named: #methods type: #FamixTMethod opposite: #parentType"

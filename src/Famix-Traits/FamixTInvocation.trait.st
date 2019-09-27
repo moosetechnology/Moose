@@ -42,6 +42,12 @@ FamixTInvocation >> addCandidate: aBehaviouralEntity [
 	candidates add: aBehaviouralEntity
 ]
 
+{ #category : #adding }
+FamixTInvocation >> addCandidates: anObject [
+	<generated>
+	^ self candidates add: anObject
+]
+
 { #category : #accessing }
 FamixTInvocation >> anyCandidate [
 	^self candidates isEmpty

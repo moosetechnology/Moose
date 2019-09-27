@@ -20,6 +20,12 @@ FamixTWithDeclaredExceptions >> addDeclaredException: aDeclaredException [
 	declaredExceptions add: aDeclaredException
 ]
 
+{ #category : #adding }
+FamixTWithDeclaredExceptions >> addDeclaredExceptions: anObject [
+	<generated>
+	^ self declaredExceptions add: anObject
+]
+
 { #category : #accessing }
 FamixTWithDeclaredExceptions >> declaredExceptions [
 	"Relation named: #declaredExceptions type: #FamixTDeclaredException opposite: #definingEntity"

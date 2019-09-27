@@ -20,6 +20,12 @@ FamixTWithParameters >> addParameter: aParameter [
 	parameters add: aParameter
 ]
 
+{ #category : #adding }
+FamixTWithParameters >> addParameters: anObject [
+	<generated>
+	^ self parameters add: anObject
+]
+
 { #category : #accessing }
 FamixTWithParameters >> numberOfParameters [
 	<MSEProperty: #numberOfParameters type: #Number>

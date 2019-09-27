@@ -22,6 +22,12 @@ FamixTWithComments >> addComment: aComment [
 	self comments add: aComment
 ]
 
+{ #category : #adding }
+FamixTWithComments >> addComments: anObject [
+	<generated>
+	^ self comments add: anObject
+]
+
 { #category : #accessing }
 FamixTWithComments >> comments [
 	"Relation named: #comments type: #FamixTComment opposite: #container"

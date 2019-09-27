@@ -20,6 +20,18 @@ FamixTestComposedCustomEntity2 class >> metamodel [
 	^ (self class environment at: #FamixTestComposedGenerator) metamodel
 ]
 
+{ #category : #adding }
+FamixTestComposedCustomEntity2 >> addC22s: anObject [
+	<generated>
+	^ self c22s add: anObject
+]
+
+{ #category : #adding }
+FamixTestComposedCustomEntity2 >> addCustomEntities2: anObject [
+	<generated>
+	^ self customEntities2 add: anObject
+]
+
 { #category : #accessing }
 FamixTestComposedCustomEntity2 >> c22s [
 	"Relation named: #c22s type: #FamixTestComposedCustomEntity2 opposite: #c2"

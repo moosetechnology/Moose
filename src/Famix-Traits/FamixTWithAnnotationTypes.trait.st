@@ -21,6 +21,12 @@ FamixTWithAnnotationTypes >> addDefinedAnnotationType: aDefinedAnnotationType [
 
 ]
 
+{ #category : #adding }
+FamixTWithAnnotationTypes >> addDefinedAnnotationTypes: anObject [
+	<generated>
+	^ self definedAnnotationTypes add: anObject
+]
+
 { #category : #accessing }
 FamixTWithAnnotationTypes >> definedAnnotationTypes [
 	"Relation named: #definedAnnotationTypes type: #FamixTAnnotationType opposite: #annotationTypesContainer"

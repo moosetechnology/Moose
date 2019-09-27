@@ -28,6 +28,12 @@ FamixTFile classSide >> famixTFileRelatedGroup [
 	^ FAMIXFileGroup
 ]
 
+{ #category : #adding }
+FamixTFile >> addEntities: anObject [
+	<generated>
+	^ self entities add: anObject
+]
+
 { #category : #accessing }
 FamixTFile >> addEntity: famixEntity [
 	self entities add: famixEntity

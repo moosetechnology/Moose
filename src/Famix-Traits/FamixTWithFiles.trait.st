@@ -21,6 +21,12 @@ FamixTWithFiles >> addContainerFile: anObject [
 
 ]
 
+{ #category : #adding }
+FamixTWithFiles >> addContainerFiles: anObject [
+	<generated>
+	^ self containerFiles add: anObject
+]
+
 { #category : #accessing }
 FamixTWithFiles >> containerFiles [
 	"Relation named: #containerFiles type: #FamixTFile opposite: #entities"

@@ -22,6 +22,12 @@ FamixTSourceLanguage classSide >> annotation [
 ]
 
 { #category : #adding }
+FamixTSourceLanguage >> addSourcedEntities: anObject [
+	<generated>
+	^ self sourcedEntities add: anObject
+]
+
+{ #category : #adding }
 FamixTSourceLanguage >> addSourcedEntity: aSourcedEntity [
 	^ self sourcedEntities add: aSourcedEntity
 ]
