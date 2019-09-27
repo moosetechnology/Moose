@@ -13,7 +13,6 @@ Class {
 		'MostRecentOwner'
 	],
 	#classInstVars : [
-		'rootModel',
 		'metaTower'
 	],
 	#category : #'Moose-Core'
