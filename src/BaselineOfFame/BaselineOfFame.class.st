@@ -46,7 +46,10 @@ BaselineOfFame >> hashtable: spec [
 
 { #category : #dependencies }
 BaselineOfFame >> iterators: spec [
-	spec baseline: 'Iterators' with: [ spec repository: 'github://juliendelplanque/Iterators:v1.x.x/src' ]
+	spec baseline: 'Iterators' with: [ 
+		spec
+			repository: 'github://juliendelplanque/Iterators:v1.x.x/src';
+			loads: #('core' 'collections' 'shell-dsl' 'inspector-extensions') ]
 ]
 
 { #category : #dependencies }
@@ -73,5 +76,8 @@ BaselineOfFame >> projectClass [
 
 { #category : #dependencies }
 BaselineOfFame >> treeQuery: spec [
-	spec baseline: 'TreeQuery' with: [ spec repository: 'github://juliendelplanque/TreeQuery:v1.x.x/src' ]
+	spec baseline: 'TreeQuery' with: [ 
+		spec
+			repository: 'github://juliendelplanque/TreeQuery:v1.x.x/src';
+			loads: #('core') ]
 ]
