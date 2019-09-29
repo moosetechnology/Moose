@@ -38,12 +38,6 @@ FamixPharoSmalltalkGenerator class >> prefix [
 	^ #'FamixSt'
 ]
 
-{ #category : #accessing }
-FamixPharoSmalltalkGenerator class >> wantsAllEntitiesNavigation [
-
-	^ false
-]
-
 { #category : #initialization }
 FamixPharoSmalltalkGenerator >> defineClasses [
 	super defineClasses.
