@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTPossibleStub classSide >> annotation [
 
-	<MSEClass: #TPossibleStub super: #Trait>
+	<MSEClass: #TPossibleStub super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

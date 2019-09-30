@@ -6,7 +6,7 @@ Trait {
 { #category : #meta }
 FamixTInheritanceGlue classSide >> annotation [
 
-	<MSEClass: #TInheritanceGlue super: #Trait>
+	<MSEClass: #TInheritanceGlue super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

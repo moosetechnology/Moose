@@ -14,7 +14,7 @@ Trait {
 { #category : #meta }
 FamixTImplicitVariable classSide >> annotation [
 
-	<MSEClass: #TImplicitVariable super: #Trait>
+	<MSEClass: #TImplicitVariable super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

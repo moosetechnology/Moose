@@ -17,7 +17,7 @@ Trait {
 { #category : #meta }
 FamixTNamespace classSide >> annotation [
 
-	<MSEClass: #TNamespace super: #Trait>
+	<MSEClass: #TNamespace super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

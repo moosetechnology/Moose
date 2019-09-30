@@ -64,7 +64,7 @@ Trait {
 { #category : #meta }
 TDependencyQueries classSide >> annotation [
 
-	<MSEClass: #TDependencyQueries super: #Trait>
+	<MSEClass: #TDependencyQueries super: #Object>
 	<package: #'Moose-Query'>
 	<generated>
 	^self

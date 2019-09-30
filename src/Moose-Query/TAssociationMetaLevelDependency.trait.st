@@ -11,7 +11,7 @@ Trait {
 { #category : #meta }
 TAssociationMetaLevelDependency classSide >> annotation [
 
-	<MSEClass: #TAssociationMetaLevelDependency super: #Trait>
+	<MSEClass: #TAssociationMetaLevelDependency super: #Object>
 	<package: #'Moose-Query'>
 	<generated>
 	^self

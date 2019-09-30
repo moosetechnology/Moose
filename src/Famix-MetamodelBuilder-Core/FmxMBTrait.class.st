@@ -69,6 +69,13 @@ FmxMBTrait >> defaultSuperclass [
 	^ self builder environment basicTrait
 ]
 
+{ #category : #accessing }
+FmxMBTrait >> defaultSuperclassName [
+	"In case of Traits we want the annotation to point Object as superclass."
+
+	^ 'Object'
+]
+
 { #category : #'settings-default' }
 FmxMBTrait >> defaultTag [
 

@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTReferenceable classSide >> annotation [
 
-	<MSEClass: #TReferenceable super: #Trait>
+	<MSEClass: #TReferenceable super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

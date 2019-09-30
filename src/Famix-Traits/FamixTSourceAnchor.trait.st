@@ -12,7 +12,7 @@ Trait {
 { #category : #meta }
 FamixTSourceAnchor classSide >> annotation [
 
-	<MSEClass: #TSourceAnchor super: #Trait>
+	<MSEClass: #TSourceAnchor super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

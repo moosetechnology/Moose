@@ -39,7 +39,7 @@ TEntityMetaLevelDependency classSide >> allParentTypesIn: aMetamodel [
 { #category : #meta }
 TEntityMetaLevelDependency classSide >> annotation [
 
-	<MSEClass: #TEntityMetaLevelDependency super: #Trait>
+	<MSEClass: #TEntityMetaLevelDependency super: #Object>
 	<package: #'Moose-Query'>
 	<generated>
 	^self
