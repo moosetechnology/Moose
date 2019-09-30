@@ -36,7 +36,7 @@ FAMIXInvocationGroupTest >> setUp [
 	invocation from: fromMethod.
 	invocation addCandidate: toMethod.
 	
-	model := MooseModel new addAll: { fromMethod. fromClass. fromNamespace. fromNamespaceNamespace. invocation. toMethod. toClass.  toNamespace. toNamespaceNamespace }; yourself
+	model := FAMIXModel new addAll: { fromMethod. fromClass. fromNamespace. fromNamespaceNamespace. invocation. toMethod. toClass.  toNamespace. toNamespaceNamespace }; yourself
 ]
 
 { #category : #test }

@@ -12,7 +12,7 @@ FAMIXSourceAnchorTest class >> isAbstract [
 { #category : #tests }
 FAMIXSourceAnchorTest >> testImportFileAnchors [
 	| model aMethod |
-	model := MooseModel new.
+	model := FAMIXModel new.
 	model
 		importFromMSEStream:
 			'(		

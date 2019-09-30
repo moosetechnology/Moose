@@ -12,7 +12,7 @@ FAMIXSourceLanguageTest >> actualClass [
 { #category : #tests }
 FAMIXSourceLanguageTest >> testDefaultSourceLanguage [
 	| model |
-	model := MooseModel new.
+	model := FAMIXModel new.
 	model
 		importFromMSEStream:
 			'(
@@ -22,15 +22,13 @@ FAMIXSourceLanguageTest >> testDefaultSourceLanguage [
 	)' readStream.
 	self assert: (model allClasses entityNamed: 'ClassWithoutSourceA') declaredSourceLanguage isNil.
 	self assert: (model allClasses entityNamed: 'ClassWithoutSourceB') declaredSourceLanguage isNil.
-	self
-		assert: (model allClasses entityNamed: 'ClassWithoutSourceA') sourceLanguage
-		equals: (model allClasses entityNamed: 'ClassWithoutSourceB') sourceLanguage.
+	self assert: (model allClasses entityNamed: 'ClassWithoutSourceA') sourceLanguage equals: (model allClasses entityNamed: 'ClassWithoutSourceB') sourceLanguage.
 	self assert: model sourceLanguage name equals: 'SomeLanguage'
 ]
 
 { #category : #tests }
 FAMIXSourceLanguageTest >> testDefaultUnknownLanguage [
-	self assert: MooseModel new sourceLanguage isNil
+	self assert: FAMIXModel new sourceLanguage isNil
 ]
 
 { #category : #tests }
@@ -46,7 +44,7 @@ FAMIXSourceLanguageTest >> testName [
 { #category : #tests }
 FAMIXSourceLanguageTest >> testSourcedEntities [
 	| model |
-	model := MooseModel new.
+	model := FAMIXModel new.
 	model
 		importFromMSEStream:
 			'(

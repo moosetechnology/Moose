@@ -12,7 +12,7 @@ FAMIXAnnotationInstanceAttributeTest >> actualClass [
 { #category : #tests }
 FAMIXAnnotationInstanceAttributeTest >> testComplex [
 	| model |
-	model := MooseModel new.
+	model := FAMIXModel new.
 	model
 		importFromMSEStream:
 			'(

@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 FAMIXJavaSourceLanguageTest >> testIsJava [
 	| model |
-	model := MooseModel new.
+	model := FAMIXModel new.
 	
 	model importFromMSEStream: '(
 		(FAMIX.JavaSourceLanguage)
