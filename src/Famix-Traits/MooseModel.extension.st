@@ -3,10 +3,9 @@ Extension { #name : #MooseModel }
 { #category : #'*Famix-Traits' }
 MooseModel >> allModelEntities [
 	<navigation: 'All model entities'>
-
-	^ self wantsAllEntitiesNavigation 
-		ifTrue: [ self entityStorage elements ]
-		ifFalse: [ nil ] "will be hidden by default"
+	^ self
+		lookUpPropertyNamed: #allModelEntities
+		computedAs: [ self entities reject: #isStub ]
 ]
 
 { #category : #'*Famix-Traits' }

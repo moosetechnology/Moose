@@ -208,8 +208,6 @@ FamixMetamodelGenerator class >> resetMetamodel [
 
 	elements do: [ :each | metamodel elementNamed: each fullName ifAbsent: [ metamodel add: each ] ].
 
-	metamodel additionalProperties at: #wantsAllEntitiesNavigation put: self wantsAllEntitiesNavigation.
-
 	"MooseEntity has a cache for some infos. When we regenerate a MM we need to flush this cache."
 	classes do: #resetMooseEntityCache.
 
@@ -226,14 +224,6 @@ FamixMetamodelGenerator class >> resetMetamodels [
 FamixMetamodelGenerator class >> submetamodels [ 
 
 	^ OrderedCollection new
-]
-
-{ #category : #accessing }
-FamixMetamodelGenerator class >> wantsAllEntitiesNavigation [
-
-	"I want to display all model entities in the navigation by default"
-
-	^ true
 ]
 
 { #category : #definition }
