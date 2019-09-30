@@ -5,7 +5,6 @@ Class {
 	#name : #MooseModel,
 	#superclass : #MooseAbstractGroup,
 	#instVars : [
-		'sourceLanguage',
 		'name',
 		'metamodel'
 	],
@@ -470,11 +469,6 @@ MooseModel >> intersection: aGroup [
 	^result
 ]
 
-{ #category : #'Famix-Extensions' }
-MooseModel >> isSmalltalk [
-	^ self sourceLanguage notNil and: [self sourceLanguage isSmalltalk]
-]
-
 { #category : #accessing }
 MooseModel >> localMooseModel [ 
 	 
@@ -625,21 +619,6 @@ MooseModel >> silentlyRemoveAll: collection [
 { #category : #accessing }
 MooseModel >> size [
 	^ self entityStorage size
-]
-
-{ #category : #'Famix-Extensions' }
-MooseModel >> sourceLanguage [
-	<MSEProperty: #sourceLanguage type: #FamixTSourceLanguage>
-	<MSEComment: 'Source of the Language to which the model corresponds'>
-	^ sourceLanguage
-		ifNil: [ sourceLanguage := self allSourceLanguages
-				detect: [ :each | each isAttached not ]
-				ifNone: [ nil ] ]
-]
-
-{ #category : #'Famix-Extensions' }
-MooseModel >> sourceLanguage: aSymbol [
-	sourceLanguage := aSymbol
 ]
 
 { #category : #'set operations' }
