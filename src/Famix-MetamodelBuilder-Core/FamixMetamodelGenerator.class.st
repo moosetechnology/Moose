@@ -190,7 +190,7 @@ FamixMetamodelGenerator class >> prefix [
 
 { #category : #accessing }
 FamixMetamodelGenerator class >> resetMetamodel [
-	| classes tower elements |
+	| classes tower |
 	"Collect all classes containing properties useful to the MM."
 	classes := (self packageName asPackage definedClasses asSet select: #isMetamodelEntity)
 		addAll: self basicMetamodelClasses;
@@ -203,10 +203,6 @@ FamixMetamodelGenerator class >> resetMetamodel [
 
 	tower := MooseModel metaBuilder: classes.
 	self metamodel: tower metamodel.
-
-	elements := self submetamodels flatCollect: [ :each | each metamodel elements ].
-
-	elements do: [ :each | metamodel elementNamed: each fullName ifAbsent: [ metamodel add: each ] ].
 
 	"MooseEntity has a cache for some infos. When we regenerate a MM we need to flush this cache."
 	classes do: #resetMooseEntityCache.
