@@ -8,7 +8,7 @@ Class {
 FAMIXCompilationUnitTest >> testImporting [
 	| model |
 	self skip: 'Test skipped until C metamodel definition'.
-	model := MooseModel new.
+	model := FAMIXModel new.
 	
 	model importFromMSEStream: '(
 		(FAMIX.CompilationUnit (id: 2) (module (ref: 3)))

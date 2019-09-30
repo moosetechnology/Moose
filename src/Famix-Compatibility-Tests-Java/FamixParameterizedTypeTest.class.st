@@ -11,7 +11,7 @@ Class {
 FamixParameterizedTypeTest >> setUp [
 
 	super setUp.
-	model := MooseModel new.
+	model := FAMIXModel new.
 	
 	model importFromMSEStream: '(
 		(FAMIX.Namespace (id: 1) (name ''NamespaceA''))

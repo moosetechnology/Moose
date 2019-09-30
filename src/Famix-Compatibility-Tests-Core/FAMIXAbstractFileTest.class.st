@@ -17,7 +17,7 @@ FAMIXAbstractFileTest >> testFullNameDoesNotRaiseError [
 	self
 		shouldnt: [ self actualClass new
 				mooseModel:
-					(MooseModel new
+					(FAMIXModel new
 						rootFolder: FileSystem memory root;
 						yourself);
 					name: 'test';

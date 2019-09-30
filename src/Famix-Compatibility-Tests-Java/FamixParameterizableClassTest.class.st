@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 FamixParameterizableClassTest >> testParameterTypes [
 	| model aParameterizableClass |
-	model := MooseModel new.
+	model := FAMIXModel new.
 	model
 		importFromMSEStream:
 			'(
