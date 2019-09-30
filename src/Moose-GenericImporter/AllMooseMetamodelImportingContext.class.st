@@ -6,6 +6,6 @@ Class {
 
 { #category : #'instance creation' }
 AllMooseMetamodelImportingContext class >> new [
-
-	^ super fromMeta: MooseModel meta elements
+	self flag: #todo.	"This code was produced before we had multiple MMs. It should probably be refactored."
+	^ super fromMeta: FAMIXModel new elements
 ]

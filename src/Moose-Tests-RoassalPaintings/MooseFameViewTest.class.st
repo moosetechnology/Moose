@@ -6,8 +6,7 @@ Class {
 
 { #category : #ui }
 MooseFameViewTest >> testOpenOn [
-
-	self shouldnt: [ MooseFameView new open delete ] raise: Error
+	self shouldnt: [ (MooseFameView new openOn: FamixGenerator metamodel) delete ] raise: Error
 ]
 
 { #category : #ui }

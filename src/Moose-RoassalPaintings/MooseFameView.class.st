@@ -9,7 +9,8 @@ Class {
 
 { #category : #opening }
 MooseFameView >> open [
-	^ self openOn: MooseModel meta
+	self deprecated: 'We do not have one MM anymose so you should explicit the MM you want.'.
+	^ self openOn: FAMIXModel new metamodel
 ]
 
 { #category : #opening }
