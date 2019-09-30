@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTInvocationsReceiver classSide >> annotation [
 
-	<MSEClass: #TInvocationsReceiver super: #Trait>
+	<MSEClass: #TInvocationsReceiver super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

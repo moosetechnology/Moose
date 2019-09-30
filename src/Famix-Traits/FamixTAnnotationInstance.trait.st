@@ -24,7 +24,7 @@ Trait {
 { #category : #meta }
 FamixTAnnotationInstance classSide >> annotation [
 
-	<MSEClass: #TAnnotationInstance super: #Trait>
+	<MSEClass: #TAnnotationInstance super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

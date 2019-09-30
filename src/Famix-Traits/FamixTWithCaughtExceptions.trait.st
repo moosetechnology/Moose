@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithCaughtExceptions classSide >> annotation [
 
-	<MSEClass: #TWithCaughtExceptions super: #Trait>
+	<MSEClass: #TWithCaughtExceptions super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

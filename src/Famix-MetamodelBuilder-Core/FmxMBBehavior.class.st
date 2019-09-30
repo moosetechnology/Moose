@@ -109,6 +109,11 @@ FmxMBBehavior >> defaultSuperclass [
 	^ self builder environment basicSuperclass
 ]
 
+{ #category : #generating }
+FmxMBBehavior >> defaultSuperclassName [
+	^ self defaultSuperclass name
+]
+
 { #category : #'settings - default' }
 FmxMBBehavior >> defaultTag [
 
@@ -162,8 +167,8 @@ FmxMBBehavior >> generateAnnotationIn: aRealClass as: aName superclass: aSupercl
 	aSuperclassName := aSuperclass
 		ifNotNil: [ aSuperclass name ]
 		ifNil: [ self classGeneralization = self defaultSuperclass
-				ifTrue: [ self defaultSuperclass name ]
-				ifFalse: [ self classGeneralization ifNil: [ self defaultSuperclass name ] ifNotNil: [ self classGeneralization realClass name ] ] ].
+				ifTrue: [ self defaultSuperclassName ]
+				ifFalse: [ self classGeneralization ifNil: [ self defaultSuperclassName ] ifNotNil: [ self classGeneralization realClass name ] ] ].
 
 	aRealClass classSide
 		compile:

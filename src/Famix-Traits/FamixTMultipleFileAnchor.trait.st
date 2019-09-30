@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTMultipleFileAnchor classSide >> annotation [
 
-	<MSEClass: #TMultipleFileAnchor super: #Trait>
+	<MSEClass: #TMultipleFileAnchor super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

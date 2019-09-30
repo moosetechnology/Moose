@@ -12,7 +12,7 @@ Trait {
 { #category : #meta }
 FamixTFileNavigation classSide >> annotation [
 
-	<MSEClass: #TFileNavigation super: #Trait>
+	<MSEClass: #TFileNavigation super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
