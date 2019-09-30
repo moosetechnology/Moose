@@ -64,7 +64,12 @@ FamixMetamodelGenerator class >> basicFamixTraits [
 
 { #category : #accessing }
 FamixMetamodelGenerator class >> basicMetamodelClasses [
-	^ ({MooseEntity . MooseAbstractGroup . MooseModel} , MooseGroup withAllSubclasses) asOrderedCollection
+	"We add to the creation of a metamodel all the metamodel entities of packages declaring to be part of the metamodels by default. 
+	
+	If a user of Famix wishes to add entities to all metamodels, they should add a methode #shouldBeIncludedByDefaultInMetamodels to their package manifest to return true."
+
+	^ (RPackageOrganizer default packages select: [ :package | package packageManifestOrNil ifNil: [ false ] ifNotNil: #shouldBeIncludedByDefaultInMetamodels ])
+		flatCollect: [ :package | package definedClasses select: #isMetamodelEntity ]
 ]
 
 { #category : #accessing }
