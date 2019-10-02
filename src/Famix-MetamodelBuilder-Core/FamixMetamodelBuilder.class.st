@@ -245,21 +245,28 @@ FamixMetamodelBuilder >> generateMooseModel [
 				in: configuration packageName
 				overwrite: false.
 
-			model
-				compile:
-					('initialize
-	<generated>
-	super initialize.
-	self metamodel: (self class environment at: #{1}) metamodel' format: {self generator class name})
-				classified: 'initialization'.
-
 			model classSide
 				compile:
 					('annotation
 	<MSEClass: #{1} super: #MooseModel>
 	<package: {2}>
 	<generated>' format: {mooseModelName . self safeAnnotationPackageName})
-				classified: 'meta' ]
+				classified: 'meta'.
+			self allSubBuilders
+				ifNotEmpty: [ :subBuilders | 
+					model classSide
+						compile:
+							('allSubmetamodelsPackagesNames
+	<generated>
+	^ #({1})'
+								format:
+									{(String
+										streamContents: [ :stream | 
+											| packages |
+											packages := (subBuilders collect: [ :builder | builder configuration packageName ]) asOrderedCollection.
+											packages sort: #yourself descending.
+											packages do: [ :package | stream print: package ] separatedBy: [ stream space ] ])})
+						classified: 'accessing' ] ]
 ]
 
 { #category : #generating }
