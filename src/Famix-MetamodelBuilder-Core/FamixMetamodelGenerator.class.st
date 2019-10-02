@@ -35,9 +35,6 @@ Class {
 		'cleaningStrategy',
 		'subBuildersMapByPrefix'
 	],
-	#classInstVars : [
-		'metamodel'
-	],
 	#category : #'Famix-MetamodelBuilder-Core-Basic'
 }
 
@@ -48,28 +45,6 @@ FamixMetamodelGenerator class >> addSubmetamodelsToGenerateFrom: aCollection to:
 		thenDo: [ :mm | 
 			mm submetamodels do: [ :smm | (metamodels includes: smm) ifFalse: [ metamodels add: smm before: mm ] ].
 			self addSubmetamodelsToGenerateFrom: mm submetamodels to: metamodels ]
-]
-
-{ #category : #accessing }
-FamixMetamodelGenerator class >> allSubmetamodels [
-	^ {self submetamodels . (self submetamodels collect: #allSubmetamodels)} flattened asSet
-]
-
-{ #category : #accessing }
-FamixMetamodelGenerator class >> basicFamixTraits [
-
-	^ #'Famix-Traits' asPackage definedClasses.
-	
-]
-
-{ #category : #accessing }
-FamixMetamodelGenerator class >> basicMetamodelClasses [
-	"We add to the creation of a metamodel all the metamodel entities of packages declaring to be part of the metamodels by default. 
-	
-	If a user of Famix wishes to add entities to all metamodels, they should add a methode #shouldBeIncludedByDefaultInMetamodels to their package manifest to return true."
-
-	^ (RPackageOrganizer default packages select: [ :package | package packageManifestOrNil ifNil: [ false ] ifNotNil: #shouldBeIncludedByDefaultInMetamodels ])
-		flatCollect: [ :package | package definedClasses select: #isMetamodelEntity ]
 ]
 
 { #category : #accessing }
@@ -141,14 +116,7 @@ FamixMetamodelGenerator class >> menuCommandOn: aBuilder [
 
 { #category : #accessing }
 FamixMetamodelGenerator class >> metamodel [
-	^ metamodel ifNil: [ metamodel := self resetMetamodel ]
-]
-
-{ #category : #accessing }
-FamixMetamodelGenerator class >> metamodel: anObject [
-
-	<ignoreForCoverage>
-	metamodel := anObject
+	^ self environment at: (self prefix , 'Model') asSymbol ifPresent: [ :m | m metamodel ]
 ]
 
 { #category : #generation }
@@ -159,16 +127,6 @@ FamixMetamodelGenerator class >> metamodelsToGenerate [
 	metamodels := self individualGenerators.
 	self addSubmetamodelsToGenerateFrom: metamodels to: metamodels.
 	^ metamodels
-]
-
-{ #category : #accessing }
-FamixMetamodelGenerator class >> newRepository [
-
-	| tower |
-	
-	tower := FMCompleteTower new.
-	tower metamodel addAll: self metamodel elements.
-	^ tower model.
 ]
 
 { #category : #accessing }
@@ -193,31 +151,9 @@ FamixMetamodelGenerator class >> prefix [
 ]
 
 { #category : #accessing }
-FamixMetamodelGenerator class >> resetMetamodel [
-	| classes tower |
-	"Collect all classes containing properties useful to the MM."
-	classes := (self packageName asPackage definedClasses asSet select: #isMetamodelEntity)
-		addAll: self basicMetamodelClasses;
-		yourself.
-
-	self allSubmetamodels do: [ :submetamodel | classes addAll: (submetamodel metamodel classes collect: #implementingClass) ].
-
-	"We need to reset the moose properties of each slot before building the tower."
-	(classes flatCollect: [ :class | class slots select: #isFMRelationSlot ]) do: #resetMooseProperty.
-
-	tower := MooseModel metaBuilder: classes.
-	self metamodel: tower metamodel.
-
-	"MooseEntity has a cache for some infos. When we regenerate a MM we need to flush this cache."
-	classes do: #resetMooseEntityCache.
-
-	^ metamodel
-]
-
-{ #category : #accessing }
 FamixMetamodelGenerator class >> resetMetamodels [
 	<script>
-	self metamodelsToGenerate do: #resetMetamodel
+	MooseModel allSubclassesDo: #resetMetamodel
 ]
 
 { #category : #accessing }
@@ -315,7 +251,7 @@ FamixMetamodelGenerator >> generate [
 				withCleaningDo: [ self builder generate.
 					self subBuilders do: #generateRemotes ]
 				with: self ].
-	self class resetMetamodel
+	self class environment at: (self prefix , 'Model') asSymbol ifPresent: #resetMetamodel
 ]
 
 { #category : #generation }

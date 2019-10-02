@@ -4,16 +4,15 @@ Class {
 	#category : #'Famix-Compatibility-Entities'
 }
 
+{ #category : #accessing }
+FAMIXModel class >> allSubmetamodelsPackagesNames [
+	<generated>
+	^ #(#'Moose-Query' #'Famix-Traits')
+]
+
 { #category : #meta }
 FAMIXModel class >> annotation [
 	<MSEClass: #FAMIXModel super: #MooseModel>
 	<package: #FAMIX>
 	<generated>
-]
-
-{ #category : #initialization }
-FAMIXModel >> initialize [
-	<generated>
-	super initialize.
-	self metamodel: (self class environment at: #FamixCompatibilityGenerator) metamodel
 ]

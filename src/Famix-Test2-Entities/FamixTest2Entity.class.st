@@ -17,7 +17,7 @@ FamixTest2Entity class >> annotation [
 FamixTest2Entity class >> metamodel [
 
 	<generated>
-	^ (self class environment at: #FamixTest2Generator) metamodel
+	^ FamixTest2Model metamodel
 ]
 
 { #category : #testing }

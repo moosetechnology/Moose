@@ -12,16 +12,33 @@ Class {
 		'MostRecentOwner'
 	],
 	#classInstVars : [
-		'metaTower'
+		'metamodel'
 	],
 	#category : #'Moose-Core'
 }
+
+{ #category : #accessing }
+MooseModel class >> allSubmetamodelsPackagesNames [
+	^ #()
+]
 
 { #category : #meta }
 MooseModel class >> annotation [
 	<MSEClass: #Model super: #MooseAbstractGroup>
 	<package: #Moose>
 
+]
+
+{ #category : #accessing }
+MooseModel class >> defaultPackagesToProcess [
+	"We add to the creation of a metamodel all the metamodel entities of packages declaring to be part of the metamodels by default. 
+	
+	If a user of Famix wishes to add entities to all metamodels, they should add a methode #shouldBeIncludedByDefaultInMetamodels to their package manifest to return true."
+
+	^ RPackageOrganizer default packages
+		select: [ :package | package packageManifestOrNil
+			ifNil: [ false ]
+			ifNotNil: #shouldBeIncludedByDefaultInMetamodels ]
 ]
 
 { #category : #'import-export' }
@@ -183,10 +200,10 @@ MooseModel class >> metaBuilder: aCollectionOfClasses withProcessor: aPragmaProc
 ]
 
 { #category : #meta }
-MooseModel class >> metaTower [
-
-	^metaTower ifNil: [
-		metaTower := self metaBuilder: self metamodelClasses ]
+MooseModel class >> metamodel [
+	self flag: #TODO. "The next line is a hack to not break everything in Moose. It should be removed later."
+	self = MooseModel ifTrue: [ ^ FAMIXModel metamodel ].
+	^ metamodel ifNil: [ self resetMetamodel ]
 ]
 
 { #category : #meta }
@@ -216,6 +233,14 @@ MooseModel class >> newPragmaProcessor [
 	^ MoosePragmaProcessor new
 ]
 
+{ #category : #accessing }
+MooseModel class >> newRepository [
+	| tower |
+	tower := FMCompleteTower new.
+	tower metamodel addAll: self metamodel elements.
+	^ tower model
+]
+
 { #category : #'private-instance creation' }
 MooseModel class >> newWithDefaultModels [ 
 	 
@@ -243,6 +268,35 @@ MooseModel class >> ownerOf: element [
 		ifNotNil: [ :elementID | 
 			MostRecentOwner ifNotNil: [ :model | (model includesID: elementID) ifTrue: [ ^ model ] ].
 			self allInstances detect: [ :model | model includesID: elementID ] ifFound: [ :model | MostRecentOwner := model ] ifNone: [ nil ] ]
+]
+
+{ #category : #meta }
+MooseModel class >> resetMetamodel [
+	| packages classes tower |
+	packages := Set new.
+	packages add: self package.
+	packages addAll: (self allSubmetamodelsPackagesNames collect: #asPackage).
+	packages addAll: self defaultPackagesToProcess.
+
+	"Collect all classes containing properties useful to the MM."
+	classes := packages flatCollectAsSet: [ :p | p definedClasses asSet select: #isMetamodelEntity ].
+
+	"We need to reset the moose properties of each slot before building the tower."
+	(classes flatCollect: [ :class | class slots select: #isFMRelationSlot ]) do: #resetMooseProperty.
+
+	tower := self metaBuilder: classes.
+	metamodel := tower metamodel.
+
+	"MooseEntity has a cache for some infos. When we regenerate a MM we need to flush this cache."
+	classes do: #resetMooseEntityCache.
+
+	^ metamodel
+]
+
+{ #category : #accessing }
+MooseModel class >> resetMetamodels [
+	<script>
+	self allSubclassesDo: #resetMetamodel
 ]
 
 { #category : #'root model' }
@@ -440,10 +494,10 @@ MooseModel >> includesElementsOfType: aClass [
 ]
 
 { #category : #'initialize-release' }
-MooseModel >> initialize [ 
-	 
-	super initialize. 
-	name := #noname
+MooseModel >> initialize [
+	super initialize.
+	name := #noname.
+	self metamodel: self class metamodel
 ]
 
 { #category : #actions }

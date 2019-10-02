@@ -10,10 +10,3 @@ FamixTest4Model class >> annotation [
 	<package: #'Famix-Test4-Entities'>
 	<generated>
 ]
-
-{ #category : #initialization }
-FamixTest4Model >> initialize [
-	<generated>
-	super initialize.
-	self metamodel: (self class environment at: #FamixTest4Generator) metamodel
-]
