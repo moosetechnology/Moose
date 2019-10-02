@@ -232,11 +232,9 @@ FamixMetamodelBuilder >> generateImportingContext [
 
 { #category : #generating }
 FamixMetamodelBuilder >> generateMooseModel [
-	self configuration prefix
-		ifNotEmpty: [ :prefix | 
-			| mooseModelName model |
-			mooseModelName := (prefix , 'Model') asSymbol.
-
+	self configuration mooseModelName
+		ifNotNil: [ :mooseModelName | 
+			| model |
 			model := self environment
 				createClassNamed: mooseModelName
 				superclass: MooseModel

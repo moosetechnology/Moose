@@ -116,7 +116,7 @@ FamixMetamodelGenerator class >> menuCommandOn: aBuilder [
 
 { #category : #accessing }
 FamixMetamodelGenerator class >> metamodel [
-	^ self environment at: (self prefix , 'Model') asSymbol ifPresent: [ :m | m metamodel ]
+	^ self withMooseModelDo: [ :m | m metamodel ]
 ]
 
 { #category : #generation }
@@ -127,6 +127,12 @@ FamixMetamodelGenerator class >> metamodelsToGenerate [
 	metamodels := self individualGenerators.
 	self addSubmetamodelsToGenerateFrom: metamodels to: metamodels.
 	^ metamodels
+]
+
+{ #category : #accessing }
+FamixMetamodelGenerator class >> mooseModelName [
+	self prefix ifEmpty: [ ^ nil ].
+	^ (self prefix , 'Model') asSymbol
 ]
 
 { #category : #accessing }
@@ -162,14 +168,18 @@ FamixMetamodelGenerator class >> submetamodels [
 	^ OrderedCollection new
 ]
 
+{ #category : #accessing }
+FamixMetamodelGenerator class >> withMooseModelDo: aBlock [
+	^ self environment at: self mooseModelName ifPresent: [ :class | aBlock value: class ]
+]
+
 { #category : #definition }
 FamixMetamodelGenerator >> adoptBuilder: aBuilder [
-
-	aBuilder configuration 
+	aBuilder configuration
 		prefix: self prefix;
 		packageName: self packageName;
-		packageNameForAnnotations: self packageNameForAnnotations.
-
+		packageNameForAnnotations: self packageNameForAnnotations;
+		mooseModelName: self class mooseModelName
 ]
 
 { #category : #accessing }
@@ -251,7 +261,7 @@ FamixMetamodelGenerator >> generate [
 				withCleaningDo: [ self builder generate.
 					self subBuilders do: #generateRemotes ]
 				with: self ].
-	self class environment at: (self prefix , 'Model') asSymbol ifPresent: #resetMetamodel
+	self class withMooseModelDo: #resetMetamodel
 ]
 
 { #category : #generation }
@@ -288,6 +298,11 @@ FamixMetamodelGenerator >> initialize [
 		builder environment: builder environment.		
 		each prefix -> subbuilder ]).
 
+]
+
+{ #category : #accessing }
+FamixMetamodelGenerator >> mooseModelName [
+	^ self class mooseModelName
 ]
 
 { #category : #definition }
