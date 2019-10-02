@@ -39,7 +39,7 @@ BaselineOfFamix >> baseline: spec [
 				package: 'Moose-Query-Extensions' with: [ spec requires: #('Moose-Query' 'Famix-Traits') ];
 				package: 'Famix-Groups' with: [ spec requires: #('Moose-Core' 'NeoCSV') ];
 				package: 'Famix-Traits' with: [ spec requires: #('Famix-Groups' 'Moose-Core') ];
-				package: 'Famix-MetamodelBuilder-Core' with: [ spec requires: #('Famix-Traits') ];
+				package: 'Famix-MetamodelBuilder-Core' with: [ spec requires: #('Moose-Core') ];
 				package: 'Famix-MetamodelGeneration' with: [ spec requires: #('Famix-MetamodelBuilder-Core') ];
 				package: 'Famix-BasicInfrastructure' with: [ spec requires: #('Famix-MetamodelBuilder-Core') ];
 				package: 'Famix-Smalltalk-Utils';
