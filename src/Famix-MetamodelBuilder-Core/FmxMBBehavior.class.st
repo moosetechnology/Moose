@@ -225,17 +225,19 @@ FmxMBBehavior >> generateRemoteAccessors [
 
 { #category : #generating }
 FmxMBBehavior >> generateRootMetamodelMethodIn: aClass [
+	| generator |
 	self isRoot ifFalse: [ ^ self ].
 
-	prefix
-		ifNotEmpty: [ :pref | 
-			aClass classSide
-				compile:
-					('metamodel
+	generator := self builder generator.
+	generator hasMooseModel ifFalse: [ ^ self ].
+
+	aClass classSide
+		compile:
+			('metamodel
 
 	<generated>
-	^ {1} metamodel' format: {(pref , 'Model') asSymbol})
-				classified: 'meta' ]
+	^ {1} metamodel' format: {generator mooseModelName})
+		classified: 'meta'
 ]
 
 { #category : #generating }
