@@ -73,11 +73,6 @@ FamixMetamodelGenerator class >> generateAllMetamodels [
 		displayingProgress: [ :mm | 'Regenerate ' , mm name ]
 ]
 
-{ #category : #testing }
-FamixMetamodelGenerator class >> hasMooseModel [
-	^ self prefix isNotEmpty
-]
-
 { #category : #generation }
 FamixMetamodelGenerator class >> individualGenerators [
 	^ self allSubclasses select: [ :c | c isRealMetamodel and: [ c isPartOfComposedMetaModel not ] ]
@@ -136,6 +131,7 @@ FamixMetamodelGenerator class >> metamodelsToGenerate [
 
 { #category : #accessing }
 FamixMetamodelGenerator class >> mooseModelName [
+	self prefix ifEmpty: [ ^ nil ].
 	^ (self prefix , 'Model') asSymbol
 ]
 
@@ -174,7 +170,6 @@ FamixMetamodelGenerator class >> submetamodels [
 
 { #category : #accessing }
 FamixMetamodelGenerator class >> withMooseModelDo: aBlock [
-	self hasMooseModel ifFalse: [ ^ self ].
 	^ self environment at: self mooseModelName ifPresent: [ :class | aBlock value: class ]
 ]
 
@@ -184,7 +179,7 @@ FamixMetamodelGenerator >> adoptBuilder: aBuilder [
 		prefix: self prefix;
 		packageName: self packageName;
 		packageNameForAnnotations: self packageNameForAnnotations;
-		mooseModelName: (self hasMooseModel ifTrue: [ self mooseModelName ] ifFalse: [ nil ])
+		mooseModelName: self class mooseModelName
 ]
 
 { #category : #accessing }
@@ -284,11 +279,6 @@ FamixMetamodelGenerator >> generateWithoutCleaning [
 { #category : #generation }
 FamixMetamodelGenerator >> generatedPackage [
 	^ self packageName asPackageIfAbsent: [ nil ]
-]
-
-{ #category : #testing }
-FamixMetamodelGenerator >> hasMooseModel [
-	^ self class hasMooseModel
 ]
 
 { #category : #definition }

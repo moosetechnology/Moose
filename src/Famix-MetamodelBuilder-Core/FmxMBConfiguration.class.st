@@ -97,6 +97,11 @@ FmxMBConfiguration >> mooseModelName [
 ]
 
 { #category : #accessing }
+FmxMBConfiguration >> mooseModelName: anObject [
+	mooseModelName := anObject
+]
+
+{ #category : #accessing }
 FmxMBConfiguration >> navigationForContainers [
 
 	"define if navigation methods for Moose Finder should be generated for containment relations"
