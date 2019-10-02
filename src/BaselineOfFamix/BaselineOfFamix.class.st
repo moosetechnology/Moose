@@ -42,7 +42,7 @@ BaselineOfFamix >> baseline: spec [
 				package: 'Famix-MetamodelBuilder-Core' with: [ spec requires: #('Moose-Core') ];
 				package: 'Famix-MetamodelGeneration' with: [ spec requires: #('Famix-MetamodelBuilder-Core') ];
 				package: 'Famix-BasicInfrastructure' with: [ spec requires: #('Famix-MetamodelGeneration') ];
-				package: 'Famix-Smalltalk-Utils';
+				package: 'Famix-Smalltalk-Utils' with: [ spec requires: #('Moose-Core') ];
 				package: 'Famix-Compatibility-Generator' with: [ spec requires: #('Famix-BasicInfrastructure') ];
 				package: 'Famix-Compatibility-Entities' with: [ spec requires: #('Famix-Traits' 'Famix-Smalltalk-Utils') ];
 				package: 'Moose-GenericImporter' with: [ spec requires: #('Famix-Compatibility-Entities') ];
