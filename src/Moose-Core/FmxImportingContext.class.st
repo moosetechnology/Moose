@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'imports'
 	],
-	#category : #'Famix-MetamodelBuilder-Core-Basic'
+	#category : #'Moose-Core'
 }
 
 { #category : #accessing }
