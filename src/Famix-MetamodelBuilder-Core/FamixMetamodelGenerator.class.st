@@ -180,12 +180,11 @@ FamixMetamodelGenerator class >> withMooseModelDo: aBlock [
 
 { #category : #definition }
 FamixMetamodelGenerator >> adoptBuilder: aBuilder [
-
-	aBuilder configuration 
+	aBuilder configuration
 		prefix: self prefix;
 		packageName: self packageName;
-		packageNameForAnnotations: self packageNameForAnnotations.
-
+		packageNameForAnnotations: self packageNameForAnnotations;
+		mooseModelName: (self hasMooseModel ifTrue: [ self mooseModelName ] ifFalse: [ nil ])
 ]
 
 { #category : #accessing }
