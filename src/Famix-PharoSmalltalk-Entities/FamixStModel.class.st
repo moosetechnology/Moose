@@ -1,7 +1,7 @@
 Class {
 	#name : #FamixStModel,
 	#superclass : #MooseModel,
-	#category : #'Famix-PharoSmalltalk-Entities'
+	#category : #'Famix-PharoSmalltalk-Entities-Model'
 }
 
 { #category : #accessing }

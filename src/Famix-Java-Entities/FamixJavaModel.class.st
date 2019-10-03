@@ -1,7 +1,7 @@
 Class {
 	#name : #FamixJavaModel,
 	#superclass : #MooseModel,
-	#category : #'Famix-Java-Entities'
+	#category : #'Famix-Java-Entities-Model'
 }
 
 { #category : #accessing }

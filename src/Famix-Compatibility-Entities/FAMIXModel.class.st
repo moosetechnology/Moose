@@ -1,7 +1,7 @@
 Class {
 	#name : #FAMIXModel,
 	#superclass : #MooseModel,
-	#category : #'Famix-Compatibility-Entities'
+	#category : #'Famix-Compatibility-Entities-Model'
 }
 
 { #category : #accessing }
