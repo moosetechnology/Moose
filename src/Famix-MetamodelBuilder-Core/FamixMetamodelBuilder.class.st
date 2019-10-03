@@ -243,6 +243,8 @@ FamixMetamodelBuilder >> generateMooseModel [
 				in: configuration packageName
 				overwrite: false.
 
+			model tagWith: #Model.
+
 			model classSide
 				compile:
 					('annotation

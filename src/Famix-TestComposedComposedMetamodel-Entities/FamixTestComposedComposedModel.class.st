@@ -1,7 +1,7 @@
 Class {
 	#name : #FamixTestComposedComposedModel,
 	#superclass : #MooseModel,
-	#category : #'Famix-TestComposedComposedMetamodel-Entities'
+	#category : #'Famix-TestComposedComposedMetamodel-Entities-Model'
 }
 
 { #category : #accessing }
