@@ -5,7 +5,7 @@ For more informations: https://moosequery.ferlicot.fr/
 "
 Trait {
 	#name : #TEntityMetaLevelDependency,
-	#category : #'Moose-Query'
+	#category : #'Moose-Query-Traits'
 }
 
 { #category : #new }

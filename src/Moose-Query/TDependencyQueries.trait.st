@@ -58,7 +58,7 @@ Examples
 "
 Trait {
 	#name : #TDependencyQueries,
-	#category : #'Moose-Query'
+	#category : #'Moose-Query-Traits'
 }
 
 { #category : #meta }

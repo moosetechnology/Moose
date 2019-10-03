@@ -16,7 +16,7 @@ Example
 Class {
 	#name : #MooseQueryAbstractDirectionStrategy,
 	#superclass : #Object,
-	#category : #'Moose-Query'
+	#category : #'Moose-Query-Strategies'
 }
 
 { #category : #accessing }
