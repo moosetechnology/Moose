@@ -17,6 +17,14 @@ FamixJavaAttribute class >> annotation [
 	<generated>
 	^self
 ]
+
+{ #category : #meta }
+FamixJavaAttribute class >> requirements [
+
+	<generated>
+	^ { FamixJavaAnnotationType. FamixJavaType }
+]
+
 { #category : #'as yet unclassified' }
 FamixJavaAttribute >> hasClassScope [
 	<MSEProperty: #hasClassScope type: #Boolean>
