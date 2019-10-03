@@ -1,19 +1,16 @@
-"
-A FAMIXFileTest is a test class for testing the behavior of FAMIXFile
-"
 Class {
-	#name : #FAMIXFileTest,
-	#superclass : #FAMIXAbstractFileTest,
-	#category : #'Famix-Compatibility-Tests-Core'
+	#name : #FamixFileTest,
+	#superclass : #FamixAbstractFileTest,
+	#category : #'Famix-Test1-Tests-Files'
 }
 
 { #category : #helpers }
-FAMIXFileTest >> actualClass [
-	^ FAMIXFile
+FamixFileTest >> actualClass [
+	^ FamixTest1File
 ]
 
-{ #category : #helpers }
-FAMIXFileTest >> testNumberOfBytes [
+{ #category : #tests }
+FamixFileTest >> testNumberOfBytes [
 	| sourceFile file |
 	sourceFile := FileSystem memory / 'test.txt'.
 	sourceFile ensureCreateFile.
@@ -25,8 +22,8 @@ FAMIXFileTest >> testNumberOfBytes [
 	self assert: file numberOfBytes equals: 27
 ]
 
-{ #category : #helpers }
-FAMIXFileTest >> testNumberOfCharacters [
+{ #category : #tests }
+FamixFileTest >> testNumberOfCharacters [
 	| sourceFile file |
 	sourceFile := FileSystem memory / 'test.txt'.
 	sourceFile ensureCreateFile.
@@ -38,8 +35,8 @@ FAMIXFileTest >> testNumberOfCharacters [
 	self assert: file numberOfCharacters equals: 32
 ]
 
-{ #category : #helpers }
-FAMIXFileTest >> testNumberOfCharactersWithCRLF [
+{ #category : #tests }
+FamixFileTest >> testNumberOfCharactersWithCRLF [
 	| sourceFile file |
 	sourceFile := FileSystem memory / 'test.txt'.
 	sourceFile ensureCreateFile.
@@ -51,8 +48,8 @@ FAMIXFileTest >> testNumberOfCharactersWithCRLF [
 	self assert: file numberOfCharacters equals: 38
 ]
 
-{ #category : #helpers }
-FAMIXFileTest >> testNumberOfCharactersWithLineReturns [
+{ #category : #tests }
+FamixFileTest >> testNumberOfCharactersWithLineReturns [
 	| sourceFile file |
 	sourceFile := FileSystem memory / 'test.txt'.
 	sourceFile ensureCreateFile.
@@ -70,8 +67,8 @@ characters.' ].
 	self assert: file numberOfCharacters equals: 32
 ]
 
-{ #category : #helpers }
-FAMIXFileTest >> testNumberOfEmptyLinesOfText [
+{ #category : #tests }
+FamixFileTest >> testNumberOfEmptyLinesOfText [
 	| sourceFile file |
 	sourceFile := FileSystem memory / 'test.txt'.
 	sourceFile ensureCreateFile.
@@ -93,8 +90,8 @@ test.' ].
 	self assert: file numberOfEmptyLinesOfText equals: 3
 ]
 
-{ #category : #helpers }
-FAMIXFileTest >> testNumberOfEmptyLinesOfTextWithCRLF [
+{ #category : #tests }
+FamixFileTest >> testNumberOfEmptyLinesOfTextWithCRLF [
 	| sourceFile file |
 	sourceFile := FileSystem memory / 'test.txt'.
 	sourceFile ensureCreateFile.
@@ -106,8 +103,8 @@ FAMIXFileTest >> testNumberOfEmptyLinesOfTextWithCRLF [
 	self assert: file numberOfEmptyLinesOfText equals: 3
 ]
 
-{ #category : #helpers }
-FAMIXFileTest >> testNumberOfEmptyLinesOfTextWithoutEmptyLine [
+{ #category : #tests }
+FamixFileTest >> testNumberOfEmptyLinesOfTextWithoutEmptyLine [
 	| sourceFile file |
 	sourceFile := FileSystem memory / 'test.txt'.
 	sourceFile ensureCreateFile.
