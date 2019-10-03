@@ -1,16 +1,16 @@
 Class {
-	#name : #FAMIXIndexedFileAnchorTest,
-	#superclass : #FAMIXAbstractFileAnchorTest,
-	#category : #'Famix-Compatibility-Tests-Core'
+	#name : #FamixIndexedFileAnchorTest,
+	#superclass : #FamixAbstractFileAnchorTest,
+	#category : #'Famix-Test1-Tests-SourceAnchor'
 }
 
 { #category : #helpers }
-FAMIXIndexedFileAnchorTest >> actualClass [
-	^ FAMIXIndexedFileAnchor 
+FamixIndexedFileAnchorTest >> actualClass [
+	^ FamixTest1IndexedFileAnchor
 ]
 
 { #category : #helpers }
-FAMIXIndexedFileAnchorTest >> anchorForClassTest [
+FamixIndexedFileAnchorTest >> anchorForClassTest [
 	| file anchor |
 	file := (FileSystem memory / 'test.java')
 		ensureCreateFile;
@@ -25,7 +25,7 @@ FAMIXIndexedFileAnchorTest >> anchorForClassTest [
 ]
 
 { #category : #tests }
-FAMIXIndexedFileAnchorTest >> testFullSourceText [
+FamixIndexedFileAnchorTest >> testFullSourceText [
 	| anchor |
 	anchor := self anchorForClassTest
 		startPos: 1;
@@ -35,7 +35,7 @@ FAMIXIndexedFileAnchorTest >> testFullSourceText [
 ]
 
 { #category : #tests }
-FAMIXIndexedFileAnchorTest >> testLineCountWithCRLF [
+FamixIndexedFileAnchorTest >> testLineCountWithCRLF [
 	| file anchor |
 	(file := FileSystem memory / 'test.java')
 		ensureCreateFile;
@@ -49,7 +49,7 @@ FAMIXIndexedFileAnchorTest >> testLineCountWithCRLF [
 ]
 
 { #category : #tests }
-FAMIXIndexedFileAnchorTest >> testLineCountWithoutEndPos [
+FamixIndexedFileAnchorTest >> testLineCountWithoutEndPos [
 	| anchor |
 	anchor := self anchorForClassTest
 		endPos: nil;
@@ -58,7 +58,7 @@ FAMIXIndexedFileAnchorTest >> testLineCountWithoutEndPos [
 ]
 
 { #category : #tests }
-FAMIXIndexedFileAnchorTest >> testLineCountWithoutStartPos [
+FamixIndexedFileAnchorTest >> testLineCountWithoutStartPos [
 	| anchor |
 	anchor := self anchorForClassTest
 		startPos: nil;
@@ -68,7 +68,7 @@ FAMIXIndexedFileAnchorTest >> testLineCountWithoutStartPos [
 ]
 
 { #category : #tests }
-FAMIXIndexedFileAnchorTest >> testSourceText [
+FamixIndexedFileAnchorTest >> testSourceText [
 	| anchor |
 	anchor := self anchorForClassTest
 		startPos: 212;
@@ -81,7 +81,7 @@ FAMIXIndexedFileAnchorTest >> testSourceText [
 ]
 
 { #category : #tests }
-FAMIXIndexedFileAnchorTest >> testSourceTextWithoutEndPos [
+FamixIndexedFileAnchorTest >> testSourceTextWithoutEndPos [
 	| anchor |
 	anchor := self anchorForClassTest
 		startPos: 212;
@@ -99,7 +99,7 @@ FAMIXIndexedFileAnchorTest >> testSourceTextWithoutEndPos [
 ]
 
 { #category : #tests }
-FAMIXIndexedFileAnchorTest >> testSourceTextWithoutStartAndEndPos [
+FamixIndexedFileAnchorTest >> testSourceTextWithoutStartAndEndPos [
 	| anchor |
 	anchor := self anchorForClassTest
 		startPos: nil;
@@ -110,7 +110,7 @@ FAMIXIndexedFileAnchorTest >> testSourceTextWithoutStartAndEndPos [
 ]
 
 { #category : #tests }
-FAMIXIndexedFileAnchorTest >> testSourceTextWithoutStartPos [
+FamixIndexedFileAnchorTest >> testSourceTextWithoutStartPos [
 	| anchor |
 	anchor := self anchorForClassTest
 		startPos: nil;

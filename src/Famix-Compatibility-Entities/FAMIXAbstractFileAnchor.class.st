@@ -38,11 +38,6 @@ FAMIXAbstractFileAnchor >> intervalAsCharPos [
 	self subclassResponsibility
 ]
 
-{ #category : #printing }
-FAMIXAbstractFileAnchor >> mooseNameOn: aStream [
-	aStream nextPutAll: self fileName asString
-]
-
 { #category : #accessing }
 FAMIXAbstractFileAnchor >> sourceText [
 	self subclassResponsibility

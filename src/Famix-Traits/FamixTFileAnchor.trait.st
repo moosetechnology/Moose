@@ -8,7 +8,7 @@ Trait {
 		'#encoding => FMProperty',
 		'#fileName => FMProperty'
 	],
-	#category : #'Famix-Traits-FileAnchor'
+	#category : #'Famix-Traits-SourceAnchor'
 }
 
 { #category : #meta }
@@ -115,6 +115,11 @@ FamixTFileAnchor >> lineCount [
 		ifTrue: [ self sourceText lineCount ]
 		ifFalse: [ self notExistentMetricValue ]
 	
+]
+
+{ #category : #printing }
+FamixTFileAnchor >> mooseNameOn: aStream [
+	aStream nextPutAll: self fileName asString
 ]
 
 { #category : #private }

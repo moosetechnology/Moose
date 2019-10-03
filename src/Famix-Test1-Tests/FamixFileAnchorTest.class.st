@@ -1,16 +1,16 @@
 Class {
-	#name : #FAMIXFileAnchorTest,
-	#superclass : #FAMIXAbstractFileAnchorTest,
-	#category : #'Famix-Compatibility-Tests-Core'
+	#name : #FamixFileAnchorTest,
+	#superclass : #FamixAbstractFileAnchorTest,
+	#category : #'Famix-Test1-Tests-SourceAnchor'
 }
 
 { #category : #helpers }
-FAMIXFileAnchorTest >> actualClass [
-	^ FAMIXFileAnchor
+FamixFileAnchorTest >> actualClass [
+	^ FamixTest1FileAnchor
 ]
 
 { #category : #helpers }
-FAMIXFileAnchorTest >> anchorForClassTest [
+FamixFileAnchorTest >> anchorForClassTest [
 	| file anchor |
 	file := (FileSystem memory / 'test.java')
 		ensureCreateFile;
@@ -27,7 +27,7 @@ FAMIXFileAnchorTest >> anchorForClassTest [
 ]
 
 { #category : #tests }
-FAMIXFileAnchorTest >> testEmptySourceTextWhenNoEndAndStartLine [
+FamixFileAnchorTest >> testEmptySourceTextWhenNoEndAndStartLine [
 	| fileAnchor |
 	fileAnchor := self anchorForClassTest
 		startLine: nil;
@@ -39,7 +39,7 @@ FAMIXFileAnchorTest >> testEmptySourceTextWhenNoEndAndStartLine [
 ]
 
 { #category : #tests }
-FAMIXFileAnchorTest >> testEmptySourceTextWhenNoEndLine [
+FamixFileAnchorTest >> testEmptySourceTextWhenNoEndLine [
 	| fileAnchor |
 	fileAnchor := self anchorForClassTest
 		startLine: 17;
@@ -58,7 +58,7 @@ FAMIXFileAnchorTest >> testEmptySourceTextWhenNoEndLine [
 ]
 
 { #category : #tests }
-FAMIXFileAnchorTest >> testEmptySourceTextWhenNoStartLine [
+FamixFileAnchorTest >> testEmptySourceTextWhenNoStartLine [
 	| fileAnchor |
 	fileAnchor := self anchorForClassTest
 		startLine: nil;
@@ -91,7 +91,7 @@ public class Dice9 implements Dice {
 ]
 
 { #category : #tests }
-FAMIXFileAnchorTest >> testMooseNameOn [
+FamixFileAnchorTest >> testMooseNameOn [
 	| fileAnchor |
 	fileAnchor := self actualClass new
 		fileName: 'file';
@@ -102,7 +102,7 @@ FAMIXFileAnchorTest >> testMooseNameOn [
 ]
 
 { #category : #tests }
-FAMIXFileAnchorTest >> testMooseNameWithColumns [
+FamixFileAnchorTest >> testMooseNameWithColumns [
 	| fileAnchor |
 	fileAnchor := self actualClass new
 		fileName: 'file';
@@ -115,7 +115,7 @@ FAMIXFileAnchorTest >> testMooseNameWithColumns [
 ]
 
 { #category : #tests }
-FAMIXFileAnchorTest >> testSourceText [
+FamixFileAnchorTest >> testSourceText [
 	| anchor |
 	anchor := self anchorForClassTest
 		startLine: 17;
@@ -132,7 +132,7 @@ FAMIXFileAnchorTest >> testSourceText [
 ]
 
 { #category : #tests }
-FAMIXFileAnchorTest >> testSourceTextConserveItsLineReturn [
+FamixFileAnchorTest >> testSourceTextConserveItsLineReturn [
 	| file anchor |
 	file := (FileSystem memory / 'test.java')
 		ensureCreateFile;
@@ -154,7 +154,7 @@ FAMIXFileAnchorTest >> testSourceTextConserveItsLineReturn [
 ]
 
 { #category : #tests }
-FAMIXFileAnchorTest >> testSourceTextEndingOnNewLine [
+FamixFileAnchorTest >> testSourceTextEndingOnNewLine [
 	| anchor |
 	anchor := self anchorForClassTest
 		startLine: 17;
@@ -179,7 +179,7 @@ FAMIXFileAnchorTest >> testSourceTextEndingOnNewLine [
 ]
 
 { #category : #tests }
-FAMIXFileAnchorTest >> testSourceTextEndingOnTwoNewLine [
+FamixFileAnchorTest >> testSourceTextEndingOnTwoNewLine [
 	| anchor |
 	anchor := self anchorForClassTest
 		startLine: 17;
@@ -206,7 +206,7 @@ FAMIXFileAnchorTest >> testSourceTextEndingOnTwoNewLine [
 ]
 
 { #category : #tests }
-FAMIXFileAnchorTest >> testSourceTextInOneLine [
+FamixFileAnchorTest >> testSourceTextInOneLine [
 	| anchor |
 	anchor := self anchorForClassTest
 		startLine: 15;
@@ -221,7 +221,7 @@ FAMIXFileAnchorTest >> testSourceTextInOneLine [
 ]
 
 { #category : #tests }
-FAMIXFileAnchorTest >> testSourceTextWithLf [
+FamixFileAnchorTest >> testSourceTextWithLf [
 	| file anchor |
 	file := (FileSystem memory / 'test.java')
 		ensureCreateFile;
@@ -243,7 +243,7 @@ FAMIXFileAnchorTest >> testSourceTextWithLf [
 ]
 
 { #category : #tests }
-FAMIXFileAnchorTest >> testSourceTextWithoutNoEndColumn [
+FamixFileAnchorTest >> testSourceTextWithoutNoEndColumn [
 	| anchor |
 	anchor := self anchorForClassTest
 		startLine: 17;
@@ -260,7 +260,7 @@ FAMIXFileAnchorTest >> testSourceTextWithoutNoEndColumn [
 ]
 
 { #category : #tests }
-FAMIXFileAnchorTest >> testSourceTextWithoutNoStartColumn [
+FamixFileAnchorTest >> testSourceTextWithoutNoStartColumn [
 	| anchor |
 	anchor := self anchorForClassTest
 		startLine: 17;
