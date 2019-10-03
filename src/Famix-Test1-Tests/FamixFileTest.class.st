@@ -1,19 +1,16 @@
-"
-A FamixJavaFileTest is a test class for testing the behavior of FamixJavaFile
-"
 Class {
-	#name : #FamixJavaFileTest,
-	#superclass : #FamixJavaAbstractFileTest,
-	#category : #'Famix-Java-Tests'
+	#name : #FamixFileTest,
+	#superclass : #FamixAbstractFileTest,
+	#category : #'Famix-Test1-Tests-Files'
 }
 
 { #category : #helpers }
-FamixJavaFileTest >> actualClass [ 
-		^ FamixJavaFile
+FamixFileTest >> actualClass [
+	^ FamixTest1File
 ]
 
-{ #category : #helpers }
-FamixJavaFileTest >> testNumberOfBytes [
+{ #category : #tests }
+FamixFileTest >> testNumberOfBytes [
 	| sourceFile file |
 	sourceFile := FileSystem memory / 'test.txt'.
 	sourceFile ensureCreateFile.
@@ -25,8 +22,8 @@ FamixJavaFileTest >> testNumberOfBytes [
 	self assert: file numberOfBytes equals: 27
 ]
 
-{ #category : #helpers }
-FamixJavaFileTest >> testNumberOfCharacters [
+{ #category : #tests }
+FamixFileTest >> testNumberOfCharacters [
 	| sourceFile file |
 	sourceFile := FileSystem memory / 'test.txt'.
 	sourceFile ensureCreateFile.
@@ -38,8 +35,8 @@ FamixJavaFileTest >> testNumberOfCharacters [
 	self assert: file numberOfCharacters equals: 32
 ]
 
-{ #category : #helpers }
-FamixJavaFileTest >> testNumberOfCharactersWithCRLF [
+{ #category : #tests }
+FamixFileTest >> testNumberOfCharactersWithCRLF [
 	| sourceFile file |
 	sourceFile := FileSystem memory / 'test.txt'.
 	sourceFile ensureCreateFile.
@@ -51,8 +48,8 @@ FamixJavaFileTest >> testNumberOfCharactersWithCRLF [
 	self assert: file numberOfCharacters equals: 38
 ]
 
-{ #category : #helpers }
-FamixJavaFileTest >> testNumberOfCharactersWithLineReturns [
+{ #category : #tests }
+FamixFileTest >> testNumberOfCharactersWithLineReturns [
 	| sourceFile file |
 	sourceFile := FileSystem memory / 'test.txt'.
 	sourceFile ensureCreateFile.
@@ -70,8 +67,8 @@ characters.' ].
 	self assert: file numberOfCharacters equals: 32
 ]
 
-{ #category : #helpers }
-FamixJavaFileTest >> testNumberOfEmptyLinesOfText [
+{ #category : #tests }
+FamixFileTest >> testNumberOfEmptyLinesOfText [
 	| sourceFile file |
 	sourceFile := FileSystem memory / 'test.txt'.
 	sourceFile ensureCreateFile.
@@ -93,8 +90,8 @@ test.' ].
 	self assert: file numberOfEmptyLinesOfText equals: 3
 ]
 
-{ #category : #helpers }
-FamixJavaFileTest >> testNumberOfEmptyLinesOfTextWithCRLF [
+{ #category : #tests }
+FamixFileTest >> testNumberOfEmptyLinesOfTextWithCRLF [
 	| sourceFile file |
 	sourceFile := FileSystem memory / 'test.txt'.
 	sourceFile ensureCreateFile.
@@ -106,8 +103,8 @@ FamixJavaFileTest >> testNumberOfEmptyLinesOfTextWithCRLF [
 	self assert: file numberOfEmptyLinesOfText equals: 3
 ]
 
-{ #category : #helpers }
-FamixJavaFileTest >> testNumberOfEmptyLinesOfTextWithoutEmptyLine [
+{ #category : #tests }
+FamixFileTest >> testNumberOfEmptyLinesOfTextWithoutEmptyLine [
 	| sourceFile file |
 	sourceFile := FileSystem memory / 'test.txt'.
 	sourceFile ensureCreateFile.
