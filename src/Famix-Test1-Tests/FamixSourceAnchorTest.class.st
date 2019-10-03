@@ -1,5 +1,5 @@
 Class {
-	#name : #OldFamixTSourceAnchorTest,
+	#name : #FamixSourceAnchorTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'model',
@@ -11,7 +11,7 @@ Class {
 }
 
 { #category : #running }
-OldFamixTSourceAnchorTest >> setUp [
+FamixSourceAnchorTest >> setUp [
 
 	super setUp.
 
@@ -27,7 +27,7 @@ OldFamixTSourceAnchorTest >> setUp [
 ]
 
 { #category : #tests }
-OldFamixTSourceAnchorTest >> testElement [
+FamixSourceAnchorTest >> testElement [
 
 	anchor element: m1.
 	self assert: anchor element equals: m1.
@@ -40,14 +40,14 @@ OldFamixTSourceAnchorTest >> testElement [
 ]
 
 { #category : #tests }
-OldFamixTSourceAnchorTest >> testLineCount [
+FamixSourceAnchorTest >> testLineCount [
 
 	self assert: anchor lineCount equals: model notExistentMetricValue.
 	
 ]
 
 { #category : #tests }
-OldFamixTSourceAnchorTest >> testSourceText [
+FamixSourceAnchorTest >> testSourceText [
 
 	"source text is empty by default"
 	self assert: anchor sourceText isNil
