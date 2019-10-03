@@ -4,7 +4,7 @@ Trait {
 		'#endPos => FMProperty',
 		'#startPos => FMProperty'
 	],
-	#category : #'Famix-Traits-Traits'
+	#category : #'Famix-Traits-SourceAnchor'
 }
 
 { #category : #meta }

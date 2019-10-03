@@ -35,6 +35,13 @@ FamixTSourceAnchor >> element: anObject [
 
 ]
 
+{ #category : #testing }
+FamixTSourceAnchor >> isMultiple [
+	"Return true for source anchors in multiple parts."
+
+	^ false
+]
+
 { #category : #metrics }
 FamixTSourceAnchor >> lineCount [
 
