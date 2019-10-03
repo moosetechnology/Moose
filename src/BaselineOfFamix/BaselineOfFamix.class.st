@@ -199,7 +199,7 @@ BaselineOfFamix >> ring2: spec [
 
 { #category : #dependencies }
 BaselineOfFamix >> roelTyper: spec [
-	spec baseline: 'RoelTyper' with: [ spec repository: repository ]
+	spec baseline: 'RoelTyper' with: [ spec repository: 'github://RMODINRIA/RoelTyper:v1.x.x/src' ]
 ]
 
 { #category : #dependencies }
