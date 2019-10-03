@@ -55,11 +55,6 @@ FAMIXSourceAnchor >> isFile [
 	^ false
 ]
 
-{ #category : #testing }
-FAMIXSourceAnchor >> isMultiple [
-	^ false
-]
-
 { #category : #accessing }
 FAMIXSourceAnchor >> lineCount [
 	"I should return the number of line in the source text of the entity."

@@ -48,11 +48,6 @@ FamixJavaSourceAnchor >> isFile [
 	^ false
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaSourceAnchor >> isMultiple [
-	^ false
-]
-
 { #category : #metrics }
 FamixJavaSourceAnchor >> lineCount [
 	"I should return the number of line in the source text of the entity."

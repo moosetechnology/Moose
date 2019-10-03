@@ -1,26 +1,23 @@
-"
-I am an abstract test class for the tests of FAMIXAbstractFileAnchor's subclasses
-"
 Class {
-	#name : #FAMIXAbstractFileAnchorTest,
-	#superclass : #FAMIXSourceAnchorTest,
-	#category : #'Famix-Compatibility-Tests-Core'
+	#name : #FamixAbstractFileAnchorTest,
+	#superclass : #FamixSourceAnchorTest,
+	#category : #'Famix-Test1-Tests-SourceAnchor'
 }
 
 { #category : #testing }
-FAMIXAbstractFileAnchorTest class >> isAbstract [
-	^ self = FAMIXAbstractFileAnchorTest
+FamixAbstractFileAnchorTest class >> isAbstract [
+	^ self = FamixAbstractFileAnchorTest
 ]
 
 { #category : #helpers }
-FAMIXAbstractFileAnchorTest >> anchorForClassTest [
+FamixAbstractFileAnchorTest >> anchorForClassTest [
 	"I should return a file anchor of a class for some tests as testLineCount."
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #tests }
-FAMIXAbstractFileAnchorTest >> sourceCodeForTest [
+{ #category : #helpers }
+FamixAbstractFileAnchorTest >> sourceCodeForTest [
 	^ 'package goosegame.dice;
 
 import goosegame.Dice;
@@ -45,14 +42,14 @@ public class Dice9 implements Dice {
 ]
 
 { #category : #tests }
-FAMIXAbstractFileAnchorTest >> testFileNameHasOnlySlashes [
+FamixAbstractFileAnchorTest >> testFileNameHasOnlySlashes [
 	self 
 		assert: (self actualClass new fileName: 'a\b/c\d/ef') fileName
 		equals: 'a/b/c/d/ef'
 ]
 
 { #category : #tests }
-FAMIXAbstractFileAnchorTest >> testLineCount [
+FamixAbstractFileAnchorTest >> testLineCount [
 	| file anchor |
 	(file := FileSystem memory / 'test.txt')
 		ensureCreateFile;
@@ -63,7 +60,7 @@ FAMIXAbstractFileAnchorTest >> testLineCount [
 ]
 
 { #category : #tests }
-FAMIXAbstractFileAnchorTest >> testLineCountWithCRLF [
+FamixAbstractFileAnchorTest >> testLineCountWithCRLF [
 	| file anchor |
 	(file := FileSystem memory / 'test.txt')
 		ensureCreateFile;

@@ -1,32 +1,29 @@
-"
-A FAMIXMultipleFileAnchorTest is a test class for testing the behavior of FAMIXMultipleFileAnchor
-"
 Class {
-	#name : #FAMIXMultipleFileAnchorTest,
-	#superclass : #FAMIXSourceAnchorTest,
-	#category : #'Famix-Compatibility-Tests-Core'
+	#name : #FamixMultipleFileAnchorTest,
+	#superclass : #FamixSourceAnchorTest,
+	#category : #'Famix-Test1-Tests-SourceAnchor'
 }
 
 { #category : #helpers }
-FAMIXMultipleFileAnchorTest >> actualClass [
-	^ FAMIXMultipleFileAnchor
+FamixMultipleFileAnchorTest >> actualClass [
+	^ FamixTest1MultipleFileAnchor
 ]
 
 { #category : #tests }
-FAMIXMultipleFileAnchorTest >> testContainerFiles [
-	| anchor file1 file2 |
+FamixMultipleFileAnchorTest >> testContainerFiles [
+	| anchor |
 	anchor := self actualClass new
 		addSourceAnchor:
-			(FAMIXFileAnchor new
+			(FamixTest1FileAnchor new
 				correspondingFile:
-					(file1 := FAMIXFile new
+					(FamixTest1File new
 						name: 'test';
 						yourself);
 				yourself);
 		addSourceAnchor:
-			(FAMIXFileAnchor new
+			(FamixTest1FileAnchor new
 				correspondingFile:
-					(file2 := FAMIXFile new
+					(FamixTest1File new
 						name: 'test2';
 						yourself);
 				yourself);
@@ -36,18 +33,18 @@ FAMIXMultipleFileAnchorTest >> testContainerFiles [
 ]
 
 { #category : #tests }
-FAMIXMultipleFileAnchorTest >> testContainerFilesWithoutFileReferenced [
+FamixMultipleFileAnchorTest >> testContainerFilesWithoutFileReferenced [
 	"This test was added because before if a multiple source anchor does not have the corresponding files we got array of nils"
 
 	| anchor |
 	anchor := self actualClass new
-		addSourceAnchor: FAMIXFileAnchor new;
-		addSourceAnchor: FAMIXFileAnchor new;
+		addSourceAnchor: FamixTest1FileAnchor new;
+		addSourceAnchor: FamixTest1FileAnchor new;
 		yourself.
-	self assert: anchor containerFiles size equals: 0
+	self assertEmpty: anchor containerFiles
 ]
 
 { #category : #tests }
-FAMIXMultipleFileAnchorTest >> testIsMultiple [
+FamixMultipleFileAnchorTest >> testIsMultiple [
 	^ self assert: self actualClass new isMultiple
 ]
