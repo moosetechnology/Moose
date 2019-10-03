@@ -29,7 +29,7 @@ Class {
 	#instVars : [
 		'strategy'
 	],
-	#category : #'Moose-Query'
+	#category : #'Moose-Query-Core'
 }
 
 { #category : #'instance creation' }

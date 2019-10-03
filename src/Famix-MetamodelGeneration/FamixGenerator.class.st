@@ -1768,16 +1768,3 @@ FamixGenerator >> defineTraits [
 
 
 ]
-
-{ #category : #initialization }
-FamixGenerator >> initialize [
-
-	super initialize.
-
-	builder := FamixMetamodelBuilder forGenerator: self.
-
-	builder configuration 
-		prefix: self prefix;
-		packageName: self packageName.
-
-]

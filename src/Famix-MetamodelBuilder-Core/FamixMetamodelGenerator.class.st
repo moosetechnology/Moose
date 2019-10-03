@@ -35,9 +35,6 @@ Class {
 		'cleaningStrategy',
 		'subBuildersMapByPrefix'
 	],
-	#classInstVars : [
-		'metamodel'
-	],
 	#category : #'Famix-MetamodelBuilder-Core-Basic'
 }
 
@@ -48,24 +45,6 @@ FamixMetamodelGenerator class >> addSubmetamodelsToGenerateFrom: aCollection to:
 		thenDo: [ :mm | 
 			mm submetamodels do: [ :smm | (metamodels includes: smm) ifFalse: [ metamodels add: smm before: mm ] ].
 			self addSubmetamodelsToGenerateFrom: mm submetamodels to: metamodels ]
-]
-
-{ #category : #accessing }
-FamixMetamodelGenerator class >> allSubmetamodels [
-	^ {self submetamodels . (self submetamodels collect: #allSubmetamodels)} flattened asSet
-]
-
-{ #category : #accessing }
-FamixMetamodelGenerator class >> basicFamixTraits [
-
-	^ #'Famix-Traits' asPackage definedClasses.
-	
-]
-
-{ #category : #accessing }
-FamixMetamodelGenerator class >> basicMetamodelClasses [
-	^ ({Trait . Class . ClassDescription . Behavior . MooseEntity . FmxImportingContext . MooseAbstractGroup . MooseModel . FamixTSourceLanguage.
-	FamixTWithSourceLanguage} , MooseGroup withAllSubclasses) asOrderedCollection
 ]
 
 { #category : #accessing }
@@ -137,14 +116,7 @@ FamixMetamodelGenerator class >> menuCommandOn: aBuilder [
 
 { #category : #accessing }
 FamixMetamodelGenerator class >> metamodel [
-	^ metamodel ifNil: [ metamodel := self resetMetamodel ]
-]
-
-{ #category : #accessing }
-FamixMetamodelGenerator class >> metamodel: anObject [
-
-	<ignoreForCoverage>
-	metamodel := anObject
+	^ self withMooseModelDo: [ :m | m metamodel ]
 ]
 
 { #category : #generation }
@@ -158,13 +130,9 @@ FamixMetamodelGenerator class >> metamodelsToGenerate [
 ]
 
 { #category : #accessing }
-FamixMetamodelGenerator class >> newRepository [
-
-	| tower |
-	
-	tower := FMCompleteTower new.
-	tower metamodel addAll: self metamodel elements.
-	^ tower model.
+FamixMetamodelGenerator class >> mooseModelName [
+	self prefix ifEmpty: [ ^ nil ].
+	^ (self prefix , 'Model') asSymbol
 ]
 
 { #category : #accessing }
@@ -189,37 +157,9 @@ FamixMetamodelGenerator class >> prefix [
 ]
 
 { #category : #accessing }
-FamixMetamodelGenerator class >> resetMetamodel [
-	| classes tower elements |
-	"Collect all classes containing properties useful to the MM."
-	classes := (self packageName asPackage definedClasses asSet select: #isMetamodelEntity)
-		addAll: self basicMetamodelClasses;
-		yourself.
-
-	self allSubmetamodels do: [ :submetamodel | classes addAll: (submetamodel metamodel classes collect: #implementingClass) ].
-
-	"We need to reset the moose properties of each slot before building the tower."
-	(classes flatCollect: [ :class | class slots select: #isFMRelationSlot ]) do: #resetMooseProperty.
-
-	tower := MooseModel metaBuilder: classes.
-	self metamodel: tower metamodel.
-
-	elements := self submetamodels flatCollect: [ :each | each metamodel elements ].
-
-	elements do: [ :each | metamodel elementNamed: each fullName ifAbsent: [ metamodel add: each ] ].
-
-	metamodel additionalProperties at: #wantsAllEntitiesNavigation put: self wantsAllEntitiesNavigation.
-
-	"MooseEntity has a cache for some infos. When we regenerate a MM we need to flush this cache."
-	classes do: #resetMooseEntityCache.
-
-	^ metamodel
-]
-
-{ #category : #accessing }
 FamixMetamodelGenerator class >> resetMetamodels [
 	<script>
-	self metamodelsToGenerate do: #resetMetamodel
+	MooseModel allSubclassesDo: #resetMetamodel
 ]
 
 { #category : #accessing }
@@ -229,21 +169,17 @@ FamixMetamodelGenerator class >> submetamodels [
 ]
 
 { #category : #accessing }
-FamixMetamodelGenerator class >> wantsAllEntitiesNavigation [
-
-	"I want to display all model entities in the navigation by default"
-
-	^ true
+FamixMetamodelGenerator class >> withMooseModelDo: aBlock [
+	^ self environment at: self mooseModelName ifPresent: [ :class | aBlock value: class ]
 ]
 
 { #category : #definition }
 FamixMetamodelGenerator >> adoptBuilder: aBuilder [
-
-	aBuilder configuration 
+	aBuilder configuration
 		prefix: self prefix;
 		packageName: self packageName;
-		packageNameForAnnotations: self packageNameForAnnotations.
-
+		packageNameForAnnotations: self packageNameForAnnotations;
+		mooseModelName: self class mooseModelName
 ]
 
 { #category : #accessing }
@@ -325,7 +261,7 @@ FamixMetamodelGenerator >> generate [
 				withCleaningDo: [ self builder generate.
 					self subBuilders do: #generateRemotes ]
 				with: self ].
-	self class resetMetamodel
+	self class withMooseModelDo: #resetMetamodel
 ]
 
 { #category : #generation }
@@ -362,6 +298,11 @@ FamixMetamodelGenerator >> initialize [
 		builder environment: builder environment.		
 		each prefix -> subbuilder ]).
 
+]
+
+{ #category : #accessing }
+FamixMetamodelGenerator >> mooseModelName [
+	^ self class mooseModelName
 ]
 
 { #category : #definition }

@@ -6,7 +6,7 @@ Trait {
 { #category : #meta }
 FamixTClassHierarchyNavigation classSide >> annotation [
 
-	<MSEClass: #TClassHierarchyNavigation super: #Trait>
+	<MSEClass: #TClassHierarchyNavigation super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

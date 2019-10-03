@@ -11,7 +11,7 @@ Trait {
 { #category : #meta }
 FamixTStructuralEntity classSide >> annotation [
 
-	<MSEClass: #TStructuralEntity super: #Trait>
+	<MSEClass: #TStructuralEntity super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

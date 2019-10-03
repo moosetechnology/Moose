@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTFileSystemEntity classSide >> annotation [
 
-	<MSEClass: #TFileSystemEntity super: #Trait>
+	<MSEClass: #TFileSystemEntity super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

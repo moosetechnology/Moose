@@ -20,7 +20,7 @@ FamixTest4Entity class >> annotation [
 FamixTest4Entity class >> metamodel [
 
 	<generated>
-	^ (self class environment at: #FamixTest4Generator) metamodel
+	^ FamixTest4Model metamodel
 ]
 
 { #category : #accessing }

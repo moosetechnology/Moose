@@ -34,7 +34,7 @@ FamixJavaEntity class >> annotation [
 FamixJavaEntity class >> metamodel [
 
 	<generated>
-	^ (self class environment at: #FamixJavaGenerator) metamodel
+	^ FamixJavaModel metamodel
 ]
 
 { #category : #testing }

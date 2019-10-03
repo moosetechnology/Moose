@@ -5,7 +5,7 @@ For more informations: https://moosequery.ferlicot.fr/
 "
 Trait {
 	#name : #TEntityMetaLevelDependency,
-	#category : #'Moose-Query'
+	#category : #'Moose-Query-Traits'
 }
 
 { #category : #new }
@@ -39,7 +39,7 @@ TEntityMetaLevelDependency classSide >> allParentTypesIn: aMetamodel [
 { #category : #meta }
 TEntityMetaLevelDependency classSide >> annotation [
 
-	<MSEClass: #TEntityMetaLevelDependency super: #Trait>
+	<MSEClass: #TEntityMetaLevelDependency super: #Object>
 	<package: #'Moose-Query'>
 	<generated>
 	^self

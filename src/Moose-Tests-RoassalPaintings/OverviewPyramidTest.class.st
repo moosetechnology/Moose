@@ -15,18 +15,19 @@ OverviewPyramidTest >> model [
 
 { #category : #helpers }
 OverviewPyramidTest >> prepareAnyMooseModel [
-
 	| model importer models |
-	
 	models := MooseModel root allModels.
 	models notEmpty ifTrue: [ ^ models anyOne ].
-	model := MooseModel new.
+	model := FamixStModel new.
 	model name: 'AST'.
 	importer := self newPharoImporterTask.
 	importer importingContext mergeClassAndMetaclass.
 	importer runCandidateOperator.
-	importer model: model; addFromPackagesNamed: (MooseScripts packageNamesFor: 'AST*'); runWithProgress.
-	^ model.
+	importer
+		model: model;
+		addFromPackagesNamed: (MooseScripts packageNamesFor: 'AST*');
+		runWithProgress.
+	^ model
 ]
 
 { #category : #tests }

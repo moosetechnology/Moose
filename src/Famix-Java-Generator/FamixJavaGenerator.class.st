@@ -50,12 +50,6 @@ FamixJavaGenerator class >> prefix [
 	^ #'FamixJava'
 ]
 
-{ #category : #accessing }
-FamixJavaGenerator class >> wantsAllEntitiesNavigation [
-
-	^ false
-]
-
 { #category : #definition }
 FamixJavaGenerator >> defineClasses [
 

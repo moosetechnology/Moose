@@ -5,13 +5,13 @@ For more informations: https://moosequery.ferlicot.fr/
 "
 Trait {
 	#name : #TAssociationMetaLevelDependency,
-	#category : #'Moose-Query'
+	#category : #'Moose-Query-Traits'
 }
 
 { #category : #meta }
 TAssociationMetaLevelDependency classSide >> annotation [
 
-	<MSEClass: #TAssociationMetaLevelDependency super: #Trait>
+	<MSEClass: #TAssociationMetaLevelDependency super: #Object>
 	<package: #'Moose-Query'>
 	<generated>
 	^self

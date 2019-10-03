@@ -171,7 +171,7 @@ FAMIXStepwiseImporterTest >> testImportLANPackage [
 	"self debug: #testImportLANPackage"
 
 	| model class package |
-	model := MooseModel new.
+	model := FamixStModel new.
 	self newPharoImporterTask
 		importerClass: SmalltalkImporter;
 		doNotRunCandidateOperator;
@@ -231,7 +231,7 @@ FAMIXStepwiseImporterTest >> testImportNamespace [
 	"self debug: #testImportNamespace"
 
 	| model nap |
-	model := MooseModel new.
+	model := FamixStModel new.
 	self newPharoImporterTask
 		importerClass: SmalltalkImporter;
 		doNotRunCandidateOperator;

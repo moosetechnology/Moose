@@ -17,7 +17,7 @@ FamixTestComposedCustomEntity4 class >> annotation [
 FamixTestComposedCustomEntity4 class >> metamodel [
 
 	<generated>
-	^ (self class environment at: #FamixTestComposedGenerator) metamodel
+	^ FamixTestComposedModel metamodel
 ]
 
 { #category : #accessing }

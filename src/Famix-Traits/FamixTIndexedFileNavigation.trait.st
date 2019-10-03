@@ -10,7 +10,7 @@ Trait {
 { #category : #meta }
 FamixTIndexedFileNavigation classSide >> annotation [
 
-	<MSEClass: #TIndexedFileNavigation super: #Trait>
+	<MSEClass: #TIndexedFileNavigation super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

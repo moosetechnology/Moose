@@ -62,7 +62,7 @@ FamixStClass >> instanceSide [
 { #category : #testing }
 FamixStClass >> isAnonymousClass [
 	self flag: #todo.	"We need to check how to do that in Pharo smalltalk because I think some of the conditions are for Java"
-	^ self container notNil and: [ self container isMethod or: [ self name isAllDigits or: [ '*_anonymous_*' match: self name ] ] ]
+	^ self typeContainer notNil and: [ self typeContainer isMethod or: [ self name isAllDigits or: [ '*_anonymous_*' match: self name ] ] ]
 ]
 
 { #category : #testing }

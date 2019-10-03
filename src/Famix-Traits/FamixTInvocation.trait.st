@@ -23,7 +23,7 @@ Trait {
 { #category : #meta }
 FamixTInvocation classSide >> annotation [
 
-	<MSEClass: #TInvocation super: #Trait>
+	<MSEClass: #TInvocation super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

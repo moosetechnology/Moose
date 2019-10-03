@@ -6,7 +6,7 @@ Trait {
 { #category : #meta }
 FamixTLCOMMetrics classSide >> annotation [
 
-	<MSEClass: #TLCOMMetrics super: #Trait>
+	<MSEClass: #TLCOMMetrics super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
