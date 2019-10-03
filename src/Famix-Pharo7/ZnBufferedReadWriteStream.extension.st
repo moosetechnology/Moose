@@ -1,6 +1,6 @@
 Extension { #name : #ZnBufferedReadWriteStream }
 
-{ #category : #'*Fame-ImportExport' }
+{ #category : #'*Famix-Pharo7' }
 ZnBufferedReadWriteStream >> localName [
 	^ self wrappedStream localName
 ]
