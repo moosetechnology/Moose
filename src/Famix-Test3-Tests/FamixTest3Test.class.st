@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixTest3Test,
 	#superclass : #TestCase,
-	#traits : 'FamixTWithMSEExportTestCase',
-	#classTraits : 'FamixTWithMSEExportTestCase classTrait',
+	#traits : 'TFamixWithMSEExportTestCase',
+	#classTraits : 'TFamixWithMSEExportTestCase classTrait',
 	#category : #'Famix-Test3-Tests'
 }
 
