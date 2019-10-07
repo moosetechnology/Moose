@@ -29,14 +29,14 @@ TAssociationMetaLevelDependency classSide >> dependencyFM3PropertyDescriptionIn:
 TAssociationMetaLevelDependency classSide >> privateSourceTypesIn: aMetamodel [
 	"I return the classes that could be my source"
 
-	^ (self dependencyFM3PropertyDescriptionIn: aMetamodel) select: #isSource thenCollect: [ :each | each type implementingClass ]
+	^ (self dependencyFM3PropertyDescriptionIn: aMetamodel) select: #isSource thenCollect: #implementingType
 ]
 
 { #category : #private }
 TAssociationMetaLevelDependency classSide >> privateTargetTypesIn: aMetamodel [
 	"I return the classes that could be my target"
 
-	^ (self dependencyFM3PropertyDescriptionIn: aMetamodel) select: #isTarget thenCollect: [ :each | each type implementingClass ]
+	^ (self dependencyFM3PropertyDescriptionIn: aMetamodel) select: #isTarget thenCollect: #implementingType
 ]
 
 { #category : #accessing }

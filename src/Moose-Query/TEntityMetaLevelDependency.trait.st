@@ -111,7 +111,7 @@ TEntityMetaLevelDependency classSide >> parentTypesIn: aMetamodel [
 
 { #category : #new }
 TEntityMetaLevelDependency classSide >> privateAllChildrenTypesIn: aMetamodel [
-	^ ((self childrenTypesIn: aMetamodel) withDeepCollect: [ :each | each childrenTypesInMetamodel: aMetamodel] as: Set) asOrderedCollection
+	^ ((self childrenTypesIn: aMetamodel) withDeepCollect: [ :each | each childrenTypesIn: aMetamodel] as: Set) asOrderedCollection
 ]
 
 { #category : #accessing }
@@ -142,13 +142,19 @@ TEntityMetaLevelDependency classSide >> privateChildrenSelectorsIn: aMetamodel [
 
 { #category : #new }
 TEntityMetaLevelDependency classSide >> privateChildrenTypesIn: aMetamodel [
-	^ (((self allDeclaredPropertiesIn: aMetamodel) select: [ :fm3Prop | fm3Prop isChildrenProperty ])
-		collectAsSet: [ :prop | prop type implementingClass ]) asArray
+	| childrenImplementingClasses childrenUsers |
+	childrenImplementingClasses := ((self allDeclaredPropertiesIn: aMetamodel) select: #isChildrenProperty) collect: #implementingType.
+
+	childrenUsers := aMetamodel concreteClasses
+		select: [ :e | e implementingClass allGeneratedTraits includesAny: childrenImplementingClasses ]
+		thenCollect: #implementingClass.
+
+	^ (childrenImplementingClasses , childrenUsers) asSet asArray	"<== This could later be #removeDuplicates but it is currently broken on arrays. See https://github.com/pharo-project/pharo/issues/4850"
 ]
 
 { #category : #new }
 TEntityMetaLevelDependency classSide >> privateIncomingAssociationTypesIn: aMetamodel [
-	^ (self incomingMSEPropertiesIn: aMetamodel) collect: [ :d | d type implementingClass ]
+	^ (self incomingMSEPropertiesIn: aMetamodel) collect: #implementingType
 ]
 
 { #category : #new }
@@ -158,7 +164,7 @@ TEntityMetaLevelDependency classSide >> privateIncomingMSEPropertiesIn: aMetamod
 
 { #category : #new }
 TEntityMetaLevelDependency classSide >> privateOutgoingAssociationTypesIn: aMetamodel [
-	^ (self outgoingMSEPropertiesIn: aMetamodel) collect: [ :d | d type implementingClass ]
+	^ (self outgoingMSEPropertiesIn: aMetamodel) collect: #implementingType
 ]
 
 { #category : #new }
@@ -173,14 +179,14 @@ TEntityMetaLevelDependency classSide >> privateParentSelectorsIn: aMetamodel [
 
 { #category : #new }
 TEntityMetaLevelDependency classSide >> privateParentTypesIn: aMetamodel [
-	| containerBehaviors metamodelClasses containerUsers |
-	containerBehaviors := self mooseDescription allAttributes select: #isContainer thenCollect: [ :prop | prop type implementingClass ].
+	| containerImplementingClasses containerUsers |
+	containerImplementingClasses := (self allDeclaredPropertiesIn: aMetamodel) select: #isContainer thenCollect: #implementingType.
 
-	metamodelClasses := aMetamodel classes reject: [ :e | e implementingClass isTrait ].
+	containerUsers := aMetamodel concreteClasses
+		select: [ :e | e implementingClass allGeneratedTraits includesAny: containerImplementingClasses ]
+		thenCollect: #implementingClass.
 
-	containerUsers := metamodelClasses select: [ :e | containerBehaviors anySatisfy: [ :t | e implementingClass allGeneratedTraits includes: t ] ].
-
-	^ (containerBehaviors , (containerUsers collect: #implementingClass)) asSet asArray
+	^ (containerImplementingClasses , containerUsers) asSet asArray "<== This could later be #removeDuplicates but it is currently broken on arrays. See https://github.com/pharo-project/pharo/issues/4850"
 ]
 
 { #category : #private }
@@ -533,8 +539,7 @@ TEntityMetaLevelDependency >> childrenSelectors [
 
 { #category : #accessing }
 TEntityMetaLevelDependency >> childrenTypes [
-
-	^ self metamodel additionalProperty: #childrenTypes for: self class ifAbsentPut: [ self privateChildrenTypes ]
+	^ self class childrenTypesIn: self metamodel
 ]
 
 { #category : #accessing }

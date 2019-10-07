@@ -95,8 +95,12 @@ TEntityMetaLevelDependencyTest >> testAllChildren [
 
 { #category : #tests }
 TEntityMetaLevelDependencyTest >> testAllChildrenTypes [
-	self assertCollection: c1 allChildrenTypes hasSameElements: {FamixTMethod . FamixTAttribute}.
-	self assertCollection: c2 allChildrenTypes hasSameElements: {FamixTMethod . FamixTAttribute}.
+	self
+		assertCollection: c1 allChildrenTypes
+		hasSameElements: {FamixTParameter . FamixTImplicitVariable . FamixTest1Attribute . FamixTAttribute . FamixTest1Method . FamixTLocalVariable . FamixTMethod}.
+	self
+		assertCollection: c2 allChildrenTypes
+		hasSameElements: {FamixTParameter . FamixTImplicitVariable . FamixTest1Attribute . FamixTAttribute . FamixTest1Method . FamixTLocalVariable . FamixTMethod}.
 	self assertCollection: m1 allChildrenTypes hasSameElements: {FamixTImplicitVariable . FamixTParameter . FamixTLocalVariable}
 ]
 

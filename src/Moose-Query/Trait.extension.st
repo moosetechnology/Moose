@@ -7,7 +7,7 @@ Trait >> childrenTypes [
 ]
 
 { #category : #'*Moose-Query' }
-Trait >> childrenTypesInMetamodel: aMetamodel [
+Trait >> childrenTypesIn: aMetamodel [
 
 	^ Set new
 ]
