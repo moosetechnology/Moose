@@ -104,10 +104,8 @@ MooseAbstractGroup >> allImplicitVariables [
 
 { #category : #'*Famix-Traits' }
 MooseAbstractGroup >> allInheritanceDefinitions [
-	
 	<navigation: 'All inheritances'>
-	^self allUsing: FamixTSubInheritance
-	"TODO: FamixTSuperInheritance?" 
+	^ self allUsing: FamixTInheritance
 ]
 
 { #category : #'*Famix-Traits' }
