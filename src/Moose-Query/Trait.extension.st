@@ -1,6 +1,18 @@
 Extension { #name : #Trait }
 
 { #category : #'*Moose-Query' }
+Trait >> childrenTypes [
+
+	^ Set new
+]
+
+{ #category : #'*Moose-Query' }
+Trait >> childrenTypesIn: aMetamodel [
+
+	^ Set new
+]
+
+{ #category : #'*Moose-Query' }
 Trait >> implementingClassesIn: aMetamodel [
 
 	^ (aMetamodel classes select: [ :e | e implementingClass traits includes: self ]) collect: #implementingClass.
@@ -10,4 +22,16 @@ Trait >> implementingClassesIn: aMetamodel [
 { #category : #'*Moose-Query' }
 Trait >> inheritsFromType: aClassFAMIX [
 	^ ({self} , self traits flatCollect: #withAllSuperclasses as: Set) includes: aClassFAMIX
+]
+
+{ #category : #'*Moose-Query' }
+Trait >> parentTypes [
+
+	^ Set new
+]
+
+{ #category : #'*Moose-Query' }
+Trait >> parentTypesIn: aMetamodel [
+
+	^ Set new
 ]
