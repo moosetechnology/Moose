@@ -32,6 +32,7 @@ Class {
 		'tGlobalVariableScope',
 		'tHeader',
 		'tImplicitVariable',
+		'tInheritance',
 		'tInvocable',
 		'tInvocation',
 		'tInvocationsReceiver',
@@ -55,10 +56,6 @@ Class {
 		'tSourceEntity',
 		'tSourceLanguage',
 		'tStructuralEntity',
-		'tSub',
-		'tSubInheritance',
-		'tSuper',
-		'tSuperInheritance',
 		'tTemplate',
 		'tTemplateUser',
 		'tThrownException',
@@ -87,6 +84,7 @@ Class {
 		'tWithFunctions',
 		'tWithHeader',
 		'tWithImplicitVariables',
+		'tWithInheritances',
 		'tWithInvocations',
 		'tWithLocalVariables',
 		'tWithMethods',
@@ -100,8 +98,6 @@ Class {
 		'tWithSignature',
 		'tWithSourceAnchor',
 		'tWithSourceLanguage',
-		'tWithSubInheritances',
-		'tWithSuperInheritances',
 		'tWithTemplates',
 		'tWithThrownExceptions',
 		'tWithTypeAliases',
@@ -405,6 +401,12 @@ FamixGenerator >> commentForTIndexedFileNavigation [
 ]
 
 { #category : #comments }
+FamixGenerator >> commentForTInheritance [
+
+	^ ''
+]
+
+{ #category : #comments }
 FamixGenerator >> commentForTInvocable [
 
 	^ ''
@@ -591,19 +593,7 @@ FamixGenerator >> commentForTSub [
 ]
 
 { #category : #comments }
-FamixGenerator >> commentForTSubInheritance [
-
-	^ ''
-]
-
-{ #category : #comments }
 FamixGenerator >> commentForTSuper [
-
-	^ ''
-]
-
-{ #category : #comments }
-FamixGenerator >> commentForTSuperInheritance [
 
 	^ ''
 ]
@@ -790,6 +780,12 @@ FamixGenerator >> commentForTWithImplicitVariables [
 ]
 
 { #category : #comments }
+FamixGenerator >> commentForTWithInheritances [
+
+	^ ''
+]
+
+{ #category : #comments }
 FamixGenerator >> commentForTWithInvocations [
 
 	^ ''
@@ -862,18 +858,6 @@ FamixGenerator >> commentForTWithSourceLanguage [
 ]
 
 { #category : #comments }
-FamixGenerator >> commentForTWithSubInheritances [
-
-	^ ''
-]
-
-{ #category : #comments }
-FamixGenerator >> commentForTWithSuperInheritances [
-
-	^ ''
-]
-
-{ #category : #comments }
 FamixGenerator >> commentForTWithTemplates [
 
 	^ ''
@@ -915,9 +899,6 @@ FamixGenerator >> defineGlueingTraits [
 	tClassHierarchyNavigation := builder newTraitNamed: #TClassHierarchyNavigation.
 	
 	tLCOMMetrics := builder newTraitNamed: #TLCOMMetrics.
-	
-	tInheritanceGlue := builder newTraitNamed: #TInheritanceGlue.
-	tInheritanceGlue glues: tSubInheritance with: tSuperInheritance.
 
 	tPackageWithClassesGlue := builder newTraitNamed: #TPackageWithClassesGlue.
 	tPackageWithClassesGlue glues: tPackage with: tWithClasses.
@@ -966,8 +947,7 @@ FamixGenerator >> defineHierarchy [
 	tCohesionCouplingMetrics --|> tPackage.
 
 	tClass --|> #TWithMethods.
-	tClass --|> #TWithSubInheritances.
-	tClass --|> #TWithSuperInheritances.
+	tClass --|> tWithInheritances.
 	tClass --|> #TWithAttributes.
 	tClass inheritsFromTrait: tNamed without: #(#mooseNameOn:).
 	tClass --|> tType.
@@ -1334,22 +1314,18 @@ FamixGenerator >> defineRelations [
 	((tWithSourceLanguage property: #declaredSourceLanguage)
 			comment: 'The declared SourceLanguage for the source code of this entity').
 
-	((tSub property: #supers))
-		*-
-	((tSuper property: #subs)).
-
-	((tSubInheritance property: #subclass)
+	((tInheritance property: #subclass)
 			comment: 'Subclass linked to in this relationship. from-side of the association';
 			source)
 		*-
-	((tWithSubInheritances property: #superInheritances)
+	((tWithInheritances property: #superInheritances)
 			comment: 'Superinheritance relationships, i.e. known superclasses of this type.').
 
-	((tSuperInheritance property: #superclass)
+	((tInheritance property: #superclass)
 			comment: 'Superclass linked to in this relationship. to-side of the association';
 			target)
 		*-
-	((tWithSuperInheritances property: #subInheritances)
+	((tWithInheritances property: #subInheritances)
 			comment: 'Subinheritance relationships, i.e. known subclasses of this type.').
 
 	((tTemplate property: #templateOwner))
@@ -1495,6 +1471,10 @@ FamixGenerator >> defineTraits [
 	tImplicitVariable comment: self commentForTImplicitVariable.
 	tImplicitVariable withTesting.
 
+	tInheritance := builder newTraitNamed: #TInheritance.
+	tInheritance comment: self commentForTInheritance.
+	tInheritance withTesting.
+
 	tInvocable := builder newTraitNamed: #TInvocable.
 	tInvocable comment: self commentForTInvocable.
 
@@ -1569,20 +1549,6 @@ FamixGenerator >> defineTraits [
 	tStructuralEntity := builder newTraitNamed: #TStructuralEntity.
 	tStructuralEntity comment: self commentForTStructuralEntity.
 	tStructuralEntity withTesting.
-	
-	tSub := builder newTraitNamed: #TSub.
-	tSub comment: self commentForTSub.
-
-	tSubInheritance := builder newTraitNamed: #TSubInheritance.
-	tSubInheritance comment: self commentForTSubInheritance.
-	tSubInheritance testingSelector: #isInheritance.
-	
-	tSuper := builder newTraitNamed: #TSuper.
-	tSuper comment: self commentForTSuper.
-
-	tSuperInheritance := builder newTraitNamed: #TSuperInheritance.
-	tSuperInheritance comment: self commentForTSuperInheritance.
-	tSuperInheritance testingSelector: #isInheritance.
 
 	tTemplate := builder newTraitNamed: #TTemplate.
 	tTemplate comment: self commentForTTemplate.
@@ -1674,6 +1640,9 @@ FamixGenerator >> defineTraits [
 
 	tWithImplicitVariables := builder newTraitNamed: #TWithImplicitVariables.
 	tWithImplicitVariables comment: self commentForTWithImplicitVariables.
+	
+	tWithInheritances := builder newTraitNamed: #TWithInheritances.
+	tWithInheritances comment: self commentForTWithInheritances.
 
 	tWithInvocations := builder newTraitNamed: #TWithInvocations.
 	tWithInvocations comment: self commentForTWithInvocations.
@@ -1713,12 +1682,6 @@ FamixGenerator >> defineTraits [
 
 	tWithSourceLanguage := builder newTraitNamed: #TWithSourceLanguage.
 	tWithSourceLanguage comment: self commentForTWithSourceLanguage.
-
-	tWithSubInheritances := builder newTraitNamed: #TWithSubInheritances.
-	tWithSubInheritances comment: self commentForTWithSubInheritances.
-
-	tWithSuperInheritances := builder newTraitNamed: #TWithSuperInheritances.
-	tWithSuperInheritances comment: self commentForTWithSuperInheritances.
 
 	tWithTemplates := builder newTraitNamed: #TWithTemplates.
 	tWithTemplates comment: self commentForTWithTemplates.

@@ -111,8 +111,7 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	implicitVariable --|> #TImplicitVariable.
 
 	inheritance --|> association.
-	inheritance --|> #TSubInheritance.
-	inheritance --|> #TSuperInheritance.
+	inheritance --|> #TInheritance.
 
 	invocation --|> association.
 	invocation --|> #TInvocation.

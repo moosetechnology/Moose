@@ -1,8 +1,8 @@
 Class {
 	#name : #FAMIXInheritance,
 	#superclass : #FAMIXAssociation,
-	#traits : 'FamixTInheritanceGlue + FamixTSubInheritance + FamixTSuperInheritance',
-	#classTraits : 'FamixTInheritanceGlue classTrait + FamixTSubInheritance classTrait + FamixTSuperInheritance classTrait',
+	#traits : 'FamixTInheritance',
+	#classTraits : 'FamixTInheritance classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 
