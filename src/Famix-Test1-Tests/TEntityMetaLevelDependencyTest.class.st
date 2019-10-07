@@ -227,13 +227,6 @@ TEntityMetaLevelDependencyTest >> testParents [
 ]
 
 { #category : #tests }
-TEntityMetaLevelDependencyTest >> testQueryLocalIncoming [
-
-	"just smoke test"
-	self assert: (c1 queryLocalIncoming: FamixTInheritanceGlue) isEmpty.
-]
-
-{ #category : #tests }
 TEntityMetaLevelDependencyTest >> testWithScope [
 
 	self assertCollection: (c1 withScope: FamixTClass) hasSameElements: { c1 }.
