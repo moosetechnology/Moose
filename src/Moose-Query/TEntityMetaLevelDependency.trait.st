@@ -54,9 +54,7 @@ TEntityMetaLevelDependency classSide >> childrenSelectorsIn: aMetamodel [
 
 { #category : #accessing }
 TEntityMetaLevelDependency classSide >> childrenTypesIn: aMetamodel [
-
 	^ aMetamodel additionalProperty: #childrenTypes for: self ifAbsentPut: [ self privateChildrenTypesIn: aMetamodel ]
-	
 ]
 
 { #category : #accessing }
