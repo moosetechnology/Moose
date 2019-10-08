@@ -25,13 +25,6 @@ FmxMBEntity >> additionalProperties [
 ]
 
 { #category : #accessing }
-FmxMBEntity >> allNnavigationGroups [
-
-	<ignoreForCoverage>
-	^ self navigationGroups
-]
-
-{ #category : #accessing }
 FmxMBEntity >> builder [
 	^ builder
 ]
