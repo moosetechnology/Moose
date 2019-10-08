@@ -106,6 +106,11 @@ FmxMBBehavior >> classGeneralization: anObject [
 	^ self subclassResponsibility
 ]
 
+{ #category : #accessing }
+FmxMBBehavior >> containerProperties [
+	^ self properties select: #isContainer
+]
+
 { #category : #'settings - default' }
 FmxMBBehavior >> defaultSuperclass [
 	^ self builder environment basicSuperclass

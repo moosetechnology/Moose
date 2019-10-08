@@ -59,7 +59,6 @@ FmxMBClass >> allTraitsInHierarchy [
 FmxMBClass >> as: aTraitOrTraitName [
 
 	| trait |
-	
 	trait := aTraitOrTraitName isString
 		ifTrue: [ self builder ensureLocalTraitNamed: aTraitOrTraitName ]
 		ifFalse: [ aTraitOrTraitName ].
@@ -132,9 +131,7 @@ FmxMBClass >> classGeneralization: anObject [
 
 { #category : #accessing }
 FmxMBClass >> containerProperties [
-
-	^ ((self properties) select: #isContainer),
-	((self traitGeneralizations flatCollect: #properties) select: #isContainer)
+	^ super containerProperties , (self traitGeneralizations flatCollect: #containerProperties)
 ]
 
 { #category : #accessing }
