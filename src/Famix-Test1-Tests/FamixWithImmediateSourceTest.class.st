@@ -1,5 +1,5 @@
 Class {
-	#name : #OldFamixTWithImmediateSourceTest,
+	#name : #FamixWithImmediateSourceTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'model',
@@ -11,7 +11,7 @@ Class {
 }
 
 { #category : #running }
-OldFamixTWithImmediateSourceTest >> setUp [
+FamixWithImmediateSourceTest >> setUp [
 
 	super setUp.
 
@@ -27,20 +27,20 @@ OldFamixTWithImmediateSourceTest >> setUp [
 ]
 
 { #category : #tests }
-OldFamixTWithImmediateSourceTest >> testIsFile [
+FamixWithImmediateSourceTest >> testIsFile [
 
 	self deny: anchor isFile
 ]
 
 { #category : #tests }
-OldFamixTWithImmediateSourceTest >> testSource [
+FamixWithImmediateSourceTest >> testSource [
 
 	anchor source: 'a code'.
 	self assert: anchor source equals: 'a code'.	
 ]
 
 { #category : #tests }
-OldFamixTWithImmediateSourceTest >> testSourceText [
+FamixWithImmediateSourceTest >> testSourceText [
 
 	self assert: anchor sourceText isNil.
 	

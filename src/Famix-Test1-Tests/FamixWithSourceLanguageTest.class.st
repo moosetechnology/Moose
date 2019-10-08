@@ -1,5 +1,5 @@
 Class {
-	#name : #OldFamixTSourceLanguageTest,
+	#name : #FamixWithSourceLanguageTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'model',
@@ -12,7 +12,7 @@ Class {
 }
 
 { #category : #running }
-OldFamixTSourceLanguageTest >> setUp [
+FamixWithSourceLanguageTest >> setUp [
 
 	super setUp.
 
@@ -27,7 +27,7 @@ OldFamixTSourceLanguageTest >> setUp [
 ]
 
 { #category : #tests }
-OldFamixTSourceLanguageTest >> testAddSourcedEntity [
+FamixWithSourceLanguageTest >> testAddSourcedEntity [
 
 	lang addSourcedEntity: m1.
 	self assertCollection: lang sourcedEntities hasSameElements: { m1 }.
@@ -38,26 +38,9 @@ OldFamixTSourceLanguageTest >> testAddSourcedEntity [
 ]
 
 { #category : #tests }
-OldFamixTSourceLanguageTest >> testIsAttached [
+FamixWithSourceLanguageTest >> testDeclaredSourceLanguage [
 
-	self deny: lang isAttached.
-	lang addSourcedEntity: m1.
-	self assert: lang isAttached.
-]
-
-{ #category : #tests }
-OldFamixTSourceLanguageTest >> testIsFile [
-
-	self deny: lang isAttached.
-]
-
-{ #category : #tests }
-OldFamixTSourceLanguageTest >> testSourcedEntities [
-
-	self assert: lang sourcedEntities isEmpty.
-	lang addSourcedEntity: m1.
-	lang addSourcedEntity: m2.
-	self assertCollection: lang sourcedEntities hasSameElements: { m1. m2 }.
-
-
+	self assert: m1 declaredSourceLanguage isNil.
+	m1 declaredSourceLanguage: lang.
+	self assert: m1 declaredSourceLanguage equals: lang.
 ]
