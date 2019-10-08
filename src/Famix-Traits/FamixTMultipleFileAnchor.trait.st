@@ -3,7 +3,7 @@ Trait {
 	#instVars : [
 		'#allFiles => FMProperty'
 	],
-	#category : #'Famix-Traits-Traits'
+	#category : #'Famix-Traits-SourceAnchor'
 }
 
 { #category : #meta }
@@ -60,5 +60,7 @@ FamixTMultipleFileAnchor >> isMultiple [
 
 { #category : #accessing }
 FamixTMultipleFileAnchor >> lineCount [
-	^ self allFiles inject: 0 into: [ :sum :each | sum + each lineCount  ]
+	^ self allFiles
+		ifEmpty: [ self notExistentMetricValue ]
+		ifNotEmpty: [ :files | files detectSum: #lineCount ]
 ]
