@@ -51,16 +51,7 @@ FmxMBClass >> allTraitNames [
 
 { #category : #accessing }
 FmxMBClass >> allTraits [
-	
-	| selectedTraits allTraits |
-	
-	selectedTraits := self allLocalTraits.
-	allTraits := self allTraitsInHierarchy.
-	
-	selectedTraits addAll: ((self glueingTraitsOf: selectedTraits whenAllHierarchyHas: allTraits) copyWithoutAll: allTraits).
-	selectedTraits addAll: ((self conditionalGlueingTraitsFor: self) copyWithoutAll: allTraits).
-	
-	^ selectedTraits asSet
+	^ self allLocalTraits
 ]
 
 { #category : #accessing }
@@ -142,11 +133,6 @@ FmxMBClass >> classGeneralization: anObject [
 	
 	classGeneralization := anObject.
 	^ anObject
-]
-
-{ #category : #accessing }
-FmxMBClass >> conditionalGlueingTraitsFor: aClass [
-	^ self builder traitsWithSubBuildersTraits select: [ :each | each canGlueTo: aClass ]
 ]
 
 { #category : #accessing }
@@ -255,11 +241,6 @@ FmxMBClass >> generateTestingMethodsIn: aClass [
 									(selectorsFromTraits includes: sel) ifFalse: [ aClass instanceSide compile: ('{1}\\	<generated>\	^ false' withCRs format: {sel}) classified: #testing ] ] ] ] ].
 
 	super generateTestingMethodsIn: aClass
-]
-
-{ #category : #accessing }
-FmxMBClass >> glueingTraitsOf: selectedTraits whenAllHierarchyHas: allTraitsInHierarchy [
-	^ self builder traitsWithSubBuildersTraits select: [ :each | (each gluesSomeOf: allTraitsInHierarchy) and: [ each gluesOneOf: selectedTraits ] ]
 ]
 
 { #category : #testing }
