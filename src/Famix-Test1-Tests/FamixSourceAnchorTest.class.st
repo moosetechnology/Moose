@@ -20,6 +20,22 @@ FamixSourceAnchorTest >> actualClass [
 ]
 
 { #category : #tests }
+FamixSourceAnchorTest >> testElement [
+	| anchor m1 m2 |
+	anchor := self actualClass new.
+	m1 := FamixTest1Method named: 'method1'.
+	m2 := FamixTest1Method named: 'method2'.
+
+	anchor element: m1.
+	self assert: anchor element equals: m1.
+	self assert: m1 sourceAnchor equals: anchor.
+
+	anchor element: m2.
+	self assert: anchor element equals: m2.
+	self assert: m2 sourceAnchor equals: anchor
+]
+
+{ #category : #tests }
 FamixSourceAnchorTest >> testImportFileAnchors [
 	| model aMethod |
 	model := FamixTest1Model new.
@@ -54,4 +70,16 @@ FamixSourceAnchorTest >> testImportFileAnchors [
 { #category : #tests }
 FamixSourceAnchorTest >> testIsMultiple [
 	^ self deny: self actualClass new isMultiple
+]
+
+{ #category : #tests }
+FamixSourceAnchorTest >> testLineCount [
+	self assert: self actualClass new lineCount equals: self actualClass new notExistentMetricValue
+]
+
+{ #category : #tests }
+FamixSourceAnchorTest >> testSourceText [
+	"source text is empty by default"
+
+	self assert: self actualClass new sourceText isNil
 ]
