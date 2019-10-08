@@ -8,23 +8,20 @@ Class {
 		'willGenerate',
 		'navigationGroups',
 		'additionalProperties',
-		'hasNavigation',
 		'isRemote'
 	],
 	#category : #'Famix-MetamodelBuilder-Core-Implementation'
 }
 
+{ #category : #visiting }
+FmxMBEntity >> acceptVisitor: aVisitor [
+	^ self subclassResponsibility
+]
+
 { #category : #accessing }
 FmxMBEntity >> additionalProperties [
 
 	^ additionalProperties 
-]
-
-{ #category : #accessing }
-FmxMBEntity >> allNnavigationGroups [
-
-	<ignoreForCoverage>
-	^ self navigationGroups
 ]
 
 { #category : #accessing }
@@ -56,7 +53,6 @@ FmxMBEntity >> initialize [
 	willGenerate := true.
 	navigationGroups := Set new.
 	additionalProperties := Dictionary new.
-	hasNavigation := true.
 	isRemote := false.
 ]
 
@@ -126,7 +122,5 @@ FmxMBEntity >> withNavigationOf: aRelation [
 
 { #category : #navigation }
 FmxMBEntity >> withoutNavigation [
-
-	hasNavigation := false.
 	navigationGroups := Set new.
 ]

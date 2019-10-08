@@ -1,6 +1,3 @@
-"
-FamixMetamodelBuilderTrait
-"
 Class {
 	#name : #FmxMBTrait,
 	#superclass : #FmxMBBehavior,
@@ -89,7 +86,6 @@ FmxMBTrait >> generate [
 	self generateAnnotationIn: aTrait as: self name superclass: nil.
 	
 	self generateTestingMethodsIn: aTrait.
-	self generateRootMetamodelMethodIn: aTrait.
 	self generateMethodsToRemoveFromTraitCompositionFor: aTrait.
 	
 	self generateNavigationGroupsFor: aTrait.
@@ -98,19 +94,14 @@ FmxMBTrait >> generate [
 
 { #category : #generating }
 FmxMBTrait >> generateRemotes [
-
 	| aTrait traitName |
-		
 	traitName := self fullName.
-	
+
 	aTrait := self builder environment classNamed: traitName asSymbol.
-				
-	self realClass: aTrait.
 
 	self realClass: aTrait.
-	
-	self generateRemoteAccessors.
 
+	self generateRemoteAccessors
 ]
 
 { #category : #testing }
@@ -146,12 +137,6 @@ FmxMBTrait >> propertyName [
 
 { #category : #'name conversion' }
 FmxMBTrait >> relatedOwnerTraitName [
-
-	^ self name
-]
-
-{ #category : #accessing }
-FmxMBTrait >> relatedTraitName [
 
 	^ self name
 ]
