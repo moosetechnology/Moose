@@ -1,13 +1,9 @@
-"
-FamixMetamodelBuilderClass
-"
 Class {
 	#name : #FmxMBClass,
 	#superclass : #FmxMBBehavior,
 	#instVars : [
 		'classGeneralization',
-		'requirements',
-		'isHierarchyRoot'
+		'requirements'
 	],
 	#category : #'Famix-MetamodelBuilder-Core-Implementation'
 }
@@ -159,11 +155,9 @@ FmxMBClass >> generate [
 	
 	aClassName := self fullName.
 	
-	isHierarchyRoot := self classGeneralization isNil.
-	
-	aSuperclass := 	isHierarchyRoot 
-		ifTrue: [ self defaultSuperclass ]
-		ifFalse: [ self classGeneralization realClass ].
+	aSuperclass := 	self classGeneralization 
+		ifNil: [ self defaultSuperclass ]
+		ifNotNil: [ self classGeneralization realClass ].
 	
 	aClass := self builder environment createClassNamed: aClassName asSymbol superclass: aSuperclass traitNames: self allTraitNames slots: self slotDefinitions in: self packageName overwrite: true.
 	

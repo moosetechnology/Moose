@@ -1,6 +1,3 @@
-"
-FamixMetamodelBuilderTrait
-"
 Class {
 	#name : #FmxMBTrait,
 	#superclass : #FmxMBBehavior,

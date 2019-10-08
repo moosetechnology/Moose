@@ -1,6 +1,3 @@
-"
-FamixMetamodelBuilderBehavior
-"
 Class {
 	#name : #FmxMBBehavior,
 	#superclass : #FmxMBEntity,
@@ -14,9 +11,7 @@ Class {
 		'prefix',
 		'packageName',
 		'testingSelectors',
-		'isRoot',
-		'traitGeneralizations',
-		'methodsToRemoveFromTraitComposition'
+		'traitGeneralizations'
 	],
 	#category : #'Famix-MetamodelBuilder-Core-Implementation'
 }
@@ -262,8 +257,7 @@ FmxMBBehavior >> initialize [
 	properties := OrderedCollection new.
 	prefix := String new.
 	packageName := String new.
-	testingSelectors := Set new.
-	isRoot := true
+	testingSelectors := Set new
 ]
 
 { #category : #testing }
