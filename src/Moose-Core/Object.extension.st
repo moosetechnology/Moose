@@ -139,3 +139,9 @@ Object >> mooseModel [
 Object >> mooseName [
 	^ self printString
 ]
+
+{ #category : #'*Moose-Core' }
+Object >> usesFamixTrait: aTrait [
+
+	^ self class usesFamixTrait: aTrait
+]
