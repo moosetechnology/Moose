@@ -18,6 +18,7 @@ FamixAbstractFileAnchorTest >> anchorForClassTest [
 
 { #category : #helpers }
 FamixAbstractFileAnchorTest >> sourceCodeForTest [
+"We do not care that it is Java or not, we just need code. This test is on FamixTest1Anchor"
 	^ 'package goosegame.dice;
 
 import goosegame.Dice;

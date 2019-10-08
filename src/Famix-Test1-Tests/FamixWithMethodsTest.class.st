@@ -1,5 +1,5 @@
 Class {
-	#name : #OldFamixTWithMethodsTest,
+	#name : #FamixWithMethodsTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'model',
@@ -17,7 +17,7 @@ Class {
 }
 
 { #category : #running }
-OldFamixTWithMethodsTest >> setUp [
+FamixWithMethodsTest >> setUp [
 
 	super setUp.
 
@@ -44,7 +44,7 @@ OldFamixTWithMethodsTest >> setUp [
 ]
 
 { #category : #tests }
-OldFamixTWithMethodsTest >> testAddMethod [
+FamixWithMethodsTest >> testAddMethod [
 	
 	| newMethod | 
 	
@@ -55,7 +55,7 @@ OldFamixTWithMethodsTest >> testAddMethod [
 ]
 
 { #category : #tests }
-OldFamixTWithMethodsTest >> testMethods [
+FamixWithMethodsTest >> testMethods [
 	
 	| newMethod1 newMethod2 | 
 	
@@ -71,7 +71,7 @@ OldFamixTWithMethodsTest >> testMethods [
 ]
 
 { #category : #tests }
-OldFamixTWithMethodsTest >> testMethodsGroup [
+FamixWithMethodsTest >> testMethodsGroup [
 	
 	| group | 
 	
@@ -80,7 +80,7 @@ OldFamixTWithMethodsTest >> testMethodsGroup [
 ]
 
 { #category : #tests }
-OldFamixTWithMethodsTest >> testNumberOfAccessorMethods [
+FamixWithMethodsTest >> testNumberOfAccessorMethods [
 
 	m1 kind: #getter.
 	self assert: c1 numberOfAccessorMethods equals: 1.
@@ -90,7 +90,7 @@ OldFamixTWithMethodsTest >> testNumberOfAccessorMethods [
 ]
 
 { #category : #tests }
-OldFamixTWithMethodsTest >> testNumberOfConstructorMethods [
+FamixWithMethodsTest >> testNumberOfConstructorMethods [
 
 	m1 isConstructor: true.
 	self assert: c1 numberOfConstructorMethods equals: 1.
@@ -100,7 +100,7 @@ OldFamixTWithMethodsTest >> testNumberOfConstructorMethods [
 ]
 
 { #category : #tests }
-OldFamixTWithMethodsTest >> testNumberOfLinesOfCode [
+FamixWithMethodsTest >> testNumberOfLinesOfCode [
 
 	self assert: c1 numberOfLinesOfCode equals: 2.
 	self assert: c2 numberOfLinesOfCode equals: 7.
@@ -109,7 +109,7 @@ OldFamixTWithMethodsTest >> testNumberOfLinesOfCode [
 ]
 
 { #category : #tests }
-OldFamixTWithMethodsTest >> testNumberOfMessageSends [
+FamixWithMethodsTest >> testNumberOfMessageSends [
 
 	self assert: c1 numberOfMessageSends equals: model notExistentMetricValue.
 	c1 numberOfMessageSends: 100.
@@ -118,7 +118,7 @@ OldFamixTWithMethodsTest >> testNumberOfMessageSends [
 ]
 
 { #category : #tests }
-OldFamixTWithMethodsTest >> testNumberOfMethods [
+FamixWithMethodsTest >> testNumberOfMethods [
 
 	self assert: c1 numberOfMethods equals: 1.
 	self assert: c2 numberOfMethods equals: 2.
@@ -130,7 +130,7 @@ OldFamixTWithMethodsTest >> testNumberOfMethods [
 ]
 
 { #category : #tests }
-OldFamixTWithMethodsTest >> testRelations [
+FamixWithMethodsTest >> testRelations [
 
 	self assertCollection: c1 methods hasSameElements:  { m1 }.	
 	self assertCollection: c2 methods hasSameElements:  { m2. m3 }.
@@ -139,7 +139,7 @@ OldFamixTWithMethodsTest >> testRelations [
 ]
 
 { #category : #tests }
-OldFamixTWithMethodsTest >> testWeightedMethodCount [
+FamixWithMethodsTest >> testWeightedMethodCount [
 
 	self assert: c1 weightedMethodCount equals: model notExistentMetricValue
 ]

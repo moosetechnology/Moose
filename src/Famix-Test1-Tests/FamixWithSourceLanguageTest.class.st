@@ -1,5 +1,5 @@
 Class {
-	#name : #OldFamixTWithSourceLanguageTest,
+	#name : #FamixWithSourceLanguageTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'model',
@@ -12,7 +12,7 @@ Class {
 }
 
 { #category : #running }
-OldFamixTWithSourceLanguageTest >> setUp [
+FamixWithSourceLanguageTest >> setUp [
 
 	super setUp.
 
@@ -27,7 +27,7 @@ OldFamixTWithSourceLanguageTest >> setUp [
 ]
 
 { #category : #tests }
-OldFamixTWithSourceLanguageTest >> testAddSourcedEntity [
+FamixWithSourceLanguageTest >> testAddSourcedEntity [
 
 	lang addSourcedEntity: m1.
 	self assertCollection: lang sourcedEntities hasSameElements: { m1 }.
@@ -38,7 +38,7 @@ OldFamixTWithSourceLanguageTest >> testAddSourcedEntity [
 ]
 
 { #category : #tests }
-OldFamixTWithSourceLanguageTest >> testDeclaredSourceLanguage [
+FamixWithSourceLanguageTest >> testDeclaredSourceLanguage [
 
 	self assert: m1 declaredSourceLanguage isNil.
 	m1 declaredSourceLanguage: lang.
