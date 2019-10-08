@@ -109,7 +109,9 @@ TEntityMetaLevelDependency classSide >> parentTypesIn: aMetamodel [
 
 { #category : #new }
 TEntityMetaLevelDependency classSide >> privateAllChildrenTypesIn: aMetamodel [
-	^ ((self childrenTypesIn: aMetamodel) withDeepCollect: [ :each | each childrenTypesIn: aMetamodel] as: Set) asOrderedCollection
+	^ ((self childrenTypesIn: aMetamodel)
+		withDeepCollect: [ :each | (each usedStatefulTraits includes: TEntityMetaLevelDependency) ifTrue: [ each childrenTypesIn: aMetamodel ] ifFalse: [ #() ] ]
+		as: Set) asOrderedCollection
 ]
 
 { #category : #accessing }
@@ -130,7 +132,9 @@ TEntityMetaLevelDependency classSide >> privateAllOutgoingAssociationTypesIn: aM
 
 { #category : #accessing }
 TEntityMetaLevelDependency classSide >> privateAllParentTypesIn: aMetamodel [
-	^ ((self parentTypesIn: aMetamodel) withDeepCollect: [ :each | each parentTypesIn: aMetamodel] as: Set) asOrderedCollection
+	^ ((self parentTypesIn: aMetamodel)
+		withDeepCollect: [ :each | (each usedStatefulTraits includes: TEntityMetaLevelDependency) ifTrue: [ each parentTypesIn: aMetamodel ] ifFalse: [ #() ] ]
+		as: Set) asOrderedCollection
 ]
 
 { #category : #accessing }
