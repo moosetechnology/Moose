@@ -109,6 +109,8 @@ TEntityMetaLevelDependency classSide >> parentTypesIn: aMetamodel [
 
 { #category : #new }
 TEntityMetaLevelDependency classSide >> privateAllChildrenTypesIn: aMetamodel [
+	"Instead of checking if we are using TEntityMetaLevolDependency it would be better to implement #childrenTypesIn: on Trait, but it is currently impossible because all methods whose selector is present in Trait, Class, Behavior are not copied to users. If we denife the method on Trait then the one of TEntityMetaLevelDependency will not be present in the users."
+
 	^ ((self childrenTypesIn: aMetamodel)
 		withDeepCollect: [ :each | (each usedStatefulTraits includes: TEntityMetaLevelDependency) ifTrue: [ each childrenTypesIn: aMetamodel ] ifFalse: [ #() ] ]
 		as: Set) asOrderedCollection
@@ -132,6 +134,8 @@ TEntityMetaLevelDependency classSide >> privateAllOutgoingAssociationTypesIn: aM
 
 { #category : #accessing }
 TEntityMetaLevelDependency classSide >> privateAllParentTypesIn: aMetamodel [
+	"Instead of checking if we are using TEntityMetaLevolDependency it would be better to implement #parentTypesIn: on Trait, but it is currently impossible because all methods whose selector is present in Trait, Class, Behavior are not copied to users. If we denife the method on Trait then the one of TEntityMetaLevelDependency will not be present in the users."
+
 	^ ((self parentTypesIn: aMetamodel)
 		withDeepCollect: [ :each | (each usedStatefulTraits includes: TEntityMetaLevelDependency) ifTrue: [ each parentTypesIn: aMetamodel ] ifFalse: [ #() ] ]
 		as: Set) asOrderedCollection
