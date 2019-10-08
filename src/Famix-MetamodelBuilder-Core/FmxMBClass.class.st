@@ -213,6 +213,21 @@ FmxMBClass >> generateRequirementsFor: aClass [
 				classified: #meta ]
 ]
 
+{ #category : #generating }
+FmxMBClass >> generateRootMetamodelMethodIn: aClass [
+	self isRoot ifFalse: [ ^ self ].
+
+	self builder configuration mooseModelName
+		ifNotNil: [ :mooseModelName | 
+			aClass classSide
+				compile:
+					('metamodel
+
+	<generated>
+	^ {1} metamodel' format: {mooseModelName})
+				classified: 'meta' ]
+]
+
 { #category : #accessing }
 FmxMBClass >> generateTestingMethodsIn: aClass [
 	self isRoot
@@ -237,10 +252,8 @@ FmxMBClass >> hasTraitGeneralization: aTrait [
 
 { #category : #initialization }
 FmxMBClass >> initialize [
-
 	super initialize.
-	
-	requirements := Set new.
+	requirements := Set new
 ]
 
 { #category : #testing }
@@ -263,7 +276,6 @@ FmxMBClass >> isMetamodelClass [
 
 { #category : #testing }
 FmxMBClass >> isRoot [
-
 	^ self classGeneralization isNil
 ]
 

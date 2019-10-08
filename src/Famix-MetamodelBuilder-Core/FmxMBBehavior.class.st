@@ -230,21 +230,6 @@ FmxMBBehavior >> generateRemoteAccessors [
 ]
 
 { #category : #generating }
-FmxMBBehavior >> generateRootMetamodelMethodIn: aClass [
-	self isRoot ifFalse: [ ^ self ].
-
-	self builder configuration mooseModelName
-		ifNotNil: [ :mooseModelName | 
-			aClass classSide
-				compile:
-					('metamodel
-
-	<generated>
-	^ {1} metamodel' format: {mooseModelName})
-				classified: 'meta' ]
-]
-
-{ #category : #generating }
 FmxMBBehavior >> generateTestingMethodsIn: aClass [
 
 	self testingSelectors do: [ :aSelector |
@@ -278,12 +263,6 @@ FmxMBBehavior >> isMetamodelClass [
 
 { #category : #testing }
 FmxMBBehavior >> isMetamodelTrait [
-
-	^ false
-]
-
-{ #category : #testing }
-FmxMBBehavior >> isRoot [
 
 	^ false
 ]

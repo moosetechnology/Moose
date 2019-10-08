@@ -86,7 +86,6 @@ FmxMBTrait >> generate [
 	self generateAnnotationIn: aTrait as: self name superclass: nil.
 	
 	self generateTestingMethodsIn: aTrait.
-	self generateRootMetamodelMethodIn: aTrait.
 	self generateMethodsToRemoveFromTraitCompositionFor: aTrait.
 	
 	self generateNavigationGroupsFor: aTrait.
