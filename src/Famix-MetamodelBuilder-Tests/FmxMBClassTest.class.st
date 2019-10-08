@@ -396,24 +396,6 @@ FmxMBClassTest >> testRelatedOwnerTraitName [
 
 ]
 
-{ #category : #'tests - names' }
-FmxMBClassTest >> testRelatedTraitName [
-
-	"test if a related trait name is correctly generated from a class name"
-
-	| class |
-		
-	class := builder newClassNamed: #Variable.	
-	self assert: class relatedTraitName equals: 'TVariable'.
-		
-	class := builder newClassNamed: #Access.	
-	self assert: class relatedTraitName equals: 'TAccess'.
-
-	class := builder newClassNamed: #Method.	
-	self assert: class relatedTraitName equals: 'TMethod'.
-
-]
-
 { #category : #tests }
 FmxMBClassTest >> testSimpleClass [
 	"check expected parameters of a newely generated class"

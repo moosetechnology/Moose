@@ -1,5 +1,5 @@
 Class {
-	#name : #OldFamixTWithCommentsTest,
+	#name : #FamixWithCommentsTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'model',
@@ -17,7 +17,7 @@ Class {
 }
 
 { #category : #running }
-OldFamixTWithCommentsTest >> setUp [
+FamixWithCommentsTest >> setUp [
 
 	super setUp.
 
@@ -44,7 +44,7 @@ OldFamixTWithCommentsTest >> setUp [
 ]
 
 { #category : #tests }
-OldFamixTWithCommentsTest >> testComments [
+FamixWithCommentsTest >> testComments [
 
 	| comment comment2 |
 	
@@ -62,7 +62,7 @@ OldFamixTWithCommentsTest >> testComments [
 ]
 
 { #category : #tests }
-OldFamixTWithCommentsTest >> testHasComments [
+FamixWithCommentsTest >> testHasComments [
 	| comment |
 	comment := FamixTest1Comment new.
 
@@ -72,7 +72,7 @@ OldFamixTWithCommentsTest >> testHasComments [
 ]
 
 { #category : #tests }
-OldFamixTWithCommentsTest >> testPrivateAddComment [
+FamixWithCommentsTest >> testPrivateAddComment [
 	| comment |
 	comment := FamixTest1Comment new.
 	self deny: c1 hasComments.
@@ -81,7 +81,7 @@ OldFamixTWithCommentsTest >> testPrivateAddComment [
 ]
 
 { #category : #tests }
-OldFamixTWithCommentsTest >> testRemoveComment [
+FamixWithCommentsTest >> testRemoveComment [
 	| comment |
 	comment := FamixTest1Comment new.
 	self deny: c1 hasComments.

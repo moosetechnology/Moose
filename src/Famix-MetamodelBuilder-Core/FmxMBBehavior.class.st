@@ -1,6 +1,3 @@
-"
-FamixMetamodelBuilderBehavior
-"
 Class {
 	#name : #FmxMBBehavior,
 	#superclass : #FmxMBEntity,
@@ -14,12 +11,15 @@ Class {
 		'prefix',
 		'packageName',
 		'testingSelectors',
-		'isRoot',
-		'traitGeneralizations',
-		'methodsToRemoveFromTraitComposition'
+		'traitGeneralizations'
 	],
 	#category : #'Famix-MetamodelBuilder-Core-Implementation'
 }
+
+{ #category : #testing }
+FmxMBBehavior class >> isAbstract [
+	^ self = FmxMBBehavior
+]
 
 { #category : #generalization }
 FmxMBBehavior >> --|> anObject [
@@ -66,11 +66,9 @@ FmxMBBehavior >> allLocalTraits [
 	^ self traitGeneralizations
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FmxMBBehavior >> allNavigationGroups [
-
-	^ self navigationGroups, (self relations flatCollect: [ :relation |
-		relation side navigationGroups ]).
+	^ self navigationGroups , (self relations flatCollect: [ :relation | relation side navigationGroups ])
 ]
 
 { #category : #accessing }
@@ -80,12 +78,16 @@ FmxMBBehavior >> allTransitiveTraits [
 		yourself
 ]
 
+{ #category : #accessing }
+FmxMBBehavior >> as: aTraitName property: propertyName [
+	^ self subclassResponsibility
+]
+
 { #category : #converting }
 FmxMBBehavior >> as: aTraitOrTraitName property: propertyName comment: aString [
-
 	^ (self as: aTraitOrTraitName property: propertyName)
 		comment: aString;
-		yourself.
+		yourself
 ]
 
 { #category : #converting }
@@ -102,6 +104,11 @@ FmxMBBehavior >> classGeneralization [
 { #category : #accessing }
 FmxMBBehavior >> classGeneralization: anObject [
 	^ self subclassResponsibility
+]
+
+{ #category : #accessing }
+FmxMBBehavior >> containerProperties [
+	^ self properties select: #isContainer
 ]
 
 { #category : #'settings - default' }
@@ -122,8 +129,7 @@ FmxMBBehavior >> defaultTag [
 
 { #category : #accessing }
 FmxMBBehavior >> fullName [
-
-	^ (self prefix, self name) asSymbol
+	^ (self prefix , self name) asSymbol
 ]
 
 { #category : #accessing }
@@ -135,6 +141,11 @@ FmxMBBehavior >> generalization: anObject [
 			anObject isMetamodelTrait 
 				ifTrue: [ self addTraitGeneralization: anObject ]
 				ifFalse: [ self classGeneralization: anObject ] ]
+]
+
+{ #category : #accessing }
+FmxMBBehavior >> generate [
+	^ self subclassResponsibility
 ]
 
 { #category : #generating }
@@ -224,21 +235,6 @@ FmxMBBehavior >> generateRemoteAccessors [
 ]
 
 { #category : #generating }
-FmxMBBehavior >> generateRootMetamodelMethodIn: aClass [
-	self isRoot ifFalse: [ ^ self ].
-
-	self builder configuration mooseModelName
-		ifNotNil: [ :mooseModelName | 
-			aClass classSide
-				compile:
-					('metamodel
-
-	<generated>
-	^ {1} metamodel' format: {mooseModelName})
-				classified: 'meta' ]
-]
-
-{ #category : #generating }
 FmxMBBehavior >> generateTestingMethodsIn: aClass [
 
 	self testingSelectors do: [ :aSelector |
@@ -256,14 +252,12 @@ FmxMBBehavior >> inheritsFromTrait: aTrait without: aCollection [
 
 { #category : #initialization }
 FmxMBBehavior >> initialize [
-
 	super initialize.
 	relations := OrderedCollection new.
 	properties := OrderedCollection new.
-	prefix := String new.
-	packageName := String new.
-	testingSelectors := Set new.
-	isRoot := true
+	prefix := ''.
+	packageName := ''.
+	testingSelectors := Set new
 ]
 
 { #category : #testing }
@@ -274,12 +268,6 @@ FmxMBBehavior >> isMetamodelClass [
 
 { #category : #testing }
 FmxMBBehavior >> isMetamodelTrait [
-
-	^ false
-]
-
-{ #category : #testing }
-FmxMBBehavior >> isRoot [
 
 	^ false
 ]

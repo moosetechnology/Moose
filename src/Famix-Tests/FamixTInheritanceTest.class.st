@@ -1,16 +1,16 @@
 Class {
-	#name : #FamixTSubTest,
+	#name : #FamixTInheritanceTest,
 	#superclass : #TestCase,
-	#traits : 'TFamixTSubTest',
-	#classTraits : 'TFamixTSubTest classTrait',
+	#traits : 'TFamixTInheritanceTest',
+	#classTraits : 'TFamixTInheritanceTest classTrait',
 	#category : #'Famix-Tests-Tests'
 }
 
 { #category : #overrides }
-FamixTSubTest >> setUp [
+FamixTInheritanceTest >> setUp [
 super setUp.
 	model := MooseModel new metamodel: FamixGenerator metamodel.
-self entity: (MooseEntity new copyWithTalent:FamixTSub).
+self entity: (MooseEntity new copyWithTalent:FamixTInheritance).
 self entity class initializeSlots: self entity.
 model add: entity. 
 ]

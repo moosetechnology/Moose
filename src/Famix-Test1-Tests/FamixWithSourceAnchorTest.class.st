@@ -1,5 +1,5 @@
 Class {
-	#name : #OldFamixTWithSourceAnchorTest,
+	#name : #FamixWithSourceAnchorTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'model',
@@ -17,7 +17,7 @@ Class {
 }
 
 { #category : #running }
-OldFamixTWithSourceAnchorTest >> setUp [
+FamixWithSourceAnchorTest >> setUp [
 
 	super setUp.
 
@@ -43,14 +43,14 @@ OldFamixTWithSourceAnchorTest >> setUp [
 ]
 
 { #category : #tests }
-OldFamixTWithSourceAnchorTest >> testHasSourceAnchor [
+FamixWithSourceAnchorTest >> testHasSourceAnchor [
 
 	self assert: m1 hasSourceAnchor.
 	self deny: m3 hasSourceAnchor.
 ]
 
 { #category : #tests }
-OldFamixTWithSourceAnchorTest >> testNumberOfLinesOfCodeWithMoreThanOneCharacter [
+FamixWithSourceAnchorTest >> testNumberOfLinesOfCodeWithMoreThanOneCharacter [
 	
 	self assert: m1 numberOfLinesOfCodeWithMoreThanOneCharacter equals: 2.
 
@@ -64,7 +64,7 @@ OldFamixTWithSourceAnchorTest >> testNumberOfLinesOfCodeWithMoreThanOneCharacter
 ]
 
 { #category : #tests }
-OldFamixTWithSourceAnchorTest >> testSourceAnchor [
+FamixWithSourceAnchorTest >> testSourceAnchor [
 
 	self assert: m1 sourceAnchor equals: anchor1.
 	
@@ -75,7 +75,7 @@ OldFamixTWithSourceAnchorTest >> testSourceAnchor [
 ]
 
 { #category : #tests }
-OldFamixTWithSourceAnchorTest >> testSourceText [
+FamixWithSourceAnchorTest >> testSourceText [
 
 	self assert: m3 sourceText equals: ''.
 	self assert: m1 sourceText equals: 'method1\source1' withCRs.
@@ -83,7 +83,7 @@ OldFamixTWithSourceAnchorTest >> testSourceText [
 ]
 
 { #category : #tests }
-OldFamixTWithSourceAnchorTest >> testSourceTextForStub [
+FamixWithSourceAnchorTest >> testSourceTextForStub [
 
 	self assert: m1 sourceText equals: 'method1\source1' withCRs.
 	m1 isStub: true.

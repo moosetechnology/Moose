@@ -81,6 +81,19 @@ FamixTWithMethods >> methodsGroup [
 ]
 
 { #category : #metrics }
+FamixTWithMethods >> numberOfAbstractMethods [
+	<MSEProperty: #numberOfAbstractMethods type: #Number>
+	<derived>
+	<MSEComment: 'The number of abstract methods in the class'>
+	^ self lookUpPropertyNamed: #numberOfAbstractMethods computedAs: [ self methodsGroup count: [ :each | each isAbstract ] ]
+]
+
+{ #category : #metrics }
+FamixTWithMethods >> numberOfAbstractMethods: aNumber [
+	self privateState propertyAt: #numberOfAbstractMethods put: aNumber
+]
+
+{ #category : #metrics }
 FamixTWithMethods >> numberOfAccessorMethods [
 	<MSEProperty: #numberOfAccessorMethods type: #Number>
 	<derived>
@@ -188,6 +201,103 @@ FamixTWithMethods >> understands: signature [
 	self withSuperclassesDo: [:each | 
 		(each implements: signature) ifTrue: [^true]].
 	^false
+]
+
+{ #category : #metrics }
+FamixTWithMethods >> numberOfPrivateMethods [
+	<MSEProperty: #numberOfPrivateMethods type: #Number>
+	<derived>
+	<MSEComment: 'The number of private methods in a class'>
+			
+	^self
+		lookUpPropertyNamed: #numberOfPrivateMethods
+		computedAs: [(self methods select: [:each | each isPrivate]) size]
+]
+
+{ #category : #metrics }
+FamixTWithMethods >> numberOfPrivateMethods: aNumber [
+
+	self privateState propertyAt: #numberOfPrivateMethods put: aNumber
+]
+
+{ #category : #metrics }
+FamixTWithMethods >> numberOfProtectedMethods [
+	<MSEProperty: #numberOfProtectedMethods type: #Number>
+	<derived>
+	<MSEComment: 'The number of protected methods in a class'>		
+	
+	^self
+		lookUpPropertyNamed: #numberOfProtectedMethods
+		computedAs: [(self methods select: [:each | each isProtected]) size]
+]
+
+{ #category : #metrics }
+FamixTWithMethods >> numberOfProtectedMethods: aNumber [
+
+	self privateState propertyAt: #numberOfProtectedMethods put: aNumber
+]
+
+{ #category : #metrics }
+FamixTWithMethods >> numberOfPublicMethods [
+	<MSEProperty: #numberOfPublicMethods type: #Number>
+	<derived>
+	<MSEComment: 'The number of public methods in a class'>		
+		
+	^self
+		lookUpPropertyNamed: #numberOfPublicMethods
+		computedAs: [(self methods select: [:each | each isPublic]) size]
+]
+
+{ #category : #metrics }
+FamixTWithMethods >> numberOfPublicMethods: aNumber [
+
+	self privateState propertyAt: #numberOfPublicMethods put: aNumber
+]
+
+{ #category : #metrics }
+FamixTWithMethods >> tightClassCohesion [
+	<MSEProperty: #tightClassCohesion type: #Number>
+	<derived>
+	<MSEComment: 'Tight class cohesion of a class'>
+	self flag: #TODO.
+	^ self
+		lookUpPropertyNamed: #tightClassCohesion
+		computedAs: [ 
+			| tcc accessDictionary nom |
+			tcc := 0.
+			accessDictionary := Dictionary new.
+			self
+				methods do: [ :eachMethod | 
+					eachMethod accesses
+						do: [ :eachAccess | 
+							| var |
+							var := eachAccess variable.
+							var isAttribute
+								ifTrue: [ 
+									| varName accessedFrom |
+									varName := var name.
+									accessedFrom := accessDictionary at: varName ifAbsent: [  ].
+									accessedFrom isNil
+										ifTrue: [ 
+											accessedFrom := Set new.
+											accessDictionary at: varName put: accessedFrom ].
+									accessedFrom add: eachMethod name ] ] ].
+			accessDictionary values
+				do: [ :each | 
+					| size |
+					size := each size.
+					tcc := tcc + (size * (size - 1) / 2) ].
+			nom := self numberOfMethods.
+			tcc := (nom = 0 or: [ nom = 1 ])
+				ifFalse: [ tcc / (nom * (nom - 1) / 2) ]
+				ifTrue: [ 0 ].
+			tcc asFloat ]
+]
+
+{ #category : #metrics }
+FamixTWithMethods >> tightClassCohesion: aNumber [
+
+	self privateState propertyAt: #tightClassCohesion put: aNumber
 ]
 
 { #category : #metrics }

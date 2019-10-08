@@ -164,12 +164,6 @@ FmxMBRelationSideTest >> testProperties [
 	side target: false.
 	self deny: side isTarget.
 
-	self deny: side isSubordinate.
-	side subordinate.
-	self assert: side isSubordinate.
-	side subordinate: false.
-	self deny: side isSubordinate.
-
 	self assert: side isOne.
 	self deny: side isMany.
 	side cardinality: #many.

@@ -1,8 +1,8 @@
 Class {
 	#name : #FAMIXPackage,
 	#superclass : #FAMIXScopingEntity,
-	#traits : 'FamixTCohesionCouplingMetrics + FamixTPackage + FamixTPackageWithClassesGlue',
-	#classTraits : 'FamixTCohesionCouplingMetrics classTrait + FamixTPackage classTrait + FamixTPackageWithClassesGlue classTrait',
+	#traits : 'FamixTCohesionCouplingMetrics + FamixTPackage',
+	#classTraits : 'FamixTCohesionCouplingMetrics classTrait + FamixTPackage classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 

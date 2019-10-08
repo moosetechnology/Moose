@@ -149,7 +149,7 @@ MooseMetaExplorer >> propertiesIn: a [
 					(each isDerived
 						ifTrue: [ ' /' ]
 						ifFalse: [ '' ]) ];
-		morphicSelectionAct: [ :list | Smalltalk tools browser openOnClass: list selection mmClass implementingClass selector: list selection implementingSelector ]
+		morphicSelectionAct: [ :list | Smalltalk tools browser openOnClass: list selection implementingClass selector: list selection implementingSelector ]
 			icon: GLMUIThemeExtraIcons glamorousBrowse
 			on: $b
 			entitled: 'Browse implementation';

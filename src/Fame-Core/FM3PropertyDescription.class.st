@@ -127,6 +127,13 @@ FM3PropertyDescription >> implementingSelector [
 	^ implementingSelector
 ]
 
+{ #category : #accessing }
+FM3PropertyDescription >> implementingType [
+	"Return the real type implementing the property."
+
+	^ self type implementingClass
+]
+
 { #category : #initialization }
 FM3PropertyDescription >> initialize [
 
