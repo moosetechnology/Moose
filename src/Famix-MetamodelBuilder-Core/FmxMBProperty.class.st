@@ -4,6 +4,11 @@ Class {
 	#category : #'Famix-MetamodelBuilder-Core-Implementation'
 }
 
+{ #category : #testing }
+FmxMBProperty class >> isAbstract [
+	^ self = FmxMBProperty
+]
+
 { #category : #accessing }
 FmxMBProperty >> asSlot [
 

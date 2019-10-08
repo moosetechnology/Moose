@@ -40,8 +40,7 @@ FmxMBClass >> allRequirementNames [
 ]
 
 { #category : #accessing }
-FmxMBClass >> allTraitNames [ 
-	
+FmxMBClass >> allTraitNames [
 	^ (self allTraits collect: #fullName) sorted
 ]
 
@@ -191,21 +190,14 @@ FmxMBClass >> generateMethodsMadeByTraitsFor: aClass [
 
 { #category : #generating }
 FmxMBClass >> generateRemotes [
-
 	| aClass aClassName |
-	
-	
 	aClassName := self fullName.
-	
-	aClass := self class environment at: aClassName asSymbol ifAbsent: [ self builder environment classNamed: aClassName asSymbol ].
-	
-	self realClass: aClass.
-	
-	self generateRemoteAccessors.
-	
-	
-	
 
+	aClass := self class environment at: aClassName asSymbol ifAbsent: [ self builder environment classNamed: aClassName asSymbol ].
+
+	self realClass: aClass.
+
+	self generateRemoteAccessors
 ]
 
 { #category : #generating }
@@ -279,12 +271,6 @@ FmxMBClass >> isRoot [
 FmxMBClass >> relatedOwnerTraitName [
 
 	^ 'TWith', self pluralPropertyName capitalized
-]
-
-{ #category : #'name conversion' }
-FmxMBClass >> relatedTraitName [
-
-	^ 'T', self name
 ]
 
 { #category : #accessing }

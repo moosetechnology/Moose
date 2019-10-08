@@ -13,6 +13,11 @@ Class {
 	#category : #'Famix-MetamodelBuilder-Core-Implementation'
 }
 
+{ #category : #visiting }
+FmxMBEntity >> acceptVisitor: aVisitor [
+	^ self subclassResponsibility
+]
+
 { #category : #accessing }
 FmxMBEntity >> additionalProperties [
 

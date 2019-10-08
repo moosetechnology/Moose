@@ -95,19 +95,14 @@ FmxMBTrait >> generate [
 
 { #category : #generating }
 FmxMBTrait >> generateRemotes [
-
 	| aTrait traitName |
-		
 	traitName := self fullName.
-	
+
 	aTrait := self builder environment classNamed: traitName asSymbol.
-				
-	self realClass: aTrait.
 
 	self realClass: aTrait.
-	
-	self generateRemoteAccessors.
 
+	self generateRemoteAccessors
 ]
 
 { #category : #testing }
@@ -143,12 +138,6 @@ FmxMBTrait >> propertyName [
 
 { #category : #'name conversion' }
 FmxMBTrait >> relatedOwnerTraitName [
-
-	^ self name
-]
-
-{ #category : #accessing }
-FmxMBTrait >> relatedTraitName [
 
 	^ self name
 ]
