@@ -4,9 +4,6 @@ FamixMetamodelBuilderTrait
 Class {
 	#name : #FmxMBTrait,
 	#superclass : #FmxMBBehavior,
-	#instVars : [
-		'sides'
-	],
 	#category : #'Famix-MetamodelBuilder-Core-Implementation'
 }
 
