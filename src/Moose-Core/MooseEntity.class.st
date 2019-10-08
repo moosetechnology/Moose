@@ -229,11 +229,6 @@ MooseEntity class >> usedStatefulTraits [
 	^ self cache at: #usedStatefulTraits ifAbsentPut: [ super usedStatefulTraits ]
 ]
 
-{ #category : #accessing }
-MooseEntity class >> usesFamixTrait: aTrait [
-	^ self usedStatefulTraits includes: aTrait
-]
-
 { #category : #'meta information' }
 MooseEntity >> allDeclaredProperties [
 	"All properties described in the metamodel"
@@ -635,10 +630,4 @@ MooseEntity >> suspendAllAnnouncementsDuring: aBlock [
 	[ 	self announcer: Announcer new.
 		aBlock value ]
 			ensure: [ self announcer: currentAnnouncer ]
-]
-
-{ #category : #accessing }
-MooseEntity >> usesFamixTrait: aTrait [
-
-	^ self class usesFamixTrait: aTrait
 ]

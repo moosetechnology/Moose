@@ -894,45 +894,6 @@ FamixGenerator >> commentForTWithTypes [
 ]
 
 { #category : #definition }
-FamixGenerator >> defineGlueingTraits [
-
-	tClassHierarchyNavigation := builder newTraitNamed: #TClassHierarchyNavigation.
-	
-	tLCOMMetrics := builder newTraitNamed: #TLCOMMetrics.
-
-	tPackageWithClassesGlue := builder newTraitNamed: #TPackageWithClassesGlue.
-	tPackageWithClassesGlue glues: tPackage with: tWithClasses.
-
-	tClassWithInvocationsGlue := builder newTraitNamed: #TClassWithInvocationsGlue.
-	tClassWithInvocationsGlue glues: tClass with: tWithInvocations.
-	
-	tWithMethodsWithModifiersGlue := builder newTraitNamed: #TWithMethodsWithModifiersGlue.
-	tWithMethodsWithModifiersGlue glueingCondition: [ :aClass |
-		| methodClasses |
-		methodClasses := aClass builder classesThatDirectlyUse: tMethod.
-		(aClass allLocalTraits includes: tWithMethods) 
-			and: [ methodClasses anySatisfy: [ :methodClass | methodClass allTraitsInHierarchy includes: tWithModifiers ] ] ].
-
-	tWithMethodsWithAccessesGlue := builder newTraitNamed: #TWithMethodsWithAccessesGlue.
-	tWithMethodsWithAccessesGlue glueingCondition: [ :aClass |
-		| methodClasses |
-		methodClasses := aClass builder classesThatDirectlyUse: tMethod.
-		(aClass allLocalTraits includes: tWithMethods) 
-			and: [ methodClasses anySatisfy: [ :methodClass | methodClass allTraitsInHierarchy includes: tWithAccesses ] ] ].
-
-	tContainingWithStatementsGlue := builder newTraitNamed: #TContainingWithStatementsGlue.
-	tContainingWithStatementsGlue glueingCondition: [ :aClass | 
-		aClass isContainerOfClassThatUses: tWithStatements ].
-
-	tContainingWithInvocationsGlue := builder newTraitNamed: #TContainingWithInvocationsGlue.
-	tContainingWithInvocationsGlue glueingCondition: [ :aClass | 
-		(aClass isContainerOfClassThatUses: tWithInvocations)
-			and: [ (aClass directlyUses: tInvocable) not ] ].
-
-
-]
-
-{ #category : #definition }
 FamixGenerator >> defineHierarchy [
 	super defineHierarchy.
 
@@ -1385,10 +1346,10 @@ FamixGenerator >> defineTraits [
 	tAccess := builder newTraitNamed: #TAccess.
 	tAccess comment: self commentForTAccess.
 	tAccess withTesting.
-	
+
 	tAccessible := builder newTraitNamed: #TAccessible.
 	tAccessible comment: self commentForTAccessible.
-	
+
 	tAnnotationInstance := builder newTraitNamed: #TAnnotationInstance.
 	tAnnotationInstance comment: self commentForTAnnotationInstance.
 
@@ -1400,11 +1361,11 @@ FamixGenerator >> defineTraits [
 
 	tAnnotationTypeAttribute := builder newTraitNamed: #TAnnotationTypeAttribute.
 	tAnnotationTypeAttribute comment: self commentForTAnnotationTypeAttribute.
-		
+
 	tAssociation := builder newTraitNamed: #TAssociation.
 	tAssociation comment: self commentForTAssociation.
 	tAssociation withTesting.
-	
+
 	tAttribute := builder newTraitNamed: #TAttribute.
 	tAttribute comment: self commentForTAttribute.
 	tAttribute withTesting.
@@ -1439,7 +1400,7 @@ FamixGenerator >> defineTraits [
 
 	tFolder := builder newTraitNamed: #TFolder.
 	tFolder comment: self commentForTFolder.
-	
+
 	tFileSystemEntity := builder newTraitNamed: #TFileSystemEntity.
 
 	tFileAnchor := builder newTraitNamed: #TFileAnchor.
@@ -1481,7 +1442,7 @@ FamixGenerator >> defineTraits [
 	tInvocation := builder newTraitNamed: #TInvocation.
 	tInvocation comment: self commentForTInvocation.
 	tInvocation withTesting.
-	
+
 	tInvocationsReceiver := builder newTraitNamed: #TInvocationsReceiver.
 	tInvocationsReceiver comment: self commentForTInvocationsReceiver.
 
@@ -1501,14 +1462,14 @@ FamixGenerator >> defineTraits [
 	tNamespace := builder newTraitNamed: #TNamespace.
 	tNamespace comment: self commentForTNamespace.
 	tNamespace withTesting.
-	
+
 	tNamespaceEntity := builder newTraitNamed: #TNamespaceEntity.
 	tNamespaceEntity comment: self commentForTNamespaceEntity.
 
 	tPackage := builder newTraitNamed: #TPackage.
 	tPackage comment: self commentForTPackage.
 	tPackage withTesting.
-	
+
 	tPackageable := builder newTraitNamed: #TPackageable.
 	tPackageable comment: self commentForTPackageable.
 
@@ -1539,7 +1500,7 @@ FamixGenerator >> defineTraits [
 
 	tSourceAnchor := builder newTraitNamed: #TSourceAnchor.
 	tSourceAnchor comment: self commentForTSourceAnchor.
-	
+
 	tSourceEntity := builder newTraitNamed: #TSourceEntity.
 	tSourceEntity comment: self commentForTSourceEntity.
 
@@ -1581,7 +1542,7 @@ FamixGenerator >> defineTraits [
 
 	tTypedStructure := builder newTraitNamed: #TTypedStructure.
 	tTypedStructure comment: self commentForTTypedStructure.
-	
+
 	tUnknownSourceLanguage := builder newTraitNamed: #TUnknownSourceLanguage.
 
 	tWithAccesses := builder newTraitNamed: #TWithAccesses.
@@ -1640,7 +1601,7 @@ FamixGenerator >> defineTraits [
 
 	tWithImplicitVariables := builder newTraitNamed: #TWithImplicitVariables.
 	tWithImplicitVariables comment: self commentForTWithImplicitVariables.
-	
+
 	tWithInheritances := builder newTraitNamed: #TWithInheritances.
 	tWithInheritances comment: self commentForTWithInheritances.
 
@@ -1709,12 +1670,12 @@ FamixGenerator >> defineTraits [
 	tPossibleStub := builder newTraitNamed: #TPossibleStub.
 
 	tWithStatements := builder newTraitNamed: #TWithStatements.
-	
+
 	tMultipleFileAnchor := builder newTraitNamed: #TMultipleFileAnchor.
-	
+
 	tCohesionCouplingMetrics := builder newTraitNamed: #TCohesionCouplingMetrics.
 
-	self defineGlueingTraits.
+	tClassHierarchyNavigation := builder newTraitNamed: #TClassHierarchyNavigation.
 
-
+	tLCOMMetrics := builder newTraitNamed: #TLCOMMetrics
 ]
