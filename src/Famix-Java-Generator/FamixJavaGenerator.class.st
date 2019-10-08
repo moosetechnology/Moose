@@ -51,12 +51,6 @@ FamixJavaGenerator class >> prefix [
 	^ #'FamixJava'
 ]
 
-{ #category : #accessing }
-FamixJavaGenerator class >> wantsAllEntitiesNavigation [
-
-	^ false
-]
-
 { #category : #definition }
 FamixJavaGenerator >> defineClasses [
 
@@ -191,8 +185,7 @@ FamixJavaGenerator >> defineHierarchy [
 	implicitVariable --|> #TImplicitVariable.
 
 	inheritance --|> association.
-	inheritance --|> #TSubInheritance.
-	inheritance --|> #TSuperInheritance.
+	inheritance --|> #TInheritance.
 
 	invocation --|> association.
 	invocation --|> #TInvocation.

@@ -23,7 +23,7 @@ Trait {
 { #category : #meta }
 FamixTReference classSide >> annotation [
 
-	<MSEClass: #TReference super: #Trait>
+	<MSEClass: #TReference super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

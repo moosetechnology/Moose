@@ -11,7 +11,7 @@ Trait {
 { #category : #meta }
 FamixTPreprocessorIfdef classSide >> annotation [
 
-	<MSEClass: #TPreprocessorIfdef super: #Trait>
+	<MSEClass: #TPreprocessorIfdef super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

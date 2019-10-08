@@ -15,18 +15,6 @@ FamixJavaSourceAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #accessing }
-FamixJavaSourceAnchor class >> childrenTypes [
-	self flag: #todo. "Source Anchors should not implement TEntityMetaLevelDependency but currently a source anchor is in Moose containment tree. This is a bug but Orion depend on this hack. So we first need to clean Orion, then we can remove those aweful methods. here."
-	^ {}
-]
-
-{ #category : #accessing }
-FamixJavaSourceAnchor class >> parentTypes [
-	self flag: #todo. "Source Anchors should not implement TEntityMetaLevelDependency but currently a source anchor is in Moose containment tree. This is a bug but Orion depend on this hack. So we first need to clean Orion, then we can remove those aweful methods. here."
-	^ {}
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaSourceAnchor >> completeText [
 	"The complete text of a FileAnchor contains all the code of the file pointed by the source anchor. On the contrary the #sourceText return only the pant of the file concerned by the entity. For example a FAMIXFileAnchon knows the start line and end line of the source anchor into the file."
@@ -45,11 +33,6 @@ FamixJavaSourceAnchor >> containerFiles [
 
 { #category : #'as yet unclassified' }
 FamixJavaSourceAnchor >> isFile [
-	^ false
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaSourceAnchor >> isMultiple [
 	^ false
 ]
 

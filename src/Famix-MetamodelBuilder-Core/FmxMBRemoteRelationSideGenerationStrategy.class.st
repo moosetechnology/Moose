@@ -1,6 +1,6 @@
 Class {
 	#name : #FmxMBRemoteRelationSideGenerationStrategy,
-	#superclass : #FmxMBNonremoteRelationSideGenerationStrategy,
+	#superclass : #FmxMBNonRemoteRelationSideGenerationStrategy,
 	#category : #'Famix-MetamodelBuilder-Core-Implementation'
 }
 

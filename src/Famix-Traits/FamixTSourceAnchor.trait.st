@@ -12,7 +12,7 @@ Trait {
 { #category : #meta }
 FamixTSourceAnchor classSide >> annotation [
 
-	<MSEClass: #TSourceAnchor super: #Trait>
+	<MSEClass: #TSourceAnchor super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -33,6 +33,13 @@ FamixTSourceAnchor >> element: anObject [
 	<generated>
 	element := anObject
 
+]
+
+{ #category : #testing }
+FamixTSourceAnchor >> isMultiple [
+	"Return true for source anchors in multiple parts."
+
+	^ false
 ]
 
 { #category : #metrics }

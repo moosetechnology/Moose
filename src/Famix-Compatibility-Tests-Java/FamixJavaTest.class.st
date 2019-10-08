@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 FamixJavaTest >> testImportAnnotations [
 	| model |
-	model := MooseModel new.
+	model := FAMIXModel new.
 	model
 		importFromMSEStream:
 			'(
@@ -41,7 +41,7 @@ FamixJavaTest >> testImportAnnotations [
 { #category : #tests }
 FamixJavaTest >> testImportExceptions [
 	| model |
-	model := MooseModel new.
+	model := FAMIXModel new.
 	model
 		importFromMSEStream:
 			'(
@@ -73,7 +73,7 @@ FamixJavaTest >> testImportExceptions [
 { #category : #tests }
 FamixJavaTest >> testInferNamespaces [
 	| model |
-	model := MooseModel new.
+	model := FAMIXModel new.
 	model add: (FAMIXNamespace new name: 'org.project.package1').
 	model add: (FAMIXNamespace new name: 'org.project.package2').
 	self assert: model allNamespaces size equals: 2.

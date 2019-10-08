@@ -4,13 +4,13 @@ Trait {
 		'#endPos => FMProperty',
 		'#startPos => FMProperty'
 	],
-	#category : #'Famix-Traits-Traits'
+	#category : #'Famix-Traits-SourceAnchor'
 }
 
 { #category : #meta }
 FamixTIndexedFileNavigation classSide >> annotation [
 
-	<MSEClass: #TIndexedFileNavigation super: #Trait>
+	<MSEClass: #TIndexedFileNavigation super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

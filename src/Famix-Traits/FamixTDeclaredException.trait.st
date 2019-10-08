@@ -12,7 +12,7 @@ Trait {
 { #category : #meta }
 FamixTDeclaredException classSide >> annotation [
 
-	<MSEClass: #TDeclaredException super: #Trait>
+	<MSEClass: #TDeclaredException super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

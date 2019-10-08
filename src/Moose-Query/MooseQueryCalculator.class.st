@@ -29,7 +29,7 @@ Class {
 	#instVars : [
 		'strategy'
 	],
-	#category : #'Moose-Query'
+	#category : #'Moose-Query-Core'
 }
 
 { #category : #'instance creation' }
@@ -270,7 +270,7 @@ MooseQueryCalculator >> throughLocal: aFAMIXClassAssociation for: anEntity in: a
 	| properties |
 	"Instead of #to:do: we could just use #do: but this implementation is much faster. Maybe sista will remove the needs of the todo later."
 
-	properties := (self strategy msePropertiesOf: anEntity) select: [:each |  aFAMIXClassAssociation inheritsFromType: each type implementingClass].
+	properties := (self strategy msePropertiesOf: anEntity) select: [:each |  aFAMIXClassAssociation inheritsFromType: each implementingType ].
 	
 	
 	1 to: properties size do: [ :ind | (anEntity perform: (properties at: ind) name) ifNotNil: [ :coll | aCollection addAll: (coll asCollection select: [ :each | each isOfType: aFAMIXClassAssociation ] thenCollect: [ :each | each perform: self strategy symbolToCollectEntities ] ) ] ].

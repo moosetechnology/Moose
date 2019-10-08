@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixStInheritance,
 	#superclass : #FamixStAssociation,
-	#traits : 'FamixTInheritanceGlue + FamixTSubInheritance + FamixTSuperInheritance',
-	#classTraits : 'FamixTInheritanceGlue classTrait + FamixTSubInheritance classTrait + FamixTSuperInheritance classTrait',
+	#traits : 'FamixTInheritance',
+	#classTraits : 'FamixTInheritance classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 

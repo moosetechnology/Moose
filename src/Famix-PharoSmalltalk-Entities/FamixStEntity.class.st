@@ -17,7 +17,7 @@ FamixStEntity class >> annotation [
 FamixStEntity class >> metamodel [
 
 	<generated>
-	^ (self class environment at: #FamixPharoSmalltalkGenerator) metamodel
+	^ FamixStModel metamodel
 ]
 
 { #category : #testing }

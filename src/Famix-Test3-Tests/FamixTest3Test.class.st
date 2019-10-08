@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixTest3Test,
 	#superclass : #TestCase,
-	#traits : 'FamixTWithMSEExportTestCase',
-	#classTraits : 'FamixTWithMSEExportTestCase classTrait',
+	#traits : 'TFamixWithMSEExportTestCase',
+	#classTraits : 'TFamixWithMSEExportTestCase classTrait',
 	#category : #'Famix-Test3-Tests'
 }
 
@@ -142,8 +142,18 @@ FamixTest3Test >> testAtScopeWithNonMatchingEntitiesDo [
 ]
 
 { #category : #running }
+FamixTest3Test >> testChildrenTypes [
+	self assertCollection: self c1 childrenTypes hasSameElements: {FamixTAttribute . FamixTMethod. FamixTest3Method}
+]
+
+{ #category : #running }
 FamixTest3Test >> testIncomingReferences [
 	self assertCollection: self pt1 incomingReferences hasSameElements: {self ref1}
+]
+
+{ #category : #running }
+FamixTest3Test >> testParentTypes [
+	self assertCollection: self m1 parentTypes hasSameElements: {FamixTWithMethods . FamixTest3Class}
 ]
 
 { #category : #running }

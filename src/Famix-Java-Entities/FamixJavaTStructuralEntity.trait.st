@@ -8,7 +8,7 @@ Trait {
 { #category : #meta }
 FamixJavaTStructuralEntity classSide >> annotation [
 
-	<MSEClass: #TStructuralEntity super: #Trait>
+	<MSEClass: #TStructuralEntity super: #Object>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self

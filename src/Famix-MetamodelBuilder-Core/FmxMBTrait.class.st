@@ -4,11 +4,6 @@ FamixMetamodelBuilderTrait
 Class {
 	#name : #FmxMBTrait,
 	#superclass : #FmxMBBehavior,
-	#instVars : [
-		'sides',
-		'gluedTraits',
-		'glueingCondition'
-	],
 	#category : #'Famix-MetamodelBuilder-Core-Implementation'
 }
 
@@ -44,14 +39,6 @@ FmxMBTrait >> as: aTraitName property: propertyName [
 	
 ]
 
-{ #category : #testing }
-FmxMBTrait >> canGlueTo: aClass [
-
-	^ glueingCondition 
-		ifNotNil: [ glueingCondition value: aClass ]
-		ifNil: [ false ]
-]
-
 { #category : #generating }
 FmxMBTrait >> classGeneralization [
 
@@ -67,6 +54,13 @@ FmxMBTrait >> classGeneralization: anObject [
 FmxMBTrait >> defaultSuperclass [
 	
 	^ self builder environment basicTrait
+]
+
+{ #category : #accessing }
+FmxMBTrait >> defaultSuperclassName [
+	"In case of Traits we want the annotation to point Object as superclass."
+
+	^ 'Object'
 ]
 
 { #category : #'settings-default' }
@@ -116,58 +110,6 @@ FmxMBTrait >> generateRemotes [
 	self realClass: aTrait.
 	
 	self generateRemoteAccessors.
-
-]
-
-{ #category : #accessing }
-FmxMBTrait >> glueingCondition [
-
-	<ignoreForCoverage>
-	^ glueingCondition
-]
-
-{ #category : #accessing }
-FmxMBTrait >> glueingCondition: anObject [
-	glueingCondition := anObject
-]
-
-{ #category : #testing }
-FmxMBTrait >> glues: otherTraits [
-
-	gluedTraits := otherTraits asSet. 
-]
-
-{ #category : #testing }
-FmxMBTrait >> glues: trait1 with: trait2 [
-
-	self glues: { trait1. trait2 }.
-	
-
-]
-
-{ #category : #testing }
-FmxMBTrait >> gluesOneOf: selectedTraits [
-
-	gluedTraits ifEmpty: [ ^ false ].
-
-	^ selectedTraits anySatisfy: [ :each | gluedTraits includes: each ]
-]
-
-{ #category : #testing }
-FmxMBTrait >> gluesSomeOf: selectedTraits [
-
-	gluedTraits ifEmpty: [ ^ false ].
-
-	^ selectedTraits includesAll: gluedTraits
-]
-
-{ #category : #initialization }
-FmxMBTrait >> initialize [
-
-	super initialize.
-	
-	gluedTraits := Set new.
-	
 
 ]
 
