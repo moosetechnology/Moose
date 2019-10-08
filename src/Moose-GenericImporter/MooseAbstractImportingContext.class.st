@@ -35,7 +35,7 @@ MooseAbstractImportingContext >> allSubclassTypesNotAbstractFor: aFM3Property [
 	| implementingClass result |
 	result := OrderedCollection new.
 	(self hasSubclasses: aFM3Property type) ifTrue:
-			[ implementingClass := aFM3Property type implementingClass.
+			[ implementingClass := aFM3Property implementingType.
 			implementingClass allSubclasses do:
 					[ :each | 
 					each = FAMIXPrimitiveType ifFalse:

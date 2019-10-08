@@ -95,8 +95,12 @@ TEntityMetaLevelDependencyTest >> testAllChildren [
 
 { #category : #tests }
 TEntityMetaLevelDependencyTest >> testAllChildrenTypes [
-	self assertCollection: c1 allChildrenTypes hasSameElements: {FamixTMethod . FamixTAttribute}.
-	self assertCollection: c2 allChildrenTypes hasSameElements: {FamixTMethod . FamixTAttribute}.
+	self
+		assertCollection: c1 allChildrenTypes
+		hasSameElements: {FamixTParameter . FamixTImplicitVariable . FamixTest1Attribute . FamixTAttribute . FamixTest1Method . FamixTLocalVariable . FamixTMethod}.
+	self
+		assertCollection: c2 allChildrenTypes
+		hasSameElements: {FamixTParameter . FamixTImplicitVariable . FamixTest1Attribute . FamixTAttribute . FamixTest1Method . FamixTLocalVariable . FamixTMethod}.
 	self assertCollection: m1 allChildrenTypes hasSameElements: {FamixTImplicitVariable . FamixTParameter . FamixTLocalVariable}
 ]
 
@@ -220,13 +224,6 @@ TEntityMetaLevelDependencyTest >> testParents [
 	newMethod := FamixTest1Method new.
 	self assert: newMethod parents isEmpty.
 
-]
-
-{ #category : #tests }
-TEntityMetaLevelDependencyTest >> testQueryLocalIncoming [
-
-	"just smoke test"
-	self assert: (c1 queryLocalIncoming: FamixTInheritanceGlue) isEmpty.
 ]
 
 { #category : #tests }
