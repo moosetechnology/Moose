@@ -1,7 +1,7 @@
 Class {
 	#name : #FamixSourceAnchorTest,
 	#superclass : #TestCase,
-	#category : #'Famix-Test1-Tests'
+	#category : #'Famix-Test1-Tests-SourceAnchor'
 }
 
 { #category : #testing }
