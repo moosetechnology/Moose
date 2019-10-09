@@ -11,20 +11,22 @@ MooseScripts class >> createLightModelForLAN [
 	 934 => simon.denier 5/16/2009 12:15 - initial run
 	 201 => simon.denier 5/16/2009 12:44 - with PackageOrganizerCache
 	"
-	
-	| model importer |
-	model := MooseModel new.
+
+	| model |
+	model := FamixStModel new.
 	model name: 'lightLAN'.
-	importer := MoosePharoImporterTask new.
-	importer factory: SmalltalkMetamodelFactory.
-	importer importingContext: (MooseImportingContext new 
-									importClassMethodInheritanceAttribute; 
-									importPackage;
-									mergeClassAndMetaclass;
-									yourself).
-	importer doNotRunCandidateOperator.
-	importer model: model; addFromPackagesNamed: (self packageNamesFor: 'Moose-LAN*'); run.
-	model install.
+	MoosePharoImporterTask new
+		importingContext:
+			(MooseImportingContext new
+				importClassMethodInheritanceAttribute;
+				importPackage;
+				mergeClassAndMetaclass;
+				yourself);
+		doNotRunCandidateOperator;
+		model: model;
+		addFromPackagesNamed: (self packageNamesFor: 'Moose-LAN*');
+		run.
+	model install
 ]
 
 { #category : #'loading scripts' }
@@ -35,20 +37,22 @@ MooseScripts class >> createLightModelForMorphic [
 	 11974 - simon.denier 5/16/2009 12:51 - with cache
 	 7455 - simon.denier 5/16/2009 12:55 - remove Transcript trace
 	"
-	
-	| model importer |
-	model := MooseModel new.
+
+	| model |
+	model := FamixStModel new.
 	model name: 'lightMorphic'.
-	importer := MoosePharoImporterTask new.
-	importer factory: SmalltalkMetamodelFactory.
-	importer importingContext: (MooseImportingContext new 
-									importClassMethodInheritanceAttribute; 
-									importPackage;
-									mergeClassAndMetaclass;
-									yourself).
-	importer doNotRunCandidateOperator.
-	importer model: model; addFromPackagesNamed: (self packageNamesFor: 'Morphic*'); runWithProgress.
-	model install.
+	MoosePharoImporterTask new
+		importingContext:
+			(MooseImportingContext new
+				importClassMethodInheritanceAttribute;
+				importPackage;
+				mergeClassAndMetaclass;
+				yourself);
+		doNotRunCandidateOperator;
+		model: model;
+		addFromPackagesNamed: (self packageNamesFor: 'Morphic*');
+		runWithProgress.
+	model install
 ]
 
 { #category : #'loading scripts' }
@@ -61,20 +65,22 @@ MooseScripts class >> createLightModelForNetwork [
 	 806 - simon.denier 5/20/2009 10:49 - cache non-initialized
 	 373 - simon.denier 5/20/2009 10:52 - cache initialited
 	"
-	
-	| model importer |
-	model := MooseModel new.
+
+	| model |
+	model := FamixStModel new.
 	model name: 'lightNetwork'.
-	importer := MoosePharoImporterTask new.
-	importer factory: SmalltalkMetamodelFactory.
-	importer importingContext: (MooseImportingContext new 
-									importClassMethodInheritanceAttribute; 
-									importPackage;
-									mergeClassAndMetaclass;
-									yourself).
-	importer doNotRunCandidateOperator.
-	importer model: model; addFromPackagesNamed: (self packageNamesFor: 'Network*'); runWithProgress.
-	model install.
+	MoosePharoImporterTask new
+		importingContext:
+			(MooseImportingContext new
+				importClassMethodInheritanceAttribute;
+				importPackage;
+				mergeClassAndMetaclass;
+				yourself);
+		doNotRunCandidateOperator;
+		model: model;
+		addFromPackagesNamed: (self packageNamesFor: 'Network*');
+		runWithProgress.
+	model install
 ]
 
 { #category : #'loading scripts' }
@@ -86,19 +92,22 @@ MooseScripts class >> createLightModelForPharo [
 	 42921 - simon.denier 5/16/2009 13:53 - with cache (first run was buggy because cache not initialized)
 	 35584 - simon.denier 5/16/2009 13:57 - without candidate invocation ?!?
 	"
-	
-	| model importer |
-	model := MooseModel new.
+
+	| model |
+	model := FamixStModel new.
 	model name: 'lightPharo'.
-	importer := MoosePharoImporterTask new.
-	importer importingContext: (MooseImportingContext new 
-									importClassMethodInheritanceAttribute; 
-									importPackage;
-									mergeClassAndMetaclass;
-									yourself)..
-	importer doNotRunCandidateOperator.
-	importer model: model; addFromPackagesNamed: self pharoPackageNames; runWithProgress.
-	model install.
+	MoosePharoImporterTask new
+		importingContext:
+			(MooseImportingContext new
+				importClassMethodInheritanceAttribute;
+				importPackage;
+				mergeClassAndMetaclass;
+				yourself);
+		doNotRunCandidateOperator;
+		model: model;
+		addFromPackagesNamed: self pharoPackageNames;
+		runWithProgress.
+	model install
 ]
 
 { #category : #'loading scripts' }
@@ -109,7 +118,7 @@ MooseScripts class >> createMediumModelForNetwork [
 	"
 	
 	| model importer |
-	model := MooseModel new.
+	model := FamixStModel new.
 	model name: 'mediumNetwork'.
 	importer := MoosePharoImporterTask new.
 	importer importingContext mergeClassAndMetaclass.
@@ -129,7 +138,7 @@ MooseScripts class >> createModelForMorphic [
 	"
 	
 	| model importer |
-	model := MooseModel new.
+	model := FamixStModel new.
 	model name: 'Morphic'.
 	importer := MoosePharoImporterTask new.
 	importer importingContext mergeClassAndMetaclass.
@@ -152,7 +161,7 @@ MooseScripts class >> createModelForNetwork [
 		"
 	
 	| model importer |
-	model := MooseModel new.
+	model := FamixStModel new.
 	model name: 'Network'.
 	importer := MoosePharoImporterTask new.
 	importer importingContext mergeClassAndMetaclass.
@@ -166,7 +175,7 @@ MooseScripts class >> createModelForPharo [
 	"self createModelForPharo"
 	
 	| model importer |
-	model := MooseModel new.
+	model := FamixStModel new.
 	model name: 'Pharo'.
 	importer := MoosePharoImporterTask new.
 	importer importingContext mergeClassAndMetaclass.
@@ -179,7 +188,7 @@ MooseScripts class >> createModelForPharo [
 MooseScripts class >> createModelNamed: modelName with: aCollectionOfPackageNames [
 	
 	| model importer |
-	model := MooseModel new.
+	model := FamixStModel new.
 	model name: modelName.
 	importer := MoosePharoImporterTask new.
 	importer importingContext mergeClassAndMetaclass.
@@ -193,7 +202,7 @@ MooseScripts class >> createModelNamed: modelName withPackages: packages importe
 
 	| mooseModel importer importingContext |
 	
-	mooseModel := MooseModel new.
+	mooseModel := FamixStModel new.
 	mooseModel name: modelName.
 	
 	importingContext := MooseImportingContext new.

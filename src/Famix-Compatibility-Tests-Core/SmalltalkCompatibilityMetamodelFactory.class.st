@@ -4,14 +4,14 @@ Class {
 	#category : #'Famix-Compatibility-Tests-Core'
 }
 
-{ #category : #'as yet unclassified' }
-SmalltalkCompatibilityMetamodelFactory >> anchor [
-	^ FAMIXPharoAnchor
+{ #category : #accessing }
+SmalltalkCompatibilityMetamodelFactory class >> defaultModel [
+	^ FAMIXModel
 ]
 
 { #category : #'as yet unclassified' }
-SmalltalkCompatibilityMetamodelFactory >> defaultMetamodelClass [
-	^ FamixCompatibilityGenerator
+SmalltalkCompatibilityMetamodelFactory >> anchor [
+	^ FAMIXPharoAnchor
 ]
 
 { #category : #'as yet unclassified' }

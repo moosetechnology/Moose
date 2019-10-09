@@ -32,7 +32,12 @@ FM3PackageDescription >> at: aString [
 
 { #category : #'accessing-query' }
 FM3PackageDescription >> classNamed: aString [
-	^ classes byName: aString ifAbsent: nil
+	^ self classNamed: aString ifAbsent: [ nil ]
+]
+
+{ #category : #'accessing-query' }
+FM3PackageDescription >> classNamed: aString ifAbsent: aBlock [
+	^ classes byName: aString ifAbsent: aBlock
 ]
 
 { #category : #accessing }
