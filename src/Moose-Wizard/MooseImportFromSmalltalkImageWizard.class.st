@@ -267,7 +267,7 @@ MooseImportFromSmalltalkImageWizard >> validateImportation [
 	open a corresponding mooseFinder"
 	| importer selectedPackages factory |
 
-	factory := Smalltalk at: (wizardInformations at: #metamodelFactory).
+	factory := (Smalltalk at: (wizardInformations at: #metamodelFactory)) new.
 	
 	selectedPackages := wizardInformations at: #packagesSelected.
 	
