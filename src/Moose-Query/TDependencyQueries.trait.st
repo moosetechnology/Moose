@@ -58,13 +58,13 @@ Examples
 "
 Trait {
 	#name : #TDependencyQueries,
-	#category : #'Moose-Query'
+	#category : #'Moose-Query-Traits'
 }
 
 { #category : #meta }
 TDependencyQueries classSide >> annotation [
 
-	<MSEClass: #TDependencyQueries super: #Trait>
+	<MSEClass: #TDependencyQueries super: #Object>
 	<package: #'Moose-Query'>
 	<generated>
 	^self

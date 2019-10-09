@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTAccessible classSide >> annotation [
 
-	<MSEClass: #TAccessible super: #Trait>
+	<MSEClass: #TAccessible super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

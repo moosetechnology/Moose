@@ -229,27 +229,11 @@ MooseEntity class >> usedStatefulTraits [
 	^ self cache at: #usedStatefulTraits ifAbsentPut: [ super usedStatefulTraits ]
 ]
 
-{ #category : #accessing }
-MooseEntity class >> usesFamixTrait: aTrait [
-	^ self usedStatefulTraits includes: aTrait
-]
-
 { #category : #'meta information' }
 MooseEntity >> allDeclaredProperties [
 	"All properties described in the metamodel"
 	 
 	^self mooseDescription allAttributes
-]
-
-{ #category : #'meta information' }
-MooseEntity >> allDeclaredPropertiesIn: aMetamodel [
-	"All properties described in the metamodel"
-	 
-	| aDescription |
-	aMetamodel ifNil: [ ^ OrderedCollection new ].
-	aDescription := self mooseDescriptionIn: aMetamodel.
-	^ aDescription ifNil: [ OrderedCollection new ] 
-		ifNotNil: [ aDescription allAttributes ]
 ]
 
 { #category : #'meta information' }
@@ -295,21 +279,6 @@ MooseEntity >> bookmarkAs: aString [
 	group := self asMooseGroup description: aString.
 	group isBookmarked: true.
 	^ self mooseModel add: group asBookmark: aString
-]
-
-{ #category : #accessing }
-MooseEntity >> children [ 
-	 
-	| selectors children | 
-	selectors := self class selectors select: [:each | 'all*s' match: each]. 
-	children := OrderedCollection new. 
-	selectors 
-		do: 
-			[:eachSelector |  
-			| group | 
-			group := self perform: eachSelector. 
-			group isEmpty ifFalse: [children add: group]]. 
-	^children
 ]
 
 { #category : #private }
@@ -661,10 +630,4 @@ MooseEntity >> suspendAllAnnouncementsDuring: aBlock [
 	[ 	self announcer: Announcer new.
 		aBlock value ]
 			ensure: [ self announcer: currentAnnouncer ]
-]
-
-{ #category : #accessing }
-MooseEntity >> usesFamixTrait: aTrait [
-
-	^ self class usesFamixTrait: aTrait
 ]

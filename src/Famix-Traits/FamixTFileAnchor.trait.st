@@ -8,13 +8,13 @@ Trait {
 		'#encoding => FMProperty',
 		'#fileName => FMProperty'
 	],
-	#category : #'Famix-Traits-FileAnchor'
+	#category : #'Famix-Traits-SourceAnchor'
 }
 
 { #category : #meta }
 FamixTFileAnchor classSide >> annotation [
 
-	<MSEClass: #TFileAnchor super: #Trait>
+	<MSEClass: #TFileAnchor super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -115,6 +115,11 @@ FamixTFileAnchor >> lineCount [
 		ifTrue: [ self sourceText lineCount ]
 		ifFalse: [ self notExistentMetricValue ]
 	
+]
+
+{ #category : #printing }
+FamixTFileAnchor >> mooseNameOn: aStream [
+	aStream nextPutAll: self fileName asString
 ]
 
 { #category : #private }

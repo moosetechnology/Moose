@@ -12,7 +12,7 @@ Trait {
 { #category : #meta }
 FamixTCompilationUnit classSide >> annotation [
 
-	<MSEClass: #TCompilationUnit super: #Trait>
+	<MSEClass: #TCompilationUnit super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

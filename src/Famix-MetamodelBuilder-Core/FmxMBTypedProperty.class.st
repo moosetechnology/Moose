@@ -1,6 +1,3 @@
-"
-FamixMetamodelBuilderTypedProperty
-"
 Class {
 	#name : #FmxMBTypedProperty,
 	#superclass : #FmxMBProperty,

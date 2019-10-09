@@ -32,6 +32,11 @@ FMNullMultivalueLink >> at: anIndex [
 	^self errorSubscriptBounds: anIndex
 ]
 
+{ #category : #iterators }
+FMNullMultivalueLink >> basicIterator [
+	^ NullIterator new
+]
+
 { #category : #accessing }
 FMNullMultivalueLink >> byName: aName ifAbsent: aBlock [
 	^aBlock value
@@ -56,9 +61,9 @@ FMNullMultivalueLink >> isNotEmpty [
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : #iterators }
 FMNullMultivalueLink >> iterator [
-	^ OrderedCollection new iterator
+	^ self basicIterator withCollectionAPI
 ]
 
 { #category : #accessing }

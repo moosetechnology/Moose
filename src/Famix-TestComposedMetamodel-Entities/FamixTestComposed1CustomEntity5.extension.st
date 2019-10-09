@@ -2,11 +2,11 @@ Extension { #name : #FamixTestComposed1CustomEntity5 }
 
 { #category : #'*Famix-TestComposedMetamodel-Entities-accessing' }
 FamixTestComposed1CustomEntity5 >> associations [
-	"Relation named: #associations type: #FamixTestComposed1Association opposite: #c15"
+	"Relation named: #associations type: #FamixTestComposedAssociation opposite: #c15"
 
 	<generated>
 	<derived>
-	<MSEProperty: #associations type: #Object>
+	<MSEProperty: #associations type: #FamixTestComposedAssociation opposite: #c15>
 	<package: #'Famix-TestComposedMetamodel-Entities'>
 	^ self privateState attributeAt: #associations ifAbsentPut: [ FMMultivalueLink on: self opposite: #c15: ]
 ]

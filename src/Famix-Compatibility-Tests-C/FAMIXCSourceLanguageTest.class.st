@@ -8,7 +8,7 @@ Class {
 FAMIXCSourceLanguageTest >> testIsC [
 	| model |
 	self skip: 'Test skipped until C metamodel definition'.
-	model := MooseModel new.
+	model := FAMIXModel new.
 	
 	model importFromMSEStream: '(
 		(FAMIX.CSourceLanguage)

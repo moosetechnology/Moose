@@ -56,6 +56,13 @@ FMMetaRepository >> classes [
 ]
 
 { #category : #accessing }
+FMMetaRepository >> concreteClasses [
+	"Return all the FM3 classes whose implementing class is a class and not a trait."
+
+	^ self classes reject: [ :fm3Class | fm3Class implementingClass isTrait ]
+]
+
+{ #category : #accessing }
 FMMetaRepository >> createInstanceOf: aString [
 
 	| meta |

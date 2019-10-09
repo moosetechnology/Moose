@@ -29,41 +29,16 @@ FmxMBGeneratorTest >> testGeneratorsAreUpToDate [
 ]
 
 { #category : #tests }
-FmxMBGeneratorTest >> testMooseModelSubclassHasInitialize [
-	| mooseModel |
-	FamixTest1Generator new generate.
-	mooseModel := 'FamixTest1Model' asClass.
-	self
-		assert: (mooseModel methods anySatisfy: [ :m | m selector = 'initialize' ])
-]
-
-{ #category : #tests }
 FmxMBGeneratorTest >> testMooseModelSubclassHasMetaModel [
-	| mooseModel |
-	FamixTest1Generator new generate.
-	mooseModel := 'FamixTest1Model' asClass new.
-	self
-		assert: mooseModel metamodel
-		equals: FamixTest1Generator metamodel
-]
-
-{ #category : #tests }
-FmxMBGeneratorTest >> testNewRepository [
-
-	| repository |
-	
-	repository := FamixTest1Generator newRepository.
-	self assert: repository isEmpty.	
-	self deny: repository metamodel elements isEmpty.
+	self assert: FamixTest1Model metamodel isNotNil.
+	self deny: MooseModel metamodel equals: FamixTest1Model metamodel
 ]
 
 { #category : #tests }
 FmxMBGeneratorTest >> testResetMetamodel [
-	
 	| metamodel |
-	
-	metamodel := FamixTest1Generator resetMetamodel.
-	self assert: (metamodel elementNamed: 'Famix-Test1-Entities.Entity' ifAbsent: [nil]) notNil.
+	metamodel := FamixTest1Model resetMetamodel.
+	self assert: (metamodel elementNamed: 'Famix-Test1-Entities.Entity' ifAbsent: [ nil ]) notNil
 ]
 
 { #category : #tests }

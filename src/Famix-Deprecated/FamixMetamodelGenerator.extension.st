@@ -21,3 +21,9 @@ FamixMetamodelGenerator >> builderWithStandardTraits [
 		generator: self;
 		yourself.
 ]
+
+{ #category : #'*Famix-Deprecated' }
+FamixMetamodelGenerator class >> newRepository [
+	self deprecated: 'Ask the MooseModel directly.' transformWith: '`@receiver newRepository' -> (self prefix , 'Model newRepository').
+	^ self withMooseModelDo: [ :m | m newRepository ]
+]

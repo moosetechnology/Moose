@@ -29,7 +29,7 @@ Trait {
 { #category : #meta }
 FamixTAssociation classSide >> annotation [
 
-	<MSEClass: #TAssociation super: #Trait>
+	<MSEClass: #TAssociation super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

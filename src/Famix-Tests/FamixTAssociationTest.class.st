@@ -14,3 +14,8 @@ self entity: (MooseEntity new copyWithTalent:FamixTAssociation).
 self entity class initializeSlots: self entity.
 model add: entity. 
 ]
+
+{ #category : #tests }
+FamixTAssociationTest >> testIsAssociation [
+	self assert: entity isAssociation.
+]

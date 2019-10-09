@@ -1,6 +1,3 @@
-"
-FamixMetamodelBuilderRelationSide
-"
 Class {
 	#name : #FmxMBRelationSide,
 	#superclass : #FmxMBProperty,
@@ -15,7 +12,6 @@ Class {
 		'derived',
 		'source',
 		'target',
-		'subordinate',
 		'generationStrategy'
 	],
 	#category : #'Famix-MetamodelBuilder-Core-Implementation'
@@ -122,7 +118,6 @@ FmxMBRelationSide >> initialize [
 	cardinality := #one.
 	container := false.
 	derived := false.
-	subordinate := false.
 	target := false.
 	source := false.
 	
@@ -167,12 +162,6 @@ FmxMBRelationSide >> isSource [
 ]
 
 { #category : #properties }
-FmxMBRelationSide >> isSubordinate [
-
-	^ subordinate
-]
-
-{ #category : #properties }
 FmxMBRelationSide >> isTarget [
 
 	^ target
@@ -181,7 +170,7 @@ FmxMBRelationSide >> isTarget [
 { #category : #converting }
 FmxMBRelationSide >> makeNonremote [
 
-	self generationStrategy: (FmxMBNonremoteRelationSideGenerationStrategy for: self)
+	self generationStrategy: (FmxMBNonRemoteRelationSideGenerationStrategy for: self)
 ]
 
 { #category : #converting }
@@ -228,7 +217,7 @@ FmxMBRelationSide >> oppositeName [
 
 { #category : #accessing }
 FmxMBRelationSide >> oppositeType [
-	^ (self builder configuration prefix , self otherSide relatedEntityName) asSymbol
+	^ (self otherSide builder configuration prefix , self otherSide relatedEntityName) asSymbol
 ]
 
 { #category : #accessing }
@@ -342,16 +331,6 @@ FmxMBRelationSide >> source [
 { #category : #properties }
 FmxMBRelationSide >> source: anObject [
 	source := anObject
-]
-
-{ #category : #properties }
-FmxMBRelationSide >> subordinate [
-	subordinate := true
-]
-
-{ #category : #properties }
-FmxMBRelationSide >> subordinate: anObject [
-	subordinate := anObject
 ]
 
 { #category : #properties }

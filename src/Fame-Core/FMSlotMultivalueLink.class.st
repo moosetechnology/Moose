@@ -47,6 +47,11 @@ FMSlotMultivalueLink >> at: index [
 	^values at: index
 ]
 
+{ #category : #iterators }
+FMSlotMultivalueLink >> basicIterator [
+	^ values basicIterator
+]
+
 { #category : #accessing }
 FMSlotMultivalueLink >> byName: name [
 	^ self byName: name ifAbsent: [ self errorNotFound: name ]
@@ -93,7 +98,7 @@ FMSlotMultivalueLink >> inverseRemove: anObject [
 	^values remove: anObject
 ]
 
-{ #category : #accessing }
+{ #category : #iterators }
 FMSlotMultivalueLink >> iterator [
 	^ values iterator
 ]

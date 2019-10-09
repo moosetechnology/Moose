@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithImplicitVariables classSide >> annotation [
 
-	<MSEClass: #TWithImplicitVariables super: #Trait>
+	<MSEClass: #TWithImplicitVariables super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

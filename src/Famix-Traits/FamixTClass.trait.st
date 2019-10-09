@@ -7,15 +7,15 @@ A class is typically scoped in a namespace. To model nested or anonymous classes
 "
 Trait {
 	#name : #FamixTClass,
-	#traits : 'FamixTNamed - {#mooseNameOn:} + FamixTWithMethods + FamixTWithSubInheritances + FamixTWithSuperInheritances + FamixTWithAttributes + FamixTType + FamixTPackageable + FamixTInvocationsReceiver + FamixTWithComments',
-	#classTraits : 'FamixTNamed classTrait + FamixTWithMethods classTrait + FamixTWithSubInheritances classTrait + FamixTWithSuperInheritances classTrait + FamixTWithAttributes classTrait + FamixTType classTrait + FamixTPackageable classTrait + FamixTInvocationsReceiver classTrait + FamixTWithComments classTrait',
+	#traits : 'FamixTNamed - {#mooseNameOn:} + FamixTWithMethods + FamixTWithInheritances + FamixTWithAttributes + FamixTType + FamixTPackageable + FamixTInvocationsReceiver + FamixTWithComments',
+	#classTraits : 'FamixTNamed classTrait + FamixTWithMethods classTrait + FamixTWithInheritances classTrait + FamixTWithAttributes classTrait + FamixTType classTrait + FamixTPackageable classTrait + FamixTInvocationsReceiver classTrait + FamixTWithComments classTrait',
 	#category : #'Famix-Traits-Class'
 }
 
 { #category : #meta }
 FamixTClass classSide >> annotation [
 
-	<MSEClass: #TClass super: #Trait>
+	<MSEClass: #TClass super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
