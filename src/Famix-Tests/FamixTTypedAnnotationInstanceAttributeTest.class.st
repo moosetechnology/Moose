@@ -9,7 +9,7 @@ Class {
 { #category : #overrides }
 FamixTTypedAnnotationInstanceAttributeTest >> setUp [
 super setUp.
-	model := MooseModel new metamodel: FamixGenerator metamodel.
+	model := FamixModel new.
 self entity: (MooseEntity new copyWithTalent:FamixTTypedAnnotationInstanceAttribute).
 self entity class initializeSlots: self entity.
 model add: entity. 

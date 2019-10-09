@@ -9,7 +9,7 @@ Class {
 { #category : #overrides }
 FamixTNamespaceEntityTest >> setUp [
 super setUp.
-	model := MooseModel new metamodel: FamixGenerator metamodel.
+	model := FamixModel new.
 self entity: (MooseEntity new copyWithTalent:FamixTNamespaceEntity).
 self entity class initializeSlots: self entity.
 model add: entity. 
