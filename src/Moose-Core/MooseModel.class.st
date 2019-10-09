@@ -63,6 +63,11 @@ MooseModel class >> exportMetamodelTo: aStream [
 	self exportMetamodel: self meta to: aStream
 ]
 
+{ #category : #accessing }
+MooseModel class >> factory [
+	^ FMMetamodelFactory forModel: self
+]
+
 { #category : #meta }
 MooseModel class >> generateClassesFrom: aCollection [
 	"I generate the implementation for some meta-described classes. aCollection need to contain the full set of meta-described classes so that the metamodel is complete. Warning, part of classes will be overwritten."
@@ -440,6 +445,11 @@ MooseModel >> exportWithMetamodel: aMetamodel to: aStream [
 	tower metamodel: aMetamodel.
 	tower model: (repository := (FMRepository with: aMetamodel) addAll: self entities).
 	tower model exportOn: aStream
+]
+
+{ #category : #accessing }
+MooseModel >> factory [
+	^ self class factory
 ]
 
 { #category : #actions }

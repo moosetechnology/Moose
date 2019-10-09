@@ -1,6 +1,6 @@
 Class {
 	#name : #MooseSqueakClassPackageImporterTest,
-	#superclass : #MooseTestWithSmalltalkDependency,
+	#superclass : #TestCase,
 	#category : #'Moose-Tests-SmalltalkImporter-Core'
 }
 
@@ -44,8 +44,8 @@ MooseSqueakClassPackageImporterTest >> testImportClassUsingAddCategory [
 	"self debug: #testImportClassUsingAddCategory"
 
 	| model importer |
-	model := MooseModel new.
-	importer := self newPharoImporterTask 
+	model := FamixStModel new.
+	importer := MoosePharoImporterTask new
 		model: model;
 		importingContext: MooseImportingContext new importClass.
 	importer addFromPackage: (RPackageOrganizer default packageNamed: #'Moose-TestResources-LAN').
@@ -58,8 +58,8 @@ MooseSqueakClassPackageImporterTest >> testImportClassUsingAddClass [
 	"self debug: #testImportClassUsingAddClass"
 
 	| model importer |
-	model := MooseModel new.
-	importer := self newPharoImporterTask 
+	model := FamixStModel new.
+	importer := MoosePharoImporterTask new
 		model: model;
 		importingContext: MooseImportingContext new importClass.
 	importer addClass: LANNode.
@@ -72,8 +72,8 @@ MooseSqueakClassPackageImporterTest >> testImportClassUsingAddPackage [
 	"self debug: #testImportClassUsingAddPackage"
 
 	| model importer |
-	model := MooseModel new.
-	importer := self newPharoImporterTask
+	model := FamixStModel new.
+	importer := MoosePharoImporterTask new
 		model: model;
 		importingContext: MooseImportingContext new importClass.
 	importer addFromPackage: (RPackage organizer packageNamed: #'Moose-TestResources-LAN').
@@ -88,8 +88,8 @@ MooseSqueakClassPackageImporterTest >> testImportClassUsingAddPackageNamed [
 	"self debug: #testImportClassUsingAddPackageNamed"
 
 	| model importer |
-	model := MooseModel new.
-	importer := self newPharoImporterTask.
+	model := FamixStModel new.
+	importer := MoosePharoImporterTask new.
 	importer
 		model: model;
 		importingContext: MooseImportingContext new importClass.
