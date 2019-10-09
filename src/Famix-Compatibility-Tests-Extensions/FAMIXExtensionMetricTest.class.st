@@ -1,6 +1,6 @@
 Class {
 	#name : #FAMIXExtensionMetricTest,
-	#superclass : #MooseTestWithSmalltalkDependency,
+	#superclass : #TestCase,
 	#instVars : [
 		'model1',
 		'model2',
@@ -42,15 +42,14 @@ FAMIXExtensionMetricTest >> importClasses [
 
 { #category : #setup }
 FAMIXExtensionMetricTest >> importModels [
-
-	self newPharoImporterTask
+	MoosePharoImporterTask new
 		importerClass: SmalltalkImporter;
 		model: model1;
 		addFromPackageNamed: #'Moose-TestResources-KGB-P1FullReferencer';
 		addFromPackageNamed: #'Moose-TestResources-KGB-P2InteractedReferencerReferee';
 		run.
-		
-	self newPharoImporterTask
+
+	MoosePharoImporterTask new
 		importerClass: SmalltalkImporter;
 		model: model2;
 		addFromPackageNamed: #'Moose-TestResources-PackageBlueprint-P1';
@@ -58,10 +57,10 @@ FAMIXExtensionMetricTest >> importModels [
 		addFromPackageNamed: #'Moose-TestResources-PackageBlueprint-P3';
 		addFromPackageNamed: #'Moose-TestResources-PackageBlueprint-P4';
 		run.
-	
-	self newPharoImporterTask
+
+	MoosePharoImporterTask new
 		importerClass: SmalltalkImporter;
-		doNotRunCandidateOperator; 
+		doNotRunCandidateOperator;
 		model: lcomModel;
 		addFromPackageNamed: #'Moose-TestResources-LCOM';
 		run

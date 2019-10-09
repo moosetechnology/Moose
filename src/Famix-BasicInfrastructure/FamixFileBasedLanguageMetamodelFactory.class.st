@@ -4,6 +4,11 @@ Class {
 	#category : #'Famix-BasicInfrastructure'
 }
 
+{ #category : #testing }
+FamixFileBasedLanguageMetamodelFactory class >> isAbstract [
+	^ self = FamixFileBasedLanguageMetamodelFactory
+]
+
 { #category : #'as yet unclassified' }
 FamixFileBasedLanguageMetamodelFactory >> abstractFile [
 
