@@ -4,6 +4,11 @@ Class {
 	#category : #'Famix-BasicInfrastructure'
 }
 
+{ #category : #testing }
+FamixBasicInfrastructureMetamodelFactory class >> isAbstract [
+	^ self = FamixBasicInfrastructureMetamodelFactory
+]
+
 { #category : #accessing }
 FamixBasicInfrastructureMetamodelFactory >> association [
 
@@ -20,6 +25,12 @@ FamixBasicInfrastructureMetamodelFactory >> comment [
 FamixBasicInfrastructureMetamodelFactory >> entity [
 
 	^ self entityNamed: #Entity
+]
+
+{ #category : #initialization }
+FamixBasicInfrastructureMetamodelFactory >> initialize [
+	super initialize.
+	self class defaultModel ifNotNil: [ :m | self forModel: m ]
 ]
 
 { #category : #accessing }

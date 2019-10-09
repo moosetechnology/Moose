@@ -4,6 +4,11 @@ Class {
 	#category : #'Moose-SmalltalkImporter'
 }
 
+{ #category : #testing }
+AbstractSmalltalkMetamodelFactory class >> isAbstract [
+	^ self = AbstractSmalltalkMetamodelFactory
+]
+
 { #category : #accessing }
 AbstractSmalltalkMetamodelFactory >> access [
 
@@ -52,12 +57,6 @@ AbstractSmalltalkMetamodelFactory >> classEntity [
 	^ self entityNamed: #Class
 ]
 
-{ #category : #initialization }
-AbstractSmalltalkMetamodelFactory >> defaultMetamodelClass [
-
-	self subclassResponsibility
-]
-
 { #category : #accessing }
 AbstractSmalltalkMetamodelFactory >> globalVariable [
 
@@ -76,14 +75,6 @@ AbstractSmalltalkMetamodelFactory >> inheritance [
 	^ self entityNamed: #Inheritance
 ]
 
-{ #category : #initialization }
-AbstractSmalltalkMetamodelFactory >> initialize [ 
-	
-	super initialize.
-	
-	self metamodelClass: self defaultMetamodelClass
-]
-
 { #category : #accessing }
 AbstractSmalltalkMetamodelFactory >> invocation [
 
@@ -100,12 +91,6 @@ AbstractSmalltalkMetamodelFactory >> localVariable [
 AbstractSmalltalkMetamodelFactory >> method [
 
 	^ self entityNamed: #Method
-]
-
-{ #category : #accessing }
-AbstractSmalltalkMetamodelFactory >> nameResolver [
-
-	^ FamixSmalltalkNameResolver
 ]
 
 { #category : #accessing }

@@ -1,6 +1,6 @@
 Class {
 	#name : #FAMIXStepwiseImporterTest,
-	#superclass : #MooseTestWithSmalltalkDependency,
+	#superclass : #TestCase,
 	#classInstVars : [
 		'aVariable'
 	],
@@ -12,13 +12,20 @@ FAMIXStepwiseImporterTest >> defaultTimeLimit [
 	^ 30 seconds
 ]
 
+{ #category : #'instance creation' }
+FAMIXStepwiseImporterTest >> newImportClassesTask [
+	^ MooseImportClassesTask new
+		factory: FamixStModel factory;
+		yourself
+]
+
 { #category : #tests }
 FAMIXStepwiseImporterTest >> testCheckFormalParameterIsCreated [
 	"self debug: #testCheckFormalParameterIsCreated"
 
 	| mseFormalParameter model |
 	model := FamixStModel new.
-	self newPharoImporterTask
+	MoosePharoImporterTask new
 		importerClass: SmalltalkImporter;
 		importingContext:
 			(MooseImportingContext new
@@ -40,7 +47,7 @@ FAMIXStepwiseImporterTest >> testCheckSelfIsCreated [
 
 	| model mseSelf |
 	model := FamixStModel new.
-	self newPharoImporterTask
+	MoosePharoImporterTask new
 		importerClass: SmalltalkImporter;
 		importingContext:
 			(MooseImportingContext new
@@ -172,7 +179,7 @@ FAMIXStepwiseImporterTest >> testImportLANPackage [
 
 	| model class package |
 	model := FamixStModel new.
-	self newPharoImporterTask
+	MoosePharoImporterTask new
 		importerClass: SmalltalkImporter;
 		doNotRunCandidateOperator;
 		importingContext:
@@ -232,7 +239,7 @@ FAMIXStepwiseImporterTest >> testImportNamespace [
 
 	| model nap |
 	model := FamixStModel new.
-	self newPharoImporterTask
+	MoosePharoImporterTask new
 		importerClass: SmalltalkImporter;
 		doNotRunCandidateOperator;
 		importingContext:

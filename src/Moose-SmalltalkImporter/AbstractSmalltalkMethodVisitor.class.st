@@ -264,7 +264,7 @@ AbstractSmalltalkMethodVisitor >> visitMessageNode: aMessageNode [
 			[invocation := self importer factory invocation new. 
 			invocation sender: self methodEntity. 
 			
-			invocation signature: (self importer factory nameResolver signatureFromSmalltalkSelectorOn: aMessageNode selector).
+			invocation signature: (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: aMessageNode selector).
 			"invocation  
 				setInvokes: 
 					(FAMIXNameResolver signatureFromSmalltalkSelector: aMessageNode selector)." 

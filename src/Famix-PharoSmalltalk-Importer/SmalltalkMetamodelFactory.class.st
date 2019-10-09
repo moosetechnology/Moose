@@ -4,8 +4,7 @@ Class {
 	#category : #'Famix-PharoSmalltalk-Importer'
 }
 
-{ #category : #'as yet unclassified' }
-SmalltalkMetamodelFactory >> defaultMetamodelClass [
-
-	^ FamixPharoSmalltalkGenerator 
+{ #category : #accessing }
+SmalltalkMetamodelFactory class >> defaultModel [
+	^ FamixStModel
 ]
