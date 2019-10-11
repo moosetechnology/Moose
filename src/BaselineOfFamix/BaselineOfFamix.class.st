@@ -51,7 +51,6 @@ BaselineOfFamix >> baseline: spec [
 
 				package: 'Famix-PharoSmalltalk-Generator' with: [ spec requires: #('Basic') ];
 				package: 'Famix-PharoSmalltalk-Entities' with: [ spec requires: #('Famix-Smalltalk-Utils' 'BasicTraits') ];
-				package: 'Famix-PharoSmalltalk-Importer' with: [ spec requires: #('Famix-PharoSmalltalk-Entities' 'Moose-SmalltalkImporter') ];
 				package: 'Famix-PharoSmalltalk-Tests' with: [ spec requires: #('Famix-PharoSmalltalk-Entities' 'Famix-Test1-Entities' 'Moose-Core') ];
 
 				package: 'Famix-Java-Generator' with: [ spec requires: #('Basic') ];
@@ -103,7 +102,7 @@ BaselineOfFamix >> baseline: spec [
 				group: 'EntitiesJava' with: #('Famix-Java-Entities');
 				group: 'ModelJava' with: #('Famix-Java-Generator' 'EntitiesJava');
 				group: 'EntitiesSmalltalk' with: #('Famix-PharoSmalltalk-Entities');
-				group: 'ModelSmalltalk' with: #('Famix-PharoSmalltalk-Generator' 'EntitiesSmalltalk' 'Famix-PharoSmalltalk-Importer');
+				group: 'ModelSmalltalk' with: #('Famix-PharoSmalltalk-Generator' 'EntitiesSmalltalk');
 				group: 'Importers' with: #('Moose-GenericImporter' 'Moose-SmalltalkImporter');
 				group: 'TestModels' with: #('Famix-Test1-Entities' 'Famix-Test2-Entities' 'Famix-Test3-Entities' 'Famix-Test4-Entities');
 				group: 'Tests'
