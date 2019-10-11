@@ -21,5 +21,5 @@ MoosePharoImporterTaskTest >> testImportedModelHasSmalltalkMetamodel [
 		model: FamixStModel new;
 		addFromPackageNamed: 'Moose-Tests-SmalltalkImporter-Core';
 		basicRun.
-	self assert: model metamodel equals: FamixPharoSmalltalkGenerator metamodel
+	self assert: model metamodel equals: FamixStModel metamodel
 ]

@@ -1,7 +1,7 @@
 Class {
 	#name : #FamixPropertiesTest,
 	#superclass : #LANAbstractImportTest,
-	#category : #'Moose-Tests-SmalltalkImporter-Core'
+	#category : #'Moose-Tests-SmalltalkImporter-LAN'
 }
 
 { #category : #testing }
