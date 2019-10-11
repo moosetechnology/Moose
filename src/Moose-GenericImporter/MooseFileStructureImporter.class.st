@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'mooseModel'
 	],
-	#category : #'Moose-GenericImporter'
+	#category : #'Moose-GenericImporter-Importers'
 }
 
 { #category : #accessing }

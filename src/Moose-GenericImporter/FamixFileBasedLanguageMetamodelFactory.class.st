@@ -1,7 +1,7 @@
 Class {
 	#name : #FamixFileBasedLanguageMetamodelFactory,
 	#superclass : #FamixBasicInfrastructureMetamodelFactory,
-	#category : #'Famix-BasicInfrastructure'
+	#category : #'Moose-GenericImporter-Factories'
 }
 
 { #category : #testing }
@@ -9,43 +9,43 @@ FamixFileBasedLanguageMetamodelFactory class >> isAbstract [
 	^ self = FamixFileBasedLanguageMetamodelFactory
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixFileBasedLanguageMetamodelFactory >> abstractFile [
 
 	^ self entityNamed: #AbstractFile
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixFileBasedLanguageMetamodelFactory >> abstractFileAnchor [
 
 	^ self entityNamed: #AbstractFileAnchor
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixFileBasedLanguageMetamodelFactory >> file [
 
 	^ self entityNamed: #File
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixFileBasedLanguageMetamodelFactory >> fileAnchor [
 
 	^ self entityNamed: #FileAnchor
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixFileBasedLanguageMetamodelFactory >> folder [
 
 	^ self entityNamed: #Folder
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixFileBasedLanguageMetamodelFactory >> indexedFileAnchor [
 
 	^ self entityNamed: #IndexedFileAnchor
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixFileBasedLanguageMetamodelFactory >> multipleFileAnchor [
 
 	^ self entityNamed: #MultipleFileAnchor
