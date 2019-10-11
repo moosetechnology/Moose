@@ -1,7 +1,7 @@
 Class {
 	#name : #MooseNamingTest,
 	#superclass : #TestCase,
-	#category : #'Moose-Tests-Core'
+	#category : #'Famix-Smalltalk-Utils-Tests'
 }
 
 { #category : #testing }
