@@ -1,7 +1,7 @@
 Class {
 	#name : #MooseModelTestResourceWithSmalltalkDependency,
 	#superclass : #MooseModelTestResource,
-	#category : #'Moose-Tests-Core'
+	#category : #'Moose-Tests-SmalltalkImporter-Core'
 }
 
 { #category : #testing }

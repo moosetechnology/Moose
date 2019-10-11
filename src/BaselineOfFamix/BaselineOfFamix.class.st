@@ -59,15 +59,16 @@ BaselineOfFamix >> baseline: spec [
 
 				package: 'Moose-TestResources-LAN';
 				package: 'Moose-TestResources-LCOM';
+
 				package: 'Moose-Query-Test' with: [ spec requires: #('Moose-Query' 'Famix-Java-Entities') ];
 				package: 'FamixTestGenerator' with: [ spec requires: #('BasicTraits') ];
 				package: 'Famix-Tests' with: [ spec requires: #('BasicTraits' 'Talents') ];
-				package: 'Moose-Tests-Core' with: [ spec requires: #('Famix-Compatibility-Entities' 'TestModels' 'Moose-SmalltalkImporter' 'ReferenceTestResources') ];
+				package: 'Moose-Tests-Core' with: [ spec requires: #('Famix-Compatibility-Entities' 'TestModels' 'ReferenceTestResources') ];
 				package: 'Famix-Groups-Tests' with: [ spec requires: #('Famix-Groups' 'Moose-Tests-Core') ];
 				package: 'Famix-Smalltalk-Utils-Tests' with: [ spec requires: #('Famix-Smalltalk-Utils') ];
-				package: 'Moose-Tests-SmalltalkImporter-LAN' with: [ spec requires: #('Moose-Tests-Core' 'Moose-TestResources-LAN' 'Moose-SmalltalkImporter') ];
-				package: 'Moose-Tests-SmalltalkImporter-Core' with: [ spec requires: #('Moose-Tests-SmalltalkImporter-LAN') ];
-				package: 'Moose-Tests-SmalltalkImporter-KGB' with: [ spec requires: #('Moose-Tests-Core' 'KGBTestResources' 'Moose-SmalltalkImporter') ];
+				package: 'Moose-Tests-SmalltalkImporter-LAN' with: [ spec requires: #('Moose-Tests-SmalltalkImporter-Core' 'Moose-TestResources-LAN') ];
+				package: 'Moose-Tests-SmalltalkImporter-Core' with: [ spec requires: #('Moose-Tests-Core' 'Moose-SmalltalkImporter') ];
+				package: 'Moose-Tests-SmalltalkImporter-KGB' with: [ spec requires: #('KGBTestResources' 'Moose-Tests-SmalltalkImporter-Core') ];
 				package: 'Famix-Compatibility-Tests-C' with: [ spec requires: #('Famix-Compatibility-Entities') ];
 				package: 'Famix-Compatibility-Tests-Java' with: [ spec requires: #('Moose-Tests-Core') ];
 				package: 'Famix-Compatibility-Tests-Core' with: [ spec requires: #('Famix-Compatibility-Entities' 'Moose-Tests-SmalltalkImporter-LAN' 'Moose-Tests-SmalltalkImporter-KGB') ];
