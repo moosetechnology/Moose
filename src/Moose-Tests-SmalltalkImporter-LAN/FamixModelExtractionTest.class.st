@@ -25,7 +25,7 @@ Class {
 		'canOriginateNodeName',
 		'methodWithEmptyBodyNodeName'
 	],
-	#category : #'Moose-Tests-SmalltalkImporter-Core'
+	#category : #'Moose-Tests-SmalltalkImporter-LAN'
 }
 
 { #category : #auxiliary }

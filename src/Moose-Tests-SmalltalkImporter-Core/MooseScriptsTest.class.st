@@ -1,7 +1,7 @@
 Class {
 	#name : #MooseScriptsTest,
 	#superclass : #TestCase,
-	#category : #'Moose-Tests-Core'
+	#category : #'Moose-Tests-SmalltalkImporter-Core'
 }
 
 { #category : #tests }
