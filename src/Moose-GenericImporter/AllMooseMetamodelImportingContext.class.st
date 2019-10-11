@@ -1,7 +1,7 @@
 Class {
 	#name : #AllMooseMetamodelImportingContext,
 	#superclass : #MooseAbstractImportingContext,
-	#category : #'Moose-GenericImporter'
+	#category : #'Moose-GenericImporter-Contexts'
 }
 
 { #category : #'instance creation' }

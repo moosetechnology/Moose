@@ -1,7 +1,7 @@
 Class {
 	#name : #FamixBasicInfrastructureMetamodelFactory,
 	#superclass : #FMMetamodelFactory,
-	#category : #'Famix-BasicInfrastructure'
+	#category : #'Moose-GenericImporter-Factories'
 }
 
 { #category : #testing }

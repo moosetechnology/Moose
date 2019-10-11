@@ -20,7 +20,7 @@ Class {
 	#classInstVars : [
 		'entityDependencies'
 	],
-	#category : #'Moose-GenericImporter'
+	#category : #'Moose-GenericImporter-Contexts'
 }
 
 { #category : #'instance creation' }
