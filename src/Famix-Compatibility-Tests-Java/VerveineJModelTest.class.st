@@ -10,8 +10,7 @@ Class {
 { #category : #running }
 VerveineJModelTest >> setUp [
 	super setUp.
-	model := MooseModel new.
-	model metamodel: FamixCompatibilityGenerator metamodel.
+	model := FAMIXModel new.
 	model importFromMSEStream: VerveineJTestResource new mse readStream
 	
 ]
