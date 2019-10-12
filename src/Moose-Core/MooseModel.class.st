@@ -60,7 +60,7 @@ MooseModel class >> exportMetamodel: aMetamodel to: aStream [
 { #category : #'import-export' }
 MooseModel class >> exportMetamodelTo: aStream [
 	self deprecated: 'Use exportMetamodelTo: in instance side'.
-	self exportMetamodel: self meta to: aStream
+	self exportMetamodel: self metamodel to: aStream
 ]
 
 { #category : #accessing }
