@@ -9,7 +9,7 @@ Class {
 
 { #category : #opening }
 MooseFameView >> open [
-	^ self openOn: MooseModel meta
+	^ self openOn: FAMIXModel metamodel
 ]
 
 { #category : #opening }
