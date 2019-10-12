@@ -35,7 +35,7 @@ MooseModel >> browseMeta [
 
 { #category : #'*Moose-Finder' }
 MooseModel class >> browseMeta [
-	^ MooseMetaBrowser new openOn: MooseModel meta
+	^ MooseMetaBrowser new openOn: self metamodel
 ]
 
 { #category : #'*Moose-Finder' }
