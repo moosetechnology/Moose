@@ -34,7 +34,7 @@ FamixStClass >> classSide [
 
 { #category : #accessing }
 FamixStClass >> extendedInPackages [
-	^ self extendedMethods flatCollectAsSet: [ :m | m atScope: FamixStPackage ]
+	^ self extendedMethods flatCollectAsSet: [ :m | m atScope: FamixTPackage ]
 ]
 
 { #category : #accessing }
