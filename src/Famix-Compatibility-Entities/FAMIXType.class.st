@@ -85,7 +85,7 @@ FAMIXType >> container: aContainer [
 
 { #category : #'Famix-Smalltalk' }
 FAMIXType >> extendedInPackages [
-	^ self extendedMethods flatCollectAsSet: [ :m | m atScope: FamixStPackage ]
+	^ self extendedMethods flatCollectAsSet: [ :m | m atScope: FamixTPackage ]
 ]
 
 { #category : #'Famix-Smalltalk' }
