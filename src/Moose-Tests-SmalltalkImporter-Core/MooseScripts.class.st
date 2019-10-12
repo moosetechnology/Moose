@@ -1,7 +1,7 @@
 Class {
 	#name : #MooseScripts,
 	#superclass : #Object,
-	#category : #'Moose-SmalltalkImporter'
+	#category : #'Moose-Tests-SmalltalkImporter-Core'
 }
 
 { #category : #'loading scripts' }
