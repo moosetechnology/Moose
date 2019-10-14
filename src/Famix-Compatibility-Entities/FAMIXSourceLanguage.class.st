@@ -20,21 +20,6 @@ FAMIXSourceLanguage >> isC [
 	^ false
 ]
 
-{ #category : #'Famix-Java' }
-FAMIXSourceLanguage >> isJava [
-	^ false
-]
-
-{ #category : #'Famix-Smalltalk' }
-FAMIXSourceLanguage >> isSmalltalk [
-	 ^ false
-]
-
-{ #category : #testing }
-FAMIXSourceLanguage >> isUnknown [ 
-	^ false
-]
-
 { #category : #accessing }
 FAMIXSourceLanguage >> name [
 	"The name of the language that is not modeled explicitly"

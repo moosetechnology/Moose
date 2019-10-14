@@ -303,6 +303,7 @@ FamixCompatibilityGenerator >> defineHierarchy [
 	parameter --|> #TParameter.
 
 	parameterType --|> type.
+	parameterType --|> #TParameterType.
 
 	parameterizableClass --|> class.
 	parameterizableClass --|> #TWithParameterizedTypes.

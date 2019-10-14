@@ -1,6 +1,8 @@
 Class {
 	#name : #FAMIXParameterType,
 	#superclass : #FAMIXType,
+	#traits : 'FamixTParameterType',
+	#classTraits : 'FamixTParameterType classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 
