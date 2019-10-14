@@ -60,7 +60,7 @@ MooseModel class >> exportMetamodel: aMetamodel to: aStream [
 { #category : #'import-export' }
 MooseModel class >> exportMetamodelTo: aStream [
 	self deprecated: 'Use exportMetamodelTo: in instance side'.
-	self exportMetamodel: self meta to: aStream
+	self exportMetamodel: self metamodel to: aStream
 ]
 
 { #category : #accessing }
@@ -241,6 +241,13 @@ MooseModel class >> metamodelComposedOf: aCollectionOfMetamodels [
 	^ repo
 ]
 
+{ #category : #'instance creation' }
+MooseModel class >> named: aString [
+	^ self new
+		name: aString;
+		yourself
+]
+
 { #category : #meta }
 MooseModel class >> newPragmaProcessor [
 	^ MoosePragmaProcessor new
@@ -252,18 +259,6 @@ MooseModel class >> newRepository [
 	tower := FMCompleteTower new.
 	tower metamodel addAll: self metamodel elements.
 	^ tower model
-]
-
-{ #category : #'private-instance creation' }
-MooseModel class >> newWithDefaultModels [ 
-	 
-	| result | 
-	result := self new. 
-	(Pragma 
-		allNamed: #defaultModel 
-		in: self class) 
-		do: [:pragma | result add: (self perform: pragma selector)]. 
-	^result
 ]
 
 { #category : #accessing }

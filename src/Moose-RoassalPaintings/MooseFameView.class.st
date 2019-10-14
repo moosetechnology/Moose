@@ -9,7 +9,7 @@ Class {
 
 { #category : #opening }
 MooseFameView >> open [
-	^ self openOn: MooseModel meta
+	^ self openOn: FAMIXModel metamodel
 ]
 
 { #category : #opening }
@@ -58,6 +58,6 @@ MooseFameView >> viewFameClasses: classes on: view [
 { #category : #opening }
 MooseFameView >> viewFamixCore [
 	" This method displays Famix core classes i.e., Famix classes declared in FAMIX package."
-	^ self viewFameClasses: (
-		FamixCompatibilityGenerator metamodel classes" select: [ :fameClass | fameClass package notNil and: [fameClass package name = #FAMIX ]]")
+
+	^ self viewFameClasses: FAMIXModel metamodel classes
 ]

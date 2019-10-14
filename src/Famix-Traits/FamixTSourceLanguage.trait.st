@@ -35,7 +35,7 @@ FamixTSourceLanguage >> isAttached [
 
 { #category : #testing }
 FamixTSourceLanguage >> isUnknown [
-	self explicitRequirement.
+	^ false
 ]
 
 { #category : #accessing }

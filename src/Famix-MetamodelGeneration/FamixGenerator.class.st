@@ -45,6 +45,7 @@ Class {
 		'tPackage',
 		'tPackageable',
 		'tParameter',
+		'tParameterType',
 		'tParameterizedType',
 		'tParameterizedTypeUser',
 		'tPreprocessorDefine',
@@ -494,6 +495,18 @@ FamixGenerator >> commentForTPackageable [
 FamixGenerator >> commentForTParameter [
 
 	^ 'FAMIXParameter represents one parameter in a method declaration.'
+]
+
+{ #category : #comments }
+FamixGenerator >> commentForTParameterType [
+	^ 'ParameterType represents the symbolic type used in parameterizable classes. This is a FAMIXType.
+
+Example:
+public class AClass<A,B,C> {
+...
+}
+
+Where AClass is a ParameterizableClass. A, B and C are ParameterType of AClass.'
 ]
 
 { #category : #comments }
@@ -1488,6 +1501,9 @@ FamixGenerator >> defineTraits [
 
 	tParameter := builder newTraitNamed: #TParameter.
 	tParameter comment: self commentForTParameter.
+
+	tParameterizedType := builder newTraitNamed: #TParameterType.
+	tParameterizedType comment: self commentForTParameterType.
 
 	tParameterizedType := builder newTraitNamed: #TParameterizedType.
 	tParameterizedType comment: self commentForTParameterizedType.

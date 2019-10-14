@@ -7,8 +7,7 @@ Class {
 { #category : #tests }
 FamixJavaTest >> testImportAnnotations [
 	| model |
-	MooseModel resetMeta.
-	model := FamixJavaMooseModel new.
+	model := FamixJavaModel new.
 	model
 		importFromMSEStream:
 			'(
@@ -42,8 +41,7 @@ FamixJavaTest >> testImportAnnotations [
 { #category : #tests }
 FamixJavaTest >> testImportExceptions [
 	| model |
-	MooseModel resetMeta.
-	model := FamixJavaMooseModel new.
+	model := FamixJavaModel new.
 	model
 		importFromMSEStream:
 			'(
@@ -75,7 +73,7 @@ FamixJavaTest >> testImportExceptions [
 { #category : #tests }
 FamixJavaTest >> testInferNamespaces [
 	| model |
-	model := MooseModel new.
+	model := FamixJavaModel new.
 	model add: (FamixJavaNamespace new name: 'org.project.package1').
 	model add: (FamixJavaNamespace new name: 'org.project.package2').
 	self assert: model allNamespaces size equals: 2.

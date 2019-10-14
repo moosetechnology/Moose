@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixTestComposed1UnknownSourceLanguage,
 	#superclass : #FamixTestComposed1SourceLanguage,
-	#traits : 'FamixTSourceLanguage + FamixTUnknownSourceLanguage',
-	#classTraits : 'FamixTSourceLanguage classTrait + FamixTUnknownSourceLanguage classTrait',
+	#traits : 'FamixTUnknownSourceLanguage',
+	#classTraits : 'FamixTUnknownSourceLanguage classTrait',
 	#category : #'Famix-TestComposedSubmetamodel1-Entities-Entities'
 }
 

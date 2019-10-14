@@ -1,3 +1,4 @@
+
 Class {
 	#name : #FamixJavaSourceLanguageTest,
 	#superclass : #FamixJavaEntityTest,
@@ -11,35 +12,37 @@ FamixJavaSourceLanguageTest >> actualClass [
 
 { #category : #tests }
 FamixJavaSourceLanguageTest >> testDefaultUnknownLanguage [
-	self assert: MooseModel new sourceLanguage isNil
+	self assert: FamixJavaModel new sourceLanguage isNil
 ]
 
 { #category : #tests }
 FamixJavaSourceLanguageTest >> testIsJava [
 	| model |
-	MooseModel resetMeta.
-	model := FamixJavaMooseModel importFromMSEStream: '(
+	model := FamixJavaModel new.
+
+	model
+		importFromMSEStream:
+			'(
 		(Famix-Java-Entities.SourceLanguage)
 		(Famix-Java-Entities.Class (id: 2) (name ''ClassWithoutSourceA''))
 		(Famix-Java-Entities.Class (id: 3) (name ''ClassWithoutSourceB''))
-	)' readStream withMetamodel: FamixJavaGenerator metamodel.
+	)' readStream.
 	self assert: model sourceLanguage isJava
 ]
 
 { #category : #tests }
 FamixJavaSourceLanguageTest >> testIsUnknown [
-	self deny: self actualClass new isUnknown 
+	self deny: FamixJavaSourceLanguage new isUnknown
 ]
 
 { #category : #tests }
 FamixJavaSourceLanguageTest >> testName [
-	self assert:  self actualClass new name equals: 'Java'
+	self assert: FamixJavaSourceLanguage new name equals: 'Java'
 ]
 
 { #category : #tests }
 FamixJavaSourceLanguageTest >> testSourcedEntities [
 	| model |
-	MooseModel resetMeta.
 	model := FamixJavaMooseModel importFromMSEStream:
 			'(
 		(Famix-Java-Entities.SourceLanguage (id: 1))

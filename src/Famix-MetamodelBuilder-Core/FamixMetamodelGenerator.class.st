@@ -114,11 +114,6 @@ FamixMetamodelGenerator class >> menuCommandOn: aBuilder [
 		withSeparatorAfter
 ]
 
-{ #category : #accessing }
-FamixMetamodelGenerator class >> metamodel [
-	^ self withMooseModelDo: [ :m | m metamodel ]
-]
-
 { #category : #generation }
 FamixMetamodelGenerator class >> metamodelsToGenerate [
 	"We add she submetamodels before the MM composing them because if we do the other way around it will cause trouble when we regenerate all because it will remove the glue added by the composed MM."

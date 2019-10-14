@@ -4,7 +4,7 @@ Extension { #name : #MooseAbstractGroup }
 MooseAbstractGroup >> allParameterTypes [
 	<navigation: 'All parameter types'>
 	<package: #Java>
-	^ self allWithSubTypesOf: FAMIXParameterType
+	^ self allUsing: FamixTParameterType
 ]
 
 { #category : #'*Famix-Compatibility-Entities' }
