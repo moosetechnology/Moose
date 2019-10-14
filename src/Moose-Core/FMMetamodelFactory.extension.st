@@ -32,3 +32,13 @@ FMMetamodelFactory >> forModel: aModel [
 FMMetamodelFactory class >> isDefaultFor: aModel [
 	^ self defaultModel = aModel
 ]
+
+{ #category : #'*Moose-Core' }
+FMMetamodelFactory >> modelClass [
+	fm3Package ifNil: [ self error: 'The factory is not initialized.' ].
+
+	^ fm3Package classes
+		detect: [ :class | class superclass name = #Model ]
+		ifFound: #implementingClass
+		ifNone: [ self error: 'No subclass of MooseModel present in this FM3 package' ]
+]
