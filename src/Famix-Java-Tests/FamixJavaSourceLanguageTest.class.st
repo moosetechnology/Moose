@@ -1,4 +1,3 @@
-
 Class {
 	#name : #FamixJavaSourceLanguageTest,
 	#superclass : #FamixJavaEntityTest,
