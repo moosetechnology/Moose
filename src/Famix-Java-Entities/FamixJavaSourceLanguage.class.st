@@ -25,7 +25,7 @@ FamixJavaSourceLanguage >> isJava [
 	^ true
 ]
 
-{ #category : #'accessing' }
+{ #category : #accessing }
 FamixJavaSourceLanguage >> name [
 	
 	<MSEProperty: #name type: #String> 

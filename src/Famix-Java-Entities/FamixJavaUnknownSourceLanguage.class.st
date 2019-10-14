@@ -15,7 +15,7 @@ FamixJavaUnknownSourceLanguage class >> annotation [
 	^self
 ]
 
-{ #category : #'accessing' }
+{ #category : #accessing }
 FamixJavaUnknownSourceLanguage >> name [
 	
 	<MSEProperty: #name type: #String> 

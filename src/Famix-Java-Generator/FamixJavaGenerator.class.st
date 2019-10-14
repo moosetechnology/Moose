@@ -246,7 +246,6 @@ FamixJavaGenerator >> defineHierarchy [
 	type --|> #TClassHierarchyNavigation. 
 	type --|> #TWithMethods.
 	type --|> #TWithTypes.
-	type --|> #TWithSuperInheritances.
 	type --|> #TWithAttributes.
 	
 
