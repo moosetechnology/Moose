@@ -33,6 +33,11 @@ FamixTSourceLanguage >> isAttached [
 	^ self sourcedEntities notEmpty  
 ]
 
+{ #category : #testing }
+FamixTSourceLanguage >> isUnknown [
+	^ false
+]
+
 { #category : #accessing }
 FamixTSourceLanguage >> sourcedEntities [
 	"Relation named: #sourcedEntities type: #FamixTWithSourceLanguage opposite: #declaredSourceLanguage"

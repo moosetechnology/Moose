@@ -1,14 +1,14 @@
 Class {
-	#name : #FamixEnumValueTest,
+	#name : #FamixJavaEnumValueTest,
 	#superclass : #TestCase,
-	#category : #'Famix-Compatibility-Tests-Java'
+	#category : #'Famix-Java-Tests'
 }
 
 { #category : #tests }
-FamixEnumValueTest >> testParentEnum [
+FamixJavaEnumValueTest >> testParentEnum [
 	| enum value |
-	enum := FAMIXEnum new.
-	value := FAMIXEnumValue new.
+	enum := FamixJavaEnum new.
+	value := FamixJavaEnumValue new.
 	value parentEnum: enum.
 	self assert: enum values size equals: 1.
 	self assert: value parentEnum equals: enum

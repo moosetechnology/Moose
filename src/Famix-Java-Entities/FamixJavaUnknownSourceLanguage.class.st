@@ -16,11 +16,6 @@ FamixJavaUnknownSourceLanguage class >> annotation [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaUnknownSourceLanguage >> isUnknown [ 
-	^ true
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaUnknownSourceLanguage >> name [
 	
 	<MSEProperty: #name type: #String> 

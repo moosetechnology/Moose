@@ -14,8 +14,3 @@ FAMIXUnknownSourceLanguage class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #testing }
-FAMIXUnknownSourceLanguage >> isUnknown [ 
-	^ true
-]

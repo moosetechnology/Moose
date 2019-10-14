@@ -32,6 +32,11 @@ FamixTWithSourceLanguage >> declaredSourceLanguage: anObject [
 
 ]
 
+{ #category : #testing }
+FamixTWithSourceLanguage >> isUnknown [
+	^ true
+]
+
 { #category : #accessing }
 FamixTWithSourceLanguage >> sourceLanguageOr: unknownSourceLanguageClass [
 	^ self declaredSourceLanguage ifNil: [

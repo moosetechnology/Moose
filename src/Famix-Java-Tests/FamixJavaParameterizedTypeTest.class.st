@@ -1,48 +1,49 @@
 Class {
-	#name : #FamixParameterizedTypeTest,
+	#name : #FamixJavaParameterizedTypeTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'model'
 	],
-	#category : #'Famix-Compatibility-Tests-Java'
+	#category : #'Famix-Java-Tests'
 }
 
 { #category : #running }
-FamixParameterizedTypeTest >> setUp [
-
+FamixJavaParameterizedTypeTest >> setUp [
 	super setUp.
-	model := FAMIXModel new.
-	
-	model importFromMSEStream: '(
-		(FAMIX.Namespace (id: 1) (name ''NamespaceA''))
-		(FAMIX.Class (id: 2) (name ''ClassA''))
-		
-		(FAMIX.ParameterizableClass (id: 3) (name ''ParameterizableClassA''))
-		(FAMIX.ParameterType (id: 5) (name ''A'') (container (ref: 3)))
-		(FAMIX.ParameterType (id: 6) (name ''B'') (container (ref: 3)))
-		(FAMIX.ParameterType (id: 7) (name ''C'') (container (ref: 3)))
-		
-		(FAMIX.Type (id: 4) (name ''TypeB''))
-		(FAMIX.Type (id: 5) (name ''TypeC''))		
-		(FAMIX.ParameterizedType (id: 6) (parameterizableClass (ref: 3)) (arguments (ref: 4)))
-		(FAMIX.ParameterizedType (id: 7) (parameterizableClass (ref: 3)) (arguments (ref: 4) (ref: 5)))
-		
-		(FAMIX.Attribute (id: 8) (name ''attributeA1'') (parentType (ref: 2)) (declaredType (ref: 6)))
-		(FAMIX.Attribute (id: 9) (name ''attributeA2'') (parentType (ref: 2)) (declaredType (ref: 7)))
+	model := FamixJavaModel new.
 
-		(FAMIX.Method (id: 10) (name ''methodA1'') (parentType (ref: 2)) (declaredType (ref: 6)))
-		(FAMIX.Method (id: 11) (name ''methodA2'') (parentType (ref: 2)) (declaredType (ref: 7)))
+	model
+		importFromMSEStream:
+			'(
+		(Famix-Java-Entities.Namespace (id: 1) (name ''NamespaceA''))
+		(Famix-Java-Entities.Class (id: 2) (name ''ClassA''))
 		
-		(FAMIX.Parameter (id: 12) (name ''parameterMtdA1'') (parentBehaviouralEntity (ref: 10)) (declaredType (ref: 6)))
-		(FAMIX.Parameter (id: 13) (name ''parameterMtdA2'') (parentBehaviouralEntity (ref: 11)) (declaredType (ref: 7)))
+		(Famix-Java-Entities.ParameterizableClass (id: 3) (name ''ParameterizableClassA''))
+		(Famix-Java-Entities.ParameterType (id: 5) (name ''A'') (container (ref: 3)))
+		(Famix-Java-Entities.ParameterType (id: 6) (name ''B'') (container (ref: 3)))
+		(Famix-Java-Entities.ParameterType (id: 7) (name ''C'') (container (ref: 3)))
 		
-		(FAMIX.LocalVariable (id: 14) (name ''localVariableMtdA1'') (parentBehaviouralEntity (ref: 10)) (declaredType (ref: 6)))
-		(FAMIX.LocalVariable (id: 15) (name ''localVariableMtdA2'') (parentBehaviouralEntity (ref: 11)) (declaredType (ref: 7)))
+		(Famix-Java-Entities.Type (id: 4) (name ''TypeB''))
+		(Famix-Java-Entities.Type (id: 5) (name ''TypeC''))		
+		(Famix-Java-Entities.ParameterizedType (id: 6) (parameterizableClass (ref: 3)) (arguments (ref: 4)))
+		(Famix-Java-Entities.ParameterizedType (id: 7) (parameterizableClass (ref: 3)) (arguments (ref: 4) (ref: 5)))
+		
+		(Famix-Java-Entities.Attribute (id: 8) (name ''attributeA1'') (parentType (ref: 2)) (declaredType (ref: 6)))
+		(Famix-Java-Entities.Attribute (id: 9) (name ''attributeA2'') (parentType (ref: 2)) (declaredType (ref: 7)))
+
+		(Famix-Java-Entities.Method (id: 10) (name ''methodA1'') (parentType (ref: 2)) (declaredType (ref: 6)))
+		(Famix-Java-Entities.Method (id: 11) (name ''methodA2'') (parentType (ref: 2)) (declaredType (ref: 7)))
+		
+		(Famix-Java-Entities.Parameter (id: 12) (name ''parameterMtdA1'') (parentBehaviouralEntity (ref: 10)) (declaredType (ref: 6)))
+		(Famix-Java-Entities.Parameter (id: 13) (name ''parameterMtdA2'') (parentBehaviouralEntity (ref: 11)) (declaredType (ref: 7)))
+		
+		(Famix-Java-Entities.LocalVariable (id: 14) (name ''localVariableMtdA1'') (parentBehaviouralEntity (ref: 10)) (declaredType (ref: 6)))
+		(Famix-Java-Entities.LocalVariable (id: 15) (name ''localVariableMtdA2'') (parentBehaviouralEntity (ref: 11)) (declaredType (ref: 7)))
 	)' readStream
 ]
 
 { #category : #tests }
-FamixParameterizedTypeTest >> testArgumentTypes [
+FamixJavaParameterizedTypeTest >> testArgumentTypes [
 	| fmxEntity fmxMethod declaredType typeB typeC parameterizedTypeA parameterizedTypeB parameterizableClassA |
 	parameterizedTypeB := model allParameterizedTypes entityNamed: #'ParameterizableClassA<TypeB,TypeC>'.
 	parameterizedTypeA := model allParameterizedTypes entityNamed: #'ParameterizableClassA<TypeB>'.
@@ -104,7 +105,7 @@ FamixParameterizedTypeTest >> testArgumentTypes [
 ]
 
 { #category : #tests }
-FamixParameterizedTypeTest >> testArguments [
+FamixJavaParameterizedTypeTest >> testArguments [
 	| parameterizableType |
 	parameterizableType := model allParameterizedTypes entityNamed: #'ParameterizableClassA<TypeB,TypeC>'.
 	self assert: parameterizableType arguments notEmpty.
@@ -112,11 +113,11 @@ FamixParameterizedTypeTest >> testArguments [
 ]
 
 { #category : #tests }
-FamixParameterizedTypeTest >> testArgumentsConstruction [
+FamixJavaParameterizedTypeTest >> testArgumentsConstruction [
 	| parameterizableType argument1 argument2 |
-	parameterizableType := FAMIXParameterizedType new.
-	argument1 := FAMIXClass new.
-	argument2 := FAMIXClass new.
+	parameterizableType := FamixJavaParameterizedType new.
+	argument1 := FamixJavaClass new.
+	argument2 := FamixJavaClass new.
 	parameterizableType arguments: {argument1}.
 	parameterizableType arguments add: argument2.
 	self assert: parameterizableType arguments size equals: 2.
@@ -127,13 +128,13 @@ FamixParameterizedTypeTest >> testArgumentsConstruction [
 ]
 
 { #category : #tests }
-FamixParameterizedTypeTest >> testModelSize [
+FamixJavaParameterizedTypeTest >> testModelSize [
 	self assert: model entities size equals: 18.
 	self assert: model allParameterizedTypes size equals: 2
 ]
 
 { #category : #tests }
-FamixParameterizedTypeTest >> testMooseName [
+FamixJavaParameterizedTypeTest >> testMooseName [
 
 	| parameterizableType |
 	parameterizableType := model allParameterizedTypes entityNamed: #'ParameterizableClassA<TypeB,TypeC>'.
@@ -141,6 +142,6 @@ FamixParameterizedTypeTest >> testMooseName [
 ]
 
 { #category : #tests }
-FamixParameterizedTypeTest >> testParameterizableClass [
+FamixJavaParameterizedTypeTest >> testParameterizableClass [
 	self assert: model allParameterizableClasses anyOne parameterizedTypes size equals: 2
 ]

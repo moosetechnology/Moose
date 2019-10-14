@@ -20,19 +20,9 @@ FamixJavaSourceLanguage >> isC [
 	^ false
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'*Famix-Java-Entities' }
 FamixJavaSourceLanguage >> isJava [
 	^ true
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaSourceLanguage >> isSmalltalk [
-	 ^ false
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaSourceLanguage >> isUnknown [ 
-	^ false
 ]
 
 { #category : #'as yet unclassified' }

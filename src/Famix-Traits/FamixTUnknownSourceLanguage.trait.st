@@ -1,6 +1,6 @@
 Trait {
 	#name : #FamixTUnknownSourceLanguage,
-	#category : #'Famix-Traits-Traits'
+	#category : #'Famix-Traits-SourceLanguage'
 }
 
 { #category : #meta }

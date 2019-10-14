@@ -16,15 +16,19 @@ FamixStSourceLanguage class >> annotation [
 ]
 
 { #category : #testing }
-FamixStSourceLanguage >> isSmalltalk [
+FamixStSourceLanguage >> isPharo [
 	^ true
 ]
 
 { #category : #testing }
-FamixStSourceLanguage >> name [
+FamixStSourceLanguage >> isSmalltalk [
+	^ true
+]
 
-	<MSEProperty: #name type: #String> <derived>
-	<MSEComment: 'The name of the language that is not modeled explicitly.'>
-	
-	^ 'Smalltalk'
+{ #category : #accessing }
+FamixStSourceLanguage >> name [
+	<MSEProperty: #name type: #String>
+	<derived>
+	<MSEComment: 'The name of the language'>
+	^ 'Pharo'
 ]
