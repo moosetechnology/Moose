@@ -45,7 +45,7 @@ BaselineOfFamix >> baseline: spec [
 				package: 'Famix-Smalltalk-Utils' with: [ spec requires: #('Moose-Core') ];
 				package: 'Moose-GenericImporter' with: [ spec requires: #('Famix-Compatibility-Entities') ];
 				package: 'Moose-SmalltalkImporter' with: [ spec requires: #('Moose-GenericImporter' 'RoelTyper' 'Famix-PharoSmalltalk-Entities') ];
-
+	
 				package: 'Famix-Compatibility-Generator' with: [ spec requires: #('Basic') ];
 				package: 'Famix-Compatibility-Entities' with: [ spec requires: #('BasicTraits' 'Famix-Smalltalk-Utils') ];
 
@@ -113,13 +113,13 @@ BaselineOfFamix >> baseline: spec [
 
 	spec
 		for: #'pharo7.x'
-		do: [
-			self ring2: spec.
-			self parametrizedTests: spec. 
+		do: [ self ring2: spec.
+			self parametrizedTests: spec.
 			spec
 				package: 'Famix-MetamodelBuilder-Core' with: [ spec requires: #('Ring2') ];
 				package: 'Moose-Core' with: [ spec includes: #('Famix-Pharo7' 'ParametrizedTests') ];
 				package: 'Famix-Pharo7' ]
+	
 ]
 
 { #category : #dependencies }
