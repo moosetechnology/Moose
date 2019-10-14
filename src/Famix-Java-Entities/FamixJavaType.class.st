@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaType,
 	#superclass : #FamixJavaNamedEntity,
-	#traits : 'FamixTClassHierarchyNavigation + FamixTContainingWithStatementsGlue + FamixTParameterizedTypeUser + FamixTType + FamixTWithAttributes + FamixTWithMethods + FamixTWithMethodsWithModifiersGlue + FamixTWithSuperInheritances + FamixTWithTypeAliases + FamixTWithTypes',
-	#classTraits : 'FamixTClassHierarchyNavigation classTrait + FamixTContainingWithStatementsGlue classTrait + FamixTParameterizedTypeUser classTrait + FamixTType classTrait + FamixTWithAttributes classTrait + FamixTWithMethods classTrait + FamixTWithMethodsWithModifiersGlue classTrait + FamixTWithSuperInheritances classTrait + FamixTWithTypeAliases classTrait + FamixTWithTypes classTrait',
+	#traits : 'FamixTClassHierarchyNavigation + FamixTParameterizedTypeUser + FamixTType + FamixTWithAttributes + FamixTWithMethods + FamixTWithInheritances + FamixTWithTypeAliases + FamixTWithTypes',
+	#classTraits : 'FamixTClassHierarchyNavigation classTrait + FamixTParameterizedTypeUser classTrait + FamixTType classTrait + FamixTWithAttributes classTrait + FamixTWithMethods classTrait + FamixTWithInheritances classTrait + FamixTWithTypeAliases classTrait + FamixTWithTypes classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
