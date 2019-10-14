@@ -11,3 +11,8 @@ FamixTUnknownSourceLanguage classSide >> annotation [
 	<generated>
 	^self
 ]
+
+{ #category : #testing }
+FamixTUnknownSourceLanguage >> isUnknown [
+	^ true
+]

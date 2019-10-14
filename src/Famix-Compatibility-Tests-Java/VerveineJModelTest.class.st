@@ -10,9 +10,8 @@ Class {
 { #category : #running }
 VerveineJModelTest >> setUp [
 	super setUp.
-	model := FAMIXModel new.
+	model := FamixJavaModel new.
 	model importFromMSEStream: VerveineJTestResource new mse readStream
-	
 ]
 
 { #category : #tests }
