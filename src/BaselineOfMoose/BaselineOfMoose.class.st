@@ -36,7 +36,13 @@ BaselineOfMoose >> baseline: spec [
 				package: 'Moose-Wizard';
 				package: 'Merlin';
 				package: 'Moose-DistributionMap';
-				package: 'Moose-Tests-DistributionMap' ]
+				package: 'Moose-Tests-DistributionMap' ].
+
+	spec
+		for: #'pharo8.x'
+		do: [ spec
+				package: 'Moose-Finder-Pharo8';
+				package: 'Moose-Finder' with: [ spec includes: #('Moose-Finder-Pharo8') ] ]
 ]
 
 { #category : #dependencies }

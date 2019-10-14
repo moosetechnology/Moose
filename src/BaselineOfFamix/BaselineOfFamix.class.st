@@ -118,13 +118,8 @@ BaselineOfFamix >> baseline: spec [
 			spec
 				package: 'Famix-MetamodelBuilder-Core' with: [ spec requires: #('Ring2') ];
 				package: 'Moose-Core' with: [ spec includes: #('Famix-Pharo7' 'ParametrizedTests') ];
-				package: 'Famix-Pharo7' ].
-
-	spec
-		for: #'pharo8.x'
-		do: [ spec
-				package: 'Moose-Finder-Pharo8';
-				package: 'Moose-Finder' with: [ spec includes: #('Moose-Finder-Pharo8') ] ]
+				package: 'Famix-Pharo7' ]
+	
 ]
 
 { #category : #dependencies }
