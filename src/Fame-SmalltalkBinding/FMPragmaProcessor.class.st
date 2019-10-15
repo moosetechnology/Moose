@@ -110,11 +110,6 @@ FMPragmaProcessor >> classes [
 	^ elements select: [ :e | e isFM3Class ]
 ]
 
-{ #category : #running }
-FMPragmaProcessor >> computeImplementingPackages [
-	^ queue collectAsSet: #package
-]
-
 { #category : #accessing }
 FMPragmaProcessor >> elements [
 	^ elements
@@ -147,9 +142,20 @@ FMPragmaProcessor >> ensurePackage: name [
 			pack ]
 ]
 
+{ #category : #running }
+FMPragmaProcessor >> implementingPackages [
+	^ implementingPackages ifNil: [ implementingPackages := queue collectAsSet: #package ]
+]
+
+{ #category : #running }
+FMPragmaProcessor >> implementingPackages: aColl [
+	implementingPackages := aColl
+]
+
 { #category : #private }
 FMPragmaProcessor >> initialize [
 	"Used for queuing classes before running."
+
 	queue := OrderedCollection new.
 	"Used to store resulting FM3 elements."
 	elements := OrderedCollection new.
@@ -166,25 +172,17 @@ FMPragmaProcessor >> initialize [
 
 	"Must use the cannonical primitives here!"
 	"Please do not at these primitives to elements!"
-	metaDict 
-		at: 'String'
-		put: FM3MetaDescription string.
-	metaDict 
-		at: 'Boolean'
-		put: FM3MetaDescription boolean.
-	metaDict 
-		at: 'Number'
-		put: FM3MetaDescription number.
-	metaDict 
-		at: 'Object'
-		put: FM3MetaDescription object
+	metaDict at: 'String' put: FM3MetaDescription string.
+	metaDict at: 'Boolean' put: FM3MetaDescription boolean.
+	metaDict at: 'Number' put: FM3MetaDescription number.
+	metaDict at: 'Object' put: FM3MetaDescription object
 ]
 
 { #category : #private }
 FMPragmaProcessor >> methodsToProcessFrom: aClass [
 	"We need to process the methods from the class and the extensions methods comming from the packages containing the entites. We should reject extension methods comming from other packages."
 
-	^ aClass methods select: [ :method | method isExtension not or: [ implementingPackages includes: method package ] ]
+	^ aClass methods select: [ :method | method isExtension not or: [ self implementingPackages includes: method package ] ]
 ]
 
 { #category : #accessing }
@@ -370,7 +368,6 @@ FMPragmaProcessor >> resolveObjectReferences [
 
 { #category : #running }
 FMPragmaProcessor >> run [
-	implementingPackages := self computeImplementingPackages.
 	queue do: [ :cls | self processClass: cls ].
 	self resolveObjectReferences.
 	self class shouldValidateMetaModel ifTrue: [ FMMetamodelValidator for: self ]
