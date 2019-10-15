@@ -2,10 +2,14 @@ Extension { #name : #Metaclass }
 
 { #category : #'*Fame-SmalltalkBinding' }
 Metaclass >> isMetamodelEntity [
-	^ self metamodelDefinitionPragmas isNotEmpty
+	^ self metamodelDefinitionPragma isNotNil
 ]
 
 { #category : #'*Fame-SmalltalkBinding' }
-Metaclass >> metamodelDefinitionPragmas [
-	^ Pragma allNamed: #MSEClass:super: in: self
+Metaclass >> metamodelDefinitionPragma [
+	^ (Pragma allNamed: #MSEClass:super: in: self)
+		ifEmpty: [ nil ]
+		ifNotEmpty: [ :p | 
+			p size = 1 ifFalse: [ self error: 'It should not be possible to have two pragmas to define a FM3 class.' ].
+			p anyOne ]
 ]

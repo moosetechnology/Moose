@@ -38,13 +38,12 @@ Class {
 		'classDict',
 		'metaDict',
 		'superclassDict',
-		'packMetaDict',
 		'typeDict',
 		'oppositeDict',
-		'packPropDict',
 		'mmClassDict',
 		'queue',
-		'implementingPackages'
+		'implementingPackages',
+		'packDict'
 	],
 	#classVars : [
 		'ShouldValidateMetaModel'
@@ -111,14 +110,9 @@ FMPragmaProcessor >> elements [
 
 { #category : #private }
 FMPragmaProcessor >> ensureClass: var [
-	var isBehavior
-		ifTrue: [ ^ classDict at: var ].
-	var isSymbol
-		ifTrue: [ ^ classDict
-				at: (self class environment at: var)
-				ifAbsent: [ metaDict at: var asString ] ].
-	var isString
-		ifTrue: [ ^ metaDict at: var ].
+	var isBehavior ifTrue: [ ^ classDict at: var ].
+	var isSymbol ifTrue: [ ^ classDict at: (self class environment at: var) ifAbsent: [ metaDict at: var asString ] ].
+	var isString ifTrue: [ ^ metaDict at: var ].
 	self assert: false
 ]
 
@@ -133,6 +127,11 @@ FMPragmaProcessor >> ensurePackage: name [
 			pack := FM3PackageDescription named: symbol.
 			elements add: pack.
 			pack ]
+]
+
+{ #category : #private }
+FMPragmaProcessor >> extractPackageFrom: method for: aFM3Element [
+	^ (method pragmaAt: #package:) ifNotNil: [ :p | packDict at: aFM3Element put: (p argumentAt: 1) ]
 ]
 
 { #category : #running }
@@ -156,10 +155,9 @@ FMPragmaProcessor >> initialize [
 	packageDict := Dictionary new.
 	classDict := Dictionary new.
 	superclassDict := IdentityDictionary new.
-	packMetaDict := IdentityDictionary new.
+	packDict := IdentityDictionary new.
 	typeDict := IdentityDictionary new.
 	oppositeDict := IdentityDictionary new.
-	packPropDict := IdentityDictionary new.
 	mmClassDict := IdentityDictionary new.
 	metaDict := Dictionary new.
 
@@ -195,29 +193,21 @@ FMPragmaProcessor >> processClass: aClass [
 
 { #category : #private }
 FMPragmaProcessor >> processClass: aClass ifPragmaAbsent: anErrorBlock [
-	| pragma meta className superclassName |
-	pragma := aClass metamodelDefinitionPragmas.
-	pragma ifEmpty: anErrorBlock.
-	pragma
-		ifEmpty: [ className := aClass name.
-			superclassName := aClass superclass name ]
-		ifNotEmpty: [ className := pragma first argumentAt: 1.
-			superclassName := pragma first argumentAt: 2 ].
+	aClass metamodelDefinitionPragma
+		ifNil: anErrorBlock
+		ifNotNil: [ :pragma | 
+			| fm3Class |
+			fm3Class := FM3MetaDescription named: (pragma argumentAt: 1).
+			superclassDict at: fm3Class put: (pragma argumentAt: 2).
+			fm3Class setImplementingClass: aClass.
 
+			(pragma method pragmaAt: #abstract) ifNotNil: [ fm3Class isAbstract: true ].
+			self extractPackageFrom: pragma method for: fm3Class.
+			classDict at: aClass put: fm3Class.
+			(self methodsToProcessFrom: aClass) do: [ :each | self processCompiledMethod: each ].
+			aClass slots do: [ :each | self processSlot: each in: aClass ].
 
-	"the description for the class"
-	meta := FM3MetaDescription named: className asString.
-	superclassDict at: meta put: superclassName.
-	meta setImplementingClass: aClass.
-	pragma
-		ifNotEmpty: [ (pragma first method pragmaAt: #abstract) ifNotNil: [ meta isAbstract: true ].
-			(pragma first method pragmaAt: #package:) ifNotNil: [ :p | packMetaDict at: meta put: (p argumentAt: 1) ] ].
-	elements add: meta.
-	classDict at: aClass put: meta.
-	(self methodsToProcessFrom: aClass) do: [ :each | self processCompiledMethod: each ].
-	aClass slots do: [ :each | self processSlot: each in: aClass ].
-	self assert: meta isFM3Class.
-	^ meta
+			elements add: fm3Class ]
 ]
 
 { #category : #private }
@@ -238,7 +228,7 @@ FMPragmaProcessor >> processCompiledMethod: aMethod [
 		ifFound: [ :pragma | 
 			| prop |
 			prop := FM3PropertyDescription named: (pragma argumentAt: 1) asString.
-			(method pragmaAt: #package:) ifNotNil: [ :p | packPropDict at: prop put: (p argumentAt: 1) ].
+			self extractPackageFrom: method for: prop.
 			typeDict at: prop put: (pragma argumentAt: 2).
 			mmClassDict at: prop put: method methodClass.
 			prop setImplementingSelector: method selector.
@@ -255,10 +245,11 @@ FMPragmaProcessor >> processPragmasOf: method for: prop [
 	(method pragmaAt: #source) ifNotNil: [ prop isSource: true ].
 	(method pragmaAt: #target) ifNotNil: [ prop isTarget: true ].
 	(method pragmaAt: #multivalued)
-		ifNotNil: [ self
+		ifNotNil: [
+			self flag: #todo. "This should maybe be moved to FMMetamodelValidator."
+			self
 				assert: prop isContainer not
-				description:
-					'It is not possible to have <multivalue> and <container> on the same method. container represents a aggregation UML link that is incompatible with the multivalue kind of the link'.
+				description: 'It is not possible to have <multivalue> and <container> on the same method. container represents a aggregation UML link that is incompatible with the multivalue kind of the link'.
 			prop isMultivalued: true ].
 	(method pragmaAt: #key:) ifNotNil: [ :p | prop key: (p argumentAt: 1) ]
 ]
@@ -278,7 +269,7 @@ FMPragmaProcessor >> processSlot: aSlot in: aClass [
 		at: aSlot name asSymbol
 		ifPresent: [ :aMethod | 
 			prop setImplementingSelector: aMethod selector.
-			(aMethod pragmaAt: #package:) ifNotNil: [ :p | packPropDict at: prop put: (p argumentAt: 1) ].
+			self extractPackageFrom: aMethod for: prop.
 			self processPragmasOf: aMethod for: prop ].
 
 	elements add: prop
@@ -308,13 +299,9 @@ FMPragmaProcessor >> queue: var [
 { #category : #private }
 FMPragmaProcessor >> resolveObjectReferences [
 
-	"establish class-package links"
-	packMetaDict keysAndValuesDo: [ :meta :value |
-		meta package: (self ensurePackage: value)
-	].
-	"establish property-package links"
-	packPropDict keysAndValuesDo: [ :prop :value |
-		prop package: (self ensurePackage: value)
+	"establish class-package and property-package links"
+	packDict keysAndValuesDo: [ :fm3Element :value |
+		fm3Element package: (self ensurePackage: value)
 	].
 	"establish property-class associations"
 	mmClassDict keysAndValuesDo: [ :prop :value |
