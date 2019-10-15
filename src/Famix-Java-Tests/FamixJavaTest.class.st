@@ -34,8 +34,8 @@ FamixJavaTest >> testImportAnnotations [
 	self assert: (model allAnnotationTypes entityNamed: #'aNamespace::AnotherAnnotation') instances size equals: 1.
 	model allAnnotationTypes
 		do: [ :each | 
-			self assert: (each container definedAnnotationTypes includes: each).
-			self assert: each container identicalTo: each belongsTo ]
+			self assert: (each typeContainer definedAnnotationTypes includes: each).
+			self assert: each typeContainer identicalTo: each belongsTo ]
 ]
 
 { #category : #tests }

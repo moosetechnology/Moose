@@ -38,28 +38,97 @@ MooseQueryTest >> model [
 MooseQueryTest >> setUp [
 	super setUp.
 	model := FamixJavaModel new.
-	package1 := FamixJavaPackage new name: 'package1' ; mooseModel: model.
-	package2 := FamixJavaPackage new name: 'package2' ; mooseModel: model.
-	isolatedPackage := FamixJavaPackage new name: 'isolatedPackage' ; mooseModel: model.
-	namespace := FamixJavaNamespace new name: 'Smalltalk' ; mooseModel: model.
-	class1 := FamixJavaClass new name: 'class1' ; parentPackage: package1 ; container: namespace ; mooseModel: model.
-	class2 := FamixJavaClass new name: 'class2' ; parentPackage: package2 ; mooseModel: model.
-	isolatedClass := FamixJavaClass new name: 'isolatedClass' ; parentPackage: isolatedPackage ; mooseModel: model.
-	inh := FamixJavaInheritance new subclass: class1 ; superclass: class2 ; mooseModel: model.
-	method1 := FamixJavaMethod new name: 'method1' ; parentType: class1 ; mooseModel: model.
-	method2 := FamixJavaMethod new name: 'method2' ; parentType: class2 ; mooseModel: model.
-	method3 := FamixJavaMethod new name: 'method3' ; parentType: class2 ; mooseModel: model.
-	isolatedMethod := FamixJavaMethod new name: 'isolatedMethod' ; parentType: isolatedClass ; mooseModel: model.
-	methodExt := FamixJavaMethod new name: 'methodExt' ; parentType: class2 ; parentPackage: package1 ; mooseModel: model.
-	var1 := FamixJavaAttribute new name: 'var1' ; parentType: class2 ; declaredType: class1 ; mooseModel: model.
-	var2 := FamixJavaAttribute new name: 'var2' ; parentType: class2 ; mooseModel: model.
-	localVariable := FamixJavaLocalVariable new name: 'var3' ; parentBehaviouralEntity: method2 ; declaredType: class1 ; mooseModel: model.
-	access := FamixJavaAccess new accessor: method1 ; variable: var2 ; mooseModel: model.
-	acc1 := FamixJavaAccess new accessor: method2 ; variable: var1 ; mooseModel: model.
-	inv1 := FamixJavaInvocation new sender: method1 ; addCandidate: method2 ; receiver: var2 ; mooseModel: model.
-	inv2 := FamixJavaInvocation new sender: method2 ; addCandidate: method2 ; receiver: var2 ; mooseModel: model.
-	inv3 := FamixJavaInvocation new sender: method3 ; addCandidate: method2 ; receiver: var2 ; mooseModel: model.
-	ref1 := FamixJavaReference new source: method1 ; target: class2 ; mooseModel: model.
+	package1 := FamixJavaPackage new
+		name: 'package1';
+		mooseModel: model.
+	package2 := FamixJavaPackage new
+		name: 'package2';
+		mooseModel: model.
+	isolatedPackage := FamixJavaPackage new
+		name: 'isolatedPackage';
+		mooseModel: model.
+	namespace := FamixJavaNamespace new
+		name: 'Smalltalk';
+		mooseModel: model.
+	class1 := FamixJavaClass new
+		name: 'class1';
+		parentPackage: package1;
+		typeContainer: namespace;
+		mooseModel: model.
+	class2 := FamixJavaClass new
+		name: 'class2';
+		parentPackage: package2;
+		mooseModel: model.
+	isolatedClass := FamixJavaClass new
+		name: 'isolatedClass';
+		parentPackage: isolatedPackage;
+		mooseModel: model.
+	inh := FamixJavaInheritance new
+		subclass: class1;
+		superclass: class2;
+		mooseModel: model.
+	method1 := FamixJavaMethod new
+		name: 'method1';
+		parentType: class1;
+		mooseModel: model.
+	method2 := FamixJavaMethod new
+		name: 'method2';
+		parentType: class2;
+		mooseModel: model.
+	method3 := FamixJavaMethod new
+		name: 'method3';
+		parentType: class2;
+		mooseModel: model.
+	isolatedMethod := FamixJavaMethod new
+		name: 'isolatedMethod';
+		parentType: isolatedClass;
+		mooseModel: model.
+	methodExt := FamixJavaMethod new
+		name: 'methodExt';
+		parentType: class2;
+		parentPackage: package1;
+		mooseModel: model.
+	var1 := FamixJavaAttribute new
+		name: 'var1';
+		parentType: class2;
+		declaredType: class1;
+		mooseModel: model.
+	var2 := FamixJavaAttribute new
+		name: 'var2';
+		parentType: class2;
+		mooseModel: model.
+	localVariable := FamixJavaLocalVariable new
+		name: 'var3';
+		parentBehaviouralEntity: method2;
+		declaredType: class1;
+		mooseModel: model.
+	access := FamixJavaAccess new
+		accessor: method1;
+		variable: var2;
+		mooseModel: model.
+	acc1 := FamixJavaAccess new
+		accessor: method2;
+		variable: var1;
+		mooseModel: model.
+	inv1 := FamixJavaInvocation new
+		sender: method1;
+		addCandidate: method2;
+		receiver: var2;
+		mooseModel: model.
+	inv2 := FamixJavaInvocation new
+		sender: method2;
+		addCandidate: method2;
+		receiver: var2;
+		mooseModel: model.
+	inv3 := FamixJavaInvocation new
+		sender: method3;
+		addCandidate: method2;
+		receiver: var2;
+		mooseModel: model.
+	ref1 := FamixJavaReference new
+		source: method1;
+		target: class2;
+		mooseModel: model
 ]
 
 { #category : #tests }
@@ -189,7 +258,7 @@ MooseQueryTest >> testAllToScope [
 	self assertCollection: (package1 allToScope: FamixTClass) hasSameElements: {class1}.
 	class3 := FamixJavaClass new
 		name: 'class3';
-		container: class1;
+		typeContainer: class1;
 		mooseModel: model.
 	self assertCollection: (class1 allToScope: FamixTClass) hasSameElements: {class1 . class3}.
 	self assertCollection: (package1 allToScope: FamixTClass) hasSameElements: {class1 . class3}
@@ -202,7 +271,7 @@ MooseQueryTest >> testAllToScopeUntil [
 	self assertCollection: (package1 allToScope: FamixTClass until: [ :entity | entity isOfType: FamixTClass ]) hasSameElements: {class1}.
 	FamixJavaClass new
 		name: 'class3';
-		container: class1;
+		typeContainer: class1;
 		mooseModel: model.
 	self assertCollection: (class1 allToScope: FamixTClass until: [ :entity | entity name = 'class1' ]) hasSameElements: {class1}.
 	self assertCollection: (package1 allToScope: FamixTClass until: [ :entity | entity name = 'class1' ]) hasSameElements: {class1}
@@ -231,41 +300,20 @@ MooseQueryTest >> testAllWithScope [
 	self assertCollection: (class1 allWithScope: FamixTClass) hasSameElements: {class1}.
 	self assertCollection: (class1 allWithScope: FamixTType) hasSameElements: {class1}.
 	self assertCollection: (class1 allWithScope: FamixTPackage) hasSameElements: {package1}.
-	self
-		assertCollection: (class1 allWithScope: FamixTScopingEntity)
-		hasSameElements:
-			{package1.
-			namespace}.
+	self assertCollection: (class1 allWithScope: FamixTScopingEntity) hasSameElements: {package1 . namespace}.
 	package3 := FamixJavaPackage new
 		name: 'package3';
 		mooseModel: model.
 	package1 parentPackage: package3.
 	class3 := FamixJavaClass new
 		name: 'class3';
-		container: class1;
+		typeContainer: class1;
 		mooseModel: model.
 	self assertCollection: (class1 allWithScope: FamixTMethod) hasSameElements: {method1}.
-	self
-		assertCollection: (class1 allWithScope: FamixTClass)
-		hasSameElements:
-			{class1.
-			class3}.
-	self
-		assertCollection: (class1 allWithScope: FamixTType)
-		hasSameElements:
-			{class1.
-			class3}.
-	self
-		assertCollection: (class1 allWithScope: FamixTPackage)
-		hasSameElements:
-			{package1.
-			package3}.
-	self
-		assertCollection: (class1 allWithScope: FamixTScopingEntity)
-		hasSameElements:
-			{package1.
-			package3.
-			namespace}
+	self assertCollection: (class1 allWithScope: FamixTClass) hasSameElements: {class1 . class3}.
+	self assertCollection: (class1 allWithScope: FamixTType) hasSameElements: {class1 . class3}.
+	self assertCollection: (class1 allWithScope: FamixTPackage) hasSameElements: {package1 . package3}.
+	self assertCollection: (class1 allWithScope: FamixTScopingEntity) hasSameElements: {package1 . package3 . namespace}
 ]
 
 { #category : #tests }
@@ -281,7 +329,7 @@ MooseQueryTest >> testAllWithScopeUntil [
 	package1 parentPackage: package3.
 	class3 := FamixJavaClass new
 		name: 'class3';
-		container: class1;
+		typeContainer: class1;
 		mooseModel: model.
 	self assertCollection: (class1 allWithScope: FamixTClass until: [ :el | el name = 'class1' ]) hasSameElements: {class1}.
 	self assertCollection: (class1 allWithScope: FamixTClass until: [ :el | el name = 'class3' ]) hasSameElements: {class1 . class3}.
