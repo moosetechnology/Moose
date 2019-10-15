@@ -9,7 +9,6 @@ Class {
 		'instVarNames',
 		'initializeSource',
 		'defaultCategory',
-		'isGeneratingDerivedMethods',
 		'skipDerivedMethods'
 	],
 	#category : #'Fame-SmalltalkBinding'
