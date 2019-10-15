@@ -144,7 +144,7 @@ FMPragmaProcessor >> ensurePackage: name [
 
 { #category : #running }
 FMPragmaProcessor >> implementingPackages [
-	implementingPackages ifNil: [ implementingPackages := queue collectAsSet: #package ]
+	^ implementingPackages ifNil: [ implementingPackages := queue collectAsSet: #package ]
 ]
 
 { #category : #running }
@@ -155,6 +155,7 @@ FMPragmaProcessor >> implementingPackages: aColl [
 { #category : #private }
 FMPragmaProcessor >> initialize [
 	"Used for queuing classes before running."
+
 	queue := OrderedCollection new.
 	"Used to store resulting FM3 elements."
 	elements := OrderedCollection new.
@@ -171,18 +172,10 @@ FMPragmaProcessor >> initialize [
 
 	"Must use the cannonical primitives here!"
 	"Please do not at these primitives to elements!"
-	metaDict 
-		at: 'String'
-		put: FM3MetaDescription string.
-	metaDict 
-		at: 'Boolean'
-		put: FM3MetaDescription boolean.
-	metaDict 
-		at: 'Number'
-		put: FM3MetaDescription number.
-	metaDict 
-		at: 'Object'
-		put: FM3MetaDescription object
+	metaDict at: 'String' put: FM3MetaDescription string.
+	metaDict at: 'Boolean' put: FM3MetaDescription boolean.
+	metaDict at: 'Number' put: FM3MetaDescription number.
+	metaDict at: 'Object' put: FM3MetaDescription object
 ]
 
 { #category : #private }

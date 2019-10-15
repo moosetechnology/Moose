@@ -193,14 +193,13 @@ MooseModel class >> metaBuilder: aCollectionOfClasses [
 
 { #category : #meta }
 MooseModel class >> metaBuilder: aCollectionOfClasses withProcessor: aPragmaProcessor [
-	"I take as parameters a collection of classes described with Fame pragmas and a processor for Fame pragmas"
+	"I take as parameters a collection of classes described with Fame pragmas and a processor for Fame pragmas.
+	I set myself the packages to process because it is possible that some the packages are not adding any class but add methods via extensions."
 
 	aPragmaProcessor
 		queue: aCollectionOfClasses;
-		implementingPackages:
-			((aCollectionOfClasses collectAsSet: #package)
-				addAll: self defaultPackagesToProcess;
-				yourself) run.
+		implementingPackages: self packagesToProcessToCreateMetamodel;
+		run.
 	^ aPragmaProcessor asTower
 ]
 
@@ -271,25 +270,26 @@ MooseModel class >> ownerOf: element [
 ]
 
 { #category : #meta }
-MooseModel class >> resetMetamodel [
-	| packages classes tower |
-	packages := Set new.
-	packages add: self package.
-	packages addAll: (self allSubmetamodelsPackagesNames collect: #asPackage).
-	packages addAll: self defaultPackagesToProcess.
+MooseModel class >> packagesToProcessToCreateMetamodel [
+	^ (Set with: self package)
+		addAll: (self allSubmetamodelsPackagesNames collect: #asPackage);
+		addAll: self defaultPackagesToProcess;
+		yourself
+]
 
+{ #category : #meta }
+MooseModel class >> resetMetamodel [
+	| classes tower |
 	"Collect all classes containing properties useful to the MM."
-	classes := packages flatCollectAsSet: [ :p | p definedClasses asSet select: #isMetamodelEntity ].
+	classes := self packagesToProcessToCreateMetamodel flatCollectAsSet: [ :p | p definedClasses asSet select: #isMetamodelEntity ].
 
 	"We need to reset the moose properties of each slot before building the tower."
 	(classes flatCollect: [ :class | class slots select: #isFMRelationSlot ]) do: #resetMooseProperty.
-
 	tower := self metaBuilder: classes.
 	metamodel := tower metamodel.
 
 	"MooseEntity has a cache for some infos. When we regenerate a MM we need to flush this cache."
 	classes do: #resetMooseEntityCache.
-
 	^ metamodel
 ]
 
