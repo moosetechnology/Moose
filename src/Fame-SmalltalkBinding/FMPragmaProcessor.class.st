@@ -76,25 +76,23 @@ FMPragmaProcessor >> allowPackageNamed: packageName [
 
 { #category : #converting }
 FMPragmaProcessor >> asMetamodel [
-	| mm |
-	mm := FMMetaRepository
-		with: FMMetaRepository fm3.
-	mm addAll: elements.
-	^ mm
+	^ (FMMetaRepository with: FMMetaRepository fm3)
+		addAll: elements;
+		yourself
 ]
 
 { #category : #converting }
 FMPragmaProcessor >> asTower [
-	| tower mm |
-	mm := self asMetamodel.
-	tower := FMTower new.
-	tower metaMetamodel: mm metamodel.
-	tower metamodel: mm.
-	tower model: (FMRepository with: mm).
-	^ tower
-
 	"This creation code might eventually end up in Tower or Repository,
 	just let it grow, it will find its proper place over time."
+
+	| mm |
+	mm := self asMetamodel.
+	^ FMTower new
+		metaMetamodel: mm metamodel;
+		metamodel: mm;
+		model: (FMRepository with: mm);
+		yourself
 ]
 
 { #category : #running }
@@ -187,6 +185,11 @@ FMPragmaProcessor >> methodsToProcessFrom: aClass [
 	"We need to process the methods from the class and the extensions methods comming from the packages containing the entites. We should reject extension methods comming from other packages."
 
 	^ aClass methods select: [ :method | method isExtension not or: [ implementingPackages includes: method package ] ]
+]
+
+{ #category : #accessing }
+FMPragmaProcessor >> oppositeDict [
+	^ oppositeDict
 ]
 
 { #category : #accessing }
@@ -370,18 +373,5 @@ FMPragmaProcessor >> run [
 	implementingPackages := self computeImplementingPackages.
 	queue do: [ :cls | self processClass: cls ].
 	self resolveObjectReferences.
-	self class shouldValidateMetaModel ifTrue: [ self validateMetaModel ]
-]
-
-{ #category : #private }
-FMPragmaProcessor >> validateMetaModel [
-	| fullDict wronglySetOpposites |
-	"Check that opposite link is bijective, i.e. there are not 2 values that references the same opposite."
-	fullDict := Dictionary new.
-	oppositeDict keysAndValuesDo: [ :prop :oppName | (fullDict at: (prop type attributeNamed: oppName) ifAbsentPut: [ Set new ]) add: prop originClass ].
-	wronglySetOpposites := fullDict select: [ :e | e size ~= 1 ].
-
-	self assert: wronglySetOpposites isEmpty description: 'Link to opposite links should be a bijective operation... Please check your model!'.
-
-	self assert: (fullDict at: nil ifAbsent: [ #() ]) isEmpty description: 'Some opposite links are not definied in your model.. Please check your model!'
+	self class shouldValidateMetaModel ifTrue: [ FMMetamodelValidator for: self ]
 ]
