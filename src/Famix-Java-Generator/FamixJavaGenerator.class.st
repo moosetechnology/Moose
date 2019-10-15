@@ -247,7 +247,6 @@ FamixJavaGenerator >> defineHierarchy [
 	type --|> #TWithMethods.
 	type --|> #TWithTypes.
 	type --|> #TWithAttributes.
-	
 
 	tStructuralEntity --|> #TStructuralEntity.
 	tStructuralEntity --|> #TWithDereferencedInvocations.
