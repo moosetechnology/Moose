@@ -87,7 +87,7 @@ FMPragmaProcessor >> asMetamodel [
 FMPragmaProcessor >> asTower [
 	| tower mm |
 	mm := self asMetamodel.
-	tower := FMCompleteTower new.
+	tower := FMTower new.
 	tower metaMetamodel: mm metamodel.
 	tower metamodel: mm.
 	tower model: (FMRepository with: mm).
