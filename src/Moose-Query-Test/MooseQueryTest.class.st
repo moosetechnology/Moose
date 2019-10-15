@@ -38,67 +38,48 @@ MooseQueryTest >> model [
 MooseQueryTest >> setUp [
 	super setUp.
 	model := FamixJavaModel new.
-	package1 := FamixJavaPackage new
-		name: 'package1';
-		mooseModel: model.
-	package2 := FamixJavaPackage new
-		name: 'package2';
-		mooseModel: model.
-	isolatedPackage := FamixJavaPackage new
-		name: 'isolatedPackage';
-		mooseModel: model.
-	namespace := FamixJavaNamespace new
-		name: 'Smalltalk';
-		mooseModel: model.
-	class1 := FamixJavaClass new
-		name: 'class1';
+	package1 := (FamixJavaPackage named: 'package1') mooseModel: model.
+	package2 := (FamixJavaPackage named: 'package2') mooseModel: model.
+	isolatedPackage := (FamixJavaPackage named: 'isolatedPackage') mooseModel: model.
+	namespace := (FamixJavaNamespace named: 'Smalltalk') mooseModel: model.
+	class1 := (FamixJavaClass named: 'class1')
 		parentPackage: package1;
 		typeContainer: namespace;
 		mooseModel: model.
-	class2 := FamixJavaClass new
-		name: 'class2';
+	class2 := (FamixJavaClass named: 'class2')
 		parentPackage: package2;
 		mooseModel: model.
-	isolatedClass := FamixJavaClass new
-		name: 'isolatedClass';
+	isolatedClass := (FamixJavaClass named: 'isolatedClass')
 		parentPackage: isolatedPackage;
 		mooseModel: model.
 	inh := FamixJavaInheritance new
 		subclass: class1;
 		superclass: class2;
 		mooseModel: model.
-	method1 := FamixJavaMethod new
-		name: 'method1';
+	method1 := (FamixJavaMethod named: 'method1')
 		parentType: class1;
 		mooseModel: model.
-	method2 := FamixJavaMethod new
-		name: 'method2';
+	method2 := (FamixJavaMethod named: 'method2')
 		parentType: class2;
 		mooseModel: model.
-	method3 := FamixJavaMethod new
-		name: 'method3';
+	method3 := (FamixJavaMethod named: 'method3')
 		parentType: class2;
 		mooseModel: model.
-	isolatedMethod := FamixJavaMethod new
-		name: 'isolatedMethod';
+	isolatedMethod := (FamixJavaMethod named: 'isolatedMethod')
 		parentType: isolatedClass;
 		mooseModel: model.
-	methodExt := FamixJavaMethod new
-		name: 'methodExt';
+	methodExt := (FamixJavaMethod named: 'methodExt')
 		parentType: class2;
 		parentPackage: package1;
 		mooseModel: model.
-	var1 := FamixJavaAttribute new
-		name: 'var1';
+	var1 := (FamixJavaAttribute named: 'var1')
 		parentType: class2;
 		declaredType: class1;
 		mooseModel: model.
-	var2 := FamixJavaAttribute new
-		name: 'var2';
+	var2 := (FamixJavaAttribute named: 'var2')
 		parentType: class2;
 		mooseModel: model.
-	localVariable := FamixJavaLocalVariable new
-		name: 'var3';
+	localVariable := (FamixJavaLocalVariable named: 'var3')
 		parentBehaviouralEntity: method2;
 		declaredType: class1;
 		mooseModel: model.
