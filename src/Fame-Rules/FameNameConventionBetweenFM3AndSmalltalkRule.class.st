@@ -1,3 +1,8 @@
+"
+Check (for a class metadescribed with FM3 pragmas) if the FM3 class generated respect the convention between FM3 and Smalltalk:
+
+A FM3 class should be named PACKAGE.CLASSNAME whereas the smalltalk class associated should  be named PACKAGECLASSNAME. It is also an error to declare a FM3 meta-description without a package.
+"
 Class {
 	#name : #FameNameConventionBetweenFM3AndSmalltalkRule,
 	#superclass : #RBBlockLintRule,
@@ -48,22 +53,21 @@ FameNameConventionBetweenFM3AndSmalltalkRule >> addClass: aClass toMetaBuilderCo
 { #category : #running }
 FameNameConventionBetweenFM3AndSmalltalkRule >> checkClass: aContext [
 	| class pragmas pragma metaName |
-
 	class := aContext.
-	pragmas := class metamodelDefinitionPragmas.
+	pragmas := Pragma allNamed: #MSEClass:super: in: class.
 	pragmas ifEmpty: [ ^ self ].
-	pragmas size > 1 ifTrue: [ result addClass: class. ^ self ].
-	
+	pragmas size > 1
+		ifTrue: [ result addClass: class.
+			^ self ].
+
 	pragma := pragmas first.
 	metaName := pragma argumentAt: 1.
 	(pragma method pragmaAt: #package:)
-		ifNotNil: [ :packagePragma ||packageName| 
+		ifNotNil: [ :packagePragma | 
+			| packageName |
 			packageName := packagePragma argumentAt: 1.
-			packageName , metaName = class instanceSide name
-				ifFalse: [ result addClass: class selector: pragma selector ]]
-		ifNil: [ 
-			"this happens if the package: pragma is missing"
-			result addClass: class selector: pragma selector ]
+			(packageName , metaName) = class instanceSide name ifFalse: [ result addClass: class selector: pragma selector ] ]
+		ifNil: [ "this happens if the package: pragma is missing" result addClass: class selector: pragma selector ]
 ]
 
 { #category : #accessing }
@@ -75,11 +79,4 @@ FameNameConventionBetweenFM3AndSmalltalkRule >> group [
 FameNameConventionBetweenFM3AndSmalltalkRule >> name [
 
 	^ 'FM3 class doesnt respect the fame name convention between FM3 and Smalltalk '
-]
-
-{ #category : #accessing }
-FameNameConventionBetweenFM3AndSmalltalkRule >> rationale [
-
-	^ 'check (for a class metadescribed with FM3 pragmas) if the FM3 class generated respect the convention between FM3  and Smalltalk:
-	A FM3 class should be named PACKAGE.CLASSNAME whereas the smalltalk class associated should  be named PACKAGECLASSNAME. It is also an error to declare a FM3 meta-description without a package.'
 ]

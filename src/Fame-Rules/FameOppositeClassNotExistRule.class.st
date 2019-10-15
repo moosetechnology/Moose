@@ -1,3 +1,6 @@
+"
+Check if the opposite class declared in a pragma #MSEProperty:type:opposite: is defined.
+"
 Class {
 	#name : #FameOppositeClassNotExistRule,
 	#superclass : #RBBlockLintRule,
@@ -36,10 +39,4 @@ FameOppositeClassNotExistRule >> group [
 FameOppositeClassNotExistRule >> name [
 
 	^ 'An opposite class declared in pragma #MSEProperty:type:opposite: does not exist'
-]
-
-{ #category : #accessing }
-FameOppositeClassNotExistRule >> rationale [
-
-	^ 'Check if the opposite class declared in a pragma #MSEProperty:type:opposite: is defined.'
 ]
