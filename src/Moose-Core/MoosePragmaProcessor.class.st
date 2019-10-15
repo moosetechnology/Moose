@@ -23,7 +23,7 @@ MoosePragmaProcessor >> allowPackageNamed: packageName [
 MoosePragmaProcessor >> computeImplementingPackages [
 	"We add the default packages to process because it is possible they include extension methods that should be considered in the MM (for example in deprecated package) but contain no class to process."
 
-	^ super computeImplementingPackages asSet
+	^ super computeImplementingPackages
 		addAll: MooseModel defaultPackagesToProcess;
 		yourself
 ]
