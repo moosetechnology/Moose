@@ -220,8 +220,7 @@ FMMetaRepositoryFilterTest >> testBookMetamodel [
 { #category : #'tests-basic' }
 FMMetaRepositoryFilterTest >> testClassWithoutPackage [
 	| aClassWithoutPackage repo visitor |
-	aClassWithoutPackage := FM3MetaDescription new.
-	aClassWithoutPackage name: 'AClass'.
+	aClassWithoutPackage := FM3MetaDescription named: 'AClass'.
 	repo := FMMetaRepository with: FMMetaRepository fm3.
 	repo add: aClassWithoutPackage.
 
