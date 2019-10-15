@@ -195,7 +195,12 @@ MooseModel class >> metaBuilder: aCollectionOfClasses [
 MooseModel class >> metaBuilder: aCollectionOfClasses withProcessor: aPragmaProcessor [
 	"I take as parameters a collection of classes described with Fame pragmas and a processor for Fame pragmas"
 
-	aPragmaProcessor queue: aCollectionOfClasses; run.
+	aPragmaProcessor
+		queue: aCollectionOfClasses;
+		implementingPackages:
+			((aCollectionOfClasses collectAsSet: #package)
+				addAll: self defaultPackagesToProcess;
+				yourself) run.
 	^ aPragmaProcessor asTower
 ]
 
@@ -237,7 +242,7 @@ MooseModel class >> named: aString [
 
 { #category : #meta }
 MooseModel class >> newPragmaProcessor [
-	^ MoosePragmaProcessor new
+	^ FMPragmaProcessor new
 ]
 
 { #category : #accessing }

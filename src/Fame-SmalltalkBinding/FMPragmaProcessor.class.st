@@ -110,11 +110,6 @@ FMPragmaProcessor >> classes [
 	^ elements select: [ :e | e isFM3Class ]
 ]
 
-{ #category : #running }
-FMPragmaProcessor >> computeImplementingPackages [
-	^ queue collectAsSet: #package
-]
-
 { #category : #accessing }
 FMPragmaProcessor >> elements [
 	^ elements
@@ -145,6 +140,16 @@ FMPragmaProcessor >> ensurePackage: name [
 			pack name: symbol.
 			elements add: pack.
 			pack ]
+]
+
+{ #category : #running }
+FMPragmaProcessor >> implementingPackages [
+	implementingPackages ifNil: [ implementingPackages := queue collectAsSet: #package ]
+]
+
+{ #category : #running }
+FMPragmaProcessor >> implementingPackages: aColl [
+	implementingPackages := aColl
 ]
 
 { #category : #private }
@@ -184,7 +189,7 @@ FMPragmaProcessor >> initialize [
 FMPragmaProcessor >> methodsToProcessFrom: aClass [
 	"We need to process the methods from the class and the extensions methods comming from the packages containing the entites. We should reject extension methods comming from other packages."
 
-	^ aClass methods select: [ :method | method isExtension not or: [ implementingPackages includes: method package ] ]
+	^ aClass methods select: [ :method | method isExtension not or: [ self implementingPackages includes: method package ] ]
 ]
 
 { #category : #accessing }
@@ -370,7 +375,6 @@ FMPragmaProcessor >> resolveObjectReferences [
 
 { #category : #running }
 FMPragmaProcessor >> run [
-	implementingPackages := self computeImplementingPackages.
 	queue do: [ :cls | self processClass: cls ].
 	self resolveObjectReferences.
 	self class shouldValidateMetaModel ifTrue: [ FMMetamodelValidator for: self ]
