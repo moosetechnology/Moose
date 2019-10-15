@@ -15,9 +15,9 @@ FamixJavaParameterizableClassTest >> testParameterTypes [
 		(Famix-Java-Entities.ParameterizableClass (id: 2) (name ''ParameterizableClassA'') )
 		(Famix-Java-Entities.ParameterizableClass (id: 3) (name ''ParameterizableClassB'') )
 		(Famix-Java-Entities.ParameterizableClass (id: 4) (name ''ParameterizableClassC'') )
-		(Famix-Java-Entities.ParameterType (id: 5) (name ''A'') (container (ref: 2)))
-		(Famix-Java-Entities.ParameterType (id: 6) (name ''B'') (container (ref: 2)))
-		(Famix-Java-Entities.ParameterType (id: 7) (name ''C'') (container (ref: 3)))
+		(Famix-Java-Entities.ParameterType (id: 5) (name ''A'') (typeContainer (ref: 2)))
+		(Famix-Java-Entities.ParameterType (id: 6) (name ''B'') (typeContainer (ref: 2)))
+		(Famix-Java-Entities.ParameterType (id: 7) (name ''C'') (typeContainer (ref: 3)))
 	)' readStream.
 	self assert: model entities size equals: 7.
 	self assert: model allParameterizableClasses size equals: 3.

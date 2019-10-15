@@ -11,3 +11,8 @@ Class {
 ManifestFamixDeprecated class >> isDeprecated [
 	^ true
 ]
+
+{ #category : #asserting }
+ManifestFamixDeprecated class >> shouldBeIncludedByDefaultInMetamodels [
+	^ true
+]
