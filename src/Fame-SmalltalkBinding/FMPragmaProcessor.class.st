@@ -226,27 +226,34 @@ FMPragmaProcessor >> processClass: aClass ifPragmaAbsent: anErrorBlock [
 
 { #category : #private }
 FMPragmaProcessor >> processCompiledMethod: aMethod [
-	| pragma prop method |
+	| method |
 	method := aMethod.
 
 	"If the method is a reflective method we need to ensure it is compiled and use its compiled method.
 	A refelctive method is for exemple a method created via a metalink and that was never executed."
 	(aMethod isKindOf: ReflectiveMethod)
-		ifTrue: [ aMethod compileAndInstallCompiledMethod.
-			method := aMethod compiledMethod ].
-
+		ifTrue: [ method := aMethod
+				compileAndInstallCompiledMethod;
+				compiledMethod ].
 	self assert: method isCompiledMethod.
-	pragma := Pragma inMethod: method named: #(#MSEProperty:type:opposite: #MSEProperty:type:).
-	pragma ifNil: [ ^ self ].
-	prop := FM3PropertyDescription new.
-	(Pragma inMethod: method named: #package:) ifNotNil: [ :p | packPropDict at: prop put: (p argumentAt: 1) ].
-	"we check the package first because if we do not want to load it,
-		we ignore the whole property"
-	prop name: (pragma argumentAt: 1) asString.
-	typeDict at: prop put: (pragma argumentAt: 2).
-	mmClassDict at: prop put: method methodClass.
-	prop setImplementingSelector: method selector.
-	pragma selector = #MSEProperty:type:opposite: ifTrue: [ oppositeDict at: prop put: (pragma argumentAt: 3) ].
+
+	(Pragma inMethod: method named: #(#MSEProperty:type:opposite: #MSEProperty:type:))
+		ifNotNil: [ :pragma | 
+			| prop |
+			prop := FM3PropertyDescription new.
+			(Pragma inMethod: method named: #package:) ifNotNil: [ :p | packPropDict at: prop put: (p argumentAt: 1) ].
+			prop name: (pragma argumentAt: 1) asString.
+			typeDict at: prop put: (pragma argumentAt: 2).
+			mmClassDict at: prop put: method methodClass.
+			prop setImplementingSelector: method selector.
+			pragma selector = #MSEProperty:type:opposite: ifTrue: [ oppositeDict at: prop put: (pragma argumentAt: 3) ].
+			self processPragmasOf: method for: prop.
+
+			elements add: prop ]
+]
+
+{ #category : #private }
+FMPragmaProcessor >> processPragmasOf: method for: prop [
 	(Pragma inMethod: method named: #container) ifNotNil: [ prop isContainer: true ].
 	(Pragma inMethod: method named: #derived) ifNotNil: [ prop isDerived: true ].
 	(Pragma inMethod: method named: #source) ifNotNil: [ prop isSource: true ].
@@ -257,8 +264,7 @@ FMPragmaProcessor >> processCompiledMethod: aMethod [
 				description:
 					'It is not possible to have <multivalue> and <container> on the same method. container represents a aggregation UML link that is incompatible with the multivalue kind of the link'.
 			prop isMultivalued: true ].
-	(Pragma inMethod: method named: #key:) ifNotNil: [ :p | prop key: (p argumentAt: 1) ].
-	elements add: prop
+	(Pragma inMethod: method named: #key:) ifNotNil: [ :p | prop key: (p argumentAt: 1) ]
 ]
 
 { #category : #private }
@@ -266,7 +272,7 @@ FMPragmaProcessor >> processSlot: aSlot in: aClass [
 	| prop |
 	aSlot isFMRelationSlot ifFalse: [ ^ self ].
 
-	prop := elements add: aSlot mooseProperty.
+	prop := aSlot mooseProperty.
 
 	typeDict at: prop put: aSlot targetClass.
 	mmClassDict at: prop put: aClass.
@@ -277,14 +283,9 @@ FMPragmaProcessor >> processSlot: aSlot in: aClass [
 		ifPresent: [ :aMethod | 
 			prop setImplementingSelector: aMethod selector.
 			(Pragma inMethod: aMethod named: #package:) ifNotNil: [ :p | packPropDict at: prop put: (p argumentAt: 1) ].
-			(Pragma inMethod: aMethod named: #container) ifNotNil: [ prop isContainer: true ].
-			(Pragma inMethod: aMethod named: #derived) ifNotNil: [ prop isDerived: true ].
-			(Pragma inMethod: aMethod named: #source) ifNotNil: [ prop isSource: true ].
-			(Pragma inMethod: aMethod named: #target) ifNotNil: [ prop isTarget: true ].
-			(Pragma inMethod: aMethod named: #multivalued) ifNotNil: [ prop isMultivalued: true ].
-			(Pragma inMethod: aMethod named: #key:) ifNotNil: [ prop key: ((Pragma inMethod: aMethod named: #key:) argumentAt: 1) ] ].
-	elements add: prop.
-	^ prop
+			self processPragmasOf: aMethod for: prop ].
+
+	elements add: prop
 ]
 
 { #category : #accessing }
