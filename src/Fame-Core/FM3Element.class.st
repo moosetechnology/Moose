@@ -29,11 +29,6 @@ FM3Element class >> named: aString [
 ]
 
 { #category : #accessing }
-FM3Element class >> version [
-	^ 1.0
-]
-
-{ #category : #accessing }
 FM3Element >> fullName [
 	<MSEProperty: #fullName type: #String>
 	<derived>
