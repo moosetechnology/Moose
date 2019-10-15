@@ -265,8 +265,8 @@ FMPragmaProcessor >> processSlot: aSlot in: aClass [
 	mmClassDict at: prop put: aClass.
 	oppositeDict at: prop put: aSlot inverseName.
 
-	aClass methodDict
-		at: aSlot name asSymbol
+	aClass
+		compiledMethodAt: aSlot name asSymbol
 		ifPresent: [ :aMethod | 
 			prop setImplementingSelector: aMethod selector.
 			self extractPackageFrom: aMethod for: prop.
