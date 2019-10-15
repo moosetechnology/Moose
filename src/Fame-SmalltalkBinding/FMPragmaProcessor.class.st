@@ -112,6 +112,11 @@ FMPragmaProcessor >> classes [
 	^ elements select: [ :e | e isFM3Class ]
 ]
 
+{ #category : #running }
+FMPragmaProcessor >> computeImplementingPackages [
+	^ queue collectAsSet: #package
+]
+
 { #category : #accessing }
 FMPragmaProcessor >> elements [
 	^ elements
@@ -362,11 +367,10 @@ FMPragmaProcessor >> resolveObjectReferences [
 
 { #category : #running }
 FMPragmaProcessor >> run [
-	implementingPackages := (queue collectAsSet: #package).
+	implementingPackages := self computeImplementingPackages.
 	queue do: [ :cls | self processClass: cls ].
 	self resolveObjectReferences.
-	self class shouldValidateMetaModel
-		ifTrue: [ self validateMetaModel ]
+	self class shouldValidateMetaModel ifTrue: [ self validateMetaModel ]
 ]
 
 { #category : #private }
