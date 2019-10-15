@@ -145,7 +145,7 @@ FMPragmaProcessor >> implementingPackages: aColl [
 	implementingPackages := aColl
 ]
 
-{ #category : #private }
+{ #category : #initialization }
 FMPragmaProcessor >> initialize [
 	"Used for queuing classes before running."
 
@@ -190,9 +190,7 @@ FMPragmaProcessor >> packages [
 
 { #category : #private }
 FMPragmaProcessor >> processClass: aClass [
-	^ self
-		processClass: aClass
-		ifPragmaAbsent: [ self error: 'Fame Undeclared class ' , aClass name ]
+	^ self processClass: aClass ifPragmaAbsent: [ self error: 'Fame Undeclared class ' , aClass name ]
 ]
 
 { #category : #private }
@@ -212,8 +210,8 @@ FMPragmaProcessor >> processClass: aClass ifPragmaAbsent: anErrorBlock [
 	superclassDict at: meta put: superclassName.
 	meta setImplementingClass: aClass.
 	pragma
-		ifNotEmpty: [ (Pragma inMethod: pragma first method named: #abstract) ifNotNil: [ meta isAbstract: true ].
-			(Pragma inMethod: pragma first method named: #package:) ifNotNil: [ :p | packMetaDict at: meta put: (p argumentAt: 1) ] ].
+		ifNotEmpty: [ (pragma first method pragmaAt: #abstract) ifNotNil: [ meta isAbstract: true ].
+			(pragma first method pragmaAt: #package:) ifNotNil: [ :p | packMetaDict at: meta put: (p argumentAt: 1) ] ].
 	elements add: meta.
 	classDict at: aClass put: meta.
 	(self methodsToProcessFrom: aClass) do: [ :each | self processCompiledMethod: each ].
@@ -235,11 +233,12 @@ FMPragmaProcessor >> processCompiledMethod: aMethod [
 				compiledMethod ].
 	self assert: method isCompiledMethod.
 
-	(Pragma inMethod: method named: #(#MSEProperty:type:opposite: #MSEProperty:type:))
-		ifNotNil: [ :pragma | 
+	method pragmas
+		detect: [ :each | #(#MSEProperty:type:opposite: #MSEProperty:type:) includes: each selector ]
+		ifFound: [ :pragma | 
 			| prop |
 			prop := FM3PropertyDescription named: (pragma argumentAt: 1) asString.
-			(Pragma inMethod: method named: #package:) ifNotNil: [ :p | packPropDict at: prop put: (p argumentAt: 1) ].
+			(method pragmaAt: #package:) ifNotNil: [ :p | packPropDict at: prop put: (p argumentAt: 1) ].
 			typeDict at: prop put: (pragma argumentAt: 2).
 			mmClassDict at: prop put: method methodClass.
 			prop setImplementingSelector: method selector.
@@ -251,17 +250,17 @@ FMPragmaProcessor >> processCompiledMethod: aMethod [
 
 { #category : #private }
 FMPragmaProcessor >> processPragmasOf: method for: prop [
-	(Pragma inMethod: method named: #container) ifNotNil: [ prop isContainer: true ].
-	(Pragma inMethod: method named: #derived) ifNotNil: [ prop isDerived: true ].
-	(Pragma inMethod: method named: #source) ifNotNil: [ prop isSource: true ].
-	(Pragma inMethod: method named: #target) ifNotNil: [ prop isTarget: true ].
-	(Pragma inMethod: method named: #multivalued)
+	(method pragmaAt: #container) ifNotNil: [ prop isContainer: true ].
+	(method pragmaAt: #derived) ifNotNil: [ prop isDerived: true ].
+	(method pragmaAt: #source) ifNotNil: [ prop isSource: true ].
+	(method pragmaAt: #target) ifNotNil: [ prop isTarget: true ].
+	(method pragmaAt: #multivalued)
 		ifNotNil: [ self
 				assert: prop isContainer not
 				description:
 					'It is not possible to have <multivalue> and <container> on the same method. container represents a aggregation UML link that is incompatible with the multivalue kind of the link'.
 			prop isMultivalued: true ].
-	(Pragma inMethod: method named: #key:) ifNotNil: [ :p | prop key: (p argumentAt: 1) ]
+	(method pragmaAt: #key:) ifNotNil: [ :p | prop key: (p argumentAt: 1) ]
 ]
 
 { #category : #private }
@@ -279,7 +278,7 @@ FMPragmaProcessor >> processSlot: aSlot in: aClass [
 		at: aSlot name asSymbol
 		ifPresent: [ :aMethod | 
 			prop setImplementingSelector: aMethod selector.
-			(Pragma inMethod: aMethod named: #package:) ifNotNil: [ :p | packPropDict at: prop put: (p argumentAt: 1) ].
+			(aMethod pragmaAt: #package:) ifNotNil: [ :p | packPropDict at: prop put: (p argumentAt: 1) ].
 			self processPragmasOf: aMethod for: prop ].
 
 	elements add: prop
