@@ -228,30 +228,29 @@ FMPragmaProcessor >> processCompiledMethod: aMethod [
 		ifFound: [ :pragma | 
 			| prop |
 			prop := FM3PropertyDescription named: (pragma argumentAt: 1) asString.
-			self extractPackageFrom: method for: prop.
 			typeDict at: prop put: (pragma argumentAt: 2).
 			mmClassDict at: prop put: method methodClass.
-			prop setImplementingSelector: method selector.
 			pragma selector = #MSEProperty:type:opposite: ifTrue: [ oppositeDict at: prop put: (pragma argumentAt: 3) ].
-			self processPragmasOf: method for: prop.
+			self processInfosFrom: method for: prop.
 
 			elements add: prop ]
 ]
 
 { #category : #private }
-FMPragmaProcessor >> processPragmasOf: method for: prop [
-	(method pragmaAt: #container) ifNotNil: [ prop isContainer: true ].
-	(method pragmaAt: #derived) ifNotNil: [ prop isDerived: true ].
-	(method pragmaAt: #source) ifNotNil: [ prop isSource: true ].
-	(method pragmaAt: #target) ifNotNil: [ prop isTarget: true ].
-	(method pragmaAt: #multivalued)
-		ifNotNil: [
-			self flag: #todo. "This should maybe be moved to FMMetamodelValidator."
+FMPragmaProcessor >> processInfosFrom: aMethod for: prop [
+	prop setImplementingSelector: aMethod selector.
+	self extractPackageFrom: aMethod for: prop.
+	(aMethod pragmaAt: #container) ifNotNil: [ prop isContainer: true ].
+	(aMethod pragmaAt: #derived) ifNotNil: [ prop isDerived: true ].
+	(aMethod pragmaAt: #source) ifNotNil: [ prop isSource: true ].
+	(aMethod pragmaAt: #target) ifNotNil: [ prop isTarget: true ].
+	(aMethod pragmaAt: #multivalued)
+		ifNotNil: [ self flag: #todo.	"This should maybe be moved to FMMetamodelValidator."
 			self
 				assert: prop isContainer not
 				description: 'It is not possible to have <multivalue> and <container> on the same method. container represents a aggregation UML link that is incompatible with the multivalue kind of the link'.
 			prop isMultivalued: true ].
-	(method pragmaAt: #key:) ifNotNil: [ :p | prop key: (p argumentAt: 1) ]
+	(aMethod pragmaAt: #key:) ifNotNil: [ :p | prop key: (p argumentAt: 1) ]
 ]
 
 { #category : #private }
@@ -265,12 +264,7 @@ FMPragmaProcessor >> processSlot: aSlot in: aClass [
 	mmClassDict at: prop put: aClass.
 	oppositeDict at: prop put: aSlot inverseName.
 
-	aClass
-		compiledMethodAt: aSlot name asSymbol
-		ifPresent: [ :aMethod | 
-			prop setImplementingSelector: aMethod selector.
-			self extractPackageFrom: aMethod for: prop.
-			self processPragmasOf: aMethod for: prop ].
+	aClass compiledMethodAt: aSlot name asSymbol ifPresent: [ :aMethod | self processInfosFrom: aMethod for: prop ].
 
 	elements add: prop
 ]
@@ -300,29 +294,22 @@ FMPragmaProcessor >> queue: var [
 FMPragmaProcessor >> resolveObjectReferences [
 
 	"establish class-package and property-package links"
-	packDict keysAndValuesDo: [ :fm3Element :value |
-		fm3Element package: (self ensurePackage: value)
-	].
+	packDict keysAndValuesDo: [ :fm3Element :value | fm3Element package: (self ensurePackage: value) ].
+
 	"establish property-class associations"
-	mmClassDict keysAndValuesDo: [ :prop :value |
-		prop mmClass: (self ensureClass: value)
-	].
+	mmClassDict keysAndValuesDo: [ :prop :value | prop mmClass: (self ensureClass: value) ].
+
 	"map classes by full name"
-	self classes do: [ :meta |
-		metaDict at: meta fullName asString put: meta.
-	].
+	self classes do: [ :meta | metaDict at: meta fullName asString put: meta ].
+
 	"establish class-superclass associations"
-	superclassDict keysAndValuesDo: [ :meta :value |
-		meta superclass: (self ensureClass: value).
-	].	
+	superclassDict keysAndValuesDo: [ :meta :value | meta superclass: (self ensureClass: value) ].
+
 	"establish property-type-oppoiste relations"
-	typeDict keysAndValuesDo: [ :prop :value |
-		prop type: (self ensureClass: value).
-	].
+	typeDict keysAndValuesDo: [ :prop :value | prop type: (self ensureClass: value) ].
+
 	" Fill in oppositelinks"
-	oppositeDict keysAndValuesDo: [ :prop :oppName |
-		prop opposite: (prop type attributeNamed: oppName)
-	]
+	oppositeDict keysAndValuesDo: [ :prop :oppName | prop opposite: (prop type attributeNamed: oppName) ]
 ]
 
 { #category : #running }
