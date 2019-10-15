@@ -130,8 +130,7 @@ FMPragmaProcessor >> ensurePackage: name [
 	^ packageDict
 		at: symbol
 		ifAbsentPut: [ | pack |
-			pack := FM3PackageDescription new.
-			pack name: symbol.
+			pack := FM3PackageDescription named: symbol.
 			elements add: pack.
 			pack ]
 ]
@@ -209,8 +208,7 @@ FMPragmaProcessor >> processClass: aClass ifPragmaAbsent: anErrorBlock [
 
 
 	"the description for the class"
-	meta := FM3MetaDescription new.
-	meta name: className asString.
+	meta := FM3MetaDescription named: className asString.
 	superclassDict at: meta put: superclassName.
 	meta setImplementingClass: aClass.
 	pragma
@@ -240,9 +238,8 @@ FMPragmaProcessor >> processCompiledMethod: aMethod [
 	(Pragma inMethod: method named: #(#MSEProperty:type:opposite: #MSEProperty:type:))
 		ifNotNil: [ :pragma | 
 			| prop |
-			prop := FM3PropertyDescription new.
+			prop := FM3PropertyDescription named: (pragma argumentAt: 1) asString.
 			(Pragma inMethod: method named: #package:) ifNotNil: [ :p | packPropDict at: prop put: (p argumentAt: 1) ].
-			prop name: (pragma argumentAt: 1) asString.
 			typeDict at: prop put: (pragma argumentAt: 2).
 			mmClassDict at: prop put: method methodClass.
 			prop setImplementingSelector: method selector.

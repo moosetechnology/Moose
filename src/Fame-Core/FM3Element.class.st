@@ -21,6 +21,13 @@ FM3Element class >> annotation [
 
 ]
 
+{ #category : #'instance creation' }
+FM3Element class >> named: aString [
+	^ self new
+		name: aString;
+		yourself
+]
+
 { #category : #accessing }
 FM3Element class >> version [
 	^ 1.0
