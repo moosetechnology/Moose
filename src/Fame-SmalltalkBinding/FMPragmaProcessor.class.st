@@ -68,12 +68,6 @@ FMPragmaProcessor class >> shouldValidateMetaModel: anObject [
 	ShouldValidateMetaModel := anObject
 ]
 
-{ #category : #private }
-FMPragmaProcessor >> allowPackageNamed: packageName [
-	"generic method for subclass specilization"
-	^ true
-]
-
 { #category : #converting }
 FMPragmaProcessor >> asMetamodel [
 	^ (FMMetaRepository with: FMMetaRepository fm3)
@@ -221,12 +215,7 @@ FMPragmaProcessor >> processClass: aClass ifPragmaAbsent: anErrorBlock [
 	meta setImplementingClass: aClass.
 	pragma
 		ifNotEmpty: [ (Pragma inMethod: pragma first method named: #abstract) ifNotNil: [ meta isAbstract: true ].
-			(Pragma inMethod: pragma first method named: #package:)
-				ifNotNil: [ :p | 
-					| packageName |
-					packageName := p argumentAt: 1.
-					(self allowPackageNamed: packageName) ifFalse: [ ^ self ].
-					packMetaDict at: meta put: packageName asString ] ].
+			(Pragma inMethod: pragma first method named: #package:) ifNotNil: [ :p | packMetaDict at: meta put: (p argumentAt: 1) ] ].
 	elements add: meta.
 	classDict at: aClass put: meta.
 	(self methodsToProcessFrom: aClass) do: [ :each | self processCompiledMethod: each ].
@@ -250,12 +239,7 @@ FMPragmaProcessor >> processCompiledMethod: aMethod [
 	pragma := Pragma inMethod: method named: #(#MSEProperty:type:opposite: #MSEProperty:type:).
 	pragma ifNil: [ ^ self ].
 	prop := FM3PropertyDescription new.
-	(Pragma inMethod: method named: #package:)
-		ifNotNil: [ :p | 
-			| packageName |
-			packageName := p argumentAt: 1.
-			(self allowPackageNamed: packageName) ifFalse: [ ^ self ].
-			packPropDict at: prop put: packageName ].
+	(Pragma inMethod: method named: #package:) ifNotNil: [ :p | packPropDict at: prop put: (p argumentAt: 1) ].
 	"we check the package first because if we do not want to load it,
 		we ignore the whole property"
 	prop name: (pragma argumentAt: 1) asString.
@@ -280,36 +264,27 @@ FMPragmaProcessor >> processCompiledMethod: aMethod [
 { #category : #private }
 FMPragmaProcessor >> processSlot: aSlot in: aClass [
 	| prop |
-	
-	(aSlot isFMRelationSlot) ifFalse: [
-		^ self ].
-	
+	aSlot isFMRelationSlot ifFalse: [ ^ self ].
+
 	prop := elements add: aSlot mooseProperty.
 
 	typeDict at: prop put: aSlot targetClass.
 	mmClassDict at: prop put: aClass.
 	oppositeDict at: prop put: aSlot inverseName.
-	
-	aClass methodDict at: aSlot name asSymbol ifPresent: [:aMethod | 
-		prop setImplementingSelector: aMethod selector.
-		(Pragma inMethod: aMethod named: #package:) ifNotNil: [ :p | 
-			| packageName |
-			packageName := p argumentAt: 1.
-			(self allowPackageNamed: packageName)
-				ifFalse: [ ^ self ].
-			packPropDict at: prop put: packageName ].
 
-		(Pragma inMethod: aMethod named: #container) ifNotNil: [ prop isContainer: true ].
-		(Pragma inMethod: aMethod named: #derived) ifNotNil: [ prop isDerived: true ].
-		(Pragma inMethod: aMethod named: #source) ifNotNil: [ prop isSource: true ].
-		(Pragma inMethod: aMethod named: #target) ifNotNil: [ prop isTarget: true ]. 
-		(Pragma inMethod: aMethod named: #multivalued)
-			ifNotNil: [ prop isMultivalued: true ].
-		(Pragma inMethod: aMethod named: #key:)
-			ifNotNil: [ prop key: ((Pragma inMethod: aMethod named: #key:) argumentAt: 1) ] ].
+	aClass methodDict
+		at: aSlot name asSymbol
+		ifPresent: [ :aMethod | 
+			prop setImplementingSelector: aMethod selector.
+			(Pragma inMethod: aMethod named: #package:) ifNotNil: [ :p | packPropDict at: prop put: (p argumentAt: 1) ].
+			(Pragma inMethod: aMethod named: #container) ifNotNil: [ prop isContainer: true ].
+			(Pragma inMethod: aMethod named: #derived) ifNotNil: [ prop isDerived: true ].
+			(Pragma inMethod: aMethod named: #source) ifNotNil: [ prop isSource: true ].
+			(Pragma inMethod: aMethod named: #target) ifNotNil: [ prop isTarget: true ].
+			(Pragma inMethod: aMethod named: #multivalued) ifNotNil: [ prop isMultivalued: true ].
+			(Pragma inMethod: aMethod named: #key:) ifNotNil: [ prop key: ((Pragma inMethod: aMethod named: #key:) argumentAt: 1) ] ].
 	elements add: prop.
-	^ prop.
-		
+	^ prop
 ]
 
 { #category : #accessing }
