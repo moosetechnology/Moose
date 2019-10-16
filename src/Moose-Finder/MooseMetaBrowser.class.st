@@ -168,10 +168,11 @@ MooseMetaBrowser >> commentOFMethod: method [
 
 { #category : #private }
 MooseMetaBrowser >> commentOfProperty: fm3Prop [
-		| commentPrag |
-	fm3Prop implementingClass ifNil: [^ ''].
-	commentPrag := Pragma inMethod: fm3Prop compiledMethod named: #MSEComment:.
-	^ commentPrag ifNil: [ '' ] ifNotNil: [ commentPrag argumentAt: 1 ]
+	fm3Prop implementingClass ifNil: [ ^ '' ].
+
+	^ (fm3Prop compiledMethod pragmaAt: #MSEComment:)
+		ifNil: [ '' ]
+		ifNotNil: [ :commentPrag | commentPrag argumentAt: 1 ]
 ]
 
 { #category : #building }

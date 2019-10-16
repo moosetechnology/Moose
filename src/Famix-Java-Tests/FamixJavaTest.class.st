@@ -16,7 +16,7 @@ FamixJavaTest >> testImportAnnotations [
 		(Famix-Java-Entities.Class (id: 10) (name ''AnotherClass''))
 		(Famix-Java-Entities.Method (id: 2) (name ''aMethod'') (parentType (ref: 1)))
 		(Famix-Java-Entities.Class (id: 3) (name ''AnAnnotationDefinitionClass''))
-		(Famix-Java-Entities.AnnotationType (id: 4) (name ''AnAnnotation'') (container (ref: 100)))
+		(Famix-Java-Entities.AnnotationType (id: 4) (name ''AnAnnotation'') (typeContainer (ref: 100)))
 		(Famix-Java-Entities.Class (id: 5) (name ''AnotherAnnotationDefinitionClass''))
 		(Famix-Java-Entities.AnnotationType (id: 6) (name ''AnotherAnnotation'') (container (ref: 100)))
 		(Famix-Java-Entities.AnnotationInstance (id: 7) (annotatedEntity (ref: 1)) (annotationType (ref: 4)))
@@ -34,8 +34,8 @@ FamixJavaTest >> testImportAnnotations [
 	self assert: (model allAnnotationTypes entityNamed: #'aNamespace::AnotherAnnotation') instances size equals: 1.
 	model allAnnotationTypes
 		do: [ :each | 
-			self assert: (each container definedAnnotationTypes includes: each).
-			self assert: each container identicalTo: each belongsTo ]
+			self assert: (each typeContainer definedAnnotationTypes includes: each).
+			self assert: each typeContainer identicalTo: each belongsTo ]
 ]
 
 { #category : #tests }

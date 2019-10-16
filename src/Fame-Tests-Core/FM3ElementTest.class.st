@@ -32,9 +32,8 @@ FM3ElementTest >> testFullNameOfNonameIsNil [
 FM3ElementTest >> testFullNameOfNonameOwnerIsNil [
 	| noname child |
 	noname := FM3PackageDescription new.
-	child := FM3MetaDescription new.
+	child := FM3MetaDescription named: 'child'.
 	child package: noname.
-	child name: 'Child'.
 	self shouldnt: [ child fullName ] raise: Error.
 	self assert: child fullName isNil
 ]

@@ -38,13 +38,13 @@ Class {
 		'classDict',
 		'metaDict',
 		'superclassDict',
-		'packMetaDict',
 		'typeDict',
 		'oppositeDict',
-		'packPropDict',
 		'mmClassDict',
 		'queue',
-		'implementingPackages'
+		'implementingPackages',
+		'packDict',
+		'traitsDict'
 	],
 	#classVars : [
 		'ShouldValidateMetaModel'
@@ -68,33 +68,25 @@ FMPragmaProcessor class >> shouldValidateMetaModel: anObject [
 	ShouldValidateMetaModel := anObject
 ]
 
-{ #category : #private }
-FMPragmaProcessor >> allowPackageNamed: packageName [
-	"generic method for subclass specilization"
-	^ true
-]
-
 { #category : #converting }
 FMPragmaProcessor >> asMetamodel [
-	| mm |
-	mm := FMMetaRepository
-		with: FMMetaRepository fm3.
-	mm addAll: elements.
-	^ mm
+	^ (FMMetaRepository with: FMMetaRepository fm3)
+		addAll: elements;
+		yourself
 ]
 
 { #category : #converting }
 FMPragmaProcessor >> asTower [
-	| tower mm |
-	mm := self asMetamodel.
-	tower := FMCompleteTower new.
-	tower metaMetamodel: mm metamodel.
-	tower metamodel: mm.
-	tower model: (FMRepository with: mm).
-	^ tower
-
 	"This creation code might eventually end up in Tower or Repository,
 	just let it grow, it will find its proper place over time."
+
+	| mm |
+	mm := self asMetamodel.
+	^ FMTower new
+		metaMetamodel: mm metamodel;
+		metamodel: mm;
+		model: (FMRepository with: mm);
+		yourself
 ]
 
 { #category : #running }
@@ -119,14 +111,9 @@ FMPragmaProcessor >> elements [
 
 { #category : #private }
 FMPragmaProcessor >> ensureClass: var [
-	var isBehavior
-		ifTrue: [ ^ classDict at: var ].
-	var isSymbol
-		ifTrue: [ ^ classDict
-				at: (self class environment at: var)
-				ifAbsent: [ metaDict at: var asString ] ].
-	var isString
-		ifTrue: [ ^ metaDict at: var ].
+	var isBehavior ifTrue: [ ^ classDict at: var ].
+	var isSymbol ifTrue: [ ^ classDict at: (self class environment at: var) ifAbsent: [ metaDict at: var asString ] ].
+	var isString ifTrue: [ ^ metaDict at: var ].
 	self assert: false
 ]
 
@@ -138,15 +125,30 @@ FMPragmaProcessor >> ensurePackage: name [
 	^ packageDict
 		at: symbol
 		ifAbsentPut: [ | pack |
-			pack := FM3PackageDescription new.
-			pack name: symbol.
+			pack := FM3PackageDescription named: symbol.
 			elements add: pack.
 			pack ]
 ]
 
 { #category : #private }
+FMPragmaProcessor >> extractPackageFrom: method for: aFM3Element [
+	^ (method pragmaAt: #package:) ifNotNil: [ :p | packDict at: aFM3Element put: (p argumentAt: 1) ]
+]
+
+{ #category : #running }
+FMPragmaProcessor >> implementingPackages [
+	^ implementingPackages ifNil: [ implementingPackages := queue collectAsSet: #package ]
+]
+
+{ #category : #running }
+FMPragmaProcessor >> implementingPackages: aColl [
+	implementingPackages := aColl
+]
+
+{ #category : #initialization }
 FMPragmaProcessor >> initialize [
 	"Used for queuing classes before running."
+
 	queue := OrderedCollection new.
 	"Used to store resulting FM3 elements."
 	elements := OrderedCollection new.
@@ -154,34 +156,31 @@ FMPragmaProcessor >> initialize [
 	packageDict := Dictionary new.
 	classDict := Dictionary new.
 	superclassDict := IdentityDictionary new.
-	packMetaDict := IdentityDictionary new.
+	packDict := IdentityDictionary new.
 	typeDict := IdentityDictionary new.
 	oppositeDict := IdentityDictionary new.
-	packPropDict := IdentityDictionary new.
 	mmClassDict := IdentityDictionary new.
 	metaDict := Dictionary new.
+	traitsDict := IdentityDictionary new.
 
 	"Must use the cannonical primitives here!"
 	"Please do not at these primitives to elements!"
-	metaDict 
-		at: 'String'
-		put: FM3MetaDescription string.
-	metaDict 
-		at: 'Boolean'
-		put: FM3MetaDescription boolean.
-	metaDict 
-		at: 'Number'
-		put: FM3MetaDescription number.
-	metaDict 
-		at: 'Object'
-		put: FM3MetaDescription object
+	metaDict at: 'String' put: FM3MetaDescription string.
+	metaDict at: 'Boolean' put: FM3MetaDescription boolean.
+	metaDict at: 'Number' put: FM3MetaDescription number.
+	metaDict at: 'Object' put: FM3MetaDescription object
 ]
 
 { #category : #private }
 FMPragmaProcessor >> methodsToProcessFrom: aClass [
 	"We need to process the methods from the class and the extensions methods comming from the packages containing the entites. We should reject extension methods comming from other packages."
 
-	^ aClass methods select: [ :method | method isExtension not or: [ implementingPackages includes: method package ] ]
+	^ aClass localMethods select: [ :method | method isExtension not or: [ self implementingPackages includes: method package ] ]
+]
+
+{ #category : #accessing }
+FMPragmaProcessor >> oppositeDict [
+	^ oppositeDict
 ]
 
 { #category : #accessing }
@@ -191,119 +190,87 @@ FMPragmaProcessor >> packages [
 
 { #category : #private }
 FMPragmaProcessor >> processClass: aClass [
-	^ self
-		processClass: aClass
-		ifPragmaAbsent: [ self error: 'Fame Undeclared class ' , aClass name ]
+	^ self processClass: aClass ifPragmaAbsent: [ self error: 'Fame Undeclared class ' , aClass name ]
 ]
 
 { #category : #private }
 FMPragmaProcessor >> processClass: aClass ifPragmaAbsent: anErrorBlock [
-	| pragma meta className superclassName |
-	pragma := aClass metamodelDefinitionPragmas.
-	pragma ifEmpty: anErrorBlock.
-	pragma
-		ifEmpty: [ className := aClass name.
-			superclassName := aClass superclass name ]
-		ifNotEmpty: [ className := pragma first argumentAt: 1.
-			superclassName := pragma first argumentAt: 2 ].
+	aClass metamodelDefinitionPragma
+		ifNil: anErrorBlock
+		ifNotNil: [ :pragma | 
+			| fm3Class |
+			fm3Class := FM3MetaDescription named: (pragma argumentAt: 1).
+			superclassDict at: fm3Class put: (pragma argumentAt: 2).
+			fm3Class setImplementingClass: aClass.
 
+			(pragma method pragmaAt: #abstract) ifNotNil: [ fm3Class isAbstract: true ].
+			self extractPackageFrom: pragma method for: fm3Class.
+			classDict at: aClass put: fm3Class.
+			(self methodsToProcessFrom: aClass) do: [ :each | self processCompiledMethod: each ].
+			aClass localSlots select: #isFMRelationSlot thenDo: [ :each | self processSlot: each in: aClass ].
 
-	"the description for the class"
-	meta := FM3MetaDescription new.
-	meta name: className asString.
-	superclassDict at: meta put: superclassName.
-	meta setImplementingClass: aClass.
-	pragma
-		ifNotEmpty: [ (Pragma inMethod: pragma first method named: #abstract) ifNotNil: [ meta isAbstract: true ].
-			(Pragma inMethod: pragma first method named: #package:)
-				ifNotNil: [ :p | 
-					| packageName |
-					packageName := p argumentAt: 1.
-					(self allowPackageNamed: packageName) ifFalse: [ ^ self ].
-					packMetaDict at: meta put: packageName asString ] ].
-	elements add: meta.
-	classDict at: aClass put: meta.
-	(self methodsToProcessFrom: aClass) do: [ :each | self processCompiledMethod: each ].
-	aClass slots do: [ :each | self processSlot: each in: aClass ].
-	self assert: meta isFM3Class.
-	^ meta
+			traitsDict at: fm3Class put: aClass allGeneratedTraits.
+
+			elements add: fm3Class ]
 ]
 
 { #category : #private }
 FMPragmaProcessor >> processCompiledMethod: aMethod [
-	| pragma prop method |
+	| method |
 	method := aMethod.
 
 	"If the method is a reflective method we need to ensure it is compiled and use its compiled method.
 	A refelctive method is for exemple a method created via a metalink and that was never executed."
 	(aMethod isKindOf: ReflectiveMethod)
-		ifTrue: [ aMethod compileAndInstallCompiledMethod.
-			method := aMethod compiledMethod ].
-
+		ifTrue: [ method := aMethod
+				compileAndInstallCompiledMethod;
+				compiledMethod ].
 	self assert: method isCompiledMethod.
-	pragma := Pragma inMethod: method named: #(#MSEProperty:type:opposite: #MSEProperty:type:).
-	pragma ifNil: [ ^ self ].
-	prop := FM3PropertyDescription new.
-	(Pragma inMethod: method named: #package:)
-		ifNotNil: [ :p | 
-			| packageName |
-			packageName := p argumentAt: 1.
-			(self allowPackageNamed: packageName) ifFalse: [ ^ self ].
-			packPropDict at: prop put: packageName ].
-	"we check the package first because if we do not want to load it,
-		we ignore the whole property"
-	prop name: (pragma argumentAt: 1) asString.
-	typeDict at: prop put: (pragma argumentAt: 2).
-	mmClassDict at: prop put: method methodClass.
-	prop setImplementingSelector: method selector.
-	pragma selector = #MSEProperty:type:opposite: ifTrue: [ oppositeDict at: prop put: (pragma argumentAt: 3) ].
-	(Pragma inMethod: method named: #container) ifNotNil: [ prop isContainer: true ].
-	(Pragma inMethod: method named: #derived) ifNotNil: [ prop isDerived: true ].
-	(Pragma inMethod: method named: #source) ifNotNil: [ prop isSource: true ].
-	(Pragma inMethod: method named: #target) ifNotNil: [ prop isTarget: true ].
-	(Pragma inMethod: method named: #multivalued)
-		ifNotNil: [ self
+
+	method pragmas
+		detect: [ :each | #(#MSEProperty:type:opposite: #MSEProperty:type:) includes: each selector ]
+		ifFound: [ :pragma | 
+			| prop |
+			prop := FM3PropertyDescription named: (pragma argumentAt: 1) asString.
+			typeDict at: prop put: (pragma argumentAt: 2).
+			mmClassDict at: prop put: method methodClass.
+			pragma selector = #MSEProperty:type:opposite: ifTrue: [ oppositeDict at: prop put: (pragma argumentAt: 3) ].
+			self processInfosFrom: method for: prop.
+
+			elements add: prop ]
+]
+
+{ #category : #private }
+FMPragmaProcessor >> processInfosFrom: aMethod for: prop [
+	prop setImplementingSelector: aMethod selector.
+	self extractPackageFrom: aMethod for: prop.
+	(aMethod pragmaAt: #container) ifNotNil: [ prop isContainer: true ].
+	(aMethod pragmaAt: #derived) ifNotNil: [ prop isDerived: true ].
+	(aMethod pragmaAt: #source) ifNotNil: [ prop isSource: true ].
+	(aMethod pragmaAt: #target) ifNotNil: [ prop isTarget: true ].
+	(aMethod pragmaAt: #multivalued)
+		ifNotNil: [ self flag: #todo.	"This should maybe be moved to FMMetamodelValidator."
+			self
 				assert: prop isContainer not
-				description:
-					'It is not possible to have <multivalue> and <container> on the same method. container represents a aggregation UML link that is incompatible with the multivalue kind of the link'.
+				description: 'It is not possible to have <multivalue> and <container> on the same method. container represents a aggregation UML link that is incompatible with the multivalue kind of the link'.
 			prop isMultivalued: true ].
-	(Pragma inMethod: method named: #key:) ifNotNil: [ :p | prop key: (p argumentAt: 1) ].
-	elements add: prop
+	(aMethod pragmaAt: #key:) ifNotNil: [ :p | prop key: (p argumentAt: 1) ]
 ]
 
 { #category : #private }
 FMPragmaProcessor >> processSlot: aSlot in: aClass [
 	| prop |
-	
-	(aSlot isFMRelationSlot) ifFalse: [
-		^ self ].
-	
-	prop := elements add: aSlot mooseProperty.
+	prop := FM3PropertyDescription named: aSlot name.
+	prop setImplementingSelector: aSlot name.
+	prop isMultivalued: aSlot isToMany.
 
 	typeDict at: prop put: aSlot targetClass.
 	mmClassDict at: prop put: aClass.
 	oppositeDict at: prop put: aSlot inverseName.
-	
-	aClass methodDict at: aSlot name asSymbol ifPresent: [:aMethod | 
-		prop setImplementingSelector: aMethod selector.
-		(Pragma inMethod: aMethod named: #package:) ifNotNil: [ :p | 
-			| packageName |
-			packageName := p argumentAt: 1.
-			(self allowPackageNamed: packageName)
-				ifFalse: [ ^ self ].
-			packPropDict at: prop put: packageName ].
 
-		(Pragma inMethod: aMethod named: #container) ifNotNil: [ prop isContainer: true ].
-		(Pragma inMethod: aMethod named: #derived) ifNotNil: [ prop isDerived: true ].
-		(Pragma inMethod: aMethod named: #source) ifNotNil: [ prop isSource: true ].
-		(Pragma inMethod: aMethod named: #target) ifNotNil: [ prop isTarget: true ]. 
-		(Pragma inMethod: aMethod named: #multivalued)
-			ifNotNil: [ prop isMultivalued: true ].
-		(Pragma inMethod: aMethod named: #key:)
-			ifNotNil: [ prop key: ((Pragma inMethod: aMethod named: #key:) argumentAt: 1) ] ].
-	elements add: prop.
-	^ prop.
-		
+	aClass compiledMethodAt: aSlot name asSymbol ifPresent: [ :aMethod | self processInfosFrom: aMethod for: prop ].
+
+	elements add: prop
 ]
 
 { #category : #accessing }
@@ -330,54 +297,31 @@ FMPragmaProcessor >> queue: var [
 { #category : #private }
 FMPragmaProcessor >> resolveObjectReferences [
 
-	"establish class-package links"
-	packMetaDict keysAndValuesDo: [ :meta :value |
-		meta package: (self ensurePackage: value)
-	].
-	"establish property-package links"
-	packPropDict keysAndValuesDo: [ :prop :value |
-		prop package: (self ensurePackage: value)
-	].
+	"establish class-package and property-package links"
+	packDict keysAndValuesDo: [ :fm3Element :value | fm3Element package: (self ensurePackage: value) ].
+
 	"establish property-class associations"
-	mmClassDict keysAndValuesDo: [ :prop :value |
-		prop mmClass: (self ensureClass: value)
-	].
+	mmClassDict keysAndValuesDo: [ :prop :value | prop mmClass: (self ensureClass: value) ].
+
 	"map classes by full name"
-	self classes do: [ :meta |
-		metaDict at: meta fullName asString put: meta.
-	].
+	self classes do: [ :meta | metaDict at: meta fullName asString put: meta ].
+
 	"establish class-superclass associations"
-	superclassDict keysAndValuesDo: [ :meta :value |
-		meta superclass: (self ensureClass: value).
-	].	
-	"establish property-type-oppoiste relations"
-	typeDict keysAndValuesDo: [ :prop :value |
-		prop type: (self ensureClass: value).
-	].
+	superclassDict keysAndValuesDo: [ :meta :value | meta superclass: (self ensureClass: value) ].
+
+	"establish property-type-opposite relations"
+	typeDict keysAndValuesDo: [ :prop :value | prop type: (self ensureClass: value) ].
+
+	"establish class-traits relations"
+	traitsDict keysAndValuesDo: [ :class :traits | class addTraits: (traits collect: [ :t | classDict at: t ]) ].
+
 	" Fill in oppositelinks"
-	oppositeDict keysAndValuesDo: [ :prop :oppName |
-		prop opposite: (prop type attributeNamed: oppName)
-	]
+	oppositeDict keysAndValuesDo: [ :prop :oppName | prop opposite: (prop type attributeNamed: oppName) ]
 ]
 
 { #category : #running }
 FMPragmaProcessor >> run [
-	implementingPackages := (queue collectAsSet: #package).
 	queue do: [ :cls | self processClass: cls ].
 	self resolveObjectReferences.
-	self class shouldValidateMetaModel
-		ifTrue: [ self validateMetaModel ]
-]
-
-{ #category : #private }
-FMPragmaProcessor >> validateMetaModel [
-	| fullDict wronglySetOpposites |
-	"Check that opposite link is bijective, i.e. there are not 2 values that references the same opposite."
-	fullDict := Dictionary new.
-	oppositeDict keysAndValuesDo: [ :prop :oppName | (fullDict at: (prop type attributeNamed: oppName) ifAbsentPut: [ Set new ]) add: prop originClass ].
-	wronglySetOpposites := fullDict select: [ :e | e size ~= 1 ].
-
-	self assert: wronglySetOpposites isEmpty description: 'Link to opposite links should be a bijective operation... Please check your model!'.
-
-	self assert: (fullDict at: nil ifAbsent: [ #() ]) isEmpty description: 'Some opposite links are not definied in your model.. Please check your model!'
+	self class shouldValidateMetaModel ifTrue: [ FMMetamodelValidator for: self ]
 ]

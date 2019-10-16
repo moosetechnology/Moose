@@ -63,29 +63,27 @@ FMMetaRepositoryFilterTest >> buildRPG [
 
 { #category : #'tests-export' }
 FMMetaRepositoryFilterTest >> createLIBModelWithClass: class [
-
 	| tower repository model filteredMetamodel stream filter importer |
-
-	model := {LIBBook new title: 'aBook'. LIBLibrary new. LIBPerson new name: 'aPerson'}.
-	stream := String new writeStream..
+	model := {(LIBBook new title: 'aBook') . LIBLibrary new . (LIBPerson new name: 'aPerson')}.
+	stream := String new writeStream.
 
 	filter := FMMetaRepositoryFilter new
-	    metaRepository: libModel;
-	    classes: {libModel descriptionOf: class}.
+		metaRepository: libModel;
+		classes: {(libModel descriptionOf: class)}.
 	filter run.
 
 	"collecting the filtered metamodel"
 	filteredMetamodel := filter newMetaRepository.
 
 	"exporting the model (with the filtered metamodel) as mse"
-	tower := FMCompleteTower new.
+	tower := FMTower new.
 	tower metaMetamodel: filteredMetamodel metamodel.
 	tower metamodel: filteredMetamodel.
 	tower model: (repository := (FMRepository with: filteredMetamodel) addAll: model).
 	tower model exportOn: stream.
 
 	"reading the strem (mse) with the filtered model"
-	tower := FMCompleteTower new.
+	tower := FMTower new.
 	tower metamodel addAll: filteredMetamodel elements.
 	importer := FMImporter new.
 	importer repository: tower model.
@@ -222,8 +220,7 @@ FMMetaRepositoryFilterTest >> testBookMetamodel [
 { #category : #'tests-basic' }
 FMMetaRepositoryFilterTest >> testClassWithoutPackage [
 	| aClassWithoutPackage repo visitor |
-	aClassWithoutPackage := FM3MetaDescription new.
-	aClassWithoutPackage name: 'AClass'.
+	aClassWithoutPackage := FM3MetaDescription named: 'AClass'.
 	repo := FMMetaRepository with: FMMetaRepository fm3.
 	repo add: aClassWithoutPackage.
 
@@ -322,6 +319,7 @@ FMMetaRepositoryFilterTest >> testFM3IsComplete [
 	self assert: (names includes: 'FM3.Class.primitive').
 	self assert: (names includes: 'FM3.Class.root').
 	self assert: (names includes: 'FM3.Class.superclass').
+	self assert: (names includes: 'FM3.Class.traits').
 	self assert: (names includes: 'FM3.Class.package').
 	self assert: (names includes: 'FM3.Class.allAttributes').
 	self assert: (names includes: 'FM3.Class.attributes').
@@ -337,7 +335,7 @@ FMMetaRepositoryFilterTest >> testFM3IsComplete [
 	self assert: (names includes: 'FM3.Package').
 	self assert: (names includes: 'FM3.Package.extensions').
 	self assert: (names includes: 'FM3.Package.classes').
-	self assert: (names select: [ :n | n beginsWith: 'FM3.' ]) size equals: 25
+	self assert: (names select: [ :n | n beginsWith: 'FM3.' ]) size equals: 26
 ]
 
 { #category : #'tests-metarepository' }
@@ -364,6 +362,7 @@ FMMetaRepositoryFilterTest >> testFM3NewVersion [
 	self assert: (names includes: 'FM3.Class.root').
 	self assert: (names includes: 'FM3.Class.superclass').
 	self assert: (names includes: 'FM3.Class.subclasses').
+	self assert: (names includes: 'FM3.Class.traits').
 	self assert: (names includes: 'FM3.Class.package').
 	self assert: (names includes: 'FM3.Class.allAttributes').
 	self assert: (names includes: 'FM3.Class.attributes').
@@ -379,7 +378,7 @@ FMMetaRepositoryFilterTest >> testFM3NewVersion [
 	self assert: (names includes: 'FM3.Package').
 	self assert: (names includes: 'FM3.Package.extensions').
 	self assert: (names includes: 'FM3.Package.classes').
-	self assert: (names select: [ :n | n beginsWith: 'FM3' ]) size equals: 26
+	self assert: (names select: [ :n | n beginsWith: 'FM3' ]) size equals: 27
 ]
 
 { #category : #'tests-metarepository' }

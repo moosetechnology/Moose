@@ -1,14 +1,13 @@
 Class {
 	#name : #FMTower,
 	#superclass : #Object,
+	#instVars : [
+		'model',
+		'metaMetamodel',
+		'metamodel'
+	],
 	#category : #'Fame-SmalltalkBinding'
 }
-
-{ #category : #'instance creation' }
-FMTower class >> new [
-
-	^FMCompleteTower new
-]
 
 { #category : #accessing }
 FMTower >> fameDescriptionByClass: smalltalkClass [ 
@@ -28,17 +27,40 @@ FMTower >> fameDescriptionFor: element [
 	
 ]
 
+{ #category : #initialization }
+FMTower >> initialize [
+	super initialize.
+	metaMetamodel := FMMetaRepository fm3.
+	metamodel := FMMetaRepository with: self metaMetamodel.
+	model := FMRepository with: self metamodel
+]
+
 { #category : #accessing }
 FMTower >> metaMetamodel [
-	^self subclassResponsibility
+	^ metaMetamodel
+]
+
+{ #category : #accessing }
+FMTower >> metaMetamodel: anObject [
+	metaMetamodel := anObject
 ]
 
 { #category : #accessing }
 FMTower >> metamodel [
-	^self subclassResponsibility
+	^ metamodel
+]
+
+{ #category : #accessing }
+FMTower >> metamodel: anObject [
+	metamodel := anObject
 ]
 
 { #category : #accessing }
 FMTower >> model [
-	^self subclassResponsibility
+	^ model
+]
+
+{ #category : #accessing }
+FMTower >> model: anObject [
+	model := anObject
 ]

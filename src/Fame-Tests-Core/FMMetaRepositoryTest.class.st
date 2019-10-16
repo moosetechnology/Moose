@@ -45,6 +45,7 @@ FMMetaRepositoryTest >> testFM3IsComplete [
 	self assert: (names includes: 'FM3.Class.root').
 	self assert: (names includes: 'FM3.Class.superclass').
 	self assert: (names includes: 'FM3.Class.subclasses').
+	self assert: (names includes: 'FM3.Class.traits').
 	self assert: (names includes: 'FM3.Class.package').
 	self assert: (names includes: 'FM3.Class.allAttributes').
 	self assert: (names includes: 'FM3.Class.attributes').
@@ -60,8 +61,8 @@ FMMetaRepositoryTest >> testFM3IsComplete [
 	self assert: (names includes: 'FM3.Package').
 	self assert: (names includes: 'FM3.Package.extensions').
 	self assert: (names includes: 'FM3.Package.classes').
-	self assert: names size equals: 26.
-	self assert: (names select: [ :n | n beginsWith: 'FM3.' ]) size equals: 25
+	self assert: names size equals: 27.
+	self assert: (names select: [ :n | n beginsWith: 'FM3.' ]) size equals: 26
 ]
 
 { #category : #running }

@@ -1,3 +1,6 @@
+"
+Check if an opposite attribute declared in a pragma #MSEProperty:type:opposite: also define a pragma pointing back to the initial class and the initial attribute.
+"
 Class {
 	#name : #FameOppositeAttributeShouldPointBackRule,
 	#superclass : #RBBlockLintRule,
@@ -43,10 +46,4 @@ FameOppositeAttributeShouldPointBackRule >> group [
 FameOppositeAttributeShouldPointBackRule >> name [
 
 	^ 'An opposite attribute declared in pragma does not point back to the initial attribute'
-]
-
-{ #category : #accessing }
-FameOppositeAttributeShouldPointBackRule >> rationale [
-
-	^ 'Check if an opposite attribute declared in a pragma #MSEProperty:type:opposite: also define a pragma pointing back to the initial class and the initial attribute.'
 ]

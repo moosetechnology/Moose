@@ -226,16 +226,14 @@ FMRepository >> includes: element [
 
 { #category : #'initialize-release' }
 FMRepository >> initialize [
-
-	elements := IdentitySet new.
-
+	super initialize.
+	elements := IdentitySet new
 ]
 
 { #category : #'initialize-release' }
 FMRepository >> initialize: aMetamodel [
-
 	self initialize.
-	metamodel := aMetamodel.
+	metamodel := aMetamodel
 ]
 
 { #category : #testing }
