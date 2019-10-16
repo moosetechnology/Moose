@@ -1,6 +1,6 @@
 Extension { #name : #Behavior }
 
-{ #category : #'*Moose-Query' }
+{ #category : #'*Fame-SmalltalkBinding' }
 Behavior >> allGeneratedTraits [
 	^ self traitComposition allTraits select: #isMetamodelEntity
 ]

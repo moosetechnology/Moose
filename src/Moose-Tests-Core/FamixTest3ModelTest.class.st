@@ -21,7 +21,8 @@ FamixTest3ModelTest >> testExport [
 		equals:
 			'(
 	(Famix-Test3-Entities.Class (id: 1)
-		(name ''Foo'')))'
+		(name ''Foo'')
+		(numberOfLinesOfCode 0)))'
 ]
 
 { #category : #tests }

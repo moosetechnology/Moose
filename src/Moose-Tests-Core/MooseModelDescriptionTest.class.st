@@ -34,7 +34,7 @@ MooseModelDescriptionTest >> testAsMooseDescriptionAttributes [
 	| classDescription typeDescription |
 	classDescription := FamixTest3Class asMooseDescription.
 	typeDescription := FamixTest3Type asMooseDescription.
-	self assert: (typeDescription attributes anySatisfy: [ :each | each name = #typeContainer ]).
+	self assertEmpty: typeDescription attributes.
 	self assert: (classDescription allAttributes anySatisfy: [ :each | each name = #methods ])
 ]
 

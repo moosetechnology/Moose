@@ -260,7 +260,7 @@ FM3PropertyDescription >> opposite [
 { #category : #accessing }
 FM3PropertyDescription >> opposite: new [
 	| old |
-	opposite ~~ new ifFalse: [ ^ self ].
+	opposite == new ifTrue: [ ^ self ].
 
 	old := opposite.
 	opposite := new.
@@ -305,12 +305,6 @@ FM3PropertyDescription >> packageName [
 	^ self isExtension 
 			ifFalse: [ self owner packageName ]
 			ifTrue: [ package name ]
-]
-
-{ #category : #private }
-FM3PropertyDescription >> privOpposite: new [
-	
-	opposite := new
 ]
 
 { #category : #private }
