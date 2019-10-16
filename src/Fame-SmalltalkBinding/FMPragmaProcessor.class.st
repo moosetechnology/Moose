@@ -43,7 +43,8 @@ Class {
 		'mmClassDict',
 		'queue',
 		'implementingPackages',
-		'packDict'
+		'packDict',
+		'slotDict'
 	],
 	#classVars : [
 		'ShouldValidateMetaModel'
@@ -160,6 +161,7 @@ FMPragmaProcessor >> initialize [
 	oppositeDict := IdentityDictionary new.
 	mmClassDict := IdentityDictionary new.
 	metaDict := Dictionary new.
+	slotDict := IdentityDictionary new.
 
 	"Must use the cannonical primitives here!"
 	"Please do not at these primitives to elements!"
@@ -205,7 +207,7 @@ FMPragmaProcessor >> processClass: aClass ifPragmaAbsent: anErrorBlock [
 			self extractPackageFrom: pragma method for: fm3Class.
 			classDict at: aClass put: fm3Class.
 			(self methodsToProcessFrom: aClass) do: [ :each | self processCompiledMethod: each ].
-			aClass slots do: [ :each | self processSlot: each in: aClass ].
+			aClass slots select: #isFMRelationSlot thenDo: [ :each | self processSlot: each in: aClass ].
 
 			elements add: fm3Class ]
 ]
@@ -256,9 +258,18 @@ FMPragmaProcessor >> processInfosFrom: aMethod for: prop [
 { #category : #private }
 FMPragmaProcessor >> processSlot: aSlot in: aClass [
 	| prop |
-	aSlot isFMRelationSlot ifFalse: [ ^ self ].
+	"It is possible the property was created when we set the opposite."
+	prop := slotDict at: aSlot ifAbsentPut: [ FM3PropertyDescription new ].
 
-	prop := aSlot mooseProperty.
+	slotDict at: aSlot put: prop.
+	prop name: aSlot name asString.
+	prop setImplementingSelector: aSlot name.
+	prop isMultivalued: aSlot isToMany.
+
+	self flag: #todo. "I don't know why the commented line does not work instead of the ugly line after. It'll try to find some time to check later."
+	"oppositeDict at: prop put: aSlot inverseName."
+	prop privOpposite: (slotDict at: aSlot inverseSlot ifAbsentPut: [ FM3PropertyDescription new ]).
+
 
 	typeDict at: prop put: aSlot targetClass.
 	mmClassDict at: prop put: aClass.

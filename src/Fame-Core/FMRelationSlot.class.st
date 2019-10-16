@@ -4,8 +4,7 @@ Class {
 	#instVars : [
 		'targetClass',
 		'inverseName',
-		'inverseSlot',
-		'mooseProperty'
+		'inverseSlot'
 	],
 	#category : #'Fame-Core-Slots'
 }
@@ -143,24 +142,6 @@ FMRelationSlot >> linkUp [
 	self inverseSlot inverseName = self name ifFalse: [ self error: 'Invalid association: inverse names do not match' ]
 ]
 
-{ #category : #internal }
-FMRelationSlot >> mooseProperty [
-	| needsToBeSet |
-	needsToBeSet := false.
-
-	mooseProperty
-		ifNil: [ needsToBeSet := true.
-			mooseProperty := FM3PropertyDescription new ].
-
-	needsToBeSet
-		ifTrue: [ mooseProperty name: self name asString.
-			mooseProperty setImplementingSelector: self name.	"should be a link to slot"
-			mooseProperty isMultivalued: self isToMany.
-			mooseProperty privOpposite: self inverseSlot mooseProperty ].
-
-	^ mooseProperty
-]
-
 { #category : #printing }
 FMRelationSlot >> printOn: aStream [
 	aStream
@@ -193,11 +174,6 @@ FMRelationSlot >> removeAssociationFrom: ownerObject to: otherObject [
 	realInverseSlot isToOne
 		ifTrue: [ realInverseSlot writeInverse: nil to: otherObject ]
 		ifFalse: [ (realInverseSlot read: otherObject) inverseRemove: ownerObject ]
-]
-
-{ #category : #internal }
-FMRelationSlot >> resetMooseProperty [
-	mooseProperty := nil
 ]
 
 { #category : #accessing }
