@@ -283,8 +283,6 @@ MooseModel class >> resetMetamodel [
 	"Collect all classes containing properties useful to the MM."
 	classes := self packagesToProcessToCreateMetamodel flatCollectAsSet: [ :p | p definedClasses asSet select: #isMetamodelEntity ].
 
-	"We need to reset the moose properties of each slot before building the tower."
-	(classes flatCollect: [ :class | class slots select: #isFMRelationSlot ]) do: #resetMooseProperty.
 	tower := self metaBuilder: classes.
 	metamodel := tower metamodel.
 
