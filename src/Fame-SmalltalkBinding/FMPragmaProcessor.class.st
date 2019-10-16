@@ -44,7 +44,7 @@ Class {
 		'queue',
 		'implementingPackages',
 		'packDict',
-		'slotDict'
+		'traitsDict'
 	],
 	#classVars : [
 		'ShouldValidateMetaModel'
@@ -161,7 +161,7 @@ FMPragmaProcessor >> initialize [
 	oppositeDict := IdentityDictionary new.
 	mmClassDict := IdentityDictionary new.
 	metaDict := Dictionary new.
-	slotDict := IdentityDictionary new.
+	traitsDict := IdentityDictionary new.
 
 	"Must use the cannonical primitives here!"
 	"Please do not at these primitives to elements!"
@@ -175,7 +175,7 @@ FMPragmaProcessor >> initialize [
 FMPragmaProcessor >> methodsToProcessFrom: aClass [
 	"We need to process the methods from the class and the extensions methods comming from the packages containing the entites. We should reject extension methods comming from other packages."
 
-	^ aClass methods select: [ :method | method isExtension not or: [ self implementingPackages includes: method package ] ]
+	^ aClass localMethods select: [ :method | method isExtension not or: [ self implementingPackages includes: method package ] ]
 ]
 
 { #category : #accessing }
@@ -207,7 +207,9 @@ FMPragmaProcessor >> processClass: aClass ifPragmaAbsent: anErrorBlock [
 			self extractPackageFrom: pragma method for: fm3Class.
 			classDict at: aClass put: fm3Class.
 			(self methodsToProcessFrom: aClass) do: [ :each | self processCompiledMethod: each ].
-			aClass slots select: #isFMRelationSlot thenDo: [ :each | self processSlot: each in: aClass ].
+			aClass localSlots select: #isFMRelationSlot thenDo: [ :each | self processSlot: each in: aClass ].
+
+			traitsDict at: fm3Class put: aClass allGeneratedTraits.
 
 			elements add: fm3Class ]
 ]
@@ -258,18 +260,9 @@ FMPragmaProcessor >> processInfosFrom: aMethod for: prop [
 { #category : #private }
 FMPragmaProcessor >> processSlot: aSlot in: aClass [
 	| prop |
-	"It is possible the property was created when we set the opposite."
-	prop := slotDict at: aSlot ifAbsentPut: [ FM3PropertyDescription new ].
-
-	slotDict at: aSlot put: prop.
-	prop name: aSlot name asString.
+	prop := FM3PropertyDescription named: aSlot name.
 	prop setImplementingSelector: aSlot name.
 	prop isMultivalued: aSlot isToMany.
-
-	self flag: #todo. "I don't know why the commented line does not work instead of the ugly line after. It'll try to find some time to check later."
-	"oppositeDict at: prop put: aSlot inverseName."
-	prop privOpposite: (slotDict at: aSlot inverseSlot ifAbsentPut: [ FM3PropertyDescription new ]).
-
 
 	typeDict at: prop put: aSlot targetClass.
 	mmClassDict at: prop put: aClass.
@@ -316,8 +309,11 @@ FMPragmaProcessor >> resolveObjectReferences [
 	"establish class-superclass associations"
 	superclassDict keysAndValuesDo: [ :meta :value | meta superclass: (self ensureClass: value) ].
 
-	"establish property-type-oppoiste relations"
+	"establish property-type-opposite relations"
 	typeDict keysAndValuesDo: [ :prop :value | prop type: (self ensureClass: value) ].
+
+	"establish class-traits relations"
+	traitsDict keysAndValuesDo: [ :class :traits | class addTraits: (traits collect: [ :t | classDict at: t ]) ].
 
 	" Fill in oppositelinks"
 	oppositeDict keysAndValuesDo: [ :prop :oppName | prop opposite: (prop type attributeNamed: oppName) ]

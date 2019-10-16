@@ -260,7 +260,7 @@ FM3PropertyDescription >> opposite [
 { #category : #accessing }
 FM3PropertyDescription >> opposite: new [
 	| old |
-	opposite ~~ new ifFalse: [ ^ self ].
+	opposite == new ifTrue: [ ^ self ].
 
 	old := opposite.
 	opposite := new.
