@@ -186,7 +186,7 @@ MooseGroup >> min: aSymbolOrBlock [
 { #category : #accessing }
 MooseGroup >> mooseDescription [
 	^ self mooseModel
-		ifNil: [ FM3NullDescription new ]
+		ifNil: [ FM3NullClass new ]
 		ifNotNil: [ :model | model mooseDescriptionFor: self class ]
 ]
 

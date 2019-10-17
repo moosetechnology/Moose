@@ -175,7 +175,7 @@ FMMetaRepositoryFilterTest >> testAnnotationTypes [
 	class := package at: 'Property'.
 	self assert: class isFM3Class.
 	self assert: class superclass equals: (package at: 'Element').
-	self assert: class implementingClass equals: FM3PropertyDescription.
+	self assert: class implementingClass equals: FM3Property.
 	self assert: (class at: 'opposite') isFM3Property.
 	self assert: (class at: 'opposite') name equals: #opposite.
 	self assert: (class at: 'opposite') mmClass equals: class.
@@ -188,13 +188,13 @@ FMMetaRepositoryFilterTest >> testAnnotationTypes [
 	self assert: (class at: 'opposite') opposite equals: (class at: 'opposite').	"We now test the container property of FM3's properties"
 	property := (package at: 'Property') at: 'class'.
 	self assert: property isContainer.
-	properties := (package at: 'Property') allAttributes copyWithout: property.
+	properties := (package at: 'Property') allProperties copyWithout: property.
 	self assert: (properties noneSatisfy: #isContainer).
-	properties := (package at: 'Package') allAttributes.
+	properties := (package at: 'Package') allProperties.
 	self assert: (properties noneSatisfy: #isContainer).
 	property := (package at: 'Class') at: 'package'.
 	self assert: property isContainer.
-	properties := (package at: 'Class') allAttributes copyWithout: property.
+	properties := (package at: 'Class') allProperties copyWithout: property.
 	self assert: (properties noneSatisfy: #isContainer)
 ]
 
@@ -220,7 +220,7 @@ FMMetaRepositoryFilterTest >> testBookMetamodel [
 { #category : #'tests-basic' }
 FMMetaRepositoryFilterTest >> testClassWithoutPackage [
 	| aClassWithoutPackage repo visitor |
-	aClassWithoutPackage := FM3MetaDescription named: 'AClass'.
+	aClassWithoutPackage := FM3Class named: 'AClass'.
 	repo := FMMetaRepository with: FMMetaRepository fm3.
 	repo add: aClassWithoutPackage.
 
@@ -285,9 +285,9 @@ FMMetaRepositoryFilterTest >> testFM3Classes [
 	visitor run.
 	fm3 := visitor newMetaRepository.
 	self assert: (fm3 descriptionOf: FM3Element) notNil.
-	self assert: (fm3 descriptionOf: FM3PropertyDescription) notNil.
-	self assert: (fm3 descriptionOf: FM3PackageDescription) notNil.
-	self assert: (fm3 descriptionOf: FM3MetaDescription) notNil.
+	self assert: (fm3 descriptionOf: FM3Property) notNil.
+	self assert: (fm3 descriptionOf: FM3Package) notNil.
+	self assert: (fm3 descriptionOf: FM3Class) notNil.
 	"No longer true Updated test since descriptionOf: can return nil"
 	self assert: (fm3 descriptionOf: FMMetaRepositoryTest) isNil
 	"	self should: [ fm3 descriptionOf: FMMetaRepositoryTest ] raise: Error"
@@ -321,8 +321,8 @@ FMMetaRepositoryFilterTest >> testFM3IsComplete [
 	self assert: (names includes: 'FM3.Class.superclass').
 	self assert: (names includes: 'FM3.Class.traits').
 	self assert: (names includes: 'FM3.Class.package').
-	self assert: (names includes: 'FM3.Class.allAttributes').
-	self assert: (names includes: 'FM3.Class.attributes').
+	self assert: (names includes: 'FM3.Class.allProperties').
+	self assert: (names includes: 'FM3.Class.properties').
 	self assert: (names includes: 'FM3.Property').
 	self assert: (names includes: 'FM3.Property.composite').
 	self assert: (names includes: 'FM3.Property.container').
@@ -364,8 +364,8 @@ FMMetaRepositoryFilterTest >> testFM3NewVersion [
 	self assert: (names includes: 'FM3.Class.subclasses').
 	self assert: (names includes: 'FM3.Class.traits').
 	self assert: (names includes: 'FM3.Class.package').
-	self assert: (names includes: 'FM3.Class.allAttributes').
-	self assert: (names includes: 'FM3.Class.attributes').
+	self assert: (names includes: 'FM3.Class.allProperties').
+	self assert: (names includes: 'FM3.Class.properties').
 	self assert: (names includes: 'FM3.Property').
 	self assert: (names includes: 'FM3.Property.composite').
 	self assert: (names includes: 'FM3.Property.container').

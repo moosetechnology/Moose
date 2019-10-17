@@ -32,10 +32,10 @@ FM3Element class >> named: aString [
 FM3Element >> fullName [
 	<MSEProperty: #fullName type: #String>
 	<derived>
-	self name isNil ifTrue: [ ^nil ].
-	self owner isNil ifTrue: [ ^self name asString ].
-	self owner fullName isNil ifTrue: [ ^nil ].
- 	^self owner fullName, '.', self name
+	self name ifNil: [ ^ nil ].
+	self owner ifNil: [ ^ self name asString ].
+	self owner fullName ifNil: [ ^ nil ].
+	^ self owner fullName , '.' , self name
 ]
 
 { #category : #accessing }
@@ -46,10 +46,7 @@ FM3Element >> name [
 
 { #category : #accessing }
 FM3Element >> name: aString [
-	
-	name := aString isNil 
-		ifTrue: [ nil ]
-		ifFalse: [ aString asSymbol ].
+	name := aString ifNotNil: #asSymbol
 ]
 
 { #category : #accessing }

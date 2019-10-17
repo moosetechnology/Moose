@@ -120,24 +120,24 @@ FMLibraryExample >> testMetamodelSmalltalkBinding [
 	self assert: mm properties anyOne isFM3Property.
 	b := mm elementNamed: 'LIB.Book'.
 	self assert: b notNil.
-	self assert: (b isKindOf: FM3MetaDescription).
+	self assert: (b isKindOf: FM3Class).
 	self assert: b name equals: #Book.
 	self assert: b package name equals: #LIB.
-	self assert: b attributes size equals: 2.
+	self assert: b properties size equals: 2.
 	self assert: b implementingClass equals: LIBBook.
 	p := mm elementNamed: 'LIB.Person'.
 	self assert: p notNil.
-	self assert: (p isKindOf: FM3MetaDescription).
+	self assert: (p isKindOf: FM3Class).
 	self assert: p name equals: #Person.
 	self assert: p package name equals: #LIB.
-	self assert: p attributes size equals: 2.
+	self assert: p properties size equals: 2.
 	self assert: p implementingClass equals: LIBPerson.
 	lib := mm elementNamed: 'LIB.Library'.
 	self assert: lib notNil.
-	self assert: (lib isKindOf: FM3MetaDescription).
+	self assert: (lib isKindOf: FM3Class).
 	self assert: lib name equals: #Library.
 	self assert: lib package name equals: #LIB.
-	self assert: lib attributes size equals: 2.
+	self assert: lib properties size equals: 2.
 	self assert: lib implementingClass equals: LIBLibrary.
 	self assert: b package equals: lib package.
 	self assert: p package equals: lib package.

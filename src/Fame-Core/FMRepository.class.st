@@ -95,19 +95,14 @@ FMRepository >> additionalProperty: aSymbol for: entityClass put: anObject [
 
 { #category : #accessing }
 FMRepository >> cleanAdditionalProperties [
-
 	additionalProperties := IdentityDictionary new
 ]
 
 { #category : #private }
 FMRepository >> coerceProperty: propertyOrName receiver: receiver [
-
-	propertyOrName isFM3Property ifTrue: [ ^propertyOrName ].
-	propertyOrName isString ifTrue: [
-		^(self metaDescriptionOf: receiver) at: propertyOrName ].
-	self error.
-	
-
+	propertyOrName isFM3Property ifTrue: [ ^ propertyOrName ].
+	propertyOrName isString ifTrue: [ ^ (self metaDescriptionOf: receiver) at: propertyOrName ].
+	self error
 ]
 
 { #category : #adding }
@@ -116,7 +111,7 @@ FMRepository >> compositeAdd: element [
 	| meta |
 	elements add: element.
 	meta := self metaDescriptionOf: element.
-	meta allAttributes do: [ :attr |
+	meta allProperties do: [ :attr |
 		(attr type isPrimitive not and: [ attr isComposite ]) ifTrue: [
 			| values |
 			values := self get: attr element: element.
@@ -127,21 +122,13 @@ FMRepository >> compositeAdd: element [
 ]
 
 { #category : #removing }
-FMRepository >> compositeDelete: element [
-	"Remove element and all its children (see FM3Property#container) from the model.
-	References by other elements to element and all its children are removed as well."
-	FM3 todo
-
-]
-
-{ #category : #removing }
 FMRepository >> compositeRemove: element [
 	
 	| meta |
 
 	self remove: element.
 	meta := self metaDescriptionOf: element.
-	meta allAttributes do: [ :attr |
+	meta allProperties do: [ :attr |
 		(attr type isPrimitive not and: [ attr isComposite ]) ifTrue: [
 			| values |
 			values := self get: attr element: element.
@@ -156,7 +143,7 @@ FMRepository >> containerOf: element [
 	| meta property |
 	meta := self metaDescriptionOf: element.
 	meta ifNotNil: [
-		property := meta ownerAttribute.
+		property := meta ownerProperty.
 		property ifNil: [ ^ nil ].
 		^ self 
 			get: property
@@ -180,7 +167,7 @@ FMRepository >> deepAdd: element [
 	| meta |
 	elements add: element.
 	meta := self metaDescriptionOf: element.
-	meta allAttributes do: [ :attr |
+	meta allProperties do: [ :attr |
 		attr type isPrimitive not ifTrue: [
 			| values |
 			values := self get: attr element: element.
@@ -196,7 +183,7 @@ FMRepository >> deepRemove: element [
 	| meta |
 	self remove: element.
 	meta := self metaDescriptionOf: element.
-	meta allAttributes do: [ :attr |
+	meta allProperties do: [ :attr |
 		attr type isPrimitive ifFalse: [
 			| values |
 			values := self get: attr element: element.
@@ -285,13 +272,7 @@ FMRepository >> remove: element [
 
 { #category : #removing }
 FMRepository >> removeAll: elementCollection [
-
-	elementCollection do: [
-		:each |
-		self remove: each.
-	]
-
-	"elements removeAll: elementCollection (without postRemove)"
+	elementCollection do: [ :each | self remove: each ]
 ]
 
 { #category : #enumerating }
@@ -303,15 +284,13 @@ FMRepository >> selectKindOf: smalltalkOrFameClass [
 ]
 
 { #category : #'accessing-meta' }
-FMRepository >> set: propertyOrName element: element values: values [ 
-	
-	^(self coerceProperty: propertyOrName receiver: element) setOn: element values: values 
+FMRepository >> set: propertyOrName element: element values: values [
+	^ (self coerceProperty: propertyOrName receiver: element) setOn: element values: values
 ]
 
 { #category : #accessing }
 FMRepository >> size [
-
-	^self elements size
+	^ self elements size
 ]
 
 { #category : #private }

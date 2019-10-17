@@ -7,7 +7,7 @@ Object >> allDeclaredPropertiesIn: aMetamodel [
 	| aDescription |
 	aMetamodel ifNil: [ ^ OrderedCollection new ].
 	aDescription := self mooseDescriptionIn: aMetamodel.
-	^ aDescription ifNil: [ OrderedCollection new ] ifNotNil: [ aDescription allAttributes ]
+	^ aDescription ifNil: [ OrderedCollection new ] ifNotNil: [ aDescription allProperties ]
 ]
 
 { #category : #'*moose-core' }

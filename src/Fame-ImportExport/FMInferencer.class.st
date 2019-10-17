@@ -25,7 +25,7 @@ FMInferencer >> beginAttribute: name [
 
 	| element attribute |
 	element := stack top.
-	attribute := element attributes at: name ifAbsentPut: [ FMAbstractAttribute new name: name ].
+	attribute := element properties at: name ifAbsentPut: [ FMAbstractAttribute new name: name ].
 	stack push: attribute -> 0.	
 ]
 
@@ -130,7 +130,7 @@ FMInferencer >> inferPackages [
 { #category : #inferring }
 FMInferencer >> inferProperties: anAbstractElement [
 
-	anAbstractElement attributes do: [ :anAbstractAttribute |
+	anAbstractElement properties do: [ :anAbstractAttribute |
 		self inferProperty: anAbstractAttribute ]
 	
 	
@@ -202,7 +202,7 @@ FMInferencer >> referenceNumber: name [
 FMInferencer >> resolveReferences [
 
 	self elements do: [ :elem |
-		elem attributes values do: [ :attr |
+		elem properties values do: [ :attr |
 			attr resolveReferences: index ] ]
 ]
 

@@ -23,7 +23,7 @@ FM3ElementTest >> testFullNameIsString [
 { #category : #running }
 FM3ElementTest >> testFullNameOfNonameIsNil [
 	| noname |
-	noname := FM3PackageDescription new.
+	noname := FM3Package new.
 	self shouldnt: [ noname fullName ] raise: Error.
 	self assert: noname fullName isNil
 ]
@@ -31,8 +31,8 @@ FM3ElementTest >> testFullNameOfNonameIsNil [
 { #category : #running }
 FM3ElementTest >> testFullNameOfNonameOwnerIsNil [
 	| noname child |
-	noname := FM3PackageDescription new.
-	child := FM3MetaDescription named: 'child'.
+	noname := FM3Package new.
+	child := FM3Class named: 'child'.
 	child package: noname.
 	self shouldnt: [ child fullName ] raise: Error.
 	self assert: child fullName isNil

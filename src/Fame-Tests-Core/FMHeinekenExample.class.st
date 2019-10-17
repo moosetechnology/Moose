@@ -12,7 +12,7 @@ FMHeinekenExample class >> metamodelMSE [
 		(classes
 			(FM3.Class (id: 3)
 				(name ''Beer'')
-				(attributes
+				(properties
 					(FM3.Property
 						(name ''name'')
 						(type (ref: String)))
@@ -31,7 +31,7 @@ FMHeinekenExample class >> metamodelMSE [
 					))
 			(FM3.Class (id: 2)
 				(name ''Customer'')
-				(attributes
+				(properties
 					(FM3.Property
 						(name ''name'')
 						(type (ref: String)))
@@ -46,7 +46,7 @@ FMHeinekenExample class >> metamodelMSE [
 					))
 			(FM3.Class (id: 1)
 				(name ''Order'')
-				(attributes
+				(properties
 					(FM3.Property
 						(name ''date'')
 						(type (ref: String)))

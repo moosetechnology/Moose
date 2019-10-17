@@ -26,7 +26,7 @@ FMPragmaProcessorTest >> testAnnotationTypes [
 	class := package at: 'Property'.
 	self assert: class isFM3Class.
 	self assert: class superclass equals: (package at: 'Element').
-	self assert: class implementingClass equals: FM3PropertyDescription.
+	self assert: class implementingClass equals: FM3Property.
 	self assert: (class at: 'opposite') isFM3Property.
 	self assert: (class at: 'opposite') name equals: #opposite.
 	self assert: (class at: 'opposite') mmClass equals: class.
@@ -39,13 +39,13 @@ FMPragmaProcessorTest >> testAnnotationTypes [
 	self assert: (class at: 'opposite') opposite equals: (class at: 'opposite').	"We now test the container property of FM3's properties"
 	property := (package at: 'Property') at: 'class'.
 	self assert: property isContainer.
-	properties := (package at: 'Property') allAttributes copyWithout: property.
+	properties := (package at: 'Property') allProperties copyWithout: property.
 	self assert: (properties noneSatisfy: #isContainer).
-	properties := (package at: 'Package') allAttributes.
+	properties := (package at: 'Package') allProperties.
 	self assert: (properties noneSatisfy: #isContainer).
 	property := (package at: 'Class') at: 'package'.
 	self assert: property isContainer.
-	properties := (package at: 'Class') allAttributes copyWithout: property.
+	properties := (package at: 'Class') allProperties copyWithout: property.
 	self assert: (properties noneSatisfy: #isContainer)
 ]
 

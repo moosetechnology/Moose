@@ -25,9 +25,9 @@ FMMetamodelFactory >> entityNamed: aString [
 
 { #category : #accessing }
 FMMetamodelFactory >> entityNamed: aString ifAbsent: aBlock [
-	fm3Package ifNil: [ ^ aBlock value ].
+	self fm3Package ifNil: [ ^ aBlock value ].
 
-	^ (fm3Package classNamed: aString ifAbsent: aBlock) implementingClass
+	^ (self fm3Package classNamed: aString ifAbsent: aBlock) implementingClass
 ]
 
 { #category : #accessing }

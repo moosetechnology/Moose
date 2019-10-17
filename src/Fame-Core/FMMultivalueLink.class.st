@@ -43,10 +43,9 @@ Class {
 
 { #category : #'instance creation' }
 FMMultivalueLink class >> on: element opposite: oppositeSelector [
-
-	^self new
-		with: element
-		opposite: oppositeSelector
+	^ self new
+		with: element opposite: oppositeSelector;
+		yourself
 ]
 
 { #category : #'instance creation' }

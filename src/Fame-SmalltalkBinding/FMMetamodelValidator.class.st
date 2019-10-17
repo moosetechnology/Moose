@@ -36,7 +36,7 @@ FMMetamodelValidator >> validateLinksAreBijectifs [
 	| fullDict wronglySetOpposites |
 	"Check that opposite link is bijective, i.e. there are not 2 values that references the same opposite."
 	fullDict := Dictionary new.
-	self processor oppositeDict keysAndValuesDo: [ :prop :oppName | (fullDict at: (prop type attributeNamed: oppName) ifAbsentPut: [ Set new ]) add: prop originClass ].
+	self processor oppositeDict keysAndValuesDo: [ :prop :oppName | (fullDict at: (prop type propertyNamed: oppName) ifAbsentPut: [ Set new ]) add: prop originClass ].
 	wronglySetOpposites := fullDict select: [ :e | e size ~= 1 ].
 
 	self assert: wronglySetOpposites isEmpty description: 'Link to opposite links should be a bijective operation... Please check your model!'.

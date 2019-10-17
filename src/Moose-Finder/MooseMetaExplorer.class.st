@@ -17,12 +17,12 @@ MooseMetaExplorer >> buildBrowser [
 	browser title: 'Famix Explorer' translated.
 	browser
 		column: #hierarchy;
-		column: #attributes.
+		column: #properties.
 	browser transmit
 		to: #hierarchy;
 		andShow: [ :a | self hierarchyIn: a ].
 	browser transmit
-		to: #attributes;
+		to: #properties;
 		from: #hierarchy;
 		andShow: [ :a | 
 			self relationsIn: a.
@@ -32,9 +32,9 @@ MooseMetaExplorer >> buildBrowser [
 				onChangeOfPort: #activePresentation
 				act: [ :presentation | 
 					(presentation pane port: #activePresentation) value
-						ifNotNil: [ :activePresentation | |port| port:=((browser paneNamed: #attributes) port: #selection). port silentValue: nil. port value:nil ] ] ].
+						ifNotNil: [ :activePresentation | |port| port:=((browser paneNamed: #properties) port: #selection). port silentValue: nil. port value:nil ] ] ].
 	browser transmit
-		from: #attributes port: #strongSelection;
+		from: #properties port: #strongSelection;
 		toOutsidePort: #propertyToSelect.
 	browser transmit
 		fromOutsidePort: #propertyToSelect;
@@ -42,7 +42,7 @@ MooseMetaExplorer >> buildBrowser [
 		transformed: [ :property | property owner ].
 	browser transmit
 		fromOutsidePort: #propertyToSelect;
-		to: #attributes port: #selection.
+		to: #properties port: #selection.
 	browser transmit
 		from: #hierarchy;
 		toOutsidePort: #selectedEntity.
@@ -50,7 +50,7 @@ MooseMetaExplorer >> buildBrowser [
 		fromOutsidePort: #entityToSelect;
 		to: #hierarchy port: #selection.
 	browser transmit
-		from: #attributes;
+		from: #properties;
 		toOutsidePort: #selectedAttribute.
 	^ browser
 ]
@@ -124,8 +124,8 @@ MooseMetaExplorer >> methodsIn: a [
 { #category : #private }
 MooseMetaExplorer >> propertiesIn: a [
 	^ a table
-		title: [ :aFM3Class | aFM3Class allPrimitiveAttributes size asString , ' Properties' translated ];
-		display: [ :aFM3Class | aFM3Class allPrimitiveAttributes ];
+		title: [ :aFM3Class | aFM3Class allPrimitiveProperties size asString , ' Properties' translated ];
+		display: [ :aFM3Class | aFM3Class allPrimitiveProperties ];
 		sorted: [ :attribute1 :attribute2 | attribute1 name < attribute2 name ];
 		column: 'name'
 			evaluated: [ :each | 
@@ -159,9 +159,9 @@ MooseMetaExplorer >> propertiesIn: a [
 { #category : #private }
 MooseMetaExplorer >> relationsIn: a [
 	a table
-		title: [ :aFM3Class | aFM3Class allComplexAttributes size asString , ' Relations' translated ];
+		title: [ :aFM3Class | aFM3Class allComplexProperties size asString , ' Relations' translated ];
 		titleAction: [ :any |  ];
-		display: [ :aFM3Class | aFM3Class allComplexAttributes ];
+		display: [ :aFM3Class | aFM3Class allComplexProperties ];
 		sorted: [ :attribute1 :attribute2 | attribute1 name < attribute2 name ];
 		column: 'name'
 			evaluated: [ :each | 

@@ -9,15 +9,10 @@ Class {
 	#category : #'Fame-ImportExport'
 }
 
-{ #category : #accessing }
-FMAbstractElement >> attributes [
-	^ attributes
-]
-
 { #category : #'initialize-release' }
 FMAbstractElement >> initialize [
-	
-	attributes := Dictionary new.
+	super initialize.
+	attributes := Dictionary new
 ]
 
 { #category : #accessing }
@@ -36,6 +31,11 @@ FMAbstractElement >> packageName [
 	pos := name lastIndexOf: $..
 	self assert: pos > 0.
 	^ name copyFrom: 1 to: pos - 1
+]
+
+{ #category : #accessing }
+FMAbstractElement >> properties [
+	^ attributes
 ]
 
 { #category : #accessing }

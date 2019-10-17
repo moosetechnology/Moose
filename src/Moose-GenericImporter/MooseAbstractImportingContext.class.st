@@ -56,7 +56,7 @@ MooseAbstractImportingContext >> defineEntityDependencies [
 			ifTrue:[
 				fm3Elements add: element.
 				"we retrieve all attributes of this class"
-				dependenciesElements := (element allAttributes select: [:each | 
+				dependenciesElements := (element allProperties select: [:each | 
 					each isDerived not 
 					and: [( #(#String #Number #Boolean #Object  ) includes: each type name) not]]
 		).

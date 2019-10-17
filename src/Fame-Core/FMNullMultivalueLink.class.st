@@ -10,11 +10,10 @@ Class {
 }
 
 { #category : #'instance creation' }
-FMNullMultivalueLink class >> on: anOwner opposite: anOpposite selector: aSelector [ 
-	^self new
+FMNullMultivalueLink class >> on: anOwner opposite: anOpposite selector: aSelector [
+	^ self new
 		with: anOwner opposite: anOpposite selector: aSelector;
 		yourself
-		
 ]
 
 { #category : #copying }

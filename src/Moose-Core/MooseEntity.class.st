@@ -64,7 +64,7 @@ Class {
 MooseEntity class >> allDeclaredProperties [
 	"All properties described in the metamodel"
 	 
-	^self mooseDescription allAttributes
+	^self mooseDescription allProperties
 ]
 
 { #category : #'meta accessing' }
@@ -75,7 +75,7 @@ MooseEntity class >> allDeclaredPropertiesIn: aMetamodel [
 	aMetamodel ifNil: [ ^ OrderedCollection new ].
 	aDescription := self mooseDescriptionIn: aMetamodel.
 	^ aDescription ifNil: [ OrderedCollection new ] 
-		ifNotNil: [ aDescription allAttributes ]
+		ifNotNil: [ aDescription allProperties ]
 ]
 
 { #category : #'meta accessing' }
@@ -233,7 +233,7 @@ MooseEntity class >> usedStatefulTraits [
 MooseEntity >> allDeclaredProperties [
 	"All properties described in the metamodel"
 	 
-	^self mooseDescription allAttributes
+	^self mooseDescription allProperties
 ]
 
 { #category : #'meta information' }
@@ -262,14 +262,6 @@ MooseEntity >> announcer [
 { #category : #private }
 MooseEntity >> announcer: anAnnouncer [
 	^ self privateState attributeAt: #announcer put: anAnnouncer
-]
-
-{ #category : #accessing }
-MooseEntity >> attributesTogetherWithGenerated [
-
-	"HACK: we need to collect all attributes from the pair generated class - user class"
-	^ self class mooseDescription attributes,
-	  self class superclass mooseDescription attributes
 ]
 
 { #category : #accessing }
@@ -562,7 +554,7 @@ MooseEntity >> propertyNamed: propertyName ifAbsent: aBlock [
 	^ self privateState
 		propertyAt: prop
 		ifAbsent: [ | property |
-			[ property := self mmGetProperty: (self mooseDescription attributeNamed: propertyName) ]
+			[ property := self mmGetProperty: (self mooseDescription propertyNamed: propertyName) ]
 				on: Error
 				do: [ :ex | property := nil ].
 			property ifNil: [ aBlock value ] ]
@@ -583,7 +575,7 @@ MooseEntity >> propertyNamed: propertyName ifNil: aBlock [
 	^ self privateState
 		propertyAt: prop
 		ifAbsent: [ | property |
-			[ property := self mmGetProperty: (self mooseDescription attributeNamed: propertyName) ]
+			[ property := self mmGetProperty: (self mooseDescription propertyNamed: propertyName) ]
 				on: Error
 				do: [ :ex | property := nil ].
 			property ifNil: [ aBlock value ] ]

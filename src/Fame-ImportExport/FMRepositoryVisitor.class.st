@@ -39,7 +39,7 @@ FMRepositoryVisitor >> exportElement: each [
 		serial := self indexOf: each.
 		printer beginElement: meta fullName.
 		printer serial: serial.
-		properties := self sortAttributes: meta allAttributes.
+		properties := self sortAttributes: meta allProperties.
 		properties do: [ :property | 
 			self 
 				exportProperty: property
@@ -56,8 +56,7 @@ FMRepositoryVisitor >> exportFooter [
 
 { #category : #exporting }
 FMRepositoryVisitor >> exportHeader [
-
-	printer beginDocument.
+	printer beginDocument
 ]
 
 { #category : #exporting }
@@ -65,8 +64,7 @@ FMRepositoryVisitor >> exportProperty: property for: each [
 	| values |
 	(self shouldIgnoreProperty: property) ifTrue: [ ^ self ].
 	values := repository get: property element: each.
-	(self shouldIgnoreProperty: property withAll: values)
-		ifTrue: [ ^ self ].
+	(self shouldIgnoreProperty: property withAll: values) ifTrue: [ ^ self ].
 	self exportProperty: property withAll: values
 ]
 
@@ -105,18 +103,15 @@ FMRepositoryVisitor >> indexOf: each [
 
 { #category : #initialization }
 FMRepositoryVisitor >> initialize [
-	"We use IdentityHashTable because it is more performant than IdentityDictionary for big collections."
+	super initialize.
 
-	index := IdentityHashTable new
+	index := IdentityHashTable new "We use IdentityHashTable because it is more performant than IdentityDictionary for big collections."
 ]
 
 { #category : #private }
 FMRepositoryVisitor >> isPrimitiveTypeOrObject: each [
-
-	^each == FM3MetaDescription object or: [
-		each == FM3MetaDescription string or: [
-			each == FM3MetaDescription number or: [
-				each == FM3MetaDescription boolean]]]
+	FM3Class constantsDo: [ :const | const = each ifTrue: [ ^ true ] ].
+	^ false
 ]
 
 { #category : #accessing }
@@ -162,13 +157,9 @@ FMRepositoryVisitor >> shouldIgnoreProperty: property [
 
 { #category : #exporting }
 FMRepositoryVisitor >> shouldIgnoreProperty: property withAll: values [
-	
 	values ifNil: [ ^ true ].
-	
-	^ values isEmpty or: [
-		property type == FM3MetaDescription boolean and: [
-			values size == 1 and: [ 
-				values first == false ]]]
+
+	^ values isEmpty or: [ property type = FM3Class boolean and: [ values size = 1 and: [ values first = false ] ] ]
 ]
 
 { #category : #private }

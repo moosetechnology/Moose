@@ -17,30 +17,30 @@ FM3MetaDescriptionTest >> setUp [
 FM3MetaDescriptionTest >> testAllAttributes [
 	| elem |
 	elem := tower metaMetamodel elementNamed: 'FM3.Class'.
-	self assert: elem allAttributes isNotNil.
-	self assert: elem allAttributes isCollection.
-	self denyEmpty: elem allAttributes
+	self assert: elem allProperties isNotNil.
+	self assert: elem allProperties isCollection.
+	self denyEmpty: elem allProperties
 ]
 
 { #category : #running }
 FM3MetaDescriptionTest >> testAllAttributesMoreThanAttributes [
 	| elem |
 	elem := tower metaMetamodel elementNamed: 'FM3.Class'.
-	self assert: elem allAttributes size > elem attributes size.
-	self assert: elem allAttributes size equals: elem attributes size + elem superclass attributes size.
-	self assert: (elem allAttributes includesAll: elem attributes)
+	self assert: elem allProperties size > elem properties size.
+	self assert: elem allProperties size equals: elem properties size + elem superclass properties size.
+	self assert: (elem allProperties includesAll: elem properties)
 ]
 
 { #category : #running }
 FM3MetaDescriptionTest >> testAllAttributesNotHot [
 	| class prop size |
 	class := tower metaMetamodel elementNamed: 'FM3.Class'.
-	prop := class allAttributes anyOne.
-	size := class allAttributes size.
-	self assert: class allAttributes size equals: size.
+	prop := class allProperties anyOne.
+	size := class allProperties size.
+	self assert: class allProperties size equals: size.
 	self assert: prop mmClass equals: class.
-	self should: [ class allAttributes remove: prop ] raise: Error.
-	self assert: class allAttributes size equals: size.
+	self should: [ class allProperties remove: prop ] raise: Error.
+	self assert: class allProperties size equals: size.
 	self assert: prop mmClass equals: class
 ]
 
@@ -77,39 +77,39 @@ FM3MetaDescriptionTest >> testAllSuperclasses [
 FM3MetaDescriptionTest >> testAttributeNamedString [
 	| elem |
 	elem := tower metaMetamodel elementNamed: 'FM3.Class'.
-	self assert: (elem attributeNamed: 'owner') isNotNil.
-	self assert: (elem attributeNamed: 'abstract') isNotNil.
-	self assert: (elem attributeNamed: 'zork') isNil
+	self assert: (elem propertyNamed: 'owner') isNotNil.
+	self assert: (elem propertyNamed: 'abstract') isNotNil.
+	self assert: (elem propertyNamed: 'zork') isNil
 ]
 
 { #category : #running }
 FM3MetaDescriptionTest >> testAttributeNamedSymbol [
 	| elem |
 	elem := tower metaMetamodel elementNamed: 'FM3.Class'.
-	self assert: (elem attributeNamed: #owner) isNotNil.
-	self assert: (elem attributeNamed: #abstract) isNotNil.
-	self assert: (elem attributeNamed: #zork) isNil
+	self assert: (elem propertyNamed: #owner) isNotNil.
+	self assert: (elem propertyNamed: #abstract) isNotNil.
+	self assert: (elem propertyNamed: #zork) isNil
 ]
 
 { #category : #running }
 FM3MetaDescriptionTest >> testAttributes [
 	| elem |
 	elem := tower metaMetamodel elementNamed: 'FM3.Class'.
-	self assert: elem attributes isNotNil.
-	self assert: elem attributes isCollection.
-	self denyEmpty: elem attributes
+	self assert: elem properties isNotNil.
+	self assert: elem properties isCollection.
+	self denyEmpty: elem properties
 ]
 
 { #category : #running }
 FM3MetaDescriptionTest >> testAttributesIsHot [
 	| class prop size |
 	class := tower metaMetamodel elementNamed: 'FM3.Class'.
-	prop := class attributes anyOne.
-	size := class attributes size.
-	self assert: class attributes size equals: size.
+	prop := class properties anyOne.
+	size := class properties size.
+	self assert: class properties size equals: size.
 	self assert: prop mmClass equals: class.
-	class attributes remove: prop.
-	self assert: class attributes size equals: size - 1.
+	class properties remove: prop.
+	self assert: class properties size equals: size - 1.
 	self assert: prop mmClass isNil
 ]
 
