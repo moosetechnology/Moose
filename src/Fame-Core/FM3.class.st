@@ -15,7 +15,7 @@ Class {
 
 { #category : #accessing }
 FM3 class >> boolean [
-	^FM3MetaDescription boolean
+	^FM3Class boolean
 ]
 
 { #category : #notes }
@@ -26,17 +26,17 @@ FM3 class >> note: text [
 
 { #category : #accessing }
 FM3 class >> number [
-	^FM3MetaDescription number
+	^FM3Class number
 ]
 
 { #category : #accessing }
 FM3 class >> object [
-	^FM3MetaDescription object
+	^FM3Class object
 ]
 
 { #category : #accessing }
 FM3 class >> string [
-	^FM3MetaDescription string
+	^FM3Class string
 ]
 
 { #category : #notes }

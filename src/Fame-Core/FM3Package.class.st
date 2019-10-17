@@ -2,7 +2,7 @@
 A FM3PackageDescription is 
 "
 Class {
-	#name : #FM3PackageDescription,
+	#name : #FM3Package,
 	#superclass : #FM3Element,
 	#instVars : [
 		'classes',
@@ -12,50 +12,50 @@ Class {
 }
 
 { #category : #meta }
-FM3PackageDescription class >> annotation [
+FM3Package class >> annotation [
 	<MSEClass: #Package super: #FM3Element>
 	<package: #FM3>
 
 ]
 
 { #category : #examples }
-FM3PackageDescription class >> gtExampleBasic [
+FM3Package class >> gtExampleBasic [
 	<gtExample>
 	^ self new
 ]
 
 { #category : #'accessing-query' }
-FM3PackageDescription >> at: aString [
+FM3Package >> at: aString [
 	aString isSymbol ifTrue: [ self error ].
 	^ self classNamed: aString
 ]
 
 { #category : #'accessing-query' }
-FM3PackageDescription >> classNamed: aString [
+FM3Package >> classNamed: aString [
 	^ self classNamed: aString ifAbsent: [ nil ]
 ]
 
 { #category : #'accessing-query' }
-FM3PackageDescription >> classNamed: aString ifAbsent: aBlock [
+FM3Package >> classNamed: aString ifAbsent: aBlock [
 	^ classes byName: aString ifAbsent: aBlock
 ]
 
 { #category : #accessing }
-FM3PackageDescription >> classes [
-	<MSEProperty: #classes type: #FM3MetaDescription opposite: #package>
+FM3Package >> classes [
+	<MSEProperty: #classes type: #FM3Class opposite: #package>
 	<multivalued>
 	<key: #name>
 	^classes
 ]
 
 { #category : #accessing }
-FM3PackageDescription >> classes: elementCollection [
+FM3Package >> classes: elementCollection [
 
 	classes value: elementCollection
 ]
 
 { #category : #accessing }
-FM3PackageDescription >> extensions [
+FM3Package >> extensions [
 	<MSEProperty: #extensions type: 'FM3.Property' opposite: #package>
 	<multivalued>
 	
@@ -63,13 +63,13 @@ FM3PackageDescription >> extensions [
 ]
 
 { #category : #accessing }
-FM3PackageDescription >> extensions: elementCollection [
+FM3Package >> extensions: elementCollection [
 
 	extensions value: elementCollection
 ]
 
 { #category : #ui }
-FM3PackageDescription >> gtInspectorClassesIn: composite [
+FM3Package >> gtInspectorClassesIn: composite [
 	<gtInspectorPresentationOrder: 0>
 	^ composite fastList
 		title: 'Classes';
@@ -81,7 +81,7 @@ FM3PackageDescription >> gtInspectorClassesIn: composite [
 ]
 
 { #category : #ui }
-FM3PackageDescription >> gtInspectorExtensionsIn: composite [
+FM3Package >> gtInspectorExtensionsIn: composite [
 	<gtInspectorPresentationOrder: 1>
 	^ composite fastList
 		title: 'Extensions';
@@ -90,24 +90,24 @@ FM3PackageDescription >> gtInspectorExtensionsIn: composite [
 ]
 
 { #category : #testing }
-FM3PackageDescription >> hasOwner [
+FM3Package >> hasOwner [
 	^ false
 ]
 
 { #category : #private }
-FM3PackageDescription >> initialize [
+FM3Package >> initialize [
 
 	classes := FMMultivalueLink on: self opposite: #package:.
 	extensions := FMMultivalueLink on: self opposite: #package:.
 ]
 
 { #category : #testing }
-FM3PackageDescription >> isFM3Package [
+FM3Package >> isFM3Package [
 	^true
 ]
 
 { #category : #accessing }
-FM3PackageDescription >> packageName [
+FM3Package >> packageName [
 
 	^ self name
 ]

@@ -39,7 +39,7 @@ FMRepositoryVisitor >> exportElement: each [
 		serial := self indexOf: each.
 		printer beginElement: meta fullName.
 		printer serial: serial.
-		properties := self sortAttributes: meta allAttributes.
+		properties := self sortAttributes: meta allProperties.
 		properties do: [ :property | 
 			self 
 				exportProperty: property
@@ -113,10 +113,10 @@ FMRepositoryVisitor >> initialize [
 { #category : #private }
 FMRepositoryVisitor >> isPrimitiveTypeOrObject: each [
 
-	^each == FM3MetaDescription object or: [
-		each == FM3MetaDescription string or: [
-			each == FM3MetaDescription number or: [
-				each == FM3MetaDescription boolean]]]
+	^each == FM3Class object or: [
+		each == FM3Class string or: [
+			each == FM3Class number or: [
+				each == FM3Class boolean]]]
 ]
 
 { #category : #accessing }
@@ -166,7 +166,7 @@ FMRepositoryVisitor >> shouldIgnoreProperty: property withAll: values [
 	values ifNil: [ ^ true ].
 	
 	^ values isEmpty or: [
-		property type == FM3MetaDescription boolean and: [
+		property type == FM3Class boolean and: [
 			values size == 1 and: [ 
 				values first == false ]]]
 ]

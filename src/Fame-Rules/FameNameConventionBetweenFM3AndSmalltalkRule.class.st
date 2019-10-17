@@ -29,7 +29,7 @@ FameNameConventionBetweenFM3AndSmalltalkRule >> addClass: aClass toMetaBuilderCo
 					classToAdd := (pragma argumentAt: 2) asString.
 					(#('String' 'Number' 'Boolean' 'Object') includes: classToAdd)
 						ifFalse: [ classToAdd = 'FM3.Property'
-								ifTrue: [ (aCollectionOfClasses includes: FM3PropertyDescription) ifFalse: [ self addClass: FM3PropertyDescription toMetaBuilderCollection: aCollectionOfClasses ] ]
+								ifTrue: [ (aCollectionOfClasses includes: FM3Property) ifFalse: [ self addClass: FM3Property toMetaBuilderCollection: aCollectionOfClasses ] ]
 								ifFalse: [ classToAdd := Smalltalk classNamed: classToAdd.
 									(aCollectionOfClasses includes: classToAdd) ifFalse: [ self addClass: classToAdd toMetaBuilderCollection: aCollectionOfClasses ] ] ] ] ].
 	"we add the superclass and all classes linked to it: "

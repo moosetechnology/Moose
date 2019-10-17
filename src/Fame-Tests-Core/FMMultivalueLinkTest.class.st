@@ -23,8 +23,8 @@ FMMultivalueLinkTest >> testBookPerson [
 { #category : #running }
 FMMultivalueLinkTest >> testClassPackage [
 	| package meta |
-	package := FM3PackageDescription new.
-	meta := FM3MetaDescription new.
+	package := FM3Package new.
+	meta := FM3Class new.
 	self assert: package classes notNil.
 	self assert: package classes isCollection.
 	self assert: meta package isNil.
@@ -37,14 +37,14 @@ FMMultivalueLinkTest >> testClassPackage [
 { #category : #running }
 FMMultivalueLinkTest >> testClassProperty [
 	| meta prop |
-	meta := FM3MetaDescription new.
-	prop := FM3PropertyDescription new.
-	self assert: meta attributes notNil.
-	self assert: meta attributes isCollection.
+	meta := FM3Class new.
+	prop := FM3Property new.
+	self assert: meta properties notNil.
+	self assert: meta properties isCollection.
 	self assert: prop mmClass isNil.
-	meta attributes add: prop.
-	self assert: meta attributes size equals: 1.
-	self assert: meta attributes anyOne equals: prop.
+	meta properties add: prop.
+	self assert: meta properties size equals: 1.
+	self assert: meta properties anyOne equals: prop.
 	self assert: prop mmClass equals: meta
 ]
 
@@ -53,24 +53,24 @@ FMMultivalueLinkTest >> testFM3Classes [
 	| fm3 |
 	fm3 := FMMetaRepository fm3.
 	self assert: (fm3 descriptionOf: FM3Element) notNil.
-	self assert: (fm3 descriptionOf: FM3PropertyDescription) notNil.
-	self assert: (fm3 descriptionOf: FM3PackageDescription) notNil.
-	self assert: (fm3 descriptionOf: FM3MetaDescription) notNil.
+	self assert: (fm3 descriptionOf: FM3Property) notNil.
+	self assert: (fm3 descriptionOf: FM3Package) notNil.
+	self assert: (fm3 descriptionOf: FM3Class) notNil.
 	self assert: (fm3 descriptionOf: FMMetaRepositoryTest) isNil
 	"	self should: [ fm3 descriptionOf: FMMetaRepositoryTest ] raise: Error"
 ]
 
 { #category : #'running collection' }
 FMMultivalueLinkTest >> testIntersection [
-	self shouldnt: [ FM3MetaDescription new attributes intersection: #() ] raise: Error
+	self shouldnt: [ FM3Class new properties intersection: #() ] raise: Error
 ]
 
 { #category : #running }
 FMMultivalueLinkTest >> testMenageATrois [
 	| me you her |
-	me := FM3PropertyDescription new.
-	you := FM3PropertyDescription new.
-	her := FM3PropertyDescription new.
+	me := FM3Property new.
+	you := FM3Property new.
+	her := FM3Property new.
 	self assert: me opposite isNil.
 	self assert: you opposite isNil.
 	self assert: her opposite isNil.
@@ -87,8 +87,8 @@ FMMultivalueLinkTest >> testMenageATrois [
 { #category : #running }
 FMMultivalueLinkTest >> testOpposite [
 	| opposite prop |
-	opposite := FM3PropertyDescription new.
-	prop := FM3PropertyDescription new.
+	opposite := FM3Property new.
+	prop := FM3Property new.
 	self assert: opposite opposite isNil.
 	self assert: prop opposite isNil.
 	prop opposite: opposite.
@@ -99,8 +99,8 @@ FMMultivalueLinkTest >> testOpposite [
 { #category : #running }
 FMMultivalueLinkTest >> testPackageClass [
 	| package meta |
-	package := FM3PackageDescription new.
-	meta := FM3MetaDescription new.
+	package := FM3Package new.
+	meta := FM3Class new.
 	self assert: package classes notNil.
 	self assert: package classes isCollection.
 	self assert: meta package isNil.
@@ -113,8 +113,8 @@ FMMultivalueLinkTest >> testPackageClass [
 { #category : #running }
 FMMultivalueLinkTest >> testPackageProperty [
 	| package prop |
-	package := FM3PackageDescription new.
-	prop := FM3PropertyDescription new.
+	package := FM3Package new.
+	prop := FM3Property new.
 	self assert: package extensions notNil.
 	self assert: package extensions isCollection.
 	self assert: prop package isNil.
@@ -143,22 +143,22 @@ FMMultivalueLinkTest >> testPersonBook [
 { #category : #running }
 FMMultivalueLinkTest >> testPropertyClass [
 	| meta prop |
-	meta := FM3MetaDescription new.
-	prop := FM3PropertyDescription new.
-	self assert: meta attributes notNil.
-	self assert: meta attributes isCollection.
+	meta := FM3Class new.
+	prop := FM3Property new.
+	self assert: meta properties notNil.
+	self assert: meta properties isCollection.
 	self assert: prop mmClass isNil.
 	prop mmClass: meta.
-	self assert: meta attributes size equals: 1.
-	self assert: meta attributes anyOne equals: prop.
+	self assert: meta properties size equals: 1.
+	self assert: meta properties anyOne equals: prop.
 	self assert: prop mmClass equals: meta
 ]
 
 { #category : #running }
 FMMultivalueLinkTest >> testPropertyPackage [
 	| package prop |
-	package := FM3PackageDescription new.
-	prop := FM3PropertyDescription new.
+	package := FM3Package new.
+	prop := FM3Property new.
 	self assert: package extensions notNil.
 	self assert: package extensions isCollection.
 	self assert: prop package isNil.
@@ -170,14 +170,14 @@ FMMultivalueLinkTest >> testPropertyPackage [
 
 { #category : #'running collection' }
 FMMultivalueLinkTest >> testUnion [
-	self shouldnt: [ FM3MetaDescription new attributes union: #() ] raise: Error
+	self shouldnt: [ FM3Class new properties union: #() ] raise: Error
 ]
 
 { #category : #running }
 FMMultivalueLinkTest >> testUnsetOpposite [
 	| opposite prop |
-	opposite := FM3PropertyDescription new.
-	prop := FM3PropertyDescription new.
+	opposite := FM3Property new.
+	prop := FM3Property new.
 	self assert: opposite opposite isNil.
 	self assert: prop opposite isNil.
 	prop opposite: opposite.

@@ -93,9 +93,9 @@ FMPragmaProcessor >> asTower [
 FMPragmaProcessor >> buildFM3 [
 
 	self queue: FM3Element.
-	self queue: FM3MetaDescription.
-	self queue: FM3PackageDescription.
-	self queue: FM3PropertyDescription.
+	self queue: FM3Class.
+	self queue: FM3Package.
+	self queue: FM3Property.
 	self run.
 ]
 
@@ -125,7 +125,7 @@ FMPragmaProcessor >> ensurePackage: name [
 	^ packageDict
 		at: symbol
 		ifAbsentPut: [ | pack |
-			pack := FM3PackageDescription named: symbol.
+			pack := FM3Package named: symbol.
 			elements add: pack.
 			pack ]
 ]
@@ -165,10 +165,10 @@ FMPragmaProcessor >> initialize [
 
 	"Must use the cannonical primitives here!"
 	"Please do not at these primitives to elements!"
-	metaDict at: 'String' put: FM3MetaDescription string.
-	metaDict at: 'Boolean' put: FM3MetaDescription boolean.
-	metaDict at: 'Number' put: FM3MetaDescription number.
-	metaDict at: 'Object' put: FM3MetaDescription object
+	metaDict at: 'String' put: FM3Class string.
+	metaDict at: 'Boolean' put: FM3Class boolean.
+	metaDict at: 'Number' put: FM3Class number.
+	metaDict at: 'Object' put: FM3Class object
 ]
 
 { #category : #private }
@@ -199,7 +199,7 @@ FMPragmaProcessor >> processClass: aClass ifPragmaAbsent: anErrorBlock [
 		ifNil: anErrorBlock
 		ifNotNil: [ :pragma | 
 			| fm3Class |
-			fm3Class := FM3MetaDescription named: (pragma argumentAt: 1).
+			fm3Class := FM3Class named: (pragma argumentAt: 1).
 			superclassDict at: fm3Class put: (pragma argumentAt: 2).
 			fm3Class setImplementingClass: aClass.
 
@@ -231,7 +231,7 @@ FMPragmaProcessor >> processCompiledMethod: aMethod [
 		detect: [ :each | #(#MSEProperty:type:opposite: #MSEProperty:type:) includes: each selector ]
 		ifFound: [ :pragma | 
 			| prop |
-			prop := FM3PropertyDescription named: (pragma argumentAt: 1) asString.
+			prop := FM3Property named: (pragma argumentAt: 1) asString.
 			typeDict at: prop put: (pragma argumentAt: 2).
 			mmClassDict at: prop put: method methodClass.
 			pragma selector = #MSEProperty:type:opposite: ifTrue: [ oppositeDict at: prop put: (pragma argumentAt: 3) ].
@@ -260,7 +260,7 @@ FMPragmaProcessor >> processInfosFrom: aMethod for: prop [
 { #category : #private }
 FMPragmaProcessor >> processSlot: aSlot in: aClass [
 	| prop |
-	prop := FM3PropertyDescription named: aSlot name.
+	prop := FM3Property named: aSlot name.
 	prop setImplementingSelector: aSlot name.
 	prop isMultivalued: aSlot isToMany.
 
@@ -316,7 +316,7 @@ FMPragmaProcessor >> resolveObjectReferences [
 	traitsDict keysAndValuesDo: [ :class :traits | class addTraits: (traits collect: [ :t | classDict at: t ]) ].
 
 	" Fill in oppositelinks"
-	oppositeDict keysAndValuesDo: [ :prop :oppName | prop opposite: (prop type attributeNamed: oppName) ]
+	oppositeDict keysAndValuesDo: [ :prop :oppName | prop opposite: (prop type propertyNamed: oppName) ]
 ]
 
 { #category : #running }

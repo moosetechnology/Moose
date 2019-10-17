@@ -17,7 +17,7 @@ Class {
 { #category : #visiting }
 FMAbstractCodeGenerator >> acceptFameClass: fameClass [
 	self visitClass: fameClass.
-	fameClass attributes do: [ :attribute | 
+	fameClass properties do: [ :attribute | 
 		self acceptFameProperty: attribute ].
 	self visitClassDone: fameClass.
 ]

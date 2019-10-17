@@ -116,7 +116,7 @@ FMRepository >> compositeAdd: element [
 	| meta |
 	elements add: element.
 	meta := self metaDescriptionOf: element.
-	meta allAttributes do: [ :attr |
+	meta allProperties do: [ :attr |
 		(attr type isPrimitive not and: [ attr isComposite ]) ifTrue: [
 			| values |
 			values := self get: attr element: element.
@@ -141,7 +141,7 @@ FMRepository >> compositeRemove: element [
 
 	self remove: element.
 	meta := self metaDescriptionOf: element.
-	meta allAttributes do: [ :attr |
+	meta allProperties do: [ :attr |
 		(attr type isPrimitive not and: [ attr isComposite ]) ifTrue: [
 			| values |
 			values := self get: attr element: element.
@@ -156,7 +156,7 @@ FMRepository >> containerOf: element [
 	| meta property |
 	meta := self metaDescriptionOf: element.
 	meta ifNotNil: [
-		property := meta ownerAttribute.
+		property := meta ownerProperty.
 		property ifNil: [ ^ nil ].
 		^ self 
 			get: property
@@ -180,7 +180,7 @@ FMRepository >> deepAdd: element [
 	| meta |
 	elements add: element.
 	meta := self metaDescriptionOf: element.
-	meta allAttributes do: [ :attr |
+	meta allProperties do: [ :attr |
 		attr type isPrimitive not ifTrue: [
 			| values |
 			values := self get: attr element: element.
@@ -196,7 +196,7 @@ FMRepository >> deepRemove: element [
 	| meta |
 	self remove: element.
 	meta := self metaDescriptionOf: element.
-	meta allAttributes do: [ :attr |
+	meta allProperties do: [ :attr |
 		attr type isPrimitive ifFalse: [
 			| values |
 			values := self get: attr element: element.
