@@ -48,15 +48,12 @@ FMMetamodelValidator >> validateContainersAreNotMultivalued [
 
 { #category : #accessing }
 FMMetamodelValidator >> validateLinksAreBijectifs [
-	| fullDict wronglySetOpposites |
 	"Check that opposite link is bijective, i.e. there are not 2 values that references the same opposite."
-	fullDict := Dictionary new.
-	self processor oppositeDict keysAndValuesDo: [ :prop :oppName | (fullDict at: (prop type propertyNamed: oppName) ifAbsentPut: [ Set new ]) add: prop originClass ].
-	wronglySetOpposites := fullDict select: [ :e | e size ~= 1 ].
 
-	self assert: wronglySetOpposites isEmpty description: 'Link to opposite links should be a bijective operation... Please check your model!'.
-
-	self assert: (fullDict at: nil ifAbsent: [ #() ]) isEmpty description: 'Some opposite links are not definied in your model.. Please check your model!'
+	((self processor elements select: [ :e | e isFM3Property and: [ e hasOpposite ] ]) groupedBy: #opposite)
+		valuesDo: [ :props | 
+			self assert: props size = 1 description: 'Link to opposite links should be a bijective operation... Please check your model because here you have a property with multiple opposites!'.
+			self assert: props anyOne hasOpposite description: 'Some opposite links are not definied in your model.. Please check your model because here you have a property that is the opposite of another one but that is not referencing it back!' ]
 ]
 
 { #category : #accessing }

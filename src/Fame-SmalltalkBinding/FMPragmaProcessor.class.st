@@ -179,11 +179,6 @@ FMPragmaProcessor >> methodsToProcessFrom: aClass [
 ]
 
 { #category : #accessing }
-FMPragmaProcessor >> oppositeDict [
-	^ oppositeDict
-]
-
-{ #category : #accessing }
 FMPragmaProcessor >> packages [
 	^ elements select: [ :e | e isFM3Package ]
 ]

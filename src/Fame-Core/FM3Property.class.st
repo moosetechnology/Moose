@@ -270,14 +270,6 @@ FM3Property >> opposite: new [
 ]
 
 { #category : #accessing }
-FM3Property >> originClass [
-	"Return the origin class implementing the selector of the property.
-	This mean that if the property is defined in a trait named Foo used in a class Bar, implementingClass will return Bar while originClass will return Foo."
-
-	^ self implementingClass findOriginClassOf: self compiledMethod
-]
-
-{ #category : #accessing }
 FM3Property >> owner [
 	^self mmClass
 ]
