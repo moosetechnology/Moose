@@ -15,6 +15,13 @@ Class {
 	#category : #'Fame-ImportExport'
 }
 
+{ #category : #'instance creation' }
+FMImporter class >> repository: aRepository [
+	^ self new
+		repository: aRepository;
+		yourself
+]
+
 { #category : #private }
 FMImporter >> assign: element to: serial [
 	| todo |
@@ -94,7 +101,7 @@ FMImporter >> index [
 	^serialDict
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 FMImporter >> initialize [
 	super initialize.
 	translationUnit := FMNullTranslationUnit new
@@ -108,27 +115,6 @@ FMImporter >> metamodel [
 { #category : #accessing }
 FMImporter >> model [
 	^model
-]
-
-{ #category : #deprecated }
-FMImporter >> nameTranslator [
-	self deprecated: 'Use #translationUnit instead'.
-	^ translationUnit dictionary
-]
-
-{ #category : #deprecated }
-FMImporter >> nameTranslator: anObject [
-	self
-		deprecated: 'Use FMDictionaryTranslationUnit instead'
-		transformWith:
-			'`@receiver nameTranslator: `@arg'
-				->
-			'`@receiver translationUnit: (FMDictionaryTranslationUnit new
-													dictionary:  `@arg;
-													yourself)'.
-	translationUnit := FMDictionaryTranslationUnit new
-		dictionary: anObject;
-		yourself
 ]
 
 { #category : #parsing }

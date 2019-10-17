@@ -67,13 +67,12 @@ FMMetaRepositoryTest >> testFM3IsComplete [
 
 { #category : #running }
 FMMetaRepositoryTest >> testImportExtension [
-	| string repo imp |
+	| string repo |
 	repo := self testImporter.
 	string := '((FM3.Class (name ''Employee'') (package (ref: Office))))'.
-	imp := FMImporter new.
-	imp repository: repo.
-	imp fromString: string.
-	imp run.
+	(FMImporter repository: repo)
+		fromString: string;
+		run.
 	self assert: repo elements size equals: 2.
 	self assert: (repo elementNamed: 'Office.Employee') package equals: (repo elementNamed: 'Office').
 	^ repo
@@ -81,13 +80,12 @@ FMMetaRepositoryTest >> testImportExtension [
 
 { #category : #running }
 FMMetaRepositoryTest >> testImporter [
-	| string repo imp |
+	| string repo |
 	string := '((FM3.Package (id: 1) (name ''Office'')))'.
 	repo := FMMetaRepository with: FMMetaRepository fm3.
-	imp := FMImporter new.
-	imp repository: repo.
-	imp fromString: string.
-	imp run.
+	(FMImporter repository: repo)
+		fromString: string;
+		run.
 	self assert: repo elements size equals: 1.
 	self assert: repo elements anyOne name equals: #Office.
 	self assert: repo elements anyOne fullName equals: 'Office'.

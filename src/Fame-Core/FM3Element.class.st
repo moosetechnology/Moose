@@ -38,6 +38,11 @@ FM3Element >> fullName [
 	^ self owner fullName , '.' , self name
 ]
 
+{ #category : #testing }
+FM3Element >> hasOwner [
+	^ self subclassResponsibility
+]
+
 { #category : #accessing }
 FM3Element >> name [
 	<MSEProperty: #name type: #String>
@@ -54,6 +59,11 @@ FM3Element >> owner [
 	<MSEProperty: #owner type: #FM3Element>
 	<derived>
 	^ nil	"All packages are top-level (but dots are allowed in their name to fake nesting)"
+]
+
+{ #category : #accessing }
+FM3Element >> packageName [
+	^ self subclassResponsibility
 ]
 
 { #category : #printing }

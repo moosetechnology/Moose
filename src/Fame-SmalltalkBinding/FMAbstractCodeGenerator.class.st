@@ -170,7 +170,7 @@ FMAbstractCodeGenerator >> ensureClass: fameClass superclass: rbSuperclass [
 	^ rbClass0
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 FMAbstractCodeGenerator >> initialize [
 	model := self createRBModel.
 	self classNamePrefix: ''.

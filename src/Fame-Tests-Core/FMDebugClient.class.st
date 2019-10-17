@@ -52,7 +52,7 @@ FMDebugClient >> exportString [
 	^printer stream contents.
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 FMDebugClient >> initialize [
 	self reset
 ]

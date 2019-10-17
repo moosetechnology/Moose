@@ -7,7 +7,7 @@ Class {
 	#category : #'Fame-ImportExport'
 }
 
-{ #category : #translate }
+{ #category : #initialization }
 FMCopyReplaceTranslationUnit >> initialize [
 	super initialize.
 	rules := OrderedCollection new

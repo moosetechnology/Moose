@@ -337,6 +337,11 @@ FM3Class >> implementingClass [
 	^ implementingClass
 ]
 
+{ #category : #private }
+FM3Class >> implementingClass: smalltalkClass [
+	implementingClass := smalltalkClass
+]
+
 { #category : #accessing }
 FM3Class >> inheritsFrom: aClass [
 	self allSuperclassesDo: [ :each | each = aClass ifTrue: [ ^ true ] ].
@@ -460,11 +465,6 @@ FM3Class >> propertyNamed: aString ifAbsent: aBlock [
 	self allPropertiesDo: [ :attr | attr name = aString ifTrue: [ ^ attr ] ].
 
 	^ aBlock value
-]
-
-{ #category : #private }
-FM3Class >> setImplementingClass: smalltalkClass [
-	implementingClass := smalltalkClass
 ]
 
 { #category : #accessing }

@@ -46,7 +46,7 @@ FMMetamodelBuilder >> derivedProperty: name withMany: typeName opposite: opposit
 	self property: name type: typeName opposite: oppositeName multivalued: true derived: true
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 FMMetamodelBuilder >> initialize [
 	
 	indexDict := Dictionary"<String,Integer>" new.

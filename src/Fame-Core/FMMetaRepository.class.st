@@ -98,12 +98,6 @@ FMMetaRepository >> elementNamed: aString ifAbsent: exceptionBlock [
 	^ nameDict at: aString ifAbsent: exceptionBlock
 ]
 
-{ #category : #accessing }
-FMMetaRepository >> elementsFromPackageNamed: aString [
-
-	^ self elements select: [:el | el packageName = aString]
-]
-
 { #category : #ui }
 FMMetaRepository >> gtInspectorClassesIn: composite [
 	<gtInspectorPresentationOrder: 0>
@@ -198,7 +192,7 @@ FMMetaRepository >> includes: element [
 	^ (element isFM3Class and: [ element isBuiltIn ]) or: [ elements includes: element ]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 FMMetaRepository >> initialize [
 	super initialize.
 	self updateCache

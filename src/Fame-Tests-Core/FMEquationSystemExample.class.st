@@ -26,17 +26,11 @@ FMEquationSystemExample class >> createMetamodel [
 
 { #category : #'As yet unclassified' }
 FMEquationSystemExample class >> createModel [
-
-	| metarepo repo importer |
+	| metarepo repo |
 	metarepo := self createMetamodel.
 	repo := FMRepository with: metarepo.
-	importer := FMImporter new. 
-	importer repository: repo. 
-	importer importString: self modelString.
-	^repo
-
-
-	"((	self createModel 	))"
+	(FMImporter repository: repo) importString: self modelString.
+	^ repo
 ]
 
 { #category : #'As yet unclassified' }

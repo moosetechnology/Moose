@@ -3,7 +3,6 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'repository',
-		'wrapperDict',
 		'printer',
 		'index',
 		'nb',

@@ -94,7 +94,7 @@ FM3Package >> hasOwner [
 	^ false
 ]
 
-{ #category : #private }
+{ #category : #initialization }
 FM3Package >> initialize [
 	super initialize.
 	classes := FMMultivalueLink on: self opposite: #package:.

@@ -32,7 +32,7 @@ FMImporterTest >> setUp [
 { #category : #running }
 FMImporterTest >> testBookMetamodel [
 	| or m repo |
-	or := FMImporter new repository: (FMMetaRepository with: FMMetaRepository fm3).
+	or := FMImporter repository: (FMMetaRepository with: FMMetaRepository fm3).
 	m := FMModelBuilder new client: or.
 	m document: [ m new: 'FM3.Class' with: [ m a: #name of: 'Book' ] ].
 	repo := or repository asMetarepository.
@@ -83,7 +83,7 @@ FMImporterTest >> testOrderOfElements [
 { #category : #running }
 FMImporterTest >> testResolving [
 	| or m |
-	or := FMImporter new repository: (FMMetaRepository with: FMMetaRepository fm3).
+	or := FMImporter repository: (FMMetaRepository with: FMMetaRepository fm3).
 	m := FMModelBuilder new client: or.
 	m document: [ m new: 'FM3.Class' with: [ m a: #name of: 'MyName' ] ].
 	self denyEmpty: or repository elements.
@@ -94,7 +94,7 @@ FMImporterTest >> testResolving [
 { #category : #running }
 FMImporterTest >> testResolvingId [
 	| or m |
-	or := FMImporter new repository: (FMMetaRepository with: FMMetaRepository fm3).
+	or := FMImporter repository: (FMMetaRepository with: FMMetaRepository fm3).
 	m := FMModelBuilder new client: or.
 	m
 		document: [ m
@@ -113,7 +113,7 @@ FMImporterTest >> testResolvingId [
 { #category : #running }
 FMImporterTest >> testResolvingMultiArgs [
 	| or pack ref2 ref4 ref5 repo |
-	or := FMImporter new repository: (FMMetaRepository with: FMMetaRepository fm3).
+	or := FMImporter repository: (FMMetaRepository with: FMMetaRepository fm3).
 	or beginDocument.
 	or beginElement: 'FM3.Package'.
 	or serial: 3.

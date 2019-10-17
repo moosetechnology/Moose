@@ -201,7 +201,7 @@ FMPragmaProcessor >> processClass: aClass ifPragmaAbsent: anErrorBlock [
 			| fm3Class |
 			fm3Class := FM3Class named: (pragma argumentAt: 1).
 			superclassDict at: fm3Class put: (pragma argumentAt: 2).
-			fm3Class setImplementingClass: aClass.
+			fm3Class implementingClass: aClass.
 
 			(pragma method pragmaAt: #abstract) ifNotNil: [ fm3Class isAbstract: true ].
 			self extractPackageFrom: pragma method for: fm3Class.
@@ -242,7 +242,7 @@ FMPragmaProcessor >> processCompiledMethod: aMethod [
 
 { #category : #private }
 FMPragmaProcessor >> processInfosFrom: aMethod for: prop [
-	prop setImplementingSelector: aMethod selector.
+	prop implementingSelector: aMethod selector.
 	self extractPackageFrom: aMethod for: prop.
 	(aMethod pragmaAt: #container) ifNotNil: [ prop isContainer: true ].
 	(aMethod pragmaAt: #derived) ifNotNil: [ prop isDerived: true ].
@@ -261,7 +261,7 @@ FMPragmaProcessor >> processInfosFrom: aMethod for: prop [
 FMPragmaProcessor >> processSlot: aSlot in: aClass [
 	| prop |
 	prop := FM3Property named: aSlot name.
-	prop setImplementingSelector: aSlot name.
+	prop implementingSelector: aSlot name.
 	prop isMultivalued: aSlot isToMany.
 
 	typeDict at: prop put: aSlot targetClass.
