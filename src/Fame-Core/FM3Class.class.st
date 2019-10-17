@@ -190,12 +190,10 @@ FM3Class >> allProperties [
 	<MSEProperty: #allProperties type: 'FM3.Property'>
 	<multivalued>
 	<derived>
-	
 	| nameDict |
-	nameDict := Dictionary new: 60. "estimated initial size."
-	self allPropertiesDo: [ :each |
-		nameDict at: each name ifAbsentPut: [ each ]].
-	^Array withAll: nameDict values
+	nameDict := Dictionary new: 60.	"estimated initial size."
+	self allPropertiesDo: [ :each | nameDict at: each name ifAbsentPut: [ each ] ].
+	^ nameDict values asArray
 ]
 
 { #category : #enumerating }
@@ -240,7 +238,7 @@ FM3Class >> allSuperclassesDo: aBlock [
 
 { #category : #'private-anonymous behaviour' }
 FM3Class >> anonymousReturnTrue [
-	^true
+	^ true
 ]
 
 { #category : #'accessing-query' }

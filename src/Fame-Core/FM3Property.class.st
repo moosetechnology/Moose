@@ -97,7 +97,7 @@ FM3Property >> hasImplementingSelector [
 
 { #category : #testing }
 FM3Property >> hasKey [
-	^ key isNil not
+	^ key isNotNil
 ]
 
 { #category : #testing }
@@ -136,15 +136,12 @@ FM3Property >> implementingType [
 
 { #category : #initialization }
 FM3Property >> initialize [
-
+	super initialize.
 	isContainer := false.
 	isDerived := false.
 	isMultivalued := false.
 	isSource := false.
-	isTarget := false.
-	package := nil.
-	class := nil.
-	opposite := nil.
+	isTarget := false
 ]
 
 { #category : #testing }
@@ -325,14 +322,14 @@ FM3Property >> setOn: element values: array [
 	"This method is meant to be used by the repository"
 
 	| parameter |
-	self implementingSelector ifNil: [ ^element at: self put: array ].
-	parameter := self isMultivalued 
+	self implementingSelector ifNil: [ ^ element at: self put: array ].
+	parameter := self isMultivalued
 		ifTrue: [ array ]
-		ifFalse: [ array ifEmpty: [ nil ]
-			ifNotEmpty: [ 
-				array size > 1 ifTrue: [ self error ].
-				array first ]].
-	element mmSetProperty: self to: parameter.
+		ifFalse: [ array
+				ifEmpty: [ nil ]
+				ifNotEmpty: [ array size > 1 ifTrue: [ self error ].
+					array first ] ].
+	element mmSetProperty: self to: parameter
 ]
 
 { #category : #accessing }

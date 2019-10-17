@@ -58,8 +58,8 @@ FMRuntimeElement >> description: anObject [
 
 { #category : #'initialize-release' }
 FMRuntimeElement >> initialize [
-
-	slots := IdentityDictionary new.
+	super initialize.
+	slots := IdentityDictionary new
 ]
 
 { #category : #accessing }

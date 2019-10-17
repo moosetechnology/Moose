@@ -86,18 +86,10 @@ FMMetamodelBuilderTest >> testPackages [
 { #category : #running }
 FMMetamodelBuilderTest >> testProperties [
 	self assert: metamodel properties size equals: 7.
-	self assert: (metamodel elementNamed: 'RPG.Dragon.hoard') notNil.
-	self assert: (metamodel elementNamed: 'RPG.Dragon.hoard') isFM3Property.
-	self assert: (metamodel elementNamed: 'RPG.Dragon.killedBy') notNil.
-	self assert: (metamodel elementNamed: 'RPG.Dragon.killedBy') isFM3Property.
-	self assert: (metamodel elementNamed: 'RPG.Treasure.keeper') notNil.
-	self assert: (metamodel elementNamed: 'RPG.Treasure.keeper') isFM3Property.
-	self assert: (metamodel elementNamed: 'RPG.Treasure.owner') notNil.
-	self assert: (metamodel elementNamed: 'RPG.Treasure.owner') isFM3Property.
-	self assert: (metamodel elementNamed: 'RPG.Hero.twin') notNil.
-	self assert: (metamodel elementNamed: 'RPG.Hero.twin') isFM3Property.
-	self assert: (metamodel elementNamed: 'RPG.Hero.kills') notNil.
-	self assert: (metamodel elementNamed: 'RPG.Hero.kills') isFM3Property.
-	self assert: (metamodel elementNamed: 'RPG.Hero.talisman') notNil.
-	self assert: (metamodel elementNamed: 'RPG.Hero.talisman') isFM3Property
+	#(hoard killedBy keeper owner twin kills talisman)
+		do: [ :propertyName | 
+			| property |
+			property := metamodel elementNamed: 'RPG.Dragon.' , propertyName.
+			self assert: property isNotNil.
+			self assert: property isFM3Property ]
 ]
