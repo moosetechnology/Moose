@@ -11,13 +11,13 @@ FMPragmaProcessorTest >> testAnnotationTypes [
 	package := repo elementNamed: 'FM3'.
 	class := repo elementNamed: 'FM3.Element'.
 	self assert: class isFM3Class.
-	self assert: class superclass equals: FM3 object.
+	self assert: class superclass equals: FM3Class object.
 	self assert: class implementingClass equals: FM3Element.
 	self assert: (class at: 'name') isFM3Property.
 	self assert: (class at: 'name') name equals: #name.
 	self assert: (class at: 'name') mmClass equals: class.
 	self assert: (class at: 'name') owner equals: class.
-	self assert: (class at: 'name') type equals: FM3 string.
+	self assert: (class at: 'name') type equals: FM3Class string.
 	self deny: (class at: 'name') isContainer.
 	self deny: (class at: 'name') isMultivalued.
 	self deny: (class at: 'name') isComposite.

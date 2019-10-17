@@ -59,7 +59,7 @@ MooseMetaExplorer >> buildBrowser [
 MooseMetaExplorer >> hierarchyIn: a [
 	^ (a tree)
 		title: 'Entities';
-		display: [ :all | (all classes select: [ :each | each superclass = FM3 object ]) sorted: [:x :y | x fullName < y fullName] ];
+		display: [ :all | (all classes select: [ :each | each superclass = FM3Class object ]) sorted: [:x :y | x fullName < y fullName] ];
 		children: [ :c | c subclasses sorted: [:x :y | x fullName < y fullName] ];
 		format: [ :each | self abstractFormattedNameOf: each ];
 		tags: [ :each | 

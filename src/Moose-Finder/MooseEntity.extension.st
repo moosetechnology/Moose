@@ -83,7 +83,7 @@ MooseEntity >> gtInspectorPresentationsIn: composite inContext: aGTInspector [
 
 { #category : #'*Moose-Finder' }
 MooseEntity >> mooseDescriptionsOfNumberProperties [
-	^ self mooseDescription allProperties select: [:each | each type = FM3 number ]
+	^ self mooseDescription allProperties select: [:each | each type = FM3Class number ]
 ]
 
 { #category : #'*Moose-Finder' }

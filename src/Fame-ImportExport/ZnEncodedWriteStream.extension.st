@@ -1,6 +1,6 @@
 Extension { #name : #ZnEncodedWriteStream }
 
-{ #category : #'*Fame-Core' }
+{ #category : #'*Fame-ImportExport' }
 ZnEncodedWriteStream >> next: anInteger put: anObject [ 
 	<compilerOptions: #(+ optionInlineTimesRepeat)>
 	

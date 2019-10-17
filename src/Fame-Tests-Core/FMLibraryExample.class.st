@@ -54,7 +54,7 @@ FMLibraryExample >> testBookstore2 [
 	self assert: attribute isMultivalued equals: true.
 	self assert: attribute isContainer equals: false.
 	self assert: attribute isDerived equals: false.	"self assert: (attribute package == package)."
-	FM3 note: 'Maybe we should rename package to extensionPackage, and make package be derived from [ package or class package ].'.
+	self flag: 'Maybe we should rename package to extensionPackage, and make package be derived from [ package or class package ].'.
 	self assert: attribute mmClass equals: class.
 	self assert: attribute type equals: (package classNamed: 'Person').
 	self assert: attribute opposite notNil

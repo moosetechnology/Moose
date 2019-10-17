@@ -9,7 +9,7 @@ For now, I do nothing specific except annotationg the variable with the fact tha
 Class {
 	#name : #FMProperty,
 	#superclass : #InstanceVariableSlot,
-	#category : #'Fame-Core-Slots'
+	#category : #'Fame-SmalltalkBinding'
 }
 
 { #category : #testing }

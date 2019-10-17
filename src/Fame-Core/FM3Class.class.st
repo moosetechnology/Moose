@@ -353,8 +353,8 @@ FM3Class >> initialize [
 	super initialize.
 	properties := FMMultivalueLink on: self opposite: #mmClass:.
 	isAbstract := false.
-	superclass := FM3 object.
-	FM3 note: 'Not sure if this is valid, maybe, superclass must be nil?'.
+	superclass := FM3Class object.
+	self flag: 'Not sure if this is valid, maybe, superclass must be nil?'.
 	subclasses := FMMultivalueLink on: self opposite: #superclass:.
 	traits := Set new
 ]

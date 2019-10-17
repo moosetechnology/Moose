@@ -123,7 +123,7 @@ FMMetaRepository >> gtInspectorHierarchiesIn: composite [
 	<gtInspectorPresentationOrder: 2>
 	^ composite tree
 		title: 'Hierarchies';
-		display: [ (self classes select: [ :each | each superclass = FM3 object ]) sorted: [:x :y | x fullName < y fullName] ];
+		display: [ (self classes select: [ :each | each superclass = FM3Class object ]) sorted: [:x :y | x fullName < y fullName] ];
 		children: [ :c | c subclasses sorted: [:x :y | x fullName < y fullName] ];
 		format: [ :each | 
 			each isAbstract 
@@ -238,15 +238,15 @@ FMMetaRepository >> properties [
 { #category : #private }
 FMMetaRepository >> updateCache [
 	nameDict := Dictionary new.
-	nameDict at: 'String' put: FM3 string.
-	nameDict at: 'Boolean' put: FM3 boolean.
-	nameDict at: 'Number' put: FM3 number.
-	nameDict at: 'Object' put: FM3 object.
+	nameDict at: 'String' put: FM3Class string.
+	nameDict at: 'Boolean' put: FM3Class boolean.
+	nameDict at: 'Number' put: FM3Class number.
+	nameDict at: 'Object' put: FM3Class object.
 	classDict := Dictionary new.
-	classDict at: FM3 string class put: FM3 string.
-	classDict at: FM3 boolean class put: FM3 boolean.
-	classDict at: FM3 number class put: FM3 number.
-	classDict at: FM3 object class put: FM3 object.
+	classDict at: FM3Class string class put: FM3Class string.
+	classDict at: FM3Class boolean class put: FM3Class boolean.
+	classDict at: FM3Class number class put: FM3Class number.
+	classDict at: FM3Class object class put: FM3Class object.
 	self elements do: [ :each | self updateCacheWith: each ]
 ]
 

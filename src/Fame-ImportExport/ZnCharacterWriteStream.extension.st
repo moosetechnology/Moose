@@ -1,6 +1,6 @@
 Extension { #name : #ZnCharacterWriteStream }
 
-{ #category : #'*Fame-Core' }
+{ #category : #'*Fame-ImportExport' }
 ZnCharacterWriteStream >> tab: anInteger [ 
 	"Append anInteger tab characters to the receiver."
 	
