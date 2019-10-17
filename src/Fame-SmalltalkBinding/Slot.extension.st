@@ -1,12 +1,12 @@
 Extension { #name : #Slot }
 
-{ #category : #'*Fame-Core' }
+{ #category : #'*Fame-SmalltalkBinding' }
 Slot >> isFMRelationSlot [
 
 	^ false
 ]
 
-{ #category : #'*Fame-Core' }
+{ #category : #'*Fame-SmalltalkBinding' }
 Slot >> isFameSlot [
 	^ false
 ]

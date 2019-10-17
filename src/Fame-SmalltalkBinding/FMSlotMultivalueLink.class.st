@@ -6,7 +6,7 @@ Class {
 		'owner',
 		'slot'
 	],
-	#category : #'Fame-Core-Slots'
+	#category : #'Fame-SmalltalkBinding'
 }
 
 { #category : #'instance creation' }

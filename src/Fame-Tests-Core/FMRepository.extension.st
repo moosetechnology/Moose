@@ -1,6 +1,6 @@
 Extension { #name : #FMRepository }
 
-{ #category : #'*Fame-Example' }
+{ #category : #'*Fame-Tests-Core' }
 FMRepository >> selectKindOf: smalltalkOrFameClass [
 
 	^smalltalkOrFameClass isBehavior 

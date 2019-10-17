@@ -225,8 +225,8 @@ FM3Property >> isTarget: anObject [
 
 { #category : #accessing }
 FM3Property >> key [
-	FM3 note: 'Todo, think about and meta-describe key'.
-	^key
+	self flag: 'Todo, think about and meta-describe key'.
+	^ key
 ]
 
 { #category : #accessing }
@@ -285,9 +285,8 @@ FM3Property >> owner [
 { #category : #accessing }
 FM3Property >> package [
 	<MSEProperty: #package type: #FM3Package opposite: #extensions>
-	
-	FM3 note: 'Must return null when not an extensions method.'.
-	^package 
+	self flag: 'Must return null when not an extensions method.'.
+	^ package
 ]
 
 { #category : #accessing }
