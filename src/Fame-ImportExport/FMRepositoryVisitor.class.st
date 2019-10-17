@@ -89,16 +89,16 @@ FMRepositoryVisitor >> exportProperty: property withAll: values [
 { #category : #exporting }
 FMRepositoryVisitor >> increment [
 	nb := nb + 1.
-	(progBar isNotNil and: [ (Time millisecondsSince: lastUpdate) >= 500 ])
-		ifTrue: [ 
-			progBar value: nb.
-			lastUpdate := Time millisecondClockValue ]
+	(progBar isNotNil and: [ (Time millisecondsSince: lastUpdate) >= 500 ]) ifFalse: [ ^ self ].
+
+	progBar value: nb.
+	lastUpdate := Time millisecondClockValue
 ]
 
 { #category : #private }
 FMRepositoryVisitor >> indexOf: each [
-	each isNil ifTrue: [ self error ].
-	^index at: each ifAbsentPut: [ index size + 1 ]
+	each ifNil: [ self error ].
+	^ index at: each ifAbsentPut: [ index size + 1 ]
 ]
 
 { #category : #initialization }

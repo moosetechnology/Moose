@@ -56,23 +56,15 @@ FMMSEPrinter >> endElement: name [
 	indent := indent - 1
 ]
 
-{ #category : #'initialize-release' }
-FMMSEPrinter >> initialize [
-	stream := nil.
-	indent := nil
-]
-
 { #category : #parsing }
 FMMSEPrinter >> primitive: value [
-
 	stream space.
 	value fm3PrintOn: stream
 ]
 
 { #category : #parsing }
 FMMSEPrinter >> referenceName: name [
-
-	stream 
+	stream
 		space;
 		nextPut: $(;
 		nextPutAll: #ref:;
@@ -83,8 +75,7 @@ FMMSEPrinter >> referenceName: name [
 
 { #category : #parsing }
 FMMSEPrinter >> referenceNumber: index [
-
-	stream 
+	stream
 		space;
 		nextPut: $(;
 		nextPutAll: #ref:;
@@ -95,8 +86,7 @@ FMMSEPrinter >> referenceNumber: index [
 
 { #category : #parsing }
 FMMSEPrinter >> serial: index [
-
-	stream 
+	stream
 		space;
 		nextPut: $(;
 		nextPutAll: #id:;
