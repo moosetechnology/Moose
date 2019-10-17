@@ -63,7 +63,7 @@ FMMetaRepositoryFilterTest >> buildRPG [
 
 { #category : #'tests-export' }
 FMMetaRepositoryFilterTest >> createLIBModelWithClass: class [
-	| tower repository model filteredMetamodel stream filter importer |
+	| tower model filteredMetamodel stream filter |
 	model := {(LIBBook new title: 'aBook') . LIBLibrary new . (LIBPerson new name: 'aPerson')}.
 	stream := String new writeStream.
 
@@ -79,16 +79,15 @@ FMMetaRepositoryFilterTest >> createLIBModelWithClass: class [
 	tower := FMTower new.
 	tower metaMetamodel: filteredMetamodel metamodel.
 	tower metamodel: filteredMetamodel.
-	tower model: (repository := (FMRepository with: filteredMetamodel) addAll: model).
+	tower model: ((FMRepository with: filteredMetamodel) addAll: model).
 	tower model exportOn: stream.
 
 	"reading the strem (mse) with the filtered model"
 	tower := FMTower new.
 	tower metamodel addAll: filteredMetamodel elements.
-	importer := FMImporter new.
-	importer repository: tower model.
-	importer stream: stream contents readStream.
-	importer run.
+	(FMImporter repository: tower model)
+		stream: stream contents readStream;
+		run.
 	tower model updateCache.
 	^ tower model
 ]
@@ -208,7 +207,7 @@ FMMetaRepositoryFilterTest >> testBookMetamodel [
 	visitor run.
 	fm3 := visitor newMetaRepository.
 
-	or := FMImporter new repository: (FMMetaRepository with: fm3).
+	or := FMImporter repository: (FMMetaRepository with: fm3).
 	m := FMModelBuilder new client: or.
 	m document: [ m new: 'FM3.Class' with: [ m a: #name of: 'Book' ] ].
 	repo := or repository asMetarepository.
@@ -383,7 +382,7 @@ FMMetaRepositoryFilterTest >> testFM3NewVersion [
 
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testImporter [
-	| fm3 repoFM3 visitor string repo imp |
+	| fm3 repoFM3 visitor string repo |
 	repoFM3 := FMMetaRepository fm3.
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: repoFM3;
@@ -393,10 +392,9 @@ FMMetaRepositoryFilterTest >> testImporter [
 
 	string := '((FM3.Package (id: 1) (name ''Office'')))'.
 	repo := FMMetaRepository with: fm3.
-	imp := FMImporter new.
-	imp repository: repo.
-	imp fromString: string.
-	imp run.
+	(FMImporter repository: repo)
+		fromString: string;
+		run.
 	self assert: repo elements size equals: 1.
 	self assert: repo elements anyOne name equals: #Office.
 	self assert: repo elements anyOne fullName equals: 'Office'
@@ -706,7 +704,7 @@ FMMetaRepositoryFilterTest >> testResolving [
 	visitor run.
 	fm3 := visitor newMetaRepository.
 
-	or := FMImporter new repository: (FMMetaRepository with: fm3).
+	or := FMImporter repository: (FMMetaRepository with: fm3).
 	m := FMModelBuilder new client: or.
 	m document: [ m new: 'FM3.Class' with: [ m a: #name of: 'MyName' ] ].
 	self denyEmpty: or repository elements.
@@ -724,7 +722,7 @@ FMMetaRepositoryFilterTest >> testResolvingId [
 	visitor run.
 	fm3 := visitor newMetaRepository.
 
-	or := FMImporter new repository: (FMMetaRepository with: fm3).
+	or := FMImporter repository: (FMMetaRepository with: fm3).
 	m := FMModelBuilder new client: or.
 	m
 		document: [ m
@@ -750,7 +748,7 @@ FMMetaRepositoryFilterTest >> testResolvingMultiArgs [
 	visitor run.
 	fm3 := visitor newMetaRepository.
 
-	or := FMImporter new repository: (FMMetaRepository with: fm3).
+	or := FMImporter repository: (FMMetaRepository with: fm3).
 	or beginDocument.
 	or beginElement: 'FM3.Package'.
 	or serial: 3.

@@ -85,3 +85,9 @@ FM3Class >> primitiveAttributes [
 	self deprecated: 'Use #primitiveProperties instead.' transformWith: '``@object primitiveAttributes' -> '``@object primitiveProperties'.
 	^ self primitiveProperties
 ]
+
+{ #category : #'*Famix-Deprecated' }
+FM3Class >> setImplementingClass: arg1 [ 
+	self deprecated: 'Use #implementingClass: instead.' transformWith: '``@object setImplementingClass: ``@arg1 ' -> '``@object implementingClass: ``@arg1 '.
+	^ self implementingClass: arg1 
+]

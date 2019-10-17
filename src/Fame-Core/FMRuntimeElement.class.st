@@ -36,8 +36,7 @@ FMRuntimeElement >> at: property ifAbsent: aBlock [
 
 { #category : #accessing }
 FMRuntimeElement >> at: property ifAbsentPut: aBlock [
-
-	^ self at: property ifAbsent: [ self at: property put: aBlock value ]
+	^ self at: property ifAbsentPut: [ aBlock value ]
 ]
 
 { #category : #accessing }
@@ -56,7 +55,7 @@ FMRuntimeElement >> description: anObject [
 	description := anObject
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 FMRuntimeElement >> initialize [
 	super initialize.
 	slots := IdentityDictionary new
@@ -64,7 +63,6 @@ FMRuntimeElement >> initialize [
 
 { #category : #accessing }
 FMRuntimeElement >> mmGetProperty: aFM3Property [
-
 	^ self at: aFM3Property name
 ]
 

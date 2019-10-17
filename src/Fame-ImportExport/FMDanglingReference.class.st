@@ -2,7 +2,6 @@ Class {
 	#name : #FMDanglingReference,
 	#superclass : #Object,
 	#instVars : [
-		'to',
 		'owner',
 		'pos'
 	],

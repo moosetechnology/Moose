@@ -52,21 +52,17 @@ FMRepository class >> with: aMetamodel [
 
 { #category : #adding }
 FMRepository >> add: element [
-	
 	elements add: element.
-	self postAdd: element.
+	self postAdd: element
 ]
 
 { #category : #adding }
 FMRepository >> addAll: elementCollection [
-	
-	elementCollection do: [ :each |
-		self add: each ]
+	elementCollection do: [ :each | self add: each ]
 ]
 
 { #category : #accessing }
 FMRepository >> additionalProperties [
-
 	^ additionalProperties ifNil: [ additionalProperties := IdentityDictionary new ]
 ]
 
@@ -77,19 +73,16 @@ FMRepository >> additionalPropertiesFor: entityClass [
 
 { #category : #accessing }
 FMRepository >> additionalProperty: aSymbol for: entityClass [
-
-	^ (self additionalPropertiesFor: entityClass) at: aSymbol 
+	^ (self additionalPropertiesFor: entityClass) at: aSymbol
 ]
 
 { #category : #accessing }
 FMRepository >> additionalProperty: aSymbol for: entityClass ifAbsentPut: aBlock [
-
 	^ (self additionalPropertiesFor: entityClass) at: aSymbol ifAbsentPut: aBlock
 ]
 
 { #category : #accessing }
 FMRepository >> additionalProperty: aSymbol for: entityClass put: anObject [
-
 	^ (self additionalPropertiesFor: entityClass) at: aSymbol put: anObject
 ]
 
@@ -105,103 +98,45 @@ FMRepository >> coerceProperty: propertyOrName receiver: receiver [
 	self error
 ]
 
-{ #category : #adding }
-FMRepository >> compositeAdd: element [
-	
-	| meta |
-	elements add: element.
-	meta := self metaDescriptionOf: element.
-	meta allProperties do: [ :attr |
-		(attr type isPrimitive not and: [ attr isComposite ]) ifTrue: [
-			| values |
-			values := self get: attr element: element.
-			values do: [ :value |
-				(self includes: value) ifFalse: [
-					self deepAdd: value ]]]].
-	self postAdd: element.
-]
-
-{ #category : #removing }
-FMRepository >> compositeRemove: element [
-	
-	| meta |
-
-	self remove: element.
-	meta := self metaDescriptionOf: element.
-	meta allProperties do: [ :attr |
-		(attr type isPrimitive not and: [ attr isComposite ]) ifTrue: [
-			| values |
-			values := self get: attr element: element.
-			values do: [ :value |
-				(self includes: value) ifTrue: [
-					self deepRemove: value ]]]].
-	self postRemove: element.
-]
-
 { #category : #'accessing-meta' }
-FMRepository >> containerOf: element [ 
-	| meta property |
-	meta := self metaDescriptionOf: element.
-	meta ifNotNil: [
-		property := meta ownerProperty.
-		property ifNil: [ ^ nil ].
-		^ self 
-			get: property
-			element: element ].
-	^ nil
-]
-
-{ #category : #adding }
-FMRepository >> createElementWithType: aString [
-
-	| element |
-	element := metamodel createInstanceOf: aString.
-	self add: element.
-	^ element
-
+FMRepository >> containerOf: element [
+	^ (self metaDescriptionOf: element)
+		ifNil: [ nil ]
+		ifNotNil: [ :meta |
+			meta ownerProperty
+				ifNil: [ nil ]
+				ifNotNil: [ :property | self get: property element: element ] ]
 ]
 
 { #category : #adding }
 FMRepository >> deepAdd: element [
-	
-	| meta |
 	elements add: element.
-	meta := self metaDescriptionOf: element.
-	meta allProperties do: [ :attr |
-		attr type isPrimitive not ifTrue: [
-			| values |
-			values := self get: attr element: element.
-			values do: [ :value |
-				(self includes: value) ifFalse: [
-					self deepAdd: value ]]]].
-	self postAdd: element.
+	(self metaDescriptionOf: element) allComplexProperties
+		do: [ :attr |
+			(self get: attr element: element)
+				reject: [ :value | self includes: value ]
+				thenDo: [ :value | self deepAdd: value ] ].
+	self postAdd: element
 ]
 
 { #category : #removing }
 FMRepository >> deepRemove: element [
-	
-	| meta |
 	self remove: element.
-	meta := self metaDescriptionOf: element.
-	meta allProperties do: [ :attr |
-		attr type isPrimitive ifFalse: [
-			| values |
-			values := self get: attr element: element.
-			values do: [ :value |
-				(self includes: value) ifTrue: [
-					self deepRemove: value ]]]].
-	self postRemove: element.
+	(self metaDescriptionOf: element) allComplexProperties
+		do: [ :attr |
+			(self get: attr element: element)
+				select: [ :value | self includes: value ]
+				thenDo: [ :value | self deepRemove: value ] ]
 ]
 
 { #category : #accessing }
 FMRepository >> elements [
-	^elements asArray
+	^ elements asArray
 ]
 
 { #category : #'accessing-meta' }
-FMRepository >> get: propertyOrName element: element [ 
-
-	^(self coerceProperty: propertyOrName receiver: element) getFrom: element
+FMRepository >> get: propertyOrName element: element [
+	^ (self coerceProperty: propertyOrName receiver: element) getFrom: element
 ]
 
 { #category : #testing }
@@ -211,7 +146,7 @@ FMRepository >> includes: element [
 	^ elements includes: element
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 FMRepository >> initialize [
 	super initialize.
 	elements := IdentitySet new
@@ -257,30 +192,14 @@ FMRepository >> postAdd: element [
 	"do nothing"
 ]
 
-{ #category : #private }
-FMRepository >> postRemove: element [
-
-	"do nothing"
-]
-
 { #category : #removing }
 FMRepository >> remove: element [
-
-	elements remove: element ifAbsent: [].
-	self postRemove: element.
+	elements remove: element ifAbsent: [  ]
 ]
 
 { #category : #removing }
 FMRepository >> removeAll: elementCollection [
 	elementCollection do: [ :each | self remove: each ]
-]
-
-{ #category : #enumerating }
-FMRepository >> selectKindOf: smalltalkOrFameClass [
-
-	^smalltalkOrFameClass isBehavior 
-		ifTrue: [ self elements select: [ :each | each isKindOf: smalltalkOrFameClass ] ]
-		ifFalse: [ self elements select: [ :each | (self metaDescriptionOf: each) = smalltalkOrFameClass ] ]
 ]
 
 { #category : #'accessing-meta' }

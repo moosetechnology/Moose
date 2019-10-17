@@ -71,8 +71,7 @@ FM3Property >> getRawFrom: element [
 
 { #category : #ui }
 FM3Property >> gtDisplayOn: stream [
-	stream 
-		nextPutAll: self fullName
+	stream nextPutAll: self fullName
 ]
 
 { #category : #ui }
@@ -125,6 +124,11 @@ FM3Property >> implementingClass [
 { #category : #accessing }
 FM3Property >> implementingSelector [
 	^ implementingSelector
+]
+
+{ #category : #private }
+FM3Property >> implementingSelector: compiledMethod [ 
+	implementingSelector := compiledMethod
 ]
 
 { #category : #accessing }
@@ -299,14 +303,9 @@ FM3Property >> package: newPackage [
 FM3Property >> packageName [
 	"always returns the package name to which this property belongs, be it an extension or a core element"
 
-	^ self isExtension 
-			ifFalse: [ self owner packageName ]
-			ifTrue: [ package name ]
-]
-
-{ #category : #private }
-FM3Property >> setImplementingSelector: compiledMethod [ 
-	implementingSelector := compiledMethod
+	^ self isExtension
+		ifFalse: [ self owner packageName ]
+		ifTrue: [ package name ]
 ]
 
 { #category : #'accessing-meta' }

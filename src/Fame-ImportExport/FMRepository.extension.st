@@ -2,22 +2,10 @@ Extension { #name : #FMRepository }
 
 { #category : #'*Fame-ImportExport' }
 FMRepository >> accept: aParseClient [
-
-	| visitor |
-	visitor := FMRepositoryVisitor new.
-	visitor model: self.
-	visitor printer: aParseClient.
-	visitor run.
-]
-
-{ #category : #'*Fame-ImportExport' }
-FMRepository >> document: scriptBlock [
-	| importer builder |
-	importer := FMImporter new.
-	importer repository: self.
-	builder := self builderClass new.
-	builder client: importer.
-	builder document: scriptBlock
+	FMRepositoryVisitor new
+		model: self;
+		printer: aParseClient;
+		run
 ]
 
 { #category : #'*Fame-ImportExport' }
@@ -51,18 +39,13 @@ FMRepository >> gtExportAction [
 
 { #category : #'*Fame-ImportExport' }
 FMRepository >> importStream: aReadStream [
-
-	| importer |
-	importer := FMImporter new.
-	importer repository: self.
-	importer stream: aReadStream.
-	importer run.
-	self updateCache.	
+	(FMImporter repository: self)
+		stream: aReadStream;
+		run.
+	self updateCache
 ]
 
 { #category : #'*Fame-ImportExport' }
 FMRepository >> importString: mseString [
-
-	self importStream: mseString readStream.
-
+	self importStream: mseString readStream
 ]

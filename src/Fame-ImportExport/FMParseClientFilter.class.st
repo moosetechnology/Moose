@@ -60,7 +60,7 @@ FMParseClientFilter >> filter: aCollectionOfElementNames [
 	filter := aCollectionOfElementNames
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 FMParseClientFilter >> initialize [
 	super initialize.
 	shouldSkip := false
