@@ -37,6 +37,7 @@ FMAbstractAttribute >> inferMultivalued [
 
 { #category : #'initialize-release' }
 FMAbstractAttribute >> initialize [
+	super initialize.
 	elements := Bag new.
 	maxElementCount := 0
 ]

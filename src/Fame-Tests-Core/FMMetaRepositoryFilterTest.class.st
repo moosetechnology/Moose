@@ -321,8 +321,8 @@ FMMetaRepositoryFilterTest >> testFM3IsComplete [
 	self assert: (names includes: 'FM3.Class.superclass').
 	self assert: (names includes: 'FM3.Class.traits').
 	self assert: (names includes: 'FM3.Class.package').
-	self assert: (names includes: 'FM3.Class.allAttributes').
-	self assert: (names includes: 'FM3.Class.attributes').
+	self assert: (names includes: 'FM3.Class.allProperties').
+	self assert: (names includes: 'FM3.Class.properties').
 	self assert: (names includes: 'FM3.Property').
 	self assert: (names includes: 'FM3.Property.composite').
 	self assert: (names includes: 'FM3.Property.container').
@@ -364,8 +364,8 @@ FMMetaRepositoryFilterTest >> testFM3NewVersion [
 	self assert: (names includes: 'FM3.Class.subclasses').
 	self assert: (names includes: 'FM3.Class.traits').
 	self assert: (names includes: 'FM3.Class.package').
-	self assert: (names includes: 'FM3.Class.allAttributes').
-	self assert: (names includes: 'FM3.Class.attributes').
+	self assert: (names includes: 'FM3.Class.allProperties').
+	self assert: (names includes: 'FM3.Class.properties').
 	self assert: (names includes: 'FM3.Property').
 	self assert: (names includes: 'FM3.Property.composite').
 	self assert: (names includes: 'FM3.Property.container').

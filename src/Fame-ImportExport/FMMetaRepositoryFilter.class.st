@@ -22,7 +22,7 @@ FMMetaRepositoryFilter >> classes: anObject [
 
 { #category : #'initialize-release' }
 FMMetaRepositoryFilter >> initialize [
-	
+	super initialize.
 	newMetaRepository := FMMetaRepository basicNew.
 	newMetaRepository initialize: newMetaRepository
 ]

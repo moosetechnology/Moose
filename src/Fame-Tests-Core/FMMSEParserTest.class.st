@@ -19,7 +19,7 @@ FMMSEParserTest class >> famix30mse [
 				(id: 1)
 				(name ''Access'')
 				(superclass (ref: 10))
-				(attributes 
+				(properties 
 					(FM3.Property 
 						(id: 51)
 						(name ''isWrite'')
@@ -43,7 +43,7 @@ FMMSEParserTest class >> famix30mse [
 				(id: 28)
 				(name ''Parameter'')
 				(superclass (ref: 29))
-				(attributes 
+				(properties 
 					(FM3.Property 
 						(id: 62)
 						(name ''parentBehaviouralEntity'')
@@ -54,7 +54,7 @@ FMMSEParserTest class >> famix30mse [
 				(id: 29)
 				(name ''StructuralEntity'')
 				(superclass (ref: 45))
-				(attributes 
+				(properties 
 					(FM3.Property 
 						(id: 30)
 						(name ''declaredType'')
@@ -70,7 +70,7 @@ FMMSEParserTest class >> famix30mse [
 				(id: 63)
 				(name ''ContainerEntity'')
 				(superclass (ref: 70))
-				(attributes 
+				(properties 
 					(FM3.Property 
 						(id: 3)
 						(name ''outgoingReferences'')
@@ -100,7 +100,7 @@ FMMSEParserTest class >> famix30mse [
 				(id: 10)
 				(name ''Association'')
 				(superclass (ref: 33))
-				(attributes
+				(properties
 					(FM3.Property 
 						(id: 57)
 						(name ''below'')
@@ -117,7 +117,7 @@ FMMSEParserTest class >> famix30mse [
 				(id: 11)
 				(name ''Attribute'')
 				(superclass (ref: 29))
-				(attributes 
+				(properties 
 					(FM3.Property 
 						(id: 31)
 						(name ''parentClass'')
@@ -128,7 +128,7 @@ FMMSEParserTest class >> famix30mse [
 				(id: 32)
 				(name ''LocalVariable'')
 				(superclass (ref: 29))
-				(attributes 
+				(properties 
 					(FM3.Property 
 						(id: 4)
 						(name ''parentBehaviouralEntity'')
@@ -139,7 +139,7 @@ FMMSEParserTest class >> famix30mse [
 				(id: 14)
 				(name ''Method'')
 				(superclass (ref: 19))
-				(attributes 
+				(properties 
 					(FM3.Property 
 						(id: 20)
 						(name ''parentClass'')
@@ -150,7 +150,7 @@ FMMSEParserTest class >> famix30mse [
 				(id: 13)
 				(name ''Package'')
 				(superclass (ref: 67))
-				(attributes 
+				(properties 
 					(FM3.Property 
 						(id: 2)
 						(name ''childNamedEntities'')
@@ -162,7 +162,7 @@ FMMSEParserTest class >> famix30mse [
 				(id: 15)
 				(name ''GlobalVariable'')
 				(superclass (ref: 29))
-				(attributes 
+				(properties 
 					(FM3.Property 
 						(id: 12)
 						(name ''parentNamespace'')
@@ -172,7 +172,7 @@ FMMSEParserTest class >> famix30mse [
 			(FM3.Class 
 				(id: 33)
 				(name ''Entity'')
-				(attributes 
+				(properties 
 					(FM3.Property 
 						(id: 64)
 						(name ''sourceAnchor'')
@@ -182,7 +182,7 @@ FMMSEParserTest class >> famix30mse [
 				(id: 66)
 				(name ''Type'')
 				(superclass (ref: 63))
-				(attributes 
+				(properties 
 					(FM3.Property 
 						(id: 68)
 						(name ''subInheritances'')
@@ -221,7 +221,7 @@ FMMSEParserTest class >> famix30mse [
 				(id: 50)
 				(name ''Reference'')
 				(superclass (ref: 10))
-				(attributes 
+				(properties 
 					(FM3.Property 
 						(id: 9)
 						(name ''to'')
@@ -236,7 +236,7 @@ FMMSEParserTest class >> famix30mse [
 				(id: 67)
 				(name ''ScopingEntity'')
 				(superclass (ref: 63))
-				(attributes 
+				(properties 
 					(FM3.Property 
 						(id: 7)
 						(name ''childNamespaces'')
@@ -265,7 +265,7 @@ FMMSEParserTest class >> famix30mse [
 				(id: 19)
 				(name ''BehaviouralEntity'')
 				(superclass (ref: 63))
-				(attributes 
+				(properties 
 					(FM3.Property 
 						(id: 58)
 						(name ''outgoingInvocations'')
@@ -309,7 +309,7 @@ FMMSEParserTest class >> famix30mse [
 				(id: 70)
 				(name ''NamedEntity'')
 				(superclass (ref: 33))
-				(attributes 
+				(properties 
 					(FM3.Property 
 						(id: 69)
 						(name ''name'')
@@ -344,7 +344,7 @@ FMMSEParserTest class >> famix30mse [
 				(id: 21)
 				(name ''Class'')
 				(superclass (ref: 66))
-				(attributes 
+				(properties 
 					(FM3.Property 
 						(id: 48)
 						(name ''isAbstract'')
@@ -353,7 +353,7 @@ FMMSEParserTest class >> famix30mse [
 				(id: 23)
 				(name ''Inheritance'')
 				(superclass (ref: 10))
-				(attributes 
+				(properties 
 					(FM3.Property 
 						(id: 16)
 						(name ''superclass'')
@@ -368,7 +368,7 @@ FMMSEParserTest class >> famix30mse [
 				(id: 71)
 				(name ''Invocation'')
 				(superclass (ref: 10))
-				(attributes 
+				(properties 
 					(FM3.Property 
 						(id: 65)
 						(name ''sender'')
@@ -406,7 +406,7 @@ FMMSEParserTest class >> sampleMetaMse [
        (classes
            (FM3.Class
                (name ''Library'')
-               (attributes
+               (properties
                    (FM3.Property
                        (name ''librarian'')
                        (type (ref: 2)))
@@ -416,7 +416,7 @@ FMMSEParserTest class >> sampleMetaMse [
                        (type (ref: 1)))))
            (FM3.Class (id: 1)
                (name ''Book'')
-               (attributes
+               (properties
                    (FM3.Property
                        (name ''title'')
                        (type (ref: String)))
@@ -426,7 +426,7 @@ FMMSEParserTest class >> sampleMetaMse [
                        (type (ref: 2)))))
            (FM3.Class (id: 2)
                (name ''Person'')
-               (attributes
+               (properties
                    (FM3.Property
 				(opposite (ref: 100))
 				(name ''books'')

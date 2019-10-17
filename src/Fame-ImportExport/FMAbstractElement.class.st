@@ -11,8 +11,8 @@ Class {
 
 { #category : #'initialize-release' }
 FMAbstractElement >> initialize [
-	
-	attributes := Dictionary new.
+	super initialize.
+	attributes := Dictionary new
 ]
 
 { #category : #accessing }

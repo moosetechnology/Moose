@@ -16,7 +16,7 @@ FMMetamodelBuilder >> class: name with: aBlock [
 		stack addLast: name.
 		self id: self nextSerial.
 		self add: 'name' with: name.
-		self add: 'attributes' with: aBlock.
+		self add: 'properties' with: aBlock.
 		stack removeLast. ].
 ]
 

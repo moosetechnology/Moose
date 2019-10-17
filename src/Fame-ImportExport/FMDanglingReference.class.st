@@ -16,11 +16,10 @@ FMDanglingReference class >> with: aFutureAttribute [
 ]
 
 { #category : #'initialize-release' }
-FMDanglingReference >> initialize: aFutureAttribute [ 
-	
+FMDanglingReference >> initialize: aFutureAttribute [
 	owner := aFutureAttribute.
 	owner count: owner count + 1.
-	pos := owner values size + 1.
+	pos := owner values size + 1
 ]
 
 { #category : #parsing }
