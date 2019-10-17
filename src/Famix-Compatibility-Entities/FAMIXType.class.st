@@ -68,12 +68,9 @@ FAMIXType >> classSide [
 
 { #category : #accessing }
 FAMIXType >> container [
-
 	<MSEProperty: #container type: #FAMIXContainerEntity>
 	<MSEComment: 'Deprected, use typeContainer'>
-	<container>
 	<derived>
-
 	^ self typeContainer
 ]
 

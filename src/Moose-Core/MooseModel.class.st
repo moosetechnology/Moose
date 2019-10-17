@@ -216,22 +216,6 @@ MooseModel class >> metamodelClasses [
 	^ MooseEntity withAllSubclasses
 ]
 
-{ #category : #'import-export' }
-MooseModel class >> metamodelComposedOf: aCollectionOfMetamodels [
-	
-	| elements  builder repo |
-	
-	elements := aCollectionOfMetamodels flatCollect: #elements.
-
-	builder := FMPragmaProcessor new.
-	builder buildFM3.
-	repo := FMMetaRepository basicNew.
-	repo initialize: repo.
-	repo addAll: elements.
-
-	^ repo
-]
-
 { #category : #'instance creation' }
 MooseModel class >> named: aString [
 	^ self new

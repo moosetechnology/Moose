@@ -248,12 +248,7 @@ FMPragmaProcessor >> processInfosFrom: aMethod for: prop [
 	(aMethod pragmaAt: #derived) ifNotNil: [ prop isDerived: true ].
 	(aMethod pragmaAt: #source) ifNotNil: [ prop isSource: true ].
 	(aMethod pragmaAt: #target) ifNotNil: [ prop isTarget: true ].
-	(aMethod pragmaAt: #multivalued)
-		ifNotNil: [ self flag: #todo.	"This should maybe be moved to FMMetamodelValidator."
-			self
-				assert: prop isContainer not
-				description: 'It is not possible to have <multivalue> and <container> on the same method. container represents a aggregation UML link that is incompatible with the multivalue kind of the link'.
-			prop isMultivalued: true ].
+	(aMethod pragmaAt: #multivalued) ifNotNil: [ prop isMultivalued: true ].
 	(aMethod pragmaAt: #key:) ifNotNil: [ :p | prop key: (p argumentAt: 1) ]
 ]
 
