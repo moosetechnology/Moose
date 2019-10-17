@@ -8,32 +8,35 @@ Class {
 	#category : #'Fame-ImportExport'
 }
 
+{ #category : #testing }
+FMPrintClient class >> isAbstract [
+	^ self = FMPrintClient
+]
+
 { #category : #private }
 FMPrintClient >> crTabs [
-
-	stream cr; tab: indent.
+	stream
+		cr;
+		tab: indent
 ]
 
 { #category : #accessing }
 FMPrintClient >> onString [
-	
-	self onString: String new
+	self onString: ''
 ]
 
 { #category : #accessing }
 FMPrintClient >> onString: aString [
-	
-	self stream: aString writeStream.
+	self stream: aString writeStream
 ]
 
 { #category : #accessing }
 FMPrintClient >> stream [
-	^stream
+	^ stream
 ]
 
 { #category : #accessing }
 FMPrintClient >> stream: aStream [
-
 	stream := aStream.
-	indent := 0.
+	indent := 0
 ]
