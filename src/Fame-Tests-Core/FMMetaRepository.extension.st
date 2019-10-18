@@ -8,3 +8,15 @@ FMMetaRepository >> addSmalltalkClasses: classes [
 	builder run.
 	self addAll: builder elements
 ]
+
+{ #category : #'*Fame-Tests-Core' }
+FMMetaRepository >> builderClass [
+	^ FMMetamodelBuilder
+]
+
+{ #category : #'*Fame-Tests-Core' }
+FMMetaRepository >> document: scriptBlock [
+	self builderClass new
+		client: (FMImporter repository: self);
+		document: scriptBlock
+]
