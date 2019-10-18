@@ -52,22 +52,22 @@ FM3MetaDescriptionTest >> testAllSuperclasses [
 	self assert: elem allSuperclasses isCollection.
 	self assert: elem allSuperclasses size equals: 2.
 
-	elem := FM3Class object.
+	elem := FM3Object instance.
 	self assert: elem allSuperclasses isNotNil.
 	self assert: elem allSuperclasses isCollection.
 	self assertEmpty: elem allSuperclasses.
 
-	elem := FM3Class string.
+	elem := FM3String instance.
 	self assert: elem allSuperclasses isNotNil.
 	self assert: elem allSuperclasses isCollection.
 	self assert: elem allSuperclasses size equals: 1.
 
-	elem := FM3Class number.
+	elem := FM3Number instance.
 	self assert: elem allSuperclasses isNotNil.
 	self assert: elem allSuperclasses isCollection.
 	self assert: elem allSuperclasses size equals: 1.
 
-	elem := FM3Class boolean.
+	elem := FM3Boolean instance.
 	self assert: elem allSuperclasses isNotNil.
 	self assert: elem allSuperclasses isCollection.
 	self assert: elem allSuperclasses size equals: 1
@@ -115,10 +115,10 @@ FM3MetaDescriptionTest >> testAttributesIsHot [
 
 { #category : #running }
 FM3MetaDescriptionTest >> testHasOwner [
-	self deny: FM3Class object hasOwner.
-	self deny: FM3Class string hasOwner.
-	self deny: FM3Class number hasOwner.
-	self deny: FM3Class boolean hasOwner.
+	self deny: FM3Object instance hasOwner.
+	self deny: FM3String instance hasOwner.
+	self deny: FM3Number instance hasOwner.
+	self deny: FM3Boolean instance hasOwner.
 	self assert: tower metaMetamodel classes anyOne hasOwner.
 	self assert: tower metaMetamodel properties anyOne hasOwner.
 	self deny: tower metaMetamodel packages anyOne hasOwner
@@ -126,43 +126,41 @@ FM3MetaDescriptionTest >> testHasOwner [
 
 { #category : #running }
 FM3MetaDescriptionTest >> testHasPackage [
-	self deny: FM3Class object hasPackage.
-	self deny: FM3Class string hasPackage.
-	self deny: FM3Class number hasPackage.
-	self deny: FM3Class boolean hasPackage.
+	self deny: FM3Object instance hasPackage.
+	self deny: FM3String instance hasPackage.
+	self deny: FM3Number instance hasPackage.
+	self deny: FM3Boolean instance hasPackage.
 	self assert: tower metaMetamodel classes anyOne hasPackage
 ]
 
 { #category : #running }
 FM3MetaDescriptionTest >> testHasSuperclass [
-	self deny: FM3Class object hasSuperclass.
-	self assert: FM3Class string hasSuperclass.
-	self assert: FM3Class number hasSuperclass.
-	self assert: FM3Class boolean hasSuperclass.
+	self deny: FM3Object instance hasSuperclass.
+	self assert: FM3String instance hasSuperclass.
+	self assert: FM3Number instance hasSuperclass.
+	self assert: FM3Boolean instance hasSuperclass.
 	self assert: tower metaMetamodel classes anyOne hasSuperclass
 ]
 
 { #category : #running }
 FM3MetaDescriptionTest >> testIsPrimitive [
-	self deny: FM3Class object isPrimitive.
-	self assert: FM3Class string isPrimitive.
-	self assert: FM3Class number isPrimitive.
-	self assert: FM3Class boolean isPrimitive.
+	self deny: FM3Object instance isPrimitive.
+	self assert: FM3String instance isPrimitive.
+	self assert: FM3Number instance isPrimitive.
+	self assert: FM3Boolean instance isPrimitive.
 	self deny: tower metaMetamodel classes anyOne isPrimitive
 ]
 
 { #category : #running }
 FM3MetaDescriptionTest >> testIsRoot [
-	self assert: FM3Class object isRoot.
-	self deny: FM3Class string isRoot.
-	self deny: FM3Class number isRoot.
-	self deny: FM3Class boolean isRoot.
+	self assert: FM3Object instance isRoot.
+	self deny: FM3String instance isRoot.
+	self deny: FM3Number instance isRoot.
+	self deny: FM3Boolean instance isRoot.
 	self deny: tower metaMetamodel classes anyOne isRoot
 ]
 
 { #category : #running }
 FM3MetaDescriptionTest >> testSubclasses [
-	| elem |
-	elem := tower metaMetamodel elementNamed: 'FM3.Element'.
-	self denyEmpty: elem subclasses
+	self denyEmpty: (tower metaMetamodel elementNamed: 'FM3.Element') subclasses
 ]

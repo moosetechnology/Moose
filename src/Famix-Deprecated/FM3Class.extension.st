@@ -63,9 +63,33 @@ FM3Class >> attributesNamed: arg1 [
 ]
 
 { #category : #'*Famix-Deprecated' }
+FM3Class class >> boolean [
+	self deprecated: 'Use FM3Boolean class>>#instance instead.' transformWith: 'FM3Class boolean' -> 'FM3Boolean instance'.
+	^ FM3Boolean instance
+]
+
+{ #category : #'*Famix-Deprecated' }
 FM3Class >> complexAttributes [
 	self deprecated: 'Use #complexProperties instead.' transformWith: '``@object complexAttributes' -> '``@object complexProperties'.
 	^ self complexProperties
+]
+
+{ #category : #'*Famix-Deprecated' }
+FM3Class class >> constantsDo: aBlock [
+	self deprecated: 'Use FM3Constant class>>constantsDo: instead.' transformWith: 'FM3Class constantsDo: `@arg' -> 'FM3Constant constantsDo: `@arg'.
+	FM3Constant constantsDo: aBlock
+]
+
+{ #category : #'*Famix-Deprecated' }
+FM3Class class >> number [
+	self deprecated: 'Use FM3Number class>>#instance instead.' transformWith: 'FM3Class number' -> 'FM3Number instance'.
+	^ FM3Number instance
+]
+
+{ #category : #'*Famix-Deprecated' }
+FM3Class class >> object [
+	self deprecated: 'Use FM3Object class>>#instance instead.' transformWith: 'FM3Class object' -> 'FM3Object instance'.
+	^ FM3Object instance
 ]
 
 { #category : #'*Famix-Deprecated' }
@@ -90,4 +114,10 @@ FM3Class >> primitiveAttributes [
 FM3Class >> setImplementingClass: arg1 [ 
 	self deprecated: 'Use #implementingClass: instead.' transformWith: '``@object setImplementingClass: ``@arg1 ' -> '``@object implementingClass: ``@arg1 '.
 	^ self implementingClass: arg1 
+]
+
+{ #category : #'*Famix-Deprecated' }
+FM3Class class >> string [
+	self deprecated: 'Use FM3String class>>#instance instead.' transformWith: 'FM3Class string' -> 'FM3String instance'.
+	^ FM3String instance
 ]

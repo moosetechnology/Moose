@@ -160,15 +160,11 @@ FMPragmaProcessor >> initialize [
 	typeDict := IdentityDictionary new.
 	oppositeDict := IdentityDictionary new.
 	mmClassDict := IdentityDictionary new.
-	metaDict := Dictionary new.
 	traitsDict := IdentityDictionary new.
 
 	"Must use the cannonical primitives here!"
-	"Please do not at these primitives to elements!"
-	metaDict at: 'String' put: FM3Class string.
-	metaDict at: 'Boolean' put: FM3Class boolean.
-	metaDict at: 'Number' put: FM3Class number.
-	metaDict at: 'Object' put: FM3Class object
+	"Please do not add these primitives to elements!"
+	metaDict := (FM3Constant constants collect: [ :const | const name asString -> const ]) asDictionary
 ]
 
 { #category : #private }
