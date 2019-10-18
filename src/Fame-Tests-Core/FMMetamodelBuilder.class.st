@@ -30,12 +30,11 @@ FMMetamodelBuilder >> initialize [
 
 { #category : #private }
 FMMetamodelBuilder >> lookup: name [
-
 	"if it is a primitive type, return the name, metamodel will take care of this"
-	FM3Class constantsDo: [ :prim | 
-		prim name asString = name ifTrue: [ ^ name ] ].
-	^ self lookupSerial: name
 
+	(FM3Constant constants anySatisfy: [ :const | const name = name ]) ifTrue: [ ^ name ].
+
+	^ self lookupSerial: name
 ]
 
 { #category : #private }

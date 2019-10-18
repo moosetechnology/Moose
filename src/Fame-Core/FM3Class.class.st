@@ -21,12 +21,6 @@ Class {
 		'traits',
 		'properties'
 	],
-	#classInstVars : [
-		'object',
-		'boolean',
-		'number',
-		'string'
-	],
 	#category : #'Fame-Core'
 }
 
@@ -37,34 +31,9 @@ FM3Class class >> annotation [
 
 ]
 
-{ #category : #constants }
-FM3Class class >> boolean [
-	^ boolean
-		ifNil: [ boolean := self booleanClass basicNew.
-			boolean initialize.
-			boolean name: #Boolean.
-			"FM3Boolean beImmutable"
-			boolean ]
-]
-
-{ #category : #'private-anonymous classes' }
-FM3Class class >> booleanClass [
-	| class |
-	class := Class new.
-	self setSuperclassClassOf: class.
-	class setFormat: self format.
-	class methodDict: MethodDictionary new.
-	class methodDict at: #isPrimitive put: (self methodNamed: #anonymousReturnTrue).
-	class setName: 'AnonymousClass'.
-	^ class
-]
-
-{ #category : #constants }
-FM3Class class >> constantsDo: aBlock [
-	aBlock value: self boolean.
-	aBlock value: self number.
-	aBlock value: self object.
-	aBlock value: self string
+{ #category : #accessing }
+FM3Class class >> defaultSuperclass [
+	^ FM3Object instance
 ]
 
 { #category : #examples }
@@ -78,91 +47,6 @@ FM3Class class >> gtExampleWithOnePrimitiveProperty: description [
 	<gtExample>
 	<depends: #gtExampleBasic>
 	^ description properties add: FM3Property new
-]
-
-{ #category : #constants }
-FM3Class class >> number [
-	^ number
-		ifNil: [ number := self numberClass basicNew.
-			number initialize.
-			number name: #Number.
-			"FM3Number beImmutable"
-			number ]
-]
-
-{ #category : #'private-anonymous classes' }
-FM3Class class >> numberClass [
-
-	| class |
-	class := Class new.
-	self setSuperclassClassOf: class.
-	class setFormat: self format.
-	class methodDict: MethodDictionary new.
-	class methodDict at: #isPrimitive put: (self methodNamed: #anonymousReturnTrue).
-	class setName: 'AnonymousClass'.
-	^class
-]
-
-{ #category : #constants }
-FM3Class class >> object [
-	^ object
-		ifNil: [ object := self objectClass basicNew.
-			object initialize.
-			object superclass: nil.
-			object name: #Object.
-			"FM3Object beImmutable"
-			object ]
-]
-
-{ #category : #'private-anonymous classes' }
-FM3Class class >> objectClass [
-
-	| class |
-	class := Class new.
-	self setSuperclassClassOf: class.
-	class setFormat: self format.
-	class methodDict: MethodDictionary new.
-	class methodDict at: #isRoot put: (self  methodNamed: #anonymousReturnTrue).
-	class setName: 'AnonymousClass'.
-	^class
-]
-
-{ #category : #private }
-FM3Class class >> privateOnlyCallMeIfYourAreBDFLOrSystemAdminFromHellFlush [
-	<script>
-	string := number := object := boolean := nil
-]
-
-{ #category : #'private-anonymous classes' }
-FM3Class class >> setSuperclassClassOf: class [
-	"This method is an hack I do to correct a change in Pharo 7 since Moose will soon get a new stable version with the project MooseNG."
-
-	SystemVersion current major < 7
-		ifTrue: [ class superclass: self ]
-		ifFalse: [ class basicSuperclass: self ]
-]
-
-{ #category : #constants }
-FM3Class class >> string [
-	^ string
-		ifNil: [ string := self stringClass basicNew.
-			string initialize.
-			string name: #String.
-			"FM3String beImmutable"
-			string ]
-]
-
-{ #category : #'private-anonymous classes' }
-FM3Class class >> stringClass [
-
-	| class |
-	class := Class new.
-	self setSuperclassClassOf: class.
-	class setFormat: self format.
-	class methodDict: MethodDictionary new.
-	class methodDict at: #isPrimitive put: (self methodNamed: #anonymousReturnTrue).
-	class setName: 'AnonymousClass'.
-	^class
 ]
 
 { #category : #adding }
@@ -234,11 +118,6 @@ FM3Class >> allSuperclasses [
 { #category : #accessing }
 FM3Class >> allSuperclassesDo: aBlock [
 	self allSuperclasses do: [ :each | aBlock value: each ]
-]
-
-{ #category : #'private-anonymous behaviour' }
-FM3Class >> anonymousReturnTrue [
-	^ true
 ]
 
 { #category : #'accessing-query' }
@@ -353,8 +232,7 @@ FM3Class >> initialize [
 	super initialize.
 	properties := FMMultivalueLink on: self opposite: #mmClass:.
 	isAbstract := false.
-	superclass := FM3Class object.
-	self flag: 'Not sure if this is valid, maybe, superclass must be nil?'.
+	superclass := self class defaultSuperclass.
 	subclasses := FMMultivalueLink on: self opposite: #superclass:.
 	traits := Set new
 ]

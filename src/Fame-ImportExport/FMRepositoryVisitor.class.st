@@ -109,8 +109,7 @@ FMRepositoryVisitor >> initialize [
 
 { #category : #private }
 FMRepositoryVisitor >> isPrimitiveTypeOrObject: each [
-	FM3Class constantsDo: [ :const | const = each ifTrue: [ ^ true ] ].
-	^ false
+	^ FM3Constant constants includes: each
 ]
 
 { #category : #accessing }
@@ -158,7 +157,7 @@ FMRepositoryVisitor >> shouldIgnoreProperty: property [
 FMRepositoryVisitor >> shouldIgnoreProperty: property withAll: values [
 	values ifNil: [ ^ true ].
 
-	^ values isEmpty or: [ property type = FM3Class boolean and: [ values size = 1 and: [ values first = false ] ] ]
+	^ values isEmpty or: [ property type = FM3Boolean instance and: [ values size = 1 and: [ values first = false ] ] ]
 ]
 
 { #category : #private }

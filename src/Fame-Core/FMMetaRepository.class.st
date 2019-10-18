@@ -237,16 +237,8 @@ FMMetaRepository >> properties [
 
 { #category : #private }
 FMMetaRepository >> updateCache [
-	nameDict := Dictionary new.
-	nameDict at: 'String' put: FM3Class string.
-	nameDict at: 'Boolean' put: FM3Class boolean.
-	nameDict at: 'Number' put: FM3Class number.
-	nameDict at: 'Object' put: FM3Class object.
-	classDict := Dictionary new.
-	classDict at: FM3Class string class put: FM3Class string.
-	classDict at: FM3Class boolean class put: FM3Class boolean.
-	classDict at: FM3Class number class put: FM3Class number.
-	classDict at: FM3Class object class put: FM3Class object.
+	nameDict := (FM3Constant constants collect: [ :const | const name asString -> const ]) asDictionary.
+	classDict := (FM3Constant constants collect: [ :const | const class -> const ]) asDictionary.
 	self elements do: [ :each | self updateCacheWith: each ]
 ]
 

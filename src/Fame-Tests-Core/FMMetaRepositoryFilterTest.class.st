@@ -159,13 +159,13 @@ FMMetaRepositoryFilterTest >> testAnnotationTypes [
 	package := repo elementNamed: 'FM3'.
 	class := repo elementNamed: 'FM3.Element'.
 	self assert: class isFM3Class.
-	self assert: class superclass equals: FM3Class object.
+	self assert: class superclass equals: FM3Object instance.
 	self assert: class implementingClass equals: FM3Element.
 	self assert: (class at: 'name') isFM3Property.
 	self assert: (class at: 'name') name equals: #name.
 	self assert: (class at: 'name') mmClass equals: class.
 	self assert: (class at: 'name') owner equals: class.
-	self assert: (class at: 'name') type equals: FM3Class string.
+	self assert: (class at: 'name') type equals: FM3String instance.
 	self deny: (class at: 'name') isContainer.
 	self deny: (class at: 'name') isMultivalued.
 	self deny: (class at: 'name') isComposite.
