@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'client'
 	],
-	#category : #'Fame-ImportExport'
+	#category : #'Fame-Tests-Core'
 }
 
 { #category : #'DSL-synonyms' }
@@ -84,9 +84,5 @@ FMModelBuilder >> new: elementName with: body [
 
 { #category : #DSL }
 FMModelBuilder >> ref: reference [
-
-	reference isNumber
-		ifTrue: [ client referenceNumber: reference ]
-		ifFalse: [ client referenceName: reference asString ]
-		
+	client referenceNumber: (reference isNumber ifTrue: [ reference ] ifFalse: [ reference asString ])
 ]

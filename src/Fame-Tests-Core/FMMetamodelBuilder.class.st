@@ -6,7 +6,7 @@ Class {
 		'stack',
 		'serial'
 	],
-	#category : #'Fame-ImportExport'
+	#category : #'Fame-Tests-Core'
 }
 
 { #category : #DSL }
@@ -20,38 +20,12 @@ FMMetamodelBuilder >> class: name with: aBlock [
 		stack removeLast. ].
 ]
 
-{ #category : #DSL }
-FMMetamodelBuilder >> derivedProperty: name with: typeName [
-	
-	self property: name type: typeName opposite: nil multivalued: false derived: true
-
-]
-
-{ #category : #DSL }
-FMMetamodelBuilder >> derivedProperty: name with: typeName opposite: oppositeName [ 
-	
-	self property: name type: typeName opposite: oppositeName multivalued: false derived: true
-]
-
-{ #category : #DSL }
-FMMetamodelBuilder >> derivedProperty: name withMany: typeName [
-	
-	self property: name type: typeName opposite: nil multivalued: true derived: true
-
-]
-
-{ #category : #DSL }
-FMMetamodelBuilder >> derivedProperty: name withMany: typeName opposite: oppositeName [ 
-	
-	self property: name type: typeName opposite: oppositeName multivalued: true derived: true
-]
-
 { #category : #initialization }
 FMMetamodelBuilder >> initialize [
-	
+	super initialize.
 	indexDict := Dictionary"<String,Integer>" new.
 	stack := OrderedCollection"<String>" new.
-	serial := 0.
+	serial := 0
 ]
 
 { #category : #private }
@@ -109,23 +83,9 @@ FMMetamodelBuilder >> property: name type: typeName opposite: oppositeName multi
 ]
 
 { #category : #DSL }
-FMMetamodelBuilder >> property: name with: typeName [
-	
-	self property: name type: typeName opposite: nil multivalued: false
-
-]
-
-{ #category : #DSL }
 FMMetamodelBuilder >> property: name with: typeName opposite: oppositeName [ 
 	
 	self property: name type: typeName opposite: oppositeName multivalued: false
-]
-
-{ #category : #DSL }
-FMMetamodelBuilder >> property: name withMany: typeName [
-	
-	self property: name type: typeName opposite: nil multivalued: true
-
 ]
 
 { #category : #DSL }

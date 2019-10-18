@@ -38,10 +38,10 @@ FMMetamodelValidator >> validateContainersAreNotMultivalued [
 
 	| iterator |
 	iterator := 
-		(self processor elements iterator
+		self processor elements iterator
 			| [ :element | element isFM3Property ] selectIt
 			| [ :property | property isContainer ] selectIt
-			| [ :property | property isMultivalued ] selectIt).
+			| [ :property | property isMultivalued ] selectIt.
 
 	self assert: iterator atEnd description: 'It is not possible to have <multivalue> and <container> on the same method. A container represents a aggregation UML link that is incompatible with the multivalue kind of the link.'
 ]
@@ -67,10 +67,10 @@ FMMetamodelValidator >> validatePropertiesHaveOpposites [
 
 	| iterator |
 	iterator := 
-		(self processor elements iterator
+		self processor elements iterator
 			| [ :element | element isFM3Property ] selectIt
 			| [ :property | property isContainer or: [ property isSource or: [ property isTarget ] ] ] selectIt
-			| [ :property | property hasOpposite ] rejectIt).
+			| [ :property | property hasOpposite ] rejectIt.
 
 	self assert: iterator atEnd description: 'In a metamodel all container, source and target properties should have an opposite.'
 ]
