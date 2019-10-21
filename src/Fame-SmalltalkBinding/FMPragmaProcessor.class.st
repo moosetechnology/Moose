@@ -65,6 +65,15 @@ FMPragmaProcessor class >> metamodelFrom: aCollectionOfClasses [
 		asMetamodel
 ]
 
+{ #category : #processing }
+FMPragmaProcessor class >> metamodelFromPackages: aCollectionOfPackages [
+	^ self new
+		queue: (aCollectionOfPackages flatCollectAsSet: [ :p | p definedClasses asSet select: #isMetamodelEntity ]);
+		implementingPackages: aCollectionOfPackages;
+		run;
+		asMetamodel
+]
+
 { #category : #accessing }
 FMPragmaProcessor class >> shouldValidateMetaModel [
 	self flag: #todo.	"This is a temporary solution for people who do not need a coherent meta model. It should be removed after Moose is improved in the area of the meta model building."
@@ -80,15 +89,6 @@ FMPragmaProcessor class >> shouldValidateMetaModel: anObject [
 FMPragmaProcessor class >> towerFrom: aCollectionOfClasses [
 	^ self new
 		queue: aCollectionOfClasses;
-		run;
-		asTower
-]
-
-{ #category : #processing }
-FMPragmaProcessor class >> towerFrom: aCollectionOfClasses implementingPackages: aCollectionOfPackages [
-	^ self new
-		queue: aCollectionOfClasses;
-		implementingPackages: aCollectionOfPackages;
 		run;
 		asTower
 ]
@@ -116,11 +116,9 @@ FMPragmaProcessor >> asTower [
 
 { #category : #running }
 FMPragmaProcessor >> buildFM3 [
-	self queue: FM3Element.
-	self queue: FM3Class.
-	self queue: FM3Package.
-	self queue: FM3Property.
-	self run
+	self
+		queue: ('Fame-Core' asPackage definedClasses asSet select: #isMetamodelEntity);
+		run
 ]
 
 { #category : #accessing }

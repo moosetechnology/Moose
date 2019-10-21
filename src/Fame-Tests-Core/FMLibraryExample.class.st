@@ -148,7 +148,7 @@ FMLibraryExample >> testMetamodelSmalltalkBinding [
 FMLibraryExample >> testPragmaProcessing [
 	| pp |
 	pp := FMPragmaProcessor new
-		queue: (Array with: LIBBook with: LIBLibrary with: LIBPerson);
+		queue: {LIBBook . LIBLibrary . LIBPerson};
 		run.
 	self denyEmpty: pp elements.
 	self denyEmpty: pp packages.
@@ -156,8 +156,7 @@ FMLibraryExample >> testPragmaProcessing [
 	self assert: pp packages anyOne name equals: #LIB.
 	self denyEmpty: pp classes.
 	self assert: pp classes size equals: 3.
-	self denyEmpty: pp properties.
-	^ pp
+	self denyEmpty: pp properties
 ]
 
 { #category : #examples }

@@ -24,9 +24,8 @@ FMImporterTest class >> simpleCompositeMetamodelExtension [
 
 { #category : #running }
 FMImporterTest >> setUp [
-
 	super setUp.
-	tower := FMTower new.
+	tower := FMTower new
 ]
 
 { #category : #running }

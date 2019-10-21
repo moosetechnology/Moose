@@ -2,7 +2,7 @@ Class {
 	#name : #FMDungeonExample,
 	#superclass : #TestCase,
 	#instVars : [
-		't'
+		'metamodel'
 	],
 	#category : #'Fame-Tests-Core'
 }
@@ -36,22 +36,17 @@ FMDungeonExample class >> metamodelString [
 
 { #category : #running }
 FMDungeonExample >> setUp [
-
 	super setUp.
-	t := FMTower new.
-	t metamodel addSmalltalkClasses: (Array
-		with: RPGDragon
-		with: RPGTreasure
-		with: RPGHero)
+	metamodel := FMPragmaProcessor metamodelFrom: {RPGDragon . RPGTreasure . RPGHero}
 ]
 
 { #category : #running }
 FMDungeonExample >> testDragonHoard [
 	| a b x y |
-	a := (t metamodel elementNamed: 'RPG.Dragon') createInstance.
-	b := (t metamodel elementNamed: 'RPG.Dragon') createInstance.
-	x := (t metamodel elementNamed: 'RPG.Treasure') createInstance.
-	y := (t metamodel elementNamed: 'RPG.Treasure') createInstance.
+	a := (metamodel elementNamed: 'RPG.Dragon') createInstance.
+	b := (metamodel elementNamed: 'RPG.Dragon') createInstance.
+	x := (metamodel elementNamed: 'RPG.Treasure') createInstance.
+	y := (metamodel elementNamed: 'RPG.Treasure') createInstance.
 	self assert: a hoard isCollection.
 	self assertEmpty: a hoard.
 	self assert: b hoard isCollection.
@@ -86,10 +81,10 @@ FMDungeonExample >> testDragonHoard [
 { #category : #running }
 FMDungeonExample >> testDragonKilledBy [
 	| a b x y |
-	a := (t metamodel elementNamed: 'RPG.Dragon') createInstance.
-	b := (t metamodel elementNamed: 'RPG.Dragon') createInstance.
-	x := (t metamodel elementNamed: 'RPG.Hero') createInstance.
-	y := (t metamodel elementNamed: 'RPG.Hero') createInstance.
+	a := (metamodel elementNamed: 'RPG.Dragon') createInstance.
+	b := (metamodel elementNamed: 'RPG.Dragon') createInstance.
+	x := (metamodel elementNamed: 'RPG.Hero') createInstance.
+	y := (metamodel elementNamed: 'RPG.Hero') createInstance.
 	self assert: a killedBy isCollection.
 	self assertEmpty: a killedBy.
 	self assert: b killedBy isCollection.
@@ -144,10 +139,10 @@ FMDungeonExample >> testDragonKilledBy [
 { #category : #running }
 FMDungeonExample >> testHeroKills [
 	| a b x y |
-	a := (t metamodel elementNamed: 'RPG.Dragon') createInstance.
-	b := (t metamodel elementNamed: 'RPG.Dragon') createInstance.
-	x := (t metamodel elementNamed: 'RPG.Hero') createInstance.
-	y := (t metamodel elementNamed: 'RPG.Hero') createInstance.
+	a := (metamodel elementNamed: 'RPG.Dragon') createInstance.
+	b := (metamodel elementNamed: 'RPG.Dragon') createInstance.
+	x := (metamodel elementNamed: 'RPG.Hero') createInstance.
+	y := (metamodel elementNamed: 'RPG.Hero') createInstance.
 	self assert: a killedBy isCollection.
 	self assertEmpty: a killedBy.
 	self assert: b killedBy isCollection.
@@ -202,10 +197,10 @@ FMDungeonExample >> testHeroKills [
 { #category : #running }
 FMDungeonExample >> testHeroTalisman [
 	| a b x y |
-	a := (t metamodel elementNamed: 'RPG.Hero') createInstance.
-	b := (t metamodel elementNamed: 'RPG.Hero') createInstance.
-	x := (t metamodel elementNamed: 'RPG.Treasure') createInstance.
-	y := (t metamodel elementNamed: 'RPG.Treasure') createInstance.
+	a := (metamodel elementNamed: 'RPG.Hero') createInstance.
+	b := (metamodel elementNamed: 'RPG.Hero') createInstance.
+	x := (metamodel elementNamed: 'RPG.Treasure') createInstance.
+	y := (metamodel elementNamed: 'RPG.Treasure') createInstance.
 	self deny: a talisman isCollection.
 	self assert: a talisman isNil.
 	self deny: b talisman isCollection.
@@ -239,9 +234,9 @@ FMDungeonExample >> testHeroTalisman [
 { #category : #running }
 FMDungeonExample >> testHeroTwin [
 	| a b c |
-	a := (t metamodel elementNamed: 'RPG.Hero') createInstance.
-	b := (t metamodel elementNamed: 'RPG.Hero') createInstance.
-	c := (t metamodel elementNamed: 'RPG.Hero') createInstance.
+	a := (metamodel elementNamed: 'RPG.Hero') createInstance.
+	b := (metamodel elementNamed: 'RPG.Hero') createInstance.
+	c := (metamodel elementNamed: 'RPG.Hero') createInstance.
 	self deny: a twin isCollection.
 	self assert: a twin isNil.
 	self deny: b twin isCollection.
@@ -269,10 +264,10 @@ FMDungeonExample >> testHeroTwin [
 { #category : #running }
 FMDungeonExample >> testTreasureKeeper [
 	| a b x y |
-	a := (t metamodel elementNamed: 'RPG.Dragon') createInstance.
-	b := (t metamodel elementNamed: 'RPG.Dragon') createInstance.
-	x := (t metamodel elementNamed: 'RPG.Treasure') createInstance.
-	y := (t metamodel elementNamed: 'RPG.Treasure') createInstance.
+	a := (metamodel elementNamed: 'RPG.Dragon') createInstance.
+	b := (metamodel elementNamed: 'RPG.Dragon') createInstance.
+	x := (metamodel elementNamed: 'RPG.Treasure') createInstance.
+	y := (metamodel elementNamed: 'RPG.Treasure') createInstance.
 	self assert: a hoard isCollection.
 	self assertEmpty: a hoard.
 	self assert: b hoard isCollection.
@@ -307,10 +302,10 @@ FMDungeonExample >> testTreasureKeeper [
 { #category : #running }
 FMDungeonExample >> testTreasureOwner [
 	| a b x y |
-	a := (t metamodel elementNamed: 'RPG.Hero') createInstance.
-	b := (t metamodel elementNamed: 'RPG.Hero') createInstance.
-	x := (t metamodel elementNamed: 'RPG.Treasure') createInstance.
-	y := (t metamodel elementNamed: 'RPG.Treasure') createInstance.
+	a := (metamodel elementNamed: 'RPG.Hero') createInstance.
+	b := (metamodel elementNamed: 'RPG.Hero') createInstance.
+	x := (metamodel elementNamed: 'RPG.Treasure') createInstance.
+	y := (metamodel elementNamed: 'RPG.Treasure') createInstance.
 	self deny: a talisman isCollection.
 	self assert: a talisman isNil.
 	self deny: b talisman isCollection.
