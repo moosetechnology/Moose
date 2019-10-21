@@ -189,3 +189,7 @@ FMRepository >> set: propertyOrName element: element values: values [
 FMRepository >> size [
 	^ self elements size
 ]
+
+{ #category : #private }
+FMRepository >> updateCache [
+]
