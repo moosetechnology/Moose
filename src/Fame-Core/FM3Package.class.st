@@ -1,5 +1,30 @@
 "
-A FM3PackageDescription is 
+Description
+--------------------
+
+I represent the description of a package in a metamodel.
+
+I can contain Fame classes and Fame properties that are extensions.
+
+Public API and Key Messages
+--------------------
+
+- #
+- #
+- #
+
+Examples
+--------------------
+
+	
+ 
+Internal Representation and Key Implementation Points.
+--------------------
+
+    Instance Variables
+	classes:		<Object>
+	extensions:		<Object>
+
 "
 Class {
 	#name : #FM3Package,

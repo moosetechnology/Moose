@@ -1,3 +1,19 @@
+"
+Description
+--------------------
+
+I am an constant representing the root superclass of all FM3Class.
+
+Public API and Key Messages
+--------------------
+
+- #isRoot 			Return true if the FM3Class is the root class.
+
+Examples
+--------------------
+
+	FM3Object instance
+"
 Class {
 	#name : #FM3Object,
 	#superclass : #FM3Constant,

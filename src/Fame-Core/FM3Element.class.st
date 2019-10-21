@@ -1,8 +1,27 @@
 "
-A FM3Element is an elementary element of a FAME metamodel.
+Description
+--------------------
 
-It has a name and fullName and a owner either a FM3MetaDescription or 
-FM3PackageDescription
+I am an abstract class representing elementary elements of a Fame metamodel.
+My instances are descriptions reprensenting elements of a meta-model.
+
+The instances of my subclasses are stored inside a FMRepository.
+
+My instances have a name, a fullName and an owner that is either a FM3Class or FM3Package.
+
+Public API and Key Messages
+--------------------
+
+- #name 			Return the name of the element.
+- #fullName 		Return a name of the element containing the full name of its owner.
+- #owner 			Return the owner of the element. Can be nil for root packages.
+
+Internal Representation and Key Implementation Points.
+--------------------
+
+    Instance Variables
+	name:		<aString>		Name of the element.
+
 "
 Class {
 	#name : #FM3Element,
