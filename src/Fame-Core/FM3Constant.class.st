@@ -4,7 +4,7 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #'Fame-Core'
+	#category : #'Fame-Core-Model'
 }
 
 { #category : #accessing }

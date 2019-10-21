@@ -1,7 +1,7 @@
 Class {
 	#name : #FMMany,
 	#superclass : #FMRelationSlot,
-	#category : #'Fame-SmalltalkBinding'
+	#category : #'Fame-Core-Utilities'
 }
 
 { #category : #internal }

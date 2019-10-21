@@ -35,7 +35,7 @@ Class {
 		'metamodel',
 		'additionalProperties'
 	],
-	#category : #'Fame-Core'
+	#category : #'Fame-Core-Repositories'
 }
 
 { #category : #'instance creation' }
@@ -84,6 +84,13 @@ FMRepository >> additionalProperty: aSymbol for: entityClass ifAbsentPut: aBlock
 { #category : #accessing }
 FMRepository >> additionalProperty: aSymbol for: entityClass put: anObject [
 	^ (self additionalPropertiesFor: entityClass) at: aSymbol put: anObject
+]
+
+{ #category : #'as yet unclassified' }
+FMRepository >> asMetarepository [
+	^ FMMetaRepository new
+		addAll: elements;
+		yourself
 ]
 
 { #category : #accessing }

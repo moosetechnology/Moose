@@ -1,11 +1,11 @@
 Extension { #name : #Metaclass }
 
-{ #category : #'*Fame-SmalltalkBinding' }
+{ #category : #'*Fame-Core' }
 Metaclass >> isMetamodelEntity [
 	^ self metamodelDefinitionPragma isNotNil
 ]
 
-{ #category : #'*Fame-SmalltalkBinding' }
+{ #category : #'*Fame-Core' }
 Metaclass >> metamodelDefinitionPragma [
 	^ (Pragma allNamed: #MSEClass:super: in: self)
 		ifEmpty: [ nil ]

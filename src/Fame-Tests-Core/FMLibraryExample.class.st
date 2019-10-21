@@ -31,7 +31,7 @@ FMLibraryExample >> testBookstore [
 	self
 		assert: (tower metamodel elements detect: [ :each | each fullName = 'LIB.Library.books' ]) type
 		equals: (tower metamodel elements detect: [ :each | each fullName = 'LIB.Book' ]).
-	self assert: (tower metamodel elements detect: [ :each | each fullName = 'LIB.Person.name' ]) type equals: (FMMetaRepository fm3 elementNamed: 'String').
+	self assert: (tower metamodel elements detect: [ :each | each fullName = 'LIB.Person.name' ]) type equals: (FMMetaMetaRepository new elementNamed: 'String').
 	self assert: names size equals: 10
 ]
 

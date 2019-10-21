@@ -29,7 +29,7 @@ Class {
 		'isTarget',
 		'isSource'
 	],
-	#category : #'Fame-Core'
+	#category : #'Fame-Core-Model'
 }
 
 { #category : #meta }
@@ -37,12 +37,6 @@ FM3Property class >> annotation [
 	<MSEClass: #Property super: #FM3Element>
 	<package: #FM3>
 
-]
-
-{ #category : #example }
-FM3Property class >> gtExampleBasic [
-	<gtExample>
-	^ self new
 ]
 
 { #category : #accessing }

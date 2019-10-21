@@ -16,14 +16,24 @@ Object >> isFM3Property [
 ]
 
 { #category : #'*Fame-Core' }
-Object class >> metamodel [ 
-	^ nil
+Object >> isMetamodelEntity [
+	^ self class isMetamodelEntity
 ]
 
 { #category : #'*Fame-Core' }
 Object >> metamodel [
 
 	^ self class metamodel
+]
+
+{ #category : #'*Fame-Core' }
+Object class >> metamodel [ 
+	^ nil
+]
+
+{ #category : #'*Fame-Core' }
+Object >> metamodelDefinitionPragma [
+	^ self class metamodelDefinitionPragma
 ]
 
 { #category : #'*Fame-Core' }

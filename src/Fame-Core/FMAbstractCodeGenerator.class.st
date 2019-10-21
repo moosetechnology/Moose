@@ -11,7 +11,7 @@ Class {
 		'defaultCategory',
 		'skipDerivedMethods'
 	],
-	#category : #'Fame-SmalltalkBinding'
+	#category : #'Fame-Core-Generators'
 }
 
 { #category : #visiting }

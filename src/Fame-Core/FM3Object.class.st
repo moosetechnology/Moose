@@ -1,7 +1,7 @@
 Class {
 	#name : #FM3Object,
 	#superclass : #FM3Constant,
-	#category : #'Fame-Core'
+	#category : #'Fame-Core-Model'
 }
 
 { #category : #accessing }

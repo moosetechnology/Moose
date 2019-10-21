@@ -10,7 +10,7 @@ Class {
 	#instVars : [
 		'name'
 	],
-	#category : #'Fame-Core'
+	#category : #'Fame-Core-Model'
 }
 
 { #category : #meta }

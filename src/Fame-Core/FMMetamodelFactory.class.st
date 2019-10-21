@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'fm3Package'
 	],
-	#category : #'Fame-SmalltalkBinding'
+	#category : #'Fame-Core'
 }
 
 { #category : #'instance creation' }

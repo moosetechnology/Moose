@@ -6,7 +6,7 @@ Class {
 		'metaMetamodel',
 		'metamodel'
 	],
-	#category : #'Fame-SmalltalkBinding'
+	#category : #'Fame-Core'
 }
 
 { #category : #'instance creation' }
@@ -21,8 +21,8 @@ FMTower class >> fromMetamodel: aMetamodel [
 { #category : #initialization }
 FMTower >> initialize [
 	super initialize.
-	metaMetamodel := FMMetaRepository fm3.
-	metamodel := FMMetaRepository with: self metaMetamodel.
+	metamodel := FMMetaRepository new.
+	metaMetamodel := metamodel metamodel.
 	model := FMRepository with: self metamodel
 ]
 

@@ -27,18 +27,14 @@ Class {
 		'classDict',
 		'nameDict'
 	],
-	#category : #'Fame-Core'
+	#category : #'Fame-Core-Repositories'
 }
 
-{ #category : #examples }
-FMMetaRepository class >> gtExampleBasic [
-	<gtExample>
-	^ self new
-]
-
 { #category : #'instance creation' }
-FMMetaRepository class >> reset [
-	self error: 'I am a smell, no static state please!'
+FMMetaRepository class >> new [
+	^ self basicNew
+		initialize;
+		yourself
 ]
 
 { #category : #accessing }
@@ -51,6 +47,11 @@ FMMetaRepository >> concreteClasses [
 	"Return all the FM3 classes whose implementing class is a class and not a trait."
 
 	^ self classes reject: [ :fm3Class | fm3Class implementingClass isTrait ]
+]
+
+{ #category : #initialization }
+FMMetaRepository >> defaultMetamodel [
+	^ FMMetaMetaRepository new
 ]
 
 { #category : #accessing }
@@ -178,6 +179,7 @@ FMMetaRepository >> includes: element [
 { #category : #initialization }
 FMMetaRepository >> initialize [
 	super initialize.
+	metamodel := self defaultMetamodel.
 	self updateCache
 ]
 

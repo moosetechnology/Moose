@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'processor'
 	],
-	#category : #'Fame-SmalltalkBinding'
+	#category : #'Fame-Core'
 }
 
 { #category : #'instance creation' }

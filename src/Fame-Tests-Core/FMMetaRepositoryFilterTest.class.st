@@ -113,7 +113,7 @@ FMMetaRepositoryFilterTest >> setUp [
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testAnnotationTypes [
 	| repo package class property properties visitor repoFM3 |
-	repoFM3 := FMMetaRepository fm3.
+	repoFM3 := FMMetaMetaRepository new.
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: repoFM3;
 		classes: repoFM3 classes.
@@ -164,7 +164,7 @@ FMMetaRepositoryFilterTest >> testAnnotationTypes [
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testBookMetamodel [
 	| or m repo fm3 visitor repoFM3 |
-	repoFM3 := FMMetaRepository fm3.
+	repoFM3 := FMMetaMetaRepository new.
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: repoFM3;
 		classes: repoFM3 classes.
@@ -184,7 +184,7 @@ FMMetaRepositoryFilterTest >> testBookMetamodel [
 FMMetaRepositoryFilterTest >> testClassWithoutPackage [
 	| aClassWithoutPackage repo visitor |
 	aClassWithoutPackage := FM3Class named: 'AClass'.
-	repo := FMMetaRepository with: FMMetaRepository fm3.
+	repo := FMMetaRepository new.
 	repo add: aClassWithoutPackage.
 
 	visitor := FMMetaRepositoryFilter new
@@ -196,7 +196,7 @@ FMMetaRepositoryFilterTest >> testClassWithoutPackage [
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testExportAsMSE [
 	| repo visitor repoFM3 printer |
-	repoFM3 := FMMetaRepository fm3.
+	repoFM3 := FMMetaMetaRepository new.
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: repoFM3;
 		classes: repoFM3 classes.
@@ -212,7 +212,7 @@ FMMetaRepositoryFilterTest >> testExportAsMSE [
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testExportAsXML [
 	| repo visitor repoFM3 printer |
-	repoFM3 := FMMetaRepository fm3.
+	repoFM3 := FMMetaMetaRepository new.
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: repoFM3;
 		classes: repoFM3 classes.
@@ -228,7 +228,7 @@ FMMetaRepositoryFilterTest >> testExportAsXML [
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testFM3 [
 	| fm3 repoFM3 visitor |
-	repoFM3 := FMMetaRepository fm3.
+	repoFM3 := FMMetaMetaRepository new.
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: repoFM3;
 		classes: repoFM3 classes.
@@ -241,7 +241,7 @@ FMMetaRepositoryFilterTest >> testFM3 [
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testFM3Classes [
 	| fm3 visitor repoFM3 |
-	repoFM3 := FMMetaRepository fm3.
+	repoFM3 := FMMetaMetaRepository new.
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: repoFM3;
 		classes: repoFM3 classes.
@@ -261,7 +261,7 @@ FMMetaRepositoryFilterTest >> testFM3IsComplete [
 	"More information about FM3 may be found on http://smallwiki.unibe.ch/fame/fm3/"
 
 	| repo names visitor repoFM3 |
-	repoFM3 := FMMetaRepository fm3.
+	repoFM3 := FMMetaMetaRepository new.
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: repoFM3;
 		classes: repoFM3 classes.
@@ -306,7 +306,7 @@ FMMetaRepositoryFilterTest >> testFM3NewVersion [
 	"The current implementation of FameSystem does not provide a scope for its repository"
 
 	| repo names visitor repoFM3 |
-	repoFM3 := FMMetaRepository fm3.
+	repoFM3 := FMMetaMetaRepository new.
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: repoFM3;
 		classes: repoFM3 classes.
@@ -347,7 +347,7 @@ FMMetaRepositoryFilterTest >> testFM3NewVersion [
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testImporter [
 	| fm3 repoFM3 visitor string repo |
-	repoFM3 := FMMetaRepository fm3.
+	repoFM3 := FMMetaMetaRepository new.
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: repoFM3;
 		classes: repoFM3 classes.
@@ -661,7 +661,7 @@ FMMetaRepositoryFilterTest >> testIncludeRPGTreasure [
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testResolving [
 	| or m fm3 visitor repoFM3 |
-	repoFM3 := FMMetaRepository fm3.
+	repoFM3 := FMMetaMetaRepository new.
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: repoFM3;
 		classes: repoFM3 classes.
@@ -679,7 +679,7 @@ FMMetaRepositoryFilterTest >> testResolving [
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testResolvingId [
 	| or m fm3 visitor repoFM3 |
-	repoFM3 := FMMetaRepository fm3.
+	repoFM3 := FMMetaMetaRepository new.
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: repoFM3;
 		classes: repoFM3 classes.
@@ -705,7 +705,7 @@ FMMetaRepositoryFilterTest >> testResolvingId [
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testResolvingMultiArgs [
 	| or pack ref2 ref4 ref5 repo fm3 visitor repoFM3 |
-	repoFM3 := FMMetaRepository fm3.
+	repoFM3 := FMMetaMetaRepository new.
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: repoFM3;
 		classes: repoFM3 classes.

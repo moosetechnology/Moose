@@ -49,7 +49,7 @@ Class {
 	#classVars : [
 		'ShouldValidateMetaModel'
 	],
-	#category : #'Fame-SmalltalkBinding'
+	#category : #'Fame-Core'
 }
 
 { #category : #'class initialization' }
@@ -95,7 +95,7 @@ FMPragmaProcessor class >> towerFrom: aCollectionOfClasses [
 
 { #category : #converting }
 FMPragmaProcessor >> asMetamodel [
-	^ (FMMetaRepository with: FMMetaRepository fm3)
+	^ FMMetaRepository new
 		addAll: elements;
 		yourself
 ]
