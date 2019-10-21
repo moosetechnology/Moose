@@ -29,6 +29,14 @@ MooseModel class >> annotation [
 
 ]
 
+{ #category : #meta }
+MooseModel class >> buildTowerFrom: aCollectionOfClasses [
+	"I take as parameters a collection of classes described with Fame pragmas and a processor for Fame pragmas.
+	I set myself the packages to process because it is possible that some the packages are not adding any class but add methods via extensions."
+
+	^ FMPragmaProcessor towerFrom: aCollectionOfClasses implementingPackages: self packagesToProcessToCreateMetamodel
+]
+
 { #category : #accessing }
 MooseModel class >> defaultPackagesToProcess [
 	"We add to the creation of a metamodel all the metamodel entities of packages declaring to be part of the metamodels by default. 
@@ -72,11 +80,9 @@ MooseModel class >> factory [
 MooseModel class >> generateClassesFrom: aCollection [
 	"I generate the implementation for some meta-described classes. aCollection need to contain the full set of meta-described classes so that the metamodel is complete. Warning, part of classes will be overwritten."
 
-	| tower generator |
-	tower := self metaBuilder: aCollection withProcessor: self newPragmaProcessor.
-	generator := FMDefaultCodeGenerator new.
-	generator visit: tower metamodel.
-	generator previewChanges
+	FMDefaultCodeGenerator new
+		visit: (self buildTowerFrom: aCollection) metamodel;
+		previewChanges
 ]
 
 { #category : #meta }
@@ -87,10 +93,9 @@ MooseModel class >> generateClassesFrom: aCollection inPackage: aString [
 	MooseModel generateClassesFrom: MooseModel metamodelClasses inPackage: 'NewExtension'
 	"
 
-	| tower generator fm3Package |
-	tower := self metaBuilder: aCollection withProcessor: self newPragmaProcessor.
+	| generator fm3Package |
 	generator := FMDefaultCodeGenerator new.
-	fm3Package := tower metamodel packageNamed: aString.
+	fm3Package := (self buildTowerFrom: aCollection) metamodel packageNamed: aString.
 	generator acceptFamePackage: fm3Package.
 	self flag: #classExtensionNotSupported.	"currently the generator does not handle extension to other packages - cf #acceptFamePackage:"
 	generator previewChanges
@@ -183,37 +188,10 @@ MooseModel class >> importMetamodelFrom: aStream [
 ]
 
 { #category : #meta }
-MooseModel class >> metaBuilder: aCollectionOfClasses [
-	"I take as parameter a collection of classes described with Fame pragmas"
-
-	^ self
-		metaBuilder: aCollectionOfClasses
-		withProcessor: self newPragmaProcessor
-]
-
-{ #category : #meta }
-MooseModel class >> metaBuilder: aCollectionOfClasses withProcessor: aPragmaProcessor [
-	"I take as parameters a collection of classes described with Fame pragmas and a processor for Fame pragmas.
-	I set myself the packages to process because it is possible that some the packages are not adding any class but add methods via extensions."
-
-	aPragmaProcessor
-		queue: aCollectionOfClasses;
-		implementingPackages: self packagesToProcessToCreateMetamodel;
-		run.
-	^ aPragmaProcessor asTower
-]
-
-{ #category : #meta }
 MooseModel class >> metamodel [
 	self flag: #TODO. "The next line is a hack to not break everything in Moose. It should be removed later."
 	self = MooseModel ifTrue: [ ^ FAMIXModel metamodel ].
 	^ metamodel ifNil: [ self resetMetamodel ]
-]
-
-{ #category : #meta }
-MooseModel class >> metamodelClasses [
-
-	^ MooseEntity withAllSubclasses
 ]
 
 { #category : #'instance creation' }
@@ -221,11 +199,6 @@ MooseModel class >> named: aString [
 	^ self new
 		name: aString;
 		yourself
-]
-
-{ #category : #meta }
-MooseModel class >> newPragmaProcessor [
-	^ FMPragmaProcessor new
 ]
 
 { #category : #accessing }
@@ -267,7 +240,7 @@ MooseModel class >> resetMetamodel [
 	"Collect all classes containing properties useful to the MM."
 	classes := self packagesToProcessToCreateMetamodel flatCollectAsSet: [ :p | p definedClasses asSet select: #isMetamodelEntity ].
 
-	tower := self metaBuilder: classes.
+	tower := self buildTowerFrom: classes.
 	metamodel := tower metamodel.
 
 	"MooseEntity has a cache for some infos. When we regenerate a MM we need to flush this cache."

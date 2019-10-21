@@ -11,54 +11,18 @@ Class {
 
 { #category : #'buidling-models' }
 FMMetaRepositoryFilterTest >> buildEQ [
-
-	| builder |
-	
-	builder := FMPragmaProcessor new.
-	builder queue: (OrderedCollection new
-		add: EQCompound;
-		add: EQEquation;
-		add: EQEquationSystem;
-		add: EQExpression;
-		add: EQIdentifier;
-		add: EQNumerical;
-		add: EQOperator;
-		add: EQSimple;
-		add: EQVariable; 
-		yourself).
-	builder run.
-	^ builder asMetamodel 
+	^ FMPragmaProcessor
+		metamodelFrom: {EQCompound . EQEquation . EQEquationSystem . EQExpression . EQIdentifier . EQNumerical . EQOperator . EQSimple . EQVariable}
 ]
 
 { #category : #'buidling-models' }
 FMMetaRepositoryFilterTest >> buildLIB [
-
-	| builder |
-	
-	builder := FMPragmaProcessor new.
-	builder queue: (OrderedCollection new
-		"add: LIBRoot;"
-		add: LIBBook;
-		add: LIBLibrary;
-		add: LIBPerson;
-		yourself).
-	builder run.
-	^ builder asMetamodel 
+	^ FMPragmaProcessor metamodelFrom: {LIBBook . LIBLibrary . LIBPerson}
 ]
 
 { #category : #'buidling-models' }
 FMMetaRepositoryFilterTest >> buildRPG [
-
-	| builder |
-	
-	builder := FMPragmaProcessor new.
-	builder queue: (OrderedCollection new
-		add: RPGDragon;
-		add: RPGHero;
-		add: RPGTreasure;
-		yourself).
-	builder run.
-	^ builder asMetamodel 
+	^ FMPragmaProcessor metamodelFrom: {RPGDragon . RPGHero . RPGTreasure}
 ]
 
 { #category : #'tests-export' }
