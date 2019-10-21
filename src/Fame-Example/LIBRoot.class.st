@@ -9,13 +9,7 @@ Class {
 
 { #category : #accessing }
 LIBRoot class >> mainLibrary [
-	tower isNil ifTrue: [ 
-		| pp |
-		pp := FMPragmaProcessor new.
-		pp queue: (Array with: LIBBook with:  LIBLibrary with:  LIBPerson).
-		pp run.
-		tower := pp asTower ].
-	^tower
+	^ tower ifNil: [ tower := FMPragmaProcessor towerFrom: {LIBBook . LIBLibrary . LIBPerson} ]
 ]
 
 { #category : #accessing }
