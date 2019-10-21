@@ -155,10 +155,10 @@ FMImporterTest >> testResolvingMultiArgs [
 	repo := or repository asMetarepository.
 	self denyEmpty: repo elements.
 	self assert: repo elements size equals: 4.
-	pack := repo at: 'MyPackage'.
-	ref2 := pack at: 'MyName2'.
-	ref4 := pack at: 'MyName4'.
-	ref5 := pack at: 'MyName5'.
+	pack := repo packageNamed: 'MyPackage'.
+	ref2 := pack classNamed: 'MyName2'.
+	ref4 := pack classNamed: 'MyName4'.
+	ref5 := pack classNamed: 'MyName5'.
 	self assert: pack notNil.
 	self assert: ref2 notNil.
 	self assert: ref4 notNil.

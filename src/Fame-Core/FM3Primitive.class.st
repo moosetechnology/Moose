@@ -9,7 +9,7 @@ FM3Primitive class >> isAbstract [
 	^ self = FM3Primitive
 ]
 
-{ #category : #'accessing-query' }
+{ #category : #testing }
 FM3Primitive >> isPrimitive [
 	^ true
 ]

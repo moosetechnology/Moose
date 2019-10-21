@@ -21,7 +21,7 @@ LIBBook>>authors: persons
 Class {
 	#name : #FMMultiMultivalueLink,
 	#superclass : #FMMultivalueLink,
-	#category : #'Fame-SmalltalkBinding'
+	#category : #'Fame-Core'
 }
 
 { #category : #adding }

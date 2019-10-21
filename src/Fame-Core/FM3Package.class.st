@@ -25,12 +25,6 @@ FM3Package class >> gtExampleBasic [
 ]
 
 { #category : #'accessing-query' }
-FM3Package >> at: aString [
-	aString isSymbol ifTrue: [ self error ].
-	^ self classNamed: aString
-]
-
-{ #category : #'accessing-query' }
 FM3Package >> classNamed: aString [
 	^ self classNamed: aString ifAbsent: [ nil ]
 ]
@@ -89,11 +83,6 @@ FM3Package >> gtInspectorExtensionsIn: composite [
 		format: [ :each | each gtDisplayString ]
 ]
 
-{ #category : #testing }
-FM3Package >> hasOwner [
-	^ false
-]
-
 { #category : #initialization }
 FM3Package >> initialize [
 	super initialize.
@@ -107,7 +96,8 @@ FM3Package >> isFM3Package [
 ]
 
 { #category : #accessing }
-FM3Package >> packageName [
+FM3Package >> owner [
+	"All packages are top-level (but dots are allowed in their name to fake nesting)"
 
-	^ self name
+	^ nil
 ]

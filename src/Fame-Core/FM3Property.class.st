@@ -45,12 +45,12 @@ FM3Property class >> gtExampleBasic [
 	^ self new
 ]
 
-{ #category : #'accessing-query' }
+{ #category : #accessing }
 FM3Property >> compiledMethod [
 	^ self mmClass ifNotNil: [ :aClass | aClass implementingClass >> self implementingSelector ]
 ]
 
-{ #category : #'accessing-meta' }
+{ #category : #private }
 FM3Property >> getFrom: element [
 	"This method is meant to be used by the repository"
 
@@ -61,7 +61,7 @@ FM3Property >> getFrom: element [
 		ifFalse: [ result ifNil: [ Array new ] ifNotNil: [ Array with: result ] ]
 ]
 
-{ #category : #'accessing-meta' }
+{ #category : #private }
 FM3Property >> getRawFrom: element [
 	"This is internal logic for retrieving the actual value of a property from an element.
 	By default call the implementing selector."
@@ -100,18 +100,8 @@ FM3Property >> hasKey [
 ]
 
 { #category : #testing }
-FM3Property >> hasMmClass [
-	^class notNil
-]
-
-{ #category : #'accessing-query' }
 FM3Property >> hasOpposite [
 	^opposite notNil
-]
-
-{ #category : #testing }
-FM3Property >> hasOwner [
-	^ self hasMmClass
 ]
 
 { #category : #accessing }
@@ -126,7 +116,7 @@ FM3Property >> implementingSelector [
 	^ implementingSelector
 ]
 
-{ #category : #private }
+{ #category : #accessing }
 FM3Property >> implementingSelector: compiledMethod [ 
 	implementingSelector := compiledMethod
 ]
@@ -153,7 +143,7 @@ FM3Property >> isChildrenProperty [
 	^ self hasOpposite and: [ self opposite isContainer ]
 ]
 
-{ #category : #'accessing-query' }
+{ #category : #testing }
 FM3Property >> isComposite [
 	<MSEProperty: #composite type: #Boolean>
 	<derived>
@@ -189,7 +179,7 @@ FM3Property >> isExtension [
 
 { #category : #testing }
 FM3Property >> isFM3Property [
-	^true
+	^ true
 ]
 
 { #category : #accessing }
@@ -271,7 +261,7 @@ FM3Property >> opposite: new [
 
 { #category : #accessing }
 FM3Property >> owner [
-	^self mmClass
+	^ self mmClass
 ]
 
 { #category : #accessing }
@@ -290,16 +280,7 @@ FM3Property >> package: newPackage [
 					to: newPackage
 ]
 
-{ #category : #accessing }
-FM3Property >> packageName [
-	"always returns the package name to which this property belongs, be it an extension or a core element"
-
-	^ self isExtension
-		ifFalse: [ self owner packageName ]
-		ifTrue: [ package name ]
-]
-
-{ #category : #'accessing-meta' }
+{ #category : #private }
 FM3Property >> setOn: element rawValue: array [
 	"This is the internal logic to set the value inside the object.
 	By default build and call a mutator for the implementing selector"
@@ -307,7 +288,7 @@ FM3Property >> setOn: element rawValue: array [
 	element perform: self implementingSelector asMutator with: array
 ]
 
-{ #category : #'accessing-meta' }
+{ #category : #private }
 FM3Property >> setOn: element values: array [
 	"This method is meant to be used by the repository"
 

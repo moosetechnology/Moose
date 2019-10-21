@@ -121,24 +121,15 @@ FM3Class >> allSuperclassesDo: aBlock [
 ]
 
 { #category : #'accessing-query' }
-FM3Class >> at: aString [
-	aString isSymbol ifTrue: [ self error ].
-	^ self propertyNamed: aString
-]
-
-{ #category : #'accessing-query' }
 FM3Class >> complexProperties [
 	^ self properties reject: [ :attr | attr type isPrimitive ]
 ]
 
 { #category : #'instance creation' }
 FM3Class >> createInstance [
-	^ implementingClass ifNil: [ FMRuntimeElement new description: self ] ifNotNil: [ implementingClass new ]
-]
-
-{ #category : #private }
-FM3Class >> defaultClassName [
-	^ (self package name , self name) asSymbol
+	^ implementingClass
+		ifNil: [ FMRuntimeElement new description: self ]
+		ifNotNil: [ implementingClass new ]
 ]
 
 { #category : #ui }
@@ -197,11 +188,6 @@ FM3Class >> gtInspectorRelationsIn: composite [
 ]
 
 { #category : #testing }
-FM3Class >> hasOwner [
-	^ self hasPackage
-]
-
-{ #category : #testing }
 FM3Class >> hasPackage [
 	^ package isNotNil
 ]
@@ -211,12 +197,12 @@ FM3Class >> hasSuperclass [
 	^ superclass isNotNil
 ]
 
-{ #category : #private }
+{ #category : #accessing }
 FM3Class >> implementingClass [
 	^ implementingClass
 ]
 
-{ #category : #private }
+{ #category : #accessing }
 FM3Class >> implementingClass: smalltalkClass [
 	implementingClass := smalltalkClass
 ]
@@ -258,14 +244,14 @@ FM3Class >> isFM3Class [
 	^ true
 ]
 
-{ #category : #'accessing-query' }
+{ #category : #testing }
 FM3Class >> isPrimitive [
 	<MSEProperty: #primitive type: #Boolean>
 	<derived>
 	^ false
 ]
 
-{ #category : #'accessing-query' }
+{ #category : #testing }
 FM3Class >> isRoot [
 	<MSEProperty: #root type: #Boolean>
 	<derived>
@@ -303,11 +289,6 @@ FM3Class >> package: newPackage [
 		update: #classes
 		from: self package
 		to: newPackage
-]
-
-{ #category : #accessing }
-FM3Class >> packageName [
-	^ self package name
 ]
 
 { #category : #'accessing-query' }

@@ -41,14 +41,14 @@ FMLibraryExample >> testBookstore2 [
 	tower := FMTower new.
 	repo := tower metamodel.
 	tower metamodel importString: FMMSEParserTest sampleMetaMse.
-	package := repo at: 'LIB'.
+	package := repo packageNamed: 'LIB'.
 	self assert: package isFM3Package.
 	class := package classNamed: 'Book'.
 	self assert: class isFM3Class.	"The superclass of Book should be Object"
 	objectMetaDescription := class superclass.
 	self assert: objectMetaDescription notNil.
 	self assert: objectMetaDescription name equals: #Object.
-	attribute := class at: 'authors'.
+	attribute := class propertyNamed: 'authors'.
 	self assert: attribute isFM3Property.
 	self assert: attribute name equals: #authors.
 	self assert: attribute isMultivalued equals: true.
