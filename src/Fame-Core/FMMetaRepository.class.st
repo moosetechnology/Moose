@@ -54,15 +54,6 @@ FMMetaRepository >> concreteClasses [
 ]
 
 { #category : #accessing }
-FMMetaRepository >> createInstanceOf: aString [
-
-	| meta |
-	meta := self elementNamed: aString.
-	meta isFM3Class ifFalse: [ self error: aString, ' is not a class. Can not create an instance'].
-	^ meta createInstance
-]
-
-{ #category : #accessing }
 FMMetaRepository >> descriptionOf: smalltalkClass [ 
 	self flag: 'it should not return nil by default'.
 	^ classDict 
@@ -212,8 +203,7 @@ FMMetaRepository >> packageNamed: name ifAbsentPut: aBlock [
 
 { #category : #accessing }
 FMMetaRepository >> packages [
-
-	^self elements select: [ :each | each isFM3Package ]
+	^ self elements select: [ :each | each isFM3Package ]
 ]
 
 { #category : #private }
@@ -223,8 +213,7 @@ FMMetaRepository >> postAdd: element [
 
 { #category : #accessing }
 FMMetaRepository >> properties [
-
-	^self elements select: [ :each | each isFM3Property ]
+	^ self elements select: [ :each | each isFM3Property ]
 ]
 
 { #category : #private }
@@ -237,6 +226,5 @@ FMMetaRepository >> updateCache [
 { #category : #private }
 FMMetaRepository >> updateCacheWith: element [
 	element fullName ifNotNil: [ :fullName | nameDict at: fullName put: element ].
-
 	element isFM3Class ifTrue: [ element implementingClass ifNotNil: [ :class | classDict at: class put: element ] ]
 ]

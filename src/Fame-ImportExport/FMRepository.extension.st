@@ -41,8 +41,7 @@ FMRepository >> gtExportAction [
 FMRepository >> importStream: aReadStream [
 	(FMImporter repository: self)
 		stream: aReadStream;
-		run.
-	self updateCache
+		run
 ]
 
 { #category : #'*Fame-ImportExport' }

@@ -108,27 +108,6 @@ FMRepository >> containerOf: element [
 				ifNotNil: [ :property | self get: property element: element ] ]
 ]
 
-{ #category : #adding }
-FMRepository >> deepAdd: element [
-	elements add: element.
-	(self metaDescriptionOf: element) allComplexProperties
-		do: [ :attr |
-			(self get: attr element: element)
-				reject: [ :value | self includes: value ]
-				thenDo: [ :value | self deepAdd: value ] ].
-	self postAdd: element
-]
-
-{ #category : #removing }
-FMRepository >> deepRemove: element [
-	self remove: element.
-	(self metaDescriptionOf: element) allComplexProperties
-		do: [ :attr |
-			(self get: attr element: element)
-				select: [ :value | self includes: value ]
-				thenDo: [ :value | self deepRemove: value ] ]
-]
-
 { #category : #accessing }
 FMRepository >> elements [
 	^ elements asArray
@@ -160,8 +139,7 @@ FMRepository >> initialize: aMetamodel [
 
 { #category : #testing }
 FMRepository >> isEmpty [
-
-	^elements isEmpty
+	^ elements isEmpty
 ]
 
 { #category : #testing }

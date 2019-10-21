@@ -9,22 +9,13 @@ Class {
 	#category : #'Fame-SmalltalkBinding'
 }
 
-{ #category : #accessing }
-FMTower >> fameDescriptionByClass: smalltalkClass [ 
-	"Answer the Fame description which is to be returned when sending [smalltalkClass asFameDescription] within the scope of this tower. Lookup  is performed as an ordered choice of steps: first the meta-metamodel is queried, then the metamodel, and eventually the metamodel is asked to resolve the Fame description (which defaults to processing its pragmas).'"
-	^ self metaMetamodel 
-		descriptionOf: smalltalkClass
-		ifAbsent: 
-			[ self metamodel 
-				descriptionOf: smalltalkClass
-				ifAbsent: [ self error: 'Not found: fame-description of #{smalltalkClass}' ] ]
-]
-
-{ #category : #accessing }
-FMTower >> fameDescriptionFor: element [
-	^self fameDescriptionByClass: element class
-
-	
+{ #category : #'instance creation' }
+FMTower class >> fromMetamodel: aMetamodel [
+	^ self new
+		metaMetamodel: aMetamodel metamodel;
+		metamodel: aMetamodel;
+		model: (FMRepository with: aMetamodel);
+		yourself
 ]
 
 { #category : #initialization }

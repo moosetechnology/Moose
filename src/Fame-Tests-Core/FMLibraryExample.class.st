@@ -94,15 +94,6 @@ FMLibraryExample >> testCreateSCGLibrary [
 ]
 
 { #category : #examples }
-FMLibraryExample >> testGlobalMainTower [
-	| lib ttt |
-	lib := self testCreateSCGLibrary.
-	ttt := lib class reset mainLibrary.	"---- has global side-effect!"
-	ttt model add: lib.
-	self assert: (ttt metamodel elements includes: ttt model elements anyOne metaDescription)
-]
-
-{ #category : #examples }
 FMLibraryExample >> testMetaMetamodelIsaM3Repository [
 	| mm |
 	mm := self testPragmasAsMetamodel.
@@ -148,7 +139,7 @@ FMLibraryExample >> testMetamodelSmalltalkBinding [
 FMLibraryExample >> testPragmaProcessing [
 	| pp |
 	pp := FMPragmaProcessor new
-		queue: (Array with: LIBBook with: LIBLibrary with: LIBPerson);
+		queue: {LIBBook . LIBLibrary . LIBPerson};
 		run.
 	self denyEmpty: pp elements.
 	self denyEmpty: pp packages.

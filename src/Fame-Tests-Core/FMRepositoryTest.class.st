@@ -20,32 +20,6 @@ FMRepositoryTest >> testAdd [
 ]
 
 { #category : #running }
-FMRepositoryTest >> testDeepAdd [
-	t metamodel deepAdd: t metaMetamodel packages anyOne.	"= a root element."
-	self assert: t metamodel size equals: t metaMetamodel size
-]
-
-{ #category : #running }
-FMRepositoryTest >> testDeepAddLeaf [
-	t metamodel deepAdd: t metaMetamodel properties anyOne.	"= a leaf element."
-	self assert: t metamodel size equals: t metaMetamodel size
-]
-
-{ #category : #running }
-FMRepositoryTest >> testDeepRemove [
-	t metamodel addAll: t metaMetamodel elements.
-	t metamodel deepRemove: t metaMetamodel packages anyOne.
-	self assertEmpty: t metamodel
-]
-
-{ #category : #running }
-FMRepositoryTest >> testDeepRemoveLeaf [
-	t metamodel addAll: t metaMetamodel elements.
-	t metamodel deepRemove: t metaMetamodel properties anyOne.
-	self assertEmpty: t metamodel
-]
-
-{ #category : #running }
 FMRepositoryTest >> testRemove [
 	| element |
 	element := t metaMetamodel packages anyOne.
