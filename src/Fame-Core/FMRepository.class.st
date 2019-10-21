@@ -94,7 +94,7 @@ FMRepository >> cleanAdditionalProperties [
 { #category : #private }
 FMRepository >> coerceProperty: propertyOrName receiver: receiver [
 	propertyOrName isFM3Property ifTrue: [ ^ propertyOrName ].
-	propertyOrName isString ifTrue: [ ^ (self metaDescriptionOf: receiver) at: propertyOrName ].
+	propertyOrName isString ifTrue: [ ^ (self metaDescriptionOf: receiver) propertyNamed: propertyOrName ].
 	self error
 ]
 

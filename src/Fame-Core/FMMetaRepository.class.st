@@ -42,14 +42,6 @@ FMMetaRepository class >> reset [
 ]
 
 { #category : #accessing }
-FMMetaRepository >> at: aString [
-
-	^self packageNamed: aString
-	
-	
-]
-
-{ #category : #accessing }
 FMMetaRepository >> classes [
 	^ self elements select: [ :each | each isFM3Class ]
 ]

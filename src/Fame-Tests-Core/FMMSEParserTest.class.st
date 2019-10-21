@@ -755,7 +755,7 @@ FMMSEParserTest >> testFamixModel [
 	self assert: (names includes: 'FAMIX.BehaviouralEntity.outgoingAccesses').
 	self assert: (names includes: 'FAMIX.Inheritance').
 	self assert: (names includes: 'FAMIX.Parameter.parentBehaviouralEntity').	"... and tons more ... "
-	famixPackage := repo at: 'FAMIX'.
+	famixPackage := repo packageNamed: 'FAMIX'.
 	self assert: famixPackage isFM3Package.
 	accessClass := famixPackage classNamed: 'Access'.
 	self assert: accessClass isFM3Class.

@@ -38,7 +38,7 @@ Class {
 		'owner',
 		'opposite'
 	],
-	#category : #'Fame-SmalltalkBinding'
+	#category : #'Fame-Core'
 }
 
 { #category : #'instance creation' }

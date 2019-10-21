@@ -161,39 +161,39 @@ FMMetaRepositoryFilterTest >> testAnnotationTypes [
 	self assert: class isFM3Class.
 	self assert: class superclass equals: FM3Object instance.
 	self assert: class implementingClass equals: FM3Element.
-	self assert: (class at: 'name') isFM3Property.
-	self assert: (class at: 'name') name equals: #name.
-	self assert: (class at: 'name') mmClass equals: class.
-	self assert: (class at: 'name') owner equals: class.
-	self assert: (class at: 'name') type equals: FM3String instance.
-	self deny: (class at: 'name') isContainer.
-	self deny: (class at: 'name') isMultivalued.
-	self deny: (class at: 'name') isComposite.
-	self deny: (class at: 'name') hasOpposite.
+	self assert: (class propertyNamed: 'name') isFM3Property.
+	self assert: (class propertyNamed: 'name') name equals: #name.
+	self assert: (class propertyNamed: 'name') mmClass equals: class.
+	self assert: (class propertyNamed: 'name') owner equals: class.
+	self assert: (class propertyNamed: 'name') type equals: FM3String instance.
+	self deny: (class propertyNamed: 'name') isContainer.
+	self deny: (class propertyNamed: 'name') isMultivalued.
+	self deny: (class propertyNamed: 'name') isComposite.
+	self deny: (class propertyNamed: 'name') hasOpposite.
 	self assert: class owner equals: package.	"We now test properties"
-	class := package at: 'Property'.
+	class := package classNamed: 'Property'.
 	self assert: class isFM3Class.
-	self assert: class superclass equals: (package at: 'Element').
+	self assert: class superclass equals: (package classNamed: 'Element').
 	self assert: class implementingClass equals: FM3Property.
-	self assert: (class at: 'opposite') isFM3Property.
-	self assert: (class at: 'opposite') name equals: #opposite.
-	self assert: (class at: 'opposite') mmClass equals: class.
-	self assert: (class at: 'opposite') owner equals: class.
-	self assert: (class at: 'opposite') type equals: class.
-	self deny: (class at: 'opposite') isContainer.
-	self deny: (class at: 'opposite') isMultivalued.
-	self deny: (class at: 'opposite') isComposite.
-	self assert: (class at: 'opposite') hasOpposite.
-	self assert: (class at: 'opposite') opposite equals: (class at: 'opposite').	"We now test the container property of FM3's properties"
-	property := (package at: 'Property') at: 'class'.
+	self assert: (class propertyNamed: 'opposite') isFM3Property.
+	self assert: (class propertyNamed: 'opposite') name equals: #opposite.
+	self assert: (class propertyNamed: 'opposite') mmClass equals: class.
+	self assert: (class propertyNamed: 'opposite') owner equals: class.
+	self assert: (class propertyNamed: 'opposite') type equals: class.
+	self deny: (class propertyNamed: 'opposite') isContainer.
+	self deny: (class propertyNamed: 'opposite') isMultivalued.
+	self deny: (class propertyNamed: 'opposite') isComposite.
+	self assert: (class propertyNamed: 'opposite') hasOpposite.
+	self assert: (class propertyNamed: 'opposite') opposite equals: (class propertyNamed: 'opposite').	"We now test the container property of FM3's properties"
+	property := (package classNamed: 'Property') propertyNamed: 'class'.
 	self assert: property isContainer.
-	properties := (package at: 'Property') allProperties copyWithout: property.
+	properties := (package classNamed: 'Property') allProperties copyWithout: property.
 	self assert: (properties noneSatisfy: #isContainer).
-	properties := (package at: 'Package') allProperties.
+	properties := (package classNamed: 'Package') allProperties.
 	self assert: (properties noneSatisfy: #isContainer).
-	property := (package at: 'Class') at: 'package'.
+	property := (package classNamed: 'Class') propertyNamed: 'package'.
 	self assert: property isContainer.
-	properties := (package at: 'Class') allProperties copyWithout: property.
+	properties := (package classNamed: 'Class') allProperties copyWithout: property.
 	self assert: (properties noneSatisfy: #isContainer)
 ]
 
@@ -790,10 +790,10 @@ FMMetaRepositoryFilterTest >> testResolvingMultiArgs [
 	repo := or repository asMetarepository.
 	self denyEmpty: repo elements.
 	self assert: repo elements size equals: 4.
-	pack := repo at: 'MyPackage'.
-	ref2 := pack at: 'MyName2'.
-	ref4 := pack at: 'MyName4'.
-	ref5 := pack at: 'MyName5'.
+	pack := repo packageNamed: 'MyPackage'.
+	ref2 := pack classNamed: 'MyName2'.
+	ref4 := pack classNamed: 'MyName4'.
+	ref5 := pack classNamed: 'MyName5'.
 	self assert: pack notNil.
 	self assert: ref2 notNil.
 	self assert: ref4 notNil.

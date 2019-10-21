@@ -21,6 +21,11 @@ FM3Element class >> annotation [
 
 ]
 
+{ #category : #testing }
+FM3Element class >> isAbstract [
+	^ self = FM3Element
+]
+
 { #category : #'instance creation' }
 FM3Element class >> named: aString [
 	^ self new
@@ -33,14 +38,16 @@ FM3Element >> fullName [
 	<MSEProperty: #fullName type: #String>
 	<derived>
 	self name ifNil: [ ^ nil ].
-	self owner ifNil: [ ^ self name asString ].
-	self owner fullName ifNil: [ ^ nil ].
-	^ self owner fullName , '.' , self name
+
+	^ self owner
+		ifNil: [ self name ]
+		ifNotNil: [ :owner |
+			owner fullName ifNotNil: [ :fullName | fullName , '.' , self name ] ]
 ]
 
 { #category : #testing }
 FM3Element >> hasOwner [
-	^ self subclassResponsibility
+	^ self owner isNotNil
 ]
 
 { #category : #accessing }
@@ -58,11 +65,6 @@ FM3Element >> name: aString [
 FM3Element >> owner [
 	<MSEProperty: #owner type: #FM3Element>
 	<derived>
-	^ nil	"All packages are top-level (but dots are allowed in their name to fake nesting)"
-]
-
-{ #category : #accessing }
-FM3Element >> packageName [
 	^ self subclassResponsibility
 ]
 

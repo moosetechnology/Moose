@@ -14,7 +14,7 @@ FM3Object class >> defaultSuperclass [
 	^ nil
 ]
 
-{ #category : #'accessing-query' }
+{ #category : #testing }
 FM3Object >> isRoot [
 	^ true
 ]

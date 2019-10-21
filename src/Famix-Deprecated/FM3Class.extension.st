@@ -31,6 +31,12 @@ FM3Class >> allPrimitiveAttributes [
 ]
 
 { #category : #'*Famix-Deprecated' }
+FM3Class >> at: aString [
+	self deprecated: 'Use #propertyNamed: instead.' transformWith: '`@receiver at: `@arg' -> '`@receiver propertyNamed: `@arg'.
+	^ self propertyNamed: aString
+]
+
+{ #category : #'*Famix-Deprecated' }
 FM3Class >> attributeNamed: arg1 [ 
 	self deprecated: 'Use #propertyNamed: instead.' transformWith: '``@object attributeNamed: ``@arg1 ' -> '``@object propertyNamed: ``@arg1 '.
 	^ self propertyNamed: arg1 
