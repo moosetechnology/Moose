@@ -146,12 +146,12 @@ FMRepository >> isEmpty [
 
 { #category : #testing }
 FMRepository >> isMetaMetamodel [
-	^false
+	^ false
 ]
 
 { #category : #testing }
 FMRepository >> isMetamodel [
-	^false
+	^ false
 ]
 
 { #category : #'accessing-meta' }

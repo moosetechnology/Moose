@@ -22,3 +22,8 @@ FMMetaMetaRepository >> initialize [
 				buildFM3;
 				elements)
 ]
+
+{ #category : #testing }
+FMMetaMetaRepository >> isMetaMetamodel [
+	^ true
+]

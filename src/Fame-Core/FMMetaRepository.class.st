@@ -176,11 +176,6 @@ FMMetaRepository >> initialize [
 ]
 
 { #category : #testing }
-FMMetaRepository >> isMetaMetamodel [
-	^ self metamodel = self
-]
-
-{ #category : #testing }
 FMMetaRepository >> isMetamodel [
 	^ true
 ]
