@@ -21,9 +21,9 @@ FMTower class >> fromMetamodel: aMetamodel [
 { #category : #initialization }
 FMTower >> initialize [
 	super initialize.
-	metamodel := FMMetaRepository new.
-	metaMetamodel := metamodel metamodel.
-	model := FMRepository with: self metamodel
+	model := FMRepository new.
+	metamodel := model metamodel.
+	metaMetamodel := metamodel metamodel
 ]
 
 { #category : #accessing }

@@ -219,7 +219,7 @@ FMLibraryExample >> testSCGLibraryAsModel [
 	m := FMRepository with: mm.
 	m add: lib.
 	self assert: m metamodel equals: mm.
-	self assert: m elements notEmpty.	"----------------- KNOWN TO FAIL ----------------
+	self denyEmpty: m elements.	"----------------- KNOWN TO FAIL ----------------
 	should implement a #complete method
 	self assert: (m elements size = --------------"
 	1 + 1 + 3 + 5.	"library"	"librarian"	"books"	"authors"

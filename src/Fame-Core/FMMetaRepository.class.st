@@ -30,13 +30,6 @@ Class {
 	#category : #'Fame-Core-Repositories'
 }
 
-{ #category : #'instance creation' }
-FMMetaRepository class >> new [
-	^ self basicNew
-		initialize;
-		yourself
-]
-
 { #category : #accessing }
 FMMetaRepository >> classes [
 	^ self elements select: [ :each | each isFM3Class ]
@@ -179,7 +172,6 @@ FMMetaRepository >> includes: element [
 { #category : #initialization }
 FMMetaRepository >> initialize [
 	super initialize.
-	metamodel := self defaultMetamodel.
 	self updateCache
 ]
 

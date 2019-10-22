@@ -23,8 +23,8 @@ FMMetaRepositoryFilter >> classes: anObject [
 { #category : #initialization }
 FMMetaRepositoryFilter >> initialize [
 	super initialize.
-	newMetaRepository := FMMetaRepository basicNew.
-	newMetaRepository initialize: newMetaRepository
+	newMetaRepository := FMMetaRepository new.
+	newMetaRepository metamodel: newMetaRepository
 ]
 
 { #category : #accessing }

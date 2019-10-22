@@ -39,15 +39,11 @@ Class {
 }
 
 { #category : #'instance creation' }
-FMRepository class >> new [
-
-	self shouldNotImplement
-]
-
-{ #category : #'instance creation' }
 FMRepository class >> with: aMetamodel [
-
-	^self basicNew initialize: aMetamodel
+	self flag: #todo.	"Maybe it should be named #withMetamodel?"
+	^ self new
+		metamodel: aMetamodel;
+		yourself
 ]
 
 { #category : #adding }
@@ -115,6 +111,11 @@ FMRepository >> containerOf: element [
 				ifNotNil: [ :property | self get: property element: element ] ]
 ]
 
+{ #category : #initialization }
+FMRepository >> defaultMetamodel [
+	^ FMMetaRepository new
+]
+
 { #category : #accessing }
 FMRepository >> elements [
 	^ elements asArray
@@ -138,12 +139,6 @@ FMRepository >> initialize [
 	elements := IdentitySet new
 ]
 
-{ #category : #'initialize-release' }
-FMRepository >> initialize: aMetamodel [
-	self initialize.
-	metamodel := aMetamodel
-]
-
 { #category : #testing }
 FMRepository >> isEmpty [
 	^ elements isEmpty
@@ -161,15 +156,19 @@ FMRepository >> isMetamodel [
 
 { #category : #'accessing-meta' }
 FMRepository >> metaDescriptionOf: element [ 
-
-	^(element isKindOf: FMRuntimeElement) 
+	^ (element isKindOf: FMRuntimeElement) 
 		ifTrue: [ element description ]
-		ifFalse: [ metamodel descriptionOf: element class ]
+		ifFalse: [ self metamodel descriptionOf: element class ]
 ]
 
 { #category : #accessing }
 FMRepository >> metamodel [
-	^metamodel
+	^ metamodel ifNil: [ metamodel := self defaultMetamodel ]
+]
+
+{ #category : #accessing }
+FMRepository >> metamodel: aMetamodel [
+	metamodel := aMetamodel
 ]
 
 { #category : #private }
