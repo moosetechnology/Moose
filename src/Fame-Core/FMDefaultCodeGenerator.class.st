@@ -1,7 +1,7 @@
 Class {
 	#name : #FMDefaultCodeGenerator,
 	#superclass : #FMAbstractCodeGenerator,
-	#category : #'Fame-SmalltalkBinding'
+	#category : #'Fame-Core-Generators'
 }
 
 { #category : #compiling }

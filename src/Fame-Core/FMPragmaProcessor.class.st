@@ -49,7 +49,7 @@ Class {
 	#classVars : [
 		'ShouldValidateMetaModel'
 	],
-	#category : #'Fame-SmalltalkBinding'
+	#category : #'Fame-Core'
 }
 
 { #category : #'class initialization' }
@@ -85,32 +85,10 @@ FMPragmaProcessor class >> shouldValidateMetaModel: anObject [
 	ShouldValidateMetaModel := anObject
 ]
 
-{ #category : #processing }
-FMPragmaProcessor class >> towerFrom: aCollectionOfClasses [
-	^ self new
-		queue: aCollectionOfClasses;
-		run;
-		asTower
-]
-
 { #category : #converting }
 FMPragmaProcessor >> asMetamodel [
-	^ (FMMetaRepository with: FMMetaRepository fm3)
+	^ FMMetaRepository new
 		addAll: elements;
-		yourself
-]
-
-{ #category : #converting }
-FMPragmaProcessor >> asTower [
-	"This creation code might eventually end up in Tower or Repository,
-	just let it grow, it will find its proper place over time."
-
-	| mm |
-	mm := self asMetamodel.
-	^ FMTower new
-		metaMetamodel: mm metamodel;
-		metamodel: mm;
-		model: (FMRepository with: mm);
 		yourself
 ]
 

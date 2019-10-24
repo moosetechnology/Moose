@@ -1,6 +1,6 @@
 Extension { #name : #Behavior }
 
-{ #category : #'*Fame-SmalltalkBinding' }
+{ #category : #'*Fame-Core' }
 Behavior >> allGeneratedTraits [
 	^ self traitComposition allTraits select: #isMetamodelEntity
 ]

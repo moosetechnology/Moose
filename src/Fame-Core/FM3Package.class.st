@@ -8,7 +8,7 @@ Class {
 		'classes',
 		'extensions'
 	],
-	#category : #'Fame-Core'
+	#category : #'Fame-Core-Model'
 }
 
 { #category : #meta }
@@ -16,12 +16,6 @@ FM3Package class >> annotation [
 	<MSEClass: #Package super: #FM3Element>
 	<package: #FM3>
 
-]
-
-{ #category : #examples }
-FM3Package class >> gtExampleBasic [
-	<gtExample>
-	^ self new
 ]
 
 { #category : #'accessing-query' }

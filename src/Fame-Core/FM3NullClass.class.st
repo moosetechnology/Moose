@@ -7,5 +7,5 @@ A null description is a description that can be used by metamodels in case an en
 Class {
 	#name : #FM3NullClass,
 	#superclass : #FM3Class,
-	#category : #'Fame-Core'
+	#category : #'Fame-Core-Model'
 }

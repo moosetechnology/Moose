@@ -27,9 +27,3 @@ FamixMetamodelGenerator class >> metamodel [
 	self deprecated: 'Use the model to access the metamodel instead.' transformWith: '`@receiver metamodel' -> (self mooseModelName , ' metamodel').
 	^ self withMooseModelDo: [ :m | m metamodel ]
 ]
-
-{ #category : #'*Famix-Deprecated' }
-FamixMetamodelGenerator class >> newRepository [
-	self deprecated: 'Ask the MooseModel directly.' transformWith: '`@receiver newRepository' -> (self prefix , 'Model newRepository').
-	^ self withMooseModelDo: [ :m | m newRepository ]
-]

@@ -1,40 +1,40 @@
 Class {
-	#name : #FM3MetaDescriptionTest,
+	#name : #FM3ClassTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'tower'
+		'metaMetamodel'
 	],
 	#category : #'Fame-Tests-Core'
 }
 
 { #category : #running }
-FM3MetaDescriptionTest >> setUp [
+FM3ClassTest >> setUp [
 	super setUp.
-	tower := FMTower new
+	metaMetamodel := FMMetaMetaRepository new
 ]
 
 { #category : #running }
-FM3MetaDescriptionTest >> testAllAttributes [
+FM3ClassTest >> testAllAttributes [
 	| elem |
-	elem := tower metaMetamodel elementNamed: 'FM3.Class'.
+	elem := metaMetamodel elementNamed: 'FM3.Class'.
 	self assert: elem allProperties isNotNil.
 	self assert: elem allProperties isCollection.
 	self denyEmpty: elem allProperties
 ]
 
 { #category : #running }
-FM3MetaDescriptionTest >> testAllAttributesMoreThanAttributes [
+FM3ClassTest >> testAllAttributesMoreThanAttributes [
 	| elem |
-	elem := tower metaMetamodel elementNamed: 'FM3.Class'.
+	elem := metaMetamodel elementNamed: 'FM3.Class'.
 	self assert: elem allProperties size > elem properties size.
 	self assert: elem allProperties size equals: elem properties size + elem superclass properties size.
 	self assert: (elem allProperties includesAll: elem properties)
 ]
 
 { #category : #running }
-FM3MetaDescriptionTest >> testAllAttributesNotHot [
+FM3ClassTest >> testAllAttributesNotHot [
 	| class prop size |
-	class := tower metaMetamodel elementNamed: 'FM3.Class'.
+	class := metaMetamodel elementNamed: 'FM3.Class'.
 	prop := class allProperties anyOne.
 	size := class allProperties size.
 	self assert: class allProperties size equals: size.
@@ -45,9 +45,9 @@ FM3MetaDescriptionTest >> testAllAttributesNotHot [
 ]
 
 { #category : #running }
-FM3MetaDescriptionTest >> testAllSuperclasses [
+FM3ClassTest >> testAllSuperclasses [
 	| elem |
-	elem := tower metaMetamodel elementNamed: 'FM3.Class'.
+	elem := metaMetamodel elementNamed: 'FM3.Class'.
 	self assert: elem allSuperclasses isNotNil.
 	self assert: elem allSuperclasses isCollection.
 	self assert: elem allSuperclasses size equals: 2.
@@ -74,36 +74,36 @@ FM3MetaDescriptionTest >> testAllSuperclasses [
 ]
 
 { #category : #running }
-FM3MetaDescriptionTest >> testAttributeNamedString [
+FM3ClassTest >> testAttributeNamedString [
 	| elem |
-	elem := tower metaMetamodel elementNamed: 'FM3.Class'.
+	elem := metaMetamodel elementNamed: 'FM3.Class'.
 	self assert: (elem propertyNamed: 'owner') isNotNil.
 	self assert: (elem propertyNamed: 'abstract') isNotNil.
 	self assert: (elem propertyNamed: 'zork') isNil
 ]
 
 { #category : #running }
-FM3MetaDescriptionTest >> testAttributeNamedSymbol [
+FM3ClassTest >> testAttributeNamedSymbol [
 	| elem |
-	elem := tower metaMetamodel elementNamed: 'FM3.Class'.
+	elem := metaMetamodel elementNamed: 'FM3.Class'.
 	self assert: (elem propertyNamed: #owner) isNotNil.
 	self assert: (elem propertyNamed: #abstract) isNotNil.
 	self assert: (elem propertyNamed: #zork) isNil
 ]
 
 { #category : #running }
-FM3MetaDescriptionTest >> testAttributes [
+FM3ClassTest >> testAttributes [
 	| elem |
-	elem := tower metaMetamodel elementNamed: 'FM3.Class'.
+	elem := metaMetamodel elementNamed: 'FM3.Class'.
 	self assert: elem properties isNotNil.
 	self assert: elem properties isCollection.
 	self denyEmpty: elem properties
 ]
 
 { #category : #running }
-FM3MetaDescriptionTest >> testAttributesIsHot [
+FM3ClassTest >> testAttributesIsHot [
 	| class prop size |
-	class := tower metaMetamodel elementNamed: 'FM3.Class'.
+	class := metaMetamodel elementNamed: 'FM3.Class'.
 	prop := class properties anyOne.
 	size := class properties size.
 	self assert: class properties size equals: size.
@@ -114,53 +114,53 @@ FM3MetaDescriptionTest >> testAttributesIsHot [
 ]
 
 { #category : #running }
-FM3MetaDescriptionTest >> testHasOwner [
+FM3ClassTest >> testHasOwner [
 	self deny: FM3Object instance hasOwner.
 	self deny: FM3String instance hasOwner.
 	self deny: FM3Number instance hasOwner.
 	self deny: FM3Boolean instance hasOwner.
-	self assert: tower metaMetamodel classes anyOne hasOwner.
-	self assert: tower metaMetamodel properties anyOne hasOwner.
-	self deny: tower metaMetamodel packages anyOne hasOwner
+	self assert: metaMetamodel classes anyOne hasOwner.
+	self assert: metaMetamodel properties anyOne hasOwner.
+	self deny: metaMetamodel packages anyOne hasOwner
 ]
 
 { #category : #running }
-FM3MetaDescriptionTest >> testHasPackage [
+FM3ClassTest >> testHasPackage [
 	self deny: FM3Object instance hasPackage.
 	self deny: FM3String instance hasPackage.
 	self deny: FM3Number instance hasPackage.
 	self deny: FM3Boolean instance hasPackage.
-	self assert: tower metaMetamodel classes anyOne hasPackage
+	self assert: metaMetamodel classes anyOne hasPackage
 ]
 
 { #category : #running }
-FM3MetaDescriptionTest >> testHasSuperclass [
+FM3ClassTest >> testHasSuperclass [
 	self deny: FM3Object instance hasSuperclass.
 	self assert: FM3String instance hasSuperclass.
 	self assert: FM3Number instance hasSuperclass.
 	self assert: FM3Boolean instance hasSuperclass.
-	self assert: tower metaMetamodel classes anyOne hasSuperclass
+	self assert: metaMetamodel classes anyOne hasSuperclass
 ]
 
 { #category : #running }
-FM3MetaDescriptionTest >> testIsPrimitive [
+FM3ClassTest >> testIsPrimitive [
 	self deny: FM3Object instance isPrimitive.
 	self assert: FM3String instance isPrimitive.
 	self assert: FM3Number instance isPrimitive.
 	self assert: FM3Boolean instance isPrimitive.
-	self deny: tower metaMetamodel classes anyOne isPrimitive
+	self deny: metaMetamodel classes anyOne isPrimitive
 ]
 
 { #category : #running }
-FM3MetaDescriptionTest >> testIsRoot [
+FM3ClassTest >> testIsRoot [
 	self assert: FM3Object instance isRoot.
 	self deny: FM3String instance isRoot.
 	self deny: FM3Number instance isRoot.
 	self deny: FM3Boolean instance isRoot.
-	self deny: tower metaMetamodel classes anyOne isRoot
+	self deny: metaMetamodel classes anyOne isRoot
 ]
 
 { #category : #running }
-FM3MetaDescriptionTest >> testSubclasses [
-	self denyEmpty: (tower metaMetamodel elementNamed: 'FM3.Element') subclasses
+FM3ClassTest >> testSubclasses [
+	self denyEmpty: (metaMetamodel elementNamed: 'FM3.Element') subclasses
 ]

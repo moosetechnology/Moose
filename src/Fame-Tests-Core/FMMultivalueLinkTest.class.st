@@ -51,7 +51,7 @@ FMMultivalueLinkTest >> testClassProperty [
 { #category : #running }
 FMMultivalueLinkTest >> testFM3Classes [
 	| fm3 |
-	fm3 := FMMetaRepository fm3.
+	fm3 := FMMetaMetaRepository new.
 	self assert: (fm3 descriptionOf: FM3Element) notNil.
 	self assert: (fm3 descriptionOf: FM3Property) notNil.
 	self assert: (fm3 descriptionOf: FM3Package) notNil.

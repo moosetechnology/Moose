@@ -15,15 +15,13 @@ FMCodeGenerationTest >> testClassNamePrefix [
 
 { #category : #running }
 FMCodeGenerationTest >> testComplexGeneration [
-	"self run: #testComplexGeneration"
-
-	| tower generator |
-	tower := FMTower new.
-	tower metamodel importString: FMMSEParserTest famix30mse.
+	| metamodel generator |
+	metamodel := FMMetaRepository new.
+	metamodel importString: FMMSEParserTest famix30mse.
 
 	"We generate Smalltalk classes from the classes contained in the repository"
 	generator := FMDefaultCodeGenerator new.
-	generator visit: tower metamodel.
+	generator visit: metamodel.
 	self assert: generator model changes changesSize > 0.
 	generator previewChangesIfShiftPressed
 ]
@@ -48,43 +46,43 @@ FMCodeGenerationTest >> testDefaultClass [
 
 { #category : #running }
 FMCodeGenerationTest >> testFM3Generation [
-	| tower generator |
-	tower := FMTower new.
-	generator := FMDefaultCodeGenerator new.
-	generator visit: tower metaMetamodel.
-	generator previewChangesIfShiftPressed
+	self
+		shouldnt: [ FMDefaultCodeGenerator new
+				visit: FMMetaMetaRepository new;
+				previewChangesIfShiftPressed ]
+		raise: Error
 ]
 
 { #category : #running }
 FMCodeGenerationTest >> testLIBGeneration [
-	| tower generator |
-	tower := FMTower new.
-	tower metamodel importString: FMMSEParserTest sampleMetaMse.
+	| metamodel generator |
+	metamodel := FMMetaRepository new.
+	metamodel importString: FMMSEParserTest sampleMetaMse.
 	generator := FMDefaultCodeGenerator new.
 	generator defaultSuperclass: LIBRoot.
-	generator visit: tower metamodel.
+	generator visit: metamodel.
 	generator previewChangesIfShiftPressed
 ]
 
 { #category : #running }
 FMCodeGenerationTest >> testRPGGeneration [
-	| tower generator |
-	tower := FMTower new.
-	tower metamodel importString: FMDungeonExample metamodelString.
+	| metamodel generator |
+	metamodel := FMMetaRepository new.
+	metamodel importString: FMDungeonExample metamodelString.
 	generator := FMDefaultCodeGenerator new.
 	generator defaultCategory: 'Fame-Example'.
-	generator visit: tower metamodel.
+	generator visit: metamodel.
 	generator previewChangesIfShiftPressed
 ]
 
 { #category : #running }
 FMCodeGenerationTest >> testSimpleGeneration [
-	| tower gen |
-	tower := FMTower new.
-	tower metamodel importString: FMMSEParserTest sampleMetaMse.
+	| metamodel gen |
+	metamodel := FMMetaRepository new.
+	metamodel importString: FMMSEParserTest sampleMetaMse.
 	gen := FMDefaultCodeGenerator new.
 	gen classNamePrefix: 'Zork'.	"random prefix Zork"
-	gen visit: tower metamodel.
+	gen visit: metamodel.
 	gen previewChangesIfShiftPressed.
 	self assert: gen model changes changesSize > 0.
 	self assert: (gen model changes changes collect: #changeClassName) asSet size equals: 3.

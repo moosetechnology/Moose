@@ -21,7 +21,7 @@ Class {
 		'traits',
 		'properties'
 	],
-	#category : #'Fame-Core'
+	#category : #'Fame-Core-Model'
 }
 
 { #category : #meta }
@@ -34,12 +34,6 @@ FM3Class class >> annotation [
 { #category : #accessing }
 FM3Class class >> defaultSuperclass [
 	^ FM3Object instance
-]
-
-{ #category : #examples }
-FM3Class class >> gtExampleBasic [
-	<gtExample>
-	^ self new
 ]
 
 { #category : #examples }

@@ -35,19 +35,15 @@ Class {
 		'metamodel',
 		'additionalProperties'
 	],
-	#category : #'Fame-Core'
+	#category : #'Fame-Core-Repositories'
 }
 
 { #category : #'instance creation' }
-FMRepository class >> new [
-
-	self shouldNotImplement
-]
-
-{ #category : #'instance creation' }
 FMRepository class >> with: aMetamodel [
-
-	^self basicNew initialize: aMetamodel
+	self flag: #todo.	"Maybe it should be named #withMetamodel?"
+	^ self new
+		metamodel: aMetamodel;
+		yourself
 ]
 
 { #category : #adding }
@@ -86,6 +82,13 @@ FMRepository >> additionalProperty: aSymbol for: entityClass put: anObject [
 	^ (self additionalPropertiesFor: entityClass) at: aSymbol put: anObject
 ]
 
+{ #category : #'as yet unclassified' }
+FMRepository >> asMetarepository [
+	^ FMMetaRepository new
+		addAll: elements;
+		yourself
+]
+
 { #category : #accessing }
 FMRepository >> cleanAdditionalProperties [
 	additionalProperties := IdentityDictionary new
@@ -106,6 +109,11 @@ FMRepository >> containerOf: element [
 			meta ownerProperty
 				ifNil: [ nil ]
 				ifNotNil: [ :property | self get: property element: element ] ]
+]
+
+{ #category : #initialization }
+FMRepository >> defaultMetamodel [
+	^ FMMetaRepository new
 ]
 
 { #category : #accessing }
@@ -131,12 +139,6 @@ FMRepository >> initialize [
 	elements := IdentitySet new
 ]
 
-{ #category : #'initialize-release' }
-FMRepository >> initialize: aMetamodel [
-	self initialize.
-	metamodel := aMetamodel
-]
-
 { #category : #testing }
 FMRepository >> isEmpty [
 	^ elements isEmpty
@@ -144,25 +146,39 @@ FMRepository >> isEmpty [
 
 { #category : #testing }
 FMRepository >> isMetaMetamodel [
-	^false
+	^ false
 ]
 
 { #category : #testing }
 FMRepository >> isMetamodel [
-	^false
+	^ false
+]
+
+{ #category : #testing }
+FMRepository >> isNotEmpty [
+	^ self isEmpty not
 ]
 
 { #category : #'accessing-meta' }
 FMRepository >> metaDescriptionOf: element [ 
-
-	^(element isKindOf: FMRuntimeElement) 
+	^ (element isKindOf: FMRuntimeElement) 
 		ifTrue: [ element description ]
-		ifFalse: [ metamodel descriptionOf: element class ]
+		ifFalse: [ self metamodel descriptionOf: element class ]
+]
+
+{ #category : #'as yet unclassified' }
+FMRepository >> metaMetaModel [
+	^ self metamodel metamodel
 ]
 
 { #category : #accessing }
 FMRepository >> metamodel [
-	^metamodel
+	^ metamodel ifNil: [ metamodel := self defaultMetamodel ]
+]
+
+{ #category : #accessing }
+FMRepository >> metamodel: aMetamodel [
+	metamodel := aMetamodel
 ]
 
 { #category : #private }

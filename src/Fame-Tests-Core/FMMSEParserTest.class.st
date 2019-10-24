@@ -468,13 +468,10 @@ FMMSEParserTest class >> sampleMse [
 
 { #category : #running }
 FMMSEParserTest >> setUp [
-
 	super setUp.
 	p := FMMSEParser new.
 	r := FMDebugClient new.
-	p client: r.
-
-	
+	p client: r
 ]
 
 { #category : #running }
@@ -697,10 +694,10 @@ FMMSEParserTest >> testEmptyExportString [
 
 { #category : #running }
 FMMSEParserTest >> testFamixModel [
-	| repo names famixPackage accessClass accessorProperty behaviouralEntity outgoingAccesses |
-	repo := FMTower new metamodel.
-	repo importString: self class famix30mse.
-	names := repo elements collect: [ :each | each fullName ].
+	| metamodel names famixPackage accessClass accessorProperty behaviouralEntity outgoingAccesses |
+	metamodel := FMMetaRepository new.
+	metamodel importString: self class famix30mse.
+	names := metamodel elements collect: [ :each | each fullName ].
 	self assert: names size equals: 70.
 	self assert: (names includes: 'FAMIX.Access').
 	self assert: (names includes: 'FAMIX.Method').
@@ -755,7 +752,7 @@ FMMSEParserTest >> testFamixModel [
 	self assert: (names includes: 'FAMIX.BehaviouralEntity.outgoingAccesses').
 	self assert: (names includes: 'FAMIX.Inheritance').
 	self assert: (names includes: 'FAMIX.Parameter.parentBehaviouralEntity').	"... and tons more ... "
-	famixPackage := repo packageNamed: 'FAMIX'.
+	famixPackage := metamodel packageNamed: 'FAMIX'.
 	self assert: famixPackage isFM3Package.
 	accessClass := famixPackage classNamed: 'Access'.
 	self assert: accessClass isFM3Class.

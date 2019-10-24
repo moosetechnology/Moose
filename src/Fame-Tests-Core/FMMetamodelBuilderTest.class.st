@@ -9,12 +9,9 @@ Class {
 
 { #category : #running }
 FMMetamodelBuilderTest >> setUp [
-
-	| t |
 	super setUp.
-	t := FMTower new.
-	t metamodel document: FMDungeonExample dungeonScript. 
-	metamodel := t metamodel.
+	metamodel := FMMetaRepository new.
+	metamodel document: FMDungeonExample dungeonScript
 ]
 
 { #category : #running }

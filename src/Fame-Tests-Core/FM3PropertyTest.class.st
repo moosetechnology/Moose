@@ -1,0 +1,36 @@
+Class {
+	#name : #FM3PropertyTest,
+	#superclass : #TestCase,
+	#instVars : [
+		'metaMetamodel'
+	],
+	#category : #'Fame-Tests-Core'
+}
+
+{ #category : #running }
+FM3PropertyTest >> setUp [
+	super setUp.
+	metaMetamodel := FMMetaMetaRepository new
+]
+
+{ #category : #running }
+FM3PropertyTest >> testClassHasOpposite [
+	| e |
+	e := metaMetamodel elementNamed: 'FM3.Property.class'.
+	self assert: e hasOpposite.
+	self assert: e opposite fullName equals: 'FM3.Class.properties'
+]
+
+{ #category : #running }
+FM3PropertyTest >> testIsCompositeDerived [
+	| e |
+	e := metaMetamodel elementNamed: 'FM3.Property.composite'.
+	self assert: e isDerived
+]
+
+{ #category : #running }
+FM3PropertyTest >> testTypeHasOpposite [
+	| e |
+	e := metaMetamodel elementNamed: 'FM3.Property.type'.
+	self deny: e hasOpposite
+]

@@ -1,9 +1,6 @@
 Class {
 	#name : #FMImporterTest,
 	#superclass : #TestCase,
-	#instVars : [
-		'tower'
-	],
 	#category : #'Fame-Tests-Core'
 }
 
@@ -23,15 +20,9 @@ FMImporterTest class >> simpleCompositeMetamodelExtension [
 ]
 
 { #category : #running }
-FMImporterTest >> setUp [
-	super setUp.
-	tower := FMTower new
-]
-
-{ #category : #running }
 FMImporterTest >> testBookMetamodel [
 	| or m repo |
-	or := FMImporter repository: (FMMetaRepository with: FMMetaRepository fm3).
+	or := FMImporter repository: FMMetaRepository new.
 	m := FMModelBuilder new client: or.
 	m document: [ m new: 'FM3.Class' with: [ m a: #name of: 'Book' ] ].
 	repo := or repository asMetarepository.
@@ -42,47 +33,56 @@ FMImporterTest >> testBookMetamodel [
 
 { #category : #running }
 FMImporterTest >> testElementNamed [
-	self testImportHeinekenMetamodel.
-	self shouldnt: [ tower metamodel elementNamed: 'HNK.Beer' ] raise: Error.
-	self assert: (tower metamodel elementNamed: 'HNK.Beer') isFM3Class.
-	self assert: (tower metamodel elementNamed: 'HNK.Beer') fullName equals: 'HNK.Beer'
+	| metamodel |
+	metamodel := FMMetaRepository new.
+	metamodel importString: FMHeinekenExample metamodelMSE.
+	self shouldnt: [ metamodel elementNamed: 'HNK.Beer' ] raise: Error.
+	self assert: (metamodel elementNamed: 'HNK.Beer') isFM3Class.
+	self assert: (metamodel elementNamed: 'HNK.Beer') fullName equals: 'HNK.Beer'
 ]
 
 { #category : #running }
 FMImporterTest >> testImportHeinekenMetamodel [
-	tower metamodel importString: FMHeinekenExample metamodelMSE.
-	self assert: tower metamodel packages size equals: 1.
-	self assert: tower metamodel classes size equals: 3.
-	self assert: tower metamodel properties size equals: 12
+	| metamodel |
+	metamodel := FMMetaRepository new.
+	metamodel importString: FMHeinekenExample metamodelMSE.
+	self assert: metamodel packages size equals: 1.
+	self assert: metamodel classes size equals: 3.
+	self assert: metamodel properties size equals: 12
 ]
 
 { #category : #running }
 FMImporterTest >> testImportHeinekenModel [
-	self testImportHeinekenMetamodel.
-	tower model importString: FMHeinekenExample modelMSE.
-	self assert: tower model elements size equals: 4
+	| model |
+	model := FMRepository new.
+	model metamodel importString: FMHeinekenExample metamodelMSE.
+	model importString: FMHeinekenExample modelMSE.
+	self assert: model elements size equals: 4
 ]
 
 { #category : #running }
 FMImporterTest >> testOrderOfElements [
-	| elem values |
-	self testSimpleExtensions.
-	tower model
+	| model elem values metamodel |
+	model := FMRepository new.
+	metamodel := model metamodel.
+	metamodel importString: self class simpleCompositeMetamodel.
+	metamodel importString: self class simpleCompositeMetamodelExtension.
+	model
 		importString:
 			'((EG.Container (children (ref: 1) (ref: 4) (ref: 2) (ref: 3)))
 		(EG.Leaf (id: 1) (name ''A'')) (EG.Leaf (id: 2) (name ''B'')) (EG.Leaf (id: 3) (name ''C'')) (EG.Leaf (id: 4) (name ''D'')))'.
-	self assert: tower model elements size equals: 5.
-	self assert: (tower model selectKindOf: (tower metamodel elementNamed: 'EG.Container')) size equals: 1.
-	self assert: (tower model selectKindOf: (tower metamodel elementNamed: 'EG.Leaf')) size equals: 4.
-	elem := (tower model selectKindOf: (tower metamodel elementNamed: 'EG.Container')) anyOne.
-	values := elem at: (tower metamodel elementNamed: 'EG.Container.children').
+	self assert: model elements size equals: 5.
+	self assert: (model selectKindOf: (metamodel elementNamed: 'EG.Container')) size equals: 1.
+	self assert: (model selectKindOf: (metamodel elementNamed: 'EG.Leaf')) size equals: 4.
+	elem := (model selectKindOf: (metamodel elementNamed: 'EG.Container')) anyOne.
+	values := elem at: (metamodel elementNamed: 'EG.Container.children').
 	self assert: values size equals: 4
 ]
 
 { #category : #running }
 FMImporterTest >> testResolving [
 	| or m |
-	or := FMImporter repository: (FMMetaRepository with: FMMetaRepository fm3).
+	or := FMImporter repository: FMMetaRepository new.
 	m := FMModelBuilder new client: or.
 	m document: [ m new: 'FM3.Class' with: [ m a: #name of: 'MyName' ] ].
 	self denyEmpty: or repository elements.
@@ -93,7 +93,7 @@ FMImporterTest >> testResolving [
 { #category : #running }
 FMImporterTest >> testResolvingId [
 	| or m |
-	or := FMImporter repository: (FMMetaRepository with: FMMetaRepository fm3).
+	or := FMImporter repository: FMMetaRepository new.
 	m := FMModelBuilder new client: or.
 	m
 		document: [ m
@@ -112,7 +112,7 @@ FMImporterTest >> testResolvingId [
 { #category : #running }
 FMImporterTest >> testResolvingMultiArgs [
 	| or pack ref2 ref4 ref5 repo |
-	or := FMImporter repository: (FMMetaRepository with: FMMetaRepository fm3).
+	or := FMImporter repository: FMMetaRepository new.
 	or beginDocument.
 	or beginElement: 'FM3.Package'.
 	or serial: 3.
@@ -169,21 +169,25 @@ FMImporterTest >> testResolvingMultiArgs [
 
 { #category : #running }
 FMImporterTest >> testSimpleExtensions [
-	self testSimpleMetamodel.
-	tower metamodel importString: self class simpleCompositeMetamodelExtension.
-	self assert: tower metamodel packages size equals: 2.
-	self assert: tower metamodel classes size equals: 2.
-	self assert: tower metamodel properties size equals: 3.
-	self assert: (tower metamodel elementNamed: 'EG.Leaf.name') package equals: (tower metamodel elementNamed: 'MORE')
+	| metamodel |
+	metamodel := FMMetaRepository new.
+	metamodel importString: self class simpleCompositeMetamodel.
+	metamodel importString: self class simpleCompositeMetamodelExtension.
+	self assert: metamodel packages size equals: 2.
+	self assert: metamodel classes size equals: 2.
+	self assert: metamodel properties size equals: 3.
+	self assert: (metamodel elementNamed: 'EG.Leaf.name') package equals: (metamodel elementNamed: 'MORE')
 ]
 
 { #category : #running }
 FMImporterTest >> testSimpleMetamodel [
-	tower metamodel importString: self class simpleCompositeMetamodel.
-	self assert: tower metamodel packages size equals: 1.
-	self assert: tower metamodel classes size equals: 2.
-	self assert: tower metamodel properties size equals: 2.
-	self assert: (tower metamodel elementNamed: 'EG.Container.children') hasOpposite.
-	self assert: (tower metamodel elementNamed: 'EG.Leaf.parent') hasOpposite.
-	self assert: (tower metamodel elementNamed: 'EG.Container.children') opposite equals: (tower metamodel elementNamed: 'EG.Leaf.parent')
+	| metamodel |
+	metamodel := FMMetaRepository new.
+	metamodel importString: self class simpleCompositeMetamodel.
+	self assert: metamodel packages size equals: 1.
+	self assert: metamodel classes size equals: 2.
+	self assert: metamodel properties size equals: 2.
+	self assert: (metamodel elementNamed: 'EG.Container.children') hasOpposite.
+	self assert: (metamodel elementNamed: 'EG.Leaf.parent') hasOpposite.
+	self assert: (metamodel elementNamed: 'EG.Container.children') opposite equals: (metamodel elementNamed: 'EG.Leaf.parent')
 ]

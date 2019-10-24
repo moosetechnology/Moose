@@ -7,7 +7,7 @@ Class {
 { #category : #running }
 FMPragmaProcessorTest >> testAnnotationTypes [
 	| repo package class property properties |
-	repo := FMMetaRepository fm3.
+	repo := FMMetaMetaRepository new.
 	package := repo elementNamed: 'FM3'.
 	class := repo elementNamed: 'FM3.Element'.
 	self assert: class isFM3Class.
