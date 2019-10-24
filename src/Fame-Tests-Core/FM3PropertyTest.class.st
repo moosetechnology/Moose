@@ -1,16 +1,17 @@
 Class {
 	#name : #FM3PropertyTest,
-	#superclass : #TestCase,
-	#instVars : [
-		'metaMetamodel'
-	],
+	#superclass : #FM3ElementTest,
 	#category : #'Fame-Tests-Core'
 }
 
-{ #category : #running }
-FM3PropertyTest >> setUp [
-	super setUp.
-	metaMetamodel := FMMetaMetaModel new
+{ #category : #helpers }
+FM3PropertyTest >> actualClass [
+	^ FM3Property
+]
+
+{ #category : #helpers }
+FM3PropertyTest >> addUnamedOwnerTo: anElement [
+	anElement mmClass: FM3Class new
 ]
 
 { #category : #running }

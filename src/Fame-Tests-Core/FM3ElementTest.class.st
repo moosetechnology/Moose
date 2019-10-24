@@ -2,52 +2,72 @@ Class {
 	#name : #FM3ElementTest,
 	#superclass : #TestCase,
 	#instVars : [
+		'element',
 		'metaMetamodel'
 	],
 	#category : #'Fame-Tests-Core'
 }
 
+{ #category : #testing }
+FM3ElementTest class >> isAbstract [
+	^ self = FM3ElementTest
+]
+
+{ #category : #testing }
+FM3ElementTest class >> shouldInheritSelectors [
+	^ true
+]
+
+{ #category : #helpers }
+FM3ElementTest >> actualClass [
+	^ self subclassResponsibility
+]
+
+{ #category : #helpers }
+FM3ElementTest >> addUnamedOwnerTo: anElement [
+	self subclassResponsibility
+]
+
 { #category : #running }
 FM3ElementTest >> setUp [
 	super setUp.
+	element := self actualClass new.
 	metaMetamodel := FMMetaMetaModel new
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FM3ElementTest >> testFullNameIsString [
-	self assert: (metaMetamodel elementNamed: 'FM3') fullName isString.
-	self assert: (metaMetamodel elementNamed: 'FM3.Property') fullName isString.
-	self assert: (metaMetamodel elementNamed: 'FM3.Property.opposite') fullName isString
+	element name: 'Test'.
+	self assert: element fullName isString
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FM3ElementTest >> testFullNameOfNonameIsNil [
-	| noname |
-	noname := FM3Package new.
-	self shouldnt: [ noname fullName ] raise: Error.
-	self assert: noname fullName isNil
+	self shouldnt: [ element fullName ] raise: Error.
+	self assert: element fullName isNil
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FM3ElementTest >> testFullNameOfNonameOwnerIsNil [
-	| noname child |
-	noname := FM3Package new.
-	child := FM3Class named: 'child'.
-	child package: noname.
-	self shouldnt: [ child fullName ] raise: Error.
-	self assert: child fullName isNil
+	self addUnamedOwnerTo: element.
+	self shouldnt: [ element fullName ] raise: Error.
+	self assert: element fullName isNil
 ]
 
-{ #category : #running }
+{ #category : #tests }
+FM3ElementTest >> testHasOwner [
+	self deny: element hasOwner.
+	self addUnamedOwnerTo: element.
+	self assert: element hasOwner
+]
+
+{ #category : #tests }
 FM3ElementTest >> testNameIsSymbol [
-	self assert: (metaMetamodel elementNamed: 'FM3') name isSymbol.
-	self assert: (metaMetamodel elementNamed: 'FM3.Property') name isSymbol.
-	self assert: (metaMetamodel elementNamed: 'FM3.Property.opposite') name isSymbol
+	element name: 'Test'.
+	self assert: element name isSymbol
 ]
 
-{ #category : #running }
-FM3ElementTest >> testPrintString [
-	| noname |
-	noname := FM3Element new.
-	self shouldnt: [ noname printString ] raise: Error
+{ #category : #tests }
+FM3ElementTest >> testPrintOn [
+	self shouldnt: [ element printString ] raise: Error
 ]
