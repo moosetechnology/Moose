@@ -4,21 +4,52 @@ Class {
 	#category : #'Fame-Tests-Core'
 }
 
-{ #category : #examples }
-FMLibraryExample >> testAddingM2ElementToM2RepositoryMustFail [
-	| mm lib |
-	mm := self testPragmasAsMetamodel.
-	lib := self testCreateSCGLibrary.
-	self should: [ mm add: lib ] raise: Error.
-	self should: [ mm add: lib librarian ] raise: Error.
-	self should: [ mm add: lib books anyOne ] raise: Error
+{ #category : #tests }
+FMLibraryExample >> library [
+	| a1 a4 a2 a5 a3 |
+	a1 := LIBPerson named: 'Erich Gamma'.
+	a2 := LIBPerson named: 'Richard Helm'.
+	a3 := LIBPerson named: 'Ralph Johnson'.
+	a4 := LIBPerson named: 'John Vlissides'.
+	a5 := LIBPerson named: 'Kent Beck'.
+	^ LIBLibrary
+		librarian: (LIBPerson named: 'Adrian Kuhn')
+		books:
+			{(LIBBook title: 'Design Patterns' authors: {a1 . a2 . a3 . a4}) . (LIBBook title: 'Eclipse: Principles, Patterns, and Plug-Ins' authors: {a1 . a5}).
+			(LIBBook title: 'Smalltalk Best Practice Patterns' authors: {a5})}
 ]
 
-{ #category : #running }
+{ #category : #helpers }
+FMLibraryExample >> libraryMetaModel [
+	^ FMPragmaProcessor metamodelFrom: {LIBLibrary . LIBBook . LIBPerson}
+]
+
+{ #category : #tests }
+FMLibraryExample >> libraryModel [
+	| library |
+	library := self library.
+	^ (FMModel withMetamodel: self libraryMetaModel)
+		add: library;
+		addAll: library books;
+		add: library librarian;
+		addAll: (library books flatCollectAsSet: #authors);
+		yourself
+]
+
+{ #category : #tests }
+FMLibraryExample >> testAddingM2ElementToM2RepositoryMustFail [
+	| metamodel lib |
+	metamodel := self libraryMetaModel.
+	lib := self library.
+	self should: [ metamodel add: lib ] raise: Error.
+	self should: [ metamodel add: lib librarian ] raise: Error.
+	self should: [ metamodel add: lib books anyOne ] raise: Error
+]
+
+{ #category : #tests }
 FMLibraryExample >> testBookstore [
 	| metamodel names |
-	metamodel := FMMetaModel new.
-	metamodel importString: FMMSEParserTest sampleMetaMse.
+	metamodel := FMMetaModel fromString: FMMSEParserTest sampleMetaMse.
 	names := metamodel elements collect: [ :each | each fullName ].
 	self assert: (names includes: 'LIB').
 	self assert: (names includes: 'LIB.Person').
@@ -35,11 +66,10 @@ FMLibraryExample >> testBookstore [
 	self assert: names size equals: 10
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMLibraryExample >> testBookstore2 [
 	| package class attribute objectMetaDescription metamodel |
-	metamodel := FMMetaModel new.
-	metamodel importString: FMMSEParserTest sampleMetaMse.
+	metamodel := FMMetaModel fromString: FMMSEParserTest sampleMetaMse.
 	package := metamodel packageNamed: 'LIB'.
 	self assert: package isFM3Package.
 	class := package classNamed: 'Book'.
@@ -59,59 +89,47 @@ FMLibraryExample >> testBookstore2 [
 	self assert: attribute opposite notNil
 ]
 
-{ #category : #examples }
-FMLibraryExample >> testCreateSCGLibrary [
-	| lib a1 a2 a3 a4 a5 |
-	a1 := LIBPerson named: 'Erich Gamma'.
-	a2 := LIBPerson named: 'Richard Helm'.
-	a3 := LIBPerson named: 'Ralph Johnson'.
-	a4 := LIBPerson named: 'John Vlissides'.
-	a5 := LIBPerson named: 'Kent Beck'.
-	lib := LIBLibrary new
-		librarian: (LIBPerson named: 'Adrian Kuhn');
-		books:
-			{(LIBBook new
-				title: 'Design Patterns';
-				authors: {a1 . a2 . a3 . a4}) . (LIBBook new
-				title: 'Eclipse: Principles, Patterns, and Plug-Ins';
-				authors: {a1 . a5}) . (LIBBook new
-				title: 'Smalltalk Best Practice Patterns';
-				authors: {a5})}.
-	self assert: lib books size equals: 3.
-	^ lib
+{ #category : #tests }
+FMLibraryExample >> testLibrary [
+	self assert: self library books size equals: 3
 ]
 
-{ #category : #examples }
+{ #category : #tests }
+FMLibraryExample >> testLibraryModel [
+	self assert: self libraryModel elements size equals: 10	 "1 + 1 + 3 + 5 library librarian books authors"
+]
+
+{ #category : #tests }
 FMLibraryExample >> testMetaMetamodelIsaM3Repository [
-	| mm |
-	mm := self testPragmasAsMetamodel.
-	self deny: mm metamodel equals: mm.
-	self assert: mm metaMetaModel equals: mm metamodel
+	| metamodel |
+	metamodel := self libraryMetaModel.
+	self deny: metamodel metamodel equals: metamodel.
+	self assert: metamodel metaMetaModel equals: metamodel metamodel
 ]
 
-{ #category : #examples }
+{ #category : #tests }
 FMLibraryExample >> testMetamodelSmalltalkBinding [
-	| mm b p lib |
-	mm := self testPragmasAsMetamodel.
-	self assert: (mm elements anyOne isKindOf: FM3Element).
-	self assert: mm packages anyOne isFM3Package.
-	self assert: mm classes anyOne isFM3Class.
-	self assert: mm properties anyOne isFM3Property.
-	b := mm elementNamed: 'LIB.Book'.
+	| metamodel b p lib |
+	metamodel := self libraryMetaModel.
+	self assert: (metamodel elements anyOne isKindOf: FM3Element).
+	self assert: metamodel packages anyOne isFM3Package.
+	self assert: metamodel classes anyOne isFM3Class.
+	self assert: metamodel properties anyOne isFM3Property.
+	b := metamodel elementNamed: 'LIB.Book'.
 	self assert: b notNil.
 	self assert: b isFM3Class.
 	self assert: b name equals: #Book.
 	self assert: b package name equals: #LIB.
 	self assert: b properties size equals: 2.
 	self assert: b implementingClass equals: LIBBook.
-	p := mm elementNamed: 'LIB.Person'.
+	p := metamodel elementNamed: 'LIB.Person'.
 	self assert: p notNil.
 	self assert: p isFM3Class.
 	self assert: p name equals: #Person.
 	self assert: p package name equals: #LIB.
 	self assert: p properties size equals: 2.
 	self assert: p implementingClass equals: LIBPerson.
-	lib := mm elementNamed: 'LIB.Library'.
+	lib := metamodel elementNamed: 'LIB.Library'.
 	self assert: lib notNil.
 	self assert: lib isFM3Class.
 	self assert: lib name equals: #Library.
@@ -120,29 +138,28 @@ FMLibraryExample >> testMetamodelSmalltalkBinding [
 	self assert: lib implementingClass equals: LIBLibrary.
 	self assert: b package equals: lib package.
 	self assert: p package equals: lib package.
-	^ mm
+	^ metamodel
 ]
 
-{ #category : #examples }
+{ #category : #tests }
 FMLibraryExample >> testPragmaProcessing [
-	| pp |
-	pp := FMPragmaProcessor new
+	| pragmaProcessor |
+	pragmaProcessor := FMPragmaProcessor new
 		queue: {LIBBook . LIBLibrary . LIBPerson};
 		run.
-	self denyEmpty: pp elements.
-	self denyEmpty: pp packages.
-	self assert: pp packages size equals: 1.
-	self assert: pp packages anyOne name equals: #LIB.
-	self denyEmpty: pp classes.
-	self assert: pp classes size equals: 3.
-	self denyEmpty: pp properties.
-	^ pp
+	self denyEmpty: pragmaProcessor elements.
+	self denyEmpty: pragmaProcessor packages.
+	self assert: pragmaProcessor packages size equals: 1.
+	self assert: pragmaProcessor packages anyOne name equals: #LIB.
+	self denyEmpty: pragmaProcessor classes.
+	self assert: pragmaProcessor classes size equals: 3.
+	self denyEmpty: pragmaProcessor properties
 ]
 
-{ #category : #examples }
+{ #category : #tests }
 FMLibraryExample >> testPragmasAsMetamodel [
 	| metamodel |
-	metamodel := self testPragmaProcessing asMetamodel.
+	metamodel := self libraryMetaModel.
 	self assert: metamodel class equals: FMMetaModel.
 	self denyEmpty: metamodel elements.
 	self denyEmpty: metamodel packages.
@@ -151,48 +168,26 @@ FMLibraryExample >> testPragmasAsMetamodel [
 	self denyEmpty: metamodel classes.
 	self assert: metamodel classes size equals: 3.
 	self assert: (metamodel elementNamed: 'LIB.Book.authors') hasOpposite.
-	self assert: (metamodel elementNamed: 'LIB.Book.authors') opposite equals: (metamodel elementNamed: 'LIB.Person.books').
-	^ metamodel
+	self assert: (metamodel elementNamed: 'LIB.Book.authors') opposite equals: (metamodel elementNamed: 'LIB.Person.books')
 ]
 
-{ #category : #examples }
+{ #category : #tests }
 FMLibraryExample >> testPrintMetamodel [
-	| metamodel string |
-	metamodel := self testPragmasAsMetamodel.
-	string := metamodel exportString.
 	self
 		assert:
-			(string
+			(self libraryMetaModel exportString
 				beginsWith:
 					'(
 	(FM3.Package (id: 1)
 		(name ''LIB'')')
 ]
 
-{ #category : #examples }
+{ #category : #tests }
 FMLibraryExample >> testPrintModel [
-	| model string |
-	model := self testSCGLibraryAsModel.
-	string := model exportString.
 	self
 		assert:
-			(string
+			(self libraryModel exportString
 				beginsWith:
 					'(
-	(LIB.Library (id:')
-]
-
-{ #category : #examples }
-FMLibraryExample >> testSCGLibraryAsModel [
-	| model metamodel lib |
-	metamodel := self testPragmasAsMetamodel.
-	lib := self testCreateSCGLibrary.
-	model := FMModel withMetamodel: metamodel.
-	model add: lib.
-	self assert: model metamodel equals: metamodel.
-	self denyEmpty: model elements.	"----------------- KNOWN TO FAIL ----------------
-	should implement a #complete method
-	self assert: (m elements size = --------------"
-	1 + 1 + 3 + 5.	"library"	"librarian"	"books"	"authors"
-	^ model
+	(LIB.')
 ]

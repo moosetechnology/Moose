@@ -23,6 +23,13 @@ FMModel >> exportString [
 ]
 
 { #category : #'*Fame-ImportExport' }
+FMModel class >> fromString: aString [
+	^ self new
+		importString: aString;
+		yourself
+]
+
+{ #category : #'*Fame-ImportExport' }
 FMModel >> gtExportAction [
 	<gtInspectorAction>
 	^ GLMGenericAction new

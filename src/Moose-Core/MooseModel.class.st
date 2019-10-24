@@ -136,7 +136,7 @@ MooseModel class >> importFrom: aStream withMetamodel: aMetamodel filteredBy: an
 
 	"famixElementNames := anImportingContext fullNamesOfEntitiesToBeExtracted ."
 
-	model := FMModel with: aMetamodel.
+	model := FMModel withMetamodel: aMetamodel.
 	importer := MSEImporter new.
 	importer repository: model.
 	importer stream: aStream.
@@ -149,7 +149,7 @@ MooseModel class >> importFrom: aStream withMetamodel: aMetamodel filteredBy: an
 { #category : #'import-export' }
 MooseModel class >> importFrom: aStream withMetamodel: aMetamodel translationDictionary: translationDict [
 	| model importer |
-	model := FMModel with: aMetamodel.
+	model := FMModel withMetamodel: aMetamodel.
 	importer := MSEImporter new.
 	importer repository: model.
 	importer stream: aStream.

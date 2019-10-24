@@ -6,10 +6,10 @@ Class {
 
 { #category : #running }
 FMPragmaProcessorTest >> testAnnotationTypes [
-	| repo package class property properties |
-	repo := FMMetaMetaModel new.
-	package := repo elementNamed: 'FM3'.
-	class := repo elementNamed: 'FM3.Element'.
+	| metaMetaModel package class property properties |
+	metaMetaModel := FMMetaMetaModel new.
+	package := metaMetaModel elementNamed: 'FM3'.
+	class := package classNamed: 'Element'.
 	self assert: class isFM3Class.
 	self assert: class superclass equals: FM3Object instance.
 	self assert: class implementingClass equals: FM3Element.
