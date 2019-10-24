@@ -25,13 +25,8 @@ FMImporterFilter >> model [
 ]
 
 { #category : #accessing }
-FMImporterFilter >> repository [
-	^ self parserClient repository
-]
-
-{ #category : #accessing }
-FMImporterFilter >> repository: aRepository [
-	^ self parserClient repository: aRepository
+FMImporterFilter >> model: aModel [
+	^ self parserClient model: aModel
 ]
 
 { #category : #running }

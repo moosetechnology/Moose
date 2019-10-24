@@ -62,6 +62,11 @@ FMRuntimeElement >> initialize [
 ]
 
 { #category : #accessing }
+FMRuntimeElement >> metaDescriptionIn: aMetamodel [
+	^ self description
+]
+
+{ #category : #accessing }
 FMRuntimeElement >> mmGetProperty: aFM3Property [
 	^ self at: aFM3Property name
 ]

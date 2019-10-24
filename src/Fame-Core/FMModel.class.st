@@ -87,13 +87,6 @@ FMModel >> additionalProperty: aSymbol for: entityClass put: anObject [
 	^ (self additionalPropertiesFor: entityClass) at: aSymbol put: anObject
 ]
 
-{ #category : #'as yet unclassified' }
-FMModel >> asMetarepository [
-	^ FMMetaModel new
-		addAll: elements;
-		yourself
-]
-
 { #category : #accessing }
 FMModel >> cleanAdditionalProperties [
 	additionalProperties := IdentityDictionary new
@@ -165,10 +158,8 @@ FMModel >> isNotEmpty [
 ]
 
 { #category : #'accessing-meta' }
-FMModel >> metaDescriptionOf: element [ 
-	^ (element isKindOf: FMRuntimeElement) 
-		ifTrue: [ element description ]
-		ifFalse: [ self metamodel descriptionOf: element class ]
+FMModel >> metaDescriptionOf: element [
+	^ element metaDescriptionIn: self metamodel
 ]
 
 { #category : #'as yet unclassified' }

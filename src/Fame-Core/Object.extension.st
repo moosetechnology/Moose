@@ -21,6 +21,13 @@ Object >> isMetamodelEntity [
 ]
 
 { #category : #'*Fame-Core' }
+Object >> metaDescriptionIn: aMetamodel [
+	"I return the metadescription corresponding to myself from the metamodel given as parameter."
+
+	^ aMetamodel descriptionOf: self class
+]
+
+{ #category : #'*Fame-Core' }
 Object >> metamodel [
 
 	^ self class metamodel

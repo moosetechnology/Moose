@@ -39,7 +39,7 @@ FMModel >> gtExportAction [
 
 { #category : #'*Fame-ImportExport' }
 FMModel >> importStream: aReadStream [
-	(FMImporter repository: self)
+	(FMImporter model: self)
 		stream: aReadStream;
 		run
 ]

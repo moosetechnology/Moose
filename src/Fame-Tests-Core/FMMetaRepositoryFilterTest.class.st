@@ -27,25 +27,24 @@ FMMetaRepositoryFilterTest >> buildRPG [
 
 { #category : #running }
 FMMetaRepositoryFilterTest >> setUp [
-
 	super setUp.
 	eqModel := self buildEQ.
 	libModel := self buildLIB.
-	rpgModel := self buildRPG.
+	rpgModel := self buildRPG
 ]
 
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testAnnotationTypes [
-	| repo package class property properties visitor repoFM3 |
-	repoFM3 := FMMetaMetaModel new.
+	| metaModel package class property properties visitor metaMetaModel |
+	metaMetaModel := FMMetaMetaModel new.
 	visitor := FMMetaRepositoryFilter new
-		metaRepository: repoFM3;
-		classes: repoFM3 classes.
+		metaRepository: metaMetaModel;
+		classes: metaMetaModel classes.
 	visitor run.
-	repo := visitor newMetaRepository.
+	metaModel := visitor newMetaRepository.
 
-	package := repo elementNamed: 'FM3'.
-	class := repo elementNamed: 'FM3.Element'.
+	package := metaModel elementNamed: 'FM3'.
+	class := metaModel elementNamed: 'FM3.Element'.
 	self assert: class isFM3Class.
 	self assert: class superclass equals: FM3Object instance.
 	self assert: class implementingClass equals: FM3Element.
@@ -85,77 +84,58 @@ FMMetaRepositoryFilterTest >> testAnnotationTypes [
 	self assert: (properties noneSatisfy: #isContainer)
 ]
 
-{ #category : #'tests-metarepository' }
-FMMetaRepositoryFilterTest >> testBookMetamodel [
-	| or m repo fm3 visitor repoFM3 |
-	repoFM3 := FMMetaMetaModel new.
-	visitor := FMMetaRepositoryFilter new
-		metaRepository: repoFM3;
-		classes: repoFM3 classes.
-	visitor run.
-	fm3 := visitor newMetaRepository.
-
-	or := FMImporter repository: (FMMetaModel withMetamodel: fm3).
-	m := FMModelBuilder new client: or.
-	m document: [ m new: 'FM3.Class' with: [ m a: #name of: 'Book' ] ].
-	repo := or repository asMetarepository.
-	self denyEmpty: repo elements.
-	self assert: repo elements size equals: 1.
-	self assert: repo elements anyOne name equals: #Book
-]
-
 { #category : #tests }
 FMMetaRepositoryFilterTest >> testClassWithoutPackage [
-	| aClassWithoutPackage repo visitor |
+	| aClassWithoutPackage metaModel visitor |
 	aClassWithoutPackage := FM3Class named: 'AClass'.
-	repo := FMMetaModel new.
-	repo add: aClassWithoutPackage.
+	metaModel := FMMetaModel new.
+	metaModel add: aClassWithoutPackage.
 
 	visitor := FMMetaRepositoryFilter new
-		metaRepository: repo;
+		metaRepository: metaModel;
 		classes: {aClassWithoutPackage}.
 	self shouldnt: [ visitor run ] raise: Error
 ]
 
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testExportAsMSE [
-	| repo visitor repoFM3 printer |
-	repoFM3 := FMMetaMetaModel new.
+	| metaModel visitor metaMetaModel printer |
+	metaMetaModel := FMMetaMetaModel new.
 	visitor := FMMetaRepositoryFilter new
-		metaRepository: repoFM3;
-		classes: repoFM3 classes.
+		metaRepository: metaMetaModel;
+		classes: metaMetaModel classes.
 	visitor run.
-	repo := visitor newMetaRepository.
+	metaModel := visitor newMetaRepository.
 
 	printer := FMMSEPrinter new onString.
-	repo accept: printer.
+	metaModel accept: printer.
 	self assert: printer stream contents isString.
 	self assert: printer stream contents first equals: $(
 ]
 
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testExportAsXML [
-	| repo visitor repoFM3 printer |
-	repoFM3 := FMMetaMetaModel new.
+	| metaModel visitor metaMetaModel printer |
+	metaMetaModel := FMMetaMetaModel new.
 	visitor := FMMetaRepositoryFilter new
-		metaRepository: repoFM3;
-		classes: repoFM3 classes.
+		metaRepository: metaMetaModel;
+		classes: metaMetaModel classes.
 	visitor run.
-	repo := visitor newMetaRepository.
+	metaModel := visitor newMetaRepository.
 
 	printer := FMXMLPrinter new onString.
-	repo accept: printer.
+	metaModel accept: printer.
 	self assert: printer stream contents isString.
 	self assert: printer stream contents first equals: $<
 ]
 
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testFM3 [
-	| fm3 repoFM3 visitor |
-	repoFM3 := FMMetaMetaModel new.
+	| fm3 metaMetaModel visitor |
+	metaMetaModel := FMMetaMetaModel new.
 	visitor := FMMetaRepositoryFilter new
-		metaRepository: repoFM3;
-		classes: repoFM3 classes.
+		metaRepository: metaMetaModel;
+		classes: metaMetaModel classes.
 	visitor run.
 	fm3 := visitor newMetaRepository.
 	self assert: fm3 notNil.
@@ -164,11 +144,11 @@ FMMetaRepositoryFilterTest >> testFM3 [
 
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testFM3Classes [
-	| fm3 visitor repoFM3 |
-	repoFM3 := FMMetaMetaModel new.
+	| fm3 visitor metaMetaModel |
+	metaMetaModel := FMMetaMetaModel new.
 	visitor := FMMetaRepositoryFilter new
-		metaRepository: repoFM3;
-		classes: repoFM3 classes.
+		metaRepository: metaMetaModel;
+		classes: metaMetaModel classes.
 	visitor run.
 	fm3 := visitor newMetaRepository.
 	self assert: (fm3 descriptionOf: FM3Element) notNil.
@@ -184,19 +164,19 @@ FMMetaRepositoryFilterTest >> testFM3Classes [
 FMMetaRepositoryFilterTest >> testFM3IsComplete [
 	"More information about FM3 may be found on http://smallwiki.unibe.ch/fame/fm3/"
 
-	| repo names visitor repoFM3 |
-	repoFM3 := FMMetaMetaModel new.
+	| metaModel names visitor metaMetaModel |
+	metaMetaModel := FMMetaMetaModel new.
 	visitor := FMMetaRepositoryFilter new
-		metaRepository: repoFM3;
-		classes: repoFM3 classes.
+		metaRepository: metaMetaModel;
+		classes: metaMetaModel classes.
 	visitor run.
-	repo := visitor newMetaRepository.
-	self assert: repo notNil.	"boot strapping FM3 does internally run the pragma processor"
-	names := repo elements collect: [ :each | each fullName ].	"The package"
+	metaModel := visitor newMetaRepository.
+	self assert: metaModel notNil.	"boot strapping FM3 does internally run the pragma processor"
+	names := metaModel elements collect: [ :each | each fullName ].	"The package"
 	self assert: (names includes: 'FM3').
 	self
-		assert: (repo elements detect: [ :el | el fullName = 'FM3.Class.package' ]) opposite
-		equals: (repo elements detect: [ :el | el fullName = 'FM3.Package.classes' ]).	"The superclass of everything"	"name, fullName, and owner are the 3 properties that define an element"
+		assert: (metaModel elements detect: [ :el | el fullName = 'FM3.Class.package' ]) opposite
+		equals: (metaModel elements detect: [ :el | el fullName = 'FM3.Package.classes' ]).	"The superclass of everything"	"name, fullName, and owner are the 3 properties that define an element"
 	self assert: (names includes: 'FM3.Element').
 	self assert: (names includes: 'FM3.Element.name').
 	self assert: (names includes: 'FM3.Element.fullName').
@@ -229,15 +209,15 @@ FMMetaRepositoryFilterTest >> testFM3IsComplete [
 FMMetaRepositoryFilterTest >> testFM3NewVersion [
 	"The current implementation of FameSystem does not provide a scope for its repository"
 
-	| repo names visitor repoFM3 |
-	repoFM3 := FMMetaMetaModel new.
+	| metaModel names visitor metaMetaModel |
+	metaMetaModel := FMMetaMetaModel new.
 	visitor := FMMetaRepositoryFilter new
-		metaRepository: repoFM3;
-		classes: repoFM3 classes.
+		metaRepository: metaMetaModel;
+		classes: metaMetaModel classes.
 	visitor run.
-	repo := visitor newMetaRepository.
+	metaModel := visitor newMetaRepository.
 
-	names := repo elements collect: [ :each | each fullName ].	"The package"
+	names := metaModel elements collect: [ :each | each fullName ].	"The package"
 	self assert: (names includes: 'FM3').	"The superclass of everything"	"name, fullName, and owner are the 3 properties that define an element"
 	self assert: (names includes: 'FM3.Element').
 	self assert: (names includes: 'FM3.Element.name').
@@ -269,35 +249,54 @@ FMMetaRepositoryFilterTest >> testFM3NewVersion [
 ]
 
 { #category : #'tests-metarepository' }
-FMMetaRepositoryFilterTest >> testImporter [
-	| fm3 repoFM3 visitor string repo |
-	repoFM3 := FMMetaMetaModel new.
+FMMetaRepositoryFilterTest >> testImportBook [
+	| importer builder model fm3 visitor metaMetaModel |
+	metaMetaModel := FMMetaMetaModel new.
 	visitor := FMMetaRepositoryFilter new
-		metaRepository: repoFM3;
-		classes: repoFM3 classes.
+		metaRepository: metaMetaModel;
+		classes: metaMetaModel classes.
+	visitor run.
+	fm3 := visitor newMetaRepository.
+
+	importer := FMImporter model: (FMMetaModel withMetamodel: fm3).
+	builder := FMModelBuilder client: importer.
+	builder document: [ builder new: 'FM3.Class' with: [ builder a: #name of: 'Book' ] ].
+	model := importer model.
+	self denyEmpty: model elements.
+	self assert: model elements size equals: 1.
+	self assert: model elements anyOne name equals: #Book
+]
+
+{ #category : #'tests-metarepository' }
+FMMetaRepositoryFilterTest >> testImporter [
+	| fm3 metaMetaModel visitor string metaModel |
+	metaMetaModel := FMMetaMetaModel new.
+	visitor := FMMetaRepositoryFilter new
+		metaRepository: metaMetaModel;
+		classes: metaMetaModel classes.
 	visitor run.
 	fm3 := visitor newMetaRepository.
 
 	string := '((FM3.Package (id: 1) (name ''Office'')))'.
-	repo := FMMetaModel withMetamodel: fm3.
-	(FMImporter repository: repo)
+	metaModel := FMMetaModel withMetamodel: fm3.
+	(FMImporter model: metaModel)
 		fromString: string;
 		run.
-	self assert: repo elements size equals: 1.
-	self assert: repo elements anyOne name equals: #Office.
-	self assert: repo elements anyOne fullName equals: 'Office'
+	self assert: metaModel elements size equals: 1.
+	self assert: metaModel elements anyOne name equals: #Office.
+	self assert: metaModel elements anyOne fullName equals: 'Office'
 ]
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeEQCompound [
-	| repo names visitor |
+	| metaModel names visitor |
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: eqModel;
 		classes: {(eqModel descriptionOf: EQCompound)}.
 	visitor run.
 
-	repo := visitor newMetaRepository.
-	names := repo elements collect: #fullName.
+	metaModel := visitor newMetaRepository.
+	names := metaModel elements collect: #fullName.
 	self assert: (names includes: 'EQ').
 	self assert: (names includes: 'EQ.Expression').
 	self assert: (names includes: 'EQ.Operator').
@@ -312,14 +311,14 @@ FMMetaRepositoryFilterTest >> testIncludeEQCompound [
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeEQEquation [
-	| repo names visitor |
+	| metaModel names visitor |
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: eqModel;
 		classes: {(eqModel descriptionOf: EQEquation)}.
 	visitor run.
 
-	repo := visitor newMetaRepository.
-	names := repo elements collect: #fullName.
+	metaModel := visitor newMetaRepository.
+	names := metaModel elements collect: #fullName.
 	self assert: (names includes: 'EQ').
 	self assert: (names includes: 'EQ.Equation').
 	self assert: (names includes: 'EQ.Expression').
@@ -334,14 +333,14 @@ FMMetaRepositoryFilterTest >> testIncludeEQEquation [
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeEQEquationSystem [
-	| repo names visitor |
+	| metaModel names visitor |
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: eqModel;
 		classes: {(eqModel descriptionOf: EQEquationSystem)}.
 	visitor run.
 
-	repo := visitor newMetaRepository.
-	names := repo elements collect: #fullName.
+	metaModel := visitor newMetaRepository.
+	names := metaModel elements collect: #fullName.
 	self assert: (names includes: 'EQ').
 	self assert: (names includes: 'EQ.Equation').
 	self assert: (names includes: 'EQ.EquationSystem').
@@ -356,14 +355,14 @@ FMMetaRepositoryFilterTest >> testIncludeEQEquationSystem [
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeEQExpression [
-	| repo names visitor |
+	| metaModel names visitor |
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: eqModel;
 		classes: {(eqModel descriptionOf: EQExpression)}.
 	visitor run.
 
-	repo := visitor newMetaRepository.
-	names := repo elements collect: #fullName.
+	metaModel := visitor newMetaRepository.
+	names := metaModel elements collect: #fullName.
 	self assert: (names includes: 'EQ').
 	self assert: (names includes: 'EQ.Expression').
 	self deny: (names includes: 'EQ.Equation').
@@ -378,14 +377,14 @@ FMMetaRepositoryFilterTest >> testIncludeEQExpression [
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeEQIdentifier [
-	| repo names visitor |
+	| metaModel names visitor |
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: eqModel;
 		classes: {(eqModel descriptionOf: EQIdentifier)}.
 	visitor run.
 
-	repo := visitor newMetaRepository.
-	names := repo elements collect: #fullName.
+	metaModel := visitor newMetaRepository.
+	names := metaModel elements collect: #fullName.
 	self assert: (names includes: 'EQ').
 	self assert: (names includes: 'EQ.Identifier').
 	self deny: (names includes: 'EQ.Expression').
@@ -400,14 +399,14 @@ FMMetaRepositoryFilterTest >> testIncludeEQIdentifier [
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeEQNumerical [
-	| repo names visitor |
+	| metaModel names visitor |
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: eqModel;
 		classes: {(eqModel descriptionOf: EQNumerical)}.
 	visitor run.
 
-	repo := visitor newMetaRepository.
-	names := repo elements collect: #fullName.
+	metaModel := visitor newMetaRepository.
+	names := metaModel elements collect: #fullName.
 	self assert: (names includes: 'EQ').
 	self assert: (names includes: 'EQ.Simple').
 	self assert: (names includes: 'EQ.Expression').
@@ -422,14 +421,14 @@ FMMetaRepositoryFilterTest >> testIncludeEQNumerical [
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeEQOperator [
-	| repo names visitor |
+	| metaModel names visitor |
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: eqModel;
 		classes: {(eqModel descriptionOf: EQOperator)}.
 	visitor run.
 
-	repo := visitor newMetaRepository.
-	names := repo elements collect: #fullName.
+	metaModel := visitor newMetaRepository.
+	names := metaModel elements collect: #fullName.
 	self assert: (names includes: 'EQ').
 	self assert: (names includes: 'EQ.Operator').
 	self deny: (names includes: 'EQ.Expression').
@@ -444,14 +443,14 @@ FMMetaRepositoryFilterTest >> testIncludeEQOperator [
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeEQSimple [
-	| repo names visitor |
+	| metaModel names visitor |
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: eqModel;
 		classes: {(eqModel descriptionOf: EQSimple)}.
 	visitor run.
 
-	repo := visitor newMetaRepository.
-	names := repo elements collect: #fullName.
+	metaModel := visitor newMetaRepository.
+	names := metaModel elements collect: #fullName.
 	self assert: (names includes: 'EQ').
 	self assert: (names includes: 'EQ.Simple').
 	self assert: (names includes: 'EQ.Expression').
@@ -466,14 +465,14 @@ FMMetaRepositoryFilterTest >> testIncludeEQSimple [
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeEQVariable [
-	| repo names visitor |
+	| metaModel names visitor |
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: eqModel;
 		classes: {(eqModel descriptionOf: EQVariable)}.
 	visitor run.
 
-	repo := visitor newMetaRepository.
-	names := repo elements collect: #fullName.
+	metaModel := visitor newMetaRepository.
+	names := metaModel elements collect: #fullName.
 	self assert: (names includes: 'EQ').
 	self assert: (names includes: 'EQ.Variable').
 	self assert: (names includes: 'EQ.Simple').
@@ -488,14 +487,14 @@ FMMetaRepositoryFilterTest >> testIncludeEQVariable [
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeLIBBook [
-	| repo names visitor |
+	| metaModel names visitor |
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: libModel;
 		classes: {(libModel descriptionOf: LIBBook)}.
 	visitor run.
 
-	repo := visitor newMetaRepository.
-	names := repo elements collect: #fullName.
+	metaModel := visitor newMetaRepository.
+	names := metaModel elements collect: #fullName.
 	self assert: (names includes: 'LIB').
 	self assert: (names includes: 'LIB.Person').
 	self assert: (names includes: 'LIB.Book').
@@ -504,14 +503,14 @@ FMMetaRepositoryFilterTest >> testIncludeLIBBook [
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeLIBLibrary [
-	| repo names visitor |
+	| metaModel names visitor |
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: libModel;
 		classes: {(libModel descriptionOf: LIBLibrary)}.
 	visitor run.
 
-	repo := visitor newMetaRepository.
-	names := repo elements collect: #fullName.
+	metaModel := visitor newMetaRepository.
+	names := metaModel elements collect: #fullName.
 	self assert: (names includes: 'LIB').
 	self assert: (names includes: 'LIB.Library').
 	self assert: (names includes: 'LIB.Person').
@@ -520,14 +519,14 @@ FMMetaRepositoryFilterTest >> testIncludeLIBLibrary [
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeLIBPerson [
-	| repo names visitor |
+	| metaModel names visitor |
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: libModel;
 		classes: {(libModel descriptionOf: LIBPerson)}.
 	visitor run.
 
-	repo := visitor newMetaRepository.
-	names := repo elements collect: #fullName.
+	metaModel := visitor newMetaRepository.
+	names := metaModel elements collect: #fullName.
 	self assert: (names includes: 'LIB').
 	self assert: (names includes: 'LIB.Person').
 	self assert: (names includes: 'LIB.Book').
@@ -536,14 +535,14 @@ FMMetaRepositoryFilterTest >> testIncludeLIBPerson [
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeRPGDragon [
-	| repo names visitor |
+	| metaModel names visitor |
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: rpgModel;
 		classes: {(rpgModel descriptionOf: RPGDragon)}.
 	visitor run.
 
-	repo := visitor newMetaRepository.
-	names := repo elements collect: #fullName.
+	metaModel := visitor newMetaRepository.
+	names := metaModel elements collect: #fullName.
 	self assert: (names includes: 'RPG').
 	self assert: (names includes: 'RPG.Dragon').
 	self assert: (names includes: 'RPG.Hero').
@@ -552,14 +551,14 @@ FMMetaRepositoryFilterTest >> testIncludeRPGDragon [
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeRPGHero [
-	| repo names visitor |
+	| metaModel names visitor |
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: rpgModel;
 		classes: {(rpgModel descriptionOf: RPGHero)}.
 	visitor run.
 
-	repo := visitor newMetaRepository.
-	names := repo elements collect: #fullName.
+	metaModel := visitor newMetaRepository.
+	names := metaModel elements collect: #fullName.
 	self assert: (names includes: 'RPG').
 	self assert: (names includes: 'RPG.Dragon').
 	self assert: (names includes: 'RPG.Hero').
@@ -568,14 +567,14 @@ FMMetaRepositoryFilterTest >> testIncludeRPGHero [
 
 { #category : #'test-include-fameexamples' }
 FMMetaRepositoryFilterTest >> testIncludeRPGTreasure [
-	| repo names visitor |
+	| metaModel names visitor |
 	visitor := FMMetaRepositoryFilter new
 		metaRepository: rpgModel;
 		classes: {(rpgModel descriptionOf: RPGTreasure)}.
 	visitor run.
 
-	repo := visitor newMetaRepository.
-	names := repo elements collect: #fullName.
+	metaModel := visitor newMetaRepository.
+	names := metaModel elements collect: #fullName.
 	self assert: (names includes: 'RPG').
 	self assert: (names includes: 'RPG.Dragon').
 	self assert: (names includes: 'RPG.Hero').
@@ -584,101 +583,102 @@ FMMetaRepositoryFilterTest >> testIncludeRPGTreasure [
 
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testResolving [
-	| or m fm3 visitor repoFM3 |
-	repoFM3 := FMMetaMetaModel new.
+	| importer builder fm3 visitor metaMetaModel |
+	metaMetaModel := FMMetaMetaModel new.
 	visitor := FMMetaRepositoryFilter new
-		metaRepository: repoFM3;
-		classes: repoFM3 classes.
+		metaRepository: metaMetaModel;
+		classes: metaMetaModel classes.
 	visitor run.
 	fm3 := visitor newMetaRepository.
 
-	or := FMImporter repository: (FMMetaModel withMetamodel: fm3).
-	m := FMModelBuilder new client: or.
-	m document: [ m new: 'FM3.Class' with: [ m a: #name of: 'MyName' ] ].
-	self denyEmpty: or repository elements.
-	self assert: or repository elements size equals: 1.
-	self assert: or repository elements anyOne isFM3Class
+	importer := FMImporter model: (FMMetaModel withMetamodel: fm3).
+	builder := FMModelBuilder client: importer.
+	builder document: [ builder new: 'FM3.Class' with: [ builder a: #name of: 'MyName' ] ].
+	self denyEmpty: importer model elements.
+	self assert: importer model elements size equals: 1.
+	self assert: importer model elements anyOne isFM3Class
 ]
 
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testResolvingId [
-	| or m fm3 visitor repoFM3 |
-	repoFM3 := FMMetaMetaModel new.
+	| importer builder fm3 visitor metaMetaModel |
+	metaMetaModel := FMMetaMetaModel new.
 	visitor := FMMetaRepositoryFilter new
-		metaRepository: repoFM3;
-		classes: repoFM3 classes.
+		metaRepository: metaMetaModel;
+		classes: metaMetaModel classes.
 	visitor run.
 	fm3 := visitor newMetaRepository.
 
-	or := FMImporter repository: (FMMetaModel withMetamodel: fm3).
-	m := FMModelBuilder new client: or.
-	m
-		document: [ m
+	importer := FMImporter model: (FMMetaModel withMetamodel: fm3).
+	builder := FMModelBuilder client: importer.
+	builder
+		document: [ builder
 				new: 'FM3.Class'
-				with: [ m id: 3.
-					m a: #name of: 'MyName'.
-					m a: #superclass of: [ m ref: 2 ] ].
-			m
+				with: [ builder id: 3.
+					builder a: #name of: 'MyName'.
+					builder a: #superclass of: [ builder ref: 2 ] ].
+			builder
 				new: 'FM3.Class'
-				with: [ m id: 2.
-					m a: #name of: 'MyName2' ] ].
-	self denyEmpty: or repository elements.
-	self assert: or repository elements size equals: 2
+				with: [ builder id: 2.
+					builder a: #name of: 'MyName2' ] ].
+	self denyEmpty: importer model elements.
+	self assert: importer model elements size equals: 2
 ]
 
 { #category : #'tests-metarepository' }
 FMMetaRepositoryFilterTest >> testResolvingMultiArgs [
-	| or pack ref2 ref4 ref5 repo fm3 visitor repoFM3 |
-	repoFM3 := FMMetaMetaModel new.
+	| importer pack ref2 ref4 ref5 model fm3 visitor metaMetaModel |
+	metaMetaModel := FMMetaMetaModel new.
 	visitor := FMMetaRepositoryFilter new
-		metaRepository: repoFM3;
-		classes: repoFM3 classes.
+		metaRepository: metaMetaModel;
+		classes: metaMetaModel classes.
 	visitor run.
 	fm3 := visitor newMetaRepository.
 
-	or := FMImporter repository: (FMMetaModel withMetamodel: fm3).
-	or beginDocument.
-	or beginElement: 'FM3.Package'.
-	or serial: 3.
-	or beginAttribute: 'name'.
-	or primitive: 'MyPackage'.
-	or endAttribute: 'name'.
-	or beginAttribute: 'classes'.
-	or referenceNumber: 2.
-	or referenceNumber: 4.
-	or referenceNumber: 2.
-	or referenceNumber: 5.
-	or endAttribute: 'classes'.
-	or endElement: 'FM3.Package'.
-	or beginElement: 'FM3.Class'.
-	or serial: 2.
-	or beginAttribute: 'name'.
-	or primitive: 'MyName2'.
-	or endAttribute: 'name'.
-	or beginAttribute: 'superclass'.
-	or referenceNumber: 5.
-	or endAttribute: 'superclass'.
-	or endElement: 'FM3.Class'.
-	or beginElement: 'FM3.Class'.
-	or serial: 4.
-	or beginAttribute: 'superclass'.
-	or referenceNumber: 2.
-	or endAttribute: 'superclass'.
-	or beginAttribute: 'name'.
-	or primitive: 'MyName4'.
-	or endAttribute: 'name'.
-	or endElement: 'FM3.Class'.
-	or beginElement: 'FM3.Class'.
-	or serial: 5.
-	or beginAttribute: 'name'.
-	or primitive: 'MyName5'.
-	or endAttribute: 'name'.
-	or endElement: 'FM3.Class'.
-	or endDocument.
-	repo := or repository asMetarepository.
-	self denyEmpty: repo elements.
-	self assert: repo elements size equals: 4.
-	pack := repo packageNamed: 'MyPackage'.
+	importer := (FMImporter model: (FMMetaModel withMetamodel: fm3))
+		beginDocument;
+		beginElement: 'FM3.Package';
+		serial: 3;
+		beginAttribute: 'name';
+		primitive: 'MyPackage';
+		endAttribute: 'name';
+		beginAttribute: 'classes';
+		referenceNumber: 2;
+		referenceNumber: 4;
+		referenceNumber: 2;
+		referenceNumber: 5;
+		endAttribute: 'classes';
+		endElement: 'FM3.Package';
+		beginElement: 'FM3.Class';
+		serial: 2;
+		beginAttribute: 'name';
+		primitive: 'MyName2';
+		endAttribute: 'name';
+		beginAttribute: 'superclass';
+		referenceNumber: 5;
+		endAttribute: 'superclass';
+		endElement: 'FM3.Class';
+		beginElement: 'FM3.Class';
+		serial: 4;
+		beginAttribute: 'superclass';
+		referenceNumber: 2;
+		endAttribute: 'superclass';
+		beginAttribute: 'name';
+		primitive: 'MyName4';
+		endAttribute: 'name';
+		endElement: 'FM3.Class';
+		beginElement: 'FM3.Class';
+		serial: 5;
+		beginAttribute: 'name';
+		primitive: 'MyName5';
+		endAttribute: 'name';
+		endElement: 'FM3.Class';
+		endDocument;
+		yourself.
+	model := importer model.
+	self denyEmpty: model elements.
+	self assert: model elements size equals: 4.
+	pack := model packageNamed: 'MyPackage'.
 	ref2 := pack classNamed: 'MyName2'.
 	ref4 := pack classNamed: 'MyName4'.
 	ref5 := pack classNamed: 'MyName5'.
