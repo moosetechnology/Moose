@@ -7,7 +7,5 @@ FMMetaModel >> builderClass [
 
 { #category : #'*Fame-Tests-Core' }
 FMMetaModel >> document: scriptBlock [
-	self builderClass new
-		client: (FMImporter repository: self);
-		document: scriptBlock
+	(self builderClass client: (FMImporter model: self)) document: scriptBlock
 ]

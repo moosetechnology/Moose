@@ -111,7 +111,7 @@ MooseModel class >> importFrom: aStream withMetamodel: aMetamodel [
 	| model importer areWarningsEnabled |
 	model := FMModel withMetamodel: aMetamodel.
 	importer := MSEImporter new.
-	importer repository: model.
+	importer model: model.
 	importer stream: aStream.
 
 	"We are currently updating the meta models and most parsers are not up to date.

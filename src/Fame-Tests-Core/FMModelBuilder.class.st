@@ -7,6 +7,13 @@ Class {
 	#category : #'Fame-Tests-Core'
 }
 
+{ #category : #'instance creation' }
+FMModelBuilder class >> client: aClient [
+	^ self new
+		client: aClient;
+		yourself
+]
+
 { #category : #'DSL-synonyms' }
 FMModelBuilder >> a: attributeName of: valueOrBodyOrArray [
 	

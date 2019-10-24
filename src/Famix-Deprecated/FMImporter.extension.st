@@ -20,3 +20,21 @@ FMImporter >> nameTranslator: anObject [
 		dictionary: anObject;
 		yourself
 ]
+
+{ #category : #'*Famix-Deprecated' }
+FMImporter >> repository [
+	self deprecated: 'Use #model instead' transformWith: '`@receiver repository' -> '`@receiver model'.
+	^ self model
+]
+
+{ #category : #'*Famix-Deprecated' }
+FMImporter class >> repository: aModel [
+	self deprecated: 'Use #model: instead' transformWith: '`@receiver repository: `@arg' -> '`@receiver model: `@arg'.
+	^ self model: aModel
+]
+
+{ #category : #'*Famix-Deprecated' }
+FMImporter >> repository: aModel [
+	self deprecated: 'Use #model: instead' transformWith: '`@receiver repository: `@arg' -> '`@receiver model: `@arg'.
+	^ self model: aModel
+]

@@ -20,18 +20,6 @@ FMImporterTest class >> simpleCompositeMetamodelExtension [
 ]
 
 { #category : #running }
-FMImporterTest >> testBookMetamodel [
-	| or m repo |
-	or := FMImporter repository: FMMetaModel new.
-	m := FMModelBuilder new client: or.
-	m document: [ m new: 'FM3.Class' with: [ m a: #name of: 'Book' ] ].
-	repo := or repository asMetarepository.
-	self denyEmpty: repo elements.
-	self assert: repo elements size equals: 1.
-	self assert: repo elements anyOne name equals: #Book
-]
-
-{ #category : #running }
 FMImporterTest >> testElementNamed [
 	| metamodel |
 	metamodel := FMMetaModel new.
@@ -39,6 +27,17 @@ FMImporterTest >> testElementNamed [
 	self shouldnt: [ metamodel elementNamed: 'HNK.Beer' ] raise: Error.
 	self assert: (metamodel elementNamed: 'HNK.Beer') isFM3Class.
 	self assert: (metamodel elementNamed: 'HNK.Beer') fullName equals: 'HNK.Beer'
+]
+
+{ #category : #running }
+FMImporterTest >> testImportBook [
+	| importer builder |
+	importer := FMImporter model: FMMetaModel new.
+	builder := FMModelBuilder client: importer.
+	builder document: [ builder new: 'FM3.Class' with: [ builder a: #name of: 'Book' ] ].
+
+	self assert: importer model elements size equals: 1.
+	self assert: importer model elements anyOne name equals: #Book
 ]
 
 { #category : #running }
@@ -81,80 +80,78 @@ FMImporterTest >> testOrderOfElements [
 
 { #category : #running }
 FMImporterTest >> testResolving [
-	| or m |
-	or := FMImporter repository: FMMetaModel new.
-	m := FMModelBuilder new client: or.
-	m document: [ m new: 'FM3.Class' with: [ m a: #name of: 'MyName' ] ].
-	self denyEmpty: or repository elements.
-	self assert: or repository elements size equals: 1.
-	self assert: or repository elements anyOne isFM3Class
+	| importer builder |
+	importer := FMImporter model: FMMetaModel new.
+	builder := FMModelBuilder client: importer.
+	builder document: [ builder new: 'FM3.Class' with: [ builder a: #name of: 'MyName' ] ].
+	self assert: importer model elements size equals: 1.
+	self assert: importer model elements anyOne isFM3Class
 ]
 
 { #category : #running }
 FMImporterTest >> testResolvingId [
-	| or m |
-	or := FMImporter repository: FMMetaModel new.
-	m := FMModelBuilder new client: or.
-	m
-		document: [ m
+	| importer builder |
+	importer := FMImporter model: FMMetaModel new.
+	builder := FMModelBuilder client: importer.
+	builder
+		document: [ builder
 				new: 'FM3.Class'
-				with: [ m id: 3.
-					m a: #name of: 'MyName'.
-					m a: #superclass of: [ m ref: 2 ] ].
-			m
+				with: [ builder id: 3.
+					builder a: #name of: 'MyName'.
+					builder a: #superclass of: [ builder ref: 2 ] ].
+			builder
 				new: 'FM3.Class'
-				with: [ m id: 2.
-					m a: #name of: 'MyName2' ] ].
-	self denyEmpty: or repository elements.
-	self assert: or repository elements size equals: 2
+				with: [ builder id: 2.
+					builder a: #name of: 'MyName2' ] ].
+	self assert: importer model elements size equals: 2
 ]
 
 { #category : #running }
 FMImporterTest >> testResolvingMultiArgs [
-	| or pack ref2 ref4 ref5 repo |
-	or := FMImporter repository: FMMetaModel new.
-	or beginDocument.
-	or beginElement: 'FM3.Package'.
-	or serial: 3.
-	or beginAttribute: 'name'.
-	or primitive: 'MyPackage'.
-	or endAttribute: 'name'.
-	or beginAttribute: 'classes'.
-	or referenceNumber: 2.
-	or referenceNumber: 4.
-	or referenceNumber: 2.
-	or referenceNumber: 5.
-	or endAttribute: 'classes'.
-	or endElement: 'FM3.Package'.
-	or beginElement: 'FM3.Class'.
-	or serial: 2.
-	or beginAttribute: 'name'.
-	or primitive: 'MyName2'.
-	or endAttribute: 'name'.
-	or beginAttribute: 'superclass'.
-	or referenceNumber: 5.
-	or endAttribute: 'superclass'.
-	or endElement: 'FM3.Class'.
-	or beginElement: 'FM3.Class'.
-	or serial: 4.
-	or beginAttribute: 'superclass'.
-	or referenceNumber: 2.
-	or endAttribute: 'superclass'.
-	or beginAttribute: 'name'.
-	or primitive: 'MyName4'.
-	or endAttribute: 'name'.
-	or endElement: 'FM3.Class'.
-	or beginElement: 'FM3.Class'.
-	or serial: 5.
-	or beginAttribute: 'name'.
-	or primitive: 'MyName5'.
-	or endAttribute: 'name'.
-	or endElement: 'FM3.Class'.
-	or endDocument.
-	repo := or repository asMetarepository.
-	self denyEmpty: repo elements.
-	self assert: repo elements size equals: 4.
-	pack := repo packageNamed: 'MyPackage'.
+	| importer pack ref2 ref4 ref5 model |
+	importer := (FMImporter model: FMMetaModel new)
+		beginDocument;
+		beginElement: 'FM3.Package';
+		serial: 3;
+		beginAttribute: 'name';
+		primitive: 'MyPackage';
+		endAttribute: 'name';
+		beginAttribute: 'classes';
+		referenceNumber: 2;
+		referenceNumber: 4;
+		referenceNumber: 2;
+		referenceNumber: 5;
+		endAttribute: 'classes';
+		endElement: 'FM3.Package';
+		beginElement: 'FM3.Class';
+		serial: 2;
+		beginAttribute: 'name';
+		primitive: 'MyName2';
+		endAttribute: 'name';
+		beginAttribute: 'superclass';
+		referenceNumber: 5;
+		endAttribute: 'superclass';
+		endElement: 'FM3.Class';
+		beginElement: 'FM3.Class';
+		serial: 4;
+		beginAttribute: 'superclass';
+		referenceNumber: 2;
+		endAttribute: 'superclass';
+		beginAttribute: 'name';
+		primitive: 'MyName4';
+		endAttribute: 'name';
+		endElement: 'FM3.Class';
+		beginElement: 'FM3.Class';
+		serial: 5;
+		beginAttribute: 'name';
+		primitive: 'MyName5';
+		endAttribute: 'name';
+		endElement: 'FM3.Class';
+		endDocument;
+		yourself.
+	model := importer model.
+	self assert: model elements size equals: 4.
+	pack := model packageNamed: 'MyPackage'.
 	ref2 := pack classNamed: 'MyName2'.
 	ref4 := pack classNamed: 'MyName4'.
 	ref5 := pack classNamed: 'MyName5'.

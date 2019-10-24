@@ -18,7 +18,7 @@ FMMetaRepositoryTest >> testImportExtension [
 	| string repo |
 	repo := self testImporter.
 	string := '((FM3.Class (name ''Employee'') (package (ref: Office))))'.
-	(FMImporter repository: repo)
+	(FMImporter model: repo)
 		fromString: string;
 		run.
 	self assert: repo elements size equals: 2.
@@ -31,7 +31,7 @@ FMMetaRepositoryTest >> testImporter [
 	| string repo |
 	string := '((FM3.Package (id: 1) (name ''Office'')))'.
 	repo := FMMetaModel new.
-	(FMImporter repository: repo)
+	(FMImporter model: repo)
 		fromString: string;
 		run.
 	self assert: repo elements size equals: 1.

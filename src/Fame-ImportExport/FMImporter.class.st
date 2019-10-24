@@ -16,9 +16,9 @@ Class {
 }
 
 { #category : #'instance creation' }
-FMImporter class >> repository: aRepository [
+FMImporter class >> model: aRepository [
 	^ self new
-		repository: aRepository;
+		model: aRepository;
 		yourself
 ]
 
@@ -63,6 +63,11 @@ FMImporter >> dangling: reference to: serial [
 	(reminderDict at: serial ifAbsentPut: [ OrderedCollection new ]) add: reference.
 	tally := tally + 1.
 	^ reference
+]
+
+{ #category : #accessing }
+FMImporter >> elements [
+	^ elements
 ]
 
 { #category : #parsing }
@@ -114,7 +119,13 @@ FMImporter >> metamodel [
 
 { #category : #accessing }
 FMImporter >> model [
-	^model
+	^ model
+]
+
+{ #category : #accessing }
+FMImporter >> model: aModel [
+	model := aModel.
+	metamodel := aModel metamodel
 ]
 
 { #category : #parsing }
@@ -133,19 +144,6 @@ FMImporter >> referenceName: name [
 FMImporter >> referenceNumber: serial [ 
 	
 	stack top current referenceNumber: serial
-]
-
-{ #category : #accessing }
-FMImporter >> repository [
-
-	^model
-]
-
-{ #category : #accessing }
-FMImporter >> repository: aRepository [
-
-	model := aRepository.
-	metamodel := aRepository metamodel.
 ]
 
 { #category : #running }
