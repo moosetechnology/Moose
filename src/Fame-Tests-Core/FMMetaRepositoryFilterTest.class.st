@@ -25,81 +25,6 @@ FMMetaRepositoryFilterTest >> buildRPG [
 	^ FMPragmaProcessor metamodelFrom: {RPGDragon . RPGHero . RPGTreasure}
 ]
 
-{ #category : #'tests-export' }
-FMMetaRepositoryFilterTest >> createLIBModelWithClass: class [
-	| tower model metamodel filteredMetamodel stream filter |
-	stream := String new writeStream.
-
-	filter := FMMetaRepositoryFilter new
-		metaRepository: libModel;
-		classes: {(libModel descriptionOf: class)}.
-	filter run.
-
-	"collecting the filtered metamodel"
-	filteredMetamodel := filter newMetaRepository.
-
-	"exporting the model (with the filtered metamodel) as mse"
-
-	model := (FMModel with: filteredMetamodel)
-		addAll: {(LIBBook new title: 'aBook') . LIBLibrary new . (LIBPerson named: 'aPerson')};
-		yourself.
-	model exportOn: stream.
-
-	"reading the strem (mse) with the filtered model"
-	metamodel := FMMetaMetaModel new.
-	metamodel addAll: filteredMetamodel elements.
-	(FMImporter repository: model)
-		stream: stream contents readStream;
-		run.
-	model updateCache.
-	^ model
-]
-
-{ #category : #'tests-export' }
-FMMetaRepositoryFilterTest >> disabledBecauseItFailsOnTheServerInHeadlessModetestExportLIBBookWithPartialMetamodel [
-	| model entity |
-	model := self createLIBModelWithClass: LIBBook.
-	self assert: model elements size equals: 2.
-	entity := model selectKindOf: LIBBook.
-	self assert: entity size equals: 1.
-	self assert: entity first title equals: 'aBook'.
-	entity := model selectKindOf: LIBPerson.
-	self assert: entity size equals: 1.
-	self assert: entity first name equals: 'aPerson'.
-	entity := model selectKindOf: LIBLibrary.
-	self assert: entity isEmpty
-]
-
-{ #category : #'tests-export' }
-FMMetaRepositoryFilterTest >> disabledBecauseItFailsOnTheServerInHeadlessModetestExportLIBLibraryWithPartialMetamodel [
-	| model entity |
-	model := self createLIBModelWithClass: LIBLibrary.
-	self assert: model elements size equals: 3.
-	entity := model selectKindOf: LIBBook.
-	self assert: entity size equals: 1.
-	self assert: entity first title equals: 'aBook'.
-	entity := model selectKindOf: LIBPerson.
-	self assert: entity size equals: 1.
-	self assert: entity first name equals: 'aPerson'.
-	entity := model selectKindOf: LIBLibrary.
-	self assert: entity size equals: 1
-]
-
-{ #category : #'tests-export' }
-FMMetaRepositoryFilterTest >> disabledBecauseItFailsOnTheServerInHeadlessModetestExportLIBPersonWithPartialMetamodel [
-	| model entity |
-	model := self createLIBModelWithClass: LIBPerson.
-	self assert: model elements size equals: 2.
-	entity := model selectKindOf: LIBBook.
-	self assert: entity size equals: 1.
-	self assert: entity first title equals: 'aBook'.
-	entity := model selectKindOf: LIBPerson.
-	self assert: entity size equals: 1.
-	self assert: entity first name equals: 'aPerson'.
-	entity := model selectKindOf: LIBLibrary.
-	self assert: entity isEmpty
-]
-
 { #category : #running }
 FMMetaRepositoryFilterTest >> setUp [
 
@@ -179,7 +104,7 @@ FMMetaRepositoryFilterTest >> testBookMetamodel [
 	self assert: repo elements anyOne name equals: #Book
 ]
 
-{ #category : #'tests-basic' }
+{ #category : #tests }
 FMMetaRepositoryFilterTest >> testClassWithoutPackage [
 	| aClassWithoutPackage repo visitor |
 	aClassWithoutPackage := FM3Class named: 'AClass'.
