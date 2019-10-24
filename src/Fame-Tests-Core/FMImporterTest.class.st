@@ -22,8 +22,7 @@ FMImporterTest class >> simpleCompositeMetamodelExtension [
 { #category : #running }
 FMImporterTest >> testElementNamed [
 	| metamodel |
-	metamodel := FMMetaModel new.
-	metamodel importString: FMHeinekenExample metamodelMSE.
+	metamodel := FMMetaModel fromString: FMHeinekenExample metamodelMSE.
 	self shouldnt: [ metamodel elementNamed: 'HNK.Beer' ] raise: Error.
 	self assert: (metamodel elementNamed: 'HNK.Beer') isFM3Class.
 	self assert: (metamodel elementNamed: 'HNK.Beer') fullName equals: 'HNK.Beer'
@@ -43,8 +42,7 @@ FMImporterTest >> testImportBook [
 { #category : #running }
 FMImporterTest >> testImportHeinekenMetamodel [
 	| metamodel |
-	metamodel := FMMetaModel new.
-	metamodel importString: FMHeinekenExample metamodelMSE.
+	metamodel := FMMetaModel fromString: FMHeinekenExample metamodelMSE.
 	self assert: metamodel packages size equals: 1.
 	self assert: metamodel classes size equals: 3.
 	self assert: metamodel properties size equals: 12
@@ -61,7 +59,7 @@ FMImporterTest >> testImportHeinekenModel [
 
 { #category : #running }
 FMImporterTest >> testOrderOfElements [
-	| model elem values metamodel |
+	| model metamodel containers |
 	model := FMModel new.
 	metamodel := model metamodel.
 	metamodel importString: self class simpleCompositeMetamodel.
@@ -71,11 +69,10 @@ FMImporterTest >> testOrderOfElements [
 			'((EG.Container (children (ref: 1) (ref: 4) (ref: 2) (ref: 3)))
 		(EG.Leaf (id: 1) (name ''A'')) (EG.Leaf (id: 2) (name ''B'')) (EG.Leaf (id: 3) (name ''C'')) (EG.Leaf (id: 4) (name ''D'')))'.
 	self assert: model elements size equals: 5.
-	self assert: (model selectKindOf: (metamodel elementNamed: 'EG.Container')) size equals: 1.
-	self assert: (model selectKindOf: (metamodel elementNamed: 'EG.Leaf')) size equals: 4.
-	elem := (model selectKindOf: (metamodel elementNamed: 'EG.Container')) anyOne.
-	values := elem at: (metamodel elementNamed: 'EG.Container.children').
-	self assert: values size equals: 4
+	containers := model elements select: [ :element | (metamodel metaDescriptionOf: element) = (metamodel elementNamed: 'EG.Container') ].
+	self assert: containers size equals: 1.
+	self assert: (model elements select: [ :element | (metamodel metaDescriptionOf: element) = (metamodel elementNamed: 'EG.Leaf') ]) size equals: 4.
+	self assert: (containers anyOne at: (metamodel elementNamed: 'EG.Container.children')) size equals: 4
 ]
 
 { #category : #running }
@@ -167,8 +164,7 @@ FMImporterTest >> testResolvingMultiArgs [
 { #category : #running }
 FMImporterTest >> testSimpleExtensions [
 	| metamodel |
-	metamodel := FMMetaModel new.
-	metamodel importString: self class simpleCompositeMetamodel.
+	metamodel := FMMetaModel fromString: self class simpleCompositeMetamodel.
 	metamodel importString: self class simpleCompositeMetamodelExtension.
 	self assert: metamodel packages size equals: 2.
 	self assert: metamodel classes size equals: 2.
@@ -179,8 +175,7 @@ FMImporterTest >> testSimpleExtensions [
 { #category : #running }
 FMImporterTest >> testSimpleMetamodel [
 	| metamodel |
-	metamodel := FMMetaModel new.
-	metamodel importString: self class simpleCompositeMetamodel.
+	metamodel := FMMetaModel fromString: self class simpleCompositeMetamodel.
 	self assert: metamodel packages size equals: 1.
 	self assert: metamodel classes size equals: 2.
 	self assert: metamodel properties size equals: 2.

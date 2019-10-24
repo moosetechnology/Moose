@@ -15,6 +15,14 @@ LIBLibrary class >> annotation [
 	
 ]
 
+{ #category : #'instance creation' }
+LIBLibrary class >> librarian: aPerson books: aCollection [
+	^ self new
+		librarian: aPerson;
+		books: aCollection;
+		yourself
+]
+
 { #category : #accessing }
 LIBLibrary >> books [
 	<MSEProperty: #books type: #LIBBook> <multivalued>

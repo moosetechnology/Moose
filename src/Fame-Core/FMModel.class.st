@@ -39,12 +39,6 @@ Class {
 }
 
 { #category : #'instance creation' }
-FMModel class >> with: aMetamodel [
-	self deprecated: 'Use #withMetamodel: instead' transformWith: '`@receiver with: `@arg' -> '`@receiver withMetamodel: `@arg'.
-	self withMetamodel: aMetamodel
-]
-
-{ #category : #'instance creation' }
 FMModel class >> withMetamodel: aMetamodel [
 	^ self new
 		metamodel: aMetamodel;

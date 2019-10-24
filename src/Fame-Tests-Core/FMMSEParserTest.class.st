@@ -695,8 +695,7 @@ FMMSEParserTest >> testEmptyExportString [
 { #category : #running }
 FMMSEParserTest >> testFamixModel [
 	| metamodel names famixPackage accessClass accessorProperty behaviouralEntity outgoingAccesses |
-	metamodel := FMMetaModel new.
-	metamodel importString: self class famix30mse.
+	metamodel := FMMetaModel fromString: self class famix30mse.
 	names := metamodel elements collect: [ :each | each fullName ].
 	self assert: names size equals: 70.
 	self assert: (names includes: 'FAMIX.Access').

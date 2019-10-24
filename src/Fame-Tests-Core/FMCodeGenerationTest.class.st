@@ -16,8 +16,7 @@ FMCodeGenerationTest >> testClassNamePrefix [
 { #category : #running }
 FMCodeGenerationTest >> testComplexGeneration [
 	| metamodel generator |
-	metamodel := FMMetaModel new.
-	metamodel importString: FMMSEParserTest famix30mse.
+	metamodel := FMMetaModel fromString: FMMSEParserTest famix30mse.
 
 	"We generate Smalltalk classes from the classes contained in the repository"
 	generator := FMDefaultCodeGenerator new.
@@ -55,34 +54,28 @@ FMCodeGenerationTest >> testFM3Generation [
 
 { #category : #running }
 FMCodeGenerationTest >> testLIBGeneration [
-	| metamodel generator |
-	metamodel := FMMetaModel new.
-	metamodel importString: FMMSEParserTest sampleMetaMse.
+	| generator |
 	generator := FMDefaultCodeGenerator new.
 	generator defaultSuperclass: LIBRoot.
-	generator visit: metamodel.
+	generator visit: (FMMetaModel fromString: FMMSEParserTest sampleMetaMse).
 	generator previewChangesIfShiftPressed
 ]
 
 { #category : #running }
 FMCodeGenerationTest >> testRPGGeneration [
-	| metamodel generator |
-	metamodel := FMMetaModel new.
-	metamodel importString: FMDungeonExample metamodelString.
+	| generator |
 	generator := FMDefaultCodeGenerator new.
 	generator defaultCategory: 'Fame-Example'.
-	generator visit: metamodel.
+	generator visit: (FMMetaModel fromString: FMDungeonExample metamodelString).
 	generator previewChangesIfShiftPressed
 ]
 
 { #category : #running }
 FMCodeGenerationTest >> testSimpleGeneration [
-	| metamodel gen |
-	metamodel := FMMetaModel new.
-	metamodel importString: FMMSEParserTest sampleMetaMse.
+	| gen |
 	gen := FMDefaultCodeGenerator new.
 	gen classNamePrefix: 'Zork'.	"random prefix Zork"
-	gen visit: metamodel.
+	gen visit: (FMMetaModel fromString: FMMSEParserTest sampleMetaMse).
 	gen previewChangesIfShiftPressed.
 	self assert: gen model changes changesSize > 0.
 	self assert: (gen model changes changes collect: #changeClassName) asSet size equals: 3.

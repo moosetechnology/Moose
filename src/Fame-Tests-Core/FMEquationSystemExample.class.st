@@ -1,6 +1,9 @@
 Class {
 	#name : #FMEquationSystemExample,
 	#superclass : #TestCase,
+	#instVars : [
+		'metaModel'
+	],
 	#category : #'Fame-Tests-Core'
 }
 
@@ -58,42 +61,37 @@ FMEquationSystemExample class >> modelString [
 ]
 
 { #category : #running }
-FMEquationSystemExample >> testAllSubclasses [
-	| metarepo |
-	metarepo := self class createMetamodel.
-	self assert: (metarepo elementNamed: 'EQ.Expression') notNil.
-	self assert: (metarepo elementNamed: 'EQ.Expression') allSubclasses size equals: 4
+FMEquationSystemExample >> setUp [
+	super setUp.
+	metaModel := self class createMetamodel
 ]
 
 { #category : #running }
-FMEquationSystemExample >> testCreateModel [
-	^ (FMModel withMetamodel: self class createMetamodel)
-		importString: self class modelString;
-		yourself
+FMEquationSystemExample >> testAllSubclasses [
+	self assert: (metaModel elementNamed: 'EQ.Expression') notNil.
+	self assert: (metaModel elementNamed: 'EQ.Expression') allSubclasses size equals: 4
 ]
 
 { #category : #running }
 FMEquationSystemExample >> testMetamodel [
-	| metarepo |
-	metarepo := self class createMetamodel.
-	self assert: metarepo elements size equals: 19.
-	self assert: metarepo packages size equals: 1.
-	self assert: metarepo classes size equals: 9.
-	self assert: metarepo properties size equals: 9
+	self assert: metaModel elements size equals: 19.
+	self assert: metaModel packages size equals: 1.
+	self assert: metaModel classes size equals: 9.
+	self assert: metaModel properties size equals: 9
 ]
 
 { #category : #running }
 FMEquationSystemExample >> testMetamodelContainsCompound [
-	| metarepo |
-	metarepo := self class createMetamodel.
-	self assert: (metarepo elementNamed: 'EQ.Compound') notNil
+	self assert: (metaModel elementNamed: 'EQ.Compound') notNil
 ]
 
 { #category : #running }
 FMEquationSystemExample >> testPrintString [
-	| repo systems |
-	repo := self testCreateModel.
-	systems := repo selectKindOf: EQEquationSystem.
+	| model systems |
+	model := (FMModel withMetamodel: metaModel)
+		importString: self class modelString;
+		yourself.
+	systems := model elements select: [ :e | e isKindOf: EQEquationSystem ].
 	self assert: systems size equals: 1.
 	self assert: systems anyOne printString equals: 'X1 = (X2 + X3)\X2 = (X5 + (X3 + X1))\X3 = (X5 + (7 * 5))\' withCRs
 ]
