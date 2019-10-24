@@ -28,81 +28,86 @@ You can also use a kind of DSL to describe your model. Have a look at document: 
 
 "
 Class {
-	#name : #FMRepository,
+	#name : #FMModel,
 	#superclass : #Object,
 	#instVars : [
 		'elements',
 		'metamodel',
 		'additionalProperties'
 	],
-	#category : #'Fame-Core-Repositories'
+	#category : #'Fame-Core-Models'
 }
 
 { #category : #'instance creation' }
-FMRepository class >> with: aMetamodel [
-	self flag: #todo.	"Maybe it should be named #withMetamodel?"
+FMModel class >> with: aMetamodel [
+	self deprecated: 'Use #withMetamodel: instead' transformWith: '`@receiver with: `@arg' -> '`@receiver withMetamodel: `@arg'.
+	self withMetamodel: aMetamodel
+]
+
+{ #category : #'instance creation' }
+FMModel class >> withMetamodel: aMetamodel [
 	^ self new
 		metamodel: aMetamodel;
 		yourself
 ]
 
 { #category : #adding }
-FMRepository >> add: element [
+FMModel >> add: element [
 	elements add: element.
 	self postAdd: element
 ]
 
 { #category : #adding }
-FMRepository >> addAll: elementCollection [
+FMModel >> addAll: elementCollection [
 	elementCollection do: [ :each | self add: each ]
 ]
 
 { #category : #accessing }
-FMRepository >> additionalProperties [
+FMModel >> additionalProperties [
 	^ additionalProperties ifNil: [ additionalProperties := IdentityDictionary new ]
 ]
 
 { #category : #accessing }
-FMRepository >> additionalPropertiesFor: entityClass [
+FMModel >> additionalPropertiesFor: entityClass [
 	^ self additionalProperties at: entityClass ifAbsentPut: [ IdentityDictionary new ]
 ]
 
 { #category : #accessing }
-FMRepository >> additionalProperty: aSymbol for: entityClass [
+FMModel >> additionalProperty: aSymbol for: entityClass [
 	^ (self additionalPropertiesFor: entityClass) at: aSymbol
 ]
 
 { #category : #accessing }
-FMRepository >> additionalProperty: aSymbol for: entityClass ifAbsentPut: aBlock [
+FMModel >> additionalProperty: aSymbol for: entityClass ifAbsentPut: aBlock [
 	^ (self additionalPropertiesFor: entityClass) at: aSymbol ifAbsentPut: aBlock
 ]
 
 { #category : #accessing }
-FMRepository >> additionalProperty: aSymbol for: entityClass put: anObject [
+FMModel >> additionalProperty: aSymbol for: entityClass put: anObject [
 	^ (self additionalPropertiesFor: entityClass) at: aSymbol put: anObject
 ]
 
 { #category : #'as yet unclassified' }
-FMRepository >> asMetarepository [
-	^ FMMetaRepository new
+FMModel >> asMetarepository [
+	^ FMMetaModel new
 		addAll: elements;
 		yourself
 ]
 
 { #category : #accessing }
-FMRepository >> cleanAdditionalProperties [
+FMModel >> cleanAdditionalProperties [
 	additionalProperties := IdentityDictionary new
 ]
 
 { #category : #private }
-FMRepository >> coerceProperty: propertyOrName receiver: receiver [
+FMModel >> coerceProperty: propertyOrName receiver: receiver [
 	propertyOrName isFM3Property ifTrue: [ ^ propertyOrName ].
 	propertyOrName isString ifTrue: [ ^ (self metaDescriptionOf: receiver) propertyNamed: propertyOrName ].
 	self error
 ]
 
 { #category : #'accessing-meta' }
-FMRepository >> containerOf: element [
+FMModel >> containerOf: element [
 	^ (self metaDescriptionOf: element)
 		ifNil: [ nil ]
 		ifNotNil: [ :meta |
@@ -112,100 +117,100 @@ FMRepository >> containerOf: element [
 ]
 
 { #category : #initialization }
-FMRepository >> defaultMetamodel [
-	^ FMMetaRepository new
+FMModel >> defaultMetamodel [
+	^ FMMetaModel new
 ]
 
 { #category : #accessing }
-FMRepository >> elements [
+FMModel >> elements [
 	^ elements asArray
 ]
 
 { #category : #'accessing-meta' }
-FMRepository >> get: propertyOrName element: element [
+FMModel >> get: propertyOrName element: element [
 	^ (self coerceProperty: propertyOrName receiver: element) getFrom: element
 ]
 
 { #category : #testing }
-FMRepository >> includes: element [
+FMModel >> includes: element [
 	"Do not use the getter here to not cast the elements as array. Important for performances."
 
 	^ elements includes: element
 ]
 
 { #category : #initialization }
-FMRepository >> initialize [
+FMModel >> initialize [
 	super initialize.
 	elements := IdentitySet new
 ]
 
 { #category : #testing }
-FMRepository >> isEmpty [
+FMModel >> isEmpty [
 	^ elements isEmpty
 ]
 
 { #category : #testing }
-FMRepository >> isMetaMetamodel [
+FMModel >> isMetaMetamodel [
 	^ false
 ]
 
 { #category : #testing }
-FMRepository >> isMetamodel [
+FMModel >> isMetamodel [
 	^ false
 ]
 
 { #category : #testing }
-FMRepository >> isNotEmpty [
+FMModel >> isNotEmpty [
 	^ self isEmpty not
 ]
 
 { #category : #'accessing-meta' }
-FMRepository >> metaDescriptionOf: element [ 
+FMModel >> metaDescriptionOf: element [ 
 	^ (element isKindOf: FMRuntimeElement) 
 		ifTrue: [ element description ]
 		ifFalse: [ self metamodel descriptionOf: element class ]
 ]
 
 { #category : #'as yet unclassified' }
-FMRepository >> metaMetaModel [
+FMModel >> metaMetaModel [
 	^ self metamodel metamodel
 ]
 
 { #category : #accessing }
-FMRepository >> metamodel [
+FMModel >> metamodel [
 	^ metamodel ifNil: [ metamodel := self defaultMetamodel ]
 ]
 
 { #category : #accessing }
-FMRepository >> metamodel: aMetamodel [
+FMModel >> metamodel: aMetamodel [
 	metamodel := aMetamodel
 ]
 
 { #category : #private }
-FMRepository >> postAdd: element [
+FMModel >> postAdd: element [
 	"do nothing"
 ]
 
 { #category : #removing }
-FMRepository >> remove: element [
+FMModel >> remove: element [
 	elements remove: element ifAbsent: [  ]
 ]
 
 { #category : #removing }
-FMRepository >> removeAll: elementCollection [
+FMModel >> removeAll: elementCollection [
 	elementCollection do: [ :each | self remove: each ]
 ]
 
 { #category : #'accessing-meta' }
-FMRepository >> set: propertyOrName element: element values: values [
+FMModel >> set: propertyOrName element: element values: values [
 	^ (self coerceProperty: propertyOrName receiver: element) setOn: element values: values
 ]
 
 { #category : #accessing }
-FMRepository >> size [
+FMModel >> size [
 	^ self elements size
 ]
 
 { #category : #private }
-FMRepository >> updateCache [
+FMModel >> updateCache [
 ]

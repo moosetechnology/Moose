@@ -16,7 +16,7 @@ FMCodeGenerationTest >> testClassNamePrefix [
 { #category : #running }
 FMCodeGenerationTest >> testComplexGeneration [
 	| metamodel generator |
-	metamodel := FMMetaRepository new.
+	metamodel := FMMetaModel new.
 	metamodel importString: FMMSEParserTest famix30mse.
 
 	"We generate Smalltalk classes from the classes contained in the repository"
@@ -48,7 +48,7 @@ FMCodeGenerationTest >> testDefaultClass [
 FMCodeGenerationTest >> testFM3Generation [
 	self
 		shouldnt: [ FMDefaultCodeGenerator new
-				visit: FMMetaMetaRepository new;
+				visit: FMMetaMetaModel new;
 				previewChangesIfShiftPressed ]
 		raise: Error
 ]
@@ -56,7 +56,7 @@ FMCodeGenerationTest >> testFM3Generation [
 { #category : #running }
 FMCodeGenerationTest >> testLIBGeneration [
 	| metamodel generator |
-	metamodel := FMMetaRepository new.
+	metamodel := FMMetaModel new.
 	metamodel importString: FMMSEParserTest sampleMetaMse.
 	generator := FMDefaultCodeGenerator new.
 	generator defaultSuperclass: LIBRoot.
@@ -67,7 +67,7 @@ FMCodeGenerationTest >> testLIBGeneration [
 { #category : #running }
 FMCodeGenerationTest >> testRPGGeneration [
 	| metamodel generator |
-	metamodel := FMMetaRepository new.
+	metamodel := FMMetaModel new.
 	metamodel importString: FMDungeonExample metamodelString.
 	generator := FMDefaultCodeGenerator new.
 	generator defaultCategory: 'Fame-Example'.
@@ -78,7 +78,7 @@ FMCodeGenerationTest >> testRPGGeneration [
 { #category : #running }
 FMCodeGenerationTest >> testSimpleGeneration [
 	| metamodel gen |
-	metamodel := FMMetaRepository new.
+	metamodel := FMMetaModel new.
 	metamodel importString: FMMSEParserTest sampleMetaMse.
 	gen := FMDefaultCodeGenerator new.
 	gen classNamePrefix: 'Zork'.	"random prefix Zork"

@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 FMMetaMetaRepositoryTest >> testFM3 [
 	| fm3 |
-	fm3 := FMMetaMetaRepository new.
+	fm3 := FMMetaMetaModel new.
 	self assert: fm3 notNil.
 	self assert: fm3 metamodel equals: fm3
 ]
@@ -17,7 +17,7 @@ FMMetaMetaRepositoryTest >> testFM3IsComplete [
 	"More information about FM3 may be found on http://smallwiki.unibe.ch/fame/fm3/"
 
 	| repo names |
-	repo := FMMetaMetaRepository new.
+	repo := FMMetaMetaModel new.
 	self assert: repo notNil.	"boot strapping FM3 does internally run the pragma processor"
 	names := repo elements collect: [ :each | each fullName ].	"The package"
 	self assert: (names includes: 'FM3').

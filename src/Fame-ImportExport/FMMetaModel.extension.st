@@ -1,7 +1,7 @@
-Extension { #name : #FMMetaRepository }
+Extension { #name : #FMMetaModel }
 
 { #category : #'*Fame-ImportExport' }
-FMMetaRepository >> importStream: aReadStream [
+FMMetaModel >> importStream: aReadStream [
 	super importStream: aReadStream.
 	self updateCache
 ]

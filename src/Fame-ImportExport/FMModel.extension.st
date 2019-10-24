@@ -1,7 +1,7 @@
-Extension { #name : #FMRepository }
+Extension { #name : #FMModel }
 
 { #category : #'*Fame-ImportExport' }
-FMRepository >> accept: aParseClient [
+FMModel >> accept: aParseClient [
 	FMRepositoryVisitor new
 		model: self;
 		printer: aParseClient;
@@ -9,12 +9,12 @@ FMRepository >> accept: aParseClient [
 ]
 
 { #category : #'*Fame-ImportExport' }
-FMRepository >> exportOn: aStream [
+FMModel >> exportOn: aStream [
 	self accept: (FMMSEPrinter on: aStream)
 ]
 
 { #category : #'*Fame-ImportExport' }
-FMRepository >> exportString [
+FMModel >> exportString [
 
 	| printer |
 	printer := FMMSEPrinter new onString.	
@@ -23,7 +23,7 @@ FMRepository >> exportString [
 ]
 
 { #category : #'*Fame-ImportExport' }
-FMRepository >> gtExportAction [
+FMModel >> gtExportAction [
 	<gtInspectorAction>
 	^ GLMGenericAction new
 		action: [ 
@@ -38,13 +38,13 @@ FMRepository >> gtExportAction [
 ]
 
 { #category : #'*Fame-ImportExport' }
-FMRepository >> importStream: aReadStream [
+FMModel >> importStream: aReadStream [
 	(FMImporter repository: self)
 		stream: aReadStream;
 		run
 ]
 
 { #category : #'*Fame-ImportExport' }
-FMRepository >> importString: mseString [
+FMModel >> importString: mseString [
 	self importStream: mseString readStream
 ]

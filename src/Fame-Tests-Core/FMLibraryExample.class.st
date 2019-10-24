@@ -17,7 +17,7 @@ FMLibraryExample >> testAddingM2ElementToM2RepositoryMustFail [
 { #category : #running }
 FMLibraryExample >> testBookstore [
 	| metamodel names |
-	metamodel := FMMetaRepository new.
+	metamodel := FMMetaModel new.
 	metamodel importString: FMMSEParserTest sampleMetaMse.
 	names := metamodel elements collect: [ :each | each fullName ].
 	self assert: (names includes: 'LIB').
@@ -31,14 +31,14 @@ FMLibraryExample >> testBookstore [
 	self
 		assert: (metamodel elements detect: [ :each | each fullName = 'LIB.Library.books' ]) type
 		equals: (metamodel elements detect: [ :each | each fullName = 'LIB.Book' ]).
-	self assert: (metamodel elements detect: [ :each | each fullName = 'LIB.Person.name' ]) type equals: (FMMetaMetaRepository new elementNamed: 'String').
+	self assert: (metamodel elements detect: [ :each | each fullName = 'LIB.Person.name' ]) type equals: (FMMetaMetaModel new elementNamed: 'String').
 	self assert: names size equals: 10
 ]
 
 { #category : #running }
 FMLibraryExample >> testBookstore2 [
 	| package class attribute objectMetaDescription metamodel |
-	metamodel := FMMetaRepository new.
+	metamodel := FMMetaModel new.
 	metamodel importString: FMMSEParserTest sampleMetaMse.
 	package := metamodel packageNamed: 'LIB'.
 	self assert: package isFM3Package.
@@ -143,7 +143,7 @@ FMLibraryExample >> testPragmaProcessing [
 FMLibraryExample >> testPragmasAsMetamodel [
 	| metamodel |
 	metamodel := self testPragmaProcessing asMetamodel.
-	self assert: metamodel class equals: FMMetaRepository.
+	self assert: metamodel class equals: FMMetaModel.
 	self denyEmpty: metamodel elements.
 	self denyEmpty: metamodel packages.
 	self assert: metamodel packages size equals: 1.
@@ -187,7 +187,7 @@ FMLibraryExample >> testSCGLibraryAsModel [
 	| model metamodel lib |
 	metamodel := self testPragmasAsMetamodel.
 	lib := self testCreateSCGLibrary.
-	model := FMRepository with: metamodel.
+	model := FMModel withMetamodel: metamodel.
 	model add: lib.
 	self assert: model metamodel equals: metamodel.
 	self denyEmpty: model elements.	"----------------- KNOWN TO FAIL ----------------

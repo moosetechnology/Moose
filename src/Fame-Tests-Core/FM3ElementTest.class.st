@@ -10,7 +10,7 @@ Class {
 { #category : #running }
 FM3ElementTest >> setUp [
 	super setUp.
-	metaMetamodel := FMMetaMetaRepository new
+	metaMetamodel := FMMetaMetaModel new
 ]
 
 { #category : #running }

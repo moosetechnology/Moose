@@ -8,7 +8,7 @@ Class {
 FMExporterTest >> testExportAsMSE [
 	| printer |
 	printer := FMMSEPrinter new onString.
-	FMMetaMetaRepository new accept: printer.
+	FMMetaMetaModel new accept: printer.
 	self assert: printer stream contents isString.
 	self assert: printer stream contents first equals: $(
 ]
@@ -17,7 +17,7 @@ FMExporterTest >> testExportAsMSE [
 FMExporterTest >> testExportAsXML [
 	| printer |
 	printer := FMXMLPrinter new onString.
-	FMMetaMetaRepository new accept: printer.
+	FMMetaMetaModel new accept: printer.
 	self assert: printer stream contents isString.
 	self assert: printer stream contents first equals: $<
 ]

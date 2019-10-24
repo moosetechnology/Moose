@@ -7,7 +7,7 @@ Class {
 { #category : #running }
 FMPragmaProcessorTest >> testAnnotationTypes [
 	| repo package class property properties |
-	repo := FMMetaMetaRepository new.
+	repo := FMMetaMetaModel new.
 	package := repo elementNamed: 'FM3'.
 	class := repo elementNamed: 'FM3.Element'.
 	self assert: class isFM3Class.
@@ -78,7 +78,7 @@ FMPragmaProcessorTest >> testSimple [
 	processor run.
 	self assert: processor elements size equals: originalSize + 2.
 	rep := processor asMetamodel.
-	self assert: (rep isKindOf: FMRepository).
+	self assert: (rep isKindOf: FMModel).
 	self assert: rep elements size equals: originalSize + 2.
 	elements := rep classes.
 	self assert: elements size equals: originalSize + 1.

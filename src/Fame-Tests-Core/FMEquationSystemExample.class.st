@@ -14,7 +14,7 @@ FMEquationSystemExample class >> createMetamodel [
 FMEquationSystemExample class >> createModel [
 	| metarepo repo |
 	metarepo := self createMetamodel.
-	repo := FMRepository with: metarepo.
+	repo := FMModel with: metarepo.
 	(FMImporter repository: repo) importString: self modelString.
 	^ repo
 ]
@@ -76,7 +76,7 @@ FMEquationSystemExample >> testAllSubclasses [
 
 { #category : #running }
 FMEquationSystemExample >> testCreateModel [
-	^ (FMRepository with: self class createMetamodel)
+	^ (FMModel withMetamodel: self class createMetamodel)
 		importString: self class modelString;
 		yourself
 ]

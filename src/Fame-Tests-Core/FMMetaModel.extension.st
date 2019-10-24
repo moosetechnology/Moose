@@ -1,12 +1,12 @@
-Extension { #name : #FMMetaRepository }
+Extension { #name : #FMMetaModel }
 
 { #category : #'*Fame-Tests-Core' }
-FMMetaRepository >> builderClass [
+FMMetaModel >> builderClass [
 	^ FMMetamodelBuilder
 ]
 
 { #category : #'*Fame-Tests-Core' }
-FMMetaRepository >> document: scriptBlock [
+FMMetaModel >> document: scriptBlock [
 	self builderClass new
 		client: (FMImporter repository: self);
 		document: scriptBlock

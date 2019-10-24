@@ -10,7 +10,7 @@ Class {
 { #category : #running }
 FMMetamodelBuilderTest >> setUp [
 	super setUp.
-	metamodel := FMMetaRepository new.
+	metamodel := FMMetaModel new.
 	metamodel document: FMDungeonExample dungeonScript
 ]
 
