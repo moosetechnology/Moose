@@ -87,7 +87,7 @@ FMPragmaProcessor class >> shouldValidateMetaModel: anObject [
 
 { #category : #converting }
 FMPragmaProcessor >> asMetamodel [
-	^ FMMetaRepository new
+	^ FMMetaModel new
 		addAll: elements;
 		yourself
 ]
@@ -95,7 +95,7 @@ FMPragmaProcessor >> asMetamodel [
 { #category : #running }
 FMPragmaProcessor >> buildFM3 [
 	self
-		queue: ('Fame-Core' asPackage definedClasses asSet select: #isMetamodelEntity);
+		queue: (self class package definedClasses asSet select: #isMetamodelEntity);
 		run
 ]
 

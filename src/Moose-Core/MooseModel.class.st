@@ -109,7 +109,7 @@ MooseModel class >> importFrom: aStream filteredBy: anImportingContext [
 { #category : #'import-export' }
 MooseModel class >> importFrom: aStream withMetamodel: aMetamodel [
 	| model importer areWarningsEnabled |
-	model := FMRepository with: aMetamodel.
+	model := FMModel withMetamodel: aMetamodel.
 	importer := MSEImporter new.
 	importer repository: model.
 	importer stream: aStream.
@@ -136,7 +136,7 @@ MooseModel class >> importFrom: aStream withMetamodel: aMetamodel filteredBy: an
 
 	"famixElementNames := anImportingContext fullNamesOfEntitiesToBeExtracted ."
 
-	model := FMRepository with: aMetamodel.
+	model := FMModel with: aMetamodel.
 	importer := MSEImporter new.
 	importer repository: model.
 	importer stream: aStream.
@@ -149,7 +149,7 @@ MooseModel class >> importFrom: aStream withMetamodel: aMetamodel filteredBy: an
 { #category : #'import-export' }
 MooseModel class >> importFrom: aStream withMetamodel: aMetamodel translationDictionary: translationDict [
 	| model importer |
-	model := FMRepository with: aMetamodel.
+	model := FMModel with: aMetamodel.
 	importer := MSEImporter new.
 	importer repository: model.
 	importer stream: aStream.
@@ -169,7 +169,7 @@ MooseModel class >> importFromMSEStream: aStream [
 { #category : #'import-export' }
 MooseModel class >> importMetamodelFrom: aStream [
 	| mm generator |
-	mm := FMMetaRepository new.
+	mm := FMMetaModel new.
 	mm importStream: aStream.
 	generator := FMDefaultCodeGenerator new.
 	generator visit: mm.
@@ -357,7 +357,7 @@ MooseModel >> exportToMSEStream: aStream [
 
 { #category : #'import-export' }
 MooseModel >> exportWithMetamodel: aMetamodel to: aStream [
-	(FMRepository with: aMetamodel)
+	(FMModel withMetamodel: aMetamodel)
 		addAll: self entities;
 		exportOn: aStream
 ]

@@ -1,13 +1,13 @@
-Extension { #name : #FMMetaRepository }
+Extension { #name : #FMMetaModel }
 
 { #category : #'*Famix-Deprecated' }
-FMMetaRepository >> at: aString [
+FMMetaModel >> at: aString [
 	self deprecated: 'Use #packageNamed: instead' transformWith: '`@receiver at: `@arg' -> '`@receiver packageNamed: `@arg'.
 	^ self packageNamed: aString
 ]
 
 { #category : #'*Famix-Deprecated' }
-FMMetaRepository class >> fm3 [
+FMMetaModel class >> fm3 [
 	self deprecated: 'Use FMMetaMetaRepository instance instead' transformWith: 'FMMetaRepository fm3' -> 'FMMetaMetaRepository new'.
-	^ FMMetaMetaRepository new
+	^ FMMetaMetaModel new
 ]

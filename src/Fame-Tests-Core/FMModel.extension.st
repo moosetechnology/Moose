@@ -1,7 +1,7 @@
-Extension { #name : #FMRepository }
+Extension { #name : #FMModel }
 
 { #category : #'*Fame-Tests-Core' }
-FMRepository >> selectKindOf: smalltalkOrFameClass [
+FMModel >> selectKindOf: smalltalkOrFameClass [
 
 	^smalltalkOrFameClass isBehavior 
 		ifTrue: [ self elements select: [ :each | each isKindOf: smalltalkOrFameClass ] ]

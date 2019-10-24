@@ -11,7 +11,7 @@ Class {
 { #category : #running }
 FMRepositoryTest >> setUp [
 	super setUp.
-	metamodel := FMMetaRepository new.
+	metamodel := FMMetaModel new.
 	element := FM3Object instance
 ]
 

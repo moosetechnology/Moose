@@ -7,7 +7,7 @@ Class {
 { #category : #running }
 FMMetaRepositoryTest >> testElementNamed [
 	| metamodel |
-	metamodel := FMMetaRepository new.
+	metamodel := FMMetaModel new.
 	metamodel importString: '((FM3.Package (name ''EG'') (classes (FM3.Class (name ''Boe'')))))'.
 	self assert: (metamodel elementNamed: 'EG') notNil.
 	self assert: (metamodel elementNamed: 'EG.Boe') notNil
@@ -30,7 +30,7 @@ FMMetaRepositoryTest >> testImportExtension [
 FMMetaRepositoryTest >> testImporter [
 	| string repo |
 	string := '((FM3.Package (id: 1) (name ''Office'')))'.
-	repo := FMMetaRepository new.
+	repo := FMMetaModel new.
 	(FMImporter repository: repo)
 		fromString: string;
 		run.
@@ -43,7 +43,7 @@ FMMetaRepositoryTest >> testImporter [
 { #category : #running }
 FMMetaRepositoryTest >> testReadEmptyProperties [
 	| metamodel package |
-	metamodel := FMMetaRepository new.
+	metamodel := FMMetaModel new.
 	metamodel importString: '((FM3.Package))'.
 	package := metamodel elements anyOne.
 	self assertEmpty: (metamodel get: 'name' element: package).

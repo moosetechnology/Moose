@@ -21,34 +21,34 @@ packageDict
 
 "
 Class {
-	#name : #FMMetaRepository,
-	#superclass : #FMRepository,
+	#name : #FMMetaModel,
+	#superclass : #FMModel,
 	#instVars : [
 		'classDict',
 		'nameDict'
 	],
-	#category : #'Fame-Core-Repositories'
+	#category : #'Fame-Core-Models'
 }
 
 { #category : #accessing }
-FMMetaRepository >> classes [
+FMMetaModel >> classes [
 	^ self elements select: [ :each | each isFM3Class ]
 ]
 
 { #category : #accessing }
-FMMetaRepository >> concreteClasses [
+FMMetaModel >> concreteClasses [
 	"Return all the FM3 classes whose implementing class is a class and not a trait."
 
 	^ self classes reject: [ :fm3Class | fm3Class implementingClass isTrait ]
 ]
 
 { #category : #initialization }
-FMMetaRepository >> defaultMetamodel [
-	^ FMMetaMetaRepository new
+FMMetaModel >> defaultMetamodel [
+	^ FMMetaMetaModel new
 ]
 
 { #category : #accessing }
-FMMetaRepository >> descriptionOf: smalltalkClass [ 
+FMMetaModel >> descriptionOf: smalltalkClass [ 
 	self flag: 'it should not return nil by default'.
 	^ classDict 
 		at: smalltalkClass 
@@ -59,24 +59,24 @@ FMMetaRepository >> descriptionOf: smalltalkClass [
 ]
 
 { #category : #accessing }
-FMMetaRepository >> descriptionOf: smalltalkClass ifAbsent: elseBlock [ 
+FMMetaModel >> descriptionOf: smalltalkClass ifAbsent: elseBlock [ 
 	^ classDict 
 		at: smalltalkClass
 		ifAbsent: elseBlock
 ]
 
 { #category : #accessing }
-FMMetaRepository >> elementNamed: aString [
+FMMetaModel >> elementNamed: aString [
 	^ self elementNamed: aString ifAbsent: [ self error: 'Element ''' , aString , ''' not found.' ]
 ]
 
 { #category : #accessing }
-FMMetaRepository >> elementNamed: aString ifAbsent: exceptionBlock [
+FMMetaModel >> elementNamed: aString ifAbsent: exceptionBlock [
 	^ nameDict at: aString ifAbsent: exceptionBlock
 ]
 
 { #category : #ui }
-FMMetaRepository >> gtInspectorClassesIn: composite [
+FMMetaModel >> gtInspectorClassesIn: composite [
 	<gtInspectorPresentationOrder: 0>
 	^ composite fastList
 		title: 'Classes';
@@ -96,7 +96,7 @@ FMMetaRepository >> gtInspectorClassesIn: composite [
 ]
 
 { #category : #ui }
-FMMetaRepository >> gtInspectorHierarchiesIn: composite [
+FMMetaModel >> gtInspectorHierarchiesIn: composite [
 	<gtInspectorPresentationOrder: 2>
 	^ composite tree
 		title: 'Hierarchies';
@@ -117,7 +117,7 @@ FMMetaRepository >> gtInspectorHierarchiesIn: composite [
 ]
 
 { #category : #ui }
-FMMetaRepository >> gtInspectorPackagesIn: composite [
+FMMetaModel >> gtInspectorPackagesIn: composite [
 	<gtInspectorPresentationOrder: 1>
 	^ composite fastList
 		title: 'Packages';
@@ -126,7 +126,7 @@ FMMetaRepository >> gtInspectorPackagesIn: composite [
 ]
 
 { #category : #ui }
-FMMetaRepository >> gtInspectorPropertiesIn: composite [
+FMMetaModel >> gtInspectorPropertiesIn: composite [
 	<gtInspectorPresentationOrder: 5>
 	^ composite table
 		title: 'Properties';
@@ -143,7 +143,7 @@ FMMetaRepository >> gtInspectorPropertiesIn: composite [
 ]
 
 { #category : #ui }
-FMMetaRepository >> gtSpotterClassesFor: aStep [
+FMMetaModel >> gtSpotterClassesFor: aStep [
 	<spotterOrder: 10>
 	aStep listProcessor
 		title: 'Classes';
@@ -153,7 +153,7 @@ FMMetaRepository >> gtSpotterClassesFor: aStep [
 ]
 
 { #category : #ui }
-FMMetaRepository >> gtSpotterPackagesFor: aStep [
+FMMetaModel >> gtSpotterPackagesFor: aStep [
 	<spotterOrder: 20>
 	aStep listProcessor
 		title: 'Packages';
@@ -163,57 +163,57 @@ FMMetaRepository >> gtSpotterPackagesFor: aStep [
 ]
 
 { #category : #testing }
-FMMetaRepository >> includes: element [
+FMMetaModel >> includes: element [
 	"Here we use the elements inst var instead of the getter to not cast the elements as array. It improve the perf a lot."
 
 	^ (element isFM3Class and: [ element isBuiltIn ]) or: [ elements includes: element ]
 ]
 
 { #category : #initialization }
-FMMetaRepository >> initialize [
+FMMetaModel >> initialize [
 	super initialize.
 	self updateCache
 ]
 
 { #category : #testing }
-FMMetaRepository >> isMetamodel [
+FMMetaModel >> isMetamodel [
 	^ true
 ]
 
 { #category : #accessing }
-FMMetaRepository >> packageNamed: name [
+FMMetaModel >> packageNamed: name [
 	^ nameDict at: name
 ]
 
 { #category : #accessing }
-FMMetaRepository >> packageNamed: name ifAbsentPut: aBlock [
+FMMetaModel >> packageNamed: name ifAbsentPut: aBlock [
 	^ nameDict at: name ifAbsentPut: aBlock
 ]
 
 { #category : #accessing }
-FMMetaRepository >> packages [
+FMMetaModel >> packages [
 	^ self elements select: [ :each | each isFM3Package ]
 ]
 
 { #category : #private }
-FMMetaRepository >> postAdd: element [
+FMMetaModel >> postAdd: element [
 	self updateCacheWith: element
 ]
 
 { #category : #accessing }
-FMMetaRepository >> properties [
+FMMetaModel >> properties [
 	^ self elements select: [ :each | each isFM3Property ]
 ]
 
 { #category : #private }
-FMMetaRepository >> updateCache [
+FMMetaModel >> updateCache [
 	nameDict := (FM3Constant constants collect: [ :const | const name asString -> const ]) asDictionary.
 	classDict := (FM3Constant constants collect: [ :const | const class -> const ]) asDictionary.
 	self elements do: [ :each | self updateCacheWith: each ]
 ]
 
 { #category : #private }
-FMMetaRepository >> updateCacheWith: element [
+FMMetaModel >> updateCacheWith: element [
 	element fullName ifNotNil: [ :fullName | nameDict at: fullName put: element ].
 	element isFM3Class ifTrue: [ element implementingClass ifNotNil: [ :class | classDict at: class put: element ] ]
 ]

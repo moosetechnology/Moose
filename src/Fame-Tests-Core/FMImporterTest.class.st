@@ -22,7 +22,7 @@ FMImporterTest class >> simpleCompositeMetamodelExtension [
 { #category : #running }
 FMImporterTest >> testBookMetamodel [
 	| or m repo |
-	or := FMImporter repository: FMMetaRepository new.
+	or := FMImporter repository: FMMetaModel new.
 	m := FMModelBuilder new client: or.
 	m document: [ m new: 'FM3.Class' with: [ m a: #name of: 'Book' ] ].
 	repo := or repository asMetarepository.
@@ -34,7 +34,7 @@ FMImporterTest >> testBookMetamodel [
 { #category : #running }
 FMImporterTest >> testElementNamed [
 	| metamodel |
-	metamodel := FMMetaRepository new.
+	metamodel := FMMetaModel new.
 	metamodel importString: FMHeinekenExample metamodelMSE.
 	self shouldnt: [ metamodel elementNamed: 'HNK.Beer' ] raise: Error.
 	self assert: (metamodel elementNamed: 'HNK.Beer') isFM3Class.
@@ -44,7 +44,7 @@ FMImporterTest >> testElementNamed [
 { #category : #running }
 FMImporterTest >> testImportHeinekenMetamodel [
 	| metamodel |
-	metamodel := FMMetaRepository new.
+	metamodel := FMMetaModel new.
 	metamodel importString: FMHeinekenExample metamodelMSE.
 	self assert: metamodel packages size equals: 1.
 	self assert: metamodel classes size equals: 3.
@@ -54,7 +54,7 @@ FMImporterTest >> testImportHeinekenMetamodel [
 { #category : #running }
 FMImporterTest >> testImportHeinekenModel [
 	| model |
-	model := FMRepository new.
+	model := FMModel new.
 	model metamodel importString: FMHeinekenExample metamodelMSE.
 	model importString: FMHeinekenExample modelMSE.
 	self assert: model elements size equals: 4
@@ -63,7 +63,7 @@ FMImporterTest >> testImportHeinekenModel [
 { #category : #running }
 FMImporterTest >> testOrderOfElements [
 	| model elem values metamodel |
-	model := FMRepository new.
+	model := FMModel new.
 	metamodel := model metamodel.
 	metamodel importString: self class simpleCompositeMetamodel.
 	metamodel importString: self class simpleCompositeMetamodelExtension.
@@ -82,7 +82,7 @@ FMImporterTest >> testOrderOfElements [
 { #category : #running }
 FMImporterTest >> testResolving [
 	| or m |
-	or := FMImporter repository: FMMetaRepository new.
+	or := FMImporter repository: FMMetaModel new.
 	m := FMModelBuilder new client: or.
 	m document: [ m new: 'FM3.Class' with: [ m a: #name of: 'MyName' ] ].
 	self denyEmpty: or repository elements.
@@ -93,7 +93,7 @@ FMImporterTest >> testResolving [
 { #category : #running }
 FMImporterTest >> testResolvingId [
 	| or m |
-	or := FMImporter repository: FMMetaRepository new.
+	or := FMImporter repository: FMMetaModel new.
 	m := FMModelBuilder new client: or.
 	m
 		document: [ m
@@ -112,7 +112,7 @@ FMImporterTest >> testResolvingId [
 { #category : #running }
 FMImporterTest >> testResolvingMultiArgs [
 	| or pack ref2 ref4 ref5 repo |
-	or := FMImporter repository: FMMetaRepository new.
+	or := FMImporter repository: FMMetaModel new.
 	or beginDocument.
 	or beginElement: 'FM3.Package'.
 	or serial: 3.
@@ -170,7 +170,7 @@ FMImporterTest >> testResolvingMultiArgs [
 { #category : #running }
 FMImporterTest >> testSimpleExtensions [
 	| metamodel |
-	metamodel := FMMetaRepository new.
+	metamodel := FMMetaModel new.
 	metamodel importString: self class simpleCompositeMetamodel.
 	metamodel importString: self class simpleCompositeMetamodelExtension.
 	self assert: metamodel packages size equals: 2.
@@ -182,7 +182,7 @@ FMImporterTest >> testSimpleExtensions [
 { #category : #running }
 FMImporterTest >> testSimpleMetamodel [
 	| metamodel |
-	metamodel := FMMetaRepository new.
+	metamodel := FMMetaModel new.
 	metamodel importString: self class simpleCompositeMetamodel.
 	self assert: metamodel packages size equals: 1.
 	self assert: metamodel classes size equals: 2.
