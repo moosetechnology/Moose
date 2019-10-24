@@ -27,8 +27,7 @@ FMMetaRepositoryFilterTest >> buildRPG [
 
 { #category : #'tests-export' }
 FMMetaRepositoryFilterTest >> createLIBModelWithClass: class [
-	| tower model filteredMetamodel stream filter |
-	model := {(LIBBook new title: 'aBook') . LIBLibrary new . (LIBPerson new name: 'aPerson')}.
+	| tower model metamodel filteredMetamodel stream filter |
 	stream := String new writeStream.
 
 	filter := FMMetaRepositoryFilter new
@@ -40,20 +39,20 @@ FMMetaRepositoryFilterTest >> createLIBModelWithClass: class [
 	filteredMetamodel := filter newMetaRepository.
 
 	"exporting the model (with the filtered metamodel) as mse"
-	tower := FMTower new.
-	tower metaMetamodel: filteredMetamodel metamodel.
-	tower metamodel: filteredMetamodel.
-	tower model: ((FMRepository with: filteredMetamodel) addAll: model).
-	tower model exportOn: stream.
+
+	model := (FMRepository with: filteredMetamodel)
+		addAll: {(LIBBook new title: 'aBook') . LIBLibrary new . (LIBPerson named: 'aPerson')};
+		yourself.
+	model exportOn: stream.
 
 	"reading the strem (mse) with the filtered model"
-	tower := FMTower new.
-	tower metamodel addAll: filteredMetamodel elements.
-	(FMImporter repository: tower model)
+	metamodel := FMMetaMetaRepository new.
+	metamodel addAll: filteredMetamodel elements.
+	(FMImporter repository: model)
 		stream: stream contents readStream;
 		run.
-	tower model updateCache.
-	^ tower model
+	model updateCache.
+	^ model
 ]
 
 { #category : #'tests-export' }

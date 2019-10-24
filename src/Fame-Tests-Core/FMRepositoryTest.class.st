@@ -2,7 +2,8 @@ Class {
 	#name : #FMRepositoryTest,
 	#superclass : #TestCase,
 	#instVars : [
-		't'
+		'metamodel',
+		'element'
 	],
 	#category : #'Fame-Tests-Core'
 }
@@ -10,26 +11,27 @@ Class {
 { #category : #running }
 FMRepositoryTest >> setUp [
 	super setUp.
-	t := FMTower new
+	metamodel := FMMetaRepository new.
+	element := FM3Object instance
 ]
 
 { #category : #running }
 FMRepositoryTest >> testAdd [
-	t metamodel add: t metaMetamodel packages anyOne.
-	self assert: t metamodel size equals: 1
+	self assertEmpty: metamodel.
+	metamodel add: element.
+	self assert: metamodel size equals: 1
 ]
 
 { #category : #running }
 FMRepositoryTest >> testRemove [
-	| element |
-	element := t metaMetamodel packages anyOne.
-	t metamodel add: element.
-	t metamodel remove: element.
-	self assertEmpty: t metamodel
+	metamodel add: element.
+	self denyEmpty: metamodel.
+	metamodel remove: element.
+	self assertEmpty: metamodel
 ]
 
 { #category : #running }
 FMRepositoryTest >> testSilentRemove [
-	self shouldnt: [ t metamodel remove: nil ] raise: Exception.
-	self assertEmpty: t metamodel
+	self shouldnt: [ metamodel remove: nil ] raise: Exception.
+	self assertEmpty: metamodel
 ]

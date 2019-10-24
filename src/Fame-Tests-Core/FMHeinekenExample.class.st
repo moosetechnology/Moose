@@ -91,11 +91,10 @@ FMHeinekenExample class >> modelMSE [
 
 { #category : #running }
 FMHeinekenExample >> testImportMetamodelAndCreateClasses [
-	| metamodel tower gen |
-	metamodel := self class metamodelMSE.
-	tower := FMTower new.
-	tower metamodel importString: metamodel.
+	| metamodel gen |
+	metamodel := FMMetaRepository new.
+	metamodel importString: self class metamodelMSE.
 	gen := FMDefaultCodeGenerator new.
-	gen visit: tower metamodel.
+	gen visit: metamodel.
 	gen previewChangesIfShiftPressed
 ]

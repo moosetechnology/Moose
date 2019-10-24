@@ -108,11 +108,10 @@ MooseModel class >> importFrom: aStream filteredBy: anImportingContext [
 
 { #category : #'import-export' }
 MooseModel class >> importFrom: aStream withMetamodel: aMetamodel [
-	| tower importer areWarningsEnabled |
-	tower := FMTower new.
-	tower metamodel addAll: aMetamodel elements.
+	| model importer areWarningsEnabled |
+	model := FMRepository with: aMetamodel.
 	importer := MSEImporter new.
-	importer repository: tower model.
+	importer repository: model.
 	importer stream: aStream.
 
 	"We are currently updating the meta models and most parsers are not up to date.
@@ -122,13 +121,13 @@ MooseModel class >> importFrom: aStream withMetamodel: aMetamodel [
 	importer run ]
 		ensure: [ Deprecation raiseWarning: areWarningsEnabled ].
 
-	tower model updateCache.
-	^ tower model
+	model updateCache.
+	^ model
 ]
 
 { #category : #'import-export' }
 MooseModel class >> importFrom: aStream withMetamodel: aMetamodel filteredBy: anImportingContext [
-	| tower importer famixElementNames importerFilter |
+	| model importer famixElementNames importerFilter |
 	famixElementNames := OrderedCollection new.
 	anImportingContext entityKindsToBeExtracted do: [ :each | famixElementNames add: 'FAMIX.' , each asString ].
 	"anImportingContext  shouldImportMethodBody 
@@ -137,29 +136,27 @@ MooseModel class >> importFrom: aStream withMetamodel: aMetamodel filteredBy: an
 
 	"famixElementNames := anImportingContext fullNamesOfEntitiesToBeExtracted ."
 
-	tower := FMTower new.
-	tower metamodel addAll: aMetamodel elements.
+	model := FMRepository with: aMetamodel.
 	importer := MSEImporter new.
-	importer repository: tower model.
+	importer repository: model.
 	importer stream: aStream.
 	importerFilter := FMImporterFilter onClient: importer withFilter: famixElementNames.
 	importerFilter run.
-	tower model updateCache.
-	^ tower model
+	model updateCache.
+	^ model
 ]
 
 { #category : #'import-export' }
 MooseModel class >> importFrom: aStream withMetamodel: aMetamodel translationDictionary: translationDict [
-	| tower importer |
-	tower := FMTower new.
-	tower metamodel addAll: aMetamodel elements.
+	| model importer |
+	model := FMRepository with: aMetamodel.
 	importer := MSEImporter new.
-	importer repository: tower model.
+	importer repository: model.
 	importer stream: aStream.
 	importer nameTranslator: translationDict.
 	importer run.
-	tower model updateCache.
-	^ tower model
+	model updateCache.
+	^ model
 ]
 
 { #category : #'import-export' }
@@ -171,11 +168,11 @@ MooseModel class >> importFromMSEStream: aStream [
 
 { #category : #'import-export' }
 MooseModel class >> importMetamodelFrom: aStream [
-	| tower generator |
-	tower := FMTower new.
-	tower metamodel importStream: aStream.
+	| mm generator |
+	mm := FMMetaRepository new.
+	mm importStream: aStream.
 	generator := FMDefaultCodeGenerator new.
-	generator visit: tower metamodel.
+	generator visit: mm.
 	generator previewChanges	"keep shift pressed to see the changes"
 ]
 
@@ -191,14 +188,6 @@ MooseModel class >> named: aString [
 	^ self new
 		name: aString;
 		yourself
-]
-
-{ #category : #accessing }
-MooseModel class >> newRepository [
-	| tower |
-	tower := FMTower new.
-	tower metamodel addAll: self metamodel elements.
-	^ tower model
 ]
 
 { #category : #accessing }
@@ -368,10 +357,9 @@ MooseModel >> exportToMSEStream: aStream [
 
 { #category : #'import-export' }
 MooseModel >> exportWithMetamodel: aMetamodel to: aStream [
-	| tower |
-	tower := FMTower fromMetamodel: aMetamodel.
-	tower model addAll: self entities.
-	tower model exportOn: aStream
+	(FMRepository with: aMetamodel)
+		addAll: self entities;
+		exportOn: aStream
 ]
 
 { #category : #accessing }

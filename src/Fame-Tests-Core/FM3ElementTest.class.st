@@ -2,7 +2,7 @@ Class {
 	#name : #FM3ElementTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'tower'
+		'metaMetamodel'
 	],
 	#category : #'Fame-Tests-Core'
 }
@@ -10,14 +10,14 @@ Class {
 { #category : #running }
 FM3ElementTest >> setUp [
 	super setUp.
-	tower := FMTower new
+	metaMetamodel := FMMetaMetaRepository new
 ]
 
 { #category : #running }
 FM3ElementTest >> testFullNameIsString [
-	self assert: (tower metaMetamodel elementNamed: 'FM3') fullName isString.
-	self assert: (tower metaMetamodel elementNamed: 'FM3.Property') fullName isString.
-	self assert: (tower metaMetamodel elementNamed: 'FM3.Property.opposite') fullName isString
+	self assert: (metaMetamodel elementNamed: 'FM3') fullName isString.
+	self assert: (metaMetamodel elementNamed: 'FM3.Property') fullName isString.
+	self assert: (metaMetamodel elementNamed: 'FM3.Property.opposite') fullName isString
 ]
 
 { #category : #running }
@@ -40,9 +40,9 @@ FM3ElementTest >> testFullNameOfNonameOwnerIsNil [
 
 { #category : #running }
 FM3ElementTest >> testNameIsSymbol [
-	self assert: (tower metaMetamodel elementNamed: 'FM3') name isSymbol.
-	self assert: (tower metaMetamodel elementNamed: 'FM3.Property') name isSymbol.
-	self assert: (tower metaMetamodel elementNamed: 'FM3.Property.opposite') name isSymbol
+	self assert: (metaMetamodel elementNamed: 'FM3') name isSymbol.
+	self assert: (metaMetamodel elementNamed: 'FM3.Property') name isSymbol.
+	self assert: (metaMetamodel elementNamed: 'FM3.Property.opposite') name isSymbol
 ]
 
 { #category : #running }

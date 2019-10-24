@@ -154,11 +154,21 @@ FMRepository >> isMetamodel [
 	^ false
 ]
 
+{ #category : #testing }
+FMRepository >> isNotEmpty [
+	^ self isEmpty not
+]
+
 { #category : #'accessing-meta' }
 FMRepository >> metaDescriptionOf: element [ 
 	^ (element isKindOf: FMRuntimeElement) 
 		ifTrue: [ element description ]
 		ifFalse: [ self metamodel descriptionOf: element class ]
+]
+
+{ #category : #'as yet unclassified' }
+FMRepository >> metaMetaModel [
+	^ self metamodel metamodel
 ]
 
 { #category : #accessing }

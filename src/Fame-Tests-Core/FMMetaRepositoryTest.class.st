@@ -6,12 +6,11 @@ Class {
 
 { #category : #running }
 FMMetaRepositoryTest >> testElementNamed [
-	| tower m2 |
-	tower := FMTower new.
-	m2 := tower metamodel.
-	m2 importString: '((FM3.Package (name ''EG'') (classes (FM3.Class (name ''Boe'')))))'.
-	self assert: (m2 elementNamed: 'EG') notNil.
-	self assert: (m2 elementNamed: 'EG.Boe') notNil
+	| metamodel |
+	metamodel := FMMetaRepository new.
+	metamodel importString: '((FM3.Package (name ''EG'') (classes (FM3.Class (name ''Boe'')))))'.
+	self assert: (metamodel elementNamed: 'EG') notNil.
+	self assert: (metamodel elementNamed: 'EG.Boe') notNil
 ]
 
 { #category : #running }
@@ -43,14 +42,13 @@ FMMetaRepositoryTest >> testImporter [
 
 { #category : #running }
 FMMetaRepositoryTest >> testReadEmptyProperties [
-	| tower m2 package |
-	tower := FMTower new.
-	m2 := tower metamodel.
-	m2 importString: '((FM3.Package))'.
-	package := m2 elements anyOne.
-	self assertEmpty: (m2 get: 'name' element: package).
-	self assertEmpty: (m2 get: 'classes' element: package).
-	^ m2
+	| metamodel package |
+	metamodel := FMMetaRepository new.
+	metamodel importString: '((FM3.Package))'.
+	package := metamodel elements anyOne.
+	self assertEmpty: (metamodel get: 'name' element: package).
+	self assertEmpty: (metamodel get: 'classes' element: package).
+	^ metamodel
 ]
 
 { #category : #running }
