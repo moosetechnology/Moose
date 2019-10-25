@@ -22,7 +22,7 @@ FMDataStructurePrinter class >> on: aStream [
 
 { #category : #accessing }
 FMDataStructurePrinter class >> onString [
-	self on: '' writeStream
+	^ self on: '' writeStream
 ]
 
 { #category : #private }

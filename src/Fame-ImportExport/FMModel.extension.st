@@ -18,7 +18,7 @@ FMModel >> exportOn: aStream [
 FMModel >> exportString [
 	| printer |
 	printer := FMMSEPrinter onString.
-	self accept: printer.
+	self exportWithPrinter: printer.
 	^ printer stream contents
 ]
 
