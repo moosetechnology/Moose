@@ -31,12 +31,6 @@ FamixTNamespace classSide >> famixTNamespaceRelatedGroup [
 	^ FAMIXNamespaceGroup
 ]
 
-{ #category : #adding }
-FamixTNamespace >> addNamespaceEntities: anObject [
-	<generated>
-	^ self namespaceEntities add: anObject
-]
-
 { #category : #accessing }
 FamixTNamespace >> addNamespaceEntity: anObject [
 	namespaceEntities add: anObject

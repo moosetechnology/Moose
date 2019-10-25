@@ -20,12 +20,6 @@ FamixTWithInvocations >> addOutgoingInvocation: anInvocation [
 	outgoingInvocations add: anInvocation
 ]
 
-{ #category : #adding }
-FamixTWithInvocations >> addOutgoingInvocations: anObject [
-	<generated>
-	^ self outgoingInvocations add: anObject
-]
-
 { #category : #accessing }
 FamixTWithInvocations >> outgoingInvocations [
 	"Relation named: #outgoingInvocations type: #FamixTInvocation opposite: #sender"

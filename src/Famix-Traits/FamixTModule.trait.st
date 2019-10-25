@@ -19,12 +19,6 @@ FamixTModule classSide >> annotation [
 	^self
 ]
 
-{ #category : #adding }
-FamixTModule >> addModuleEntities: anObject [
-	<generated>
-	^ self moduleEntities add: anObject
-]
-
 { #category : #accessing }
 FamixTModule >> addModuleEntity: anObject [
 

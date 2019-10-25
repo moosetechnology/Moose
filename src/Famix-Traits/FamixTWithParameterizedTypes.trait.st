@@ -21,12 +21,6 @@ FamixTWithParameterizedTypes >> addParameterizedType: anObject [
 
 ]
 
-{ #category : #adding }
-FamixTWithParameterizedTypes >> addParameterizedTypes: anObject [
-	<generated>
-	^ self parameterizedTypes add: anObject
-]
-
 { #category : #accessing }
 FamixTWithParameterizedTypes >> parameterizedTypes [
 	"Relation named: #parameterizedTypes type: #FamixTParameterizedType opposite: #parameterizableClass"

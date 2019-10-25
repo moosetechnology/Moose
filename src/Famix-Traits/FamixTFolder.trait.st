@@ -34,7 +34,7 @@ FamixTFolder >> addChildFileSystemEntity: aFileOrFolder [
 ]
 
 { #category : #adding }
-FamixTFolder >> addChildrenFileSystemEntities: anObject [
+FamixTFolder >> addChildrenFileSystemEntity: anObject [
 	<generated>
 	^ self childrenFileSystemEntities add: anObject
 ]

@@ -37,9 +37,3 @@ FamixTWithAccesses >> accesses: anObject [
 FamixTWithAccesses >> addAccess: anAccess [ 
 	accesses add: anAccess
 ]
-
-{ #category : #adding }
-FamixTWithAccesses >> addAccesses: anObject [
-	<generated>
-	^ self accesses add: anObject
-]

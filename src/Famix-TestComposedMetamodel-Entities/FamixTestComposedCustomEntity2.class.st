@@ -21,7 +21,7 @@ FamixTestComposedCustomEntity2 class >> metamodel [
 ]
 
 { #category : #adding }
-FamixTestComposedCustomEntity2 >> addC22s: anObject [
+FamixTestComposedCustomEntity2 >> addC22: anObject [
 	<generated>
 	^ self c22s add: anObject
 ]

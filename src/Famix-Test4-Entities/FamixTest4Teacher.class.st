@@ -25,7 +25,7 @@ FamixTest4Teacher class >> requirements [
 ]
 
 { #category : #adding }
-FamixTest4Teacher >> addStudents: anObject [
+FamixTest4Teacher >> addStudent: anObject [
 	<generated>
 	^ self students add: anObject
 ]

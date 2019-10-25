@@ -21,12 +21,6 @@ FamixTWithCaughtExceptions >> addCaughtException: aCaughtException [
 
 ]
 
-{ #category : #adding }
-FamixTWithCaughtExceptions >> addCaughtExceptions: anObject [
-	<generated>
-	^ self caughtExceptions add: anObject
-]
-
 { #category : #accessing }
 FamixTWithCaughtExceptions >> caughtExceptions [
 	"Relation named: #caughtExceptions type: #FamixTCaughtException opposite: #definingEntity"

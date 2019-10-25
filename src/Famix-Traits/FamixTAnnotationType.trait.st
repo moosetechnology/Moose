@@ -38,12 +38,6 @@ FamixTAnnotationType >> addInstance: anObject [
 
 ]
 
-{ #category : #adding }
-FamixTAnnotationType >> addInstances: anObject [
-	<generated>
-	^ self instances add: anObject
-]
-
 { #category : #accessing }
 FamixTAnnotationType >> annotationTypesContainer [
 	"Relation named: #annotationTypesContainer type: #FamixTWithAnnotationTypes opposite: #definedAnnotationTypes"

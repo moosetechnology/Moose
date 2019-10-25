@@ -41,12 +41,6 @@ FamixTAccessible >> addIncomingAccess: anAccess [
 	incomingAccesses add: anAccess
 ]
 
-{ #category : #adding }
-FamixTAccessible >> addIncomingAccesses: anObject [
-	<generated>
-	^ self incomingAccesses add: anObject
-]
-
 { #category : #accessing }
 FamixTAccessible >> globalAccesses [
 	| attrclass globalAccesses |

@@ -21,7 +21,7 @@ FamixTestComposedCustomEntity4 class >> metamodel [
 ]
 
 { #category : #adding }
-FamixTestComposedCustomEntity4 >> addC24s: anObject [
+FamixTestComposedCustomEntity4 >> addC24: anObject [
 	<generated>
 	^ self c24s add: anObject
 ]

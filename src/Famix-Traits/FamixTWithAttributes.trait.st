@@ -20,12 +20,6 @@ FamixTWithAttributes >> addAttribute: anAttribute [
 	attributes add: anAttribute
 ]
 
-{ #category : #adding }
-FamixTWithAttributes >> addAttributes: anObject [
-	<generated>
-	^ self attributes add: anObject
-]
-
 { #category : #accessing }
 FamixTWithAttributes >> attributes [
 	"Relation named: #attributes type: #FamixTAttribute opposite: #parentType"

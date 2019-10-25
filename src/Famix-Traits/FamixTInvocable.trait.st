@@ -20,12 +20,6 @@ FamixTInvocable >> addIncomingInvocation: anInvocation [
 	incomingInvocations add: anInvocation
 ]
 
-{ #category : #adding }
-FamixTInvocable >> addIncomingInvocations: anObject [
-	<generated>
-	^ self incomingInvocations add: anObject
-]
-
 { #category : #accessing }
 FamixTInvocable >> incomingInvocations [
 	"Relation named: #incomingInvocations type: #FamixTInvocation opposite: #candidates"

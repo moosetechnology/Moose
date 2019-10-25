@@ -26,12 +26,6 @@ FamixTScopingEntity >> addChildScope: aScopingEntity [
 	childScopes add: aScopingEntity
 ]
 
-{ #category : #adding }
-FamixTScopingEntity >> addChildScopes: anObject [
-	<generated>
-	^ self childScopes add: anObject
-]
-
 { #category : #accessing }
 FamixTScopingEntity >> allChildScopes [
 	| result |

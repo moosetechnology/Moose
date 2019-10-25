@@ -20,12 +20,6 @@ FamixTWithLocalVariables >> addLocalVariable: aLocalVariable [
 	localVariables add: aLocalVariable
 ]
 
-{ #category : #adding }
-FamixTWithLocalVariables >> addLocalVariables: anObject [
-	<generated>
-	^ self localVariables add: anObject
-]
-
 { #category : #accessing }
 FamixTWithLocalVariables >> localVariables [
 	"Relation named: #localVariables type: #FamixTLocalVariable opposite: #parentBehaviouralEntity"

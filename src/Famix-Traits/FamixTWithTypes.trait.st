@@ -20,12 +20,6 @@ FamixTWithTypes >> addType: aType [
 	types add: aType
 ]
 
-{ #category : #adding }
-FamixTWithTypes >> addTypes: anObject [
-	<generated>
-	^ self types add: anObject
-]
-
 { #category : #accessing }
 FamixTWithTypes >> allRecursiveTypes [
 	"Retrieves all nested types recursively"

@@ -22,22 +22,10 @@ FamixTWithFileIncludes >> addIncomingIncludeRelation: anObject [
 
 ]
 
-{ #category : #adding }
-FamixTWithFileIncludes >> addIncomingIncludeRelations: anObject [
-	<generated>
-	^ self incomingIncludeRelations add: anObject
-]
-
 { #category : #accessing }
 FamixTWithFileIncludes >> addOutgoingIncludeRelation: anObject [
 	outgoingIncludeRelations add: anObject
 
-]
-
-{ #category : #adding }
-FamixTWithFileIncludes >> addOutgoingIncludeRelations: anObject [
-	<generated>
-	^ self outgoingIncludeRelations add: anObject
 ]
 
 { #category : #accessing }

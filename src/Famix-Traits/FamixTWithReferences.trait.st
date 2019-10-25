@@ -20,12 +20,6 @@ FamixTWithReferences >> addOutgoingReference: aReference [
 	outgoingReferences add: aReference
 ]
 
-{ #category : #adding }
-FamixTWithReferences >> addOutgoingReferences: anObject [
-	<generated>
-	^ self outgoingReferences add: anObject
-]
-
 { #category : #accessing }
 FamixTWithReferences >> outgoingReferences [
 	"Relation named: #outgoingReferences type: #FamixTReference opposite: #source"

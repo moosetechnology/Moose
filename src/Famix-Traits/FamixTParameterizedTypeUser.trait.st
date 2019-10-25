@@ -22,12 +22,6 @@ FamixTParameterizedTypeUser >> addArgumentsInParameterizedType: anObject [
 
 ]
 
-{ #category : #adding }
-FamixTParameterizedTypeUser >> addArgumentsInParameterizedTypes: anObject [
-	<generated>
-	^ self argumentsInParameterizedTypes add: anObject
-]
-
 { #category : #accessing }
 FamixTParameterizedTypeUser >> argumentsInParameterizedTypes [
 	"Relation named: #argumentsInParameterizedTypes type: #FamixTWithParameterizedTypeUsers opposite: #arguments"

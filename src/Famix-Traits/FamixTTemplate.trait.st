@@ -23,12 +23,6 @@ FamixTTemplate >> addTemplateUser: anObject [
 
 ]
 
-{ #category : #adding }
-FamixTTemplate >> addTemplateUsers: anObject [
-	<generated>
-	^ self templateUsers add: anObject
-]
-
 { #category : #accessing }
 FamixTTemplate >> templateOwner [
 	"Relation named: #templateOwner type: #FamixTWithTemplates opposite: #templates"
