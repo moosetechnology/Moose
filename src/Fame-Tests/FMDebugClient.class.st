@@ -44,12 +44,10 @@ FMDebugClient >> endElement: name [
 
 { #category : #accessing }
 FMDebugClient >> exportString [
-	
 	| printer |
-	printer := FMMSEPrinter new.
-	printer onString: String new.
+	printer := FMMSEPrinter onString.
 	self replayOn: printer.
-	^printer stream contents.
+	^ printer stream contents
 ]
 
 { #category : #initialization }

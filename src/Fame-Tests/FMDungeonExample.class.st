@@ -26,7 +26,7 @@ FMDungeonExample class >> dungeonScript [
 { #category : #'as yet unclassified' }
 FMDungeonExample class >> metamodelString [
 	| builder |
-	builder := FMMetamodelBuilder client: FMMSEPrinter new onString.
+	builder := FMMetamodelBuilder client: FMMSEPrinter onString.
 	builder document: self dungeonScript.
 	^ builder client stream contents
 ]

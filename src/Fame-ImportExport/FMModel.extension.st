@@ -2,7 +2,8 @@ Extension { #name : #FMModel }
 
 { #category : #'*Fame-ImportExport' }
 FMModel >> accept: aParseClient [
-	FMRepositoryVisitor new
+	self deprecated: 'Use #exportWithPrinter: instead.' transformWith: '`@receiver accept: `@arg' -> '`@receiver exportWithPrinter: `@arg'.
+	FMModelExporter new
 		model: self;
 		printer: aParseClient;
 		run
@@ -10,16 +11,23 @@ FMModel >> accept: aParseClient [
 
 { #category : #'*Fame-ImportExport' }
 FMModel >> exportOn: aStream [
-	self accept: (FMMSEPrinter on: aStream)
+	self exportWithPrinter: (FMMSEPrinter on: aStream)
 ]
 
 { #category : #'*Fame-ImportExport' }
 FMModel >> exportString [
-
 	| printer |
-	printer := FMMSEPrinter new onString.	
+	printer := FMMSEPrinter onString.
 	self accept: printer.
-	^printer stream contents
+	^ printer stream contents
+]
+
+{ #category : #'*Fame-ImportExport' }
+FMModel >> exportWithPrinter: aParseClient [
+	FMModelExporter new
+		model: self;
+		printer: aParseClient;
+		run
 ]
 
 { #category : #'*Fame-ImportExport' }

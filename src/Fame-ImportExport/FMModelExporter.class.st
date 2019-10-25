@@ -1,5 +1,5 @@
 Class {
-	#name : #FMRepositoryVisitor,
+	#name : #FMModelExporter,
 	#superclass : #Object,
 	#instVars : [
 		'repository',
@@ -14,12 +14,12 @@ Class {
 }
 
 { #category : #'instance creation' }
-FMRepositoryVisitor class >> new [
+FMModelExporter class >> new [
 	^self basicNew initialize
 ]
 
 { #category : #exporting }
-FMRepositoryVisitor >> basicRun [
+FMModelExporter >> basicRun [
 
 	self exportHeader.
 	self roots do: [ :each |
@@ -28,7 +28,7 @@ FMRepositoryVisitor >> basicRun [
 ]
 
 { #category : #exporting }
-FMRepositoryVisitor >> exportElement: each [ 
+FMModelExporter >> exportElement: each [ 
 	
 	| meta serial properties |
 
@@ -49,17 +49,17 @@ FMRepositoryVisitor >> exportElement: each [
 ]
 
 { #category : #exporting }
-FMRepositoryVisitor >> exportFooter [
+FMModelExporter >> exportFooter [
 	printer endDocument
 ]
 
 { #category : #exporting }
-FMRepositoryVisitor >> exportHeader [
+FMModelExporter >> exportHeader [
 	printer beginDocument
 ]
 
 { #category : #exporting }
-FMRepositoryVisitor >> exportProperty: property for: each [
+FMModelExporter >> exportProperty: property for: each [
 	| values |
 	(self shouldIgnoreProperty: property) ifTrue: [ ^ self ].
 	values := repository get: property element: each.
@@ -68,7 +68,7 @@ FMRepositoryVisitor >> exportProperty: property for: each [
 ]
 
 { #category : #exporting }
-FMRepositoryVisitor >> exportProperty: property withAll: values [
+FMModelExporter >> exportProperty: property withAll: values [
 	printer beginAttribute: property name.
 	property type isPrimitive
 		ifTrue: [ values do: [ :each | printer primitive: each ] ]
@@ -86,7 +86,7 @@ FMRepositoryVisitor >> exportProperty: property withAll: values [
 ]
 
 { #category : #exporting }
-FMRepositoryVisitor >> increment [
+FMModelExporter >> increment [
 	nb := nb + 1.
 	(progBar isNotNil and: [ (Time millisecondsSince: lastUpdate) >= 500 ]) ifFalse: [ ^ self ].
 
@@ -95,36 +95,35 @@ FMRepositoryVisitor >> increment [
 ]
 
 { #category : #private }
-FMRepositoryVisitor >> indexOf: each [
+FMModelExporter >> indexOf: each [
 	each ifNil: [ self error ].
 	^ index at: each ifAbsentPut: [ index size + 1 ]
 ]
 
 { #category : #initialization }
-FMRepositoryVisitor >> initialize [
+FMModelExporter >> initialize [
 	super initialize.
-
 	index := IdentityHashTable new "We use IdentityHashTable because it is more performant than IdentityDictionary for big collections."
 ]
 
 { #category : #private }
-FMRepositoryVisitor >> isPrimitiveTypeOrObject: each [
+FMModelExporter >> isPrimitiveTypeOrObject: each [
 	^ FM3Constant constants includes: each
 ]
 
 { #category : #accessing }
-FMRepositoryVisitor >> model: aRepository [
+FMModelExporter >> model: aRepository [
 	repository := aRepository.
 	roots := nil. "reset cache for roots"
 ]
 
 { #category : #accessing }
-FMRepositoryVisitor >> printer: aPrinter [
+FMModelExporter >> printer: aPrinter [
 	printer := aPrinter
 ]
 
 { #category : #private }
-FMRepositoryVisitor >> roots [
+FMModelExporter >> roots [
 	self
 		flag:
 			'VBL - Add a test to detect that the repository is a meta model or not. If  it is, the exporter works normally else, only the roots are exported (issue was detected when adding the container pragmas). I don''t know if it is the better fix to do.'.
@@ -134,7 +133,7 @@ FMRepositoryVisitor >> roots [
 ]
 
 { #category : #exporting }
-FMRepositoryVisitor >> run [
+FMModelExporter >> run [
 	nb := 0.
 	UIManager default
 		displayProgress: 'Writing ' , printer stream localName
@@ -147,21 +146,21 @@ FMRepositoryVisitor >> run [
 ]
 
 { #category : #exporting }
-FMRepositoryVisitor >> shouldIgnoreProperty: property [
+FMModelExporter >> shouldIgnoreProperty: property [
 	(repository metamodel includes: property) ifFalse: [ ^ true ].
 
 	^ property isDerived
 ]
 
 { #category : #exporting }
-FMRepositoryVisitor >> shouldIgnoreProperty: property withAll: values [
+FMModelExporter >> shouldIgnoreProperty: property withAll: values [
 	values ifNil: [ ^ true ].
 
 	^ values isEmpty or: [ property type = FM3Boolean instance and: [ values size = 1 and: [ values first = false ] ] ]
 ]
 
 { #category : #private }
-FMRepositoryVisitor >> sortAttributes: properties [
+FMModelExporter >> sortAttributes: properties [
 
 	| names composites sorted |
 	sorted := properties asArray sorted: [:n1 :n2 | n1 name < n2 name ].

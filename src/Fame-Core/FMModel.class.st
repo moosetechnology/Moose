@@ -156,7 +156,7 @@ FMModel >> metaDescriptionOf: element [
 	^ element metaDescriptionIn: self metamodel
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FMModel >> metaMetaModel [
 	^ self metamodel metamodel
 ]

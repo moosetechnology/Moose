@@ -7,7 +7,7 @@ Class {
 { #category : #running }
 FMModelBuilderTest >> testDocument [
 	| client m s |
-	client := FMMSEPrinter new onString.
+	client := FMMSEPrinter onString.
 	m := FMModelBuilder client: client.
 	m document: [  ].
 	s := client stream contents.
@@ -17,7 +17,7 @@ FMModelBuilderTest >> testDocument [
 { #category : #running }
 FMModelBuilderTest >> testPerson [
 	| client m s |
-	client := FMMSEPrinter new onString.
+	client := FMMSEPrinter onString.
 	m := FMModelBuilder client: client.
 	m document: [ m new: #Person with: [ m a: #name of: 'John Doe' ] ].
 	s := client stream contents.
@@ -32,7 +32,7 @@ FMModelBuilderTest >> testPerson [
 { #category : #running }
 FMModelBuilderTest >> testPersonWithDog [
 	| client m s |
-	client := FMMSEPrinter new onString.
+	client := FMMSEPrinter onString.
 	m := FMModelBuilder client: client.
 	m
 		document: [ m
@@ -60,7 +60,7 @@ FMModelBuilderTest >> testPersonWithDog [
 { #category : #running }
 FMModelBuilderTest >> testPersonWithDogUsingIdReferences [
 	| client m s |
-	client := FMMSEPrinter new onString.
+	client := FMMSEPrinter onString.
 	m := FMModelBuilder client: client.
 	m
 		document: [ m
@@ -88,7 +88,7 @@ FMModelBuilderTest >> testPersonWithDogUsingIdReferences [
 { #category : #running }
 FMModelBuilderTest >> testPersonWithNicknames [
 	| client m s |
-	client := FMMSEPrinter new onString.
+	client := FMMSEPrinter onString.
 	m := FMModelBuilder client: client.
 	m
 		document: [ m
