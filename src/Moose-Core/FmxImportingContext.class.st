@@ -31,6 +31,14 @@ FmxImportingContext >> import: aClass traversed: traversedClasses [
 	
 ]
 
+{ #category : #'importing-filters' }
+FmxImportingContext >> importMaximum [
+	(self class methods
+		select: [ :m | m selector beginsWith: #import ]
+		thenCollect: #selector) \ #(importMaximum)
+		do: [ :aSelector | self perform: aSelector ]
+]
+
 { #category : #accessing }
 FmxImportingContext >> imports [
 	^ imports
