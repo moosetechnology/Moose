@@ -107,7 +107,7 @@ FMMetaRepositoryFilterTest >> testExportAsMSE [
 	visitor run.
 	metaModel := visitor newMetaRepository.
 
-	printer := FMMSEPrinter new onString.
+	printer := FMMSEPrinter onString.
 	metaModel accept: printer.
 	self assert: printer stream contents isString.
 	self assert: printer stream contents first equals: $(
@@ -123,7 +123,7 @@ FMMetaRepositoryFilterTest >> testExportAsXML [
 	visitor run.
 	metaModel := visitor newMetaRepository.
 
-	printer := FMXMLPrinter new onString.
+	printer := FMXMLPrinter onString.
 	metaModel accept: printer.
 	self assert: printer stream contents isString.
 	self assert: printer stream contents first equals: $<
