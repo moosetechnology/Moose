@@ -79,6 +79,21 @@ MooseAbstractGroupTest >> testAllWithSubTypesOf [
 ]
 
 { #category : #tests }
+MooseAbstractGroupTest >> testAllWithSubTypesOfAny [
+	group
+		addAll:
+			{FamixTest3Class new.
+			FamixTest3Invocation new.
+			FamixTest3PrimitiveType new}.
+	self
+		assert: (group allWithSubTypesOfAny: {FamixTest3NamedEntity}) size
+		equals: 2.
+		self
+		assert: (group allWithSubTypesOfAny: {FamixTest3NamedEntity. FamixTest3Association}) size
+		equals: 3
+]
+
+{ #category : #tests }
 MooseAbstractGroupTest >> testAllWithType [
 	group addAll: {FamixTest3Class new . FamixTest3Type new}.
 	self assert: (group allWithType: FamixTest3Class) size equals: 1.

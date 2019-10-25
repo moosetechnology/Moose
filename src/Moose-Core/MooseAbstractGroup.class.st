@@ -112,6 +112,14 @@ MooseAbstractGroup >> allWithSubTypesOf: aFamixClass ofGroupClass: aGroupClass [
 ]
 
 { #category : #groups }
+MooseAbstractGroup >> allWithSubTypesOfAny: aCollectionOfFamixClass [
+
+	^ (aCollectionOfFamixClass
+		flatCollect: [ :aFamixClass | self allWithSubTypesOf: aFamixClass ])
+		asMooseGroup
+]
+
+{ #category : #groups }
 MooseAbstractGroup >> allWithType: aFamixClass [
 	^ self allWithType: aFamixClass ofGroupClass: MooseGroup 
 ]
