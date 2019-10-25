@@ -20,6 +20,31 @@ FMMetaModelTest >> importedOfficeMetamodel [
 ]
 
 { #category : #tests }
+FMMetaModelTest >> testDescriptionOf [
+	| metamodel bookClass |
+	metamodel := LIBRoot libraryMetaModel.
+	bookClass := (metamodel packageNamed: 'LIB') classNamed: 'Book'.
+	self assert: (metamodel descriptionOf: LIBBook) identicalTo: bookClass.
+	self should: [ metamodel descriptionOf: FMMetaMetaModelTest ] raise: NotFound
+]
+
+{ #category : #tests }
+FMMetaModelTest >> testDescriptionOfIfAbsent [
+	| metamodel |
+	metamodel := LIBRoot libraryMetaModel.
+	self assert: (metamodel descriptionOf: LIBBook ifAbsent: [ nil ]) isNotNil.
+	self assert: (metamodel descriptionOf: FMMetaMetaModelTest ifAbsent: [ nil ]) isNil
+]
+
+{ #category : #tests }
+FMMetaModelTest >> testDescriptionOfIfPresentIfAbsent [
+	| metamodel |
+	metamodel := LIBRoot libraryMetaModel.
+	self assert: (metamodel descriptionOf: LIBBook ifPresent: [ true ] ifAbsent: [ false ]).
+	self deny: (metamodel descriptionOf: FMMetaMetaModelTest ifPresent: [ true ] ifAbsent: [ false ])
+]
+
+{ #category : #tests }
 FMMetaModelTest >> testElementNamed [
 	| metamodel |
 	metamodel := FMMetaModel fromString: '((FM3.Package (name ''EG'') (classes (FM3.Class (name ''Boe'')))))'.
