@@ -33,7 +33,15 @@ FMMetaModelTest >> testDescriptionOfIfAbsent [
 	| metamodel |
 	metamodel := LIBRoot libraryMetaModel.
 	self assert: (metamodel descriptionOf: LIBBook ifAbsent: [ nil ]) isNotNil.
-	self should: (metamodel descriptionOf: FMMetaMetaModelTest ifAbsent: [ nil ]) isNil
+	self assert: (metamodel descriptionOf: FMMetaMetaModelTest ifAbsent: [ nil ]) isNil
+]
+
+{ #category : #tests }
+FMMetaModelTest >> testDescriptionOfIfPresentIfAbsent [
+	| metamodel |
+	metamodel := LIBRoot libraryMetaModel.
+	self assert: (metamodel descriptionOf: LIBBook ifPresent: [ true ] ifAbsent: [ false ]).
+	self deny: (metamodel descriptionOf: FMMetaMetaModelTest ifPresent: [ true ] ifAbsent: [ false ])
 ]
 
 { #category : #tests }

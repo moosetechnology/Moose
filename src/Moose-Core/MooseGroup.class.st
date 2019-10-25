@@ -190,12 +190,6 @@ MooseGroup >> mooseDescription [
 		ifNotNil: [ :model | model mooseDescriptionFor: self class ]
 ]
 
-{ #category : #accessing }
-MooseGroup >> mooseDescriptionIn: aMetamodel [
-
-	^ aMetamodel descriptionOf: self class instanceSide  
-]
-
 { #category : #printing }
 MooseGroup >> mooseDisplayStringOn: stream [
 	stream 

@@ -58,6 +58,11 @@ FMMetaModel >> descriptionOf: smalltalkClass ifAbsent: elseBlock [
 ]
 
 { #category : #accessing }
+FMMetaModel >> descriptionOf: smalltalkClass ifPresent: aBlock ifAbsent: elseBlock [
+	^ classDict at: smalltalkClass ifPresent: aBlock ifAbsent: elseBlock
+]
+
+{ #category : #accessing }
 FMMetaModel >> elementNamed: aString [
 	^ self elementNamed: aString ifAbsent: [ self error: 'Element ''' , aString , ''' not found.' ]
 ]

@@ -68,17 +68,6 @@ MooseEntity class >> allDeclaredProperties [
 ]
 
 { #category : #'meta accessing' }
-MooseEntity class >> allDeclaredPropertiesIn: aMetamodel [
-	"All properties described in the metamodel"
-	 
-	| aDescription |
-	aMetamodel ifNil: [ ^ OrderedCollection new ].
-	aDescription := self mooseDescriptionIn: aMetamodel.
-	^ aDescription ifNil: [ OrderedCollection new ] 
-		ifNotNil: [ aDescription allProperties ]
-]
-
-{ #category : #'meta accessing' }
 MooseEntity class >> allPropertySelectors [
 	"Return a dictionary with all properties of this kind of entity, including metamodel properties, metrics, and navigation groups. Keys are abstract names of properties, values are implementing selectors"
 	
