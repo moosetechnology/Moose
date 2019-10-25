@@ -304,7 +304,6 @@ FM3Class >> primitiveProperties [
 FM3Class >> properties [
 	<MSEProperty: #properties type: 'FM3.Property' opposite: #class>
 	<multivalued>
-	<key: #name>
 	^ properties
 ]
 

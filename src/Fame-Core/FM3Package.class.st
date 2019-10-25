@@ -32,8 +32,7 @@ FM3Package >> classNamed: aString ifAbsent: aBlock [
 FM3Package >> classes [
 	<MSEProperty: #classes type: #FM3Class opposite: #package>
 	<multivalued>
-	<key: #name>
-	^classes
+	^ classes
 ]
 
 { #category : #accessing }

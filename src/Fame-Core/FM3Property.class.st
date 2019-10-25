@@ -7,7 +7,6 @@ Instance Variables
 	isContainer:		<Object>
 	isDerived:		<Object>
 	isMultivalued:		<Object>
-	key:		<Object>
 	opposite:		<Object>
 	package:		<Object>
 	type:		<Object>
@@ -24,7 +23,6 @@ Class {
 		'class',
 		'package',
 		'type',
-		'key',
 		'implementingSelector',
 		'isTarget',
 		'isSource'
@@ -86,11 +84,6 @@ FM3Property >> gtTypeString [
 { #category : #testing }
 FM3Property >> hasImplementingSelector [
 	^ self implementingSelector notNil
-]
-
-{ #category : #testing }
-FM3Property >> hasKey [
-	^ key isNotNil
 ]
 
 { #category : #testing }
@@ -205,18 +198,6 @@ FM3Property >> isTarget [
 { #category : #accessing }
 FM3Property >> isTarget: anObject [
 	isTarget := anObject
-]
-
-{ #category : #accessing }
-FM3Property >> key [
-	self flag: 'Todo, think about and meta-describe key'.
-	^ key
-]
-
-{ #category : #accessing }
-FM3Property >> key: anObject [
-
-	key := anObject asSymbol
 ]
 
 { #category : #accessing }

@@ -239,8 +239,7 @@ FMPragmaProcessor >> processInfosFrom: aMethod for: prop [
 	(aMethod pragmaAt: #derived) ifNotNil: [ prop isDerived: true ].
 	(aMethod pragmaAt: #source) ifNotNil: [ prop isSource: true ].
 	(aMethod pragmaAt: #target) ifNotNil: [ prop isTarget: true ].
-	(aMethod pragmaAt: #multivalued) ifNotNil: [ prop isMultivalued: true ].
-	(aMethod pragmaAt: #key:) ifNotNil: [ :p | prop key: (p argumentAt: 1) ]
+	(aMethod pragmaAt: #multivalued) ifNotNil: [ prop isMultivalued: true ]
 ]
 
 { #category : #private }

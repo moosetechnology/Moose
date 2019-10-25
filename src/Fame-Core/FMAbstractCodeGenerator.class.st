@@ -59,7 +59,6 @@ FMAbstractCodeGenerator >> annotationStringForProperty: property [
 	ann := ann , '>'.
 	property isMultivalued ifTrue: [ ann := ann , ' <multivalued>' ].
 	property isDerived ifTrue: [ ann := ann , ' <derived>' ].
-	property hasKey ifTrue: [ ann := ann , ' <key: ' , property key printString , '>' ].
 	^ ann
 ]
 
