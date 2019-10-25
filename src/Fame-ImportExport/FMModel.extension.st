@@ -1,15 +1,6 @@
 Extension { #name : #FMModel }
 
 { #category : #'*Fame-ImportExport' }
-FMModel >> accept: aParseClient [
-	self deprecated: 'Use #exportWithPrinter: instead.' transformWith: '`@receiver accept: `@arg' -> '`@receiver exportWithPrinter: `@arg'.
-	FMModelExporter new
-		model: self;
-		printer: aParseClient;
-		run
-]
-
-{ #category : #'*Fame-ImportExport' }
 FMModel >> exportOn: aStream [
 	self exportWithPrinter: (FMMSEPrinter on: aStream)
 ]

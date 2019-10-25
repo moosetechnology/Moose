@@ -59,8 +59,18 @@ FM3Constant class >> reset [
 	uniqueInstance := nil
 ]
 
+{ #category : #visiting }
+FM3Constant >> accept: aVisitor [
+	aVisitor visitConstant: self
+]
+
 { #category : #initialization }
 FM3Constant >> initialize [
 	super initialize.
 	self name: self class constantName
+]
+
+{ #category : #testing }
+FM3Constant >> isConstant [
+	^ true
 ]
