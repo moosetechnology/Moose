@@ -5,42 +5,10 @@ Class {
 }
 
 { #category : #tests }
-FMLibraryExample >> library [
-	| a1 a4 a2 a5 a3 |
-	a1 := LIBPerson named: 'Erich Gamma'.
-	a2 := LIBPerson named: 'Richard Helm'.
-	a3 := LIBPerson named: 'Ralph Johnson'.
-	a4 := LIBPerson named: 'John Vlissides'.
-	a5 := LIBPerson named: 'Kent Beck'.
-	^ LIBLibrary
-		librarian: (LIBPerson named: 'Adrian Kuhn')
-		books:
-			{(LIBBook title: 'Design Patterns' authors: {a1 . a2 . a3 . a4}) . (LIBBook title: 'Eclipse: Principles, Patterns, and Plug-Ins' authors: {a1 . a5}).
-			(LIBBook title: 'Smalltalk Best Practice Patterns' authors: {a5})}
-]
-
-{ #category : #helpers }
-FMLibraryExample >> libraryMetaModel [
-	^ FMPragmaProcessor metamodelFrom: {LIBLibrary . LIBBook . LIBPerson}
-]
-
-{ #category : #tests }
-FMLibraryExample >> libraryModel [
-	| library |
-	library := self library.
-	^ (FMModel withMetamodel: self libraryMetaModel)
-		add: library;
-		addAll: library books;
-		add: library librarian;
-		addAll: (library books flatCollectAsSet: #authors);
-		yourself
-]
-
-{ #category : #tests }
 FMLibraryExample >> testAddingM2ElementToM2RepositoryMustFail [
 	| metamodel lib |
-	metamodel := self libraryMetaModel.
-	lib := self library.
+	metamodel := LIBRoot libraryMetaModel.
+	lib := LIBRoot library.
 	self should: [ metamodel add: lib ] raise: Error.
 	self should: [ metamodel add: lib librarian ] raise: Error.
 	self should: [ metamodel add: lib books anyOne ] raise: Error
@@ -91,18 +59,18 @@ FMLibraryExample >> testBookstore2 [
 
 { #category : #tests }
 FMLibraryExample >> testLibrary [
-	self assert: self library books size equals: 3
+	self assert: LIBRoot library books size equals: 3
 ]
 
 { #category : #tests }
 FMLibraryExample >> testLibraryModel [
-	self assert: self libraryModel elements size equals: 10	 "1 + 1 + 3 + 5 library librarian books authors"
+	self assert: LIBRoot libraryModel elements size equals: 10	 "1 + 1 + 3 + 5 library librarian books authors"
 ]
 
 { #category : #tests }
 FMLibraryExample >> testMetaMetamodelIsaM3Repository [
 	| metamodel |
-	metamodel := self libraryMetaModel.
+	metamodel := LIBRoot libraryMetaModel.
 	self deny: metamodel metamodel equals: metamodel.
 	self assert: metamodel metaMetaModel equals: metamodel metamodel
 ]
@@ -110,7 +78,7 @@ FMLibraryExample >> testMetaMetamodelIsaM3Repository [
 { #category : #tests }
 FMLibraryExample >> testMetamodelSmalltalkBinding [
 	| metamodel b p lib |
-	metamodel := self libraryMetaModel.
+	metamodel := LIBRoot libraryMetaModel.
 	self assert: (metamodel elements anyOne isKindOf: FM3Element).
 	self assert: metamodel packages anyOne isFM3Package.
 	self assert: metamodel classes anyOne isFM3Class.
@@ -159,7 +127,7 @@ FMLibraryExample >> testPragmaProcessing [
 { #category : #tests }
 FMLibraryExample >> testPragmasAsMetamodel [
 	| metamodel |
-	metamodel := self libraryMetaModel.
+	metamodel := LIBRoot libraryMetaModel.
 	self assert: metamodel class equals: FMMetaModel.
 	self denyEmpty: metamodel elements.
 	self denyEmpty: metamodel packages.
@@ -175,7 +143,7 @@ FMLibraryExample >> testPragmasAsMetamodel [
 FMLibraryExample >> testPrintMetamodel [
 	self
 		assert:
-			(self libraryMetaModel exportString
+			(LIBRoot libraryMetaModel exportString
 				beginsWith:
 					'(
 	(FM3.Package (id: 1)
@@ -186,7 +154,7 @@ FMLibraryExample >> testPrintMetamodel [
 FMLibraryExample >> testPrintModel [
 	self
 		assert:
-			(self libraryModel exportString
+			(LIBRoot libraryModel exportString
 				beginsWith:
 					'(
 	(LIB.')

@@ -20,11 +20,11 @@ FMMetaMetaModelTest >> testFM3 [
 
 { #category : #tests }
 FMMetaMetaModelTest >> testFM3Classes [
-	self assert: (metaMetaModel descriptionOf: FM3Element) isNotNil.
-	self assert: (metaMetaModel descriptionOf: FM3Property) isNotNil.
-	self assert: (metaMetaModel descriptionOf: FM3Package) isNotNil.
-	self assert: (metaMetaModel descriptionOf: FM3Class) isNotNil.
-	self assert: (metaMetaModel descriptionOf: FMMetaModelTest) isNil
+	self assert: (metaMetaModel descriptionOf: FM3Element ifAbsent: [ nil ]) isNotNil.
+	self assert: (metaMetaModel descriptionOf: FM3Property ifAbsent: [ nil ]) isNotNil.
+	self assert: (metaMetaModel descriptionOf: FM3Package ifAbsent: [ nil ]) isNotNil.
+	self assert: (metaMetaModel descriptionOf: FM3Class ifAbsent: [ nil ]) isNotNil.
+	self assert: (metaMetaModel descriptionOf: FMMetaModelTest ifAbsent: [ nil ]) isNil
 ]
 
 { #category : #tests }

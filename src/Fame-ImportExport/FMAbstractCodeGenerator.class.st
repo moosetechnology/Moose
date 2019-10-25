@@ -11,7 +11,7 @@ Class {
 		'defaultCategory',
 		'skipDerivedMethods'
 	],
-	#category : #'Fame-Core-Generators'
+	#category : #'Fame-ImportExport'
 }
 
 { #category : #visiting }

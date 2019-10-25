@@ -48,21 +48,13 @@ FMMetaModel >> defaultMetamodel [
 ]
 
 { #category : #accessing }
-FMMetaModel >> descriptionOf: smalltalkClass [ 
-	self flag: 'it should not return nil by default'.
-	^ classDict 
-		at: smalltalkClass 
-		ifAbsent: [ 
-			nameDict 
-				at: smalltalkClass name 
-				ifAbsent: [ nil ] ]
+FMMetaModel >> descriptionOf: smalltalkClass [
+	^ self descriptionOf: smalltalkClass ifAbsent: [ NotFound signalFor: smalltalkClass in: self ]
 ]
 
 { #category : #accessing }
-FMMetaModel >> descriptionOf: smalltalkClass ifAbsent: elseBlock [ 
-	^ classDict 
-		at: smalltalkClass
-		ifAbsent: elseBlock
+FMMetaModel >> descriptionOf: smalltalkClass ifAbsent: elseBlock [
+	^ classDict at: smalltalkClass ifAbsent: elseBlock
 ]
 
 { #category : #accessing }
