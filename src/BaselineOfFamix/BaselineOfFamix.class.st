@@ -30,7 +30,8 @@ BaselineOfFamix >> baseline: spec [
 				referenceTestResources: spec;
 				neoCSV: spec;
 				roelTyper: spec;
-				talents: spec.
+				talents: spec;
+				singularizePluralize: spec.
 
 			"Packages"
 			spec
@@ -39,7 +40,7 @@ BaselineOfFamix >> baseline: spec [
 				package: 'Moose-Query-Extensions' with: [ spec requires: #('Moose-Query' 'BasicTraits') ];
 				package: 'Famix-Groups' with: [ spec requires: #('Moose-Core' 'NeoCSV') ];
 				package: 'Famix-Traits' with: [ spec requires: #('Famix-Groups' 'Moose-Core') ];
-				package: 'Famix-MetamodelBuilder-Core' with: [ spec requires: #('Moose-Core') ];
+				package: 'Famix-MetamodelBuilder-Core' with: [ spec requires: #('Moose-Core' 'SingularizePluralize') ];
 				package: 'Famix-MetamodelGeneration' with: [ spec requires: #('Famix-MetamodelBuilder-Core') ];
 				package: 'Famix-BasicInfrastructure' with: [ spec requires: #('Famix-MetamodelGeneration') ];
 				package: 'Famix-Smalltalk-Utils' with: [ spec requires: #('Moose-Core') ];
@@ -201,6 +202,11 @@ BaselineOfFamix >> ring2: spec [
 { #category : #dependencies }
 BaselineOfFamix >> roelTyper: spec [
 	spec baseline: 'RoelTyper' with: [ spec repository: 'github://RMODINRIA/RoelTyper:v1.x.x/src' ]
+]
+
+{ #category : #baseline }
+BaselineOfFamix >> singularizePluralize: spec [
+	spec baseline: 'SingularizePluralize' with: [ spec repository: 'github://olekscode/SingularizePluralize:v1.0/src' ]
 ]
 
 { #category : #dependencies }

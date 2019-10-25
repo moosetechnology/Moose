@@ -168,7 +168,7 @@ FmxMBBehavior >> generateAddToCollectionFor: aClass [
 						compile:
 							('add{1}: anObject
 	<generated>
-	^ self {2} add: anObject' format: {sideName capitalized . sideName})
+	^ self {2} add: anObject' format: {sideName capitalized asSingular . sideName})
 						in: aClass instanceSide
 						classified: #adding ] ]
 ]
