@@ -45,6 +45,11 @@ FMModel class >> withMetamodel: aMetamodel [
 		yourself
 ]
 
+{ #category : #visiting }
+FMModel >> accept: aVisitor [
+	aVisitor visitModel: self
+]
+
 { #category : #adding }
 FMModel >> add: element [
 	elements add: element.

@@ -43,6 +43,11 @@ FM3Class class >> gtExampleWithOnePrimitiveProperty: description [
 	^ description properties add: FM3Property new
 ]
 
+{ #category : #visiting }
+FM3Class >> accept: aVisitor [
+	aVisitor visitClass: self
+]
+
 { #category : #adding }
 FM3Class >> addTraits: aCollection [
 	self traits addAll: aCollection
@@ -60,7 +65,7 @@ FM3Class >> allContainerProperties [
 
 { #category : #'accessing-query' }
 FM3Class >> allPrimitiveProperties [
-	^ self allProperties select: [ :attr | attr type isNotNil and: [ attr type isPrimitive ] ]
+	^ self allProperties select: [ :attr | attr type isPrimitive ]
 ]
 
 { #category : #'accessing-query' }
@@ -231,6 +236,11 @@ FM3Class >> isAbstract: aBoolean [
 { #category : #testing }
 FM3Class >> isBuiltIn [
 	^ self isPrimitive or: [ self isRoot ]
+]
+
+{ #category : #testing }
+FM3Class >> isConstant [
+	^ false
 ]
 
 { #category : #testing }

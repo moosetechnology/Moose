@@ -33,6 +33,11 @@ FM3Element class >> named: aString [
 		yourself
 ]
 
+{ #category : #visiting }
+FM3Element >> accept: arg1 [ 
+	^ self subclassResponsibility
+]
+
 { #category : #accessing }
 FM3Element >> fullName [
 	<MSEProperty: #fullName type: #String>

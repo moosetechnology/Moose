@@ -9,6 +9,11 @@ FM3Primitive class >> isAbstract [
 	^ self = FM3Primitive
 ]
 
+{ #category : #visiting }
+FM3Primitive >> accept: aVisitor [
+	aVisitor visitPrimitive: self
+]
+
 { #category : #testing }
 FM3Primitive >> isPrimitive [
 	^ true
