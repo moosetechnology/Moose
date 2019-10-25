@@ -33,6 +33,12 @@ FamixTFolder >> addChildFileSystemEntity: aFileOrFolder [
 	self childrenFileSystemEntities add: aFileOrFolder
 ]
 
+{ #category : #adding }
+FamixTFolder >> addChildrenFileSystemEntity: anObject [
+	<generated>
+	^ self childrenFileSystemEntities add: anObject
+]
+
 { #category : #properties }
 FamixTFolder >> allRecursiveFiles [
 	| result |

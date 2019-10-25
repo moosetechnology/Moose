@@ -17,7 +17,7 @@ FamixTest4Person class >> annotation [
 ]
 
 { #category : #adding }
-FamixTest4Person >> addBooks: anObject [
+FamixTest4Person >> addBook: anObject [
 	<generated>
 	^ self books add: anObject
 ]

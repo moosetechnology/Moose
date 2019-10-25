@@ -25,6 +25,12 @@ FamixTWithTypedStructures >> addStructureWithDeclaredType: aStructuralEntity [
 	structuresWithDeclaredType add: aStructuralEntity
 ]
 
+{ #category : #adding }
+FamixTWithTypedStructures >> addStructuresWithDeclaredType: anObject [
+	<generated>
+	^ self structuresWithDeclaredType add: anObject
+]
+
 { #category : #testing }
 FamixTWithTypedStructures >> entityHasIncomingTypeDeclarations [
 	^ self structuresWithDeclaredType isNotEmpty
