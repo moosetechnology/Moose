@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaPackage,
 	#superclass : #FamixJavaScopingEntity,
-	#traits : 'FamixTPackage + FamixTPackageWithClassesGlue',
-	#classTraits : 'FamixTPackage classTrait + FamixTPackageWithClassesGlue classTrait',
+	#traits : 'FamixTPackage',
+	#classTraits : 'FamixTPackage classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 

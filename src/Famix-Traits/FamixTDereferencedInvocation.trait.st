@@ -16,7 +16,7 @@ Trait {
 { #category : #meta }
 FamixTDereferencedInvocation classSide >> annotation [
 
-	<MSEClass: #TDereferencedInvocation super: #Trait>
+	<MSEClass: #TDereferencedInvocation super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

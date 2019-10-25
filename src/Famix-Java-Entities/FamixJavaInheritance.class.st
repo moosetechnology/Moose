@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaInheritance,
 	#superclass : #FamixJavaAssociation,
-	#traits : 'FamixTInheritanceGlue + FamixTSubInheritance + FamixTSuperInheritance',
-	#classTraits : 'FamixTInheritanceGlue classTrait + FamixTSubInheritance classTrait + FamixTSuperInheritance classTrait',
+	#traits : 'FamixTInheritance',
+	#classTraits : 'FamixTInheritance classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 

@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaUnknownSourceLanguage,
 	#superclass : #FamixJavaSourceLanguage,
-	#traits : 'FamixTSourceLanguage + FamixTUnknownSourceLanguage',
-	#classTraits : 'FamixTSourceLanguage classTrait + FamixTUnknownSourceLanguage classTrait',
+	#traits : 'FamixTUnknownSourceLanguage',
+	#classTraits : 'FamixTUnknownSourceLanguage classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
@@ -13,11 +13,6 @@ FamixJavaUnknownSourceLanguage class >> annotation [
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaUnknownSourceLanguage >> isUnknown [ 
-	^ true
 ]
 
 { #category : #'as yet unclassified' }

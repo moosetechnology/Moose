@@ -51,12 +51,6 @@ FamixJavaGenerator class >> prefix [
 	^ #'FamixJava'
 ]
 
-{ #category : #accessing }
-FamixJavaGenerator class >> wantsAllEntitiesNavigation [
-
-	^ false
-]
-
 { #category : #definition }
 FamixJavaGenerator >> defineClasses [
 
@@ -191,8 +185,7 @@ FamixJavaGenerator >> defineHierarchy [
 	implicitVariable --|> #TImplicitVariable.
 
 	inheritance --|> association.
-	inheritance --|> #TSubInheritance.
-	inheritance --|> #TSuperInheritance.
+	inheritance --|> #TInheritance.
 
 	invocation --|> association.
 	invocation --|> #TInvocation.
@@ -219,6 +212,7 @@ FamixJavaGenerator >> defineHierarchy [
 	parameter --|> #TParameter.
 
 	parameterType --|> type.
+	parameterType --|> #TParameterType.
 
 	parameterizableClass --|> class.
 	parameterizableClass --|> #TWithParameterizedTypes.
@@ -244,6 +238,7 @@ FamixJavaGenerator >> defineHierarchy [
 	type --|> #TWithTypeAliases.
 	type --|> #TParameterizedTypeUser.
 	type --|> #TClassHierarchyNavigation. 
+	type --|> #TWithMethods.
 
 	tStructuralEntity --|> #TStructuralEntity.
 	tStructuralEntity --|> #TWithDereferencedInvocations.

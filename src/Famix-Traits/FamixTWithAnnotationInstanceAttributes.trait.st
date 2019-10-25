@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithAnnotationInstanceAttributes classSide >> annotation [
 
-	<MSEClass: #TWithAnnotationInstanceAttributes super: #Trait>
+	<MSEClass: #TWithAnnotationInstanceAttributes super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

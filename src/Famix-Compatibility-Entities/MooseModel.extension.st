@@ -36,3 +36,8 @@ MooseModel >> inferNamespaceParentsBasedOnNames [
 	runWithProgress.
 	^ self allNamespaces
 ]
+
+{ #category : #'*Famix-Compatibility-Entities' }
+MooseModel >> isSmalltalk [
+	^ self sourceLanguage notNil and: [self sourceLanguage isSmalltalk]
+]

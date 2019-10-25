@@ -11,7 +11,7 @@ FAMIXNamespaceNavigationChefTest >> testClientClasses [
 		hasSameElements:
 			{self c14ReferencerOutSideRefereeOutSide . self c1FullReferencerOutSide . self c6FullReferencerInSideOutSide . self c3ReferencerInSideRefereeOutSide.
 			self c10FullReferencerInSide . self c11FullRefereeOutSide . self c12FullReferencerInSide . self c13FullRefereeInSideOutSide.
-			self c9FullRefereeInSide}
+			self c9FullRefereeInSide }
 ]
 
 { #category : #'tests - clients' }
@@ -134,7 +134,7 @@ FAMIXNamespaceNavigationChefTest >> testProviderClassesInto [
 	self assert: 10 equals: invos size.
 	refs := (self n1InteractedReferencerReferee queryAllOutgoing within: self n2FullReferee) select: [ :dep | dep usesFamixTrait: FamixTReference ].
 	self assert: 4 equals: refs size.
-	inh := (self n1InteractedReferencerReferee queryAllOutgoing within: self n2FullReferee) select: [ :dep | dep usesFamixTrait: FamixTSubInheritance ].
+	inh := (self n1InteractedReferencerReferee queryAllOutgoing within: self n2FullReferee) select: [ :dep | dep usesFamixTrait: FamixTInheritance ].
 	self assert: 1 equals: inh size.
 	self
 		assertCollection:
@@ -157,7 +157,7 @@ FAMIXNamespaceNavigationChefTest >> testProviderClassesOutOf [
 	refs := (self n1InteractedReferencerReferee queryAllOutgoing outOf: self p5FullReferee) select: [ :dep | dep usesFamixTrait: FamixTReference ].
 	self assert: 10 equals: refs size.
 	inh := (self n1InteractedReferencerReferee queryAllOutgoing outOf: self p5FullReferee)
-		select: [ :dep | dep usesFamixTrait: FamixTSubInheritance ].
+		select: [ :dep | dep usesFamixTrait: FamixTInheritance ].
 	self assert: 7 equals: inh size.
 	acc := (self n1InteractedReferencerReferee queryAllOutgoing outOf: self p5FullReferee) select: [ :dep | dep usesFamixTrait: FamixTAccess ].
 	self assert: 9 equals: acc size.

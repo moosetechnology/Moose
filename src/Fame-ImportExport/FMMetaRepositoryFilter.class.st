@@ -20,11 +20,11 @@ FMMetaRepositoryFilter >> classes: anObject [
 	classes := anObject
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 FMMetaRepositoryFilter >> initialize [
-	
-	newMetaRepository := FMMetaRepository basicNew.
-	newMetaRepository initialize: newMetaRepository
+	super initialize.
+	newMetaRepository := FMMetaModel new.
+	newMetaRepository metamodel: newMetaRepository
 ]
 
 { #category : #accessing }
@@ -50,7 +50,7 @@ FMMetaRepositoryFilter >> visitFM3MetaDescription: aFM3MetaDescription [
 	(self newMetaRepository includes: aFM3MetaDescription) ifTrue: [^ self ].
 
 	newMetaRepository add: aFM3MetaDescription.
-	aFM3MetaDescription attributes do: [ :eachProperty | eachProperty accept: self ].
+	aFM3MetaDescription properties do: [ :eachProperty | eachProperty accept: self ].
 	aFM3MetaDescription allSuperclasses do: [ :each | each accept: self ].
 	aFM3MetaDescription package ifNotNil: [ :pack | pack accept: self ].
 ]

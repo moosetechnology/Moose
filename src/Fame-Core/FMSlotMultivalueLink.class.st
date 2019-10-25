@@ -6,7 +6,7 @@ Class {
 		'owner',
 		'slot'
 	],
-	#category : #'Fame-Core-Slots'
+	#category : #'Fame-Core-Utilities'
 }
 
 { #category : #'instance creation' }
@@ -45,6 +45,11 @@ FMSlotMultivalueLink >> add: anElement [
 FMSlotMultivalueLink >> at: index [
 
 	^values at: index
+]
+
+{ #category : #iterators }
+FMSlotMultivalueLink >> basicIterator [
+	^ values basicIterator
 ]
 
 { #category : #accessing }
@@ -93,7 +98,7 @@ FMSlotMultivalueLink >> inverseRemove: anObject [
 	^values remove: anObject
 ]
 
-{ #category : #accessing }
+{ #category : #iterators }
 FMSlotMultivalueLink >> iterator [
 	^ values iterator
 ]

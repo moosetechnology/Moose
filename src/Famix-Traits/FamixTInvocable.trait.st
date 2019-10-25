@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTInvocable classSide >> annotation [
 
-	<MSEClass: #TInvocable super: #Trait>
+	<MSEClass: #TInvocable super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

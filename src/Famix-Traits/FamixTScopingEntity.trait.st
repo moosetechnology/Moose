@@ -15,7 +15,7 @@ Trait {
 { #category : #meta }
 FamixTScopingEntity classSide >> annotation [
 
-	<MSEClass: #TScopingEntity super: #Trait>
+	<MSEClass: #TScopingEntity super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

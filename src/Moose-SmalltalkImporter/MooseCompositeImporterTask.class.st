@@ -34,17 +34,15 @@ MooseCompositeImporterTask >> basicRun [
 	| importerTask importer |
 	"importerTask applies an import filter definition (context) on a set of classes (allClasses) and yields elements"
 	importerTask := MooseImportClassesTask new importerClass: importerClass.
-	importerTask factory: factory new.
+	importerTask factory: self factory.
 	importerTask importingContext: importingContext.
 	importerTask addAll: self allClasses.
 	importerTask addAllExtensions: self allClassExtensions.
 	importer := importerTask runSelector: runSelector.
 	"InstallElementsOperator populates a Moose model with (unary) elements"
-	(InstallElementsOperator 
-		with: importer
-		on: self model) runSelector: runSelector.
+	(InstallElementsOperator with: importer on: self model) runSelector: runSelector.
 	"CandidateListOperator populates a Moose model with (binary) element relations like: methodA invokes methodB"
-	candidateOperator ifTrue: [(self candidateClass runOn: self model importer: importer) runSelector: runSelector].
+	candidateOperator ifTrue: [ (self candidateClass runOn: self model importer: importer) runSelector: runSelector ].
 	self model sourceLanguage: importer factory sourceLanguage new.
 	^ self model
 ]
@@ -66,6 +64,11 @@ MooseCompositeImporterTask >> candidateClass: anObject [
 MooseCompositeImporterTask >> doNotRunCandidateOperator [
 
 	candidateOperator := false
+]
+
+{ #category : #accessing }
+MooseCompositeImporterTask >> factory [
+	^ super factory ifNil: [ factory := self model factory ]
 ]
 
 { #category : #accessing }

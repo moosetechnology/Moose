@@ -84,6 +84,27 @@ MooseGroupTest >> testDistributionAndEncapsulation [
 ]
 
 { #category : #tests }
+MooseGroupTest >> testEntityNamedIfAbsentPutWithCorrectEntityAsParameter [
+	| testClass |
+	testClass := FamixTest1Class new.
+	testClass name: 'MyTestMethod'.
+	self
+		assert: (group entityNamed: 'MyTestMethod' ifAbsentPut: [ testClass ])
+		identicalTo: testClass
+]
+
+{ #category : #tests }
+MooseGroupTest >> testEntityNamedIfAbsentPutWithIncorrectEntityAsParameter [
+	| testClass |
+	testClass := FamixTest1Class new.
+	testClass name: 'MyTestMethod'.
+	self
+		should:
+			[ group entityNamed: 'NonExistingMooseName' ifAbsentPut: [ testClass ] ]
+		raise: Error
+]
+
+{ #category : #tests }
 MooseGroupTest >> testExplicitEmptyCreation [
 	self assert: ((FAMIXTypeGroup withAll: #()) isKindOf: FAMIXTypeGroup)
 ]

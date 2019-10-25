@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaType,
 	#superclass : #FamixJavaContainerEntity,
-	#traits : 'FamixTClassHierarchyNavigation + FamixTParameterizedTypeUser + FamixTType + FamixTWithTypeAliases',
-	#classTraits : 'FamixTClassHierarchyNavigation classTrait + FamixTParameterizedTypeUser classTrait + FamixTType classTrait + FamixTWithTypeAliases classTrait',
+	#traits : 'FamixTClassHierarchyNavigation + FamixTParameterizedTypeUser + FamixTType + FamixTWithMethods + FamixTWithTypeAliases',
+	#classTraits : 'FamixTClassHierarchyNavigation classTrait + FamixTParameterizedTypeUser classTrait + FamixTType classTrait + FamixTWithMethods classTrait + FamixTWithTypeAliases classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
@@ -46,23 +46,6 @@ FamixJavaType >> anySuperclass [
 			each isInterface
 				ifFalse: [ ^ each ] ].
 	^ nil
-]
-
-{ #category : #accessing }
-FamixJavaType >> container [
-
-	<MSEProperty: #container type: #FamixJavaContainerEntity>
-	<MSEComment: 'Deprected, use typeContainer'>
-	<container>
-	<derived>
-
-	^ self typeContainer
-]
-
-{ #category : #accessing }
-FamixJavaType >> container: aContainer [
-
-	self typeContainer: aContainer
 ]
 
 { #category : #testing }
@@ -202,18 +185,16 @@ FamixJavaType >> parentScope [
 ]
 
 { #category : #printing }
-FamixJavaType >> printOn: aStream [ 
-	| parent |
-	
+FamixJavaType >> printOn: aStream [
 	self name ifNotNil: [ aStream nextPutAll: self name ].
-	parent := self container.
-	parent ifNotNil: [ 
-		aStream nextPutAll: ' in '.
-		parent mooseNameOn: aStream ].
-	aStream 
+	self typeContainer
+		ifNotNil: [ :parent | 
+			aStream nextPutAll: ' in '.
+			parent mooseNameOn: aStream ].
+	aStream
 		nextPutAll: ' (';
 		nextPutAll: (self class name removePrefix: 'FamixJava');
-		nextPutAll: ')'
+		nextPut: $)
 ]
 
 { #category : #'Famix-Implementation' }

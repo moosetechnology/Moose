@@ -24,8 +24,3 @@ FamixJavaAbstractFileAnchor >> <= aFileAnchor [
 FamixJavaAbstractFileAnchor >> intervalAsCharPos [
 	self subclassResponsibility
 ]
-
-{ #category : #'as yet unclassified' }
-FamixJavaAbstractFileAnchor >> mooseNameOn: aStream [
-	aStream nextPutAll: self fileName asString
-]

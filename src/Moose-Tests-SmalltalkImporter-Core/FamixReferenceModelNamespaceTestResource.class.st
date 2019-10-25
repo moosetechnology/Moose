@@ -7,7 +7,7 @@ Class {
 { #category : #setup }
 FamixReferenceModelNamespaceTestResource >> importModel [
 	
-	self newPharoImporterTask
+	MoosePharoImporterTask new
 		importerClass: SmalltalkImporter;
 		model: model;
 		doNotRunCandidateOperator;

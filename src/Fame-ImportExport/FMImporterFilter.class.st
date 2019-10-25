@@ -6,57 +6,43 @@ Class {
 
 { #category : #accessing }
 FMImporterFilter >> fromString: aString [
-
-	^ self parserClient fromString: aString.
+	^ self parserClient fromString: aString
 ]
 
 { #category : #accessing }
 FMImporterFilter >> index [
-	^self parserClient  index
+	^ self parserClient index
 ]
 
 { #category : #accessing }
 FMImporterFilter >> metamodel [
-	^ self parserClient  metamodel
+	^ self parserClient metamodel
 ]
 
 { #category : #accessing }
 FMImporterFilter >> model [
-	^self parserClient  model
+	^ self parserClient model
 ]
 
 { #category : #accessing }
-FMImporterFilter >> repository [
-
-	^ self parserClient repository
-]
-
-{ #category : #accessing }
-FMImporterFilter >> repository: aRepository [
-
-	^ self parserClient repository: aRepository .
+FMImporterFilter >> model: aModel [
+	^ self parserClient model: aModel
 ]
 
 { #category : #running }
 FMImporterFilter >> run [
-
-
-	| parser |
-	parser := FMMSEParser new.
-	parser stream: parserClient stream.
-	parser client: self.
-	parser run.
+	FMMSEParser new
+		stream: parserClient stream;
+		client: self;
+		run
 ]
 
 { #category : #accessing }
 FMImporterFilter >> stream [
-
-	^self parserClient stream
+	^ self parserClient stream
 ]
 
 { #category : #accessing }
 FMImporterFilter >> stream: aReadStream [
-
-	^ self parserClient stream: aReadStream 
-	
+	^ self parserClient stream: aReadStream
 ]

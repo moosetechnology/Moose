@@ -27,11 +27,11 @@ MooseObjectQueryResultTest >> testWithoutSelfLoops [
 		yourself.
 	class1 := (FamixJavaClass named: 'class1')
 		mooseModel: model;
-		container: namespace2;
+		typeContainer: namespace2;
 		yourself.
 	class2 := (FamixJavaClass named: 'class2')
 		mooseModel: model;
-		container: namespace2;
+		typeContainer: namespace2;
 		yourself.
 	FamixJavaInheritance new
 		mooseModel: model;

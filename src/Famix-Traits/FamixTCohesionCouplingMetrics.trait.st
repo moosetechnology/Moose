@@ -8,7 +8,7 @@ Trait {
 { #category : #meta }
 FamixTCohesionCouplingMetrics classSide >> annotation [
 
-	<MSEClass: #TCohesionCouplingMetrics super: #Trait>
+	<MSEClass: #TCohesionCouplingMetrics super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

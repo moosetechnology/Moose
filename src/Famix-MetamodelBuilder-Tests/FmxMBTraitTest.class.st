@@ -293,36 +293,18 @@ FmxMBTraitTest >> testRelatedOwnerTraitName [
 
 ]
 
-{ #category : #'tests - names' }
-FmxMBTraitTest >> testRelatedTraitName [
-
-	"test if a related trait name is correctly generated from a traitName name. It should be the same."
-
-	| aTrait |
-		
-	aTrait := builder newTraitNamed: #TVariable.	
-	self assert: aTrait relatedTraitName equals: 'TVariable'.
-		
-	aTrait := builder newTraitNamed: #TAccess.	
-	self assert: aTrait relatedTraitName equals: 'TAccess'.
-
-	aTrait := builder newTraitNamed: #TMethod.	
-	self assert: aTrait relatedTraitName equals: 'TMethod'.
-
-]
-
 { #category : #tests }
 FmxMBTraitTest >> testSimpleClassAnnotation [
 
-	| simpleClass generated method |
+	| generated method |
 		
-	simpleClass := builder newTraitNamed: #TComment.	
+	builder newTraitNamed: #TComment.	
 	builder generate.
 
 	generated := builder testingEnvironment ask classNamed: 'TstTComment'.
 
 	method := generated classSide methodNamed: #annotation.
-	self assert: (method sourceCode includesSubstring: '<MSEClass: #TComment super: #Trait>').
+	self assert: (method sourceCode includesSubstring: '<MSEClass: #TComment super: #Object>').
 	self assert: (method sourceCode includesSubstring: '<package: #Tst>').
 
 

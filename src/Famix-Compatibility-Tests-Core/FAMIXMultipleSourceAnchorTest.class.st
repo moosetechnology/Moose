@@ -10,8 +10,8 @@ Class {
 { #category : #running }
 FAMIXMultipleSourceAnchorTest >> setUp [
 	super setUp.
-	multipleFileAnchor := FAMIXMultipleFileAnchor new mooseModel: MooseModel new.
-	(1 to: 2) do: [:each | multipleFileAnchor addFileAnchorWithPath: 'aFileName']
+	multipleFileAnchor := FAMIXMultipleFileAnchor new mooseModel: FAMIXModel new.
+	(1 to: 2) do: [ :each | multipleFileAnchor addFileAnchorWithPath: 'aFileName' ]
 ]
 
 { #category : #tests }
@@ -28,8 +28,10 @@ FAMIXMultipleSourceAnchorTest >> testAdditionOfFiles [
 { #category : #tests }
 FAMIXMultipleSourceAnchorTest >> testMultipleSourceAnchorEntity [
 	| class |
-	class := FAMIXClass new mooseModel: MooseModel new; defineMultiSourceAnchorWithPath: 'aClassName'.
-	self assert: class sourceAnchor allFiles size equals: 1.
+	class := FAMIXClass new
+		mooseModel: FAMIXModel new;
+		defineMultiSourceAnchorWithPath: 'aClassName'.
+	self assert: class sourceAnchor allFiles size equals: 1
 ]
 
 { #category : #tests }
@@ -50,6 +52,6 @@ FAMIXMultipleSourceAnchorTest >> testWritingAndReadingInMSE [
 	| tempFile importedModel |
 	tempFile := (FileSystem memory / 'files-test.mse') ensureCreateFile.
 	multipleFileAnchor mooseModel exportToMSEStream: tempFile writeStream.
-	importedModel := MooseModel new importFromMSEStream: tempFile readStream.
+	importedModel := FAMIXModel new importFromMSEStream: tempFile readStream.
 	self deny: multipleFileAnchor allFiles isEmpty
 ]

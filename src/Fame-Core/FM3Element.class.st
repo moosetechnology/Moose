@@ -10,7 +10,7 @@ Class {
 	#instVars : [
 		'name'
 	],
-	#category : #'Fame-Core'
+	#category : #'Fame-Core-Model'
 }
 
 { #category : #meta }
@@ -21,19 +21,33 @@ FM3Element class >> annotation [
 
 ]
 
-{ #category : #accessing }
-FM3Element class >> version [
-	^ 1.0
+{ #category : #testing }
+FM3Element class >> isAbstract [
+	^ self = FM3Element
+]
+
+{ #category : #'instance creation' }
+FM3Element class >> named: aString [
+	^ self new
+		name: aString;
+		yourself
 ]
 
 { #category : #accessing }
 FM3Element >> fullName [
 	<MSEProperty: #fullName type: #String>
 	<derived>
-	self name isNil ifTrue: [ ^nil ].
-	self owner isNil ifTrue: [ ^self name asString ].
-	self owner fullName isNil ifTrue: [ ^nil ].
- 	^self owner fullName, '.', self name
+	self name ifNil: [ ^ nil ].
+
+	^ self owner
+		ifNil: [ self name ]
+		ifNotNil: [ :owner |
+			owner fullName ifNotNil: [ :fullName | fullName , '.' , self name ] ]
+]
+
+{ #category : #testing }
+FM3Element >> hasOwner [
+	^ self owner isNotNil
 ]
 
 { #category : #accessing }
@@ -44,17 +58,14 @@ FM3Element >> name [
 
 { #category : #accessing }
 FM3Element >> name: aString [
-	
-	name := aString isNil 
-		ifTrue: [ nil ]
-		ifFalse: [ aString asSymbol ].
+	name := aString ifNotNil: #asSymbol
 ]
 
 { #category : #accessing }
 FM3Element >> owner [
 	<MSEProperty: #owner type: #FM3Element>
 	<derived>
-	^nil "All packages are top-level (but dots are allowed in their name to fake nesting)"
+	^ self subclassResponsibility
 ]
 
 { #category : #printing }

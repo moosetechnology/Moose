@@ -7,7 +7,7 @@ I am a strategy managing the behavior of the Moose Queries depending on directio
 Class {
 	#name : #MooseQueryIncomingDirectionStrategy,
 	#superclass : #MooseQueryAbstractDirectionStrategy,
-	#category : #'Moose-Query'
+	#category : #'Moose-Query-Strategies'
 }
 
 { #category : #accessing }

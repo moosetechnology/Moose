@@ -3,10 +3,9 @@ Extension { #name : #MooseModel }
 { #category : #'*Famix-Traits' }
 MooseModel >> allModelEntities [
 	<navigation: 'All model entities'>
-
-	^ self wantsAllEntitiesNavigation 
-		ifTrue: [ self entityStorage elements ]
-		ifFalse: [ nil ] "will be hidden by default"
+	^ self
+		lookUpPropertyNamed: #allModelEntities
+		computedAs: [ self entities reject: #isStub ]
 ]
 
 { #category : #'*Famix-Traits' }
@@ -88,4 +87,18 @@ MooseModel >> numberOfModelMethods [
 	^self
 		lookUpPropertyNamed: #numberOfModelMethods
 		computedAs: [ self allModelMethods size ]
+]
+
+{ #category : #'*Famix-Traits' }
+MooseModel >> sourceLanguage [
+	<MSEProperty: #sourceLanguage type: #FamixTSourceLanguage>
+	<MSEComment: 'Source of the Language to which the model corresponds'>
+	^ self privateState
+		propertyAt: #sourceLanguage
+		ifAbsentPut: [ self allSourceLanguages detect: [ :each | each isAttached not ] ifNone: [ nil ] ]
+]
+
+{ #category : #'*Famix-Traits' }
+MooseModel >> sourceLanguage: aSymbol [
+	self privateState propertyAt: #sourceLanguage put: aSymbol
 ]

@@ -1,8 +1,8 @@
 Class {
 	#name : #FAMIXUnknownSourceLanguage,
 	#superclass : #FAMIXSourceLanguage,
-	#traits : 'FamixTSourceLanguage + FamixTUnknownSourceLanguage',
-	#classTraits : 'FamixTSourceLanguage classTrait + FamixTUnknownSourceLanguage classTrait',
+	#traits : 'FamixTUnknownSourceLanguage',
+	#classTraits : 'FamixTUnknownSourceLanguage classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 
@@ -13,9 +13,4 @@ FAMIXUnknownSourceLanguage class >> annotation [
 	<package: #FAMIX>
 	<generated>
 	^self
-]
-
-{ #category : #testing }
-FAMIXUnknownSourceLanguage >> isUnknown [ 
-	^ true
 ]

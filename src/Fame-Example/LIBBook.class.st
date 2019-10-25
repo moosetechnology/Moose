@@ -15,6 +15,14 @@ LIBBook class >> annotation [
 	
 ]
 
+{ #category : #'instance creation' }
+LIBBook class >> title: aString authors: aCollection [
+	^ self new
+		title: aString;
+		authors: aCollection;
+		yourself
+]
+
 { #category : #accessing }
 LIBBook >> authors [
 	<MSEProperty: #authors type: #LIBPerson opposite: #books> <multivalued>

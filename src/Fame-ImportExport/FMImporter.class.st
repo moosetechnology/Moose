@@ -10,10 +10,17 @@ Class {
 		'tally',
 		'reminderDict',
 		'serialDict',
-		'nameTranslator'
+		'translationUnit'
 	],
 	#category : #'Fame-ImportExport'
 }
+
+{ #category : #'instance creation' }
+FMImporter class >> model: aRepository [
+	^ self new
+		model: aRepository;
+		yourself
+]
 
 { #category : #private }
 FMImporter >> assign: element to: serial [
@@ -45,14 +52,9 @@ FMImporter >> beginDocument [
 ]
 
 { #category : #parsing }
-FMImporter >> beginElement: name [ 
-	
+FMImporter >> beginElement: name [
 	| translatedName |
-	
-	translatedName := self nameTranslator
-		ifNotNil: [ :aTranslator | aTranslator at: name ifAbsent: [ name ]]
-		ifNil: [ name ].
-	
+	translatedName := self translationUnit translate: name.
 	stack push: (FMFutureElement with: self name: translatedName)
 ]
 
@@ -61,6 +63,11 @@ FMImporter >> dangling: reference to: serial [
 	(reminderDict at: serial ifAbsentPut: [ OrderedCollection new ]) add: reference.
 	tally := tally + 1.
 	^ reference
+]
+
+{ #category : #accessing }
+FMImporter >> elements [
+	^ elements
 ]
 
 { #category : #parsing }
@@ -99,6 +106,12 @@ FMImporter >> index [
 	^serialDict
 ]
 
+{ #category : #initialization }
+FMImporter >> initialize [
+	super initialize.
+	translationUnit := FMNullTranslationUnit new
+]
+
 { #category : #accessing }
 FMImporter >> metamodel [
 	^metamodel
@@ -106,17 +119,13 @@ FMImporter >> metamodel [
 
 { #category : #accessing }
 FMImporter >> model [
-	^model
+	^ model
 ]
 
 { #category : #accessing }
-FMImporter >> nameTranslator [
-	^ nameTranslator
-]
-
-{ #category : #accessing }
-FMImporter >> nameTranslator: anObject [
-	nameTranslator := anObject
+FMImporter >> model: aModel [
+	model := aModel.
+	metamodel := aModel metamodel
 ]
 
 { #category : #parsing }
@@ -135,19 +144,6 @@ FMImporter >> referenceName: name [
 FMImporter >> referenceNumber: serial [ 
 	
 	stack top current referenceNumber: serial
-]
-
-{ #category : #accessing }
-FMImporter >> repository [
-
-	^model
-]
-
-{ #category : #accessing }
-FMImporter >> repository: aRepository [
-
-	model := aRepository.
-	metamodel := aRepository metamodel.
 ]
 
 { #category : #running }
@@ -178,4 +174,14 @@ FMImporter >> stream: aReadStream [
 
 	stream := aReadStream 
 	
+]
+
+{ #category : #accessing }
+FMImporter >> translationUnit [
+	^ translationUnit
+]
+
+{ #category : #accessing }
+FMImporter >> translationUnit: aTranslationUnit [
+	translationUnit := aTranslationUnit
 ]

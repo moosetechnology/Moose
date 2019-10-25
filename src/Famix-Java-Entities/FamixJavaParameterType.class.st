@@ -1,6 +1,8 @@
 Class {
 	#name : #FamixJavaParameterType,
 	#superclass : #FamixJavaType,
+	#traits : 'FamixTParameterType',
+	#classTraits : 'FamixTParameterType classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 

@@ -25,7 +25,7 @@ MooseEntity >> complexPropertyPragmas [
 	self mooseDescription
 		ifNil: [ NotInitializedMooseDescriptionError signal: 'Moose description are not initialized. Have you refreshed the meta-model? (e.g., MooseModel resetMeta)' ].
 	navProps := (Pragma allNamed: #navigation: from: self class to: MooseEntity) sorted: [ :a :b | (a argumentAt: 1) < (b argumentAt: 1) ].
-	definedProps := (self mooseDescription allAttributes reject: [ :a | a type isPrimitive ])
+	definedProps := (self mooseDescription allProperties reject: [ :a | a type isPrimitive ])
 		flatCollect: [ :prop | prop compiledMethod pragmas select: [ :each | each selector beginsWith: 'MSEProperty:' ] ].
 	^ (OrderedCollection withAll: definedProps)
 		addAll: navProps;
@@ -83,7 +83,7 @@ MooseEntity >> gtInspectorPresentationsIn: composite inContext: aGTInspector [
 
 { #category : #'*Moose-Finder' }
 MooseEntity >> mooseDescriptionsOfNumberProperties [
-	^ self mooseDescription allAttributes select: [:each | each type = FM3 number ]
+	^ self mooseDescription allProperties select: [ :each | each type = FM3Number instance ]
 ]
 
 { #category : #'*Moose-Finder' }
@@ -109,13 +109,13 @@ MooseEntity >> mooseFinderPropertiesIn: composite [
 		noSelection;
 		title: 'Properties';
 		titleIcon: MooseIcons mooseProperties;
-		display: [ :anObject | anObject mooseInterestingEntity mooseDescription allPrimitiveAttributes ];
+		display: [ :anObject | anObject mooseInterestingEntity mooseDescription allPrimitiveProperties ];
 		sorted: [:x :y | x name < y name];
 		column: 'Properties' evaluated: [:each | each name ];
 		column: 'Value' evaluated: [:each :anObject | [(anObject mooseInterestingEntity mmGetProperty: each) asString] on: Error do: ['error'] ];
 		when: [ :anObject | 
 			(anObject mooseInterestingEntity isKindOf: MooseEntity) and: [
-				anObject mooseInterestingEntity mooseDescription notNil and: [anObject mooseInterestingEntity mooseDescription allPrimitiveAttributes notEmpty] ]].
+				anObject mooseInterestingEntity mooseDescription notNil and: [anObject mooseInterestingEntity mooseDescription allPrimitiveProperties notEmpty] ]].
 ]
 
 { #category : #'*Moose-Finder' }
@@ -159,7 +159,7 @@ MooseEntity >> navigationItemsFromAttributes [
 	the the meta-model attributes of the item"
 	
 	entity := self mooseInterestingEntity.
-	attrs := entity mooseDescription allAttributes reject: [ :attribute | attribute type isPrimitive ].
+	attrs := entity mooseDescription allProperties reject: [ :attribute | attribute type isPrimitive ].
 	assocs := attrs collect: [ :anAttribute | anAttribute -> (entity perform: anAttribute compiledMethod selector) ].
 	
 	"filter out nils and empty collections, sort"

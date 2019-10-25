@@ -112,6 +112,14 @@ MooseAbstractGroup >> allWithSubTypesOf: aFamixClass ofGroupClass: aGroupClass [
 ]
 
 { #category : #groups }
+MooseAbstractGroup >> allWithSubTypesOfAny: aCollectionOfFamixClass [
+
+	^ (aCollectionOfFamixClass
+		flatCollect: [ :aFamixClass | self allWithSubTypesOf: aFamixClass ])
+		asMooseGroup
+]
+
+{ #category : #groups }
 MooseAbstractGroup >> allWithType: aFamixClass [
 	^ self allWithType: aFamixClass ofGroupClass: MooseGroup 
 ]
@@ -184,6 +192,11 @@ MooseAbstractGroup >> at: anIndex [
 MooseAbstractGroup >> average: aSymbolOrBlock [ 
 	 
 	^ (self sumNumbers: aSymbolOrBlock) / self size
+]
+
+{ #category : #iterators }
+MooseAbstractGroup >> basicIterator [
+	^ self entityStorage basicIterator
 ]
 
 { #category : #enumerating }
@@ -318,6 +331,18 @@ MooseAbstractGroup >> entityNamed: aMooseName ifAbsent: aBlock ifPresent: anothe
 	^ entity isNil 
 		ifTrue: [aBlock value]
 		ifFalse: [anotherBlock value: entity]
+]
+
+{ #category : #'public interface' }
+MooseAbstractGroup >> entityNamed: aMooseName ifAbsentPut: aValuable [
+	^ self
+		entityNamed: aMooseName
+		ifAbsent: [ | entity |
+			entity := aValuable value.
+			self
+				assert: entity mooseName = aMooseName
+				description: 'The provided entity must have the same mooseName to be consistent'.
+			self add: entity ]
 ]
 
 { #category : #private }
@@ -462,7 +487,7 @@ MooseAbstractGroup >> isNotEmpty [
 	^ self isEmpty not
 ]
 
-{ #category : #accessing }
+{ #category : #iterators }
 MooseAbstractGroup >> iterator [
 	^ self entityStorage iterator
 ]

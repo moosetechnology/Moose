@@ -1,13 +1,18 @@
 Trait {
 	#name : #FamixTUnknownSourceLanguage,
-	#category : #'Famix-Traits-Traits'
+	#category : #'Famix-Traits-SourceLanguage'
 }
 
 { #category : #meta }
 FamixTUnknownSourceLanguage classSide >> annotation [
 
-	<MSEClass: #TUnknownSourceLanguage super: #Trait>
+	<MSEClass: #TUnknownSourceLanguage super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
+]
+
+{ #category : #testing }
+FamixTUnknownSourceLanguage >> isUnknown [
+	^ true
 ]

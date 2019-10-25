@@ -6,15 +6,14 @@ Class {
 		'owner',
 		'opposite'
 	],
-	#category : #'Fame-Core'
+	#category : #'Fame-Core-Utilities'
 }
 
 { #category : #'instance creation' }
-FMNullMultivalueLink class >> on: anOwner opposite: anOpposite selector: aSelector [ 
-	^self new
+FMNullMultivalueLink class >> on: anOwner opposite: anOpposite selector: aSelector [
+	^ self new
 		with: anOwner opposite: anOpposite selector: aSelector;
 		yourself
-		
 ]
 
 { #category : #copying }
@@ -30,6 +29,11 @@ FMNullMultivalueLink >> add: anElement [
 { #category : #accessing }
 FMNullMultivalueLink >> at: anIndex [
 	^self errorSubscriptBounds: anIndex
+]
+
+{ #category : #iterators }
+FMNullMultivalueLink >> basicIterator [
+	^ NullIterator new
 ]
 
 { #category : #accessing }
@@ -56,9 +60,9 @@ FMNullMultivalueLink >> isNotEmpty [
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : #iterators }
 FMNullMultivalueLink >> iterator [
-	^ OrderedCollection new iterator
+	^ self basicIterator withCollectionAPI
 ]
 
 { #category : #accessing }

@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTGlobalVariableScope classSide >> annotation [
 
-	<MSEClass: #TGlobalVariableScope super: #Trait>
+	<MSEClass: #TGlobalVariableScope super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

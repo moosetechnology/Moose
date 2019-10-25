@@ -104,10 +104,8 @@ MooseAbstractGroup >> allImplicitVariables [
 
 { #category : #'*Famix-Traits' }
 MooseAbstractGroup >> allInheritanceDefinitions [
-	
 	<navigation: 'All inheritances'>
-	^self allUsing: FamixTSubInheritance
-	"TODO: FamixTSuperInheritance?" 
+	^ self allUsing: FamixTInheritance
 ]
 
 { #category : #'*Famix-Traits' }
@@ -145,10 +143,9 @@ MooseAbstractGroup >> allModelClasses [
 { #category : #'*Famix-Traits' }
 MooseAbstractGroup >> allModelMethods [
 	<navigation: 'All model methods'>
-	
 	^ self privateState
 		cacheAt: 'All model methods'
-		ifAbsentPut: [ self allMethods reject: [ :each | each parentTypeIsStub ] ]
+		ifAbsentPut: [ self allMethods reject: [ :each | each isStub ] ]
 ]
 
 { #category : #'*Famix-Traits' }

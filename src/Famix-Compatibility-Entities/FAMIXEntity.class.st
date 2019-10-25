@@ -17,7 +17,7 @@ FAMIXEntity class >> annotation [
 FAMIXEntity class >> metamodel [
 
 	<generated>
-	^ (self class environment at: #FamixCompatibilityGenerator) metamodel
+	^ FAMIXModel metamodel
 ]
 
 { #category : #testing }

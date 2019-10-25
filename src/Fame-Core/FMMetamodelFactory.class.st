@@ -1,19 +1,20 @@
 "
-I am a general factory that is used to create meta-model entities independently on a particular meta-model
+I am a general factory that is used to create meta-model entities independently on a particular meta-model.
 "
 Class {
 	#name : #FMMetamodelFactory,
 	#superclass : #Object,
 	#instVars : [
-		'metamodelClass'
+		'fm3Package'
 	],
 	#category : #'Fame-Core'
 }
 
 { #category : #'instance creation' }
-FMMetamodelFactory class >> on: aMetamodelClass [
-
-	^ self new metamodelClass: aMetamodelClass
+FMMetamodelFactory class >> fm3Package: aPackage [
+	^ self new
+		fm3Package: aPackage;
+		yourself
 ]
 
 { #category : #accessing }
@@ -24,23 +25,17 @@ FMMetamodelFactory >> entityNamed: aString [
 
 { #category : #accessing }
 FMMetamodelFactory >> entityNamed: aString ifAbsent: aBlock [
+	self fm3Package ifNil: [ ^ aBlock value ].
 
-	| aMetamodel fullEntityName |
-	
-	self metamodelClass ifNil: [ ^ aBlock value ].
-	aMetamodel := self metamodelClass metamodel.
-	aMetamodel ifNil: [ ^ aBlock value ].
-	fullEntityName := metamodelClass packageNameForAnnotations, '.', aString.
-	^ (aMetamodel elementNamed: fullEntityName ifAbsent: aBlock) implementingClass.
-
+	^ (self fm3Package classNamed: aString ifAbsent: aBlock) implementingClass
 ]
 
 { #category : #accessing }
-FMMetamodelFactory >> metamodelClass [
-	^ metamodelClass
+FMMetamodelFactory >> fm3Package [
+	^ fm3Package
 ]
 
 { #category : #accessing }
-FMMetamodelFactory >> metamodelClass: anObject [
-	metamodelClass := anObject
+FMMetamodelFactory >> fm3Package: anObject [
+	fm3Package := anObject
 ]

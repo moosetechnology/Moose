@@ -16,6 +16,18 @@ Object >> isFM3Property [
 ]
 
 { #category : #'*Fame-Core' }
+Object >> isMetamodelEntity [
+	^ self class isMetamodelEntity
+]
+
+{ #category : #'*Fame-Core' }
+Object >> metaDescriptionIn: aMetamodel [
+	"I return the metadescription corresponding to myself from the metamodel given as parameter."
+
+	^ aMetamodel descriptionOf: self class
+]
+
+{ #category : #'*Fame-Core' }
 Object >> metamodel [
 
 	^ self class metamodel
@@ -24,6 +36,11 @@ Object >> metamodel [
 { #category : #'*Fame-Core' }
 Object class >> metamodel [ 
 	^ nil
+]
+
+{ #category : #'*Fame-Core' }
+Object >> metamodelDefinitionPragma [
+	^ self class metamodelDefinitionPragma
 ]
 
 { #category : #'*Fame-Core' }

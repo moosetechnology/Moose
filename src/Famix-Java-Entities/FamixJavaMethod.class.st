@@ -15,6 +15,13 @@ FamixJavaMethod class >> annotation [
 	^self
 ]
 
+{ #category : #meta }
+FamixJavaMethod class >> requirements [
+
+	<generated>
+	^ { FamixJavaType }
+]
+
 { #category : #'Famix-Extensions-metrics-support' }
 FamixJavaMethod >> accessedAttributes [
 	
@@ -28,7 +35,6 @@ FamixJavaMethod >> accessedAttributes [
 FamixJavaMethod >> category [
 	<MSEProperty: #category type: #String>
 	<MSEComment: 'Category of the method'>
-	<package: 'Smalltalk'>
 	
 	^ self privateState attributeAt: #category ifAbsentPut: [ nil ]
 ]
@@ -178,6 +184,12 @@ FamixJavaMethod >> isOverriding [
 	
 	^self belongsTo directSuperclasses anySatisfy: [:each | 
 		each isInterface not and: [each understands: self signature]]
+]
+
+{ #category : #printing }
+FamixJavaMethod >> isStub [
+	^ super isStub
+		or: [ self parentType notNil and: [ self parentType isStub ] ]
 ]
 
 { #category : #testing }

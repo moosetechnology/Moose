@@ -20,7 +20,7 @@ Class {
 	#classInstVars : [
 		'entityDependencies'
 	],
-	#category : #'Moose-GenericImporter'
+	#category : #'Moose-GenericImporter-Contexts'
 }
 
 { #category : #'instance creation' }
@@ -35,7 +35,7 @@ MooseAbstractImportingContext >> allSubclassTypesNotAbstractFor: aFM3Property [
 	| implementingClass result |
 	result := OrderedCollection new.
 	(self hasSubclasses: aFM3Property type) ifTrue:
-			[ implementingClass := aFM3Property type implementingClass.
+			[ implementingClass := aFM3Property implementingType.
 			implementingClass allSubclasses do:
 					[ :each | 
 					each = FAMIXPrimitiveType ifFalse:
@@ -56,7 +56,7 @@ MooseAbstractImportingContext >> defineEntityDependencies [
 			ifTrue:[
 				fm3Elements add: element.
 				"we retrieve all attributes of this class"
-				dependenciesElements := (element allAttributes select: [:each | 
+				dependenciesElements := (element allProperties select: [:each | 
 					each isDerived not 
 					and: [( #(#String #Number #Boolean #Object  ) includes: each type name) not]]
 		).

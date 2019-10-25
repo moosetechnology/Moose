@@ -29,14 +29,13 @@ BaselineOfFame >> baseline: spec [
 				package: 'Fame-Core' with: [ spec requires: #('Hashtable' 'TreeQuery' 'Iterators') ];
 				package: 'Fame-Rules';
 				package: 'Fame-ImportExport' with: [ spec requires: #('Fame-Core') ];
-				package: 'Fame-SmalltalkBinding' with: [ spec requires: #('Fame-Core') ];
 				package: 'Fame-Example';
-				package: 'Fame-Tests-Core' with: [ spec requires: #('Fame-Core' 'Fame-Example' 'Mocketry') ].
+				package: 'Fame-Tests' with: [ spec requires: #('Fame-Core' 'Fame-ImportExport' 'Fame-Example' 'Mocketry') ].
 
 			"Groups"
 			spec
-				group: 'Core' with: #('Fame-Core' 'Fame-ImportExport' 'Fame-Rules' 'Fame-SmalltalkBinding');
-				group: 'Tests' with: #('Fame-Tests-Core') ]
+				group: 'Core' with: #('Fame-Core' 'Fame-ImportExport' 'Fame-Rules');
+				group: 'Tests' with: #('Fame-Tests') ]
 ]
 
 { #category : #dependencies }
@@ -46,7 +45,10 @@ BaselineOfFame >> hashtable: spec [
 
 { #category : #dependencies }
 BaselineOfFame >> iterators: spec [
-	spec baseline: 'Iterators' with: [ spec repository: 'github://juliendelplanque/Iterators:v1.x.x/src' ]
+	spec baseline: 'Iterators' with: [ 
+		spec
+			repository: 'github://juliendelplanque/Iterators:v1.x.x/src';
+			loads: #('core' 'collections' 'shell-dsl' 'inspector-extensions') ]
 ]
 
 { #category : #dependencies }
@@ -73,5 +75,8 @@ BaselineOfFame >> projectClass [
 
 { #category : #dependencies }
 BaselineOfFame >> treeQuery: spec [
-	spec baseline: 'TreeQuery' with: [ spec repository: 'github://juliendelplanque/TreeQuery:v1.x.x/src' ]
+	spec baseline: 'TreeQuery' with: [ 
+		spec
+			repository: 'github://juliendelplanque/TreeQuery:v1.x.x/src';
+			loads: #('core') ]
 ]

@@ -6,13 +6,13 @@ Trait {
 		'#startColumn => FMProperty',
 		'#startLine => FMProperty'
 	],
-	#category : #'Famix-Traits-Traits'
+	#category : #'Famix-Traits-SourceAnchor'
 }
 
 { #category : #meta }
 FamixTFileNavigation classSide >> annotation [
 
-	<MSEClass: #TFileNavigation super: #Trait>
+	<MSEClass: #TFileNavigation super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -116,6 +116,21 @@ FamixTFileNavigation >> lineCount [
 		ifTrue: [ self completeText lineCount ]
 		ifFalse: [ self notExistentMetricValue ]
 	
+]
+
+{ #category : #printing }
+FamixTFileNavigation >> mooseNameOn: aStream [
+	aStream
+		nextPutAll: self fileName asString;
+		nextPut: $(;
+		nextPutAll: self startLine asString;
+		nextPut: $@;
+		nextPutAll: self startColumn asString;
+		nextPut: $-;
+		nextPutAll: self endLine asString;
+		nextPut: $@;
+		nextPutAll: self endColumn asString;
+		nextPut: $)
 ]
 
 { #category : #accessing }

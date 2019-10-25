@@ -16,6 +16,12 @@ FamixMooseQueryGenerator class >> packageName [
 	^ #'Moose-Query'
 ]
 
+{ #category : #accessing }
+FamixMooseQueryGenerator class >> prefix [
+
+	^ ''
+]
+
 { #category : #definition }
 FamixMooseQueryGenerator >> defineHierarchy [
 
@@ -31,10 +37,4 @@ FamixMooseQueryGenerator >> defineTraits [
 	tEntityMetaLevelDependency := builder newTraitNamed: #TEntityMetaLevelDependency.
 	tOODependencyQueries := builder newTraitNamed: #TOODependencyQueries.
 
-]
-
-{ #category : #definition }
-FamixMooseQueryGenerator >> prefix [
-
-	^ ''
 ]

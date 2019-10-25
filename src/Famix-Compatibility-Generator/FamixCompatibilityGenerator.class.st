@@ -95,12 +95,6 @@ FamixCompatibilityGenerator class >> translationDictionary [
 	^ Dictionary newFrom: associations.	
 ]
 
-{ #category : #accessing }
-FamixCompatibilityGenerator class >> wantsAllEntitiesNavigation [
-
-	^ false
-]
-
 { #category : #initialization }
 FamixCompatibilityGenerator >> defineClasses [
 
@@ -268,8 +262,7 @@ FamixCompatibilityGenerator >> defineHierarchy [
 	include --|> #TFileInclude.
 
 	inheritance --|> association.
-	inheritance --|> #TSubInheritance.
-	inheritance --|> #TSuperInheritance.
+	inheritance --|> #TInheritance.
 
 	invocation --|> association.
 	invocation --|> #TInvocation.
@@ -310,6 +303,7 @@ FamixCompatibilityGenerator >> defineHierarchy [
 	parameter --|> #TParameter.
 
 	parameterType --|> type.
+	parameterType --|> #TParameterType.
 
 	parameterizableClass --|> class.
 	parameterizableClass --|> #TWithParameterizedTypes.
@@ -349,8 +343,7 @@ FamixCompatibilityGenerator >> defineHierarchy [
 	type --|> #TType.
 	type --|> #TWithTypeAliases.
 	type --|> #TWithMethods.
-	type --|> #TWithSuperInheritances.
-	type --|> #TWithSubInheritances.
+	type --|> #TWithInheritances.
 	type --|> #TWithAttributes.
 	type --|> #TParameterizedTypeUser.
 	type --|> #TClassHierarchyNavigation. 

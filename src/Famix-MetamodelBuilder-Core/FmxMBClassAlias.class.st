@@ -1,6 +1,3 @@
-"
-FamixMetamodelBuilderClassAlias
-"
 Class {
 	#name : #FmxMBClassAlias,
 	#superclass : #Object,

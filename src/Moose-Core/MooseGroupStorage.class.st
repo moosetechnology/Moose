@@ -58,6 +58,11 @@ MooseGroupStorage >> at: uniqueName ifAbsent: exceptionBlock [
 	^self subclassResponsibility
 ]
 
+{ #category : #iterators }
+MooseGroupStorage >> basicIterator [
+	^ self elements basicIterator
+]
+
 { #category : #private }
 MooseGroupStorage >> becomeKind: elementStorageClass [ 
 	
@@ -118,7 +123,7 @@ MooseGroupStorage >> initialize: aSize [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : #iterators }
 MooseGroupStorage >> iterator [
 	^ self elements iterator
 ]
