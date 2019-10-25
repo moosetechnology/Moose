@@ -36,13 +36,6 @@ FM3Class class >> defaultSuperclass [
 	^ FM3Object instance
 ]
 
-{ #category : #examples }
-FM3Class class >> gtExampleWithOnePrimitiveProperty: description [
-	<gtExample>
-	<depends: #gtExampleBasic>
-	^ description properties add: FM3Property new
-]
-
 { #category : #visiting }
 FM3Class >> accept: aVisitor [
 	aVisitor visitClass: self

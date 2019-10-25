@@ -61,26 +61,6 @@ FM3Property >> getRawFrom: element [
 	^ element perform: self implementingSelector
 ]
 
-{ #category : #ui }
-FM3Property >> gtDisplayOn: stream [
-	stream nextPutAll: self fullName
-]
-
-{ #category : #ui }
-FM3Property >> gtInspectorSourceIn: composite [
-	<gtInspectorPresentationOrder: 0>
-	self hasImplementingSelector ifTrue: [
-		self compiledMethod ifNotNil: [ :c | c asRingDefinition gtInspectorSourceIn: composite ] ]
-]
-
-{ #category : #ui }
-FM3Property >> gtTypeString [
-	^ String streamContents: [ :s | 
-		s nextPutAll: self type name. 
-		self isMultivalued ifTrue: [ s nextPutAll: ' *'].
-		self isDerived ifTrue: [ s nextPutAll: ' /'] ]
-]
-
 { #category : #testing }
 FM3Property >> hasImplementingSelector [
 	^ self implementingSelector notNil
