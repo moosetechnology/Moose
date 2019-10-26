@@ -99,13 +99,10 @@ FMModel >> coerceProperty: propertyOrName receiver: receiver [
 ]
 
 { #category : #'accessing-meta' }
-FMModel >> containerOf: element [
+FMModel >> containersOf: element [
 	^ (self metaDescriptionOf: element)
-		ifNil: [ nil ]
-		ifNotNil: [ :meta |
-			meta ownerProperty
-				ifNil: [ nil ]
-				ifNotNil: [ :property | self get: property element: element ] ]
+		ifNil: [ #() ]
+		ifNotNil: [ :meta | meta ownerProperties flatCollectAsSet: [ :property | self get: property element: element ] ]
 ]
 
 { #category : #initialization }

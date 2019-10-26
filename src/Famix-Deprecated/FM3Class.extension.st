@@ -99,12 +99,6 @@ FM3Class class >> object [
 ]
 
 { #category : #'*Famix-Deprecated' }
-FM3Class >> ownerAttribute [
-	self deprecated: 'Use #ownerProperty instead.' transformWith: '``@object ownerAttribute' -> '``@object ownerProperty'.
-	^ self ownerProperty
-]
-
-{ #category : #'*Famix-Deprecated' }
 FM3Class >> ownerAttributes [
 	self deprecated: 'Use #ownerProperties instead.' transformWith: '``@object ownerAttributes' -> '``@object ownerProperties'.
 	^ self ownerProperties
