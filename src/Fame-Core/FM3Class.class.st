@@ -265,13 +265,6 @@ FM3Class >> ownerProperties [
 	^ self allProperties select: #isContainer
 ]
 
-{ #category : #'accessing-query' }
-FM3Class >> ownerProperty [
-	self flag: #FIXME.
-	self flag: 'It is possible that several containers exists for a given entity -> we have not a tree, but we should not get cycles at ALL'.
-	^self allProperties detect: #isContainer ifNone: [ nil ]
-]
-
 { #category : #accessing }
 FM3Class >> package [
 	<MSEProperty: #package type: #FM3Package opposite: #classes>
