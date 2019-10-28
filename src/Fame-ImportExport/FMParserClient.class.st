@@ -35,6 +35,27 @@ FMParserClient >> endElement: name [
 ]
 
 { #category : #parsing }
+FMParserClient >> inAttribute: aString do: aBlock [
+	self beginAttribute: aString.
+	aBlock value.
+	self endAttribute: aString
+]
+
+{ #category : #parsing }
+FMParserClient >> inDocumentDo: aBlock [
+	self beginDocument.
+	aBlock value.
+	self endDocument
+]
+
+{ #category : #parsing }
+FMParserClient >> inElement: aString do: aBlock [
+	self beginElement: aString.
+	aBlock value.
+	self endElement: aString
+]
+
+{ #category : #parsing }
 FMParserClient >> primitive: value [
 	^self subclassResponsibility
 ]
