@@ -595,12 +595,12 @@ FMMSEParserTest >> testAttributeWithStrings2 [
 ]
 
 { #category : #running }
-FMMSEParserTest >> testBacktracking [
+FMMSEParserTest >> testBacktrack [
 	| pos |
 	p fromString: 'abcdefg'.
 	self assert: p peek equals: $a.
 	self assert: p next equals: $b.
-	pos := p pos.
+	pos := p position.
 	self assert: p peek equals: $b.
 	self assert: p next equals: $c.
 	self assert: p next equals: $d.
@@ -991,7 +991,7 @@ FMMSEParserTest >> testValueNegativeNumberError [
 	p fromString: '--42'.
 	p Value.
 	self assertEmpty: r contents.
-	self assert: p pos equals: 1
+	self assert: p position equals: 1
 ]
 
 { #category : #running }
