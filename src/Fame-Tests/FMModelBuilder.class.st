@@ -36,17 +36,11 @@ FMModelBuilder >> an: attributeName of: valueOrBodyOrArray [
 FMModelBuilder >> attribute: attributeName with: variant [
 	"Adds an attribute with primitive value or array, or with given body."
 
-	client beginAttribute: attributeName.
-	variant isBlock
-		ifTrue: [ variant value ]
-		ifFalse: [
-			variant isArray
-				ifTrue: [ variant do: [ :each |
-					client primitive: each ] ]
-				ifFalse: [ 
-					client primitive: variant ]].
-		
-	client endAttribute: attributeName.
+	client
+		inAttribute: attributeName
+		do: [ variant isBlock
+				ifTrue: [ variant value ]
+				ifFalse: [ variant isArray ifTrue: [ variant do: [ :each | client primitive: each ] ] ifFalse: [ client primitive: variant ] ] ]
 ]
 
 { #category : #accessing }
@@ -62,19 +56,15 @@ FMModelBuilder >> client: parseClient [
 { #category : #DSL }
 FMModelBuilder >> document: body [
 	"Creates a document with body (which is a block)."
-	 
-	client beginDocument.
-	body valueWithPossibleArgument: self.
-	client endDocument.
+
+	client inDocumentDo: [ body valueWithPossibleArgument: self ]
 ]
 
 { #category : #DSL }
-FMModelBuilder >> element: elementName with: body [ 
+FMModelBuilder >> element: elementName with: body [
 	"Addes an element with body (which is a block)."
-	
-	client beginElement: elementName.
-	body value.
-	client endElement: elementName
+
+	client inElement: elementName do: [ body value ]
 ]
 
 { #category : #DSL }

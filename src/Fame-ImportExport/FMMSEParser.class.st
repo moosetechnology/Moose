@@ -21,15 +21,13 @@ FMMSEParser >> Attribute [
 
 	| pos n |
 	pos := self pos.
-	self tOPEN
-		ifFalse: [ ^ self backtrack: pos ].
+	self tOPEN ifFalse: [ ^ self backtrack: pos ].
 	n := self tNAME.
 	n ifNil: [ ^ self backtrack: pos ].
-	client beginAttribute: n.
-	[ self Value ] whileTrue.
-	self tCLOSE
-		ifFalse: [ ^ self syntaxError ].
-	client endAttribute: n.
+	client
+		inAttribute: n
+		do: [ [ self Value ] whileTrue.
+			self tCLOSE ifFalse: [ ^ self syntaxError ] ].
 	self tWHITESPACE.
 	^ true
 ]
@@ -58,20 +56,23 @@ FMMSEParser >> Document [
 { #category : #expressions }
 FMMSEParser >> Element [
 	"Matches an element node (returns boolean)."
+
 	"Element := OPEN n:FULLNAME { beginElement(n) } Serial? Attribute* CLOSE { endElement(n) }"
+
 	| pos n |
 	pos := self pos.
 	self tOPEN ifFalse: [ ^ self backtrack: pos ].
 	n := self tFULLNAME.
 	n ifNil: [ ^ self backtrack: pos ].
-	client beginElement: n.
-	self Serial.
-	[ self Attribute ] whileTrue.
-	self tCLOSE ifFalse: [ ^ self syntaxError ].
-	client endElement: n.
+	client
+		inElement: n
+		do: [ self Serial.
+			[ self Attribute ] whileTrue.
+			self tCLOSE ifFalse: [ ^ self syntaxError ] ].
+
 	self tWHITESPACE.
-	
-	self increment. "UI stuff"
+
+	self increment.	"UI stuff"
 	^ true
 ]
 

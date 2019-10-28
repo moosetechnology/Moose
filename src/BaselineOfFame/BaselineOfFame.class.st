@@ -37,7 +37,14 @@ BaselineOfFame >> baseline: spec [
 			spec
 				group: 'Core' with: #('Fame-Core' 'Fame-ImportExport' 'Fame-Rules');
 				group: 'GT' with: #('Core' 'Fame-GT');
-				group: 'Tests' with: #('Fame-Tests') ]
+				group: 'Tests' with: #('Fame-Tests') ].
+			
+	spec
+		for: #'pharo7.x'
+		do: [ 
+			spec
+				package: 'Fame-Pharo8Compatibility';
+				package: 'Fame-Core' with: [ spec includes: #('Fame-Pharo8Compatibility') ] ]
 ]
 
 { #category : #dependencies }

@@ -28,24 +28,16 @@ FMModelExporter >> basicRun [
 ]
 
 { #category : #exporting }
-FMModelExporter >> exportElement: each [ 
-	
-	| meta serial properties |
-
+FMModelExporter >> exportElement: each [
+	| meta |
 	meta := repository metaDescriptionOf: each.
-	self flag: 'ideally, there should be no nil check here. Currently, we need it to accommodate the case in which we export a model based on a partial meta-model'. 
-	meta ifNotNil: [
-		serial := self indexOf: each.
-		printer beginElement: meta fullName.
-		printer serial: serial.
-		properties := self sortAttributes: meta allProperties.
-		properties do: [ :property | 
-			self 
-				exportProperty: property
-				for: each ].
-		printer endElement: meta fullName
-		].
-	self increment. "UI stuff"
+
+	printer
+		inElement: meta fullName
+		do: [ printer serial: (self indexOf: each).
+			(self sortedPropertiesOf: meta) do: [ :property | self exportProperty: property for: each ] ].
+
+	self increment	"UI stuff"
 ]
 
 { #category : #exporting }
@@ -62,27 +54,24 @@ FMModelExporter >> exportHeader [
 FMModelExporter >> exportProperty: property for: each [
 	| values |
 	(self shouldIgnoreProperty: property) ifTrue: [ ^ self ].
+
 	values := repository get: property element: each.
-	(self shouldIgnoreProperty: property withAll: values) ifTrue: [ ^ self ].
+
+	"Do not export empty properties."
+	values isEmptyOrNil ifTrue: [ ^ self ].
+
 	self exportProperty: property withAll: values
 ]
 
 { #category : #exporting }
 FMModelExporter >> exportProperty: property withAll: values [
-	printer beginAttribute: property name.
-	property type isPrimitive
-		ifTrue: [ values do: [ :each | printer primitive: each ] ]
-		ifFalse: [ property isComposite
-				ifTrue: [ values
-						do: [ :each | 
-							((self isPrimitiveTypeOrObject: each) and: [ self shouldIgnoreProperty: each ])
-								ifFalse: [ self exportElement: each ] ] ]
-				ifFalse: [ values
-						do: [ :each | 
-							(self isPrimitiveTypeOrObject: each)
-								ifTrue: [ printer referenceName: each name ]
-								ifFalse: [ printer referenceNumber: (self indexOf: each) ] ] ] ].
-	printer endAttribute: property name
+	printer
+		inAttribute: property name
+		do: [ values
+				do: [ :each | 
+					property type isPrimitive
+						ifTrue: [ printer primitive: each ]
+						ifFalse: [ printer referenceNumber: (self indexOf: each) ] ] ]
 ]
 
 { #category : #exporting }
@@ -106,11 +95,6 @@ FMModelExporter >> initialize [
 	index := IdentityHashTable new "We use IdentityHashTable because it is more performant than IdentityDictionary for big collections."
 ]
 
-{ #category : #private }
-FMModelExporter >> isPrimitiveTypeOrObject: each [
-	^ FM3Constant constants includes: each
-]
-
 { #category : #accessing }
 FMModelExporter >> model: aRepository [
 	repository := aRepository.
@@ -124,14 +108,11 @@ FMModelExporter >> printer: aPrinter [
 
 { #category : #private }
 FMModelExporter >> roots [
-	self
-		flag:
-			'VBL - Add a test to detect that the repository is a meta model or not. If  it is, the exporter works normally else, only the roots are exported (issue was detected when adding the container pragmas). I don''t know if it is the better fix to do.'.
 	^ roots
 		ifNil: [
 			roots := repository elements iterator
-							| [ :each | self isPrimitiveTypeOrObject: each ] rejectIt
-							| [ :each | repository isMetamodel not or: [ (repository containersOf: each) isEmpty ] ] selectIt
+							| [ :each | FM3Constant constants includes: each ] rejectIt
+							| [ :each | repository isMetamodel not or: [ repository classIsRoot: each ] ] selectIt
 							> Array ]
 ]
 
@@ -156,18 +137,17 @@ FMModelExporter >> shouldIgnoreProperty: property [
 ]
 
 { #category : #exporting }
-FMModelExporter >> shouldIgnoreProperty: property withAll: values [
-	values ifNil: [ ^ true ].
+FMModelExporter >> sortedPropertiesOf: meta [
+	"We want to sort the properties into three categories:
+		- The one defining the name
+		- The simple properties
+		- The complexe properties
+		
+		And inside each category we want to sort the properties by name."
 
-	^ values isEmpty or: [ property type = FM3Boolean instance and: [ values size = 1 and: [ values first = false ] ] ]
-]
-
-{ #category : #private }
-FMModelExporter >> sortAttributes: properties [
-
-	| names composites sorted |
-	sorted := properties asArray sorted: [:n1 :n2 | n1 name < n2 name ].
-	names := sorted select: [ :each | each name == #name ].
-	composites := sorted select: [ :each | each isComposite ].
-	^names, (sorted copyWithoutAll: (names union: composites)), composites
+	^ meta allProperties
+		sorted:
+			[ :property | property name = #name ] descending,
+			#isChildrenProperty ascending,
+			#name ascending
 ]

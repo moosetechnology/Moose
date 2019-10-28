@@ -41,6 +41,7 @@ FamixTClass >> isTestCase [
 
 	<MSEProperty: #isTestCase type: #Boolean>
 	<MSEComment: 'True if the method is considered as a test'>
+	<derived>
 
 	^ self privateState attributeAt: #isTestCase ifAbsent: [ false ]
 ]
