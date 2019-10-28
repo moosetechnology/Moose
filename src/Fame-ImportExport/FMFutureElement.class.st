@@ -1,13 +1,12 @@
 Class {
 	#name : #FMFutureElement,
-	#superclass : #Object,
+	#superclass : #FMFuture,
 	#instVars : [
 		'instance',
-		'current',
 		'metaDescription',
-		'owner'
+		'currentAttribute'
 	],
-	#category : #'Fame-ImportExport'
+	#category : #'Fame-ImportExport-Importers'
 }
 
 { #category : #'instance creation' }
@@ -18,31 +17,29 @@ FMFutureElement class >> with: anImporter name: aString [
 
 { #category : #parsing }
 FMFutureElement >> beginAttribute: aString [
-	self assert: current isNil.
-	current := FMFutureAttribute with: self name: aString
+	self assert: currentAttribute isNil.
+	currentAttribute := FMFutureAttribute with: self name: aString
 ]
 
 { #category : #accessing }
-FMFutureElement >> current [
-	^current
-]
-
-{ #category : #accessing }
-FMFutureElement >> description [
-	^ metaDescription
+FMFutureElement >> currentAttribute [
+	^ currentAttribute
 ]
 
 { #category : #parsing }
-FMFutureElement >> endAttribute: aString [ 
-	
-	current endAttribute: aString.
-	current := nil.
+FMFutureElement >> endAttribute: aString [
+	currentAttribute endAttribute: aString.
+	currentAttribute := nil
+]
+
+{ #category : #accessing }
+FMFutureElement >> importer [
+	^ self owner
 ]
 
 { #category : #accessing }
 FMFutureElement >> instance [
-	
-	^instance
+	^ instance
 ]
 
 { #category : #accessing }
@@ -50,20 +47,14 @@ FMFutureElement >> metaDescription [
 	^ metaDescription
 ]
 
-{ #category : #accessing }
-FMFutureElement >> owner [
-	^owner
-]
-
 { #category : #parsing }
-FMFutureElement >> serial: serial [ 
-	
-	owner assign: instance to: serial
+FMFutureElement >> serial: serial [
+	self importer assign: instance to: serial
 ]
 
 { #category : #'initialize-release' }
-FMFutureElement >> with: anImporter name: aString [ 
-	owner := anImporter.
-	metaDescription := owner metamodel elementNamed: aString.
+FMFutureElement >> with: anImporter name: aString [
+	super with: anImporter name: aString.
+	metaDescription := self importer metamodel elementNamed: aString.
 	instance := metaDescription createInstance
 ]

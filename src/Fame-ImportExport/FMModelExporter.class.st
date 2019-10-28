@@ -10,7 +10,7 @@ Class {
 		'roots',
 		'lastUpdate'
 	],
-	#category : #'Fame-ImportExport'
+	#category : #'Fame-ImportExport-Exporters'
 }
 
 { #category : #'instance creation' }

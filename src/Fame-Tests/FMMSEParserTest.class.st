@@ -470,7 +470,7 @@ FMMSEParserTest class >> sampleMse [
 FMMSEParserTest >> setUp [
 	super setUp.
 	p := FMMSEParser new.
-	r := FMDebugClient new.
+	r := FMDebugImporter new.
 	p client: r
 ]
 

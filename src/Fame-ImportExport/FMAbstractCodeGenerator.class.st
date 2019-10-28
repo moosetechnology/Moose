@@ -11,7 +11,7 @@ Class {
 		'defaultCategory',
 		'skipDerivedMethods'
 	],
-	#category : #'Fame-ImportExport'
+	#category : #'Fame-ImportExport-CodeGeneration'
 }
 
 { #category : #visiting }

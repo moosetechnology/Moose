@@ -10,7 +10,7 @@ Class {
 		'chararacter',
 		'buffer'
 	],
-	#category : #'Fame-ImportExport'
+	#category : #'Fame-ImportExport-Importers'
 }
 
 { #category : #expressions }

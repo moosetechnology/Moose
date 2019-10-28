@@ -1,7 +1,7 @@
 Class {
 	#name : #FMNullTranslationUnit,
 	#superclass : #FMTranslationUnit,
-	#category : #'Fame-ImportExport'
+	#category : #'Fame-ImportExport-Importers'
 }
 
 { #category : #translate }

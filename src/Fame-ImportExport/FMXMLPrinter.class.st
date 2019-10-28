@@ -1,7 +1,7 @@
 Class {
 	#name : #FMXMLPrinter,
 	#superclass : #FMDataStructurePrinter,
-	#category : #'Fame-ImportExport'
+	#category : #'Fame-ImportExport-Exporters'
 }
 
 { #category : #parsing }

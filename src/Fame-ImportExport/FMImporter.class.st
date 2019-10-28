@@ -1,6 +1,8 @@
 Class {
 	#name : #FMImporter,
-	#superclass : #FMParserClient,
+	#superclass : #Object,
+	#traits : 'FMTImportExportStructure',
+	#classTraits : 'FMTImportExportStructure classTrait',
 	#instVars : [
 		'stack',
 		'elements',
@@ -12,7 +14,7 @@ Class {
 		'serialDict',
 		'translationUnit'
 	],
-	#category : #'Fame-ImportExport'
+	#category : #'Fame-ImportExport-Importers'
 }
 
 { #category : #'instance creation' }
@@ -85,14 +87,12 @@ FMImporter >> endDocument [
 ]
 
 { #category : #parsing }
-FMImporter >> endElement: name [ 
-	
+FMImporter >> endElement: name [
 	| future element |
 	future := stack pop.
 	element := future instance.
 	elements add: element.
-	stack isEmpty not ifTrue: [
-		stack top current values add: element ]
+	stack ifNotEmpty: [ stack top currentAttribute values add: element ]
 ]
 
 { #category : #accessing }
@@ -129,32 +129,26 @@ FMImporter >> model: aModel [
 ]
 
 { #category : #parsing }
-FMImporter >> primitive: value [ 
-	
-	stack top current values add: value
+FMImporter >> primitive: value [
+	stack top currentAttribute values add: value
 ]
 
 { #category : #parsing }
-FMImporter >> referenceName: name [ 
-	
-	stack top current values add: (model elementNamed: name)
+FMImporter >> referenceName: name [
+	stack top currentAttribute values add: (model elementNamed: name)
 ]
 
 { #category : #parsing }
-FMImporter >> referenceNumber: serial [ 
-	
-	stack top current referenceNumber: serial
+FMImporter >> referenceNumber: serial [
+	stack top currentAttribute referenceNumber: serial
 ]
 
 { #category : #running }
 FMImporter >> run [
-
-	| parser |
-	parser := FMMSEParser new.
-	parser stream: stream.
-	parser client: self.
-	parser run.
-
+	FMMSEParser new
+		stream: stream;
+		client: self;
+		run
 ]
 
 { #category : #parsing }
