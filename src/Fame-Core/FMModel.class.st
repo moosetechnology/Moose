@@ -110,6 +110,11 @@ FMModel >> defaultMetamodel [
 	^ FMMetaModel new
 ]
 
+{ #category : #testing }
+FMModel >> elementIsRoot: element [
+	^ (self containersOf: element) isEmpty
+]
+
 { #category : #accessing }
 FMModel >> elements [
 	^ elements asArray
