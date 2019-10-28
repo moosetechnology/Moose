@@ -17,13 +17,3 @@ MooseOutgoingQueryResult >> opposite: aDependency [
 
 	^ aDependency to
 ]
-
-{ #category : #accessing }
-MooseOutgoingQueryResult >> sources [
-	^ (self collectAsSet: #from) flattened
-]
-
-{ #category : #accessing }
-MooseOutgoingQueryResult >> sourcesAtScope: aFamixTraitOrClass [
-	^ self sources flatCollectAsSet: [ :e | e atScope: aFamixTraitOrClass ]
-]

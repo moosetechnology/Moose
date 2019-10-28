@@ -189,6 +189,16 @@ MooseQueryResult >> select: aBlock [
 ]
 
 { #category : #accessing }
+MooseQueryResult >> sources [
+	^ (self collectAsSet: #from) flattened
+]
+
+{ #category : #accessing }
+MooseQueryResult >> sourcesAtScope: aFamixTraitOrClass [
+	^ self sources flatCollectAsSet: [ :e | e atScope: aFamixTraitOrClass ]
+]
+
+{ #category : #accessing }
 MooseQueryResult >> storage [
 
 	^ storage
@@ -197,6 +207,16 @@ MooseQueryResult >> storage [
 { #category : #accessing }
 MooseQueryResult >> storage: aCollection [ 
 	storage := aCollection
+]
+
+{ #category : #accessing }
+MooseQueryResult >> targets [
+	^ (self collectAsSet: #to) flattened
+]
+
+{ #category : #accessing }
+MooseQueryResult >> targetsAtScope: aTraitOrClass [
+	^ self targets flatCollectAsSet: [ :e | e atScope: aTraitOrClass ]
 ]
 
 { #category : #scoping }
