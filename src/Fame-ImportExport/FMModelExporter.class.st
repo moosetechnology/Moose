@@ -54,8 +54,12 @@ FMModelExporter >> exportHeader [
 FMModelExporter >> exportProperty: property for: each [
 	| values |
 	(self shouldIgnoreProperty: property) ifTrue: [ ^ self ].
+
 	values := repository get: property element: each.
-	(self shouldIgnoreProperty: property withAll: values) ifTrue: [ ^ self ].
+
+	"Do not export empty properties."
+	values isEmptyOrNil ifTrue: [ ^ self ].
+
 	self exportProperty: property withAll: values
 ]
 
@@ -117,7 +121,7 @@ FMModelExporter >> roots [
 		ifNil: [
 			roots := repository elements iterator
 							| [ :each | self isPrimitiveTypeOrObject: each ] rejectIt
-							| [ :each | repository elementIsRoot: each ] selectIt
+							| [ :each | repository isMetamodel not or: [ repository elementIsRoot: each ] ] selectIt
 							> Array ]
 ]
 
@@ -139,13 +143,6 @@ FMModelExporter >> shouldIgnoreProperty: property [
 	(repository metamodel includes: property) ifFalse: [ ^ true ].
 
 	^ property isDerived
-]
-
-{ #category : #exporting }
-FMModelExporter >> shouldIgnoreProperty: property withAll: values [
-	values ifNil: [ ^ true ].
-
-	^ values isEmpty or: [ property type = FM3Boolean instance and: [ values size = 1 and: [ values first = false ] ] ]
 ]
 
 { #category : #exporting }
