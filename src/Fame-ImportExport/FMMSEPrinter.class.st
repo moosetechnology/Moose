@@ -52,7 +52,7 @@ FMMSEPrinter >> endElement: name [
 { #category : #parsing }
 FMMSEPrinter >> primitive: value [
 	stream space.
-	value fm3PrintOn: stream
+	value msePrintOn: stream
 ]
 
 { #category : #parsing }

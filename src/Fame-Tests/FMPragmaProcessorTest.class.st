@@ -20,7 +20,7 @@ FMPragmaProcessorTest >> testAnnotationTypes [
 	self assert: (class propertyNamed: 'name') type equals: FM3String instance.
 	self deny: (class propertyNamed: 'name') isContainer.
 	self deny: (class propertyNamed: 'name') isMultivalued.
-	self deny: (class propertyNamed: 'name') isComposite.
+	self deny: (class propertyNamed: 'name') isChildrenProperty.
 	self deny: (class propertyNamed: 'name') hasOpposite.
 	self assert: class owner equals: package.	"We now test properties"
 	class := package classNamed: 'Property'.
@@ -34,7 +34,7 @@ FMPragmaProcessorTest >> testAnnotationTypes [
 	self assert: (class propertyNamed: 'opposite') type equals: class.
 	self deny: (class propertyNamed: 'opposite') isContainer.
 	self deny: (class propertyNamed: 'opposite') isMultivalued.
-	self deny: (class propertyNamed: 'opposite') isComposite.
+	self deny: (class propertyNamed: 'opposite') isChildrenProperty.
 	self assert: (class propertyNamed: 'opposite') hasOpposite.
 	self assert: (class propertyNamed: 'opposite') opposite equals: (class propertyNamed: 'opposite').	"We now test the container property of FM3's properties"
 	property := (package classNamed: 'Property') propertyNamed: 'class'.

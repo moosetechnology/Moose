@@ -86,6 +86,11 @@ FMModel >> additionalProperty: aSymbol for: entityClass put: anObject [
 	^ (self additionalPropertiesFor: entityClass) at: aSymbol put: anObject
 ]
 
+{ #category : #testing }
+FMModel >> classIsRoot: element [
+	^ (self containersOf: element) isEmpty
+]
+
 { #category : #accessing }
 FMModel >> cleanAdditionalProperties [
 	additionalProperties := IdentityDictionary new
@@ -108,11 +113,6 @@ FMModel >> containersOf: element [
 { #category : #initialization }
 FMModel >> defaultMetamodel [
 	^ FMMetaModel new
-]
-
-{ #category : #testing }
-FMModel >> elementIsRoot: element [
-	^ (self containersOf: element) isEmpty
 ]
 
 { #category : #accessing }

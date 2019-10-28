@@ -107,11 +107,6 @@ FM3Property >> initialize [
 
 { #category : #testing }
 FM3Property >> isChildrenProperty [
-	^ self hasOpposite and: [ self opposite isContainer ]
-]
-
-{ #category : #testing }
-FM3Property >> isComposite [
 	<MSEProperty: #composite type: #Boolean>
 	<derived>
 	^ self hasOpposite and: [ self opposite isContainer ]

@@ -67,15 +67,11 @@ FMModelExporter >> exportProperty: property for: each [
 FMModelExporter >> exportProperty: property withAll: values [
 	printer
 		inAttribute: property name
-		do: [ property name.
-			property type isPrimitive
-				ifTrue: [ values do: [ :each | printer primitive: each ] ]
-				ifFalse: [ property isComposite
-						ifTrue:
-							[ values do: [ :each | ((self isPrimitiveTypeOrObject: each) and: [ self shouldIgnoreProperty: each ]) ifFalse: [ self exportElement: each ] ] ]
-						ifFalse: [ values
-								do:
-									[ :each | (self isPrimitiveTypeOrObject: each) ifTrue: [ printer referenceName: each name ] ifFalse: [ printer referenceNumber: (self indexOf: each) ] ] ] ] ]
+		do: [ values
+				do: [ :each | 
+					property type isPrimitive
+						ifTrue: [ printer primitive: each ]
+						ifFalse: [ printer referenceNumber: (self indexOf: each) ] ] ]
 ]
 
 { #category : #exporting }
@@ -99,11 +95,6 @@ FMModelExporter >> initialize [
 	index := IdentityHashTable new "We use IdentityHashTable because it is more performant than IdentityDictionary for big collections."
 ]
 
-{ #category : #private }
-FMModelExporter >> isPrimitiveTypeOrObject: each [
-	^ FM3Constant constants includes: each
-]
-
 { #category : #accessing }
 FMModelExporter >> model: aRepository [
 	repository := aRepository.
@@ -120,8 +111,8 @@ FMModelExporter >> roots [
 	^ roots
 		ifNil: [
 			roots := repository elements iterator
-							| [ :each | self isPrimitiveTypeOrObject: each ] rejectIt
-							| [ :each | repository isMetamodel not or: [ repository elementIsRoot: each ] ] selectIt
+							| [ :each | FM3Constant constants includes: each ] rejectIt
+							| [ :each | repository isMetamodel not or: [ repository classIsRoot: each ] ] selectIt
 							> Array ]
 ]
 
@@ -157,6 +148,6 @@ FMModelExporter >> sortedPropertiesOf: meta [
 	^ meta allProperties
 		sorted:
 			[ :property | property name = #name ] descending,
-			#isComposite ascending,
+			#isChildrenProperty ascending,
 			#name ascending
 ]
