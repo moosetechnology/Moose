@@ -470,8 +470,8 @@ FMMSEParserTest class >> sampleMse [
 FMMSEParserTest >> setUp [
 	super setUp.
 	p := FMMSEParser new.
-	r := FMDebugClient new.
-	p client: r
+	r := FMDebugImporter new.
+	p importer: r
 ]
 
 { #category : #running }
@@ -610,11 +610,6 @@ FMMSEParserTest >> testBacktrack [
 	self assert: p next equals: $c.
 	self assert: p next equals: $d.
 	self assert: p next equals: $e
-]
-
-{ #category : #running }
-FMMSEParserTest >> testClient [
-	self assert: p client equals: r
 ]
 
 { #category : #running }
@@ -823,6 +818,11 @@ FMMSEParserTest >> testFullNameDotDotFails [
 FMMSEParserTest >> testFullNameTrailingDotFails [
 	p fromString: 'Foo.'.
 	self should: [ p tFULLNAME ] raise: Error
+]
+
+{ #category : #running }
+FMMSEParserTest >> testImporter [
+	self assert: p importer equals: r
 ]
 
 { #category : #running }

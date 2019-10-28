@@ -1,7 +1,7 @@
 Class {
 	#name : #FMDefaultCodeGenerator,
 	#superclass : #FMAbstractCodeGenerator,
-	#category : #'Fame-ImportExport'
+	#category : #'Fame-ImportExport-CodeGeneration'
 }
 
 { #category : #compiling }

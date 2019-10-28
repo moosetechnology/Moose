@@ -4,7 +4,7 @@ Class {
 	#category : #'Moose-Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #parsing }
 MSEImporter >> endDocument [
 	"This method overrides the default FMImporter to allow for dangling references"
 	

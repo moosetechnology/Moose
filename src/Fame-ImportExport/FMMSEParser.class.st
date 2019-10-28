@@ -3,14 +3,14 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'stream',
-		'client',
 		'progBar',
 		'lastUpdate',
 		'characterSet',
 		'chararacter',
-		'buffer'
+		'buffer',
+		'importer'
 	],
-	#category : #'Fame-ImportExport'
+	#category : #'Fame-ImportExport-Importers'
 }
 
 { #category : #expressions }
@@ -24,7 +24,7 @@ FMMSEParser >> Attribute [
 	self tOPEN ifFalse: [ ^ self backtrack: pos ].
 	name := self tNAME.
 	name ifNil: [ ^ self backtrack: pos ].
-	client
+	importer
 		inAttribute: name
 		do: [ [ self Value ] whileTrue.
 			self tCLOSE ifFalse: [ ^ self syntaxError ] ].
@@ -41,14 +41,14 @@ FMMSEParser >> Document [
 
 	self tWHITESPACE.
 	self atEnd
-		ifTrue: [ client beginDocument ]
+		ifTrue: [ importer beginDocument ]
 		ifFalse: [ self tOPEN
 				ifFalse: [ ^ self syntaxError ].
-			client beginDocument.
+			importer beginDocument.
 			[ self Element ] whileTrue.
 			self tCLOSE
 				ifFalse: [ ^ self syntaxError ] ].
-	client endDocument.
+	importer endDocument.
 	self tWHITESPACE.
 	^ true
 ]
@@ -64,7 +64,7 @@ FMMSEParser >> Element [
 	self tOPEN ifFalse: [ ^ self backtrack: pos ].
 	name := self tFULLNAME.
 	name ifNil: [ ^ self backtrack: pos ].
-	client
+	importer
 		inElement: name
 		do: [ self Serial.
 			[ self Attribute ] whileTrue.
@@ -146,11 +146,11 @@ FMMSEParser >> Primitive [
 
 	| primitive |
 	primitive := self String.
-	primitive ifNotNil: [ client primitive: primitive. ^ true ].
+	primitive ifNotNil: [ importer primitive: primitive. ^ true ].
 	primitive := self Number.
-	primitive ifNotNil: [ client primitive: primitive. ^ true ].
-	self tTRUE ifTrue: [ client primitive: true. ^ true ].
-	self tFALSE ifTrue: [ client primitive: false. ^ true ].
+	primitive ifNotNil: [ importer primitive: primitive. ^ true ].
+	self tTRUE ifTrue: [ importer primitive: true. ^ true ].
+	self tFALSE ifTrue: [ importer primitive: false. ^ true ].
 	^ false
 ]
 
@@ -164,7 +164,7 @@ FMMSEParser >> Reference [
 	self tREF ifFalse: [ ^ self backtrack: position ].
 	serial := self Identifier.
 	serial ifNil: [ ^ self backtrack: position ].
-	client referenceNumber: serial.
+	importer referenceNumber: serial.
 	self tCLOSE ifFalse: [ ^ self syntaxError ].
 	self tWHITESPACE.
 	^ true
@@ -180,7 +180,7 @@ FMMSEParser >> Reference2 [
 	self tREF ifFalse: [ ^ self backtrack: position ].
 	name := self tFULLNAME.
 	name ifNil: [ ^ self backtrack: position ].
-	client referenceName: name.
+	importer referenceName: name.
 	self tCLOSE ifFalse: [ ^ self syntaxError ].
 	self tWHITESPACE.
 	^ true
@@ -196,7 +196,7 @@ FMMSEParser >> Serial [
 	self tID ifFalse: [ ^ self backtrack: position ].
 	serial := self Identifier.
 	serial ifNil: [ ^ self backtrack: position ].
-	client serial: serial.
+	importer serial: serial.
 	self tCLOSE ifFalse: [ self syntaxError ].
 	self tWHITESPACE.
 	^ true
@@ -252,18 +252,18 @@ FMMSEParser >> characterSet [
 ]
 
 { #category : #accessing }
-FMMSEParser >> client [
-	^ client
-]
-
-{ #category : #accessing }
-FMMSEParser >> client: parseClient [
-	client := parseClient
-]
-
-{ #category : #accessing }
 FMMSEParser >> fromString: mseString [ 
 	self stream: mseString readStream
+]
+
+{ #category : #accessing }
+FMMSEParser >> importer [
+	^ importer
+]
+
+{ #category : #accessing }
+FMMSEParser >> importer: aFMImporter [
+	importer := aFMImporter
 ]
 
 { #category : #running }
