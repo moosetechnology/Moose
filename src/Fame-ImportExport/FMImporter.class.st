@@ -147,7 +147,7 @@ FMImporter >> referenceNumber: serial [
 FMImporter >> run [
 	FMMSEParser new
 		stream: stream;
-		client: self;
+		importer: self;
 		run
 ]
 

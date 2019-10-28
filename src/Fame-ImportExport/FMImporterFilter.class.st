@@ -126,7 +126,7 @@ FMImporterFilter >> referenceNumber: index [
 FMImporterFilter >> run [
 	FMMSEParser new
 		stream: parserClient stream;
-		client: self;
+		importer: self;
 		run
 ]
 
