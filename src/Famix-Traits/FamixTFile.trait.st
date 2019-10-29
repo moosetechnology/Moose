@@ -133,14 +133,6 @@ FamixTFile >> numberOfKiloBytes [
 	^ self lookUpPropertyNamed: #numberOfKiloBytes computedAs: [ (self numberOfBytes / 1024) asFloat ]
 ]
 
-{ #category : #accessing }
-FamixTFile >> numberOfLinesOfText [
-	<FMProperty: #numberOfLinesOfText type: #Number>
-	<FMComment: 'Number of lines of text which are not empty in a file'>
-	<derived>
-	^ self lookUpPropertyNamed: #numberOfLinesOfText computedAs: [ self totalNumberOfLinesOfText - self numberOfEmptyLinesOfText ]
-]
-
 { #category : #properties }
 FamixTFile >> readStream [
 	^ self fileReference readStream
