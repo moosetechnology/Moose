@@ -3,8 +3,8 @@ FAMIXSourcedEntity models any fact in a program source and it is the superclass 
 "
 Trait {
 	#name : #FamixTSourceEntity,
-	#traits : 'FamixTWithSourceAnchor + FamixTWithSourceLanguage',
-	#classTraits : 'FamixTWithSourceAnchor classTrait + FamixTWithSourceLanguage classTrait',
+	#traits : 'FamixTWithSourceAnchor + FamixTWithSourceLanguage + FamixTWithComments',
+	#classTraits : 'FamixTWithSourceAnchor classTrait + FamixTWithSourceLanguage classTrait + FamixTWithComments classTrait',
 	#category : #'Famix-Traits-Traits'
 }
 
