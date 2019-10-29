@@ -9,13 +9,8 @@ Class {
 { #category : #meta }
 FAMIXFolder class >> annotation [
 
-	<MSEClass: #Folder super: #FAMIXNamedEntity>
+	<FMClass: #Folder super: #FAMIXNamedEntity>
 	<package: #FAMIX>
 	<generated>
 	^self
-]
-
-{ #category : #testing }
-FAMIXFolder >> isFolder [
-	^ true
 ]

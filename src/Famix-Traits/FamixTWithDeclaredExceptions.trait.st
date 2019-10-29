@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithDeclaredExceptions classSide >> annotation [
 
-	<MSEClass: #TWithDeclaredExceptions super: #Object>
+	<FMClass: #TWithDeclaredExceptions super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -25,7 +25,7 @@ FamixTWithDeclaredExceptions >> declaredExceptions [
 	"Relation named: #declaredExceptions type: #FamixTDeclaredException opposite: #definingEntity"
 
 	<generated>
-	<MSEComment: 'The exceptions declared by the method'>
+	<FMComment: 'The exceptions declared by the method'>
 	<derived>
 	^ declaredExceptions
 ]

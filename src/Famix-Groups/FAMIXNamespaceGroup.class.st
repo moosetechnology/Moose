@@ -9,6 +9,6 @@ Class {
 
 { #category : #meta }
 FAMIXNamespaceGroup class >> annotation [
-	<MSEClass: #NamespaceGroup super: #MooseGroup>
+	<FMClass: #NamespaceGroup super: #MooseGroup>
 	<package: #FAMIX>
 ]

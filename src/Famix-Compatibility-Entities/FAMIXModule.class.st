@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXModule class >> annotation [
 
-	<MSEClass: #Module super: #FAMIXScopingEntity>
+	<FMClass: #Module super: #FAMIXScopingEntity>
 	<package: #FAMIX>
 	<generated>
 	^self

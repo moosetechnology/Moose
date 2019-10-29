@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaType class >> annotation [
 
-	<MSEClass: #Type super: #FamixJavaContainerEntity>
+	<FMClass: #Type super: #FamixJavaContainerEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
@@ -91,8 +91,8 @@ FamixJavaType >> incomingAccesses [
 
 { #category : #'Famix-Extensions' }
 FamixJavaType >> isAbstract [
-	<MSEProperty: #isAbstract type: #Boolean> <derived>
-	<MSEComment: 'Flag true for abstract classes.'>
+	<FMProperty: #isAbstract type: #Boolean> <derived>
+	<FMComment: 'Flag true for abstract classes.'>
 	
 	^super isAbstract
 ]
@@ -107,9 +107,9 @@ FamixJavaType >> isAnonymousClass [
 
 { #category : #testing }
 FamixJavaType >> isInnerClass [
-	<MSEProperty: #isInnerClass type: #Boolean>
+	<FMProperty: #isInnerClass type: #Boolean>
 	<derived>
-	<MSEComment:
+	<FMComment:
 		'True if the method is considered as an innerclass (i.e. is contained elsewhere than a java package: class, method, enum,...)'>
 	^ self container ifNotNil: [ :c | c isNamespace not ] ifNil: [ false ]
 ]
@@ -126,9 +126,9 @@ FamixJavaType >> isJUnit3TestCase [
 
 { #category : #testing }
 FamixJavaType >> isJUnit4TestCase [
-	<MSEProperty: #isJUnit4TestCase type: #Boolean>
+	<FMProperty: #isJUnit4TestCase type: #Boolean>
 	<derived>
-	<MSEComment: 'True if the method is considered as a Junit 4 Java test'>
+	<FMComment: 'True if the method is considered as a Junit 4 Java test'>
 	^ self methods anySatisfy: [ :m | m isJUnit4Test ]
 ]
 
@@ -150,9 +150,9 @@ FamixJavaType >> isParameterizedType [
 
 { #category : #testing }
 FamixJavaType >> isTestCase [
-	<MSEProperty: #isTestCase type: #Boolean>
+	<FMProperty: #isTestCase type: #Boolean>
 	<derived>
-	<MSEComment: 'True if the method is considered as a Java test'>
+	<FMComment: 'True if the method is considered as a Java test'>
 	^ self isJUnit3TestCase or: [ self isJUnit4TestCase ] 
 ]
 

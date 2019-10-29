@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXFileAnchor class >> annotation [
 
-	<MSEClass: #FileAnchor super: #FAMIXAbstractFileAnchor>
+	<FMClass: #FileAnchor super: #FAMIXAbstractFileAnchor>
 	<package: #FAMIX>
 	<generated>
 	^self

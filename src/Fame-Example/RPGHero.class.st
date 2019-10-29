@@ -11,7 +11,7 @@ Class {
 
 { #category : #meta }
 RPGHero class >> annotation [
-	<MSEClass: #Hero super: #Object>
+	<FMClass: #Hero super: #Object>
 	<package: #RPG>
 ]
 
@@ -25,8 +25,9 @@ RPGHero >> initialize [
 
 { #category : #accessing }
 RPGHero >> kills [
-	<MSEProperty: #kills type: #RPGDragon opposite: #killedBy> <multivalued>
-	^kills
+	<FMProperty: #kills type: #RPGDragon opposite: #killedBy>
+	<multivalued>
+	^ kills
 ]
 
 { #category : #accessing }
@@ -36,7 +37,7 @@ RPGHero >> kills: aDragon [
 
 { #category : #accessing }
 RPGHero >> talisman [
-	<MSEProperty: #talisman type: #RPGTreasure opposite: #owner>
+	<FMProperty: #talisman type: #RPGTreasure opposite: #owner>
 	^talisman
 ]
 
@@ -51,9 +52,9 @@ RPGHero >> talisman: aTreasure [
 
 { #category : #accessing }
 RPGHero >> twin [
-	<moot: #'4chan'>
-	<MSEProperty: #twin type: #RPGHero opposite: #twin>
-	^twin
+	<moot: #'4chan' >
+	<FMProperty: #twin type: #RPGHero opposite: #twin>
+	^ twin
 ]
 
 { #category : #accessing }

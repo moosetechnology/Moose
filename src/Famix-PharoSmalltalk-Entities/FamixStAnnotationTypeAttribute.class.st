@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixStAnnotationTypeAttribute class >> annotation [
 
-	<MSEClass: #AnnotationTypeAttribute super: #FamixStAttribute>
+	<FMClass: #AnnotationTypeAttribute super: #FamixStAttribute>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
@@ -17,8 +17,8 @@ FamixStAnnotationTypeAttribute class >> annotation [
 
 { #category : #accessing }
 FamixStAnnotationTypeAttribute >> parentAnnotationType [
-	<MSEProperty: #parentAnnotationType type: #FamixStAnnotationType> <derived> 
-	<MSEComment: 'This is an alias pointing to the AnnotationType that defines this attribute'>
+	<FMProperty: #parentAnnotationType type: #FamixStAnnotationType> <derived> 
+	<FMComment: 'This is an alias pointing to the AnnotationType that defines this attribute'>
 
 	^ self parentType
 ]

@@ -25,7 +25,7 @@ Trait {
 { #category : #meta }
 FamixTAccess classSide >> annotation [
 
-	<MSEClass: #TAccess super: #Object>
+	<FMClass: #TAccess super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -36,7 +36,7 @@ FamixTAccess >> accessor [
 	"Relation named: #accessor type: #FamixTWithAccesses opposite: #accesses"
 
 	<generated>
-	<MSEComment: 'Behavioural entity making the access to the variable. from-side of the association'>
+	<FMComment: 'Behavioural entity making the access to the variable. from-side of the association'>
 	<source>
 	^ accessor
 ]
@@ -68,16 +68,16 @@ FamixTAccess >> isAccess [
 
 { #category : #accessing }
 FamixTAccess >> isRead [
-	<MSEProperty: #isRead type: #Boolean> <derived>
-	<MSEComment: 'Read access'>
+	<FMProperty: #isRead type: #Boolean> <derived>
+	<FMComment: 'Read access'>
 	
 	^ isWrite isNil ifTrue: [ false ] ifFalse: [ isWrite not ]
 ]
 
 { #category : #accessing }
 FamixTAccess >> isReadWriteUnknown [
-	<MSEProperty: #isReadWriteUnknown type: #Boolean> <derived>
-	<MSEComment: ''>
+	<FMProperty: #isReadWriteUnknown type: #Boolean> <derived>
+	<FMComment: ''>
 	
 	^ isWrite isNil
 ]
@@ -85,9 +85,9 @@ FamixTAccess >> isReadWriteUnknown [
 { #category : #accessing }
 FamixTAccess >> isWrite [
 
-	<MSEProperty: #isWrite type: #Boolean> 
+	<FMProperty: #isWrite type: #Boolean> 
 	<derived>
-	<MSEComment: 'Write access'>
+	<FMComment: 'Write access'>
 	^ isWrite ifNil: [ false ]
 ]
 
@@ -114,7 +114,7 @@ FamixTAccess >> variable [
 	"Relation named: #variable type: #FamixTAccessible opposite: #incomingAccesses"
 
 	<generated>
-	<MSEComment: 'Variable accessed. to-side of the association'>
+	<FMComment: 'Variable accessed. to-side of the association'>
 	<target>
 	^ variable
 ]

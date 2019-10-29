@@ -10,7 +10,7 @@ Class {
 { #category : #meta }
 FAMIXPharoAnchor class >> annotation [
 
-	<MSEClass: #PharoAnchor super: #FAMIXSourceAnchor>
+	<FMClass: #PharoAnchor super: #FAMIXSourceAnchor>
 	<package: #FAMIX>
 	<generated>
 	^self

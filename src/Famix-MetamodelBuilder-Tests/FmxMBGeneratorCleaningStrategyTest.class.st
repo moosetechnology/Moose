@@ -61,7 +61,7 @@ FmxMBGeneratorCleaningStrategyTest >> generateClasses [
 		compile:
 			'annotation
 
-	<MSEClass: #AddedClassFromFamix super: #MooseEntity>
+	<FMClass: #AddedClassFromFamix super: #MooseEntity>
 	<package: #'',  self packageName , ''>
 	<generated>
 	^self'.
@@ -76,7 +76,7 @@ FmxMBGeneratorCleaningStrategyTest >> generateClasses [
 		compile:
 			'annotation
 
-	<MSEClass: #TAddedClassFromFamix super: #Trait>
+	<FMClass: #TAddedClassFromFamix super: #Trait>
 	<package: #'',  self packageName , ''>
 	<generated>
 	^self'.

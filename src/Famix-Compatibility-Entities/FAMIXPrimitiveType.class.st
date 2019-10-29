@@ -7,7 +7,7 @@ Class {
 { #category : #meta }
 FAMIXPrimitiveType class >> annotation [
 
-	<MSEClass: #PrimitiveType super: #FAMIXType>
+	<FMClass: #PrimitiveType super: #FAMIXType>
 	<package: #FAMIX>
 	<generated>
 	^self

@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXCFile class >> annotation [
 
-	<MSEClass: #CFile super: #FAMIXFile>
+	<FMClass: #CFile super: #FAMIXFile>
 	<package: #FAMIX>
 	<generated>
 	^self
@@ -35,16 +35,16 @@ FAMIXCFile >> allIncomingIncludeRelations: visitedPath [
 
 { #category : #accessing }
 FAMIXCFile >> includedFiles [
-	<MSEProperty: #includedFiles type: #FAMIXCFile> <multivalued> <derived>
-	<MSEComment: 'Files included by this file.'>
+	<FMProperty: #includedFiles type: #FAMIXCFile> <multivalued> <derived>
+	<FMComment: 'Files included by this file.'>
 
 	^ outgoingIncludeRelations collect: [ :each | each target ]
 ]
 
 { #category : #accessing }
 FAMIXCFile >> includingFiles [
-	<MSEProperty: #includingFiles type: #FAMIXCFile> <multivalued> <derived>
-	<MSEComment: 'Files that include this file.'>
+	<FMProperty: #includingFiles type: #FAMIXCFile> <multivalued> <derived>
+	<FMComment: 'Files that include this file.'>
 
 	^ incomingIncludeRelations collect: [ :each | each source ]
 ]

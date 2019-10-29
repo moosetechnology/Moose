@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTPossibleStub classSide >> annotation [
 
-	<MSEClass: #TPossibleStub super: #Object>
+	<FMClass: #TPossibleStub super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -18,8 +18,8 @@ FamixTPossibleStub classSide >> annotation [
 { #category : #accessing }
 FamixTPossibleStub >> isStub [
 
-	<MSEProperty: #isStub type: #Boolean>
-	<MSEComment: 'Flag true if the entity attributes are incomplete, either because the entity is missing or not imported.'>
+	<FMProperty: #isStub type: #Boolean>
+	<FMComment: 'Flag true if the entity attributes are incomplete, either because the entity is missing or not imported.'>
 	^ isStub ifNil: [ false ]
 ]
 

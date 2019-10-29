@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithAttributes classSide >> annotation [
 
-	<MSEClass: #TWithAttributes super: #Object>
+	<FMClass: #TWithAttributes super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -25,7 +25,7 @@ FamixTWithAttributes >> attributes [
 	"Relation named: #attributes type: #FamixTAttribute opposite: #parentType"
 
 	<generated>
-	<MSEComment: 'List of attributes declared by this type.'>
+	<FMComment: 'List of attributes declared by this type.'>
 	<derived>
 	^ attributes
 ]
@@ -40,9 +40,9 @@ FamixTWithAttributes >> attributes: anObject [
 
 { #category : #'Famix-Extensions' }
 FamixTWithAttributes >> numberOfAttributes [
-	<MSEProperty: #numberOfAttributes type: #Number>
+	<FMProperty: #numberOfAttributes type: #Number>
 	<derived>
-	<MSEComment: 'The number of attributes in the class'>
+	<FMComment: 'The number of attributes in the class'>
 	
 	^self
 		lookUpPropertyNamed: #numberOfAttributes
@@ -57,9 +57,9 @@ FamixTWithAttributes >> numberOfAttributes: aNumber [
 
 { #category : #metrics }
 FamixTWithAttributes >> numberOfPrivateAttributes [
-	<MSEProperty: #numberOfPrivateAttributes type: #Number>
+	<FMProperty: #numberOfPrivateAttributes type: #Number>
 	<derived>
-	<MSEComment: 'The number of private attributes in a class'>
+	<FMComment: 'The number of private attributes in a class'>
 	
 	^self
 		lookUpPropertyNamed: #numberOfPrivateAttributes
@@ -74,9 +74,9 @@ FamixTWithAttributes >> numberOfPrivateAttributes: aNumber [
 
 { #category : #metrics }
 FamixTWithAttributes >> numberOfProtectedAttributes [
-	<MSEProperty: #numberOfProtectedAttributes type: #Number>
+	<FMProperty: #numberOfProtectedAttributes type: #Number>
 	<derived>
-	<MSEComment: 'The number of protected attributes in a class'>				
+	<FMComment: 'The number of protected attributes in a class'>				
 	
 	^self
 		lookUpPropertyNamed: #numberOfProtectedAttributes
@@ -91,9 +91,9 @@ FamixTWithAttributes >> numberOfProtectedAttributes: aNumber [
 
 { #category : #metrics }
 FamixTWithAttributes >> numberOfPublicAttributes [
-	<MSEProperty: #numberOfPublicAttributes type: #Number>
+	<FMProperty: #numberOfPublicAttributes type: #Number>
 	<derived>
-	<MSEComment: 'The number of public attributes in a class'>
+	<FMComment: 'The number of public attributes in a class'>
 	
 	^self
 		lookUpPropertyNamed: #numberOfPublicAttributes
@@ -108,9 +108,9 @@ FamixTWithAttributes >> numberOfPublicAttributes: aNumber [
 
 { #category : #metrics }
 FamixTWithAttributes >> numberOfRevealedAttributes [
-	<MSEProperty: #numberOfRevealedAttributes type: #Number>
+	<FMProperty: #numberOfRevealedAttributes type: #Number>
 	<derived>
-	<MSEComment: 'The number of public attributes plus the number of accessor methods'>		
+	<FMComment: 'The number of public attributes plus the number of accessor methods'>		
 
 	^self
 		lookUpPropertyNamed: #numberOfRevealedAttributes

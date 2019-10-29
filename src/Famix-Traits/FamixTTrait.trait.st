@@ -13,7 +13,7 @@ Trait {
 { #category : #meta }
 FamixTTrait classSide >> annotation [
 
-	<MSEClass: #TTrait super: #Object>
+	<FMClass: #TTrait super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

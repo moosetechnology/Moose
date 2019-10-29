@@ -23,7 +23,7 @@ Trait {
 { #category : #meta }
 FamixTAnnotationInstanceAttribute classSide >> annotation [
 
-	<MSEClass: #TAnnotationInstanceAttribute super: #Object>
+	<FMClass: #TAnnotationInstanceAttribute super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -34,7 +34,7 @@ FamixTAnnotationInstanceAttribute >> parentAnnotationInstance [
 	"Relation named: #parentAnnotationInstance type: #FamixTWithAnnotationInstanceAttributes opposite: #attributes"
 
 	<generated>
-	<MSEComment: 'The instance of the annotation in which the attribute is used.'>
+	<FMComment: 'The instance of the annotation in which the attribute is used.'>
 	<container>
 	^ parentAnnotationInstance
 ]
@@ -57,9 +57,9 @@ FamixTAnnotationInstanceAttribute >> parentAnnotationInstanceGroup [
 { #category : #accessing }
 FamixTAnnotationInstanceAttribute >> value [
 
-	<MSEProperty: #value type: #String>
+	<FMProperty: #value type: #String>
 	<generated>
-	<MSEComment: 'Actual value of the attribute used in an annotation'>
+	<FMComment: 'Actual value of the attribute used in an annotation'>
 	^ value
 ]
 

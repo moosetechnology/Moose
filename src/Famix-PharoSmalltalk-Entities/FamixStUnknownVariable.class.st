@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixStUnknownVariable class >> annotation [
 
-	<MSEClass: #UnknownVariable super: #FamixStNamedEntity>
+	<FMClass: #UnknownVariable super: #FamixStNamedEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self

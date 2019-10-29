@@ -15,7 +15,7 @@ Trait {
 { #category : #meta }
 FamixTClass classSide >> annotation [
 
-	<MSEClass: #TClass super: #Object>
+	<FMClass: #TClass super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -39,8 +39,8 @@ FamixTClass >> isClass [
 { #category : #testing }
 FamixTClass >> isTestCase [
 
-	<MSEProperty: #isTestCase type: #Boolean>
-	<MSEComment: 'True if the method is considered as a test'>
+	<FMProperty: #isTestCase type: #Boolean>
+	<FMComment: 'True if the method is considered as a test'>
 	<derived>
 
 	^ self privateState attributeAt: #isTestCase ifAbsent: [ false ]
@@ -53,9 +53,9 @@ FamixTClass >> isTestCase: aBoolean [
 
 { #category : #metrics }
 FamixTClass >> weightOfAClass [
-	<MSEProperty: #weightOfAClass type: #Number>
+	<FMProperty: #weightOfAClass type: #Number>
 	<derived>
-	<MSEComment: 'Weight of a class'>	
+	<FMComment: 'Weight of a class'>	
 			
 	^self
 		lookUpPropertyNamed: #weightOfAClass

@@ -18,7 +18,7 @@ Class {
 
 { #category : #meta }
 MooseAbstractGroup class >> annotation [
-	<MSEClass: #AbstractGroup super: #MooseEntity>
+	<FMClass: #AbstractGroup super: #MooseEntity>
 	<package: #Moose>
 	<abstract>
 
@@ -547,8 +547,8 @@ MooseAbstractGroup >> notEmpty [
 
 { #category : #accessing }
 MooseAbstractGroup >> numberOfItems [ 
-	<MSEProperty: #numberOfItems type: #Number>
-	<MSEComment: 'The total number of items in the group'>
+	<FMProperty: #numberOfItems type: #Number>
+	<FMComment: 'The total number of items in the group'>
 	
 	^self size
 ]

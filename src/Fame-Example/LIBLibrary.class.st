@@ -10,7 +10,7 @@ Class {
 
 { #category : #meta }
 LIBLibrary class >> annotation [
-	<MSEClass: #Library super: #Object>
+	<FMClass: #Library super: #Object>
 	<package: #LIB>
 	
 ]
@@ -25,7 +25,7 @@ LIBLibrary class >> librarian: aPerson books: aCollection [
 
 { #category : #accessing }
 LIBLibrary >> books [
-	<MSEProperty: #books type: #LIBBook> <multivalued>
+	<FMProperty: #books type: #LIBBook> <multivalued>
 	^books
 ]
 
@@ -43,7 +43,7 @@ LIBLibrary >> initialize [
 
 { #category : #accessing }
 LIBLibrary >> librarian [
-	<MSEProperty: #librarian type: #LIBPerson>
+	<FMProperty: #librarian type: #LIBPerson>
 	^librarian
 ]
 

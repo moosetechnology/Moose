@@ -23,7 +23,7 @@ Trait {
 { #category : #meta }
 FamixTReference classSide >> annotation [
 
-	<MSEClass: #TReference super: #Object>
+	<FMClass: #TReference super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -56,7 +56,7 @@ FamixTReference >> source [
 	"Relation named: #source type: #FamixTWithReferences opposite: #outgoingReferences"
 
 	<generated>
-	<MSEComment: 'Source entity making the reference. from-side of the association'>
+	<FMComment: 'Source entity making the reference. from-side of the association'>
 	<source>
 	^ source
 ]
@@ -74,7 +74,7 @@ FamixTReference >> target [
 	"Relation named: #target type: #FamixTReferenceable opposite: #incomingReferences"
 
 	<generated>
-	<MSEComment: 'Target entity referenced. to-side of the association'>
+	<FMComment: 'Target entity referenced. to-side of the association'>
 	<target>
 	^ target
 ]

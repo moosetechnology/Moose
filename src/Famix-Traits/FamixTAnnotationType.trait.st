@@ -17,7 +17,7 @@ Trait {
 { #category : #meta }
 FamixTAnnotationType classSide >> annotation [
 
-	<MSEClass: #TAnnotationType super: #Object>
+	<FMClass: #TAnnotationType super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -43,7 +43,7 @@ FamixTAnnotationType >> annotationTypesContainer [
 	"Relation named: #annotationTypesContainer type: #FamixTWithAnnotationTypes opposite: #definedAnnotationTypes"
 
 	<generated>
-	<MSEComment: 'Container in which an AnnotationType may reside'>
+	<FMComment: 'Container in which an AnnotationType may reside'>
 	<container>
 	^ annotationTypesContainer
 ]
@@ -68,7 +68,7 @@ FamixTAnnotationType >> instances [
 	"Relation named: #instances type: #FamixTTypedAnnotationInstance opposite: #annotationType"
 
 	<generated>
-	<MSEComment: 'Annotations of this type'>
+	<FMComment: 'Annotations of this type'>
 	<derived>
 	^ instances
 ]

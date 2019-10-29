@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithImmediateSource classSide >> annotation [
 
-	<MSEClass: #TWithImmediateSource super: #Object>
+	<FMClass: #TWithImmediateSource super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -24,9 +24,9 @@ FamixTWithImmediateSource >> isFile [
 { #category : #accessing }
 FamixTWithImmediateSource >> source [
 
-	<MSEProperty: #source type: #String>
+	<FMProperty: #source type: #String>
 	<generated>
-	<MSEComment: 'Actual source code of the source entity'>
+	<FMComment: 'Actual source code of the source entity'>
 	^ source
 ]
 

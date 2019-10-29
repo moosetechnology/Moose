@@ -9,13 +9,13 @@ Class {
 
 { #category : #meta }
 EQEquationSystem class >> annotation [
-	<MSEClass: #EquationSystem super: #Object>
+	<FMClass: #EquationSystem super: #Object>
 	<package: #EQ>
 ]
 
 { #category : #Fame }
 EQEquationSystem >> equations [
-	<MSEProperty: #equations type: #EQEquation>
+	<FMProperty: #equations type: #EQEquation>
 	<multivalued>
 	^equations
 ]

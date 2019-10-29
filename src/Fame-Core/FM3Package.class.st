@@ -13,7 +13,7 @@ Class {
 
 { #category : #meta }
 FM3Package class >> annotation [
-	<MSEClass: #Package super: #FM3Element>
+	<FMClass: #Package super: #FM3Element>
 	<package: #FM3>
 
 ]
@@ -30,7 +30,7 @@ FM3Package >> classNamed: aString ifAbsent: aBlock [
 
 { #category : #accessing }
 FM3Package >> classes [
-	<MSEProperty: #classes type: #FM3Class opposite: #package>
+	<FMProperty: #classes type: #FM3Class opposite: #package>
 	<multivalued>
 	^ classes
 ]
@@ -43,7 +43,7 @@ FM3Package >> classes: elementCollection [
 
 { #category : #accessing }
 FM3Package >> extensions [
-	<MSEProperty: #extensions type: 'FM3.Property' opposite: #package>
+	<FMProperty: #extensions type: 'FM3.Property' opposite: #package>
 	<multivalued>
 	
 	^extensions

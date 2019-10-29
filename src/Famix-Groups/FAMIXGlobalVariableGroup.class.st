@@ -9,7 +9,7 @@ Class {
 
 { #category : #meta }
 FAMIXGlobalVariableGroup class >> annotation [
-	<MSEClass: #GlobalVariableGroup super: #MooseGroup>
+	<FMClass: #GlobalVariableGroup super: #MooseGroup>
 	<package: #FAMIX>
 ]
 

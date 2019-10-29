@@ -12,7 +12,7 @@ Class {
 { #category : #meta }
 FAMIXClass class >> annotation [
 
-	<MSEClass: #Class super: #FAMIXType>
+	<FMClass: #Class super: #FAMIXType>
 	<package: #FAMIX>
 	<generated>
 	^self
@@ -89,10 +89,10 @@ FAMIXClass >> isAccessedBy: anAccess [
 
 { #category : #'Famix-Java' }
 FAMIXClass >> isIgnored [
-	<MSEProperty: #isIgnored type: #Boolean>
+	<FMProperty: #isIgnored type: #Boolean>
 	<multivalued>
 	<derived>
-	<MSEComment:
+	<FMComment:
 		'If the class is a test class, it can be annotated with Ignore, all the tests of contained are bypassed'>
 	^ (self isAnnotatedWith: 'Ignore') 
 ]
@@ -105,8 +105,8 @@ FAMIXClass >> isInheritedBy: anInheritance [
 
 { #category : #accessing }
 FAMIXClass >> isInterface [
-	<MSEProperty: #isInterface type: #Boolean>
-	<MSEComment: 'This is a boolean flag used to distinguish between classes with implementation and interfaces. It is particularly relevant for Java systems.'>
+	<FMProperty: #isInterface type: #Boolean>
+	<FMComment: 'This is a boolean flag used to distinguish between classes with implementation and interfaces. It is particularly relevant for Java systems.'>
 	^ isInterface ifNil: [ false ]
 ]
 

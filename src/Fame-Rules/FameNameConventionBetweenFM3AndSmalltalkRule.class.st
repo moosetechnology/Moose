@@ -24,7 +24,7 @@ FameNameConventionBetweenFM3AndSmalltalkRule >> addClass: aClass toMetaBuilderCo
 	aClass methodDict
 		valuesDo: [ :each | 
 			each pragmas
-				detect: [ :p | #(#MSEProperty:type:opposite: #MSEProperty:type:) includes: p selector ]
+				detect: [ :p | #(#FMProperty:type:opposite: #FMProperty:type:) includes: p selector ]
 				ifFound: [ :pragma | 
 					classToAdd := (pragma argumentAt: 2) asString.
 					(#('String' 'Number' 'Boolean' 'Object') includes: classToAdd)
@@ -36,7 +36,7 @@ FameNameConventionBetweenFM3AndSmalltalkRule >> addClass: aClass toMetaBuilderCo
 	aClass classSide
 		compiledMethodAt: #annotation
 		ifPresent: [ :compiledMethod | 
-			(compiledMethod pragmaAt: #MSEClass:super:)
+			(compiledMethod pragmaAt: #FMClass:super:)
 				ifNotNil: [ :pragma | 
 					| argument |
 					argument := pragma argumentAt: 2.
@@ -54,7 +54,7 @@ FameNameConventionBetweenFM3AndSmalltalkRule >> addClass: aClass toMetaBuilderCo
 FameNameConventionBetweenFM3AndSmalltalkRule >> checkClass: aContext [
 	| class pragmas pragma metaName |
 	class := aContext.
-	pragmas := Pragma allNamed: #MSEClass:super: in: class.
+	pragmas := Pragma allNamed: #FMClass:super: in: class.
 	pragmas ifEmpty: [ ^ self ].
 	pragmas size > 1
 		ifTrue: [ result addClass: class.

@@ -10,7 +10,7 @@ Class {
 { #category : #meta }
 FamixTest4Person class >> annotation [
 
-	<MSEClass: #Person super: #FamixTest4Entity>
+	<FMClass: #Person super: #FamixTest4Entity>
 	<package: #'Famix-Test4-Entities'>
 	<generated>
 	^self

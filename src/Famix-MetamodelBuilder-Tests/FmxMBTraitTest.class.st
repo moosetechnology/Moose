@@ -304,7 +304,7 @@ FmxMBTraitTest >> testSimpleClassAnnotation [
 	generated := builder testingEnvironment ask classNamed: 'TstTComment'.
 
 	method := generated classSide methodNamed: #annotation.
-	self assert: (method sourceCode includesSubstring: '<MSEClass: #TComment super: #Object>').
+	self assert: (method sourceCode includesSubstring: '<FMClass: #TComment super: #Object>').
 	self assert: (method sourceCode includesSubstring: '<package: #Tst>').
 
 

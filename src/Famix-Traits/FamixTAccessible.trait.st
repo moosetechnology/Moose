@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTAccessible classSide >> annotation [
 
-	<MSEClass: #TAccessible super: #Object>
+	<FMClass: #TAccessible super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -30,7 +30,7 @@ FamixTAccessible >> accessingMethods [
 
 { #category : #accessing }
 FamixTAccessible >> accessors [
-	<MSEProperty: #accessors type: #FamixTWithAccesses>
+	<FMProperty: #accessors type: #FamixTWithAccesses>
 	<multivalued>
 	<derived>
 	^ (self incomingAccesses collectAsSet: [ :each | each accessor ]) asMooseGroup
@@ -60,7 +60,7 @@ FamixTAccessible >> incomingAccesses [
 	"Relation named: #incomingAccesses type: #FamixTAccess opposite: #variable"
 
 	<generated>
-	<MSEComment: 'All Famix accesses pointing to this structural entity'>
+	<FMComment: 'All Famix accesses pointing to this structural entity'>
 	<derived>
 	^ incomingAccesses
 ]
@@ -89,9 +89,9 @@ FamixTAccessible >> localAccesses [
 
 { #category : #accessing }
 FamixTAccessible >> numberOfAccesses [
-	<MSEProperty: #numberOfAccesses type: #Number>
+	<FMProperty: #numberOfAccesses type: #Number>
 	<derived>
-	<MSEComment: 'The number of accesses of an attribute.'>
+	<FMComment: 'The number of accesses of an attribute.'>
 
 	^self
 		lookUpPropertyNamed: #numberOfAccesses
@@ -100,9 +100,9 @@ FamixTAccessible >> numberOfAccesses [
 
 { #category : #accessing }
 FamixTAccessible >> numberOfAccessingClasses [
-	<MSEProperty: #numberOfAccessingClasses type: #Number>
+	<FMProperty: #numberOfAccessingClasses type: #Number>
 	<derived>
-	<MSEComment: 'The number of classes from which at least one method accesses an attribute.'>
+	<FMComment: 'The number of classes from which at least one method accesses an attribute.'>
 
 	^self
 		lookUpPropertyNamed: #numberOfAccessingClasses
@@ -111,9 +111,9 @@ FamixTAccessible >> numberOfAccessingClasses [
 
 { #category : #accessing }
 FamixTAccessible >> numberOfAccessingMethods [
-	<MSEProperty: #numberOfAccessingMethods type: #Number>
+	<FMProperty: #numberOfAccessingMethods type: #Number>
 	<derived>
-	<MSEComment: 'The number of methods accessing an attribute.'>				
+	<FMComment: 'The number of methods accessing an attribute.'>				
 	
 	^self
 		lookUpPropertyNamed: #numberOfAccessingMethods
@@ -122,9 +122,9 @@ FamixTAccessible >> numberOfAccessingMethods [
 
 { #category : #accessing }
 FamixTAccessible >> numberOfGlobalAccesses [
-	<MSEProperty: #numberOfGlobalAccesses type: #Number>
+	<FMProperty: #numberOfGlobalAccesses type: #Number>
 	<derived>
-	<MSEComment: 'The number of accesses to an attribute from outside the class defining the attribute.'>	
+	<FMComment: 'The number of accesses to an attribute from outside the class defining the attribute.'>	
 
 	^self
 		lookUpPropertyNamed: #numberOfGlobalAccesses
@@ -133,9 +133,9 @@ FamixTAccessible >> numberOfGlobalAccesses [
 
 { #category : #accessing }
 FamixTAccessible >> numberOfLocalAccesses [
-	<MSEProperty: #numberOfLocalAccesses type: #Number>
+	<FMProperty: #numberOfLocalAccesses type: #Number>
 	<derived>
-	<MSEComment: 'The number of accesses to an attribute from inside the class defining the attribute.'>
+	<FMComment: 'The number of accesses to an attribute from inside the class defining the attribute.'>
 		
 	^self
 		lookUpPropertyNamed: #numberOfLocalAccesses

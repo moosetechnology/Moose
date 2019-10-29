@@ -6,7 +6,7 @@ Class {
 
 { #category : #meta }
 EQSimple class >> annotation [
-	<MSEClass: #Simple super: #EQExpression >
+	<FMClass: #Simple super: #EQExpression >
 	<package: #EQ>
 	<abstract>
 ]

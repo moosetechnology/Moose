@@ -12,7 +12,7 @@ FAMIXModel class >> allSubmetamodelsPackagesNames [
 
 { #category : #meta }
 FAMIXModel class >> annotation [
-	<MSEClass: #FAMIXModel super: #MooseModel>
+	<FMClass: #FAMIXModel super: #MooseModel>
 	<package: #FAMIX>
 	<generated>
 ]

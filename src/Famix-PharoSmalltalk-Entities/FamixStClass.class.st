@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixStClass class >> annotation [
 
-	<MSEClass: #Class super: #FamixStContainerEntity>
+	<FMClass: #Class super: #FamixStContainerEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
@@ -39,8 +39,8 @@ FamixStClass >> extendedInPackages [
 
 { #category : #accessing }
 FamixStClass >> extendedMethods [
-	<MSEProperty: #extendedMethods type: #FamixStMethod>
-	<MSEComment: 'Methods which are class extensions in this class.'>
+	<FMProperty: #extendedMethods type: #FamixStMethod>
+	<FMComment: 'Methods which are class extensions in this class.'>
 	<derived>
 	^ self methods select: #isExtension
 ]
@@ -90,17 +90,17 @@ FamixStClass >> isLonelyWithin: aClassGroup [
 
 { #category : #testing }
 FamixStClass >> isTestCase [
-	<MSEProperty: #isTestCase type: #Boolean>
+	<FMProperty: #isTestCase type: #Boolean>
 	<derived>
-	<MSEComment: 'True if the method is considered as a Java test'>
+	<FMComment: 'True if the method is considered as a Java test'>
 	self allSuperclassesDo: [ :each | each name = 'TestCase' ifTrue: [ ^ true ] ].
 	^ false
 ]
 
 { #category : #accessing }
 FamixStClass >> localMethods [
-	<MSEProperty: #extendedMethods type: #FamixStMethod>
-	<MSEComment: 'Methods which are local methods of the class and not extensions in this class.'>
+	<FMProperty: #extendedMethods type: #FamixStMethod>
+	<FMComment: 'Methods which are local methods of the class and not extensions in this class.'>
 	<derived>
 	^ self methods reject: #isExtension
 ]

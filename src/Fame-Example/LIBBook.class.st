@@ -10,7 +10,7 @@ Class {
 
 { #category : #meta }
 LIBBook class >> annotation [
-	<MSEClass: #Book super: #Object>
+	<FMClass: #Book super: #Object>
 	<package: #LIB>
 	
 ]
@@ -25,7 +25,7 @@ LIBBook class >> title: aString authors: aCollection [
 
 { #category : #accessing }
 LIBBook >> authors [
-	<MSEProperty: #authors type: #LIBPerson opposite: #books> <multivalued>
+	<FMProperty: #authors type: #LIBPerson opposite: #books> <multivalued>
 	^authors
 ]
 
@@ -48,7 +48,7 @@ LIBBook >> prettyString [
 
 { #category : #accessing }
 LIBBook >> title [
-	<MSEProperty: #title type: #String>
+	<FMProperty: #title type: #String>
 	^title
 ]
 

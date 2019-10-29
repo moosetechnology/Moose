@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTFileSystemEntity classSide >> annotation [
 
-	<MSEClass: #TFileSystemEntity super: #Object>
+	<FMClass: #TFileSystemEntity super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -89,8 +89,8 @@ FamixTFileSystemEntity >> numberOfEmptyLinesOfText [
 
 { #category : #accessing }
 FamixTFileSystemEntity >> numberOfLinesOfText [
-	<MSEProperty: #numberOfLinesOfText type: #Number>
-	<MSEComment: 'Number of lines of text which are not empty in a file'>
+	<FMProperty: #numberOfLinesOfText type: #Number>
+	<FMComment: 'Number of lines of text which are not empty in a file'>
 	<derived>
 	^ self lookUpPropertyNamed: #numberOfLinesOfText computedAs: [ self totalNumberOfLinesOfText - self numberOfEmptyLinesOfText ]
 ]
@@ -100,7 +100,7 @@ FamixTFileSystemEntity >> parentFolder [
 	"Relation named: #parentFolder type: #FamixTFolder opposite: #childrenFileSystemEntities"
 
 	<generated>
-	<MSEComment: 'Folder entity containing this file.'>
+	<FMComment: 'Folder entity containing this file.'>
 	<container>
 	^ parentFolder
 ]

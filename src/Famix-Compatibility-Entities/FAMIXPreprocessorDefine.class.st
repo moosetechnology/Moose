@@ -12,7 +12,7 @@ Class {
 { #category : #meta }
 FAMIXPreprocessorDefine class >> annotation [
 
-	<MSEClass: #PreprocessorDefine super: #FAMIXPreprocessorStatement>
+	<FMClass: #PreprocessorDefine super: #FAMIXPreprocessorStatement>
 	<package: #FAMIX>
 	<generated>
 	^self
@@ -20,8 +20,8 @@ FAMIXPreprocessorDefine class >> annotation [
 
 { #category : #accessing }
 FAMIXPreprocessorDefine >> macro [
-	<MSEProperty: #macro type: #String>
-	<MSEComment: 'The name of the macro being defined'>
+	<FMProperty: #macro type: #String>
+	<FMComment: 'The name of the macro being defined'>
 	^ macro
 ]
 

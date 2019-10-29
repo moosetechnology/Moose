@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaAnnotationTypeAttribute class >> annotation [
 
-	<MSEClass: #AnnotationTypeAttribute super: #FamixJavaAttribute>
+	<FMClass: #AnnotationTypeAttribute super: #FamixJavaAttribute>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
@@ -17,9 +17,9 @@ FamixJavaAnnotationTypeAttribute class >> annotation [
 
 { #category : #'as yet unclassified' }
 FamixJavaAnnotationTypeAttribute >> parentAnnotationType [
-	<MSEProperty: #parentAnnotationType type: #FamixJavaAnnotationType> 
+	<FMProperty: #parentAnnotationType type: #FamixJavaAnnotationType> 
 	<derived> 
-	<MSEComment: 'This is an alias pointing to the AnnotationType that defines this attribute'>
+	<FMComment: 'This is an alias pointing to the AnnotationType that defines this attribute'>
 
 	^ self parentType
 ]

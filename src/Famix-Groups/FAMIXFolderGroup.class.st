@@ -6,7 +6,7 @@ Class {
 
 { #category : #meta }
 FAMIXFolderGroup class >> annotation [
-	<MSEClass: #FolderGroup super: #MooseGroup>
+	<FMClass: #FolderGroup super: #MooseGroup>
 	<package: #FAMIX>
 ]
 

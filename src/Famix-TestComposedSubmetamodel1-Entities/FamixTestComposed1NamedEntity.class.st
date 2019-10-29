@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixTestComposed1NamedEntity class >> annotation [
 
-	<MSEClass: #NamedEntity super: #FamixTestComposed1SourcedEntity>
+	<FMClass: #NamedEntity super: #FamixTestComposed1SourcedEntity>
 	<package: #'Famix-TestComposedSubmetamodel1-Entities'>
 	<generated>
 	^self

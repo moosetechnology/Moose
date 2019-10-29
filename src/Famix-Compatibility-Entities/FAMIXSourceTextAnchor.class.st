@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXSourceTextAnchor class >> annotation [
 
-	<MSEClass: #SourceTextAnchor super: #FAMIXSourceAnchor>
+	<FMClass: #SourceTextAnchor super: #FAMIXSourceAnchor>
 	<package: #FAMIX>
 	<generated>
 	^self

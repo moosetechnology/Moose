@@ -12,7 +12,7 @@ Class {
 { #category : #meta }
 FamixStAttribute class >> annotation [
 
-	<MSEClass: #Attribute super: #FamixStNamedEntity>
+	<FMClass: #Attribute super: #FamixStNamedEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
@@ -33,8 +33,8 @@ FamixStAttribute >> beSharedVariable [
 
 { #category : #testing }
 FamixStAttribute >> hasClassScope [
-	<MSEProperty: #hasClassScope type: #Boolean>
-	<MSEComment: 'True if class-side attribute'>
+	<FMProperty: #hasClassScope type: #Boolean>
+	<FMComment: 'True if class-side attribute'>
 
 	^ hasClassScope
 ]
@@ -47,9 +47,9 @@ FamixStAttribute >> hasClassScope: aBoolean [
 
 { #category : #'Famix-Implementation' }
 FamixStAttribute >> hierarchyNestingLevel [
-	<MSEProperty: #hierarchyNestingLevel type: #Number>
+	<FMProperty: #hierarchyNestingLevel type: #Number>
 	<derived>
-	<MSEComment: 'Attribute hierarchy nesting level'>
+	<FMComment: 'Attribute hierarchy nesting level'>
 		
 	^self
 		lookUpPropertyNamed: #hierarchyNestingLevel

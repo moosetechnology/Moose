@@ -12,7 +12,7 @@ Trait {
 { #category : #meta }
 FamixTThrownException classSide >> annotation [
 
-	<MSEClass: #TThrownException super: #Object>
+	<FMClass: #TThrownException super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

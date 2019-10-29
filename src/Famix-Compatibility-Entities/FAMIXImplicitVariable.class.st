@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXImplicitVariable class >> annotation [
 
-	<MSEClass: #ImplicitVariable super: #FAMIXStructuralEntity>
+	<FMClass: #ImplicitVariable super: #FAMIXStructuralEntity>
 	<package: #FAMIX>
 	<generated>
 	^self
