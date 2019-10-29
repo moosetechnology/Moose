@@ -9,7 +9,7 @@ Class {
 
 { #category : #'As yet unclassified' }
 FMEquationSystemExample class >> createMetamodel [
-	^ FMPragmaProcessor
+	^ FMMetaModelBuilder
 		metamodelFrom: {EQCompound . EQEquation . EQEquationSystem . EQExpression . EQIdentifier . EQNumerical . EQOperator . EQSimple . EQVariable}
 ]
 

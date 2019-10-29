@@ -73,7 +73,7 @@ MooseModel class >> generateClassesFrom: aCollection [
 	"I generate the implementation for some meta-described classes. aCollection need to contain the full set of meta-described classes so that the metamodel is complete. Warning, part of classes will be overwritten."
 
 	FMDefaultCodeGenerator new
-		visit: (FMPragmaProcessor metamodelFrom: aCollection);
+		visit: (FMMetaModelBuilder metamodelFrom: aCollection);
 		previewChanges
 ]
 
@@ -87,7 +87,7 @@ MooseModel class >> generateClassesFrom: aCollection inPackage: aString [
 
 	| generator fm3Package |
 	generator := FMDefaultCodeGenerator new.
-	fm3Package := (FMPragmaProcessor metamodelFrom: aCollection) packageNamed: aString.
+	fm3Package := (FMMetaModelBuilder metamodelFrom: aCollection) packageNamed: aString.
 	generator acceptFamePackage: fm3Package.
 	self flag: #classExtensionNotSupported.	"currently the generator does not handle extension to other packages - cf #acceptFamePackage:"
 	generator previewChanges
@@ -215,7 +215,7 @@ MooseModel class >> packagesToProcessToCreateMetamodel [
 
 { #category : #meta }
 MooseModel class >> resetMetamodel [
-	metamodel := FMPragmaProcessor metamodelFromPackages: self packagesToProcessToCreateMetamodel.
+	metamodel := FMMetaModelBuilder metamodelFromPackages: self packagesToProcessToCreateMetamodel.
 
 	"MooseEntity has a cache for some infos. When we regenerate a MM we need to flush this cache."
 	metamodel classes do: [ :fm3Class | fm3Class implementingClass resetMooseEntityCache ].

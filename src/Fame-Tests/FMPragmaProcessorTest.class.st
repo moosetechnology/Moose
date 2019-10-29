@@ -52,7 +52,7 @@ FMPragmaProcessorTest >> testAnnotationTypes [
 { #category : #running }
 FMPragmaProcessorTest >> testBuildFM3 [
 	| processor all |
-	processor := FMPragmaProcessor new.
+	processor := FMMetaModelBuilder new.
 	processor buildFM3.	"There are some elements."
 	self denyEmpty: processor elements.	"There is one and only one package."
 	all := processor packages.
@@ -64,7 +64,7 @@ FMPragmaProcessorTest >> testBuildFM3 [
 FMPragmaProcessorTest >> testEmptyProcessor [
 	"An empty processor knows all primitives, but does not contain them as elements!"
 
-	self assertEmpty: FMPragmaProcessor new elements
+	self assertEmpty: FMMetaModelBuilder new elements
 ]
 
 { #category : #running }
@@ -72,7 +72,7 @@ FMPragmaProcessorTest >> testSimple [
 	"--- FIXME: these 4 lines are moot ---"
 
 	| processor rep elements originalSize props mmClass |
-	processor := FMPragmaProcessor new.
+	processor := FMMetaModelBuilder new.
 	originalSize := processor elements size.
 	processor queue: FMPragmaProcessorTestDummy.
 	processor run.

@@ -15,7 +15,7 @@ FMMetaMetaModel >> initialize [
 	super initialize.
 	self
 		addAll:
-			(FMPragmaProcessor new
+			(FMMetaModelBuilder new
 				buildFM3;
 				elements)
 ]

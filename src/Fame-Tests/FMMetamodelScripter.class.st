@@ -1,6 +1,6 @@
 Class {
-	#name : #FMMetamodelBuilder,
-	#superclass : #FMModelBuilder,
+	#name : #FMMetamodelScripter,
+	#superclass : #FMModelScripter,
 	#instVars : [
 		'indexDict',
 		'stack',
@@ -10,7 +10,7 @@ Class {
 }
 
 { #category : #DSL }
-FMMetamodelBuilder >> class: name with: aBlock [
+FMMetamodelScripter >> class: name with: aBlock [
 
 	self new: 'FM3.Class' with: [
 		stack addLast: name.
@@ -21,7 +21,7 @@ FMMetamodelBuilder >> class: name with: aBlock [
 ]
 
 { #category : #initialization }
-FMMetamodelBuilder >> initialize [
+FMMetamodelScripter >> initialize [
 	super initialize.
 	indexDict := Dictionary"<String,Integer>" new.
 	stack := OrderedCollection"<String>" new.
@@ -29,7 +29,7 @@ FMMetamodelBuilder >> initialize [
 ]
 
 { #category : #private }
-FMMetamodelBuilder >> lookup: name [
+FMMetamodelScripter >> lookup: name [
 	"if it is a primitive type, return the name, metamodel will take care of this"
 
 	(FM3Constant constants anySatisfy: [ :const | const name = name ]) ifTrue: [ ^ name ].
@@ -38,12 +38,12 @@ FMMetamodelBuilder >> lookup: name [
 ]
 
 { #category : #private }
-FMMetamodelBuilder >> lookupSerial: name [
+FMMetamodelScripter >> lookupSerial: name [
 	^indexDict at: name ifAbsentPut: [ serial := serial + 1 ].
 ]
 
 { #category : #private }
-FMMetamodelBuilder >> nextSerial [
+FMMetamodelScripter >> nextSerial [
 	| name |
 	name := String new writeStream.
 	stack do: [ :each | name nextPutAll: each ] separatedBy: [ name nextPut: $. ].
@@ -51,7 +51,7 @@ FMMetamodelBuilder >> nextSerial [
 ]
 
 { #category : #DSL }
-FMMetamodelBuilder >> package: name with: aBlock [
+FMMetamodelScripter >> package: name with: aBlock [
 
 	self new: 'FM3.Package' with: [
 		stack addLast: name.
@@ -61,13 +61,13 @@ FMMetamodelBuilder >> package: name with: aBlock [
 ]
 
 { #category : #DSL }
-FMMetamodelBuilder >> property: name type: typeName opposite: oppositeName multivalued: multivalued [
+FMMetamodelScripter >> property: name type: typeName opposite: oppositeName multivalued: multivalued [
 	
 	self property: name type: typeName opposite: oppositeName multivalued: multivalued derived: false
 ]
 
 { #category : #DSL }
-FMMetamodelBuilder >> property: name type: typeName opposite: oppositeName multivalued: multivalued derived: derived [
+FMMetamodelScripter >> property: name type: typeName opposite: oppositeName multivalued: multivalued derived: derived [
 	
 	self new: 'FM3.Property' with: [
 		stack addLast: name.
@@ -82,13 +82,13 @@ FMMetamodelBuilder >> property: name type: typeName opposite: oppositeName multi
 ]
 
 { #category : #DSL }
-FMMetamodelBuilder >> property: name with: typeName opposite: oppositeName [ 
+FMMetamodelScripter >> property: name with: typeName opposite: oppositeName [ 
 	
 	self property: name type: typeName opposite: oppositeName multivalued: false
 ]
 
 { #category : #DSL }
-FMMetamodelBuilder >> property: name withMany: typeName opposite: oppositeName [ 
+FMMetamodelScripter >> property: name withMany: typeName opposite: oppositeName [ 
 	
 	self property: name type: typeName opposite: oppositeName multivalued: true
 ]

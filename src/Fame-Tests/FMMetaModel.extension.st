@@ -2,7 +2,7 @@ Extension { #name : #FMMetaModel }
 
 { #category : #'*Fame-Tests' }
 FMMetaModel >> builderClass [
-	^ FMMetamodelBuilder
+	^ FMMetamodelScripter
 ]
 
 { #category : #'*Fame-Tests' }

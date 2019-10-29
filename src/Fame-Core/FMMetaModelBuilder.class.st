@@ -30,7 +30,7 @@ Internal Representation and Key Implementation Points.
     Implementation Points
 "
 Class {
-	#name : #FMPragmaProcessor,
+	#name : #FMMetaModelBuilder,
 	#superclass : #Object,
 	#instVars : [
 		'elements',
@@ -49,16 +49,16 @@ Class {
 	#classVars : [
 		'ShouldValidateMetaModel'
 	],
-	#category : #'Fame-Core'
+	#category : #'Fame-Core-Utilities'
 }
 
 { #category : #'class initialization' }
-FMPragmaProcessor class >> initialize [
+FMMetaModelBuilder class >> initialize [
 	self shouldValidateMetaModel: true
 ]
 
 { #category : #processing }
-FMPragmaProcessor class >> metamodelFrom: aCollectionOfClasses [
+FMMetaModelBuilder class >> metamodelFrom: aCollectionOfClasses [
 	^ self new
 		queue: aCollectionOfClasses;
 		run;
@@ -66,7 +66,7 @@ FMPragmaProcessor class >> metamodelFrom: aCollectionOfClasses [
 ]
 
 { #category : #processing }
-FMPragmaProcessor class >> metamodelFromPackages: aCollectionOfPackages [
+FMMetaModelBuilder class >> metamodelFromPackages: aCollectionOfPackages [
 	^ self new
 		queue: (aCollectionOfPackages flatCollectAsSet: [ :p | p definedClasses asSet select: #isMetamodelEntity ]);
 		implementingPackages: aCollectionOfPackages;
@@ -75,41 +75,41 @@ FMPragmaProcessor class >> metamodelFromPackages: aCollectionOfPackages [
 ]
 
 { #category : #accessing }
-FMPragmaProcessor class >> shouldValidateMetaModel [
+FMMetaModelBuilder class >> shouldValidateMetaModel [
 	^ ShouldValidateMetaModel
 ]
 
 { #category : #accessing }
-FMPragmaProcessor class >> shouldValidateMetaModel: anObject [
+FMMetaModelBuilder class >> shouldValidateMetaModel: anObject [
 	ShouldValidateMetaModel := anObject
 ]
 
 { #category : #converting }
-FMPragmaProcessor >> asMetamodel [
+FMMetaModelBuilder >> asMetamodel [
 	^ FMMetaModel new
 		addAll: elements;
 		yourself
 ]
 
 { #category : #running }
-FMPragmaProcessor >> buildFM3 [
+FMMetaModelBuilder >> buildFM3 [
 	self
 		queue: (self class package definedClasses asSet select: #isMetamodelEntity);
 		run
 ]
 
 { #category : #accessing }
-FMPragmaProcessor >> classes [
+FMMetaModelBuilder >> classes [
 	^ elements select: #isFM3Class
 ]
 
 { #category : #accessing }
-FMPragmaProcessor >> elements [
+FMMetaModelBuilder >> elements [
 	^ elements
 ]
 
 { #category : #private }
-FMPragmaProcessor >> ensureClass: var [
+FMMetaModelBuilder >> ensureClass: var [
 	var isBehavior ifTrue: [ ^ classDict at: var ].
 	var isSymbol ifTrue: [ ^ classDict at: (self class environment at: var) ifAbsent: [ metaDict at: var asString ] ].
 	var isString ifTrue: [ ^ metaDict at: var ].
@@ -117,7 +117,7 @@ FMPragmaProcessor >> ensureClass: var [
 ]
 
 { #category : #private }
-FMPragmaProcessor >> ensurePackage: name [
+FMMetaModelBuilder >> ensurePackage: name [
 	| symbol |
 	self assert: (name isSymbol or: [ name isString ]).
 	symbol := name asString.
@@ -130,22 +130,22 @@ FMPragmaProcessor >> ensurePackage: name [
 ]
 
 { #category : #private }
-FMPragmaProcessor >> extractPackageFrom: method for: aFM3Element [
+FMMetaModelBuilder >> extractPackageFrom: method for: aFM3Element [
 	^ (method pragmaAt: #package:) ifNotNil: [ :p | packDict at: aFM3Element put: (p argumentAt: 1) ]
 ]
 
 { #category : #running }
-FMPragmaProcessor >> implementingPackages [
+FMMetaModelBuilder >> implementingPackages [
 	^ implementingPackages ifNil: [ implementingPackages := queue collectAsSet: #package ]
 ]
 
 { #category : #running }
-FMPragmaProcessor >> implementingPackages: aColl [
+FMMetaModelBuilder >> implementingPackages: aColl [
 	implementingPackages := aColl
 ]
 
 { #category : #initialization }
-FMPragmaProcessor >> initialize [
+FMMetaModelBuilder >> initialize [
 	"Used for queuing classes before running."
 
 	queue := OrderedCollection new.
@@ -167,24 +167,24 @@ FMPragmaProcessor >> initialize [
 ]
 
 { #category : #private }
-FMPragmaProcessor >> methodsToProcessFrom: aClass [
+FMMetaModelBuilder >> methodsToProcessFrom: aClass [
 	"We need to process the methods from the class and the extensions methods comming from the packages containing the entites. We should reject extension methods comming from other packages."
 
 	^ aClass localMethods select: [ :method | method isExtension not or: [ self implementingPackages includes: method package ] ]
 ]
 
 { #category : #accessing }
-FMPragmaProcessor >> packages [
+FMMetaModelBuilder >> packages [
 	^ elements select: #isFM3Package
 ]
 
 { #category : #private }
-FMPragmaProcessor >> processClass: aClass [
+FMMetaModelBuilder >> processClass: aClass [
 	^ self processClass: aClass ifPragmaAbsent: [ self error: 'Fame Undeclared class ' , aClass name ]
 ]
 
 { #category : #private }
-FMPragmaProcessor >> processClass: aClass ifPragmaAbsent: anErrorBlock [
+FMMetaModelBuilder >> processClass: aClass ifPragmaAbsent: anErrorBlock [
 	aClass metamodelDefinitionPragma
 		ifNil: anErrorBlock
 		ifNotNil: [ :pragma | 
@@ -205,7 +205,7 @@ FMPragmaProcessor >> processClass: aClass ifPragmaAbsent: anErrorBlock [
 ]
 
 { #category : #private }
-FMPragmaProcessor >> processCompiledMethod: aMethod [
+FMMetaModelBuilder >> processCompiledMethod: aMethod [
 	| method |
 	method := aMethod.
 
@@ -231,7 +231,7 @@ FMPragmaProcessor >> processCompiledMethod: aMethod [
 ]
 
 { #category : #private }
-FMPragmaProcessor >> processInfosFrom: aMethod for: prop [
+FMMetaModelBuilder >> processInfosFrom: aMethod for: prop [
 	prop implementingSelector: aMethod selector.
 	self extractPackageFrom: aMethod for: prop.
 	(aMethod pragmaAt: #container) ifNotNil: [ prop isContainer: true ].
@@ -242,7 +242,7 @@ FMPragmaProcessor >> processInfosFrom: aMethod for: prop [
 ]
 
 { #category : #private }
-FMPragmaProcessor >> processSlot: aSlot in: aClass [
+FMMetaModelBuilder >> processSlot: aSlot in: aClass [
 	| prop |
 	prop := FM3Property named: aSlot name.
 	prop implementingSelector: aSlot name.
@@ -258,12 +258,12 @@ FMPragmaProcessor >> processSlot: aSlot in: aClass [
 ]
 
 { #category : #accessing }
-FMPragmaProcessor >> properties [
+FMMetaModelBuilder >> properties [
 	^ elements select: #isFM3Property
 ]
 
 { #category : #running }
-FMPragmaProcessor >> queue: var [
+FMMetaModelBuilder >> queue: var [
 	"Add one or many classes to be processed. Nothing is done before the run method is called"
 
 	var isBehavior  
@@ -279,7 +279,7 @@ FMPragmaProcessor >> queue: var [
 ]
 
 { #category : #private }
-FMPragmaProcessor >> resolveObjectReferences [
+FMMetaModelBuilder >> resolveObjectReferences [
 
 	"establish class-package and property-package links"
 	packDict keysAndValuesDo: [ :fm3Element :value | fm3Element package: (self ensurePackage: value) ].
@@ -304,7 +304,7 @@ FMPragmaProcessor >> resolveObjectReferences [
 ]
 
 { #category : #running }
-FMPragmaProcessor >> run [
+FMMetaModelBuilder >> run [
 	queue do: [ :cls | self processClass: cls ].
 	self resolveObjectReferences.
 	self class shouldValidateMetaModel ifTrue: [ FMMetamodelValidator for: self ]

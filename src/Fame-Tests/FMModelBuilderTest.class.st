@@ -8,7 +8,7 @@ Class {
 FMModelBuilderTest >> testDocument [
 	| client m s |
 	client := FMMSEPrinter onString.
-	m := FMModelBuilder client: client.
+	m := FMModelScripter client: client.
 	m document: [  ].
 	s := client stream contents.
 	self assert: s equals: '()'
@@ -18,7 +18,7 @@ FMModelBuilderTest >> testDocument [
 FMModelBuilderTest >> testPerson [
 	| client m s |
 	client := FMMSEPrinter onString.
-	m := FMModelBuilder client: client.
+	m := FMModelScripter client: client.
 	m document: [ m new: #Person with: [ m a: #name of: 'John Doe' ] ].
 	s := client stream contents.
 	self
@@ -33,7 +33,7 @@ FMModelBuilderTest >> testPerson [
 FMModelBuilderTest >> testPersonWithDog [
 	| client m s |
 	client := FMMSEPrinter onString.
-	m := FMModelBuilder client: client.
+	m := FMModelScripter client: client.
 	m
 		document: [ m
 				new: #Person
@@ -61,7 +61,7 @@ FMModelBuilderTest >> testPersonWithDog [
 FMModelBuilderTest >> testPersonWithDogUsingIdReferences [
 	| client m s |
 	client := FMMSEPrinter onString.
-	m := FMModelBuilder client: client.
+	m := FMModelScripter client: client.
 	m
 		document: [ m
 				new: #Person
@@ -89,7 +89,7 @@ FMModelBuilderTest >> testPersonWithDogUsingIdReferences [
 FMModelBuilderTest >> testPersonWithNicknames [
 	| client m s |
 	client := FMMSEPrinter onString.
-	m := FMModelBuilder client: client.
+	m := FMModelScripter client: client.
 	m
 		document: [ m
 				new: #Person

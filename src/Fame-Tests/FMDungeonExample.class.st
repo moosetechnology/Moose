@@ -26,7 +26,7 @@ FMDungeonExample class >> dungeonScript [
 { #category : #'as yet unclassified' }
 FMDungeonExample class >> metamodelString [
 	| builder |
-	builder := FMMetamodelBuilder client: FMMSEPrinter onString.
+	builder := FMMetamodelScripter client: FMMSEPrinter onString.
 	builder document: self dungeonScript.
 	^ builder client stream contents
 ]
@@ -34,7 +34,7 @@ FMDungeonExample class >> metamodelString [
 { #category : #running }
 FMDungeonExample >> setUp [
 	super setUp.
-	metamodel := FMPragmaProcessor metamodelFrom: {RPGDragon . RPGTreasure . RPGHero}
+	metamodel := FMMetaModelBuilder metamodelFrom: {RPGDragon . RPGTreasure . RPGHero}
 ]
 
 { #category : #running }

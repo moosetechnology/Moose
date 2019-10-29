@@ -32,7 +32,7 @@ FMImporterTest >> testElementNamed [
 FMImporterTest >> testImportBook [
 	| importer builder |
 	importer := FMImporter model: FMMetaModel new.
-	builder := FMModelBuilder client: importer.
+	builder := FMModelScripter client: importer.
 	builder document: [ builder new: 'FM3.Class' with: [ builder a: #name of: 'Book' ] ].
 
 	self assert: importer model elements size equals: 1.
@@ -79,7 +79,7 @@ FMImporterTest >> testOrderOfElements [
 FMImporterTest >> testResolving [
 	| importer builder |
 	importer := FMImporter model: FMMetaModel new.
-	builder := FMModelBuilder client: importer.
+	builder := FMModelScripter client: importer.
 	builder document: [ builder new: 'FM3.Class' with: [ builder a: #name of: 'MyName' ] ].
 	self assert: importer model elements size equals: 1.
 	self assert: importer model elements anyOne isFM3Class
@@ -89,7 +89,7 @@ FMImporterTest >> testResolving [
 FMImporterTest >> testResolvingId [
 	| importer builder |
 	importer := FMImporter model: FMMetaModel new.
-	builder := FMModelBuilder client: importer.
+	builder := FMModelScripter client: importer.
 	builder
 		document: [ builder
 				new: 'FM3.Class'
