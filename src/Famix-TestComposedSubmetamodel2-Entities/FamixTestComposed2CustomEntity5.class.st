@@ -14,11 +14,3 @@ FamixTestComposed2CustomEntity5 class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #accessing }
-FamixTestComposed2CustomEntity5 >> numberOfChildren [
-	<FMProperty: #numberOfChildren type: #Number>
-	<FMComment: 'Number of direct children entities in the containment tree.'>
-	<derived>
-	^ self isContainerEntity ifTrue: [ self children size ] ifFalse: [ 0 ]
-]

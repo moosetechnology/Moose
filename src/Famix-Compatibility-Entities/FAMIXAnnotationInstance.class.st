@@ -44,23 +44,3 @@ FAMIXAnnotationInstance >> name [
 				<< (self annotationType ifNil: [ super name ] ifNotNil: [ :type | type name ])
 				<< ' on ' << (self annotatedEntity ifNotNil: #name ifNil: [ 'undefined' ]) ]
 ]
-
-{ #category : #accessing }
-FAMIXAnnotationInstance >> numberOfChildren [
-	<FMProperty: #numberOfChildren type: #Number>
-	<FMComment: 'Number of direct children entities in the containment tree.'>
-	<derived>
-	^ self isContainerEntity ifTrue: [ self children size ] ifFalse: [ 0 ]
-]
-
-{ #category : #'query dependencies' }
-FAMIXAnnotationInstance >> throughAllTo [
-	"Collect all the targets of the receiver and its children.
-	
-	Example:
-		aFAMIXMethod throughAllTo.
-			--> Will return a MooseOutgoingQueryResult containing the class having aFAMIXClass or its children as source
-	"
-
-	^ (MooseQueryCalculator strategy: MooseQueryOutgoingDirectionStrategy) throughAllFor: self
-]

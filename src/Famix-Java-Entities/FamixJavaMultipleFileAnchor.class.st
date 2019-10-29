@@ -20,15 +20,6 @@ FamixJavaMultipleFileAnchor >> addFileAnchorWithPath: aPath [
 	self allFiles detect: [ :each | each fileName = aPath ] ifNone: [ self createAnchorWithPath: aPath ]
 ]
 
-{ #category : #accessing }
-FamixJavaMultipleFileAnchor >> allFiles [
-
-	<FMProperty: #allFiles type: #FamixTFileAnchor>
-	<multivalued>
-	<FMComment: 'All source code definition files'>
-	^ allFiles ifNil: [ allFiles := OrderedCollection new. ]
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaMultipleFileAnchor >> createAnchorWithPath: aPath [
 	self

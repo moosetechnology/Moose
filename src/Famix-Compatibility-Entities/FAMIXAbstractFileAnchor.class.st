@@ -33,13 +33,6 @@ FAMIXAbstractFileAnchor >> correspondingFile: aFAMIXFile [
 	self privateState attributeAt: #correspondingFile put: aFAMIXFile
 ]
 
-{ #category : #accessing }
-FAMIXAbstractFileAnchor >> encoding [
-	<FMProperty: #encoding type: #String>
-	<FMComment: 'A string representing the encoding of a file'>
-	^ encoding ifNil: [ encoding := self detectEncoding ]
-]
-
 { #category : #'Moose-Finder' }
 FAMIXAbstractFileAnchor >> intervalAsCharPos [
 	self subclassResponsibility

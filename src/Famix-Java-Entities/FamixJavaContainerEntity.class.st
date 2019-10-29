@@ -21,14 +21,6 @@ FamixJavaContainerEntity >> addClass: aClass [
 	types add: aClass
 ]
 
-{ #category : #metrics }
-FamixJavaContainerEntity >> fanOut [
-	<FMProperty: #fanOut type: #Number>
-	<derived>
-	<FMComment: 'Number of provider classes'>
-	^ self lookUpPropertyNamed: #fanOut computedAs: [ (self allProvidersAtScope: FamixTType) size ]
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaContainerEntity >> mooseNameWithDots [
 	^ self mooseName ifNotNil: [ '.' join: (self mooseName substrings: '::') ]

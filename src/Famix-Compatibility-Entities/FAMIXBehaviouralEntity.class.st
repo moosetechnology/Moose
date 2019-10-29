@@ -178,14 +178,6 @@ FAMIXBehaviouralEntity >> numberOfOutgoingInvocations [
 		computedAs: [self outgoingInvocations size]
 ]
 
-{ #category : #accessing }
-FAMIXBehaviouralEntity >> numberOfParameters [
-	<FMProperty: #numberOfParameters type: #Number>
-	<FMComment: 'The number of parameters in a method'>
-	<derived>
-	^ self lookUpPropertyNamed: #numberOfParameters computedAs: [ self parameters size ]
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXBehaviouralEntity >> numberOfStatements [
 	<FMProperty: #numberOfStatements type: #Number>
@@ -198,11 +190,6 @@ FAMIXBehaviouralEntity >> numberOfStatements [
 					parser processMethod: self usingImporter: nil inModel: nil.
 					parser numberOfStatements ]
 				ifFalse: [ self notExistentMetricValue ] ]
-]
-
-{ #category : #'moosequery-queries-outgoing' }
-FAMIXBehaviouralEntity >> outgoingTypeDeclarations [
-	^ self declaredType ifNil: [ {} ] ifNotNil: [ :dt | {(MooseQueryTypeDeclarationAssociation newFrom: self to: dt)} ]
 ]
 
 { #category : #'Famix-Extensions' }

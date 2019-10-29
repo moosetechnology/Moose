@@ -26,14 +26,6 @@ FAMIXContainerEntity >> addFunction: aFunction [
 	functions add: aFunction
 ]
 
-{ #category : #metrics }
-FAMIXContainerEntity >> fanOut [
-	<FMProperty: #fanOut type: #Number>
-	<derived>
-	<FMComment: 'Number of provider classes'>
-	^ self lookUpPropertyNamed: #fanOut computedAs: [ (self allProvidersAtScope: FamixTType) size ]
-]
-
 { #category : #'Famix-Java' }
 FAMIXContainerEntity >> mooseNameWithDots [
 	^ self mooseName ifNotNil: [ '.' join: (self mooseName substrings: '::') ]

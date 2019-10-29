@@ -119,33 +119,6 @@ FamixStMethod >> isCalledInternally [
 			[:each | each sender isMethod and: [each sender belongsTo == self belongsTo]]
 ]
 
-{ #category : #testing }
-FamixStMethod >> isConstant [
-	<FMProperty: #isConstant type: #Boolean>
-	<derived>
-	<FMComment: 'True if the method simply returns a constant'>
-	^#constant = self kind
-]
-
-{ #category : #testing }
-FamixStMethod >> isConstructor [
-	<FMProperty: #isConstructor type: #Boolean>
-	<derived>
-	<FMComment: 'True if the method is a constructor of the class'>
-
-	^ #constructor = self kind or: [ 
-		self privateState propertyAt: #isConstructor ifAbsent: [false] ]
-]
-
-{ #category : #testing }
-FamixStMethod >> isGetter [
-	<FMProperty: #isGetter type: #Boolean>
-	<derived>
-	<FMComment: 'True if the method is a getter of an attribute'>
-	
-	^#getter = self kind
-]
-
 { #category : #'Famix-Extensions-metrics-support' }
 FamixStMethod >> isInitializer [
 	^ (('*initialize*' match: self protocol) or: [ '*initialize*' match: self name ]) or: [ self isConstructor ] 
@@ -189,15 +162,6 @@ FamixStMethod >> isOverriding [
 	
 	^self belongsTo directSuperclasses anySatisfy: [:each | 
 		each understands: self signature]
-]
-
-{ #category : #testing }
-FamixStMethod >> isSetter [
-	<FMProperty: #isSetter type: #Boolean>
-	<derived>
-	<FMComment: 'True if the method is a setter on an attribute'>
-
-	^#setter = self kind
 ]
 
 { #category : #'Famix-Extensions-metrics-support' }
@@ -313,14 +277,6 @@ FamixStMethod >> numberOfOutgoingInvocations [
 		computedAs: [self outgoingInvocations size]
 ]
 
-{ #category : #accessing }
-FamixStMethod >> numberOfParameters [
-	<FMProperty: #numberOfParameters type: #Number>
-	<FMComment: 'The number of parameters in a method'>
-	<derived>
-	^ self lookUpPropertyNamed: #numberOfParameters computedAs: [ self parameters size ]
-]
-
 { #category : #'Famix-Extensions-private' }
 FamixStMethod >> numberOfStatements [
 	<FMProperty: #numberOfStatements type: #Number>
@@ -338,11 +294,6 @@ FamixStMethod >> numberOfStatements [
 FamixStMethod >> numberOfStatements: aNumber [
 
 	self privateState propertyAt: #numberOfStatements put: aNumber
-]
-
-{ #category : #'Famix-Extensions-private' }
-FamixStMethod >> outgoingTypeDeclarations [
-	^ self declaredType ifNil: [ {} ] ifNotNil: [ :dt | {(MooseQueryTypeDeclarationAssociation newFrom: self to: dt)} ]
 ]
 
 { #category : #accessing }

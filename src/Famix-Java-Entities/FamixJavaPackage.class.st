@@ -277,11 +277,3 @@ FamixJavaPackage >> relativeImportanceForSystem [
 						ifFalse: [0]
 						]
 ]
-
-{ #category : #metrics }
-FamixJavaPackage >> weightedMethodCount [
-	<FMProperty: #weightedMethodCount type: #Number>
-	<FMComment: 'The sum of the complexity in a package'>
-	<derived>
-	^ self lookUpPropertyNamed: #WMC computedAs: [ (self toScope: FamixTWithMethods) detectSum: #weightedMethodCount ]
-]

@@ -20,15 +20,6 @@ FAMIXMultipleFileAnchor >> addFileAnchorWithPath: aPath [
 	self allFiles detect: [ :each | each fileName = aPath ] ifNone: [ self createAnchorWithPath: aPath ]
 ]
 
-{ #category : #accessing }
-FAMIXMultipleFileAnchor >> allFiles [
-
-	<FMProperty: #allFiles type: #FamixTFileAnchor>
-	<multivalued>
-	<FMComment: 'All source code definition files'>
-	^ allFiles ifNil: [ allFiles := OrderedCollection new. ]
-]
-
 { #category : #adding }
 FAMIXMultipleFileAnchor >> createAnchorWithPath: aPath [
 	self

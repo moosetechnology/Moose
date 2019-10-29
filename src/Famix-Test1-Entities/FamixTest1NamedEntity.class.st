@@ -22,11 +22,3 @@ FamixTest1NamedEntity class >> dependencyFM3PropertyDescription [
 	^ self allDeclaredProperties
 		select: [ :e | e hasOpposite and: [ e opposite isSource or: [ e opposite isTarget ] ] ]
 ]
-
-{ #category : #accessing }
-FamixTest1NamedEntity >> numberOfChildren [
-	<FMProperty: #numberOfChildren type: #Number>
-	<FMComment: 'Number of direct children entities in the containment tree.'>
-	<derived>
-	^ self isContainerEntity ifTrue: [ self children size ] ifFalse: [ 0 ]
-]

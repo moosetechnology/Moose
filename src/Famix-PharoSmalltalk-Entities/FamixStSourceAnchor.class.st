@@ -24,16 +24,6 @@ FamixStSourceAnchor >> initialize [
 	pharoEntity := WeakArray new: 1.
 ]
 
-{ #category : #metrics }
-FamixStSourceAnchor >> lineCount [
-
-	<FMProperty: #lineCount type: #Number>
-	<derived>
-	<FMComment: 'The number of lines in the source text'>
-
-	^ self sourceText ifNotNil: #lineCount ifNil: [ self notExistentMetricValue ]
-]
-
 { #category : #accessing }
 FamixStSourceAnchor >> pharoEntity [
 	"pharoEntity var is a 1-element weak array"

@@ -15,31 +15,6 @@ FamixJavaAccess class >> annotation [
 	^self
 ]
 
-{ #category : #accessing }
-FamixJavaAccess >> isRead [
-	<FMProperty: #isRead type: #Boolean> <derived>
-	<FMComment: 'Read access'>
-	
-	^ isWrite isNil ifTrue: [ false ] ifFalse: [ isWrite not ]
-]
-
-{ #category : #accessing }
-FamixJavaAccess >> isReadWriteUnknown [
-	<FMProperty: #isReadWriteUnknown type: #Boolean> <derived>
-	<FMComment: ''>
-	
-	^ isWrite isNil
-]
-
-{ #category : #accessing }
-FamixJavaAccess >> isWrite [
-
-	<FMProperty: #isWrite type: #Boolean> 
-	<derived>
-	<FMComment: 'Write access'>
-	^ isWrite ifNil: [ false ]
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaAccess >> printOn: aStream [
 	super printOn: aStream.

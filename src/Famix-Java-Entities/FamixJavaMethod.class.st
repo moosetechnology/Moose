@@ -46,15 +46,6 @@ FamixJavaMethod >> clientBehaviours [
 	^ self invokingBehaviours 
 ]
 
-{ #category : #metrics }
-FamixJavaMethod >> cyclomaticComplexity [
-	<FMProperty: #cyclomaticComplexity type: #Number>
-	<FMComment: 'The number of linear-independent paths through a method.'>
-	^ self
-		lookUpPropertyNamed:  #cyclomaticComplexity
-		computedAs: [ self notExistentMetricValue ]
-]
-
 { #category : #testing }
 FamixJavaMethod >> hasEmptyBody [
 	"Copied from FAMIX2.
@@ -144,24 +135,6 @@ FamixJavaMethod >> isClassInitializer [
 ]
 
 { #category : #testing }
-FamixJavaMethod >> isConstant [
-	<FMProperty: #isConstant type: #Boolean>
-	<derived>
-	<FMComment: 'True if the method simply returns a constant'>
-	^#constant = self kind
-]
-
-{ #category : #testing }
-FamixJavaMethod >> isConstructor [
-	<FMProperty: #isConstructor type: #Boolean>
-	<derived>
-	<FMComment: 'True if the method is a constructor of the class'>
-
-	^ #constructor = self kind or: [ 
-		self privateState propertyAt: #isConstructor ifAbsent: [false] ]
-]
-
-{ #category : #testing }
 FamixJavaMethod >> isDetectedGetter [
 	^ self outgoingInvocations isEmpty and: [ 
 		self accesses size = 1 and: [ 
@@ -173,15 +146,6 @@ FamixJavaMethod >> isDetectedSetter [
 	^ self outgoingInvocations isEmpty and: [ 
 		self accesses size = 1 and: [ 
 			self accesses first isWrite ] ]
-]
-
-{ #category : #testing }
-FamixJavaMethod >> isGetter [
-	<FMProperty: #isGetter type: #Boolean>
-	<derived>
-	<FMComment: 'True if the method is a getter of an attribute'>
-	
-	^#getter = self kind
 ]
 
 { #category : #testing }
@@ -220,15 +184,6 @@ FamixJavaMethod >> isOverriding [
 	
 	^self belongsTo directSuperclasses anySatisfy: [:each | 
 		each isInterface not and: [each understands: self signature]]
-]
-
-{ #category : #testing }
-FamixJavaMethod >> isSetter [
-	<FMProperty: #isSetter type: #Boolean>
-	<derived>
-	<FMComment: 'True if the method is a setter on an attribute'>
-
-	^#setter = self kind
 ]
 
 { #category : #printing }
@@ -320,16 +275,6 @@ FamixJavaMethod >> numberOfInvokedMethods [
 	^ self privateState propertyAt: #numberOfInvokedMethods ifAbsentPut: [self invokedMethods size]
 ]
 
-{ #category : #metrics }
-FamixJavaMethod >> numberOfMessageSends [
-	<FMProperty: #numberOfMessageSends type: #Number>
-	<derived>
-	<FMComment: 'The number of message from a method'>
-	^ self
-		lookUpPropertyNamed: #numberOfMessageSends
-		computedAs: [ self notExistentMetricValue ]
-]
-
 { #category : #'Famix-Extensions-private' }
 FamixJavaMethod >> numberOfOutgoingInvocations [
 	<FMProperty: #numberOfOutgoingInvocations type: #Number>
@@ -339,22 +284,6 @@ FamixJavaMethod >> numberOfOutgoingInvocations [
 	^self
 		lookUpPropertyNamed: #numberOfOutgoingInvocations
 		computedAs: [self outgoingInvocations size]
-]
-
-{ #category : #accessing }
-FamixJavaMethod >> numberOfParameters [
-	<FMProperty: #numberOfParameters type: #Number>
-	<FMComment: 'The number of parameters in a method'>
-	<derived>
-	^ self lookUpPropertyNamed: #numberOfParameters computedAs: [ self parameters size ]
-]
-
-{ #category : #metrics }
-FamixJavaMethod >> numberOfStatements [
-	<FMProperty: #numberOfStatements type: #Number>
-	<derived>
-	<FMComment: 'The number of statements in a class'>
-	^ self lookUpPropertyNamed: #numberOfStatements computedAs: [ (self toScope: FamixTWithStatements) detectSum: #numberOfStatements ]
 ]
 
 { #category : #'Famix-Implementation' }

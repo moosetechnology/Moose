@@ -28,11 +28,3 @@ FamixJavaAnnotationInstanceAttribute >> name [
 		ifTrue: [ self annotationTypeAttribute name ]
 		ifFalse: [ nil ]
 ]
-
-{ #category : #accessing }
-FamixJavaAnnotationInstanceAttribute >> numberOfChildren [
-	<FMProperty: #numberOfChildren type: #Number>
-	<FMComment: 'Number of direct children entities in the containment tree.'>
-	<derived>
-	^ self isContainerEntity ifTrue: [ self children size ] ifFalse: [ 0 ]
-]
