@@ -97,11 +97,3 @@ FamixTCohesionCouplingMetrics >> martinCohesion [
 		into: [ :subTotal :each | subTotal + (each select: [ :c | c isInstanceSide ]) size ].
 	^ ((intraConnectivities + 1) / myClasses size) asFloat
 ]
-
-{ #category : #metrics }
-FamixTCohesionCouplingMetrics >> weightedMethodCount [
-	<FMProperty: #weightedMethodCount type: #Number>
-	<FMComment: 'The sum of the complexity in a package'>
-	<derived>
-	^ self lookUpPropertyNamed: #WMC computedAs: [ (self toScope: FamixTWithMethods) detectSum: #weightedMethodCount ]
-]
