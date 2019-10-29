@@ -10,7 +10,7 @@ Class {
 		'roots',
 		'lastUpdate'
 	],
-	#category : #'Fame-ImportExport'
+	#category : #'Fame-ImportExport-Exporters'
 }
 
 { #category : #'instance creation' }
@@ -20,11 +20,9 @@ FMModelExporter class >> new [
 
 { #category : #exporting }
 FMModelExporter >> basicRun [
-
-	self exportHeader.
-	self roots do: [ :each |
-		self exportElement: each ].
-	self exportFooter.
+	printer beginDocument.
+	self roots do: [ :each | self exportElement: each ].
+	printer endDocument
 ]
 
 { #category : #exporting }
@@ -37,17 +35,7 @@ FMModelExporter >> exportElement: each [
 		do: [ printer serial: (self indexOf: each).
 			(self sortedPropertiesOf: meta) do: [ :property | self exportProperty: property for: each ] ].
 
-	self increment	"UI stuff"
-]
-
-{ #category : #exporting }
-FMModelExporter >> exportFooter [
-	printer endDocument
-]
-
-{ #category : #exporting }
-FMModelExporter >> exportHeader [
-	printer beginDocument
+	self incrementProgressBar
 ]
 
 { #category : #exporting }
@@ -75,7 +63,7 @@ FMModelExporter >> exportProperty: property withAll: values [
 ]
 
 { #category : #exporting }
-FMModelExporter >> increment [
+FMModelExporter >> incrementProgressBar [
 	nb := nb + 1.
 	(progBar isNotNil and: [ (Time millisecondsSince: lastUpdate) >= 500 ]) ifFalse: [ ^ self ].
 
@@ -85,7 +73,6 @@ FMModelExporter >> increment [
 
 { #category : #private }
 FMModelExporter >> indexOf: each [
-	each ifNil: [ self error ].
 	^ index at: each ifAbsentPut: [ index size + 1 ]
 ]
 

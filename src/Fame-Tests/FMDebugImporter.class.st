@@ -1,6 +1,8 @@
 Class {
-	#name : #FMDebugClient,
-	#superclass : #FMParserClient,
+	#name : #FMDebugImporter,
+	#superclass : #Object,
+	#traits : 'FMTImportExportStructure',
+	#classTraits : 'FMTImportExportStructure classTrait',
 	#instVars : [
 		'a'
 	],
@@ -8,42 +10,42 @@ Class {
 }
 
 { #category : #parsing }
-FMDebugClient >> beginAttribute: name [ 
+FMDebugImporter >> beginAttribute: name [ 
 	a := a copyWith: (Array with: #beginAttribute: with:  name )
 ]
 
 { #category : #parsing }
-FMDebugClient >> beginDocument [
+FMDebugImporter >> beginDocument [
 	a := a copyWith: (Array with: #beginDocument)
 ]
 
 { #category : #parsing }
-FMDebugClient >> beginElement: name [ 
+FMDebugImporter >> beginElement: name [ 
 	a := a copyWith: (Array with:   #beginElement: with: name)
 ]
 
 { #category : #accessing }
-FMDebugClient >> contents [
+FMDebugImporter >> contents [
 	^ a
 ]
 
 { #category : #parsing }
-FMDebugClient >> endAttribute: name [ 
+FMDebugImporter >> endAttribute: name [ 
 	a := a copyWith: (Array with: #endAttribute: with: name)
 ]
 
 { #category : #parsing }
-FMDebugClient >> endDocument [
+FMDebugImporter >> endDocument [
 	a := a copyWith: (Array with: #endDocument)
 ]
 
 { #category : #parsing }
-FMDebugClient >> endElement: name [ 
+FMDebugImporter >> endElement: name [ 
 	a := a copyWith: (Array with: #endElement: with: name)
 ]
 
 { #category : #accessing }
-FMDebugClient >> exportString [
+FMDebugImporter >> exportString [
 	| printer |
 	printer := FMMSEPrinter onString.
 	self replayOn: printer.
@@ -51,27 +53,27 @@ FMDebugClient >> exportString [
 ]
 
 { #category : #initialization }
-FMDebugClient >> initialize [
+FMDebugImporter >> initialize [
 	self reset
 ]
 
 { #category : #parsing }
-FMDebugClient >> primitive: value [ 
+FMDebugImporter >> primitive: value [ 
 	a := a copyWith: (Array with:  #primitive: with: value )
 ]
 
 { #category : #parsing }
-FMDebugClient >> referenceName: name [ 
+FMDebugImporter >> referenceName: name [ 
 	a := a copyWith: (Array with: #referenceName: with: name)
 ]
 
 { #category : #parsing }
-FMDebugClient >> referenceNumber: index [ 
+FMDebugImporter >> referenceNumber: index [ 
 	a := a copyWith: (Array with: #referenceNumber: with: index  )
 ]
 
 { #category : #accessing }
-FMDebugClient >> replayOn: aParseClient [ 
+FMDebugImporter >> replayOn: aParseClient [ 
 	
 	a do: [ :each |
 		aParseClient 
@@ -80,11 +82,11 @@ FMDebugClient >> replayOn: aParseClient [
 ]
 
 { #category : #'initialize-release' }
-FMDebugClient >> reset [
+FMDebugImporter >> reset [
 	a := #()
 ]
 
 { #category : #parsing }
-FMDebugClient >> serial: index [ 
+FMDebugImporter >> serial: index [ 
 	a := a copyWith: (Array with: #serial: with: index )
 ]

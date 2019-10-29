@@ -470,8 +470,8 @@ FMMSEParserTest class >> sampleMse [
 FMMSEParserTest >> setUp [
 	super setUp.
 	p := FMMSEParser new.
-	r := FMDebugClient new.
-	p client: r
+	r := FMDebugImporter new.
+	p importer: r
 ]
 
 { #category : #running }
@@ -595,12 +595,12 @@ FMMSEParserTest >> testAttributeWithStrings2 [
 ]
 
 { #category : #running }
-FMMSEParserTest >> testBacktracking [
+FMMSEParserTest >> testBacktrack [
 	| pos |
 	p fromString: 'abcdefg'.
 	self assert: p peek equals: $a.
 	self assert: p next equals: $b.
-	pos := p pos.
+	pos := p position.
 	self assert: p peek equals: $b.
 	self assert: p next equals: $c.
 	self assert: p next equals: $d.
@@ -610,11 +610,6 @@ FMMSEParserTest >> testBacktracking [
 	self assert: p next equals: $c.
 	self assert: p next equals: $d.
 	self assert: p next equals: $e
-]
-
-{ #category : #running }
-FMMSEParserTest >> testClient [
-	self assert: p client equals: r
 ]
 
 { #category : #running }
@@ -826,6 +821,11 @@ FMMSEParserTest >> testFullNameTrailingDotFails [
 ]
 
 { #category : #running }
+FMMSEParserTest >> testImporter [
+	self assert: p importer equals: r
+]
+
+{ #category : #running }
 FMMSEParserTest >> testMatchString [
 	p fromString: '''Lorem'''.
 	r := p String.
@@ -991,7 +991,7 @@ FMMSEParserTest >> testValueNegativeNumberError [
 	p fromString: '--42'.
 	p Value.
 	self assertEmpty: r contents.
-	self assert: p pos equals: 1
+	self assert: p position equals: 1
 ]
 
 { #category : #running }

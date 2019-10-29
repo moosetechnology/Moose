@@ -128,8 +128,7 @@ MooseModel class >> importFrom: aStream withMetamodel: aMetamodel [
 { #category : #'import-export' }
 MooseModel class >> importFrom: aStream withMetamodel: aMetamodel filteredBy: anImportingContext [
 	| model importer famixElementNames importerFilter |
-	famixElementNames := OrderedCollection new.
-	anImportingContext entityKindsToBeExtracted do: [ :each | famixElementNames add: 'FAMIX.' , each asString ].
+	famixElementNames := anImportingContext entityKindsToBeExtracted collect: [ :each | 'FAMIX.' , each asString ].
 	"anImportingContext  shouldImportMethodBody 
 		ifTrue: [famixElementNames add: 'FAMIX.Parameter'.
 			anImportingContext shouldImportAccess ifTrue:[famixElementNames add:'FAMIX.Reference']]."
@@ -137,10 +136,9 @@ MooseModel class >> importFrom: aStream withMetamodel: aMetamodel filteredBy: an
 	"famixElementNames := anImportingContext fullNamesOfEntitiesToBeExtracted ."
 
 	model := FMModel withMetamodel: aMetamodel.
-	importer := MSEImporter new.
-	importer repository: model.
+	importer := MSEImporter model: model.
 	importer stream: aStream.
-	importerFilter := FMImporterFilter onClient: importer withFilter: famixElementNames.
+	importerFilter := FMImporterFilter on: importer filtering: famixElementNames.
 	importerFilter run.
 	model updateCache.
 	^ model

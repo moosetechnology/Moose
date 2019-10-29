@@ -1,11 +1,13 @@
 Class {
 	#name : #FMDataStructurePrinter,
-	#superclass : #FMParserClient,
+	#superclass : #Object,
+	#traits : 'FMTImportExportStructure',
+	#classTraits : 'FMTImportExportStructure classTrait',
 	#instVars : [
 		'stream',
 		'indent'
 	],
-	#category : #'Fame-ImportExport'
+	#category : #'Fame-ImportExport-Exporters'
 }
 
 { #category : #testing }
