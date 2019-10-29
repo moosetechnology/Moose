@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXMultipleFileAnchor class >> annotation [
 
-	<MSEClass: #MultipleFileAnchor super: #FAMIXSourceAnchor>
+	<FMClass: #MultipleFileAnchor super: #FAMIXSourceAnchor>
 	<package: #FAMIX>
 	<generated>
 	^self
@@ -18,6 +18,15 @@ FAMIXMultipleFileAnchor class >> annotation [
 { #category : #public }
 FAMIXMultipleFileAnchor >> addFileAnchorWithPath: aPath [
 	self allFiles detect: [ :each | each fileName = aPath ] ifNone: [ self createAnchorWithPath: aPath ]
+]
+
+{ #category : #accessing }
+FAMIXMultipleFileAnchor >> allFiles [
+
+	<FMProperty: #allFiles type: #FamixTFileAnchor>
+	<multivalued>
+	<FMComment: 'All source code definition files'>
+	^ allFiles ifNil: [ allFiles := OrderedCollection new. ]
 ]
 
 { #category : #adding }

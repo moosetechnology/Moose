@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithSourceAnchor classSide >> annotation [
 
-	<MSEClass: #TWithSourceAnchor super: #Object>
+	<FMClass: #TWithSourceAnchor super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -36,8 +36,8 @@ FamixTWithSourceAnchor >> notExistentMetricValue [
 
 { #category : #'Famix-Implementation' }
 FamixTWithSourceAnchor >> numberOfLinesOfCode [
-	<MSEProperty: #numberOfLinesOfCode type: #Number>
-	<MSEComment: 'The number of lines of code in a method.'>
+	<FMProperty: #numberOfLinesOfCode type: #Number>
+	<FMComment: 'The number of lines of code in a method.'>
 	^ self
 		lookUpPropertyNamed: #numberOfLinesOfCode
 		computedAs: [ self computeNumberOfLinesOfCode ]
@@ -51,8 +51,8 @@ FamixTWithSourceAnchor >> numberOfLinesOfCode: aNumber [
 
 { #category : #metrics }
 FamixTWithSourceAnchor >> numberOfLinesOfCodeWithMoreThanOneCharacter [
-	<MSEProperty: #numberOfLinesOfCodeWithMoreThanOneCharacter type: #Number> <derived>
-	<MSEComment: 'This metric is essentially similar to the numberOfLinesOfCode one, 
+	<FMProperty: #numberOfLinesOfCodeWithMoreThanOneCharacter type: #Number> <derived>
+	<FMComment: 'This metric is essentially similar to the numberOfLinesOfCode one, 
 	the difference being that it only counts the lines with more than one non-whitespace characters.
 	This metric is particularly useful for comparing the density of other metrics on a line of code.
 	For example, depending on the formatting style chosen a Java curly brace, or a Smalltalk block 
@@ -70,7 +70,7 @@ FamixTWithSourceAnchor >> sourceAnchor [
 	"Relation named: #sourceAnchor type: #FamixTSourceAnchor opposite: #element"
 
 	<generated>
-	<MSEComment: 'SourceAnchor entity linking to the original source code for this entity'>
+	<FMComment: 'SourceAnchor entity linking to the original source code for this entity'>
 	<derived>
 	^ sourceAnchor
 ]

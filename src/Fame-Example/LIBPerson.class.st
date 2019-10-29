@@ -10,7 +10,7 @@ Class {
 
 { #category : #meta }
 LIBPerson class >> annotation [
-	<MSEClass: #Person super: #Object>
+	<FMClass: #Person super: #Object>
 	<package: #LIB>
 ]
 
@@ -23,7 +23,7 @@ LIBPerson class >> named: aString [
 
 { #category : #accessing }
 LIBPerson >> books [
-	<MSEProperty: #books type: #LIBBook opposite: #authors> <multivalued>
+	<FMProperty: #books type: #LIBBook opposite: #authors> <multivalued>
 	^books
 ]
 
@@ -41,7 +41,7 @@ LIBPerson >> initialize [
 
 { #category : #accessing }
 LIBPerson >> name [
-	<MSEProperty: #name type: #String>
+	<FMProperty: #name type: #String>
 	^name
 ]
 

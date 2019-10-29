@@ -9,8 +9,16 @@ Class {
 { #category : #meta }
 FamixStContainerEntity class >> annotation [
 
-	<MSEClass: #ContainerEntity super: #FamixStNamedEntity>
+	<FMClass: #ContainerEntity super: #FamixStNamedEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
+]
+
+{ #category : #metrics }
+FamixStContainerEntity >> fanOut [
+	<FMProperty: #fanOut type: #Number>
+	<derived>
+	<FMComment: 'Number of provider classes'>
+	^ self lookUpPropertyNamed: #fanOut computedAs: [ (self allProvidersAtScope: FamixTType) size ]
 ]

@@ -9,8 +9,16 @@ Class {
 { #category : #meta }
 FamixTest3NamedEntity class >> annotation [
 
-	<MSEClass: #NamedEntity super: #FamixTest3SourcedEntity>
+	<FMClass: #NamedEntity super: #FamixTest3SourcedEntity>
 	<package: #'Famix-Test3-Entities'>
 	<generated>
 	^self
+]
+
+{ #category : #accessing }
+FamixTest3NamedEntity >> numberOfChildren [
+	<FMProperty: #numberOfChildren type: #Number>
+	<FMComment: 'Number of direct children entities in the containment tree.'>
+	<derived>
+	^ self isContainerEntity ifTrue: [ self children size ] ifFalse: [ 0 ]
 ]

@@ -24,7 +24,7 @@ Trait {
 { #category : #meta }
 FamixTAnnotationInstance classSide >> annotation [
 
-	<MSEClass: #TAnnotationInstance super: #Object>
+	<FMClass: #TAnnotationInstance super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -43,7 +43,7 @@ FamixTAnnotationInstance >> annotatedEntity [
 	"Relation named: #annotatedEntity type: #FamixTWithAnnotationInstances opposite: #annotationInstances"
 
 	<generated>
-	<MSEComment: 'The NamedEntity on which the annotation occurs.'>
+	<FMComment: 'The NamedEntity on which the annotation occurs.'>
 	<container>
 	^ annotatedEntity
 ]
@@ -61,4 +61,12 @@ FamixTAnnotationInstance >> annotatedEntityGroup [
 	<generated>
 	<navigation: 'AnnotatedEntity'>
 	^ MooseGroup with: self annotatedEntity
+]
+
+{ #category : #accessing }
+FamixTAnnotationInstance >> numberOfChildren [
+	<FMProperty: #numberOfChildren type: #Number>
+	<FMComment: 'Number of direct children entities in the containment tree.'>
+	<derived>
+	^ self isContainerEntity ifTrue: [ self children size ] ifFalse: [ 0 ]
 ]

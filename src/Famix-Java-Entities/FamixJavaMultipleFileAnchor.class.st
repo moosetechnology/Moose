@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaMultipleFileAnchor class >> annotation [
 
-	<MSEClass: #MultipleFileAnchor super: #FamixJavaSourceAnchor>
+	<FMClass: #MultipleFileAnchor super: #FamixJavaSourceAnchor>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
@@ -18,6 +18,15 @@ FamixJavaMultipleFileAnchor class >> annotation [
 { #category : #'as yet unclassified' }
 FamixJavaMultipleFileAnchor >> addFileAnchorWithPath: aPath [
 	self allFiles detect: [ :each | each fileName = aPath ] ifNone: [ self createAnchorWithPath: aPath ]
+]
+
+{ #category : #accessing }
+FamixJavaMultipleFileAnchor >> allFiles [
+
+	<FMProperty: #allFiles type: #FamixTFileAnchor>
+	<multivalued>
+	<FMComment: 'All source code definition files'>
+	^ allFiles ifNil: [ allFiles := OrderedCollection new. ]
 ]
 
 { #category : #'as yet unclassified' }

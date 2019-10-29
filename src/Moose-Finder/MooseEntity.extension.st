@@ -26,7 +26,7 @@ MooseEntity >> complexPropertyPragmas [
 		ifNil: [ NotInitializedMooseDescriptionError signal: 'Moose description are not initialized. Have you refreshed the meta-model? (e.g., MooseModel resetMeta)' ].
 	navProps := (Pragma allNamed: #navigation: from: self class to: MooseEntity) sorted: [ :a :b | (a argumentAt: 1) < (b argumentAt: 1) ].
 	definedProps := (self mooseDescription allProperties reject: [ :a | a type isPrimitive ])
-		flatCollect: [ :prop | prop compiledMethod pragmas select: [ :each | each selector beginsWith: 'MSEProperty:' ] ].
+		flatCollect: [ :prop | prop compiledMethod pragmas select: [ :each | each selector beginsWith: 'FMProperty:' ] ].
 	^ (OrderedCollection withAll: definedProps)
 		addAll: navProps;
 		yourself

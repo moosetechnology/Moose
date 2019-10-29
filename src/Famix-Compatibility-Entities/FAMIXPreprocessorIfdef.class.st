@@ -11,7 +11,7 @@ Class {
 { #category : #meta }
 FAMIXPreprocessorIfdef class >> annotation [
 
-	<MSEClass: #PreprocessorIfdef super: #FAMIXPreprocessorStatement>
+	<FMClass: #PreprocessorIfdef super: #FAMIXPreprocessorStatement>
 	<package: #FAMIX>
 	<generated>
 	^self
@@ -19,8 +19,8 @@ FAMIXPreprocessorIfdef class >> annotation [
 
 { #category : #accessing }
 FAMIXPreprocessorIfdef >> isNegated [
-	<MSEProperty: #negated type: #Boolean>
-	<MSEComment: 'Whether it is an #ifdef (false) or #ifndef (true)'>
+	<FMProperty: #negated type: #Boolean>
+	<FMComment: 'Whether it is an #ifdef (false) or #ifndef (true)'>
 	^ negated
 ]
 
@@ -31,8 +31,8 @@ FAMIXPreprocessorIfdef >> isNegated: aBoolean [
 
 { #category : #accessing }
 FAMIXPreprocessorIfdef >> macro [
-	<MSEProperty: #macro type: #String>
-	<MSEComment: 'The name of the macro being tested'>
+	<FMProperty: #macro type: #String>
+	<FMComment: 'The name of the macro being tested'>
 	^ macro
 ]
 

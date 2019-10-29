@@ -13,7 +13,7 @@ Class {
 
 { #category : #meta }
 MooseGroup class >> annotation [
-	<MSEClass: #Group super: #MooseAbstractGroup>
+	<FMClass: #Group super: #MooseAbstractGroup>
 	<package: #Moose>
 
 ]

@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTMultipleFileAnchor classSide >> annotation [
 
-	<MSEClass: #TMultipleFileAnchor super: #Object>
+	<FMClass: #TMultipleFileAnchor super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -28,9 +28,9 @@ FamixTMultipleFileAnchor >> addToFile: entity [
 { #category : #accessing }
 FamixTMultipleFileAnchor >> allFiles [
 
-	<MSEProperty: #allFiles type: #FamixTFileAnchor>
+	<FMProperty: #allFiles type: #FamixTFileAnchor>
 	<multivalued>
-	<MSEComment: 'All source code definition files'>
+	<FMComment: 'All source code definition files'>
 	^ allFiles ifNil: [ allFiles := OrderedCollection new. ]
 ]
 

@@ -10,13 +10,13 @@ Class {
 
 { #category : #meta }
 EQEquation class >> annotation [
-	<MSEClass: #Equation super: #Object>
+	<FMClass: #Equation super: #Object>
 	<package: #EQ>
 ]
 
 { #category : #Fame }
 EQEquation >> leftHandSide [
-	<MSEProperty: #leftHandSide type: #EQVariable>
+	<FMProperty: #leftHandSide type: #EQVariable>
 	^leftHandSide
 ]
 
@@ -33,7 +33,7 @@ EQEquation >> printOn: stream [
 
 { #category : #Fame }
 EQEquation >> rightHandSide [
-	<MSEProperty: #rightHandSide type: #EQExpression>
+	<FMProperty: #rightHandSide type: #EQExpression>
 	^rightHandSide
 ]
 

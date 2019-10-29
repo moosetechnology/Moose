@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXAssociation class >> annotation [
 
-	<MSEClass: #Association super: #FAMIXSourcedEntity>
+	<FMClass: #Association super: #FAMIXSourcedEntity>
 	<package: #FAMIX>
 	<generated>
 	^self
@@ -28,8 +28,8 @@ FAMIXAssociation >> from [
 	It should be refined by subclasses by delegating to a concrete property.
 	This property should always remain derived."
 	
-	<MSEProperty: #from type: #FAMIXNamedEntity> <derived>
-	<MSEComment: 'Generic accessor to the entity originating the association. Refined by subclasses'>
+	<FMProperty: #from type: #FAMIXNamedEntity> <derived>
+	<FMComment: 'Generic accessor to the entity originating the association. Refined by subclasses'>
 	^ self subclassResponsibility
 ]
 
@@ -57,7 +57,7 @@ FAMIXAssociation >> to [
 	It should be refined by subclasses by delegating to a concrete property.
 	This property should always remain derived."
 
-	<MSEProperty: #to type: #FAMIXNamedEntity> <derived>
-	<MSEComment: 'Generic accessor to the target entity of the association'>
+	<FMProperty: #to type: #FAMIXNamedEntity> <derived>
+	<FMComment: 'Generic accessor to the target entity of the association'>
 	^ self subclassResponsibility
 ]

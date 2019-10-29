@@ -16,7 +16,7 @@ FameOppositeAttributeShouldPointBackRule class >> uniqueIdentifierName [
 FameOppositeAttributeShouldPointBackRule >> checkMethod: aContext [
 	| class |
 	class := aContext methodClass.
-	((class methodNamed: aContext selector) pragmaAt: #MSEProperty:type:opposite:)
+	((class methodNamed: aContext selector) pragmaAt: #FMProperty:type:opposite:)
 		ifNotNil: [ :pragma | 
 			self class environment
 				at: (pragma argumentAt: 2)
@@ -24,7 +24,7 @@ FameOppositeAttributeShouldPointBackRule >> checkMethod: aContext [
 					oppositeClass
 						compiledMethodAt: (pragma argumentAt: 3)
 						ifPresent: [ :oppositeCompiledMethod | 
-							(oppositeCompiledMethod pragmaAt: #MSEProperty:type:opposite:)
+							(oppositeCompiledMethod pragmaAt: #FMProperty:type:opposite:)
 								ifNotNil: [ :oppositePragma | 
 									(oppositePragma argumentAt: 2) = class name asSymbol
 										ifFalse: [ result addClass: class selector: aContext selector.

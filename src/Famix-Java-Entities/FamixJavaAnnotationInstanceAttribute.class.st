@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaAnnotationInstanceAttribute class >> annotation [
 
-	<MSEClass: #AnnotationInstanceAttribute super: #FamixJavaSourcedEntity>
+	<FMClass: #AnnotationInstanceAttribute super: #FamixJavaSourcedEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
@@ -27,4 +27,12 @@ FamixJavaAnnotationInstanceAttribute >> name [
 	^ self annotationTypeAttribute notNil 
 		ifTrue: [ self annotationTypeAttribute name ]
 		ifFalse: [ nil ]
+]
+
+{ #category : #accessing }
+FamixJavaAnnotationInstanceAttribute >> numberOfChildren [
+	<FMProperty: #numberOfChildren type: #Number>
+	<FMComment: 'Number of direct children entities in the containment tree.'>
+	<derived>
+	^ self isContainerEntity ifTrue: [ self children size ] ifFalse: [ 0 ]
 ]

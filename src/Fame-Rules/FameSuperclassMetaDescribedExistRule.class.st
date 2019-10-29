@@ -16,7 +16,7 @@ FameSuperclassMetaDescribedExistRule class >> uniqueIdentifierName [
 FameSuperclassMetaDescribedExistRule >> checkClass: aContext [
 	| class pragmas pragma substrings metaSuperclassName |
 	class := aContext.
-	pragmas := Pragma allNamed: #MSEClass:super: in: class.
+	pragmas := Pragma allNamed: #FMClass:super: in: class.
 	pragmas ifEmpty: [ ^ self ].
 	pragmas size > 1
 		ifTrue: [ result addClass: class.

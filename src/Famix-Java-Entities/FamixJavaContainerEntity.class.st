@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaContainerEntity class >> annotation [
 
-	<MSEClass: #ContainerEntity super: #FamixJavaNamedEntity>
+	<FMClass: #ContainerEntity super: #FamixJavaNamedEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
@@ -19,6 +19,14 @@ FamixJavaContainerEntity class >> annotation [
 FamixJavaContainerEntity >> addClass: aClass [
 	
 	types add: aClass
+]
+
+{ #category : #metrics }
+FamixJavaContainerEntity >> fanOut [
+	<FMProperty: #fanOut type: #Number>
+	<derived>
+	<FMComment: 'Number of provider classes'>
+	^ self lookUpPropertyNamed: #fanOut computedAs: [ (self allProvidersAtScope: FamixTType) size ]
 ]
 
 { #category : #'as yet unclassified' }

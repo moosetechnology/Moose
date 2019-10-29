@@ -12,7 +12,7 @@ Class {
 { #category : #meta }
 FamixStSourceAnchor class >> annotation [
 
-	<MSEClass: #SourceAnchor super: #FamixStEntity>
+	<FMClass: #SourceAnchor super: #FamixStEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
@@ -22,6 +22,16 @@ FamixStSourceAnchor class >> annotation [
 FamixStSourceAnchor >> initialize [
 	super initialize.
 	pharoEntity := WeakArray new: 1.
+]
+
+{ #category : #metrics }
+FamixStSourceAnchor >> lineCount [
+
+	<FMProperty: #lineCount type: #Number>
+	<derived>
+	<FMComment: 'The number of lines in the source text'>
+
+	^ self sourceText ifNotNil: #lineCount ifNil: [ self notExistentMetricValue ]
 ]
 
 { #category : #accessing }

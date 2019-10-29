@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixStAnnotationInstanceAttribute class >> annotation [
 
-	<MSEClass: #AnnotationInstanceAttribute super: #FamixStSourcedEntity>
+	<FMClass: #AnnotationInstanceAttribute super: #FamixStSourcedEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
@@ -27,4 +27,12 @@ FamixStAnnotationInstanceAttribute >> name [
 	^ self annotationTypeAttribute notNil 
 		ifTrue: [ self annotationTypeAttribute name ]
 		ifFalse: [ nil ]
+]
+
+{ #category : #accessing }
+FamixStAnnotationInstanceAttribute >> numberOfChildren [
+	<FMProperty: #numberOfChildren type: #Number>
+	<FMComment: 'Number of direct children entities in the containment tree.'>
+	<derived>
+	^ self isContainerEntity ifTrue: [ self children size ] ifFalse: [ 0 ]
 ]

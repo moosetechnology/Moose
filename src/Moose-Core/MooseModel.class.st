@@ -24,7 +24,7 @@ MooseModel class >> allSubmetamodelsPackagesNames [
 
 { #category : #meta }
 MooseModel class >> annotation [
-	<MSEClass: #Model super: #MooseAbstractGroup>
+	<FMClass: #Model super: #MooseAbstractGroup>
 	<package: #Moose>
 
 ]
@@ -508,8 +508,8 @@ MooseModel >> name: aStringOrSymbol [
 
 { #category : #'Famix-Extensions' }
 MooseModel >> numberOfClasses [
-	<MSEProperty: #numberOfClasses type: #Number>
-	<MSEComment: 'The number of classes'>
+	<FMProperty: #numberOfClasses type: #Number>
+	<FMComment: 'The number of classes'>
 	
 	^self
 		lookUpPropertyNamed: #numberOfClasses
@@ -518,8 +518,8 @@ MooseModel >> numberOfClasses [
 
 { #category : #'Famix-Extensions' }
 MooseModel >> numberOfLinesOfCodePerClass [
-	<MSEProperty: #numberOfLinesOfCodePerClass type: #Number>
-	<MSEComment: 'The number of lines of code per class in the model'>
+	<FMProperty: #numberOfLinesOfCodePerClass type: #Number>
+	<FMComment: 'The number of lines of code per class in the model'>
 	^ self
 		lookUpPropertyNamed: #numberOfLinesOfCodePerClass
 		computedAs: [ self numberOfLinesOfCode / self numberOfClasses ]

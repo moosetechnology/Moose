@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaMethod class >> annotation [
 
-	<MSEClass: #Method super: #FamixJavaContainerEntity>
+	<FMClass: #Method super: #FamixJavaContainerEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
@@ -33,17 +33,26 @@ FamixJavaMethod >> accessedAttributes [
 
 { #category : #accessing }
 FamixJavaMethod >> category [
-	<MSEProperty: #category type: #String>
-	<MSEComment: 'Category of the method'>
+	<FMProperty: #category type: #String>
+	<FMComment: 'Category of the method'>
 	
 	^ self privateState attributeAt: #category ifAbsentPut: [ nil ]
 ]
 
 { #category : #'Famix-Extensions' }
 FamixJavaMethod >> clientBehaviours [
-	<MSEProperty: #clientBehaviours type: #FamixJavaMethod> <multivalued> <derived>
-	<MSEComment: 'All behaviours that depend on the receiver'>
+	<FMProperty: #clientBehaviours type: #FamixJavaMethod> <multivalued> <derived>
+	<FMComment: 'All behaviours that depend on the receiver'>
 	^ self invokingBehaviours 
+]
+
+{ #category : #metrics }
+FamixJavaMethod >> cyclomaticComplexity [
+	<FMProperty: #cyclomaticComplexity type: #Number>
+	<FMComment: 'The number of linear-independent paths through a method.'>
+	^ self
+		lookUpPropertyNamed:  #cyclomaticComplexity
+		computedAs: [ self notExistentMetricValue ]
 ]
 
 { #category : #testing }
@@ -66,9 +75,9 @@ FamixJavaMethod >> hasInnerClassImplementingMethods [
 
 { #category : #metrics }
 FamixJavaMethod >> hierarchyNestingLevel [
-	<MSEProperty: #hierarchyNestingLevel type: #Number>
+	<FMProperty: #hierarchyNestingLevel type: #Number>
 	<derived>
-	<MSEComment: 'The nesting level in the hierarchy'>
+	<FMComment: 'The nesting level in the hierarchy'>
 	
 	^self
 		lookUpPropertyNamed: #hierarchyNestingLevel
@@ -99,8 +108,8 @@ FamixJavaMethod >> invokedBehaviours [
 
 { #category : #'Famix-Extensions' }
 FamixJavaMethod >> invokedMethods [
-	<MSEProperty: #invokedMethods type: #FamixJavaMethod> <derived> <multivalued>
-	<MSEComment: 'The methods invoked by the receiver'>
+	<FMProperty: #invokedMethods type: #FamixJavaMethod> <derived> <multivalued>
+	<FMComment: 'The methods invoked by the receiver'>
 	
 	^ self invokedBehaviours select: [ :each | each isMethod ]
 ]
@@ -112,8 +121,8 @@ FamixJavaMethod >> invokingBehaviours [
 
 { #category : #'Famix-Extensions' }
 FamixJavaMethod >> invokingMethods [
-	<MSEProperty: #invokingMethods type: #FamixJavaMethod> <derived> <multivalued>
-	<MSEComment: 'The methods invoking the receiver'>
+	<FMProperty: #invokingMethods type: #FamixJavaMethod> <derived> <multivalued>
+	<FMComment: 'The methods invoking the receiver'>
 
 	^ self invokingBehaviours select: [ :each | each isMethod ]
 ]
@@ -127,11 +136,29 @@ FamixJavaMethod >> isCalledInternally [
 
 { #category : #testing }
 FamixJavaMethod >> isClassInitializer [
-	<MSEProperty: #isClassInitializer type: #Boolean>
+	<FMProperty: #isClassInitializer type: #Boolean>
 	<derived>
-	<MSEComment: 'True if the method is an initializer of the class (i.e. contains the attribute init env)'>
+	<FMComment: 'True if the method is an initializer of the class (i.e. contains the attribute init env)'>
 	^ #initializer = self kind
 		or: [ self privateState propertyAt: #isClassInitializer ifAbsent: [ false ] ]
+]
+
+{ #category : #testing }
+FamixJavaMethod >> isConstant [
+	<FMProperty: #isConstant type: #Boolean>
+	<derived>
+	<FMComment: 'True if the method simply returns a constant'>
+	^#constant = self kind
+]
+
+{ #category : #testing }
+FamixJavaMethod >> isConstructor [
+	<FMProperty: #isConstructor type: #Boolean>
+	<derived>
+	<FMComment: 'True if the method is a constructor of the class'>
+
+	^ #constructor = self kind or: [ 
+		self privateState propertyAt: #isConstructor ifAbsent: [false] ]
 ]
 
 { #category : #testing }
@@ -149,27 +176,36 @@ FamixJavaMethod >> isDetectedSetter [
 ]
 
 { #category : #testing }
-FamixJavaMethod >> isImplementing [
-	<MSEProperty: #isImplementing type: #Boolean>
+FamixJavaMethod >> isGetter [
+	<FMProperty: #isGetter type: #Boolean>
 	<derived>
-	<MSEComment: 'The method is implementing a method defined in an interface'>
+	<FMComment: 'True if the method is a getter of an attribute'>
+	
+	^#getter = self kind
+]
+
+{ #category : #testing }
+FamixJavaMethod >> isImplementing [
+	<FMProperty: #isImplementing type: #Boolean>
+	<derived>
+	<FMComment: 'The method is implementing a method defined in an interface'>
 	^ self belongsTo directSuperclasses
 		anySatisfy: [ :each | each isInterface and: [ each understands: self signature ] ]
 ]
 
 { #category : #testing }
 FamixJavaMethod >> isJUnit4Test [
-	<MSEProperty: #isJUnit4Test type: #Boolean>
+	<FMProperty: #isJUnit4Test type: #Boolean>
 	<derived>
-	<MSEComment: 'True if the method is considered as a Junit 4 Java test'>
+	<FMComment: 'True if the method is considered as a Junit 4 Java test'>
 	^ self isAnnotatedWith: 'Test'
 ]
 
 { #category : #testing }
 FamixJavaMethod >> isOverriden [
-	<MSEProperty: #isOverriden type: #Boolean>
+	<FMProperty: #isOverriden type: #Boolean>
 	<derived>
-	<MSEComment: 'The method is overrided in a sub class'>
+	<FMComment: 'The method is overrided in a sub class'>
 	"If we have a stub and we don't have the container, we can't have the information"
 	(self belongsTo isNil and: [ self isStub ]) ifTrue: [ ^ false ].
 	
@@ -178,12 +214,21 @@ FamixJavaMethod >> isOverriden [
 
 { #category : #testing }
 FamixJavaMethod >> isOverriding [
-	<MSEProperty: #isOverriding type: #Boolean>
+	<FMProperty: #isOverriding type: #Boolean>
 	<derived>
-	<MSEComment: 'The method is overrinding a method defined in a super class'>
+	<FMComment: 'The method is overrinding a method defined in a super class'>
 	
 	^self belongsTo directSuperclasses anySatisfy: [:each | 
 		each isInterface not and: [each understands: self signature]]
+]
+
+{ #category : #testing }
+FamixJavaMethod >> isSetter [
+	<FMProperty: #isSetter type: #Boolean>
+	<derived>
+	<FMComment: 'True if the method is a setter on an attribute'>
+
+	^#setter = self kind
 ]
 
 { #category : #printing }
@@ -216,9 +261,9 @@ FamixJavaMethod >> isSurelyInvokedBy: aFAMIXMethod [
 
 { #category : #accessing }
 FamixJavaMethod >> numberOfAccesses [
-	<MSEProperty: #numberOfAccesses type: #Number>
+	<FMProperty: #numberOfAccesses type: #Number>
 	<derived>
-	<MSEComment: 'The number of accesses from a method'>
+	<FMComment: 'The number of accesses from a method'>
 	
 	^ self 
 		lookUpPropertyNamed: #numberOfAccesses
@@ -227,9 +272,9 @@ FamixJavaMethod >> numberOfAccesses [
 
 { #category : #metrics }
 FamixJavaMethod >> numberOfAnnotationInstances [
-	<MSEProperty: #numberOfAnnotationInstances type: #Number>
+	<FMProperty: #numberOfAnnotationInstances type: #Number>
 	<derived>
-	<MSEComment: 'The number of annotation instances defined in the method'>
+	<FMComment: 'The number of annotation instances defined in the method'>
 
 	^self
 		lookUpPropertyNamed: #numberOfAnnotationInstances
@@ -238,8 +283,8 @@ FamixJavaMethod >> numberOfAnnotationInstances [
 
 { #category : #accessing }
 FamixJavaMethod >> numberOfComments [
-	<MSEProperty: #numberOfComments type: #Number>
-	<MSEComment: 'The number of comment fragments'>
+	<FMProperty: #numberOfComments type: #Number>
+	<FMComment: 'The number of comment fragments'>
 	<derived>
 	^ self lookUpPropertyNamed: #numberOfComments computedAs: [ self comments size ]
 ]
@@ -252,8 +297,8 @@ FamixJavaMethod >> numberOfComments: aNumber [
 
 { #category : #'Famix-Extensions-private' }
 FamixJavaMethod >> numberOfConditionals [
-	<MSEProperty: #numberOfConditionals type: #Number>
-	<MSEComment: 'The number of conditionals in a method'>
+	<FMProperty: #numberOfConditionals type: #Number>
+	<FMComment: 'The number of conditionals in a method'>
 	^ self
 		lookUpPropertyNamed: #numberOfConditionals
 		computedAs: [ 
@@ -268,22 +313,48 @@ FamixJavaMethod >> numberOfConditionals: aNumber [
 
 { #category : #'Famix-Extensions' }
 FamixJavaMethod >> numberOfInvokedMethods [
-	<MSEProperty: #numberOfInvokedMethods type: #Number>
-	<MSEComment: 'Return a number corresponding to the number of invoked methods'>
+	<FMProperty: #numberOfInvokedMethods type: #Number>
+	<FMComment: 'Return a number corresponding to the number of invoked methods'>
 	<derived>
 	
 	^ self privateState propertyAt: #numberOfInvokedMethods ifAbsentPut: [self invokedMethods size]
 ]
 
+{ #category : #metrics }
+FamixJavaMethod >> numberOfMessageSends [
+	<FMProperty: #numberOfMessageSends type: #Number>
+	<derived>
+	<FMComment: 'The number of message from a method'>
+	^ self
+		lookUpPropertyNamed: #numberOfMessageSends
+		computedAs: [ self notExistentMetricValue ]
+]
+
 { #category : #'Famix-Extensions-private' }
 FamixJavaMethod >> numberOfOutgoingInvocations [
-	<MSEProperty: #numberOfOutgoingInvocations type: #Number>
+	<FMProperty: #numberOfOutgoingInvocations type: #Number>
 	<derived>
-	<MSEComment: 'The number of invocations in a method'>
+	<FMComment: 'The number of invocations in a method'>
 	
 	^self
 		lookUpPropertyNamed: #numberOfOutgoingInvocations
 		computedAs: [self outgoingInvocations size]
+]
+
+{ #category : #accessing }
+FamixJavaMethod >> numberOfParameters [
+	<FMProperty: #numberOfParameters type: #Number>
+	<FMComment: 'The number of parameters in a method'>
+	<derived>
+	^ self lookUpPropertyNamed: #numberOfParameters computedAs: [ self parameters size ]
+]
+
+{ #category : #metrics }
+FamixJavaMethod >> numberOfStatements [
+	<FMProperty: #numberOfStatements type: #Number>
+	<derived>
+	<FMComment: 'The number of statements in a class'>
+	^ self lookUpPropertyNamed: #numberOfStatements computedAs: [ (self toScope: FamixTWithStatements) detectSum: #numberOfStatements ]
 ]
 
 { #category : #'Famix-Implementation' }
@@ -308,8 +379,8 @@ FamixJavaMethod >> printOn: aStream [
 
 { #category : #'Famix-Extensions' }
 FamixJavaMethod >> providerBehaviours [
-	<MSEProperty: #providerBehaviours type: #FamixJavaMethod> <derived> <multivalued>
-	<MSEComment: 'All behaviours that the receiver depends on'>
+	<FMProperty: #providerBehaviours type: #FamixJavaMethod> <derived> <multivalued>
+	<FMComment: 'All behaviours that the receiver depends on'>
 
 	^ self invokedBehaviours 
 ]

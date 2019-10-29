@@ -6,7 +6,7 @@ Trait {
 { #category : #meta }
 FamixTUnknownSourceLanguage classSide >> annotation [
 
-	<MSEClass: #TUnknownSourceLanguage super: #Object>
+	<FMClass: #TUnknownSourceLanguage super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

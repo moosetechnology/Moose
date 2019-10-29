@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXNamespace class >> annotation [
 
-	<MSEClass: #Namespace super: #FAMIXScopingEntity>
+	<FMClass: #Namespace super: #FAMIXScopingEntity>
 	<package: #FAMIX>
 	<generated>
 	^self
@@ -37,9 +37,9 @@ FAMIXNamespace >> allParentsUpTo: aNamespace [
 FAMIXNamespace >> bunchCohesion [
 	"Computing cohesion (Bunch formula)"
 
-	<MSEProperty: #bunchCohesion type: #Number>
+	<FMProperty: #bunchCohesion type: #Number>
 	<derived>
-	<MSEComment: 'Bunch Cohesion of a namespace. It is also considered anonymous and inner classes.'>
+	<FMComment: 'Bunch Cohesion of a namespace. It is also considered anonymous and inner classes.'>
 	| myClasses intraConnectivities |
 	(myClasses := self classes) union: (myClasses flatCollect: [ :c | c allRecursiveTypes ]).
 	myClasses size == 0
@@ -115,9 +115,9 @@ FAMIXNamespace >> containedEntities: collection [
 { #category : #'Famix-Extensions-metrics' }
 FAMIXNamespace >> distance [
 	"D = A + I - 1. A package should be balanced between abstractness and instability, i.e., somewhere between abstract and stable or concrete and unstable. This rule defines the main sequence by the equation A + I - 1 = 0. D is the distance to the main sequence."
-	<MSEProperty: #distance type: #Number>
+	<FMProperty: #distance type: #Number>
 	<derived>
-	<MSEComment: 'Distance of a namespace'>
+	<FMComment: 'Distance of a namespace'>
 
 	| abstractness instability |
 	abstractness := self abstractness.
@@ -175,9 +175,9 @@ FAMIXNamespace >> numberOfAttributes [
 "	<property: #NOA longName: 'Number of attributes' description:
 			'The number of attributes in a namespace'>"
 
-	<MSEProperty: #numberOfAttributes type: #Number>
+	<FMProperty: #numberOfAttributes type: #Number>
 	<derived>
-	<MSEComment: 'The number of attributes in a namespace'>
+	<FMComment: 'The number of attributes in a namespace'>
 	
 	^ self
 		lookUpPropertyNamed: #numberOfAttributes
@@ -192,9 +192,9 @@ FAMIXNamespace >> numberOfAttributes: aNumber [
 
 { #category : #'Famix-Extensions' }
 FAMIXNamespace >> numberOfClasses [
-	<MSEProperty: #numberOfClasses type: #Number>
+	<FMProperty: #numberOfClasses type: #Number>
 	<derived>
-	<MSEComment: 'The number of classes in a namespace'>
+	<FMComment: 'The number of classes in a namespace'>
 	
 	^self
 		lookUpPropertyNamed: #numberOfClasses
@@ -209,9 +209,9 @@ FAMIXNamespace >> numberOfClasses: aNumber [
 
 { #category : #'Famix-Extensions' }
 FAMIXNamespace >> numberOfLinesOfCode [
-	<MSEProperty: #numberOfLinesOfCode type: #Number>
+	<FMProperty: #numberOfLinesOfCode type: #Number>
 	<derived>
-	<MSEComment: 'The number of lines of code in a namespace'>
+	<FMComment: 'The number of lines of code in a namespace'>
 	
 	^self
 		lookUpPropertyNamed: #numberOfLinesOfCode
@@ -228,9 +228,9 @@ FAMIXNamespace >> numberOfLinesOfCode: aNumber [
 
 { #category : #'Famix-Extensions' }
 FAMIXNamespace >> numberOfMethods [
-	<MSEProperty: #numberOfMethods type: #Number>
+	<FMProperty: #numberOfMethods type: #Number>
 	<derived>
-	<MSEComment: 'The number of methods in a namespace'>
+	<FMComment: 'The number of methods in a namespace'>
 	
 	^self
 		lookUpPropertyNamed: #numberOfMethods
@@ -245,9 +245,9 @@ FAMIXNamespace >> numberOfMethods: aNumber [
 
 { #category : #'Famix-Extensions-metrics' }
 FAMIXNamespace >> numberOfNonInterfacesClasses [
-	<MSEProperty: #numberOfNonInterfacesClasses type: #Number>
+	<FMProperty: #numberOfNonInterfacesClasses type: #Number>
 	<derived>
-	<MSEComment: 'The number of non interfaces classes in a namespace'>
+	<FMComment: 'The number of non interfaces classes in a namespace'>
 	
 	^self
 		lookUpPropertyNamed: #numberOfNonInterfacesClasses

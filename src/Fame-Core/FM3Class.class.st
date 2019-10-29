@@ -26,7 +26,7 @@ Class {
 
 { #category : #meta }
 FM3Class class >> annotation [
-	<MSEClass: #Class super: #FM3Element>
+	<FMClass: #Class super: #FM3Element>
 	<package: #FM3>
 
 ]
@@ -63,7 +63,7 @@ FM3Class >> allPrimitiveProperties [
 
 { #category : #'accessing-query' }
 FM3Class >> allProperties [
-	<MSEProperty: #allProperties type: 'FM3.Property'>
+	<FMProperty: #allProperties type: 'FM3.Property'>
 	<multivalued>
 	<derived>
 	| nameDict |
@@ -217,7 +217,7 @@ FM3Class >> initialize [
 
 { #category : #accessing }
 FM3Class >> isAbstract [
-	<MSEProperty: #abstract type: #Boolean>
+	<FMProperty: #abstract type: #Boolean>
 	^ isAbstract
 ]
 
@@ -243,14 +243,14 @@ FM3Class >> isFM3Class [
 
 { #category : #testing }
 FM3Class >> isPrimitive [
-	<MSEProperty: #primitive type: #Boolean>
+	<FMProperty: #primitive type: #Boolean>
 	<derived>
 	^ false
 ]
 
 { #category : #testing }
 FM3Class >> isRoot [
-	<MSEProperty: #root type: #Boolean>
+	<FMProperty: #root type: #Boolean>
 	<derived>
 	^ false
 ]
@@ -267,7 +267,7 @@ FM3Class >> ownerProperties [
 
 { #category : #accessing }
 FM3Class >> package [
-	<MSEProperty: #package type: #FM3Package opposite: #classes>
+	<FMProperty: #package type: #FM3Package opposite: #classes>
 	<container>
 	^ package
 ]
@@ -288,7 +288,7 @@ FM3Class >> primitiveProperties [
 
 { #category : #accessing }
 FM3Class >> properties [
-	<MSEProperty: #properties type: 'FM3.Property' opposite: #class>
+	<FMProperty: #properties type: 'FM3.Property' opposite: #class>
 	<multivalued>
 	^ properties
 ]
@@ -317,7 +317,7 @@ FM3Class >> propertyNamed: aString ifAbsent: aBlock [
 
 { #category : #accessing }
 FM3Class >> subclasses [ 
-	<MSEProperty: #subclasses type: #FM3Class opposite: #superclass>
+	<FMProperty: #subclasses type: #FM3Class opposite: #superclass>
 	<derived>
 	<multivalued>
 	^subclasses
@@ -330,7 +330,7 @@ FM3Class >> subclasses: anObject [
 
 { #category : #accessing }
 FM3Class >> superclass [
-	<MSEProperty: #superclass type: #FM3Class opposite: #subclasses>
+	<FMProperty: #superclass type: #FM3Class opposite: #subclasses>
 	^ superclass
 ]
 
@@ -345,7 +345,7 @@ FM3Class >> superclass: newClass [
 
 { #category : #accessing }
 FM3Class >> traits [
-	<MSEProperty: #traits type: #FM3Class>
+	<FMProperty: #traits type: #FM3Class>
 	<multivalued>
 	^ traits
 ]

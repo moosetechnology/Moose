@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXAbstractFileAnchor class >> annotation [
 
-	<MSEClass: #AbstractFileAnchor super: #FAMIXSourceAnchor>
+	<FMClass: #AbstractFileAnchor super: #FAMIXSourceAnchor>
 	<package: #FAMIX>
 	<generated>
 	^self
@@ -23,14 +23,21 @@ FAMIXAbstractFileAnchor >> <= aFileAnchor [
 { #category : #'Famix-File' }
 FAMIXAbstractFileAnchor >> correspondingFile [
 	"file pointed to by this source anchor, ideally this value should never be nil for file-based systems"
-	<MSEProperty: #correspondingFile type: #FAMIXFile>
-	<MSEComment: 'File associated to this source anchor'>
+	<FMProperty: #correspondingFile type: #FAMIXFile>
+	<FMComment: 'File associated to this source anchor'>
 	^ self privateState attributeAt: #correspondingFile ifAbsent: [ nil ]
 ]
 
 { #category : #'Famix-File' }
 FAMIXAbstractFileAnchor >> correspondingFile: aFAMIXFile [
 	self privateState attributeAt: #correspondingFile put: aFAMIXFile
+]
+
+{ #category : #accessing }
+FAMIXAbstractFileAnchor >> encoding [
+	<FMProperty: #encoding type: #String>
+	<FMComment: 'A string representing the encoding of a file'>
+	^ encoding ifNil: [ encoding := self detectEncoding ]
 ]
 
 { #category : #'Moose-Finder' }

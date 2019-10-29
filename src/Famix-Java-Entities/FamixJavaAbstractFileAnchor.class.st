@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaAbstractFileAnchor class >> annotation [
 
-	<MSEClass: #AbstractFileAnchor super: #FamixJavaSourceAnchor>
+	<FMClass: #AbstractFileAnchor super: #FamixJavaSourceAnchor>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
@@ -18,6 +18,13 @@ FamixJavaAbstractFileAnchor class >> annotation [
 { #category : #'as yet unclassified' }
 FamixJavaAbstractFileAnchor >> <= aFileAnchor [
 	^ self fileName <= aFileAnchor fileName
+]
+
+{ #category : #accessing }
+FamixJavaAbstractFileAnchor >> encoding [
+	<FMProperty: #encoding type: #String>
+	<FMComment: 'A string representing the encoding of a file'>
+	^ encoding ifNil: [ encoding := self detectEncoding ]
 ]
 
 { #category : #'as yet unclassified' }

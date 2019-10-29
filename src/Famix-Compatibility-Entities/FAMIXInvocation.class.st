@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXInvocation class >> annotation [
 
-	<MSEClass: #Invocation super: #FAMIXAssociation>
+	<FMClass: #Invocation super: #FAMIXAssociation>
 	<package: #FAMIX>
 	<generated>
 	^self

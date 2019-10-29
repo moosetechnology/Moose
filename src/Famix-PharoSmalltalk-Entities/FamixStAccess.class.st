@@ -9,10 +9,35 @@ Class {
 { #category : #meta }
 FamixStAccess class >> annotation [
 
-	<MSEClass: #Access super: #FamixStAssociation>
+	<FMClass: #Access super: #FamixStAssociation>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
+]
+
+{ #category : #accessing }
+FamixStAccess >> isRead [
+	<FMProperty: #isRead type: #Boolean> <derived>
+	<FMComment: 'Read access'>
+	
+	^ isWrite isNil ifTrue: [ false ] ifFalse: [ isWrite not ]
+]
+
+{ #category : #accessing }
+FamixStAccess >> isReadWriteUnknown [
+	<FMProperty: #isReadWriteUnknown type: #Boolean> <derived>
+	<FMComment: ''>
+	
+	^ isWrite isNil
+]
+
+{ #category : #accessing }
+FamixStAccess >> isWrite [
+
+	<FMProperty: #isWrite type: #Boolean> 
+	<derived>
+	<FMComment: 'Write access'>
+	^ isWrite ifNil: [ false ]
 ]
 
 { #category : #'as yet unclassified' }

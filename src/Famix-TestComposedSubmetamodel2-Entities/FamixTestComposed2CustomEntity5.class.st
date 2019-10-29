@@ -9,8 +9,16 @@ Class {
 { #category : #meta }
 FamixTestComposed2CustomEntity5 class >> annotation [
 
-	<MSEClass: #CustomEntity5 super: #FamixTestComposed2Entity>
+	<FMClass: #CustomEntity5 super: #FamixTestComposed2Entity>
 	<package: #'Famix-TestComposedSubmetamodel2-Entities'>
 	<generated>
 	^self
+]
+
+{ #category : #accessing }
+FamixTestComposed2CustomEntity5 >> numberOfChildren [
+	<FMProperty: #numberOfChildren type: #Number>
+	<FMComment: 'Number of direct children entities in the containment tree.'>
+	<derived>
+	^ self isContainerEntity ifTrue: [ self children size ] ifFalse: [ 0 ]
 ]

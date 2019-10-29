@@ -32,7 +32,7 @@ Class {
 
 { #category : #meta }
 FM3Property class >> annotation [
-	<MSEClass: #Property super: #FM3Element>
+	<FMClass: #Property super: #FM3Element>
 	<package: #FM3>
 
 ]
@@ -107,14 +107,14 @@ FM3Property >> initialize [
 
 { #category : #testing }
 FM3Property >> isChildrenProperty [
-	<MSEProperty: #composite type: #Boolean>
+	<FMProperty: #composite type: #Boolean>
 	<derived>
 	^ self hasOpposite and: [ self opposite isContainer ]
 ]
 
 { #category : #accessing }
 FM3Property >> isContainer [
-	<MSEProperty: #container type: #Boolean>
+	<FMProperty: #container type: #Boolean>
 	^isContainer
 ]
 
@@ -125,7 +125,7 @@ FM3Property >> isContainer: anObject [
 
 { #category : #accessing }
 FM3Property >> isDerived [
-	<MSEProperty: #derived type: #Boolean>
+	<FMProperty: #derived type: #Boolean>
 	^isDerived
 ]
 
@@ -146,7 +146,7 @@ FM3Property >> isFM3Property [
 
 { #category : #accessing }
 FM3Property >> isMultivalued [
-	<MSEProperty: #multivalued type: #Boolean>
+	<FMProperty: #multivalued type: #Boolean>
 	^isMultivalued
 ]
 
@@ -177,7 +177,7 @@ FM3Property >> isTarget: anObject [
 
 { #category : #accessing }
 FM3Property >> mmClass [
-	<MSEProperty: #class type: #FM3Class opposite: #properties>
+	<FMProperty: #class type: #FM3Class opposite: #properties>
 	<container>
 	
 	^class 
@@ -193,7 +193,7 @@ FM3Property >> mmClass: newClass [
 
 { #category : #accessing }
 FM3Property >> opposite [
-	<MSEProperty: #opposite type: 'FM3.Property' opposite: #opposite>
+	<FMProperty: #opposite type: 'FM3.Property' opposite: #opposite>
 	
 	^opposite 
 ]
@@ -216,7 +216,7 @@ FM3Property >> owner [
 
 { #category : #accessing }
 FM3Property >> package [
-	<MSEProperty: #package type: #FM3Package opposite: #extensions>
+	<FMProperty: #package type: #FM3Package opposite: #extensions>
 	self flag: 'Must return null when not an extensions method.'.
 	^ package
 ]
@@ -255,7 +255,7 @@ FM3Property >> setOn: element values: array [
 
 { #category : #accessing }
 FM3Property >> type [
-	<MSEProperty: #type type: #FM3Class>
+	<FMProperty: #type type: #FM3Class>
 	^type
 ]
 
