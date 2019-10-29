@@ -107,10 +107,24 @@ TDependencyQueryResult >> selectDependencies: aConditionBlock [
 	^ self newAssocResultWith: (self storage select: aConditionBlock )
 ]
 
-{ #category : #filtering }
-TDependencyQueryResult >> sourceMethods [
-	
-	^ self collectAsSet: #from
+{ #category : #accessing }
+TDependencyQueryResult >> sources [
+	^ (self collectAsSet: #from) flattened
+]
+
+{ #category : #accessing }
+TDependencyQueryResult >> sourcesAtScope: aFamixTraitOrClass [
+	^ self sources flatCollectAsSet: [ :e | e atScope: aFamixTraitOrClass ]
+]
+
+{ #category : #accessing }
+TDependencyQueryResult >> targets [
+	^ (self collectAsSet: #to) flattened
+]
+
+{ #category : #accessing }
+TDependencyQueryResult >> targetsAtScope: aTraitOrClass [
+	^ self targets flatCollectAsSet: [ :e | e atScope: aTraitOrClass ]
 ]
 
 { #category : #filtering }
