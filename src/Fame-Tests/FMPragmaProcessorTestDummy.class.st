@@ -6,11 +6,11 @@ Class {
 
 { #category : #meta }
 FMPragmaProcessorTestDummy class >> annotation [
-	<MSEClass: #FMAnnotationTest super: #Object>
+	<FMClass: #FMAnnotationTest super: #Object>
 ]
 
 { #category : #'as yet unclassified' }
 FMPragmaProcessorTestDummy >> simpleProperty [
-	<MSEProperty: #aPropertyName type: #Boolean>
+	<FMProperty: #aPropertyName type: #Boolean>
 
 ]

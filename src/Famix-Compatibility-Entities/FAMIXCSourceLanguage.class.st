@@ -7,7 +7,7 @@ Class {
 { #category : #meta }
 FAMIXCSourceLanguage class >> annotation [
 
-	<MSEClass: #CSourceLanguage super: #FAMIXSourceLanguage>
+	<FMClass: #CSourceLanguage super: #FAMIXSourceLanguage>
 	<package: #FAMIX>
 	<generated>
 	^self

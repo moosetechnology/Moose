@@ -119,7 +119,7 @@ MooseEntity class >> allPropertySelectorsComputableIn: aMooseModel [
 
 { #category : #meta }
 MooseEntity class >> annotation [
-	<MSEClass: #Entity super: #Object>
+	<FMClass: #Entity super: #Object>
 	<package: #Moose>
 	<abstract>
 ]

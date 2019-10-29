@@ -9,7 +9,7 @@ Class {
 
 { #category : #meta }
 EQOperator class >> annotation [
-	<MSEClass: #Operator super: #Object>
+	<FMClass: #Operator super: #Object>
 	<package: #EQ>
 ]
 
@@ -21,7 +21,7 @@ EQOperator >> printOn: stream [
 
 { #category : #accessing }
 EQOperator >> symbol [
-	<MSEProperty: #symbol type: #String>
+	<FMProperty: #symbol type: #String>
 	^symbol
 ]
 

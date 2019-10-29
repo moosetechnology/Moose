@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixStLocalVariable class >> annotation [
 
-	<MSEClass: #LocalVariable super: #FamixStNamedEntity>
+	<FMClass: #LocalVariable super: #FamixStNamedEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self

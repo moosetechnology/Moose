@@ -16,7 +16,7 @@ FameOppositeClassNotExistRule class >> uniqueIdentifierName [
 FameOppositeClassNotExistRule >> checkMethod: aContext [
 	| class |
 	class := aContext methodClass.
-	((class methodNamed: aContext selector) pragmaAt: #MSEProperty:type:opposite:)
+	((class methodNamed: aContext selector) pragmaAt: #FMProperty:type:opposite:)
 		ifNotNil: [ :pragma | self class environment at: (pragma argumentAt: 2) ifPresent: [ :oppositeClass | result addClass: class selector: aContext selector ] ]
 ]
 

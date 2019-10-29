@@ -54,7 +54,7 @@ FMAbstractCodeGenerator >> acceptFameProperty: fameProperty [
 FMAbstractCodeGenerator >> annotationStringForProperty: property [
 	| ann |
 	self assert: property type isNotNil.
-	ann := '%<MSEProperty: <1s> type: <2s>' expandMacrosWith: property name asSymbol printString with: (self classNameFor: property type) printString.
+	ann := '%<FMProperty: <1s> type: <2s>' expandMacrosWith: property name asSymbol printString with: (self classNameFor: property type) printString.
 	property hasOpposite ifTrue: [ ann := ann , ' opposite: ' , (self oppositeNameFor: property) printString ].
 	ann := ann , '>'.
 	property isMultivalued ifTrue: [ ann := ann , ' <multivalued>' ].
@@ -102,7 +102,7 @@ FMAbstractCodeGenerator >> compileClass: fameClass superclass: rbSuperclass [
 FMAbstractCodeGenerator >> compileClassAnnotation: fameClass [
 	| annotationString |
 	annotationString := ('annotation<n>',
-		'<t>%<MSEClass: <1p>',
+		'<t>%<FMClass: <1p>',
 		' super: <2p>><n>',
 		'<t>%<package: <3p>><n><t>',
 		(fameClass isAbstract ifTrue: [ '%<abstract><n><t>' ] ifFalse: ['']))

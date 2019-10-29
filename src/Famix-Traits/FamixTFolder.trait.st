@@ -14,7 +14,7 @@ Trait {
 { #category : #meta }
 FamixTFolder classSide >> annotation [
 
-	<MSEClass: #TFolder super: #Object>
+	<FMClass: #TFolder super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -60,7 +60,7 @@ FamixTFolder >> childrenFileSystemEntities [
 	"Relation named: #childrenFileSystemEntities type: #FamixTFileSystemEntity opposite: #parentFolder"
 
 	<generated>
-	<MSEComment: 'List of entities contained in this folder.'>
+	<FMComment: 'List of entities contained in this folder.'>
 	<derived>
 	^ childrenFileSystemEntities
 ]
@@ -102,8 +102,8 @@ FamixTFolder >> isFolder [
 
 { #category : #properties }
 FamixTFolder >> numberOfEmptyLinesOfText [
-	<MSEProperty: #numberOfEmptyLinesOfText type: #Number>
-	<MSEComment: 'Number of empty lines of text'>
+	<FMProperty: #numberOfEmptyLinesOfText type: #Number>
+	<FMComment: 'Number of empty lines of text'>
 	<derived>
 	^ self lookUpPropertyNamed: #numberOfEmptyLinesOfText computedAs: [ 
 		self files, self folders sumNumbers: #numberOfEmptyLinesOfText
@@ -112,8 +112,8 @@ FamixTFolder >> numberOfEmptyLinesOfText [
 
 { #category : #properties }
 FamixTFolder >> numberOfFiles [
-	<MSEProperty: #numberOfFiles type: #Number>
-	<MSEComment: 'The number of files in a folder'>
+	<FMProperty: #numberOfFiles type: #Number>
+	<FMComment: 'The number of files in a folder'>
 	<derived>
 	^self
 		lookUpPropertyNamed: #numberOfFiles
@@ -122,8 +122,8 @@ FamixTFolder >> numberOfFiles [
 
 { #category : #properties }
 FamixTFolder >> numberOfFolders [
-	<MSEProperty: #numberOfFolders type: #Number>
-	<MSEComment: 'The number of folders in a folder'>
+	<FMProperty: #numberOfFolders type: #Number>
+	<FMComment: 'The number of folders in a folder'>
 	<derived>
 	^self
 		lookUpPropertyNamed: #numberOfFolders
@@ -132,8 +132,8 @@ FamixTFolder >> numberOfFolders [
 
 { #category : #properties }
 FamixTFolder >> totalNumberOfLinesOfText [
-	<MSEProperty: #totalNumberOfLinesOfText type: #Number>
-	<MSEComment: 'Number of lines of text'>
+	<FMProperty: #totalNumberOfLinesOfText type: #Number>
+	<FMComment: 'Number of lines of text'>
 	<derived>
 	^ self
 		lookUpPropertyNamed: #totalNumberOfLinesOfText

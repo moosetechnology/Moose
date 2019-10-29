@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXFile class >> annotation [
 
-	<MSEClass: #File super: #FAMIXNamedEntity>
+	<FMClass: #File super: #FAMIXNamedEntity>
 	<package: #FAMIX>
 	<generated>
 	^self

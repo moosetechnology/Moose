@@ -186,7 +186,7 @@ FmxMBBehavior >> generateAnnotationIn: aRealClass as: aName superclass: aSupercl
 		compile:
 			('annotation
 
-	<MSEClass: #{1} super: #{2}>
+	<FMClass: #{1} super: #{2}>
 	<package: {3}>
 	<generated>
 	^self' format: {aName . aSuperclassName . self builder safeAnnotationPackageName})

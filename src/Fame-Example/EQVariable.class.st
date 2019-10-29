@@ -9,14 +9,14 @@ Class {
 
 { #category : #meta }
 EQVariable class >> annotation [
-	<MSEClass: #Variable super: #EQSimple>
+	<FMClass: #Variable super: #EQSimple>
 	<package: #EQ>
 	<abstract>
 ]
 
 { #category : #Fame }
 EQVariable >> identifier [
-	<MSEProperty: #identifier type: #EQIdentifier>
+	<FMProperty: #identifier type: #EQIdentifier>
 	^identifier
 ]
 

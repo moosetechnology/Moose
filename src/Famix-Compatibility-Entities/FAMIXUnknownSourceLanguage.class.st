@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXUnknownSourceLanguage class >> annotation [
 
-	<MSEClass: #UnknownSourceLanguage super: #FAMIXSourceLanguage>
+	<FMClass: #UnknownSourceLanguage super: #FAMIXSourceLanguage>
 	<package: #FAMIX>
 	<generated>
 	^self

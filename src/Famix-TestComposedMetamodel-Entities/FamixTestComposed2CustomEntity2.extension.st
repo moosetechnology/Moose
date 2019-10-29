@@ -5,7 +5,7 @@ FamixTestComposed2CustomEntity2 >> c12 [
 	"Relation named: #c12 type: #FamixTestComposed1CustomEntity2 opposite: #c22s"
 
 	<generated>
-	<MSEProperty: #c12 type: #FamixTestComposed1CustomEntity2 opposite: #c22s>
+	<FMProperty: #c12 type: #FamixTestComposed1CustomEntity2 opposite: #c22s>
 	<package: #'Famix-TestComposedMetamodel-Entities'>
 	^ self privateState attributeAt: #c12 ifAbsent: [ nil ]
 ]
@@ -22,7 +22,7 @@ FamixTestComposed2CustomEntity2 >> c2 [
 	"Relation named: #c2 type: #FamixTestComposedCustomEntity2 opposite: #c22s"
 
 	<generated>
-	<MSEProperty: #c2 type: #FamixTestComposedCustomEntity2 opposite: #c22s>
+	<FMProperty: #c2 type: #FamixTestComposedCustomEntity2 opposite: #c22s>
 	<package: #'Famix-TestComposedMetamodel-Entities'>
 	^ self privateState attributeAt: #c2 ifAbsent: [ nil ]
 ]

@@ -50,7 +50,7 @@ FM3Class >> attributeNamed: arg1 ifAbsent: arg2 [
 
 { #category : #'*Famix-Deprecated' }
 FM3Class >> attributes [
-	<MSEProperty: #attributes type: 'FM3.Property'>
+	<FMProperty: #attributes type: 'FM3.Property'>
 	<multivalued>
 	self deprecated: 'Use #properties instead.' transformWith: '``@object attributes' -> '``@object properties'.
 	^ self properties

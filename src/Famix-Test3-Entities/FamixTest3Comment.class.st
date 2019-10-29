@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixTest3Comment class >> annotation [
 
-	<MSEClass: #Comment super: #FamixTest3SourcedEntity>
+	<FMClass: #Comment super: #FamixTest3SourcedEntity>
 	<package: #'Famix-Test3-Entities'>
 	<generated>
 	^self

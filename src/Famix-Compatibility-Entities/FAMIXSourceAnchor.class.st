@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXSourceAnchor class >> annotation [
 
-	<MSEClass: #SourceAnchor super: #FAMIXEntity>
+	<FMClass: #SourceAnchor super: #FAMIXEntity>
 	<package: #FAMIX>
 	<generated>
 	^self
@@ -47,9 +47,9 @@ FAMIXSourceAnchor >> isFile [
 FAMIXSourceAnchor >> lineCount [
 	"I should return the number of line in the source text of the entity."
 
-	<MSEProperty: #lineCount type: #Number>
+	<FMProperty: #lineCount type: #Number>
 	<derived>
-	<MSEComment: 'The number of lines in the source text'>
+	<FMComment: 'The number of lines in the source text'>
 	^ self subclassResponsibility
 ]
 

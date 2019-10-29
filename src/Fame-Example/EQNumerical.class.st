@@ -9,14 +9,14 @@ Class {
 
 { #category : #meta }
 EQNumerical class >> annotation [
-	<MSEClass: #Numerical super: #EQSimple>
+	<FMClass: #Numerical super: #EQSimple>
 	<package: #EQ>
 	<abstract>
 ]
 
 { #category : #accessing }
 EQNumerical >> number [
-	<MSEProperty: #number type: #Number>
+	<FMProperty: #number type: #Number>
 	^number
 ]
 

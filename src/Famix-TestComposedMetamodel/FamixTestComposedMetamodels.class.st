@@ -65,7 +65,7 @@ FamixTestComposedMetamodels >> testGenerationOfComposedMetamodel [
 	self
 		assert:
 			(((env ask behaviorNamed: #FamixTestComposedCustomEntity1) methodNamed: #customEntity1) sourceCode
-				includesSubstring: '<MSEProperty: #customEntity1 type: #FamixTestComposed1CustomEntity1 opposite: #customEntity1>')
+				includesSubstring: '<FMProperty: #customEntity1 type: #FamixTestComposed1CustomEntity1 opposite: #customEntity1>')
 ]
 
 { #category : #running }

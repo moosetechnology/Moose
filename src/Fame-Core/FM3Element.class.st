@@ -15,7 +15,7 @@ Class {
 
 { #category : #meta }
 FM3Element class >> annotation [
-	<MSEClass: #Element super: #Object>
+	<FMClass: #Element super: #Object>
 	<package: #FM3>
 	<abstract>
 
@@ -40,7 +40,7 @@ FM3Element >> accept: arg1 [
 
 { #category : #accessing }
 FM3Element >> fullName [
-	<MSEProperty: #fullName type: #String>
+	<FMProperty: #fullName type: #String>
 	<derived>
 	self name ifNil: [ ^ nil ].
 
@@ -57,7 +57,7 @@ FM3Element >> hasOwner [
 
 { #category : #accessing }
 FM3Element >> name [
-	<MSEProperty: #name type: #String>
+	<FMProperty: #name type: #String>
 	^name 
 ]
 
@@ -68,7 +68,7 @@ FM3Element >> name: aString [
 
 { #category : #accessing }
 FM3Element >> owner [
-	<MSEProperty: #owner type: #FM3Element>
+	<FMProperty: #owner type: #FM3Element>
 	<derived>
 	^ self subclassResponsibility
 ]

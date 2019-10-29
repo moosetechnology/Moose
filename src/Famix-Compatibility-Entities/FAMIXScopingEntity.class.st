@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXScopingEntity class >> annotation [
 
-	<MSEClass: #ScopingEntity super: #FAMIXContainerEntity>
+	<FMClass: #ScopingEntity super: #FAMIXContainerEntity>
 	<package: #FAMIX>
 	<generated>
 	^self

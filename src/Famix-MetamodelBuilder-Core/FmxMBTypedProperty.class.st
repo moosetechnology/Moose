@@ -26,11 +26,11 @@ FmxMBTypedProperty >> generateGetterIn: aClassOrTrait [
 
 	| methodSource propertyDefinition commentDefinition |
 
-	propertyDefinition := '<MSEProperty: #{1} type: #{2}>' 
+	propertyDefinition := '<FMProperty: #{1} type: #{2}>' 
 		format: { self name. self propertyType }.
 
 	commentDefinition := self comment
-		ifNotEmpty: [ '<MSEComment: {1}>' format: { self comment printString } ].
+		ifNotEmpty: [ '<FMComment: {1}>' format: { self comment printString } ].
 
 	methodSource := String streamContents: [ :s |
 		s nextPutAll: self name; cr; cr.

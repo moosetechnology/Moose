@@ -12,7 +12,7 @@ FamixTestComposedComposedModel class >> allSubmetamodelsPackagesNames [
 
 { #category : #meta }
 FamixTestComposedComposedModel class >> annotation [
-	<MSEClass: #FamixTestComposedComposedModel super: #MooseModel>
+	<FMClass: #FamixTestComposedComposedModel super: #MooseModel>
 	<package: #'Famix-TestComposedComposedMetamodel-Entities'>
 	<generated>
 ]

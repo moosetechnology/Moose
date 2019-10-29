@@ -12,7 +12,7 @@ FamixStModel class >> allSubmetamodelsPackagesNames [
 
 { #category : #meta }
 FamixStModel class >> annotation [
-	<MSEClass: #FamixStModel super: #MooseModel>
+	<FMClass: #FamixStModel super: #MooseModel>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 ]

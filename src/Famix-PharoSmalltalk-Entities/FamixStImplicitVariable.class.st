@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixStImplicitVariable class >> annotation [
 
-	<MSEClass: #ImplicitVariable super: #FamixStNamedEntity>
+	<FMClass: #ImplicitVariable super: #FamixStNamedEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self

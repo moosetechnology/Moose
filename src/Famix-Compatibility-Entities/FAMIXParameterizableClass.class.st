@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXParameterizableClass class >> annotation [
 
-	<MSEClass: #ParameterizableClass super: #FAMIXClass>
+	<FMClass: #ParameterizableClass super: #FAMIXClass>
 	<package: #FAMIX>
 	<generated>
 	^self
@@ -17,8 +17,8 @@ FAMIXParameterizableClass class >> annotation [
 
 { #category : #generated }
 FAMIXParameterizableClass >> parameters [
-	<MSEProperty: #parameters type: #FAMIXParameterType> <multivalued> <derived>
-	<MSEComment: 'Parameter types of this class.'>
+	<FMProperty: #parameters type: #FAMIXParameterType> <multivalued> <derived>
+	<FMComment: 'Parameter types of this class.'>
 	
 	^self types select: [:each | each isParameterType]
 ]
