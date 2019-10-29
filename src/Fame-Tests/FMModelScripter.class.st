@@ -1,5 +1,5 @@
 Class {
-	#name : #FMModelBuilder,
+	#name : #FMModelScripter,
 	#superclass : #Object,
 	#instVars : [
 		'client'
@@ -8,32 +8,32 @@ Class {
 }
 
 { #category : #'instance creation' }
-FMModelBuilder class >> client: aClient [
+FMModelScripter class >> client: aClient [
 	^ self new
 		client: aClient;
 		yourself
 ]
 
 { #category : #'DSL-synonyms' }
-FMModelBuilder >> a: attributeName of: valueOrBodyOrArray [
+FMModelScripter >> a: attributeName of: valueOrBodyOrArray [
 	
 	self attribute: attributeName with: valueOrBodyOrArray
 ]
 
 { #category : #'DSL-synonyms' }
-FMModelBuilder >> add: attributeName with: valueOrBodyOrArray [
+FMModelScripter >> add: attributeName with: valueOrBodyOrArray [
 	
 	self attribute: attributeName with: valueOrBodyOrArray
 ]
 
 { #category : #'DSL-synonyms' }
-FMModelBuilder >> an: attributeName of: valueOrBodyOrArray [
+FMModelScripter >> an: attributeName of: valueOrBodyOrArray [
 	
 	self attribute: attributeName with: valueOrBodyOrArray
 ]
 
 { #category : #DSL }
-FMModelBuilder >> attribute: attributeName with: variant [
+FMModelScripter >> attribute: attributeName with: variant [
 	"Adds an attribute with primitive value or array, or with given body."
 
 	client
@@ -44,42 +44,42 @@ FMModelBuilder >> attribute: attributeName with: variant [
 ]
 
 { #category : #accessing }
-FMModelBuilder >> client [
+FMModelScripter >> client [
 	^ client
 ]
 
 { #category : #accessing }
-FMModelBuilder >> client: parseClient [ 
+FMModelScripter >> client: parseClient [ 
 	client := parseClient
 ]
 
 { #category : #DSL }
-FMModelBuilder >> document: body [
+FMModelScripter >> document: body [
 	"Creates a document with body (which is a block)."
 
 	client inDocumentDo: [ body valueWithPossibleArgument: self ]
 ]
 
 { #category : #DSL }
-FMModelBuilder >> element: elementName with: body [
+FMModelScripter >> element: elementName with: body [
 	"Addes an element with body (which is a block)."
 
 	client inElement: elementName do: [ body value ]
 ]
 
 { #category : #DSL }
-FMModelBuilder >> id: index [
+FMModelScripter >> id: index [
 
 	client serial: index
 ]
 
 { #category : #'DSL-synonyms' }
-FMModelBuilder >> new: elementName with: body [ 
+FMModelScripter >> new: elementName with: body [ 
 	
 	self element: elementName with: body
 ]
 
 { #category : #DSL }
-FMModelBuilder >> ref: reference [
+FMModelScripter >> ref: reference [
 	client referenceNumber: (reference isNumber ifTrue: [ reference ] ifFalse: [ reference asString ])
 ]
