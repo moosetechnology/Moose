@@ -62,11 +62,3 @@ FamixTAnnotationInstance >> annotatedEntityGroup [
 	<navigation: 'AnnotatedEntity'>
 	^ MooseGroup with: self annotatedEntity
 ]
-
-{ #category : #accessing }
-FamixTAnnotationInstance >> numberOfChildren [
-	<FMProperty: #numberOfChildren type: #Number>
-	<FMComment: 'Number of direct children entities in the containment tree.'>
-	<derived>
-	^ self isContainerEntity ifTrue: [ self children size ] ifFalse: [ 0 ]
-]
