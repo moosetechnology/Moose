@@ -17,13 +17,3 @@ MooseIncomingQueryResult >> opposite: aDependency [
 
 	^ aDependency from
 ]
-
-{ #category : #accessing }
-MooseIncomingQueryResult >> targets [
-	^ (self collectAsSet: #to) flattened
-]
-
-{ #category : #accessing }
-MooseIncomingQueryResult >> targetsAtScope: aTraitOrClass [
-	^ self targets flatCollectAsSet: [ :e | e atScope: aTraitOrClass ]
-]
