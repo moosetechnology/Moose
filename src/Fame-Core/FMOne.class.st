@@ -1,7 +1,7 @@
 Class {
 	#name : #FMOne,
 	#superclass : #FMRelationSlot,
-	#category : #'Fame-Core-Slots'
+	#category : #'Fame-Core-Utilities'
 }
 
 { #category : #testing }

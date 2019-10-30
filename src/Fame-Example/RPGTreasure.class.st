@@ -10,7 +10,7 @@ Class {
 
 { #category : #meta }
 RPGTreasure class >> annotation [
-	<MSEClass: #Treasure super: #Object>
+	<FMClass: #Treasure super: #Object>
 	<package: #RPG>
 ]
 
@@ -23,7 +23,7 @@ RPGTreasure >> initialize [
 
 { #category : #accessing }
 RPGTreasure >> keeper [
-	<MSEProperty: #keeper type: #RPGDragon opposite: #hoard>
+	<FMProperty: #keeper type: #RPGDragon opposite: #hoard>
 	^keeper
 ]
 
@@ -37,7 +37,7 @@ RPGTreasure >> keeper: aDragon [
 
 { #category : #accessing }
 RPGTreasure >> owner [
-	<MSEProperty: #owner type: #RPGHero opposite: #talisman>
+	<FMProperty: #owner type: #RPGHero opposite: #talisman>
 	^owner
 ]
 

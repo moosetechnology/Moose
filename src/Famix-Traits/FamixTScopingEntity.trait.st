@@ -15,7 +15,7 @@ Trait {
 { #category : #meta }
 FamixTScopingEntity classSide >> annotation [
 
-	<MSEClass: #TScopingEntity super: #Object>
+	<FMClass: #TScopingEntity super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -57,7 +57,7 @@ FamixTScopingEntity >> childScopes [
 	"Relation named: #childScopes type: #FamixTScopingEntity opposite: #parentScope"
 
 	<generated>
-	<MSEComment: 'Child scopes embedded in this scope, if any.'>
+	<FMComment: 'Child scopes embedded in this scope, if any.'>
 	<derived>
 	^ childScopes
 ]
@@ -80,7 +80,7 @@ FamixTScopingEntity >> parentScope [
 	"Relation named: #parentScope type: #FamixTScopingEntity opposite: #childScopes"
 
 	<generated>
-	<MSEComment: 'Parent scope embedding this scope, if any.'>
+	<FMComment: 'Parent scope embedding this scope, if any.'>
 	<container>
 	^ parentScope
 ]

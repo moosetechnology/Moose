@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixStNamespace class >> annotation [
 
-	<MSEClass: #Namespace super: #FamixStScopingEntity>
+	<FMClass: #Namespace super: #FamixStScopingEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
@@ -18,9 +18,9 @@ FamixStNamespace class >> annotation [
 { #category : #'Famix-Extensions-metrics' }
 FamixStNamespace >> abstractness [
 	"Abstractness is the ratio between the number of abstract classes and the total number of classes in a package, in the range [0, 1]. 0 means the package is fully concrete, 1 it is fully abstract."
-	<MSEProperty: #abstractness type: #Number>
+	<FMProperty: #abstractness type: #Number>
 	<derived>
-	<MSEComment: 'Abstractness of a package'>
+	<FMComment: 'Abstractness of a package'>
 
 	| nsClasses |
 	nsClasses := self allClasses select: [:c | c isInstanceSide].
@@ -48,9 +48,9 @@ FamixStNamespace >> mooseNameOn: aStream [
 
 { #category : #'Famix-Extensions' }
 FamixStNamespace >> numberOfClasses [
-	<MSEProperty: #numberOfClasses type: #Number>
+	<FMProperty: #numberOfClasses type: #Number>
 	<derived>
-	<MSEComment: 'The number of classes in a namespace'>
+	<FMComment: 'The number of classes in a namespace'>
 	
 	^self
 		lookUpPropertyNamed: #numberOfClasses
@@ -65,9 +65,9 @@ FamixStNamespace >> numberOfClasses: aNumber [
 
 { #category : #'Famix-Extensions' }
 FamixStNamespace >> numberOfLinesOfCode [
-	<MSEProperty: #numberOfLinesOfCode type: #Number>
+	<FMProperty: #numberOfLinesOfCode type: #Number>
 	<derived>
-	<MSEComment: 'The number of lines of code in a namespace'>
+	<FMComment: 'The number of lines of code in a namespace'>
 	
 	^self
 		lookUpPropertyNamed: #numberOfLinesOfCode
@@ -84,9 +84,9 @@ FamixStNamespace >> numberOfLinesOfCode: aNumber [
 
 { #category : #'Famix-Extensions' }
 FamixStNamespace >> numberOfMethods [
-	<MSEProperty: #numberOfMethods type: #Number>
+	<FMProperty: #numberOfMethods type: #Number>
 	<derived>
-	<MSEComment: 'The number of methods in a namespace'>
+	<FMComment: 'The number of methods in a namespace'>
 	
 	^self
 		lookUpPropertyNamed: #numberOfMethods

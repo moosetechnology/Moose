@@ -4,10 +4,10 @@ Class {
 	#instVars : [
 		'rules'
 	],
-	#category : #'Fame-ImportExport'
+	#category : #'Fame-ImportExport-Importers'
 }
 
-{ #category : #translate }
+{ #category : #initialization }
 FMCopyReplaceTranslationUnit >> initialize [
 	super initialize.
 	rules := OrderedCollection new

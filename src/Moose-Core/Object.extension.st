@@ -4,10 +4,8 @@ Extension { #name : #Object }
 Object >> allDeclaredPropertiesIn: aMetamodel [
 	"All properties described in the metamodel"
 
-	| aDescription |
 	aMetamodel ifNil: [ ^ OrderedCollection new ].
-	aDescription := self mooseDescriptionIn: aMetamodel.
-	^ aDescription ifNil: [ OrderedCollection new ] ifNotNil: [ aDescription allAttributes ]
+	^ aMetamodel descriptionOf: self class instanceSide ifPresent: #allProperties ifAbsent: [ OrderedCollection new ]
 ]
 
 { #category : #'*moose-core' }
@@ -29,12 +27,6 @@ Object class >> isOfType: aClassFAMIX [
 Object >> mooseDescription [
 
 	^ self class asMooseDescription 
-]
-
-{ #category : #'*Moose-Core' }
-Object >> mooseDescriptionIn: aMetamodel [
-
-	^ self class asMooseDescriptionIn: aMetamodel 
 ]
 
 { #category : #'*moose-core' }

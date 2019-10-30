@@ -6,6 +6,6 @@ Class {
 
 { #category : #meta }
 FAMIXFileGroup class >> annotation [
-	<MSEClass: #FileGroup super: #MooseGroup>
+	<FMClass: #FileGroup super: #MooseGroup>
 	<package: #FAMIX>
 ]

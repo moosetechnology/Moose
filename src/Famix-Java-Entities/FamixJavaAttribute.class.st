@@ -12,7 +12,7 @@ Class {
 { #category : #meta }
 FamixJavaAttribute class >> annotation [
 
-	<MSEClass: #Attribute super: #FamixJavaEntity>
+	<FMClass: #Attribute super: #FamixJavaNamedEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
@@ -27,8 +27,8 @@ FamixJavaAttribute class >> requirements [
 
 { #category : #'as yet unclassified' }
 FamixJavaAttribute >> hasClassScope [
-	<MSEProperty: #hasClassScope type: #Boolean>
-	<MSEComment: 'True if class-side attribute'>
+	<FMProperty: #hasClassScope type: #Boolean>
+	<FMComment: 'True if class-side attribute'>
 
 	^ hasClassScope
 ]
@@ -41,9 +41,9 @@ FamixJavaAttribute >> hasClassScope: aBoolean [
 
 { #category : #'as yet unclassified' }
 FamixJavaAttribute >> hierarchyNestingLevel [
-	<MSEProperty: #hierarchyNestingLevel type: #Number>
+	<FMProperty: #hierarchyNestingLevel type: #Number>
 	<derived>
-	<MSEComment: 'Attribute hierarchy nesting level'>
+	<FMComment: 'Attribute hierarchy nesting level'>
 		
 	^self
 		lookUpPropertyNamed: #hierarchyNestingLevel

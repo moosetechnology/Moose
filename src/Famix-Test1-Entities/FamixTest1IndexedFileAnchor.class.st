@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixTest1IndexedFileAnchor class >> annotation [
 
-	<MSEClass: #IndexedFileAnchor super: #FamixTest1AbstractFileAnchor>
+	<FMClass: #IndexedFileAnchor super: #FamixTest1AbstractFileAnchor>
 	<package: #'Famix-Test1-Entities'>
 	<generated>
 	^self

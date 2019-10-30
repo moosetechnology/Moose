@@ -17,7 +17,7 @@ Class {
 
 { #category : #meta }
 MoosePropertyGroup class >> annotation [
-	<MSEClass: #PropertyGroup super: #MooseGroup>
+	<FMClass: #PropertyGroup super: #MooseGroup>
 	<package: #Moose>
 ]
 
@@ -45,8 +45,8 @@ MoosePropertyGroup >> originalGroup: anObject [
 
 { #category : #accessing }
 MoosePropertyGroup >> property [
-	<MSEProperty: #property type: #String>
-	<MSEComment: 'Description of the property'>
+	<FMProperty: #property type: #String>
+	<FMComment: 'Description of the property'>
 	
 	^ propertySymbolOrBlock
 ]
@@ -58,40 +58,40 @@ MoosePropertyGroup >> property: anObject [
 
 { #category : #accessing }
 MoosePropertyGroup >> propertyRatio [
-	<MSEProperty: #propertyRatio type: #Number>
-	<MSEComment: 'Fraction represented by this group compared to originalGroup with respect to the property'>
+	<FMProperty: #propertyRatio type: #Number>
+	<FMComment: 'Fraction represented by this group compared to originalGroup with respect to the property'>
 	
 	^ (self propertyTotal / self propertyTotalOriginal) asFloat 
 ]
 
 { #category : #accessing }
 MoosePropertyGroup >> propertyTotal [
-	<MSEProperty: #propertyTotal type: #Number>
-	<MSEComment: 'Sum of values computed for the property in this group'>
+	<FMProperty: #propertyTotal type: #Number>
+	<FMComment: 'Sum of values computed for the property in this group'>
 
 	^ self sumNumbers: self property
 ]
 
 { #category : #accessing }
 MoosePropertyGroup >> propertyTotalOriginal [
-	<MSEProperty: #propertyTotalOriginal type: #Number>
-	<MSEComment: 'Sum of values computed for the property in the original group'>
+	<FMProperty: #propertyTotalOriginal type: #Number>
+	<FMComment: 'Sum of values computed for the property in the original group'>
 
 	^ self originalGroup sumNumbers: self property 
 ]
 
 { #category : #accessing }
 MoosePropertyGroup >> sizeOriginal [
-	<MSEProperty: #sizeOriginal type: #Number>
-	<MSEComment: 'Size of the original group'>
+	<FMProperty: #sizeOriginal type: #Number>
+	<FMComment: 'Size of the original group'>
 	
 	^ self originalGroup size
 ]
 
 { #category : #accessing }
 MoosePropertyGroup >> sizeRatio [
-	<MSEProperty: #sizeRatio type: #Number>
-	<MSEComment: 'Fraction represented by this group compared to originalGroup'>	
+	<FMProperty: #sizeRatio type: #Number>
+	<FMComment: 'Fraction represented by this group compared to originalGroup'>	
 
 	^ (self size / self originalGroup size) asFloat
 ]

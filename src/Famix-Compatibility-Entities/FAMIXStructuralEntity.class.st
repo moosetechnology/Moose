@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXStructuralEntity class >> annotation [
 
-	<MSEClass: #StructuralEntity super: #FAMIXLeafEntity>
+	<FMClass: #StructuralEntity super: #FAMIXLeafEntity>
 	<package: #FAMIX>
 	<generated>
 	^self

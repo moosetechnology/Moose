@@ -19,7 +19,7 @@ Trait {
 { #category : #meta }
 FamixTType classSide >> annotation [
 
-	<MSEClass: #TType super: #Object>
+	<FMClass: #TType super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -40,9 +40,9 @@ FamixTType >> belongsTo [
 
 { #category : #metrics }
 FamixTType >> fanIn [
-	<MSEProperty: #fanIn type: #Number>
+	<FMProperty: #fanIn type: #Number>
 	<derived>
-	<MSEComment: 'Number of client classes'>
+	<FMComment: 'Number of client classes'>
 	^ self lookUpPropertyNamed: #fanIn computedAs: [ (self allClientsAtScope: FamixTType) size ]
 ]
 
@@ -87,9 +87,9 @@ FamixTType >> mooseNameOn: aStream [
 
 { #category : #metrics }
 FamixTType >> numberOfAccessesToForeignData [
-	<MSEProperty: #numberOfAccessesToForeignData type: #Number>
+	<FMProperty: #numberOfAccessesToForeignData type: #Number>
 	<derived>
-	<MSEComment: 'Number of accesses to foreign data'>
+	<FMComment: 'Number of accesses to foreign data'>
 	
 	^self
 		lookUpPropertyNamed: #numberOfAccessesToForeignData
@@ -104,9 +104,9 @@ FamixTType >> numberOfAccessesToForeignData: aNumber [
 
 { #category : #metrics }
 FamixTType >> numberOfDuplicatedLinesOfCodeInternally [
-	<MSEProperty: #numberOfDuplicatedLinesOfCodeInternally type: #Number>
+	<FMProperty: #numberOfDuplicatedLinesOfCodeInternally type: #Number>
 	<derived>
-	<MSEComment: 'The number of duplicated lines of code internally'>		
+	<FMComment: 'The number of duplicated lines of code internally'>		
 
 	^self
 		lookUpPropertyNamed: #numberOfDuplicatedLinesOfCodeInternally
@@ -130,7 +130,7 @@ FamixTType >> typeContainer [
 	"Relation named: #typeContainer type: #FamixTWithTypes opposite: #types"
 
 	<generated>
-	<MSEComment: 'Container entity to which this type belongs to. Container is a namespace, not a package (Smalltalk).'>
+	<FMComment: 'Container entity to which this type belongs to. Container is a namespace, not a package (Smalltalk).'>
 	<container>
 	^ typeContainer
 ]

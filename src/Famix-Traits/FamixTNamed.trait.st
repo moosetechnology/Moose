@@ -11,7 +11,7 @@ Trait {
 { #category : #meta }
 FamixTNamed classSide >> annotation [
 
-	<MSEClass: #TNamed super: #Object>
+	<FMClass: #TNamed super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -38,9 +38,9 @@ FamixTNamed >> mooseNameOn: stream [
 { #category : #accessing }
 FamixTNamed >> name [
 
-	<MSEProperty: #name type: #String>
+	<FMProperty: #name type: #String>
 	<generated>
-	<MSEComment: 'Basic name of the entity, not full reference.'>
+	<FMComment: 'Basic name of the entity, not full reference.'>
 	^ name
 ]
 

@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaSourceLanguage class >> annotation [
 
-	<MSEClass: #SourceLanguage super: #FamixJavaEntity>
+	<FMClass: #SourceLanguage super: #FamixJavaEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
@@ -28,9 +28,9 @@ FamixJavaSourceLanguage >> isJava [
 { #category : #accessing }
 FamixJavaSourceLanguage >> name [
 	
-	<MSEProperty: #name type: #String> 
+	<FMProperty: #name type: #String> 
 	<derived>
-	<MSEComment: 'The name of the language'>
+	<FMComment: 'The name of the language'>
 	
 	^ 'Java'
 ]

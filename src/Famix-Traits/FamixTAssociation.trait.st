@@ -29,7 +29,7 @@ Trait {
 { #category : #meta }
 FamixTAssociation classSide >> annotation [
 
-	<MSEClass: #TAssociation super: #Object>
+	<FMClass: #TAssociation super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -47,7 +47,7 @@ FamixTAssociation >> next [
 	"Relation named: #next type: #FamixTAssociation opposite: #previous"
 
 	<generated>
-	<MSEComment: 'Next association in an ordered collection of associations. Currently not supported by the Moose importer'>
+	<FMComment: 'Next association in an ordered collection of associations. Currently not supported by the Moose importer'>
 	<derived>
 	^ next
 ]
@@ -65,7 +65,7 @@ FamixTAssociation >> previous [
 	"Relation named: #previous type: #FamixTAssociation opposite: #next"
 
 	<generated>
-	<MSEComment: 'Previous association in an ordered collection of associations. Currently not supported by the Moose importer'>
+	<FMComment: 'Previous association in an ordered collection of associations. Currently not supported by the Moose importer'>
 	^ previous
 ]
 

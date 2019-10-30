@@ -48,17 +48,13 @@ FamixTest >> oneClassAndOneMethod [
 
 { #category : #tests }
 FamixTest >> testMSEImport [
-	"self debug: #testMSEImport"
-
 	| importer model |
-	"MooseModel resetMeta."
-	importer := FMImporter new.
-	importer repository: FamixTest3Model newRepository.
-	importer fromString: self oneClassAndOneMethod.
-	importer run.
-	self assert: importer repository elements size equals: 2.
+	importer := (FMImporter model: (FMModel withMetamodel: FamixTest3Model metamodel))
+		fromString: self oneClassAndOneMethod;
+		run.
+	self assert: importer model elements size equals: 2.
 	model := FamixTest3Model new.
-	model addAll: importer repository elements.
+	model addAll: importer model elements.
 	self assert: model allClasses size equals: 1.
 	self assert: model allMethods size equals: 1
 ]
@@ -66,15 +62,13 @@ FamixTest >> testMSEImport [
 { #category : #tests }
 FamixTest >> testRobustMSEImport [
 	| importer model |
-	"MooseModel resetMeta."
-	importer := FMImporter new.
-	importer repository: FamixTest3Model newRepository.
-	importer fromString: self classWithUnknownAttribute.
-	importer run.
+	importer := (FMImporter model: (FMModel withMetamodel: FamixTest3Model metamodel))
+		fromString: self classWithUnknownAttribute;
+		run.
 
-	self assert: importer repository elements size equals: 4.
+	self assert: importer model elements size equals: 4.
 	model := FamixTest3Model new.
-	model addAll: importer repository elements.
+	model addAll: importer model elements.
 	self assert: model allClasses size equals: 2.
 	self assert: model allMethods size equals: 1.
 	self assert: model allReferences size equals: 1

@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXEnum class >> annotation [
 
-	<MSEClass: #Enum super: #FAMIXType>
+	<FMClass: #Enum super: #FAMIXType>
 	<package: #FAMIX>
 	<generated>
 	^self

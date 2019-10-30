@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixTest2SourceAnchor class >> annotation [
 
-	<MSEClass: #SourceAnchor super: #FamixTest2Entity>
+	<FMClass: #SourceAnchor super: #FamixTest2Entity>
 	<package: #'Famix-Test2-Entities'>
 	<generated>
 	^self

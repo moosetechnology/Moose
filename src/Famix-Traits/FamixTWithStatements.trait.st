@@ -6,7 +6,7 @@ Trait {
 { #category : #meta }
 FamixTWithStatements classSide >> annotation [
 
-	<MSEClass: #TWithStatements super: #Object>
+	<FMClass: #TWithStatements super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -14,9 +14,9 @@ FamixTWithStatements classSide >> annotation [
 
 { #category : #metrics }
 FamixTWithStatements >> numberOfStatements [
-	<MSEProperty: #numberOfStatements type: #Number>
+	<FMProperty: #numberOfStatements type: #Number>
 	<derived>
-	<MSEComment: 'The number of statements in a class'>
+	<FMComment: 'The number of statements in a class'>
 	^ self lookUpPropertyNamed: #numberOfStatements computedAs: [ (self toScope: FamixTWithStatements) detectSum: #numberOfStatements ]
 ]
 

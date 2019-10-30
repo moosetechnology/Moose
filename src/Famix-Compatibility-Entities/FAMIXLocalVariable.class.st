@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXLocalVariable class >> annotation [
 
-	<MSEClass: #LocalVariable super: #FAMIXStructuralEntity>
+	<FMClass: #LocalVariable super: #FAMIXStructuralEntity>
 	<package: #FAMIX>
 	<generated>
 	^self

@@ -1,6 +1,8 @@
 Class {
 	#name : #FMImporter,
-	#superclass : #FMParserClient,
+	#superclass : #Object,
+	#traits : 'FMTImportExportStructure',
+	#classTraits : 'FMTImportExportStructure classTrait',
 	#instVars : [
 		'stack',
 		'elements',
@@ -12,8 +14,15 @@ Class {
 		'serialDict',
 		'translationUnit'
 	],
-	#category : #'Fame-ImportExport'
+	#category : #'Fame-ImportExport-Importers'
 }
+
+{ #category : #'instance creation' }
+FMImporter class >> model: aRepository [
+	^ self new
+		model: aRepository;
+		yourself
+]
 
 { #category : #private }
 FMImporter >> assign: element to: serial [
@@ -58,6 +67,11 @@ FMImporter >> dangling: reference to: serial [
 	^ reference
 ]
 
+{ #category : #accessing }
+FMImporter >> elements [
+	^ elements
+]
+
 { #category : #parsing }
 FMImporter >> endAttribute: name [ 
 	
@@ -73,14 +87,12 @@ FMImporter >> endDocument [
 ]
 
 { #category : #parsing }
-FMImporter >> endElement: name [ 
-	
+FMImporter >> endElement: name [
 	| future element |
 	future := stack pop.
 	element := future instance.
 	elements add: element.
-	stack isEmpty not ifTrue: [
-		stack top current values add: element ]
+	stack ifNotEmpty: [ stack top currentAttribute values add: element ]
 ]
 
 { #category : #accessing }
@@ -94,7 +106,7 @@ FMImporter >> index [
 	^serialDict
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 FMImporter >> initialize [
 	super initialize.
 	translationUnit := FMNullTranslationUnit new
@@ -107,70 +119,36 @@ FMImporter >> metamodel [
 
 { #category : #accessing }
 FMImporter >> model [
-	^model
-]
-
-{ #category : #deprecated }
-FMImporter >> nameTranslator [
-	self deprecated: 'Use #translationUnit instead'.
-	^ translationUnit dictionary
-]
-
-{ #category : #deprecated }
-FMImporter >> nameTranslator: anObject [
-	self
-		deprecated: 'Use FMDictionaryTranslationUnit instead'
-		transformWith:
-			'`@receiver nameTranslator: `@arg'
-				->
-			'`@receiver translationUnit: (FMDictionaryTranslationUnit new
-													dictionary:  `@arg;
-													yourself)'.
-	translationUnit := FMDictionaryTranslationUnit new
-		dictionary: anObject;
-		yourself
-]
-
-{ #category : #parsing }
-FMImporter >> primitive: value [ 
-	
-	stack top current values add: value
-]
-
-{ #category : #parsing }
-FMImporter >> referenceName: name [ 
-	
-	stack top current values add: (model elementNamed: name)
-]
-
-{ #category : #parsing }
-FMImporter >> referenceNumber: serial [ 
-	
-	stack top current referenceNumber: serial
+	^ model
 ]
 
 { #category : #accessing }
-FMImporter >> repository [
-
-	^model
+FMImporter >> model: aModel [
+	model := aModel.
+	metamodel := aModel metamodel
 ]
 
-{ #category : #accessing }
-FMImporter >> repository: aRepository [
+{ #category : #parsing }
+FMImporter >> primitive: value [
+	stack top currentAttribute values add: value
+]
 
-	model := aRepository.
-	metamodel := aRepository metamodel.
+{ #category : #parsing }
+FMImporter >> referenceName: name [
+	stack top currentAttribute values add: (model elementNamed: name)
+]
+
+{ #category : #parsing }
+FMImporter >> referenceNumber: serial [
+	stack top currentAttribute referenceNumber: serial
 ]
 
 { #category : #running }
 FMImporter >> run [
-
-	| parser |
-	parser := FMMSEParser new.
-	parser stream: stream.
-	parser client: self.
-	parser run.
-
+	FMMSEParser new
+		stream: stream;
+		importer: self;
+		run
 ]
 
 { #category : #parsing }

@@ -10,14 +10,14 @@ Class {
 { #category : #meta }
 FamixTest4Person class >> annotation [
 
-	<MSEClass: #Person super: #FamixTest4Entity>
+	<FMClass: #Person super: #FamixTest4Entity>
 	<package: #'Famix-Test4-Entities'>
 	<generated>
 	^self
 ]
 
 { #category : #adding }
-FamixTest4Person >> addBooks: anObject [
+FamixTest4Person >> addBook: anObject [
 	<generated>
 	^ self books add: anObject
 ]

@@ -23,7 +23,7 @@ FmxMBClassGeneralizationsTest >> checkGeneralizationWithAnnotations [
 	
 	self assert: generatedClass superclass equals: generatedBehavior.
 	annotation := generatedClass classSide methodNamed: #annotation.
-	self assert: (annotation sourceCode includesSubstring: '<MSEClass: #Class super: #TstBehavior>').
+	self assert: (annotation sourceCode includesSubstring: '<FMClass: #Class super: #TstBehavior>').
 	self assert: (annotation sourceCode includesSubstring: '<generated>').
 	
 

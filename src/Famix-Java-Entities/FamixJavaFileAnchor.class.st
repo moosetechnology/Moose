@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaFileAnchor class >> annotation [
 
-	<MSEClass: #FileAnchor super: #FamixJavaAbstractFileAnchor>
+	<FMClass: #FileAnchor super: #FamixJavaAbstractFileAnchor>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self

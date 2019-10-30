@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaEnum class >> annotation [
 
-	<MSEClass: #Enum super: #FamixJavaType>
+	<FMClass: #Enum super: #FamixJavaType>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self

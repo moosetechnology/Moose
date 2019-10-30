@@ -2,31 +2,30 @@ Class {
 	#name : #FMDanglingReference,
 	#superclass : #Object,
 	#instVars : [
-		'to',
 		'owner',
-		'pos'
+		'position'
 	],
-	#category : #'Fame-ImportExport'
+	#category : #'Fame-ImportExport-Importers'
 }
 
 { #category : #'instance creation' }
-FMDanglingReference class >> with: aFutureAttribute [ 
-	
-	^self new initialize: aFutureAttribute 
+FMDanglingReference class >> with: aFutureAttribute [
+	^ self new
+		owner: aFutureAttribute;
+		yourself
 ]
 
 { #category : #'initialize-release' }
-FMDanglingReference >> initialize: aFutureAttribute [ 
-	
+FMDanglingReference >> owner: aFutureAttribute [
 	owner := aFutureAttribute.
 	owner count: owner count + 1.
-	pos := owner values size + 1.
+	position := owner values size + 1
 ]
 
 { #category : #parsing }
 FMDanglingReference >> resolve: element [
 	self assert: element isNotNil.
-	owner values at: pos put: element.
+	owner values at: position put: element.
 	owner count: owner count - 1.
 	owner maybeEnd
 ]

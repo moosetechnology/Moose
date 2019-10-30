@@ -4,9 +4,9 @@ Extension { #name : #FAMIXTypeGroup }
 FAMIXTypeGroup >> afferentCoupling [
 	"Afferent coupling for a class group is the number of external classes that depend upon this class group"
 
-	<MSEProperty: #afferentCoupling type: #Number>
+	<FMProperty: #afferentCoupling type: #Number>
 	<derived>
-	<MSEComment: 'Afferent coupling for a class group is the number of external classes that depend upon this class group'>
+	<FMComment: 'Afferent coupling for a class group is the number of external classes that depend upon this class group'>
 	| cgClasses cgTypes |
 	cgClasses := self allClasses select: [ :c | c isInstanceSide ].
 	cgTypes := cgClasses flatCollect: [ :c | c allRecursiveTypes ].
@@ -20,9 +20,9 @@ FAMIXTypeGroup >> afferentCoupling [
 FAMIXTypeGroup >> bunchCohesion [
 	"Computing cohesion (Bunch formula). It is also considered anonymous and inner classes (in Java)."
 
-	<MSEProperty: #bunchCohesion type: #Number>
+	<FMProperty: #bunchCohesion type: #Number>
 	<derived>
-	<MSEComment: 'Bunch Cohesion of a class group. It is also considered anonymous and inner classes (in Java).'>
+	<FMComment: 'Bunch Cohesion of a class group. It is also considered anonymous and inner classes (in Java).'>
 	| cgClasses cgTypes intraConnectivities |
 	cgClasses := self allClasses select: [ :c | c isInstanceSide ].
 	cgTypes := cgClasses flatCollect: [ :c | c allRecursiveTypes ].
@@ -66,9 +66,9 @@ FAMIXTypeGroup >> bunchCouplingWith: aClassGroup [
 FAMIXTypeGroup >> efferentCoupling [
 	"Efferent coupling for a class group is the number of classes it depends upon"
 
-	<MSEProperty: #efferentCoupling type: #Number>
+	<FMProperty: #efferentCoupling type: #Number>
 	<derived>
-	<MSEComment: 'Efferent coupling for a class group is the number of classes it depends upon'>
+	<FMComment: 'Efferent coupling for a class group is the number of classes it depends upon'>
 	| cgClasses cgTypes |
 	cgClasses := self allClasses select: [ :c | c isInstanceSide ].
 	cgTypes := cgClasses flatCollect: [ :c | c allRecursiveTypes ].

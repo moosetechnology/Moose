@@ -16,7 +16,7 @@ Trait {
 { #category : #meta }
 FamixTDereferencedInvocation classSide >> annotation [
 
-	<MSEClass: #TDereferencedInvocation super: #Object>
+	<FMClass: #TDereferencedInvocation super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -27,7 +27,7 @@ FamixTDereferencedInvocation >> referencer [
 	"Relation named: #referencer type: #FamixTWithDereferencedInvocations opposite: #dereferencedInvocations"
 
 	<generated>
-	<MSEComment: 'Structural entity that references the BehaviouralEntity invoked'>
+	<FMComment: 'Structural entity that references the BehaviouralEntity invoked'>
 	^ referencer
 ]
 

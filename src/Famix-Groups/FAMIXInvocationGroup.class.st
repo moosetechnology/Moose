@@ -6,7 +6,7 @@ Class {
 
 { #category : #meta }
 FAMIXInvocationGroup class >> annotation [
-	<MSEClass: #InvocationGroup super: #MooseGroup>
+	<FMClass: #InvocationGroup super: #MooseGroup>
 	<package: #FAMIX>
 
 ]

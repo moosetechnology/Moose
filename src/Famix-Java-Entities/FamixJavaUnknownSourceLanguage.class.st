@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaUnknownSourceLanguage class >> annotation [
 
-	<MSEClass: #UnknownSourceLanguage super: #FamixJavaSourceLanguage>
+	<FMClass: #UnknownSourceLanguage super: #FamixJavaSourceLanguage>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
@@ -18,9 +18,9 @@ FamixJavaUnknownSourceLanguage class >> annotation [
 { #category : #accessing }
 FamixJavaUnknownSourceLanguage >> name [
 	
-	<MSEProperty: #name type: #String> 
+	<FMProperty: #name type: #String> 
 	<derived>
-	<MSEComment: 'The name of the language'>
+	<FMComment: 'The name of the language'>
 	
 	^ 'Unknown'
 ]

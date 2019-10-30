@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithParameterizedTypes classSide >> annotation [
 
-	<MSEClass: #TWithParameterizedTypes super: #Object>
+	<FMClass: #TWithParameterizedTypes super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

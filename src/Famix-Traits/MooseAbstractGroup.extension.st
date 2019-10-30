@@ -257,22 +257,22 @@ MooseAbstractGroup >> allTypes [
 
 { #category : #'*Famix-Traits' }
 MooseAbstractGroup >> numberOfAssociations [
-	<MSEProperty: #numberOfAssociations type: #Number>
-	<MSEComment: 'The total number of associations'>
+	<FMProperty: #numberOfAssociations type: #Number>
+	<FMComment: 'The total number of associations'>
 	^ (self allWithSubTypesOf: FamixTAssociation) size
 ]
 
 { #category : #'*Famix-Traits' }
 MooseAbstractGroup >> numberOfEntities [
-	<MSEProperty: #numberOfEntities type: #Number>
-	<MSEComment: 'The total number of entities (items that are not associations)'>
+	<FMProperty: #numberOfEntities type: #Number>
+	<FMComment: 'The total number of entities (items that are not associations)'>
 	^ self numberOfItems - self numberOfAssociations
 ]
 
 { #category : #'*Famix-Traits' }
 MooseAbstractGroup >> numberOfLinesOfCode [
-	<MSEProperty: #numberOfLinesOfCode type: #Number>
-	<MSEComment: 'The number of classes in the model'>
+	<FMProperty: #numberOfLinesOfCode type: #Number>
+	<FMComment: 'The number of classes in the model'>
 	^ self
 		lookUpPropertyNamed: #numberOfLinesOfCode
 		computedAs: [ self allMethods sum: #numberOfLinesOfCode ]
@@ -280,7 +280,7 @@ MooseAbstractGroup >> numberOfLinesOfCode [
 
 { #category : #'*Famix-Traits' }
 MooseAbstractGroup >> numberOfPackages [
-	<MSEProperty: #numberOfPackages type: #Number>
-	<MSEComment: 'Total number of packages'>
+	<FMProperty: #numberOfPackages type: #Number>
+	<FMComment: 'Total number of packages'>
 	^ self privateState propertyAt: #numberOfPackages ifAbsentPut: [ self allPackages size ] 
 ]

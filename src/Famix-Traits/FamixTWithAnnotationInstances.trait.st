@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithAnnotationInstances classSide >> annotation [
 
-	<MSEClass: #TWithAnnotationInstances super: #Object>
+	<FMClass: #TWithAnnotationInstances super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -48,7 +48,7 @@ FamixTWithAnnotationInstances >> annotationInstances [
 	"Relation named: #annotationInstances type: #FamixTAnnotationInstance opposite: #annotatedEntity"
 
 	<generated>
-	<MSEComment: 'This property corresponds to the set of annotations associated to the entity'>
+	<FMComment: 'This property corresponds to the set of annotations associated to the entity'>
 	<derived>
 	^ annotationInstances
 ]
@@ -79,9 +79,9 @@ FamixTWithAnnotationInstances >> isAnnotatedWith: anAnnotationName [
 
 { #category : #metrics }
 FamixTWithAnnotationInstances >> numberOfAnnotationInstances [
-	<MSEProperty: #numberOfAnnotationInstances type: #Number>
+	<FMProperty: #numberOfAnnotationInstances type: #Number>
 	<derived>
-	<MSEComment: 'The number of annotation instances defined in the class or in any of its methods'>
+	<FMComment: 'The number of annotation instances defined in the class or in any of its methods'>
 
 	^self
 		lookUpPropertyNamed: #numberOfAnnotationInstances

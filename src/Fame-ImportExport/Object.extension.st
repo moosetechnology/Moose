@@ -7,3 +7,8 @@ Object >> handleFameProperty: aSymbol value: anObject [
 	Transcript cr.
 
 ]
+
+{ #category : #'*Fame-ImportExport' }
+Object >> msePrintOn: aStream [
+	self printOn: aStream
+]

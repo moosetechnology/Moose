@@ -39,7 +39,7 @@ TEntityMetaLevelDependency classSide >> allParentTypesIn: aMetamodel [
 { #category : #meta }
 TEntityMetaLevelDependency classSide >> annotation [
 
-	<MSEClass: #TEntityMetaLevelDependency super: #Object>
+	<FMClass: #TEntityMetaLevelDependency super: #Object>
 	<package: #'Moose-Query'>
 	<generated>
 	^self
@@ -570,8 +570,8 @@ TEntityMetaLevelDependency >> incomingMSEProperties [
 
 { #category : #accessing }
 TEntityMetaLevelDependency >> numberOfChildren [
-	<MSEProperty: #numberOfChildren type: #Number>
-	<MSEComment: 'Number of direct children entities in the containment tree.'>
+	<FMProperty: #numberOfChildren type: #Number>
+	<FMComment: 'Number of direct children entities in the containment tree.'>
 	<derived>
 	^ self isContainerEntity ifTrue: [ self children size ] ifFalse: [ 0 ]
 ]

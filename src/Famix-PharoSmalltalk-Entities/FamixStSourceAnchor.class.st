@@ -12,7 +12,7 @@ Class {
 { #category : #meta }
 FamixStSourceAnchor class >> annotation [
 
-	<MSEClass: #SourceAnchor super: #FamixStEntity>
+	<FMClass: #SourceAnchor super: #FamixStEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self

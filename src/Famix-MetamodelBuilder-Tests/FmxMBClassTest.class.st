@@ -21,7 +21,7 @@ FmxMBClassTest >> checkGeneralizationWithAnnotations [
 	
 	self assert: generatedClass superclass equals: generatedBehavior.
 	annotation := generatedClass classSide methodNamed: #annotation.
-	self assert: (annotation sourceCode includesSubstring: '<MSEClass: #Class super: #TstBehavior>').
+	self assert: (annotation sourceCode includesSubstring: '<FMClass: #Class super: #TstBehavior>').
 	self assert: (annotation sourceCode includesSubstring: '<generated>').
 	
 
@@ -72,11 +72,11 @@ FmxMBClassTest >> testAsPropertyComment [
 	self assertCollection: (generatedTrait slots collect: #name) hasSameElements: #(from to).
 
 	method := generatedTrait methodNamed: #from.
-	self assert: (method sourceCode includesSubstring: '<MSEComment: ''comment from''>').
+	self assert: (method sourceCode includesSubstring: '<FMComment: ''comment from''>').
 	self assert: (method sourceCode includesSubstring: '<generated>').
 
 	method := generatedTrait methodNamed: #to.
-	self assert: (method sourceCode includesSubstring: '<MSEComment: ''comment to''>').
+	self assert: (method sourceCode includesSubstring: '<FMComment: ''comment to''>').
 	self assert: (method sourceCode includesSubstring: '<generated>').
 
 
@@ -423,7 +423,7 @@ FmxMBClassTest >> testSimpleClassAnnotation [
 	builder generate.
 	generated := builder testingEnvironment ask classNamed: 'TstComment'.
 	method := generated classSide methodNamed: #annotation.
-	self assert: (method sourceCode includesSubstring: '<MSEClass: #Comment super: #MooseEntity>').
+	self assert: (method sourceCode includesSubstring: '<FMClass: #Comment super: #MooseEntity>').
 	self assert: (method sourceCode includesSubstring: '<generated>').
 	self assert: (method sourceCode includesSubstring: '<package: #Tst>').
 

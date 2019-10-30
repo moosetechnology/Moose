@@ -18,7 +18,7 @@ Class {
 
 { #category : #meta }
 MooseAbstractGroup class >> annotation [
-	<MSEClass: #AbstractGroup super: #MooseEntity>
+	<FMClass: #AbstractGroup super: #MooseEntity>
 	<package: #Moose>
 	<abstract>
 
@@ -109,6 +109,14 @@ MooseAbstractGroup >> allWithSubTypesOf: aFamixClass ofGroupClass: aGroupClass [
 	^ aGroupClass
 		withAll: ((aFamixClass withAllSubclasses) asSet flatCollect: [ :each | self entityStorage selectAllWithType: each ])
 		withDescription: 'All ' , aFamixClass name asLowercase asEnglishPlural
+]
+
+{ #category : #groups }
+MooseAbstractGroup >> allWithSubTypesOfAny: aCollectionOfFamixClass [
+
+	^ (aCollectionOfFamixClass
+		flatCollect: [ :aFamixClass | self allWithSubTypesOf: aFamixClass ])
+		asMooseGroup
 ]
 
 { #category : #groups }
@@ -539,8 +547,8 @@ MooseAbstractGroup >> notEmpty [
 
 { #category : #accessing }
 MooseAbstractGroup >> numberOfItems [ 
-	<MSEProperty: #numberOfItems type: #Number>
-	<MSEComment: 'The total number of items in the group'>
+	<FMProperty: #numberOfItems type: #Number>
+	<FMComment: 'The total number of items in the group'>
 	
 	^self size
 ]

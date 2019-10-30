@@ -6,7 +6,7 @@ Class {
 		'inverseName',
 		'inverseSlot'
 	],
-	#category : #'Fame-Core-Slots'
+	#category : #'Fame-Core-Utilities'
 }
 
 { #category : #'instance creation' }

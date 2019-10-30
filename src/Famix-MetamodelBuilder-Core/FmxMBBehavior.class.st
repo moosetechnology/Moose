@@ -158,16 +158,17 @@ FmxMBBehavior >> generateAccessors [
 
 { #category : #generating }
 FmxMBBehavior >> generateAddToCollectionFor: aClass [
-	| sideName |
-	self allNavigationGroups
-		do: [ :aGroup | 
-			sideName := aGroup entity name.
-			aGroup entity isMany
-				ifTrue: [ self builder environment
+	self relations
+		collect: #side
+		thenDo: [ :side | 
+			side isMany
+				ifTrue: [ | sideName |
+					sideName := side name.
+					self builder environment
 						compile:
 							('add{1}: anObject
 	<generated>
-	^ self {2} add: anObject' format: {sideName capitalized . sideName})
+	^ self {2} add: anObject' format: {sideName capitalized asSingular . sideName})
 						in: aClass instanceSide
 						classified: #adding ] ]
 ]
@@ -185,7 +186,7 @@ FmxMBBehavior >> generateAnnotationIn: aRealClass as: aName superclass: aSupercl
 		compile:
 			('annotation
 
-	<MSEClass: #{1} super: #{2}>
+	<FMClass: #{1} super: #{2}>
 	<package: {3}>
 	<generated>
 	^self' format: {aName . aSuperclassName . self builder safeAnnotationPackageName})

@@ -14,7 +14,7 @@ Class {
 		'description',
 		'slots'
 	],
-	#category : #'Fame-Core'
+	#category : #'Fame-Core-Utilities'
 }
 
 { #category : #'instance creation' }
@@ -36,8 +36,7 @@ FMRuntimeElement >> at: property ifAbsent: aBlock [
 
 { #category : #accessing }
 FMRuntimeElement >> at: property ifAbsentPut: aBlock [
-
-	^ self at: property ifAbsent: [ self at: property put: aBlock value ]
+	^ self at: property ifAbsentPut: [ aBlock value ]
 ]
 
 { #category : #accessing }
@@ -56,15 +55,19 @@ FMRuntimeElement >> description: anObject [
 	description := anObject
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 FMRuntimeElement >> initialize [
+	super initialize.
+	slots := IdentityDictionary new
+]
 
-	slots := IdentityDictionary new.
+{ #category : #accessing }
+FMRuntimeElement >> metaDescriptionIn: aMetamodel [
+	^ self description
 ]
 
 { #category : #accessing }
 FMRuntimeElement >> mmGetProperty: aFM3Property [
-
 	^ self at: aFM3Property name
 ]
 

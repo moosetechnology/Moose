@@ -248,7 +248,7 @@ FamixMetamodelBuilder >> generateMooseModel [
 			model classSide
 				compile:
 					('annotation
-	<MSEClass: #{1} super: #MooseModel>
+	<FMClass: #{1} super: #MooseModel>
 	<package: {2}>
 	<generated>' format: {mooseModelName . self safeAnnotationPackageName})
 				classified: 'meta'.

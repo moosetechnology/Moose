@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaReference class >> annotation [
 
-	<MSEClass: #Reference super: #FamixJavaAssociation>
+	<FMClass: #Reference super: #FamixJavaAssociation>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self

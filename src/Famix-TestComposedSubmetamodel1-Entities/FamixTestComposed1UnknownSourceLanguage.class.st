@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixTestComposed1UnknownSourceLanguage class >> annotation [
 
-	<MSEClass: #UnknownSourceLanguage super: #FamixTestComposed1SourceLanguage>
+	<FMClass: #UnknownSourceLanguage super: #FamixTestComposed1SourceLanguage>
 	<package: #'Famix-TestComposedSubmetamodel1-Entities'>
 	<generated>
 	^self

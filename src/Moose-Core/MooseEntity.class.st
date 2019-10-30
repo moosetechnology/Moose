@@ -64,18 +64,7 @@ Class {
 MooseEntity class >> allDeclaredProperties [
 	"All properties described in the metamodel"
 	 
-	^self mooseDescription allAttributes
-]
-
-{ #category : #'meta accessing' }
-MooseEntity class >> allDeclaredPropertiesIn: aMetamodel [
-	"All properties described in the metamodel"
-	 
-	| aDescription |
-	aMetamodel ifNil: [ ^ OrderedCollection new ].
-	aDescription := self mooseDescriptionIn: aMetamodel.
-	^ aDescription ifNil: [ OrderedCollection new ] 
-		ifNotNil: [ aDescription allAttributes ]
+	^self mooseDescription allProperties
 ]
 
 { #category : #'meta accessing' }
@@ -130,7 +119,7 @@ MooseEntity class >> allPropertySelectorsComputableIn: aMooseModel [
 
 { #category : #meta }
 MooseEntity class >> annotation [
-	<MSEClass: #Entity super: #Object>
+	<FMClass: #Entity super: #Object>
 	<package: #Moose>
 	<abstract>
 ]
@@ -233,7 +222,7 @@ MooseEntity class >> usedStatefulTraits [
 MooseEntity >> allDeclaredProperties [
 	"All properties described in the metamodel"
 	 
-	^self mooseDescription allAttributes
+	^self mooseDescription allProperties
 ]
 
 { #category : #'meta information' }
@@ -262,14 +251,6 @@ MooseEntity >> announcer [
 { #category : #private }
 MooseEntity >> announcer: anAnnouncer [
 	^ self privateState attributeAt: #announcer put: anAnnouncer
-]
-
-{ #category : #accessing }
-MooseEntity >> attributesTogetherWithGenerated [
-
-	"HACK: we need to collect all attributes from the pair generated class - user class"
-	^ self class mooseDescription attributes,
-	  self class superclass mooseDescription attributes
 ]
 
 { #category : #accessing }
@@ -331,22 +312,6 @@ MooseEntity >> handleFameProperty: aSymbol value: anObject [
 	super handleFameProperty: aSymbol value: anObject.
 	value := (anObject isCollection and: [anObject size = 1]) ifTrue: [anObject anyOne] ifFalse: [anObject].
 	self propertyNamed: aSymbol put: value
-]
-
-{ #category : #properties }
-MooseEntity >> hasTheSamePropertiesAs: aMooseEntity [
-	"Returns whether the receiver and the argument have the same properties (attributes and properties)."
-
-	self allDeclaredProperties size = aMooseEntity allDeclaredProperties size 
-		ifFalse: [^ false].
-	(self allDeclaredProperties collect: [:each | each name]) = 
-		(aMooseEntity allDeclaredProperties collect: [:each | each name])
-		ifFalse: [^ false].
-	self allDeclaredProperties do: [:each |
-			(each getFrom: self) = (each getFrom: aMooseEntity)
-				ifFalse: [^ false]
-				].
-	^ true
 ]
 
 { #category : #initialization }
@@ -562,7 +527,7 @@ MooseEntity >> propertyNamed: propertyName ifAbsent: aBlock [
 	^ self privateState
 		propertyAt: prop
 		ifAbsent: [ | property |
-			[ property := self mmGetProperty: (self mooseDescription attributeNamed: propertyName) ]
+			[ property := self mmGetProperty: (self mooseDescription propertyNamed: propertyName) ]
 				on: Error
 				do: [ :ex | property := nil ].
 			property ifNil: [ aBlock value ] ]
@@ -583,7 +548,7 @@ MooseEntity >> propertyNamed: propertyName ifNil: aBlock [
 	^ self privateState
 		propertyAt: prop
 		ifAbsent: [ | property |
-			[ property := self mmGetProperty: (self mooseDescription attributeNamed: propertyName) ]
+			[ property := self mmGetProperty: (self mooseDescription propertyNamed: propertyName) ]
 				on: Error
 				do: [ :ex | property := nil ].
 			property ifNil: [ aBlock value ] ]

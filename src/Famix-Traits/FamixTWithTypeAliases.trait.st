@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithTypeAliases classSide >> annotation [
 
-	<MSEClass: #TWithTypeAliases super: #Object>
+	<FMClass: #TWithTypeAliases super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -19,6 +19,12 @@ FamixTWithTypeAliases classSide >> annotation [
 FamixTWithTypeAliases >> addTypeAlias: anObject [
 	typeAliases add: anObject
 
+]
+
+{ #category : #adding }
+FamixTWithTypeAliases >> addTypeAliase: anObject [
+	<generated>
+	^ self typeAliases add: anObject
 ]
 
 { #category : #accessing }
@@ -34,7 +40,7 @@ FamixTWithTypeAliases >> typeAliases [
 	"Relation named: #typeAliases type: #FamixTTypeAlias opposite: #aliasedType"
 
 	<generated>
-	<MSEComment: 'Aliases'>
+	<FMComment: 'Aliases'>
 	<derived>
 	^ typeAliases
 ]

@@ -6,9 +6,8 @@ Class {
 
 { #category : #testing }
 FAMIXMetricTest >> assertNoErrorForAllMetricsOf: entity [
-	(entity mooseDescription allAttributes select: [ :attr | attr type = FM3 number ])
-		do: [ :each | 
-			self shouldnt: (entity mmGetProperty: each) raise: Error ]
+	(entity mooseDescription allProperties select: [ :attr | attr type = FM3Number instance ])
+		do: [ :each | self shouldnt: (entity mmGetProperty: each) raise: Error ]
 ]
 
 { #category : #utility }

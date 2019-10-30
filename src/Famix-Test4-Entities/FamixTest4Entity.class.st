@@ -10,7 +10,7 @@ Class {
 { #category : #meta }
 FamixTest4Entity class >> annotation [
 
-	<MSEClass: #Entity super: #MooseEntity>
+	<FMClass: #Entity super: #MooseEntity>
 	<package: #'Famix-Test4-Entities'>
 	<generated>
 	^self
@@ -26,7 +26,7 @@ FamixTest4Entity class >> metamodel [
 { #category : #accessing }
 FamixTest4Entity >> name [
 
-	<MSEProperty: #name type: #String>
+	<FMProperty: #name type: #String>
 	<generated>
 	^ name
 ]

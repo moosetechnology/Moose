@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithInvocations classSide >> annotation [
 
-	<MSEClass: #TWithInvocations super: #Object>
+	<FMClass: #TWithInvocations super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -25,7 +25,7 @@ FamixTWithInvocations >> outgoingInvocations [
 	"Relation named: #outgoingInvocations type: #FamixTInvocation opposite: #sender"
 
 	<generated>
-	<MSEComment: 'Outgoing invocations sent by this behaviour.'>
+	<FMComment: 'Outgoing invocations sent by this behaviour.'>
 	<derived>
 	^ outgoingInvocations
 ]

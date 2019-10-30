@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixStReference class >> annotation [
 
-	<MSEClass: #Reference super: #FamixStAssociation>
+	<FMClass: #Reference super: #FamixStAssociation>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self

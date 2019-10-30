@@ -49,7 +49,7 @@ MooseFameView >> viewFameClasses: classes on: view [
 	^ view
 		addObjects: classes;
 		classname: #name;
-		instanceVariables: #allAttributes;
+		instanceVariables: #allProperties;
 		methodsNames: {};
 		superclass: #superclass;
 		treeLayout

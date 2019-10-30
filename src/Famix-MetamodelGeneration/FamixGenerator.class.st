@@ -954,10 +954,9 @@ FamixGenerator >> defineHierarchy [
 	tMethod --|> #TWithSignature.
 	tMethod --|> #TWithClassScope.
 	tMethod --|> #TTypedStructure.
+	tMethod --|> tSourceEntity.
 	tMethod --|> #TWithModifiers.
 	tMethod --|> #TNamed.
-	tMethod --|> #TWithComments.
-	
 	tParameter --|> tStructuralEntity.
 
 	tStructuralEntity --|> tNamed.
@@ -967,6 +966,7 @@ FamixGenerator >> defineHierarchy [
 
 	tSourceEntity --|> #TWithSourceAnchor.
 	tSourceEntity --|> #TWithSourceLanguage.
+	tSourceEntity --|> #TWithComments.
 
 	tType --|> #TOODependencyQueries.
 	tType --|> #TReferenceable.

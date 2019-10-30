@@ -12,7 +12,7 @@ Class {
 { #category : #meta }
 FamixStMethod class >> annotation [
 
-	<MSEClass: #Method super: #FamixStNamedEntity>
+	<FMClass: #Method super: #FamixStContainerEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
@@ -51,8 +51,8 @@ FamixStMethod >> computeNumberOfLinesOfCodeIfSmalltalk [
 
 { #category : #'Famix-Extensions-private' }
 FamixStMethod >> cyclomaticComplexity [
-	<MSEProperty: #cyclomaticComplexity type: #Number>
-	<MSEComment: 'The number of linear-independent paths through a method.'>
+	<FMProperty: #cyclomaticComplexity type: #Number>
+	<FMComment: 'The number of linear-independent paths through a method.'>
 	^ self
 		lookUpPropertyNamed: #cyclomaticComplexity
 		computedAs: [ 
@@ -78,9 +78,9 @@ FamixStMethod >> hasEmptyBody [
 
 { #category : #'Famix-Extensions-metrics-support' }
 FamixStMethod >> hierarchyNestingLevel [
-	<MSEProperty: #hierarchyNestingLevel type: #Number>
+	<FMProperty: #hierarchyNestingLevel type: #Number>
 	<derived>
-	<MSEComment: 'The nesting level in the hierarchy'>
+	<FMComment: 'The nesting level in the hierarchy'>
 	
 	^self
 		lookUpPropertyNamed: #hierarchyNestingLevel
@@ -106,8 +106,8 @@ FamixStMethod >> invokedBehaviours [
 
 { #category : #'Famix-Extensions' }
 FamixStMethod >> invokedMethods [
-	<MSEProperty: #invokedMethods type: #FamixStMethod> <derived> <multivalued>
-	<MSEComment: 'The methods invoked by the receiver'>
+	<FMProperty: #invokedMethods type: #FamixStMethod> <derived> <multivalued>
+	<FMComment: 'The methods invoked by the receiver'>
 	
 	^ self invokedBehaviours select: [ :each | each isMethod ]
 ]
@@ -126,9 +126,9 @@ FamixStMethod >> isInitializer [
 
 { #category : #'Famix-Extensions-metrics-support' }
 FamixStMethod >> isInternalImplementation [
-	<MSEProperty: #isInternalImplementation type: #Boolean>
+	<FMProperty: #isInternalImplementation type: #Boolean>
 	<derived>
-	<MSEComment: 'Public Interface Layer Method'>
+	<FMComment: 'Public Interface Layer Method'>
 
 	^ (self isInitializer not and: [ self isCalledInternally ])
 		and: [ self isPureAccessor not ]
@@ -136,9 +136,9 @@ FamixStMethod >> isInternalImplementation [
 
 { #category : #'Famix-Extensions-metrics-support' }
 FamixStMethod >> isJUnit4Test [
-	<MSEProperty: #isJUnit4Test type: #Boolean>
+	<FMProperty: #isJUnit4Test type: #Boolean>
 	<derived>
-	<MSEComment: 'True if the method is considered as a Junit 4 Java test'>
+	<FMComment: 'True if the method is considered as a Junit 4 Java test'>
 	^ self isAnnotatedWith: 'Test'
 ]
 
@@ -146,9 +146,9 @@ FamixStMethod >> isJUnit4Test [
 FamixStMethod >> isOverriden [
 	"If we have a stub and we don't have the container, we can't have the information"
 
-	<MSEProperty: #isOverriden type: #Boolean>
+	<FMProperty: #isOverriden type: #Boolean>
 	<derived>
-	<MSEComment: 'The method is overrided in a sub class'>
+	<FMComment: 'The method is overrided in a sub class'>
 	(self belongsTo isNil and: [ self isStub ]) ifTrue: [ ^ false ].
 
 	^ self belongsTo subclassHierarchyGroup anySatisfy: [ :each | each implements: self signature ]
@@ -156,9 +156,9 @@ FamixStMethod >> isOverriden [
 
 { #category : #accessing }
 FamixStMethod >> isOverriding [
-	<MSEProperty: #isOverriding type: #Boolean>
+	<FMProperty: #isOverriding type: #Boolean>
 	<derived>
-	<MSEComment: 'The method is overrinding a method defined in a super class'>
+	<FMComment: 'The method is overrinding a method defined in a super class'>
 	
 	^self belongsTo directSuperclasses anySatisfy: [:each | 
 		each understands: self signature]
@@ -188,9 +188,9 @@ FamixStMethod >> isSurelyInvokedBy: aFAMIXMethod [
 
 { #category : #'Famix-Extensions-private' }
 FamixStMethod >> numberOfAccesses [
-	<MSEProperty: #numberOfAccesses type: #Number>
+	<FMProperty: #numberOfAccesses type: #Number>
 	<derived>
-	<MSEComment: 'The number of accesses from a method'>
+	<FMComment: 'The number of accesses from a method'>
 	
 	^ self 
 		lookUpPropertyNamed: #numberOfAccesses
@@ -199,9 +199,9 @@ FamixStMethod >> numberOfAccesses [
 
 { #category : #'Famix-Extensions-metrics-support' }
 FamixStMethod >> numberOfAnnotationInstances [
-	<MSEProperty: #numberOfAnnotationInstances type: #Number>
+	<FMProperty: #numberOfAnnotationInstances type: #Number>
 	<derived>
-	<MSEComment: 'The number of annotation instances defined in the method'>
+	<FMComment: 'The number of annotation instances defined in the method'>
 
 	^self
 		lookUpPropertyNamed: #numberOfAnnotationInstances
@@ -210,8 +210,8 @@ FamixStMethod >> numberOfAnnotationInstances [
 
 { #category : #'Famix-Extensions-private' }
 FamixStMethod >> numberOfComments [
-	<MSEProperty: #numberOfComments type: #Number>
-	<MSEComment: 'The number of comment fragments'>
+	<FMProperty: #numberOfComments type: #Number>
+	<FMComment: 'The number of comment fragments'>
 	<derived>
 	^ self lookUpPropertyNamed: #numberOfComments computedAs: [ self comments size ]
 ]
@@ -224,8 +224,8 @@ FamixStMethod >> numberOfComments: aNumber [
 
 { #category : #'Famix-Extensions-private' }
 FamixStMethod >> numberOfConditionals [
-	<MSEProperty: #numberOfConditionals type: #Number>
-	<MSEComment: 'The number of conditionals in a method'>
+	<FMProperty: #numberOfConditionals type: #Number>
+	<FMComment: 'The number of conditionals in a method'>
 	^ self
 		lookUpPropertyNamed: #numberOfConditionals
 		computedAs: [ 
@@ -244,8 +244,8 @@ FamixStMethod >> numberOfConditionals: aNumber [
 
 { #category : #'Famix-Extensions-private' }
 FamixStMethod >> numberOfLinesOfCode [
-	<MSEProperty: #numberOfLinesOfCode type: #Number>
-	<MSEComment: 'The number of lines of code in a method.'>
+	<FMProperty: #numberOfLinesOfCode type: #Number>
+	<FMComment: 'The number of lines of code in a method.'>
 	^ self
 		lookUpPropertyNamed: #numberOfLinesOfCode
 		computedAs: [ self computeNumberOfLinesOfCodeIfSmalltalk ]
@@ -253,9 +253,9 @@ FamixStMethod >> numberOfLinesOfCode [
 
 { #category : #'Famix-Extensions-private' }
 FamixStMethod >> numberOfMessageSends [
-	<MSEProperty: #numberOfMessageSends type: #Number>
+	<FMProperty: #numberOfMessageSends type: #Number>
 	<derived>
-	<MSEComment: 'The number of message from a method'>
+	<FMComment: 'The number of message from a method'>
 	^ self
 		lookUpPropertyNamed: #numberOfMessageSends
 		computedAs: [ 
@@ -268,9 +268,9 @@ FamixStMethod >> numberOfMessageSends [
 
 { #category : #'Famix-Extensions-private' }
 FamixStMethod >> numberOfOutgoingInvocations [
-	<MSEProperty: #numberOfOutgoingInvocations type: #Number>
+	<FMProperty: #numberOfOutgoingInvocations type: #Number>
 	<derived>
-	<MSEComment: 'The number of invocations in a method'>
+	<FMComment: 'The number of invocations in a method'>
 	
 	^self
 		lookUpPropertyNamed: #numberOfOutgoingInvocations
@@ -279,8 +279,8 @@ FamixStMethod >> numberOfOutgoingInvocations [
 
 { #category : #'Famix-Extensions-private' }
 FamixStMethod >> numberOfStatements [
-	<MSEProperty: #numberOfStatements type: #Number>
-	<MSEComment: 'The number of statements in a method'>
+	<FMProperty: #numberOfStatements type: #Number>
+	<FMComment: 'The number of statements in a method'>
 	^ self
 		lookUpPropertyNamed: #numberOfStatements
 		computedAs: [
@@ -296,17 +296,12 @@ FamixStMethod >> numberOfStatements: aNumber [
 	self privateState propertyAt: #numberOfStatements put: aNumber
 ]
 
-{ #category : #'Famix-Extensions-private' }
-FamixStMethod >> outgoingTypeDeclarations [
-	^ self declaredType ifNil: [ {} ] ifNotNil: [ :dt | {(MooseQueryTypeDeclarationAssociation newFrom: self to: dt)} ]
-]
-
 { #category : #accessing }
 FamixStMethod >> protocol [
 
-	<MSEProperty: #protocol type: #String>
+	<FMProperty: #protocol type: #String>
 	<generated>
-	<MSEComment: 'Protocol of the method'>
+	<FMComment: 'Protocol of the method'>
 	^ protocol
 ]
 
@@ -339,8 +334,8 @@ FamixStMethod >> sourceText [
 
 { #category : #'Famix-Extensions-metrics-support' }
 FamixStMethod >> timeStamp [
-	<MSEProperty: #timeStamp type: #String>
-	<MSEComment: 'TimeStamp of the method with author and time of the last change'>
+	<FMProperty: #timeStamp type: #String>
+	<FMComment: 'TimeStamp of the method with author and time of the last change'>
 	<package: 'Smalltalk'>
 	
 	^ self privateState attributeAt: #timeStamp ifAbsentPut: ['']

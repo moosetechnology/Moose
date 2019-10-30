@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaSourcedEntity class >> annotation [
 
-	<MSEClass: #SourcedEntity super: #FamixJavaEntity>
+	<FMClass: #SourcedEntity super: #FamixJavaEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
@@ -65,7 +65,7 @@ FamixJavaSourcedEntity >> fileAnchorPath: aString startPos: anInteger endPos: an
 
 { #category : #'as yet unclassified' }
 FamixJavaSourcedEntity >> numberOfJavaNullChecks [
-	<MSEProperty: #numberOfJavaNullChecks type: #Number> <derived>
+	<FMProperty: #numberOfJavaNullChecks type: #Number> <derived>
 	^self
 		lookUpPropertyNamed: #numberOfJavaNullChecks
 		computedAs: [
