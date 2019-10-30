@@ -35,7 +35,7 @@ FAMIXContainerEntity >> mooseNameWithDots [
 FAMIXContainerEntity >> outgoingInvocations [
 	self
 		deprecated: 'Please use #queryLocalOutgoing: FamixTInvocation instead'
-		transformWith: '`@receiver outgoingInvocations' -> '(`@receiver queryLocalOutgoing: FamixTInvocation)'.
+		transformWith: '`@receiver outgoingInvocations' -> '`@receiver queryLocalOutgoing: FamixTInvocation'.
 
 	^ self queryLocalOutgoing: FamixTInvocation
 ]
