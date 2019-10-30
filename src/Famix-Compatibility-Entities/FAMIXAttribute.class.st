@@ -18,13 +18,6 @@ FAMIXAttribute class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXAttribute class >> requirements [
-
-	<generated>
-	^ { FAMIXType }
-]
-
 { #category : #'Famix-Smalltalk' }
 FAMIXAttribute >> beInstanceVariable [
 

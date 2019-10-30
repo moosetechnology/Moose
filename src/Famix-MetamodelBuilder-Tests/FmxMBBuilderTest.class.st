@@ -122,37 +122,6 @@ FmxMBBuilderTest >> testClassesThatUse [
 ]
 
 { #category : #tests }
-FmxMBBuilderTest >> testContainerRequirementsOf [
-
-	| class method function |
-	
-	class := 	builder newClassNamed: #Class.
-	method := builder newClassNamed: #Method.
-	function := builder newClassNamed: #Function.
-	
-	class <>-* method.
-	
-	self assert: (builder containerRequirementsOf: class) isEmpty.	
-	self assert: (builder containerRequirementsOf: function) isEmpty.
-	self assert: (builder containerRequirementsOf: method) asArray equals: { class }.	
-]
-
-{ #category : #tests }
-FmxMBBuilderTest >> testContainerRequirementsOfTrait [
-
-	| class tClass method |
-	
-	class := 	builder newClassNamed: #Class.
-	tClass := builder newTraitNamed: #TClass.
-	method := builder newClassNamed: #Method.
-	
-	class --|> tClass.
-	tClass <>-* method.
-
-	self assert: (builder containerRequirementsOf: method) asArray equals: { class }.	
-]
-
-{ #category : #tests }
 FmxMBBuilderTest >> testDoNotGenerateCurrent [
 	
 	builder newClassNamed: #Behavior.	
@@ -286,24 +255,6 @@ FmxMBBuilderTest >> testParentBuilder [
 	childBuilder parentBuilder: parentBuilder.
 	self assert: childBuilder parentBuilderPackageName equals: 'ParentBuilderPackage'
 
-]
-
-{ #category : #tests }
-FmxMBBuilderTest >> testResolveRequirementsFromContainers [
-
-	| class method function |
-	
-	class := 	builder newClassNamed: #Class.
-	method := builder newClassNamed: #Method.
-	function := builder newClassNamed: #Function.
-	
-	class <>-* method.
-	
-	builder resolveRequirementsFromContainers.
-	
-	self assert: (class requirements) isEmpty.	
-	self assert: (function requirements) isEmpty.
-	self assert: (method requirements) asArray equals: { class }.	
 ]
 
 { #category : #tests }

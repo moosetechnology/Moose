@@ -15,13 +15,6 @@ FamixStNamedEntity class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixStNamedEntity class >> requirements [
-
-	<generated>
-	^ { FamixStPackage }
-]
-
 { #category : #'Famix-Extensions' }
 FamixStNamedEntity >> stubFormattedName [
 	 ^ self isStub 

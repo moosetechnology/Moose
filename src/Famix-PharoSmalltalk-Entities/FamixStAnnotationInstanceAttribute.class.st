@@ -15,13 +15,6 @@ FamixStAnnotationInstanceAttribute class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixStAnnotationInstanceAttribute class >> requirements [
-
-	<generated>
-	^ { FamixStAnnotationInstance }
-]
-
 { #category : #accessing }
 FamixStAnnotationInstanceAttribute >> name [ 
 	^ self annotationTypeAttribute notNil 

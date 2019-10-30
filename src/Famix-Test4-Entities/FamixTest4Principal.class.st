@@ -16,13 +16,6 @@ FamixTest4Principal class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixTest4Principal class >> requirements [
-
-	<generated>
-	^ { FamixTest4School }
-]
-
 { #category : #accessing }
 FamixTest4Principal >> school [
 	"Relation named: #school type: #FamixTest4School opposite: #principal"

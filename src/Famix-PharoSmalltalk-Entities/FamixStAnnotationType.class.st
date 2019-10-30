@@ -15,13 +15,6 @@ FamixStAnnotationType class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixStAnnotationType class >> requirements [
-
-	<generated>
-	^ { FamixStContainerEntity }
-]
-
 { #category : #compatibility }
 FamixStAnnotationType >> directSubclasses [
 	^ OrderedCollection new

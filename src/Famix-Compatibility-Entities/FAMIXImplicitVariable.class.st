@@ -15,13 +15,6 @@ FAMIXImplicitVariable class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXImplicitVariable class >> requirements [
-
-	<generated>
-	^ { FAMIXBehaviouralEntity }
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXImplicitVariable >> isSelf [
 	^ self name = #self

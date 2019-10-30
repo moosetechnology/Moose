@@ -15,13 +15,6 @@ FamixStAnnotationInstance class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixStAnnotationInstance class >> requirements [
-
-	<generated>
-	^ { FamixStNamedEntity }
-]
-
 { #category : #accessing }
 FamixStAnnotationInstance >> name [
 	^ String

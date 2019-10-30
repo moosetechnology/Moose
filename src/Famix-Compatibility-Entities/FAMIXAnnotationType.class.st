@@ -15,13 +15,6 @@ FAMIXAnnotationType class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXAnnotationType class >> requirements [
-
-	<generated>
-	^ { FAMIXContainerEntity }
-]
-
 { #category : #'accessing-query' }
 FAMIXAnnotationType >> annotatedEntities [
 	^ self instances collect: [:each | each annotatedEntity ]

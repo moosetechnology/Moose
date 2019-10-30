@@ -15,13 +15,6 @@ FAMIXAnnotationInstance class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXAnnotationInstance class >> requirements [
-
-	<generated>
-	^ { FAMIXNamedEntity }
-]
-
 { #category : #accessing }
 FAMIXAnnotationInstance >> mooseNameOn: aStream [
 	self annotationType notNil ifTrue: [

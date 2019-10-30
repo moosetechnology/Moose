@@ -143,18 +143,6 @@ FamixMetamodelBuilder >> configuration: anObject [
 ]
 
 { #category : #accessing }
-FamixMetamodelBuilder >> containerRequirementsOf: aClass [
-
-	|  usedBehaviors |
-	
-	usedBehaviors := aClass containerProperties collect: [ :e | e otherSide relatedEntity].
-	^ usedBehaviors flatCollect: [:aBehavior |
-		aBehavior isMetamodelTrait
-			ifTrue: [ self classes select: [ :e | e hasTraitGeneralization: aBehavior ]]
-			ifFalse: [ {aBehavior} ]]
-]
-
-{ #category : #accessing }
 FamixMetamodelBuilder >> doNotGenerateCurrent [
 
 	self classes do: [ :each | each willGenerate: false ].
@@ -455,7 +443,6 @@ FamixMetamodelBuilder >> parentBuilderPackageName [
 
 { #category : #generating }
 FamixMetamodelBuilder >> prepareGeneration [
-	self resolveRequirementsFromContainers.
 	self registerPackages.
 
 	self traitsWithSubBuildersTraits do: [ :each | self testingSelectorsMapping at: each put: each testingSelectors ].
@@ -500,16 +487,6 @@ FamixMetamodelBuilder >> relations [
 FamixMetamodelBuilder >> relations: anObject [
 	<ignoreForCoverage>
 	relations := anObject
-]
-
-{ #category : #generating }
-FamixMetamodelBuilder >> resolveRequirementsFromContainers [
-
-	self classes do: [ :each |
-		| req |
-		req := self containerRequirementsOf: each.
-		each requires: (self containerRequirementsOf: each) ].
-
 ]
 
 { #category : #accessing }
