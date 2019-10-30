@@ -98,35 +98,35 @@ FamixTest3Test >> setUp [
 	model addAll: {c1 . c2 . m1 . m2 . pt1 . pt2. ref1. ref2. inv1}
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTest3Test >> testAllClients [
 	self assertCollection: self pt1 allClients hasSameElements: {self m1}
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTest3Test >> testAllClientsAtScope [
 	self assertCollection: (self pt1 allClientsAtScope: FamixTClass) hasSameElements: {self c1}.
 	self assertCollection: (self pt1 allClientsAtScope: FamixTest3Class) hasSameElements: {self c1}
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTest3Test >> testAllProviders [
 	self assertCollection: self m1 allProviders hasSameElements: {self c1 . self pt1}
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTest3Test >> testAllProvidersAtScope [
 	self assertCollection: (self m1 allProvidersAtScope: FamixTClass) hasSameElements: {self c1 . self pt1}.
 	self assertCollection: (self m1 allProvidersAtScope: FamixTest3Class) hasSameElements: {self c1 . self pt1}
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTest3Test >> testAtScope [
 	self assertCollection: (self m1 atScope: FamixTClass) hasSameElements: {self c1}.
 	self assertCollection: (self m1 atScope: FamixTest3Class) hasSameElements: {self c1}
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTest3Test >> testAtScopeOnQueryResult [
 	| mooseQueryResult |
 	mooseQueryResult := MooseObjectQueryResult on: self c1 withAll: {self m1 . self m2 . self pt1 . self pt2}.
@@ -135,28 +135,28 @@ FamixTest3Test >> testAtScopeOnQueryResult [
 	self assertCollection: (mooseQueryResult atScope: FamixTest3Class) hasSameElements: {self c1 . self c2}
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTest3Test >> testAtScopeWithNonMatchingEntitiesDo [
 	self checkAtScopeWithNonMatchingEntitiesDoWith: FamixTClass.
 	self checkAtScopeWithNonMatchingEntitiesDoWith: FamixTest3Class
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTest3Test >> testChildrenTypes [
 	self assertCollection: self c1 childrenTypes hasSameElements: {FamixTAttribute . FamixTMethod. FamixTest3Method}
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTest3Test >> testIncomingReferences [
 	self assertCollection: self pt1 incomingReferences hasSameElements: {self ref1}
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTest3Test >> testParentTypes [
 	self assertCollection: self m1 parentTypes hasSameElements: {FamixTWithMethods . FamixTest3Class}
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTest3Test >> testQueryIncomingDependencies [
 	self assertCollection: self pt1 queryIncomingDependencies hasSameElements: {self ref1}
 ]

@@ -43,37 +43,37 @@ FAMIXModelQueriesTest >> setUp [
 	model add: stubNamespace
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXModelQueriesTest >> testAllClasses [
 	self assert: model allClasses size equals: 4
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXModelQueriesTest >> testAllModelClasses [
 	self assert: model allModelPureClasses size equals: 1
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXModelQueriesTest >> testAllModelNamespaces [
 	self assert: model allModelNamespaces size equals: 2
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXModelQueriesTest >> testAllModelTypes [
 	self assert: model allModelTypes size equals: 2
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXModelQueriesTest >> testAllNamespaces [
 	self assert: model allNamespaces size equals: 3
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXModelQueriesTest >> testAllTypes [
 	self assert: model allTypes size equals: 5
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXModelQueriesTest >> testAllWithTypeOfGroupClass [
 	self assert: (model allWithType: FAMIXClass ofGroupClass: FAMIXTypeGroup) size equals: 4
 ]

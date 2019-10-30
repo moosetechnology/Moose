@@ -1,8 +1,15 @@
 Class {
 	#name : #MSEImporter,
 	#superclass : #FMImporter,
-	#category : #'Moose-Core'
+	#category : #'Famix-Deprecated'
 }
+
+{ #category : #testing }
+MSEImporter class >> isDeprecated [
+	"Use FMImporter instead with the option #autorizeDandlingReferencesAtEnd."
+
+	^ true
+]
 
 { #category : #parsing }
 MSEImporter >> endDocument [

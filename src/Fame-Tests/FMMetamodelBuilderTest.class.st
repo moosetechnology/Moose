@@ -14,7 +14,7 @@ FMMetamodelBuilderTest >> setUp [
 	metamodel document: FMDungeonExample dungeonScript
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMetamodelBuilderTest >> testClasses [
 	self assert: metamodel classes size equals: 3.
 	self assert: (metamodel elementNamed: 'RPG.Dragon') notNil.
@@ -25,7 +25,7 @@ FMMetamodelBuilderTest >> testClasses [
 	self assert: (metamodel elementNamed: 'RPG.Hero') isFM3Class
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMetamodelBuilderTest >> testDragonHoardsTreasures [
 	| a b |
 	a := metamodel elementNamed: 'RPG.Dragon.hoard'.
@@ -38,7 +38,7 @@ FMMetamodelBuilderTest >> testDragonHoardsTreasures [
 	self deny: b isMultivalued
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMetamodelBuilderTest >> testDragonsKilledByHeros [
 	| a b |
 	a := metamodel elementNamed: 'RPG.Dragon.killedBy'.
@@ -51,7 +51,7 @@ FMMetamodelBuilderTest >> testDragonsKilledByHeros [
 	self assert: b isMultivalued
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMetamodelBuilderTest >> testHeroHasTwinHero [
 	| a |
 	a := metamodel elementNamed: 'RPG.Hero.twin'.
@@ -60,7 +60,7 @@ FMMetamodelBuilderTest >> testHeroHasTwinHero [
 	self deny: a isMultivalued
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMetamodelBuilderTest >> testHeroOwnsTalisman [
 	| a b |
 	a := metamodel elementNamed: 'RPG.Treasure.owner'.
@@ -73,14 +73,14 @@ FMMetamodelBuilderTest >> testHeroOwnsTalisman [
 	self deny: b isMultivalued
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMetamodelBuilderTest >> testPackages [
 	self assert: metamodel packages size equals: 1.
 	self assert: metamodel packages anyOne name isSymbol.
 	self assert: metamodel packages anyOne name equals: #RPG
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMetamodelBuilderTest >> testProperties [
 	self assert: metamodel properties size equals: 7.
 	self assert: (metamodel elementNamed: 'RPG.Dragon.hoard') notNil.

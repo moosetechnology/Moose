@@ -25,7 +25,7 @@ FamixReferenceModelMergingClassAndMetaclassImporterTest >> model [
 
 ]
 
-{ #category : #passed }
+{ #category : #tests }
 FamixReferenceModelMergingClassAndMetaclassImporterTest >> testAllClassInNamespaceAreCreated [
 	"self debug: #testAllClassInNamespaceAreCreated"
 	
@@ -34,7 +34,7 @@ FamixReferenceModelMergingClassAndMetaclassImporterTest >> testAllClassInNamespa
 	]
 ]
 
-{ #category : #passed }
+{ #category : #tests }
 FamixReferenceModelMergingClassAndMetaclassImporterTest >> testAttributInRoot [
 	"self debug: #testAttributInRoot"
 	| theRoot |
@@ -44,7 +44,7 @@ FamixReferenceModelMergingClassAndMetaclassImporterTest >> testAttributInRoot [
 	self assert: (theRoot attributes inject: false into: [:bool : method | bool or: [method name = #'CIV#mz']])
 ]
 
-{ #category : #passed }
+{ #category : #tests }
 FamixReferenceModelMergingClassAndMetaclassImporterTest >> testClassAttributeHasInstanceScope [
 	"self debug:#testClassAttributeHasInstanceScope"
 
@@ -55,7 +55,7 @@ FamixReferenceModelMergingClassAndMetaclassImporterTest >> testClassAttributeHas
 	self assert: attribute belongsTo equals: theRoot
 ]
 
-{ #category : #'new to put in VW' }
+{ #category : #tests }
 FamixReferenceModelMergingClassAndMetaclassImporterTest >> testClassMetaclassInstanceVariableAndShared [
 	"self debug: #testClassMetaclassInstanceVariableAndShared"
 
@@ -75,7 +75,7 @@ FamixReferenceModelMergingClassAndMetaclassImporterTest >> testClassMetaclassIns
 	self deny: insMetaclassVar isSharedVariable
 ]
 
-{ #category : #'new to put in VW' }
+{ #category : #tests }
 FamixReferenceModelMergingClassAndMetaclassImporterTest >> testConflictingInstanceVarNames [
 	"self debug: #testConflictingInstanceVarNames"
 
@@ -103,7 +103,7 @@ FamixReferenceModelMergingClassAndMetaclassImporterTest >> testInstanceAndClassS
 	self assert: node classSide identicalTo: nil
 ]
 
-{ #category : #'new to put in VW' }
+{ #category : #tests }
 FamixReferenceModelMergingClassAndMetaclassImporterTest >> testMetaclassAttributeHasClassScope [
 	"self debug: #testMetaclassAttributeHasClassScope"
 
@@ -114,7 +114,7 @@ FamixReferenceModelMergingClassAndMetaclassImporterTest >> testMetaclassAttribut
 	self assert: attribute belongsTo equals: theRoot
 ]
 
-{ #category : #passed }
+{ #category : #tests }
 FamixReferenceModelMergingClassAndMetaclassImporterTest >> testMetaclassMethodHasClassScope [
 	"self debug: #testMetaclassMethodHasClassScope"
 
@@ -128,7 +128,7 @@ FamixReferenceModelMergingClassAndMetaclassImporterTest >> testMetaclassMethodHa
 	self assert: classMethod belongsTo equals: theRoot
 ]
 
-{ #category : #passed }
+{ #category : #tests }
 FamixReferenceModelMergingClassAndMetaclassImporterTest >> testMethodInRoot [
 	"self debug: #testMethodInRoot"
 	
@@ -161,7 +161,7 @@ FamixReferenceModelMergingClassAndMetaclassImporterTest >> testReferencesInRoot 
 		equals: 2
 ]
 
-{ #category : #'new to put in VW' }
+{ #category : #tests }
 FamixReferenceModelMergingClassAndMetaclassImporterTest >> testSharedVariableReification [
 	"self debug: #testSharedVariableReification"
 
