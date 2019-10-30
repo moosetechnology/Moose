@@ -4,13 +4,13 @@ Class {
 	#category : #'Moose-Tests-RoassalPaintings-FameView'
 }
 
-{ #category : #ui }
+{ #category : #tests }
 MooseFameViewTest >> testOpenOn [
 
 	self shouldnt: [ MooseFameView new open delete ] raise: Error
 ]
 
-{ #category : #ui }
+{ #category : #tests }
 MooseFameViewTest >> testViewFamixCore [
 
 	self shouldnt: [ MooseFameView new viewFamixCore delete ] raise: Error

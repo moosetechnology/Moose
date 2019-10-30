@@ -111,7 +111,7 @@ FMHeinekenExample class >> modelMSEWithDanglingReferences [
 	)'.
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMHeinekenExample >> testImportMetamodelAndCreateClasses [
 	| gen |
 	gen := FMDefaultCodeGenerator new.

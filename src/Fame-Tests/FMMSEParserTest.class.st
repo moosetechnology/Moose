@@ -474,7 +474,7 @@ FMMSEParserTest >> setUp [
 	p importer: r
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testAttribute [
 	a := #(#(#beginAttribute: 'name') #(#endAttribute: 'name')).
 	r reset.
@@ -489,7 +489,7 @@ FMMSEParserTest >> testAttribute [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testAttributeNameWithUnderscore [
 	a := #(#(#beginAttribute: 'name_with_underscore') #(#endAttribute: 'name_with_underscore')).
 	r reset.
@@ -504,7 +504,7 @@ FMMSEParserTest >> testAttributeNameWithUnderscore [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testAttributeWithBoolean [
 	a := #(#(#beginAttribute: 'name') #(#primitive: true) #(#primitive: false) #(#endAttribute: 'name')).
 	r reset.
@@ -519,7 +519,7 @@ FMMSEParserTest >> testAttributeWithBoolean [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testAttributeWithElements [
 	a := #(#(#beginAttribute: 'name') #(#beginElement: 'Foo') #(#endElement: 'Foo') #(#beginElement: 'Bar') #(#endElement: 'Bar') #(#endAttribute: 'name')).
 	r reset.
@@ -534,7 +534,7 @@ FMMSEParserTest >> testAttributeWithElements [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testAttributeWithNumbers [
 	a := #(#(#beginAttribute: 'name') #(#primitive: 1) #(#primitive: 2) #(#primitive: 3) #(#endAttribute: 'name')).
 	r reset.
@@ -549,7 +549,7 @@ FMMSEParserTest >> testAttributeWithNumbers [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testAttributeWithReferences [
 	a := #(#(#beginAttribute: 'name') #(#referenceNumber: 2) #(#referenceNumber: 3) #(#endAttribute: 'name')).
 	r reset.
@@ -564,7 +564,7 @@ FMMSEParserTest >> testAttributeWithReferences [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testAttributeWithStrings [
 	a := #(#(#beginAttribute: 'name') #(#primitive: 'bar') #(#primitive: 'ba') #(#primitive: 'rossa') #(#endAttribute: 'name')).
 	r reset.
@@ -579,7 +579,7 @@ FMMSEParserTest >> testAttributeWithStrings [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testAttributeWithStrings2 [
 	a := #(#(#beginAttribute: 'name') #(#primitive: 'bar''ba''rossa') #(#endAttribute: 'name')).
 	r reset.
@@ -594,7 +594,7 @@ FMMSEParserTest >> testAttributeWithStrings2 [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testBacktrack [
 	| pos |
 	p fromString: 'abcdefg'.
@@ -612,7 +612,7 @@ FMMSEParserTest >> testBacktrack [
 	self assert: p next equals: $e
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testElement [
 	a := #(#(#beginElement: 'Foo') #(#endElement: 'Foo')).
 	r reset.
@@ -627,7 +627,7 @@ FMMSEParserTest >> testElement [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testElementWithAttributes [
 	a := #(#(#beginElement: 'Foo') #(#beginAttribute: 'name') #(#endAttribute: 'name') #(#beginAttribute: 'count') #(#endAttribute: 'count') #(#endElement: 'Foo')).
 	r reset.
@@ -642,7 +642,7 @@ FMMSEParserTest >> testElementWithAttributes [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testElementWithAttributesAndID [
 	a := #(#(#beginElement: 'Foo') #(#serial: 42) #(#beginAttribute: 'name') #(#endAttribute: 'name') #(#beginAttribute: 'count') #(#endAttribute: 'count') #(#endElement: 'Foo')).
 	r reset.
@@ -657,7 +657,7 @@ FMMSEParserTest >> testElementWithAttributesAndID [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testElementWithID [
 	a := #(#(#beginElement: 'Foo') #(#serial: 42) #(#endElement: 'Foo')).
 	r reset.
@@ -672,7 +672,7 @@ FMMSEParserTest >> testElementWithID [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testEmptyDocument [
 	p fromString: ''.
 	p Document.
@@ -680,14 +680,14 @@ FMMSEParserTest >> testEmptyDocument [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testEmptyExportString [
 	p fromString: ''.
 	p Document.
 	self assert: r exportString equals: '()'
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testFamixModel [
 	| metamodel names famixPackage accessClass accessorProperty behaviouralEntity outgoingAccesses |
 	metamodel := FMMetaModel fromString: self class famix30mse.
@@ -761,7 +761,7 @@ FMMSEParserTest >> testFamixModel [
 	self assert: accessorProperty opposite equals: outgoingAccesses
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testFullDocument [
 	r reset.
 	p fromString: self class famix30mse.
@@ -772,7 +772,7 @@ FMMSEParserTest >> testFullDocument [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testFullName [
 	p fromString: 'Foo'.
 	r := p tFULLNAME.
@@ -784,7 +784,7 @@ FMMSEParserTest >> testFullName [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testFullName2 [
 	p fromString: 'Foo.Bar'.
 	r := p tFULLNAME.
@@ -796,7 +796,7 @@ FMMSEParserTest >> testFullName2 [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testFullName3 [
 	p fromString: 'Foo.Bar.Qux'.
 	r := p tFULLNAME.
@@ -808,24 +808,24 @@ FMMSEParserTest >> testFullName3 [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testFullNameDotDotFails [
 	p fromString: 'Foo..Bar'.
 	self should: [ p tFULLNAME ] raise: Error
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testFullNameTrailingDotFails [
 	p fromString: 'Foo.'.
 	self should: [ p tFULLNAME ] raise: Error
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testImporter [
 	self assert: p importer equals: r
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testMatchString [
 	p fromString: '''Lorem'''.
 	r := p String.
@@ -841,7 +841,7 @@ FMMSEParserTest >> testMatchString [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testNumber [
 	p fromString: '14'.
 	r := p Number.
@@ -861,7 +861,7 @@ FMMSEParserTest >> testNumber [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testNumber2 [
 	p fromString: '12.91'.
 	r := p Number.
@@ -881,7 +881,7 @@ FMMSEParserTest >> testNumber2 [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testNumber3 [
 	p fromString: '12.91e33'.
 	r := p Number.
@@ -905,19 +905,19 @@ FMMSEParserTest >> testNumber3 [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testNumberTrailingDotFails [
 	p fromString: '12.'.
 	self should: [ p Number ] raise: Error
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testNumberTrailingLetterFails [
 	p fromString: '12.11e'.
 	self should: [ p Number ] raise: Error
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testSerial [
 	p fromString: '(id:42)'.
 	p Serial.
@@ -931,7 +931,7 @@ FMMSEParserTest >> testSerial [
 	self setUp
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testSimpleDocument [
 	p fromString: '()'.
 	p Document.
@@ -944,7 +944,7 @@ FMMSEParserTest >> testSimpleDocument [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testValueFloat [
 	r reset.
 	p fromString: '3.14'.
@@ -953,21 +953,21 @@ FMMSEParserTest >> testValueFloat [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testValueFloatError [
 	r reset.
 	p fromString: '3.14e$'.
 	self should: [ p Value ] raise: FMSyntaxError
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testValueFloatError2 [
 	r reset.
 	p fromString: '1..2'.
 	self should: [ p Value ] raise: FMSyntaxError
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testValueFloatWithExponent [
 	r reset.
 	p fromString: '1.291e3'.
@@ -976,7 +976,7 @@ FMMSEParserTest >> testValueFloatWithExponent [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testValueNegativeNumber [
 	r reset.
 	p fromString: '-42'.
@@ -985,7 +985,7 @@ FMMSEParserTest >> testValueNegativeNumber [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testValueNegativeNumberError [
 	r reset.
 	p fromString: '--42'.
@@ -994,7 +994,7 @@ FMMSEParserTest >> testValueNegativeNumberError [
 	self assert: p position equals: 1
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testValueNumber [
 	r reset.
 	p fromString: '13'.
@@ -1003,7 +1003,7 @@ FMMSEParserTest >> testValueNumber [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testValueReference [
 	r reset.
 	p fromString: '(ref: 24)'.
@@ -1012,7 +1012,7 @@ FMMSEParserTest >> testValueReference [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testValueReferenceBigInteger [
 	r reset.
 	p fromString: '(ref: 112233445566778899)'.
@@ -1021,7 +1021,7 @@ FMMSEParserTest >> testValueReferenceBigInteger [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testValueReferenceFullName [
 	r reset.
 	p fromString: '(ref: EG.Foo)'.
@@ -1030,7 +1030,7 @@ FMMSEParserTest >> testValueReferenceFullName [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testValueReferenceName [
 	r reset.
 	p fromString: '(ref: Foo)'.
@@ -1039,7 +1039,7 @@ FMMSEParserTest >> testValueReferenceName [
 	self assert: p atEnd
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMSEParserTest >> testValueReferenceStringError [
 	r reset.
 	p fromString: '(ref: ''String'')'.

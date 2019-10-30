@@ -36,7 +36,7 @@ FmxMBImportingContextTest >> setUp [
 
 ]
 
-{ #category : #initialization }
+{ #category : #tests }
 FmxMBImportingContextTest >> testDefineImport [
 
 	| localMethod |
@@ -47,13 +47,13 @@ FmxMBImportingContextTest >> testDefineImport [
 
 ]
 
-{ #category : #initialization }
+{ #category : #tests }
 FmxMBImportingContextTest >> testGeneratedContextClass [
 	self assert: generatedContext notNil.
 	self assert: generatedContext superclass name equals: #FmxImportingContext
 ]
 
-{ #category : #initialization }
+{ #category : #tests }
 FmxMBImportingContextTest >> testNotGenerated [
 
 	builder := FamixMetamodelBuilder forTesting.
@@ -71,7 +71,7 @@ FmxMBImportingContextTest >> testNotGenerated [
 
 ]
 
-{ #category : #initialization }
+{ #category : #tests }
 FmxMBImportingContextTest >> testNotGeneratedForEmptyBuilder [
 
 	builder := FamixMetamodelBuilder forTesting.
@@ -84,7 +84,7 @@ FmxMBImportingContextTest >> testNotGeneratedForEmptyBuilder [
 
 ]
 
-{ #category : #initialization }
+{ #category : #tests }
 FmxMBImportingContextTest >> testRequirements [
 	| localMethod |
 	self assert: (generatedVariable classSide methodNamed: #requirements) isNil.
@@ -95,7 +95,7 @@ FmxMBImportingContextTest >> testRequirements [
 	self assert: (localMethod sourceCode includesSubstring: '^ { TstMethod. TstVariable }')
 ]
 
-{ #category : #initialization }
+{ #category : #tests }
 FmxMBImportingContextTest >> testShouldImport [
 
 	| localMethod |

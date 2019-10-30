@@ -4,7 +4,7 @@ Class {
 	#category : #'Fame-Tests'
 }
 
-{ #category : #running }
+{ #category : #tests }
 FMPragmaProcessorTest >> testAnnotationTypes [
 	| metaMetaModel package class property properties |
 	metaMetaModel := FMMetaMetaModel new.
@@ -49,7 +49,7 @@ FMPragmaProcessorTest >> testAnnotationTypes [
 	self assert: (properties noneSatisfy: #isContainer)
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMPragmaProcessorTest >> testBuildFM3 [
 	| processor all |
 	processor := FMMetaModelBuilder new.
@@ -60,14 +60,14 @@ FMPragmaProcessorTest >> testBuildFM3 [
 	self assert: all anyOne name equals: #FM3	"We do not test more here, please refer to FMMetaRepositoryTest for more FM3 tests..."
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMPragmaProcessorTest >> testEmptyProcessor [
 	"An empty processor knows all primitives, but does not contain them as elements!"
 
 	self assertEmpty: FMMetaModelBuilder new elements
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMPragmaProcessorTest >> testSimple [
 	"--- FIXME: these 4 lines are moot ---"
 

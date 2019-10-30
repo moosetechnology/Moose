@@ -37,7 +37,7 @@ FMDungeonExample >> setUp [
 	metamodel := FMMetaModelBuilder metamodelFrom: {RPGDragon . RPGTreasure . RPGHero}
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMDungeonExample >> testDragonHoard [
 	| a b x y |
 	a := (metamodel elementNamed: 'RPG.Dragon') createInstance.
@@ -75,7 +75,7 @@ FMDungeonExample >> testDragonHoard [
 	self deny: (b hoard includes: y)
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMDungeonExample >> testDragonKilledBy [
 	| a b x y |
 	a := (metamodel elementNamed: 'RPG.Dragon') createInstance.
@@ -133,7 +133,7 @@ FMDungeonExample >> testDragonKilledBy [
 	self assert: y kills size equals: 0
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMDungeonExample >> testHeroKills [
 	| a b x y |
 	a := (metamodel elementNamed: 'RPG.Dragon') createInstance.
@@ -191,7 +191,7 @@ FMDungeonExample >> testHeroKills [
 	self assert: y kills size equals: 0
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMDungeonExample >> testHeroTalisman [
 	| a b x y |
 	a := (metamodel elementNamed: 'RPG.Hero') createInstance.
@@ -228,7 +228,7 @@ FMDungeonExample >> testHeroTalisman [
 	self assert: y owner isNil
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMDungeonExample >> testHeroTwin [
 	| a b c |
 	a := (metamodel elementNamed: 'RPG.Hero') createInstance.
@@ -258,7 +258,7 @@ FMDungeonExample >> testHeroTwin [
 	self assert: c twin isNil
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMDungeonExample >> testTreasureKeeper [
 	| a b x y |
 	a := (metamodel elementNamed: 'RPG.Dragon') createInstance.
@@ -296,7 +296,7 @@ FMDungeonExample >> testTreasureKeeper [
 	self deny: (b hoard includes: y)
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMDungeonExample >> testTreasureOwner [
 	| a b x y |
 	a := (metamodel elementNamed: 'RPG.Hero') createInstance.

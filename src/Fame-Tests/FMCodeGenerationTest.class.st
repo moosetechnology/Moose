@@ -4,7 +4,7 @@ Class {
 	#category : #'Fame-Tests'
 }
 
-{ #category : #running }
+{ #category : #tests }
 FMCodeGenerationTest >> testClassNamePrefix [
 	| gen |
 	gen := FMDefaultCodeGenerator new.
@@ -13,7 +13,7 @@ FMCodeGenerationTest >> testClassNamePrefix [
 	self assert: gen classNamePrefix equals: 'Zork'
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMCodeGenerationTest >> testComplexGeneration [
 	| metamodel generator |
 	metamodel := FMMetaModel fromString: FMMSEParserTest famix30mse.
@@ -25,7 +25,7 @@ FMCodeGenerationTest >> testComplexGeneration [
 	generator previewChangesIfShiftPressed
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMCodeGenerationTest >> testDefaultCategory [
 	| gen |
 	gen := FMDefaultCodeGenerator new.
@@ -34,7 +34,7 @@ FMCodeGenerationTest >> testDefaultCategory [
 	self assert: gen defaultCategory equals: 'Fame-Example'
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMCodeGenerationTest >> testDefaultClass [
 	| gen |
 	gen := FMDefaultCodeGenerator new.
@@ -43,7 +43,7 @@ FMCodeGenerationTest >> testDefaultClass [
 	self assert: gen defaultSuperclass name equals: #LIBRoot
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMCodeGenerationTest >> testFM3Generation [
 	self
 		shouldnt: [ FMDefaultCodeGenerator new
@@ -52,7 +52,7 @@ FMCodeGenerationTest >> testFM3Generation [
 		raise: Error
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMCodeGenerationTest >> testLIBGeneration [
 	| generator |
 	generator := FMDefaultCodeGenerator new.
@@ -61,7 +61,7 @@ FMCodeGenerationTest >> testLIBGeneration [
 	generator previewChangesIfShiftPressed
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMCodeGenerationTest >> testRPGGeneration [
 	| generator |
 	generator := FMDefaultCodeGenerator new.
@@ -70,7 +70,7 @@ FMCodeGenerationTest >> testRPGGeneration [
 	generator previewChangesIfShiftPressed
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMCodeGenerationTest >> testSimpleGeneration [
 	| gen |
 	gen := FMDefaultCodeGenerator new.
