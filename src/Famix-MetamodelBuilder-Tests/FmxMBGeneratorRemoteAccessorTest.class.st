@@ -21,7 +21,7 @@ FmxMBGeneratorRemoteAccessorTest >> setUp [
 	entityB := FamixGenerateRemoteAccessorTestResource current entityB
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FmxMBGeneratorRemoteAccessorTest >> testCanRemoveManyRelationFromEntityA [
 	entityA manyB add: entityB.
 	entityA manyB removeAll.
@@ -33,7 +33,7 @@ FmxMBGeneratorRemoteAccessorTest >> testCanRemoveManyRelationFromEntityA [
 	self assert: entityB oneA equals: nil.
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FmxMBGeneratorRemoteAccessorTest >> testCanRemoveMultiMultiRelationFromEntityA [
 	entityA manyManyB add: entityB.
 	entityA manyManyB removeAll.
@@ -45,7 +45,7 @@ FmxMBGeneratorRemoteAccessorTest >> testCanRemoveMultiMultiRelationFromEntityA [
 	self assert: entityB manyManyA isEmpty.
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FmxMBGeneratorRemoteAccessorTest >> testCanRemoveMultiMultiRelationFromEntityB [
 	entityB manyManyA add: entityA.
 	entityB manyManyA removeAll.
@@ -57,7 +57,7 @@ FmxMBGeneratorRemoteAccessorTest >> testCanRemoveMultiMultiRelationFromEntityB [
 	self assert: entityB manyManyA isEmpty.
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FmxMBGeneratorRemoteAccessorTest >> testCanRemoveOneRelationFromEntityB [
 	entityB oneA: entityA.
 	entityB oneA: nil.
@@ -65,7 +65,7 @@ FmxMBGeneratorRemoteAccessorTest >> testCanRemoveOneRelationFromEntityB [
 	self assert: entityB oneA equals: nil.
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FmxMBGeneratorRemoteAccessorTest >> testCanRemoveRelationFromEntityA [
 	entityA relationToB: entityB.
 	entityA relationToB: nil.
@@ -73,7 +73,7 @@ FmxMBGeneratorRemoteAccessorTest >> testCanRemoveRelationFromEntityA [
 	self assert: entityB relationToA equals: nil.
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FmxMBGeneratorRemoteAccessorTest >> testCanRemoveRelationFromEntityB [
 	entityB relationToA: entityA.
 	entityB relationToA: nil.
@@ -81,14 +81,14 @@ FmxMBGeneratorRemoteAccessorTest >> testCanRemoveRelationFromEntityB [
 	self assert: entityA relationToB equals: nil.
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FmxMBGeneratorRemoteAccessorTest >> testCanSetRelationFromEntityA [
 	entityA relationToB: entityB.
 	self assert: entityA relationToB equals: entityB. 
 	self assert: entityB relationToA equals: entityA.
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FmxMBGeneratorRemoteAccessorTest >> testCanSetRelationFromEntityB [
 	entityB relationToA: entityA.
 	self assert: entityB relationToA equals: entityA. 

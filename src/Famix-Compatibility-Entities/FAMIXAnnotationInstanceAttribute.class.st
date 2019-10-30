@@ -15,13 +15,6 @@ FAMIXAnnotationInstanceAttribute class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXAnnotationInstanceAttribute class >> requirements [
-
-	<generated>
-	^ { FAMIXAnnotationInstance }
-]
-
 { #category : #'as yet unclassified' }
 FAMIXAnnotationInstanceAttribute >> name [ 
 	^ self annotationTypeAttribute notNil 

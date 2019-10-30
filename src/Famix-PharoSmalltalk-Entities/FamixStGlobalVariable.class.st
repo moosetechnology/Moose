@@ -14,10 +14,3 @@ FamixStGlobalVariable class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #meta }
-FamixStGlobalVariable class >> requirements [
-
-	<generated>
-	^ { FamixStScopingEntity }
-]

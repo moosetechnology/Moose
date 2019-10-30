@@ -15,13 +15,6 @@ FamixJavaType class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaType class >> requirements [
-
-	<generated>
-	^ { FamixJavaClass. FamixJavaMethod. FamixJavaScopingEntity. FamixJavaType }
-]
-
 { #category : #'Famix-Java' }
 FamixJavaType >> allAnnotationInstances [
 	| result |

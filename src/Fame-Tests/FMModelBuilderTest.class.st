@@ -4,7 +4,7 @@ Class {
 	#category : #'Fame-Tests'
 }
 
-{ #category : #running }
+{ #category : #tests }
 FMModelBuilderTest >> testDocument [
 	| client m s |
 	client := FMMSEPrinter onString.
@@ -14,7 +14,7 @@ FMModelBuilderTest >> testDocument [
 	self assert: s equals: '()'
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMModelBuilderTest >> testPerson [
 	| client m s |
 	client := FMMSEPrinter onString.
@@ -29,7 +29,7 @@ FMModelBuilderTest >> testPerson [
 		(name ''John Doe'')))'
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMModelBuilderTest >> testPersonWithDog [
 	| client m s |
 	client := FMMSEPrinter onString.
@@ -57,7 +57,7 @@ FMModelBuilderTest >> testPersonWithDog [
 				(age 5)))))'
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMModelBuilderTest >> testPersonWithDogUsingIdReferences [
 	| client m s |
 	client := FMMSEPrinter onString.
@@ -85,7 +85,7 @@ FMModelBuilderTest >> testPersonWithDogUsingIdReferences [
 		(age 5)))'
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMModelBuilderTest >> testPersonWithNicknames [
 	| client m s |
 	client := FMMSEPrinter onString.

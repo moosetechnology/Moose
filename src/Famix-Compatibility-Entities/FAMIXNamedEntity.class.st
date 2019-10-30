@@ -20,13 +20,6 @@ FAMIXNamedEntity class >> belongsToMethod [
 	^ self compiledMethodAt: #belongsTo ifAbsent: nil
 ]
 
-{ #category : #meta }
-FAMIXNamedEntity class >> requirements [
-
-	<generated>
-	^ { FAMIXPackage }
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXNamedEntity >> stubFormattedName [
 	 ^ self isStub 

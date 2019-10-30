@@ -18,13 +18,6 @@ FamixStAttribute class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixStAttribute class >> requirements [
-
-	<generated>
-	^ { FamixStAnnotationType }
-]
-
 { #category : #'Famix-Implementation' }
 FamixStAttribute >> beSharedVariable [
 

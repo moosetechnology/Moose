@@ -184,9 +184,15 @@ MooseEntity class >> mooseDev [
 
 { #category : #accessing }
 MooseEntity class >> requirements [
-	"Used by Famix generator."
+	| metamodelClasses usedBehaviors |
+	metamodelClasses := self metamodel concreteImplementingClasses.
 
-	^ {}
+	usedBehaviors := (self allDeclaredPropertiesIn: self metamodel) select: #isContainer thenCollect: [ :p | p opposite implementingClass ].
+
+	^ (usedBehaviors flatCollect: [ :aBehavior |
+			aBehavior isTrait
+				ifTrue: [ metamodelClasses select: [ :each | each isComposedBy: aBehavior ] ]
+				ifFalse: [ {aBehavior} ] ]) asSet
 ]
 
 { #category : #private }

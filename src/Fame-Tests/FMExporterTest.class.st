@@ -4,7 +4,7 @@ Class {
 	#category : #'Fame-Tests'
 }
 
-{ #category : #running }
+{ #category : #tests }
 FMExporterTest >> testExportAsMSE [
 	| printer |
 	printer := FMMSEPrinter onString.
@@ -13,7 +13,7 @@ FMExporterTest >> testExportAsMSE [
 	self assert: printer stream contents first equals: $(
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMExporterTest >> testExportAsXML [
 	| printer |
 	printer := FMXMLPrinter onString.

@@ -110,8 +110,8 @@ MooseModel class >> importFrom: aStream filteredBy: anImportingContext [
 MooseModel class >> importFrom: aStream withMetamodel: aMetamodel [
 	| model importer areWarningsEnabled |
 	model := FMModel withMetamodel: aMetamodel.
-	importer := MSEImporter new.
-	importer model: model.
+	importer := FMImporter model: model.
+	importer autorizeDandlingReferencesAtEnd.
 	importer stream: aStream.
 
 	"We are currently updating the meta models and most parsers are not up to date.
@@ -136,7 +136,8 @@ MooseModel class >> importFrom: aStream withMetamodel: aMetamodel filteredBy: an
 	"famixElementNames := anImportingContext fullNamesOfEntitiesToBeExtracted ."
 
 	model := FMModel withMetamodel: aMetamodel.
-	importer := MSEImporter model: model.
+	importer := FMImporter model: model.
+	importer autorizeDandlingReferencesAtEnd.
 	importer stream: aStream.
 	importerFilter := FMImporterFilter on: importer filtering: famixElementNames.
 	importerFilter run.
@@ -147,9 +148,9 @@ MooseModel class >> importFrom: aStream withMetamodel: aMetamodel filteredBy: an
 { #category : #'import-export' }
 MooseModel class >> importFrom: aStream withMetamodel: aMetamodel translationDictionary: translationDict [
 	| model importer |
-	model := FMModel withMetamodel: aMetamodel.
-	importer := MSEImporter new.
-	importer repository: model.
+	model := FMModel withMetamodel: aMetamodel.	
+	importer := FMImporter model: model.
+	importer autorizeDandlingReferencesAtEnd.
 	importer stream: aStream.
 	importer nameTranslator: translationDict.
 	importer run.

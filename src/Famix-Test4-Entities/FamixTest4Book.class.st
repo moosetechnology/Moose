@@ -16,13 +16,6 @@ FamixTest4Book class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixTest4Book class >> requirements [
-
-	<generated>
-	^ { FamixTest4Person }
-]
-
 { #category : #accessing }
 FamixTest4Book >> person [
 	"Relation named: #person type: #FamixTest4Person opposite: #books"

@@ -71,7 +71,7 @@ FamixAbstractFileAnchorTest >> testLineCountWithCRLF [
 	self assert: anchor lineCount equals: 17
 ]
 
-{ #category : #accessing }
+{ #category : #tests }
 FamixAbstractFileAnchorTest >> testSourceText [
 	^ self subclassResponsibility
 ]

@@ -66,13 +66,13 @@ FMEquationSystemExample >> setUp [
 	metaModel := self class createMetamodel
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMEquationSystemExample >> testAllSubclasses [
 	self assert: (metaModel elementNamed: 'EQ.Expression') notNil.
 	self assert: (metaModel elementNamed: 'EQ.Expression') allSubclasses size equals: 4
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMEquationSystemExample >> testMetamodel [
 	self assert: metaModel elements size equals: 19.
 	self assert: metaModel packages size equals: 1.
@@ -80,12 +80,12 @@ FMEquationSystemExample >> testMetamodel [
 	self assert: metaModel properties size equals: 9
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMEquationSystemExample >> testMetamodelContainsCompound [
 	self assert: (metaModel elementNamed: 'EQ.Compound') notNil
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMEquationSystemExample >> testPrintString [
 	| model systems |
 	model := (FMModel withMetamodel: metaModel)

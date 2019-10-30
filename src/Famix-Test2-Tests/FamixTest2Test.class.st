@@ -47,7 +47,7 @@ FamixTest2Test >> setUp [
 	i5 superclass: c3; subclass: c5.
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTest2Test >> testInheritances [
 
 	self assertCollection: (c1 subInheritances collect: #subclass) hasSameElements: { c2. c3 }.

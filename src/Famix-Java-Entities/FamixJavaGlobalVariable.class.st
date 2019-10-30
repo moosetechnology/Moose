@@ -15,13 +15,6 @@ FamixJavaGlobalVariable class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaGlobalVariable class >> requirements [
-
-	<generated>
-	^ { FamixJavaScopingEntity }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaGlobalVariable >> isPrivate [
 	^ self isPublic not

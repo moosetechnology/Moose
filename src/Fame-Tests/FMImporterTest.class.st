@@ -19,7 +19,16 @@ FMImporterTest class >> simpleCompositeMetamodelExtension [
 			(FM3.Property (name ''name'') (type (ref: String)) (class (ref: EG.Leaf))))))'
 ]
 
-{ #category : #running }
+{ #category : #tests }
+FMImporterTest >> testAutorizeDandlingReferencesAtEnd [
+	| importer |
+	importer := FMImporter model: (FMModel withMetamodel: (FMMetaModel fromString: FMHeinekenExample metamodelMSE)).
+	importer fromString: FMHeinekenExample modelMSEWithDanglingReferences.
+	importer autorizeDandlingReferencesAtEnd.
+	self shouldnt: [ importer run ] raise: FMUnresolvedDanglingReferences
+]
+
+{ #category : #tests }
 FMImporterTest >> testElementNamed [
 	| metamodel |
 	metamodel := FMMetaModel fromString: FMHeinekenExample metamodelMSE.
@@ -28,7 +37,15 @@ FMImporterTest >> testElementNamed [
 	self assert: (metamodel elementNamed: 'HNK.Beer') fullName equals: 'HNK.Beer'
 ]
 
-{ #category : #running }
+{ #category : #tests }
+FMImporterTest >> testEnsureNoDandlingReferences [
+	| importer |
+	importer := FMImporter model: (FMModel withMetamodel: (FMMetaModel fromString: FMHeinekenExample metamodelMSE)).
+	importer fromString: FMHeinekenExample modelMSEWithDanglingReferences.
+	self should: [ importer run ] raise: FMUnresolvedDanglingReferences
+]
+
+{ #category : #tests }
 FMImporterTest >> testImportBook [
 	| importer builder |
 	importer := FMImporter model: FMMetaModel new.
@@ -39,7 +56,7 @@ FMImporterTest >> testImportBook [
 	self assert: importer model elements anyOne name equals: #Book
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMImporterTest >> testImportHeinekenMetamodel [
 	| metamodel |
 	metamodel := FMMetaModel fromString: FMHeinekenExample metamodelMSE.
@@ -48,7 +65,7 @@ FMImporterTest >> testImportHeinekenMetamodel [
 	self assert: metamodel properties size equals: 12
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMImporterTest >> testImportHeinekenModel [
 	| model |
 	model := FMModel new.
@@ -57,7 +74,7 @@ FMImporterTest >> testImportHeinekenModel [
 	self assert: model elements size equals: 4
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMImporterTest >> testOrderOfElements [
 	| model metamodel containers |
 	model := FMModel new.
@@ -75,7 +92,7 @@ FMImporterTest >> testOrderOfElements [
 	self assert: (containers anyOne at: (metamodel elementNamed: 'EG.Container.children')) size equals: 4
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMImporterTest >> testResolving [
 	| importer builder |
 	importer := FMImporter model: FMMetaModel new.
@@ -85,7 +102,7 @@ FMImporterTest >> testResolving [
 	self assert: importer model elements anyOne isFM3Class
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMImporterTest >> testResolvingId [
 	| importer builder |
 	importer := FMImporter model: FMMetaModel new.
@@ -103,7 +120,7 @@ FMImporterTest >> testResolvingId [
 	self assert: importer model elements size equals: 2
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMImporterTest >> testResolvingMultiArgs [
 	| importer pack ref2 ref4 ref5 model |
 	importer := (FMImporter model: FMMetaModel new)
@@ -161,7 +178,7 @@ FMImporterTest >> testResolvingMultiArgs [
 	self assert: (pack classes includes: ref5)
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMImporterTest >> testSimpleExtensions [
 	| metamodel |
 	metamodel := FMMetaModel fromString: self class simpleCompositeMetamodel.
@@ -172,7 +189,7 @@ FMImporterTest >> testSimpleExtensions [
 	self assert: (metamodel elementNamed: 'EG.Leaf.name') package equals: (metamodel elementNamed: 'MORE')
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMImporterTest >> testSimpleMetamodel [
 	| metamodel |
 	metamodel := FMMetaModel fromString: self class simpleCompositeMetamodel.

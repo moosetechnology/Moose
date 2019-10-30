@@ -14,7 +14,7 @@ FM3ClassTest >> addUnamedOwnerTo: anElement [
 	anElement package: FM3Package new
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FM3ClassTest >> testAllProperties [
 	element := metaMetamodel elementNamed: 'FM3.Class'.
 	self assert: element allProperties isNotNil.
@@ -22,7 +22,7 @@ FM3ClassTest >> testAllProperties [
 	self denyEmpty: element allProperties
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FM3ClassTest >> testAllPropertiesMoreThanProperties [
 	element := metaMetamodel elementNamed: 'FM3.Class'.
 	self assert: element allProperties size > element properties size.
@@ -30,7 +30,7 @@ FM3ClassTest >> testAllPropertiesMoreThanProperties [
 	self assert: (element allProperties includesAll: element properties)
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FM3ClassTest >> testAllPropertiesNotHot [
 	| class prop size |
 	class := metaMetamodel elementNamed: 'FM3.Class'.
@@ -43,7 +43,7 @@ FM3ClassTest >> testAllPropertiesNotHot [
 	self assert: prop mmClass equals: class
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FM3ClassTest >> testAllSuperclasses [
 	element := metaMetamodel elementNamed: 'FM3.Class'.
 	self assert: element allSuperclasses isNotNil.
@@ -51,34 +51,34 @@ FM3ClassTest >> testAllSuperclasses [
 	self assert: element allSuperclasses size equals: 2
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FM3ClassTest >> testHasOwner [
 	self assert: metaMetamodel classes anyOne hasOwner.
 	self assert: metaMetamodel properties anyOne hasOwner.
 	self deny: metaMetamodel packages anyOne hasOwner
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FM3ClassTest >> testHasPackage [
 	self assert: metaMetamodel classes anyOne hasPackage
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FM3ClassTest >> testHasSuperclass [
 	self assert: metaMetamodel classes anyOne hasSuperclass
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FM3ClassTest >> testIsPrimitive [
 	self deny: metaMetamodel classes anyOne isPrimitive
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FM3ClassTest >> testIsRoot [
 	self deny: metaMetamodel classes anyOne isRoot
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FM3ClassTest >> testProperties [
 	element := metaMetamodel elementNamed: 'FM3.Class'.
 	self assert: element properties isNotNil.
@@ -86,7 +86,7 @@ FM3ClassTest >> testProperties [
 	self denyEmpty: element properties
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FM3ClassTest >> testPropertiesIsHot [
 	| class prop size |
 	class := metaMetamodel elementNamed: 'FM3.Class'.
@@ -99,7 +99,7 @@ FM3ClassTest >> testPropertiesIsHot [
 	self assert: prop mmClass isNil
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FM3ClassTest >> testPropertyNamed [
 	element := metaMetamodel elementNamed: 'FM3.Class'.
 	self assert: (element propertyNamed: #owner) isNotNil.
@@ -107,7 +107,7 @@ FM3ClassTest >> testPropertyNamed [
 	self assert: (element propertyNamed: #zork) isNil
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FM3ClassTest >> testPropertyNamedString [
 	element := metaMetamodel elementNamed: 'FM3.Class'.
 	self assert: (element propertyNamed: 'owner') isNotNil.
@@ -115,7 +115,7 @@ FM3ClassTest >> testPropertyNamedString [
 	self assert: (element propertyNamed: 'zork') isNil
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FM3ClassTest >> testSubclasses [
 	self denyEmpty: (metaMetamodel elementNamed: 'FM3.Element') subclasses
 ]

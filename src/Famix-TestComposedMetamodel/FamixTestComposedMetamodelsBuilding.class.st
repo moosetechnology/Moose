@@ -50,7 +50,7 @@ FamixTestComposedMetamodelsBuilding >> setUp [
 	methodNode isRemote: true
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTestComposedMetamodelsBuilding >> testOneRemoteToOneNonRemote [
 
 	| source generatedMethod |
@@ -76,7 +76,7 @@ FamixTestComposedMetamodelsBuilding >> testOneRemoteToOneNonRemote [
 	self assert: generatedMethod package name equals: #TstComposed.
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTestComposedMetamodelsBuilding >> testOneRemoteToOneRemote [
 
 	| source generatedMethod |

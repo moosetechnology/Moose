@@ -17,13 +17,6 @@ FamixTest4Teacher class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixTest4Teacher class >> requirements [
-
-	<generated>
-	^ { FamixTest4School }
-]
-
 { #category : #adding }
 FamixTest4Teacher >> addStudent: anObject [
 	<generated>

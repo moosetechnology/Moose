@@ -31,15 +31,20 @@ Class {
 }
 
 { #category : #accessing }
+FMMetaModel >> allImplementingClasses [
+	^ self classes collect: #implementingClass
+]
+
+{ #category : #accessing }
 FMMetaModel >> classes [
 	^ self elements select: [ :each | each isFM3Class ]
 ]
 
 { #category : #accessing }
-FMMetaModel >> concreteClasses [
-	"Return all the FM3 classes whose implementing class is a class and not a trait."
+FMMetaModel >> concreteImplementingClasses [
+	"Return all the real classes that are a class and not a trait."
 
-	^ self classes reject: [ :fm3Class | fm3Class implementingClass isTrait ]
+	^ self allImplementingClasses reject: #isTrait
 ]
 
 { #category : #initialization }

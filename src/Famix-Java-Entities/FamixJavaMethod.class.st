@@ -15,14 +15,7 @@ FamixJavaMethod class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaMethod class >> requirements [
-
-	<generated>
-	^ { FamixJavaType }
-]
-
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions-metrics-support' }
 FamixJavaMethod >> accessedAttributes [
 	
 	"Returns the set of attributes of my class accessed by me (method). 

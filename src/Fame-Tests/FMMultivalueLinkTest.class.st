@@ -4,7 +4,7 @@ Class {
 	#category : #'Fame-Tests'
 }
 
-{ #category : #running }
+{ #category : #tests }
 FMMultivalueLinkTest >> testBookPerson [
 	| book person |
 	book := LIBBook new.
@@ -20,7 +20,7 @@ FMMultivalueLinkTest >> testBookPerson [
 	self assert: person books anyOne equals: book
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMultivalueLinkTest >> testClassPackage [
 	| package meta |
 	package := FM3Package new.
@@ -34,7 +34,7 @@ FMMultivalueLinkTest >> testClassPackage [
 	self assert: meta package equals: package
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMultivalueLinkTest >> testClassProperty [
 	| meta prop |
 	meta := FM3Class new.
@@ -48,12 +48,12 @@ FMMultivalueLinkTest >> testClassProperty [
 	self assert: prop mmClass equals: meta
 ]
 
-{ #category : #'running collection' }
+{ #category : #tests }
 FMMultivalueLinkTest >> testIntersection [
 	self shouldnt: [ FM3Class new properties intersection: #() ] raise: Error
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMultivalueLinkTest >> testMenageATrois [
 	| me you her |
 	me := FM3Property new.
@@ -72,7 +72,7 @@ FMMultivalueLinkTest >> testMenageATrois [
 	self assert: her opposite equals: me
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMultivalueLinkTest >> testOpposite [
 	| opposite prop |
 	opposite := FM3Property new.
@@ -84,7 +84,7 @@ FMMultivalueLinkTest >> testOpposite [
 	self assert: prop opposite equals: opposite
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMultivalueLinkTest >> testPackageClass [
 	| package meta |
 	package := FM3Package new.
@@ -98,7 +98,7 @@ FMMultivalueLinkTest >> testPackageClass [
 	self assert: meta package equals: package
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMultivalueLinkTest >> testPackageProperty [
 	| package prop |
 	package := FM3Package new.
@@ -112,7 +112,7 @@ FMMultivalueLinkTest >> testPackageProperty [
 	self assert: prop package equals: package
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMultivalueLinkTest >> testPersonBook [
 	| book person |
 	book := LIBBook new.
@@ -128,7 +128,7 @@ FMMultivalueLinkTest >> testPersonBook [
 	self assert: person books anyOne equals: book
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMultivalueLinkTest >> testPropertyClass [
 	| meta prop |
 	meta := FM3Class new.
@@ -142,7 +142,7 @@ FMMultivalueLinkTest >> testPropertyClass [
 	self assert: prop mmClass equals: meta
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMultivalueLinkTest >> testPropertyPackage [
 	| package prop |
 	package := FM3Package new.
@@ -156,12 +156,12 @@ FMMultivalueLinkTest >> testPropertyPackage [
 	self assert: prop package equals: package
 ]
 
-{ #category : #'running collection' }
+{ #category : #tests }
 FMMultivalueLinkTest >> testUnion [
 	self shouldnt: [ FM3Class new properties union: #() ] raise: Error
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMMultivalueLinkTest >> testUnsetOpposite [
 	| opposite prop |
 	opposite := FM3Property new.

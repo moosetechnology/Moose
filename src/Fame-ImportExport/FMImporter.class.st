@@ -7,12 +7,12 @@ Class {
 		'stack',
 		'elements',
 		'model',
-		'metamodel',
 		'stream',
 		'tally',
 		'reminderDict',
 		'serialDict',
-		'translationUnit'
+		'translationUnit',
+		'ensureNoDandlingReferences'
 	],
 	#category : #'Fame-ImportExport-Importers'
 }
@@ -34,6 +34,13 @@ FMImporter >> assign: element to: serial [
 			each resolve: element.
 			tally := tally - 1.
 			self assert: tally >= 0 ]
+]
+
+{ #category : #accessing }
+FMImporter >> autorizeDandlingReferencesAtEnd [
+	"I am using DandlingReferences to manage references during the import. At the end I can check that all dandling references are resolved. Calling this method, I'll not do the check and allow partial loading of models."
+
+	ensureNoDandlingReferences := false
 ]
 
 { #category : #parsing }
@@ -82,7 +89,7 @@ FMImporter >> endAttribute: name [
 FMImporter >> endDocument [
 	self assert: stack isEmpty.
 	stack := nil.
-	self assert: tally = 0.
+	ensureNoDandlingReferences ifTrue: [ tally = 0 ifFalse: [ FMUnresolvedDanglingReferences signal ] ].
 	model addAll: elements
 ]
 
@@ -109,12 +116,13 @@ FMImporter >> index [
 { #category : #initialization }
 FMImporter >> initialize [
 	super initialize.
-	translationUnit := FMNullTranslationUnit new
+	translationUnit := FMNullTranslationUnit new.
+	ensureNoDandlingReferences := true
 ]
 
 { #category : #accessing }
 FMImporter >> metamodel [
-	^metamodel
+	^ model metamodel
 ]
 
 { #category : #accessing }
@@ -124,8 +132,7 @@ FMImporter >> model [
 
 { #category : #accessing }
 FMImporter >> model: aModel [
-	model := aModel.
-	metamodel := aModel metamodel
+	model := aModel
 ]
 
 { #category : #parsing }

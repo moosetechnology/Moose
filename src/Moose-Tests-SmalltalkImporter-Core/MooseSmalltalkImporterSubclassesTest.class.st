@@ -43,7 +43,7 @@ MooseSmalltalkImporterSubclassesTest >> setUp [
 										mergeClassAndMetaclass ; yourself).
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 MooseSmalltalkImporterSubclassesTest >> testDoNotImportSubClasses [
 	self pharoImporterTask
 		importingContext:
@@ -57,7 +57,7 @@ MooseSmalltalkImporterSubclassesTest >> testDoNotImportSubClasses [
 	self deny: ((model allClasses collect: #name) includes: 'SubRootModelTwo')
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 MooseSmalltalkImporterSubclassesTest >> testImportSubClasses [
 self pharoImporterTask
 		importingContext:

@@ -4,7 +4,7 @@ Class {
 	#category : #'Famix-MetamodelBuilder-Tests'
 }
 
-{ #category : #initialization }
+{ #category : #tests }
 FmxMBBehaviorAliasTest >> testAsIncompletePropertyWithoutRelation [
 
 	| named |
@@ -16,7 +16,7 @@ FmxMBBehaviorAliasTest >> testAsIncompletePropertyWithoutRelation [
 
 ]
 
-{ #category : #initialization }
+{ #category : #tests }
 FmxMBBehaviorAliasTest >> testClassPropertyWithType [
 
 	"test if we can create typed property in a class alias"
@@ -38,7 +38,7 @@ FmxMBBehaviorAliasTest >> testClassPropertyWithType [
 
 ]
 
-{ #category : #initialization }
+{ #category : #tests }
 FmxMBBehaviorAliasTest >> testTraitName [
 
 	"trivial test of alias #traitName"
@@ -51,7 +51,7 @@ FmxMBBehaviorAliasTest >> testTraitName [
 	self assert: alias traitName equals: #TNamed
 ]
 
-{ #category : #initialization }
+{ #category : #tests }
 FmxMBBehaviorAliasTest >> testTraitPropertyWithType [
 
 	| named generated method |
@@ -70,7 +70,7 @@ FmxMBBehaviorAliasTest >> testTraitPropertyWithType [
 
 ]
 
-{ #category : #initialization }
+{ #category : #tests }
 FmxMBBehaviorAliasTest >> testUseTraitInsteadOfTraitName [
 
 	"test usage of a trait instead of a trait name in the alias creation"

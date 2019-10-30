@@ -51,7 +51,7 @@ FmxMBBuilderRelationTest >> resetBuilder [
 
 ]
 
-{ #category : #initialization }
+{ #category : #tests }
 FmxMBBuilderRelationTest >> testClassRelations [
 
 	self checkArrow: #- from: 'FMOne' to: 'FMOne' containerFrom: false containerTo: false forTraits: false.
@@ -74,7 +74,7 @@ FmxMBBuilderRelationTest >> testClassRelations [
 	
 ]
 
-{ #category : #initialization }
+{ #category : #tests }
 FmxMBBuilderRelationTest >> testOneToOneTraitsRelation [
 
 	| tClass tComment generatedTClass generatedTComment |
@@ -103,7 +103,7 @@ FmxMBBuilderRelationTest >> testOneToOneTraitsRelation [
 
 ]
 
-{ #category : #initialization }
+{ #category : #tests }
 FmxMBBuilderRelationTest >> testTraitRelations [
 
 	self checkArrow: #- from: 'FMOne' to: 'FMOne' containerFrom: false containerTo: false forTraits: true.

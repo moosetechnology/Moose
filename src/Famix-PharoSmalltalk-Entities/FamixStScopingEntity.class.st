@@ -15,13 +15,6 @@ FamixStScopingEntity class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixStScopingEntity class >> requirements [
-
-	<generated>
-	^ { FamixStScopingEntity }
-]
-
 { #category : #'Famix-Extensions-metrics' }
 FamixStScopingEntity >> abstractness [
 	"Abstractness is the ratio between the number of abstract classes and the total number of classes in a package, in the range [0, 1]. 0 means the package is fully concrete, 1 it is fully abstract."

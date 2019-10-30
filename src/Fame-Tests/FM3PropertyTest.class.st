@@ -14,7 +14,7 @@ FM3PropertyTest >> addUnamedOwnerTo: anElement [
 	anElement mmClass: FM3Class new
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FM3PropertyTest >> testClassHasOpposite [
 	| e |
 	e := metaMetamodel elementNamed: 'FM3.Property.class'.
@@ -22,14 +22,14 @@ FM3PropertyTest >> testClassHasOpposite [
 	self assert: e opposite fullName equals: 'FM3.Class.properties'
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FM3PropertyTest >> testIsCompositeDerived [
 	| e |
 	e := metaMetamodel elementNamed: 'FM3.Property.composite'.
 	self assert: e isDerived
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FM3PropertyTest >> testTypeHasOpposite [
 	| e |
 	e := metaMetamodel elementNamed: 'FM3.Property.type'.

@@ -18,13 +18,6 @@ FAMIXMethod class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXMethod class >> requirements [
-
-	<generated>
-	^ { FAMIXType }
-]
-
 { #category : #accessing }
 FAMIXMethod class >> shouldSearchForSmalltalkCodeInImage [
 	^ ShouldSearchForSmalltalkCodeInImage ifNil: [ ShouldSearchForSmalltalkCodeInImage := true ]
