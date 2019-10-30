@@ -15,13 +15,6 @@ FamixJavaNamedEntity class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaNamedEntity class >> requirements [
-
-	<generated>
-	^ { FamixJavaPackage }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaNamedEntity >> stubFormattedName [
 	 ^ self isStub 

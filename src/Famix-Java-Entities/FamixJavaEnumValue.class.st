@@ -14,10 +14,3 @@ FamixJavaEnumValue class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #meta }
-FamixJavaEnumValue class >> requirements [
-
-	<generated>
-	^ { FamixJavaEnum }
-]

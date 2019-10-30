@@ -15,13 +15,6 @@ FamixJavaAnnotationType class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaAnnotationType class >> requirements [
-
-	<generated>
-	^ { FamixJavaContainerEntity }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaAnnotationType >> annotatedEntities [
 	^ self instances collect: [:each | each annotatedEntity ]

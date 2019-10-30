@@ -15,13 +15,6 @@ FamixJavaScopingEntity class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaScopingEntity class >> requirements [
-
-	<generated>
-	^ { FamixJavaScopingEntity }
-]
-
 { #category : #'Famix-Extensions-metrics' }
 FamixJavaScopingEntity >> abstractness [
 	"Abstractness is the ratio between the number of abstract classes and the total number of classes in a package, in the range [0, 1]. 0 means the package is fully concrete, 1 it is fully abstract."

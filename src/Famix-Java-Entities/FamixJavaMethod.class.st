@@ -15,13 +15,6 @@ FamixJavaMethod class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaMethod class >> requirements [
-
-	<generated>
-	^ { FamixJavaType }
-]
-
 { #category : #'Famix-Extensions-metrics-support' }
 FamixJavaMethod >> accessedAttributes [
 	

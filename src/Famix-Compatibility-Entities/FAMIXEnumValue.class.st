@@ -14,10 +14,3 @@ FAMIXEnumValue class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #meta }
-FAMIXEnumValue class >> requirements [
-
-	<generated>
-	^ { FAMIXEnum }
-]

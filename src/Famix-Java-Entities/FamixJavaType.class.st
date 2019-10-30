@@ -15,13 +15,6 @@ FamixJavaType class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaType class >> requirements [
-
-	<generated>
-	^ { FamixJavaContainerEntity }
-]
-
 { #category : #'Famix-Java' }
 FamixJavaType >> allAnnotationInstances [
 	| result |

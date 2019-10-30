@@ -2,8 +2,7 @@ Class {
 	#name : #FmxMBClass,
 	#superclass : #FmxMBBehavior,
 	#instVars : [
-		'classGeneralization',
-		'requirements'
+		'classGeneralization'
 	],
 	#category : #'Famix-MetamodelBuilder-Core-Implementation'
 }
@@ -31,12 +30,6 @@ FmxMBClass >> allClassGeneralizations [
 { #category : #accessing }
 FmxMBClass >> allLocalTraits [
 	^ self traitsFromRelations , super allLocalTraits
-]
-
-{ #category : #accessing }
-FmxMBClass >> allRequirementNames [ 
-
-	^ (self requirements asSet collect: #fullName) sorted
 ]
 
 { #category : #accessing }
@@ -166,9 +159,7 @@ FmxMBClass >> generate [
 	self generateAnnotationIn: aClass as: self name superclass: nil.
 	
 	self generateTestingMethodsIn: aClass.
-	self generateRootMetamodelMethodIn: aClass. 	
-
-	self generateRequirementsFor: aClass.
+	self generateRootMetamodelMethodIn: aClass.
 
 	self generateMethodsMadeByTraitsFor: aClass.
 	self generateMethodsToRemoveFromTraitCompositionFor: aClass.
@@ -195,19 +186,6 @@ FmxMBClass >> generateRemotes [
 	self realClass: aClass.
 
 	self generateRemoteAccessors
-]
-
-{ #category : #generating }
-FmxMBClass >> generateRequirementsFor: aClass [
-	self allRequirementNames
-		ifNotEmpty: [ :requirementNames | 
-			aClass classSide
-				compile:
-					('requirements
-
-	<generated>
-	^ \{ {1} \}' format: {(requirementNames joinUsing: '. ')})
-				classified: #meta ]
 ]
 
 { #category : #generating }
@@ -247,12 +225,6 @@ FmxMBClass >> hasTraitGeneralization: aTrait [
 	^ self traitGeneralizations includes: aTrait 
 ]
 
-{ #category : #initialization }
-FmxMBClass >> initialize [
-	super initialize.
-	requirements := Set new
-]
-
 { #category : #testing }
 FmxMBClass >> isContainerOfClassThatUses: aTrait [
 
@@ -280,18 +252,6 @@ FmxMBClass >> isRoot [
 FmxMBClass >> relatedOwnerTraitName [
 
 	^ 'TWith', self pluralPropertyName capitalized
-]
-
-{ #category : #accessing }
-FmxMBClass >> requirements [
-
-	^ requirements 
-]
-
-{ #category : #accessing }
-FmxMBClass >> requires: collectionOfClasses [
-
-	requirements addAll: collectionOfClasses
 ]
 
 { #category : #generating }
