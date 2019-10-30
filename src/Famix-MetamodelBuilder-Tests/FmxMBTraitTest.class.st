@@ -16,19 +16,6 @@ FmxMBTraitTest >> newEntityNamed: aString [
 	^ builder newTraitNamed: aString
 ]
 
-{ #category : #'tests - names' }
-FmxMBTraitTest >> testAsProperty [
-
-	"traits should not be renamed during creation of properties"
-
-	| aTrait |
-		
-	aTrait := builder newTraitNamed: #TVariable.	
-		
-	self shouldnt: [ aTrait as: #TVariable property: #property ] raise: FmxMBTraitRenamingError.
-	self should: [ aTrait as: #TOtherName property: #property ] raise: FmxMBTraitRenamingError.
-]
-
 { #category : #tests }
 FmxMBTraitTest >> testAutogereatedContainsMany [
 

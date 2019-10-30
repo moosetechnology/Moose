@@ -48,68 +48,6 @@ FmxMBClass >> allTraitsInHierarchy [
 	^ ((self allClassGeneralizations copyWith: self) flatCollect: [ :each | each allLocalTraits ]) asSet
 ]
 
-{ #category : #converting }
-FmxMBClass >> as: aTraitOrTraitName [
-
-	| trait |
-	trait := aTraitOrTraitName isString
-		ifTrue: [ self builder ensureLocalTraitNamed: aTraitOrTraitName ]
-		ifFalse: [ aTraitOrTraitName ].
-	self addTraitGeneralization: trait. 
-	
-	^ FmxMBClassAlias new
-		subject: self;
-		trait: trait;
-		yourself.
-		
-	
-]
-
-{ #category : #converting }
-FmxMBClass >> as: aTraitOrTraitName property: propertyName [
-
-	| aSide aTrait aTraitName |
-	
-	self assert: propertyName isString.
-	
-	aTrait := aTraitOrTraitName isString
-		ifTrue: [ 
-			aTraitName := aTraitOrTraitName.
-			self builder ensureLocalTraitNamed: aTraitOrTraitName ]
-		ifFalse: [ 
-			aTraitName := aTraitOrTraitName name.
-			aTraitOrTraitName ].
-	
-	aSide := FmxMBRelationSide new
-		builder: self builder;
-		relatedClass: self;
-		traitName: aTraitName;
-		name: propertyName;
-		yourself.
-
-	aTrait addRelationSide: aSide.
-	self addTraitGeneralization: aTrait.
-	^ aSide.		
-]
-
-{ #category : #converting }
-FmxMBClass >> asExisting: aTraitOrTraitName [
-
-	| trait |
-	
-	trait := aTraitOrTraitName isString
-		ifTrue: [ self builder ensureTraitNamed: aTraitOrTraitName ]
-		ifFalse: [ aTraitOrTraitName ].
-	self addTraitGeneralization: trait. 
-	
-	^ FmxMBClassAlias new
-		subject: self;
-		trait: trait;
-		yourself.
-		
-	
-]
-
 { #category : #accessing }
 FmxMBClass >> classGeneralization [
 	^ classGeneralization

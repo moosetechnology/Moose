@@ -59,7 +59,7 @@ FmxMBRelationSide >> container [
 	container := true
 ]
 
-{ #category : #properties }
+{ #category : #accessing }
 FmxMBRelationSide >> container: anObject [
 	container := anObject
 ]
