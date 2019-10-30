@@ -15,6 +15,7 @@ VerveineJModelTest class >> resources [
 { #category : #running }
 VerveineJModelTest >> setUp [
 	super setUp.
+	self flag: #todo. "When Verveine J will be migrated to the new Java MM, those tests should also be migrated."
 	model := VerveineJTestResource current model
 ]
 
