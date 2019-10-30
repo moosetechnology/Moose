@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaScopingEntity class >> annotation [
 
-	<FMClass: #ScopingEntity super: #FamixJavaContainerEntity>
+	<FMClass: #ScopingEntity super: #FamixJavaNamedEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self

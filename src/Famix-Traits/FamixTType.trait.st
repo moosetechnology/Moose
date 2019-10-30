@@ -55,9 +55,9 @@ FamixTType >> fanIn: aNumber [
 { #category : #accessing }
 FamixTType >> isAbstract [
 
-	<MSEProperty: #isAbstract type: #Boolean>
+	<FMProperty: #isAbstract type: #Boolean>
 	<generated>
-	<MSEComment: 'True if abstract method'>
+	<FMComment: 'True if abstract method'>
 	^ isAbstract
 ]
 

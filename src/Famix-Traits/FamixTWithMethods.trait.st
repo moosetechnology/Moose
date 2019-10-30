@@ -194,15 +194,6 @@ FamixTWithMethods >> numberOfMethods: aNumber [
 	self privateState propertyAt: #numberOfMethods put: aNumber
 ]
 
-{ #category : #'Famix-Implementation' }
-FamixTWithMethods >> understands: signature [
-	"returns true if a class is able to respond to an invocation to aSignature on itself; false otherwise"
-
-	self withSuperclassesDo: [:each | 
-		(each implements: signature) ifTrue: [^true]].
-	^false
-]
-
 { #category : #metrics }
 FamixTWithMethods >> numberOfPrivateMethods [
 	<FMProperty: #numberOfPrivateMethods type: #Number>
@@ -298,6 +289,15 @@ FamixTWithMethods >> tightClassCohesion [
 FamixTWithMethods >> tightClassCohesion: aNumber [
 
 	self privateState propertyAt: #tightClassCohesion put: aNumber
+]
+
+{ #category : #'Famix-Implementation' }
+FamixTWithMethods >> understands: signature [
+	"returns true if a class is able to respond to an invocation to aSignature on itself; false otherwise"
+
+	self withSuperclassesDo: [:each | 
+		(each implements: signature) ifTrue: [^true]].
+	^false
 ]
 
 { #category : #metrics }

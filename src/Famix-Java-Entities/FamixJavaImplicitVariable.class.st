@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaImplicitVariable class >> annotation [
 
-	<FMClass: #ImplicitVariable super: #FamixJavaNamedEntity>
+	<FMClass: #ImplicitVariable super: #FamixJavaEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self

@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaUnknownVariable class >> annotation [
 
-	<FMClass: #UnknownVariable super: #FamixJavaNamedEntity>
+	<FMClass: #UnknownVariable super: #FamixJavaEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self

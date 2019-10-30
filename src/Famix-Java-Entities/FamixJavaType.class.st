@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaType class >> annotation [
 
-	<FMClass: #Type super: #FamixJavaContainerEntity>
+	<FMClass: #Type super: #FamixJavaNamedEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self

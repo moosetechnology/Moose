@@ -12,7 +12,7 @@ Class {
 { #category : #meta }
 FamixStMethod class >> annotation [
 
-	<FMClass: #Method super: #FamixStContainerEntity>
+	<FMClass: #Method super: #FamixStNamedEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self

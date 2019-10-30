@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixStClass class >> annotation [
 
-	<FMClass: #Class super: #FamixStContainerEntity>
+	<FMClass: #Class super: #FamixStNamedEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
