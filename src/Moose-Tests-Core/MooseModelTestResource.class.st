@@ -29,3 +29,9 @@ MooseModelTestResource >> setUp [
 	model := self modelClass new.
 	self importModel
 ]
+
+{ #category : #'as yet unclassified' }
+MooseModelTestResource >> tearDown [
+	model := nil.
+	super tearDown
+]

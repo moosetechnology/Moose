@@ -4,15 +4,18 @@ Class {
 	#instVars : [
 		'model'
 	],
-	#category : #'Famix-Compatibility-Tests-Java'
+	#category : #'Famix-VerveineJ-Tests'
 }
+
+{ #category : #accessing }
+VerveineJModelTest class >> resources [
+	^ {VerveineJTestResource}
+]
 
 { #category : #running }
 VerveineJModelTest >> setUp [
 	super setUp.
-	model := FAMIXModel new.
-	model importFromMSEStream: VerveineJTestResource new mse readStream
-	
+	model := VerveineJTestResource current model
 ]
 
 { #category : #tests }
