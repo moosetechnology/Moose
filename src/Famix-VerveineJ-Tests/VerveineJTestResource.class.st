@@ -1,13 +1,17 @@
 Class {
 	#name : #VerveineJTestResource,
 	#superclass : #MooseModelTestResource,
-	#category : #'Famix-Compatibility-Tests-Java'
+	#category : #'Famix-VerveineJ-Tests'
 }
 
 { #category : #hook }
 VerveineJTestResource >> importModel [
-
 	model importFromMSEStream: self mse readStream
+]
+
+{ #category : #setup }
+VerveineJTestResource >> modelClass [
+	^ FAMIXModel
 ]
 
 { #category : #private }
