@@ -30,3 +30,12 @@ FAMIXContainerEntity >> addFunction: aFunction [
 FAMIXContainerEntity >> mooseNameWithDots [
 	^ self mooseName ifNotNil: [ '.' join: (self mooseName substrings: '::') ]
 ]
+
+{ #category : #deprecated }
+FAMIXContainerEntity >> outgoingInvocations [
+	self
+		deprecated: 'Please use #queryLocalOutgoing: FamixTInvocation instead'
+		transformWith: '`@receiver outgoingInvocations' -> '(`@receiver queryLocalOutgoing: FamixTInvocation)'.
+
+	^ self queryLocalOutgoing: FamixTInvocation
+]
