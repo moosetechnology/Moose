@@ -78,18 +78,6 @@ FmxMBBehavior >> allTransitiveTraits [
 		yourself
 ]
 
-{ #category : #accessing }
-FmxMBBehavior >> as: aTraitName property: propertyName [
-	^ self subclassResponsibility
-]
-
-{ #category : #converting }
-FmxMBBehavior >> as: aTraitOrTraitName property: propertyName comment: aString [
-	^ (self as: aTraitOrTraitName property: propertyName)
-		comment: aString;
-		yourself
-]
-
 { #category : #converting }
 FmxMBBehavior >> asRelationSideNamed: aPropertyName [
 

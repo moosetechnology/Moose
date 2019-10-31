@@ -26,17 +26,6 @@ FmxMBTrait >> allTraitNames [
 ]
 
 { #category : #generating }
-FmxMBTrait >> as: aTraitName property: propertyName [
-
-	self name = aTraitName
-		ifFalse: [ FmxMBTraitRenamingError signal ].
-	
-	^ self property: propertyName
-
-	
-]
-
-{ #category : #generating }
 FmxMBTrait >> classGeneralization [
 
 	^ self builder environment basicTrait

@@ -33,55 +33,6 @@ FmxMBClassTest >> newEntityNamed: aString [
 	^ builder newClassNamed: aString
 ]
 
-{ #category : #tests }
-FmxMBClassTest >> testAs [
-
-	"test if #as: creates a trait with correct name and links it to the class"
-
-	| named generatedNamed generatedTNamed |
-		
-	named := builder newClassNamed: #Named.
-	named as: #TNamed.	
-
-	builder generate.
-
-	generatedNamed := builder testingEnvironment ask classNamed: 'TstNamed'.
-	generatedTNamed := builder testingEnvironment ask classNamed: 'TstTNamed'.
-	
-	self assert: generatedTNamed notNil.
-	self deny: (generatedNamed superclass = generatedTNamed).
-	self assertCollection: generatedNamed traits asArray equals: { generatedTNamed }.
-]
-
-{ #category : #tests }
-FmxMBClassTest >> testAsPropertyComment [
-
-	"traits should not be renamed during creation of properties"
-
-	| behavior generated generatedTrait method |
-		
-	behavior := self newEntityNamed: #Named.	
-	
-	(behavior as: #TNamed property: #from comment: 'comment from') - (behavior as: #TNamed property: #to comment: 'comment to').
-	
-	builder generate.
-	
-	generated := builder testingEnvironment ask classNamed: 'TstNamed'.
-	generatedTrait := builder testingEnvironment ask classNamed: 'TstTNamed'.
-	self assert: generated slots isEmpty.
-	self assertCollection: (generatedTrait slots collect: #name) hasSameElements: #(from to).
-
-	method := generatedTrait methodNamed: #from.
-	self assert: (method sourceCode includesSubstring: '<FMComment: ''comment from''>').
-	self assert: (method sourceCode includesSubstring: '<generated>').
-
-	method := generatedTrait methodNamed: #to.
-	self assert: (method sourceCode includesSubstring: '<FMComment: ''comment to''>').
-	self assert: (method sourceCode includesSubstring: '<generated>').
-
-
-]
-
 { #category : #'tests - settings' }
 FmxMBClassTest >> testBasicSuperclass [
 
@@ -337,29 +288,6 @@ FmxMBClassTest >> testIsContainerOfClassThatUses [
 	method --|> tMethod.
 	
 	self assert: (class isContainerOfClassThatUses: tMethod).
-]
-
-{ #category : #tests }
-FmxMBClassTest >> testMultipleAs [
-
-	"test if we can assign multiple traits to a class using #as: message"
-
-	| named generatedNamed generatedTNamed generatedTSourced  |
-		
-	named := builder newClassNamed: #Named.
-	named as: #TNamed.	
-	named as: #TSourced.	
-
-	builder generate.
-
-	generatedNamed := builder testingEnvironment ask classNamed: 'TstNamed'.
-	generatedTNamed := builder testingEnvironment ask classNamed: 'TstTNamed'.
-	generatedTSourced := builder testingEnvironment ask classNamed: 'TstTSourced'.
-	
-	self deny: (generatedNamed superclass = generatedTNamed).
-	self deny: (generatedNamed superclass = generatedTSourced).
-	self assertCollection: generatedNamed traits asArray equals: { generatedTNamed. generatedTSourced }.
-
 ]
 
 { #category : #tests }
