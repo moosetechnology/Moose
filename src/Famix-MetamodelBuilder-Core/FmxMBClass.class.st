@@ -33,22 +33,6 @@ FmxMBClass >> allLocalTraits [
 ]
 
 { #category : #accessing }
-FmxMBClass >> allTraitNames [
-	^ (self allTraits collect: #fullName) sorted
-]
-
-{ #category : #accessing }
-FmxMBClass >> allTraits [
-	^ self allLocalTraits
-]
-
-{ #category : #accessing }
-FmxMBClass >> allTraitsInHierarchy [
-
-	^ ((self allClassGeneralizations copyWith: self) flatCollect: [ :each | each allLocalTraits ]) asSet
-]
-
-{ #category : #accessing }
 FmxMBClass >> classGeneralization [
 	^ classGeneralization
 ]
@@ -58,19 +42,6 @@ FmxMBClass >> classGeneralization: anObject [
 	
 	classGeneralization := anObject.
 	^ anObject
-]
-
-{ #category : #accessing }
-FmxMBClass >> containerProperties [
-	^ super containerProperties , (self traitGeneralizations flatCollect: #containerProperties)
-]
-
-{ #category : #accessing }
-FmxMBClass >> directlyUses: aTrait [
-
-	self = aTrait ifTrue: [ ^ true ].
-
-	^ self allLocalTraits includes: aTrait
 ]
 
 { #category : #generating }
@@ -99,19 +70,10 @@ FmxMBClass >> generate [
 	self generateTestingMethodsIn: aClass.
 	self generateRootMetamodelMethodIn: aClass.
 
-	self generateMethodsMadeByTraitsFor: aClass.
 	self generateMethodsToRemoveFromTraitCompositionFor: aClass.
 	
 	self generateNavigationGroupsFor: aClass.
 	self generateAddToCollectionFor: aClass
-]
-
-{ #category : #generating }
-FmxMBClass >> generateMethodsMadeByTraitsFor: aClass [
-
-	self allTraits do: [ :aTrait | 
-		(aTrait realClass notNil and: [ aTrait realClass class canUnderstand: #generateMethodsFor:in:])
-			ifTrue: [ aTrait realClass generateMethodsFor: self in: aClass ]]
 ]
 
 { #category : #generating }
@@ -158,24 +120,6 @@ FmxMBClass >> generateTestingMethodsIn: aClass [
 ]
 
 { #category : #testing }
-FmxMBClass >> hasTraitGeneralization: aTrait [
-
-	^ self traitGeneralizations includes: aTrait 
-]
-
-{ #category : #testing }
-FmxMBClass >> isContainerOfClassThatUses: aTrait [
-
-	| directUsers containerProperties |
-	
-	directUsers := self builder classesThatUse: aTrait.
-	containerProperties := directUsers flatCollect: #containerProperties.
-	^ ((containerProperties collect: [ :side | side otherSide relatedClass ]) select: #notNil)
-		anySatisfy: [ :t | self directlyUses: t ] 
-		
-]
-
-{ #category : #testing }
 FmxMBClass >> isMetamodelClass [
 
 	^ true
@@ -186,12 +130,6 @@ FmxMBClass >> isRoot [
 	^ self classGeneralization isNil
 ]
 
-{ #category : #'name conversion' }
-FmxMBClass >> relatedOwnerTraitName [
-
-	^ 'TWith', self pluralPropertyName capitalized
-]
-
 { #category : #generating }
 FmxMBClass >> subclassOf: aClass [
 	
@@ -200,16 +138,7 @@ FmxMBClass >> subclassOf: aClass [
 
 { #category : #accessing }
 FmxMBClass >> traitsFromRelations [
-
 	"returns traits defined by relations"
 
-	^ ((self relations select: [:each | each side trait notNil ])
-		collect: [ :each | each side trait]) asSet
-]
-
-{ #category : #testing }
-FmxMBClass >> usesOnlyTrait: aTrait [
-
- 	^ (self traitGeneralizations size = 1) 
-		and: [ self traitGeneralizations first = aTrait ]	
+	^ (self relations collect: [ :each | each side trait ] thenSelect: #isNotNil) asSet
 ]

@@ -29,5 +29,4 @@ FamixTTypedAnnotationInstanceAttribute >> annotationTypeAttribute: anObject [
 
 	<generated>
 	annotationTypeAttribute := anObject
-
 ]

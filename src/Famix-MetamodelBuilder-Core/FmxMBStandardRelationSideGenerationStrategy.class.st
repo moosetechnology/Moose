@@ -4,19 +4,20 @@ Class {
 	#category : #'Famix-MetamodelBuilder-Core-Implementation'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FmxMBStandardRelationSideGenerationStrategy >> generateGetterCoreIn: aClassOrTrait on: aStream for: aRelationSide [
-
-	^ aStream tab; nextPutAll: '^ '; nextPutAll: aRelationSide name.
-	
+	aStream
+		tab;
+		nextPutAll: '^ ';
+		nextPutAll: aRelationSide name
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FmxMBStandardRelationSideGenerationStrategy >> generateSetterCoreIn: aClassOrTrait on: aStream for: aRelationSide [
-
-	(aRelationSide cardinality = #one)
-		ifTrue: [ aStream tab; nextPutAll: aRelationSide name; nextPutAll: ' := anObject'; cr ]
-		ifFalse: [ aStream tab; nextPutAll: aRelationSide name; nextPutAll: ' value: anObject'; cr ] 
+	aStream
+		tab;
+		nextPutAll: aRelationSide name.
+	aRelationSide isOne ifTrue: [ aStream nextPutAll: ' := anObject' ] ifFalse: [ aStream nextPutAll: ' value: anObject' ]
 ]
 
 { #category : #printing }

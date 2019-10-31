@@ -35,5 +35,4 @@ FamixTTypeAlias >> aliasedType: anObject [
 
 	<generated>
 	aliasedType := anObject
-
 ]

@@ -50,10 +50,8 @@ FamixTFileAnchor >> correspondingFile [
 
 { #category : #accessing }
 FamixTFileAnchor >> correspondingFile: anObject [
-
 	<generated>
 	correspondingFile := anObject
-
 ]
 
 { #category : #decoding }
@@ -74,10 +72,8 @@ FamixTFileAnchor >> encoding [
 
 { #category : #accessing }
 FamixTFileAnchor >> encoding: anObject [
-
 	<generated>
 	encoding := anObject
-
 ]
 
 { #category : #accessing }

@@ -262,24 +262,6 @@ FmxMBTraitTest >> testMultipleTraits [
 
 ]
 
-{ #category : #'tests - names' }
-FmxMBTraitTest >> testRelatedOwnerTraitName [
-
-	"test if relatedOwnerTraitName is correctly created from a trait name. It should be the same."
-
-	| aTrait |
-		
-	aTrait := builder newTraitNamed: #TVariable.	
-	self assert: aTrait relatedOwnerTraitName equals: 'TVariable'.
-		
-	aTrait := builder newTraitNamed: #TAccess.	
-	self assert: aTrait relatedOwnerTraitName equals: 'TAccess'.
-
-	aTrait := builder newTraitNamed: #TMethod.	
-	self assert: aTrait relatedOwnerTraitName equals: 'TMethod'.
-
-]
-
 { #category : #tests }
 FmxMBTraitTest >> testSimpleClassAnnotation [
 

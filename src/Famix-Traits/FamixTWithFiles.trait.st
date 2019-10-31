@@ -35,5 +35,4 @@ FamixTWithFiles >> containerFiles: anObject [
 
 	<generated>
 	containerFiles value: anObject
-
 ]

@@ -54,5 +54,4 @@ FamixTAnnotationTypeAttribute >> annotationAttributeInstances: anObject [
 
 	<generated>
 	annotationAttributeInstances value: anObject
-
 ]

@@ -13,7 +13,7 @@ visitClass: aClass
 Class {
 	#name : #FmxMBWalkerVisitor,
 	#superclass : #FmxMBVisitor,
-	#category : #'Famix-MetamodelBuilder-Core-Implementation'
+	#category : #'Famix-MetamodelBuilder-Core-Visitors'
 }
 
 { #category : #visiting }

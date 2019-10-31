@@ -52,10 +52,8 @@ FamixTFileNavigation >> endColumn [
 
 { #category : #accessing }
 FamixTFileNavigation >> endColumn: anObject [
-
 	<generated>
 	endColumn := anObject
-
 ]
 
 { #category : #accessing }
@@ -69,10 +67,8 @@ FamixTFileNavigation >> endLine [
 
 { #category : #accessing }
 FamixTFileNavigation >> endLine: anObject [
-
 	<generated>
 	endLine := anObject
-
 ]
 
 { #category : #accessing }
@@ -160,10 +156,8 @@ FamixTFileNavigation >> startColumn [
 
 { #category : #accessing }
 FamixTFileNavigation >> startColumn: anObject [
-
 	<generated>
 	startColumn := anObject
-
 ]
 
 { #category : #accessing }
@@ -177,8 +171,6 @@ FamixTFileNavigation >> startLine [
 
 { #category : #accessing }
 FamixTFileNavigation >> startLine: anObject [
-
 	<generated>
 	startLine := anObject
-
 ]

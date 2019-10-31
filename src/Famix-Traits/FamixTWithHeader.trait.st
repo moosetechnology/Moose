@@ -30,5 +30,4 @@ FamixTWithHeader >> header: anObject [
 
 	<generated>
 	header := anObject
-
 ]

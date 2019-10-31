@@ -32,5 +32,4 @@ FamixTCompilationUnit >> compilationUnitOwner: anObject [
 
 	<generated>
 	compilationUnitOwner := anObject
-
 ]

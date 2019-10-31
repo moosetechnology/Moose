@@ -35,5 +35,4 @@ FamixTWithReferences >> outgoingReferences: anObject [
 
 	<generated>
 	outgoingReferences value: anObject
-
 ]

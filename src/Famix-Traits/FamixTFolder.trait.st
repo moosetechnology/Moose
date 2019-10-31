@@ -70,7 +70,6 @@ FamixTFolder >> childrenFileSystemEntities: anObject [
 
 	<generated>
 	childrenFileSystemEntities value: anObject
-
 ]
 
 { #category : #adding }

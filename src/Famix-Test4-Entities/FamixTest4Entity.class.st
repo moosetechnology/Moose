@@ -33,8 +33,6 @@ FamixTest4Entity >> name [
 
 { #category : #accessing }
 FamixTest4Entity >> name: anObject [
-
 	<generated>
 	name := anObject
-
 ]

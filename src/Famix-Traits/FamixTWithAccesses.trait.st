@@ -30,7 +30,6 @@ FamixTWithAccesses >> accesses: anObject [
 
 	<generated>
 	accesses value: anObject
-
 ]
 
 { #category : #adding }

@@ -29,5 +29,4 @@ FamixTWithCompilationUnit >> compilationUnit: anObject [
 
 	<generated>
 	compilationUnit := anObject
-
 ]

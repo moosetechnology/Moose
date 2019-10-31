@@ -36,7 +36,6 @@ FamixTTemplate >> templateOwner: anObject [
 
 	<generated>
 	templateOwner := anObject
-
 ]
 
 { #category : #accessing }
@@ -53,5 +52,4 @@ FamixTTemplate >> templateUsers: anObject [
 
 	<generated>
 	templateUsers value: anObject
-
 ]

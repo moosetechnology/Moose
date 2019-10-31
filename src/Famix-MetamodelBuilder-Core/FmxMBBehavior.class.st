@@ -72,6 +72,11 @@ FmxMBBehavior >> allNavigationGroups [
 ]
 
 { #category : #accessing }
+FmxMBBehavior >> allTraitNames [
+	^ (self allLocalTraits collect: #fullName) sorted
+]
+
+{ #category : #accessing }
 FmxMBBehavior >> allTransitiveTraits [
 	^ (Set with: self)
 		addAll: (self allLocalTraits flatCollect: [ :trait | trait allTransitiveTraits ]);
@@ -94,11 +99,6 @@ FmxMBBehavior >> classGeneralization: anObject [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
-FmxMBBehavior >> containerProperties [
-	^ self properties select: #isContainer
-]
-
 { #category : #'settings - default' }
 FmxMBBehavior >> defaultSuperclass [
 	^ self builder environment basicSuperclass
@@ -111,7 +111,6 @@ FmxMBBehavior >> defaultSuperclassName [
 
 { #category : #'settings - default' }
 FmxMBBehavior >> defaultTag [
-
 	^ self builder configuration classTag
 ]
 
@@ -122,13 +121,9 @@ FmxMBBehavior >> fullName [
 
 { #category : #accessing }
 FmxMBBehavior >> generalization: anObject [
-
 	^ anObject isSymbol
 		ifTrue: [ self addTraitGeneralization: (self builder getTraitNamed: anObject) ]
-		ifFalse: [ 
-			anObject isMetamodelTrait 
-				ifTrue: [ self addTraitGeneralization: anObject ]
-				ifFalse: [ self classGeneralization: anObject ] ]
+		ifFalse: [ anObject isMetamodelTrait ifTrue: [ self addTraitGeneralization: anObject ] ifFalse: [ self classGeneralization: anObject ] ]
 ]
 
 { #category : #accessing }
@@ -138,10 +133,7 @@ FmxMBBehavior >> generate [
 
 { #category : #generating }
 FmxMBBehavior >> generateAccessors [
-
-	self properties do: [ :each |
-		each generateAccessorsIn: self realClass. ]
-
+	self properties do: [ :each | each generateAccessorsIn: self realClass ]
 ]
 
 { #category : #generating }
@@ -168,7 +160,7 @@ FmxMBBehavior >> generateAnnotationIn: aRealClass as: aName superclass: aSupercl
 		ifNotNil: [ aSuperclass name ]
 		ifNil: [ self classGeneralization = self defaultSuperclass
 				ifTrue: [ self defaultSuperclassName ]
-				ifFalse: [ self classGeneralization ifNil: [ self defaultSuperclassName ] ifNotNil: [ self classGeneralization realClass name ] ] ].
+				ifFalse: [ self classGeneralization ifNil: [ self defaultSuperclassName ] ifNotNil: [ :cg | cg realClass name ] ] ].
 
 	aRealClass classSide
 		compile:
@@ -217,10 +209,7 @@ FmxMBBehavior >> generateNavigationGroupsFor: aClass [
 
 { #category : #generating }
 FmxMBBehavior >> generateRemoteAccessors [
-
-	(self properties select: #isRemote) do: [ :each |
-		each generateAccessorsIn: self realClass. ]
-
+	(self properties select: #isRemote) do: [ :each | each generateAccessorsIn: self realClass ]
 ]
 
 { #category : #generating }
@@ -316,14 +305,12 @@ FmxMBBehavior >> prefix: anObject [
 
 { #category : #generating }
 FmxMBBehavior >> printOn: aStream [
-
 	<ignoreForCoverage>
-
-	aStream 
-		nextPutAll: self class name; 
-		nextPutAll: '(';
+	aStream
+		nextPutAll: self class name;
+		nextPut: $(;
 		nextPutAll: self name asString;
-		nextPutAll: ')'
+		nextPut: $)
 ]
 
 { #category : #accessing }
@@ -366,10 +353,7 @@ FmxMBBehavior >> property: propertyName type: aTypeName [
 
 { #category : #private }
 FmxMBBehavior >> propertyName [
-	
-	^ self name uncapitalized.
-	
-	
+	^ self name uncapitalized
 ]
 
 { #category : #accessing }
@@ -425,12 +409,6 @@ FmxMBBehavior >> slotDefinitions [
 	slotGroups valuesDo: [ :similarSlots | self assert: (similarSlots collect: #name) asSet size = 1 ].
 
 	^ slotGroups values collect: [ :each | each anyOne ]
-]
-
-{ #category : #accessing }
-FmxMBBehavior >> subject [
-
-	^ self
 ]
 
 { #category : #accessing }

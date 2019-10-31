@@ -66,82 +66,6 @@ FmxMBBuilderTest >> testClassNamed [
 ]
 
 { #category : #tests }
-FmxMBBuilderTest >> testClassesThatDirectlyUse [
-
-	"return only traits that are directly used by the trait"
-	
-	| c1 c2 c3 t1 t2 t3 |
-	
-	c1 := 	builder newClassNamed: #C1.
-	c2 := 	builder newClassNamed: #C2.
-	c3 := 	builder newClassNamed: #C3.
-		
-	t1 := 	builder newTraitNamed: #T1.
-	t2 := 	builder newTraitNamed: #T2.
-	t3 := 	builder newTraitNamed: #T3.
-		
-	c1 <|-- c2 <|-- c3.
-	c1 --|> t1.
-	c2 --|> t2.
-	c3 --|> t3.
-	
-	self assertCollection: (builder classesThatDirectlyUse: t1) hasSameElements: { c1 }.
-	self assertCollection: (builder classesThatDirectlyUse: t2) hasSameElements: { c2 }.
-	self assertCollection: (builder classesThatDirectlyUse: t3) hasSameElements: { c3 }.
-	
-	
-	
-]
-
-{ #category : #tests }
-FmxMBBuilderTest >> testClassesThatUse [
-
-	"return only traits that are directly used by the trait"
-	
-	| c1 c2 c3 t1 t2 t3 |
-	
-	c1 := 	builder newClassNamed: #C1.
-	c2 := 	builder newClassNamed: #C2.
-	c3 := 	builder newClassNamed: #C3.
-		
-	t1 := 	builder newTraitNamed: #T1.
-	t2 := 	builder newTraitNamed: #T2.
-	t3 := 	builder newTraitNamed: #T3.
-		
-	c1 <|-- c2 <|-- c3.
-	c1 --|> t1.
-	c2 --|> t2.
-	c3 --|> t3.
-	
-	self assertCollection: (builder classesThatUse: t1) hasSameElements: { c1. c2. c3 }.
-	self assertCollection: (builder classesThatUse: t2) hasSameElements: { c2. c3 }.
-	self assertCollection: (builder classesThatUse: t3) hasSameElements: { c3 }.
-	
-	
-	
-]
-
-{ #category : #tests }
-FmxMBBuilderTest >> testDoNotGenerateCurrent [
-	
-	builder newClassNamed: #Behavior.	
-	builder newTraitNamed: #TBehavior.
-
-	builder doNotGenerateCurrent.
-	
-	builder newClassNamed: #Class.
-	builder newTraitNamed: #TClass.
-	
-	builder generate.
-	
-	self deny: (builder testingEnvironment ask includesClassNamed: 'TstBehavior').
-	self deny: (builder testingEnvironment ask includesClassNamed: 'TstTBehavior').
-	self assert: (builder testingEnvironment ask includesClassNamed: 'TstClass').
-	self assert: (builder testingEnvironment ask includesClassNamed: 'TstTClass').
-
-]
-
-{ #category : #tests }
 FmxMBBuilderTest >> testEnsureClassNamed [
 
 	| c1 |
@@ -324,30 +248,5 @@ FmxMBBuilderTest >> testTraitNamed [
 	self assert: (builder traitNamed: #T1) equals: t.
 	self should: [ builder traitNamed: #C1 ] raise: NotFound.
 
-	
-]
-
-{ #category : #tests }
-FmxMBBuilderTest >> testWillGenerate [
-
-	"test blocking of generation"
-
-	| c1 t1 c2 t2 |
-	
-	c1 := builder newClassNamed: #C1.
-	t1 := builder newTraitNamed: #T1.
-	self assert: c1 willGenerate.
-	self assert: t1 willGenerate.
-	builder doNotGenerateCurrent.
-	self deny: c1 willGenerate.
-	self deny: t1 willGenerate.
-	c2 := builder newClassNamed: #C2.
-	t2 := builder newTraitNamed: #T2.
-	self assert: c2 willGenerate.
-	self assert: t2 willGenerate.
-	
-	self assertCollection: builder classesToGenerate hasSameElements: { c2 }.
-	self assertCollection: builder traitsToGenerate hasSameElements: { t2 }
-	
 	
 ]

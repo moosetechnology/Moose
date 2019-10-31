@@ -13,16 +13,7 @@ FmxMBTrait >> acceptVisitor: aVisitor [
 
 { #category : #accessing }
 FmxMBTrait >> allTraitGeneralizations [
-
-	^ (self traitGeneralizations flatCollect: [ :each | {each}, each allTraitGeneralizations ]) asSet.
-	
-
-]
-
-{ #category : #accessing }
-FmxMBTrait >> allTraitNames [
-
-	^ self traitGeneralizations collect: #fullName
+	^ (self traitGeneralizations flatCollect: [ :each | {each} , each allTraitGeneralizations ]) asSet
 ]
 
 { #category : #generating }
@@ -94,13 +85,6 @@ FmxMBTrait >> generateRemotes [
 ]
 
 { #category : #testing }
-FmxMBTrait >> isGlueingTrait [
-	
-	<ignoreForCoverage>
-	^ false
-]
-
-{ #category : #testing }
 FmxMBTrait >> isMetamodelTrait [
 
 	^ true
@@ -108,26 +92,12 @@ FmxMBTrait >> isMetamodelTrait [
 
 { #category : #'name conversion' }
 FmxMBTrait >> pluralPropertyName [
-
-	| uncapitalized |
-	
-	uncapitalized := (self name withoutPrefix: 'T') uncapitalized.
-	^ self pluralOf: uncapitalized
-
+	^ self pluralOf: self propertyName
 ]
 
 { #category : #'name conversion' }
 FmxMBTrait >> propertyName [
-	
-	^ (self name withoutPrefix: 'T') uncapitalized.
-	
-	
-]
-
-{ #category : #'name conversion' }
-FmxMBTrait >> relatedOwnerTraitName [
-
-	^ self name
+	^ (self name withoutPrefix: 'T') uncapitalized
 ]
 
 { #category : #accessing }

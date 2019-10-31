@@ -64,7 +64,6 @@ FamixTInvocation >> candidates: anObject [
 
 	<generated>
 	candidates value: anObject
-
 ]
 
 { #category : #accessing }
@@ -98,7 +97,6 @@ FamixTInvocation >> receiver: anObject [
 
 	<generated>
 	receiver := anObject
-
 ]
 
 { #category : #accessing }
@@ -116,7 +114,6 @@ FamixTInvocation >> sender: anObject [
 
 	<generated>
 	sender := anObject
-
 ]
 
 { #category : #accessing }
