@@ -46,7 +46,6 @@ FamixTAccess >> accessor: anObject [
 
 	<generated>
 	accessor := anObject
-
 ]
 
 { #category : #accessing }
@@ -93,10 +92,8 @@ FamixTAccess >> isWrite [
 
 { #category : #accessing }
 FamixTAccess >> isWrite: anObject [
-
 	<generated>
 	isWrite := anObject
-
 ]
 
 { #category : #accessing }
@@ -124,5 +121,4 @@ FamixTAccess >> variable: anObject [
 
 	<generated>
 	variable := anObject
-
 ]

@@ -32,5 +32,4 @@ FamixTException >> exceptionClass: anObject [
 
 	<generated>
 	exceptionClass := anObject
-
 ]

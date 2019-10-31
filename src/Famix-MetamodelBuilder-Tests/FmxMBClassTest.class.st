@@ -221,29 +221,6 @@ FmxMBClassTest >> testDefaultTagForClass [
 	self assertCollection: generatedTAccess tags hasSameElements: { builder configuration defaultTraitTag }
 ]
 
-{ #category : #'tests - tags' }
-FmxMBClassTest >> testDirectlyUses [
-
-	| named behavior tNamed tBehavior type |
-
-	named := builder newClassNamed: #Named.	
-	behavior := builder newClassNamed: #Behavior.	
-	type := builder newClassNamed: #Type.	
-	tNamed := builder newTraitNamed: #TNamed.
-	tBehavior := builder newTraitNamed: #TBehavior.
-	
-	behavior --|> named.
-	type --|> named.
-	named --|> tNamed.
-	behavior --|> tBehavior.
-	
-	self assert: (behavior directlyUses: tBehavior).
-	self assert: (named directlyUses: tNamed).
-	self deny: (behavior directlyUses: tNamed).
-	self deny: (type directlyUses: tNamed).
-
-]
-
 { #category : #tests }
 FmxMBClassTest >> testEmptyComment [
 
@@ -255,39 +232,6 @@ FmxMBClassTest >> testEmptyComment [
 	builder generate.
 	generated := builder testingEnvironment ask classNamed: 'TstComment'.
 	self assert: generated comment content isEmptyOrNil.
-]
-
-{ #category : #tests }
-FmxMBClassTest >> testHasTraitGeneralization [
-	
-	"test message #hasTraitGeneralization:"	
-	
-	| named tNamed |
-		
-	named := builder newClassNamed: #Named.	
-	tNamed := builder newTraitNamed: #TBehavior.
-	
-	self deny: (named hasTraitGeneralization: tNamed).
-	
-	named subclassOf: tNamed.
-	
-	self assert: (named hasTraitGeneralization: tNamed).
-]
-
-{ #category : #tests }
-FmxMBClassTest >> testIsContainerOfClassThatUses [
-
-	| tMethod class method |
-	tMethod := builder newTraitNamed: #TMethod.
-	
-	class := builder newClassNamed: #Class.    
-	method := builder newClassNamed: #Method.    
-
-	class <>-* method.
-
-	method --|> tMethod.
-	
-	self assert: (class isContainerOfClassThatUses: tMethod).
 ]
 
 { #category : #tests }
@@ -303,24 +247,6 @@ FmxMBClassTest >> testMultipleClasses [
 	builder testingEnvironment ask classNamed: 'TstComment'.
 	builder testingEnvironment ask classNamed: 'TstMethod'.
 	builder testingEnvironment ask classNamed: 'TstPackage'.
-
-]
-
-{ #category : #'tests - names' }
-FmxMBClassTest >> testRelatedOwnerTraitName [
-
-	"test if relatedOwnerTraitName is correctly created from a class name"
-
-	| class |
-		
-	class := builder newClassNamed: #Variable.	
-	self assert: class relatedOwnerTraitName equals: 'TWithVariables'.
-		
-	class := builder newClassNamed: #Access.	
-	self assert: class relatedOwnerTraitName equals: 'TWithAccesses'.
-
-	class := builder newClassNamed: #Method.	
-	self assert: class relatedOwnerTraitName equals: 'TWithMethods'.
 
 ]
 
@@ -454,23 +380,4 @@ FmxMBClassTest >> testTestingMethods [
 	self deny: named isMetamodelTrait.
 	
 	
-]
-
-{ #category : #tests }
-FmxMBClassTest >> testUsesOnlyTrait [
-	
-	"test message #usesOnlyTrait:"	
-	
-	| named tNamed tSourced |
-		
-	named := builder newClassNamed: #Named.	
-	tNamed := builder newTraitNamed: #TBehavior.
-	tSourced := builder newTraitNamed: #TSourced.
-	
-	self deny: (named usesOnlyTrait: tNamed).
-	named subclassOf: tNamed.
-	self assert: (named usesOnlyTrait: tNamed).
-	named subclassOf: tSourced.
-	self deny: (named usesOnlyTrait: tNamed).
-
 ]

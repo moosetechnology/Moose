@@ -58,7 +58,6 @@ FamixTNamespace >> namespaceEntities: anObject [
 
 	<generated>
 	namespaceEntities value: anObject
-
 ]
 
 { #category : #accessing }
@@ -74,5 +73,4 @@ FamixTNamespace >> namespaceOwner: anObject [
 
 	<generated>
 	namespaceOwner := anObject
-
 ]

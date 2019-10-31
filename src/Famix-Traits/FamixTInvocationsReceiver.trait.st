@@ -35,5 +35,4 @@ FamixTInvocationsReceiver >> receivingInvocations: anObject [
 
 	<generated>
 	receivingInvocations value: anObject
-
 ]

@@ -35,7 +35,6 @@ FamixTWithMethods >> methods: anObject [
 
 	<generated>
 	methods value: anObject
-
 ]
 
 { #category : #accessing }

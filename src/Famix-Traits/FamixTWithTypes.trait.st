@@ -69,5 +69,4 @@ FamixTWithTypes >> types: anObject [
 
 	<generated>
 	types value: anObject
-
 ]

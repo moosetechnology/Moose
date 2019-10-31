@@ -49,7 +49,6 @@ FamixTPackage >> childEntities: anObject [
 
 	<generated>
 	childEntities value: anObject
-
 ]
 
 { #category : #testing }
@@ -72,7 +71,6 @@ FamixTPackage >> packageOwner: anObject [
 
 	<generated>
 	packageOwner := anObject
-
 ]
 
 { #category : #metrics }

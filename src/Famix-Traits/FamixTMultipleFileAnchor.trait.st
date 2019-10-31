@@ -36,10 +36,8 @@ FamixTMultipleFileAnchor >> allFiles [
 
 { #category : #accessing }
 FamixTMultipleFileAnchor >> allFiles: anObject [
-
 	<generated>
 	allFiles := anObject
-
 ]
 
 { #category : #accessing }

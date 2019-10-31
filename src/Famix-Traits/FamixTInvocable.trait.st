@@ -35,5 +35,4 @@ FamixTInvocable >> incomingInvocations: anObject [
 
 	<generated>
 	incomingInvocations value: anObject
-
 ]

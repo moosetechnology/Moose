@@ -24,19 +24,12 @@ Class {
 		'typedProperties',
 		'traitsWithUsers'
 	],
-	#category : #'Famix-MetamodelBuilder-Core-Implementation'
+	#category : #'Famix-MetamodelBuilder-Core-Visitors'
 }
 
 { #category : #private }
 FmxMBPlantTextVisitor >> behaviorNameOrNilFor: aBehavior [
-
-	| foundAssociation |
-	
-	foundAssociation := behaviors associations 
-		detect: [ :each | each value includes: aBehavior ] 
-		ifNone: [ nil ].
-		
-	^ foundAssociation ifNotNil: [ foundAssociation key ].
+	^ behaviors associations detect: [ :each | each value includes: aBehavior ] ifFound: [ :foundAssociation | foundAssociation key ] ifNone: [ nil ]
 ]
 
 { #category : #accessing }
@@ -69,17 +62,16 @@ FmxMBPlantTextVisitor >> gatherTraits: anObject [
 
 { #category : #initialization }
 FmxMBPlantTextVisitor >> initialize [
-
 	super initialize.
-	
-	stream := String new writeStream.
+
+	stream := '' writeStream.
 	relations := IdentitySet new.
 	gatherTraits := false.
 	behaviors := Dictionary new.
 	mergeTraits := true.
 	generalizationDefinitions := OrderedCollection new.
 	typedProperties := OrderedCollection new.
-	traitsWithUsers := Set new.
+	traitsWithUsers := Set new
 ]
 
 { #category : #accessing }
@@ -103,8 +95,11 @@ FmxMBPlantTextVisitor >> mergeTrat: aTrait withBehaviorNamed: aBehaviorName [
 
 { #category : #private }
 FmxMBPlantTextVisitor >> onlySingleUserOf: aTrait [
-
-	^ ((aTrait builder classesToGenerate) count: [ :aClass | aClass usesOnlyTrait: aTrait]) = 1
+	^ ((aTrait builder classes select: #willGenerate)
+		count: [ :aClass | 
+			| traits |
+			traits := aClass traitGeneralizations.
+			traits size = 1 and: [ traits anyOne = aTrait ] ]) = 1
 ]
 
 { #category : #private }
@@ -127,26 +122,36 @@ FmxMBPlantTextVisitor >> selectTraitsWithUsersFrom: aBuilder [
 
 { #category : #visiting }
 FmxMBPlantTextVisitor >> visitBuilder: aBuilder [
+	stream
+		nextPutAll: '@startuml';
+		cr;
+		cr;
+		nextPutAll: 'hide empty members';
+		cr;
+		cr.
 
-	stream nextPutAll: '@startuml'; cr; cr.
-	stream nextPutAll: 'hide empty members'; cr; cr.
-	
-	self gatherTraits ifTrue: [ 
-		stream nextPutAll: 'together {'; cr ].
-	
+	self gatherTraits
+		ifTrue: [ stream
+				nextPutAll: 'together {';
+				cr ].
+
 	self selectTraitsWithUsersFrom: aBuilder.
-	
+
 	(aBuilder traits select: #willGenerate) do: [ :each | each acceptVisitor: self ].
-	
-	self gatherTraits ifTrue: [ 
-		stream nextPutAll: '}'; cr ].
-	
-	aBuilder sortedClasses do: [ :each | each acceptVisitor: self ].	
+
+	self gatherTraits
+		ifTrue: [ stream
+				nextPutAll: '}';
+				cr ].
+
+	aBuilder sortedClasses do: [ :each | each acceptVisitor: self ].
 
 	self writeGeneralizations.
-	self writeRelations.	
-	stream cr; nextPutAll: '@enduml'; cr.
-	
+	self writeRelations.
+	stream
+		cr;
+		nextPutAll: '@enduml';
+		cr
 ]
 
 { #category : #visiting }

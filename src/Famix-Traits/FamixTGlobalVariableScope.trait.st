@@ -35,5 +35,4 @@ FamixTGlobalVariableScope >> globalVariables: anObject [
 
 	<generated>
 	globalVariables value: anObject
-
 ]

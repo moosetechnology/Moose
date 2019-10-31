@@ -56,7 +56,6 @@ FamixTEnumValue >> parentEnum: anObject [
 
 	<generated>
 	parentEnum := anObject
-
 ]
 
 { #category : #navigation }

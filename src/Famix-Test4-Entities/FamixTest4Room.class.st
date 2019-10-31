@@ -30,7 +30,6 @@ FamixTest4Room >> school: anObject [
 
 	<generated>
 	school := anObject
-
 ]
 
 { #category : #navigation }

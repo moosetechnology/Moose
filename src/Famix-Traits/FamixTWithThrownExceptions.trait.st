@@ -35,5 +35,4 @@ FamixTWithThrownExceptions >> thrownExceptions: anObject [
 
 	<generated>
 	thrownExceptions value: anObject
-
 ]

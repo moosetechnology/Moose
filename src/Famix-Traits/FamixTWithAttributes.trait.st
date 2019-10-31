@@ -35,7 +35,6 @@ FamixTWithAttributes >> attributes: anObject [
 
 	<generated>
 	attributes value: anObject
-
 ]
 
 { #category : #'Famix-Extensions' }

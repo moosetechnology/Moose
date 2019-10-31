@@ -29,7 +29,6 @@ FamixTTypedStructure >> declaredType: anObject [
 
 	<generated>
 	declaredType := anObject
-
 ]
 
 { #category : #'moose query' }

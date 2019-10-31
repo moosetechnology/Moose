@@ -23,51 +23,41 @@ FmxMBProperty >> generateAccessorsIn: aClassOrTrait [
 ]
 
 { #category : #generating }
-FmxMBProperty >> generateExtendedContainersIn: aClassOrTrait [
-]
-
-{ #category : #generating }
 FmxMBProperty >> generateGetterIn: aClassOrTrait [
-
 	<ignoreForCoverage>
+	self subclassResponsibility
 ]
 
 { #category : #generating }
 FmxMBProperty >> generateSetterIn: aClassOrTrait [
-
 	<ignoreForCoverage>
+	self subclassResponsibility
 ]
 
 { #category : #accessing }
 FmxMBProperty >> initialize [
-
-	super initialize.	
-
-	comment := String new.
-
+	super initialize.
+	comment := ''
 ]
 
 { #category : #printing }
 FmxMBProperty >> isContainer [
-
 	^ false
 ]
 
 { #category : #printing }
 FmxMBProperty >> printOn: aStream [
-
 	<ignoreForCoverage>
-
 	super printOn: aStream.
-	
-	aStream 
-		nextPutAll: '(';
-		nextPutAll: (self name ifNil: ['']);
-		nextPutAll: ')'
+	self name
+		ifNotNil: [ :n | 
+			aStream
+				nextPut: $(;
+				nextPutAll: n;
+				nextPut: $) ]
 ]
 
 { #category : #printing }
 FmxMBProperty >> producesSlot [
-
 	^ true
 ]

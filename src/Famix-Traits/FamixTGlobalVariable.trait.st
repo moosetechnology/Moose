@@ -44,7 +44,6 @@ FamixTGlobalVariable >> parentScope: anObject [
 
 	<generated>
 	parentScope := anObject
-
 ]
 
 { #category : #navigation }

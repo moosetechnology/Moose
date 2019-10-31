@@ -30,7 +30,6 @@ FamixTest4Book >> person: anObject [
 
 	<generated>
 	person := anObject
-
 ]
 
 { #category : #navigation }

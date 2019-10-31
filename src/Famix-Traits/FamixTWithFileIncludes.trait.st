@@ -43,7 +43,6 @@ FamixTWithFileIncludes >> incomingIncludeRelations: anObject [
 
 	<generated>
 	incomingIncludeRelations value: anObject
-
 ]
 
 { #category : #accessing }
@@ -61,5 +60,4 @@ FamixTWithFileIncludes >> outgoingIncludeRelations: anObject [
 
 	<generated>
 	outgoingIncludeRelations value: anObject
-
 ]
