@@ -3,6 +3,8 @@ Trait {
 	#instVars : [
 		'#name => FMProperty'
 	],
+	#traits : 'FamixTWithModifiers',
+	#classTraits : 'FamixTWithModifiers classTrait',
 	#category : #'Famix-Traits-Named'
 }
 
