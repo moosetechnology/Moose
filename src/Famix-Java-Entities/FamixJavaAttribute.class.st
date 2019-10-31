@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaAttribute,
 	#superclass : #FamixJavaNamedEntity,
-	#traits : 'FamixJavaTStructuralEntity + FamixTAttribute + FamixTWithClassScope',
-	#classTraits : 'FamixJavaTStructuralEntity classTrait + FamixTAttribute classTrait + FamixTWithClassScope classTrait',
+	#traits : 'FamixTAttribute + FamixTWithClassScope',
+	#classTraits : 'FamixTAttribute classTrait + FamixTWithClassScope classTrait',
 	#instVars : [
 		'#hasClassScope'
 	],
