@@ -1004,7 +1004,7 @@ FamixGenerator >> defineProperties [
 	((tComment property: #content type: #String) 
 		comment: 'Content of the comment as a String').
 
-	((tPossibleStub property: #isStub type: #Boolean)
+	((tSourceEntity property: #isStub type: #Boolean)
 		comment: 'Flag true if the entity attributes are incomplete, either because the entity is missing or not imported.').
 
 	((tFileNavigation property: #startLine type: #Number)
@@ -1686,8 +1686,6 @@ FamixGenerator >> defineTraits [
 	tWithImmediateSource comment: self commentForTWithImmediateSource.
 
 	tWithModifiers := builder newTraitNamed: #TWithModifiers.
-
-	tPossibleStub := builder newTraitNamed: #TPossibleStub.
 
 	tWithStatements := builder newTraitNamed: #TWithStatements.
 

@@ -3,6 +3,9 @@ FAMIXSourcedEntity models any fact in a program source and it is the superclass 
 "
 Trait {
 	#name : #FamixTSourceEntity,
+	#instVars : [
+		'#isStub => FMProperty'
+	],
 	#traits : 'FamixTWithSourceAnchor + FamixTWithSourceLanguage + FamixTWithComments',
 	#classTraits : 'FamixTWithSourceAnchor classTrait + FamixTWithSourceLanguage classTrait + FamixTWithComments classTrait',
 	#category : #'Famix-Traits-Traits'
@@ -15,4 +18,20 @@ FamixTSourceEntity classSide >> annotation [
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
+]
+
+{ #category : #accessing }
+FamixTSourceEntity >> isStub [
+
+	<FMProperty: #isStub type: #Boolean>
+	<FMComment: 'Flag true if the entity attributes are incomplete, either because the entity is missing or not imported.'>
+	^ isStub ifNil: [ false ]
+]
+
+{ #category : #accessing }
+FamixTSourceEntity >> isStub: anObject [
+
+	<generated>
+	isStub := anObject
+
 ]
