@@ -35,5 +35,4 @@ FamixTWithAnnotationInstanceAttributes >> attributes: anObject [
 
 	<generated>
 	attributes value: anObject
-
 ]

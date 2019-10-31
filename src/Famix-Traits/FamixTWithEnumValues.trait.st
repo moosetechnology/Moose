@@ -35,5 +35,4 @@ FamixTWithEnumValues >> enumValues: anObject [
 
 	<generated>
 	enumValues value: anObject
-
 ]

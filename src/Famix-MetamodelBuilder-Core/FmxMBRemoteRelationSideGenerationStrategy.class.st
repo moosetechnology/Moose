@@ -9,9 +9,3 @@ FmxMBRemoteRelationSideGenerationStrategy >> compileMethod: methodSource for: aR
 		
 	aRelationSide builder environment compile: methodSource in: aClassOrTrait classified: self category package: self relationSide builder parentBuilderPackageName.
 ]
-
-{ #category : #printing }
-FmxMBRemoteRelationSideGenerationStrategy >> producesSlot [
-
-	^ false
-]

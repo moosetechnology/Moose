@@ -67,7 +67,6 @@ FamixTScopingEntity >> childScopes: anObject [
 
 	<generated>
 	childScopes value: anObject
-
 ]
 
 { #category : #accessing }

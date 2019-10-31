@@ -36,5 +36,4 @@ FamixTParameterizedTypeUser >> argumentsInParameterizedTypes: anObject [
 
 	<generated>
 	argumentsInParameterizedTypes value: anObject
-
 ]

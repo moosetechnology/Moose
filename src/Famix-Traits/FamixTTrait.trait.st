@@ -40,7 +40,6 @@ FamixTTrait >> incomingTraitUsages: anObject [
 
 	<generated>
 	incomingTraitUsages value: anObject
-
 ]
 
 { #category : #accessing }
@@ -56,5 +55,4 @@ FamixTTrait >> traitOwner: anObject [
 
 	<generated>
 	traitOwner := anObject
-
 ]

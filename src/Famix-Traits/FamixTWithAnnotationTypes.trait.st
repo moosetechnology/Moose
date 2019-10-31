@@ -36,5 +36,4 @@ FamixTWithAnnotationTypes >> definedAnnotationTypes: anObject [
 
 	<generated>
 	definedAnnotationTypes value: anObject
-
 ]

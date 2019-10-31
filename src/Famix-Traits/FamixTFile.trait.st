@@ -60,7 +60,6 @@ FamixTFile >> entities: anObject [
 
 	<generated>
 	entities value: anObject
-
 ]
 
 { #category : #accessing }

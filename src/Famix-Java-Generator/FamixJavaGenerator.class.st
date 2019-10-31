@@ -200,7 +200,6 @@ FamixJavaGenerator >> defineHierarchy [
 	namedEntity --|> #TPackageable.
 	namedEntity --|> #TInvocationsReceiver.
 	namedEntity --|> #TWithAnnotationInstances.
-	namedEntity --|> #TWithModifiers.
 	namedEntity --|> #TPossibleStub.
 
 	namespace --|> scopingEntity.
@@ -224,6 +223,7 @@ FamixJavaGenerator >> defineHierarchy [
 	parameterizedType --|> type.
 	parameterizedType --|> #TParameterizedType.
 	parameterizedType --|> #TWithParameterizedTypeUsers.
+	parameterizedType --|> #TWithInheritances.
 
 	primitiveType --|> type.
 

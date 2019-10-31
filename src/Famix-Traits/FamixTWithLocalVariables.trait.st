@@ -35,5 +35,4 @@ FamixTWithLocalVariables >> localVariables: anObject [
 
 	<generated>
 	localVariables value: anObject
-
 ]

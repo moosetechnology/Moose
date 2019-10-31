@@ -307,10 +307,8 @@ FamixStMethod >> protocol [
 
 { #category : #accessing }
 FamixStMethod >> protocol: anObject [
-
 	<generated>
 	protocol := anObject
-
 ]
 
 { #category : #'Famix-Extensions-metrics-support' }

@@ -35,7 +35,6 @@ FamixTWithInvocations >> outgoingInvocations: anObject [
 
 	<generated>
 	outgoingInvocations value: anObject
-
 ]
 
 { #category : #adding }

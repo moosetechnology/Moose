@@ -28,5 +28,4 @@ FamixTTemplateUser >> template: anObject [
 
 	<generated>
 	template := anObject
-
 ]

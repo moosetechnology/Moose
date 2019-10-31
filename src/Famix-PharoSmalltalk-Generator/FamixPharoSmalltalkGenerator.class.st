@@ -117,6 +117,7 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 
 	namedEntity --|> #TPackageable.
 	namedEntity --|> #TWithAnnotationInstances.
+	namedEntity --|> #TPossibleStub.
 
 	namespace --|> scopingEntity.
 	namespace --|> #TNamespace.

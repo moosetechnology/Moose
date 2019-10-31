@@ -66,7 +66,6 @@ FamixTReference >> source: anObject [
 
 	<generated>
 	source := anObject
-
 ]
 
 { #category : #accessing }
@@ -84,7 +83,6 @@ FamixTReference >> target: anObject [
 
 	<generated>
 	target := anObject
-
 ]
 
 { #category : #accessing }

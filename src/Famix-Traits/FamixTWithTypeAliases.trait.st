@@ -50,5 +50,4 @@ FamixTWithTypeAliases >> typeAliases: anObject [
 
 	<generated>
 	typeAliases value: anObject
-
 ]

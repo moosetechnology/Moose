@@ -70,7 +70,6 @@ FamixTAccessible >> incomingAccesses: anObject [
 
 	<generated>
 	incomingAccesses value: anObject
-
 ]
 
 { #category : #accessing }

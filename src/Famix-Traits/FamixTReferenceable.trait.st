@@ -35,5 +35,4 @@ FamixTReferenceable >> incomingReferences: anObject [
 
 	<generated>
 	incomingReferences value: anObject
-
 ]

@@ -28,5 +28,4 @@ FamixTNamespaceEntity >> parentNamespace: anObject [
 
 	<generated>
 	parentNamespace := anObject
-
 ]

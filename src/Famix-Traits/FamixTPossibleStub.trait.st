@@ -25,8 +25,6 @@ FamixTPossibleStub >> isStub [
 
 { #category : #accessing }
 FamixTPossibleStub >> isStub: anObject [
-
 	<generated>
 	isStub := anObject
-
 ]
