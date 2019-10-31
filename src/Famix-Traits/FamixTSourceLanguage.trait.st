@@ -53,5 +53,4 @@ FamixTSourceLanguage >> sourcedEntities: anObject [
 
 	<generated>
 	sourcedEntities value: anObject
-
 ]

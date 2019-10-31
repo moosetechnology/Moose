@@ -29,7 +29,6 @@ FamixTWithSourceLanguage >> declaredSourceLanguage: anObject [
 
 	<generated>
 	declaredSourceLanguage := anObject
-
 ]
 
 { #category : #testing }

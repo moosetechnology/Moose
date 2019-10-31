@@ -31,5 +31,4 @@ FamixTCaughtException >> definingEntity: anObject [
 
 	<generated>
 	definingEntity := anObject
-
 ]

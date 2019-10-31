@@ -49,5 +49,4 @@ FamixTWithParameters >> parameters: anObject [
 
 	<generated>
 	parameters value: anObject
-
 ]

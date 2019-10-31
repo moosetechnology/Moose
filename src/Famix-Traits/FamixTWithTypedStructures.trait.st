@@ -56,5 +56,4 @@ FamixTWithTypedStructures >> structuresWithDeclaredType: anObject [
 
 	<generated>
 	structuresWithDeclaredType value: anObject
-
 ]

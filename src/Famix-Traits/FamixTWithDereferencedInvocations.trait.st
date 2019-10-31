@@ -35,5 +35,4 @@ FamixTWithDereferencedInvocations >> dereferencedInvocations: anObject [
 
 	<generated>
 	dereferencedInvocations value: anObject
-
 ]

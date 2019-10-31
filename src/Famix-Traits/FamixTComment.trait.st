@@ -54,8 +54,6 @@ FamixTComment >> content [
 
 { #category : #accessing }
 FamixTComment >> content: anObject [
-
 	<generated>
 	content := anObject
-
 ]

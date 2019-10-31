@@ -36,5 +36,4 @@ FamixTTraitUser >> outgoingTraitUsages: anObject [
 
 	<generated>
 	outgoingTraitUsages value: anObject
-
 ]

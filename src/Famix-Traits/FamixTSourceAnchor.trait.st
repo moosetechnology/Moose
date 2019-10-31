@@ -32,7 +32,6 @@ FamixTSourceAnchor >> element: anObject [
 
 	<generated>
 	element := anObject
-
 ]
 
 { #category : #testing }

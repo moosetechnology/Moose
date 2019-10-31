@@ -37,7 +37,6 @@ FamixTest4Teacher >> school: anObject [
 
 	<generated>
 	school := anObject
-
 ]
 
 { #category : #navigation }
@@ -60,7 +59,6 @@ FamixTest4Teacher >> students: anObject [
 
 	<generated>
 	students value: anObject
-
 ]
 
 { #category : #navigation }

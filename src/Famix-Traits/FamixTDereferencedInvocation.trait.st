@@ -36,5 +36,4 @@ FamixTDereferencedInvocation >> referencer: anObject [
 
 	<generated>
 	referencer := anObject
-
 ]

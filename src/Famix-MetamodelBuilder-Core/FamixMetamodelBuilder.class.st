@@ -71,9 +71,8 @@ FamixMetamodelBuilder class >> forGenerator: aGenerator [
 
 { #category : #visitor }
 FamixMetamodelBuilder >> acceptVisitor: aVisitor [
-
 	<ignoreForCoverage>
-	^ aVisitor visitBuilder: self.
+	^ aVisitor visitBuilder: self
 ]
 
 { #category : #accessing }
@@ -88,14 +87,12 @@ FamixMetamodelBuilder >> apply [
 
 { #category : #accessing }
 FamixMetamodelBuilder >> baseImportingContextName [
-
 	^ #FmxImportingContext
 ]
 
 { #category : #accessing }
 FamixMetamodelBuilder >> behaviorsCount [
-
-	^ self traits size + self sortedClasses size
+	^ self traits size + self classes size
 ]
 
 { #category : #initialization }
@@ -113,24 +110,6 @@ FamixMetamodelBuilder >> classes [
 ]
 
 { #category : #accessing }
-FamixMetamodelBuilder >> classesThatDirectlyUse: aTrait [
-
-	^ self classes select: [ :each | each allLocalTraits includes: aTrait ].
-]
-
-{ #category : #accessing }
-FamixMetamodelBuilder >> classesThatUse: aTrait [
-
-	^ self classes select: [ :each | each allTraitsInHierarchy includes: aTrait ].
-]
-
-{ #category : #accessing }
-FamixMetamodelBuilder >> classesToGenerate [ 
-
-	^ self classes select: #willGenerate
-]
-
-{ #category : #accessing }
 FamixMetamodelBuilder >> configuration [
 	^ configuration
 ]
@@ -142,19 +121,9 @@ FamixMetamodelBuilder >> configuration: anObject [
 	configuration := anObject
 ]
 
-{ #category : #accessing }
-FamixMetamodelBuilder >> doNotGenerateCurrent [
-
-	self classes do: [ :each | each willGenerate: false ].
-	self traits do: [ :each | each willGenerate: false ].
-	
-]
-
 { #category : #initialization }
 FamixMetamodelBuilder >> ensureClassNamed: aString [
-
-	^ self classes detect: [ :each | each name = aString] ifNone: [ self newClassNamed: aString ]
-	
+	^ self classes detect: [ :each | each name = aString ] ifNone: [ self newClassNamed: aString ]
 ]
 
 { #category : #initialization }
@@ -192,17 +161,15 @@ FamixMetamodelBuilder >> generate [
 
 { #category : #generating }
 FamixMetamodelBuilder >> generateImportIn: contextClass [
-
-	| source |
-
-	self sortedClasses do: [ :each | 
-		source := String streamContents: [ :s |
-			s	nextPutAll: 'import'; nextPutAll: each name; cr;
-				cr;
-				tab; nextPutAll: '<generated>'; cr;
-				tab; nextPutAll: '^ self import: '; nextPutAll: each fullName ].
-		 self environment compile: source in: contextClass classified: 'testing' ] 
-
+	self classes
+		do: [ :each | 
+			self environment
+				compile:
+					('import{1}
+	<generated>
+	^ self import: {2}' format: {each name . each fullName})
+				in: contextClass
+				classified: 'testing' ]
 ]
 
 { #category : #generating }
@@ -260,24 +227,22 @@ FamixMetamodelBuilder >> generateMooseModel [
 { #category : #generating }
 FamixMetamodelBuilder >> generateRemotes [
 	self traits do: [ :each | each generateRemotes ].
-	self sortedClasses do: [ :each | each generateRemotes ].
+	self classes do: [ :each | each generateRemotes ].
 
 	self apply
 ]
 
 { #category : #generating }
 FamixMetamodelBuilder >> generateShouldImportIn: contextClass [
-
-	| source |
-
-	self sortedClasses do: [ :each | 
-		source := String streamContents: [ :s |
-			s	nextPutAll: 'shouldImport'; nextPutAll: each name; cr;
-				cr;
-				tab; nextPutAll: '<generated>'; cr;
-				tab; nextPutAll: '^ self shouldImport: '; nextPutAll: each fullName ].
-		 self environment compile: source in: contextClass classified: 'testing' ] 
-
+	self classes
+		do: [ :each | 
+			self environment
+				compile:
+					('shouldImport{1}
+	<generated>
+	^ self shouldImport: {2}' format: {each name . each fullName})
+				in: contextClass
+				classified: 'testing' ]
 ]
 
 { #category : #accessing }
@@ -323,23 +288,20 @@ In order to fix the issue you should use #remoteTrait:withPrefix: in your genera
 
 { #category : #accessing }
 FamixMetamodelBuilder >> importingContextName [
-
-	^ (self configuration prefix, 'ImportingContext') asSymbol
+	^ (self configuration prefix , 'ImportingContext') asSymbol
 ]
 
 { #category : #initialization }
 FamixMetamodelBuilder >> initialize [
-
+	super initialize.
 	environment := FmxMBRealRingEnvironment for: self.
-	
+
 	configuration := FmxMBConfiguration new.
 
 	classes := OrderedCollection new.
 	traits := OrderedCollection new.
 	relations := OrderedCollection new.
-	testingSelectorsMapping := Dictionary new.	
-	
-	
+	testingSelectorsMapping := Dictionary new
 ]
 
 { #category : #initialization }
@@ -358,23 +320,16 @@ FamixMetamodelBuilder >> newClass [
 
 { #category : #initialization }
 FamixMetamodelBuilder >> newClassNamed: aClassName [
+	(self classes select: [ :each | each name = aClassName ]) ifNotEmpty: [ FmxMBEntityAlreadyExists signal ].
 
-	| candidates |
-	
-	candidates := self classes select: [ :each | each name = aClassName].
-	candidates isEmpty ifFalse: [ FmxMBEntityAlreadyExists signal ].
-
-	^ self newClass name: aClassName.
-	
+	^ self newClass name: aClassName
 ]
 
 { #category : #initialization }
 FamixMetamodelBuilder >> newClassNamed: aClassName comment: aString [
-
 	^ (self newClassNamed: aClassName)
 		comment: aString;
 		yourself
-	
 ]
 
 { #category : #initialization }
@@ -404,20 +359,16 @@ FamixMetamodelBuilder >> newTrait [
 
 { #category : #initialization }
 FamixMetamodelBuilder >> newTraitNamed: aTraitName [
-	| candidates |
-	candidates := self traits select: [ :each | each fullName = (self configuration prefix , aTraitName) ].
-	candidates isEmpty ifFalse: [ FmxMBEntityAlreadyExists signal ].
+	(self traits select: [ :each | each fullName = (self configuration prefix , aTraitName) ]) ifNotEmpty: [ FmxMBEntityAlreadyExists signal ].
 
 	^ self unsafeNewTraitNamed: aTraitName
 ]
 
 { #category : #initialization }
 FamixMetamodelBuilder >> newTraitNamed: aClassName comment: aString [
-
 	^ (self newTraitNamed: aClassName)
 		comment: aString;
 		yourself
-	
 ]
 
 { #category : #accessing }
@@ -446,7 +397,7 @@ FamixMetamodelBuilder >> prepareGeneration [
 	self registerPackages.
 
 	self traitsWithSubBuildersTraits do: [ :each | self testingSelectorsMapping at: each put: each testingSelectors ].
-	self sortedClasses do: [ :each | self testingSelectorsMapping at: each put: each testingSelectors ].
+	self classes do: [ :each | self testingSelectorsMapping at: each put: each testingSelectors ].
 	self traits do: [ :each | each generate ].
 	self sortedClasses do: [ :each | each generate ].
 	self behaviorsCount > 0 ifTrue: [ self generateImportingContext ].
@@ -473,9 +424,7 @@ FamixMetamodelBuilder >> regenerationIsNeeded [
 
 { #category : #generating }
 FamixMetamodelBuilder >> registerPackages [
-	
-	self environment registerPackage: self configuration packageName.
-	
+	self environment registerPackage: self configuration packageName
 ]
 
 { #category : #accessing }
@@ -491,33 +440,19 @@ FamixMetamodelBuilder >> relations: anObject [
 
 { #category : #accessing }
 FamixMetamodelBuilder >> safeAnnotationPackageName [
-	
-	| aName |
-	
-	aName := self configuration packageNameForAnnotations.
-	
-	^ aName isLiteralSymbol
-		ifTrue: [ '#', aName ]
-		ifFalse: [ '#''', aName, '''' ]
+	^ self configuration packageNameForAnnotations asSymbol printString
 ]
 
 { #category : #accessing }
 FamixMetamodelBuilder >> sortedClasses [
-
 	<ignoreForMutations: #(ReplaceLessOrEqualWithLessMutantOperator)>
-	
-	^ self classes sorted: [ :a :b |
-		a allClassGeneralizations size <= b allClassGeneralizations size ].
-
+	^ self classes sorted: [ :class | class allClassGeneralizations size ] ascending
 ]
 
 { #category : #accessing }
 FamixMetamodelBuilder >> sortedTraits [
-
 	<ignoreForMutations: #(ReplaceAndWithEqvMutantOperator ReplaceLessOrEqualWithLessMutantOperator)>
-
-	^ self traits sorted: [ :a :b | (a allTraitGeneralizations size <= b allTraitGeneralizations size) and: [ a name <= b name]].
-
+	^ self traits sorted: [ :a :b | a allTraitGeneralizations size <= b allTraitGeneralizations size and: [ a name <= b name ] ]
 ]
 
 { #category : #accessing }
@@ -548,12 +483,6 @@ FamixMetamodelBuilder >> traits [
 ]
 
 { #category : #accessing }
-FamixMetamodelBuilder >> traitsToGenerate [ 
-
-	^ self traits select: #willGenerate
-]
-
-{ #category : #accessing }
 FamixMetamodelBuilder >> traitsWithSubBuildersTraits [
 	^ (self allSubBuilders flatCollect: #traits)
 		addAll: self traits;
@@ -569,6 +498,5 @@ FamixMetamodelBuilder >> unsafeNewTraitNamed: aTraitName [
 
 { #category : #accessing }
 FamixMetamodelBuilder >> withImportingContext [
-
 	self configuration wantsToGenerateImportingContext: true
 ]

@@ -53,7 +53,6 @@ FamixTAnnotationType >> annotationTypesContainer: anObject [
 
 	<generated>
 	annotationTypesContainer := anObject
-
 ]
 
 { #category : #navigation }
@@ -78,7 +77,6 @@ FamixTAnnotationType >> instances: anObject [
 
 	<generated>
 	instances value: anObject
-
 ]
 
 { #category : #printing }

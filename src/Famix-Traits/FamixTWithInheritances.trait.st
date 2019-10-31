@@ -55,7 +55,6 @@ FamixTWithInheritances >> subInheritances: anObject [
 
 	<generated>
 	subInheritances value: anObject
-
 ]
 
 { #category : #accessing }
@@ -73,5 +72,4 @@ FamixTWithInheritances >> superInheritances: anObject [
 
 	<generated>
 	superInheritances value: anObject
-
 ]

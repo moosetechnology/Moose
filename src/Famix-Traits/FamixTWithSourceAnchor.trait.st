@@ -80,7 +80,6 @@ FamixTWithSourceAnchor >> sourceAnchor: anObject [
 
 	<generated>
 	sourceAnchor := anObject
-
 ]
 
 { #category : #accessing }

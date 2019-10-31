@@ -37,7 +37,6 @@ FamixTWithComments >> comments: anObject [
 
 	<generated>
 	comments value: anObject
-
 ]
 
 { #category : #testing }

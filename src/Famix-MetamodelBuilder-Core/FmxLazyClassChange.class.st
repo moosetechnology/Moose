@@ -23,6 +23,11 @@ Class {
 	#category : #'Famix-MetamodelBuilder-Core-Changes'
 }
 
+{ #category : #testing }
+FmxLazyClassChange class >> isAbstract [
+	^ self = FmxLazyClassChange
+]
+
 { #category : #accessing }
 FmxLazyClassChange >> className [
 	^ className

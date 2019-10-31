@@ -51,7 +51,6 @@ FamixTest4School >> principal: anObject [
 
 	<generated>
 	principal := anObject
-
 ]
 
 { #category : #navigation }
@@ -75,7 +74,6 @@ FamixTest4School >> rooms: anObject [
 
 	<generated>
 	rooms value: anObject
-
 ]
 
 { #category : #navigation }
@@ -99,7 +97,6 @@ FamixTest4School >> students: anObject [
 
 	<generated>
 	students value: anObject
-
 ]
 
 { #category : #navigation }
@@ -123,7 +120,6 @@ FamixTest4School >> teachers: anObject [
 
 	<generated>
 	teachers value: anObject
-
 ]
 
 { #category : #navigation }

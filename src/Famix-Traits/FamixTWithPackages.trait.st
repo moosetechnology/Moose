@@ -35,5 +35,4 @@ FamixTWithPackages >> packages: anObject [
 
 	<generated>
 	packages value: anObject
-
 ]

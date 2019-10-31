@@ -58,7 +58,6 @@ FamixTWithAnnotationInstances >> annotationInstances: anObject [
 
 	<generated>
 	annotationInstances value: anObject
-
 ]
 
 { #category : #accessing }

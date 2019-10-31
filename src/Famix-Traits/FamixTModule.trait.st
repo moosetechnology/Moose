@@ -40,5 +40,4 @@ FamixTModule >> moduleEntities: anObject [
 
 	<generated>
 	moduleEntities value: anObject
-
 ]
