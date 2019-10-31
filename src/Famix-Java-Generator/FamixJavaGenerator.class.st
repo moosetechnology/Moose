@@ -196,7 +196,6 @@ FamixJavaGenerator >> defineHierarchy [
 	localVariable --|> #TLocalVariable.
 
 	namedEntity --|> #TPackageable.
-	namedEntity --|> #TInvocationsReceiver.
 	namedEntity --|> #TWithAnnotationInstances.
 
 	namespace --|> scopingEntity.

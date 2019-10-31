@@ -30,8 +30,6 @@ FamixTSourceEntity >> isStub [
 
 { #category : #accessing }
 FamixTSourceEntity >> isStub: anObject [
-
 	<generated>
 	isStub := anObject
-
 ]
