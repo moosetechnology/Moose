@@ -951,8 +951,6 @@ FamixGenerator >> defineHierarchy [
 	tMethod --|> #TTypedStructure.
 	tMethod --|> tSourceEntity.
 
-	tNamed --|> #TWithModifiers.
-
 	tParameter --|> tStructuralEntity.
 
 	tStructuralEntity --|> tNamed.
