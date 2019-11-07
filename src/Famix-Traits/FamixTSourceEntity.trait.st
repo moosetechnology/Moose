@@ -20,6 +20,23 @@ FamixTSourceEntity classSide >> annotation [
 	^self
 ]
 
+{ #category : #'source anchor' }
+FamixTSourceEntity >> defineMultiSourceAnchorWithPath: aPath [
+	 self ensureMultiSourceAnchor addFileAnchorWithPath: aPath
+]
+
+{ #category : #'source anchor' }
+FamixTSourceEntity >> ensureMultiSourceAnchor [
+	^ self sourceAnchor
+		ifNil: [ self
+				sourceAnchor:
+					(self multipleFileAnchorClass new
+						element: self;
+						mooseModel: self mooseModel;
+						yourself);
+				sourceAnchor ]
+]
+
 { #category : #accessing }
 FamixTSourceEntity >> isStub [
 
@@ -32,4 +49,14 @@ FamixTSourceEntity >> isStub [
 FamixTSourceEntity >> isStub: anObject [
 	<generated>
 	isStub := anObject
+]
+
+{ #category : #'source anchor' }
+FamixTSourceEntity >> multipleFileAnchorClass [
+	^ self mooseModel
+		ifNil: [ self error: 'The model need to be set for this feature to work.' ]
+		ifNotNil: [ :model | 
+			model factory
+				entityNamed: #MultipleFileAnchor
+				ifAbsent: [ self error: 'This metamodel does not includes the full concept of MultipleFileAnchor needed.' ] ]
 ]
