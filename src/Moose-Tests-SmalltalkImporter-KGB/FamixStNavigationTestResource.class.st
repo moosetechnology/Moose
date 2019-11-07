@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixStNavigationTestResource,
-	#superclass : #MooseModelTestResourceWithSmalltalkDependency,
+	#superclass : #SmalltalkModelTestResource,
 	#category : #'Moose-Tests-SmalltalkImporter-KGB'
 }
 
