@@ -83,5 +83,5 @@ BaselineOfMoose >> roassal2: spec [
 		baseline: 'Roassal2'
 		with: [ spec
 				loads: 'Minimal';
-				repository: 'github://ObjectProfile/Roassal2:c1da8614c951008ea501f126ef3ccf25d73580ac/src' ]
+				repository: 'github://ObjectProfile/Roassal2:3a54a7c67af13b23eb6bcfd762ca98b6f11dc1ca/src' ]
 ]

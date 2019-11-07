@@ -19,18 +19,18 @@ MooseModelTestResource >> model [
 	^model
 ]
 
-{ #category : #setup }
+{ #category : #accessing }
 MooseModelTestResource >> modelClass [
 	^ MooseModel
 ]
 
-{ #category : #setup }
+{ #category : #running }
 MooseModelTestResource >> setUp [
 	model := self modelClass new.
 	self importModel
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #running }
 MooseModelTestResource >> tearDown [
 	model := nil.
 	super tearDown

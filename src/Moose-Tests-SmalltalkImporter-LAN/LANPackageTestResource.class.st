@@ -1,6 +1,6 @@
 Class {
 	#name : #LANPackageTestResource,
-	#superclass : #MooseModelTestResourceWithSmalltalkDependency,
+	#superclass : #SmalltalkModelTestResource,
 	#category : #'Moose-Tests-SmalltalkImporter-LAN'
 }
 
