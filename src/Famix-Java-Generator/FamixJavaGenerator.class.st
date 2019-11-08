@@ -200,7 +200,7 @@ FamixJavaGenerator >> defineHierarchy [
 	namedEntity --|> #TPackageable.
 	namedEntity --|> #TInvocationsReceiver.
 	namedEntity --|> #TWithAnnotationInstances.
-	namedEntity --|> #TPossibleStub.
+	namedEntity --|> #TWithModifiers.
 
 	namespace --|> scopingEntity.
 	namespace --|> #TNamespace.

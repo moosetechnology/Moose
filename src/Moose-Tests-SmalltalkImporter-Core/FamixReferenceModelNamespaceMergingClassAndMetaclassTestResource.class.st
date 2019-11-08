@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixReferenceModelNamespaceMergingClassAndMetaclassTestResource,
-	#superclass : #MooseModelTestResourceWithSmalltalkDependency,
+	#superclass : #SmalltalkModelTestResource,
 	#category : #'Moose-Tests-SmalltalkImporter-Core'
 }
 

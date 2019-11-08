@@ -51,12 +51,11 @@ BaselineOfFamix >> baseline: spec [
 				package: 'Famix-Compatibility-Entities' with: [ spec requires: #('BasicTraits' 'Famix-Smalltalk-Utils') ];
 				package: 'Famix-Compatibility-Tests-C' with: [ spec requires: #('Famix-Compatibility-Entities') ];
 				package: 'Famix-Compatibility-Tests-Core' with: [ spec requires: #('Famix-Compatibility-Entities' 'Moose-Tests-SmalltalkImporter-LAN' 'Moose-Tests-SmalltalkImporter-KGB') ];
-				package: 'Famix-Compatibility-Tests-Extensions' with: [ spec requires: #('Famix-Compatibility-Entities' 'PackageBlueprintTestResources' 'Moose-TestResources-LCOM' 'Moose-Tests-Core') ];
 				package: 'Famix-VerveineJ-Tests' with: [ spec requires: #('Moose-Tests-Core' 'Famix-Compatibility-Entities') ];
 
 				package: 'Famix-PharoSmalltalk-Generator' with: [ spec requires: #('Basic') ];
 				package: 'Famix-PharoSmalltalk-Entities' with: [ spec requires: #('Famix-Smalltalk-Utils' 'BasicTraits') ];
-				package: 'Famix-PharoSmalltalk-Tests' with: [ spec requires: #('Famix-PharoSmalltalk-Entities' 'Famix-Test1-Entities' 'Moose-Core') ];
+				package: 'Famix-PharoSmalltalk-Tests' with: [ spec requires: #('Famix-PharoSmalltalk-Entities' 'Moose-Tests-SmalltalkImporter-Core' 'PackageBlueprintTestResources' 'Moose-TestResources-LCOM' 'KGBTestResources') ];
 
 				package: 'Famix-Java-Generator' with: [ spec requires: #('Basic') ];
 				package: 'Famix-Java-Entities' with: [ spec requires: #('BasicTraits') ];
@@ -73,8 +72,8 @@ BaselineOfFamix >> baseline: spec [
 				package: 'Moose-GenericImporters-Tests' with: [ spec requires: #('Moose-GenericImporter') ];
 				
 				package: 'Famix-Smalltalk-Utils-Tests' with: [ spec requires: #('Famix-Smalltalk-Utils' 'ReferenceTestResources') ];
-				package: 'Moose-Tests-SmalltalkImporter-LAN' with: [ spec requires: #('Moose-Tests-SmalltalkImporter-Core' 'Moose-TestResources-LAN') ];
 				package: 'Moose-Tests-SmalltalkImporter-Core' with: [ spec requires: #('Moose-Tests-Core' 'Moose-SmalltalkImporter' 'ReferenceTestResources') ];
+				package: 'Moose-Tests-SmalltalkImporter-LAN' with: [ spec requires: #('Moose-Tests-SmalltalkImporter-Core' 'Moose-TestResources-LAN') ];
 				package: 'Moose-Tests-SmalltalkImporter-KGB' with: [ spec requires: #('KGBTestResources' 'Moose-Tests-SmalltalkImporter-Core') ];
 
 				package: 'Famix-TestGenerators' with: [ spec requires: #('Basic') ];
@@ -113,7 +112,7 @@ BaselineOfFamix >> baseline: spec [
 				group: 'TestModels' with: #('Famix-Test1-Entities' 'Famix-Test2-Entities' 'Famix-Test3-Entities' 'Famix-Test4-Entities');
 				group: 'Tests'
 					with:
-					#('Famix-Tests' 'Moose-Query-Test' 'Moose-Tests-Core' 'Famix-Smalltalk-Utils-Tests' 'Moose-Tests-SmalltalkImporter-LAN' 'Moose-Tests-SmalltalkImporter-Core' 'Moose-Tests-SmalltalkImporter-KGB' 'Famix-Java-Tests' 'Famix-Groups-Tests' 'Famix-Compatibility-Tests-C' 'Famix-VerveineJ-Tests' 'Famix-Compatibility-Tests-Core' 'Famix-Compatibility-Tests-Extensions' 'Famix-PharoSmalltalk-Tests' 'Famix-TestGenerators' 'Famix-MetamodelBuilder-Tests' 'Famix-Test1-Tests' 'Famix-Test2-Tests' 'Famix-Test3-Tests' 'Famix-Test4-Tests' 'Famix-TestComposedSubmetamodel1-Entities' 'Famix-TestComposedSubmetamodel2-Entities' 'Famix-TestComposedMetamodel-Entities' 'Famix-TestComposedMetamodel' 'Famix-TestComposedComposedMetamodel-Entities' 'Famix-TestComposed3Metamodel-Entities' 'Moose-GenericImporters-Tests') ].
+					#('Famix-Tests' 'Moose-Query-Test' 'Moose-Tests-Core' 'Famix-Smalltalk-Utils-Tests' 'Moose-Tests-SmalltalkImporter-LAN' 'Moose-Tests-SmalltalkImporter-Core' 'Moose-Tests-SmalltalkImporter-KGB' 'Famix-Java-Tests' 'Famix-Groups-Tests' 'Famix-Compatibility-Tests-C' 'Famix-VerveineJ-Tests' 'Famix-Compatibility-Tests-Core' 'Famix-PharoSmalltalk-Tests' 'Famix-TestGenerators' 'Famix-MetamodelBuilder-Tests' 'Famix-Test1-Tests' 'Famix-Test2-Tests' 'Famix-Test3-Tests' 'Famix-Test4-Tests' 'Famix-TestComposedSubmetamodel1-Entities' 'Famix-TestComposedSubmetamodel2-Entities' 'Famix-TestComposedMetamodel-Entities' 'Famix-TestComposedMetamodel' 'Famix-TestComposedComposedMetamodel-Entities' 'Famix-TestComposed3Metamodel-Entities' 'Moose-GenericImporters-Tests') ].
 
 	spec
 		for: #'pharo7.x'
