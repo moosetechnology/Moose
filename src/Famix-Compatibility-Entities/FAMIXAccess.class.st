@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXAccess class >> annotation [
 
-	<MSEClass: #Access super: #FAMIXAssociation>
+	<FMClass: #Access super: #FAMIXAssociation>
 	<package: #FAMIX>
 	<generated>
 	^self

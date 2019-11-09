@@ -18,7 +18,7 @@ Public API and Key Messages
 Class {
 	#name : #FM3Primitive,
 	#superclass : #FM3Constant,
-	#category : #'Fame-Core'
+	#category : #'Fame-Core-Model'
 }
 
 { #category : #testing }
@@ -26,7 +26,12 @@ FM3Primitive class >> isAbstract [
 	^ self = FM3Primitive
 ]
 
-{ #category : #'accessing-query' }
+{ #category : #visiting }
+FM3Primitive >> accept: aVisitor [
+	aVisitor visitPrimitive: self
+]
+
+{ #category : #testing }
 FM3Primitive >> isPrimitive [
 	^ true
 ]

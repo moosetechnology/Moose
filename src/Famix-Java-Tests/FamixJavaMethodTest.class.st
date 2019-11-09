@@ -12,12 +12,12 @@ FamixJavaMethodTest >> setUp [
 	method := FamixJavaMethod new
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixJavaMethodTest >> testDefaultIsStub [
 	self deny: method isStub
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixJavaMethodTest >> testIsNotStubWhenParentIsNotStub [
 	| aClass |
 	aClass := FamixJavaClass new.
@@ -27,7 +27,7 @@ FamixJavaMethodTest >> testIsNotStubWhenParentIsNotStub [
 	self deny: method isStub
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixJavaMethodTest >> testIsStubWhenParentIsStub [
 	| aClass |
 	aClass := FamixJavaClass new.
@@ -37,7 +37,7 @@ FamixJavaMethodTest >> testIsStubWhenParentIsStub [
 	self assert: method isStub
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixJavaMethodTest >> testSettingIsStub [
 	method isStub: true.
 	self assert: method isStub

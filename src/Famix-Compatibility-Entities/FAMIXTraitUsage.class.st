@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXTraitUsage class >> annotation [
 
-	<MSEClass: #TraitUsage super: #FAMIXAssociation>
+	<FMClass: #TraitUsage super: #FAMIXAssociation>
 	<package: #FAMIX>
 	<generated>
 	^self

@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTGlobalVariableScope classSide >> annotation [
 
-	<MSEClass: #TGlobalVariableScope super: #Object>
+	<FMClass: #TGlobalVariableScope super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -25,7 +25,7 @@ FamixTGlobalVariableScope >> globalVariables [
 	"Relation named: #globalVariables type: #FamixTGlobalVariable opposite: #parentScope"
 
 	<generated>
-	<MSEComment: 'Global variables defined in the scope, if any.'>
+	<FMComment: 'Global variables defined in the scope, if any.'>
 	<derived>
 	^ globalVariables
 ]
@@ -35,5 +35,4 @@ FamixTGlobalVariableScope >> globalVariables: anObject [
 
 	<generated>
 	globalVariables value: anObject
-
 ]

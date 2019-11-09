@@ -10,7 +10,7 @@ Trait {
 { #category : #meta }
 FamixTWithFileIncludes classSide >> annotation [
 
-	<MSEClass: #TWithFileIncludes super: #Object>
+	<FMClass: #TWithFileIncludes super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -33,7 +33,7 @@ FamixTWithFileIncludes >> incomingIncludeRelations [
 	"Relation named: #incomingIncludeRelations type: #FamixTFileInclude opposite: #target"
 
 	<generated>
-	<MSEComment: 'The include entities that have this file as a target.'>
+	<FMComment: 'The include entities that have this file as a target.'>
 	<derived>
 	^ incomingIncludeRelations
 ]
@@ -43,7 +43,6 @@ FamixTWithFileIncludes >> incomingIncludeRelations: anObject [
 
 	<generated>
 	incomingIncludeRelations value: anObject
-
 ]
 
 { #category : #accessing }
@@ -51,7 +50,7 @@ FamixTWithFileIncludes >> outgoingIncludeRelations [
 	"Relation named: #outgoingIncludeRelations type: #FamixTFileInclude opposite: #source"
 
 	<generated>
-	<MSEComment: 'The include entities that have this file as a source.'>
+	<FMComment: 'The include entities that have this file as a source.'>
 	<derived>
 	^ outgoingIncludeRelations
 ]
@@ -61,5 +60,4 @@ FamixTWithFileIncludes >> outgoingIncludeRelations: anObject [
 
 	<generated>
 	outgoingIncludeRelations value: anObject
-
 ]

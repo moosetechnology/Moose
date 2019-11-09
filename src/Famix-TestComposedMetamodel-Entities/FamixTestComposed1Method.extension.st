@@ -6,7 +6,7 @@ FamixTestComposed1Method >> entity [
 
 	<generated>
 	<derived>
-	<MSEProperty: #entity type: #FamixTestComposedEntity opposite: #method>
+	<FMProperty: #entity type: #FamixTestComposedEntity opposite: #method>
 	<package: #'Famix-TestComposedMetamodel-Entities'>
 	^ self privateState attributeAt: #entity ifAbsent: [ nil ]
 ]

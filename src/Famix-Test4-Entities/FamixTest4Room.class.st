@@ -10,17 +10,10 @@ Class {
 { #category : #meta }
 FamixTest4Room class >> annotation [
 
-	<MSEClass: #Room super: #FamixTest4Entity>
+	<FMClass: #Room super: #FamixTest4Entity>
 	<package: #'Famix-Test4-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FamixTest4Room class >> requirements [
-
-	<generated>
-	^ { FamixTest4School }
 ]
 
 { #category : #accessing }
@@ -37,7 +30,6 @@ FamixTest4Room >> school: anObject [
 
 	<generated>
 	school := anObject
-
 ]
 
 { #category : #navigation }

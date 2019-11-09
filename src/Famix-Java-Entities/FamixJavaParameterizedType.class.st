@@ -1,15 +1,15 @@
 Class {
 	#name : #FamixJavaParameterizedType,
 	#superclass : #FamixJavaType,
-	#traits : 'FamixTParameterizedType + FamixTWithParameterizedTypeUsers',
-	#classTraits : 'FamixTParameterizedType classTrait + FamixTWithParameterizedTypeUsers classTrait',
+	#traits : 'FamixTParameterizedType + FamixTWithInheritances + FamixTWithParameterizedTypeUsers',
+	#classTraits : 'FamixTParameterizedType classTrait + FamixTWithInheritances classTrait + FamixTWithParameterizedTypeUsers classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
 { #category : #meta }
 FamixJavaParameterizedType class >> annotation [
 
-	<MSEClass: #ParameterizedType super: #FamixJavaType>
+	<FMClass: #ParameterizedType super: #FamixJavaType>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self

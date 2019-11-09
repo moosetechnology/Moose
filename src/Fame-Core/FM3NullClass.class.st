@@ -14,5 +14,5 @@ Examples
 Class {
 	#name : #FM3NullClass,
 	#superclass : #FM3Class,
-	#category : #'Fame-Core'
+	#category : #'Fame-Core-Model'
 }

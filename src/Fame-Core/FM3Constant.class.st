@@ -42,7 +42,7 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #'Fame-Core'
+	#category : #'Fame-Core-Model'
 }
 
 { #category : #accessing }
@@ -67,12 +67,23 @@ FM3Constant class >> constantsDo: aBlock [
 
 { #category : #accessing }
 FM3Constant class >> instance [
-	^ uniqueInstance ifNil: [ uniqueInstance := self new ]
+	^ uniqueInstance ifNil: [ uniqueInstance := self newInstance ]
 ]
 
 { #category : #testing }
 FM3Constant class >> isAbstract [
 	^ self = FM3Constant
+]
+
+{ #category : #'instance creation' }
+FM3Constant class >> new [
+	self error: 'You should access constants via the #instance methods because constants are singletons.'
+]
+
+{ #category : #'instance creation' }
+FM3Constant class >> newInstance [
+	self isAbstract ifTrue: [ self error: 'Cannot instantiate abstract constants.' ].
+	^ super new
 ]
 
 { #category : #private }
@@ -86,8 +97,18 @@ FM3Constant class >> reset [
 	uniqueInstance := nil
 ]
 
+{ #category : #visiting }
+FM3Constant >> accept: aVisitor [
+	aVisitor visitConstant: self
+]
+
 { #category : #initialization }
 FM3Constant >> initialize [
 	super initialize.
 	self name: self class constantName
+]
+
+{ #category : #testing }
+FM3Constant >> isConstant [
+	^ true
 ]

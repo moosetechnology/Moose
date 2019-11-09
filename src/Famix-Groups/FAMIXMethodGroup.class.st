@@ -9,7 +9,7 @@ Class {
 
 { #category : #meta }
 FAMIXMethodGroup class >> annotation [
-	<MSEClass: #MethodGroup super: #MooseGroup>
+	<FMClass: #MethodGroup super: #MooseGroup>
 	<package: #FAMIX>
 
 ]
@@ -32,8 +32,8 @@ FAMIXMethodGroup >> allPackages [
 
 { #category : #metrics }
 FAMIXMethodGroup >> averageNumberOfInvocations [
-	<MSEProperty: #averageNumberOfInvocations type: #Number>
-	<MSEComment: 'Average number of invocations per methods'>
+	<FMProperty: #averageNumberOfInvocations type: #Number>
+	<FMComment: 'Average number of invocations per methods'>
 
 	^self
 		lookUpPropertyNamed: #averageNumberOfInvocations
@@ -42,8 +42,8 @@ FAMIXMethodGroup >> averageNumberOfInvocations [
 
 { #category : #metrics }
 FAMIXMethodGroup >> averageNumberOfLinesOfCode [
-	<MSEProperty: #averageNumberOfLinesOfCode type: #Number>
-	<MSEComment: 'Average number of lines of code per methods'>
+	<FMProperty: #averageNumberOfLinesOfCode type: #Number>
+	<FMComment: 'Average number of lines of code per methods'>
 
 	^self
 		lookUpPropertyNamed: #averageNumberOfLinesOfCode
@@ -52,8 +52,8 @@ FAMIXMethodGroup >> averageNumberOfLinesOfCode [
 
 { #category : #metrics }
 FAMIXMethodGroup >> averageNumberOfParameters [
-	<MSEProperty: #averageNumberOfParameters type: #Number>
-	<MSEComment: 'Average number of parameters per methods'>
+	<FMProperty: #averageNumberOfParameters type: #Number>
+	<FMComment: 'Average number of parameters per methods'>
 	
 	^self
 		lookUpPropertyNamed: #averageNumberOfParameters

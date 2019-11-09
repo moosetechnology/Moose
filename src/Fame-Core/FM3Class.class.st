@@ -40,12 +40,12 @@ Class {
 		'traits',
 		'properties'
 	],
-	#category : #'Fame-Core'
+	#category : #'Fame-Core-Model'
 }
 
 { #category : #meta }
 FM3Class class >> annotation [
-	<MSEClass: #Class super: #FM3Element>
+	<FMClass: #Class super: #FM3Element>
 	<package: #FM3>
 
 ]
@@ -55,17 +55,9 @@ FM3Class class >> defaultSuperclass [
 	^ FM3Object instance
 ]
 
-{ #category : #examples }
-FM3Class class >> gtExampleBasic [
-	<gtExample>
-	^ self new
-]
-
-{ #category : #examples }
-FM3Class class >> gtExampleWithOnePrimitiveProperty: description [
-	<gtExample>
-	<depends: #gtExampleBasic>
-	^ description properties add: FM3Property new
+{ #category : #visiting }
+FM3Class >> accept: aVisitor [
+	aVisitor visitClass: self
 ]
 
 { #category : #adding }
@@ -85,12 +77,12 @@ FM3Class >> allContainerProperties [
 
 { #category : #'accessing-query' }
 FM3Class >> allPrimitiveProperties [
-	^ self allProperties select: [ :attr | attr type isNotNil and: [ attr type isPrimitive ] ]
+	^ self allProperties select: [ :attr | attr type isPrimitive ]
 ]
 
 { #category : #'accessing-query' }
 FM3Class >> allProperties [
-	<MSEProperty: #allProperties type: 'FM3.Property'>
+	<FMProperty: #allProperties type: 'FM3.Property'>
 	<multivalued>
 	<derived>
 	| nameDict |
@@ -140,24 +132,15 @@ FM3Class >> allSuperclassesDo: aBlock [
 ]
 
 { #category : #'accessing-query' }
-FM3Class >> at: aString [
-	aString isSymbol ifTrue: [ self error ].
-	^ self propertyNamed: aString
-]
-
-{ #category : #'accessing-query' }
 FM3Class >> complexProperties [
 	^ self properties reject: [ :attr | attr type isPrimitive ]
 ]
 
 { #category : #'instance creation' }
 FM3Class >> createInstance [
-	^ implementingClass ifNil: [ FMRuntimeElement new description: self ] ifNotNil: [ implementingClass new ]
-]
-
-{ #category : #private }
-FM3Class >> defaultClassName [
-	^ (self package name , self name) asSymbol
+	^ implementingClass
+		ifNil: [ FMRuntimeElement new description: self ]
+		ifNotNil: [ implementingClass new ]
 ]
 
 { #category : #ui }
@@ -216,11 +199,6 @@ FM3Class >> gtInspectorRelationsIn: composite [
 ]
 
 { #category : #testing }
-FM3Class >> hasOwner [
-	^ self hasPackage
-]
-
-{ #category : #testing }
 FM3Class >> hasPackage [
 	^ package isNotNil
 ]
@@ -230,12 +208,12 @@ FM3Class >> hasSuperclass [
 	^ superclass isNotNil
 ]
 
-{ #category : #private }
+{ #category : #accessing }
 FM3Class >> implementingClass [
 	^ implementingClass
 ]
 
-{ #category : #private }
+{ #category : #accessing }
 FM3Class >> implementingClass: smalltalkClass [
 	implementingClass := smalltalkClass
 ]
@@ -258,7 +236,7 @@ FM3Class >> initialize [
 
 { #category : #accessing }
 FM3Class >> isAbstract [
-	<MSEProperty: #abstract type: #Boolean>
+	<FMProperty: #abstract type: #Boolean>
 	^ isAbstract
 ]
 
@@ -273,20 +251,25 @@ FM3Class >> isBuiltIn [
 ]
 
 { #category : #testing }
+FM3Class >> isConstant [
+	^ false
+]
+
+{ #category : #testing }
 FM3Class >> isFM3Class [
 	^ true
 ]
 
-{ #category : #'accessing-query' }
+{ #category : #testing }
 FM3Class >> isPrimitive [
-	<MSEProperty: #primitive type: #Boolean>
+	<FMProperty: #primitive type: #Boolean>
 	<derived>
 	^ false
 ]
 
-{ #category : #'accessing-query' }
+{ #category : #testing }
 FM3Class >> isRoot [
-	<MSEProperty: #root type: #Boolean>
+	<FMProperty: #root type: #Boolean>
 	<derived>
 	^ false
 ]
@@ -301,16 +284,9 @@ FM3Class >> ownerProperties [
 	^ self allProperties select: #isContainer
 ]
 
-{ #category : #'accessing-query' }
-FM3Class >> ownerProperty [
-	self flag: #FIXME.
-	self flag: 'It is possible that several containers exists for a given entity -> we have not a tree, but we should not get cycles at ALL'.
-	^self allProperties detect: #isContainer ifNone: [ nil ]
-]
-
 { #category : #accessing }
 FM3Class >> package [
-	<MSEProperty: #package type: #FM3Package opposite: #classes>
+	<FMProperty: #package type: #FM3Package opposite: #classes>
 	<container>
 	^ package
 ]
@@ -324,11 +300,6 @@ FM3Class >> package: newPackage [
 		to: newPackage
 ]
 
-{ #category : #accessing }
-FM3Class >> packageName [
-	^ self package name
-]
-
 { #category : #'accessing-query' }
 FM3Class >> primitiveProperties [
 	^ self properties select: [ :attr | attr type isPrimitive ]
@@ -336,9 +307,8 @@ FM3Class >> primitiveProperties [
 
 { #category : #accessing }
 FM3Class >> properties [
-	<MSEProperty: #properties type: 'FM3.Property' opposite: #class>
+	<FMProperty: #properties type: 'FM3.Property' opposite: #class>
 	<multivalued>
-	<key: #name>
 	^ properties
 ]
 
@@ -366,7 +336,7 @@ FM3Class >> propertyNamed: aString ifAbsent: aBlock [
 
 { #category : #accessing }
 FM3Class >> subclasses [ 
-	<MSEProperty: #subclasses type: #FM3Class opposite: #superclass>
+	<FMProperty: #subclasses type: #FM3Class opposite: #superclass>
 	<derived>
 	<multivalued>
 	^subclasses
@@ -379,7 +349,7 @@ FM3Class >> subclasses: anObject [
 
 { #category : #accessing }
 FM3Class >> superclass [
-	<MSEProperty: #superclass type: #FM3Class opposite: #subclasses>
+	<FMProperty: #superclass type: #FM3Class opposite: #subclasses>
 	^ superclass
 ]
 
@@ -394,7 +364,7 @@ FM3Class >> superclass: newClass [
 
 { #category : #accessing }
 FM3Class >> traits [
-	<MSEProperty: #traits type: #FM3Class>
+	<FMProperty: #traits type: #FM3Class>
 	<multivalued>
 	^ traits
 ]

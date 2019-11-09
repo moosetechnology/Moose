@@ -1,24 +1,26 @@
 Class {
 	#name : #FMImporter,
-	#superclass : #FMParserClient,
+	#superclass : #Object,
+	#traits : 'FMTImportExportStructure',
+	#classTraits : 'FMTImportExportStructure classTrait',
 	#instVars : [
 		'stack',
 		'elements',
 		'model',
-		'metamodel',
 		'stream',
 		'tally',
 		'reminderDict',
 		'serialDict',
-		'translationUnit'
+		'translationUnit',
+		'ensureNoDandlingReferences'
 	],
-	#category : #'Fame-ImportExport'
+	#category : #'Fame-ImportExport-Importers'
 }
 
 { #category : #'instance creation' }
-FMImporter class >> repository: aRepository [
+FMImporter class >> model: aRepository [
 	^ self new
-		repository: aRepository;
+		model: aRepository;
 		yourself
 ]
 
@@ -32,6 +34,13 @@ FMImporter >> assign: element to: serial [
 			each resolve: element.
 			tally := tally - 1.
 			self assert: tally >= 0 ]
+]
+
+{ #category : #accessing }
+FMImporter >> autorizeDandlingReferencesAtEnd [
+	"I am using DandlingReferences to manage references during the import. At the end I can check that all dandling references are resolved. Calling this method, I'll not do the check and allow partial loading of models."
+
+	ensureNoDandlingReferences := false
 ]
 
 { #category : #parsing }
@@ -65,6 +74,11 @@ FMImporter >> dangling: reference to: serial [
 	^ reference
 ]
 
+{ #category : #accessing }
+FMImporter >> elements [
+	^ elements
+]
+
 { #category : #parsing }
 FMImporter >> endAttribute: name [ 
 	
@@ -75,19 +89,17 @@ FMImporter >> endAttribute: name [
 FMImporter >> endDocument [
 	self assert: stack isEmpty.
 	stack := nil.
-	self assert: tally = 0.
+	ensureNoDandlingReferences ifTrue: [ tally = 0 ifFalse: [ FMUnresolvedDanglingReferences signal ] ].
 	model addAll: elements
 ]
 
 { #category : #parsing }
-FMImporter >> endElement: name [ 
-	
+FMImporter >> endElement: name [
 	| future element |
 	future := stack pop.
 	element := future instance.
 	elements add: element.
-	stack isEmpty not ifTrue: [
-		stack top current values add: element ]
+	stack ifNotEmpty: [ stack top currentAttribute values add: element ]
 ]
 
 { #category : #accessing }
@@ -104,59 +116,46 @@ FMImporter >> index [
 { #category : #initialization }
 FMImporter >> initialize [
 	super initialize.
-	translationUnit := FMNullTranslationUnit new
+	translationUnit := FMNullTranslationUnit new.
+	ensureNoDandlingReferences := true
 ]
 
 { #category : #accessing }
 FMImporter >> metamodel [
-	^metamodel
+	^ model metamodel
 ]
 
 { #category : #accessing }
 FMImporter >> model [
-	^model
-]
-
-{ #category : #parsing }
-FMImporter >> primitive: value [ 
-	
-	stack top current values add: value
-]
-
-{ #category : #parsing }
-FMImporter >> referenceName: name [ 
-	
-	stack top current values add: (model elementNamed: name)
-]
-
-{ #category : #parsing }
-FMImporter >> referenceNumber: serial [ 
-	
-	stack top current referenceNumber: serial
+	^ model
 ]
 
 { #category : #accessing }
-FMImporter >> repository [
-
-	^model
+FMImporter >> model: aModel [
+	model := aModel
 ]
 
-{ #category : #accessing }
-FMImporter >> repository: aRepository [
+{ #category : #parsing }
+FMImporter >> primitive: value [
+	stack top currentAttribute values add: value
+]
 
-	model := aRepository.
-	metamodel := aRepository metamodel.
+{ #category : #parsing }
+FMImporter >> referenceName: name [
+	stack top currentAttribute values add: (model elementNamed: name)
+]
+
+{ #category : #parsing }
+FMImporter >> referenceNumber: serial [
+	stack top currentAttribute referenceNumber: serial
 ]
 
 { #category : #running }
 FMImporter >> run [
-
-	| parser |
-	parser := FMMSEParser new.
-	parser stream: stream.
-	parser client: self.
-	parser run.
-
+	FMMSEParser new
+		stream: stream;
+		importer: self;
+		run
 ]
 
 { #category : #parsing }

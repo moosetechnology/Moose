@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXParameterType class >> annotation [
 
-	<MSEClass: #ParameterType super: #FAMIXType>
+	<FMClass: #ParameterType super: #FAMIXType>
 	<package: #FAMIX>
 	<generated>
 	^self

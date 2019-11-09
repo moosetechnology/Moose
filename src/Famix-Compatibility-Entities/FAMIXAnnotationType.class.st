@@ -9,17 +9,10 @@ Class {
 { #category : #meta }
 FAMIXAnnotationType class >> annotation [
 
-	<MSEClass: #AnnotationType super: #FAMIXType>
+	<FMClass: #AnnotationType super: #FAMIXType>
 	<package: #FAMIX>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FAMIXAnnotationType class >> requirements [
-
-	<generated>
-	^ { FAMIXContainerEntity }
 ]
 
 { #category : #'accessing-query' }

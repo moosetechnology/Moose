@@ -1,15 +1,8 @@
 Class {
 	#name : #FMMSEPrinter,
-	#superclass : #FMPrintClient,
-	#category : #'Fame-ImportExport'
+	#superclass : #FMDataStructurePrinter,
+	#category : #'Fame-ImportExport-Exporters'
 }
-
-{ #category : #'instance creation' }
-FMMSEPrinter class >> on: aStream [
-	^ self new
-		stream: aStream;
-		yourself
-]
 
 { #category : #parsing }
 FMMSEPrinter >> beginAttribute: name [
@@ -59,7 +52,7 @@ FMMSEPrinter >> endElement: name [
 { #category : #parsing }
 FMMSEPrinter >> primitive: value [
 	stream space.
-	value fm3PrintOn: stream
+	value msePrintOn: stream
 ]
 
 { #category : #parsing }

@@ -68,17 +68,6 @@ MooseEntity class >> allDeclaredProperties [
 ]
 
 { #category : #'meta accessing' }
-MooseEntity class >> allDeclaredPropertiesIn: aMetamodel [
-	"All properties described in the metamodel"
-	 
-	| aDescription |
-	aMetamodel ifNil: [ ^ OrderedCollection new ].
-	aDescription := self mooseDescriptionIn: aMetamodel.
-	^ aDescription ifNil: [ OrderedCollection new ] 
-		ifNotNil: [ aDescription allProperties ]
-]
-
-{ #category : #'meta accessing' }
 MooseEntity class >> allPropertySelectors [
 	"Return a dictionary with all properties of this kind of entity, including metamodel properties, metrics, and navigation groups. Keys are abstract names of properties, values are implementing selectors"
 	
@@ -130,7 +119,7 @@ MooseEntity class >> allPropertySelectorsComputableIn: aMooseModel [
 
 { #category : #meta }
 MooseEntity class >> annotation [
-	<MSEClass: #Entity super: #Object>
+	<FMClass: #Entity super: #Object>
 	<package: #Moose>
 	<abstract>
 ]
@@ -195,9 +184,15 @@ MooseEntity class >> mooseDev [
 
 { #category : #accessing }
 MooseEntity class >> requirements [
-	"Used by Famix generator."
+	| metamodelClasses usedBehaviors |
+	metamodelClasses := self metamodel concreteImplementingClasses.
 
-	^ {}
+	usedBehaviors := (self allDeclaredPropertiesIn: self metamodel) select: #isContainer thenCollect: [ :p | p opposite implementingClass ].
+
+	^ (usedBehaviors flatCollect: [ :aBehavior |
+			aBehavior isTrait
+				ifTrue: [ metamodelClasses select: [ :each | each isComposedBy: aBehavior ] ]
+				ifFalse: [ {aBehavior} ] ]) asSet
 ]
 
 { #category : #private }

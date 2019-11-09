@@ -12,7 +12,7 @@ Examples
 Class {
 	#name : #FM3String,
 	#superclass : #FM3Primitive,
-	#category : #'Fame-Core'
+	#category : #'Fame-Core-Model'
 }
 
 { #category : #accessing }

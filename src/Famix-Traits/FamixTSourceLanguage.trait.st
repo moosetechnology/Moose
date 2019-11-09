@@ -15,7 +15,7 @@ Trait {
 { #category : #meta }
 FamixTSourceLanguage classSide >> annotation [
 
-	<MSEClass: #TSourceLanguage super: #Object>
+	<FMClass: #TSourceLanguage super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -43,7 +43,7 @@ FamixTSourceLanguage >> sourcedEntities [
 	"Relation named: #sourcedEntities type: #FamixTWithSourceLanguage opposite: #declaredSourceLanguage"
 
 	<generated>
-	<MSEComment: 'References to the entities saying explicitly that are written in this language.'>
+	<FMComment: 'References to the entities saying explicitly that are written in this language.'>
 	<derived>
 	^ sourcedEntities
 ]
@@ -53,5 +53,4 @@ FamixTSourceLanguage >> sourcedEntities: anObject [
 
 	<generated>
 	sourcedEntities value: anObject
-
 ]

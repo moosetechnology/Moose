@@ -9,7 +9,7 @@ Class {
 
 { #category : #meta }
 EQIdentifier class >> annotation [
-	<MSEClass: #Identifier super: #Object>
+	<FMClass: #Identifier super: #Object>
 	<package: #EQ>
 ]
 
@@ -21,7 +21,7 @@ EQIdentifier >> printOn: stream [
 
 { #category : #accessing }
 EQIdentifier >> symbol [
-	<MSEProperty: #symbol type: #String>
+	<FMProperty: #symbol type: #String>
 	^symbol
 ]
 

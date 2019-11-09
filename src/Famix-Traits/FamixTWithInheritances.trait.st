@@ -10,7 +10,7 @@ Trait {
 { #category : #meta }
 FamixTWithInheritances classSide >> annotation [
 
-	<MSEClass: #TWithInheritances super: #Object>
+	<FMClass: #TWithInheritances super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -28,9 +28,9 @@ FamixTWithInheritances >> addSuperInheritance: anInheritance [
 
 { #category : #metrics }
 FamixTWithInheritances >> numberOfSubclasses [
-	<MSEProperty: #numberOfSubclasses type: #Number>
+	<FMProperty: #numberOfSubclasses type: #Number>
 	<derived>
-	<MSEComment: 'The number of subclasses of a class'>
+	<FMComment: 'The number of subclasses of a class'>
 	^ self lookUpPropertyNamed: #numberOfSubclasses computedAs: [ self subInheritances size ]
 ]
 
@@ -45,7 +45,7 @@ FamixTWithInheritances >> subInheritances [
 	"Relation named: #subInheritances type: #FamixTInheritance opposite: #superclass"
 
 	<generated>
-	<MSEComment: 'Subinheritance relationships, i.e. known subclasses of this type.'>
+	<FMComment: 'Subinheritance relationships, i.e. known subclasses of this type.'>
 	<derived>
 	^ subInheritances
 ]
@@ -55,7 +55,6 @@ FamixTWithInheritances >> subInheritances: anObject [
 
 	<generated>
 	subInheritances value: anObject
-
 ]
 
 { #category : #accessing }
@@ -63,7 +62,7 @@ FamixTWithInheritances >> superInheritances [
 	"Relation named: #superInheritances type: #FamixTInheritance opposite: #subclass"
 
 	<generated>
-	<MSEComment: 'Superinheritance relationships, i.e. known superclasses of this type.'>
+	<FMComment: 'Superinheritance relationships, i.e. known superclasses of this type.'>
 	<derived>
 	^ superInheritances
 ]
@@ -73,5 +72,4 @@ FamixTWithInheritances >> superInheritances: anObject [
 
 	<generated>
 	superInheritances value: anObject
-
 ]

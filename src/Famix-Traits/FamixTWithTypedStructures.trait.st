@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithTypedStructures classSide >> annotation [
 
-	<MSEClass: #TWithTypedStructures super: #Object>
+	<FMClass: #TWithTypedStructures super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -23,6 +23,12 @@ FamixTWithTypedStructures >> addBehaviourWithDeclaredType: aBehaviour [
 { #category : #adding }
 FamixTWithTypedStructures >> addStructureWithDeclaredType: aStructuralEntity [
 	structuresWithDeclaredType add: aStructuralEntity
+]
+
+{ #category : #adding }
+FamixTWithTypedStructures >> addStructuresWithDeclaredType: anObject [
+	<generated>
+	^ self structuresWithDeclaredType add: anObject
 ]
 
 { #category : #testing }
@@ -40,7 +46,7 @@ FamixTWithTypedStructures >> structuresWithDeclaredType [
 	"Relation named: #structuresWithDeclaredType type: #FamixTTypedStructure opposite: #declaredType"
 
 	<generated>
-	<MSEComment: 'Structural entities that have this type as declaredType'>
+	<FMComment: 'Structural entities that have this type as declaredType'>
 	<derived>
 	^ structuresWithDeclaredType
 ]
@@ -50,5 +56,4 @@ FamixTWithTypedStructures >> structuresWithDeclaredType: anObject [
 
 	<generated>
 	structuresWithDeclaredType value: anObject
-
 ]

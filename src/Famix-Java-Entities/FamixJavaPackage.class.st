@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaPackage class >> annotation [
 
-	<MSEClass: #Package super: #FamixJavaScopingEntity>
+	<FMClass: #Package super: #FamixJavaScopingEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
@@ -25,9 +25,9 @@ FamixJavaPackage >> abstractClasses [
 FamixJavaPackage >> abstractness [
 	"Abstractness is the ratio between the number of abstract classes and the total number of classes in a package, in the range [0, 1]. 0 means the package is fully concrete, 1 it is fully abstract."
 
-	<MSEProperty: #abstractness type: #Number>
+	<FMProperty: #abstractness type: #Number>
 	<derived>
-	<MSEComment: 'Abstractness of a package'>
+	<FMComment: 'Abstractness of a package'>
 	| nsClasses |
 	nsClasses := self allClasses.
 	nsClasses size == 0 ifTrue: [ ^ nil ].
@@ -44,9 +44,9 @@ FamixJavaPackage >> addChildNamedEntity: aNamedEntity [
 FamixJavaPackage >> afferentCoupling [
 	"Afferent coupling for a package is the number of classes that depend upon this package"
 
-	<MSEProperty: #afferentCoupling type: #Number>
+	<FMProperty: #afferentCoupling type: #Number>
 	<derived>
-	<MSEComment: 'Afferent Coupling of a package'>
+	<FMComment: 'Afferent Coupling of a package'>
 	^ ((self queryIncomingDependencies atScope: FamixTType) outOfParentUsing: FamixTPackage) size
 ]
 
@@ -60,9 +60,9 @@ FamixJavaPackage >> allClasses [
 FamixJavaPackage >> bunchCohesion [
 	"Computing cohesion (Bunch formula)"
 
-	<MSEProperty: #bunchCohesion type: #Number>
+	<FMProperty: #bunchCohesion type: #Number>
 	<derived>
-	<MSEComment: 'Bunch Cohesion of a package. It is also considered anonymous and inner classes (in Java).'>
+	<FMComment: 'Bunch Cohesion of a package. It is also considered anonymous and inner classes (in Java).'>
 	| myClasses intraConnectivities |
 	myClasses := self classes.
 	myClasses := myClasses union: (myClasses flatCollect: [ :c | c allRecursiveTypes ]).
@@ -133,9 +133,9 @@ FamixJavaPackage >> containedEntities: collection [
 { #category : #'as yet unclassified' }
 FamixJavaPackage >> distance [
 	"D = A + I - 1. A package should be balanced between abstractness and instability, i.e., somewhere between abstract and stable or concrete and unstable. This rule defines the main sequence by the equation A + I - 1 = 0. D is the distance to the main sequence."
-	<MSEProperty: #distance type: #Number>
+	<FMProperty: #distance type: #Number>
 	<derived>
-	<MSEComment: 'Distance of a package'>
+	<FMComment: 'Distance of a package'>
 
 	
 	| abstractness instability |
@@ -151,9 +151,9 @@ FamixJavaPackage >> distance [
 FamixJavaPackage >> efferentCoupling [
 	"Efferent coupling for a package is the number of classes it depends upon"
 
-	<MSEProperty: #efferentCoupling type: #Number>
+	<FMProperty: #efferentCoupling type: #Number>
 	<derived>
-	<MSEComment: 'Efferent Coupling of a package'>
+	<FMComment: 'Efferent Coupling of a package'>
 	^ ((self queryAllOutgoing outOfParentUsing: FamixTPackage) atScope: FamixTType) size
 ]
 
@@ -161,9 +161,9 @@ FamixJavaPackage >> efferentCoupling [
 FamixJavaPackage >> instability [
 	"I =	Ce(P)/(Ce(P)+Ca(P)), in the range [0, 1]. 0 means package is maximally stable (i.e., no dependency to other packages and can not change without big consequences), 1 means it is unstable."
 
-	<MSEProperty: #instability type: #Number>
+	<FMProperty: #instability type: #Number>
 	<derived>
-	<MSEComment: 'Instability of a package'>
+	<FMComment: 'Instability of a package'>
 
 	| efferentCoupling afferentCoupling |
 	
@@ -177,9 +177,9 @@ FamixJavaPackage >> instability [
 FamixJavaPackage >> martinCohesion [
 	"Computing cohesion as described by Robert C. Martin"
 
-	<MSEProperty: #martinCohesion type: #Number>
+	<FMProperty: #martinCohesion type: #Number>
 	<derived>
-	<MSEComment: 'Cohesion as defined by Robert C. Martin.'>
+	<FMComment: 'Cohesion as defined by Robert C. Martin.'>
 	| intraConnectivities myClasses |
 	myClasses := self classes.
 	myClasses := myClasses union: (myClasses flatCollect: [ :c | c allRecursiveTypes ]).
@@ -195,17 +195,17 @@ FamixJavaPackage >> methods [
 
 { #category : #'Famix-Extensions' }
 FamixJavaPackage >> numberOfClasses [
-	<MSEProperty: #numberOfClasses type: #Number>
+	<FMProperty: #numberOfClasses type: #Number>
 	<derived>
-	<MSEComment: 'The number of classes in a package'>
+	<FMComment: 'The number of classes in a package'>
 	
 	^ self classes size
 ]
 
 { #category : #accessing }
 FamixJavaPackage >> numberOfClientPackages [
-	<MSEProperty: #numberOfClientPackages type: #Number>
-	<MSEComment: 'The number of packages which depend on this package'>
+	<FMProperty: #numberOfClientPackages type: #Number>
+	<FMComment: 'The number of packages which depend on this package'>
 	<derived>
 	^ self lookUpPropertyNamed: #numberOfClientPackages computedAs: [ self allClients size ]
 ]
@@ -218,9 +218,9 @@ FamixJavaPackage >> numberOfClientPackages: aNumber [
 
 { #category : #'Famix-Implementation' }
 FamixJavaPackage >> numberOfLinesOfCode [
-	<MSEProperty: #numberOfLinesOfCode type: #Number>
+	<FMProperty: #numberOfLinesOfCode type: #Number>
 	<derived>
-	<MSEComment: 'The number of lines of code in a namespace'>
+	<FMComment: 'The number of lines of code in a namespace'>
 	
 	^self
 		lookUpPropertyNamed: #numberOfLinesOfCode
@@ -236,8 +236,8 @@ FamixJavaPackage >> numberOfLinesOfCode: aNumber [
 
 { #category : #accessing }
 FamixJavaPackage >> numberOfMethods [
-	<MSEProperty: #numberOfMethods type: #Number>
-	<MSEComment: 'The number of methods in a package'>
+	<FMProperty: #numberOfMethods type: #Number>
+	<FMComment: 'The number of methods in a package'>
 	<derived>
 	^ self
 		lookUpPropertyNamed: #numberOfMethods
@@ -264,9 +264,9 @@ FamixJavaPackage >> printOn: aStream [
 
 { #category : #'Famix-Extensions-metrics' }
 FamixJavaPackage >> relativeImportanceForSystem [
-	<MSEProperty: #relativeImportanceForSystem type: #Number>
+	<FMProperty: #relativeImportanceForSystem type: #Number>
 	<derived>
-	<MSEComment: 'The number of client packages normalized by the total number of packages'>
+	<FMComment: 'The number of client packages normalized by the total number of packages'>
 	
 	^ self lookUpPropertyNamed: #relativeImportanceForSystem
 				 computedAs: [

@@ -59,7 +59,7 @@ FmxMBRelationSide >> container [
 	container := true
 ]
 
-{ #category : #properties }
+{ #category : #accessing }
 FmxMBRelationSide >> container: anObject [
 	container := anObject
 ]
@@ -106,23 +106,20 @@ FmxMBRelationSide >> generationStrategy: anObject [
 
 { #category : #testing }
 FmxMBRelationSide >> hasRelation [
-
 	^ self relation notNil
 ]
 
 { #category : #accessing }
 FmxMBRelationSide >> initialize [
-
-	super initialize.	
+	super initialize.
 
 	cardinality := #one.
 	container := false.
 	derived := false.
 	target := false.
 	source := false.
-	
-	self makeStandard.
 
+	self makeStandard
 ]
 
 { #category : #properties }
@@ -264,24 +261,6 @@ FmxMBRelationSide >> relatedEntity [
 ]
 
 { #category : #accessing }
-FmxMBRelationSide >> relatedEntity: anEntity [
-
-	anEntity isMetamodelClass ifTrue: [ 
-		relatedClass := anEntity.
-		trait := nil.
-		^ self ].
-
-	anEntity isMetamodelTrait ifTrue: [ 
-		relatedClass := nil.
-		trait := anEntity.
-		^ self ].
-
-	"alias"
-	relatedClass := nil.
-	trait := anEntity trait.
-]
-
-{ #category : #accessing }
 FmxMBRelationSide >> relatedEntityName [
 
 	^ self relatedEntity name
@@ -357,16 +336,7 @@ FmxMBRelationSide >> trait [
 
 { #category : #accessing }
 FmxMBRelationSide >> trait: anObject [
-
-	self relatedEntity ifNotNil: [ :aRelatedEntity |
-		aRelatedEntity removeRelationSide: self ].
+	self relatedEntity ifNotNil: [ :aRelatedEntity | aRelatedEntity removeRelationSide: self ].
 	trait := anObject.
 	trait addRelationSide: self
-]
-
-{ #category : #accessing }
-FmxMBRelationSide >> traitName: aString [
-
-	trait := self builder ensureLocalTraitNamed: aString
-
 ]

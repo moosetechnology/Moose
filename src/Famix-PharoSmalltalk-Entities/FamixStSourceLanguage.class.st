@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixStSourceLanguage class >> annotation [
 
-	<MSEClass: #SourceLanguage super: #FamixStEntity>
+	<FMClass: #SourceLanguage super: #FamixStEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
@@ -27,8 +27,8 @@ FamixStSourceLanguage >> isSmalltalk [
 
 { #category : #accessing }
 FamixStSourceLanguage >> name [
-	<MSEProperty: #name type: #String>
+	<FMProperty: #name type: #String>
 	<derived>
-	<MSEComment: 'The name of the language'>
+	<FMComment: 'The name of the language'>
 	^ 'Pharo'
 ]

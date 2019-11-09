@@ -1,15 +1,8 @@
 Class {
 	#name : #FMXMLPrinter,
-	#superclass : #FMPrintClient,
-	#category : #'Fame-ImportExport'
+	#superclass : #FMDataStructurePrinter,
+	#category : #'Fame-ImportExport-Exporters'
 }
-
-{ #category : #'instance creation' }
-FMXMLPrinter class >> new [
-	"Answer a newly created and initialized instance."
-
-	^super new initialize
-]
 
 { #category : #parsing }
 FMXMLPrinter >> beginAttribute: name [

@@ -12,7 +12,7 @@ Trait {
 { #category : #meta }
 FamixTSourceAnchor classSide >> annotation [
 
-	<MSEClass: #TSourceAnchor super: #Object>
+	<FMClass: #TSourceAnchor super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -23,7 +23,7 @@ FamixTSourceAnchor >> element [
 	"Relation named: #element type: #FamixTWithSourceAnchor opposite: #sourceAnchor"
 
 	<generated>
-	<MSEComment: 'Enable the accessibility to the famix entity that this class is a source pointer for'>
+	<FMComment: 'Enable the accessibility to the famix entity that this class is a source pointer for'>
 	^ element
 ]
 
@@ -32,7 +32,6 @@ FamixTSourceAnchor >> element: anObject [
 
 	<generated>
 	element := anObject
-
 ]
 
 { #category : #testing }
@@ -45,9 +44,9 @@ FamixTSourceAnchor >> isMultiple [
 { #category : #metrics }
 FamixTSourceAnchor >> lineCount [
 
-	<MSEProperty: #lineCount type: #Number>
+	<FMProperty: #lineCount type: #Number>
 	<derived>
-	<MSEComment: 'The number of lines in the source text'>
+	<FMComment: 'The number of lines in the source text'>
 
 	^ self sourceText ifNotNil: #lineCount ifNil: [ self notExistentMetricValue ]
 ]

@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithFunctions classSide >> annotation [
 
-	<MSEClass: #TWithFunctions super: #Object>
+	<FMClass: #TWithFunctions super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -26,7 +26,7 @@ FamixTWithFunctions >> functions [
 	"Relation named: #functions type: #FamixTFunction opposite: #functionOwner"
 
 	<generated>
-	<MSEComment: 'Functions defined in the container, if any.'>
+	<FMComment: 'Functions defined in the container, if any.'>
 	<derived>
 	^ functions
 ]
@@ -36,5 +36,4 @@ FamixTWithFunctions >> functions: anObject [
 
 	<generated>
 	functions value: anObject
-
 ]

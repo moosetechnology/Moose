@@ -9,15 +9,8 @@ Class {
 { #category : #meta }
 FamixTest3Type class >> annotation [
 
-	<MSEClass: #Type super: #FamixTest3NamedEntity>
+	<FMClass: #Type super: #FamixTest3NamedEntity>
 	<package: #'Famix-Test3-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FamixTest3Type class >> requirements [
-
-	<generated>
-	^ { FamixTest3PrimitiveType }
 ]

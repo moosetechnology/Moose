@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaNamespace class >> annotation [
 
-	<MSEClass: #Namespace super: #FamixJavaScopingEntity>
+	<FMClass: #Namespace super: #FamixJavaScopingEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
@@ -19,9 +19,9 @@ FamixJavaNamespace class >> annotation [
 FamixJavaNamespace >> abstractness [
 	"Abstractness is the ratio between the number of abstract classes and the total number of classes in a package, in the range [0, 1]. 0 means the package is fully concrete, 1 it is fully abstract."
 
-	<MSEProperty: #abstractness type: #Number>
+	<FMProperty: #abstractness type: #Number>
 	<derived>
-	<MSEComment: 'Abstractness of a namespace'>
+	<FMComment: 'Abstractness of a namespace'>
 	| nsClasses |
 	nsClasses := self allClasses.
 	nsClasses size == 0 ifTrue: [ ^ nil ].
@@ -37,9 +37,9 @@ FamixJavaNamespace >> abstractness: aNumber [
 
 { #category : #'as yet unclassified' }
 FamixJavaNamespace >> afferentCoupling [
-	<MSEProperty: #afferentCoupling type: #Number>
+	<FMProperty: #afferentCoupling type: #Number>
 	<derived>
-	<MSEComment: 'Afferent Coupling of a namespace Afferent is the number of classes that depend upon this namespace'>
+	<FMComment: 'Afferent Coupling of a namespace Afferent is the number of classes that depend upon this namespace'>
 	^ ((self queryAllIncoming atScope: FamixTType) outOfParentUsing: FamixTNamespace) size
 ]
 
@@ -59,9 +59,9 @@ FamixJavaNamespace >> allParentsUpTo: aNamespace [
 FamixJavaNamespace >> bunchCohesion [
 	"Computing cohesion (Bunch formula)"
 
-	<MSEProperty: #bunchCohesion type: #Number>
+	<FMProperty: #bunchCohesion type: #Number>
 	<derived>
-	<MSEComment: 'Bunch Cohesion of a namespace. It is also considered anonymous and inner classes.'>
+	<FMComment: 'Bunch Cohesion of a namespace. It is also considered anonymous and inner classes.'>
 	| myClasses intraConnectivities |
 	(myClasses := self classes) union: (myClasses flatCollect: [ :c | c allRecursiveTypes ]).
 	myClasses size == 0
@@ -135,9 +135,9 @@ FamixJavaNamespace >> containedEntities: collection [
 { #category : #'as yet unclassified' }
 FamixJavaNamespace >> distance [
 	"D = A + I - 1. A package should be balanced between abstractness and instability, i.e., somewhere between abstract and stable or concrete and unstable. This rule defines the main sequence by the equation A + I - 1 = 0. D is the distance to the main sequence."
-	<MSEProperty: #distance type: #Number>
+	<FMProperty: #distance type: #Number>
 	<derived>
-	<MSEComment: 'Distance of a namespace'>
+	<FMComment: 'Distance of a namespace'>
 
 	| abstractness instability |
 	abstractness := self abstractness.
@@ -157,9 +157,9 @@ FamixJavaNamespace >> distance: aNumber [
 FamixJavaNamespace >> efferentCoupling [
 	"Efferent coupling for a module is the number of classes it depends upon"
 
-	<MSEProperty: #efferentCoupling type: #Number>
+	<FMProperty: #efferentCoupling type: #Number>
 	<derived>
-	<MSEComment: 'Efferent coupling for a module is the number of classes it depends upon'>
+	<FMComment: 'Efferent coupling for a module is the number of classes it depends upon'>
 	^ ((self queryOutgoingDependencies outOfParentUsing: FamixTNamespace) atScope: FamixTType) size
 ]
 
@@ -172,9 +172,9 @@ FamixJavaNamespace >> efferentCoupling: aNumber [
 { #category : #'as yet unclassified' }
 FamixJavaNamespace >> instability [
 	"I =	Ce(P)/(Ce(P)+Ca(P)), in the range [0, 1]. 0 means package is maximally stable (i.e., no dependency to other packages and can not change without big consequences), 1 means it is unstable."
-	<MSEProperty: #instability type: #Number>
+	<FMProperty: #instability type: #Number>
 	<derived>
-	<MSEComment: 'Instability of a namespace'>
+	<FMComment: 'Instability of a namespace'>
 	
 	| efferentCoupling afferentCoupling |
 	
@@ -199,9 +199,9 @@ FamixJavaNamespace >> isNamespace [
 FamixJavaNamespace >> martinCohesion [
 	"Computing cohesion as described by Robert C. Martin"
 
-	<MSEProperty: #martinCohesion type: #Number>
+	<FMProperty: #martinCohesion type: #Number>
 	<derived>
-	<MSEComment: 'Cohesion as defined by Robert C. Martin.'>
+	<FMComment: 'Cohesion as defined by Robert C. Martin.'>
 	| intraConnectivities myClasses |
 	myClasses := self classes.
 	myClasses := myClasses union: (myClasses flatCollect: [ :c | c allRecursiveTypes ]).
@@ -227,9 +227,9 @@ FamixJavaNamespace >> numberOfAttributes [
 "	<property: #NOA longName: 'Number of attributes' description:
 			'The number of attributes in a namespace'>"
 
-	<MSEProperty: #numberOfAttributes type: #Number>
+	<FMProperty: #numberOfAttributes type: #Number>
 	<derived>
-	<MSEComment: 'The number of attributes in a namespace'>
+	<FMComment: 'The number of attributes in a namespace'>
 	
 	^ self
 		lookUpPropertyNamed: #numberOfAttributes
@@ -244,9 +244,9 @@ FamixJavaNamespace >> numberOfAttributes: aNumber [
 
 { #category : #'Famix-Extensions' }
 FamixJavaNamespace >> numberOfClasses [
-	<MSEProperty: #numberOfClasses type: #Number>
+	<FMProperty: #numberOfClasses type: #Number>
 	<derived>
-	<MSEComment: 'The number of classes in a namespace'>
+	<FMComment: 'The number of classes in a namespace'>
 	
 	^self
 		lookUpPropertyNamed: #numberOfClasses
@@ -261,9 +261,9 @@ FamixJavaNamespace >> numberOfClasses: aNumber [
 
 { #category : #'Famix-Implementation' }
 FamixJavaNamespace >> numberOfLinesOfCode [
-	<MSEProperty: #numberOfLinesOfCode type: #Number>
+	<FMProperty: #numberOfLinesOfCode type: #Number>
 	<derived>
-	<MSEComment: 'The number of lines of code in a namespace'>
+	<FMComment: 'The number of lines of code in a namespace'>
 	
 	^self
 		lookUpPropertyNamed: #numberOfLinesOfCode
@@ -280,9 +280,9 @@ FamixJavaNamespace >> numberOfLinesOfCode: aNumber [
 
 { #category : #accessing }
 FamixJavaNamespace >> numberOfMethods [
-	<MSEProperty: #numberOfMethods type: #Number>
+	<FMProperty: #numberOfMethods type: #Number>
 	<derived>
-	<MSEComment: 'The number of methods in a namespace'>
+	<FMComment: 'The number of methods in a namespace'>
 	
 	^self
 		lookUpPropertyNamed: #numberOfMethods
@@ -297,9 +297,9 @@ FamixJavaNamespace >> numberOfMethods: aNumber [
 
 { #category : #'Famix-Extensions-metrics' }
 FamixJavaNamespace >> numberOfNonInterfacesClasses [
-	<MSEProperty: #numberOfNonInterfacesClasses type: #Number>
+	<FMProperty: #numberOfNonInterfacesClasses type: #Number>
 	<derived>
-	<MSEComment: 'The number of non interfaces classes in a namespace'>
+	<FMComment: 'The number of non interfaces classes in a namespace'>
 	
 	^self
 		lookUpPropertyNamed: #numberOfNonInterfacesClasses

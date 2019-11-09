@@ -13,7 +13,7 @@ Trait {
 { #category : #meta }
 FamixTModule classSide >> annotation [
 
-	<MSEClass: #TModule super: #Object>
+	<FMClass: #TModule super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -40,5 +40,4 @@ FamixTModule >> moduleEntities: anObject [
 
 	<generated>
 	moduleEntities value: anObject
-
 ]

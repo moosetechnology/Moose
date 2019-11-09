@@ -14,7 +14,7 @@ Trait {
 { #category : #meta }
 FamixTFileAnchor classSide >> annotation [
 
-	<MSEClass: #TFileAnchor super: #Object>
+	<FMClass: #TFileAnchor super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -42,18 +42,16 @@ FamixTFileAnchor >> containerFiles [
 { #category : #accessing }
 FamixTFileAnchor >> correspondingFile [
 
-	<MSEProperty: #correspondingFile type: #FamixTFile>
+	<FMProperty: #correspondingFile type: #FamixTFile>
 	<generated>
-	<MSEComment: 'File associated to this source anchor'>
+	<FMComment: 'File associated to this source anchor'>
 	^ correspondingFile
 ]
 
 { #category : #accessing }
 FamixTFileAnchor >> correspondingFile: anObject [
-
 	<generated>
 	correspondingFile := anObject
-
 ]
 
 { #category : #decoding }
@@ -67,25 +65,23 @@ FamixTFileAnchor >> detectEncoding [
 
 { #category : #accessing }
 FamixTFileAnchor >> encoding [
-	<MSEProperty: #encoding type: #String>
-	<MSEComment: 'A string representing the encoding of a file'>
+	<FMProperty: #encoding type: #String>
+	<FMComment: 'A string representing the encoding of a file'>
 	^ encoding ifNil: [ encoding := self detectEncoding ]
 ]
 
 { #category : #accessing }
 FamixTFileAnchor >> encoding: anObject [
-
 	<generated>
 	encoding := anObject
-
 ]
 
 { #category : #accessing }
 FamixTFileAnchor >> fileName [
 
-	<MSEProperty: #fileName type: #String>
+	<FMProperty: #fileName type: #String>
 	<generated>
-	<MSEComment: 'Name of the source file'>
+	<FMComment: 'Name of the source file'>
 	^ fileName
 ]
 

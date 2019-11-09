@@ -6,11 +6,6 @@ Class >> customTraitNames [
 ]
 
 { #category : #'*Famix-MetamodelBuilder-Core' }
-Class >> generatedSlotNames [
-	^ self generatedSlots collect: #name
-]
-
-{ #category : #'*Famix-MetamodelBuilder-Core' }
 Class >> generatedSlots [
 	^ self localSlots select: #isFameSlot
 ]

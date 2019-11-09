@@ -22,7 +22,7 @@ FAMIXMetaModelClassesNotDeclaredInFameRule >> checkClass: aContext [
 	class := aContext.
 
 	(self metaModelClasses includes: class instanceSide)
-		ifTrue: [ pragmas := Pragma allNamed: #MSEClass:super: in: class.
+		ifTrue: [ pragmas := Pragma allNamed: #FMClass:super: in: class.
 			pragmas
 				ifEmpty: [ class isMeta ifTrue: [ result addClass: class ].
 					^ self ].
@@ -45,7 +45,7 @@ FAMIXMetaModelClassesNotDeclaredInFameRule >> metaModelClasses [
 { #category : #accessing }
 FAMIXMetaModelClassesNotDeclaredInFameRule >> name [
 
-	^ 'A metamodel class is not properly Fame-described by a <MSEClass:super:> pragma'
+	^ 'A metamodel class is not properly Fame-described by a <FMClass:super:> pragma'
 ]
 
 { #category : #running }

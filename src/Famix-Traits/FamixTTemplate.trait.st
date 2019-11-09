@@ -10,7 +10,7 @@ Trait {
 { #category : #meta }
 FamixTTemplate classSide >> annotation [
 
-	<MSEClass: #TTemplate super: #Object>
+	<FMClass: #TTemplate super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -36,7 +36,6 @@ FamixTTemplate >> templateOwner: anObject [
 
 	<generated>
 	templateOwner := anObject
-
 ]
 
 { #category : #accessing }
@@ -53,5 +52,4 @@ FamixTTemplate >> templateUsers: anObject [
 
 	<generated>
 	templateUsers value: anObject
-
 ]

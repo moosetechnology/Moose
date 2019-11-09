@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXAnnotationTypeAttribute class >> annotation [
 
-	<MSEClass: #AnnotationTypeAttribute super: #FAMIXAttribute>
+	<FMClass: #AnnotationTypeAttribute super: #FAMIXAttribute>
 	<package: #FAMIX>
 	<generated>
 	^self
@@ -17,8 +17,8 @@ FAMIXAnnotationTypeAttribute class >> annotation [
 
 { #category : #accessing }
 FAMIXAnnotationTypeAttribute >> parentAnnotationType [
-	<MSEProperty: #parentAnnotationType type: #FAMIXAnnotationType> <derived> 
-	<MSEComment: 'This is an alias pointing to the AnnotationType that defines this attribute'>
+	<FMProperty: #parentAnnotationType type: #FAMIXAnnotationType> <derived> 
+	<FMComment: 'This is an alias pointing to the AnnotationType that defines this attribute'>
 
 	^ self parentType
 ]

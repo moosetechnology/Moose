@@ -7,7 +7,7 @@ Class {
 { #category : #meta }
 FamixTestComposedCustomEntity4 class >> annotation [
 
-	<MSEClass: #CustomEntity4 super: #MooseEntity>
+	<FMClass: #CustomEntity4 super: #MooseEntity>
 	<package: #'Famix-TestComposedMetamodel-Entities'>
 	<generated>
 	^self
@@ -20,13 +20,25 @@ FamixTestComposedCustomEntity4 class >> metamodel [
 	^ FamixTestComposedModel metamodel
 ]
 
+{ #category : #adding }
+FamixTestComposedCustomEntity4 >> addC24: anObject [
+	<generated>
+	^ self c24s add: anObject
+]
+
+{ #category : #adding }
+FamixTestComposedCustomEntity4 >> addCustomEntities4: anObject [
+	<generated>
+	^ self customEntities4 add: anObject
+]
+
 { #category : #accessing }
 FamixTestComposedCustomEntity4 >> c24s [
 	"Relation named: #c24s type: #FamixTestComposed2CustomEntity4 opposite: #c4s"
 
 	<generated>
 	<derived>
-	<MSEProperty: #c24s type: #FamixTestComposed2CustomEntity4 opposite: #c4s>
+	<FMProperty: #c24s type: #FamixTestComposed2CustomEntity4 opposite: #c4s>
 	^ self privateState attributeAt: #c24s ifAbsentPut: [ FMMultiMultivalueLink on: self opposite: #c4s ]
 ]
 
@@ -43,7 +55,7 @@ FamixTestComposedCustomEntity4 >> customEntities4 [
 
 	<generated>
 	<derived>
-	<MSEProperty: #customEntities4 type: #FamixTestComposed1CustomEntity4 opposite: #customEntities4>
+	<FMProperty: #customEntities4 type: #FamixTestComposed1CustomEntity4 opposite: #customEntities4>
 	^ self privateState attributeAt: #customEntities4 ifAbsentPut: [ FMMultiMultivalueLink on: self opposite: #customEntities4 ]
 ]
 

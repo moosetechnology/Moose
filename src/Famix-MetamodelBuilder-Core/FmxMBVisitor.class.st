@@ -18,7 +18,7 @@ b acceptVisitor: v.
 Class {
 	#name : #FmxMBVisitor,
 	#superclass : #Object,
-	#category : #'Famix-MetamodelBuilder-Core-Implementation'
+	#category : #'Famix-MetamodelBuilder-Core-Visitors'
 }
 
 { #category : #visiting }

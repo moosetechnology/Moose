@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaLocalVariable class >> annotation [
 
-	<MSEClass: #LocalVariable super: #FamixJavaNamedEntity>
+	<FMClass: #LocalVariable super: #FamixJavaNamedEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self

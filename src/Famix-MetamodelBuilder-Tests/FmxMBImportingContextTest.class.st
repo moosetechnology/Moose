@@ -22,9 +22,7 @@ FmxMBImportingContextTest >> setUp [
 
 	access := builder newClassNamed: #Access.	
 	variable := builder newClassNamed: #Variable.	
-	method := builder newClassNamed: #Method.	
-		
-	access requires: { method. variable }.
+	method := builder newClassNamed: #Method.
 
 	builder generate.
 		
@@ -36,7 +34,7 @@ FmxMBImportingContextTest >> setUp [
 
 ]
 
-{ #category : #initialization }
+{ #category : #tests }
 FmxMBImportingContextTest >> testDefineImport [
 
 	| localMethod |
@@ -47,22 +45,20 @@ FmxMBImportingContextTest >> testDefineImport [
 
 ]
 
-{ #category : #initialization }
+{ #category : #tests }
 FmxMBImportingContextTest >> testGeneratedContextClass [
 	self assert: generatedContext notNil.
 	self assert: generatedContext superclass name equals: #FmxImportingContext
 ]
 
-{ #category : #initialization }
+{ #category : #tests }
 FmxMBImportingContextTest >> testNotGenerated [
 
 	builder := FamixMetamodelBuilder forTesting.
 
 	access := builder newClassNamed: #Access.	
 	variable := builder newClassNamed: #Variable.	
-	method := builder newClassNamed: #Method.	
-		
-	access requires: { method. variable }.
+	method := builder newClassNamed: #Method.
 
 	builder generate.
 		
@@ -71,7 +67,7 @@ FmxMBImportingContextTest >> testNotGenerated [
 
 ]
 
-{ #category : #initialization }
+{ #category : #tests }
 FmxMBImportingContextTest >> testNotGeneratedForEmptyBuilder [
 
 	builder := FamixMetamodelBuilder forTesting.
@@ -84,18 +80,7 @@ FmxMBImportingContextTest >> testNotGeneratedForEmptyBuilder [
 
 ]
 
-{ #category : #initialization }
-FmxMBImportingContextTest >> testRequirements [
-	| localMethod |
-	self assert: (generatedVariable classSide methodNamed: #requirements) isNil.
-	self assert: (generatedMethod classSide methodNamed: #requirements) isNil.
-
-	localMethod := generatedAccess classSide methodNamed: #requirements.
-	self assert: (localMethod sourceCode includesSubstring: '<generated>').
-	self assert: (localMethod sourceCode includesSubstring: '^ { TstMethod. TstVariable }')
-]
-
-{ #category : #initialization }
+{ #category : #tests }
 FmxMBImportingContextTest >> testShouldImport [
 
 	| localMethod |

@@ -7,7 +7,7 @@ Class {
 { #category : #meta }
 FamixTest4Cafeteria class >> annotation [
 
-	<MSEClass: #Cafeteria super: #FamixTest4Room>
+	<FMClass: #Cafeteria super: #FamixTest4Room>
 	<package: #'Famix-Test4-Entities'>
 	<generated>
 	^self

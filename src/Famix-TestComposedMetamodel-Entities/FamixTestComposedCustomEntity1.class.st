@@ -7,7 +7,7 @@ Class {
 { #category : #meta }
 FamixTestComposedCustomEntity1 class >> annotation [
 
-	<MSEClass: #CustomEntity1 super: #MooseEntity>
+	<FMClass: #CustomEntity1 super: #MooseEntity>
 	<package: #'Famix-TestComposedMetamodel-Entities'>
 	<generated>
 	^self
@@ -25,7 +25,7 @@ FamixTestComposedCustomEntity1 >> c21 [
 	"Relation named: #c21 type: #FamixTestComposed2CustomEntity1 opposite: #c1"
 
 	<generated>
-	<MSEProperty: #c21 type: #FamixTestComposed2CustomEntity1 opposite: #c1>
+	<FMProperty: #c21 type: #FamixTestComposed2CustomEntity1 opposite: #c1>
 	^ self privateState attributeAt: #c21 ifAbsent: [ nil ]
 ]
 
@@ -48,7 +48,7 @@ FamixTestComposedCustomEntity1 >> customEntity1 [
 	"Relation named: #customEntity1 type: #FamixTestComposed1CustomEntity1 opposite: #customEntity1"
 
 	<generated>
-	<MSEProperty: #customEntity1 type: #FamixTestComposed1CustomEntity1 opposite: #customEntity1>
+	<FMProperty: #customEntity1 type: #FamixTestComposed1CustomEntity1 opposite: #customEntity1>
 	^ self privateState attributeAt: #customEntity1 ifAbsent: [ nil ]
 ]
 

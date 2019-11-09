@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaParameterizableClass class >> annotation [
 
-	<MSEClass: #ParameterizableClass super: #FamixJavaClass>
+	<FMClass: #ParameterizableClass super: #FamixJavaClass>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
@@ -17,8 +17,8 @@ FamixJavaParameterizableClass class >> annotation [
 
 { #category : #'as yet unclassified' }
 FamixJavaParameterizableClass >> parameters [
-	<MSEProperty: #parameters type: #FamixJavaParameterType> <multivalued> <derived>
-	<MSEComment: 'Parameter types of this class.'>
+	<FMProperty: #parameters type: #FamixJavaParameterType> <multivalued> <derived>
+	<FMComment: 'Parameter types of this class.'>
 	
 	^self types select: [:each | each isParameterType]
 ]

@@ -7,7 +7,7 @@ Class {
 { #category : #meta }
 FAMIXEntity class >> annotation [
 
-	<MSEClass: #Entity super: #MooseEntity>
+	<FMClass: #Entity super: #MooseEntity>
 	<package: #FAMIX>
 	<generated>
 	^self

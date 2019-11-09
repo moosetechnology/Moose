@@ -178,7 +178,7 @@ LANImporterTest >> testEntityUniquelyNamed [
 			(classes entityNamed: LANNode class mooseName) isNil not
 ]
 
-{ #category : #errors }
+{ #category : #tests }
 LANImporterTest >> testHierarchyRoot [ 
 	self assert: (self model entityNamed: LANNode mooseName) isHierarchyRoot. 
 	self deny: ((self model entityNamed: LANNode mooseName) 
@@ -286,14 +286,14 @@ LANImporterTest >> testIsClassAbstract [
 	
 ]
 
-{ #category : #errors }
+{ #category : #tests }
 LANImporterTest >> testLonely [
 	| lonely |
 	lonely := self model allModelClasses select: [ :each | each isLonelyWithin: self model allModelClasses ].
 	self assert: lonely size equals: 8
 ]
 
-{ #category : #errors }
+{ #category : #tests }
 LANImporterTest >> testMethodOverriding [ 
 	 
 	self assert: (self model entityNamed: (LANOutputServer>>#canOutput) mooseName) isOverriding. 
@@ -421,7 +421,7 @@ LANImporterTest >> testStubClassesCreation [
 	self assert: (self model allClasses select: [ :each | each isStub not ]) size equals: 22
 ]
 
-{ #category : #errors }
+{ #category : #tests }
 LANImporterTest >> testSubClassHierarchy [
 	self assert: (self model entityNamed: LANNode mooseName) subclassHierarchy size equals: 4.
 	self assert: (self model entityNamed: LANNode mooseName) withSubclassHierarchy size equals: 5

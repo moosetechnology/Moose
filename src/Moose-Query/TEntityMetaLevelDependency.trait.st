@@ -39,7 +39,7 @@ TEntityMetaLevelDependency classSide >> allParentTypesIn: aMetamodel [
 { #category : #meta }
 TEntityMetaLevelDependency classSide >> annotation [
 
-	<MSEClass: #TEntityMetaLevelDependency super: #Object>
+	<FMClass: #TEntityMetaLevelDependency super: #Object>
 	<package: #'Moose-Query'>
 	<generated>
 	^self
@@ -151,9 +151,7 @@ TEntityMetaLevelDependency classSide >> privateChildrenTypesIn: aMetamodel [
 	| childrenImplementingClasses childrenUsers |
 	childrenImplementingClasses := ((self allDeclaredPropertiesIn: aMetamodel) select: #isChildrenProperty) collect: #implementingType.
 
-	childrenUsers := aMetamodel concreteClasses
-		select: [ :e | e implementingClass allGeneratedTraits includesAny: childrenImplementingClasses ]
-		thenCollect: #implementingClass.
+	childrenUsers := aMetamodel concreteImplementingClasses select: [ :e | e allGeneratedTraits includesAny: childrenImplementingClasses ].
 
 	^ (childrenImplementingClasses , childrenUsers) asSet asArray	"<== This could later be #removeDuplicates but it is currently broken on arrays. See https://github.com/pharo-project/pharo/issues/4850"
 ]
@@ -188,11 +186,9 @@ TEntityMetaLevelDependency classSide >> privateParentTypesIn: aMetamodel [
 	| containerImplementingClasses containerUsers |
 	containerImplementingClasses := (self allDeclaredPropertiesIn: aMetamodel) select: #isContainer thenCollect: #implementingType.
 
-	containerUsers := aMetamodel concreteClasses
-		select: [ :e | e implementingClass allGeneratedTraits includesAny: containerImplementingClasses ]
-		thenCollect: #implementingClass.
+	containerUsers := aMetamodel concreteImplementingClasses select: [ :e | e allGeneratedTraits includesAny: containerImplementingClasses ].
 
-	^ (containerImplementingClasses , containerUsers) asSet asArray "<== This could later be #removeDuplicates but it is currently broken on arrays. See https://github.com/pharo-project/pharo/issues/4850"
+	^ (containerImplementingClasses , containerUsers) asSet asArray	"<== This could later be #removeDuplicates but it is currently broken on arrays. See https://github.com/pharo-project/pharo/issues/4850"
 ]
 
 { #category : #private }
@@ -570,8 +566,8 @@ TEntityMetaLevelDependency >> incomingMSEProperties [
 
 { #category : #accessing }
 TEntityMetaLevelDependency >> numberOfChildren [
-	<MSEProperty: #numberOfChildren type: #Number>
-	<MSEComment: 'Number of direct children entities in the containment tree.'>
+	<FMProperty: #numberOfChildren type: #Number>
+	<FMComment: 'Number of direct children entities in the containment tree.'>
 	<derived>
 	^ self isContainerEntity ifTrue: [ self children size ] ifFalse: [ 0 ]
 ]

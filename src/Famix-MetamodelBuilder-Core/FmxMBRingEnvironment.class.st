@@ -99,36 +99,6 @@ FmxMBRingEnvironment >> createImportingcontextClassNamed: aClassName in: package
 ]
 
 { #category : #initialization }
-FmxMBRingEnvironment >> createTraitNamed: traitName slots: slots in: packageName overwrite: shouldOverwrite [
-
-	| aPackage aTrait existingClass |
-
-	existingClass := self ringEnvironment ask behaviorNamed: traitName asSymbol.
-	
-	(existingClass notNil and: [ shouldOverwrite not]) 
-		ifTrue: [ ^ existingClass ].
-
-	aPackage := self ringEnvironment ensurePackageNamed: packageName.
-	aTrait := ringEnvironment ensureTraitNamed: traitName. 
-	aTrait superclass: self basicTrait.
-	aTrait package: aPackage.
-	aTrait layout makeResolved.
-	slots do: [ :slotInBadEnvironment |
-		| slot |
-		slot := slotInBadEnvironment isSpecial
-			ifTrue: [ 			
-				(RGUnknownSlot named: slotInBadEnvironment name parent: aTrait layout) 
-					expression: slotInBadEnvironment expression;
-					yourself ]
-			ifFalse: [ 
-				RGInstanceVariableSlot named: slotInBadEnvironment name parent: aTrait layout ].
-		aTrait layout addSlot: slot.
-		slot propertyNamed: #isGenerated put: true ].
-	
-	^ aTrait
-]
-
-{ #category : #initialization }
 FmxMBRingEnvironment >> createTraitNamed: traitName uses: traitNames slots: slots in: packageName overwrite: shouldOverwrite [
 
 	| aPackage aTrait existingClass composition |

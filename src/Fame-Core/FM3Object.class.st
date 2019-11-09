@@ -17,7 +17,7 @@ Examples
 Class {
 	#name : #FM3Object,
 	#superclass : #FM3Constant,
-	#category : #'Fame-Core'
+	#category : #'Fame-Core-Model'
 }
 
 { #category : #accessing }
@@ -30,7 +30,7 @@ FM3Object class >> defaultSuperclass [
 	^ nil
 ]
 
-{ #category : #'accessing-query' }
+{ #category : #testing }
 FM3Object >> isRoot [
 	^ true
 ]

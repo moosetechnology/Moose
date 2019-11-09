@@ -10,17 +10,10 @@ Class {
 { #category : #meta }
 FamixTest4Principal class >> annotation [
 
-	<MSEClass: #Principal super: #FamixTest4Person>
+	<FMClass: #Principal super: #FamixTest4Person>
 	<package: #'Famix-Test4-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FamixTest4Principal class >> requirements [
-
-	<generated>
-	^ { FamixTest4School }
 ]
 
 { #category : #accessing }
@@ -37,7 +30,6 @@ FamixTest4Principal >> school: anObject [
 
 	<generated>
 	school := anObject
-
 ]
 
 { #category : #navigation }

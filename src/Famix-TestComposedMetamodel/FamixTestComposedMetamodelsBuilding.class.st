@@ -50,7 +50,7 @@ FamixTestComposedMetamodelsBuilding >> setUp [
 	methodNode isRemote: true
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTestComposedMetamodelsBuilding >> testOneRemoteToOneNonRemote [
 
 	| source generatedMethod |
@@ -64,19 +64,19 @@ FamixTestComposedMetamodelsBuilding >> testOneRemoteToOneNonRemote [
 	generatedMethod := ((env ringEnvironment ask classNamed: #Tst1Method) methodNamed: #binding).
 
 	self assert: (generatedMethod sourceCode includesSubstring: '<generated>').
-	self assert: (generatedMethod sourceCode includesSubstring: '<MSEProperty: #binding type: #TstComposedBinding opposite: #method>').
+	self assert: (generatedMethod sourceCode includesSubstring: '<FMProperty: #binding type: #TstComposedBinding opposite: #method>').
 	self assert: (generatedMethod sourceCode includesSubstring: 'privateState attributeAt: #binding').
 	self assert: generatedMethod package name equals: #TstComposed.
 
 	source := ((env ringEnvironment ask classNamed: #TstComposedBinding) methodNamed: #method) sourceCode.
 
 	self assert:  (source includesSubstring: '<generated>').
-	self assert:  (source includesSubstring: '<MSEProperty: #method type: #Tst1Method opposite: #binding>').
+	self assert:  (source includesSubstring: '<FMProperty: #method type: #Tst1Method opposite: #binding>').
 	self assert:  (source includesSubstring: 'privateState attributeAt: #method').
 	self assert: generatedMethod package name equals: #TstComposed.
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTestComposedMetamodelsBuilding >> testOneRemoteToOneRemote [
 
 	| source generatedMethod |
@@ -90,14 +90,14 @@ FamixTestComposedMetamodelsBuilding >> testOneRemoteToOneRemote [
 	generatedMethod := ((env ringEnvironment ask classNamed: #Tst1Method) methodNamed: #methodNode).
 
 	self assert: (generatedMethod sourceCode includesSubstring: '<generated>').
-	self assert: (generatedMethod sourceCode includesSubstring: '<MSEProperty: #methodNode type: #Tst2MethodNode opposite: #method>').
+	self assert: (generatedMethod sourceCode includesSubstring: '<FMProperty: #methodNode type: #Tst2MethodNode opposite: #method>').
 	self assert: (generatedMethod sourceCode includesSubstring: 'privateState attributeAt: #methodNode').
 	self assert: generatedMethod package name equals: #TstComposed.
 
 	source := ((env ringEnvironment ask classNamed: #Tst2MethodNode) methodNamed: #method) sourceCode.
 
 	self assert:  (source includesSubstring: '<generated>').
-	self assert:  (source includesSubstring: '<MSEProperty: #method type: #Tst1Method opposite: #methodNode>').
+	self assert:  (source includesSubstring: '<FMProperty: #method type: #Tst1Method opposite: #methodNode>').
 	self assert:  (source includesSubstring: 'privateState attributeAt: #method').
 	self assert: generatedMethod package name equals: #TstComposed.
 

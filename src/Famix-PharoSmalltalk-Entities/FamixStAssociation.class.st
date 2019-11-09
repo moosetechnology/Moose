@@ -13,7 +13,7 @@ Class {
 { #category : #meta }
 FamixStAssociation class >> annotation [
 
-	<MSEClass: #Association super: #FamixStSourcedEntity>
+	<FMClass: #Association super: #FamixStSourcedEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
@@ -22,8 +22,8 @@ FamixStAssociation class >> annotation [
 { #category : #printing }
 FamixStAssociation >> from [
 
-	<MSEProperty: #from type: #FamixTNamed> <derived>
-	<MSEComment: 'Generic accessor to the entity originating the association. Refined by subclasses'>
+	<FMProperty: #from type: #FamixTNamed> <derived>
+	<FMComment: 'Generic accessor to the entity originating the association. Refined by subclasses'>
 	^ self subclassResponsibility
 ]
 
@@ -37,7 +37,7 @@ FamixStAssociation >> gtDisplayOn: aStream [
 { #category : #printing }
 FamixStAssociation >> to [
 
-	<MSEProperty: #to type: #FamixTNamed> <derived>
-	<MSEComment: 'Generic accessor to the target entity of the association'>
+	<FMProperty: #to type: #FamixTNamed> <derived>
+	<FMComment: 'Generic accessor to the target entity of the association'>
 	^ self subclassResponsibility
 ]

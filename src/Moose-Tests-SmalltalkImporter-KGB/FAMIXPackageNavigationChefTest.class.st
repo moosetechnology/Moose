@@ -102,6 +102,20 @@ FAMIXPackageNavigationChefTest >> testInheritedClasses [
 ]
 
 { #category : #'tests - inheritance' }
+FAMIXPackageNavigationChefTest >> testInheritedClassesAsSourceOfInheritance [
+	self
+		assertCollection: (self c6FullReferencerInSideOutSide  queryIncomingInheritances sourcesAtScope: FamixTClass)
+		hasSameElements: {self c8FullReferencerInSide}.
+]
+
+{ #category : #'tests - inheritance' }
+FAMIXPackageNavigationChefTest >> testInheritedClassesAsTargetOfInheritance [
+	self
+		assertCollection: (self c8FullReferencerInSide queryOutgoingInheritances targetsAtScope: FamixTClass)
+		hasSameElements: {self c6FullReferencerInSideOutSide }
+]
+
+{ #category : #'tests - inheritance' }
 FAMIXPackageNavigationChefTest >> testInheritedClassesInto [
 	self
 		assertCollection: (self p5FullReferee queryOutgoingInheritances opposites within: self p6InteractedReferee)

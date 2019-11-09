@@ -27,7 +27,7 @@ Trait {
 { #category : #meta }
 FamixTAnnotationTypeAttribute classSide >> annotation [
 
-	<MSEClass: #TAnnotationTypeAttribute super: #Object>
+	<FMClass: #TAnnotationTypeAttribute super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -44,7 +44,7 @@ FamixTAnnotationTypeAttribute >> annotationAttributeInstances [
 	"Relation named: #annotationAttributeInstances type: #FamixTTypedAnnotationInstanceAttribute opposite: #annotationTypeAttribute"
 
 	<generated>
-	<MSEComment: 'A collection of AnnotationInstanceAttribute which hold the usages of this attribute in actual AnnotationInstances'>
+	<FMComment: 'A collection of AnnotationInstanceAttribute which hold the usages of this attribute in actual AnnotationInstances'>
 	<derived>
 	^ annotationAttributeInstances
 ]
@@ -54,5 +54,4 @@ FamixTAnnotationTypeAttribute >> annotationAttributeInstances: anObject [
 
 	<generated>
 	annotationAttributeInstances value: anObject
-
 ]

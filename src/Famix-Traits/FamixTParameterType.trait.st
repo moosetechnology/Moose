@@ -16,7 +16,7 @@ Trait {
 { #category : #meta }
 FamixTParameterType classSide >> annotation [
 
-	<MSEClass: #TParameterType super: #Object>
+	<FMClass: #TParameterType super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

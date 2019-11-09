@@ -14,7 +14,7 @@ Class {
 		'description',
 		'slots'
 	],
-	#category : #'Fame-Core'
+	#category : #'Fame-Core-Utilities'
 }
 
 { #category : #'instance creation' }
@@ -59,6 +59,11 @@ FMRuntimeElement >> description: anObject [
 FMRuntimeElement >> initialize [
 	super initialize.
 	slots := IdentityDictionary new
+]
+
+{ #category : #accessing }
+FMRuntimeElement >> metaDescriptionIn: aMetamodel [
+	^ self description
 ]
 
 { #category : #accessing }

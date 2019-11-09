@@ -29,14 +29,22 @@ BaselineOfFame >> baseline: spec [
 				package: 'Fame-Core' with: [ spec requires: #('Hashtable' 'TreeQuery' 'Iterators') ];
 				package: 'Fame-Rules';
 				package: 'Fame-ImportExport' with: [ spec requires: #('Fame-Core') ];
-				package: 'Fame-SmalltalkBinding' with: [ spec requires: #('Fame-Core') ];
 				package: 'Fame-Example';
-				package: 'Fame-Tests-Core' with: [ spec requires: #('Fame-Core' 'Fame-Example' 'Mocketry') ].
+				package: 'Fame-Tests' with: [ spec requires: #('Fame-Core' 'Fame-ImportExport' 'Fame-Example' 'Mocketry') ];
+				package: 'Fame-GT' with: [ spec requires: #('Fame-ImportExport') ].
 
 			"Groups"
 			spec
-				group: 'Core' with: #('Fame-Core' 'Fame-ImportExport' 'Fame-Rules' 'Fame-SmalltalkBinding');
-				group: 'Tests' with: #('Fame-Tests-Core') ]
+				group: 'Core' with: #('Fame-Core' 'Fame-ImportExport' 'Fame-Rules');
+				group: 'GT' with: #('Core' 'Fame-GT');
+				group: 'Tests' with: #('Fame-Tests') ].
+			
+	spec
+		for: #'pharo7.x'
+		do: [ 
+			spec
+				package: 'Fame-Pharo8Compatibility';
+				package: 'Fame-Core' with: [ spec includes: #('Fame-Pharo8Compatibility') ] ]
 ]
 
 { #category : #dependencies }

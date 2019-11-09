@@ -9,17 +9,10 @@ Class {
 { #category : #meta }
 FAMIXFunction class >> annotation [
 
-	<MSEClass: #Function super: #FAMIXBehaviouralEntity>
+	<FMClass: #Function super: #FAMIXBehaviouralEntity>
 	<package: #FAMIX>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FAMIXFunction class >> requirements [
-
-	<generated>
-	^ { FAMIXContainerEntity }
 ]
 
 { #category : #accessing }

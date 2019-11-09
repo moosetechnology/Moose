@@ -188,13 +188,6 @@ FamixMetamodelGenerator >> allSubBuilders [
 	^ result
 ]
 
-{ #category : #definition }
-FamixMetamodelGenerator >> beForTesting [
-
-	builder environment: (FmxMBRingEnvironment for: builder).
-
-]
-
 { #category : #accessing }
 FamixMetamodelGenerator >> builder [
 	^ builder
@@ -217,13 +210,11 @@ FamixMetamodelGenerator >> cleaningStrategy: anObject [
 
 { #category : #definition }
 FamixMetamodelGenerator >> define [
-
 	self defineTraits.
 	self defineClasses.
 	self defineHierarchy.
 	self defineProperties.
-	self defineRelations.
-	
+	self defineRelations
 ]
 
 { #category : #definition }
@@ -276,7 +267,7 @@ FamixMetamodelGenerator >> generatedPackage [
 	^ self packageName asPackageIfAbsent: [ nil ]
 ]
 
-{ #category : #definition }
+{ #category : #initialization }
 FamixMetamodelGenerator >> initialize [
 
 	super initialize.
@@ -302,13 +293,7 @@ FamixMetamodelGenerator >> mooseModelName [
 
 { #category : #definition }
 FamixMetamodelGenerator >> newBuilder [
-
-	| aBuilder |
-	
-	aBuilder := FamixMetamodelBuilder new.
-	aBuilder generator: self.
-	
-	^ aBuilder
+	^ FamixMetamodelBuilder forGenerator: self
 ]
 
 { #category : #definition }

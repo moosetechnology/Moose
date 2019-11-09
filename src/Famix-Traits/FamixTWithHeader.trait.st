@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithHeader classSide >> annotation [
 
-	<MSEClass: #TWithHeader super: #Object>
+	<FMClass: #TWithHeader super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -20,7 +20,7 @@ FamixTWithHeader >> header [
 	"Relation named: #header type: #FamixTHeader opposite: #headerOwner"
 
 	<generated>
-	<MSEComment: 'The header file that defines this module'>
+	<FMComment: 'The header file that defines this module'>
 	<derived>
 	^ header
 ]
@@ -30,5 +30,4 @@ FamixTWithHeader >> header: anObject [
 
 	<generated>
 	header := anObject
-
 ]

@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTInvocationsReceiver classSide >> annotation [
 
-	<MSEClass: #TInvocationsReceiver super: #Object>
+	<FMClass: #TInvocationsReceiver super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -25,7 +25,7 @@ FamixTInvocationsReceiver >> receivingInvocations [
 	"Relation named: #receivingInvocations type: #FamixTInvocation opposite: #receiver"
 
 	<generated>
-	<MSEComment: 'List of invocations performed on this entity (considered as the receiver)'>
+	<FMComment: 'List of invocations performed on this entity (considered as the receiver)'>
 	<derived>
 	^ receivingInvocations
 ]
@@ -35,5 +35,4 @@ FamixTInvocationsReceiver >> receivingInvocations: anObject [
 
 	<generated>
 	receivingInvocations value: anObject
-
 ]

@@ -39,11 +39,6 @@ FmxMBRealRingEnvironment >> compile: aSource in: aClass classified: aProtocol pa
 ]
 
 { #category : #installing }
-FmxMBRealRingEnvironment >> generatedSlotsOf: aRealClass [
-	^ (aRealClass generatedSlotNames collect: [ :slotName | aRealClass slotNamed: slotName ifFound: [ :slot | slot ] ifNone: nil ]) select: #notNil
-]
-
-{ #category : #installing }
 FmxMBRealRingEnvironment >> recordAdoptionOfClassDefinitionFrom: realClass to: anRGClass [
 	| customSlots customSlotNames slotDefinitions slotsString definition traitsString |
 	(realClass needToAdaptTo: anRGClass) ifFalse: [ ^ self ].

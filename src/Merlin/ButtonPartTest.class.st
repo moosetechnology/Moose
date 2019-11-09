@@ -4,7 +4,7 @@ Class {
 	#category : #'Merlin-Tests'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 ButtonPartTest >> testEnableAndDisable [
 
 	| buttonPart |
@@ -15,7 +15,7 @@ ButtonPartTest >> testEnableAndDisable [
 	self deny: buttonPart buttonEnabled.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 ButtonPartTest >> testLabel [
 
 	| buttonPart |

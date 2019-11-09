@@ -560,14 +560,14 @@ FAMIXClassNavigationChefTest >> testReferencingPackages [
 ]
 
 { #category : #'tests - outgoing invocations' }
-FAMIXClassNavigationChefTest >> testSourceMethodsInReferencedMethods [
+FAMIXClassNavigationChefTest >> testSourcesInReferencedMethods [
 	self
-		assertCollection: (self c6FullReferencerInSideOutSide queryAllOutgoingInvocations outOfParentUsing: FamixTNamespace) sourceMethods
+		assertCollection: (self c6FullReferencerInSideOutSide queryAllOutgoingInvocations outOfParentUsing: FamixTNamespace) sources
 		hasSameElements: {(self getMethod: 'm1p3c6Mtd1()') . (self getMethod: 'm1p3c6Mtd2()')}
 ]
 
 { #category : #'tests - references' }
-FAMIXClassNavigationChefTest >> testSourceMethodsInStaticReferencedClasses [
+FAMIXClassNavigationChefTest >> testSourcesInStaticReferencedClasses [
 	self
 		assertCollection: (self c6FullReferencerInSideOutSide queryOutgoingReferences withinParentUsing: FamixTPackage) sources
 		hasSameElements: {(self getMethod: 'm1p3c6Mtd2()')}

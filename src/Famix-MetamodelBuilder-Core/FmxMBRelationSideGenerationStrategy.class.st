@@ -35,7 +35,7 @@ FmxMBRelationSideGenerationStrategy >> generateGetterCoreIn: aClassOrTrait on: a
 { #category : #generation }
 FmxMBRelationSideGenerationStrategy >> generateGetterIn: aClassOrTrait for: aRelationSide [
 	| methodSource commentDefinition |
-	commentDefinition := aRelationSide comment ifNotEmpty: [ :comment | '<MSEComment: {1}>' format: {comment printString} ].
+	commentDefinition := aRelationSide comment ifNotEmpty: [ :comment | '<FMComment: {1}>' format: {comment printString} ].
 
 	methodSource := String
 		streamContents: [ :s | 

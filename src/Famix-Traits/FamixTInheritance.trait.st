@@ -10,7 +10,7 @@ Trait {
 { #category : #meta }
 FamixTInheritance classSide >> annotation [
 
-	<MSEClass: #TInheritance super: #Object>
+	<FMClass: #TInheritance super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -38,7 +38,7 @@ FamixTInheritance >> subclass [
 	"Relation named: #subclass type: #FamixTWithInheritances opposite: #superInheritances"
 
 	<generated>
-	<MSEComment: 'Subclass linked to in this relationship. from-side of the association'>
+	<FMComment: 'Subclass linked to in this relationship. from-side of the association'>
 	<source>
 	^ subclass
 ]
@@ -48,7 +48,6 @@ FamixTInheritance >> subclass: anObject [
 
 	<generated>
 	subclass := anObject
-
 ]
 
 { #category : #accessing }
@@ -56,7 +55,7 @@ FamixTInheritance >> superclass [
 	"Relation named: #superclass type: #FamixTWithInheritances opposite: #subInheritances"
 
 	<generated>
-	<MSEComment: 'Superclass linked to in this relationship. to-side of the association'>
+	<FMComment: 'Superclass linked to in this relationship. to-side of the association'>
 	<target>
 	^ superclass
 ]
@@ -66,7 +65,6 @@ FamixTInheritance >> superclass: anObject [
 
 	<generated>
 	superclass := anObject
-
 ]
 
 { #category : #accessing }

@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithLocalVariables classSide >> annotation [
 
-	<MSEClass: #TWithLocalVariables super: #Object>
+	<FMClass: #TWithLocalVariables super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -25,7 +25,7 @@ FamixTWithLocalVariables >> localVariables [
 	"Relation named: #localVariables type: #FamixTLocalVariable opposite: #parentBehaviouralEntity"
 
 	<generated>
-	<MSEComment: 'Variables locally defined by this behaviour.'>
+	<FMComment: 'Variables locally defined by this behaviour.'>
 	<derived>
 	^ localVariables
 ]
@@ -35,5 +35,4 @@ FamixTWithLocalVariables >> localVariables: anObject [
 
 	<generated>
 	localVariables value: anObject
-
 ]

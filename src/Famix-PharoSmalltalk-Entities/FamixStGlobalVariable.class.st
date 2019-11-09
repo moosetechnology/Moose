@@ -9,15 +9,8 @@ Class {
 { #category : #meta }
 FamixStGlobalVariable class >> annotation [
 
-	<MSEClass: #GlobalVariable super: #FamixStNamedEntity>
+	<FMClass: #GlobalVariable super: #FamixStNamedEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FamixStGlobalVariable class >> requirements [
-
-	<generated>
-	^ { FamixStScopingEntity }
 ]

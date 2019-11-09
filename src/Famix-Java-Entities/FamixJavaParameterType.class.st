@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaParameterType class >> annotation [
 
-	<MSEClass: #ParameterType super: #FamixJavaType>
+	<FMClass: #ParameterType super: #FamixJavaType>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self

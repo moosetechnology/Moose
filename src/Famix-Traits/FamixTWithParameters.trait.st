@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithParameters classSide >> annotation [
 
-	<MSEClass: #TWithParameters super: #Object>
+	<FMClass: #TWithParameters super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -22,8 +22,8 @@ FamixTWithParameters >> addParameter: aParameter [
 
 { #category : #accessing }
 FamixTWithParameters >> numberOfParameters [
-	<MSEProperty: #numberOfParameters type: #Number>
-	<MSEComment: 'The number of parameters in a method'>
+	<FMProperty: #numberOfParameters type: #Number>
+	<FMComment: 'The number of parameters in a method'>
 	<derived>
 	^ self lookUpPropertyNamed: #numberOfParameters computedAs: [ self parameters size ]
 ]
@@ -39,7 +39,7 @@ FamixTWithParameters >> parameters [
 	"Relation named: #parameters type: #FamixTParameter opposite: #parentBehaviouralEntity"
 
 	<generated>
-	<MSEComment: 'List of formal parameters declared by this behaviour.'>
+	<FMComment: 'List of formal parameters declared by this behaviour.'>
 	<derived>
 	^ parameters
 ]
@@ -49,5 +49,4 @@ FamixTWithParameters >> parameters: anObject [
 
 	<generated>
 	parameters value: anObject
-
 ]

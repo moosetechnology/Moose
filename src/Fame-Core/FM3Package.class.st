@@ -33,26 +33,14 @@ Class {
 		'classes',
 		'extensions'
 	],
-	#category : #'Fame-Core'
+	#category : #'Fame-Core-Model'
 }
 
 { #category : #meta }
 FM3Package class >> annotation [
-	<MSEClass: #Package super: #FM3Element>
+	<FMClass: #Package super: #FM3Element>
 	<package: #FM3>
 
-]
-
-{ #category : #examples }
-FM3Package class >> gtExampleBasic [
-	<gtExample>
-	^ self new
-]
-
-{ #category : #'accessing-query' }
-FM3Package >> at: aString [
-	aString isSymbol ifTrue: [ self error ].
-	^ self classNamed: aString
 ]
 
 { #category : #'accessing-query' }
@@ -67,10 +55,9 @@ FM3Package >> classNamed: aString ifAbsent: aBlock [
 
 { #category : #accessing }
 FM3Package >> classes [
-	<MSEProperty: #classes type: #FM3Class opposite: #package>
+	<FMProperty: #classes type: #FM3Class opposite: #package>
 	<multivalued>
-	<key: #name>
-	^classes
+	^ classes
 ]
 
 { #category : #accessing }
@@ -81,7 +68,7 @@ FM3Package >> classes: elementCollection [
 
 { #category : #accessing }
 FM3Package >> extensions [
-	<MSEProperty: #extensions type: 'FM3.Property' opposite: #package>
+	<FMProperty: #extensions type: 'FM3.Property' opposite: #package>
 	<multivalued>
 	
 	^extensions
@@ -91,32 +78,6 @@ FM3Package >> extensions [
 FM3Package >> extensions: elementCollection [
 
 	extensions value: elementCollection
-]
-
-{ #category : #ui }
-FM3Package >> gtInspectorClassesIn: composite [
-	<gtInspectorPresentationOrder: 0>
-	^ composite fastList
-		title: 'Classes';
-		display: [ self classes sorted: [:x :y | x fullName < y fullName] ];
-		format: [ :each | 
-			each isAbstract 
-				ifTrue: [ Text string: each fullName attribute: TextEmphasis italic ]
-				ifFalse: [ Text fromString: each fullName ] ]
-]
-
-{ #category : #ui }
-FM3Package >> gtInspectorExtensionsIn: composite [
-	<gtInspectorPresentationOrder: 1>
-	^ composite fastList
-		title: 'Extensions';
-		display: [ self extensions sorted: [:x :y | x fullName < y fullName] ];
-		format: [ :each | each gtDisplayString ]
-]
-
-{ #category : #testing }
-FM3Package >> hasOwner [
-	^ false
 ]
 
 { #category : #initialization }
@@ -132,7 +93,8 @@ FM3Package >> isFM3Package [
 ]
 
 { #category : #accessing }
-FM3Package >> packageName [
+FM3Package >> owner [
+	"All packages are top-level (but dots are allowed in their name to fake nesting)"
 
-	^ self name
+	^ nil
 ]
