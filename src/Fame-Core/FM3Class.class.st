@@ -2,10 +2,10 @@
 Description
 --------------------
 
-I represent the description of a meta-model class in a Fame metamodel.
+I represent class in a fame meta-model.
 
-I should be contained in a FM3Package and I can also be contained in a FRRepository.
-I contain instances of FM3Property which might be package extensions.
+I should be contained in a FM3Package and I can be stored in a FMMetaModel.
+I contain instances of FM3Property which might be package extensions or not.
 I can have a superclass, subclasses and traits which are all FM3Class instances. While doing the lookup of my properties, I will take my superclasses and traits into account.
 
 Some Fame classes are constants that will be used in all metamodels. You can find more informations about them in FM3Constant.

@@ -2,10 +2,9 @@
 Description
 --------------------
 
-I am an abstract class representing elementary elements of a Fame metamodel.
-My instances are descriptions reprensenting elements of a meta-model.
+I am an abstract class representing elementary elements of a metamodel.
 
-The instances of my subclasses are stored inside a FMRepository.
+The instances of my subclasses are stored inside a FMMetaModel.
 
 My instances have a name, a fullName and an owner that is either a FM3Class or FM3Package.
 
@@ -21,7 +20,6 @@ Internal Representation and Key Implementation Points.
 
     Instance Variables
 	name:		<aString>		Name of the element.
-
 "
 Class {
 	#name : #FM3Element,

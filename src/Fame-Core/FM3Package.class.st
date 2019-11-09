@@ -2,28 +2,18 @@
 Description
 --------------------
 
-I represent the description of a package in a metamodel.
+I represent a package in a Fame meta-model.
 
-I can contain Fame classes and Fame properties that are extensions.
+I can be stored in a FMMetaModel.
 
-Public API and Key Messages
---------------------
-
-- #
-- #
-- #
-
-Examples
---------------------
-
-	
+I can contain Fame classes and Fame properties that are extensions.	
  
 Internal Representation and Key Implementation Points.
 --------------------
 
     Instance Variables
-	classes:		<Object>
-	extensions:		<Object>
+	classes:			<aCollectionOfFM3Class> 			All the fame classes I contains.
+	extensions:		<aCollectionOfFM3Property>		All the properties that are extensions and directly inside me.
 
 "
 Class {
