@@ -35,7 +35,6 @@ FamixTPackageable >> parentPackage: anObject [
 
 	<generated>
 	parentPackage := anObject
-
 ]
 
 { #category : #navigation }

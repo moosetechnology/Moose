@@ -29,5 +29,4 @@ FamixTDefinedInModule >> parentModule: anObject [
 
 	<generated>
 	parentModule := anObject
-
 ]

@@ -1,16 +1,13 @@
 Class {
-	#name : #FAMIXExtensionMetricTest,
+	#name : #FamixMetricsTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'model1',
-		'model2',
 		'p1m1',
 		'p2m1',
 		'p1m2',
 		'p2m2',
 		'p3m2',
 		'p4m2',
-		'lcomModel',
 		'classA',
 		'classB',
 		'classB1',
@@ -22,12 +19,39 @@ Class {
 		'classF1',
 		'classG'
 	],
-	#category : #'Famix-Compatibility-Tests-Extensions'
+	#category : #'Famix-PharoSmalltalk-Tests'
 }
 
+{ #category : #accessing }
+FamixMetricsTest class >> resources [
+	^ {PackageBlueprintTestResource . LCOMTestResource. KGBForMetricsTestResource}
+]
+
 { #category : #setup }
-FAMIXExtensionMetricTest >> importClasses [
-	
+FamixMetricsTest >> importBlueprintPackages [
+	| blueprintModel |
+	blueprintModel := PackageBlueprintTestResource current model.
+
+	p1m2 := blueprintModel entityNamed: #'Moose-TestResources-PackageBlueprint-P1'.
+	p2m2 := blueprintModel entityNamed: #'Moose-TestResources-PackageBlueprint-P2'.
+	p3m2 := blueprintModel entityNamed: #'Moose-TestResources-PackageBlueprint-P3'.
+	p4m2 := blueprintModel entityNamed: #'Moose-TestResources-PackageBlueprint-P4'
+]
+
+{ #category : #setup }
+FamixMetricsTest >> importKGBPackages [
+	| kgbModel |
+	kgbModel := KGBForMetricsTestResource current model.
+
+	p1m1 := kgbModel entityNamed: #'Moose-TestResources-KGB-P1FullReferencer'.
+	p2m1 := kgbModel entityNamed: #'Moose-TestResources-KGB-P2InteractedReferencerReferee'
+]
+
+{ #category : #setup }
+FamixMetricsTest >> importLCOMClasses [
+	| lcomModel |
+	lcomModel := LCOMTestResource current model.
+
 	classA := lcomModel entityNamed: #'Smalltalk::ClassA'.
 	classB := lcomModel entityNamed: #'Smalltalk::ClassB'.
 	classB1 := lcomModel entityNamed: #'Smalltalk::ClassB1'.
@@ -40,58 +64,18 @@ FAMIXExtensionMetricTest >> importClasses [
 	classG := lcomModel entityNamed: #'Smalltalk::ClassG'
 ]
 
-{ #category : #setup }
-FAMIXExtensionMetricTest >> importModels [
-	MoosePharoImporterTask new
-		importerClass: SmalltalkImporter;
-		model: model1;
-		addFromPackageNamed: #'Moose-TestResources-KGB-P1FullReferencer';
-		addFromPackageNamed: #'Moose-TestResources-KGB-P2InteractedReferencerReferee';
-		run.
-
-	MoosePharoImporterTask new
-		importerClass: SmalltalkImporter;
-		model: model2;
-		addFromPackageNamed: #'Moose-TestResources-PackageBlueprint-P1';
-		addFromPackageNamed: #'Moose-TestResources-PackageBlueprint-P2';
-		addFromPackageNamed: #'Moose-TestResources-PackageBlueprint-P3';
-		addFromPackageNamed: #'Moose-TestResources-PackageBlueprint-P4';
-		run.
-
-	MoosePharoImporterTask new
-		importerClass: SmalltalkImporter;
-		doNotRunCandidateOperator;
-		model: lcomModel;
-		addFromPackageNamed: #'Moose-TestResources-LCOM';
-		run
-]
-
-{ #category : #setup }
-FAMIXExtensionMetricTest >> importPackages [
-
-	p1m1 := model1 entityNamed:  #'Moose-TestResources-KGB-P1FullReferencer'.
-	p2m1 := model1 entityNamed:  #'Moose-TestResources-KGB-P2InteractedReferencerReferee'.
-	
-	p1m2 := model2 entityNamed:  #'Moose-TestResources-PackageBlueprint-P1'.
-	p2m2 := model2 entityNamed:  #'Moose-TestResources-PackageBlueprint-P2'.
-	p3m2 := model2 entityNamed:  #'Moose-TestResources-PackageBlueprint-P3'.
-	p4m2 := model2 entityNamed:  #'Moose-TestResources-PackageBlueprint-P4'.
-]
-
 { #category : #running }
-FAMIXExtensionMetricTest >> setUp [
+FamixMetricsTest >> setUp [
+	self flag: #todo. "Ideally we should also have metrics tests with a test model in Moose-Tests-Core."
 	super setUp.
-	model1 := FamixStModel new.
-	model2 := FamixStModel new.
-	lcomModel := FamixStModel new.
-
-	self importModels.
-	self importPackages.
-	self importClasses
+	self
+		importKGBPackages;
+		importBlueprintPackages;
+		importLCOMClasses
 ]
 
 { #category : #tests }
-FAMIXExtensionMetricTest >> testAbstractnessFAMIXClassGroup [
+FamixMetricsTest >> testAbstractnessFAMIXClassGroup [
 	| class1 class2 class3 class4 class5 class6 class7 class8 class9 class10 class11 class12 class13 class14 class15 class16 f |
 	class1 := (p1m1 allClasses detect: [ :each | each name = #M1P1C1FullReferencerOutSide ]).
 	class2 := (p2m1 allClasses detect: [ :each | each name = #M1P2C2ReferencerOutSideRefereeInSide ]).
@@ -183,7 +167,7 @@ FAMIXExtensionMetricTest >> testAbstractnessFAMIXClassGroup [
 ]
 
 { #category : #tests }
-FAMIXExtensionMetricTest >> testAbstractnessFAMIXPackage [
+FamixMetricsTest >> testAbstractnessFAMIXPackage [
 	self assert: p1m1 abstractness equals: 0.0.
 	self assert: p2m1 abstractness equals: 0.0.
 	self assert: p1m2 abstractness equals: 0.0.
@@ -193,7 +177,7 @@ FAMIXExtensionMetricTest >> testAbstractnessFAMIXPackage [
 ]
 
 { #category : #tests }
-FAMIXExtensionMetricTest >> testAfferentCouplingFAMIXClassGroup [
+FamixMetricsTest >> testAfferentCouplingFAMIXClassGroup [
 	| class1 class2 class3 class4 class5 class6 class7 class8 class9 class10 class11 class12 class13 class14 class15 class16 f |
 	class1 := p1m1 allClasses detect: [ :each | each name = #M1P1C1FullReferencerOutSide ].
 	class2 := p2m1 allClasses detect: [ :each | each name = #M1P2C2ReferencerOutSideRefereeInSide ].
@@ -284,7 +268,7 @@ FAMIXExtensionMetricTest >> testAfferentCouplingFAMIXClassGroup [
 ]
 
 { #category : #tests }
-FAMIXExtensionMetricTest >> testAfferentCouplingFAMIXPackage [
+FamixMetricsTest >> testAfferentCouplingFAMIXPackage [
 	self assert: p1m1 afferentCoupling equals: 0.
 	self assert: p2m1 afferentCoupling equals: 1.
 	self assert: p1m2 afferentCoupling equals: 0.
@@ -294,7 +278,7 @@ FAMIXExtensionMetricTest >> testAfferentCouplingFAMIXPackage [
 ]
 
 { #category : #tests }
-FAMIXExtensionMetricTest >> testDistanceFAMIXClassGroup [
+FamixMetricsTest >> testDistanceFAMIXClassGroup [
 	| class1 class2 class3 class4 class5 class6 class7 class8 class9 class10 class11 class12 class13 class14 class15 class16 f |
 	class1 := p1m1 allClasses detect: [ :each | each name = #M1P1C1FullReferencerOutSide ].
 	class2 := p2m1 allClasses detect: [ :each | each name = #M1P2C2ReferencerOutSideRefereeInSide ].
@@ -386,7 +370,7 @@ FAMIXExtensionMetricTest >> testDistanceFAMIXClassGroup [
 ]
 
 { #category : #tests }
-FAMIXExtensionMetricTest >> testDistanceFAMIXPackage [
+FamixMetricsTest >> testDistanceFAMIXPackage [
 	self assert: p1m1 distance equals: 0.0.
 	self assert: p2m1 distance equals: -0.25.
 	self assert: p1m2 distance equals: 0.0.
@@ -396,7 +380,7 @@ FAMIXExtensionMetricTest >> testDistanceFAMIXPackage [
 ]
 
 { #category : #tests }
-FAMIXExtensionMetricTest >> testEfferentCouplingFAMIXClassGroup [
+FamixMetricsTest >> testEfferentCouplingFAMIXClassGroup [
 	| class1 class2 class3 class4 class5 class6 class7 class8 class9 class10 class11 class12 class13 class14 class15 class16 f |
 	class1 := p1m1 allClasses detect: [ :each | each name = #M1P1C1FullReferencerOutSide ].
 	class2 := p2m1 allClasses detect: [ :each | each name = #M1P2C2ReferencerOutSideRefereeInSide ].
@@ -502,7 +486,7 @@ FAMIXExtensionMetricTest >> testEfferentCouplingFAMIXClassGroup [
 ]
 
 { #category : #tests }
-FAMIXExtensionMetricTest >> testEfferentCouplingFAMIXPackage [
+FamixMetricsTest >> testEfferentCouplingFAMIXPackage [
 	self assert: p1m1 efferentCoupling equals: 4.	"Object M2P6C13 M2P5C11 M1 P2C3"
 	self assert: p2m1 efferentCoupling equals: 3.	"Object M3P7C14 M2P5C11"
 	self assert: p1m2 efferentCoupling equals: 7.	"Object A2 B2  A3 B3 C3 A4"
@@ -512,7 +496,7 @@ FAMIXExtensionMetricTest >> testEfferentCouplingFAMIXPackage [
 ]
 
 { #category : #tests }
-FAMIXExtensionMetricTest >> testInstabilityFAMIXClassGroup [
+FamixMetricsTest >> testInstabilityFAMIXClassGroup [
 	| class1 class2 class3 class4 class5 class6 class7 class8 class9 class10 class11 class12 class13 class14 class15 class16 f |
 	class1 := p1m1 allClasses detect: [ :each | each name = #M1P1C1FullReferencerOutSide ].
 	class2 := p2m1 allClasses detect: [ :each | each name = #M1P2C2ReferencerOutSideRefereeInSide ].
@@ -603,7 +587,7 @@ FAMIXExtensionMetricTest >> testInstabilityFAMIXClassGroup [
 ]
 
 { #category : #tests }
-FAMIXExtensionMetricTest >> testInstabilityFAMIXPackage [
+FamixMetricsTest >> testInstabilityFAMIXPackage [
 	self assert: p1m1 instability equals: 1.0.
 	self assert: p2m1 instability equals: 0.75.
 	self assert: p1m2 instability equals: 1.0.
@@ -613,7 +597,7 @@ FAMIXExtensionMetricTest >> testInstabilityFAMIXPackage [
 ]
 
 { #category : #tests }
-FAMIXExtensionMetricTest >> testLCOM2 [
+FamixMetricsTest >> testLCOM2 [
 	self skip.
 	self assert: classA lcom2 equals: 0.
 	self assert: classB lcom2 equals: 0.
@@ -628,7 +612,7 @@ FAMIXExtensionMetricTest >> testLCOM2 [
 ]
 
 { #category : #tests }
-FAMIXExtensionMetricTest >> testLCOM3 [
+FamixMetricsTest >> testLCOM3 [
 	self skip.
 	self assert: classA lcom3 equals: 0.
 	self assert: classB lcom3 equals: 0.
@@ -643,7 +627,7 @@ FAMIXExtensionMetricTest >> testLCOM3 [
 ]
 
 { #category : #tests }
-FAMIXExtensionMetricTest >> testMartinCohesionFAMIXPackage [
+FamixMetricsTest >> testMartinCohesionFAMIXPackage [
 self skip.
 	self flag: 'should be rethink with FamixNG'.
 	self assert: p1m1 martinCohesion equals: 1.0.	"i.e. (0+1)/1"

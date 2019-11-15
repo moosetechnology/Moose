@@ -51,23 +51,19 @@ FmxMBTypedProperty >> generateGetterIn: aClassOrTrait [
 
 { #category : #generating }
 FmxMBTypedProperty >> generateSetterIn: aClassOrTrait [
-
-	| methodSource |
-	
-	methodSource := String streamContents: [ :s |
-		s nextPutAll: self name; nextPutAll: ': anObject'; cr; cr.
-		s tab; nextPutAll: '<generated>'; cr.
-		s tab; nextPutAll: self name, ' := anObject'; cr 	].
-		
-	self builder environment compile: methodSource in: aClassOrTrait classified: 'accessing'.
+	self builder environment
+		compile:
+			('{1}: anObject
+	<generated>
+	{1} := anObject' format: {self name})
+		in: aClassOrTrait
+		classified: 'accessing'
 ]
 
 { #category : #initialization }
 FmxMBTypedProperty >> initialize [
-
 	super initialize.
-	multivalued := false.
-
+	multivalued := false
 ]
 
 { #category : #accessing }
@@ -78,8 +74,7 @@ FmxMBTypedProperty >> isMultivalued [
 
 { #category : #accessing }
 FmxMBTypedProperty >> multivalued [
-
-	multivalued := true.
+	multivalued := true
 ]
 
 { #category : #accessing }

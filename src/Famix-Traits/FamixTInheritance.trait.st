@@ -48,7 +48,6 @@ FamixTInheritance >> subclass: anObject [
 
 	<generated>
 	subclass := anObject
-
 ]
 
 { #category : #accessing }
@@ -66,7 +65,6 @@ FamixTInheritance >> superclass: anObject [
 
 	<generated>
 	superclass := anObject
-
 ]
 
 { #category : #accessing }

@@ -35,5 +35,4 @@ FamixTWithImplicitVariables >> implicitVariables: anObject [
 
 	<generated>
 	implicitVariables value: anObject
-
 ]

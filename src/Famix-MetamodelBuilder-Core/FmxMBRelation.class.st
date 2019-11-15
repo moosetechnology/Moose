@@ -23,16 +23,12 @@ FmxMBRelation >> builder: anObject [
 ]
 
 { #category : #accessing }
-FmxMBRelation >> cardinalityString [ 
-
-	^ String streamContents: [ :s |
-		self to cardinality = #many 
-			ifTrue: [ s nextPutAll: '*' ]
-			ifFalse: [ s nextPutAll: '1' ].
-		s nextPutAll: '..'.
-		self from cardinality = #many 
-			ifTrue: [ s nextPutAll: '*' ]
-			ifFalse: [ s nextPutAll: '1' ] ]
+FmxMBRelation >> cardinalityString [
+	^ String
+		streamContents: [ :s | 
+			self to isMany ifTrue: [ s nextPutAll: '*' ] ifFalse: [ s nextPutAll: '1' ].
+			s nextPutAll: '..'.
+			self from isMany ifTrue: [ s nextPutAll: '*' ] ifFalse: [ s nextPutAll: '1' ] ]
 ]
 
 { #category : #accessing }
@@ -80,11 +76,8 @@ FmxMBRelation >> right [
 ]
 
 { #category : #accessing }
-FmxMBRelation >> shortCardinalityString [ 
-
-	^ self from cardinality = #many 
-		ifTrue: [ '*' ]
-		ifFalse: [ '' ]
+FmxMBRelation >> shortCardinalityString [
+	^ self from isMany ifTrue: [ '*' ] ifFalse: [ '' ]
 ]
 
 { #category : #accessing }
@@ -141,12 +134,4 @@ FmxMBRelation >> withoutNavigation [
 
 	self sides do: [ :aSide |
 		aSide withoutNavigation ]
-]
-
-{ #category : #'as yet unclassified' }
-FmxMBRelation >> withoutPrimaryContainer [
-	self
-		deprecated:
-			'This is not needed anymore. A generic implementation of #belongsTo was added and if you want to specify the primary container you can add a specific #belongsTo method to your trait/class.'
-		transformWith: '`@receiver withoutPrimaryContainer' -> ''
 ]

@@ -35,5 +35,4 @@ FamixTWithTemplates >> templates: anObject [
 
 	<generated>
 	templates value: anObject
-
 ]

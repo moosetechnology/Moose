@@ -16,26 +16,6 @@ FamixJavaSourcedEntity class >> annotation [
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaSourcedEntity >> defineMultiSourceAnchorWithPath: aPath [
-
-	 self ensureMultiSourceAnchor addFileAnchorWithPath: aPath
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaSourcedEntity >> ensureMultiSourceAnchor [
-	"This method is also used by other packages"
-	^self sourceAnchor
-		ifNil: [ 
-			self
-				sourceAnchor:
-					(FamixJavaMultipleFileAnchor new
-						element: self;
-						mooseModel: self mooseModel;
-						yourself);
-				sourceAnchor]
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaSourcedEntity >> fileAnchorPath: aString startLine: anInteger startColumn: anInteger2 endLine: anInteger3 endColumn: anInteger4 [
 	"I need to be called after the mooseModel is set."
 

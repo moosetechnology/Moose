@@ -53,7 +53,6 @@ FamixTAnnotationInstance >> annotatedEntity: anObject [
 
 	<generated>
 	annotatedEntity := anObject
-
 ]
 
 { #category : #navigation }

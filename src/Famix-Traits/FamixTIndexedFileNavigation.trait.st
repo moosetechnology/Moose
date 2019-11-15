@@ -68,10 +68,8 @@ FamixTIndexedFileNavigation >> endPos [
 
 { #category : #accessing }
 FamixTIndexedFileNavigation >> endPos: anObject [
-
 	<generated>
 	endPos := anObject
-
 ]
 
 { #category : #accessing }
@@ -117,8 +115,6 @@ FamixTIndexedFileNavigation >> startPos [
 
 { #category : #accessing }
 FamixTIndexedFileNavigation >> startPos: anObject [
-
 	<generated>
 	startPos := anObject
-
 ]

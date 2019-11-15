@@ -50,7 +50,6 @@ FamixTTraitUsage >> trait: anObject [
 
 	<generated>
 	trait := anObject
-
 ]
 
 { #category : #accessing }
@@ -67,5 +66,4 @@ FamixTTraitUsage >> user: anObject [
 
 	<generated>
 	user := anObject
-
 ]

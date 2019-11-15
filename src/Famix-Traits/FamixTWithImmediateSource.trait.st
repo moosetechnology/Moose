@@ -32,10 +32,8 @@ FamixTWithImmediateSource >> source [
 
 { #category : #accessing }
 FamixTWithImmediateSource >> source: anObject [
-
 	<generated>
 	source := anObject
-
 ]
 
 { #category : #accessing }

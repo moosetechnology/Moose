@@ -17,13 +17,6 @@ FamixTest4Student class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixTest4Student class >> requirements [
-
-	<generated>
-	^ { FamixTest4School }
-]
-
 { #category : #adding }
 FamixTest4Student >> addTeacher: anObject [
 	<generated>
@@ -44,7 +37,6 @@ FamixTest4Student >> school: anObject [
 
 	<generated>
 	school := anObject
-
 ]
 
 { #category : #navigation }
@@ -68,7 +60,6 @@ FamixTest4Student >> teachers: anObject [
 
 	<generated>
 	teachers value: anObject
-
 ]
 
 { #category : #navigation }

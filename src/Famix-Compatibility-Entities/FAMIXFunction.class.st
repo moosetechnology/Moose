@@ -15,13 +15,6 @@ FAMIXFunction class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXFunction class >> requirements [
-
-	<generated>
-	^ { FAMIXContainerEntity }
-]
-
 { #category : #accessing }
 FAMIXFunction >> container [
 	^ self functionOwner

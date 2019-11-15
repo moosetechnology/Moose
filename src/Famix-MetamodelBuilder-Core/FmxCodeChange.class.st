@@ -19,6 +19,11 @@ Class {
 	#category : #'Famix-MetamodelBuilder-Core-Changes'
 }
 
+{ #category : #testing }
+FmxCodeChange class >> isAbstract [
+	^ self = FmxCodeChange
+]
+
 { #category : #accessing }
 FmxCodeChange >> apply [
 	self subclassResponsibility

@@ -15,13 +15,6 @@ FAMIXParameter class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXParameter class >> requirements [
-
-	<generated>
-	^ { FAMIXBehaviouralEntity }
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXParameter >> mooseNameOn: stream [ 
 	| parent |

@@ -129,10 +129,8 @@ FamixTWithModifiers >> modifiers [
 
 { #category : #accessing }
 FamixTWithModifiers >> modifiers: anObject [
-
 	<generated>
 	modifiers := anObject
-
 ]
 
 { #category : #'Famix-Implementation' }

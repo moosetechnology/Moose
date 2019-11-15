@@ -44,7 +44,6 @@ FamixTAnnotationInstanceAttribute >> parentAnnotationInstance: anObject [
 
 	<generated>
 	parentAnnotationInstance := anObject
-
 ]
 
 { #category : #navigation }
@@ -65,8 +64,6 @@ FamixTAnnotationInstanceAttribute >> value [
 
 { #category : #accessing }
 FamixTAnnotationInstanceAttribute >> value: anObject [
-
 	<generated>
 	value := anObject
-
 ]

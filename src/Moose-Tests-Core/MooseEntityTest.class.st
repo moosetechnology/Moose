@@ -171,30 +171,21 @@ MooseEntityTest >> testMooseName [
 ]
 
 { #category : #tests }
-MooseEntityTest >> testPrintOnAndPrintString [
-	| entity stream |
+MooseEntityTest >> testPrintOn [
+	| entity printString |
 	entity := MooseEntity new.
-	stream := WriteStream on: String new.
-	entity printOn: stream.
-	self assert: stream contents equals: entity printString.
-	self assert: (stream contents beginsWith: 'a MooseEntity ')
+	printString := String streamContents: [ :stream | entity printOn: stream ].
+	self assert: printString equals: entity printString.
+	self assert: (printString beginsWith: 'a MooseEntity ')
 ]
 
 { #category : #tests }
 MooseEntityTest >> testPrintOnWithError [
-	| entity stream cls |
-	cls := Class new
-		basicSuperclass: MooseEntity;
-		setFormat: MooseEntity format;
-		classLayout: MooseEntity classLayout copy;
-		yourself.
-	cls compileSilently: 'mooseName   ^ 1/0'.
-	cls compileSilently: 'defaultStateClass	^ MooseMemoryEfficientState'.
-	entity := cls new.
-	stream := WriteStream on: String new.
-	entity printOn: stream.
-	self
-		assert: (stream contents endsWith: 'Error printing the object''')
+	| entity printString |
+	entity := MooseEntity new.
+	entity stub mooseName willRaise: Error new.
+	printString := String streamContents: [ :stream | entity printOn: stream ].
+	self assert: (printString endsWith: 'Error printing the object''')
 ]
 
 { #category : #tests }

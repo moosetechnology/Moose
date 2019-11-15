@@ -30,7 +30,6 @@ FamixTFileInclude >> source: anObject [
 
 	<generated>
 	source := anObject
-
 ]
 
 { #category : #accessing }
@@ -47,5 +46,4 @@ FamixTFileInclude >> target: anObject [
 
 	<generated>
 	target := anObject
-
 ]

@@ -15,13 +15,6 @@ FamixJavaAnnotationInstance class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaAnnotationInstance class >> requirements [
-
-	<generated>
-	^ { FamixJavaNamedEntity }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaAnnotationInstance >> mooseNameOn: aStream [
 	self annotationType notNil ifTrue: [

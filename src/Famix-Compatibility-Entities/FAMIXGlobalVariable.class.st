@@ -15,13 +15,6 @@ FAMIXGlobalVariable class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXGlobalVariable class >> requirements [
-
-	<generated>
-	^ { FAMIXScopingEntity }
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXGlobalVariable >> isPrivate [
 	^ self isPublic not

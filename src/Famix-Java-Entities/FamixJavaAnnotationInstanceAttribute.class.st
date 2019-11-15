@@ -15,13 +15,6 @@ FamixJavaAnnotationInstanceAttribute class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FamixJavaAnnotationInstanceAttribute class >> requirements [
-
-	<generated>
-	^ { FamixJavaAnnotationInstance }
-]
-
 { #category : #'as yet unclassified' }
 FamixJavaAnnotationInstanceAttribute >> name [ 
 	^ self annotationTypeAttribute notNil 

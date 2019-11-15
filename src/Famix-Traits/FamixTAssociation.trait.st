@@ -57,7 +57,6 @@ FamixTAssociation >> next: anObject [
 
 	<generated>
 	next := anObject
-
 ]
 
 { #category : #accessing }
@@ -74,5 +73,4 @@ FamixTAssociation >> previous: anObject [
 
 	<generated>
 	previous := anObject
-
 ]

@@ -36,7 +36,6 @@ FamixTest4Person >> books: anObject [
 
 	<generated>
 	books value: anObject
-
 ]
 
 { #category : #navigation }

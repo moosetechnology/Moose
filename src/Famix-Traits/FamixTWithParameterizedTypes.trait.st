@@ -35,5 +35,4 @@ FamixTWithParameterizedTypes >> parameterizedTypes: anObject [
 
 	<generated>
 	parameterizedTypes value: anObject
-
 ]

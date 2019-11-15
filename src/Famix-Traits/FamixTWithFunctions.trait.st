@@ -36,5 +36,4 @@ FamixTWithFunctions >> functions: anObject [
 
 	<generated>
 	functions value: anObject
-
 ]

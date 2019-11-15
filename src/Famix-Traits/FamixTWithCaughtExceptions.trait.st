@@ -36,5 +36,4 @@ FamixTWithCaughtExceptions >> caughtExceptions: anObject [
 
 	<generated>
 	caughtExceptions value: anObject
-
 ]

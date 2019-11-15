@@ -15,13 +15,6 @@ FAMIXLocalVariable class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXLocalVariable class >> requirements [
-
-	<generated>
-	^ { FAMIXBehaviouralEntity }
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXLocalVariable >> mooseNameOn: stream [ 
 	| parent |

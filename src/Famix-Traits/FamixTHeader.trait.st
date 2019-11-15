@@ -31,5 +31,4 @@ FamixTHeader >> headerOwner: anObject [
 
 	<generated>
 	headerOwner := anObject
-
 ]

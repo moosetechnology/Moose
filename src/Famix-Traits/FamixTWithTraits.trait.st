@@ -35,5 +35,4 @@ FamixTWithTraits >> traits: anObject [
 
 	<generated>
 	traits value: anObject
-
 ]

@@ -139,7 +139,6 @@ FamixJavaGenerator >> defineHierarchy [
 	annotationTypeAttribute --|> #TTypedAnnotationInstanceAttribute.
 
 	attribute --|> namedEntity.
-	attribute --|> tStructuralEntity.
 	attribute --|> #TAttribute.
 	attribute --|> #TWithClassScope.
 
@@ -199,7 +198,6 @@ FamixJavaGenerator >> defineHierarchy [
 	namedEntity --|> #TInvocationsReceiver.
 	namedEntity --|> #TWithAnnotationInstances.
 	namedEntity --|> #TWithModifiers.
-	namedEntity --|> #TPossibleStub.
 
 	namespace --|> scopingEntity.
 	namespace --|> #TNamespace.
@@ -220,6 +218,7 @@ FamixJavaGenerator >> defineHierarchy [
 	parameterizedType --|> type.
 	parameterizedType --|> #TParameterizedType.
 	parameterizedType --|> #TWithParameterizedTypeUsers.
+	parameterizedType --|> #TWithInheritances.
 
 	primitiveType --|> type.
 

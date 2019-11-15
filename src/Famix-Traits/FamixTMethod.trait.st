@@ -59,10 +59,8 @@ FamixTMethod >> isAbstract [
 
 { #category : #accessing }
 FamixTMethod >> isAbstract: anObject [
-
 	<generated>
 	isAbstract := anObject
-
 ]
 
 { #category : #accessing }
@@ -76,10 +74,8 @@ FamixTMethod >> isClassSide [
 
 { #category : #accessing }
 FamixTMethod >> isClassSide: anObject [
-
 	<generated>
 	isClassSide := anObject
-
 ]
 
 { #category : #testing }
@@ -151,10 +147,8 @@ FamixTMethod >> kind [
 
 { #category : #accessing }
 FamixTMethod >> kind: anObject [
-
 	<generated>
 	kind := anObject
-
 ]
 
 { #category : #printing }

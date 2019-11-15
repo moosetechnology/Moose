@@ -22,9 +22,7 @@ FmxMBImportingContextTest >> setUp [
 
 	access := builder newClassNamed: #Access.	
 	variable := builder newClassNamed: #Variable.	
-	method := builder newClassNamed: #Method.	
-		
-	access requires: { method. variable }.
+	method := builder newClassNamed: #Method.
 
 	builder generate.
 		
@@ -60,9 +58,7 @@ FmxMBImportingContextTest >> testNotGenerated [
 
 	access := builder newClassNamed: #Access.	
 	variable := builder newClassNamed: #Variable.	
-	method := builder newClassNamed: #Method.	
-		
-	access requires: { method. variable }.
+	method := builder newClassNamed: #Method.
 
 	builder generate.
 		
@@ -82,17 +78,6 @@ FmxMBImportingContextTest >> testNotGeneratedForEmptyBuilder [
 	generatedContext := builder testingEnvironment ask classNamed: #TstImportingContext.
 	self assert: generatedContext isNil.
 
-]
-
-{ #category : #tests }
-FmxMBImportingContextTest >> testRequirements [
-	| localMethod |
-	self assert: (generatedVariable classSide methodNamed: #requirements) isNil.
-	self assert: (generatedMethod classSide methodNamed: #requirements) isNil.
-
-	localMethod := generatedAccess classSide methodNamed: #requirements.
-	self assert: (localMethod sourceCode includesSubstring: '<generated>').
-	self assert: (localMethod sourceCode includesSubstring: '^ { TstMethod. TstVariable }')
 ]
 
 { #category : #tests }

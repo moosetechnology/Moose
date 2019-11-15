@@ -35,5 +35,4 @@ FamixTWithNamespaces >> namespaces: anObject [
 
 	<generated>
 	namespaces value: anObject
-
 ]

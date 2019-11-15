@@ -15,13 +15,6 @@ FAMIXType class >> annotation [
 	^self
 ]
 
-{ #category : #meta }
-FAMIXType class >> requirements [
-
-	<generated>
-	^ { FAMIXContainerEntity }
-]
-
 { #category : #'Famix-Extensions-navigation' }
 FAMIXType >> accessTo: aFAMIXPackageOrFAMIXClass [ 
 

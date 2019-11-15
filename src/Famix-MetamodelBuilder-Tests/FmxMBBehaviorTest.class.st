@@ -23,25 +23,6 @@ FmxMBBehaviorTest >> newEntityNamed: aString [
 ]
 
 { #category : #tests }
-FmxMBBehaviorTest >> testAsProperty [
-
-	"traits should not be renamed during creation of properties"
-
-	| behavior generated |
-		
-	behavior := self newEntityNamed: #Named.	
-	
-	(behavior property: #from) - (behavior property: #to).
-	
-	builder generate.
-	
-	generated := builder testingEnvironment ask classNamed: 'TstNamed'.
-	
-	self assertCollection: (generated slots collect: #name) hasSameElements: #(from to).
-
-]
-
-{ #category : #tests }
 FmxMBBehaviorTest >> testComment [
 
 	"test assigning of a comment to a class"

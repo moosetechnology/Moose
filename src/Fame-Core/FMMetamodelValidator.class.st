@@ -50,10 +50,14 @@ FMMetamodelValidator >> validateContainersAreNotMultivalued [
 FMMetamodelValidator >> validateLinksAreBijectifs [
 	"Check that opposite link is bijective, i.e. there are not 2 values that references the same opposite."
 
-	((self processor elements select: [ :e | e isFM3Property and: [ e hasOpposite ] ]) groupedBy: #opposite)
-		valuesDo: [ :props | 
-			self assert: props size = 1 description: 'Link to opposite links should be a bijective operation... Please check your model because here you have a property with multiple opposites!'.
-			self assert: props anyOne hasOpposite description: 'Some opposite links are not definied in your model.. Please check your model because here you have a property that is the opposite of another one but that is not referencing it back!' ]
+	self processor elements iterator
+		| #isFM3Property selectIt
+		| #hasOpposite selectIt
+		| #opposite groupedByIt
+		| #value collectIt
+		| [ :props | self assert: props size = 1 description: 'Link to opposite links should be a bijective operation... Please check your model because here you have a property with multiple opposites!' ] doIt
+		| [ :props | self assert: props anyOne hasOpposite description: 'Some opposite links are not definied in your model.. Please check your model because here you have a property that is the opposite of another one but that is not referencing it back!' ] doIt
+		> NullAddableObject
 ]
 
 { #category : #accessing }
