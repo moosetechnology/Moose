@@ -44,7 +44,8 @@ Class {
 		'queue',
 		'implementingPackages',
 		'packDict',
-		'traitsDict'
+		'traitsDict',
+		'validator'
 	],
 	#classVars : [
 		'ShouldValidateMetaModel'
@@ -67,11 +68,6 @@ FMMetaModelBuilder class >> metamodelFromPackages: aCollectionOfPackages [
 		implementingPackages: aCollectionOfPackages;
 		run;
 		asMetamodel
-]
-
-{ #category : #accessing }
-FMMetaModelBuilder class >> shouldValidateMetaModel: anObject [
-	self deprecated: 'Use #withoutValidation on your instance of meta model buider.'
 ]
 
 { #category : #converting }

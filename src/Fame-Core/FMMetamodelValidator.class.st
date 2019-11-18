@@ -1,9 +1,6 @@
 Class {
 	#name : #FMMetamodelValidator,
-	#superclass : #Object,
-	#instVars : [
-		'processor'
-	],
+	#superclass : #FMAbstractMetamodelValidator,
 	#category : #'Fame-Core-Utilities'
 }
 
