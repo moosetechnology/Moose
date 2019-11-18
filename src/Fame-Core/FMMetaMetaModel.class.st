@@ -9,7 +9,11 @@ Class {
 
 { #category : #accessing }
 FMMetaMetaModel class >> default [
-	^ UniqueInstance ifNil: [ UniqueInstance := super new ]
+	^ UniqueInstance
+		ifNil: [ UniqueInstance := super new
+				metamodel;
+				beReadOnlyObject;
+				yourself ]
 ]
 
 { #category : #'instance creation' }
