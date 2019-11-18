@@ -59,7 +59,7 @@ FMMetaModel >> concreteImplementingClasses [
 
 { #category : #initialization }
 FMMetaModel >> defaultMetamodel [
-	^ FMMetaMetaModel new
+	^ FMMetaMetaModel default
 ]
 
 { #category : #accessing }

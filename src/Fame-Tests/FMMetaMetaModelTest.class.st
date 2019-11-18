@@ -10,7 +10,7 @@ Class {
 { #category : #running }
 FMMetaMetaModelTest >> setUp [
 	super setUp.
-	metaMetaModel := FMMetaMetaModel new
+	metaMetaModel := FMMetaMetaModel default
 ]
 
 { #category : #tests }

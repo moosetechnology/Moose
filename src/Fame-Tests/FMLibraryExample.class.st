@@ -30,7 +30,7 @@ FMLibraryExample >> testBookstore [
 	self
 		assert: (metamodel elements detect: [ :each | each fullName = 'LIB.Library.books' ]) type
 		equals: (metamodel elements detect: [ :each | each fullName = 'LIB.Book' ]).
-	self assert: (metamodel elements detect: [ :each | each fullName = 'LIB.Person.name' ]) type equals: (FMMetaMetaModel new elementNamed: 'String').
+	self assert: (metamodel elements detect: [ :each | each fullName = 'LIB.Person.name' ]) type equals: (FMMetaMetaModel default elementNamed: 'String').
 	self assert: names size equals: 10
 ]
 

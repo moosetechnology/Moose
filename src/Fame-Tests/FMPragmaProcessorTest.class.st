@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 FMPragmaProcessorTest >> testAnnotationTypes [
 	| metaMetaModel package class property properties |
-	metaMetaModel := FMMetaMetaModel new.
+	metaMetaModel := FMMetaMetaModel default.
 	package := metaMetaModel elementNamed: 'FM3'.
 	class := package classNamed: 'Element'.
 	self assert: class isFM3Class.
