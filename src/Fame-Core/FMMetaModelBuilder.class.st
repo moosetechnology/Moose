@@ -52,11 +52,6 @@ Class {
 	#category : #'Fame-Core-Utilities'
 }
 
-{ #category : #'class initialization' }
-FMMetaModelBuilder class >> initialize [
-	self shouldValidateMetaModel: true
-]
-
 { #category : #processing }
 FMMetaModelBuilder class >> metamodelFrom: aCollectionOfClasses [
 	^ self new
@@ -75,13 +70,8 @@ FMMetaModelBuilder class >> metamodelFromPackages: aCollectionOfPackages [
 ]
 
 { #category : #accessing }
-FMMetaModelBuilder class >> shouldValidateMetaModel [
-	^ ShouldValidateMetaModel
-]
-
-{ #category : #accessing }
 FMMetaModelBuilder class >> shouldValidateMetaModel: anObject [
-	ShouldValidateMetaModel := anObject
+	self deprecated: 'Use #withoutValidation on your instance of meta model buider.'
 ]
 
 { #category : #converting }
@@ -309,5 +299,15 @@ FMMetaModelBuilder >> resolveObjectReferences [
 FMMetaModelBuilder >> run [
 	queue do: [ :cls | self processClass: cls ].
 	self resolveObjectReferences.
-	self class shouldValidateMetaModel ifTrue: [ FMMetamodelValidator for: self ]
+	self validator for: self
+]
+
+{ #category : #accessing }
+FMMetaModelBuilder >> validator [
+	^ validator ifNil: [ FMMetamodelValidator ]
+]
+
+{ #category : #accessing }
+FMMetaModelBuilder >> withoutValidation [
+	validator := FMNilMetamodelValidator
 ]

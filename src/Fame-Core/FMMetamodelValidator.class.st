@@ -10,18 +10,8 @@ Class {
 { #category : #'instance creation' }
 FMMetamodelValidator class >> for: aPragmaProcessor [
 	self new
-		processor: aPragmaProcessor;
+		metaModelBuilder: aPragmaProcessor;
 		validate
-]
-
-{ #category : #accessing }
-FMMetamodelValidator >> processor [
-	^ processor
-]
-
-{ #category : #accessing }
-FMMetamodelValidator >> processor: anObject [
-	processor := anObject
 ]
 
 { #category : #accessing }
@@ -38,7 +28,7 @@ FMMetamodelValidator >> validateContainersAreNotMultivalued [
 
 	| iterator |
 	iterator := 
-		self processor elements iterator
+		self metaModelBuilder elements iterator
 			| [ :element | element isFM3Property ] selectIt
 			| [ :property | property isContainer ] selectIt
 			| [ :property | property isMultivalued ] selectIt.
@@ -50,7 +40,7 @@ FMMetamodelValidator >> validateContainersAreNotMultivalued [
 FMMetamodelValidator >> validateLinksAreBijectifs [
 	"Check that opposite link is bijective, i.e. there are not 2 values that references the same opposite."
 
-	self processor elements iterator
+	self metaModelBuilder elements iterator
 		| #isFM3Property selectIt
 		| #hasOpposite selectIt
 		| #opposite groupedByIt
@@ -71,7 +61,7 @@ FMMetamodelValidator >> validatePropertiesHaveOpposites [
 
 	| iterator |
 	iterator := 
-		self processor elements iterator
+		self metaModelBuilder elements iterator
 			| [ :element | element isFM3Property ] selectIt
 			| [ :property | property isContainer or: [ property isSource or: [ property isTarget ] ] ] selectIt
 			| [ :property | property hasOpposite ] rejectIt.
