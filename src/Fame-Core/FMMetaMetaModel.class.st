@@ -4,8 +4,7 @@ Description
 
 I am a model containing the description of the Fame meta-model. I contain instances of FM3Element describing the FM3Elements.
 
-Ideally, all my instances should be equivalent and I could be a singleton in read-only.
-This is currently not the case because some tests are using me in a write mode but it might be a good idea to refactore this in the future.
+I am using a Singleton design pattern since I should only have one instance at a time in the image. (All meta-models should have the same meta-meta-model)
 
 I am my own meta-model.
 
@@ -17,7 +16,9 @@ For example, in the Smalltalk metamodel of Famix, if we want to represent the Po
 Examples
 --------------------
 
-	FMMetaMetaModel new
+	FMMetaMetaModel default.
+	
+	FMMetaMetaModel testMetaMetaModel. ""This one will return a new instance if you wish to do some testing.""
 "
 Class {
 	#name : #FMMetaMetaModel,
