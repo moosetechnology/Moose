@@ -8,6 +8,6 @@ FMMetaModel >> at: aString [
 
 { #category : #'*Famix-Deprecated' }
 FMMetaModel class >> fm3 [
-	self deprecated: 'Use FMMetaMetaRepository instance instead' transformWith: 'FMMetaRepository fm3' -> 'FMMetaMetaRepository new'.
-	^ FMMetaMetaModel new
+	self deprecated: 'Use FMMetaMetaRepository instance instead' transformWith: 'FMMetaRepository fm3' -> 'FMMetaMetaRepository default'.
+	^ FMMetaMetaModel default
 ]

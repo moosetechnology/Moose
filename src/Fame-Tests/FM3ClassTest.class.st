@@ -89,7 +89,8 @@ FM3ClassTest >> testProperties [
 { #category : #tests }
 FM3ClassTest >> testPropertiesIsHot [
 	| class prop size |
-	class := metaMetamodel elementNamed: 'FM3.Class'.
+	"We use a new instance of FMMetaMetaModel since we will modify it."
+	class := FMMetaMetaModel testMetaMetaModel elementNamed: 'FM3.Class'.
 	prop := class properties anyOne.
 	size := class properties size.
 	self assert: class properties size equals: size.
