@@ -106,10 +106,10 @@ FMMetaModelBuilder >> ensurePackage: name [
 	self assert: (name isSymbol or: [ name isString ]).
 	^ self packages
 		detect: [ :package | package name = name asString ]
-		ifNone: [ | pack |
-			pack := FM3Package named: name asString.
-			elements add: pack.
-			pack ]
+		ifNone: [
+			(FM3Package named: name asString)
+				in: [ :pack | elements add: pack ];
+				yourself ]
 ]
 
 { #category : #private }
