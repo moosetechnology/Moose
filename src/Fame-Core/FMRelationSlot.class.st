@@ -1,3 +1,26 @@
+"
+Description
+--------------------
+
+I am an abstract slot used to declare fame properties for a class.
+The declared properties with my subclasses must have an opposite.
+
+A relation slot will have:
+- A name which is the name of the property
+- A type which is the type of the property 
+- An inverse name which is the name of the opposite property.
+
+My sublasses will define everything related to the cardinality of the relation side.
+ 
+Internal Representation and Key Implementation Points.
+--------------------
+
+    Instance Variables
+	inverseName:		<aString>		The name of the opposite slot.
+	inverseSlot:		<aSlot>
+	targetClass:		<aClass>
+
+"
 Class {
 	#name : #FMRelationSlot,
 	#superclass : #InstanceVariableSlot,
