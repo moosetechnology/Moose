@@ -44,18 +44,14 @@ Class {
 		'queue',
 		'implementingPackages',
 		'packDict',
-		'traitsDict'
+		'traitsDict',
+		'validator'
 	],
 	#classVars : [
 		'ShouldValidateMetaModel'
 	],
 	#category : #'Fame-Core-Utilities'
 }
-
-{ #category : #'class initialization' }
-FMMetaModelBuilder class >> initialize [
-	self shouldValidateMetaModel: true
-]
 
 { #category : #processing }
 FMMetaModelBuilder class >> metamodelFrom: aCollectionOfClasses [
@@ -72,16 +68,6 @@ FMMetaModelBuilder class >> metamodelFromPackages: aCollectionOfPackages [
 		implementingPackages: aCollectionOfPackages;
 		run;
 		asMetamodel
-]
-
-{ #category : #accessing }
-FMMetaModelBuilder class >> shouldValidateMetaModel [
-	^ ShouldValidateMetaModel
-]
-
-{ #category : #accessing }
-FMMetaModelBuilder class >> shouldValidateMetaModel: anObject [
-	ShouldValidateMetaModel := anObject
 ]
 
 { #category : #converting }
@@ -309,5 +295,15 @@ FMMetaModelBuilder >> resolveObjectReferences [
 FMMetaModelBuilder >> run [
 	queue do: [ :cls | self processClass: cls ].
 	self resolveObjectReferences.
-	self class shouldValidateMetaModel ifTrue: [ FMMetamodelValidator for: self ]
+	self validator for: self
+]
+
+{ #category : #accessing }
+FMMetaModelBuilder >> validator [
+	^ validator ifNil: [ FMMetamodelValidator ]
+]
+
+{ #category : #accessing }
+FMMetaModelBuilder >> withoutValidation [
+	validator := FMNilMetamodelValidator
 ]
