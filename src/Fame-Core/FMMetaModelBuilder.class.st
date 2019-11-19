@@ -53,12 +53,15 @@ Internal Representation and Key Implementation Points.
 	mmClassDict:					<aDictionary>			A dictionary mapping properties with their FM3Class.
 	oppositeDict:				<aDictionary>			A dictionary mapping properties with the name of their opposite.
 	packDict:						<aDictionary>			A dictionary mapping fame packages with all the fame entites they contains.
-	packageDict:					<aDictionary>			
 	queue:							<aCollection>			A collection of all the classes that are yet to be processed.
-	superclassDict:				<aDictionary>			
-	traitsDict:					<aDictionary>			
-	typeDict:						<aDictionary>			
+	superclassDict:				<aDictionary>			A dictionary mapping classes with their superclass.
+	traitsDict:					<aDictionary>			A dictionary mapping classes with their trait.
+	typeDict:						<aDictionary>			A dictionary mapping properties with their type.
 	validator:					<aFMMMValidator>		A validator class to use to validate that the meta-model to be generated is right.
+								
+	I do not resolve everything while processing the pragmas and slots since the processor does not care about the processing order.
+	Instead I am keeping a maximum of information and I do the resolution at the end.
+	This is the reason I have so many dictionaries.
 
 "
 Class {
@@ -130,7 +133,7 @@ FMMetaModelBuilder >> ensureClass: var [
 	var isBehavior ifTrue: [ ^ classDict at: var ].
 	var isSymbol ifTrue: [ ^ classDict at: (self class environment at: var) ifAbsent: [ metaDict at: var asString ] ].
 	var isString ifTrue: [ ^ metaDict at: var ].
-	self assert: false
+	self error: 'No class of this name found.'
 ]
 
 { #category : #private }
