@@ -1,3 +1,16 @@
+"
+Description
+--------------------
+
+I am a relation slot representing a property containing only one element.
+
+Examples
+--------------------
+
+	Trait named: #FamixTMethod
+		slots: { #parentType => FMOne type: #FamixTWithMethods opposite: #methods }
+		package: 'Famix-Traits-Method'
+"
 Class {
 	#name : #FMOne,
 	#superclass : #FMRelationSlot,

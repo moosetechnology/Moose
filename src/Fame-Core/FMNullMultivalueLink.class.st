@@ -1,3 +1,15 @@
+"
+Description
+--------------------
+
+I am a MultiValueLink use when the content of the link was not yet initialized.
+
+I appeared because a lot of relations are not initialized in Moose and we were loosing too much memory.
+
+I am tranformed into a FMMultivalueLink when my content is set.
+
+Cyril: Maybe this should be removed now that we have a new Moose version where each metamodel should contain only what the parser is able to give?
+"
 Class {
 	#name : #FMNullMultivalueLink,
 	#superclass : #Collection,
