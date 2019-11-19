@@ -52,7 +52,7 @@ Internal Representation and Key Implementation Points.
 	metaDict:						<aDictionary>			A dictionary mapping fame elements full names to their real fame element.
 	mmClassDict:					<aDictionary>			A dictionary mapping properties with their FM3Class.
 	oppositeDict:				<aDictionary>			A dictionary mapping properties with the name of their opposite.
-	packDict:						<aDictionary>			
+	packDict:						<aDictionary>			A dictionary mapping fame packages with all the fame entites they contains.
 	packageDict:					<aDictionary>			
 	queue:							<aCollection>			A collection of all the classes that are yet to be processed.
 	superclassDict:				<aDictionary>			
