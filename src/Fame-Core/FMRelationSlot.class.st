@@ -26,8 +26,7 @@ Class {
 	#superclass : #InstanceVariableSlot,
 	#instVars : [
 		'targetClass',
-		'inverseName',
-		'inverseSlot'
+		'inverseName'
 	],
 	#category : #'Fame-Core-Utilities'
 }
@@ -115,13 +114,6 @@ FMRelationSlot >> inverseName [
 	^ inverseName
 ]
 
-{ #category : #accessing }
-FMRelationSlot >> inverseSlot [
-	^ inverseSlot
-		ifNil: [ self linkUp.
-			inverseSlot ]
-]
-
 { #category : #testing }
 FMRelationSlot >> isAccessedIn: aMethod [
 	^ aMethod allLiterals includes: self
@@ -155,14 +147,6 @@ FMRelationSlot >> isToOne [
 { #category : #testing }
 FMRelationSlot >> isWrittenIn: aMethod [
 	^ aMethod allLiterals includes: self
-]
-
-{ #category : #initialization }
-FMRelationSlot >> linkUp [
-	inverseSlot := self targetClass slotNamed: inverseName.
-	self inverseSlot isFMRelationSlot ifFalse: [ self error: 'Invalid association: ... ' ].
-
-	self inverseSlot inverseName = self name ifFalse: [ self error: 'Invalid association: inverse names do not match' ]
 ]
 
 { #category : #printing }
