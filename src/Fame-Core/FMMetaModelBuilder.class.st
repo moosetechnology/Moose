@@ -34,7 +34,6 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'elements',
-		'packageDict',
 		'classDict',
 		'metaDict',
 		'superclassDict',
@@ -104,15 +103,13 @@ FMMetaModelBuilder >> ensureClass: var [
 
 { #category : #private }
 FMMetaModelBuilder >> ensurePackage: name [
-	| symbol |
 	self assert: (name isSymbol or: [ name isString ]).
-	symbol := name asString.
-	^ packageDict
-		at: symbol
-		ifAbsentPut: [ | pack |
-			pack := FM3Package named: symbol.
-			elements add: pack.
-			pack ]
+	^ self packages
+		detect: [ :package | package name = name asString ]
+		ifNone: [
+			(FM3Package named: name asString)
+				in: [ :pack | elements add: pack ];
+				yourself ]
 ]
 
 { #category : #private }
@@ -138,7 +135,6 @@ FMMetaModelBuilder >> initialize [
 	"Used to store resulting FM3 elements."
 	elements := OrderedCollection new.
 	"Several dictionaries ... see #resolveObjectReference"
-	packageDict := Dictionary new.
 	classDict := Dictionary new.
 	superclassDict := IdentityDictionary new.
 	packDict := IdentityDictionary new.
