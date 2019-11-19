@@ -1,33 +1,65 @@
 "
-I generate the FAME model from the annotations that are described in the Moose Model smalltalk classes.
+Description
+--------------------
 
-I do the parsing of the pragmas of the methods defined in the classes and a create the instance of the entities of the meta meta model.
+The most common way to create a meta-model is to have real Pharo classes using pragmas and slots to describe the package, classes and properties of Fame.
+I have the responsibility to process those classes and to build a FMMetaModel from those.
 
-I collaborate with the MooseModel resetMeta.
+I will process slots such has:
+- FMMany : This slot allows one to define one side of a relation that will contain multiple elements.
+- FMOne : This slot allows on to define one side of a relation that will contain one element.
+- Maybe FMProperty in the future
+
+To define the FM3Packages and FM3Class, the class can have a method with those pragmas:
+- #FMClass:super: 	Used to define a FM3Class.
+- #package: 		Used to define FM3Packages.
+- #abstract: 	Used to define that a FM3Class is abstract.
+	
+To define a property you can use a slot but also a pragma such has:
+- #FMProperty:type:opposite: 	Used to define one side of a relation.
+- #FMProperty:type: 				Same as above but for relations without opposite.
+
+Once a property is declared via a slot or a pragma, the method related can use other pragma to configure the relation.
+- #container 		Used to define that this side of a relation define a container.
+- #target 			Used to define that this side of a relation is the target of an association.
+- #source 			Used to define that this side of a relation is the source of an association.
+- #derived 			Used to define that this side of a relation can be computed and thus flushed.
+- #multivalued 		Used to define that this side of a relation contains a collection of objects and not one object.
+- #package: 			Used to define that a property is an extension present in the package given as parameter.
+			
+Once a meta-model is built, I will run a validator on it. If you do not wish for the meta-model to go through the validation (might happen when you prototype your MM), you can disable it calling #withoutValidation.
 
 Public API and Key Messages
+--------------------
 
-- run (no setters I worked on the whole image (it seems to))
+- #metamodelFrom: 	aCollectionOfClasses 		This class side method takes a collection of classes as parameter and will process them to return a metamodel.
+- #metamodelFromPackages: aCollection 		This class side method takes a collection of packages as parameter and will process the classes contained in them to return a metamodel.
 
-   One simple example is simply gorgeous.
+Examples
+--------------------
+
+	FMMetaModelBuilder metamodelFrom: {RPGDragon . RPGTreasure . RPGHero}.
+	
+	FMMetaModelBuilder metamodelFromPackages: {'Fame-Core' asPackage}.
  
 Internal Representation and Key Implementation Points.
+--------------------
 
     Instance Variables
-	classDict:		<Object>
-	elements:		<Object>
-	metaDict:		<Object>
-	mmClassDict:		<Object>
-	oppositeDict:		<Object>
-	packMetaDict:		<Object>
-	packPropDict:		<Object>
-	packageDict:		<Object>
-	queue:		<Object>
-	superclassDict:		<Object>
-	typeDict:		<Object>
+	classDict:					<aDictionary>			A dictionary mapping real classes with their generated FM3Class.
+	elements:						<aCollection>			A collection of all the fame elements already created.
+	implementingPackages:		<aCollection>			A collection containing all the packages to process.
+	metaDict:						<aDictionary>			A dictionary mapping fame elements full names to their real fame element.
+	mmClassDict:					<aDictionary>			A dictionary mapping properties with their FM3Class.
+	oppositeDict:				<aDictionary>			A dictionary mapping properties with the name of their opposite.
+	packDict:						<aDictionary>			
+	packageDict:					<aDictionary>			
+	queue:							<aCollection>			A collection of all the classes that are yet to be processed.
+	superclassDict:				<aDictionary>			
+	traitsDict:					<aDictionary>			
+	typeDict:						<aDictionary>			
+	validator:					<aFMMMValidator>		A validator class to use to validate that the meta-model to be generated is right.
 
-
-    Implementation Points
 "
 Class {
 	#name : #FMMetaModelBuilder,
