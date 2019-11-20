@@ -1,7 +1,7 @@
 Class {
 	#name : #FM3MetaDescription,
 	#superclass : #FM3Class,
-	#category : #'Famix-Deprecated'
+	#category : #'Fame-Deprecated'
 }
 
 { #category : #testing }

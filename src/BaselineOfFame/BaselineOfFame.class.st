@@ -31,7 +31,8 @@ BaselineOfFame >> baseline: spec [
 				package: 'Fame-ImportExport' with: [ spec requires: #('Fame-Core') ];
 				package: 'Fame-Example';
 				package: 'Fame-Tests' with: [ spec requires: #('Fame-Core' 'Fame-ImportExport' 'Fame-Example' 'Mocketry') ];
-				package: 'Fame-GT' with: [ spec requires: #('Fame-ImportExport') ].
+				package: 'Fame-GT' with: [ spec requires: #('Fame-ImportExport') ];
+				package: 'Fame-Deprecated' with: [ spec requires: #('Fame-ImportExport') ].
 
 			"Groups"
 			spec

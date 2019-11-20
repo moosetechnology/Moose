@@ -1,7 +1,7 @@
 Class {
 	#name : #FMPragmaProcessor,
 	#superclass : #FMMetaModelBuilder,
-	#category : #'Famix-Deprecated'
+	#category : #'Fame-Deprecated'
 }
 
 { #category : #testing }
