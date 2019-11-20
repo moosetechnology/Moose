@@ -3,12 +3,11 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'printer',
-		'index',
-		'nb',
-		'progBar',
-		'roots',
 		'lastUpdate',
-		'model'
+		'model',
+		'numberOfExportedElements',
+		'progressBar',
+		'indexMap'
 	],
 	#category : #'Fame-ImportExport-Exporters'
 }
@@ -19,8 +18,8 @@ FMModelExporter class >> new [
 ]
 
 { #category : #exporting }
-FMModelExporter >> basicRun [
-	printer inDocumentDo: [ self roots do: [ :each | self exportElement: each ] ]
+FMModelExporter >> export: aCollectionOfElements [
+	printer inDocumentDo: [ aCollectionOfElements do: [ :each | self exportElement: each ] ]
 ]
 
 { #category : #exporting }
@@ -68,28 +67,27 @@ FMModelExporter >> exportProperty: property withAll: values [
 
 { #category : #exporting }
 FMModelExporter >> incrementProgressBar [
-	nb := nb + 1.
-	(progBar isNotNil and: [ (Time millisecondsSince: lastUpdate) >= 500 ]) ifFalse: [ ^ self ].
+	numberOfExportedElements := numberOfExportedElements + 1.
+	(progressBar isNotNil and: [ (Time millisecondsSince: lastUpdate) >= 500 ]) ifFalse: [ ^ self ].
 
-	progBar value: nb.
+	progressBar value: numberOfExportedElements.
 	lastUpdate := Time millisecondClockValue
 ]
 
 { #category : #private }
 FMModelExporter >> indexOf: each [
-	^ index at: each ifAbsentPut: [ index size + 1 ]
+	^ indexMap at: each ifAbsentPut: [ indexMap size + 1 ]
 ]
 
 { #category : #initialization }
 FMModelExporter >> initialize [
 	super initialize.
-	index := IdentityHashTable new "We use IdentityHashTable because it is more performant than IdentityDictionary for big collections."
+	indexMap := IdentityHashTable new "We use IdentityHashTable because it is more performant than IdentityDictionary for big collections."
 ]
 
 { #category : #accessing }
 FMModelExporter >> model: aFMModel [
-	model := aFMModel.
-	roots := nil. "reset cache for roots"
+	model := aFMModel
 ]
 
 { #category : #accessing }
@@ -99,25 +97,25 @@ FMModelExporter >> printer: aPrinter [
 
 { #category : #private }
 FMModelExporter >> roots [
-	^ roots
-		ifNil: [
-			roots := model elements iterator
-							| [ :each | FM3Constant constants includes: each ] rejectIt
-							| [ :each | model isMetamodel not or: [ model classIsRoot: each ] ] selectIt
-							> Array ]
+	^ model elements iterator
+		| [ :each | FM3Constant constants includes: each ] rejectIt
+		| [ :each | model isMetamodel not or: [ model classIsRoot: each ] ] selectIt
+		> Array 
 ]
 
 { #category : #exporting }
 FMModelExporter >> run [
-	nb := 0.
+	| roots |
+	roots := self roots.
+	numberOfExportedElements := 0.
 	UIManager default
 		displayProgress: 'Writing ' , printer stream localName
 		from: 0
-		to: self roots size
+		to: roots size
 		during: [ :bar | 
-			progBar := bar.
+			progressBar := bar.
 			lastUpdate := 0.
-			self basicRun ]
+			self export: roots ]
 ]
 
 { #category : #exporting }
