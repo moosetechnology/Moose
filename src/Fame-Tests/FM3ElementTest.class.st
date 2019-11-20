@@ -5,7 +5,7 @@ Class {
 		'element',
 		'metaMetamodel'
 	],
-	#category : #'Fame-Tests'
+	#category : #'Fame-Tests-Core'
 }
 
 { #category : #testing }

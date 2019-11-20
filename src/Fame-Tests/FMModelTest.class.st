@@ -5,7 +5,7 @@ Class {
 		'element',
 		'model'
 	],
-	#category : #'Fame-Tests'
+	#category : #'Fame-Tests-Core'
 }
 
 { #category : #testing }

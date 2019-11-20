@@ -1,7 +1,7 @@
 Class {
 	#name : #FMMetaModelTest,
 	#superclass : #FMModelTest,
-	#category : #'Fame-Tests'
+	#category : #'Fame-Tests-Core'
 }
 
 { #category : #running }
