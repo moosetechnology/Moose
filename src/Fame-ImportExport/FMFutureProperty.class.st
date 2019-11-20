@@ -57,8 +57,8 @@ FMFutureProperty >> parentElement [
 FMFutureProperty >> referenceNumber: serial [
 	values
 		add:
-			(self importer index
-				at: serial
+			(self importer
+				elementAt: serial
 				ifAbsent: [ self importer dangling: (FMDanglingReference with: self) to: serial.
 					numberOfDanglingReferences := numberOfDanglingReferences + 1 ])
 ]

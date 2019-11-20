@@ -75,6 +75,11 @@ FMImporter >> dangling: reference to: serial [
 ]
 
 { #category : #accessing }
+FMImporter >> elementAt: aSerial ifAbsent: aBlock [
+	^ serialDict at: aSerial ifAbsent: aBlock
+]
+
+{ #category : #accessing }
 FMImporter >> elements [
 	^ elements
 ]
@@ -106,11 +111,6 @@ FMImporter >> endProperty: name [
 FMImporter >> fromString: aString [
 
 	self stream: aString readStream
-]
-
-{ #category : #accessing }
-FMImporter >> index [
-	^serialDict
 ]
 
 { #category : #initialization }
