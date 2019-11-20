@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'instance',
 		'metaDescription',
-		'currentAttribute'
+		'currentProperty'
 	],
 	#category : #'Fame-ImportExport-Importers'
 }
@@ -17,19 +17,19 @@ FMFutureElement class >> with: anImporter name: aString [
 
 { #category : #parsing }
 FMFutureElement >> beginProperty: aString [
-	self assert: currentAttribute isNil.
-	currentAttribute := FMFutureProperty with: self name: aString
+	self assert: currentProperty isNil.
+	currentProperty := FMFutureProperty with: self name: aString
 ]
 
 { #category : #accessing }
-FMFutureElement >> currentAttribute [
-	^ currentAttribute
+FMFutureElement >> currentProperty [
+	^ currentProperty
 ]
 
 { #category : #parsing }
 FMFutureElement >> endProperty: aString [
-	currentAttribute endProperty: aString.
-	currentAttribute := nil
+	currentProperty endProperty: aString.
+	currentProperty := nil
 ]
 
 { #category : #accessing }

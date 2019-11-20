@@ -93,7 +93,7 @@ FMImporter >> endElement: name [
 	future := stack pop.
 	element := future instance.
 	elements add: element.
-	stack ifNotEmpty: [ stack top currentAttribute values add: element ]
+	stack ifNotEmpty: [ stack top currentProperty values add: element ]
 ]
 
 { #category : #parsing }
@@ -144,17 +144,17 @@ FMImporter >> model: aModel [
 
 { #category : #parsing }
 FMImporter >> primitive: value [
-	stack top currentAttribute values add: value
+	stack top currentProperty values add: value
 ]
 
 { #category : #parsing }
 FMImporter >> referenceName: name [
-	stack top currentAttribute values add: (model elementNamed: name)
+	stack top currentProperty values add: (model elementNamed: name)
 ]
 
 { #category : #parsing }
 FMImporter >> referenceNumber: serial [
-	stack top currentAttribute referenceNumber: serial
+	stack top currentProperty referenceNumber: serial
 ]
 
 { #category : #running }
