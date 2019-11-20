@@ -36,7 +36,7 @@ BaselineOfFame >> baseline: spec [
 
 			"Groups"
 			spec
-				group: 'Core' with: #('Fame-Core' 'Fame-ImportExport' 'Fame-Rules' 'Fame-Deprecated');
+				group: 'Core' with: #('Fame-Core' 'Fame-ImportExport' 'Fame-Rules');
 				group: 'GT' with: #('Core' 'Fame-GT');
 				group: 'Tests' with: #('Fame-Tests') ].
 			
