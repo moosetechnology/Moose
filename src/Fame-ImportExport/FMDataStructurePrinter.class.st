@@ -34,6 +34,13 @@ FMDataStructurePrinter >> crTabs [
 		tab: indent
 ]
 
+{ #category : #parsing }
+FMDataStructurePrinter >> inProperty: aString do: aBlock [
+	self beginProperty: aString.
+	aBlock value.
+	self endProperty: aString
+]
+
 { #category : #accessing }
 FMDataStructurePrinter >> stream [
 	^ stream

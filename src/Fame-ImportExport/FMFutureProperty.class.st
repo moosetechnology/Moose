@@ -1,5 +1,5 @@
 Class {
-	#name : #FMFutureAttribute,
+	#name : #FMFutureProperty,
 	#superclass : #FMFuture,
 	#instVars : [
 		'name',
@@ -10,33 +10,33 @@ Class {
 }
 
 { #category : #'instance creation' }
-FMFutureAttribute class >> with: anImporter name: aString [
+FMFutureProperty class >> with: anImporter name: aString [
 
 	^self new with: anImporter name: aString
 ]
 
 { #category : #accessing }
-FMFutureAttribute >> count [
+FMFutureProperty >> count [
 	^ tally
 ]
 
 { #category : #accessing }
-FMFutureAttribute >> count: aNumber [
+FMFutureProperty >> count: aNumber [
 	tally := aNumber
 ]
 
 { #category : #parsing }
-FMFutureAttribute >> endAttribute: aString [
+FMFutureProperty >> endProperty: aString [
 	self maybeEnd
 ]
 
 { #category : #accessing }
-FMFutureAttribute >> importer [
+FMFutureProperty >> importer [
 	^ self owner importer
 ]
 
 { #category : #parsing }
-FMFutureAttribute >> maybeEnd [
+FMFutureProperty >> maybeEnd [
 	| property |
 	"This makes the parser tolerant so some defects in MSE files."
 	tally isZero ifFalse: [ ^ self ].
@@ -50,17 +50,17 @@ FMFutureAttribute >> maybeEnd [
 ]
 
 { #category : #parsing }
-FMFutureAttribute >> referenceNumber: serial [
+FMFutureProperty >> referenceNumber: serial [
 	values add: (self importer index at: serial ifAbsent: [ self importer dangling: (FMDanglingReference with: self) to: serial ])
 ]
 
 { #category : #accessing }
-FMFutureAttribute >> values [
+FMFutureProperty >> values [
 	^ values
 ]
 
 { #category : #'initialize-release' }
-FMFutureAttribute >> with: aFutureElement name: aString [
+FMFutureProperty >> with: aFutureElement name: aString [
 	super with: aFutureElement name: aString.
 	tally := 0.
 	name := aString.
