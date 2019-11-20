@@ -28,13 +28,13 @@ Internal Representation and Key Implementation Points.
 --------------------
 
     Instance Variables
-	index:				<aDictionary>						Dictionary mapping elements to export with their index.
-	lastUpdate:		<aTime>								Time at which we last updated the progress bar. This is used to not update the progress bar too much.
-	nb:					<anInteger>							Number of elements exported. This is used by the progress bar.
-	printer:			<aFMDataStructurePrinter>		Printer used to print the data structure of the export.
-	progBar:			<aProgressBar>						Progress bar to update during the export.
-	model:				<aFMModel>							Model to export.
-	roots:				<aCollection>						All the elements from the model that will be the roots to export.
+	indexMap:							<aDictionary>						Dictionary mapping elements to export with their index.
+	lastUpdate:						<anInteger>							Number a millisecords since we last updated the progress bar. This is used to not update the progress bar too much.
+	numberOfExportedElements:	<anInteger>							Number of elements exported. This is used by the progress bar.
+	printer:							<aFMDataStructurePrinter>		Printer used to print the data structure of the export.
+	progressBar:						<aProgressBar>						Progress bar to update during the export.
+	model:								<aFMModel>							Model to export.
+
 
 "
 Class {
