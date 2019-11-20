@@ -58,7 +58,7 @@ FMImporter >> beginDocument [
 FMImporter >> beginElement: name [
 	| translatedName |
 	translatedName := self translationUnit translate: name.
-	stack push: (FMFutureElement with: self name: translatedName)
+	stack push: (FMFutureElement in: self named: translatedName)
 ]
 
 { #category : #parsing }

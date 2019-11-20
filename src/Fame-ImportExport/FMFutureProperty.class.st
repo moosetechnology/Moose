@@ -4,16 +4,11 @@ Class {
 	#instVars : [
 		'name',
 		'values',
-		'numberOfDanglingReferences'
+		'numberOfDanglingReferences',
+		'parentElement'
 	],
 	#category : #'Fame-ImportExport-Importers'
 }
-
-{ #category : #'instance creation' }
-FMFutureProperty class >> with: anImporter name: aString [
-
-	^self new with: anImporter name: aString
-]
 
 { #category : #parsing }
 FMFutureProperty >> endProperty: aString [
@@ -24,7 +19,20 @@ FMFutureProperty >> endProperty: aString [
 
 { #category : #accessing }
 FMFutureProperty >> importer [
-	^ self owner importer
+	^ self parentElement importer
+]
+
+{ #category : #initialization }
+FMFutureProperty >> in: aFutureElement named: aString [
+	parentElement := aFutureElement.
+	name := aString
+]
+
+{ #category : #initialization }
+FMFutureProperty >> initialize [
+	super initialize.
+	numberOfDanglingReferences := 0.
+	values := OrderedCollection new
 ]
 
 { #category : #parsing }
@@ -32,12 +40,17 @@ FMFutureProperty >> maybeEnd [
 	| property |
 	numberOfDanglingReferences isZero ifFalse: [ ^ self ].
 
-	property := owner metaDescription
+	property := parentElement metaDescription
 		propertyNamed: name
-		ifAbsent: [ owner instance handleFameProperty: name value: values.
+		ifAbsent: [ parentElement instance handleFameProperty: name value: values.
 			^ self ].
 
-	property setOn: owner instance values: values
+	property setOn: parentElement instance values: values
+]
+
+{ #category : #accessing }
+FMFutureProperty >> parentElement [
+	^ parentElement
 ]
 
 { #category : #parsing }
@@ -60,12 +73,4 @@ FMFutureProperty >> replaceDanglingReferenceAt: anInteger by: anElement [
 { #category : #accessing }
 FMFutureProperty >> values [
 	^ values
-]
-
-{ #category : #'initialize-release' }
-FMFutureProperty >> with: aFutureElement name: aString [
-	super with: aFutureElement name: aString.
-	numberOfDanglingReferences := 0.
-	name := aString.
-	values := OrderedCollection new
 ]

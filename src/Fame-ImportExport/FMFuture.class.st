@@ -1,23 +1,22 @@
 Class {
 	#name : #FMFuture,
 	#superclass : #Object,
-	#instVars : [
-		'owner'
-	],
 	#category : #'Fame-ImportExport-Importers'
 }
+
+{ #category : #'instance creation' }
+FMFuture class >> in: anImporter named: aString [
+	^ self new
+		in: anImporter named: aString;
+		yourself
+]
 
 { #category : #accessing }
 FMFuture >> importer [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
-FMFuture >> owner [
-	^owner
-]
-
-{ #category : #'initialize-release' }
-FMFuture >> with: anOwner name: aString [
-	owner := anOwner
+{ #category : #initialization }
+FMFuture >> in: anOwner named: aString [
+	self subclassResponsibility
 ]

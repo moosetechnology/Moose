@@ -4,21 +4,16 @@ Class {
 	#instVars : [
 		'instance',
 		'metaDescription',
-		'currentProperty'
+		'currentProperty',
+		'importer'
 	],
 	#category : #'Fame-ImportExport-Importers'
 }
 
-{ #category : #'instance creation' }
-FMFutureElement class >> with: anImporter name: aString [
-
-	^self new with: anImporter name: aString
-]
-
 { #category : #parsing }
 FMFutureElement >> beginProperty: aString [
 	self assert: currentProperty isNil.
-	currentProperty := FMFutureProperty with: self name: aString
+	currentProperty := FMFutureProperty in: self named: aString
 ]
 
 { #category : #accessing }
@@ -34,7 +29,14 @@ FMFutureElement >> endProperty: aString [
 
 { #category : #accessing }
 FMFutureElement >> importer [
-	^ self owner
+	^ importer
+]
+
+{ #category : #initialization }
+FMFutureElement >> in: anImporter named: aString [
+	importer := anImporter.
+	metaDescription := importer metamodel elementNamed: aString.
+	instance := metaDescription createInstance
 ]
 
 { #category : #accessing }
@@ -50,11 +52,4 @@ FMFutureElement >> metaDescription [
 { #category : #parsing }
 FMFutureElement >> serial: serial [
 	self importer assign: instance to: serial
-]
-
-{ #category : #'initialize-release' }
-FMFutureElement >> with: anImporter name: aString [
-	super with: anImporter name: aString.
-	metaDescription := self importer metamodel elementNamed: aString.
-	instance := metaDescription createInstance
 ]
