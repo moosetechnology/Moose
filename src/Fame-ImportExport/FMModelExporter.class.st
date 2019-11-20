@@ -8,29 +8,33 @@ I can be used to export a model or a metamodel in different formats.
 
 The format will be delegated to a FMDataStructurePrinter via a strategy design pattern.
 
-Public API and Key Messages
---------------------
-
-- #
-- #
-- #
+For performance reasons we use a hash table instead of a dictionary to keep the indexes.
 
 Examples
 --------------------
 
-	
+	| metamodel printer |
+	printer := FMMSEPrinter onString.
+	metamodel := FMMetaModelBuilder metamodelFrom: {LIBLibrary . LIBBook . LIBPerson}.
+
+	FMModelExporter new
+		model: metamodel;
+		printer: printer;
+		run.
+		
+	printer stream contents
  
 Internal Representation and Key Implementation Points.
 --------------------
 
     Instance Variables
-	index:		<Object>
-	lastUpdate:		<Object>
-	nb:		<Object>
-	printer:		<Object>
-	progBar:		<Object>
-	repository:		<Object>
-	roots:		<Object>
+	index:				<aDictionary>						Dictionary mapping elements to export with their index.
+	lastUpdate:		<aTime>								Time at which we last updated the progress bar. This is used to not update the progress bar too much.
+	nb:					<anInteger>							Number of elements exported. This is used by the progress bar.
+	printer:			<aFMDataStructurePrinter>		Printer used to print the data structure of the export.
+	progBar:			<aProgressBar>						Progress bar to update during the export.
+	model:				<aFMModel>							Model to export.
+	roots:				<aCollection>						All the elements from the model that will be the roots to export.
 
 "
 Class {
