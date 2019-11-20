@@ -10,6 +10,11 @@ Class {
 	#category : #'Fame-ImportExport-Importers'
 }
 
+{ #category : #adding }
+FMFutureElement >> addToPropertyValues: anObject [
+	self currentProperty addToValues: anObject
+]
+
 { #category : #parsing }
 FMFutureElement >> beginProperty: aString [
 	self assert: currentProperty isNil.
@@ -47,9 +52,4 @@ FMFutureElement >> instance [
 { #category : #accessing }
 FMFutureElement >> metaDescription [
 	^ metaDescription
-]
-
-{ #category : #parsing }
-FMFutureElement >> serial: serial [
-	self importer assign: instance to: serial
 ]

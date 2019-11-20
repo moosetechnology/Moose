@@ -9,6 +9,11 @@ Class {
 	#category : #'Fame-ImportExport-Importers'
 }
 
+{ #category : #adding }
+FMFutureProperty >> addToValues: anObject [
+	values add: anObject
+]
+
 { #category : #parsing }
 FMFutureProperty >> endProperty: aString [
 	"A well formated MSE file should end a property with 0 dangling references and we could assert it. But removing the assertiong makes the parser tolerant so some defects in MSE files."
@@ -58,7 +63,7 @@ FMFutureProperty >> parentElement [
 
 { #category : #parsing }
 FMFutureProperty >> referenceNumber: serial [
-	values add: (self importer elementAt: serial ifAbsent: [ self importer dangling: (FMDanglingReference with: self) to: serial ])
+	self addToValues: (self importer elementAt: serial ifAbsent: [ self importer dangling: (FMDanglingReference with: self) to: serial ])
 ]
 
 { #category : #parsing }
