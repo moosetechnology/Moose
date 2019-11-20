@@ -52,13 +52,6 @@ FMDebugImporter >> exportString [
 	^ printer stream contents
 ]
 
-{ #category : #parsing }
-FMDebugImporter >> inProperty: aString do: aBlock [
-	self beginProperty: aString.
-	aBlock value.
-	self endProperty: aString
-]
-
 { #category : #initialization }
 FMDebugImporter >> initialize [
 	self reset

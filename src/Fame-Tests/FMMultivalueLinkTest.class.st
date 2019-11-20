@@ -1,7 +1,7 @@
 Class {
 	#name : #FMMultivalueLinkTest,
 	#superclass : #TestCase,
-	#category : #'Fame-Tests'
+	#category : #'Fame-Tests-Core'
 }
 
 { #category : #tests }

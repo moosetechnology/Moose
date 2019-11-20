@@ -69,13 +69,6 @@ FMImporterFilter >> fromString: aString [
 	^ self parserClient fromString: aString
 ]
 
-{ #category : #parsing }
-FMImporterFilter >> inProperty: aString do: aBlock [
-	self beginProperty: aString.
-	aBlock value.
-	self endProperty: aString
-]
-
 { #category : #accessing }
 FMImporterFilter >> index [
 	^ self parserClient index

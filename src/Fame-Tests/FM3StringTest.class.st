@@ -1,7 +1,7 @@
 Class {
 	#name : #FM3StringTest,
 	#superclass : #FM3ConstantTest,
-	#category : #'Fame-Tests'
+	#category : #'Fame-Tests-Core'
 }
 
 { #category : #helpers }

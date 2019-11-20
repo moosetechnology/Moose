@@ -1,16 +1,16 @@
 Class {
-	#name : #FMPragmaProcessorTestDummy,
+	#name : #FMMetaModelBuilderTestDummy,
 	#superclass : #Object,
-	#category : #'Fame-Tests'
+	#category : #'Fame-Tests-Core'
 }
 
 { #category : #meta }
-FMPragmaProcessorTestDummy class >> annotation [
+FMMetaModelBuilderTestDummy class >> annotation [
 	<FMClass: #FMAnnotationTest super: #Object>
 ]
 
 { #category : #'as yet unclassified' }
-FMPragmaProcessorTestDummy >> simpleProperty [
+FMMetaModelBuilderTestDummy >> simpleProperty [
 	<FMProperty: #aPropertyName type: #Boolean>
 
 ]
