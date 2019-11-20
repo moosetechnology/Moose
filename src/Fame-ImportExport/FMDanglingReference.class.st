@@ -15,6 +15,11 @@ FMDanglingReference class >> with: aFutureAttribute [
 		yourself
 ]
 
+{ #category : #testing }
+FMDanglingReference >> isDanglingReference [
+	^ true
+]
+
 { #category : #initialization }
 FMDanglingReference >> parentProperty: aFutureProperty [
 	parentProperty := aFutureProperty.

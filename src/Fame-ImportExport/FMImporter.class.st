@@ -8,11 +8,11 @@ Class {
 		'elements',
 		'model',
 		'stream',
-		'tally',
 		'reminderDict',
 		'serialDict',
 		'translationUnit',
-		'ensureNoDandlingReferences'
+		'ensureNoDandlingReferences',
+		'numberOfDanglingReferences'
 	],
 	#category : #'Fame-ImportExport-Importers'
 }
@@ -32,8 +32,8 @@ FMImporter >> assign: element to: serial [
 	todo
 		do: [ :each | 
 			each resolve: element.
-			tally := tally - 1.
-			self assert: tally >= 0 ]
+			numberOfDanglingReferences := numberOfDanglingReferences - 1.
+			self assert: numberOfDanglingReferences >= 0 ]
 ]
 
 { #category : #accessing }
@@ -50,7 +50,7 @@ FMImporter >> beginDocument [
 	elements := OrderedCollection new.
 	serialDict := IdentityDictionary new.
 	reminderDict := IdentityDictionary new.
-	tally := 0.
+	numberOfDanglingReferences := 0.
 	
 ]
 
@@ -70,7 +70,7 @@ FMImporter >> beginProperty: name [
 { #category : #private }
 FMImporter >> dangling: reference to: serial [
 	(reminderDict at: serial ifAbsentPut: [ OrderedCollection new ]) add: reference.
-	tally := tally + 1.
+	numberOfDanglingReferences := numberOfDanglingReferences + 1.
 	^ reference
 ]
 
@@ -88,7 +88,7 @@ FMImporter >> elements [
 FMImporter >> endDocument [
 	self assert: stack isEmpty.
 	stack := nil.
-	ensureNoDandlingReferences ifTrue: [ tally = 0 ifFalse: [ FMUnresolvedDanglingReferences signal ] ].
+	ensureNoDandlingReferences ifTrue: [ numberOfDanglingReferences = 0 ifFalse: [ FMUnresolvedDanglingReferences signal ] ].
 	model addAll: elements
 ]
 

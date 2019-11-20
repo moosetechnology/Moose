@@ -4,7 +4,6 @@ Class {
 	#instVars : [
 		'name',
 		'values',
-		'numberOfDanglingReferences',
 		'parentElement'
 	],
 	#category : #'Fame-ImportExport-Importers'
@@ -31,14 +30,13 @@ FMFutureProperty >> in: aFutureElement named: aString [
 { #category : #initialization }
 FMFutureProperty >> initialize [
 	super initialize.
-	numberOfDanglingReferences := 0.
 	values := OrderedCollection new
 ]
 
 { #category : #parsing }
 FMFutureProperty >> maybeEnd [
 	| property |
-	numberOfDanglingReferences isZero ifFalse: [ ^ self ].
+	self numberOfDanglingReferences isZero ifFalse: [ ^ self ].
 
 	property := parentElement metaDescription
 		propertyNamed: name
@@ -49,24 +47,23 @@ FMFutureProperty >> maybeEnd [
 ]
 
 { #category : #accessing }
+FMFutureProperty >> numberOfDanglingReferences [
+	^ self values count: #isDanglingReference
+]
+
+{ #category : #accessing }
 FMFutureProperty >> parentElement [
 	^ parentElement
 ]
 
 { #category : #parsing }
 FMFutureProperty >> referenceNumber: serial [
-	values
-		add:
-			(self importer
-				elementAt: serial
-				ifAbsent: [ self importer dangling: (FMDanglingReference with: self) to: serial.
-					numberOfDanglingReferences := numberOfDanglingReferences + 1 ])
+	values add: (self importer elementAt: serial ifAbsent: [ self importer dangling: (FMDanglingReference with: self) to: serial ])
 ]
 
 { #category : #parsing }
 FMFutureProperty >> replaceDanglingReferenceAt: anInteger by: anElement [
 	self values at: anInteger put: anElement.
-	numberOfDanglingReferences := numberOfDanglingReferences - 1.
 	self maybeEnd
 ]
 
