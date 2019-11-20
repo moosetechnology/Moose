@@ -4,11 +4,6 @@ Trait {
 }
 
 { #category : #parsing }
-FMTImportExportStructure >> beginAttribute: name [
-	^ self explicitRequirement
-]
-
-{ #category : #parsing }
 FMTImportExportStructure >> beginDocument [
 	^ self explicitRequirement
 ]
@@ -19,7 +14,7 @@ FMTImportExportStructure >> beginElement: name [
 ]
 
 { #category : #parsing }
-FMTImportExportStructure >> endAttribute: name [
+FMTImportExportStructure >> beginProperty: name [
 	^ self explicitRequirement
 ]
 
@@ -34,10 +29,8 @@ FMTImportExportStructure >> endElement: name [
 ]
 
 { #category : #parsing }
-FMTImportExportStructure >> inAttribute: aString do: aBlock [
-	self beginAttribute: aString.
-	aBlock value.
-	self endAttribute: aString
+FMTImportExportStructure >> endProperty: name [
+	^ self explicitRequirement
 ]
 
 { #category : #parsing }
@@ -52,6 +45,13 @@ FMTImportExportStructure >> inElement: aString do: aBlock [
 	self beginElement: aString.
 	aBlock value.
 	self endElement: aString
+]
+
+{ #category : #parsing }
+FMTImportExportStructure >> inProperty: aString do: aBlock [
+	self beginProperty: aString.
+	aBlock value.
+	self endProperty: aString
 ]
 
 { #category : #parsing }

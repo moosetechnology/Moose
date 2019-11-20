@@ -14,25 +14,6 @@ Class {
 }
 
 { #category : #expressions }
-FMMSEParser >> Attribute [
-	"Matches an attribute node (returns boolean)."
-
-	"Attribute := OPEN n:NAME { beginAttribute(n) } Value* CLOSE { endAttribute(n) }"
-
-	| pos name |
-	pos := self position.
-	self tOPEN ifFalse: [ ^ self backtrack: pos ].
-	name := self tNAME.
-	name ifNil: [ ^ self backtrack: pos ].
-	importer
-		inAttribute: name
-		do: [ [ self Value ] whileTrue.
-			self tCLOSE ifFalse: [ ^ self syntaxError ] ].
-	self tWHITESPACE.
-	^ true
-]
-
-{ #category : #expressions }
 FMMSEParser >> Document [
 	"Matches a document node (returns a boolean)."
 
@@ -57,7 +38,7 @@ FMMSEParser >> Document [
 FMMSEParser >> Element [
 	"Matches an element node (returns boolean)."
 
-	"Element := OPEN n:FULLNAME { beginElement(n) } Serial? Attribute* CLOSE { endElement(n) }"
+	"Element := OPEN n:FULLNAME { beginElement(n) } Serial? Property* CLOSE { endElement(n) }"
 
 	| pos name |
 	pos := self position.
@@ -67,7 +48,7 @@ FMMSEParser >> Element [
 	importer
 		inElement: name
 		do: [ self Serial.
-			[ self Attribute ] whileTrue.
+			[ self Property ] whileTrue.
 			self tCLOSE ifFalse: [ ^ self syntaxError ] ].
 
 	self tWHITESPACE.
@@ -152,6 +133,25 @@ FMMSEParser >> Primitive [
 	self tTRUE ifTrue: [ importer primitive: true. ^ true ].
 	self tFALSE ifTrue: [ importer primitive: false. ^ true ].
 	^ false
+]
+
+{ #category : #expressions }
+FMMSEParser >> Property [
+	"Matches a property node (returns boolean)."
+
+	"Property := OPEN n:NAME { beginProperty(n) } Value* CLOSE { endProperty(n) }"
+
+	| pos name |
+	pos := self position.
+	self tOPEN ifFalse: [ ^ self backtrack: pos ].
+	name := self tNAME.
+	name ifNil: [ ^ self backtrack: pos ].
+	importer
+		inProperty: name
+		do: [ [ self Value ] whileTrue.
+			self tCLOSE ifFalse: [ ^ self syntaxError ] ].
+	self tWHITESPACE.
+	^ true
 ]
 
 { #category : #expressions }
