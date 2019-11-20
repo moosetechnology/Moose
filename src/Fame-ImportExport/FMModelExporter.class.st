@@ -1,3 +1,38 @@
+"
+Description
+--------------------
+
+I am an exporter of fame model.
+
+I can be used to export a model or a metamodel in different formats. 
+
+The format will be delegated to a FMDataStructurePrinter via a strategy design pattern.
+
+Public API and Key Messages
+--------------------
+
+- #
+- #
+- #
+
+Examples
+--------------------
+
+	
+ 
+Internal Representation and Key Implementation Points.
+--------------------
+
+    Instance Variables
+	index:		<Object>
+	lastUpdate:		<Object>
+	nb:		<Object>
+	printer:		<Object>
+	progBar:		<Object>
+	repository:		<Object>
+	roots:		<Object>
+
+"
 Class {
 	#name : #FMModelExporter,
 	#superclass : #Object,
