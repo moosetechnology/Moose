@@ -2,13 +2,13 @@ Class {
 	#name : #FMModelExporter,
 	#superclass : #Object,
 	#instVars : [
-		'repository',
 		'printer',
 		'index',
 		'nb',
 		'progBar',
 		'roots',
-		'lastUpdate'
+		'lastUpdate',
+		'model'
 	],
 	#category : #'Fame-ImportExport-Exporters'
 }
@@ -20,15 +20,13 @@ FMModelExporter class >> new [
 
 { #category : #exporting }
 FMModelExporter >> basicRun [
-	printer beginDocument.
-	self roots do: [ :each | self exportElement: each ].
-	printer endDocument
+	printer inDocumentDo: [ self roots do: [ :each | self exportElement: each ] ]
 ]
 
 { #category : #exporting }
 FMModelExporter >> exportElement: each [
 	| meta |
-	meta := repository metaDescriptionOf: each.
+	meta := model metaDescriptionOf: each.
 
 	printer
 		inElement: meta fullName
@@ -43,7 +41,7 @@ FMModelExporter >> exportProperty: property for: each [
 	| values |
 	(self shouldIgnoreProperty: property) ifTrue: [ ^ self ].
 
-	values := repository get: property element: each.
+	values := model get: property element: each.
 
 	"Do not export empty properties."
 	values isEmptyOrNil ifTrue: [ ^ self ].
@@ -59,7 +57,13 @@ FMModelExporter >> exportProperty: property withAll: values [
 				do: [ :each | 
 					property type isPrimitive
 						ifTrue: [ printer primitive: each ]
-						ifFalse: [ printer referenceNumber: (self indexOf: each) ] ] ]
+						ifFalse: [
+							property isChildrenProperty
+								ifTrue: [ self exportElement: each ]
+								ifFalse: [
+									(FM3Constant constants includes: each)
+										ifTrue: [ printer referenceName: each name ]
+										ifFalse: [ printer referenceNumber: (self indexOf: each) ] ] ] ] ]
 ]
 
 { #category : #exporting }
@@ -83,8 +87,8 @@ FMModelExporter >> initialize [
 ]
 
 { #category : #accessing }
-FMModelExporter >> model: aRepository [
-	repository := aRepository.
+FMModelExporter >> model: aFMModel [
+	model := aFMModel.
 	roots := nil. "reset cache for roots"
 ]
 
@@ -97,9 +101,9 @@ FMModelExporter >> printer: aPrinter [
 FMModelExporter >> roots [
 	^ roots
 		ifNil: [
-			roots := repository elements iterator
+			roots := model elements iterator
 							| [ :each | FM3Constant constants includes: each ] rejectIt
-							| [ :each | repository isMetamodel not or: [ repository classIsRoot: each ] ] selectIt
+							| [ :each | model isMetamodel not or: [ model classIsRoot: each ] ] selectIt
 							> Array ]
 ]
 
@@ -118,7 +122,7 @@ FMModelExporter >> run [
 
 { #category : #exporting }
 FMModelExporter >> shouldIgnoreProperty: property [
-	(repository metamodel includes: property) ifFalse: [ ^ true ].
+	(model metamodel includes: property) ifFalse: [ ^ true ].
 
 	^ property isDerived
 ]
