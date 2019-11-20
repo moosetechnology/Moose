@@ -108,13 +108,6 @@ FMImporter >> fromString: aString [
 	self stream: aString readStream
 ]
 
-{ #category : #parsing }
-FMImporter >> inProperty: aString do: aBlock [
-	self beginProperty: aString.
-	aBlock value.
-	self endProperty: aString
-]
-
 { #category : #accessing }
 FMImporter >> index [
 	^serialDict
