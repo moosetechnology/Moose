@@ -1,7 +1,7 @@
 Class {
 	#name : #FMMetaMetaRepository,
 	#superclass : #FMMetaMetaModel,
-	#category : #'Famix-Deprecated'
+	#category : #'Fame-Deprecated'
 }
 
 { #category : #testing }
