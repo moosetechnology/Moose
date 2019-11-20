@@ -8,11 +8,11 @@ Class {
 		'elements',
 		'model',
 		'stream',
-		'tally',
 		'reminderDict',
 		'serialDict',
 		'translationUnit',
-		'ensureNoDandlingReferences'
+		'ensureNoDandlingReferences',
+		'numberOfDanglingReferences'
 	],
 	#category : #'Fame-ImportExport-Importers'
 }
@@ -32,8 +32,8 @@ FMImporter >> assign: element to: serial [
 	todo
 		do: [ :each | 
 			each resolve: element.
-			tally := tally - 1.
-			self assert: tally >= 0 ]
+			numberOfDanglingReferences := numberOfDanglingReferences - 1.
+			self assert: numberOfDanglingReferences >= 0 ]
 ]
 
 { #category : #accessing }
@@ -45,33 +45,40 @@ FMImporter >> autorizeDandlingReferencesAtEnd [
 
 { #category : #parsing }
 FMImporter >> beginDocument [
-	
 	stack := Stack new.
 	elements := OrderedCollection new.
 	serialDict := IdentityDictionary new.
 	reminderDict := IdentityDictionary new.
-	tally := 0.
-	
+	numberOfDanglingReferences := 0
 ]
 
 { #category : #parsing }
 FMImporter >> beginElement: name [
 	| translatedName |
 	translatedName := self translationUnit translate: name.
-	stack push: (FMFutureElement with: self name: translatedName)
+	stack push: (FMFutureElement in: self named: translatedName)
 ]
 
 { #category : #parsing }
-FMImporter >> beginProperty: name [ 
-	
-	stack top beginProperty: name
+FMImporter >> beginProperty: name [
+	self currentElement beginProperty: name
+]
+
+{ #category : #accessing }
+FMImporter >> currentElement [
+	^ stack top
 ]
 
 { #category : #private }
 FMImporter >> dangling: reference to: serial [
 	(reminderDict at: serial ifAbsentPut: [ OrderedCollection new ]) add: reference.
-	tally := tally + 1.
+	numberOfDanglingReferences := numberOfDanglingReferences + 1.
 	^ reference
+]
+
+{ #category : #accessing }
+FMImporter >> elementAt: aSerial ifAbsent: aBlock [
+	^ serialDict at: aSerial ifAbsent: aBlock
 ]
 
 { #category : #accessing }
@@ -83,7 +90,7 @@ FMImporter >> elements [
 FMImporter >> endDocument [
 	self assert: stack isEmpty.
 	stack := nil.
-	ensureNoDandlingReferences ifTrue: [ tally = 0 ifFalse: [ FMUnresolvedDanglingReferences signal ] ].
+	ensureNoDandlingReferences ifTrue: [ numberOfDanglingReferences isZero ifFalse: [ FMUnresolvedDanglingReferences signal ] ].
 	model addAll: elements
 ]
 
@@ -93,24 +100,17 @@ FMImporter >> endElement: name [
 	future := stack pop.
 	element := future instance.
 	elements add: element.
-	stack ifNotEmpty: [ stack top currentProperty values add: element ]
+	stack ifNotEmpty: [ self currentElement addToPropertyValues: element ]
 ]
 
 { #category : #parsing }
-FMImporter >> endProperty: name [ 
-	
-	stack top endProperty: name
+FMImporter >> endProperty: name [
+	self currentElement endProperty: name
 ]
 
 { #category : #accessing }
 FMImporter >> fromString: aString [
-
 	self stream: aString readStream
-]
-
-{ #category : #accessing }
-FMImporter >> index [
-	^serialDict
 ]
 
 { #category : #initialization }
@@ -137,17 +137,17 @@ FMImporter >> model: aModel [
 
 { #category : #parsing }
 FMImporter >> primitive: value [
-	stack top currentProperty values add: value
+	self currentElement addToPropertyValues: value
 ]
 
 { #category : #parsing }
 FMImporter >> referenceName: name [
-	stack top currentProperty values add: (model elementNamed: name)
+	self currentElement addToPropertyValues: (model elementNamed: name)
 ]
 
 { #category : #parsing }
 FMImporter >> referenceNumber: serial [
-	stack top currentProperty referenceNumber: serial
+	self currentElement currentProperty referenceNumber: serial
 ]
 
 { #category : #running }
@@ -159,22 +159,18 @@ FMImporter >> run [
 ]
 
 { #category : #parsing }
-FMImporter >> serial: serial [ 
-	
-	stack top serial: serial
+FMImporter >> serial: serial [
+	self assign: self currentElement instance to: serial
 ]
 
 { #category : #accessing }
 FMImporter >> stream [
-
-	^stream
+	^ stream
 ]
 
 { #category : #accessing }
 FMImporter >> stream: aReadStream [
-
-	stream := aReadStream 
-	
+	stream := aReadStream
 ]
 
 { #category : #accessing }
