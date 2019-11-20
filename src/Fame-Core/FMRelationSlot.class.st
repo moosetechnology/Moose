@@ -93,9 +93,7 @@ FMRelationSlot >> hasSameDefinitionAs: otherSlot [
 
 { #category : #comparing }
 FMRelationSlot >> hash [
-	^ ((self species hash bitXor: self name hash) 
-			bitXor: (self index ifNil: [ 0 ])) 
-				bitXor: self targetClassName hash
+	^ (super hash bitXor: self targetClassName hash) bitXor: inverseName hash
 ]
 
 { #category : #initialization }
