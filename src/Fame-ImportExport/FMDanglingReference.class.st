@@ -12,8 +12,8 @@ Internal Representation and Key Implementation Points.
 --------------------
 
     Instance Variables
-	owner:			<aFMFutureAttribute>	The attribute whose I'll be the type.
-	position:		<anInteger>				My position among the values contained by my parent property.
+	parentProperty			<aFMFutureProperty>	The property whose values contain the entity I replace..
+	position:					<anInteger>				My position among the values contained by my parent property.
 
 "
 Class {
