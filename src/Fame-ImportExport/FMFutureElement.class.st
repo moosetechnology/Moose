@@ -18,7 +18,7 @@ FMFutureElement class >> with: anImporter name: aString [
 { #category : #parsing }
 FMFutureElement >> beginAttribute: aString [
 	self assert: currentAttribute isNil.
-	currentAttribute := FMFutureAttribute with: self name: aString
+	currentAttribute := FMFutureProperty with: self name: aString
 ]
 
 { #category : #accessing }
