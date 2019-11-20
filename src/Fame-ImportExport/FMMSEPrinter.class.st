@@ -1,3 +1,17 @@
+"
+Description
+--------------------
+
+I am responsible of printing the MSE format markup during a model export.
+
+Examples
+--------------------
+
+	| printer |
+	printer := FMMSEPrinter onString.
+	FMMetaMetaModel default exportWithPrinter: printer.
+	printer stream contents
+"
 Class {
 	#name : #FMMSEPrinter,
 	#superclass : #FMDataStructurePrinter,

@@ -1,3 +1,17 @@
+"
+Description
+--------------------
+
+I am responsible of printing the XML format markup during a model export.
+
+Examples
+--------------------
+
+	| printer |
+	printer := FMXMLPrinter onString.
+	FMMetaMetaModel default exportWithPrinter: printer.
+	printer stream contents
+"
 Class {
 	#name : #FMXMLPrinter,
 	#superclass : #FMDataStructurePrinter,
