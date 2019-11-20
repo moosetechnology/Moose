@@ -25,7 +25,7 @@ FMMSEParser >> Attribute [
 	name := self tNAME.
 	name ifNil: [ ^ self backtrack: pos ].
 	importer
-		inAttribute: name
+		inProperty: name
 		do: [ [ self Value ] whileTrue.
 			self tCLOSE ifFalse: [ ^ self syntaxError ] ].
 	self tWHITESPACE.

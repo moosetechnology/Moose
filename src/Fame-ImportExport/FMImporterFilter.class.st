@@ -20,11 +20,6 @@ FMImporterFilter class >> on: aFMParserClient filtering: aCollectionOfElementNam
 ]
 
 { #category : #parsing }
-FMImporterFilter >> beginAttribute: name [
-	shouldSkip ifFalse: [ parserClient beginAttribute: name ]
-]
-
-{ #category : #parsing }
 FMImporterFilter >> beginDocument [
 	parserClient beginDocument
 ]
@@ -38,8 +33,8 @@ FMImporterFilter >> beginElement: name [
 ]
 
 { #category : #parsing }
-FMImporterFilter >> endAttribute: name [
-	shouldSkip ifFalse: [ parserClient endAttribute: name ]
+FMImporterFilter >> beginProperty: name [
+	shouldSkip ifFalse: [ parserClient beginProperty: name ]
 ]
 
 { #category : #parsing }
@@ -50,6 +45,11 @@ FMImporterFilter >> endDocument [
 { #category : #parsing }
 FMImporterFilter >> endElement: name [
 	shouldSkip ifFalse: [ parserClient endElement: name ]
+]
+
+{ #category : #parsing }
+FMImporterFilter >> endProperty: name [
+	shouldSkip ifFalse: [ parserClient endProperty: name ]
 ]
 
 { #category : #accessing }
@@ -67,6 +67,13 @@ FMImporterFilter >> filter: aCollectionOfElementNames [
 { #category : #accessing }
 FMImporterFilter >> fromString: aString [
 	^ self parserClient fromString: aString
+]
+
+{ #category : #parsing }
+FMImporterFilter >> inProperty: aString do: aBlock [
+	self beginProperty: aString.
+	aBlock value.
+	self endProperty: aString
 ]
 
 { #category : #accessing }

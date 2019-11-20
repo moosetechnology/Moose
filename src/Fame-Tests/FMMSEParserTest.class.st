@@ -476,7 +476,7 @@ FMMSEParserTest >> setUp [
 
 { #category : #tests }
 FMMSEParserTest >> testAttribute [
-	a := #(#(#beginAttribute: 'name') #(#endAttribute: 'name')).
+	a := #(#(#beginProperty: 'name') #(#endProperty: 'name')).
 	r reset.
 	p fromString: '(name)'.
 	p Attribute.
@@ -491,7 +491,7 @@ FMMSEParserTest >> testAttribute [
 
 { #category : #tests }
 FMMSEParserTest >> testAttributeNameWithUnderscore [
-	a := #(#(#beginAttribute: 'name_with_underscore') #(#endAttribute: 'name_with_underscore')).
+	a := #(#(#beginProperty: 'name_with_underscore') #(#endProperty: 'name_with_underscore')).
 	r reset.
 	p fromString: '(name_with_underscore)'.
 	p Attribute.
@@ -506,7 +506,7 @@ FMMSEParserTest >> testAttributeNameWithUnderscore [
 
 { #category : #tests }
 FMMSEParserTest >> testAttributeWithBoolean [
-	a := #(#(#beginAttribute: 'name') #(#primitive: true) #(#primitive: false) #(#endAttribute: 'name')).
+	a := #(#(#beginProperty: 'name') #(#primitive: true) #(#primitive: false) #(#endProperty: 'name')).
 	r reset.
 	p fromString: '(name true false)'.
 	p Attribute.
@@ -521,7 +521,7 @@ FMMSEParserTest >> testAttributeWithBoolean [
 
 { #category : #tests }
 FMMSEParserTest >> testAttributeWithElements [
-	a := #(#(#beginAttribute: 'name') #(#beginElement: 'Foo') #(#endElement: 'Foo') #(#beginElement: 'Bar') #(#endElement: 'Bar') #(#endAttribute: 'name')).
+	a := #(#(#beginProperty: 'name') #(#beginElement: 'Foo') #(#endElement: 'Foo') #(#beginElement: 'Bar') #(#endElement: 'Bar') #(#endProperty: 'name')).
 	r reset.
 	p fromString: '(name(Foo)(Bar))'.
 	p Attribute.
@@ -536,7 +536,7 @@ FMMSEParserTest >> testAttributeWithElements [
 
 { #category : #tests }
 FMMSEParserTest >> testAttributeWithNumbers [
-	a := #(#(#beginAttribute: 'name') #(#primitive: 1) #(#primitive: 2) #(#primitive: 3) #(#endAttribute: 'name')).
+	a := #(#(#beginProperty: 'name') #(#primitive: 1) #(#primitive: 2) #(#primitive: 3) #(#endProperty: 'name')).
 	r reset.
 	p fromString: '(name 1 2 3)'.
 	p Attribute.
@@ -551,7 +551,7 @@ FMMSEParserTest >> testAttributeWithNumbers [
 
 { #category : #tests }
 FMMSEParserTest >> testAttributeWithReferences [
-	a := #(#(#beginAttribute: 'name') #(#referenceNumber: 2) #(#referenceNumber: 3) #(#endAttribute: 'name')).
+	a := #(#(#beginProperty: 'name') #(#referenceNumber: 2) #(#referenceNumber: 3) #(#endProperty: 'name')).
 	r reset.
 	p fromString: '(name(ref:2)(ref:3))'.
 	p Attribute.
@@ -566,7 +566,7 @@ FMMSEParserTest >> testAttributeWithReferences [
 
 { #category : #tests }
 FMMSEParserTest >> testAttributeWithStrings [
-	a := #(#(#beginAttribute: 'name') #(#primitive: 'bar') #(#primitive: 'ba') #(#primitive: 'rossa') #(#endAttribute: 'name')).
+	a := #(#(#beginProperty: 'name') #(#primitive: 'bar') #(#primitive: 'ba') #(#primitive: 'rossa') #(#endProperty: 'name')).
 	r reset.
 	p fromString: '(name ''bar'' ''ba'' ''rossa'')'.
 	p Attribute.
@@ -581,7 +581,7 @@ FMMSEParserTest >> testAttributeWithStrings [
 
 { #category : #tests }
 FMMSEParserTest >> testAttributeWithStrings2 [
-	a := #(#(#beginAttribute: 'name') #(#primitive: 'bar''ba''rossa') #(#endAttribute: 'name')).
+	a := #(#(#beginProperty: 'name') #(#primitive: 'bar''ba''rossa') #(#endProperty: 'name')).
 	r reset.
 	p fromString: '(name ''bar''''ba''''rossa'')'.
 	p Attribute.
@@ -629,7 +629,7 @@ FMMSEParserTest >> testElement [
 
 { #category : #tests }
 FMMSEParserTest >> testElementWithAttributes [
-	a := #(#(#beginElement: 'Foo') #(#beginAttribute: 'name') #(#endAttribute: 'name') #(#beginAttribute: 'count') #(#endAttribute: 'count') #(#endElement: 'Foo')).
+	a := #(#(#beginElement: 'Foo') #(#beginProperty: 'name') #(#endProperty: 'name') #(#beginProperty: 'count') #(#endProperty: 'count') #(#endElement: 'Foo')).
 	r reset.
 	p fromString: '(Foo(name)(count))'.
 	p Element.
@@ -644,7 +644,7 @@ FMMSEParserTest >> testElementWithAttributes [
 
 { #category : #tests }
 FMMSEParserTest >> testElementWithAttributesAndID [
-	a := #(#(#beginElement: 'Foo') #(#serial: 42) #(#beginAttribute: 'name') #(#endAttribute: 'name') #(#beginAttribute: 'count') #(#endAttribute: 'count') #(#endElement: 'Foo')).
+	a := #(#(#beginElement: 'Foo') #(#serial: 42) #(#beginProperty: 'name') #(#endProperty: 'name') #(#beginProperty: 'count') #(#endProperty: 'count') #(#endElement: 'Foo')).
 	r reset.
 	p fromString: '(Foo(id:42)(name)(count))'.
 	p Element.

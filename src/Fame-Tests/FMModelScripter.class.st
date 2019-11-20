@@ -37,7 +37,7 @@ FMModelScripter >> attribute: attributeName with: variant [
 	"Adds an attribute with primitive value or array, or with given body."
 
 	client
-		inAttribute: attributeName
+		inProperty: attributeName
 		do: [ variant isBlock
 				ifTrue: [ variant value ]
 				ifFalse: [ variant isArray ifTrue: [ variant do: [ :each | client primitive: each ] ] ifFalse: [ client primitive: variant ] ] ]

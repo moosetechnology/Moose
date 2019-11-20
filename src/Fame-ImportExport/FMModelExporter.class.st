@@ -54,7 +54,7 @@ FMModelExporter >> exportProperty: property for: each [
 { #category : #exporting }
 FMModelExporter >> exportProperty: property withAll: values [
 	printer
-		inAttribute: property name
+		inProperty: property name
 		do: [ values
 				do: [ :each | 
 					property type isPrimitive

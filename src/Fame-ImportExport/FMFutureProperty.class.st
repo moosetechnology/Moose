@@ -26,7 +26,7 @@ FMFutureProperty >> count: aNumber [
 ]
 
 { #category : #parsing }
-FMFutureProperty >> endAttribute: aString [
+FMFutureProperty >> endProperty: aString [
 	self maybeEnd
 ]
 

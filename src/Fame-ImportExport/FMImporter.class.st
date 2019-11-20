@@ -44,12 +44,6 @@ FMImporter >> autorizeDandlingReferencesAtEnd [
 ]
 
 { #category : #parsing }
-FMImporter >> beginAttribute: name [ 
-	
-	stack top beginAttribute: name
-]
-
-{ #category : #parsing }
 FMImporter >> beginDocument [
 	
 	stack := Stack new.
@@ -67,6 +61,12 @@ FMImporter >> beginElement: name [
 	stack push: (FMFutureElement with: self name: translatedName)
 ]
 
+{ #category : #parsing }
+FMImporter >> beginProperty: name [ 
+	
+	stack top beginProperty: name
+]
+
 { #category : #private }
 FMImporter >> dangling: reference to: serial [
 	(reminderDict at: serial ifAbsentPut: [ OrderedCollection new ]) add: reference.
@@ -77,12 +77,6 @@ FMImporter >> dangling: reference to: serial [
 { #category : #accessing }
 FMImporter >> elements [
 	^ elements
-]
-
-{ #category : #parsing }
-FMImporter >> endAttribute: name [ 
-	
-	stack top endAttribute: name
 ]
 
 { #category : #parsing }
@@ -102,10 +96,23 @@ FMImporter >> endElement: name [
 	stack ifNotEmpty: [ stack top currentAttribute values add: element ]
 ]
 
+{ #category : #parsing }
+FMImporter >> endProperty: name [ 
+	
+	stack top endProperty: name
+]
+
 { #category : #accessing }
 FMImporter >> fromString: aString [
 
 	self stream: aString readStream
+]
+
+{ #category : #parsing }
+FMImporter >> inProperty: aString do: aBlock [
+	self beginProperty: aString.
+	aBlock value.
+	self endProperty: aString
 ]
 
 { #category : #accessing }
