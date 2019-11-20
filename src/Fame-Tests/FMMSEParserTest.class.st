@@ -475,126 +475,6 @@ FMMSEParserTest >> setUp [
 ]
 
 { #category : #tests }
-FMMSEParserTest >> testAttribute [
-	a := #(#(#beginProperty: 'name') #(#endProperty: 'name')).
-	r reset.
-	p fromString: '(name)'.
-	p Property.
-	self assert: r contents equals: a.
-	self assert: p atEnd.
-	r reset.
-	p fromString: '(  name  )  '.
-	p Property.
-	self assert: r contents equals: a.
-	self assert: p atEnd
-]
-
-{ #category : #tests }
-FMMSEParserTest >> testAttributeNameWithUnderscore [
-	a := #(#(#beginProperty: 'name_with_underscore') #(#endProperty: 'name_with_underscore')).
-	r reset.
-	p fromString: '(name_with_underscore)'.
-	p Property.
-	self assert: r contents equals: a.
-	self assert: p atEnd.
-	r reset.
-	p fromString: '(  name_with_underscore  )  '.
-	p Property.
-	self assert: r contents equals: a.
-	self assert: p atEnd
-]
-
-{ #category : #tests }
-FMMSEParserTest >> testAttributeWithBoolean [
-	a := #(#(#beginProperty: 'name') #(#primitive: true) #(#primitive: false) #(#endProperty: 'name')).
-	r reset.
-	p fromString: '(name true false)'.
-	p Property.
-	self assert: r contents equals: a.
-	self assert: p atEnd.
-	r reset.
-	p fromString: '(  name   true   false  )  '.
-	p Property.
-	self assert: r contents equals: a.
-	self assert: p atEnd
-]
-
-{ #category : #tests }
-FMMSEParserTest >> testAttributeWithElements [
-	a := #(#(#beginProperty: 'name') #(#beginElement: 'Foo') #(#endElement: 'Foo') #(#beginElement: 'Bar') #(#endElement: 'Bar') #(#endProperty: 'name')).
-	r reset.
-	p fromString: '(name(Foo)(Bar))'.
-	p Property.
-	self assert: r contents equals: a.
-	self assert: p atEnd.
-	r reset.
-	p fromString: '(  name  (  Foo  )  (  Bar  )     )  '.
-	p Property.
-	self assert: r contents equals: a.
-	self assert: p atEnd
-]
-
-{ #category : #tests }
-FMMSEParserTest >> testAttributeWithNumbers [
-	a := #(#(#beginProperty: 'name') #(#primitive: 1) #(#primitive: 2) #(#primitive: 3) #(#endProperty: 'name')).
-	r reset.
-	p fromString: '(name 1 2 3)'.
-	p Property.
-	self assert: r contents equals: a.
-	self assert: p atEnd.
-	r reset.
-	p fromString: '(  name    1    2    3  )  '.
-	p Property.
-	self assert: r contents equals: a.
-	self assert: p atEnd
-]
-
-{ #category : #tests }
-FMMSEParserTest >> testAttributeWithReferences [
-	a := #(#(#beginProperty: 'name') #(#referenceNumber: 2) #(#referenceNumber: 3) #(#endProperty: 'name')).
-	r reset.
-	p fromString: '(name(ref:2)(ref:3))'.
-	p Property.
-	self assert: r contents equals: a.
-	self assert: p atEnd.
-	r reset.
-	p fromString: '(  name  (  ref:  2  )  (  ref:  3  )     )  '.
-	p Property.
-	self assert: r contents equals: a.
-	self assert: p atEnd
-]
-
-{ #category : #tests }
-FMMSEParserTest >> testAttributeWithStrings [
-	a := #(#(#beginProperty: 'name') #(#primitive: 'bar') #(#primitive: 'ba') #(#primitive: 'rossa') #(#endProperty: 'name')).
-	r reset.
-	p fromString: '(name ''bar'' ''ba'' ''rossa'')'.
-	p Property.
-	self assert: r contents equals: a.
-	self assert: p atEnd.
-	r reset.
-	p fromString: '(  name  ''bar''      ''ba''      ''rossa'')  '.
-	p Property.
-	self assert: r contents equals: a.
-	self assert: p atEnd
-]
-
-{ #category : #tests }
-FMMSEParserTest >> testAttributeWithStrings2 [
-	a := #(#(#beginProperty: 'name') #(#primitive: 'bar''ba''rossa') #(#endProperty: 'name')).
-	r reset.
-	p fromString: '(name ''bar''''ba''''rossa'')'.
-	p Property.
-	self assert: r contents equals: a.
-	self assert: p atEnd.
-	r reset.
-	p fromString: '(  name  ''bar''''ba''''rossa''     )  '.
-	p Property.
-	self assert: r contents equals: a.
-	self assert: p atEnd
-]
-
-{ #category : #tests }
 FMMSEParserTest >> testBacktrack [
 	| pos |
 	p fromString: 'abcdefg'.
@@ -628,7 +508,22 @@ FMMSEParserTest >> testElement [
 ]
 
 { #category : #tests }
-FMMSEParserTest >> testElementWithAttributes [
+FMMSEParserTest >> testElementWithID [
+	a := #(#(#beginElement: 'Foo') #(#serial: 42) #(#endElement: 'Foo')).
+	r reset.
+	p fromString: '(Foo(id:42))'.
+	p Element.
+	self assert: r contents equals: a.
+	self assert: p atEnd.
+	r reset.
+	p fromString: '(  Foo  (  id:  42  )  )  '.
+	p Element.
+	self assert: r contents equals: a.
+	self assert: p atEnd
+]
+
+{ #category : #tests }
+FMMSEParserTest >> testElementWithPropertys [
 	a := #(#(#beginElement: 'Foo') #(#beginProperty: 'name') #(#endProperty: 'name') #(#beginProperty: 'count') #(#endProperty: 'count') #(#endElement: 'Foo')).
 	r reset.
 	p fromString: '(Foo(name)(count))'.
@@ -643,7 +538,7 @@ FMMSEParserTest >> testElementWithAttributes [
 ]
 
 { #category : #tests }
-FMMSEParserTest >> testElementWithAttributesAndID [
+FMMSEParserTest >> testElementWithPropertysAndID [
 	a := #(#(#beginElement: 'Foo') #(#serial: 42) #(#beginProperty: 'name') #(#endProperty: 'name') #(#beginProperty: 'count') #(#endProperty: 'count') #(#endElement: 'Foo')).
 	r reset.
 	p fromString: '(Foo(id:42)(name)(count))'.
@@ -652,21 +547,6 @@ FMMSEParserTest >> testElementWithAttributesAndID [
 	self assert: p atEnd.
 	r reset.
 	p fromString: '(  Foo  (  id:  42  )  (  name  )  (  count  )  )  '.
-	p Element.
-	self assert: r contents equals: a.
-	self assert: p atEnd
-]
-
-{ #category : #tests }
-FMMSEParserTest >> testElementWithID [
-	a := #(#(#beginElement: 'Foo') #(#serial: 42) #(#endElement: 'Foo')).
-	r reset.
-	p fromString: '(Foo(id:42))'.
-	p Element.
-	self assert: r contents equals: a.
-	self assert: p atEnd.
-	r reset.
-	p fromString: '(  Foo  (  id:  42  )  )  '.
 	p Element.
 	self assert: r contents equals: a.
 	self assert: p atEnd
@@ -915,6 +795,126 @@ FMMSEParserTest >> testNumberTrailingDotFails [
 FMMSEParserTest >> testNumberTrailingLetterFails [
 	p fromString: '12.11e'.
 	self should: [ p Number ] raise: Error
+]
+
+{ #category : #tests }
+FMMSEParserTest >> testProperty [
+	a := #(#(#beginProperty: 'name') #(#endProperty: 'name')).
+	r reset.
+	p fromString: '(name)'.
+	p Property.
+	self assert: r contents equals: a.
+	self assert: p atEnd.
+	r reset.
+	p fromString: '(  name  )  '.
+	p Property.
+	self assert: r contents equals: a.
+	self assert: p atEnd
+]
+
+{ #category : #tests }
+FMMSEParserTest >> testPropertyNameWithUnderscore [
+	a := #(#(#beginProperty: 'name_with_underscore') #(#endProperty: 'name_with_underscore')).
+	r reset.
+	p fromString: '(name_with_underscore)'.
+	p Property.
+	self assert: r contents equals: a.
+	self assert: p atEnd.
+	r reset.
+	p fromString: '(  name_with_underscore  )  '.
+	p Property.
+	self assert: r contents equals: a.
+	self assert: p atEnd
+]
+
+{ #category : #tests }
+FMMSEParserTest >> testPropertyWithBoolean [
+	a := #(#(#beginProperty: 'name') #(#primitive: true) #(#primitive: false) #(#endProperty: 'name')).
+	r reset.
+	p fromString: '(name true false)'.
+	p Property.
+	self assert: r contents equals: a.
+	self assert: p atEnd.
+	r reset.
+	p fromString: '(  name   true   false  )  '.
+	p Property.
+	self assert: r contents equals: a.
+	self assert: p atEnd
+]
+
+{ #category : #tests }
+FMMSEParserTest >> testPropertyWithElements [
+	a := #(#(#beginProperty: 'name') #(#beginElement: 'Foo') #(#endElement: 'Foo') #(#beginElement: 'Bar') #(#endElement: 'Bar') #(#endProperty: 'name')).
+	r reset.
+	p fromString: '(name(Foo)(Bar))'.
+	p Property.
+	self assert: r contents equals: a.
+	self assert: p atEnd.
+	r reset.
+	p fromString: '(  name  (  Foo  )  (  Bar  )     )  '.
+	p Property.
+	self assert: r contents equals: a.
+	self assert: p atEnd
+]
+
+{ #category : #tests }
+FMMSEParserTest >> testPropertyWithNumbers [
+	a := #(#(#beginProperty: 'name') #(#primitive: 1) #(#primitive: 2) #(#primitive: 3) #(#endProperty: 'name')).
+	r reset.
+	p fromString: '(name 1 2 3)'.
+	p Property.
+	self assert: r contents equals: a.
+	self assert: p atEnd.
+	r reset.
+	p fromString: '(  name    1    2    3  )  '.
+	p Property.
+	self assert: r contents equals: a.
+	self assert: p atEnd
+]
+
+{ #category : #tests }
+FMMSEParserTest >> testPropertyWithReferences [
+	a := #(#(#beginProperty: 'name') #(#referenceNumber: 2) #(#referenceNumber: 3) #(#endProperty: 'name')).
+	r reset.
+	p fromString: '(name(ref:2)(ref:3))'.
+	p Property.
+	self assert: r contents equals: a.
+	self assert: p atEnd.
+	r reset.
+	p fromString: '(  name  (  ref:  2  )  (  ref:  3  )     )  '.
+	p Property.
+	self assert: r contents equals: a.
+	self assert: p atEnd
+]
+
+{ #category : #tests }
+FMMSEParserTest >> testPropertyWithStrings [
+	a := #(#(#beginProperty: 'name') #(#primitive: 'bar') #(#primitive: 'ba') #(#primitive: 'rossa') #(#endProperty: 'name')).
+	r reset.
+	p fromString: '(name ''bar'' ''ba'' ''rossa'')'.
+	p Property.
+	self assert: r contents equals: a.
+	self assert: p atEnd.
+	r reset.
+	p fromString: '(  name  ''bar''      ''ba''      ''rossa'')  '.
+	p Property.
+	self assert: r contents equals: a.
+	self assert: p atEnd
+]
+
+{ #category : #tests }
+FMMSEParserTest >> testPropertyWithStrings2 [
+	a := #(#(#beginProperty: 'name') #(#primitive: 'bar''ba''rossa') #(#endProperty: 'name')).
+	r reset.
+	p fromString: '(name ''bar''''ba''''rossa'')'.
+	p Property.
+	self assert: r contents equals: a.
+	self assert: p atEnd.
+	r reset.
+	p fromString: '(  name  ''bar''''ba''''rossa''     )  '.
+	p Property.
+	self assert: r contents equals: a.
+	self assert: p atEnd
 ]
 
 { #category : #tests }
