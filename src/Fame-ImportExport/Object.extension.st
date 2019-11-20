@@ -9,6 +9,11 @@ Object >> handleFameProperty: aSymbol value: anObject [
 ]
 
 { #category : #'*Fame-ImportExport' }
+Object >> isDanglingReference [
+	^ false
+]
+
+{ #category : #'*Fame-ImportExport' }
 Object >> msePrintOn: aStream [
 	self printOn: aStream
 ]
