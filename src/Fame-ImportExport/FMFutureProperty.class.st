@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'name',
 		'values',
-		'tally'
+		'numberOfDanglingReferences'
 	],
 	#category : #'Fame-ImportExport-Importers'
 }
@@ -15,18 +15,10 @@ FMFutureProperty class >> with: anImporter name: aString [
 	^self new with: anImporter name: aString
 ]
 
-{ #category : #accessing }
-FMFutureProperty >> count [
-	^ tally
-]
-
-{ #category : #accessing }
-FMFutureProperty >> count: aNumber [
-	tally := aNumber
-]
-
 { #category : #parsing }
 FMFutureProperty >> endProperty: aString [
+	"A well formated MSE file should end a property with 0 dangling references and we could assert it. But removing the assertiong makes the parser tolerant so some defects in MSE files."
+
 	self maybeEnd
 ]
 
@@ -38,8 +30,7 @@ FMFutureProperty >> importer [
 { #category : #parsing }
 FMFutureProperty >> maybeEnd [
 	| property |
-	"This makes the parser tolerant so some defects in MSE files."
-	tally isZero ifFalse: [ ^ self ].
+	numberOfDanglingReferences isZero ifFalse: [ ^ self ].
 
 	property := owner metaDescription
 		propertyNamed: name
@@ -51,7 +42,19 @@ FMFutureProperty >> maybeEnd [
 
 { #category : #parsing }
 FMFutureProperty >> referenceNumber: serial [
-	values add: (self importer index at: serial ifAbsent: [ self importer dangling: (FMDanglingReference with: self) to: serial ])
+	values
+		add:
+			(self importer index
+				at: serial
+				ifAbsent: [ self importer dangling: (FMDanglingReference with: self) to: serial.
+					numberOfDanglingReferences := numberOfDanglingReferences + 1 ])
+]
+
+{ #category : #parsing }
+FMFutureProperty >> replaceDanglingReferenceAt: anInteger by: anElement [
+	self values at: anInteger put: anElement.
+	numberOfDanglingReferences := numberOfDanglingReferences - 1.
+	self maybeEnd
 ]
 
 { #category : #accessing }
@@ -62,7 +65,7 @@ FMFutureProperty >> values [
 { #category : #'initialize-release' }
 FMFutureProperty >> with: aFutureElement name: aString [
 	super with: aFutureElement name: aString.
-	tally := 0.
+	numberOfDanglingReferences := 0.
 	name := aString.
 	values := OrderedCollection new
 ]
