@@ -28,6 +28,8 @@ FMFutureElement >> currentProperty [
 
 { #category : #parsing }
 FMFutureElement >> endProperty [
+	"A well formated MSE file should end a property with 0 dangling references and we could assert it. But removing the assertiong makes the parser tolerant so some defects in MSE files."
+
 	currentProperty maybeEnd.
 	currentProperty := nil
 ]
