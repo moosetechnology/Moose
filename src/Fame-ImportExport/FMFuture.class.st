@@ -2,7 +2,7 @@
 Description
 --------------------
 
-I represent a future element of a meta-model. My subclasses will be used by FMImporter during the import of a model.
+I represent a future element of a model. My subclasses will be used by FMImporter during the import of a model.
 
 Futures knows their meta-description and will use that to create and inject information into the real entities.	
  

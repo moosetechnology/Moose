@@ -1,3 +1,39 @@
+"
+Description
+--------------------
+
+I am responsible for the creation and resolutions of entities during the import of a model.
+
+I'll be used by a parser such as a FMMSEParser.
+
+While everything is not resolved, I'll create ""Future"" elements to replace them.
+
+Examples
+--------------------
+
+	(FMImporter model: (FMMetaModel fromString: '((FM3.Package (id: 1) (name ''Office'')))'))
+		fromString: '((FM3.Class (name ''Employee'') (package (ref: Office))))';
+		run;
+		model
+		
+	""Or via a model:""
+	(FMMetaModel fromString: '((FM3.Package (id: 1) (name ''Office'')))')
+ 
+Internal Representation and Key Implementation Points.
+--------------------
+
+    Instance Variables
+	entities:								<aCollection>				The collection of all created entities.
+	ensureNoDandlingReferences:		<aBoolean>					If true, at the end of the import we ensure that every entity was resolved and that we have no dangling reference left.
+	model:									<aModel>						The model to which we should add all the entities.
+	numberOfDanglingReferences:		<anInteger>					The number of dangling references created and unresolved yet. Used to validate that everything is resolved at the end.
+	reminderDict:						<aDictionary>				A dictionary mapping a serial to the dangling references pointing to it.
+	serialDict:							<aDictionary>				A dictionary mapping serials to the real entity they represent.
+	stack:									<aStack>						A stack of the entities been resolved.
+	stream:								<aStream>						The stream to parse in order to import the model.
+	translationUnit:					<aFMTranslationUnit>		A translation unit used to map the names from the MSE to different entities during the import, in case of renaming for example.
+
+"
 Class {
 	#name : #FMImporter,
 	#superclass : #Object,
