@@ -1,23 +1,33 @@
 "
-A FMMetaRepository is a repository containing descriptions of the classes used in a repository.
+Description
+--------------------
 
-So an FM3Repository contains instances (ie instance of FamixClass or RPGHero)
-and its associated FMMetaRepository contains instance of describing the classes of the 
-FM3Repository elements.
+I am a model containing meta-description of a FMModel. I contain instances of FM3Element.
 
-Instance Variables
-	classDict:		<Object>
-	nameDict:		<Object>
-	packageDict:		<Object>
+For example, in the Smalltalk metamodel of Famix, if we want to represent the Point class we will have:
+- A FMModel containing an instance of FamixStClass representing the Point class.
+- A FMMetaModel containing instances of FM3Elements describing FamixStClass.
+- A FMMetaMetaModel containing instances of FM3Element describing FM3 meta model (Package, Class and Property).
 
-classDict
-	- Smalltalk class to its description
+I will probably not be created by hand but either via:
+- A FMMetaModelBuilder that will use pragmas and slots from real Pharo classes to build the meta model.
+- An import of a serialized meta model.
 
-nameDict
-	- Primitive object names to their description instance
+Examples
+--------------------
 
-packageDict
-	- Package names to their description instance
+	FMMetaModel fromString: FMMSEParserTest famix30mse.
+	
+	FMMetaModelBuilder metamodelFrom: {RPGDragon . RPGTreasure . RPGHero}.
+ 
+Internal Representation and Key Implementation Points.
+--------------------
+
+	I am using some caches to speed up the way to find a description of a class.
+
+    Instance Variables
+	classDict:		<aDictionary>		I am a cache linking a real class to its description.
+	nameDict:			<aDictionary>		I am a cache linking an element name to its description.
 
 "
 Class {

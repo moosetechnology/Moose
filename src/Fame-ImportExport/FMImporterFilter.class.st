@@ -1,3 +1,18 @@
+"
+Description
+--------------------
+
+I am a decoration of a FMImporter that will allow one to filter the kind of entities to import.
+ 
+Internal Representation and Key Implementation Points.
+--------------------
+
+    Instance Variables
+	filter:				<aCollection>		A collection of the elements to filter out.
+	importer:				<aFMImporter>		The importer I am wrapping.
+	shouldSkip:			<aBoolean>			If true, I'll skip the current element.
+
+"
 Class {
 	#name : #FMImporterFilter,
 	#superclass : #Object,

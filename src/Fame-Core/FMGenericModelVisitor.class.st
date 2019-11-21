@@ -1,3 +1,9 @@
+"
+Description
+--------------------
+
+I am a generic visitor adding a generic visit element method compared to my superclass.
+"
 Class {
 	#name : #FMGenericModelVisitor,
 	#superclass : #FMModelVisitor,

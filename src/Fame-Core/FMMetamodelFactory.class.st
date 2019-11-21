@@ -1,5 +1,12 @@
 "
+Description
+--------------------
+
 I am a general factory that is used to create meta-model entities independently on a particular meta-model.
+
+I take as parameter a fm3Package and will look for the entities into it.
+
+NOTE: (Cyril) This factory was done based on a FM3Package but maybe it should instead be based on a FMMetaModel? What if we have a composed MM and we need an entity from another package?
 "
 Class {
 	#name : #FMMetamodelFactory,

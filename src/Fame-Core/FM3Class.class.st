@@ -1,13 +1,32 @@
 "
-A FM3MetaDescription describes a class in FM3.
-It is composed of 
-	FM3PropertyDescription which may be a package extension
-	
-A FM3MetaDescription is contained in a FM3PackageDescription.
-	
-FM3Property should be managed 
+Description
+--------------------
 
-Note that it should be renamed FM3Class to be in sync with the rest of the documents.
+I represent class in a fame meta-model.
+
+I should be contained in a FM3Package and I can be stored in a FMMetaModel.
+I contain instances of FM3Property which might be package extensions or not.
+I can have a superclass, subclasses and traits which are all FM3Class instances. While doing the lookup of my properties, I will take my superclasses and traits into account.
+
+Some Fame classes are constants that will be used in all metamodels. You can find more informations about them in FM3Constant.
+
+Public API and Key Messages
+--------------------
+
+- #properties 			Return the local properties of the class.
+- #allProperties 		Return all the properties of the class. This includes the properties of my superclasses and my traits.
+	
+Internal Representation and Key Implementation Points.
+--------------------
+
+    Instance Variables
+	implementingClass:		<anObject>			Real class I am describing. This can either be a real object or a FMRuntimeElement in case we do not know my real entity.
+	isAbstract:				<aBoolean>			Define if the class is abstract or not.
+	package:					<aFM3Package>		FM3Package containing the class.
+	properties:				<aCollection>		A collection of the FM3Properties defined locally in the class. (Does not includes the properties of traits and superclasses)
+	subclasses:				<aCollection>		A collection of my subclasses which are intances of FM3Class.
+	superclass:				<aFM3Class>			My FM3Class superclass. In case there is no superclass to define, I'll point to the FM3Object default instance representing the root of all classes.
+	traits:					<aCollection>		A collection of FM3Class representing the traits I am using.
 "
 Class {
 	#name : #FM3Class,

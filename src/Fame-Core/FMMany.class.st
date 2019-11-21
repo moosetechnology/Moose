@@ -1,3 +1,17 @@
+"
+Description
+--------------------
+
+I am a relation slot representing a multivalued property.
+
+Examples
+--------------------
+
+	Trait named: #FamixTWithMethods
+		uses: {}
+		slots: { #methods => FMMany type: #FamixTMethod opposite: #parentType }
+		package: 'Famix-Traits-Method'
+"
 Class {
 	#name : #FMMany,
 	#superclass : #FMRelationSlot,
@@ -11,9 +25,7 @@ FMMany >> add: newObject to: collectionOwner [
 
 { #category : #initialization }
 FMMany >> initialize: anObject [
-
-	self write: (FMSlotMultivalueLink on: anObject slot: self) to: anObject. 
-	
+	self write: (FMSlotMultivalueLink on: anObject slot: self) to: anObject
 ]
 
 { #category : #internal }

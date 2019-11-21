@@ -1,3 +1,9 @@
+"
+Description
+--------------------
+
+I am a concrete validator that runs multiple checks on a FMMetaModelBuilder.
+"
 Class {
 	#name : #FMMetamodelValidator,
 	#superclass : #FMAbstractMetamodelValidator,

@@ -1,3 +1,42 @@
+"
+Description
+--------------------
+
+I am an exporter of fame model.
+
+I can be used to export a model or a metamodel in different formats. 
+
+The format will be delegated to a FMDataStructurePrinter via a strategy design pattern.
+
+For performance reasons we use a hash table instead of a dictionary to keep the indexes.
+
+Examples
+--------------------
+
+	| metamodel printer |
+	printer := FMMSEPrinter onString.
+	metamodel := FMMetaModelBuilder metamodelFrom: {LIBLibrary . LIBBook . LIBPerson}.
+
+	FMModelExporter new
+		model: metamodel;
+		printer: printer;
+		run.
+		
+	printer stream contents
+ 
+Internal Representation and Key Implementation Points.
+--------------------
+
+    Instance Variables
+	indexMap:							<aDictionary>						Dictionary mapping elements to export with their index.
+	lastUpdate:						<anInteger>							Number a millisecords since we last updated the progress bar. This is used to not update the progress bar too much.
+	numberOfExportedElements:	<anInteger>							Number of elements exported. This is used by the progress bar.
+	printer:							<aFMDataStructurePrinter>		Printer used to print the data structure of the export.
+	progressBar:						<aProgressBar>						Progress bar to update during the export.
+	model:								<aFMModel>							Model to export.
+
+
+"
 Class {
 	#name : #FMModelExporter,
 	#superclass : #Object,

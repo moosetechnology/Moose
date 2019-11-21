@@ -1,3 +1,20 @@
+"
+Description
+--------------------
+
+I am a repersentation of a future object of the model been imported.
+
+I am used by FMImporter while the real object is not yet created.
+ 
+Internal Representation and Key Implementation Points.
+--------------------
+
+    Instance Variables
+	currentProperty:		<aFMFutureProperty> 	The current property been imported that is owned by the class I represent.
+	importer:					<aFMImporter>			The importer importing the class I represent.
+	instance:					<anObject>				The real object been imported.
+
+"
 Class {
 	#name : #FMFutureEntity,
 	#superclass : #FMFuture,

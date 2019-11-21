@@ -1,3 +1,9 @@
+"
+Description
+--------------------
+
+I am a validator that will not validate anything. I am part of the Null Object Pattern.
+"
 Class {
 	#name : #FMNilMetamodelValidator,
 	#superclass : #FMAbstractMetamodelValidator,

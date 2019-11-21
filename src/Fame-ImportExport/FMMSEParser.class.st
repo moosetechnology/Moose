@@ -1,3 +1,22 @@
+"
+Description
+--------------------
+
+I am a parser responsible of the MSE syntax parsing. I do not manage the creation of the entities, this part is delegated to a FMImporter.
+ 
+Internal Representation and Key Implementation Points.
+--------------------
+
+    Instance Variables
+	buffer:				<aBuffer>				Buffer used to keep a record of the previously read characters during the parsing.
+	characterSet:		<aCharacterSet>		A character set cached to speed up the reading of the MSE.
+	chararacter:			<aCharacter>			The last character read on the stream.
+	importer:				<aFMImporter>		The FMImporter responsible of the management of the entities to be imported.
+	lastUpdate:			<anInteger>			Time in millisecond since the last progress bar update.
+	progBar:				<aProgressBar>		A progress bar to display the parsing progress.
+	stream:				<aStream>				The stream containing the MSE to be read.
+
+"
 Class {
 	#name : #FMMSEParser,
 	#superclass : #Object,

@@ -1,3 +1,19 @@
+"
+Description
+--------------------
+
+I represent a property of the object currently been imported while it is not yet imported.
+
+I will be useful until all my values are resolved. Each time a value is resolved I'll check if I can be resolved. In that case, I'll push my values in real property.
+ 
+Internal Representation and Key Implementation Points.
+--------------------
+
+    Instance Variables
+	parentClass:		<aFMFutureEntity>		The entity owning the property.
+	values:			<aCollection>			The values of the property. Those values can contain dangling references while everything is not imported yet.
+
+"
 Class {
 	#name : #FMFutureProperty,
 	#superclass : #FMFuture,
