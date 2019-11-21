@@ -3,7 +3,6 @@ Class {
 	#superclass : #FMFuture,
 	#instVars : [
 		'instance',
-		'metaDescription',
 		'currentProperty',
 		'importer'
 	],
@@ -27,8 +26,10 @@ FMFutureElement >> currentProperty [
 ]
 
 { #category : #parsing }
-FMFutureElement >> endProperty: aString [
-	currentProperty endProperty: aString.
+FMFutureElement >> endProperty [
+	"A well formated MSE file should end a property with 0 dangling references and we could assert it. But removing the assertiong makes the parser tolerant so some defects in MSE files."
+
+	currentProperty maybeEnd.
 	currentProperty := nil
 ]
 
@@ -47,9 +48,4 @@ FMFutureElement >> in: anImporter named: aString [
 { #category : #accessing }
 FMFutureElement >> instance [
 	^ instance
-]
-
-{ #category : #accessing }
-FMFutureElement >> metaDescription [
-	^ metaDescription
 ]
