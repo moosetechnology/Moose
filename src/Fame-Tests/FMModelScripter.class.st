@@ -53,7 +53,7 @@ FMModelScripter >> document: body [
 FMModelScripter >> element: elementName with: body [
 	"Addes an element with body (which is a block)."
 
-	client inElement: elementName do: [ body value ]
+	client inClass: elementName do: [ body value ]
 ]
 
 { #category : #DSL }

@@ -3,7 +3,7 @@ Class {
 	#superclass : #FMFuture,
 	#instVars : [
 		'values',
-		'parentElement'
+		'parentClass'
 	],
 	#category : #'Fame-ImportExport-Importers'
 }
@@ -15,13 +15,13 @@ FMFutureProperty >> addToValues: anObject [
 
 { #category : #accessing }
 FMFutureProperty >> importer [
-	^ self parentElement importer
+	^ self parentClass importer
 ]
 
 { #category : #initialization }
 FMFutureProperty >> in: aFutureElement named: aString [
-	parentElement := aFutureElement.
-	metaDescription := parentElement metaDescription propertyNamed: aString ifAbsent: [ aString ]
+	parentClass := aFutureElement.
+	metaDescription := parentClass metaDescription propertyNamed: aString ifAbsent: [ aString ]
 ]
 
 { #category : #initialization }
@@ -37,8 +37,8 @@ FMFutureProperty >> maybeEnd [
 
 	"If the MM does not contains the property, we use the name of the property to let a chance to some entities to manage missing properties."
 	metaDescription isFM3Property
-		ifTrue: [ metaDescription setOn: parentElement instance values: values ]
-		ifFalse: [ parentElement instance handleFameProperty: metaDescription value: values ]
+		ifTrue: [ metaDescription setOn: parentClass instance values: values ]
+		ifFalse: [ parentClass instance handleFameProperty: metaDescription value: values ]
 ]
 
 { #category : #accessing }
@@ -47,8 +47,8 @@ FMFutureProperty >> numberOfDanglingReferences [
 ]
 
 { #category : #accessing }
-FMFutureProperty >> parentElement [
-	^ parentElement
+FMFutureProperty >> parentClass [
+	^ parentClass
 ]
 
 { #category : #parsing }

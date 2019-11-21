@@ -62,14 +62,14 @@ FMModelExporter >> export: aCollectionOfElements [
 ]
 
 { #category : #exporting }
-FMModelExporter >> exportElement: each [
-	| meta |
-	meta := model metaDescriptionOf: each.
+FMModelExporter >> exportElement: anObject [
+	| metaDescription |
+	metaDescription := model metaDescriptionOf: anObject.
 
 	printer
-		inElement: meta fullName
-		do: [ printer serial: (self indexOf: each).
-			(self sortedPropertiesOf: meta) do: [ :property | self exportProperty: property for: each ] ].
+		inClass: metaDescription fullName
+		do: [ printer serial: (self indexOf: anObject).
+			(self sortedPropertiesOf: metaDescription) do: [ :property | self exportProperty: property for: anObject ] ].
 
 	self incrementProgressBar
 ]
