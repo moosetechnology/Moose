@@ -105,7 +105,7 @@ FMImporter >> endElement: name [
 
 { #category : #parsing }
 FMImporter >> endProperty: name [
-	self currentElement endProperty: name
+	self currentElement endProperty
 ]
 
 { #category : #accessing }

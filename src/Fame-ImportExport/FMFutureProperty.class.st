@@ -14,13 +14,6 @@ FMFutureProperty >> addToValues: anObject [
 	values add: anObject
 ]
 
-{ #category : #parsing }
-FMFutureProperty >> endProperty: aString [
-	"A well formated MSE file should end a property with 0 dangling references and we could assert it. But removing the assertiong makes the parser tolerant so some defects in MSE files."
-
-	self maybeEnd
-]
-
 { #category : #accessing }
 FMFutureProperty >> importer [
 	^ self parentElement importer

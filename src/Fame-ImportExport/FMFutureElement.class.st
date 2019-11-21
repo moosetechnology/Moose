@@ -27,8 +27,8 @@ FMFutureElement >> currentProperty [
 ]
 
 { #category : #parsing }
-FMFutureElement >> endProperty: aString [
-	currentProperty endProperty: aString.
+FMFutureElement >> endProperty [
+	currentProperty maybeEnd.
 	currentProperty := nil
 ]
 
