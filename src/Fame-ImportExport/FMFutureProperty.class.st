@@ -2,7 +2,6 @@ Class {
 	#name : #FMFutureProperty,
 	#superclass : #FMFuture,
 	#instVars : [
-		'name',
 		'values',
 		'parentElement'
 	],
@@ -14,13 +13,6 @@ FMFutureProperty >> addToValues: anObject [
 	values add: anObject
 ]
 
-{ #category : #parsing }
-FMFutureProperty >> endProperty: aString [
-	"A well formated MSE file should end a property with 0 dangling references and we could assert it. But removing the assertiong makes the parser tolerant so some defects in MSE files."
-
-	self maybeEnd
-]
-
 { #category : #accessing }
 FMFutureProperty >> importer [
 	^ self parentElement importer
@@ -29,7 +21,7 @@ FMFutureProperty >> importer [
 { #category : #initialization }
 FMFutureProperty >> in: aFutureElement named: aString [
 	parentElement := aFutureElement.
-	name := aString
+	metaDescription := parentElement metaDescription propertyNamed: aString ifAbsent: [ aString ]
 ]
 
 { #category : #initialization }
@@ -40,15 +32,13 @@ FMFutureProperty >> initialize [
 
 { #category : #parsing }
 FMFutureProperty >> maybeEnd [
-	| property |
+	"If the property still has dangling references we cannot end it."
 	self numberOfDanglingReferences isZero ifFalse: [ ^ self ].
 
-	property := parentElement metaDescription
-		propertyNamed: name
-		ifAbsent: [ parentElement instance handleFameProperty: name value: values.
-			^ self ].
-
-	property setOn: parentElement instance values: values
+	"If the MM does not contains the property, we use the name of the property to let a chance to some entities to manage missing properties."
+	metaDescription isFM3Property
+		ifTrue: [ metaDescription setOn: parentElement instance values: values ]
+		ifFalse: [ parentElement instance handleFameProperty: metaDescription value: values ]
 ]
 
 { #category : #accessing }
