@@ -3,7 +3,6 @@ Class {
 	#superclass : #FMFuture,
 	#instVars : [
 		'instance',
-		'metaDescription',
 		'currentProperty',
 		'importer'
 	],
@@ -49,9 +48,4 @@ FMFutureElement >> in: anImporter named: aString [
 { #category : #accessing }
 FMFutureElement >> instance [
 	^ instance
-]
-
-{ #category : #accessing }
-FMFutureElement >> metaDescription [
-	^ metaDescription
 ]

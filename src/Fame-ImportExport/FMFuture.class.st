@@ -1,6 +1,9 @@
 Class {
 	#name : #FMFuture,
 	#superclass : #Object,
+	#instVars : [
+		'metaDescription'
+	],
 	#category : #'Fame-ImportExport-Importers'
 }
 
@@ -19,4 +22,9 @@ FMFuture >> importer [
 { #category : #initialization }
 FMFuture >> in: anOwner named: aString [
 	self subclassResponsibility
+]
+
+{ #category : #accessing }
+FMFuture >> metaDescription [
+	^ metaDescription
 ]
