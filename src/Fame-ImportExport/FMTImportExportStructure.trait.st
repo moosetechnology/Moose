@@ -9,7 +9,7 @@ FMTImportExportStructure >> beginDocument [
 ]
 
 { #category : #parsing }
-FMTImportExportStructure >> beginElement: name [
+FMTImportExportStructure >> beginEntity: name [
 	^ self explicitRequirement
 ]
 
@@ -24,7 +24,7 @@ FMTImportExportStructure >> endDocument [
 ]
 
 { #category : #parsing }
-FMTImportExportStructure >> endElement: name [
+FMTImportExportStructure >> endEntity: name [
 	^ self explicitRequirement
 ]
 
@@ -41,10 +41,10 @@ FMTImportExportStructure >> inDocumentDo: aBlock [
 ]
 
 { #category : #parsing }
-FMTImportExportStructure >> inElement: aString do: aBlock [
-	self beginElement: aString.
+FMTImportExportStructure >> inEntity: aString do: aBlock [
+	self beginEntity: aString.
 	aBlock value.
-	self endElement: aString
+	self endEntity: aString
 ]
 
 { #category : #parsing }

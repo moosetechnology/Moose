@@ -18,7 +18,7 @@ FMMSEParser >> Document [
 	"Matches a document node (returns a boolean)."
 
 	"Document := EOF { openDocument; closeDocument }
-		| OPEN { openDocument } Element* CLOSE { closeDocument }"
+		| OPEN { openDocument } Entity* CLOSE { closeDocument }"
 
 	self tWHITESPACE.
 	self atEnd
@@ -26,7 +26,7 @@ FMMSEParser >> Document [
 		ifFalse: [ self tOPEN
 				ifFalse: [ ^ self syntaxError ].
 			importer beginDocument.
-			[ self Element ] whileTrue.
+			[ self Entity ] whileTrue.
 			self tCLOSE
 				ifFalse: [ ^ self syntaxError ] ].
 	importer endDocument.
@@ -35,10 +35,10 @@ FMMSEParser >> Document [
 ]
 
 { #category : #expressions }
-FMMSEParser >> Element [
-	"Matches an element node (returns boolean)."
+FMMSEParser >> Entity [
+	"Matches an entity node (returns boolean)."
 
-	"Element := OPEN n:FULLNAME { beginElement(n) } Serial? Property* CLOSE { endElement(n) }"
+	"Entity := OPEN n:FULLNAME { beginElement(n) } Serial? Property* CLOSE { endElement(n) }"
 
 	| pos name |
 	pos := self position.
@@ -46,7 +46,7 @@ FMMSEParser >> Element [
 	name := self tFULLNAME.
 	name ifNil: [ ^ self backtrack: pos ].
 	importer
-		inElement: name
+		inEntity: name
 		do: [ self Serial.
 			[ self Property ] whileTrue.
 			self tCLOSE ifFalse: [ ^ self syntaxError ] ].
@@ -220,9 +220,9 @@ FMMSEParser >> String [
 FMMSEParser >> Value [
 	"Matchs a value (returns true)."
 
-	"Value := Reference | Primitive | Element"
+	"Value := Reference | Primitive | Entity"
 
-	^ self Primitive or: [ self Reference or: [ self Reference2 or: [ self Element ] ] ]
+	^ self Primitive or: [ self Reference or: [ self Reference2 or: [ self Entity ] ] ]
 ]
 
 { #category : #testing }

@@ -1,5 +1,5 @@
 Class {
-	#name : #FMFutureElement,
+	#name : #FMFutureEntity,
 	#superclass : #FMFuture,
 	#instVars : [
 		'instance',
@@ -10,23 +10,23 @@ Class {
 }
 
 { #category : #adding }
-FMFutureElement >> addToPropertyValues: anObject [
+FMFutureEntity >> addToPropertyValues: anObject [
 	self currentProperty addToValues: anObject
 ]
 
 { #category : #parsing }
-FMFutureElement >> beginProperty: aString [
+FMFutureEntity >> beginProperty: aString [
 	self assert: currentProperty isNil.
 	currentProperty := FMFutureProperty in: self named: aString
 ]
 
 { #category : #accessing }
-FMFutureElement >> currentProperty [
+FMFutureEntity >> currentProperty [
 	^ currentProperty
 ]
 
 { #category : #parsing }
-FMFutureElement >> endProperty [
+FMFutureEntity >> endProperty [
 	"A well formated MSE file should end a property with 0 dangling references and we could assert it. But removing the assertiong makes the parser tolerant so some defects in MSE files."
 
 	currentProperty maybeEnd.
@@ -34,18 +34,18 @@ FMFutureElement >> endProperty [
 ]
 
 { #category : #accessing }
-FMFutureElement >> importer [
+FMFutureEntity >> importer [
 	^ importer
 ]
 
 { #category : #initialization }
-FMFutureElement >> in: anImporter named: aString [
+FMFutureEntity >> in: anImporter named: aString [
 	importer := anImporter.
 	metaDescription := importer metamodel elementNamed: aString.
 	instance := metaDescription createInstance
 ]
 
 { #category : #accessing }
-FMFutureElement >> instance [
+FMFutureEntity >> instance [
 	^ instance
 ]
