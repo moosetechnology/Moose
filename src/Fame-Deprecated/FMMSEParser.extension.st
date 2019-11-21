@@ -7,12 +7,6 @@ FMMSEParser >> Attribute [
 ]
 
 { #category : #'*Fame-Deprecated' }
-FMMSEParser >> Element [
-	self deprecated: 'Use #Class instead.' transformWith: '``@object Element' -> '``@object Class'.
-	^ self Class
-]
-
-{ #category : #'*Fame-Deprecated' }
 FMMSEParser >> client [
 	self deprecated: 'Use #importer instead' transformWith: '`@receiver client' -> '`@receiver importer'.
 	^ self importer

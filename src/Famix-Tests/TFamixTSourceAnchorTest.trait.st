@@ -9,7 +9,7 @@ Trait {
 }
 
 { #category : #tests }
-TFamixTSourceAnchorTest >> testClass [
+TFamixTSourceAnchorTest >> testElement [
 element := MooseEntity new copyWithTalent: FamixTWithSourceAnchor. 
 element class initializeSlots: element.
 model add: element.

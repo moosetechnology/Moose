@@ -80,13 +80,6 @@ FMImporter >> autorizeDandlingReferencesAtEnd [
 ]
 
 { #category : #parsing }
-FMImporter >> beginClass: name [
-	| translatedName |
-	translatedName := self translationUnit translate: name.
-	stack push: (FMFutureClass in: self named: translatedName)
-]
-
-{ #category : #parsing }
 FMImporter >> beginDocument [
 	stack := Stack new.
 	elements := OrderedCollection new.
@@ -96,12 +89,19 @@ FMImporter >> beginDocument [
 ]
 
 { #category : #parsing }
+FMImporter >> beginElement: name [
+	| translatedName |
+	translatedName := self translationUnit translate: name.
+	stack push: (FMFutureElement in: self named: translatedName)
+]
+
+{ #category : #parsing }
 FMImporter >> beginProperty: name [
-	self currentClass beginProperty: name
+	self currentElement beginProperty: name
 ]
 
 { #category : #accessing }
-FMImporter >> currentClass [
+FMImporter >> currentElement [
 	^ stack top
 ]
 
@@ -117,13 +117,9 @@ FMImporter >> elementAt: aSerial ifAbsent: aBlock [
 	^ serialDict at: aSerial ifAbsent: aBlock
 ]
 
-{ #category : #parsing }
-FMImporter >> endClass: name [
-	| future element |
-	future := stack pop.
-	element := future instance.
-	elements add: element.
-	stack ifNotEmpty: [ self currentClass addToPropertyValues: element ]
+{ #category : #accessing }
+FMImporter >> elements [
+	^ elements
 ]
 
 { #category : #parsing }
@@ -135,8 +131,17 @@ FMImporter >> endDocument [
 ]
 
 { #category : #parsing }
+FMImporter >> endElement: name [
+	| future element |
+	future := stack pop.
+	element := future instance.
+	elements add: element.
+	stack ifNotEmpty: [ self currentElement addToPropertyValues: element ]
+]
+
+{ #category : #parsing }
 FMImporter >> endProperty: name [
-	self currentClass endProperty
+	self currentElement endProperty
 ]
 
 { #category : #accessing }
@@ -168,17 +173,17 @@ FMImporter >> model: aModel [
 
 { #category : #parsing }
 FMImporter >> primitive: value [
-	self currentClass addToPropertyValues: value
+	self currentElement addToPropertyValues: value
 ]
 
 { #category : #parsing }
 FMImporter >> referenceName: name [
-	self currentClass addToPropertyValues: (model elementNamed: name)
+	self currentElement addToPropertyValues: (model elementNamed: name)
 ]
 
 { #category : #parsing }
 FMImporter >> referenceNumber: serial [
-	self currentClass currentProperty referenceNumber: serial
+	self currentElement currentProperty referenceNumber: serial
 ]
 
 { #category : #running }
@@ -191,7 +196,7 @@ FMImporter >> run [
 
 { #category : #parsing }
 FMImporter >> serial: serial [
-	self assign: self currentClass instance to: serial
+	self assign: self currentElement instance to: serial
 ]
 
 { #category : #accessing }
