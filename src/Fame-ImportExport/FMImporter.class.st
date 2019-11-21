@@ -44,19 +44,19 @@ FMImporter >> autorizeDandlingReferencesAtEnd [
 ]
 
 { #category : #parsing }
+FMImporter >> beginClass: name [
+	| translatedName |
+	translatedName := self translationUnit translate: name.
+	stack push: (FMFutureClass in: self named: translatedName)
+]
+
+{ #category : #parsing }
 FMImporter >> beginDocument [
 	stack := Stack new.
 	elements := OrderedCollection new.
 	serialDict := IdentityDictionary new.
 	reminderDict := IdentityDictionary new.
 	numberOfDanglingReferences := 0
-]
-
-{ #category : #parsing }
-FMImporter >> beginElement: name [
-	| translatedName |
-	translatedName := self translationUnit translate: name.
-	stack push: (FMFutureElement in: self named: translatedName)
 ]
 
 { #category : #parsing }
@@ -87,20 +87,20 @@ FMImporter >> elements [
 ]
 
 { #category : #parsing }
-FMImporter >> endDocument [
-	self assert: stack isEmpty.
-	stack := nil.
-	ensureNoDandlingReferences ifTrue: [ numberOfDanglingReferences isZero ifFalse: [ FMUnresolvedDanglingReferences signal ] ].
-	model addAll: elements
-]
-
-{ #category : #parsing }
-FMImporter >> endElement: name [
+FMImporter >> endClass: name [
 	| future element |
 	future := stack pop.
 	element := future instance.
 	elements add: element.
 	stack ifNotEmpty: [ self currentElement addToPropertyValues: element ]
+]
+
+{ #category : #parsing }
+FMImporter >> endDocument [
+	self assert: stack isEmpty.
+	stack := nil.
+	ensureNoDandlingReferences ifTrue: [ numberOfDanglingReferences isZero ifFalse: [ FMUnresolvedDanglingReferences signal ] ].
+	model addAll: elements
 ]
 
 { #category : #parsing }

@@ -28,7 +28,7 @@ FMModelExporter >> exportElement: each [
 	meta := model metaDescriptionOf: each.
 
 	printer
-		inElement: meta fullName
+		inClass: meta fullName
 		do: [ printer serial: (self indexOf: each).
 			(self sortedPropertiesOf: meta) do: [ :property | self exportProperty: property for: each ] ].
 

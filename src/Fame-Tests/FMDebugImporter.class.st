@@ -10,13 +10,13 @@ Class {
 }
 
 { #category : #parsing }
-FMDebugImporter >> beginDocument [
-	a := a copyWith: (Array with: #beginDocument)
+FMDebugImporter >> beginClass: name [ 
+	a := a copyWith: (Array with:   #beginClass: with: name)
 ]
 
 { #category : #parsing }
-FMDebugImporter >> beginElement: name [ 
-	a := a copyWith: (Array with:   #beginElement: with: name)
+FMDebugImporter >> beginDocument [
+	a := a copyWith: (Array with: #beginDocument)
 ]
 
 { #category : #parsing }
@@ -30,13 +30,13 @@ FMDebugImporter >> contents [
 ]
 
 { #category : #parsing }
-FMDebugImporter >> endDocument [
-	a := a copyWith: (Array with: #endDocument)
+FMDebugImporter >> endClass: name [ 
+	a := a copyWith: (Array with: #endClass: with: name)
 ]
 
 { #category : #parsing }
-FMDebugImporter >> endElement: name [ 
-	a := a copyWith: (Array with: #endElement: with: name)
+FMDebugImporter >> endDocument [
+	a := a copyWith: (Array with: #endDocument)
 ]
 
 { #category : #parsing }

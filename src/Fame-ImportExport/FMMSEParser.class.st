@@ -46,7 +46,7 @@ FMMSEParser >> Element [
 	name := self tFULLNAME.
 	name ifNil: [ ^ self backtrack: pos ].
 	importer
-		inElement: name
+		inClass: name
 		do: [ self Serial.
 			[ self Property ] whileTrue.
 			self tCLOSE ifFalse: [ ^ self syntaxError ] ].

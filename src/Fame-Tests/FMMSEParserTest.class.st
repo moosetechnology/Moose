@@ -494,7 +494,7 @@ FMMSEParserTest >> testBacktrack [
 
 { #category : #tests }
 FMMSEParserTest >> testElement [
-	a := #(#(#beginElement: 'Foo') #(#endElement: 'Foo')).
+	a := #(#(#beginClass: 'Foo') #(#endClass: 'Foo')).
 	r reset.
 	p fromString: '(Foo)'.
 	p Element.
@@ -509,7 +509,7 @@ FMMSEParserTest >> testElement [
 
 { #category : #tests }
 FMMSEParserTest >> testElementWithID [
-	a := #(#(#beginElement: 'Foo') #(#serial: 42) #(#endElement: 'Foo')).
+	a := #(#(#beginClass: 'Foo') #(#serial: 42) #(#endClass: 'Foo')).
 	r reset.
 	p fromString: '(Foo(id:42))'.
 	p Element.
@@ -524,7 +524,7 @@ FMMSEParserTest >> testElementWithID [
 
 { #category : #tests }
 FMMSEParserTest >> testElementWithPropertys [
-	a := #(#(#beginElement: 'Foo') #(#beginProperty: 'name') #(#endProperty: 'name') #(#beginProperty: 'count') #(#endProperty: 'count') #(#endElement: 'Foo')).
+	a := #(#(#beginClass: 'Foo') #(#beginProperty: 'name') #(#endProperty: 'name') #(#beginProperty: 'count') #(#endProperty: 'count') #(#endClass: 'Foo')).
 	r reset.
 	p fromString: '(Foo(name)(count))'.
 	p Element.
@@ -539,7 +539,7 @@ FMMSEParserTest >> testElementWithPropertys [
 
 { #category : #tests }
 FMMSEParserTest >> testElementWithPropertysAndID [
-	a := #(#(#beginElement: 'Foo') #(#serial: 42) #(#beginProperty: 'name') #(#endProperty: 'name') #(#beginProperty: 'count') #(#endProperty: 'count') #(#endElement: 'Foo')).
+	a := #(#(#beginClass: 'Foo') #(#serial: 42) #(#beginProperty: 'name') #(#endProperty: 'name') #(#beginProperty: 'count') #(#endProperty: 'count') #(#endClass: 'Foo')).
 	r reset.
 	p fromString: '(Foo(id:42)(name)(count))'.
 	p Element.
@@ -844,7 +844,7 @@ FMMSEParserTest >> testPropertyWithBoolean [
 
 { #category : #tests }
 FMMSEParserTest >> testPropertyWithElements [
-	a := #(#(#beginProperty: 'name') #(#beginElement: 'Foo') #(#endElement: 'Foo') #(#beginElement: 'Bar') #(#endElement: 'Bar') #(#endProperty: 'name')).
+	a := #(#(#beginProperty: 'name') #(#beginClass: 'Foo') #(#endClass: 'Foo') #(#beginClass: 'Bar') #(#endClass: 'Bar') #(#endProperty: 'name')).
 	r reset.
 	p fromString: '(name(Foo)(Bar))'.
 	p Property.

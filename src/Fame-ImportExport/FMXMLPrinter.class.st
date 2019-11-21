@@ -5,15 +5,7 @@ Class {
 }
 
 { #category : #parsing }
-FMXMLPrinter >> beginDocument [
-	
-	stream nextPutAll: '<?xml version="1.0"?>'.
-	self crTabs.
-	stream nextPutAll: '<Document'.
-]
-
-{ #category : #parsing }
-FMXMLPrinter >> beginElement: name [
+FMXMLPrinter >> beginClass: name [
 
 	stream nextPut: $>.
 	indent := indent + 1.
@@ -22,6 +14,14 @@ FMXMLPrinter >> beginElement: name [
 		nextPutAll: '<Element name="';
 		nextPutAll: name;
 		nextPutAll: '"'
+]
+
+{ #category : #parsing }
+FMXMLPrinter >> beginDocument [
+	
+	stream nextPutAll: '<?xml version="1.0"?>'.
+	self crTabs.
+	stream nextPutAll: '<Document'.
 ]
 
 { #category : #parsing }
@@ -37,21 +37,21 @@ FMXMLPrinter >> beginProperty: name [
 ]
 
 { #category : #parsing }
-FMXMLPrinter >> endDocument [
-	
-	stream nextPut: $>.
-	self crTabs.
-	stream nextPutAll: '</Document>'
-]
-
-{ #category : #parsing }
-FMXMLPrinter >> endElement: name [
+FMXMLPrinter >> endClass: name [
 
 	stream nextPut: $>.
 	self crTabs.
 	stream 
 		nextPutAll: '</Element'.
 	indent := indent - 1.
+]
+
+{ #category : #parsing }
+FMXMLPrinter >> endDocument [
+	
+	stream nextPut: $>.
+	self crTabs.
+	stream nextPutAll: '</Document>'
 ]
 
 { #category : #parsing }
