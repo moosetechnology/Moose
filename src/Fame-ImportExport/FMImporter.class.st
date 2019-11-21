@@ -5,14 +5,14 @@ Class {
 	#classTraits : 'FMTImportExportStructure classTrait',
 	#instVars : [
 		'stack',
-		'elements',
 		'model',
 		'stream',
 		'reminderDict',
 		'serialDict',
 		'translationUnit',
 		'ensureNoDandlingReferences',
-		'numberOfDanglingReferences'
+		'numberOfDanglingReferences',
+		'entities'
 	],
 	#category : #'Fame-ImportExport-Importers'
 }
@@ -46,26 +46,26 @@ FMImporter >> autorizeDandlingReferencesAtEnd [
 { #category : #parsing }
 FMImporter >> beginDocument [
 	stack := Stack new.
-	elements := OrderedCollection new.
+	entities := OrderedCollection new.
 	serialDict := IdentityDictionary new.
 	reminderDict := IdentityDictionary new.
 	numberOfDanglingReferences := 0
 ]
 
 { #category : #parsing }
-FMImporter >> beginElement: name [
+FMImporter >> beginEntity: name [
 	| translatedName |
 	translatedName := self translationUnit translate: name.
-	stack push: (FMFutureElement in: self named: translatedName)
+	stack push: (FMFutureEntity in: self named: translatedName)
 ]
 
 { #category : #parsing }
 FMImporter >> beginProperty: name [
-	self currentElement beginProperty: name
+	self currentEntity beginProperty: name
 ]
 
 { #category : #accessing }
-FMImporter >> currentElement [
+FMImporter >> currentEntity [
 	^ stack top
 ]
 
@@ -76,36 +76,31 @@ FMImporter >> dangling: reference to: serial [
 	^ reference
 ]
 
-{ #category : #accessing }
-FMImporter >> elementAt: aSerial ifAbsent: aBlock [
-	^ serialDict at: aSerial ifAbsent: aBlock
-]
-
-{ #category : #accessing }
-FMImporter >> elements [
-	^ elements
-]
-
 { #category : #parsing }
 FMImporter >> endDocument [
 	self assert: stack isEmpty.
 	stack := nil.
 	ensureNoDandlingReferences ifTrue: [ numberOfDanglingReferences isZero ifFalse: [ FMUnresolvedDanglingReferences signal ] ].
-	model addAll: elements
+	model addAll: entities
 ]
 
 { #category : #parsing }
-FMImporter >> endElement: name [
-	| future element |
+FMImporter >> endEntity: name [
+	| future entity |
 	future := stack pop.
-	element := future instance.
-	elements add: element.
-	stack ifNotEmpty: [ self currentElement addToPropertyValues: element ]
+	entity := future instance.
+	entities add: entity.
+	stack ifNotEmpty: [ self currentEntity addToPropertyValues: entity ]
 ]
 
 { #category : #parsing }
 FMImporter >> endProperty: name [
-	self currentElement endProperty
+	self currentEntity endProperty
+]
+
+{ #category : #accessing }
+FMImporter >> entityAt: aSerial ifAbsent: aBlock [
+	^ serialDict at: aSerial ifAbsent: aBlock
 ]
 
 { #category : #accessing }
@@ -137,17 +132,17 @@ FMImporter >> model: aModel [
 
 { #category : #parsing }
 FMImporter >> primitive: value [
-	self currentElement addToPropertyValues: value
+	self currentEntity addToPropertyValues: value
 ]
 
 { #category : #parsing }
 FMImporter >> referenceName: name [
-	self currentElement addToPropertyValues: (model elementNamed: name)
+	self currentEntity addToPropertyValues: (model elementNamed: name)
 ]
 
 { #category : #parsing }
 FMImporter >> referenceNumber: serial [
-	self currentElement currentProperty referenceNumber: serial
+	self currentEntity currentProperty referenceNumber: serial
 ]
 
 { #category : #running }
@@ -160,7 +155,7 @@ FMImporter >> run [
 
 { #category : #parsing }
 FMImporter >> serial: serial [
-	self assign: self currentElement instance to: serial
+	self assign: self currentEntity instance to: serial
 ]
 
 { #category : #accessing }

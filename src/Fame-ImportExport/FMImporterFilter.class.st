@@ -25,10 +25,10 @@ FMImporterFilter >> beginDocument [
 ]
 
 { #category : #parsing }
-FMImporterFilter >> beginElement: name [
+FMImporterFilter >> beginEntity: name [
 	(filter includes: name)
 		ifTrue: [ shouldSkip := false.
-			parserClient beginElement: name ]
+			parserClient beginEntity: name ]
 		ifFalse: [ shouldSkip := true ]
 ]
 
@@ -43,8 +43,8 @@ FMImporterFilter >> endDocument [
 ]
 
 { #category : #parsing }
-FMImporterFilter >> endElement: name [
-	shouldSkip ifFalse: [ parserClient endElement: name ]
+FMImporterFilter >> endEntity: name [
+	shouldSkip ifFalse: [ parserClient endEntity: name ]
 ]
 
 { #category : #parsing }

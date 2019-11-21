@@ -17,5 +17,5 @@ MSEImporter >> endDocument [
 	
 	self assert: [ stack isEmpty ].
 	stack := nil.
-	model addAll: elements.
+	model addAll: entities.
 ]

@@ -125,7 +125,7 @@ FMImporterTest >> testResolvingMultiArgs [
 	| importer pack ref2 ref4 ref5 model |
 	importer := (FMImporter model: FMMetaModel new)
 		beginDocument;
-		beginElement: 'FM3.Package';
+		beginEntity: 'FM3.Package';
 		serial: 3;
 		beginProperty: 'name';
 		primitive: 'MyPackage';
@@ -136,8 +136,8 @@ FMImporterTest >> testResolvingMultiArgs [
 		referenceNumber: 2;
 		referenceNumber: 5;
 		endProperty: 'classes';
-		endElement: 'FM3.Package';
-		beginElement: 'FM3.Class';
+		endEntity: 'FM3.Package';
+		beginEntity: 'FM3.Class';
 		serial: 2;
 		beginProperty: 'name';
 		primitive: 'MyName2';
@@ -145,8 +145,8 @@ FMImporterTest >> testResolvingMultiArgs [
 		beginProperty: 'superclass';
 		referenceNumber: 5;
 		endProperty: 'superclass';
-		endElement: 'FM3.Class';
-		beginElement: 'FM3.Class';
+		endEntity: 'FM3.Class';
+		beginEntity: 'FM3.Class';
 		serial: 4;
 		beginProperty: 'superclass';
 		referenceNumber: 2;
@@ -154,13 +154,13 @@ FMImporterTest >> testResolvingMultiArgs [
 		beginProperty: 'name';
 		primitive: 'MyName4';
 		endProperty: 'name';
-		endElement: 'FM3.Class';
-		beginElement: 'FM3.Class';
+		endEntity: 'FM3.Class';
+		beginEntity: 'FM3.Class';
 		serial: 5;
 		beginProperty: 'name';
 		primitive: 'MyName5';
 		endProperty: 'name';
-		endElement: 'FM3.Class';
+		endEntity: 'FM3.Class';
 		endDocument;
 		yourself.
 	model := importer model.
