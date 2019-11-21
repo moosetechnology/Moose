@@ -75,10 +75,10 @@ FMImporterFilter >> importer [
 ]
 
 { #category : #accessing }
-FMImporterFilter >> importer: aFMParserClient [
-	"ParserClient will be we the FMParserClient that will execute the concrete operations. This class only provided the filtering aspect"
+FMImporterFilter >> importer: aFMImporter [
+	"Importer will be we the FMImporter that will execute the concrete operations. This class only provided the filtering aspect"
 
-	importer := aFMParserClient
+	importer := aFMImporter
 ]
 
 { #category : #accessing }
