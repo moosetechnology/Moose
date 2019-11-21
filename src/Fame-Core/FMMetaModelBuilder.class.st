@@ -154,7 +154,7 @@ FMMetaModelBuilder >> extractPackageFrom: method for: aFM3Element [
 
 { #category : #running }
 FMMetaModelBuilder >> implementingPackages [
-	^ implementingPackages ifNil: [ implementingPackages := queue collectAsSet: #package ]
+	^ implementingPackages ifNil: [ implementingPackages := queue collect: #package as: Set ]
 ]
 
 { #category : #running }
