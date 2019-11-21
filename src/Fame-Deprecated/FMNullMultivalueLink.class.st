@@ -18,8 +18,15 @@ Class {
 		'owner',
 		'opposite'
 	],
-	#category : #'Fame-Core-Utilities'
+	#category : #'Fame-Deprecated'
 }
+
+{ #category : #testing }
+FMNullMultivalueLink class >> isDeprecated [
+	"I was useful in Moose < 7 to save space, but now we should have model much more memory efficient, rendering me useless."
+
+	^ true
+]
 
 { #category : #'instance creation' }
 FMNullMultivalueLink class >> on: anOwner opposite: anOpposite selector: aSelector [
