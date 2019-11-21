@@ -15,7 +15,7 @@ Class {
 
 { #category : #meta }
 FM3Element class >> annotation [
-	<FMClass: #Element super: #Object>
+	<FMClass: #Class super: #Object>
 	<package: #FM3>
 	<abstract>
 
