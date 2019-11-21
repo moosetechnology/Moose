@@ -20,16 +20,16 @@ FMImporterFilter class >> on: aFMParserClient filtering: aCollectionOfElementNam
 ]
 
 { #category : #parsing }
-FMImporterFilter >> beginClass: name [
-	(filter includes: name)
-		ifTrue: [ shouldSkip := false.
-			parserClient beginClass: name ]
-		ifFalse: [ shouldSkip := true ]
+FMImporterFilter >> beginDocument [
+	parserClient beginDocument
 ]
 
 { #category : #parsing }
-FMImporterFilter >> beginDocument [
-	parserClient beginDocument
+FMImporterFilter >> beginElement: name [
+	(filter includes: name)
+		ifTrue: [ shouldSkip := false.
+			parserClient beginElement: name ]
+		ifFalse: [ shouldSkip := true ]
 ]
 
 { #category : #parsing }
@@ -38,13 +38,13 @@ FMImporterFilter >> beginProperty: name [
 ]
 
 { #category : #parsing }
-FMImporterFilter >> endClass: name [
-	shouldSkip ifFalse: [ parserClient endClass: name ]
+FMImporterFilter >> endDocument [
+	parserClient endDocument
 ]
 
 { #category : #parsing }
-FMImporterFilter >> endDocument [
-	parserClient endDocument
+FMImporterFilter >> endElement: name [
+	shouldSkip ifFalse: [ parserClient endElement: name ]
 ]
 
 { #category : #parsing }

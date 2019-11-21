@@ -20,7 +20,7 @@ FamixSourceAnchorTest >> actualClass [
 ]
 
 { #category : #tests }
-FamixSourceAnchorTest >> testClass [
+FamixSourceAnchorTest >> testElement [
 	| anchor m1 m2 |
 	anchor := self actualClass new.
 	m1 := FamixTest1Method named: 'method1'.

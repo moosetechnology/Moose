@@ -5,19 +5,19 @@ Class {
 }
 
 { #category : #parsing }
-FMMSEPrinter >> beginClass: name [
+FMMSEPrinter >> beginDocument [
+
+	stream nextPut: $(
+]
+
+{ #category : #parsing }
+FMMSEPrinter >> beginElement: name [
 
 	indent := indent + 1.
 	self crTabs.
 	stream 
 		nextPut: $(;
 		nextPutAll: name
-]
-
-{ #category : #parsing }
-FMMSEPrinter >> beginDocument [
-
-	stream nextPut: $(
 ]
 
 { #category : #parsing }
@@ -31,15 +31,15 @@ FMMSEPrinter >> beginProperty: name [
 ]
 
 { #category : #parsing }
-FMMSEPrinter >> endClass: name [
-
-	stream nextPut: $).
-	indent := indent - 1
+FMMSEPrinter >> endDocument [
+	stream nextPut: $)
 ]
 
 { #category : #parsing }
-FMMSEPrinter >> endDocument [
-	stream nextPut: $)
+FMMSEPrinter >> endElement: name [
+
+	stream nextPut: $).
+	indent := indent - 1
 ]
 
 { #category : #parsing }
