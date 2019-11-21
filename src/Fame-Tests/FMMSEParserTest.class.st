@@ -493,66 +493,6 @@ FMMSEParserTest >> testBacktrack [
 ]
 
 { #category : #tests }
-FMMSEParserTest >> testElement [
-	a := #(#(#beginElement: 'Foo') #(#endElement: 'Foo')).
-	r reset.
-	p fromString: '(Foo)'.
-	p Element.
-	self assert: r contents equals: a.
-	self assert: p atEnd.
-	r reset.
-	p fromString: '(  Foo  )  '.
-	p Element.
-	self assert: r contents equals: a.
-	self assert: p atEnd
-]
-
-{ #category : #tests }
-FMMSEParserTest >> testElementWithID [
-	a := #(#(#beginElement: 'Foo') #(#serial: 42) #(#endElement: 'Foo')).
-	r reset.
-	p fromString: '(Foo(id:42))'.
-	p Element.
-	self assert: r contents equals: a.
-	self assert: p atEnd.
-	r reset.
-	p fromString: '(  Foo  (  id:  42  )  )  '.
-	p Element.
-	self assert: r contents equals: a.
-	self assert: p atEnd
-]
-
-{ #category : #tests }
-FMMSEParserTest >> testElementWithPropertys [
-	a := #(#(#beginElement: 'Foo') #(#beginProperty: 'name') #(#endProperty: 'name') #(#beginProperty: 'count') #(#endProperty: 'count') #(#endElement: 'Foo')).
-	r reset.
-	p fromString: '(Foo(name)(count))'.
-	p Element.
-	self assert: r contents equals: a.
-	self assert: p atEnd.
-	r reset.
-	p fromString: '(  Foo  (  name  )  (  count  )  )  '.
-	p Element.
-	self assert: r contents equals: a.
-	self assert: p atEnd
-]
-
-{ #category : #tests }
-FMMSEParserTest >> testElementWithPropertysAndID [
-	a := #(#(#beginElement: 'Foo') #(#serial: 42) #(#beginProperty: 'name') #(#endProperty: 'name') #(#beginProperty: 'count') #(#endProperty: 'count') #(#endElement: 'Foo')).
-	r reset.
-	p fromString: '(Foo(id:42)(name)(count))'.
-	p Element.
-	self assert: r contents equals: a.
-	self assert: p atEnd.
-	r reset.
-	p fromString: '(  Foo  (  id:  42  )  (  name  )  (  count  )  )  '.
-	p Element.
-	self assert: r contents equals: a.
-	self assert: p atEnd
-]
-
-{ #category : #tests }
 FMMSEParserTest >> testEmptyDocument [
 	p fromString: ''.
 	p Document.
@@ -565,6 +505,66 @@ FMMSEParserTest >> testEmptyExportString [
 	p fromString: ''.
 	p Document.
 	self assert: r exportString equals: '()'
+]
+
+{ #category : #tests }
+FMMSEParserTest >> testEntity [
+	a := #(#(#beginEntity: 'Foo') #(#endEntity: 'Foo')).
+	r reset.
+	p fromString: '(Foo)'.
+	p Entity.
+	self assert: r contents equals: a.
+	self assert: p atEnd.
+	r reset.
+	p fromString: '(  Foo  )  '.
+	p Entity.
+	self assert: r contents equals: a.
+	self assert: p atEnd
+]
+
+{ #category : #tests }
+FMMSEParserTest >> testEntityWithID [
+	a := #(#(#beginEntity: 'Foo') #(#serial: 42) #(#endEntity: 'Foo')).
+	r reset.
+	p fromString: '(Foo(id:42))'.
+	p Entity.
+	self assert: r contents equals: a.
+	self assert: p atEnd.
+	r reset.
+	p fromString: '(  Foo  (  id:  42  )  )  '.
+	p Entity.
+	self assert: r contents equals: a.
+	self assert: p atEnd
+]
+
+{ #category : #tests }
+FMMSEParserTest >> testEntityWithPropertys [
+	a := #(#(#beginEntity: 'Foo') #(#beginProperty: 'name') #(#endProperty: 'name') #(#beginProperty: 'count') #(#endProperty: 'count') #(#endEntity: 'Foo')).
+	r reset.
+	p fromString: '(Foo(name)(count))'.
+	p Entity.
+	self assert: r contents equals: a.
+	self assert: p atEnd.
+	r reset.
+	p fromString: '(  Foo  (  name  )  (  count  )  )  '.
+	p Entity.
+	self assert: r contents equals: a.
+	self assert: p atEnd
+]
+
+{ #category : #tests }
+FMMSEParserTest >> testEntityWithPropertysAndID [
+	a := #(#(#beginEntity: 'Foo') #(#serial: 42) #(#beginProperty: 'name') #(#endProperty: 'name') #(#beginProperty: 'count') #(#endProperty: 'count') #(#endEntity: 'Foo')).
+	r reset.
+	p fromString: '(Foo(id:42)(name)(count))'.
+	p Entity.
+	self assert: r contents equals: a.
+	self assert: p atEnd.
+	r reset.
+	p fromString: '(  Foo  (  id:  42  )  (  name  )  (  count  )  )  '.
+	p Entity.
+	self assert: r contents equals: a.
+	self assert: p atEnd
 ]
 
 { #category : #tests }
@@ -843,8 +843,8 @@ FMMSEParserTest >> testPropertyWithBoolean [
 ]
 
 { #category : #tests }
-FMMSEParserTest >> testPropertyWithElements [
-	a := #(#(#beginProperty: 'name') #(#beginElement: 'Foo') #(#endElement: 'Foo') #(#beginElement: 'Bar') #(#endElement: 'Bar') #(#endProperty: 'name')).
+FMMSEParserTest >> testPropertyWithEntitys [
+	a := #(#(#beginProperty: 'name') #(#beginEntity: 'Foo') #(#endEntity: 'Foo') #(#beginEntity: 'Bar') #(#endEntity: 'Bar') #(#endProperty: 'name')).
 	r reset.
 	p fromString: '(name(Foo)(Bar))'.
 	p Property.

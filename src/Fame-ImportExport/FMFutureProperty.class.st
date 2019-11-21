@@ -31,12 +31,12 @@ FMFutureProperty >> addToValues: anObject [
 
 { #category : #accessing }
 FMFutureProperty >> importer [
-	^ self parentElement importer
+	^ self parentEntity importer
 ]
 
 { #category : #initialization }
-FMFutureProperty >> in: aFutureElement named: aString [
-	parentElement := aFutureElement.
+FMFutureProperty >> in: aFutureEntity named: aString [
+	parentElement := aFutureEntity.
 	metaDescription := parentElement metaDescription propertyNamed: aString ifAbsent: [ aString ]
 ]
 
@@ -63,13 +63,13 @@ FMFutureProperty >> numberOfDanglingReferences [
 ]
 
 { #category : #accessing }
-FMFutureProperty >> parentElement [
+FMFutureProperty >> parentEntity [
 	^ parentElement
 ]
 
 { #category : #parsing }
 FMFutureProperty >> referenceNumber: serial [
-	self addToValues: (self importer elementAt: serial ifAbsent: [ self importer dangling: (FMDanglingReference with: self) to: serial ])
+	self addToValues: (self importer entityAt: serial ifAbsent: [ self importer dangling: (FMDanglingReference with: self) to: serial ])
 ]
 
 { #category : #parsing }

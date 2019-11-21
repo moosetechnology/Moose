@@ -27,7 +27,7 @@ FMXMLPrinter >> beginDocument [
 ]
 
 { #category : #parsing }
-FMXMLPrinter >> beginElement: name [
+FMXMLPrinter >> beginEntity: name [
 
 	stream nextPut: $>.
 	indent := indent + 1.
@@ -59,7 +59,7 @@ FMXMLPrinter >> endDocument [
 ]
 
 { #category : #parsing }
-FMXMLPrinter >> endElement: name [
+FMXMLPrinter >> endEntity: name [
 
 	stream nextPut: $>.
 	self crTabs.

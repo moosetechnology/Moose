@@ -1,7 +1,7 @@
-Extension { #name : #FMFutureElement }
+Extension { #name : #FMFutureEntity }
 
 { #category : #'*Fame-Deprecated' }
-FMFutureElement >> current [
+FMFutureEntity >> current [
 	self deprecated: 'Use #currentProperty instead' transformWith: '`@receiver current' -> '`@receiver currentProperty'.
 	^ self currentProperty
 ]

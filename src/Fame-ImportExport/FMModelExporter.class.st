@@ -58,16 +58,16 @@ FMModelExporter class >> new [
 
 { #category : #exporting }
 FMModelExporter >> export: aCollectionOfElements [
-	printer inDocumentDo: [ aCollectionOfElements do: [ :each | self exportElement: each ] ]
+	printer inDocumentDo: [ aCollectionOfElements do: [ :each | self exportEntity: each ] ]
 ]
 
 { #category : #exporting }
-FMModelExporter >> exportElement: each [
+FMModelExporter >> exportEntity: each [
 	| meta |
 	meta := model metaDescriptionOf: each.
 
 	printer
-		inElement: meta fullName
+		inEntity: meta fullName
 		do: [ printer serial: (self indexOf: each).
 			(self sortedPropertiesOf: meta) do: [ :property | self exportProperty: property for: each ] ].
 
@@ -97,7 +97,7 @@ FMModelExporter >> exportProperty: property withAll: values [
 						ifTrue: [ printer primitive: each ]
 						ifFalse: [
 							property isChildrenProperty
-								ifTrue: [ self exportElement: each ]
+								ifTrue: [ self exportEntity: each ]
 								ifFalse: [
 									(FM3Constant constants includes: each)
 										ifTrue: [ printer referenceName: each name ]

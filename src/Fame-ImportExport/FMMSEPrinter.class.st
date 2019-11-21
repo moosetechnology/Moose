@@ -25,7 +25,7 @@ FMMSEPrinter >> beginDocument [
 ]
 
 { #category : #parsing }
-FMMSEPrinter >> beginElement: name [
+FMMSEPrinter >> beginEntity: name [
 
 	indent := indent + 1.
 	self crTabs.
@@ -50,7 +50,7 @@ FMMSEPrinter >> endDocument [
 ]
 
 { #category : #parsing }
-FMMSEPrinter >> endElement: name [
+FMMSEPrinter >> endEntity: name [
 
 	stream nextPut: $).
 	indent := indent - 1

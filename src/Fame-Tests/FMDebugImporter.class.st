@@ -15,8 +15,8 @@ FMDebugImporter >> beginDocument [
 ]
 
 { #category : #parsing }
-FMDebugImporter >> beginElement: name [ 
-	a := a copyWith: (Array with:   #beginElement: with: name)
+FMDebugImporter >> beginEntity: name [ 
+	a := a copyWith: (Array with:   #beginEntity: with: name)
 ]
 
 { #category : #parsing }
@@ -35,8 +35,8 @@ FMDebugImporter >> endDocument [
 ]
 
 { #category : #parsing }
-FMDebugImporter >> endElement: name [ 
-	a := a copyWith: (Array with: #endElement: with: name)
+FMDebugImporter >> endEntity: name [ 
+	a := a copyWith: (Array with: #endEntity: with: name)
 ]
 
 { #category : #parsing }
