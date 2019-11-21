@@ -14,31 +14,10 @@ Class {
 }
 
 { #category : #expressions }
-FMMSEParser >> Document [
-	"Matches a document node (returns a boolean)."
-
-	"Document := EOF { openDocument; closeDocument }
-		| OPEN { openDocument } Element* CLOSE { closeDocument }"
-
-	self tWHITESPACE.
-	self atEnd
-		ifTrue: [ importer beginDocument ]
-		ifFalse: [ self tOPEN
-				ifFalse: [ ^ self syntaxError ].
-			importer beginDocument.
-			[ self Element ] whileTrue.
-			self tCLOSE
-				ifFalse: [ ^ self syntaxError ] ].
-	importer endDocument.
-	self tWHITESPACE.
-	^ true
-]
-
-{ #category : #expressions }
-FMMSEParser >> Element [
+FMMSEParser >> Class [
 	"Matches an element node (returns boolean)."
 
-	"Element := OPEN n:FULLNAME { beginElement(n) } Serial? Property* CLOSE { endElement(n) }"
+	"Class := OPEN n:FULLNAME { beginClass(n) } Serial? Property* CLOSE { endClass(n) }"
 
 	| pos name |
 	pos := self position.
@@ -46,7 +25,7 @@ FMMSEParser >> Element [
 	name := self tFULLNAME.
 	name ifNil: [ ^ self backtrack: pos ].
 	importer
-		inElement: name
+		inClass: name
 		do: [ self Serial.
 			[ self Property ] whileTrue.
 			self tCLOSE ifFalse: [ ^ self syntaxError ] ].
@@ -54,6 +33,27 @@ FMMSEParser >> Element [
 	self tWHITESPACE.
 
 	self incrementProgressBar.	"UI stuff"
+	^ true
+]
+
+{ #category : #expressions }
+FMMSEParser >> Document [
+	"Matches a document node (returns a boolean)."
+
+	"Document := EOF { openDocument; closeDocument }
+		| OPEN { openDocument } Class* CLOSE { closeDocument }"
+
+	self tWHITESPACE.
+	self atEnd
+		ifTrue: [ importer beginDocument ]
+		ifFalse: [ self tOPEN
+				ifFalse: [ ^ self syntaxError ].
+			importer beginDocument.
+			[ self Class ] whileTrue.
+			self tCLOSE
+				ifFalse: [ ^ self syntaxError ] ].
+	importer endDocument.
+	self tWHITESPACE.
 	^ true
 ]
 
@@ -220,9 +220,9 @@ FMMSEParser >> String [
 FMMSEParser >> Value [
 	"Matchs a value (returns true)."
 
-	"Value := Reference | Primitive | Element"
+	"Value := Reference | Primitive | Class"
 
-	^ self Primitive or: [ self Reference or: [ self Reference2 or: [ self Element ] ] ]
+	^ self Primitive or: [ self Reference or: [ self Reference2 or: [ self Class ] ] ]
 ]
 
 { #category : #testing }

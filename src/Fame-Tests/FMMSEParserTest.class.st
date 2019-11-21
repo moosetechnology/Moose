@@ -493,61 +493,61 @@ FMMSEParserTest >> testBacktrack [
 ]
 
 { #category : #tests }
-FMMSEParserTest >> testElement [
-	a := #(#(#beginElement: 'Foo') #(#endElement: 'Foo')).
+FMMSEParserTest >> testClass [
+	a := #(#(#beginClass: 'Foo') #(#endClass: 'Foo')).
 	r reset.
 	p fromString: '(Foo)'.
-	p Element.
+	p Class.
 	self assert: r contents equals: a.
 	self assert: p atEnd.
 	r reset.
 	p fromString: '(  Foo  )  '.
-	p Element.
+	p Class.
 	self assert: r contents equals: a.
 	self assert: p atEnd
 ]
 
 { #category : #tests }
-FMMSEParserTest >> testElementWithID [
-	a := #(#(#beginElement: 'Foo') #(#serial: 42) #(#endElement: 'Foo')).
+FMMSEParserTest >> testClassWithID [
+	a := #(#(#beginClass: 'Foo') #(#serial: 42) #(#endClass: 'Foo')).
 	r reset.
 	p fromString: '(Foo(id:42))'.
-	p Element.
+	p Class.
 	self assert: r contents equals: a.
 	self assert: p atEnd.
 	r reset.
 	p fromString: '(  Foo  (  id:  42  )  )  '.
-	p Element.
+	p Class.
 	self assert: r contents equals: a.
 	self assert: p atEnd
 ]
 
 { #category : #tests }
-FMMSEParserTest >> testElementWithPropertys [
-	a := #(#(#beginElement: 'Foo') #(#beginProperty: 'name') #(#endProperty: 'name') #(#beginProperty: 'count') #(#endProperty: 'count') #(#endElement: 'Foo')).
+FMMSEParserTest >> testClassWithPropertys [
+	a := #(#(#beginClass: 'Foo') #(#beginProperty: 'name') #(#endProperty: 'name') #(#beginProperty: 'count') #(#endProperty: 'count') #(#endClass: 'Foo')).
 	r reset.
 	p fromString: '(Foo(name)(count))'.
-	p Element.
+	p Class.
 	self assert: r contents equals: a.
 	self assert: p atEnd.
 	r reset.
 	p fromString: '(  Foo  (  name  )  (  count  )  )  '.
-	p Element.
+	p Class.
 	self assert: r contents equals: a.
 	self assert: p atEnd
 ]
 
 { #category : #tests }
-FMMSEParserTest >> testElementWithPropertysAndID [
-	a := #(#(#beginElement: 'Foo') #(#serial: 42) #(#beginProperty: 'name') #(#endProperty: 'name') #(#beginProperty: 'count') #(#endProperty: 'count') #(#endElement: 'Foo')).
+FMMSEParserTest >> testClassWithPropertysAndID [
+	a := #(#(#beginClass: 'Foo') #(#serial: 42) #(#beginProperty: 'name') #(#endProperty: 'name') #(#beginProperty: 'count') #(#endProperty: 'count') #(#endClass: 'Foo')).
 	r reset.
 	p fromString: '(Foo(id:42)(name)(count))'.
-	p Element.
+	p Class.
 	self assert: r contents equals: a.
 	self assert: p atEnd.
 	r reset.
 	p fromString: '(  Foo  (  id:  42  )  (  name  )  (  count  )  )  '.
-	p Element.
+	p Class.
 	self assert: r contents equals: a.
 	self assert: p atEnd
 ]
@@ -843,8 +843,8 @@ FMMSEParserTest >> testPropertyWithBoolean [
 ]
 
 { #category : #tests }
-FMMSEParserTest >> testPropertyWithElements [
-	a := #(#(#beginProperty: 'name') #(#beginElement: 'Foo') #(#endElement: 'Foo') #(#beginElement: 'Bar') #(#endElement: 'Bar') #(#endProperty: 'name')).
+FMMSEParserTest >> testPropertyWithClasss [
+	a := #(#(#beginProperty: 'name') #(#beginClass: 'Foo') #(#endClass: 'Foo') #(#beginClass: 'Bar') #(#endClass: 'Bar') #(#endProperty: 'name')).
 	r reset.
 	p fromString: '(name(Foo)(Bar))'.
 	p Property.
