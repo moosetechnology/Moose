@@ -21,7 +21,7 @@ Class {
 	#instVars : [
 		'shouldSkip',
 		'filter',
-		'parserClient'
+		'importer'
 	],
 	#category : #'Fame-ImportExport-Importers'
 }
@@ -29,42 +29,42 @@ Class {
 { #category : #'instance creation' }
 FMImporterFilter class >> on: aFMParserClient filtering: aCollectionOfElementNames [
 	^ self new
-		parserClient: aFMParserClient;
+		importer: aFMParserClient;
 		filter: aCollectionOfElementNames;
 		yourself
 ]
 
 { #category : #parsing }
 FMImporterFilter >> beginDocument [
-	parserClient beginDocument
+	importer beginDocument
 ]
 
 { #category : #parsing }
 FMImporterFilter >> beginEntity: name [
 	(filter includes: name)
 		ifTrue: [ shouldSkip := false.
-			parserClient beginEntity: name ]
+			importer beginEntity: name ]
 		ifFalse: [ shouldSkip := true ]
 ]
 
 { #category : #parsing }
 FMImporterFilter >> beginProperty: name [
-	shouldSkip ifFalse: [ parserClient beginProperty: name ]
+	shouldSkip ifFalse: [ importer beginProperty: name ]
 ]
 
 { #category : #parsing }
 FMImporterFilter >> endDocument [
-	parserClient endDocument
+	importer endDocument
 ]
 
 { #category : #parsing }
 FMImporterFilter >> endEntity: name [
-	shouldSkip ifFalse: [ parserClient endEntity: name ]
+	shouldSkip ifFalse: [ importer endEntity: name ]
 ]
 
 { #category : #parsing }
 FMImporterFilter >> endProperty: name [
-	shouldSkip ifFalse: [ parserClient endProperty: name ]
+	shouldSkip ifFalse: [ importer endProperty: name ]
 ]
 
 { #category : #accessing }
@@ -81,12 +81,24 @@ FMImporterFilter >> filter: aCollectionOfElementNames [
 
 { #category : #accessing }
 FMImporterFilter >> fromString: aString [
-	^ self parserClient fromString: aString
+	^ self importer fromString: aString
+]
+
+{ #category : #accessing }
+FMImporterFilter >> importer [
+	^ importer
+]
+
+{ #category : #accessing }
+FMImporterFilter >> importer: aFMImporter [
+	"Importer will be we the FMImporter that will execute the concrete operations. This class only provided the filtering aspect"
+
+	importer := aFMImporter
 ]
 
 { #category : #accessing }
 FMImporterFilter >> index [
-	^ self parserClient index
+	^ self importer index
 ]
 
 { #category : #initialization }
@@ -97,65 +109,53 @@ FMImporterFilter >> initialize [
 
 { #category : #accessing }
 FMImporterFilter >> metamodel [
-	^ self parserClient metamodel
+	^ self importer metamodel
 ]
 
 { #category : #accessing }
 FMImporterFilter >> model [
-	^ self parserClient model
+	^ self importer model
 ]
 
 { #category : #accessing }
 FMImporterFilter >> model: aModel [
-	^ self parserClient model: aModel
-]
-
-{ #category : #accessing }
-FMImporterFilter >> parserClient [
-	^ parserClient
-]
-
-{ #category : #accessing }
-FMImporterFilter >> parserClient: aFMParserClient [
-	"ParserClient will be we the FMParserClient that will execute the concrete operations. This class only provided the filtering aspect"
-
-	parserClient := aFMParserClient
+	^ self importer model: aModel
 ]
 
 { #category : #parsing }
 FMImporterFilter >> primitive: value [
-	shouldSkip ifFalse: [ parserClient primitive: value ]
+	shouldSkip ifFalse: [ importer primitive: value ]
 ]
 
 { #category : #parsing }
 FMImporterFilter >> referenceName: name [
-	shouldSkip ifFalse: [ parserClient referenceName: name ]
+	shouldSkip ifFalse: [ importer referenceName: name ]
 ]
 
 { #category : #parsing }
 FMImporterFilter >> referenceNumber: index [
-	shouldSkip ifFalse: [ parserClient referenceNumber: index ]
+	shouldSkip ifFalse: [ importer referenceNumber: index ]
 ]
 
 { #category : #running }
 FMImporterFilter >> run [
 	FMMSEParser new
-		stream: parserClient stream;
+		stream: importer stream;
 		importer: self;
 		run
 ]
 
 { #category : #parsing }
 FMImporterFilter >> serial: index [
-	shouldSkip ifFalse: [ parserClient serial: index ]
+	shouldSkip ifFalse: [ importer serial: index ]
 ]
 
 { #category : #accessing }
 FMImporterFilter >> stream [
-	^ self parserClient stream
+	^ self importer stream
 ]
 
 { #category : #accessing }
 FMImporterFilter >> stream: aReadStream [
-	^ self parserClient stream: aReadStream
+	^ self importer stream: aReadStream
 ]
