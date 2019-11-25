@@ -1,6 +1,6 @@
 Extension { #name : #Behavior }
 
-{ #category : #'*Famix-Pharo7' }
+{ #category : #'*Fame-Pharo8Compatibility' }
 Behavior >> compiledMethodAt: selector ifPresent: aBlock [
 	"Answer the compiled method associated with the argument, selector (a Symbol),
 	 a message selector in the receiver's method dictionary.
