@@ -10,13 +10,6 @@ Class {
 	#category : #'Fame-Core-Utilities'
 }
 
-{ #category : #'instance creation' }
-FMMetamodelValidator class >> for: aPragmaProcessor [
-	self new
-		metaModelBuilder: aPragmaProcessor;
-		validate
-]
-
 { #category : #accessing }
 FMMetamodelValidator >> validate [
 	self
