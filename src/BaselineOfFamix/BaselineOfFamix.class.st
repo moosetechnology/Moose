@@ -149,7 +149,7 @@ BaselineOfFamix >> fame: spec [
 
 { #category : #dependencies }
 BaselineOfFamix >> kgbTestResources: spec [
-	spec baseline: 'KGBTestResources' with: [ spec repository: repository ]
+	spec baseline: 'KGBTestResources' with: [ spec repository: 'github://moosetechnology/KGBTestResources:v1.x.x/src' ]
 ]
 
 { #category : #dependencies }
@@ -163,7 +163,7 @@ BaselineOfFamix >> neoCSV: spec [
 
 { #category : #dependencies }
 BaselineOfFamix >> packageBlueprintTestResources: spec [
-	spec baseline: 'PackageBlueprintTestResources' with: [ spec repository: repository ]
+	spec baseline: 'PackageBlueprintTestResources' with: [ spec repository: 'github://moosetechnology/PackageBlueprintTestResources:v1.x.x/src' ]
 ]
 
 { #category : #accessing }
@@ -188,7 +188,7 @@ BaselineOfFamix >> projectClass [
 
 { #category : #dependencies }
 BaselineOfFamix >> referenceTestResources: spec [
-	spec baseline: 'ReferenceTestResources' with: [ spec repository: repository ]
+	spec baseline: 'ReferenceTestResources' with: [ spec repository: 'github://moosetechnology/ReferenceTestResources:v1.x.x/src' ]
 ]
 
 { #category : #baseline }
