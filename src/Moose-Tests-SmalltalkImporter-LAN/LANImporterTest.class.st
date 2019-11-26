@@ -81,17 +81,10 @@ LANImporterTest >> testClassName [
 
 { #category : #tests }
 LANImporterTest >> testClassNameAndUniqueName [
-	"self debug: #testClassNameAndUniqueName"
-
 	| mseClass |
 	mseClass := self model entityNamed: LANNode mooseName.
 	self assert: mseClass name equals: #LANNode.
-	self
-		assert: mseClass mooseName
-		equals:
-			(FamixSmalltalkNameResolver
-				uniqueNameForClassNamed: LANNode name
-				scope: (FamixSmalltalkNameResolver moosify: LANNode environment absoluteName)).
+	self assert: mseClass mooseName equals: 'Smalltalk::LANNode'.
 	self assert: mseClass mooseName equals: LANNode mooseName
 ]
 
@@ -325,9 +318,7 @@ LANImporterTest >> testNameAndUniqueName [
 	| mseClass mseMethod mseAttribute mseGlobalVar mseImplicitVar mseLocalVariable mseFormalParameter transcriptName |
 	mseClass := self model entityNamed: LANNode mooseName.
 	self assert: mseClass name identicalTo: #LANNode.
-	self
-		assert: mseClass mooseName
-		identicalTo: (FamixSmalltalkNameResolver uniqueNameForClassNamed: LANNode name scope: (FamixSmalltalkNameResolver moosify: LANNode environment absoluteName)).
+	self assert: mseClass mooseName identicalTo: #'Smalltalk::LANNode'.
 	self assert: mseClass mooseName identicalTo: LANNode mooseName.
 	mseMethod := self model entityNamed: #'Smalltalk::LANPacket.printOn:(Object)'.
 	self assert: mseMethod name identicalTo: #printOn:.

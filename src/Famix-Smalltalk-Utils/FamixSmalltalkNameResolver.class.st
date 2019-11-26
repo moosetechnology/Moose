@@ -128,15 +128,6 @@ FamixSmalltalkNameResolver class >> stMetaclassTag [
 ]
 
 { #category : #'language independent unique naming' }
-FamixSmalltalkNameResolver class >> uniqueNameForClassNamed: aClassName scope: uniqueParentNamespaceOrNil [
-	"Given ***FAMIX2 compliant**** names for the elements return a FAMIX2 Compliant uniqueName a SYMBOL"
-
-	^ uniqueParentNamespaceOrNil
-		ifNil: [ aClassName asSymbol ]
-		ifNotNil: [ (uniqueParentNamespaceOrNil asString , self famixNamespaceSeparator , aClassName) asSymbol ]
-]
-
-{ #category : #'language independent unique naming' }
 FamixSmalltalkNameResolver class >> uniqueNameForMethodSignature: aMethodSignature hasClassScope: aBooleanOrNil class: aClassName [
 	"Given ***FAMIX2 compliant**** names for the elements return a FAMIX2 Compliant uniqueName a SYMBOL"
 

@@ -2,118 +2,58 @@ Class {
 	#name : #FamixModelExtractionTest,
 	#superclass : #LANAbstractImportTest,
 	#instVars : [
-		'mseNodeClassName',
-		'mseNodeClass',
-		'msePrinterClassName',
-		'mseOutputServerClassName',
 		'nodeName',
 		'nextNode',
 		'serverType',
-		'outputServerName',
-		'acceptServerName',
-		'acceptNodeName',
-		'canOutputServerName',
-		'canOutputNodeName',
-		'nameNodeName',
-		'nameNodeNameColon',
-		'nextNodeName',
-		'nextNodeNameColon',
-		'initializeNodeName',
-		'sendNodeName',
-		'printOnNodeName',
-		'newNodeClassName',
-		'canOriginateNodeName',
-		'methodWithEmptyBodyNodeName'
+		'acceptNode',
+		'canOriginateNode',
+		'acceptServer',
+		'canOutputNode',
+		'canOutputServer',
+		'initializeNode',
+		'methodWithEmptyBodyNode',
+		'outputServer',
+		'nameNode',
+		'nameNodeColon',
+		'nextNodeColon',
+		'printOnNode',
+		'sendNode',
+		'newNodeClass',
+		'msePrinterClass',
+		'nextNodeMethod'
 	],
 	#category : #'Moose-Tests-SmalltalkImporter-LAN'
 }
 
 { #category : #auxiliary }
 FamixModelExtractionTest >> assignAttributes [
-	nodeName := FamixSmalltalkNameResolver 
-		mooseNameForAttributeNamed: #name
-		class: mseNodeClassName
-		classSide: false.
-	nextNode := FamixSmalltalkNameResolver 
-		mooseNameForAttributeNamed: #nextNode
-		class: mseNodeClassName
-		classSide: false.
-	serverType := FamixSmalltalkNameResolver 
-		mooseNameForAttributeNamed: #serverType
-		class: mseOutputServerClassName
-		classSide: false
+	nodeName := self model entityNamed: 'Smalltalk::LANNode.name'.
+	nextNode := self model entityNamed: 'Smalltalk::LANNode.nextNode'.
+	serverType := self model entityNamed: 'Smalltalk::LANOutputServer.serverType'
 ]
 
 { #category : #auxiliary }
 FamixModelExtractionTest >> assignClasses [
-	mseNodeClassName := LANNode mooseName.
-	mseNodeClass := self model entityNamed: mseNodeClassName.
-	msePrinterClassName := LANPrintServer mooseName.
-	mseOutputServerClassName := LANOutputServer mooseName
+	msePrinterClass := self model entityNamed: LANPrintServer mooseName
 ]
 
 { #category : #auxiliary }
 FamixModelExtractionTest >> assignMethods [
-	methodWithEmptyBodyNodeName := FamixSmalltalkNameResolver 
-				uniqueNameForMethodWithSmalltalkSelector: #methodWithEmptyBody
-				hasClassScope: false
-				class: mseNodeClassName.
-	outputServerName := FamixSmalltalkNameResolver 
-				uniqueNameForMethodWithSmalltalkSelector: #output:
-				hasClassScope: false
-				class: mseOutputServerClassName.
-	acceptServerName := FamixSmalltalkNameResolver 
-				uniqueNameForMethodWithSmalltalkSelector: #accept:
-				hasClassScope: false
-				class: mseOutputServerClassName.
-	acceptNodeName := FamixSmalltalkNameResolver 
-				uniqueNameForMethodWithSmalltalkSelector: #accept:
-				hasClassScope: false
-				class: mseNodeClassName.
-	canOutputServerName := FamixSmalltalkNameResolver 
-				uniqueNameForMethodWithSmalltalkSelector: #canOutput
-				hasClassScope: false
-				class: mseOutputServerClassName.
-	canOutputNodeName := FamixSmalltalkNameResolver 
-				uniqueNameForMethodWithSmalltalkSelector: #canOutput
-				hasClassScope: false
-				class: mseNodeClassName.
-	nameNodeName := FamixSmalltalkNameResolver 
-				uniqueNameForMethodWithSmalltalkSelector: #name
-				hasClassScope: false
-				class: mseNodeClassName.
-	nameNodeNameColon := FamixSmalltalkNameResolver 
-				uniqueNameForMethodWithSmalltalkSelector: #name:
-				hasClassScope: false
-				class: mseNodeClassName.
-	nextNodeName := FamixSmalltalkNameResolver 
-				uniqueNameForMethodWithSmalltalkSelector: #nextNode
-				hasClassScope: false
-				class: mseNodeClassName.
-	nextNodeNameColon := FamixSmalltalkNameResolver 
-				uniqueNameForMethodWithSmalltalkSelector: #nextNode:
-				hasClassScope: false
-				class: mseNodeClassName.
-	initializeNodeName := FamixSmalltalkNameResolver 
-				uniqueNameForMethodWithSmalltalkSelector: #initialize
-				hasClassScope: false
-				class: mseNodeClassName.
-	printOnNodeName := FamixSmalltalkNameResolver 
-				uniqueNameForMethodWithSmalltalkSelector: #printOn:
-				hasClassScope: false
-				class: mseNodeClassName.
-	sendNodeName := FamixSmalltalkNameResolver 
-				uniqueNameForMethodWithSmalltalkSelector: #send:
-				hasClassScope: false
-				class: mseNodeClassName.
-	canOriginateNodeName := FamixSmalltalkNameResolver 
-				uniqueNameForMethodWithSmalltalkSelector: #canOriginate
-				hasClassScope: false
-				class: mseNodeClassName.
-	newNodeClassName := FamixSmalltalkNameResolver 
-				uniqueNameForMethodWithSmalltalkSelector: #new
-				hasClassScope: true
-				class: mseNodeClassName.
+	methodWithEmptyBodyNode := self model entityNamed: 'Smalltalk::LANNode.methodWithEmptyBody()'.
+	outputServer := self model entityNamed: 'Smalltalk::LANOutputServer.output:(Object)'.
+	acceptServer := self model entityNamed: 'Smalltalk::LANOutputServer.accept:(Object)'.
+	acceptNode := self model entityNamed: 'Smalltalk::LANNode.accept:(Object)'.
+	canOutputServer := self model entityNamed: 'Smalltalk::LANOutputServer.canOutput()'.
+	canOutputNode := self model entityNamed: 'Smalltalk::LANNode.canOutput()'.
+	nameNode := self model entityNamed: 'Smalltalk::LANNode.name()'.
+	nameNodeColon := self model entityNamed: 'Smalltalk::LANNode.name:(Object)'.
+	nextNodeMethod := self model entityNamed: 'Smalltalk::LANNode.nextNode()'.
+	nextNodeColon := self model entityNamed: 'Smalltalk::LANNode.nextNode:(Object)'.
+	initializeNode := self model entityNamed: 'Smalltalk::LANNode.initialize()'.
+	printOnNode := self model entityNamed: 'Smalltalk::LANNode.printOn:(Object)'.
+	sendNode := self model entityNamed: 'Smalltalk::LANNode.send:(Object)'.
+	canOriginateNode := self model entityNamed: 'Smalltalk::LANNode.canOriginate()'.
+	newNodeClass := self model entityNamed: 'Smalltalk::LANNode.new()'
 ]
 
 { #category : #running }
@@ -128,18 +68,16 @@ FamixModelExtractionTest >> setUp [
 FamixModelExtractionTest >> testAccessesFromAndToShouldNotBeNil [
 	| accesses |
 	accesses := self model allAccesses.
-	self assert: (accesses select: [ :a | a from isNil ]) isEmpty.
-	self assert: (accesses select: [ :a | a to isNil ]) isEmpty.
-
+	self assertEmpty: (accesses select: [ :a | a from isNil ]).
+	self assertEmpty: (accesses select: [ :a | a to isNil ])
 ]
 
 { #category : #tests }
 FamixModelExtractionTest >> testAccessesReification [
-
 	| accesses |
 	accesses := self model allAccesses.
-	self assert: accesses isEmpty not.
-	accesses do: [:each | self assert: (each accessor  usesFamixTrait: FamixTMethod)].
+	self denyEmpty: accesses.
+	accesses do: [ :each | self assert: (each accessor usesFamixTrait: FamixTMethod) ]
 ]
 
 { #category : #tests }
@@ -178,53 +116,50 @@ FamixModelExtractionTest >> testAllOutgoingInvocations [
 
 { #category : #tests }
 FamixModelExtractionTest >> testFlatCollect [
-	self assert: self model allMethods size equals: (self model allClasses flatCollect: [ :each | each methods ]) size.
-	self
-		assert: self model allInvocations size
-		equals: (self model allMethods flatCollect: [ :each | each outgoingInvocations ]) size.
-	self assert: self model allAccesses size equals: (self model allMethods flatCollect: [ :each | each accesses ]) size
+	self assert: self model allMethods size equals: (self model allClasses flatCollect: #methods) size.
+	self assert: self model allInvocations size equals: (self model allMethods flatCollect: #outgoingInvocations) size.
+	self assert: self model allAccesses size equals: (self model allMethods flatCollect: #accesses) size
 ]
 
 { #category : #tests }
 FamixModelExtractionTest >> testHasEmptyBody [
-
-	self assert: (self model entityNamed: methodWithEmptyBodyNodeName) hasEmptyBody.
-	self deny: (self model entityNamed: acceptNodeName) hasEmptyBody
+	self assert: methodWithEmptyBodyNode hasEmptyBody.
+	self deny: acceptNode hasEmptyBody
 ]
 
 { #category : #tests }
 FamixModelExtractionTest >> testInheritedAttributes [
 	| inheritedAtts |
-	inheritedAtts := (self model entityNamed: msePrinterClassName) inheritedAttributes.
-	self assert: (self model entityNamed: msePrinterClassName) superclassHierarchy size equals: 5.
+	inheritedAtts := msePrinterClass inheritedAttributes.
+	self assert: msePrinterClass superclassHierarchy size equals: 5.
 	self assert: inheritedAtts size equals: (self totalNumberOfAttributesFor: LANPrintServer superclass).
 	self assert: (inheritedAtts reject: [ :each | each hasClassScope ]) size equals: 5.
-	self assert: (inheritedAtts includes: (self model entityNamed: nodeName)).
-	self assert: (inheritedAtts includes: (self model entityNamed: nextNode)).
-	self assert: (inheritedAtts includes: (self model entityNamed: serverType)).
+	self assert: (inheritedAtts includes: nodeName).
+	self assert: (inheritedAtts includes: nextNode).
+	self assert: (inheritedAtts includes: serverType).
 	self assert: (inheritedAtts select: [ :each | each hasClassScope ]) size equals: 1
 ]
 
 { #category : #tests }
 FamixModelExtractionTest >> testInheritedMethods [
 	| inheritedMethods |
-	inheritedMethods := (self model entityNamed: msePrinterClassName) inheritedMethods.
+	inheritedMethods := msePrinterClass inheritedMethods.
 	self assert: inheritedMethods size equals: 15.
-	self assert: (inheritedMethods includes: (self model entityNamed: outputServerName)).
-	self assert: (inheritedMethods includes: (self model entityNamed: acceptServerName)).
-	self assert: (inheritedMethods includes: (self model entityNamed: acceptNodeName)).
-	self assert: (inheritedMethods includes: (self model entityNamed: canOutputServerName)).
-	self assert: (inheritedMethods includes: (self model entityNamed: canOutputNodeName)).	"overridden in OutputServer"
-	self assert: (inheritedMethods includes: (self model entityNamed: nameNodeName)).
-	self assert: (inheritedMethods includes: (self model entityNamed: nameNodeNameColon)).
-	self assert: (inheritedMethods includes: (self model entityNamed: nextNodeName)).
-	self assert: (inheritedMethods includes: (self model entityNamed: nextNodeNameColon)).
-	self assert: (inheritedMethods includes: (self model entityNamed: initializeNodeName)).
-	self assert: (inheritedMethods includes: (self model entityNamed: printOnNodeName)).
-	self assert: (inheritedMethods includes: (self model entityNamed: sendNodeName)).
-	self assert: (inheritedMethods includes: (self model entityNamed: canOriginateNodeName)).
-	self assert: (inheritedMethods includes: (self model entityNamed: methodWithEmptyBodyNodeName)).
-	self deny: (inheritedMethods includes: (self model entityNamed: newNodeClassName))	"class method of Node"
+	self assert: (inheritedMethods includes: outputServer).
+	self assert: (inheritedMethods includes: acceptServer).
+	self assert: (inheritedMethods includes: acceptNode).
+	self assert: (inheritedMethods includes: canOutputServer).
+	self assert: (inheritedMethods includes: canOutputNode).	"overridden in OutputServer"
+	self assert: (inheritedMethods includes: nameNode).
+	self assert: (inheritedMethods includes: nameNodeColon).
+	self assert: (inheritedMethods includes: nextNodeMethod).
+	self assert: (inheritedMethods includes: nextNodeColon).
+	self assert: (inheritedMethods includes: initializeNode).
+	self assert: (inheritedMethods includes: printOnNode).
+	self assert: (inheritedMethods includes: sendNode).
+	self assert: (inheritedMethods includes: canOriginateNode).
+	self assert: (inheritedMethods includes: methodWithEmptyBodyNode).
+	self deny: (inheritedMethods includes: newNodeClass)	"class method of Node"
 ]
 
 { #category : #tests }
@@ -232,10 +167,8 @@ FamixModelExtractionTest >> testInheritedSignatures [
 	"Note: non-ST features like private methods and multiple inheritance issues for C++ (and Java
 	 interfaces) are not (yet) tested"
 
-	| inheritedSignatures class className |
-	className := LANPrintServer mooseName.
-	class := self model entityNamed: className.
-	inheritedSignatures := class inheritedSignatures.
+	| inheritedSignatures |
+	inheritedSignatures := (self model entityNamed: LANPrintServer mooseName) inheritedSignatures.
 	#(#output: #accept: #canOutput #name #name: #nextNode #nextNode: #initialize #printOn: #send: #canOriginate #methodWithEmptyBody)
 		do: [ :each | self assert: (inheritedSignatures contains: [ :sign | '*' , each , '*' match: sign ]) ].
 	self assert: inheritedSignatures size equals: (LANOutputServer selectors , LANNode selectors) asSet size
@@ -247,21 +180,19 @@ FamixModelExtractionTest >> testInheritedSignaturesToMethod [
 	 interfaces) are not (yet) tested"
 
 	| inheritedSignatures |
-	inheritedSignatures := (self model entityNamed: msePrinterClassName) inheritedSignaturesToMethod.
-	self assert: (inheritedSignatures at: #'output:(Object)') equals: (self model entityNamed: outputServerName).
-	self assert: (inheritedSignatures at: #'canOutput()') equals: (self model entityNamed: canOutputServerName).
-	self assert: (inheritedSignatures at: #'name()') equals: (self model entityNamed: nameNodeName).
-	self assert: (inheritedSignatures at: #'name:(Object)') equals: (self model entityNamed: nameNodeNameColon).
-	self assert: (inheritedSignatures at: #'nextNode()') equals: (self model entityNamed: nextNodeName).
-	self assert: (inheritedSignatures at: #'nextNode:(Object)') equals: (self model entityNamed: nextNodeNameColon).
-	self assert: (inheritedSignatures at: #'initialize()') equals: (self model entityNamed: initializeNodeName).
-	self assert: (inheritedSignatures at: #'printOn:(Object)') equals: (self model entityNamed: printOnNodeName).
-	self assert: (inheritedSignatures at: #'send:(Object)') equals: (self model entityNamed: sendNodeName).
-	self assert: (inheritedSignatures at: #'canOriginate()') equals: (self model entityNamed: canOriginateNodeName).
-	self
-		assert: (inheritedSignatures at: #'methodWithEmptyBody()')
-		equals: (self model entityNamed: methodWithEmptyBodyNodeName).
-	self assert: (inheritedSignatures at: #'accept:(Object)') equals: (self model entityNamed: acceptServerName).
+	inheritedSignatures := msePrinterClass inheritedSignaturesToMethod.
+	self assert: (inheritedSignatures at: #'output:(Object)') equals: outputServer.
+	self assert: (inheritedSignatures at: #'canOutput()') equals: canOutputServer.
+	self assert: (inheritedSignatures at: #'name()') equals: nameNode.
+	self assert: (inheritedSignatures at: #'name:(Object)') equals: nameNodeColon.
+	self assert: (inheritedSignatures at: #'nextNode()') equals: nextNodeMethod.
+	self assert: (inheritedSignatures at: #'nextNode:(Object)') equals: nextNodeColon.
+	self assert: (inheritedSignatures at: #'initialize()') equals: initializeNode.
+	self assert: (inheritedSignatures at: #'printOn:(Object)') equals: printOnNode.
+	self assert: (inheritedSignatures at: #'send:(Object)') equals: sendNode.
+	self assert: (inheritedSignatures at: #'canOriginate()') equals: canOriginateNode.
+	self assert: (inheritedSignatures at: #'methodWithEmptyBody()') equals: methodWithEmptyBodyNode.
+	self assert: (inheritedSignatures at: #'accept:(Object)') equals: acceptServer.
 	self assert: inheritedSignatures size equals: 13
 ]
 
@@ -284,30 +215,20 @@ FamixModelExtractionTest >> testIsSide [
 
 { #category : #tests }
 FamixModelExtractionTest >> testModelDoesNotContainDuplicateSharedVars [
-
-	self 	assert: 1
-			equals: (self model entities select: [:e| e name = 'DependentsFields']) size
+	self assert: (self model entities select: [ :e | e name = 'DependentsFields' ]) size equals: 1
 ]
 
 { #category : #tests }
 FamixModelExtractionTest >> testNameAndUniqueNameForNotNamed [
-
-	| mseMethod mseMethodName |
-	mseMethodName := FamixSmalltalkNameResolver 
-				uniqueNameForMethodWithSmalltalkSelector: #printOn:
-				hasClassScope: false
-				class: LANNode mooseName.
-	mseMethod := self model entityNamed: mseMethodName.
+	| mseMethod |
+	mseMethod := self model entityNamed: 'Smalltalk::LANNode.printOn:(Object)'.
 	self assert: (mseMethod outgoingInvocations anySatisfy: [:each | each signature = #'printString()'])
 ]
 
 { #category : #tests }
 FamixModelExtractionTest >> testNumberOfFormalParameters [
-	| method |
-	method := self model entityNamed: acceptNodeName.
-	self assert: method numberOfParameters equals: 1.
-	method := self model entityNamed: canOriginateNodeName.
-	self assert: method numberOfParameters equals: 0
+	self assert: acceptNode numberOfParameters equals: 1.
+	self assert: canOriginateNode numberOfParameters equals: 0
 ]
 
 { #category : #tests }
@@ -331,10 +252,4 @@ FamixModelExtractionTest >> testUnderstands [
 
 	"method defined in the superclass of superclass"
 	self assert: (aFamixClass understands: #'send:(Object)')
-]
-
-{ #category : #tests }
-FamixModelExtractionTest >> testUuidGeneration [
-
-	"--- void ---"
 ]
