@@ -4,11 +4,6 @@ Class {
 	#category : #'Famix-Smalltalk-Utils'
 }
 
-{ #category : #private }
-FamixSmalltalkNameResolver class >> classAttributeSeparator [
-	^ '.'
-]
-
 { #category : #'naming conventions' }
 FamixSmalltalkNameResolver class >> famixNamespaceSeparator [
 	^ '::'
@@ -27,32 +22,6 @@ FamixSmalltalkNameResolver class >> metaclassTag [
 	"The meta class tag used in FAMIX2."
 
 	^ '_class'
-]
-
-{ #category : #private }
-FamixSmalltalkNameResolver class >> methodAndVariableSeparator [
-	^ '.'
-]
-
-{ #category : #'new naming conventions' }
-FamixSmalltalkNameResolver class >> mooseNameForAttributeNamed: anAttributeName class: aClassName classSide: aBoolean [
-	"Given ***FAMIX2 compliant**** names for the elements return a FAMIX2 Compliant uniqueName a SYMBOL"
-
-	^ (String
-		streamContents: [ :s | 
-			s nextPutAll: aClassName.
-			aBoolean ifTrue: [ s nextPutAll: self metaclassTag ].
-			s
-				nextPutAll: self classAttributeSeparator;
-				nextPutAll: anAttributeName ]) asSymbol
-]
-
-{ #category : #'new naming conventions' }
-FamixSmalltalkNameResolver class >> mooseNameForSharedAttributeNamed: anAttributeName class: aClassName [
-	"Given ***FAMIX2 compliant**** names for the elements return a FAMIX2 Compliant uniqueName a SYMBOL"
-
-	  ^(aClassName, self classAttributeSeparator , anAttributeName) asSymbol
-		
 ]
 
 { #category : #'naming conventions' }
@@ -125,34 +94,4 @@ FamixSmalltalkNameResolver class >> stMetaclassTag [
 	"The meta class tag used in SmalltLK."
 
 	^ ' class'
-]
-
-{ #category : #'language independent unique naming' }
-FamixSmalltalkNameResolver class >> uniqueNameForMethodSignature: aMethodSignature hasClassScope: aBooleanOrNil class: aClassName [
-	"Given ***FAMIX2 compliant**** names for the elements return a FAMIX2 Compliant uniqueName a SYMBOL"
-
-	^(aClassName , self methodAndVariableSeparator , aMethodSignature)
-		asSymbol
-]
-
-{ #category : #'language independent unique naming' }
-FamixSmalltalkNameResolver class >> uniqueNameForMethodWithSmalltalkSelector: aSymbol hasClassScope: aBooleanOrNil class: aClassName [
-	"Given ***FAMIX2 compliant**** names for the elements return a FAMIX2 Compliant uniqueName a SYMBOL"
-
-	^self
-		uniqueNameForMethodSignature:
-			(self signatureFromSmalltalkSelectorOn: aSymbol)
-		hasClassScope: aBooleanOrNil
-		class: aClassName
-]
-
-{ #category : #'language independent unique naming' }
-FamixSmalltalkNameResolver class >> uniqueNameForNamespaceNamed: aNamespaceName scope: uniqueParentNamespaceName [
-	"Given ***FAMIX2 compliant**** names for the elements return a FAMIX2 Compliant uniqueName a SYMBOL"
-
-	^(uniqueParentNamespaceName isNil or: [uniqueParentNamespaceName isEmpty])
-		ifTrue: [aNamespaceName asSymbol]
-		ifFalse:
-			[(uniqueParentNamespaceName asString , self famixNamespaceSeparator
-				, aNamespaceName) asSymbol]
 ]
