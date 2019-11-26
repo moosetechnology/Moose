@@ -53,14 +53,7 @@ FamixStMethod >> computeNumberOfLinesOfCodeIfSmalltalk [
 FamixStMethod >> cyclomaticComplexity [
 	<FMProperty: #cyclomaticComplexity type: #Number>
 	<FMComment: 'The number of linear-independent paths through a method.'>
-	^ self
-		lookUpPropertyNamed: #cyclomaticComplexity
-		computedAs: [ 
-			| parser |
-			parser := RBVisitorForFAMIXMetrics new.
-			parser processMethod: self usingImporter: nil inModel: nil.
-			parser cyclomaticNumber2 ]
-			
+	^ self lookUpPropertyNamed: #cyclomaticComplexity computedAs: [ (RBVisitorForFAMIXMetrics for: self) cyclomaticNumber ]
 ]
 
 { #category : #'Famix-Extensions-private' }
@@ -226,14 +219,7 @@ FamixStMethod >> numberOfComments: aNumber [
 FamixStMethod >> numberOfConditionals [
 	<FMProperty: #numberOfConditionals type: #Number>
 	<FMComment: 'The number of conditionals in a method'>
-	^ self
-		lookUpPropertyNamed: #numberOfConditionals
-		computedAs: [ 
-			| parser |
-			parser := RBVisitorForFAMIXMetrics new.
-			parser processMethod: self usingImporter: nil inModel: nil.
-			parser numberOfConditionals ]
-			
+	^ self lookUpPropertyNamed: #numberOfConditionals computedAs: [ (RBVisitorForFAMIXMetrics for: self) numberOfConditionals ]
 ]
 
 { #category : #'Famix-Extensions-private' }
@@ -256,14 +242,7 @@ FamixStMethod >> numberOfMessageSends [
 	<FMProperty: #numberOfMessageSends type: #Number>
 	<derived>
 	<FMComment: 'The number of message from a method'>
-	^ self
-		lookUpPropertyNamed: #numberOfMessageSends
-		computedAs: [ 
-			| parser |
-			parser := RBVisitorForFAMIXMetrics new.
-			parser processMethod: self usingImporter: nil inModel: nil.
-			parser numberOfMessageSends ]
-				
+	^ self lookUpPropertyNamed: #numberOfMessageSends computedAs: [ (RBVisitorForFAMIXMetrics for: self) numberOfMessageSends ]
 ]
 
 { #category : #'Famix-Extensions-private' }
@@ -281,13 +260,7 @@ FamixStMethod >> numberOfOutgoingInvocations [
 FamixStMethod >> numberOfStatements [
 	<FMProperty: #numberOfStatements type: #Number>
 	<FMComment: 'The number of statements in a method'>
-	^ self
-		lookUpPropertyNamed: #numberOfStatements
-		computedAs: [
-			| parser |
-			parser := RBVisitorForFAMIXMetrics new.
-			parser processMethod: self usingImporter: nil inModel: nil.
-			parser numberOfStatements ]
+	^ self lookUpPropertyNamed: #numberOfStatements computedAs: [ (RBVisitorForFAMIXMetrics for: self) numberOfStatements ]
 ]
 
 { #category : #'Famix-Extensions-private' }

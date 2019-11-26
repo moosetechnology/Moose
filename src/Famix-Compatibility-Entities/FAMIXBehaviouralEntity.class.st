@@ -33,11 +33,7 @@ FAMIXBehaviouralEntity >> computeNumberOfLinesOfCode [
 
 { #category : #'Famix-Extensions-private' }
 FAMIXBehaviouralEntity >> computeNumberOfLinesOfCodeIfSmalltalk [
-	| parser |
-	
-	parser := RBVisitorForFAMIXMetrics new.
-	parser processMethod: self usingImporter: nil inModel: nil.
-	^ parser numberOfLinesOfCode
+	^ (RBVisitorForFAMIXMetrics for: self) numberOfLinesOfCode
 ]
 
 { #category : #'Famix-Extensions' }
@@ -46,12 +42,7 @@ FAMIXBehaviouralEntity >> cyclomaticComplexity [
 	<FMComment: 'The number of linear-independent paths through a method.'>
 	^ self
 		lookUpPropertyNamed: #cyclomaticComplexity
-		computedAs: [ self mooseModel isSmalltalk
-				ifTrue: [ | parser |
-					parser := RBVisitorForFAMIXMetrics new.
-					parser processMethod: self usingImporter: nil inModel: nil.
-					parser cyclomaticNumber2 ]
-				ifFalse: [ self notExistentMetricValue ] ]
+		computedAs: [ self mooseModel isSmalltalk ifTrue: [ (RBVisitorForFAMIXMetrics for: self) cyclomaticNumber ] ifFalse: [ self notExistentMetricValue ] ]
 ]
 
 { #category : #'Famix-Extensions' }
@@ -119,14 +110,7 @@ FAMIXBehaviouralEntity >> numberOfConditionals [
 	<FMComment: 'The number of conditionals in a method'>
 	^ self
 		lookUpPropertyNamed: #numberOfConditionals
-		computedAs: [ 
-			self mooseModel isSmalltalk
-				ifTrue: [ 
-					| parser |
-					parser := RBVisitorForFAMIXMetrics new.
-					parser processMethod: self usingImporter: nil inModel: nil.
-					parser numberOfConditionals ]
-				ifFalse: [ self notExistentMetricValue ] ]
+		computedAs: [ self mooseModel isSmalltalk ifTrue: [ (RBVisitorForFAMIXMetrics for: self) numberOfConditionals ] ifFalse: [ self notExistentMetricValue ] ]
 ]
 
 { #category : #'Famix-Extensions' }
@@ -157,14 +141,7 @@ FAMIXBehaviouralEntity >> numberOfMessageSends [
 	<FMComment: 'The number of message from a method'>
 	^ self
 		lookUpPropertyNamed: #numberOfMessageSends
-		computedAs: [ 
-			self mooseModel isSmalltalk
-				ifTrue: [ 
-					| parser |
-					parser := RBVisitorForFAMIXMetrics new.
-					parser processMethod: self usingImporter: nil inModel: nil.
-					parser numberOfMessageSends ]
-				ifFalse: [ self notExistentMetricValue ] ]
+		computedAs: [ self mooseModel isSmalltalk ifTrue: [ (RBVisitorForFAMIXMetrics for: self) numberOfMessageSends ] ifFalse: [ self notExistentMetricValue ] ]
 ]
 
 { #category : #'Famix-Extensions' }
@@ -184,12 +161,7 @@ FAMIXBehaviouralEntity >> numberOfStatements [
 	<FMComment: 'The number of statements in a method'>
 	^ self
 		lookUpPropertyNamed: #numberOfStatements
-		computedAs: [ self mooseModel isSmalltalk
-				ifTrue: [ | parser |
-					parser := RBVisitorForFAMIXMetrics new.
-					parser processMethod: self usingImporter: nil inModel: nil.
-					parser numberOfStatements ]
-				ifFalse: [ self notExistentMetricValue ] ]
+		computedAs: [ self mooseModel isSmalltalk ifTrue: [ (RBVisitorForFAMIXMetrics for: self) numberOfStatements ] ifFalse: [ self notExistentMetricValue ] ]
 ]
 
 { #category : #'Famix-Extensions' }
