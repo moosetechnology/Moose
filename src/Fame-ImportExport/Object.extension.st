@@ -15,5 +15,5 @@ Object >> isDanglingReference [
 
 { #category : #'*Fame-ImportExport' }
 Object >> msePrintOn: aStream [
-	self printOn: aStream
+	self error: 'This type of object cannot be exported in a mse: ' , self class printString
 ]
