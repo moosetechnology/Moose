@@ -542,17 +542,7 @@ FamixReferenceModelImporterTest >> testGlobalVariableReified [
 
 { #category : #'reference model reification' }
 FamixReferenceModelImporterTest >> testImplicitVariableReified [
-	"self run: #testImplicitVariableReified"
-
-	"self debug: #testImplicitVariableReified"
-
-	| implicitVariableName implicitVariable |
-	implicitVariableName := 'self'.
-	implicitVariableName := FamixSmalltalkNameResolver 
-				uniqueNameForImplicitVariableNamed: implicitVariableName
-				scope: referenceModelTheRootName,'.singleSelfSend()' .
-	implicitVariable := self model entityNamed: implicitVariableName.
-	self assert: implicitVariable isNil not
+	self assert: (self model entityNamed: 'Smalltalk::TheRoot.singleSelfSend().self') isNotNil
 ]
 
 { #category : #'reference model accesed' }
@@ -615,21 +605,7 @@ FamixReferenceModelImporterTest >> testInstanceVariableReified [
 
 { #category : #'reference model reification' }
 FamixReferenceModelImporterTest >> testLocalVariableReified [
-	"self run: #testLocalVariableReified"
-
-	"self debug: #testLocalVariableReified"
-
-	| methodName localVariableName localVariable |
-	methodName := FamixSmalltalkNameResolver 
-				uniqueNameForMethodWithSmalltalkSelector: 'assigningLocalVariable'
-				hasClassScope: false
-				class: referenceModelTheRootName.
-	localVariableName := 'tmp'.
-	localVariableName := FamixSmalltalkNameResolver 
-				uniqueNameForLocalVariableNamed: localVariableName
-				belongsTo: methodName.
-	localVariable := self model entityNamed: localVariableName.
-	self assert: localVariable isNil not
+	self assert: (self model entityNamed: 'Smalltalk::TheRoot.assigningLocalVariable().tmp') isNotNil
 ]
 
 { #category : #'new tests' }
