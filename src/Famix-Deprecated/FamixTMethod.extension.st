@@ -10,6 +10,6 @@ FamixTMethod >> hasClassScope [
 
 { #category : #'*Famix-Deprecated' }
 FamixTMethod >> hasClassScope: aBoolean [
-	self deprecated: 'This property is deprecated from Moose 7.0. Please use isClassSide instead.' transformWith: '`@receiver hasClassScope: `@statements1' -> '`@receiver isClassSide: `@statements1'.
+	self deprecated: 'This property is deprecated from Moose 7.0. Please use isClassSide instead.'.
 	^ self isClassSide: aBoolean
 ]

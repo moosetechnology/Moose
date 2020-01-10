@@ -21,7 +21,6 @@ Class {
 		'invocation',
 		'localVariable',
 		'method',
-		'module',
 		'namespace',
 		'package',
 		'parameter',
