@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithComments classSide >> annotation [
 
-	<MSEClass: #TWithComments super: #Trait>
+	<FMClass: #TWithComments super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -27,7 +27,7 @@ FamixTWithComments >> comments [
 	"Relation named: #comments type: #FamixTComment opposite: #container"
 
 	<generated>
-	<MSEComment: 'list of comments defined in the entity'>
+	<FMComment: 'list of comments defined in the entity'>
 	<derived>
 	^ comments
 ]
@@ -37,7 +37,6 @@ FamixTWithComments >> comments: anObject [
 
 	<generated>
 	comments value: anObject
-
 ]
 
 { #category : #testing }
@@ -47,7 +46,7 @@ FamixTWithComments >> hasComments [
 
 { #category : #accessing }
 FamixTWithComments >> numberOfComments [
-	<MSEProperty: #numberOfComments type: #Number>
+	<FMProperty: #numberOfComments type: #Number>
 	<derived>
 	<MSEComment: 'The number of comments in a class'>
 	^ self
@@ -57,6 +56,7 @@ FamixTWithComments >> numberOfComments [
 					(self children asArray
 						inject: 0
 						into: [ :sum :el | el numberOfComments + sum ]) ]
+
 ]
 
 { #category : #accessing }

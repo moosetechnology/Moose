@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithThrownExceptions classSide >> annotation [
 
-	<MSEClass: #TWithThrownExceptions super: #Trait>
+	<FMClass: #TWithThrownExceptions super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -25,7 +25,7 @@ FamixTWithThrownExceptions >> thrownExceptions [
 	"Relation named: #thrownExceptions type: #FamixTThrownException opposite: #definingEntity"
 
 	<generated>
-	<MSEComment: 'The exceptions thrown by the method'>
+	<FMComment: 'The exceptions thrown by the method'>
 	<derived>
 	^ thrownExceptions
 ]
@@ -35,5 +35,4 @@ FamixTWithThrownExceptions >> thrownExceptions: anObject [
 
 	<generated>
 	thrownExceptions value: anObject
-
 ]

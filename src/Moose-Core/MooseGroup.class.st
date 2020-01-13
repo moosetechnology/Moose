@@ -13,7 +13,7 @@ Class {
 
 { #category : #meta }
 MooseGroup class >> annotation [
-	<MSEClass: #Group super: #MooseAbstractGroup>
+	<FMClass: #Group super: #MooseAbstractGroup>
 	<package: #Moose>
 
 ]
@@ -186,14 +186,8 @@ MooseGroup >> min: aSymbolOrBlock [
 { #category : #accessing }
 MooseGroup >> mooseDescription [
 	^ self mooseModel
-		ifNil: [ FM3NullDescription new ]
+		ifNil: [ FM3NullClass new ]
 		ifNotNil: [ :model | model mooseDescriptionFor: self class ]
-]
-
-{ #category : #accessing }
-MooseGroup >> mooseDescriptionIn: aMetamodel [
-
-	^ aMetamodel descriptionOf: self class instanceSide  
 ]
 
 { #category : #printing }

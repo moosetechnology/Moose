@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithSignature classSide >> annotation [
 
-	<MSEClass: #TWithSignature super: #Trait>
+	<FMClass: #TWithSignature super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -18,9 +18,9 @@ FamixTWithSignature classSide >> annotation [
 { #category : #accessing }
 FamixTWithSignature >> signature [
 
-	<MSEProperty: #signature type: #String>
+	<FMProperty: #signature type: #String>
 	<generated>
-	<MSEComment: 'Signature of the message being sent'>
+	<FMComment: 'Signature of the message being sent'>
 	^ signature
 ]
 

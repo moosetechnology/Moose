@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithFiles classSide >> annotation [
 
-	<MSEClass: #TWithFiles super: #Trait>
+	<FMClass: #TWithFiles super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -26,7 +26,7 @@ FamixTWithFiles >> containerFiles [
 	"Relation named: #containerFiles type: #FamixTFile opposite: #entities"
 
 	<generated>
-	<MSEComment: 'List of files containing the entity'>
+	<FMComment: 'List of files containing the entity'>
 	^ containerFiles
 ]
 
@@ -35,5 +35,4 @@ FamixTWithFiles >> containerFiles: anObject [
 
 	<generated>
 	containerFiles value: anObject
-
 ]

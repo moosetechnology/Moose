@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXException class >> annotation [
 
-	<MSEClass: #Exception super: #FAMIXEntity>
+	<FMClass: #Exception super: #FAMIXEntity>
 	<package: #FAMIX>
 	<generated>
 	^self
@@ -36,8 +36,8 @@ FAMIXException >> definingMethod [
 
 { #category : #compatibility }
 FAMIXException >> definingMethod: aMethod [
-	<MSEProperty: #definingMethod type: #FAMIXMethod>
-	<MSEComment: 'This property is for compatibility purpose. It is used by the old generator of MSE files'>
+	<FMProperty: #definingMethod type: #FAMIXMethod>
+	<FMComment: 'This property is for compatibility purpose. It is used by the old generator of MSE files'>
 	^ self definingEntity: aMethod
 ]
 

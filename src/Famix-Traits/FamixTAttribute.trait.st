@@ -15,7 +15,7 @@ Trait {
 { #category : #meta }
 FamixTAttribute classSide >> annotation [
 
-	<MSEClass: #TAttribute super: #Trait>
+	<FMClass: #TAttribute super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -33,7 +33,7 @@ FamixTAttribute >> parentType [
 	"Relation named: #parentType type: #FamixTWithAttributes opposite: #attributes"
 
 	<generated>
-	<MSEComment: 'Type declaring the attribute. belongsTo implementation'>
+	<FMComment: 'Type declaring the attribute. belongsTo implementation'>
 	<container>
 	^ parentType
 ]

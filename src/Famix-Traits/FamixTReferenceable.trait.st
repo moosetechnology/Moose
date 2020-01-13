@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTReferenceable classSide >> annotation [
 
-	<MSEClass: #TReferenceable super: #Trait>
+	<FMClass: #TReferenceable super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -25,7 +25,7 @@ FamixTReferenceable >> incomingReferences [
 	"Relation named: #incomingReferences type: #FamixTReference opposite: #target"
 
 	<generated>
-	<MSEComment: 'References to this entity by other entities.'>
+	<FMComment: 'References to this entity by other entities.'>
 	<derived>
 	^ incomingReferences
 ]
@@ -35,5 +35,4 @@ FamixTReferenceable >> incomingReferences: anObject [
 
 	<generated>
 	incomingReferences value: anObject
-
 ]

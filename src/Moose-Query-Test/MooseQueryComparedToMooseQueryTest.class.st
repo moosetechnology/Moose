@@ -37,16 +37,14 @@ MooseQueryComparedToMooseQueryTest >> testIncomingAccesses [
 
 { #category : #tests }
 MooseQueryComparedToMooseQueryTest >> testIncomingInheritances [
+	self assert: (class2 queryIncoming: FamixTInheritance) asSet equals: (class2 createIncomingQueryResultWith: class2 subInheritances) asSet.
 	self
-		assert: (class2 queryIncoming: FamixTSuperInheritance) asSet
-		equals: (class2 createIncomingQueryResultWith: class2 subInheritances) asSet.
-	self
-		assert: (package2 queryIncoming: FamixTSuperInheritance) asSet
+		assert: (package2 queryIncoming: FamixTInheritance) asSet
 		equals: (package2 createIncomingQueryResultWith: (package2 classes flatCollect: [ :c | c subInheritances ])) asSet.
 	self
-		assert: (namespace queryIncoming: FamixTSubInheritance) asSet
+		assert: (namespace queryIncoming: FamixTInheritance) asSet
 		equals: (namespace createIncomingQueryResultWith: (namespace classes flatCollect: [ :c | c subInheritances ])) asSet.
-	self assert: (method2 queryIncoming: FamixTSubInheritance) asSet equals: Array empty asSet
+	self assert: (method2 queryIncoming: FamixTInheritance) asSet equals: Array empty asSet
 ]
 
 { #category : #tests }
@@ -105,13 +103,11 @@ MooseQueryComparedToMooseQueryTest >> testOutgoingAccesses [
 
 { #category : #tests }
 MooseQueryComparedToMooseQueryTest >> testOutgoingInheritances [
+	self assert: (class1 queryOutgoing: FamixTInheritance) asSet equals: (class1 createOutgoingQueryResultWith: class1 superInheritances) asSet.
 	self
-		assert: (class1 queryOutgoing: FamixTSubInheritance) asSet
-		equals: (class1 createOutgoingQueryResultWith: class1 superInheritances) asSet.
-	self
-		assert: (package1 queryOutgoing: FamixTSubInheritance) asSet
+		assert: (package1 queryOutgoing: FamixTInheritance) asSet
 		equals: (package1 createOutgoingQueryResultWith: (package1 classes flatCollect: [ :c | c superInheritances ])) asSet.
-	self assert: (method2 queryOutgoing: FamixTSuperInheritance) asSet equals: Array empty asSet
+	self assert: (method2 queryOutgoing: FamixTInheritance) asSet equals: Array empty asSet
 ]
 
 { #category : #tests }

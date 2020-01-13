@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixStClass class >> annotation [
 
-	<MSEClass: #Class super: #FamixStContainerEntity>
+	<FMClass: #Class super: #FamixStContainerEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
@@ -34,13 +34,13 @@ FamixStClass >> classSide [
 
 { #category : #accessing }
 FamixStClass >> extendedInPackages [
-	^ self extendedMethods flatCollectAsSet: [ :m | m atScope: FamixStPackage ]
+	^ self extendedMethods flatCollectAsSet: [ :m | m atScope: FamixTPackage ]
 ]
 
 { #category : #accessing }
 FamixStClass >> extendedMethods [
-	<MSEProperty: #extendedMethods type: #FamixStMethod>
-	<MSEComment: 'Methods which are class extensions in this class.'>
+	<FMProperty: #extendedMethods type: #FamixStMethod>
+	<FMComment: 'Methods which are class extensions in this class.'>
 	<derived>
 	^ self methods select: #isExtension
 ]
@@ -62,7 +62,7 @@ FamixStClass >> instanceSide [
 { #category : #testing }
 FamixStClass >> isAnonymousClass [
 	self flag: #todo.	"We need to check how to do that in Pharo smalltalk because I think some of the conditions are for Java"
-	^ self container notNil and: [ self container isMethod or: [ self name isAllDigits or: [ '*_anonymous_*' match: self name ] ] ]
+	^ self typeContainer notNil and: [ self typeContainer isMethod or: [ self name isAllDigits or: [ '*_anonymous_*' match: self name ] ] ]
 ]
 
 { #category : #testing }
@@ -90,17 +90,17 @@ FamixStClass >> isLonelyWithin: aClassGroup [
 
 { #category : #testing }
 FamixStClass >> isTestCase [
-	<MSEProperty: #isTestCase type: #Boolean>
+	<FMProperty: #isTestCase type: #Boolean>
 	<derived>
-	<MSEComment: 'True if the method is considered as a Java test'>
+	<FMComment: 'True if the method is considered as a Java test'>
 	self allSuperclassesDo: [ :each | each name = 'TestCase' ifTrue: [ ^ true ] ].
 	^ false
 ]
 
 { #category : #accessing }
 FamixStClass >> localMethods [
-	<MSEProperty: #extendedMethods type: #FamixStMethod>
-	<MSEComment: 'Methods which are local methods of the class and not extensions in this class.'>
+	<FMProperty: #extendedMethods type: #FamixStMethod>
+	<FMComment: 'Methods which are local methods of the class and not extensions in this class.'>
 	<derived>
 	^ self methods reject: #isExtension
 ]

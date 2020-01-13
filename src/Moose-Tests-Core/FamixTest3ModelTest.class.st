@@ -21,7 +21,9 @@ FamixTest3ModelTest >> testExport [
 		equals:
 			'(
 	(Famix-Test3-Entities.Class (id: 1)
-		(name ''Foo'')))'
+		(name ''Foo'')
+		(isStub false)
+		(numberOfLinesOfCode 0)))'
 ]
 
 { #category : #tests }
@@ -32,7 +34,7 @@ FamixTest3ModelTest >> testPrintOn [
 	group name: 'hello2'.
 	group add: MooseEntity new.
 	self assert: group printString equals: 'a FamixTest3Model #hello2(1)'.
-	self assert: self actualClass meta printString equals: 'a FMMetaRepository'
+	self assert: self actualClass meta printString equals: 'a FMMetaModel'
 ]
 
 { #category : #tests }

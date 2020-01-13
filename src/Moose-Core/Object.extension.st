@@ -1,5 +1,13 @@
 Extension { #name : #Object }
 
+{ #category : #'*Moose-Core' }
+Object >> allDeclaredPropertiesIn: aMetamodel [
+	"All properties described in the metamodel"
+
+	aMetamodel ifNil: [ ^ OrderedCollection new ].
+	^ aMetamodel descriptionOf: self class instanceSide ifPresent: #allProperties ifAbsent: [ OrderedCollection new ]
+]
+
 { #category : #'*moose-core' }
 Object >> asMooseGroup [ 
 	^ MooseGroup with: self
@@ -19,12 +27,6 @@ Object class >> isOfType: aClassFAMIX [
 Object >> mooseDescription [
 
 	^ self class asMooseDescription 
-]
-
-{ #category : #'*Moose-Core' }
-Object >> mooseDescriptionIn: aMetamodel [
-
-	^ self class asMooseDescriptionIn: aMetamodel 
 ]
 
 { #category : #'*moose-core' }
@@ -128,4 +130,10 @@ Object >> mooseModel [
 { #category : #'*moose-core' }
 Object >> mooseName [
 	^ self printString
+]
+
+{ #category : #'*Moose-Core' }
+Object >> usesFamixTrait: aTrait [
+
+	^ self class usesFamixTrait: aTrait
 ]

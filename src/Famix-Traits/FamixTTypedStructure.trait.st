@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTTypedStructure classSide >> annotation [
 
-	<MSEClass: #TTypedStructure super: #Trait>
+	<FMClass: #TTypedStructure super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -20,7 +20,7 @@ FamixTTypedStructure >> declaredType [
 	"Relation named: #declaredType type: #FamixTWithTypedStructures opposite: #structuresWithDeclaredType"
 
 	<generated>
-	<MSEComment: 'Type of the behavioral entity, if any'>
+	<FMComment: 'Type of the behavioral entity, if any'>
 	^ declaredType
 ]
 
@@ -29,7 +29,6 @@ FamixTTypedStructure >> declaredType: anObject [
 
 	<generated>
 	declaredType := anObject
-
 ]
 
 { #category : #'moose query' }

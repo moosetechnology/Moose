@@ -95,19 +95,23 @@ TEntityMetaLevelDependencyTest >> testAllChildren [
 
 { #category : #tests }
 TEntityMetaLevelDependencyTest >> testAllChildrenTypes [
-	self assertCollection: c1 allChildrenTypes hasSameElements: {FamixTMethod . FamixTAttribute}.
-	self assertCollection: c2 allChildrenTypes hasSameElements: {FamixTMethod . FamixTAttribute}.
+	self
+		assertCollection: c1 allChildrenTypes
+		hasSameElements: {FamixTParameter . FamixTImplicitVariable . FamixTest1Attribute . FamixTAttribute . FamixTest1Method . FamixTLocalVariable . FamixTMethod}.
+	self
+		assertCollection: c2 allChildrenTypes
+		hasSameElements: {FamixTParameter . FamixTImplicitVariable . FamixTest1Attribute . FamixTAttribute . FamixTest1Method . FamixTLocalVariable . FamixTMethod}.
 	self assertCollection: m1 allChildrenTypes hasSameElements: {FamixTImplicitVariable . FamixTParameter . FamixTLocalVariable}
 ]
 
 { #category : #tests }
 TEntityMetaLevelDependencyTest >> testAllIncomingAssociationTypes [
-	self assertCollection: c1 allIncomingAssociationTypes hasSameElements: {FamixTSuperInheritance . FamixTInvocation . FamixTAccess . FamixTReference}
+	self assertCollection: c1 allIncomingAssociationTypes hasSameElements: {FamixTInheritance . FamixTInvocation . FamixTAccess . FamixTReference}
 ]
 
 { #category : #tests }
 TEntityMetaLevelDependencyTest >> testAllOutgoingAssociationTypes [
-	self assertCollection: c1 allOutgoingAssociationTypes hasSameElements: {FamixTSubInheritance . FamixTInvocation . FamixTAccess . FamixTReference}
+	self assertCollection: c1 allOutgoingAssociationTypes hasSameElements: {FamixTInheritance . FamixTInvocation . FamixTAccess . FamixTReference}
 ]
 
 { #category : #tests }
@@ -186,7 +190,7 @@ TEntityMetaLevelDependencyTest >> testChildrenSelectors [
 
 { #category : #tests }
 TEntityMetaLevelDependencyTest >> testIncomingAssociationTypes [
-	self assertCollection: c1 allIncomingAssociationTypes hasSameElements: {FamixTSuperInheritance . FamixTInvocation . FamixTAccess . FamixTReference}
+	self assertCollection: c1 allIncomingAssociationTypes hasSameElements: {FamixTInheritance . FamixTInvocation . FamixTAccess . FamixTReference}
 ]
 
 { #category : #tests }
@@ -199,7 +203,7 @@ TEntityMetaLevelDependencyTest >> testNumberOfChildren [
 
 { #category : #tests }
 TEntityMetaLevelDependencyTest >> testOutgoingAssociationTypes [
-	self assertCollection: c1 allOutgoingAssociationTypes hasSameElements: {FamixTSubInheritance . FamixTInvocation . FamixTAccess . FamixTReference}
+	self assertCollection: c1 allOutgoingAssociationTypes hasSameElements: {FamixTInheritance . FamixTInvocation . FamixTAccess . FamixTReference}
 ]
 
 { #category : #tests }
@@ -220,13 +224,6 @@ TEntityMetaLevelDependencyTest >> testParents [
 	newMethod := FamixTest1Method new.
 	self assert: newMethod parents isEmpty.
 
-]
-
-{ #category : #tests }
-TEntityMetaLevelDependencyTest >> testQueryLocalIncoming [
-
-	"just smoke test"
-	self assert: (c1 queryLocalIncoming: FamixTInheritanceGlue) isEmpty.
 ]
 
 { #category : #tests }

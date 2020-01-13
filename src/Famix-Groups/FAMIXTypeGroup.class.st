@@ -9,7 +9,7 @@ Class {
 
 { #category : #meta }
 FAMIXTypeGroup class >> annotation [
-	<MSEClass: #TypeGroup super: #MooseGroup>
+	<FMClass: #TypeGroup super: #MooseGroup>
 	<package: #FAMIX>
 
 ]
@@ -18,9 +18,9 @@ FAMIXTypeGroup class >> annotation [
 FAMIXTypeGroup >> abstractness [
 	"Abstractness is the ratio between the number of abstract classes and the total number of classes in a package, in the range [0, 1]. 0 means the package is fully concrete, 1 it is fully abstract."
 
-	<MSEProperty: #abstractness type: #Number>
+	<FMProperty: #abstractness type: #Number>
 	<derived>
-	<MSEComment: 'Abstractness is the ratio between the number of abstract classes and the total number of classes in a package, in the range [0, 1]. 0 means the package is fully concrete, 1 it is fully abstract.'>
+	<FMComment: 'Abstractness is the ratio between the number of abstract classes and the total number of classes in a package, in the range [0, 1]. 0 means the package is fully concrete, 1 it is fully abstract.'>
 	
 	| nsClasses |
 	nsClasses := self allClasses select: [:c | c isInstanceSide].
@@ -60,8 +60,8 @@ FAMIXTypeGroup >> allPackages [
 
 { #category : #metrics }
 FAMIXTypeGroup >> averageNumberOfAttributes [
-	<MSEProperty: #averageNumberOfAttributes type: #Number>
-	<MSEComment: 'Average number of attributes per class'>
+	<FMProperty: #averageNumberOfAttributes type: #Number>
+	<FMComment: 'Average number of attributes per class'>
 
 	^self
 		lookUpPropertyNamed: #averageNumberOfAttributes
@@ -70,8 +70,8 @@ FAMIXTypeGroup >> averageNumberOfAttributes [
 
 { #category : #metrics }
 FAMIXTypeGroup >> averageNumberOfLinesOfCode [
-	<MSEProperty: #averageNumberOfMethods type: #Number>
-	<MSEComment: 'Average number of methods per class'>
+	<FMProperty: #averageNumberOfMethods type: #Number>
+	<FMComment: 'Average number of methods per class'>
 	
 	^self
 		lookUpPropertyNamed: #averageNumberOfMethods
@@ -80,8 +80,8 @@ FAMIXTypeGroup >> averageNumberOfLinesOfCode [
 
 { #category : #metrics }
 FAMIXTypeGroup >> averageNumberOfMethods [
-	<MSEProperty: #averageNumberOfMethods type: #Number>
-	<MSEComment: 'Average number of methods per class'>
+	<FMProperty: #averageNumberOfMethods type: #Number>
+	<FMComment: 'Average number of methods per class'>
 
 	^self
 		lookUpPropertyNamed: #averageNumberOfMethods
@@ -90,8 +90,8 @@ FAMIXTypeGroup >> averageNumberOfMethods [
 
 { #category : #metrics }
 FAMIXTypeGroup >> averageNumberOfStatements [
-	<MSEProperty: #averageNumberOfStatements type: #Number>
-	<MSEComment: 'Average number of statements per class'>	
+	<FMProperty: #averageNumberOfStatements type: #Number>
+	<FMComment: 'Average number of statements per class'>	
 
 	^self
 		lookUpPropertyNamed: #averageNumberOfStatements
@@ -128,9 +128,9 @@ FAMIXTypeGroup >> commonExternalSuperclasses [
 { #category : #metrics }
 FAMIXTypeGroup >> distance [
 	"D = A + I - 1. A package should be balanced between abstractness and instability, i.e., somewhere between abstract and stable or concrete and unstable. This rule defines the main sequence by the equation A + I - 1 = 0. D is the distance to the main sequence."
-	<MSEProperty: #distance type: #Number>
+	<FMProperty: #distance type: #Number>
 	<derived>
-	<MSEComment: 'Distance of a class group'>
+	<FMComment: 'Distance of a class group'>
 	
 	| abstractness instability |
 	abstractness := self abstractness.
@@ -143,9 +143,9 @@ FAMIXTypeGroup >> distance [
 { #category : #metrics }
 FAMIXTypeGroup >> instability [
 	"I =	Ce(P)/(Ce(P)+Ca(P)), in the range [0, 1]. 0 means package is maximally stable (i.e., no dependency to other packages and can not change without big consequences), 1 means it is unstable."
-	<MSEProperty: #instability type: #Number>
+	<FMProperty: #instability type: #Number>
 	<derived>
-	<MSEComment: 'Instability of a class group'>
+	<FMComment: 'Instability of a class group'>
 	
 	| efferentCoupling afferentCoupling |
 	

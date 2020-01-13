@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixTest1File class >> annotation [
 
-	<MSEClass: #File super: #FamixTest1NamedEntity>
+	<FMClass: #File super: #FamixTest1NamedEntity>
 	<package: #'Famix-Test1-Entities'>
 	<generated>
 	^self

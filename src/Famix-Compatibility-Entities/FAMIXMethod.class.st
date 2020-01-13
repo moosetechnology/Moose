@@ -12,17 +12,10 @@ Class {
 { #category : #meta }
 FAMIXMethod class >> annotation [
 
-	<MSEClass: #Method super: #FAMIXBehaviouralEntity>
+	<FMClass: #Method super: #FAMIXBehaviouralEntity>
 	<package: #FAMIX>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FAMIXMethod class >> requirements [
-
-	<generated>
-	^ { FAMIXType }
 ]
 
 { #category : #accessing }
@@ -46,8 +39,8 @@ FAMIXMethod >> accessedAttributes [
 
 { #category : #'Famix-Smalltalk' }
 FAMIXMethod >> category [
-	<MSEProperty: #category type: #String>
-	<MSEComment: 'Category of the method'>
+	<FMProperty: #category type: #String>
+	<FMComment: 'Category of the method'>
 	<package: 'Smalltalk'>
 	
 	^ self privateState attributeAt: #category ifAbsentPut: [ nil ]
@@ -72,19 +65,13 @@ FAMIXMethod >> compiledMethod [
 
 { #category : #'Famix-Extensions' }
 FAMIXMethod >> cyclomaticComplexity [
-
 	"redefine this method because we need to override an implementation provided by FamixTMethod"
 
-	<MSEProperty: #cyclomaticComplexity type: #Number>
-	<MSEComment: 'The number of linear-independent paths through a method.'>
+	<FMProperty: #cyclomaticComplexity type: #Number>
+	<FMComment: 'The number of linear-independent paths through a method.'>
 	^ self
 		lookUpPropertyNamed: #cyclomaticComplexity
-		computedAs: [ self mooseModel isSmalltalk
-				ifTrue: [ | parser |
-					parser := RBVisitorForFAMIXMetrics new.
-					parser processMethod: self usingImporter: nil inModel: nil.
-					parser cyclomaticNumber2 ]
-				ifFalse: [ self notExistentMetricValue ] ]
+		computedAs: [ self mooseModel isSmalltalk ifTrue: [ (RBVisitorForFAMIXMetrics for: self) cyclomaticNumber ] ifFalse: [ self notExistentMetricValue ] ]
 ]
 
 { #category : #'Famix-Java' }
@@ -94,9 +81,9 @@ FAMIXMethod >> hasInnerClassImplementingMethods [
 
 { #category : #'Famix-Extensions' }
 FAMIXMethod >> hierarchyNestingLevel [
-	<MSEProperty: #hierarchyNestingLevel type: #Number>
+	<FMProperty: #hierarchyNestingLevel type: #Number>
 	<derived>
-	<MSEComment: 'The nesting level in the hierarchy'>
+	<FMComment: 'The nesting level in the hierarchy'>
 	
 	^self
 		lookUpPropertyNamed: #hierarchyNestingLevel
@@ -128,16 +115,16 @@ FAMIXMethod >> innerClassesImplementingMethods [
 
 { #category : #'Famix-Extensions' }
 FAMIXMethod >> invokedMethods [
-	<MSEProperty: #invokedMethods type: #FAMIXMethod> <derived> <multivalued>
-	<MSEComment: 'The methods invoked by the receiver'>
+	<FMProperty: #invokedMethods type: #FAMIXMethod> <derived> <multivalued>
+	<FMComment: 'The methods invoked by the receiver'>
 	
 	^ self invokedBehaviours select: [ :each | each isMethod ]
 ]
 
 { #category : #'Famix-Extensions' }
 FAMIXMethod >> invokingMethods [
-	<MSEProperty: #invokingMethods type: #FAMIXMethod> <derived> <multivalued>
-	<MSEComment: 'The methods invoking the receiver'>
+	<FMProperty: #invokingMethods type: #FAMIXMethod> <derived> <multivalued>
+	<FMComment: 'The methods invoking the receiver'>
 
 	^ self invokingBehaviours select: [ :each | each isMethod ]
 ]
@@ -151,9 +138,9 @@ FAMIXMethod >> isCalledInternally [
 
 { #category : #'Famix-Implementation' }
 FAMIXMethod >> isClassInitializer [
-	<MSEProperty: #isClassInitializer type: #Boolean>
+	<FMProperty: #isClassInitializer type: #Boolean>
 	<derived>
-	<MSEComment: 'True if the method is an initializer of the class (i.e. contains the attribute init env)'>
+	<FMComment: 'True if the method is an initializer of the class (i.e. contains the attribute init env)'>
 	^ #initializer = self kind
 		or: [ self privateState propertyAt: #isClassInitializer ifAbsent: [ false ] ]
 ]
@@ -174,9 +161,9 @@ FAMIXMethod >> isDetectedSetter [
 
 { #category : #'Famix-Java' }
 FAMIXMethod >> isImplementing [
-	<MSEProperty: #isImplementing type: #Boolean>
+	<FMProperty: #isImplementing type: #Boolean>
 	<derived>
-	<MSEComment: 'The method is implementing a method defined in an interface'>
+	<FMComment: 'The method is implementing a method defined in an interface'>
 	^ self belongsTo directSuperclasses
 		anySatisfy: [ :each | each isInterface and: [ each understands: self signature ] ]
 ]
@@ -190,9 +177,9 @@ FAMIXMethod >> isInitializer [
 
 { #category : #'Famix-Smalltalk' }
 FAMIXMethod >> isInternalImplementation [
-	<MSEProperty: #isInternalImplementation type: #Boolean>
+	<FMProperty: #isInternalImplementation type: #Boolean>
 	<derived>
-	<MSEComment: 'Public Interface Layer Method'>
+	<FMComment: 'Public Interface Layer Method'>
 	<package: 'Smalltalk'>
 	^ (self isInitializer not and: [ self isCalledInternally ])
 		and: [ self isPureAccessor not ]
@@ -200,17 +187,17 @@ FAMIXMethod >> isInternalImplementation [
 
 { #category : #'Famix-Java' }
 FAMIXMethod >> isJUnit4Test [
-	<MSEProperty: #isJUnit4Test type: #Boolean>
+	<FMProperty: #isJUnit4Test type: #Boolean>
 	<derived>
-	<MSEComment: 'True if the method is considered as a Junit 4 Java test'>
+	<FMComment: 'True if the method is considered as a Junit 4 Java test'>
 	^ self isAnnotatedWith: 'Test'
 ]
 
 { #category : #'Famix-Extensions' }
 FAMIXMethod >> isOverriden [
-	<MSEProperty: #isOverriden type: #Boolean>
+	<FMProperty: #isOverriden type: #Boolean>
 	<derived>
-	<MSEComment: 'The method is overrided in a sub class'>
+	<FMComment: 'The method is overrided in a sub class'>
 	"If we have a stub and we don't have the container, we can't have the information"
 	(self belongsTo isNil and: [ self isStub ]) ifTrue: [ ^ false ].
 	
@@ -219,9 +206,9 @@ FAMIXMethod >> isOverriden [
 
 { #category : #'Famix-Extensions' }
 FAMIXMethod >> isOverriding [
-	<MSEProperty: #isOverriding type: #Boolean>
+	<FMProperty: #isOverriding type: #Boolean>
 	<derived>
-	<MSEComment: 'The method is overrinding a method defined in a super class'>
+	<FMComment: 'The method is overrinding a method defined in a super class'>
 	
 	^self belongsTo directSuperclasses anySatisfy: [:each | 
 		each isInterface not and: [each understands: self signature]]
@@ -251,9 +238,9 @@ FAMIXMethod >> isSurelyInvokedBy: aFAMIXMethod [
 
 { #category : #'Famix-Extensions' }
 FAMIXMethod >> numberOfAnnotationInstances [
-	<MSEProperty: #numberOfAnnotationInstances type: #Number>
+	<FMProperty: #numberOfAnnotationInstances type: #Number>
 	<derived>
-	<MSEComment: 'The number of annotation instances defined in the method'>
+	<FMComment: 'The number of annotation instances defined in the method'>
 
 	^self
 		lookUpPropertyNamed: #numberOfAnnotationInstances
@@ -262,8 +249,8 @@ FAMIXMethod >> numberOfAnnotationInstances [
 
 { #category : #'Famix-Extensions' }
 FAMIXMethod >> numberOfInvokedMethods [
-	<MSEProperty: #numberOfInvokedMethods type: #Number>
-	<MSEComment: 'Return a number corresponding to the number of invoked methods'>
+	<FMProperty: #numberOfInvokedMethods type: #Number>
+	<FMComment: 'Return a number corresponding to the number of invoked methods'>
 	<derived>
 	
 	^ self privateState propertyAt: #numberOfInvokedMethods ifAbsentPut: [self invokedMethods size]
@@ -271,19 +258,12 @@ FAMIXMethod >> numberOfInvokedMethods [
 
 { #category : #'Famix-Extensions' }
 FAMIXMethod >> numberOfMessageSends [
-	<MSEProperty: #numberOfMessageSends type: #Number>
+	<FMProperty: #numberOfMessageSends type: #Number>
 	<derived>
-	<MSEComment: 'The number of message from a method'>
+	<FMComment: 'The number of message from a method'>
 	^ self
 		lookUpPropertyNamed: #numberOfMessageSends
-		computedAs: [ 
-			self mooseModel isSmalltalk
-				ifTrue: [ 
-					| parser |
-					parser := RBVisitorForFAMIXMetrics new.
-					parser processMethod: self usingImporter: nil inModel: nil.
-					parser numberOfMessageSends ]
-				ifFalse: [ self notExistentMetricValue ] ]
+		computedAs: [ self mooseModel isSmalltalk ifTrue: [ (RBVisitorForFAMIXMetrics for: self) numberOfMessageSends ] ifFalse: [ self notExistentMetricValue ] ]
 ]
 
 { #category : #'Famix-Implementation' }
@@ -334,8 +314,8 @@ FAMIXMethod >> sourceText [
 
 { #category : #'Famix-Smalltalk' }
 FAMIXMethod >> timeStamp [
-	<MSEProperty: #timeStamp type: #String>
-	<MSEComment: 'TimeStamp of the method with author and time of the last change'>
+	<FMProperty: #timeStamp type: #String>
+	<FMComment: 'TimeStamp of the method with author and time of the last change'>
 	<package: 'Smalltalk'>
 	
 	^ self privateState attributeAt: #timeStamp ifAbsentPut: ['']

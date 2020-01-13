@@ -7,3 +7,13 @@ Object >> handleFameProperty: aSymbol value: anObject [
 	Transcript cr.
 
 ]
+
+{ #category : #'*Fame-ImportExport' }
+Object >> isDanglingReference [
+	^ false
+]
+
+{ #category : #'*Fame-ImportExport' }
+Object >> msePrintOn: aStream [
+	self error: 'This type of object cannot be exported in a mse: ' , self class printString
+]

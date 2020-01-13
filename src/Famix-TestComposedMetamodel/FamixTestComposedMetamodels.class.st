@@ -56,19 +56,19 @@ FamixTestComposedMetamodels >> setUp [
 	
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTestComposedMetamodels >> testGenerationOfComposedMetamodel [
-
 	| aGenerator env |
-	
 	aGenerator := FamixTestComposedGenerator new beForTesting generate.
 	env := aGenerator builder environment ringEnvironment.
-	
-	self assert: ((((env ask behaviorNamed: #FamixTestComposedCustomEntity1) methodNamed: #customEntity1) sourceCode includesSubstring: 
-'MSEProperty: #customEntity1 type: #Object'))
+
+	self
+		assert:
+			(((env ask behaviorNamed: #FamixTestComposedCustomEntity1) methodNamed: #customEntity1) sourceCode
+				includesSubstring: '<FMProperty: #customEntity1 type: #FamixTestComposed1CustomEntity1 opposite: #customEntity1>')
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTestComposedMetamodels >> testImplicitManyToManyRemote [
 
 	c4 customEntities4: {c14}.
@@ -76,7 +76,7 @@ FamixTestComposedMetamodels >> testImplicitManyToManyRemote [
 	self assertCollection: c14 customEntities4 hasSameElements: {c4}.
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTestComposedMetamodels >> testImplicitManyToOneRemote [
 
 	c3 customEntity3: c13.
@@ -85,7 +85,7 @@ FamixTestComposedMetamodels >> testImplicitManyToOneRemote [
 	self assertCollection: c13 customEntities3 hasSameElements: {c3}.
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTestComposedMetamodels >> testImplicitOneToManyRemote [
 
 	c2 customEntities2: {c12}.
@@ -94,7 +94,7 @@ FamixTestComposedMetamodels >> testImplicitOneToManyRemote [
 	self assert: c12 customEntity2 equals: c2.
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTestComposedMetamodels >> testImplicitOneToOneRemote [
 
 	c1 customEntity1: c11.
@@ -103,7 +103,7 @@ FamixTestComposedMetamodels >> testImplicitOneToOneRemote [
 	self assert: c11 customEntity1 equals: c1.
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTestComposedMetamodels >> testManyToManyRemote [
 
 	c4 c24s: {c24}.
@@ -112,7 +112,7 @@ FamixTestComposedMetamodels >> testManyToManyRemote [
 	self assertCollection: c24 c4s hasSameElements: {c4}.
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTestComposedMetamodels >> testManyToOneRemote [
 
 	c3 c23: c23.
@@ -121,7 +121,7 @@ FamixTestComposedMetamodels >> testManyToOneRemote [
 	self assertCollection: c23 c3s hasSameElements: {c3}.
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTestComposedMetamodels >> testOneToManyRemote [
 
 	c2 c22s: {c22}.
@@ -130,7 +130,7 @@ FamixTestComposedMetamodels >> testOneToManyRemote [
 	self assert: c22 c2 equals: c2.
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTestComposedMetamodels >> testOneToOneRemote [
 
 	c1 c21: c21.
@@ -139,7 +139,7 @@ FamixTestComposedMetamodels >> testOneToOneRemote [
 	self assert: c21 c1 equals: c1.
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTestComposedMetamodels >> testRemoteManyToManyRemote [
 
 	c14 c24s: {c24}.
@@ -148,7 +148,7 @@ FamixTestComposedMetamodels >> testRemoteManyToManyRemote [
 	self assertCollection: c24 c14s hasSameElements: {c14}.
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTestComposedMetamodels >> testRemoteManyToOneRemote [
 
 	c13 c23: c23.
@@ -157,7 +157,7 @@ FamixTestComposedMetamodels >> testRemoteManyToOneRemote [
 	self assertCollection: c23 c13s hasSameElements: {c13}.
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTestComposedMetamodels >> testRemoteOneToManyRemote [
 
 	c12 c22s: {c22}.
@@ -166,7 +166,7 @@ FamixTestComposedMetamodels >> testRemoteOneToManyRemote [
 	self assert: c22 c12 equals: c12.
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTestComposedMetamodels >> testRemoteOneToOneRemote [
 
 	c11 c21: c21.

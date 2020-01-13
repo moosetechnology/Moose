@@ -12,7 +12,7 @@ Trait {
 { #category : #meta }
 FamixTFunction classSide >> annotation [
 
-	<MSEClass: #TFunction super: #Trait>
+	<FMClass: #TFunction super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -23,7 +23,7 @@ FamixTFunction >> functionOwner [
 	"Relation named: #functionOwner type: #FamixTWithFunctions opposite: #functions"
 
 	<generated>
-	<MSEComment: 'The container defining the function. The function is placed in a container, because certain languages can nest functions in functions.'>
+	<FMComment: 'The container defining the function. The function is placed in a container, because certain languages can nest functions in functions.'>
 	<container>
 	^ functionOwner
 ]

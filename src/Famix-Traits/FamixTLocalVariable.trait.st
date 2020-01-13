@@ -14,7 +14,7 @@ Trait {
 { #category : #meta }
 FamixTLocalVariable classSide >> annotation [
 
-	<MSEClass: #TLocalVariable super: #Trait>
+	<FMClass: #TLocalVariable super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -25,7 +25,7 @@ FamixTLocalVariable >> parentBehaviouralEntity [
 	"Relation named: #parentBehaviouralEntity type: #FamixTWithLocalVariables opposite: #localVariables"
 
 	<generated>
-	<MSEComment: 'Behavioural entity declaring this local variable. belongsTo implementation'>
+	<FMComment: 'Behavioural entity declaring this local variable. belongsTo implementation'>
 	<container>
 	^ parentBehaviouralEntity
 ]

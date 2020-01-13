@@ -1,45 +1,31 @@
+"
+Description
+--------------------
+
+I am a relation slot representing a multivalued property.
+
+Examples
+--------------------
+
+	Trait named: #FamixTWithMethods
+		uses: {}
+		slots: { #methods => FMMany type: #FamixTMethod opposite: #parentType }
+		package: 'Famix-Traits-Method'
+"
 Class {
 	#name : #FMMany,
 	#superclass : #FMRelationSlot,
-	#category : #'Fame-Core-Slots'
+	#category : #'Fame-Core-Utilities'
 }
 
 { #category : #internal }
 FMMany >> add: newObject to: collectionOwner [
-
-	self checkValue: newObject.
-	self hasInverse
-		ifTrue: [ self addAssociationFrom: collectionOwner to: newObject ]
-
+	self hasInverse ifTrue: [ self addAssociationFrom: collectionOwner to: newObject ]
 ]
 
 { #category : #initialization }
 FMMany >> initialize: anObject [
-
-	self write: (FMSlotMultivalueLink on: anObject slot: self) to: anObject. 
-	
-]
-
-{ #category : #initialization }
-FMMany >> lazyInitializationFor: anObject slotValue: aSlotValue [
-
-	| newLink |
-	
-	aSlotValue ifNotNil: [ ^ aSlotValue ].
-	
-	newLink := (FMSlotMultivalueLink on: anObject slot: self).
-
-	thisContext object: anObject instVarAt: index put: newLink.
-	
-	^ newLink
-
-
-]
-
-{ #category : #'meta-object-protocol' }
-FMMany >> mooseProperty [
-
-	^ self moosePropertyFor: self owningClass name multivalued: true.
+	self write: (FMSlotMultivalueLink on: anObject slot: self) to: anObject
 ]
 
 { #category : #internal }

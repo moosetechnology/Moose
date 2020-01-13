@@ -1,6 +1,3 @@
-"
-FamixMetamodelBuilderBehavior
-"
 Class {
 	#name : #FmxMBBehavior,
 	#superclass : #FmxMBEntity,
@@ -14,12 +11,15 @@ Class {
 		'prefix',
 		'packageName',
 		'testingSelectors',
-		'isRoot',
-		'traitGeneralizations',
-		'methodsToRemoveFromTraitComposition'
+		'traitGeneralizations'
 	],
 	#category : #'Famix-MetamodelBuilder-Core-Implementation'
 }
+
+{ #category : #testing }
+FmxMBBehavior class >> isAbstract [
+	^ self = FmxMBBehavior
+]
 
 { #category : #generalization }
 FmxMBBehavior >> --|> anObject [
@@ -66,11 +66,14 @@ FmxMBBehavior >> allLocalTraits [
 	^ self traitGeneralizations
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FmxMBBehavior >> allNavigationGroups [
+	^ self navigationGroups , (self relations flatCollect: [ :relation | relation side navigationGroups ])
+]
 
-	^ self navigationGroups, (self relations flatCollect: [ :relation |
-		relation side navigationGroups ]).
+{ #category : #accessing }
+FmxMBBehavior >> allTraitNames [
+	^ (self allLocalTraits collect: #fullName) sorted
 ]
 
 { #category : #accessing }
@@ -78,14 +81,6 @@ FmxMBBehavior >> allTransitiveTraits [
 	^ (Set with: self)
 		addAll: (self allLocalTraits flatCollect: [ :trait | trait allTransitiveTraits ]);
 		yourself
-]
-
-{ #category : #converting }
-FmxMBBehavior >> as: aTraitOrTraitName property: propertyName comment: aString [
-
-	^ (self as: aTraitOrTraitName property: propertyName)
-		comment: aString;
-		yourself.
 ]
 
 { #category : #converting }
@@ -109,49 +104,51 @@ FmxMBBehavior >> defaultSuperclass [
 	^ self builder environment basicSuperclass
 ]
 
+{ #category : #generating }
+FmxMBBehavior >> defaultSuperclassName [
+	^ self defaultSuperclass name
+]
+
 { #category : #'settings - default' }
 FmxMBBehavior >> defaultTag [
-
 	^ self builder configuration classTag
 ]
 
 { #category : #accessing }
 FmxMBBehavior >> fullName [
-
-	^ (self prefix, self name) asSymbol
+	^ (self prefix , self name) asSymbol
 ]
 
 { #category : #accessing }
 FmxMBBehavior >> generalization: anObject [
-
 	^ anObject isSymbol
 		ifTrue: [ self addTraitGeneralization: (self builder getTraitNamed: anObject) ]
-		ifFalse: [ 
-			anObject isMetamodelTrait 
-				ifTrue: [ self addTraitGeneralization: anObject ]
-				ifFalse: [ self classGeneralization: anObject ] ]
+		ifFalse: [ anObject isMetamodelTrait ifTrue: [ self addTraitGeneralization: anObject ] ifFalse: [ self classGeneralization: anObject ] ]
+]
+
+{ #category : #accessing }
+FmxMBBehavior >> generate [
+	^ self subclassResponsibility
 ]
 
 { #category : #generating }
 FmxMBBehavior >> generateAccessors [
-
-	self properties do: [ :each |
-		each generateAccessorsIn: self realClass. ]
-
+	self properties do: [ :each | each generateAccessorsIn: self realClass ]
 ]
 
 { #category : #generating }
 FmxMBBehavior >> generateAddToCollectionFor: aClass [
-	| sideName |
-	self allNavigationGroups
-		do: [ :aGroup | 
-			sideName := aGroup entity name.
-			aGroup entity isMany
-				ifTrue: [ self builder environment
+	self relations
+		collect: #side
+		thenDo: [ :side | 
+			side isMany
+				ifTrue: [ | sideName |
+					sideName := side name.
+					self builder environment
 						compile:
 							('add{1}: anObject
 	<generated>
-	^ self {2} add: anObject' format: {sideName capitalized . sideName})
+	^ self {2} add: anObject' format: {sideName capitalized asSingular . sideName})
 						in: aClass instanceSide
 						classified: #adding ] ]
 ]
@@ -162,14 +159,14 @@ FmxMBBehavior >> generateAnnotationIn: aRealClass as: aName superclass: aSupercl
 	aSuperclassName := aSuperclass
 		ifNotNil: [ aSuperclass name ]
 		ifNil: [ self classGeneralization = self defaultSuperclass
-				ifTrue: [ self defaultSuperclass name ]
-				ifFalse: [ self classGeneralization ifNil: [ self defaultSuperclass name ] ifNotNil: [ self classGeneralization realClass name ] ] ].
+				ifTrue: [ self defaultSuperclassName ]
+				ifFalse: [ self classGeneralization ifNil: [ self defaultSuperclassName ] ifNotNil: [ :cg | cg realClass name ] ] ].
 
 	aRealClass classSide
 		compile:
 			('annotation
 
-	<MSEClass: #{1} super: #{2}>
+	<FMClass: #{1} super: #{2}>
 	<package: {3}>
 	<generated>
 	^self' format: {aName . aSuperclassName . self builder safeAnnotationPackageName})
@@ -212,23 +209,7 @@ FmxMBBehavior >> generateNavigationGroupsFor: aClass [
 
 { #category : #generating }
 FmxMBBehavior >> generateRemoteAccessors [
-
-	(self properties select: #isRemote) do: [ :each |
-		each generateAccessorsIn: self realClass. ]
-
-]
-
-{ #category : #generating }
-FmxMBBehavior >> generateRootMetamodelMethodIn: aClass [
-	self isRoot ifFalse: [ ^ self ].
-
-	aClass classSide
-		compile:
-			('metamodel
-
-	<generated>
-	^ (self class environment at: #{1}) metamodel' format: {self builder generator class name})
-		classified: 'meta'
+	(self properties select: #isRemote) do: [ :each | each generateAccessorsIn: self realClass ]
 ]
 
 { #category : #generating }
@@ -249,14 +230,12 @@ FmxMBBehavior >> inheritsFromTrait: aTrait without: aCollection [
 
 { #category : #initialization }
 FmxMBBehavior >> initialize [
-
 	super initialize.
 	relations := OrderedCollection new.
 	properties := OrderedCollection new.
-	prefix := String new.
-	packageName := String new.
-	testingSelectors := Set new.
-	isRoot := true
+	prefix := ''.
+	packageName := ''.
+	testingSelectors := Set new
 ]
 
 { #category : #testing }
@@ -267,12 +246,6 @@ FmxMBBehavior >> isMetamodelClass [
 
 { #category : #testing }
 FmxMBBehavior >> isMetamodelTrait [
-
-	^ false
-]
-
-{ #category : #testing }
-FmxMBBehavior >> isRoot [
 
 	^ false
 ]
@@ -332,14 +305,12 @@ FmxMBBehavior >> prefix: anObject [
 
 { #category : #generating }
 FmxMBBehavior >> printOn: aStream [
-
 	<ignoreForCoverage>
-
-	aStream 
-		nextPutAll: self class name; 
-		nextPutAll: '(';
+	aStream
+		nextPutAll: self class name;
+		nextPut: $(;
 		nextPutAll: self name asString;
-		nextPutAll: ')'
+		nextPut: $)
 ]
 
 { #category : #accessing }
@@ -382,10 +353,7 @@ FmxMBBehavior >> property: propertyName type: aTypeName [
 
 { #category : #private }
 FmxMBBehavior >> propertyName [
-	
-	^ self name uncapitalized.
-	
-	
+	^ self name uncapitalized
 ]
 
 { #category : #accessing }
@@ -441,12 +409,6 @@ FmxMBBehavior >> slotDefinitions [
 	slotGroups valuesDo: [ :similarSlots | self assert: (similarSlots collect: #name) asSet size = 1 ].
 
 	^ slotGroups values collect: [ :each | each anyOne ]
-]
-
-{ #category : #accessing }
-FmxMBBehavior >> subject [
-
-	^ self
 ]
 
 { #category : #accessing }

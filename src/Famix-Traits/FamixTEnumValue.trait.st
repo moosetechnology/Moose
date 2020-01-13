@@ -22,7 +22,7 @@ Trait {
 { #category : #meta }
 FamixTEnumValue classSide >> annotation [
 
-	<MSEClass: #TEnumValue super: #Trait>
+	<FMClass: #TEnumValue super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -46,7 +46,7 @@ FamixTEnumValue >> parentEnum [
 	"Relation named: #parentEnum type: #FamixTWithEnumValues opposite: #enumValues"
 
 	<generated>
-	<MSEComment: 'The Enum declaring this value. It offers the implementation of belongsTo'>
+	<FMComment: 'The Enum declaring this value. It offers the implementation of belongsTo'>
 	<container>
 	^ parentEnum
 ]
@@ -56,7 +56,6 @@ FamixTEnumValue >> parentEnum: anObject [
 
 	<generated>
 	parentEnum := anObject
-
 ]
 
 { #category : #navigation }

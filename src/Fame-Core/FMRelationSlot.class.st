@@ -1,13 +1,34 @@
+"
+Description
+--------------------
+
+I am an abstract slot used to declare fame properties for a class.
+The declared properties with my subclasses must have an opposite.
+
+A relation slot will have:
+- A name which is the name of the property
+- A type which is the type of the property 
+- An inverse name which is the name of the opposite property.
+
+My sublasses will define everything related to the cardinality of the relation side.
+ 
+Internal Representation and Key Implementation Points.
+--------------------
+
+    Instance Variables
+	inverseName:		<aString>		The name of the opposite slot.
+	inverseSlot:		<aSlot>
+	targetClass:		<aClass>
+
+"
 Class {
 	#name : #FMRelationSlot,
 	#superclass : #InstanceVariableSlot,
 	#instVars : [
 		'targetClass',
-		'inverseName',
-		'inverseSlot',
-		'moosePropertyDictionary'
+		'inverseName'
 	],
-	#category : #'Fame-Core-Slots'
+	#category : #'Fame-Core-Utilities'
 }
 
 { #category : #'instance creation' }
@@ -17,13 +38,8 @@ FMRelationSlot class >> named: aSymbol inverse: anInverseSymbol inClass: aTarget
 ]
 
 { #category : #comparing }
-FMRelationSlot >> = anObject [ 
-
-	^super = anObject and: [ 
-		self targetClassName = anObject targetClassName and: [ 
-			inverseName = anObject inverseName ] ]
-
-	
+FMRelationSlot >> = anObject [
+	^ super = anObject and: [ self targetClassName = anObject targetClassName and: [ inverseName = anObject inverseName ] ]
 ]
 
 { #category : #internal }
@@ -35,25 +51,10 @@ FMRelationSlot >> addAssociationFrom: ownerObject to: otherObject [
 	| realInverseSlot |
 	realInverseSlot := self realInverseSlotFor: otherObject.
 
-	realInverseSlot isToOneSlot
+	realInverseSlot isToOne
 		ifTrue: [ (realInverseSlot read: otherObject) ifNotNil: [ :oldObject | realInverseSlot removeAssociationFrom: otherObject to: oldObject ].
 			realInverseSlot writeInverse: ownerObject to: otherObject ]
 		ifFalse: [ (realInverseSlot read: otherObject) inverseAdd: ownerObject ]
-]
-
-{ #category : #accessing }
-FMRelationSlot >> argumentAt: n [
-	"only for compatibility with Fame pragmas"
-
-	self assert: n = 1.
-	^ self name asSymbol
-]
-
-{ #category : #internal }
-FMRelationSlot >> checkValue: aValue [
-
-	"(aValue isKindOf: self targetClass)
-		ifFalse: [ self error: 'Invalid value' ]."
 ]
 
 { #category : #'code generation' }
@@ -80,59 +81,44 @@ FMRelationSlot >> emitValue: aMethodBuilder [
 
 { #category : #testing }
 FMRelationSlot >> hasInverse [
-
-	^inverseName notNil
+	^ inverseName isNotNil
 ]
 
 { #category : #comparing }
 FMRelationSlot >> hasSameDefinitionAs: otherSlot [
-
-	^ (super hasSameDefinitionAs: otherSlot) 
-		and: [ self targetClassName = otherSlot targetClassName 
-		and: [ inverseName = otherSlot inverseName ] ]
+	^ (super hasSameDefinitionAs: otherSlot)
+		and: [ self targetClassName = otherSlot targetClassName
+			and: [ inverseName = otherSlot inverseName ] ]
 ]
 
 { #category : #comparing }
 FMRelationSlot >> hash [
-	^ ((self species hash bitXor: self name hash) 
-			bitXor: (self index ifNil: [ 0 ])) 
-				bitXor: self targetClassName hash
+	^ (super hash bitXor: self targetClassName hash) bitXor: inverseName hash
 ]
 
 { #category : #initialization }
 FMRelationSlot >> inClass: aTargetClassOrSymbol [
-
 	targetClass := aTargetClassOrSymbol
 ]
 
 { #category : #initialization }
 FMRelationSlot >> inverse: anInverseSymbol inClass: aTargetClassOrSymbol [
-
 	self inClass: aTargetClassOrSymbol.
-	inverseName := anInverseSymbol.
+	inverseName := anInverseSymbol
 ]
 
 { #category : #accessing }
 FMRelationSlot >> inverseName [
-
-	^inverseName
-]
-
-{ #category : #accessing }
-FMRelationSlot >> inverseSlot [
-
-	^inverseSlot ifNil: [ self linkUp. inverseSlot ]
+	^ inverseName
 ]
 
 { #category : #testing }
-FMRelationSlot >> isAccessedIn: aMethod [ 
-
+FMRelationSlot >> isAccessedIn: aMethod [
 	^ aMethod allLiterals includes: self
 ]
 
 { #category : #testing }
 FMRelationSlot >> isFMRelationSlot [
-
 	^ true
 ]
 
@@ -142,97 +128,38 @@ FMRelationSlot >> isFameSlot [
 ]
 
 { #category : #testing }
-FMRelationSlot >> isReadIn: aMethod [ 
-
+FMRelationSlot >> isReadIn: aMethod [
 	^ aMethod allLiterals includes: self
 ]
 
 { #category : #testing }
-FMRelationSlot >> isToOneSlot [
-
-	^false
+FMRelationSlot >> isToMany [
+	^ self isToOne not
 ]
 
 { #category : #testing }
-FMRelationSlot >> isWrittenIn: aMethod [ 
+FMRelationSlot >> isToOne [
+	^ false
+]
 
+{ #category : #testing }
+FMRelationSlot >> isWrittenIn: aMethod [
 	^ aMethod allLiterals includes: self
-]
-
-{ #category : #initialization }
-FMRelationSlot >> lazyInitializationFor: anObject slotValue: aSlotValue [
-
-	^ aSlotValue
-]
-
-{ #category : #initialization }
-FMRelationSlot >> linkUp [
-
-	inverseSlot := self targetClass slotNamed: inverseName.
-	(self inverseSlot isFMRelationSlot)
-		ifFalse: [ self error: 'Invalid association: ... ' ].
-		
-	self inverseSlot inverseName = self name
-		ifFalse: [ self error: 'Invalid association: inverse names do not match' ].
-]
-
-{ #category : #internal }
-FMRelationSlot >> moosePropertyDictionary [
-
-	^ moosePropertyDictionary ifNil: [ moosePropertyDictionary := Dictionary new ].
-]
-
-{ #category : #internal }
-FMRelationSlot >> moosePropertyFor: anOwningClassName multivalued: aBoolean [
-
-	| mooseProperty needsToBeSet |
-	
-	needsToBeSet := false.
-	
-	mooseProperty := self moosePropertyDictionary at: anOwningClassName ifAbsentPut: [
-		needsToBeSet := true.
-		FM3PropertyDescription new ].
-	
-	needsToBeSet ifTrue: [ 
-		mooseProperty name: self name asString.
-		mooseProperty setImplementingSelector: self name. "should be a link to slot"
-
-		mooseProperty isMultivalued: aBoolean.
-		
-		mooseProperty privOpposite: self inverseSlot mooseProperty ].
-	
-	^ mooseProperty.
-
-		
 ]
 
 { #category : #printing }
 FMRelationSlot >> printOn: aStream [
-	aStream 
+	aStream
 		store: self name;
 		nextPutAll: ' => ';
 		nextPutAll: self class name.
 	aStream
 		nextPutAll: ' type: ';
 		store: self targetClassName.
-	self hasInverse 
-		ifTrue: [ 
-			aStream
+	self hasInverse
+		ifTrue: [ aStream
 				nextPutAll: ' opposite: ';
-				store: inverseName ].
-
-]
-
-{ #category : #internal }
-FMRelationSlot >> read: anObject [
-
-	| slotValue | 
-	
-	slotValue := thisContext object: anObject instVarAt: index.
-	^ slotValue
-	"^ self lazyInitializationFor: anObject slotValue: slotValue".
-	
-
+				store: inverseName ]
 ]
 
 { #category : #accessing }
@@ -244,21 +171,14 @@ FMRelationSlot >> realInverseSlotFor: anObject [
 FMRelationSlot >> removeAssociationFrom: ownerObject to: otherObject [
 	"A reference from <ownerObject> to <otherObject> is removed. Here we update the other 
 	side of the association. If the other side is a ToOne association set the value to nil,
-	for ToMany associations remove <ownerObject> from the collection." 
+	for ToMany associations remove <ownerObject> from the collection."
 
 	| realInverseSlot |
-	
-	realInverseSlot := (self realInverseSlotFor: otherObject).
+	realInverseSlot := self realInverseSlotFor: otherObject.
 
-	realInverseSlot isToOneSlot
+	realInverseSlot isToOne
 		ifTrue: [ realInverseSlot writeInverse: nil to: otherObject ]
 		ifFalse: [ (realInverseSlot read: otherObject) inverseRemove: ownerObject ]
-]
-
-{ #category : #internal }
-FMRelationSlot >> resetMooseProperty [
-
-	moosePropertyDictionary := nil.
 ]
 
 { #category : #accessing }
@@ -274,22 +194,11 @@ FMRelationSlot >> targetClass [
 
 { #category : #accessing }
 FMRelationSlot >> targetClassName [
-
-	^targetClass isSymbol
-		ifTrue: [ targetClass ]
-		ifFalse: [ targetClass name ]
+	^ targetClass isSymbol ifTrue: [ targetClass ] ifFalse: [ targetClass name ]
 ]
 
-{ #category : #initialization }
+{ #category : #testing }
 FMRelationSlot >> type: aTargetClassOrSymbol opposite: anInverseSymbol [
-
 	self inClass: aTargetClassOrSymbol.
-	inverseName := anInverseSymbol.
-]
-
-{ #category : #accessing }
-FMRelationSlot >> write: aValue to: anObject [
-
-	self read: anObject. "to invoke lazy initialization"
-	^ super write: aValue to: anObject
+	inverseName := anInverseSymbol
 ]

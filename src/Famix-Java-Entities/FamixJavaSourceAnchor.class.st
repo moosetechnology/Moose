@@ -9,22 +9,10 @@ Class {
 { #category : #meta }
 FamixJavaSourceAnchor class >> annotation [
 
-	<MSEClass: #SourceAnchor super: #FamixJavaEntity>
+	<FMClass: #SourceAnchor super: #FamixJavaEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #accessing }
-FamixJavaSourceAnchor class >> childrenTypes [
-	self flag: #todo. "Source Anchors should not implement TEntityMetaLevelDependency but currently a source anchor is in Moose containment tree. This is a bug but Orion depend on this hack. So we first need to clean Orion, then we can remove those aweful methods. here."
-	^ {}
-]
-
-{ #category : #accessing }
-FamixJavaSourceAnchor class >> parentTypes [
-	self flag: #todo. "Source Anchors should not implement TEntityMetaLevelDependency but currently a source anchor is in Moose containment tree. This is a bug but Orion depend on this hack. So we first need to clean Orion, then we can remove those aweful methods. here."
-	^ {}
 ]
 
 { #category : #'as yet unclassified' }
@@ -48,18 +36,13 @@ FamixJavaSourceAnchor >> isFile [
 	^ false
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaSourceAnchor >> isMultiple [
-	^ false
-]
-
 { #category : #metrics }
 FamixJavaSourceAnchor >> lineCount [
 	"I should return the number of line in the source text of the entity."
 
-	<MSEProperty: #lineCount type: #Number>
+	<FMProperty: #lineCount type: #Number>
 	<derived>
-	<MSEComment: 'The number of lines in the source text'>
+	<FMComment: 'The number of lines in the source text'>
 	^ self subclassResponsibility
 ]
 

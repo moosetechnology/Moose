@@ -5,13 +5,13 @@ For more informations: https://moosequery.ferlicot.fr/
 "
 Trait {
 	#name : #TAssociationMetaLevelDependency,
-	#category : #'Moose-Query'
+	#category : #'Moose-Query-Traits'
 }
 
 { #category : #meta }
 TAssociationMetaLevelDependency classSide >> annotation [
 
-	<MSEClass: #TAssociationMetaLevelDependency super: #Trait>
+	<FMClass: #TAssociationMetaLevelDependency super: #Object>
 	<package: #'Moose-Query'>
 	<generated>
 	^self
@@ -29,14 +29,14 @@ TAssociationMetaLevelDependency classSide >> dependencyFM3PropertyDescriptionIn:
 TAssociationMetaLevelDependency classSide >> privateSourceTypesIn: aMetamodel [
 	"I return the classes that could be my source"
 
-	^ (self dependencyFM3PropertyDescriptionIn: aMetamodel) select: #isSource thenCollect: [ :each | each type implementingClass ]
+	^ (self dependencyFM3PropertyDescriptionIn: aMetamodel) select: #isSource thenCollect: #implementingType
 ]
 
 { #category : #private }
 TAssociationMetaLevelDependency classSide >> privateTargetTypesIn: aMetamodel [
 	"I return the classes that could be my target"
 
-	^ (self dependencyFM3PropertyDescriptionIn: aMetamodel) select: #isTarget thenCollect: [ :each | each type implementingClass ]
+	^ (self dependencyFM3PropertyDescriptionIn: aMetamodel) select: #isTarget thenCollect: #implementingType
 ]
 
 { #category : #accessing }

@@ -32,6 +32,7 @@ Class {
 		'tGlobalVariableScope',
 		'tHeader',
 		'tImplicitVariable',
+		'tInheritance',
 		'tInvocable',
 		'tInvocation',
 		'tInvocationsReceiver',
@@ -44,6 +45,7 @@ Class {
 		'tPackage',
 		'tPackageable',
 		'tParameter',
+		'tParameterType',
 		'tParameterizedType',
 		'tParameterizedTypeUser',
 		'tPreprocessorDefine',
@@ -55,10 +57,6 @@ Class {
 		'tSourceEntity',
 		'tSourceLanguage',
 		'tStructuralEntity',
-		'tSub',
-		'tSubInheritance',
-		'tSuper',
-		'tSuperInheritance',
 		'tTemplate',
 		'tTemplateUser',
 		'tThrownException',
@@ -87,6 +85,7 @@ Class {
 		'tWithFunctions',
 		'tWithHeader',
 		'tWithImplicitVariables',
+		'tWithInheritances',
 		'tWithInvocations',
 		'tWithLocalVariables',
 		'tWithMethods',
@@ -100,8 +99,6 @@ Class {
 		'tWithSignature',
 		'tWithSourceAnchor',
 		'tWithSourceLanguage',
-		'tWithSubInheritances',
-		'tWithSuperInheritances',
 		'tWithTemplates',
 		'tWithThrownExceptions',
 		'tWithTypeAliases',
@@ -405,6 +402,12 @@ FamixGenerator >> commentForTIndexedFileNavigation [
 ]
 
 { #category : #comments }
+FamixGenerator >> commentForTInheritance [
+
+	^ ''
+]
+
+{ #category : #comments }
 FamixGenerator >> commentForTInvocable [
 
 	^ ''
@@ -492,6 +495,18 @@ FamixGenerator >> commentForTPackageable [
 FamixGenerator >> commentForTParameter [
 
 	^ 'FAMIXParameter represents one parameter in a method declaration.'
+]
+
+{ #category : #comments }
+FamixGenerator >> commentForTParameterType [
+	^ 'ParameterType represents the symbolic type used in parameterizable classes. This is a FAMIXType.
+
+Example:
+public class AClass<A,B,C> {
+...
+}
+
+Where AClass is a ParameterizableClass. A, B and C are ParameterType of AClass.'
 ]
 
 { #category : #comments }
@@ -591,19 +606,7 @@ FamixGenerator >> commentForTSub [
 ]
 
 { #category : #comments }
-FamixGenerator >> commentForTSubInheritance [
-
-	^ ''
-]
-
-{ #category : #comments }
 FamixGenerator >> commentForTSuper [
-
-	^ ''
-]
-
-{ #category : #comments }
-FamixGenerator >> commentForTSuperInheritance [
 
 	^ ''
 ]
@@ -790,6 +793,12 @@ FamixGenerator >> commentForTWithImplicitVariables [
 ]
 
 { #category : #comments }
+FamixGenerator >> commentForTWithInheritances [
+
+	^ ''
+]
+
+{ #category : #comments }
 FamixGenerator >> commentForTWithInvocations [
 
 	^ ''
@@ -862,18 +871,6 @@ FamixGenerator >> commentForTWithSourceLanguage [
 ]
 
 { #category : #comments }
-FamixGenerator >> commentForTWithSubInheritances [
-
-	^ ''
-]
-
-{ #category : #comments }
-FamixGenerator >> commentForTWithSuperInheritances [
-
-	^ ''
-]
-
-{ #category : #comments }
 FamixGenerator >> commentForTWithTemplates [
 
 	^ ''
@@ -910,48 +907,6 @@ FamixGenerator >> commentForTWithTypes [
 ]
 
 { #category : #definition }
-FamixGenerator >> defineGlueingTraits [
-
-	tClassHierarchyNavigation := builder newTraitNamed: #TClassHierarchyNavigation.
-	
-	tLCOMMetrics := builder newTraitNamed: #TLCOMMetrics.
-	
-	tInheritanceGlue := builder newTraitNamed: #TInheritanceGlue.
-	tInheritanceGlue glues: tSubInheritance with: tSuperInheritance.
-
-	tPackageWithClassesGlue := builder newTraitNamed: #TPackageWithClassesGlue.
-	tPackageWithClassesGlue glues: tPackage with: tWithClasses.
-
-	tClassWithInvocationsGlue := builder newTraitNamed: #TClassWithInvocationsGlue.
-	tClassWithInvocationsGlue glues: tClass with: tWithInvocations.
-	
-	tWithMethodsWithModifiersGlue := builder newTraitNamed: #TWithMethodsWithModifiersGlue.
-	tWithMethodsWithModifiersGlue glueingCondition: [ :aClass |
-		| methodClasses |
-		methodClasses := aClass builder classesThatDirectlyUse: tMethod.
-		(aClass allLocalTraits includes: tWithMethods) 
-			and: [ methodClasses anySatisfy: [ :methodClass | methodClass allTraitsInHierarchy includes: tWithModifiers ] ] ].
-
-	tWithMethodsWithAccessesGlue := builder newTraitNamed: #TWithMethodsWithAccessesGlue.
-	tWithMethodsWithAccessesGlue glueingCondition: [ :aClass |
-		| methodClasses |
-		methodClasses := aClass builder classesThatDirectlyUse: tMethod.
-		(aClass allLocalTraits includes: tWithMethods) 
-			and: [ methodClasses anySatisfy: [ :methodClass | methodClass allTraitsInHierarchy includes: tWithAccesses ] ] ].
-
-	tContainingWithStatementsGlue := builder newTraitNamed: #TContainingWithStatementsGlue.
-	tContainingWithStatementsGlue glueingCondition: [ :aClass | 
-		aClass isContainerOfClassThatUses: tWithStatements ].
-
-	tContainingWithInvocationsGlue := builder newTraitNamed: #TContainingWithInvocationsGlue.
-	tContainingWithInvocationsGlue glueingCondition: [ :aClass | 
-		(aClass isContainerOfClassThatUses: tWithInvocations)
-			and: [ (aClass directlyUses: tInvocable) not ] ].
-
-
-]
-
-{ #category : #definition }
 FamixGenerator >> defineHierarchy [
 	super defineHierarchy.
 
@@ -966,8 +921,7 @@ FamixGenerator >> defineHierarchy [
 	tCohesionCouplingMetrics --|> tPackage.
 
 	tClass --|> #TWithMethods.
-	tClass --|> #TWithSubInheritances.
-	tClass --|> #TWithSuperInheritances.
+	tClass --|> tWithInheritances.
 	tClass --|> #TWithAttributes.
 	tClass inheritsFromTrait: tNamed without: #(#mooseNameOn:).
 	tClass --|> tType.
@@ -995,6 +949,7 @@ FamixGenerator >> defineHierarchy [
 	tMethod --|> #TWithSignature.
 	tMethod --|> #TWithClassScope.
 	tMethod --|> #TTypedStructure.
+	tMethod --|> tSourceEntity.
 
 	tParameter --|> tStructuralEntity.
 
@@ -1005,6 +960,7 @@ FamixGenerator >> defineHierarchy [
 
 	tSourceEntity --|> #TWithSourceAnchor.
 	tSourceEntity --|> #TWithSourceLanguage.
+	tSourceEntity --|> #TWithComments.
 
 	tType --|> #TReferenceable.
 	tType --|> #TWithTypedStructures
@@ -1046,7 +1002,7 @@ FamixGenerator >> defineProperties [
 	((tComment property: #content type: #String) 
 		comment: 'Content of the comment as a String').
 
-	((tPossibleStub property: #isStub type: #Boolean)
+	((tSourceEntity property: #isStub type: #Boolean)
 		comment: 'Flag true if the entity attributes are incomplete, either because the entity is missing or not imported.').
 
 	((tFileNavigation property: #startLine type: #Number)
@@ -1334,22 +1290,18 @@ FamixGenerator >> defineRelations [
 	((tWithSourceLanguage property: #declaredSourceLanguage)
 			comment: 'The declared SourceLanguage for the source code of this entity').
 
-	((tSub property: #supers))
-		*-
-	((tSuper property: #subs)).
-
-	((tSubInheritance property: #subclass)
+	((tInheritance property: #subclass)
 			comment: 'Subclass linked to in this relationship. from-side of the association';
 			source)
 		*-
-	((tWithSubInheritances property: #superInheritances)
+	((tWithInheritances property: #superInheritances)
 			comment: 'Superinheritance relationships, i.e. known superclasses of this type.').
 
-	((tSuperInheritance property: #superclass)
+	((tInheritance property: #superclass)
 			comment: 'Superclass linked to in this relationship. to-side of the association';
 			target)
 		*-
-	((tWithSuperInheritances property: #subInheritances)
+	((tWithInheritances property: #subInheritances)
 			comment: 'Subinheritance relationships, i.e. known subclasses of this type.').
 
 	((tTemplate property: #templateOwner))
@@ -1409,10 +1361,10 @@ FamixGenerator >> defineTraits [
 	tAccess := builder newTraitNamed: #TAccess.
 	tAccess comment: self commentForTAccess.
 	tAccess withTesting.
-	
+
 	tAccessible := builder newTraitNamed: #TAccessible.
 	tAccessible comment: self commentForTAccessible.
-	
+
 	tAnnotationInstance := builder newTraitNamed: #TAnnotationInstance.
 	tAnnotationInstance comment: self commentForTAnnotationInstance.
 
@@ -1424,11 +1376,11 @@ FamixGenerator >> defineTraits [
 
 	tAnnotationTypeAttribute := builder newTraitNamed: #TAnnotationTypeAttribute.
 	tAnnotationTypeAttribute comment: self commentForTAnnotationTypeAttribute.
-		
+
 	tAssociation := builder newTraitNamed: #TAssociation.
 	tAssociation comment: self commentForTAssociation.
 	tAssociation withTesting.
-	
+
 	tAttribute := builder newTraitNamed: #TAttribute.
 	tAttribute comment: self commentForTAttribute.
 	tAttribute withTesting.
@@ -1463,7 +1415,7 @@ FamixGenerator >> defineTraits [
 
 	tFolder := builder newTraitNamed: #TFolder.
 	tFolder comment: self commentForTFolder.
-	
+
 	tFileSystemEntity := builder newTraitNamed: #TFileSystemEntity.
 
 	tFileAnchor := builder newTraitNamed: #TFileAnchor.
@@ -1495,13 +1447,17 @@ FamixGenerator >> defineTraits [
 	tImplicitVariable comment: self commentForTImplicitVariable.
 	tImplicitVariable withTesting.
 
+	tInheritance := builder newTraitNamed: #TInheritance.
+	tInheritance comment: self commentForTInheritance.
+	tInheritance withTesting.
+
 	tInvocable := builder newTraitNamed: #TInvocable.
 	tInvocable comment: self commentForTInvocable.
 
 	tInvocation := builder newTraitNamed: #TInvocation.
 	tInvocation comment: self commentForTInvocation.
 	tInvocation withTesting.
-	
+
 	tInvocationsReceiver := builder newTraitNamed: #TInvocationsReceiver.
 	tInvocationsReceiver comment: self commentForTInvocationsReceiver.
 
@@ -1521,19 +1477,22 @@ FamixGenerator >> defineTraits [
 	tNamespace := builder newTraitNamed: #TNamespace.
 	tNamespace comment: self commentForTNamespace.
 	tNamespace withTesting.
-	
+
 	tNamespaceEntity := builder newTraitNamed: #TNamespaceEntity.
 	tNamespaceEntity comment: self commentForTNamespaceEntity.
 
 	tPackage := builder newTraitNamed: #TPackage.
 	tPackage comment: self commentForTPackage.
 	tPackage withTesting.
-	
+
 	tPackageable := builder newTraitNamed: #TPackageable.
 	tPackageable comment: self commentForTPackageable.
 
 	tParameter := builder newTraitNamed: #TParameter.
 	tParameter comment: self commentForTParameter.
+
+	tParameterizedType := builder newTraitNamed: #TParameterType.
+	tParameterizedType comment: self commentForTParameterType.
 
 	tParameterizedType := builder newTraitNamed: #TParameterizedType.
 	tParameterizedType comment: self commentForTParameterizedType.
@@ -1559,7 +1518,7 @@ FamixGenerator >> defineTraits [
 
 	tSourceAnchor := builder newTraitNamed: #TSourceAnchor.
 	tSourceAnchor comment: self commentForTSourceAnchor.
-	
+
 	tSourceEntity := builder newTraitNamed: #TSourceEntity.
 	tSourceEntity comment: self commentForTSourceEntity.
 
@@ -1569,20 +1528,6 @@ FamixGenerator >> defineTraits [
 	tStructuralEntity := builder newTraitNamed: #TStructuralEntity.
 	tStructuralEntity comment: self commentForTStructuralEntity.
 	tStructuralEntity withTesting.
-	
-	tSub := builder newTraitNamed: #TSub.
-	tSub comment: self commentForTSub.
-
-	tSubInheritance := builder newTraitNamed: #TSubInheritance.
-	tSubInheritance comment: self commentForTSubInheritance.
-	tSubInheritance testingSelector: #isInheritance.
-	
-	tSuper := builder newTraitNamed: #TSuper.
-	tSuper comment: self commentForTSuper.
-
-	tSuperInheritance := builder newTraitNamed: #TSuperInheritance.
-	tSuperInheritance comment: self commentForTSuperInheritance.
-	tSuperInheritance testingSelector: #isInheritance.
 
 	tTemplate := builder newTraitNamed: #TTemplate.
 	tTemplate comment: self commentForTTemplate.
@@ -1615,7 +1560,7 @@ FamixGenerator >> defineTraits [
 
 	tTypedStructure := builder newTraitNamed: #TTypedStructure.
 	tTypedStructure comment: self commentForTTypedStructure.
-	
+
 	tUnknownSourceLanguage := builder newTraitNamed: #TUnknownSourceLanguage.
 
 	tWithAccesses := builder newTraitNamed: #TWithAccesses.
@@ -1675,6 +1620,9 @@ FamixGenerator >> defineTraits [
 	tWithImplicitVariables := builder newTraitNamed: #TWithImplicitVariables.
 	tWithImplicitVariables comment: self commentForTWithImplicitVariables.
 
+	tWithInheritances := builder newTraitNamed: #TWithInheritances.
+	tWithInheritances comment: self commentForTWithInheritances.
+
 	tWithInvocations := builder newTraitNamed: #TWithInvocations.
 	tWithInvocations comment: self commentForTWithInvocations.
 
@@ -1714,12 +1662,6 @@ FamixGenerator >> defineTraits [
 	tWithSourceLanguage := builder newTraitNamed: #TWithSourceLanguage.
 	tWithSourceLanguage comment: self commentForTWithSourceLanguage.
 
-	tWithSubInheritances := builder newTraitNamed: #TWithSubInheritances.
-	tWithSubInheritances comment: self commentForTWithSubInheritances.
-
-	tWithSuperInheritances := builder newTraitNamed: #TWithSuperInheritances.
-	tWithSuperInheritances comment: self commentForTWithSuperInheritances.
-
 	tWithTemplates := builder newTraitNamed: #TWithTemplates.
 	tWithTemplates comment: self commentForTWithTemplates.
 
@@ -1743,28 +1685,13 @@ FamixGenerator >> defineTraits [
 
 	tWithModifiers := builder newTraitNamed: #TWithModifiers.
 
-	tPossibleStub := builder newTraitNamed: #TPossibleStub.
-
 	tWithStatements := builder newTraitNamed: #TWithStatements.
-	
+
 	tMultipleFileAnchor := builder newTraitNamed: #TMultipleFileAnchor.
-	
+
 	tCohesionCouplingMetrics := builder newTraitNamed: #TCohesionCouplingMetrics.
 
-	self defineGlueingTraits.
+	tClassHierarchyNavigation := builder newTraitNamed: #TClassHierarchyNavigation.
 
-
-]
-
-{ #category : #initialization }
-FamixGenerator >> initialize [
-
-	super initialize.
-
-	builder := FamixMetamodelBuilder forGenerator: self.
-
-	builder configuration 
-		prefix: self prefix;
-		packageName: self packageName.
-
+	tLCOMMetrics := builder newTraitNamed: #TLCOMMetrics
 ]

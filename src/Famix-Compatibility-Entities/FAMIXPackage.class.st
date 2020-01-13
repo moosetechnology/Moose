@@ -1,15 +1,15 @@
 Class {
 	#name : #FAMIXPackage,
 	#superclass : #FAMIXScopingEntity,
-	#traits : 'FamixTCohesionCouplingMetrics + FamixTPackage + FamixTPackageWithClassesGlue',
-	#classTraits : 'FamixTCohesionCouplingMetrics classTrait + FamixTPackage classTrait + FamixTPackageWithClassesGlue classTrait',
+	#traits : 'FamixTCohesionCouplingMetrics + FamixTPackage',
+	#classTraits : 'FamixTCohesionCouplingMetrics classTrait + FamixTPackage classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 
 { #category : #meta }
 FAMIXPackage class >> annotation [
 
-	<MSEClass: #Package super: #FAMIXScopingEntity>
+	<FMClass: #Package super: #FAMIXScopingEntity>
 	<package: #FAMIX>
 	<generated>
 	^self
@@ -24,9 +24,9 @@ FAMIXPackage >> abstractClasses [
 { #category : #'Famix-Extensions-metrics' }
 FAMIXPackage >> abstractness [
 	"Abstractness is the ratio between the number of abstract classes and the total number of classes in a package, in the range [0, 1]. 0 means the package is fully concrete, 1 it is fully abstract."
-	<MSEProperty: #abstractness type: #Number>
+	<FMProperty: #abstractness type: #Number>
 	<derived>
-	<MSEComment: 'Abstractness of a package'>
+	<FMComment: 'Abstractness of a package'>
 
 	| nsClasses |
 	nsClasses := self allClasses select: [:c | c isInstanceSide].
@@ -44,9 +44,9 @@ FAMIXPackage >> addChildNamedEntity: aNamedEntity [
 FAMIXPackage >> afferentCoupling [
 	"Afferent coupling for a package is the number of classes that depend upon this package"
 
-	<MSEProperty: #afferentCoupling type: #Number>
+	<FMProperty: #afferentCoupling type: #Number>
 	<derived>
-	<MSEComment: 'Afferent Coupling of a package'>
+	<FMComment: 'Afferent Coupling of a package'>
 	^ (((self queryIncomingDependencies atScope: FamixTType) outOfParentUsing: FamixTPackage)
 		select: [ :c | c isInstanceSide ]) size
 ]
@@ -60,9 +60,9 @@ FAMIXPackage >> allClasses [
 FAMIXPackage >> bunchCohesion [
 	"Computing cohesion (Bunch formula)"
 
-	<MSEProperty: #bunchCohesion type: #Number>
+	<FMProperty: #bunchCohesion type: #Number>
 	<derived>
-	<MSEComment: 'Bunch Cohesion of a package. It is also considered anonymous and inner classes (in Java).'>
+	<FMComment: 'Bunch Cohesion of a package. It is also considered anonymous and inner classes (in Java).'>
 	| myClasses intraConnectivities |
 	myClasses := self classes.
 	myClasses := myClasses union: (myClasses flatCollect: [ :c | c allRecursiveTypes ]).
@@ -177,9 +177,9 @@ FAMIXPackage >> definedMethods [
 FAMIXPackage >> efferentCoupling [
 	"Efferent coupling for a package is the number of classes it depends upon"
 
-	<MSEProperty: #efferentCoupling type: #Number>
+	<FMProperty: #efferentCoupling type: #Number>
 	<derived>
-	<MSEComment: 'Efferent Coupling of a package'>
+	<FMComment: 'Efferent Coupling of a package'>
 	^ (((self queryAllOutgoing outOfParentUsing: FamixTPackage) atScope: FamixTType) select: [ :c | c isInstanceSide ]) size
 ]
 
@@ -264,9 +264,9 @@ FAMIXPackage >> localMethods [
 FAMIXPackage >> martinCohesion [
 	"Computing cohesion as described by Robert C. Martin"
 
-	<MSEProperty: #martinCohesion type: #Number>
+	<FMProperty: #martinCohesion type: #Number>
 	<derived>
-	<MSEComment: 'Cohesion as defined by Robert C. Martin.'>
+	<FMComment: 'Cohesion as defined by Robert C. Martin.'>
 	| intraConnectivities myClasses |
 	myClasses := self classes.
 	myClasses := (myClasses union: (myClasses flatCollect: [ :c | c allRecursiveTypes ])) select: [ :c | c isInstanceSide ].
@@ -285,17 +285,17 @@ FAMIXPackage >> methods [
 
 { #category : #'Famix-Extensions-metrics' }
 FAMIXPackage >> numberOfClasses [
-	<MSEProperty: #numberOfClasses type: #Number>
+	<FMProperty: #numberOfClasses type: #Number>
 	<derived>
-	<MSEComment: 'The number of classes in a package'>
+	<FMComment: 'The number of classes in a package'>
 	
 	^ self classes size
 ]
 
 { #category : #'Famix-Extensions' }
 FAMIXPackage >> numberOfClientPackages [
-	<MSEProperty: #numberOfClientPackages type: #Number>
-	<MSEComment: 'The number of packages which depend on this package'>
+	<FMProperty: #numberOfClientPackages type: #Number>
+	<FMComment: 'The number of packages which depend on this package'>
 	<derived>
 	^ self lookUpPropertyNamed: #numberOfClientPackages computedAs: [ self allClients size ]
 ]
@@ -308,9 +308,9 @@ FAMIXPackage >> numberOfClientPackages: aNumber [
 
 { #category : #'Famix-Extensions' }
 FAMIXPackage >> numberOfLinesOfCode [
-	<MSEProperty: #numberOfLinesOfCode type: #Number>
+	<FMProperty: #numberOfLinesOfCode type: #Number>
 	<derived>
-	<MSEComment: 'The number of lines of code in a namespace'>
+	<FMComment: 'The number of lines of code in a namespace'>
 	
 	^self
 		lookUpPropertyNamed: #numberOfLinesOfCode
@@ -326,8 +326,8 @@ FAMIXPackage >> numberOfLinesOfCode: aNumber [
 
 { #category : #'Famix-Extensions' }
 FAMIXPackage >> numberOfMethods [
-	<MSEProperty: #numberOfMethods type: #Number>
-	<MSEComment: 'The number of methods in a package'>
+	<FMProperty: #numberOfMethods type: #Number>
+	<FMComment: 'The number of methods in a package'>
 	<derived>
 	^ self
 		lookUpPropertyNamed: #numberOfMethods
@@ -354,9 +354,9 @@ FAMIXPackage >> printOn: aStream [
 
 { #category : #'Famix-Extensions-metrics' }
 FAMIXPackage >> relativeImportanceForSystem [
-	<MSEProperty: #relativeImportanceForSystem type: #Number>
+	<FMProperty: #relativeImportanceForSystem type: #Number>
 	<derived>
-	<MSEComment: 'The number of client packages normalized by the total number of packages'>
+	<FMComment: 'The number of client packages normalized by the total number of packages'>
 	
 	^ self lookUpPropertyNamed: #relativeImportanceForSystem
 				 computedAs: [

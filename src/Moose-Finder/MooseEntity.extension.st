@@ -22,11 +22,9 @@ MooseEntity >> bookmarkEntity [
 { #category : #'*Moose-Finder' }
 MooseEntity >> complexPropertyPragmas [
 	| navProps definedProps |
-	self mooseDescription
-		ifNil: [ NotInitializedMooseDescriptionError signal: 'Moose description are not initialized. Have you refreshed the meta-model? (e.g., MooseModel resetMeta)' ].
 	navProps := (Pragma allNamed: #navigation: from: self class to: MooseEntity) sorted: [ :a :b | (a argumentAt: 1) < (b argumentAt: 1) ].
-	definedProps := (self mooseDescription allAttributes reject: [ :a | a type isPrimitive ])
-		flatCollect: [ :prop | prop compiledMethod pragmas select: [ :each | each selector beginsWith: 'MSEProperty:' ] ].
+	definedProps := (self mooseDescription allProperties reject: [ :a | a type isPrimitive ])
+		flatCollect: [ :prop | prop compiledMethod pragmas select: [ :each | each selector beginsWith: 'FMProperty:' ] ].
 	^ (OrderedCollection withAll: definedProps)
 		addAll: navProps;
 		yourself
@@ -46,8 +44,7 @@ MooseEntity class >> formatForNavigationPresentation [
 { #category : #'*Moose-Finder' }
 MooseEntity >> gtInspectorActionOpenInMoose [
 	<gtInspectorAction>
-	self mooseDescription
-		ifNil: [ ^ GLMGenericAction new
+	[self mooseDescription] on: NotFound do: [ ^ GLMGenericAction new
 				action: [ self inform: 'Moose description not initialized' ];
 				icon: (Smalltalk ui icons iconNamed: #error);
 				title: 'Moose description not initialized' ].
@@ -60,7 +57,7 @@ MooseEntity >> gtInspectorActionOpenInMoose [
 { #category : #'*Moose-Finder' }
 MooseEntity >> gtInspectorPresentationsIn: composite inContext: aGTInspector [
 	| pragmas |
-	self mooseDescription ifNil: [ super gtInspectorPresentationsIn: composite inContext: aGTInspector.
+	[self mooseDescription] on: NotFound do: [ super gtInspectorPresentationsIn: composite inContext: aGTInspector.
 		^ self ].
 	pragmas := Pragma
 		allNamed: #moosePresentationOrder:
@@ -83,7 +80,7 @@ MooseEntity >> gtInspectorPresentationsIn: composite inContext: aGTInspector [
 
 { #category : #'*Moose-Finder' }
 MooseEntity >> mooseDescriptionsOfNumberProperties [
-	^ self mooseDescription allAttributes select: [:each | each type = FM3 number ]
+	^ self mooseDescription allProperties select: [ :each | each type = FM3Number instance ]
 ]
 
 { #category : #'*Moose-Finder' }
@@ -109,13 +106,13 @@ MooseEntity >> mooseFinderPropertiesIn: composite [
 		noSelection;
 		title: 'Properties';
 		titleIcon: MooseIcons mooseProperties;
-		display: [ :anObject | anObject mooseInterestingEntity mooseDescription allPrimitiveAttributes ];
+		display: [ :anObject | anObject mooseInterestingEntity mooseDescription allPrimitiveProperties ];
 		sorted: [:x :y | x name < y name];
 		column: 'Properties' evaluated: [:each | each name ];
 		column: 'Value' evaluated: [:each :anObject | [(anObject mooseInterestingEntity mmGetProperty: each) asString] on: Error do: ['error'] ];
 		when: [ :anObject | 
 			(anObject mooseInterestingEntity isKindOf: MooseEntity) and: [
-				anObject mooseInterestingEntity mooseDescription notNil and: [anObject mooseInterestingEntity mooseDescription allPrimitiveAttributes notEmpty] ]].
+				anObject mooseInterestingEntity mooseDescription notNil and: [anObject mooseInterestingEntity mooseDescription allPrimitiveProperties notEmpty] ]].
 ]
 
 { #category : #'*Moose-Finder' }
@@ -159,7 +156,7 @@ MooseEntity >> navigationItemsFromAttributes [
 	the the meta-model attributes of the item"
 	
 	entity := self mooseInterestingEntity.
-	attrs := entity mooseDescription allAttributes reject: [ :attribute | attribute type isPrimitive ].
+	attrs := entity mooseDescription allProperties reject: [ :attribute | attribute type isPrimitive ].
 	assocs := attrs collect: [ :anAttribute | anAttribute -> (entity perform: anAttribute compiledMethod selector) ].
 	
 	"filter out nils and empty collections, sort"
@@ -204,10 +201,6 @@ MooseEntity >> navigationItemsFromPragmas [
 { #category : #'*Moose-Finder' }
 MooseEntity >> navigationPragmas [
 	| navProps |
-	self mooseDescription
-		ifNil: [ NotInitializedMooseDescriptionError
-				signal:
-					'Moose description are not initialized. Have you refreshed the meta-model? (e.g., MooseModel resetMeta)' ].
 	navProps := (Pragma
 		allNamed: #navigation:
 		from: self class
@@ -241,6 +234,6 @@ MooseEntity >> openInGlamorousEditor [
 MooseEntity >> spotterProcessorsFor: aSpotterStep [
 	super spotterProcessorsFor: aSpotterStep.
 	[ self mooseSpecificSpotterProcessorsFor: aSpotterStep ]
-		on: NotInitializedMooseDescriptionError
+		on: NotFound
 		do: [ Transcript crTrace: 'The entity description is not present in its moose model metamodel' ]
 ]

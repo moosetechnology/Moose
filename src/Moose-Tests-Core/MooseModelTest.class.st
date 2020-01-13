@@ -135,7 +135,7 @@ MooseModelTest >> testPrintOn [
 	group name: 'hello2'.
 	group add: MooseEntity new.
 	self assert: group printString equals: 'a MooseModel #hello2(1)'.
-	self assert: self actualClass meta printString equals: 'a FMMetaRepository'
+	self assert: self actualClass metamodel printString equals: 'a FMMetaModel'
 ]
 
 { #category : #tests }

@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaClass class >> annotation [
 
-	<MSEClass: #Class super: #FamixJavaType>
+	<FMClass: #Class super: #FamixJavaType>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
@@ -65,10 +65,10 @@ FamixJavaClass >> isAccessedBy: anAccess [
 
 { #category : #testing }
 FamixJavaClass >> isIgnored [
-	<MSEProperty: #isIgnored type: #Boolean>
+	<FMProperty: #isIgnored type: #Boolean>
 	<multivalued>
 	<derived>
-	<MSEComment:
+	<FMComment:
 		'If the class is a test class, it can be annotated with Ignore, all the tests of contained are bypassed'>
 	^ (self isAnnotatedWith: 'Ignore') 
 ]
@@ -82,8 +82,8 @@ FamixJavaClass >> isInheritedBy: anInheritance [
 { #category : #testing }
 FamixJavaClass >> isInterface [
 
-	<MSEProperty: #isInterface type: #Boolean>
-	<MSEComment: 'This is a boolean flag used to distinguish between classes with implementation and interfaces'>
+	<FMProperty: #isInterface type: #Boolean>
+	<FMComment: 'This is a boolean flag used to distinguish between classes with implementation and interfaces'>
 
 	^ self privateState attributeAt: #isInterface ifAbsent: [ false ]
 ]

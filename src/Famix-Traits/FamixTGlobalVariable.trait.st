@@ -15,7 +15,7 @@ Trait {
 { #category : #meta }
 FamixTGlobalVariable classSide >> annotation [
 
-	<MSEClass: #TGlobalVariable super: #Trait>
+	<FMClass: #TGlobalVariable super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -34,7 +34,7 @@ FamixTGlobalVariable >> parentScope [
 	"Relation named: #parentScope type: #FamixTGlobalVariableScope opposite: #globalVariables"
 
 	<generated>
-	<MSEComment: 'Scope declaring the global variable. belongsTo implementation'>
+	<FMComment: 'Scope declaring the global variable. belongsTo implementation'>
 	<container>
 	^ parentScope
 ]
@@ -44,7 +44,6 @@ FamixTGlobalVariable >> parentScope: anObject [
 
 	<generated>
 	parentScope := anObject
-
 ]
 
 { #category : #navigation }

@@ -21,7 +21,6 @@ Class {
 		'invocation',
 		'localVariable',
 		'method',
-		'module',
 		'namespace',
 		'package',
 		'parameter',
@@ -49,12 +48,6 @@ FamixJavaGenerator class >> packageName [
 FamixJavaGenerator class >> prefix [
 
 	^ #'FamixJava'
-]
-
-{ #category : #accessing }
-FamixJavaGenerator class >> wantsAllEntitiesNavigation [
-
-	^ false
 ]
 
 { #category : #definition }
@@ -145,7 +138,6 @@ FamixJavaGenerator >> defineHierarchy [
 	annotationTypeAttribute --|> #TTypedAnnotationInstanceAttribute.
 
 	attribute --|> namedEntity.
-	attribute --|> tStructuralEntity.
 	attribute --|> #TAttribute.
 	attribute --|> #TWithClassScope.
 
@@ -191,8 +183,7 @@ FamixJavaGenerator >> defineHierarchy [
 	implicitVariable --|> #TImplicitVariable.
 
 	inheritance --|> association.
-	inheritance --|> #TSubInheritance.
-	inheritance --|> #TSuperInheritance.
+	inheritance --|> #TInheritance.
 
 	invocation --|> association.
 	invocation --|> #TInvocation.
@@ -206,7 +197,6 @@ FamixJavaGenerator >> defineHierarchy [
 	namedEntity --|> #TInvocationsReceiver.
 	namedEntity --|> #TWithAnnotationInstances.
 	namedEntity --|> #TWithModifiers.
-	namedEntity --|> #TPossibleStub.
 
 	namespace --|> scopingEntity.
 	namespace --|> #TNamespace.
@@ -219,6 +209,7 @@ FamixJavaGenerator >> defineHierarchy [
 	parameter --|> #TParameter.
 
 	parameterType --|> type.
+	parameterType --|> #TParameterType.
 
 	parameterizableClass --|> class.
 	parameterizableClass --|> #TWithParameterizedTypes.
@@ -226,6 +217,7 @@ FamixJavaGenerator >> defineHierarchy [
 	parameterizedType --|> type.
 	parameterizedType --|> #TParameterizedType.
 	parameterizedType --|> #TWithParameterizedTypeUsers.
+	parameterizedType --|> #TWithInheritances.
 
 	primitiveType --|> type.
 
@@ -244,6 +236,7 @@ FamixJavaGenerator >> defineHierarchy [
 	type --|> #TWithTypeAliases.
 	type --|> #TParameterizedTypeUser.
 	type --|> #TClassHierarchyNavigation. 
+	type --|> #TWithMethods.
 
 	tStructuralEntity --|> #TStructuralEntity.
 	tStructuralEntity --|> #TWithDereferencedInvocations.

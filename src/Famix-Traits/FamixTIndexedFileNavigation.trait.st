@@ -4,13 +4,13 @@ Trait {
 		'#endPos => FMProperty',
 		'#startPos => FMProperty'
 	],
-	#category : #'Famix-Traits-Traits'
+	#category : #'Famix-Traits-SourceAnchor'
 }
 
 { #category : #meta }
 FamixTIndexedFileNavigation classSide >> annotation [
 
-	<MSEClass: #TIndexedFileNavigation super: #Trait>
+	<FMClass: #TIndexedFileNavigation super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -60,18 +60,16 @@ FamixTIndexedFileNavigation >> countNumberOfLinesRuturnsFrom: aStream from: star
 { #category : #accessing }
 FamixTIndexedFileNavigation >> endPos [
 
-	<MSEProperty: #endPos type: #Number>
+	<FMProperty: #endPos type: #Number>
 	<generated>
-	<MSEComment: 'Stop position in the source'>
+	<FMComment: 'Stop position in the source'>
 	^ endPos
 ]
 
 { #category : #accessing }
 FamixTIndexedFileNavigation >> endPos: anObject [
-
 	<generated>
 	endPos := anObject
-
 ]
 
 { #category : #accessing }
@@ -109,16 +107,14 @@ FamixTIndexedFileNavigation >> sourceText [
 { #category : #accessing }
 FamixTIndexedFileNavigation >> startPos [
 
-	<MSEProperty: #startPos type: #Number>
+	<FMProperty: #startPos type: #Number>
 	<generated>
-	<MSEComment: 'Start position in the source'>
+	<FMComment: 'Start position in the source'>
 	^ startPos
 ]
 
 { #category : #accessing }
 FamixTIndexedFileNavigation >> startPos: anObject [
-
 	<generated>
 	startPos := anObject
-
 ]

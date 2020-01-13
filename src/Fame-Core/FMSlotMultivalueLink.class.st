@@ -1,3 +1,11 @@
+"
+Description
+--------------------
+
+I am a class meant to be used as an internal of a FMMany slot.
+
+I'll be wrapped by the slot and manage the content of the many slot.
+"
 Class {
 	#name : #FMSlotMultivalueLink,
 	#superclass : #Collection,
@@ -6,7 +14,7 @@ Class {
 		'owner',
 		'slot'
 	],
-	#category : #'Fame-Core-Slots'
+	#category : #'Fame-Core-Utilities'
 }
 
 { #category : #'instance creation' }

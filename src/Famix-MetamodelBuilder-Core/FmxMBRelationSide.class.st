@@ -1,6 +1,3 @@
-"
-FamixMetamodelBuilderRelationSide
-"
 Class {
 	#name : #FmxMBRelationSide,
 	#superclass : #FmxMBProperty,
@@ -15,7 +12,6 @@ Class {
 		'derived',
 		'source',
 		'target',
-		'subordinate',
 		'generationStrategy'
 	],
 	#category : #'Famix-MetamodelBuilder-Core-Implementation'
@@ -63,7 +59,7 @@ FmxMBRelationSide >> container [
 	container := true
 ]
 
-{ #category : #properties }
+{ #category : #accessing }
 FmxMBRelationSide >> container: anObject [
 	container := anObject
 ]
@@ -110,24 +106,20 @@ FmxMBRelationSide >> generationStrategy: anObject [
 
 { #category : #testing }
 FmxMBRelationSide >> hasRelation [
-
 	^ self relation notNil
 ]
 
 { #category : #accessing }
 FmxMBRelationSide >> initialize [
-
-	super initialize.	
+	super initialize.
 
 	cardinality := #one.
 	container := false.
 	derived := false.
-	subordinate := false.
 	target := false.
 	source := false.
-	
-	self makeStandard.
 
+	self makeStandard
 ]
 
 { #category : #properties }
@@ -167,12 +159,6 @@ FmxMBRelationSide >> isSource [
 ]
 
 { #category : #properties }
-FmxMBRelationSide >> isSubordinate [
-
-	^ subordinate
-]
-
-{ #category : #properties }
 FmxMBRelationSide >> isTarget [
 
 	^ target
@@ -181,7 +167,7 @@ FmxMBRelationSide >> isTarget [
 { #category : #converting }
 FmxMBRelationSide >> makeNonremote [
 
-	self generationStrategy: (FmxMBNonremoteRelationSideGenerationStrategy for: self)
+	self generationStrategy: (FmxMBNonRemoteRelationSideGenerationStrategy for: self)
 ]
 
 { #category : #converting }
@@ -228,7 +214,7 @@ FmxMBRelationSide >> oppositeName [
 
 { #category : #accessing }
 FmxMBRelationSide >> oppositeType [
-	^ (self builder configuration prefix , self otherSide relatedEntityName) asSymbol
+	^ (self otherSide builder configuration prefix , self otherSide relatedEntityName) asSymbol
 ]
 
 { #category : #accessing }
@@ -272,24 +258,6 @@ FmxMBRelationSide >> relatedClass: anObject [
 FmxMBRelationSide >> relatedEntity [
 
 	^ trait ifNil: [ relatedClass ]
-]
-
-{ #category : #accessing }
-FmxMBRelationSide >> relatedEntity: anEntity [
-
-	anEntity isMetamodelClass ifTrue: [ 
-		relatedClass := anEntity.
-		trait := nil.
-		^ self ].
-
-	anEntity isMetamodelTrait ifTrue: [ 
-		relatedClass := nil.
-		trait := anEntity.
-		^ self ].
-
-	"alias"
-	relatedClass := nil.
-	trait := anEntity trait.
 ]
 
 { #category : #accessing }
@@ -345,16 +313,6 @@ FmxMBRelationSide >> source: anObject [
 ]
 
 { #category : #properties }
-FmxMBRelationSide >> subordinate [
-	subordinate := true
-]
-
-{ #category : #properties }
-FmxMBRelationSide >> subordinate: anObject [
-	subordinate := anObject
-]
-
-{ #category : #properties }
 FmxMBRelationSide >> target [
 
 	target := true.
@@ -378,16 +336,7 @@ FmxMBRelationSide >> trait [
 
 { #category : #accessing }
 FmxMBRelationSide >> trait: anObject [
-
-	self relatedEntity ifNotNil: [ :aRelatedEntity |
-		aRelatedEntity removeRelationSide: self ].
+	self relatedEntity ifNotNil: [ :aRelatedEntity | aRelatedEntity removeRelationSide: self ].
 	trait := anObject.
 	trait addRelationSide: self
-]
-
-{ #category : #accessing }
-FmxMBRelationSide >> traitName: aString [
-
-	trait := self builder ensureLocalTraitNamed: aString
-
 ]

@@ -19,7 +19,7 @@ Trait {
 { #category : #meta }
 FamixTParameterizedType classSide >> annotation [
 
-	<MSEClass: #TParameterizedType super: #Trait>
+	<FMClass: #TParameterizedType super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -30,7 +30,7 @@ FamixTParameterizedType >> parameterizableClass [
 	"Relation named: #parameterizableClass type: #FamixTWithParameterizedTypes opposite: #parameterizedTypes"
 
 	<generated>
-	<MSEComment: 'Base type of this parameterized type.'>
+	<FMComment: 'Base type of this parameterized type.'>
 	^ parameterizableClass
 ]
 

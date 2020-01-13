@@ -7,7 +7,7 @@ Class {
 { #category : #meta }
 FamixStEntity class >> annotation [
 
-	<MSEClass: #Entity super: #MooseEntity>
+	<FMClass: #Entity super: #MooseEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
@@ -17,7 +17,7 @@ FamixStEntity class >> annotation [
 FamixStEntity class >> metamodel [
 
 	<generated>
-	^ (self class environment at: #FamixPharoSmalltalkGenerator) metamodel
+	^ FamixStModel metamodel
 ]
 
 { #category : #testing }

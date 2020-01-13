@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithEnumValues classSide >> annotation [
 
-	<MSEClass: #TWithEnumValues super: #Trait>
+	<FMClass: #TWithEnumValues super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -35,5 +35,4 @@ FamixTWithEnumValues >> enumValues: anObject [
 
 	<generated>
 	enumValues value: anObject
-
 ]

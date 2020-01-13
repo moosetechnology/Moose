@@ -64,18 +64,7 @@ Class {
 MooseEntity class >> allDeclaredProperties [
 	"All properties described in the metamodel"
 	 
-	^self mooseDescription allAttributes
-]
-
-{ #category : #'meta accessing' }
-MooseEntity class >> allDeclaredPropertiesIn: aMetamodel [
-	"All properties described in the metamodel"
-	 
-	| aDescription |
-	aMetamodel ifNil: [ ^ OrderedCollection new ].
-	aDescription := self mooseDescriptionIn: aMetamodel.
-	^ aDescription ifNil: [ OrderedCollection new ] 
-		ifNotNil: [ aDescription allAttributes ]
+	^self mooseDescription allProperties
 ]
 
 { #category : #'meta accessing' }
@@ -130,7 +119,7 @@ MooseEntity class >> allPropertySelectorsComputableIn: aMooseModel [
 
 { #category : #meta }
 MooseEntity class >> annotation [
-	<MSEClass: #Entity super: #Object>
+	<FMClass: #Entity super: #Object>
 	<package: #Moose>
 	<abstract>
 ]
@@ -195,9 +184,15 @@ MooseEntity class >> mooseDev [
 
 { #category : #accessing }
 MooseEntity class >> requirements [
-	"Used by Famix generator."
+	| metamodelClasses usedBehaviors |
+	metamodelClasses := self metamodel concreteImplementingClasses.
 
-	^ {}
+	usedBehaviors := (self allDeclaredPropertiesIn: self metamodel) select: #isContainer thenCollect: [ :p | p opposite implementingClass ].
+
+	^ (usedBehaviors flatCollect: [ :aBehavior |
+			aBehavior isTrait
+				ifTrue: [ metamodelClasses select: [ :each | each isComposedBy: aBehavior ] ]
+				ifFalse: [ {aBehavior} ] ]) asSet
 ]
 
 { #category : #private }
@@ -229,27 +224,11 @@ MooseEntity class >> usedStatefulTraits [
 	^ self cache at: #usedStatefulTraits ifAbsentPut: [ super usedStatefulTraits ]
 ]
 
-{ #category : #accessing }
-MooseEntity class >> usesFamixTrait: aTrait [
-	^ self usedStatefulTraits includes: aTrait
-]
-
 { #category : #'meta information' }
 MooseEntity >> allDeclaredProperties [
 	"All properties described in the metamodel"
 	 
-	^self mooseDescription allAttributes
-]
-
-{ #category : #'meta information' }
-MooseEntity >> allDeclaredPropertiesIn: aMetamodel [
-	"All properties described in the metamodel"
-	 
-	| aDescription |
-	aMetamodel ifNil: [ ^ OrderedCollection new ].
-	aDescription := self mooseDescriptionIn: aMetamodel.
-	^ aDescription ifNil: [ OrderedCollection new ] 
-		ifNotNil: [ aDescription allAttributes ]
+	^self mooseDescription allProperties
 ]
 
 { #category : #'meta information' }
@@ -278,14 +257,6 @@ MooseEntity >> announcer [
 { #category : #private }
 MooseEntity >> announcer: anAnnouncer [
 	^ self privateState attributeAt: #announcer put: anAnnouncer
-]
-
-{ #category : #accessing }
-MooseEntity >> attributesTogetherWithGenerated [
-
-	"HACK: we need to collect all attributes from the pair generated class - user class"
-	^ self class mooseDescription attributes,
-	  self class superclass mooseDescription attributes
 ]
 
 { #category : #accessing }
@@ -347,22 +318,6 @@ MooseEntity >> handleFameProperty: aSymbol value: anObject [
 	super handleFameProperty: aSymbol value: anObject.
 	value := (anObject isCollection and: [anObject size = 1]) ifTrue: [anObject anyOne] ifFalse: [anObject].
 	self propertyNamed: aSymbol put: value
-]
-
-{ #category : #properties }
-MooseEntity >> hasTheSamePropertiesAs: aMooseEntity [
-	"Returns whether the receiver and the argument have the same properties (attributes and properties)."
-
-	self allDeclaredProperties size = aMooseEntity allDeclaredProperties size 
-		ifFalse: [^ false].
-	(self allDeclaredProperties collect: [:each | each name]) = 
-		(aMooseEntity allDeclaredProperties collect: [:each | each name])
-		ifFalse: [^ false].
-	self allDeclaredProperties do: [:each |
-			(each getFrom: self) = (each getFrom: aMooseEntity)
-				ifFalse: [^ false]
-				].
-	^ true
 ]
 
 { #category : #initialization }
@@ -578,7 +533,7 @@ MooseEntity >> propertyNamed: propertyName ifAbsent: aBlock [
 	^ self privateState
 		propertyAt: prop
 		ifAbsent: [ | property |
-			[ property := self mmGetProperty: (self mooseDescription attributeNamed: propertyName) ]
+			[ property := self mmGetProperty: (self mooseDescription propertyNamed: propertyName) ]
 				on: Error
 				do: [ :ex | property := nil ].
 			property ifNil: [ aBlock value ] ]
@@ -599,7 +554,7 @@ MooseEntity >> propertyNamed: propertyName ifNil: aBlock [
 	^ self privateState
 		propertyAt: prop
 		ifAbsent: [ | property |
-			[ property := self mmGetProperty: (self mooseDescription attributeNamed: propertyName) ]
+			[ property := self mmGetProperty: (self mooseDescription propertyNamed: propertyName) ]
 				on: Error
 				do: [ :ex | property := nil ].
 			property ifNil: [ aBlock value ] ]
@@ -646,10 +601,4 @@ MooseEntity >> suspendAllAnnouncementsDuring: aBlock [
 	[ 	self announcer: Announcer new.
 		aBlock value ]
 			ensure: [ self announcer: currentAnnouncer ]
-]
-
-{ #category : #accessing }
-MooseEntity >> usesFamixTrait: aTrait [
-
-	^ self class usesFamixTrait: aTrait
 ]

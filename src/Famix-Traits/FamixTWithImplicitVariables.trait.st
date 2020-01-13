@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithImplicitVariables classSide >> annotation [
 
-	<MSEClass: #TWithImplicitVariables super: #Trait>
+	<FMClass: #TWithImplicitVariables super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -25,7 +25,7 @@ FamixTWithImplicitVariables >> implicitVariables [
 	"Relation named: #implicitVariables type: #FamixTImplicitVariable opposite: #parentBehaviouralEntity"
 
 	<generated>
-	<MSEComment: 'Implicit variables used locally by this behaviour.'>
+	<FMComment: 'Implicit variables used locally by this behaviour.'>
 	<derived>
 	^ implicitVariables
 ]
@@ -35,5 +35,4 @@ FamixTWithImplicitVariables >> implicitVariables: anObject [
 
 	<generated>
 	implicitVariables value: anObject
-
 ]

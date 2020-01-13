@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaSourceLanguage class >> annotation [
 
-	<MSEClass: #SourceLanguage super: #FamixJavaEntity>
+	<FMClass: #SourceLanguage super: #FamixJavaEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
@@ -20,27 +20,17 @@ FamixJavaSourceLanguage >> isC [
 	^ false
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'*Famix-Java-Entities' }
 FamixJavaSourceLanguage >> isJava [
 	^ true
 ]
 
 { #category : #'as yet unclassified' }
-FamixJavaSourceLanguage >> isSmalltalk [
-	 ^ false
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaSourceLanguage >> isUnknown [ 
-	^ false
-]
-
-{ #category : #'as yet unclassified' }
 FamixJavaSourceLanguage >> name [
 	
-	<MSEProperty: #name type: #String> 
+	<FMProperty: #name type: #String> 
 	<derived>
-	<MSEComment: 'The name of the language'>
+	<FMComment: 'The name of the language'>
 	
 	^ 'Java'
 ]

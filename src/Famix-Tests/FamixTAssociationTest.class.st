@@ -9,8 +9,13 @@ Class {
 { #category : #overrides }
 FamixTAssociationTest >> setUp [
 super setUp.
-	model := MooseModel new metamodel: FamixGenerator metamodel.
+	model := FamixModel new.
 self entity: (MooseEntity new copyWithTalent:FamixTAssociation).
 self entity class initializeSlots: self entity.
 model add: entity. 
+]
+
+{ #category : #tests }
+FamixTAssociationTest >> testIsAssociation [
+	self assert: entity isAssociation.
 ]

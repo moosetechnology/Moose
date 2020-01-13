@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTTypedAnnotationInstance classSide >> annotation [
 
-	<MSEClass: #TTypedAnnotationInstance super: #Trait>
+	<FMClass: #TTypedAnnotationInstance super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -20,7 +20,7 @@ FamixTTypedAnnotationInstance >> annotationType [
 	"Relation named: #annotationType type: #FamixTAnnotationType opposite: #instances"
 
 	<generated>
-	<MSEComment: 'Refers to the type of an annotation. (In some languages, Java and C#, an annotation as an explicit type). '>
+	<FMComment: 'Refers to the type of an annotation. (In some languages, Java and C#, an annotation as an explicit type). '>
 	^ annotationType
 ]
 
@@ -29,5 +29,4 @@ FamixTTypedAnnotationInstance >> annotationType: anObject [
 
 	<generated>
 	annotationType := anObject
-
 ]

@@ -2,11 +2,11 @@ Extension { #name : #FamixTestComposed1Method }
 
 { #category : #'*Famix-TestComposedMetamodel-Entities-accessing' }
 FamixTestComposed1Method >> entity [
-	"Relation named: #entity type: #FamixTestComposed1Entity opposite: #method"
+	"Relation named: #entity type: #FamixTestComposedEntity opposite: #method"
 
 	<generated>
 	<derived>
-	<MSEProperty: #entity type: #Object>
+	<FMProperty: #entity type: #FamixTestComposedEntity opposite: #method>
 	<package: #'Famix-TestComposedMetamodel-Entities'>
 	^ self privateState attributeAt: #entity ifAbsent: [ nil ]
 ]

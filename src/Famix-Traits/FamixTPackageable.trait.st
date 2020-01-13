@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTPackageable classSide >> annotation [
 
-	<MSEClass: #TPackageable super: #Trait>
+	<FMClass: #TPackageable super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -25,7 +25,7 @@ FamixTPackageable >> parentPackage [
 	"Relation named: #parentPackage type: #FamixTPackage opposite: #childEntities"
 
 	<generated>
-	<MSEComment: 'Package containing the entity in the code structure (if applicable)'>
+	<FMComment: 'Package containing the entity in the code structure (if applicable)'>
 	<container>
 	^ parentPackage
 ]
@@ -35,7 +35,6 @@ FamixTPackageable >> parentPackage: anObject [
 
 	<generated>
 	parentPackage := anObject
-
 ]
 
 { #category : #navigation }

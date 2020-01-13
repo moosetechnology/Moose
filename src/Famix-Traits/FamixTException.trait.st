@@ -12,7 +12,7 @@ Trait {
 { #category : #meta }
 FamixTException classSide >> annotation [
 
-	<MSEClass: #TException super: #Trait>
+	<FMClass: #TException super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -23,7 +23,7 @@ FamixTException >> exceptionClass [
 	"Relation named: #exceptionClass type: #FamixTWithExceptions opposite: #exceptions"
 
 	<generated>
-	<MSEComment: 'Class to which the exception points. It is specific to Java'>
+	<FMComment: 'Class to which the exception points. It is specific to Java'>
 	^ exceptionClass
 ]
 
@@ -32,5 +32,4 @@ FamixTException >> exceptionClass: anObject [
 
 	<generated>
 	exceptionClass := anObject
-
 ]

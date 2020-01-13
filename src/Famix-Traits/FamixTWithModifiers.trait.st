@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithModifiers classSide >> annotation [
 
-	<MSEClass: #TWithModifiers super: #Trait>
+	<FMClass: #TWithModifiers super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -37,8 +37,8 @@ FamixTWithModifiers >> bePublic [
 
 { #category : #'Famix-Extensions' }
 FamixTWithModifiers >> isAbstract [
-	<MSEProperty: #isAbstract type: #Boolean> <derived>
-	<MSEComment: 'Flag true for abstract entities. Language dependent.'>
+	<FMProperty: #isAbstract type: #Boolean> <derived>
+	<FMComment: 'Flag true for abstract entities. Language dependent.'>
 	
 	^ self modifiers includes: #abstract
 ]
@@ -50,8 +50,8 @@ FamixTWithModifiers >> isAbstract: aBoolean [
 
 { #category : #'Famix-Extensions' }
 FamixTWithModifiers >> isFinal [
-	<MSEProperty: #isFinal type: #Boolean> <derived>
-	<MSEComment: 'Flag true for entities defined as being final. Language dependent.'>	
+	<FMProperty: #isFinal type: #Boolean> <derived>
+	<FMComment: 'Flag true for entities defined as being final. Language dependent.'>	
 
 	^ self modifiers includes: #final
 ]
@@ -63,8 +63,8 @@ FamixTWithModifiers >> isFinal: aBoolean [
 
 { #category : #'Famix-Extensions' }
 FamixTWithModifiers >> isPackage [
-	<MSEProperty: #isPackage type: #Boolean> <derived>
-	<MSEComment: 'Flag true for entities that have a package visibility. Language dependent.'>
+	<FMProperty: #isPackage type: #Boolean> <derived>
+	<FMComment: 'Flag true for entities that have a package visibility. Language dependent.'>
 	
 	^ self modifiers includes: #package
 ]
@@ -76,8 +76,8 @@ FamixTWithModifiers >> isPackage: aBoolean [
 
 { #category : #'Famix-Extensions' }
 FamixTWithModifiers >> isPrivate [
-	<MSEProperty: #isPrivate type: #Boolean> <derived>
-	<MSEComment: 'Flag true for entities invisible out of their owner scope. Language dependent.'>
+	<FMProperty: #isPrivate type: #Boolean> <derived>
+	<FMComment: 'Flag true for entities invisible out of their owner scope. Language dependent.'>
 	
 	^ self modifiers includes: #private
 ]
@@ -89,8 +89,8 @@ FamixTWithModifiers >> isPrivate: aBoolean [
 
 { #category : #'Famix-Extensions' }
 FamixTWithModifiers >> isProtected [
-	<MSEProperty: #isProtected type: #Boolean> <derived>
-	<MSEComment: 'Flag true for protected entities, depending on language semantics.'>
+	<FMProperty: #isProtected type: #Boolean> <derived>
+	<FMComment: 'Flag true for protected entities, depending on language semantics.'>
 	
 	^ self modifiers includes: #protected
 ]
@@ -102,8 +102,8 @@ FamixTWithModifiers >> isProtected: aBoolean [
 
 { #category : #'Famix-Extensions' }
 FamixTWithModifiers >> isPublic [
-	<MSEProperty: #isPublic type: #Boolean> <derived>
-	<MSEComment: 'Flag true for entities accessible from anywhere. Language dependent.'>	
+	<FMProperty: #isPublic type: #Boolean> <derived>
+	<FMComment: 'Flag true for entities accessible from anywhere. Language dependent.'>	
 
 	^ self modifiers includes: #public
 ]
@@ -121,18 +121,16 @@ FamixTWithModifiers >> modifierSet: aBoolean for: aSymbol [
 { #category : #accessing }
 FamixTWithModifiers >> modifiers [
 
-	<MSEProperty: #modifiers type: #String>
+	<FMProperty: #modifiers type: #String>
 	<multivalued>
-	<MSEComment: 'Generic container for language dependent modifiers.'>
+	<FMComment: 'Generic container for language dependent modifiers.'>
 	^ modifiers ifNil: [ modifiers := Set new ]
 ]
 
 { #category : #accessing }
 FamixTWithModifiers >> modifiers: anObject [
-
 	<generated>
 	modifiers := anObject
-
 ]
 
 { #category : #'Famix-Implementation' }

@@ -14,33 +14,38 @@ Instance Variables:
 "
 Class {
 	#name : #RBVisitorForFAMIXMetrics,
-	#superclass : #RBVisitorForFAMIX,
+	#superclass : #RBProgramNodeVisitor,
 	#instVars : [
-		'methodComplexity',
 		'numberOfMessageSends',
 		'numberOfStatements',
 		'numberOfLinesOfCode',
-		'parameterComplexityMultiplier',
 		'numberOfConditionals',
-		'cyclomaticNumber',
 		'booleanOperators',
-		'cyclomaticNumber2'
+		'importer',
+		'methodEntity',
+		'cyclomaticNumber'
 	],
 	#category : #'Famix-Smalltalk-Utils'
 }
 
+{ #category : #'instance creation' }
+RBVisitorForFAMIXMetrics class >> for: aMethod [
+	^ self new
+		processMethod: aMethod;
+		yourself
+]
+
 { #category : #'private-accessing' }
 RBVisitorForFAMIXMetrics >> classNameFromMethod [
-	"this is a hack but it's working - doru :)"
+	^ self methodEntity parentType name
+]
 
-	"cls :=  self methodEntity belongsTo.
-	^ cls isInstanceSide
-		ifTrue: [self methodEntity belongsTo name]
-		ifFalse: [self methodEntity belongsTo name , ' class']."
-
-	^  self methodEntity belongsTo name.
-	
-		
+{ #category : #'private-accessing' }
+RBVisitorForFAMIXMetrics >> compiledMethod [
+	| realSTClass stClass |
+	stClass := FamixSmalltalkNameResolver smalltalkClassFromFamixClassName: self classNameFromMethod ifAbsent: [ nil ].
+	realSTClass := (self methodEntity isClassSide and: [ stClass class ~= TraitedMetaclass ]) ifTrue: [ stClass class ] ifFalse: [ stClass ].
+	^ realSTClass compiledMethodAt: self methodEntity name ifAbsent: [  ]
 ]
 
 { #category : #enumerating }
@@ -53,26 +58,17 @@ RBVisitorForFAMIXMetrics >> computeCyclomaticNumber: sel [
 
 	The score is basically the number of decision points in a routine + 1. Decision points 
 	are taken to be	conditionals and loops."
-	
+
 	| branches loops |
 	branches := #(#ifTrue: #ifFalse: #ifTrue:ifFalse: #ifFalse:ifTrue: #ifNil: #ifNil:ifNotNil: #ifNotNil:ifNil: #ifNotNil: #at:ifAbsent: #at:ifAbsentPut: #detect:ifNone: #on:do: #and: #or: #xor:).
 	loops := #(#whileTrue: #whileTrue #whileFalse #whileFalse: #timesRepeat: #to:do: #do:separatedBy: #do: #collect: #select: #reject: #inject:into: #detect: #detect:ifNone: #anySatisfy: #allSatisfy: #piecesCutWhere:).	"-- please not that #detect:ifNone: is listed twice because it is both loop and branch!!! -- akuhn"
-	(branches includes: sel)
-		ifTrue: [cyclomaticNumber2 := cyclomaticNumber2 + 1].
-	(loops includes: sel) ifTrue: [cyclomaticNumber2 := cyclomaticNumber2 + 1].	"-- HERE STARTS THE OLD ERRORFUL IMPL --"
+	(branches includes: sel) ifTrue: [ cyclomaticNumber := cyclomaticNumber + 1 ].
+	(loops includes: sel) ifTrue: [ cyclomaticNumber := cyclomaticNumber + 1 ].
+	"-- HERE STARTS THE OLD ERRORFUL IMPL --"
 	(#(#or: #and: #xor: #& #|) includes: sel)
-		ifTrue:
-			[booleanOperators := booleanOperators + 1.
-			^self].
-	(#(#ifTrue: #ifFalse: #ifTrue:ifFalse: #ifFalse:ifTrue: #whileTrue #whileTrue: #whileFalse #whileFalse:)
-		includes: sel)
-		ifTrue:
-			[| cyclo |
-			cyclo := self cyclomaticNumber + 1 + booleanOperators.
-			self cyclomaticNumber: cyclo.
-			booleanOperators := 0].
-	(#(#to:do: #timesRepeat:) includes: sel)
-		ifTrue: [self cyclomaticNumber: self cyclomaticNumber + 1]
+		ifTrue: [ booleanOperators := booleanOperators + 1.
+			^ self ].
+	(#(#ifTrue: #ifFalse: #ifTrue:ifFalse: #ifFalse:ifTrue: #whileTrue #whileTrue: #whileFalse #whileFalse:) includes: sel) ifTrue: [ booleanOperators := 0 ]
 ]
 
 { #category : #enumerating }
@@ -89,50 +85,42 @@ RBVisitorForFAMIXMetrics >> cyclomaticNumber [
 	^cyclomaticNumber
 ]
 
-{ #category : #accessing }
-RBVisitorForFAMIXMetrics >> cyclomaticNumber2 [
-	
-	^cyclomaticNumber2
-]
-
-{ #category : #accessing }
-RBVisitorForFAMIXMetrics >> cyclomaticNumber: anObject [
-	
-	cyclomaticNumber := anObject
-]
-
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 RBVisitorForFAMIXMetrics >> initialize [
 	
 	super initialize.
 	self resetMetricValues
 ]
 
+{ #category : #private }
+RBVisitorForFAMIXMetrics >> isDirtySuperInMethod: selector withReceiver: receiver [
+	^ selector ~~ self methodEntity name and: [ receiver isSuper ]
+]
+
+{ #category : #private }
+RBVisitorForFAMIXMetrics >> isSuperInMethod: selector withReceiver: receiver [
+	^ selector == self methodEntity name and: [ receiver isSuper ]
+]
+
 { #category : #'source access' }
 RBVisitorForFAMIXMetrics >> methodBodyOn: aReadStream [
-	
+	| aux |
 	numberOfLinesOfCode := aReadStream contents occurrencesOf: Character cr.
-	aReadStream contents last = Character cr
-		ifFalse: [numberOfLinesOfCode := numberOfLinesOfCode + 1].	"the last line ay not contain a final cr"	"-- take care: some platforms use line-feeds instead of cr--"
-	numberOfLinesOfCode == 1
-		ifTrue:
-			[| aux |
-			aux := aReadStream contents occurrencesOf: Character lf.
-			aReadStream contents last = Character cr
-				ifFalse: [numberOfLinesOfCode := numberOfLinesOfCode + 1].
-			numberOfLinesOfCode := numberOfLinesOfCode max: aux]
+	aReadStream contents last = Character cr ifFalse: [ numberOfLinesOfCode := numberOfLinesOfCode + 1 ].
+	numberOfLinesOfCode = 1 ifFalse: [ ^ self ].
+	aux := aReadStream contents occurrencesOf: Character lf.
+	aReadStream contents last = Character cr ifFalse: [ numberOfLinesOfCode := numberOfLinesOfCode + 1 ].
+	numberOfLinesOfCode := numberOfLinesOfCode max: aux
 ]
 
-{ #category : #accessing }
-RBVisitorForFAMIXMetrics >> methodComplexity [
-	
-	^methodComplexity
+{ #category : #'private-accessing' }
+RBVisitorForFAMIXMetrics >> methodEntity [
+	^ methodEntity
 ]
 
-{ #category : #accessing }
-RBVisitorForFAMIXMetrics >> methodComplexity: anObject [
-	
-	methodComplexity := anObject
+{ #category : #'private-accessing' }
+RBVisitorForFAMIXMetrics >> methodEntity: aMethodEntity [
+	methodEntity := aMethodEntity
 ]
 
 { #category : #accessing }
@@ -183,97 +171,45 @@ RBVisitorForFAMIXMetrics >> numberOfStatements: anObject [
 	numberOfStatements := anObject
 ]
 
-{ #category : #accessing }
-RBVisitorForFAMIXMetrics >> parameterComplexityMultiplier [
-	
-	^parameterComplexityMultiplier
-]
-
-{ #category : #accessing }
-RBVisitorForFAMIXMetrics >> parameterComplexityMultiplier: anObject [
-	
-	parameterComplexityMultiplier := anObject
-]
-
 { #category : #enumerating }
-RBVisitorForFAMIXMetrics >> processMethod: aMethodEntity usingImporter: anImporter inModel: anObject [
-	| parseTree |
-	self targetModel: anObject.
-	self importer: anImporter.
+RBVisitorForFAMIXMetrics >> processMethod: aMethodEntity [
 	self methodEntity: aMethodEntity.
 	self compiledMethod ifNil: [ ^ self ].
-	parseTree := self compiledMethod methodClass parseTreeFor: self compiledMethod selector.
-	parseTree
-		ifNotNil: [ "parseTreeOrNil := self stParseTree.
-	parseTreeOrNil isNil ifFalse: [self visitNode: parseTreeOrNil]" self visitMethodNode: parseTree ]
+	(self compiledMethod methodClass parseTreeFor: self compiledMethod selector) ifNotNil: [ :parseTree | self visitMethodNode: parseTree ]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 RBVisitorForFAMIXMetrics >> resetMetricValues [
-	
-	self numberOfMessageSends: 0.
-	self numberOfStatements: 0.
-	self methodComplexity: 0.
-	self parameterComplexityMultiplier: 0.
-	self numberOfConditionals: 0.
-	self cyclomaticNumber: 1.
+	numberOfMessageSends := 0.
+	numberOfStatements := 0.
+	numberOfConditionals := 0.
 	booleanOperators := 0.
-	cyclomaticNumber2 := 1
+	cyclomaticNumber := 1
 ]
 
 { #category : #enumerating }
-RBVisitorForFAMIXMetrics >> visitArgument: each [
-	
-	methodComplexity := methodComplexity + parameterComplexityMultiplier.
-	^super visitArgument: each
-]
-
-{ #category : #enumerating }
-RBVisitorForFAMIXMetrics >> visitAssignmentNode: anAssignmentNode [ 
-	
-	super visitAssignmentNode: anAssignmentNode.
-	methodComplexity := methodComplexity + 0.5
-]
-
-{ #category : #enumerating }
-RBVisitorForFAMIXMetrics >> visitBlockNode: aBlockNode [ 
-	
+RBVisitorForFAMIXMetrics >> visitBlockNode: aBlockNode [
 	super visitBlockNode: aBlockNode.
-	numberOfStatements := numberOfStatements + aBlockNode body size.
+	numberOfStatements := numberOfStatements + aBlockNode body size
 ]
 
 { #category : #enumerating }
-RBVisitorForFAMIXMetrics >> visitCascadeNode: aCascadeNode [ 
-	
+RBVisitorForFAMIXMetrics >> visitCascadeNode: aCascadeNode [
 	numberOfStatements := numberOfStatements + aCascadeNode messages size.
-	^super visitCascadeNode: aCascadeNode 
+	^ super visitCascadeNode: aCascadeNode
 ]
 
 { #category : #enumerating }
-RBVisitorForFAMIXMetrics >> visitMessageNode: aMessageNode [ 
-	
-	| rcvr sel args |
-	rcvr := aMessageNode receiver.
-	sel := aMessageNode selector.
-	args := aMessageNode arguments.
+RBVisitorForFAMIXMetrics >> visitMessageNode: aMessageNode [
+	| receiver selector |
+	receiver := aMessageNode receiver.
+	selector := aMessageNode selector.
 	super visitMessageNode: aMessageNode.
 	numberOfMessageSends := numberOfMessageSends + 1.
-	self countConditionals: sel.
-	self computeCyclomaticNumber: sel.	"sel = #printOn: 
-		ifTrue: [self halt]."	"duplicated in VisualWorksAnnotator because we ay want to run them separately"
-	(self isSuperInMethod: sel withReceiver: rcvr)
-		ifTrue: [self methodEntity propertyNamed: #cleanSuperSend put: true].
-	(self isDirtySuperInMethod: sel withReceiver: rcvr)
-		ifTrue: [self methodEntity propertyNamed: #dirtySuperSend put: true].
-	methodComplexity := sel isInfix
-		ifTrue: [methodComplexity + 2]
-		ifFalse:
-			[sel numArgs > 1
-				ifTrue: [methodComplexity + 3]
-				ifFalse: [methodComplexity + 1]]	"(self isAPICall: sel) ifTrue: [
-			methodComplexity + 5] ifFalse: [
-		(self isPrimitiveCall: sel) ifTrue: [
-			methodComplexity + 7] ifFalse: ["
+	self countConditionals: selector.
+	self computeCyclomaticNumber: selector.
+	(self isSuperInMethod: selector withReceiver: receiver) ifTrue: [ self methodEntity propertyNamed: #cleanSuperSend put: true ].
+	(self isDirtySuperInMethod: selector withReceiver: receiver) ifTrue: [ self methodEntity propertyNamed: #dirtySuperSend put: true ]
 ]
 
 { #category : #enumerating }
@@ -287,9 +223,7 @@ RBVisitorForFAMIXMetrics >> visitMethodNode: aMethodNode [
 ]
 
 { #category : #enumerating }
-RBVisitorForFAMIXMetrics >> visitSequenceNode: aSequenceNode [ 
-	
+RBVisitorForFAMIXMetrics >> visitSequenceNode: aSequenceNode [
 	super visitSequenceNode: aSequenceNode.
-	numberOfStatements := numberOfStatements + aSequenceNode statements size.
-	self methodComplexity: self methodComplexity + (0.5 * aSequenceNode temporaries size)
+	numberOfStatements := numberOfStatements + aSequenceNode statements size
 ]

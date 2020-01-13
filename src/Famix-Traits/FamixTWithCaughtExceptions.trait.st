@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithCaughtExceptions classSide >> annotation [
 
-	<MSEClass: #TWithCaughtExceptions super: #Trait>
+	<FMClass: #TWithCaughtExceptions super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -26,7 +26,7 @@ FamixTWithCaughtExceptions >> caughtExceptions [
 	"Relation named: #caughtExceptions type: #FamixTCaughtException opposite: #definingEntity"
 
 	<generated>
-	<MSEComment: 'The exceptions caught by the method'>
+	<FMComment: 'The exceptions caught by the method'>
 	<derived>
 	^ caughtExceptions
 ]
@@ -36,5 +36,4 @@ FamixTWithCaughtExceptions >> caughtExceptions: anObject [
 
 	<generated>
 	caughtExceptions value: anObject
-
 ]

@@ -21,3 +21,8 @@ Behavior >> resetMooseEntityCache [
 Behavior >> usedStatefulTraits [
 	^ self withAllSuperclasses flatCollect: [ :class | class allGeneratedTraits ] as: Set
 ]
+
+{ #category : #'*Moose-Core' }
+Behavior >> usesFamixTrait: aTrait [
+	^ self usedStatefulTraits includes: aTrait
+]

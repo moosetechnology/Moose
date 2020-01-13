@@ -1,3 +1,6 @@
+"
+Check if an opposite attribute declared in a pragma #MSEProperty:type:opposite: also define a pragma pointing back to the initial class and the initial attribute.
+"
 Class {
 	#name : #FameOppositeAttributeShouldPointBackRule,
 	#superclass : #RBBlockLintRule,
@@ -11,27 +14,27 @@ FameOppositeAttributeShouldPointBackRule class >> uniqueIdentifierName [
 
 { #category : #running }
 FameOppositeAttributeShouldPointBackRule >> checkMethod: aContext [
-
-	| class compiledMethod pragma |
+	| class |
 	class := aContext methodClass.
-	compiledMethod := class methodNamed: aContext selector.
-	(pragma := compiledMethod pragmaAt: #MSEProperty:type:opposite:) 
-		ifNotNil: [
-			|oppositeClass oppositeSelector oppositeCompiledMethod|
-			oppositeClass := Smalltalk classNamed: (pragma argumentAt: 2) asString.
-			oppositeClass ifNil: [^ self].
-			oppositeSelector := (pragma argumentAt: 3) .
-		
-			oppositeCompiledMethod := oppositeClass methodDict at: oppositeSelector ifAbsent: [result addClass: class  selector: aContext selector. ^self].
-			pragma := (oppositeCompiledMethod pragmaAt: #MSEProperty:type:opposite:)
-				ifNil: [ result addClass: class  selector: aContext selector. ^self ].
-			
-			(pragma argumentAt: 2) = class name asSymbol
-				ifFalse: [ result addClass: class  selector: aContext selector. ^self ].
-			(pragma argumentAt: 3) = aContext selector
-				ifFalse: [ result addClass: class  selector: aContext selector. ^self ] ]
-	 
-	
+	((class methodNamed: aContext selector) pragmaAt: #FMProperty:type:opposite:)
+		ifNotNil: [ :pragma | 
+			self class environment
+				at: (pragma argumentAt: 2)
+				ifPresent: [ :oppositeClass | 
+					oppositeClass
+						compiledMethodAt: (pragma argumentAt: 3)
+						ifPresent: [ :oppositeCompiledMethod | 
+							(oppositeCompiledMethod pragmaAt: #FMProperty:type:opposite:)
+								ifNotNil: [ :oppositePragma | 
+									(oppositePragma argumentAt: 2) = class name asSymbol
+										ifFalse: [ result addClass: class selector: aContext selector.
+											^ self ].
+									(oppositePragma argumentAt: 3) = aContext selector
+										ifFalse: [ result addClass: class selector: aContext selector.
+											^ self ] ]
+								ifNil: [ result addClass: class selector: aContext selector.
+									^ self ] ]
+						ifAbsent: [ result addClass: class selector: aContext selector ] ] ]
 ]
 
 { #category : #accessing }
@@ -43,10 +46,4 @@ FameOppositeAttributeShouldPointBackRule >> group [
 FameOppositeAttributeShouldPointBackRule >> name [
 
 	^ 'An opposite attribute declared in pragma does not point back to the initial attribute'
-]
-
-{ #category : #accessing }
-FameOppositeAttributeShouldPointBackRule >> rationale [
-
-	^ 'Check if an opposite attribute declared in a pragma #MSEProperty:type:opposite: also define a pragma pointing back to the initial class and the initial attribute.'
 ]

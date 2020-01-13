@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTTraitUser classSide >> annotation [
 
-	<MSEClass: #TTraitUser super: #Trait>
+	<FMClass: #TTraitUser super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -36,5 +36,4 @@ FamixTTraitUser >> outgoingTraitUsages: anObject [
 
 	<generated>
 	outgoingTraitUsages value: anObject
-
 ]

@@ -33,13 +33,11 @@ FamixTest2Generator >> defineClasses [
 
 { #category : #definition }
 FamixTest2Generator >> defineHierarchy [
-
 	super defineHierarchy.
 
 	classEntity --|> namedEntity.
 	classEntity --|> #TClass.
 
 	inheritance --|> association.
-	inheritance --|> #TSubInheritance.
-	inheritance --|> #TSuperInheritance
+	inheritance --|> #TInheritance
 ]

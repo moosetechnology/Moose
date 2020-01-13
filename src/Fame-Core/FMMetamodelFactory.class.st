@@ -1,19 +1,27 @@
 "
-I am a general factory that is used to create meta-model entities independently on a particular meta-model
+Description
+--------------------
+
+I am a general factory that is used to create meta-model entities independently on a particular meta-model.
+
+I take as parameter a fm3Package and will look for the entities into it.
+
+NOTE: (Cyril) This factory was done based on a FM3Package but maybe it should instead be based on a FMMetaModel? What if we have a composed MM and we need an entity from another package?
 "
 Class {
 	#name : #FMMetamodelFactory,
 	#superclass : #Object,
 	#instVars : [
-		'metamodelClass'
+		'fm3Package'
 	],
-	#category : #'Fame-Core'
+	#category : #'Fame-Core-Utilities'
 }
 
 { #category : #'instance creation' }
-FMMetamodelFactory class >> on: aMetamodelClass [
-
-	^ self new metamodelClass: aMetamodelClass
+FMMetamodelFactory class >> fm3Package: aPackage [
+	^ self new
+		fm3Package: aPackage;
+		yourself
 ]
 
 { #category : #accessing }
@@ -24,23 +32,17 @@ FMMetamodelFactory >> entityNamed: aString [
 
 { #category : #accessing }
 FMMetamodelFactory >> entityNamed: aString ifAbsent: aBlock [
+	self fm3Package ifNil: [ ^ aBlock value ].
 
-	| aMetamodel fullEntityName |
-	
-	self metamodelClass ifNil: [ ^ aBlock value ].
-	aMetamodel := self metamodelClass metamodel.
-	aMetamodel ifNil: [ ^ aBlock value ].
-	fullEntityName := metamodelClass packageNameForAnnotations, '.', aString.
-	^ (aMetamodel elementNamed: fullEntityName ifAbsent: aBlock) implementingClass.
-
+	^ (self fm3Package classNamed: aString ifAbsent: aBlock) implementingClass
 ]
 
 { #category : #accessing }
-FMMetamodelFactory >> metamodelClass [
-	^ metamodelClass
+FMMetamodelFactory >> fm3Package [
+	^ fm3Package
 ]
 
 { #category : #accessing }
-FMMetamodelFactory >> metamodelClass: anObject [
-	metamodelClass := anObject
+FMMetamodelFactory >> fm3Package: anObject [
+	fm3Package := anObject
 ]

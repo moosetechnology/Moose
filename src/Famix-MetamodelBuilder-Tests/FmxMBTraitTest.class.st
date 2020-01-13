@@ -16,19 +16,6 @@ FmxMBTraitTest >> newEntityNamed: aString [
 	^ builder newTraitNamed: aString
 ]
 
-{ #category : #'tests - names' }
-FmxMBTraitTest >> testAsProperty [
-
-	"traits should not be renamed during creation of properties"
-
-	| aTrait |
-		
-	aTrait := builder newTraitNamed: #TVariable.	
-		
-	self shouldnt: [ aTrait as: #TVariable property: #property ] raise: FmxMBTraitRenamingError.
-	self should: [ aTrait as: #TOtherName property: #property ] raise: FmxMBTraitRenamingError.
-]
-
 { #category : #tests }
 FmxMBTraitTest >> testAutogereatedContainsMany [
 
@@ -275,54 +262,18 @@ FmxMBTraitTest >> testMultipleTraits [
 
 ]
 
-{ #category : #'tests - names' }
-FmxMBTraitTest >> testRelatedOwnerTraitName [
-
-	"test if relatedOwnerTraitName is correctly created from a trait name. It should be the same."
-
-	| aTrait |
-		
-	aTrait := builder newTraitNamed: #TVariable.	
-	self assert: aTrait relatedOwnerTraitName equals: 'TVariable'.
-		
-	aTrait := builder newTraitNamed: #TAccess.	
-	self assert: aTrait relatedOwnerTraitName equals: 'TAccess'.
-
-	aTrait := builder newTraitNamed: #TMethod.	
-	self assert: aTrait relatedOwnerTraitName equals: 'TMethod'.
-
-]
-
-{ #category : #'tests - names' }
-FmxMBTraitTest >> testRelatedTraitName [
-
-	"test if a related trait name is correctly generated from a traitName name. It should be the same."
-
-	| aTrait |
-		
-	aTrait := builder newTraitNamed: #TVariable.	
-	self assert: aTrait relatedTraitName equals: 'TVariable'.
-		
-	aTrait := builder newTraitNamed: #TAccess.	
-	self assert: aTrait relatedTraitName equals: 'TAccess'.
-
-	aTrait := builder newTraitNamed: #TMethod.	
-	self assert: aTrait relatedTraitName equals: 'TMethod'.
-
-]
-
 { #category : #tests }
 FmxMBTraitTest >> testSimpleClassAnnotation [
 
-	| simpleClass generated method |
+	| generated method |
 		
-	simpleClass := builder newTraitNamed: #TComment.	
+	builder newTraitNamed: #TComment.	
 	builder generate.
 
 	generated := builder testingEnvironment ask classNamed: 'TstTComment'.
 
 	method := generated classSide methodNamed: #annotation.
-	self assert: (method sourceCode includesSubstring: '<MSEClass: #TComment super: #Trait>').
+	self assert: (method sourceCode includesSubstring: '<FMClass: #TComment super: #Object>').
 	self assert: (method sourceCode includesSubstring: '<package: #Tst>').
 
 

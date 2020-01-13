@@ -24,7 +24,7 @@ Class {
 { #category : #meta }
 FamixJavaEntity class >> annotation [
 
-	<MSEClass: #Entity super: #MooseEntity>
+	<FMClass: #Entity super: #MooseEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
@@ -34,7 +34,7 @@ FamixJavaEntity class >> annotation [
 FamixJavaEntity class >> metamodel [
 
 	<generated>
-	^ (self class environment at: #FamixJavaGenerator) metamodel
+	^ FamixJavaModel metamodel
 ]
 
 { #category : #testing }

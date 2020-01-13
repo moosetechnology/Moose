@@ -107,7 +107,7 @@ MooseCodeBrowser >> onInstVarsFromClasses [
 	browser transmit to: #instVars; from: #classes; andShow: [ :a | 
 		a list
 				title: 'Attributes';
-				display: [ :class | class attributes ];
+				display: [ :class | class properties ];
 				format: [:attribute | attribute name ];
 				dynamicActionsOnSelection: [ :list | list selection mooseFinderActions ];
 				tags: [ :each | 

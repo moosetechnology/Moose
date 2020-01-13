@@ -1,3 +1,6 @@
+"
+Check if the opposite class declared in a pragma #MSEProperty:type:opposite: is defined.
+"
 Class {
 	#name : #FameOppositeClassNotExistRule,
 	#superclass : #RBBlockLintRule,
@@ -11,19 +14,10 @@ FameOppositeClassNotExistRule class >> uniqueIdentifierName [
 
 { #category : #running }
 FameOppositeClassNotExistRule >> checkMethod: aContext [
-
-	| class compiledMethod pragma |
-	
+	| class |
 	class := aContext methodClass.
-	compiledMethod := class methodNamed: aContext selector.
-	
-	(pragma := compiledMethod pragmaAt: #MSEProperty:type:opposite:) 
-		ifNotNil: [
-			| oppositeClass |
-			oppositeClass := Smalltalk classNamed: (pragma argumentAt: 2) asString.
-			oppositeClass ifNil: [ result addClass: class  selector: aContext selector ] ]
-	 
-	
+	((class methodNamed: aContext selector) pragmaAt: #FMProperty:type:opposite:)
+		ifNotNil: [ :pragma | self class environment at: (pragma argumentAt: 2) ifPresent: [ :oppositeClass | result addClass: class selector: aContext selector ] ]
 ]
 
 { #category : #accessing }
@@ -36,10 +30,4 @@ FameOppositeClassNotExistRule >> group [
 FameOppositeClassNotExistRule >> name [
 
 	^ 'An opposite class declared in pragma #MSEProperty:type:opposite: does not exist'
-]
-
-{ #category : #accessing }
-FameOppositeClassNotExistRule >> rationale [
-
-	^ 'Check if the opposite class declared in a pragma #MSEProperty:type:opposite: is defined.'
 ]

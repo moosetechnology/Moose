@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaException class >> annotation [
 
-	<MSEClass: #Exception super: #FamixJavaEntity>
+	<FMClass: #Exception super: #FamixJavaEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self

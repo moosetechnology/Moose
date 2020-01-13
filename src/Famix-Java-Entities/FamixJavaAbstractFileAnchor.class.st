@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaAbstractFileAnchor class >> annotation [
 
-	<MSEClass: #AbstractFileAnchor super: #FamixJavaSourceAnchor>
+	<FMClass: #AbstractFileAnchor super: #FamixJavaSourceAnchor>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
@@ -23,9 +23,4 @@ FamixJavaAbstractFileAnchor >> <= aFileAnchor [
 { #category : #'as yet unclassified' }
 FamixJavaAbstractFileAnchor >> intervalAsCharPos [
 	self subclassResponsibility
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaAbstractFileAnchor >> mooseNameOn: aStream [
-	aStream nextPutAll: self fileName asString
 ]

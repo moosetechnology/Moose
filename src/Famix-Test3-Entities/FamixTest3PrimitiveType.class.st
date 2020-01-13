@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixTest3PrimitiveType class >> annotation [
 
-	<MSEClass: #PrimitiveType super: #FamixTest3Type>
+	<FMClass: #PrimitiveType super: #FamixTest3Type>
 	<package: #'Famix-Test3-Entities'>
 	<generated>
 	^self

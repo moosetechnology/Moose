@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTTemplateUser classSide >> annotation [
 
-	<MSEClass: #TTemplateUser super: #Trait>
+	<FMClass: #TTemplateUser super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -28,5 +28,4 @@ FamixTTemplateUser >> template: anObject [
 
 	<generated>
 	template := anObject
-
 ]

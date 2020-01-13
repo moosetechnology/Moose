@@ -1,10 +1,16 @@
+"
+Description
+--------------------
+
+I am an error raised when a model been imported contains a syntax error.
+"
 Class {
 	#name : #FMSyntaxError,
 	#superclass : #Error,
 	#instVars : [
 		'parser'
 	],
-	#category : #'Fame-ImportExport'
+	#category : #'Fame-ImportExport-Importers'
 }
 
 { #category : #accessing }

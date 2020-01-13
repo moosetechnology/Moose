@@ -208,10 +208,8 @@ MooseImportFromSmalltalkImageWizard >> importerSelected [
 
 { #category : #'initialize-release' }
 MooseImportFromSmalltalkImageWizard >> initialize [
-
 	super initialize.
-	self buildMooseWizardControl .
-	
+	self buildMooseWizardControl
 ]
 
 { #category : #accessing }
@@ -226,8 +224,7 @@ MooseImportFromSmalltalkImageWizard >> listOfInvocationStrategies [
 
 { #category : #accessing }
 MooseImportFromSmalltalkImageWizard >> listOfMetamodelFactories [
-
-	^ { SmalltalkMetamodelFactory. SmalltalkCompatibilityMetamodelFactory }
+	^ FMMetamodelFactory allFactories
 ]
 
 { #category : #accessing }
@@ -264,31 +261,28 @@ MooseImportFromSmalltalkImageWizard >> performTerminateButtonAction [
 
 { #category : #actions }
 MooseImportFromSmalltalkImageWizard >> validateImportation [
-	"final action when the user click on the button ok:
-	open a corresponding mooseFinder"
-	| importer selectedPackages factory |
+	"final action when the user click on the button ok: open a corresponding mooseFinder"
 
-	factory := Smalltalk at: (wizardInformations at: #metamodelFactory).
-	
+	| importer selectedPackages factory |
+	factory := (self class environment at: (wizardInformations at: #metamodelFactory)) new.
+
 	selectedPackages := wizardInformations at: #packagesSelected.
-	
-	(wizardInformations at: #createScript)
-		ifTrue: [self generateScriptForPackages: selectedPackages ].
+
+	(wizardInformations at: #createScript) ifTrue: [ self generateScriptForPackages: selectedPackages ].
+
 	"we create the moose model with an appopriate name"
-	mooseModel := MooseModel new.
-	"mooseModel name: (self mooseModelNameFor: selectedPackages)."
-	mooseModel name: (wizardInformations at: #modelName).
+	mooseModel := factory modelClass named: (wizardInformations at: #modelName).
+
 	"we create the importer"
 	importer := self importerSelected new.
+
 	"we set all the inportation parameters to the importer"
 	importer
 		importingContext: self createImportingContext;
 		model: mooseModel;
 		addFromPackagesNamed: selectedPackages;
 		candidateClass: self candidateListOperatorClass;
-		factory: factory;		
 		runWithProgress.
 
-	mooseModel install.
-
+	mooseModel install
 ]

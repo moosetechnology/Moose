@@ -10,13 +10,20 @@ Class {
 
 { #category : #meta }
 LIBPerson class >> annotation [
-	<MSEClass: #Person super: #Object>
+	<FMClass: #Person super: #Object>
 	<package: #LIB>
+]
+
+{ #category : #'instance creation' }
+LIBPerson class >> named: aString [
+	^ self new
+		name: aString;
+		yourself
 ]
 
 { #category : #accessing }
 LIBPerson >> books [
-	<MSEProperty: #books type: #LIBBook opposite: #authors> <multivalued>
+	<FMProperty: #books type: #LIBBook opposite: #authors> <multivalued>
 	^books
 ]
 
@@ -34,7 +41,7 @@ LIBPerson >> initialize [
 
 { #category : #accessing }
 LIBPerson >> name [
-	<MSEProperty: #name type: #String>
+	<FMProperty: #name type: #String>
 	^name
 ]
 

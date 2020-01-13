@@ -8,7 +8,7 @@ Trait {
 { #category : #meta }
 FamixTCohesionCouplingMetrics classSide >> annotation [
 
-	<MSEClass: #TCohesionCouplingMetrics super: #Trait>
+	<FMClass: #TCohesionCouplingMetrics super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -17,9 +17,9 @@ FamixTCohesionCouplingMetrics classSide >> annotation [
 { #category : #metrics }
 FamixTCohesionCouplingMetrics >> abstractness [
 	"Abstractness is the ratio between the number of abstract classes and the total number of classes in a package, in the range [0, 1]. 0 means the package is fully concrete, 1 it is fully abstract."
-	<MSEProperty: #abstractness type: #Number>
+	<FMProperty: #abstractness type: #Number>
 	<derived>
-	<MSEComment: 'Abstractness of a package'>
+	<FMComment: 'Abstractness of a package'>
 
 	| nsClasses |
 	nsClasses := self childEntities .
@@ -30,9 +30,9 @@ FamixTCohesionCouplingMetrics >> abstractness [
 
 { #category : #metrics }
 FamixTCohesionCouplingMetrics >> afferentCoupling [
-	<MSEProperty: #afferentCoupling type: #Number>
+	<FMProperty: #afferentCoupling type: #Number>
 	<derived>
-	<MSEComment:
+	<FMComment:
 		'Afferent Coupling of a namespace Afferent is the number of classes that depend upon this namespace'>
 	^ (((self queryAllIncoming outOfParentUsing: FamixTPackage) atScope: FamixTType) collect: [ :e | e isClassSide ifTrue: [ e instanceSide ] ifFalse: [ e ] ]) asSet  size
 ]
@@ -40,9 +40,9 @@ FamixTCohesionCouplingMetrics >> afferentCoupling [
 { #category : #metrics }
 FamixTCohesionCouplingMetrics >> distance [
 	"D = A + I - 1. A package should be balanced between abstractness and instability, i.e., somewhere between abstract and stable or concrete and unstable. This rule defines the main sequence by the equation A + I - 1 = 0. D is the distance to the main sequence."
-	<MSEProperty: #distance type: #Number>
+	<FMProperty: #distance type: #Number>
 	<derived>
-	<MSEComment: 'Distance of a package'>
+	<FMComment: 'Distance of a package'>
 
 	
 	| abstractness instability |
@@ -57,9 +57,9 @@ FamixTCohesionCouplingMetrics >> distance [
 FamixTCohesionCouplingMetrics >> efferentCoupling [
 	"Efferent coupling for a package is the number of classes it depends upon"
 
-	<MSEProperty: #efferentCoupling type: #Number>
+	<FMProperty: #efferentCoupling type: #Number>
 	<derived>
-	<MSEComment: 'Efferent Coupling of a package'>
+	<FMComment: 'Efferent Coupling of a package'>
 
 	^ (((self queryAllOutgoing outOfParentUsing: FamixTPackage) atScope: FamixTType) collect: [ :e | e isClassSide ifTrue: [ e instanceSide ] ifFalse: [ e ] ] ) asSet size
 ]
@@ -68,9 +68,9 @@ FamixTCohesionCouplingMetrics >> efferentCoupling [
 FamixTCohesionCouplingMetrics >> instability [
 	"I =	Ce(P)/(Ce(P)+Ca(P)), in the range [0, 1]. 0 means package is maximally stable (i.e., no dependency to other packages and can not change without big consequences), 1 means it is unstable."
 
-	<MSEProperty: #instability type: #Number>
+	<FMProperty: #instability type: #Number>
 	<derived>
-	<MSEComment: 'Instability of a package'>
+	<FMComment: 'Instability of a package'>
 
 	| efferentCoupling afferentCoupling |
 	
@@ -84,9 +84,9 @@ FamixTCohesionCouplingMetrics >> instability [
 FamixTCohesionCouplingMetrics >> martinCohesion [
 	"Computing cohesion as described by Robert C. Martin"
 
-	<MSEProperty: #martinCohesion type: #Number>
+	<FMProperty: #martinCohesion type: #Number>
 	<derived>
-	<MSEComment: 'Cohesion as defined by Robert C. Martin.'>
+	<FMComment: 'Cohesion as defined by Robert C. Martin.'>
 	| intraConnectivities myClasses |
 	myClasses := self childEntities select: #isClass.
 	myClasses := (myClasses union: (myClasses flatCollect: [ :c | c allRecursiveTypes ])) select: [ :c | c isInstanceSide ].

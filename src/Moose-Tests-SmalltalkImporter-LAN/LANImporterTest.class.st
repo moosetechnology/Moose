@@ -81,17 +81,10 @@ LANImporterTest >> testClassName [
 
 { #category : #tests }
 LANImporterTest >> testClassNameAndUniqueName [
-	"self debug: #testClassNameAndUniqueName"
-
 	| mseClass |
 	mseClass := self model entityNamed: LANNode mooseName.
 	self assert: mseClass name equals: #LANNode.
-	self
-		assert: mseClass mooseName
-		equals:
-			(FamixSmalltalkNameResolver
-				uniqueNameForClassNamed: LANNode name
-				scope: (FamixSmalltalkNameResolver moosify: LANNode environment absoluteName)).
+	self assert: mseClass mooseName equals: 'Smalltalk::LANNode'.
 	self assert: mseClass mooseName equals: LANNode mooseName
 ]
 
@@ -178,7 +171,7 @@ LANImporterTest >> testEntityUniquelyNamed [
 			(classes entityNamed: LANNode class mooseName) isNil not
 ]
 
-{ #category : #errors }
+{ #category : #tests }
 LANImporterTest >> testHierarchyRoot [ 
 	self assert: (self model entityNamed: LANNode mooseName) isHierarchyRoot. 
 	self deny: ((self model entityNamed: LANNode mooseName) 
@@ -286,14 +279,14 @@ LANImporterTest >> testIsClassAbstract [
 	
 ]
 
-{ #category : #errors }
+{ #category : #tests }
 LANImporterTest >> testLonely [
 	| lonely |
 	lonely := self model allModelClasses select: [ :each | each isLonelyWithin: self model allModelClasses ].
 	self assert: lonely size equals: 8
 ]
 
-{ #category : #errors }
+{ #category : #tests }
 LANImporterTest >> testMethodOverriding [ 
 	 
 	self assert: (self model entityNamed: (LANOutputServer>>#canOutput) mooseName) isOverriding. 
@@ -325,9 +318,7 @@ LANImporterTest >> testNameAndUniqueName [
 	| mseClass mseMethod mseAttribute mseGlobalVar mseImplicitVar mseLocalVariable mseFormalParameter transcriptName |
 	mseClass := self model entityNamed: LANNode mooseName.
 	self assert: mseClass name identicalTo: #LANNode.
-	self
-		assert: mseClass mooseName
-		identicalTo: (FamixSmalltalkNameResolver uniqueNameForClassNamed: LANNode name scope: (FamixSmalltalkNameResolver moosify: LANNode environment absoluteName)).
+	self assert: mseClass mooseName identicalTo: #'Smalltalk::LANNode'.
 	self assert: mseClass mooseName identicalTo: LANNode mooseName.
 	mseMethod := self model entityNamed: #'Smalltalk::LANPacket.printOn:(Object)'.
 	self assert: mseMethod name identicalTo: #printOn:.
@@ -421,7 +412,7 @@ LANImporterTest >> testStubClassesCreation [
 	self assert: (self model allClasses select: [ :each | each isStub not ]) size equals: 22
 ]
 
-{ #category : #errors }
+{ #category : #tests }
 LANImporterTest >> testSubClassHierarchy [
 	self assert: (self model entityNamed: LANNode mooseName) subclassHierarchy size equals: 4.
 	self assert: (self model entityNamed: LANNode mooseName) withSubclassHierarchy size equals: 5

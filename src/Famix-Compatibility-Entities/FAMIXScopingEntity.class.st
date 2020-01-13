@@ -9,17 +9,10 @@ Class {
 { #category : #meta }
 FAMIXScopingEntity class >> annotation [
 
-	<MSEClass: #ScopingEntity super: #FAMIXContainerEntity>
+	<FMClass: #ScopingEntity super: #FAMIXContainerEntity>
 	<package: #FAMIX>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FAMIXScopingEntity class >> requirements [
-
-	<generated>
-	^ { FAMIXScopingEntity }
 ]
 
 { #category : #'Famix-Extensions-metrics' }

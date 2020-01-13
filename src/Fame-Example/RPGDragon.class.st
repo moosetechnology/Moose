@@ -10,14 +10,15 @@ Class {
 
 { #category : #meta }
 RPGDragon class >> annotation [
-	<MSEClass: #Dragon super: #Object>
+	<FMClass: #Dragon super: #Object>
 	<package: #RPG>
 ]
 
 { #category : #accessing }
 RPGDragon >> hoard [
-	<MSEProperty: #hoard type: #RPGTreasure opposite: #keeper> <multivalued>
-	^hoard
+	<FMProperty: #hoard type: #RPGTreasure opposite: #keeper>
+	<multivalued>
+	^ hoard
 ]
 
 { #category : #accessing }
@@ -34,8 +35,9 @@ RPGDragon >> initialize [
 
 { #category : #accessing }
 RPGDragon >> killedBy [
-	<MSEProperty: #killedBy type: #RPGHero opposite: #kills> <multivalued>
-	^killedBy
+	<FMProperty: #killedBy type: #RPGHero opposite: #kills>
+	<multivalued>
+	^ killedBy
 ]
 
 { #category : #accessing }

@@ -7,7 +7,7 @@ Class {
 { #category : #meta }
 FamixTestComposedCustomEntity3 class >> annotation [
 
-	<MSEClass: #CustomEntity3 super: #MooseEntity>
+	<FMClass: #CustomEntity3 super: #MooseEntity>
 	<package: #'Famix-TestComposedMetamodel-Entities'>
 	<generated>
 	^self
@@ -17,15 +17,15 @@ FamixTestComposedCustomEntity3 class >> annotation [
 FamixTestComposedCustomEntity3 class >> metamodel [
 
 	<generated>
-	^ (self class environment at: #FamixTestComposedGenerator) metamodel
+	^ FamixTestComposedModel metamodel
 ]
 
 { #category : #accessing }
 FamixTestComposedCustomEntity3 >> c23 [
-	"Relation named: #c23 type: #FamixTestComposedCustomEntity3 opposite: #c3s"
+	"Relation named: #c23 type: #FamixTestComposed2CustomEntity3 opposite: #c3s"
 
 	<generated>
-	<MSEProperty: #c23 type: #Object>
+	<FMProperty: #c23 type: #FamixTestComposed2CustomEntity3 opposite: #c3s>
 	^ self privateState attributeAt: #c23 ifAbsent: [ nil ]
 ]
 
@@ -38,10 +38,10 @@ FamixTestComposedCustomEntity3 >> c23: anObject [
 
 { #category : #accessing }
 FamixTestComposedCustomEntity3 >> customEntity3 [
-	"Relation named: #customEntity3 type: #FamixTestComposedCustomEntity3 opposite: #customEntities3"
+	"Relation named: #customEntity3 type: #FamixTestComposed1CustomEntity3 opposite: #customEntities3"
 
 	<generated>
-	<MSEProperty: #customEntity3 type: #Object>
+	<FMProperty: #customEntity3 type: #FamixTestComposed1CustomEntity3 opposite: #customEntities3>
 	^ self privateState attributeAt: #customEntity3 ifAbsent: [ nil ]
 ]
 

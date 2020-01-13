@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixTestComposedAssociation class >> annotation [
 
-	<MSEClass: #Association super: #FamixTestComposedEntity>
+	<FMClass: #Association super: #FamixTestComposedEntity>
 	<package: #'Famix-TestComposedMetamodel-Entities'>
 	<generated>
 	^self
@@ -17,11 +17,11 @@ FamixTestComposedAssociation class >> annotation [
 
 { #category : #accessing }
 FamixTestComposedAssociation >> c15 [
-	"Relation named: #c15 type: #FamixTestComposedCustomEntity5 opposite: #associations"
+	"Relation named: #c15 type: #FamixTestComposed1CustomEntity5 opposite: #associations"
 
 	<generated>
 	<target>
-	<MSEProperty: #c15 type: #Object>
+	<FMProperty: #c15 type: #FamixTestComposed1CustomEntity5 opposite: #associations>
 	^ self privateState attributeAt: #c15 ifAbsent: [ nil ]
 ]
 
@@ -34,11 +34,11 @@ FamixTestComposedAssociation >> c15: anObject [
 
 { #category : #accessing }
 FamixTestComposedAssociation >> c25 [
-	"Relation named: #c25 type: #FamixTestComposedCustomEntity5 opposite: #associations"
+	"Relation named: #c25 type: #FamixTestComposed2CustomEntity5 opposite: #associations"
 
 	<generated>
 	<source>
-	<MSEProperty: #c25 type: #Object>
+	<FMProperty: #c25 type: #FamixTestComposed2CustomEntity5 opposite: #associations>
 	^ self privateState attributeAt: #c25 ifAbsent: [ nil ]
 ]
 

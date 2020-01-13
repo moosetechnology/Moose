@@ -1,27 +1,22 @@
+"
+Description
+--------------------
+
+I am responsible of printing the XML format markup during a model export.
+
+Examples
+--------------------
+
+	| printer |
+	printer := FMXMLPrinter onString.
+	FMMetaMetaModel default exportWithPrinter: printer.
+	printer stream contents
+"
 Class {
 	#name : #FMXMLPrinter,
-	#superclass : #FMPrintClient,
-	#category : #'Fame-ImportExport'
+	#superclass : #FMDataStructurePrinter,
+	#category : #'Fame-ImportExport-Exporters'
 }
-
-{ #category : #'instance creation' }
-FMXMLPrinter class >> new [
-	"Answer a newly created and initialized instance."
-
-	^super new initialize
-]
-
-{ #category : #parsing }
-FMXMLPrinter >> beginAttribute: name [
-
-	stream nextPut: $>.
-	indent := indent + 1.
-	self crTabs.
-	stream 
-		nextPutAll: '<Attribute name="';
-		nextPutAll: name;
-		nextPut: $"
-]
 
 { #category : #parsing }
 FMXMLPrinter >> beginDocument [
@@ -32,7 +27,7 @@ FMXMLPrinter >> beginDocument [
 ]
 
 { #category : #parsing }
-FMXMLPrinter >> beginElement: name [
+FMXMLPrinter >> beginEntity: name [
 
 	stream nextPut: $>.
 	indent := indent + 1.
@@ -44,13 +39,15 @@ FMXMLPrinter >> beginElement: name [
 ]
 
 { #category : #parsing }
-FMXMLPrinter >> endAttribute: name [
+FMXMLPrinter >> beginProperty: name [
 
 	stream nextPut: $>.
+	indent := indent + 1.
 	self crTabs.
 	stream 
-		nextPutAll: '</Attribute'.
-	indent := indent - 1.
+		nextPutAll: '<Attribute name="';
+		nextPutAll: name;
+		nextPut: $"
 ]
 
 { #category : #parsing }
@@ -62,7 +59,7 @@ FMXMLPrinter >> endDocument [
 ]
 
 { #category : #parsing }
-FMXMLPrinter >> endElement: name [
+FMXMLPrinter >> endEntity: name [
 
 	stream nextPut: $>.
 	self crTabs.
@@ -71,47 +68,51 @@ FMXMLPrinter >> endElement: name [
 	indent := indent - 1.
 ]
 
-{ #category : #'initialize-release' }
-FMXMLPrinter >> initialize [
-	stream := nil.
-	indent := nil.
-	^self
+{ #category : #parsing }
+FMXMLPrinter >> endProperty: name [
+
+	stream nextPut: $>.
+	self crTabs.
+	stream 
+		nextPutAll: '</Attribute'.
+	indent := indent - 1.
 ]
 
 { #category : #parsing }
 FMXMLPrinter >> primitive: value [
-
 	stream nextPut: $>.
 	indent := indent + 1.
 	self crTabs.
-	(value isKindOf: Boolean) ifTrue: [
-		stream 
-			nextPutAll: '<Boolean value="';
-			print: value;
-			nextPut: $";
-			nextPut: $/ ] ifFalse: [
-	(value isKindOf: String) ifTrue: [
-		stream nextPutAll: '<String value="'.
-		value do: [ :char | | charToPrint |
-			$" == char ifTrue: [ 
-				stream nextPut: $\ ].
-			Character cr == char ifTrue: [
-				stream nextPut: $\.
-				charToPrint := $n ].
-			Character tab == char ifTrue: [
-				stream nextPut: $\.
-				charToPrint := $t ].
-			stream nextPut: (charToPrint ifNil: [ char ] ) ].
-		stream
-			nextPut: $";
-			nextPut: $/ ] ifFalse: [
-	(value isKindOf: Number) ifTrue: [
-		stream 
-			nextPutAll: '<Number value="';
-			print: value;
-			nextPut: $";
-			nextPut: $/ ] ifFalse: [ Error signal ]]].
-	indent := indent - 1.
+	(value isKindOf: Boolean)
+		ifTrue: [ stream
+				nextPutAll: '<Boolean value="';
+				print: value;
+				nextPut: $";
+				nextPut: $/ ]
+		ifFalse: [ value isString
+				ifTrue: [ stream nextPutAll: '<String value="'.
+					value
+						do: [ :char | 
+							| charToPrint |
+							$" == char ifTrue: [ stream nextPut: $\ ].
+							Character cr == char
+								ifTrue: [ stream nextPut: $\.
+									charToPrint := $n ].
+							Character tab == char
+								ifTrue: [ stream nextPut: $\.
+									charToPrint := $t ].
+							stream nextPut: (charToPrint ifNil: [ char ]) ].
+					stream
+						nextPut: $";
+						nextPut: $/ ]
+				ifFalse: [ value isNumber
+						ifTrue: [ stream
+								nextPutAll: '<Number value="';
+								print: value;
+								nextPut: $";
+								nextPut: $/ ]
+						ifFalse: [ Error signal ] ] ].
+	indent := indent - 1
 ]
 
 { #category : #parsing }

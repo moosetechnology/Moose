@@ -1,13 +1,8 @@
-"
-FamixMetamodelBuilderClass
-"
 Class {
 	#name : #FmxMBClass,
 	#superclass : #FmxMBBehavior,
 	#instVars : [
-		'classGeneralization',
-		'requirements',
-		'isHierarchyRoot'
+		'classGeneralization'
 	],
 	#category : #'Famix-MetamodelBuilder-Core-Implementation'
 }
@@ -38,101 +33,6 @@ FmxMBClass >> allLocalTraits [
 ]
 
 { #category : #accessing }
-FmxMBClass >> allRequirementNames [ 
-
-	^ (self requirements asSet collect: #fullName) sorted
-]
-
-{ #category : #accessing }
-FmxMBClass >> allTraitNames [ 
-	
-	^ (self allTraits collect: #fullName) sorted
-]
-
-{ #category : #accessing }
-FmxMBClass >> allTraits [
-	
-	| selectedTraits allTraits |
-	
-	selectedTraits := self allLocalTraits.
-	allTraits := self allTraitsInHierarchy.
-	
-	selectedTraits addAll: ((self glueingTraitsOf: selectedTraits whenAllHierarchyHas: allTraits) copyWithoutAll: allTraits).
-	selectedTraits addAll: ((self conditionalGlueingTraitsFor: self) copyWithoutAll: allTraits).
-	
-	^ selectedTraits asSet
-]
-
-{ #category : #accessing }
-FmxMBClass >> allTraitsInHierarchy [
-
-	^ ((self allClassGeneralizations copyWith: self) flatCollect: [ :each | each allLocalTraits ]) asSet
-]
-
-{ #category : #converting }
-FmxMBClass >> as: aTraitOrTraitName [
-
-	| trait |
-	
-	trait := aTraitOrTraitName isString
-		ifTrue: [ self builder ensureLocalTraitNamed: aTraitOrTraitName ]
-		ifFalse: [ aTraitOrTraitName ].
-	self addTraitGeneralization: trait. 
-	
-	^ FmxMBClassAlias new
-		subject: self;
-		trait: trait;
-		yourself.
-		
-	
-]
-
-{ #category : #converting }
-FmxMBClass >> as: aTraitOrTraitName property: propertyName [
-
-	| aSide aTrait aTraitName |
-	
-	self assert: propertyName isString.
-	
-	aTrait := aTraitOrTraitName isString
-		ifTrue: [ 
-			aTraitName := aTraitOrTraitName.
-			self builder ensureLocalTraitNamed: aTraitOrTraitName ]
-		ifFalse: [ 
-			aTraitName := aTraitOrTraitName name.
-			aTraitOrTraitName ].
-	
-	aSide := FmxMBRelationSide new
-		builder: self builder;
-		relatedClass: self;
-		traitName: aTraitName;
-		name: propertyName;
-		yourself.
-
-	aTrait addRelationSide: aSide.
-	self addTraitGeneralization: aTrait.
-	^ aSide.		
-]
-
-{ #category : #converting }
-FmxMBClass >> asExisting: aTraitOrTraitName [
-
-	| trait |
-	
-	trait := aTraitOrTraitName isString
-		ifTrue: [ self builder ensureTraitNamed: aTraitOrTraitName ]
-		ifFalse: [ aTraitOrTraitName ].
-	self addTraitGeneralization: trait. 
-	
-	^ FmxMBClassAlias new
-		subject: self;
-		trait: trait;
-		yourself.
-		
-	
-]
-
-{ #category : #accessing }
 FmxMBClass >> classGeneralization [
 	^ classGeneralization
 ]
@@ -144,26 +44,6 @@ FmxMBClass >> classGeneralization: anObject [
 	^ anObject
 ]
 
-{ #category : #accessing }
-FmxMBClass >> conditionalGlueingTraitsFor: aClass [
-	^ self builder traitsWithSubBuildersTraits select: [ :each | each canGlueTo: aClass ]
-]
-
-{ #category : #accessing }
-FmxMBClass >> containerProperties [
-
-	^ ((self properties) select: #isContainer),
-	((self traitGeneralizations flatCollect: #properties) select: #isContainer)
-]
-
-{ #category : #accessing }
-FmxMBClass >> directlyUses: aTrait [
-
-	self = aTrait ifTrue: [ ^ true ].
-
-	^ self allLocalTraits includes: aTrait
-]
-
 { #category : #generating }
 FmxMBClass >> generate [
 
@@ -173,11 +53,9 @@ FmxMBClass >> generate [
 	
 	aClassName := self fullName.
 	
-	isHierarchyRoot := self classGeneralization isNil.
-	
-	aSuperclass := 	isHierarchyRoot 
-		ifTrue: [ self defaultSuperclass ]
-		ifFalse: [ self classGeneralization realClass ].
+	aSuperclass := 	self classGeneralization 
+		ifNil: [ self defaultSuperclass ]
+		ifNotNil: [ self classGeneralization realClass ].
 	
 	aClass := self builder environment createClassNamed: aClassName asSymbol superclass: aSuperclass traitNames: self allTraitNames slots: self slotDefinitions in: self packageName overwrite: true.
 	
@@ -190,11 +68,8 @@ FmxMBClass >> generate [
 	self generateAnnotationIn: aClass as: self name superclass: nil.
 	
 	self generateTestingMethodsIn: aClass.
-	self generateRootMetamodelMethodIn: aClass. 	
+	self generateRootMetamodelMethodIn: aClass.
 
-	self generateRequirementsFor: aClass.
-
-	self generateMethodsMadeByTraitsFor: aClass.
 	self generateMethodsToRemoveFromTraitCompositionFor: aClass.
 	
 	self generateNavigationGroupsFor: aClass.
@@ -202,43 +77,30 @@ FmxMBClass >> generate [
 ]
 
 { #category : #generating }
-FmxMBClass >> generateMethodsMadeByTraitsFor: aClass [
-
-	self allTraits do: [ :aTrait | 
-		(aTrait realClass notNil and: [ aTrait realClass class canUnderstand: #generateMethodsFor:in:])
-			ifTrue: [ aTrait realClass generateMethodsFor: self in: aClass ]]
-]
-
-{ #category : #generating }
 FmxMBClass >> generateRemotes [
-
 	| aClass aClassName |
-	
-	
 	aClassName := self fullName.
-	
-	aClass := self class environment at: aClassName asSymbol ifAbsent: [ self builder environment classNamed: aClassName asSymbol ].
-	
-	self realClass: aClass.
-	
-	self generateRemoteAccessors.
-	
-	
-	
 
+	aClass := self class environment at: aClassName asSymbol ifAbsent: [ self builder environment classNamed: aClassName asSymbol ].
+
+	self realClass: aClass.
+
+	self generateRemoteAccessors
 ]
 
 { #category : #generating }
-FmxMBClass >> generateRequirementsFor: aClass [
-	self allRequirementNames
-		ifNotEmpty: [ :requirementNames | 
+FmxMBClass >> generateRootMetamodelMethodIn: aClass [
+	self isRoot ifFalse: [ ^ self ].
+
+	self builder configuration mooseModelName
+		ifNotNil: [ :mooseModelName | 
 			aClass classSide
 				compile:
-					('requirements
+					('metamodel
 
 	<generated>
-	^ \{ {1} \}' format: {(requirementNames joinUsing: '. ')})
-				classified: #meta ]
+	^ {1} metamodel' format: {mooseModelName})
+				classified: 'meta' ]
 ]
 
 { #category : #accessing }
@@ -257,37 +119,6 @@ FmxMBClass >> generateTestingMethodsIn: aClass [
 	super generateTestingMethodsIn: aClass
 ]
 
-{ #category : #accessing }
-FmxMBClass >> glueingTraitsOf: selectedTraits whenAllHierarchyHas: allTraitsInHierarchy [
-	^ self builder traitsWithSubBuildersTraits select: [ :each | (each gluesSomeOf: allTraitsInHierarchy) and: [ each gluesOneOf: selectedTraits ] ]
-]
-
-{ #category : #testing }
-FmxMBClass >> hasTraitGeneralization: aTrait [
-
-	^ self traitGeneralizations includes: aTrait 
-]
-
-{ #category : #initialization }
-FmxMBClass >> initialize [
-
-	super initialize.
-	
-	requirements := Set new.
-]
-
-{ #category : #testing }
-FmxMBClass >> isContainerOfClassThatUses: aTrait [
-
-	| directUsers containerProperties |
-	
-	directUsers := self builder classesThatUse: aTrait.
-	containerProperties := directUsers flatCollect: #containerProperties.
-	^ ((containerProperties collect: [ :side | side otherSide relatedClass ]) select: #notNil)
-		anySatisfy: [ :t | self directlyUses: t ] 
-		
-]
-
 { #category : #testing }
 FmxMBClass >> isMetamodelClass [
 
@@ -296,32 +127,7 @@ FmxMBClass >> isMetamodelClass [
 
 { #category : #testing }
 FmxMBClass >> isRoot [
-
 	^ self classGeneralization isNil
-]
-
-{ #category : #'name conversion' }
-FmxMBClass >> relatedOwnerTraitName [
-
-	^ 'TWith', self pluralPropertyName capitalized
-]
-
-{ #category : #'name conversion' }
-FmxMBClass >> relatedTraitName [
-
-	^ 'T', self name
-]
-
-{ #category : #accessing }
-FmxMBClass >> requirements [
-
-	^ requirements 
-]
-
-{ #category : #accessing }
-FmxMBClass >> requires: collectionOfClasses [
-
-	requirements addAll: collectionOfClasses
 ]
 
 { #category : #generating }
@@ -332,16 +138,7 @@ FmxMBClass >> subclassOf: aClass [
 
 { #category : #accessing }
 FmxMBClass >> traitsFromRelations [
-
 	"returns traits defined by relations"
 
-	^ ((self relations select: [:each | each side trait notNil ])
-		collect: [ :each | each side trait]) asSet
-]
-
-{ #category : #testing }
-FmxMBClass >> usesOnlyTrait: aTrait [
-
- 	^ (self traitGeneralizations size = 1) 
-		and: [ self traitGeneralizations first = aTrait ]	
+	^ (self relations collect: [ :each | each side trait ] thenSelect: #isNotNil) asSet
 ]

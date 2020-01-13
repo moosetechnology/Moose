@@ -6,7 +6,7 @@ Trait {
 { #category : #meta }
 FamixTClassHierarchyNavigation classSide >> annotation [
 
-	<MSEClass: #TClassHierarchyNavigation super: #Trait>
+	<FMClass: #TClassHierarchyNavigation super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -70,9 +70,9 @@ FamixTClassHierarchyNavigation >> directSuperclasses [
 
 { #category : #metrics }
 FamixTClassHierarchyNavigation >> hierarchyNestingLevel [
-	<MSEProperty: #hierarchyNestingLevel type: #Number>
+	<FMProperty: #hierarchyNestingLevel type: #Number>
 	<derived>
-	<MSEComment: 'The nesting of a class inside the hierarchy'>
+	<FMComment: 'The nesting of a class inside the hierarchy'>
 
 	^self
 		lookUpPropertyNamed: #hierarchyNestingLevel
@@ -154,9 +154,9 @@ FamixTClassHierarchyNavigation >> isHierarchyRootWithin: aClassGroup [
 
 { #category : #metrics }
 FamixTClassHierarchyNavigation >> numberOfAttributesInherited [
-	<MSEProperty: #numberOfAttributesInherited type: #Number>
+	<FMProperty: #numberOfAttributesInherited type: #Number>
 	<derived>
-	<MSEComment: 'The number of attributes in a class inherited from super classes'>	
+	<FMComment: 'The number of attributes in a class inherited from super classes'>	
 	
 	^self
 		lookUpPropertyNamed: #numberOfAttributesInherited
@@ -171,8 +171,8 @@ FamixTClassHierarchyNavigation >> numberOfAttributesInherited: aNumber [
 
 { #category : #metrics }
 FamixTClassHierarchyNavigation >> numberOfDirectSubclasses [
-	<MSEProperty: #numberOfDirectSubclasses type: #Number>
-	<MSEComment: 'The number of direct subclasses'>
+	<FMProperty: #numberOfDirectSubclasses type: #Number>
+	<FMComment: 'The number of direct subclasses'>
 	<derived>
 
 	^ self privateState propertyAt: #numberOfDirectSubclasses ifAbsentPut: [self directSubclasses size]
@@ -186,9 +186,9 @@ FamixTClassHierarchyNavigation >> numberOfDirectSubclasses: aNumber [
 
 { #category : #metrics }
 FamixTClassHierarchyNavigation >> numberOfMethodsAdded [
-	<MSEProperty: #numberOfMethodsAdded type: #Number>
+	<FMProperty: #numberOfMethodsAdded type: #Number>
 	<derived>
-	<MSEComment: 'The number of methods in a class added with respect to super classes'>	
+	<FMComment: 'The number of methods in a class added with respect to super classes'>	
 	
 	^self
 		lookUpPropertyNamed: #numberOfMethodsAdded
@@ -203,9 +203,9 @@ FamixTClassHierarchyNavigation >> numberOfMethodsAdded: aNumber [
 
 { #category : #metrics }
 FamixTClassHierarchyNavigation >> numberOfMethodsInHierarchy [
-	<MSEProperty: #numberOfMethodsInHierarchy type: #Number>
+	<FMProperty: #numberOfMethodsInHierarchy type: #Number>
 	<derived>
-	<MSEComment: 'The number of methods of a class included the inherited ones'>	
+	<FMComment: 'The number of methods of a class included the inherited ones'>	
 	
 	| totNom |
 	totNom := self methods size.
@@ -222,9 +222,9 @@ FamixTClassHierarchyNavigation >> numberOfMethodsInHierarchy: aNumber [
 
 { #category : #metrics }
 FamixTClassHierarchyNavigation >> numberOfMethodsInherited [
-	<MSEProperty: #numberOfMethodsInherited type: #Number>
+	<FMProperty: #numberOfMethodsInherited type: #Number>
 	<derived>
-	<MSEComment: 'The number of methods in a class inherited from super classes'>	
+	<FMComment: 'The number of methods in a class inherited from super classes'>	
 
 	^self
 		lookUpPropertyNamed: #numberOfMethodsInherited
@@ -239,9 +239,9 @@ FamixTClassHierarchyNavigation >> numberOfMethodsInherited: aNumber [
 
 { #category : #metrics }
 FamixTClassHierarchyNavigation >> numberOfMethodsOverriden [
-	<MSEProperty: #numberOfMethodsOverriden type: #Number>
+	<FMProperty: #numberOfMethodsOverriden type: #Number>
 	<derived>
-	<MSEComment: 'The number of methods in a class overriden with respect to super classes'>
+	<FMComment: 'The number of methods in a class overriden with respect to super classes'>
 			
 	^self
 		lookUpPropertyNamed: #numberOfMethodsOverriden
@@ -256,9 +256,9 @@ FamixTClassHierarchyNavigation >> numberOfMethodsOverriden: aNumber [
 
 { #category : #metrics }
 FamixTClassHierarchyNavigation >> numberOfParents [
-	<MSEProperty: #numberOfParents type: #Number>
+	<FMProperty: #numberOfParents type: #Number>
 	<derived>
-	<MSEComment: 'The number of superclasses'>
+	<FMComment: 'The number of superclasses'>
 			
 	^self
 		lookUpPropertyNamed: #numberOfParents
@@ -281,9 +281,9 @@ FamixTClassHierarchyNavigation >> subclassHierarchy [
 
 { #category : #metrics }
 FamixTClassHierarchyNavigation >> subclassHierarchyDepth [ 
-	<MSEProperty: #subclassHierarchyDepth type: #Number>
+	<FMProperty: #subclassHierarchyDepth type: #Number>
 	<derived>
-	<MSEComment: 'The depth of the class hierarchy for which I am the root'>
+	<FMComment: 'The depth of the class hierarchy for which I am the root'>
 		
 	^ self directSubclasses isEmpty 
 		ifTrue: [ 0 ] 
@@ -332,9 +332,9 @@ FamixTClassHierarchyNavigation >> superclassHierarchyGroup [
 
 { #category : #metrics }
 FamixTClassHierarchyNavigation >> totalNumberOfChildren [
-	<MSEProperty: #totalNumberOfChildren type: #Number>
+	<FMProperty: #totalNumberOfChildren type: #Number>
 	<derived>	
-	<MSEComment: 'The total number of subclasses of a class'>
+	<FMComment: 'The total number of subclasses of a class'>
 	
 	^self
 		lookUpPropertyNamed: #totalNumberOfChildren

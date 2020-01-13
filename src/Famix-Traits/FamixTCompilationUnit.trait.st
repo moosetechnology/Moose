@@ -12,7 +12,7 @@ Trait {
 { #category : #meta }
 FamixTCompilationUnit classSide >> annotation [
 
-	<MSEClass: #TCompilationUnit super: #Trait>
+	<FMClass: #TCompilationUnit super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -23,7 +23,7 @@ FamixTCompilationUnit >> compilationUnitOwner [
 	"Relation named: #compilationUnitOwner type: #FamixTWithCompilationUnit opposite: #compilationUnit"
 
 	<generated>
-	<MSEComment: 'The compilation unit that defines this module'>
+	<FMComment: 'The compilation unit that defines this module'>
 	^ compilationUnitOwner
 ]
 
@@ -32,5 +32,4 @@ FamixTCompilationUnit >> compilationUnitOwner: anObject [
 
 	<generated>
 	compilationUnitOwner := anObject
-
 ]

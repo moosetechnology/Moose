@@ -24,7 +24,7 @@ Trait {
 { #category : #meta }
 FamixTAnnotationInstance classSide >> annotation [
 
-	<MSEClass: #TAnnotationInstance super: #Trait>
+	<FMClass: #TAnnotationInstance super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -43,7 +43,7 @@ FamixTAnnotationInstance >> annotatedEntity [
 	"Relation named: #annotatedEntity type: #FamixTWithAnnotationInstances opposite: #annotationInstances"
 
 	<generated>
-	<MSEComment: 'The NamedEntity on which the annotation occurs.'>
+	<FMComment: 'The NamedEntity on which the annotation occurs.'>
 	<container>
 	^ annotatedEntity
 ]
@@ -53,7 +53,6 @@ FamixTAnnotationInstance >> annotatedEntity: anObject [
 
 	<generated>
 	annotatedEntity := anObject
-
 ]
 
 { #category : #navigation }

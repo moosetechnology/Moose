@@ -1,15 +1,15 @@
 Class {
 	#name : #FamixStPackage,
 	#superclass : #FamixStScopingEntity,
-	#traits : 'FamixTCohesionCouplingMetrics + FamixTPackage + FamixTPackageWithClassesGlue',
-	#classTraits : 'FamixTCohesionCouplingMetrics classTrait + FamixTPackage classTrait + FamixTPackageWithClassesGlue classTrait',
+	#traits : 'FamixTCohesionCouplingMetrics + FamixTPackage',
+	#classTraits : 'FamixTCohesionCouplingMetrics classTrait + FamixTPackage classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 
 { #category : #meta }
 FamixStPackage class >> annotation [
 
-	<MSEClass: #Package super: #FamixStScopingEntity>
+	<FMClass: #Package super: #FamixStScopingEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
@@ -18,9 +18,9 @@ FamixStPackage class >> annotation [
 { #category : #'Famix-Extensions-metrics' }
 FamixStPackage >> abstractness [
 	"Abstractness is the ratio between the number of abstract classes and the total number of classes in a package, in the range [0, 1]. 0 means the package is fully concrete, 1 it is fully abstract."
-	<MSEProperty: #abstractness type: #Number>
+	<FMProperty: #abstractness type: #Number>
 	<derived>
-	<MSEComment: 'Abstractness of a package'>
+	<FMComment: 'Abstractness of a package'>
 
 	| nsClasses |
 	nsClasses := self allClasses select: [:c | c isInstanceSide].
@@ -100,17 +100,17 @@ FamixStPackage >> methods [
 
 { #category : #accessing }
 FamixStPackage >> numberOfClasses [
-	<MSEProperty: #numberOfClasses type: #Number>
+	<FMProperty: #numberOfClasses type: #Number>
 	<derived>
-	<MSEComment: 'The number of classes in a package'>
+	<FMComment: 'The number of classes in a package'>
 	
 	^ self classes size
 ]
 
 { #category : #accessing }
 FamixStPackage >> numberOfClientPackages [
-	<MSEProperty: #numberOfClientPackages type: #Number>
-	<MSEComment: 'The number of packages which depend on this package'>
+	<FMProperty: #numberOfClientPackages type: #Number>
+	<FMComment: 'The number of packages which depend on this package'>
 	<derived>
 	^ self lookUpPropertyNamed: #numberOfClientPackages computedAs: [ self allClients size ]
 ]
@@ -123,9 +123,9 @@ FamixStPackage >> numberOfClientPackages: aNumber [
 
 { #category : #accessing }
 FamixStPackage >> relativeImportanceForSystem [
-	<MSEProperty: #relativeImportanceForSystem type: #Number>
+	<FMProperty: #relativeImportanceForSystem type: #Number>
 	<derived>
-	<MSEComment: 'The number of client packages normalized by the total number of packages'>
+	<FMComment: 'The number of client packages normalized by the total number of packages'>
 	
 	^ self lookUpPropertyNamed: #relativeImportanceForSystem
 				 computedAs: [

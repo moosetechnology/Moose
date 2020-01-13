@@ -7,7 +7,7 @@ Class {
 { #category : #meta }
 FamixTestComposed2Entity class >> annotation [
 
-	<MSEClass: #Entity super: #MooseEntity>
+	<FMClass: #Entity super: #MooseEntity>
 	<package: #'Famix-TestComposedSubmetamodel2-Entities'>
 	<generated>
 	^self
@@ -17,7 +17,7 @@ FamixTestComposed2Entity class >> annotation [
 FamixTestComposed2Entity class >> metamodel [
 
 	<generated>
-	^ (self class environment at: #FamixTestComposedSubmetamodel2Generator) metamodel
+	^ FamixTestComposed2Model metamodel
 ]
 
 { #category : #testing }

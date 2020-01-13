@@ -1,77 +1,78 @@
+"
+Description
+--------------------
+
+I am a parser responsible of the MSE syntax parsing. I do not manage the creation of the entities, this part is delegated to a FMImporter.
+ 
+Internal Representation and Key Implementation Points.
+--------------------
+
+    Instance Variables
+	buffer:				<aBuffer>				Buffer used to keep a record of the previously read characters during the parsing.
+	characterSet:		<aCharacterSet>		A character set cached to speed up the reading of the MSE.
+	chararacter:			<aCharacter>			The last character read on the stream.
+	importer:				<aFMImporter>		The FMImporter responsible of the management of the entities to be imported.
+	lastUpdate:			<anInteger>			Time in millisecond since the last progress bar update.
+	progBar:				<aProgressBar>		A progress bar to display the parsing progress.
+	stream:				<aStream>				The stream containing the MSE to be read.
+
+"
 Class {
 	#name : #FMMSEParser,
 	#superclass : #Object,
 	#instVars : [
 		'stream',
-		'client',
-		'buf',
-		'char',
 		'progBar',
 		'lastUpdate',
-		'characterSet'
+		'characterSet',
+		'chararacter',
+		'buffer',
+		'importer'
 	],
-	#category : #'Fame-ImportExport'
+	#category : #'Fame-ImportExport-Importers'
 }
-
-{ #category : #expressions }
-FMMSEParser >> Attribute [
-	"Matches an attribute node (returns boolean)."
-
-	"Attribute := OPEN n:NAME { beginAttribute(n) } Value* CLOSE { endAttribute(n) }"
-
-	| pos n |
-	pos := self pos.
-	self tOPEN
-		ifFalse: [ ^ self backtrack: pos ].
-	n := self tNAME.
-	n ifNil: [ ^ self backtrack: pos ].
-	client beginAttribute: n.
-	[ self Value ] whileTrue.
-	self tCLOSE
-		ifFalse: [ ^ self syntaxError ].
-	client endAttribute: n.
-	self tWHITESPACE.
-	^ true
-]
 
 { #category : #expressions }
 FMMSEParser >> Document [
 	"Matches a document node (returns a boolean)."
 
 	"Document := EOF { openDocument; closeDocument }
-		| OPEN { openDocument } Element* CLOSE { closeDocument }"
+		| OPEN { openDocument } Entity* CLOSE { closeDocument }"
 
 	self tWHITESPACE.
 	self atEnd
-		ifTrue: [ client beginDocument ]
+		ifTrue: [ importer beginDocument ]
 		ifFalse: [ self tOPEN
 				ifFalse: [ ^ self syntaxError ].
-			client beginDocument.
-			[ self Element ] whileTrue.
+			importer beginDocument.
+			[ self Entity ] whileTrue.
 			self tCLOSE
 				ifFalse: [ ^ self syntaxError ] ].
-	client endDocument.
+	importer endDocument.
 	self tWHITESPACE.
 	^ true
 ]
 
 { #category : #expressions }
-FMMSEParser >> Element [
-	"Matches an element node (returns boolean)."
-	"Element := OPEN n:FULLNAME { beginElement(n) } Serial? Attribute* CLOSE { endElement(n) }"
-	| pos n |
-	pos := self pos.
+FMMSEParser >> Entity [
+	"Matches an entity node (returns boolean)."
+
+	"Entity := OPEN n:FULLNAME { beginElement(n) } Serial? Property* CLOSE { endElement(n) }"
+
+	| pos name |
+	pos := self position.
 	self tOPEN ifFalse: [ ^ self backtrack: pos ].
-	n := self tFULLNAME.
-	n ifNil: [ ^ self backtrack: pos ].
-	client beginElement: n.
-	self Serial.
-	[ self Attribute ] whileTrue.
-	self tCLOSE ifFalse: [ ^ self syntaxError ].
-	client endElement: n.
+	name := self tFULLNAME.
+	name ifNil: [ ^ self backtrack: pos ].
+	importer
+		inEntity: name
+		do: [ self Serial.
+			[ self Property ] whileTrue.
+			self tCLOSE ifFalse: [ ^ self syntaxError ] ].
+
 	self tWHITESPACE.
-	
-	self increment. "UI stuff"
+
+	self incrementProgressBar.	"UI stuff"
 	^ true
 ]
 
@@ -81,14 +82,14 @@ FMMSEParser >> Identifier [
 
 	"Identifier := digit+"
 
-	(self characterSet isDigit: char)
+	(self characterSet isDigit: chararacter)
 		ifFalse: [ ^ nil ].
 	
-	buf reset.
-	buf nextPut: char.
-	[ self characterSet isDigit: self next ] whileTrue: [ buf nextPut: char ].
+	buffer reset.
+	buffer nextPut: chararacter.
+	[ self characterSet isDigit: self next ] whileTrue: [ buffer nextPut: chararacter ].
 	self tWHITESPACE.
-	^ Integer readFrom: buf contents readStream
+	^ Integer readFrom: buffer contents readStream
 ]
 
 { #category : #expressions }
@@ -98,72 +99,91 @@ FMMSEParser >> Number [
 	"Number := hypen? digit+ ( dot digit+ ( e hypen? digit+ )? )?"
 
 	| pos |
-	pos := self pos.
-	buf reset.
+	pos := self position.
+	buffer reset.
 	"hypen?	"
-	$- == char
-		ifTrue: [ buf nextPut: char.
+	$- == chararacter
+		ifTrue: [ buffer nextPut: chararacter.
 			self next ].
 	"digit+"
-	(self characterSet isDigit: char)
+	(self characterSet isDigit: chararacter)
 		ifFalse: [ self backtrack: pos.
 			^ nil ].
-	[ buf nextPut: char.
+	[ buffer nextPut: chararacter.
 	self characterSet isDigit: self next ] whileTrue.
 	"(dot"
-	$. == char
-		ifTrue: [ buf nextPut: char.
+	$. == chararacter
+		ifTrue: [ buffer nextPut: chararacter.
 			self next.
 			"digit+"
-			(self characterSet isDigit: char)
+			(self characterSet isDigit: chararacter)
 				ifFalse: [ self syntaxError.
 					^ nil ].
-			[ buf nextPut: char.
+			[ buffer nextPut: chararacter.
 			self characterSet isDigit: self next ] whileTrue.
 			"(e"
-			$e == char
-				ifTrue: [ buf nextPut: char.
+			$e == chararacter
+				ifTrue: [ buffer nextPut: chararacter.
 					self next.
 					"hypen?"
-					$- == char
-						ifTrue: [ buf nextPut: char.
+					$- == chararacter
+						ifTrue: [ buffer nextPut: chararacter.
 							self next ].
 					"digit+"
-					(self characterSet isDigit: char)
+					(self characterSet isDigit: chararacter)
 						ifFalse: [ self syntaxError.
 							^ nil ].
-					[ buf nextPut: char.
+					[ buffer nextPut: chararacter.
 					self characterSet isDigit: self next ] whileTrue
 					")?)?" ] ].
 	self tWHITESPACE.
-	^ Number readFrom: buf contents readStream
+	^ Number readFrom: buffer contents readStream
 ]
 
 { #category : #expressions }
 FMMSEParser >> Primitive [
 	"Matches primitive value (returns boolean)."
 
-	| p |
-	p := self String.
-	p ifNotNil: [ client primitive: p. ^ true ].
-	p := self Number.
-	p ifNotNil: [ client primitive: p. ^ true ].
-	self tTRUE ifTrue: [ client primitive: true. ^ true ].
-	self tFALSE ifTrue: [ client primitive: false. ^ true ].
+	| primitive |
+	primitive := self String.
+	primitive ifNotNil: [ importer primitive: primitive. ^ true ].
+	primitive := self Number.
+	primitive ifNotNil: [ importer primitive: primitive. ^ true ].
+	self tTRUE ifTrue: [ importer primitive: true. ^ true ].
+	self tFALSE ifTrue: [ importer primitive: false. ^ true ].
 	^ false
+]
+
+{ #category : #expressions }
+FMMSEParser >> Property [
+	"Matches a property node (returns boolean)."
+
+	"Property := OPEN n:NAME { beginProperty(n) } Value* CLOSE { endProperty(n) }"
+
+	| pos name |
+	pos := self position.
+	self tOPEN ifFalse: [ ^ self backtrack: pos ].
+	name := self tNAME.
+	name ifNil: [ ^ self backtrack: pos ].
+	importer
+		inProperty: name
+		do: [ [ self Value ] whileTrue.
+			self tCLOSE ifFalse: [ ^ self syntaxError ] ].
+	self tWHITESPACE.
+	^ true
 ]
 
 { #category : #expressions }
 FMMSEParser >> Reference [
 	"Matches a Reference node (returns boolean)."
 	"Reference --> OPEN REF n:Identifier { client referenceNumber: n } CLOSE"
-	| pos serial |
-	pos := self pos.
-	self tOPEN ifFalse: [ ^ self backtrack: pos ].
-	self tREF ifFalse: [ ^ self backtrack: pos ].
+	| position serial |
+	position := self position.
+	self tOPEN ifFalse: [ ^ self backtrack: position ].
+	self tREF ifFalse: [ ^ self backtrack: position ].
 	serial := self Identifier.
-	serial ifNil: [ ^ self backtrack: pos ].
-	client referenceNumber: serial.
+	serial ifNil: [ ^ self backtrack: position ].
+	importer referenceNumber: serial.
 	self tCLOSE ifFalse: [ ^ self syntaxError ].
 	self tWHITESPACE.
 	^ true
@@ -173,13 +193,13 @@ FMMSEParser >> Reference [
 FMMSEParser >> Reference2 [
 	"Matches a Reference node (returns boolean)."
 	"Reference --> OPEN REF n:Name { client referenceName: n } CLOSE"
-	| pos n |
-	pos := self pos.
-	self tOPEN ifFalse: [ ^ self backtrack: pos ].
-	self tREF ifFalse: [ ^ self backtrack: pos ].
-	n := self tFULLNAME.
-	n ifNil: [ ^ self backtrack: pos ].
-	client referenceName: n.
+	| position name |
+	position := self position.
+	self tOPEN ifFalse: [ ^ self backtrack: position ].
+	self tREF ifFalse: [ ^ self backtrack: position ].
+	name := self tFULLNAME.
+	name ifNil: [ ^ self backtrack: position ].
+	importer referenceName: name.
 	self tCLOSE ifFalse: [ ^ self syntaxError ].
 	self tWHITESPACE.
 	^ true
@@ -189,13 +209,13 @@ FMMSEParser >> Reference2 [
 FMMSEParser >> Serial [
 	"Matches a serial number node (returns boolean)."
 	"Serial --> OPEN ID n:Identifier { client serial: n } CLOSE"
-	| pos serial |
-	pos := self pos.
-	self tOPEN ifFalse: [ ^ self backtrack: pos ].
-	self tID ifFalse: [ ^ self backtrack: pos ].
+	| position serial |
+	position := self position.
+	self tOPEN ifFalse: [ ^ self backtrack: position ].
+	self tID ifFalse: [ ^ self backtrack: position ].
 	serial := self Identifier.
-	serial ifNil: [ ^ self backtrack: pos ].
-	client serial: serial.
+	serial ifNil: [ ^ self backtrack: position ].
+	importer serial: serial.
 	self tCLOSE ifFalse: [ self syntaxError ].
 	self tWHITESPACE.
 	^ true
@@ -203,65 +223,51 @@ FMMSEParser >> Serial [
 
 { #category : #expressions }
 FMMSEParser >> String [
-	$' == char ifFalse: [ ^ nil ].
-	
-	buf reset.
-	
-	[ 
-	[ self next.
-	char ifNil: [ self syntaxError ].
-	$' == char ] whileFalse: [ buf nextPut: char ].
-	$' == self next ] whileTrue: [ buf nextPut: char ].
+	$' == chararacter ifFalse: [ ^ nil ].
+
+	buffer reset.
+
+	[ [ self next.
+	chararacter ifNil: [ self syntaxError ].
+	$' == chararacter ] whileFalse: [ buffer nextPut: chararacter ].
+	$' == self next ] whileTrue: [ buffer nextPut: chararacter ].
 	self tWHITESPACE.
-	^ buf contents
+	^ buffer contents
 ]
 
 { #category : #expressions }
 FMMSEParser >> Value [
 	"Matchs a value (returns true)."
 
-	"Value := Reference | Primitive | Element"
+	"Value := Reference | Primitive | Entity"
 
-	^ self Primitive or: [ self Reference or: [ self Reference2 or: [ self Element ] ] ]
+	^ self Primitive or: [ self Reference or: [ self Reference2 or: [ self Entity ] ] ]
 ]
 
 { #category : #testing }
 FMMSEParser >> atEnd [
-	^ char isNil
+	^ chararacter isNil
 ]
 
 { #category : #private }
 FMMSEParser >> backtrack: integer [
 	"Backtracks to given integer."
 
-	integer ~~ stream position ifTrue: [
-		stream position: integer - 1. 
-		self next "fetch peek again" ]. 
-	^false
+	integer ~~ stream position
+		ifTrue: [ stream position: integer - 1.
+			self next	"fetch peek again" ].
+	^ false
 ]
 
 { #category : #running }
 FMMSEParser >> basicRun [
-
 	self Document.
-	self atEnd ifFalse: [ ^self syntaxError ]
+	self atEnd ifFalse: [ ^ self syntaxError ]
 ]
 
 { #category : #accessing }
 FMMSEParser >> characterSet [
-	^ characterSet ifNil: [ characterSet := char characterSet ]
-]
-
-{ #category : #accessing }
-FMMSEParser >> client [
-
-	^client
-]
-
-{ #category : #accessing }
-FMMSEParser >> client: parseClient [
-
-	client := parseClient
+	^ characterSet ifNil: [ characterSet := chararacter characterSet ]
 ]
 
 { #category : #accessing }
@@ -269,33 +275,51 @@ FMMSEParser >> fromString: mseString [
 	self stream: mseString readStream
 ]
 
+{ #category : #accessing }
+FMMSEParser >> importer [
+	^ importer
+]
+
+{ #category : #accessing }
+FMMSEParser >> importer: aFMImporter [
+	importer := aFMImporter
+]
+
 { #category : #running }
-FMMSEParser >> increment [
-	(progBar isNotNil and: [ (Time millisecondsSince: lastUpdate) >= 500 ])
-		ifTrue: [ 
-			progBar value: self pos.
-			lastUpdate := Time millisecondClockValue ]
+FMMSEParser >> incrementProgressBar [
+	(progBar isNotNil and: [ (Time millisecondsSince: lastUpdate) >= 500 ]) ifFalse: [ ^ self ].
+	progBar value: self position.
+	lastUpdate := Time millisecondClockValue
+]
+
+{ #category : #tokens }
+FMMSEParser >> matchesWord: aString [
+	"I am checking if the next part of the stream watches a word. If it matches, I also eat the next whitespace and return true. Else I return false (I do not backtrack)"
+
+	aString do: [ :char | char == chararacter ifTrue: [ self next ] ifFalse: [ ^ false ] ].
+	self tWHITESPACE.
+	^ true
 ]
 
 { #category : #private }
 FMMSEParser >> next [
-	^char := stream next
+	^ chararacter := stream next
 ]
 
 { #category : #testing }
 FMMSEParser >> nextCharIsAlphanumeric [
 	self next.
-	^ (self characterSet isLetter: char) or: [ self characterSet isDigit: char ]
+	^ (self characterSet isLetter: chararacter) or: [ self characterSet isDigit: chararacter ]
 ]
 
 { #category : #private }
 FMMSEParser >> peek [
-	^char
+	^ chararacter
 ]
 
 { #category : #private }
-FMMSEParser >> pos [
-	^stream position 
+FMMSEParser >> position [
+	^ stream position
 ]
 
 { #category : #running }
@@ -312,148 +336,109 @@ FMMSEParser >> run [
 
 { #category : #accessing }
 FMMSEParser >> stream [
-
-	^stream
+	^ stream
 ]
 
 { #category : #accessing }
 FMMSEParser >> stream: aStream [
-
 	stream := aStream.
-	buf := String new writeStream.
-	self next "look ahead"
+	buffer := '' writeStream.
+	self next	"look ahead"
 ]
 
 { #category : #private }
 FMMSEParser >> syntaxError [
-	self syntaxError: 'Syntax error at ', self pos printString.
-	^nil.
+	self syntaxError: 'Syntax error at ' , self position printString.
+	^ nil
 ]
 
 { #category : #private }
 FMMSEParser >> syntaxError: aString [
-	
-	(FMSyntaxError new parser: self; messageText: aString) signal. 
+	(FMSyntaxError new
+		parser: self;
+		messageText: aString) signal.
 
 	" Evaluate the following line to get text around the error:
 		(stream contents copyFrom: self pos -10 to: self pos + 10) inspect.
 	"
-	
-	^nil.
+
+	^ nil
 ]
 
 { #category : #tokens }
 FMMSEParser >> tCLOSE [
 	"Matches opening parenthesis (returns boolean)."
-	^ $) == char 
-		ifTrue: 
-			[ self
-				next;
-				tWHITESPACE.
-			true ]
-		ifFalse: [ false ]
+
+	^ self matchesWord: ')'
 ]
 
 { #category : #tokens }
 FMMSEParser >> tFALSE [
 	"Matches false keyword (returns boolean)."
-	$f == char ifTrue: 
-		[ $a == self next ifTrue: 
-			[ $l == self next ifTrue: 
-				[ $s == self next ifTrue: 
-					[ $e == self next ifTrue: 
-						[ self
-							next;
-							tWHITESPACE.
-						^ true ] ] ] ] ].
-	^ false
+
+	^ self matchesWord: 'false'
 ]
 
 { #category : #tokens }
 FMMSEParser >> tFULLNAME [
-	(self characterSet isLetter: char) ifFalse: [ ^ nil ].
-	
-	buf reset.
-	[	buf nextPut: char.
-		[ self nextCharIsAlphanumeric or: [ char = $- ] ] whileTrue: [ buf nextPut: char ].
-		$. == char ] whileTrue: 
-			[	buf nextPut: char.
-				(self characterSet isLetter: self next) ifFalse: [^self syntaxError ] ].
-	$: == char ifTrue: [ ^self syntaxError ].
+	(self characterSet isLetter: chararacter) ifFalse: [ ^ nil ].
+
+	buffer reset.
+	[ buffer nextPut: chararacter.
+	[ self nextCharIsAlphanumeric or: [ chararacter = $- ] ] whileTrue: [ buffer nextPut: chararacter ].
+	$. == chararacter ]
+		whileTrue: [ buffer nextPut: chararacter.
+			(self characterSet isLetter: self next) ifFalse: [ ^ self syntaxError ] ].
+	$: == chararacter ifTrue: [ ^ self syntaxError ].
 	self tWHITESPACE.
-	^buf contents
+	^ buffer contents
 ]
 
 { #category : #tokens }
 FMMSEParser >> tID [
 	"Match id keyword (returns boolean)."
-	$i == char ifTrue: 
-		[ $d == self next ifTrue: 
-			[ $: == self next ifTrue: 
-				[ self
-					next;
-					tWHITESPACE.
-				^ true ] ] ].
-	^ false
+
+	^ self matchesWord: 'id:'
 ]
 
 { #category : #tokens }
 FMMSEParser >> tNAME [
-	(self characterSet isLetter: char) ifFalse: [ ^ nil ].
-	
-	buf reset.
-	buf nextPut: char.
-	[ self nextCharIsAlphanumeric or: [char == $_] ] whileTrue: [ buf nextPut: char ].
+	(self characterSet isLetter: chararacter) ifFalse: [ ^ nil ].
+
+	buffer reset.
+	buffer nextPut: chararacter.
+	[ self nextCharIsAlphanumeric or: [ chararacter == $_ ] ] whileTrue: [ buffer nextPut: chararacter ].
 	self tWHITESPACE.
-	^ buf contents
+	^ buffer contents
 ]
 
 { #category : #tokens }
 FMMSEParser >> tOPEN [
 	"Matches opening parenthesis (returns boolean)."
 
-	^ $( == char
-		ifTrue: [ self
-				next;
-				tWHITESPACE.
-			true ]
-		ifFalse: [ false ]
+	^ self matchesWord: '('
 ]
 
 { #category : #tokens }
 FMMSEParser >> tREF [
 	"Matches ref keyword (returns boolean)."
-	$r == char ifTrue: 
-		[ $e == self next ifTrue: 
-			[ $f == self next ifTrue: 
-				[ $: == self next ifTrue: 
-					[ self
-						next;
-						tWHITESPACE.
-					^ true ] ] ] ].
-	^ false
+
+	^ self matchesWord: 'ref:'
 ]
 
 { #category : #tokens }
 FMMSEParser >> tTRUE [
 	"Match 'true' and whitespace"
-	$t == char ifTrue: 
-		[ $r == self next ifTrue: 
-			[ $u == self next ifTrue: 
-				[ $e == self next ifTrue: 
-					[ self
-						next;
-						tWHITESPACE.
-					^ true ] ] ] ].
-	^ false
+
+	^ self matchesWord: 'true'
 ]
 
 { #category : #tokens }
 FMMSEParser >> tWHITESPACE [
-	[ $" == char
+	[ $" == chararacter
 		ifTrue: [ [ [ self next.
-			nil == char ifTrue: [ ^ self syntaxError ].
-			$" == char ] whileFalse.
+			nil == chararacter ifTrue: [ ^ self syntaxError ].
+			$" == chararacter ] whileFalse.
 			$" == self next ] whileTrue ].
-	char isMSESeparator ] whileTrue: [ self next ]
+	chararacter isMSESeparator ] whileTrue: [ self next ]
 ]

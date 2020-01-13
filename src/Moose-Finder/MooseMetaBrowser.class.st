@@ -84,7 +84,7 @@ MooseMetaBrowser >> buildBrowser [
 		to: #info;
 		from: #explorer port: #selectedEntity;
 		from: #explorer port: #selectedAttribute;
-		when: [ :x :p | p isNotNil and: [ p class = FM3PropertyDescription ] ];
+		when: [ :x :p | p isNotNil and: [ p isFM3Property ] ];
 		andShow: [ :a | 
 			self codeOfGetterMethod: a.
 			self codeOfSetterMethod: a.
@@ -100,7 +100,7 @@ MooseMetaBrowser >> buildBrowser [
 	browser transmit
 		to: #explorer port: #entityToSelect;
 		from: #details;
-		when: [ :x | x class = FM3MetaDescription ].
+		when: [ :x | x isFM3Class ].
 	browser transmit
 		to: #explorer port: #entityToSelect;
 		fromOutsidePort: #entityToSelect.
@@ -168,10 +168,11 @@ MooseMetaBrowser >> commentOFMethod: method [
 
 { #category : #private }
 MooseMetaBrowser >> commentOfProperty: fm3Prop [
-		| commentPrag |
-	fm3Prop implementingClass ifNil: [^ ''].
-	commentPrag := Pragma inMethod: fm3Prop compiledMethod named: #MSEComment:.
-	^ commentPrag ifNil: [ '' ] ifNotNil: [ commentPrag argumentAt: 1 ]
+	fm3Prop implementingClass ifNil: [ ^ '' ].
+
+	^ (fm3Prop compiledMethod pragmaAt: #MSEComment:)
+		ifNil: [ '' ]
+		ifNotNil: [ :commentPrag | commentPrag argumentAt: 1 ]
 ]
 
 { #category : #building }
@@ -277,8 +278,8 @@ MooseMetaBrowser >> viewClass: fm3Class property: fm3Prop in: all on: view [
 					ifNotNil: [:aClass | aClass organization classComment isNotEmpty ifTrue: [ Color white ] ifFalse: [ Color lightRed ] ]
 				] ];
 		borderColor: [ :each | each = fm3Class ifTrue: [ Color blue lighter ] ifFalse: [ Color gray ] ];
-		height: [ :each | each complexAttributes size * 2 + 5 ];
-		width: [ :each | each primitiveAttributes size ].
+		height: [ :each | each complexProperties size * 2 + 5 ];
+		width: [ :each | each primitiveProperties size ].
 	view nodes: all classes.
 	edges := view edgesFrom: #superclass.
 	fm3Class notNil ifTrue: [
@@ -286,7 +287,7 @@ MooseMetaBrowser >> viewClass: fm3Class property: fm3Prop in: all on: view [
 			color: Color blue muchLighter ;
 			width: [:each | each = fm3Prop ifTrue: [ 3 ] ifFalse: [ 1 ] ].
 		view 
-			edges source: fm3Class allComplexAttributes 
+			edges source: fm3Class allComplexProperties 
 			connectFrom: fm3Class 
 			to: [ :attr | attr type ] ].
 	view treeLayout userDefinedEdges: edges

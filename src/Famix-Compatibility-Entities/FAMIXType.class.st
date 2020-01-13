@@ -1,25 +1,18 @@
 Class {
 	#name : #FAMIXType,
 	#superclass : #FAMIXContainerEntity,
-	#traits : 'FamixTClassHierarchyNavigation + FamixTContainingWithInvocationsGlue + FamixTContainingWithStatementsGlue + FamixTParameterizedTypeUser + FamixTTraitUser + FamixTType + FamixTWithAttributes + FamixTWithMethods + FamixTWithMethodsWithAccessesGlue + FamixTWithMethodsWithModifiersGlue + FamixTWithSubInheritances + FamixTWithSuperInheritances + FamixTWithTypeAliases',
-	#classTraits : 'FamixTClassHierarchyNavigation classTrait + FamixTContainingWithInvocationsGlue classTrait + FamixTContainingWithStatementsGlue classTrait + FamixTParameterizedTypeUser classTrait + FamixTTraitUser classTrait + FamixTType classTrait + FamixTWithAttributes classTrait + FamixTWithMethods classTrait + FamixTWithMethodsWithAccessesGlue classTrait + FamixTWithMethodsWithModifiersGlue classTrait + FamixTWithSubInheritances classTrait + FamixTWithSuperInheritances classTrait + FamixTWithTypeAliases classTrait',
+	#traits : 'FamixTClassHierarchyNavigation + FamixTParameterizedTypeUser + FamixTTraitUser + FamixTType + FamixTWithAttributes + FamixTWithInheritances + FamixTWithMethods + FamixTWithTypeAliases',
+	#classTraits : 'FamixTClassHierarchyNavigation classTrait + FamixTParameterizedTypeUser classTrait + FamixTTraitUser classTrait + FamixTType classTrait + FamixTWithAttributes classTrait + FamixTWithInheritances classTrait + FamixTWithMethods classTrait + FamixTWithTypeAliases classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 
 { #category : #meta }
 FAMIXType class >> annotation [
 
-	<MSEClass: #Type super: #FAMIXContainerEntity>
+	<FMClass: #Type super: #FAMIXContainerEntity>
 	<package: #FAMIX>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FAMIXType class >> requirements [
-
-	<generated>
-	^ { FAMIXContainerEntity }
 ]
 
 { #category : #'Famix-Extensions-navigation' }
@@ -68,12 +61,9 @@ FAMIXType >> classSide [
 
 { #category : #accessing }
 FAMIXType >> container [
-
-	<MSEProperty: #container type: #FAMIXContainerEntity>
-	<MSEComment: 'Deprected, use typeContainer'>
-	<container>
+	<FMProperty: #container type: #FAMIXContainerEntity>
+	<FMComment: 'Deprected, use typeContainer'>
 	<derived>
-
 	^ self typeContainer
 ]
 
@@ -85,7 +75,7 @@ FAMIXType >> container: aContainer [
 
 { #category : #'Famix-Smalltalk' }
 FAMIXType >> extendedInPackages [
-	^ self extendedMethods flatCollectAsSet: [ :m | m atScope: FamixStPackage ]
+	^ self extendedMethods flatCollectAsSet: [ :m | m atScope: FamixTPackage ]
 ]
 
 { #category : #'Famix-Smalltalk' }
@@ -159,8 +149,8 @@ FAMIXType >> instanceSide [
 
 { #category : #'Famix-Extensions' }
 FAMIXType >> isAbstract [
-	<MSEProperty: #isAbstract type: #Boolean> <derived>
-	<MSEComment: 'Flag true for abstract classes.'>
+	<FMProperty: #isAbstract type: #Boolean> <derived>
+	<FMComment: 'Flag true for abstract classes.'>
 	
 	^super isAbstract
 ]
@@ -204,9 +194,9 @@ FAMIXType >> isGodClass [
 
 { #category : #'Famix-Java' }
 FAMIXType >> isInnerClass [
-	<MSEProperty: #isInnerClass type: #Boolean>
+	<FMProperty: #isInnerClass type: #Boolean>
 	<derived>
-	<MSEComment:
+	<FMComment:
 		'True if the method is considered as an innerclass (i.e. is contained elsewhere than a java package: class, method, enum,...)'>
 	^ self container ifNotNil: [ :c | c isNamespace not ] ifNil: [ false ]
 ]
@@ -228,9 +218,9 @@ FAMIXType >> isJUnit3TestCase [
 
 { #category : #'Famix-Java' }
 FAMIXType >> isJUnit4TestCase [
-	<MSEProperty: #isJUnit4TestCase type: #Boolean>
+	<FMProperty: #isJUnit4TestCase type: #Boolean>
 	<derived>
-	<MSEComment: 'True if the method is considered as a Junit 4 Java test'>
+	<FMComment: 'True if the method is considered as a Junit 4 Java test'>
 	^ self methods anySatisfy: [ :m | m isJUnit4Test ]
 ]
 
@@ -258,9 +248,9 @@ FAMIXType >> isSUnitTestCase [
 
 { #category : #'Famix-Java' }
 FAMIXType >> isTestCase [
-	<MSEProperty: #isTestCase type: #Boolean>
+	<FMProperty: #isTestCase type: #Boolean>
 	<derived>
-	<MSEComment: 'True if the method is considered as a Java test'>
+	<FMComment: 'True if the method is considered as a Java test'>
 	^ self isJUnit3TestCase or: [ self isJUnit4TestCase ] 
 ]
 

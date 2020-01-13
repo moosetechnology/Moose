@@ -12,7 +12,7 @@ Trait {
 { #category : #meta }
 FamixTCaughtException classSide >> annotation [
 
-	<MSEClass: #TCaughtException super: #Trait>
+	<FMClass: #TCaughtException super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -31,5 +31,4 @@ FamixTCaughtException >> definingEntity: anObject [
 
 	<generated>
 	definingEntity := anObject
-
 ]

@@ -10,14 +10,14 @@ Class {
 
 { #category : #meta }
 EQCompound class >> annotation [
-	<MSEClass: #Compound super: #EQExpression >
+	<FMClass: #Compound super: #EQExpression >
 	<package: #EQ>
 	<abstract>
 ]
 
 { #category : #Fame }
 EQCompound >> args [
-	<MSEProperty: #args type: #EQExpression>
+	<FMProperty: #args type: #EQExpression>
 	<multivalued>
 	^args
 ]
@@ -29,7 +29,7 @@ EQCompound >> args: anObject [
 
 { #category : #Fame }
 EQCompound >> op [
-	<MSEProperty: #op type: #EQOperator>
+	<FMProperty: #op type: #EQOperator>
 	^op
 ]
 

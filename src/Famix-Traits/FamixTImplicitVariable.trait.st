@@ -14,7 +14,7 @@ Trait {
 { #category : #meta }
 FamixTImplicitVariable classSide >> annotation [
 
-	<MSEClass: #TImplicitVariable super: #Trait>
+	<FMClass: #TImplicitVariable super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -32,7 +32,7 @@ FamixTImplicitVariable >> parentBehaviouralEntity [
 	"Relation named: #parentBehaviouralEntity type: #FamixTWithImplicitVariables opposite: #implicitVariables"
 
 	<generated>
-	<MSEComment: 'The behaviour containing this implicit variable. belongsTo implementation'>
+	<FMComment: 'The behaviour containing this implicit variable. belongsTo implementation'>
 	<container>
 	^ parentBehaviouralEntity
 ]

@@ -1,8 +1,25 @@
 "
-A FM3Element is an elementary element of a FAME metamodel.
+Description
+--------------------
 
-It has a name and fullName and a owner either a FM3MetaDescription or 
-FM3PackageDescription
+I am an abstract class representing elementary elements of a metamodel.
+
+The instances of my subclasses are stored inside a FMMetaModel.
+
+My instances have a name, a fullName and an owner that is either a FM3Class or FM3Package.
+
+Public API and Key Messages
+--------------------
+
+- #name 			Return the name of the element.
+- #fullName 		Return a name of the element containing the full name of its owner.
+- #owner 			Return the owner of the element. Can be nil for root packages.
+
+Internal Representation and Key Implementation Points.
+--------------------
+
+    Instance Variables
+	name:		<aString>		Name of the element.
 "
 Class {
 	#name : #FM3Element,
@@ -10,51 +27,67 @@ Class {
 	#instVars : [
 		'name'
 	],
-	#category : #'Fame-Core'
+	#category : #'Fame-Core-Model'
 }
 
 { #category : #meta }
 FM3Element class >> annotation [
-	<MSEClass: #Element super: #Object>
+	<FMClass: #Element super: #Object>
 	<package: #FM3>
 	<abstract>
 
 ]
 
-{ #category : #accessing }
-FM3Element class >> version [
-	^ 1.0
+{ #category : #testing }
+FM3Element class >> isAbstract [
+	^ self = FM3Element
+]
+
+{ #category : #'instance creation' }
+FM3Element class >> named: aString [
+	^ self new
+		name: aString;
+		yourself
+]
+
+{ #category : #visiting }
+FM3Element >> accept: arg1 [ 
+	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
 FM3Element >> fullName [
-	<MSEProperty: #fullName type: #String>
+	<FMProperty: #fullName type: #String>
 	<derived>
-	self name isNil ifTrue: [ ^nil ].
-	self owner isNil ifTrue: [ ^self name asString ].
-	self owner fullName isNil ifTrue: [ ^nil ].
- 	^self owner fullName, '.', self name
+	self name ifNil: [ ^ nil ].
+
+	^ self owner
+		ifNil: [ self name ]
+		ifNotNil: [ :owner |
+			owner fullName ifNotNil: [ :fullName | fullName , '.' , self name ] ]
+]
+
+{ #category : #testing }
+FM3Element >> hasOwner [
+	^ self owner isNotNil
 ]
 
 { #category : #accessing }
 FM3Element >> name [
-	<MSEProperty: #name type: #String>
+	<FMProperty: #name type: #String>
 	^name 
 ]
 
 { #category : #accessing }
 FM3Element >> name: aString [
-	
-	name := aString isNil 
-		ifTrue: [ nil ]
-		ifFalse: [ aString asSymbol ].
+	name := aString ifNotNil: #asSymbol
 ]
 
 { #category : #accessing }
 FM3Element >> owner [
-	<MSEProperty: #owner type: #FM3Element>
+	<FMProperty: #owner type: #FM3Element>
 	<derived>
-	^nil "All packages are top-level (but dots are allowed in their name to fake nesting)"
+	^ self subclassResponsibility
 ]
 
 { #category : #printing }

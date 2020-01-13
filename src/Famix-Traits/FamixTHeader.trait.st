@@ -12,7 +12,7 @@ Trait {
 { #category : #meta }
 FamixTHeader classSide >> annotation [
 
-	<MSEClass: #THeader super: #Trait>
+	<FMClass: #THeader super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -31,5 +31,4 @@ FamixTHeader >> headerOwner: anObject [
 
 	<generated>
 	headerOwner := anObject
-
 ]

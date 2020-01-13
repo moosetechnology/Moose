@@ -9,17 +9,10 @@ Class {
 { #category : #meta }
 FamixJavaScopingEntity class >> annotation [
 
-	<MSEClass: #ScopingEntity super: #FamixJavaContainerEntity>
+	<FMClass: #ScopingEntity super: #FamixJavaContainerEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FamixJavaScopingEntity class >> requirements [
-
-	<generated>
-	^ { FamixJavaScopingEntity }
 ]
 
 { #category : #'Famix-Extensions-metrics' }

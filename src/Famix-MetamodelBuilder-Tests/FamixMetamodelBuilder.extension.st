@@ -2,13 +2,13 @@ Extension { #name : #FamixMetamodelBuilder }
 
 { #category : #'*Famix-MetamodelBuilder-Tests' }
 FamixMetamodelBuilder >> beForTesting [
-
 	<ignoreForCoverage>
 	self environment: (FmxMBRingEnvironment for: self).
-	self configuration	
+	self configuration
 		prefix: 'Tst';
-		packageName: 'Tst'.
-	^ self.
+		packageName: 'Tst';
+		mooseModelName: 'TstModel'.
+	^ self
 ]
 
 { #category : #'*Famix-MetamodelBuilder-Tests' }

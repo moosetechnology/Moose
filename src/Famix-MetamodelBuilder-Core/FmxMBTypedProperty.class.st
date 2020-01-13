@@ -1,6 +1,3 @@
-"
-FamixMetamodelBuilderTypedProperty
-"
 Class {
 	#name : #FmxMBTypedProperty,
 	#superclass : #FmxMBProperty,
@@ -29,11 +26,11 @@ FmxMBTypedProperty >> generateGetterIn: aClassOrTrait [
 
 	| methodSource propertyDefinition commentDefinition |
 
-	propertyDefinition := '<MSEProperty: #{1} type: #{2}>' 
+	propertyDefinition := '<FMProperty: #{1} type: #{2}>' 
 		format: { self name. self propertyType }.
 
 	commentDefinition := self comment
-		ifNotEmpty: [ '<MSEComment: {1}>' format: { self comment printString } ].
+		ifNotEmpty: [ '<FMComment: {1}>' format: { self comment printString } ].
 
 	methodSource := String streamContents: [ :s |
 		s nextPutAll: self name; cr; cr.
@@ -54,23 +51,19 @@ FmxMBTypedProperty >> generateGetterIn: aClassOrTrait [
 
 { #category : #generating }
 FmxMBTypedProperty >> generateSetterIn: aClassOrTrait [
-
-	| methodSource |
-	
-	methodSource := String streamContents: [ :s |
-		s nextPutAll: self name; nextPutAll: ': anObject'; cr; cr.
-		s tab; nextPutAll: '<generated>'; cr.
-		s tab; nextPutAll: self name, ' := anObject'; cr 	].
-		
-	self builder environment compile: methodSource in: aClassOrTrait classified: 'accessing'.
+	self builder environment
+		compile:
+			('{1}: anObject
+	<generated>
+	{1} := anObject' format: {self name})
+		in: aClassOrTrait
+		classified: 'accessing'
 ]
 
 { #category : #initialization }
 FmxMBTypedProperty >> initialize [
-
 	super initialize.
-	multivalued := false.
-
+	multivalued := false
 ]
 
 { #category : #accessing }
@@ -81,8 +74,7 @@ FmxMBTypedProperty >> isMultivalued [
 
 { #category : #accessing }
 FmxMBTypedProperty >> multivalued [
-
-	multivalued := true.
+	multivalued := true
 ]
 
 { #category : #accessing }

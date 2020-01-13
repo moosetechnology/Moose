@@ -9,17 +9,10 @@ Class {
 { #category : #meta }
 FamixStAnnotationInstanceAttribute class >> annotation [
 
-	<MSEClass: #AnnotationInstanceAttribute super: #FamixStSourcedEntity>
+	<FMClass: #AnnotationInstanceAttribute super: #FamixStSourcedEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FamixStAnnotationInstanceAttribute class >> requirements [
-
-	<generated>
-	^ { FamixStAnnotationInstance }
 ]
 
 { #category : #accessing }

@@ -7,7 +7,7 @@ Class {
 { #category : #meta }
 FamixJavaPrimitiveType class >> annotation [
 
-	<MSEClass: #PrimitiveType super: #FamixJavaType>
+	<FMClass: #PrimitiveType super: #FamixJavaType>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self

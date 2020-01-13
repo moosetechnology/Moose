@@ -24,13 +24,15 @@ FAMIXModelQueriesTest >> setUp [
 	class1 := FAMIXClass new.
 	stubClass1 := FAMIXClass new isStub: true.
 	interface1 := FAMIXClass new isInterface: true.
-	stubInterface1 := FAMIXClass new isStub: true; isInterface: true.
+	stubInterface1 := FAMIXClass new
+		isStub: true;
+		isInterface: true.
 	stubPrimitiveType := FAMIXPrimitiveType new isStub: true.
 	class1 container: namespace1.
 	stubClass1 container: stubNamespace.
 	interface1 container: namespace2.
 	stubInterface1 container: stubNamespace.
-	model := MooseModel new.
+	model := FAMIXModel new.
 	model add: class1.
 	model add: stubClass1.
 	model add: interface1.
@@ -41,37 +43,37 @@ FAMIXModelQueriesTest >> setUp [
 	model add: stubNamespace
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXModelQueriesTest >> testAllClasses [
 	self assert: model allClasses size equals: 4
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXModelQueriesTest >> testAllModelClasses [
 	self assert: model allModelPureClasses size equals: 1
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXModelQueriesTest >> testAllModelNamespaces [
 	self assert: model allModelNamespaces size equals: 2
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXModelQueriesTest >> testAllModelTypes [
 	self assert: model allModelTypes size equals: 2
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXModelQueriesTest >> testAllNamespaces [
 	self assert: model allNamespaces size equals: 3
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXModelQueriesTest >> testAllTypes [
 	self assert: model allTypes size equals: 5
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXModelQueriesTest >> testAllWithTypeOfGroupClass [
 	self assert: (model allWithType: FAMIXClass ofGroupClass: FAMIXTypeGroup) size equals: 4
 ]

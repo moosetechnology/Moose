@@ -83,18 +83,3 @@ FamixTestComposedGenerator >> define [
 	(test1Custom5 property: #associations) -* ((association property: #c15) target).
 	((association property: #c25) source) *- (test2Custom5 property: #associations)
 ]
-
-{ #category : #definition }
-FamixTestComposedGenerator >> newBuilder [
-
-	| mqBuilder |
-
-	mqBuilder := FamixMooseQueryGenerator builderWithDefinitions.
-
-	self adoptBuilder: mqBuilder.
-
-	^ mqBuilder
-		doNotGenerateCurrent;
-		generator: self;
-		yourself.
-]

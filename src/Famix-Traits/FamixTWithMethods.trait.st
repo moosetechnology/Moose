@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithMethods classSide >> annotation [
 
-	<MSEClass: #TWithMethods super: #Trait>
+	<FMClass: #TWithMethods super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -25,7 +25,7 @@ FamixTWithMethods >> methods [
 	"Relation named: #methods type: #FamixTMethod opposite: #parentType"
 
 	<generated>
-	<MSEComment: 'Methods declared by this type.'>
+	<FMComment: 'Methods declared by this type.'>
 	<derived>
 	^ methods
 ]
@@ -35,7 +35,6 @@ FamixTWithMethods >> methods: anObject [
 
 	<generated>
 	methods value: anObject
-
 ]
 
 { #category : #accessing }
@@ -47,10 +46,23 @@ FamixTWithMethods >> methodsGroup [
 ]
 
 { #category : #metrics }
-FamixTWithMethods >> numberOfAccessorMethods [
-	<MSEProperty: #numberOfAccessorMethods type: #Number>
+FamixTWithMethods >> numberOfAbstractMethods [
+	<FMProperty: #numberOfAbstractMethods type: #Number>
 	<derived>
-	<MSEComment: 'The number of accessor methods in a class'>
+	<FMComment: 'The number of abstract methods in the class'>
+	^ self lookUpPropertyNamed: #numberOfAbstractMethods computedAs: [ self methodsGroup count: [ :each | each isAbstract ] ]
+]
+
+{ #category : #metrics }
+FamixTWithMethods >> numberOfAbstractMethods: aNumber [
+	self privateState propertyAt: #numberOfAbstractMethods put: aNumber
+]
+
+{ #category : #metrics }
+FamixTWithMethods >> numberOfAccessorMethods [
+	<FMProperty: #numberOfAccessorMethods type: #Number>
+	<derived>
+	<FMComment: 'The number of accessor methods in a class'>
 	^ self
 		lookUpPropertyNamed: #numberOfAccessorMethods
 		computedAs: [ 
@@ -73,9 +85,9 @@ FamixTWithMethods >> numberOfAccessorMethods: aNumber [
 
 { #category : #metrics }
 FamixTWithMethods >> numberOfConstructorMethods [
-	<MSEProperty: #numberOfConstructorMethods type: #Number>
+	<FMProperty: #numberOfConstructorMethods type: #Number>
 	<derived>
-	<MSEComment: 'The number of constructor methods in a class'>
+	<FMComment: 'The number of constructor methods in a class'>
 	^ self
 		lookUpPropertyNamed: #numberOfConstructorMethods
 		computedAs: [ 
@@ -99,9 +111,9 @@ FamixTWithMethods >> numberOfConstructorMethods: aNumber [
 { #category : #metrics }
 FamixTWithMethods >> numberOfLinesOfCode [
 
-	<MSEProperty: #numberOfLinesOfCode type: #Number>
+	<FMProperty: #numberOfLinesOfCode type: #Number>
 	<derived>
-	<MSEComment: 'The number of lines of code in a class'>
+	<FMComment: 'The number of lines of code in a class'>
 
 	^self
 		lookUpPropertyNamed: #numberOfLinesOfCode
@@ -116,9 +128,9 @@ FamixTWithMethods >> numberOfLinesOfCode: aNumber [
 
 { #category : #metrics }
 FamixTWithMethods >> numberOfMessageSends [
-	<MSEProperty: #numberOfMessageSends type: #Number>
+	<FMProperty: #numberOfMessageSends type: #Number>
 	<derived>
-	<MSEComment: 'The number of message sends from a class'>
+	<FMComment: 'The number of message sends from a class'>
 	
 	^self
 		lookUpPropertyNamed: #numberOfMessageSends
@@ -133,9 +145,9 @@ FamixTWithMethods >> numberOfMessageSends: aNumber [
 
 { #category : #metrics }
 FamixTWithMethods >> numberOfMethodProtocols [
-	<MSEProperty: #numberOfMethodProtocols type: #Number>
+	<FMProperty: #numberOfMethodProtocols type: #Number>
 	<derived>
-	<MSEComment: 'The number of method protocols in a class'>
+	<FMComment: 'The number of method protocols in a class'>
 	
 	^self
 		lookUpPropertyNamed: #numberOfMethodProtocols
@@ -150,9 +162,9 @@ FamixTWithMethods >> numberOfMethodProtocols: aNumber [
 
 { #category : #accessing }
 FamixTWithMethods >> numberOfMethods [
-	<MSEProperty: #numberOfMethods type: #Number>
+	<FMProperty: #numberOfMethods type: #Number>
 	<derived>
-	<MSEComment: 'The number of methods in a class'>
+	<FMComment: 'The number of methods in a class'>
 
 	^self
 		lookUpPropertyNamed: #numberOfMethods
@@ -166,10 +178,107 @@ FamixTWithMethods >> numberOfMethods: aNumber [
 ]
 
 { #category : #metrics }
-FamixTWithMethods >> weightedMethodCount [
-	<MSEProperty: #weightedMethodCount type: #Number>
+FamixTWithMethods >> numberOfPrivateMethods [
+	<FMProperty: #numberOfPrivateMethods type: #Number>
 	<derived>
-	<MSEComment: 'The sum of the complexity in a class'>
+	<FMComment: 'The number of private methods in a class'>
+			
+	^self
+		lookUpPropertyNamed: #numberOfPrivateMethods
+		computedAs: [(self methods select: [:each | each isPrivate]) size]
+]
+
+{ #category : #metrics }
+FamixTWithMethods >> numberOfPrivateMethods: aNumber [
+
+	self privateState propertyAt: #numberOfPrivateMethods put: aNumber
+]
+
+{ #category : #metrics }
+FamixTWithMethods >> numberOfProtectedMethods [
+	<FMProperty: #numberOfProtectedMethods type: #Number>
+	<derived>
+	<FMComment: 'The number of protected methods in a class'>		
+	
+	^self
+		lookUpPropertyNamed: #numberOfProtectedMethods
+		computedAs: [(self methods select: [:each | each isProtected]) size]
+]
+
+{ #category : #metrics }
+FamixTWithMethods >> numberOfProtectedMethods: aNumber [
+
+	self privateState propertyAt: #numberOfProtectedMethods put: aNumber
+]
+
+{ #category : #metrics }
+FamixTWithMethods >> numberOfPublicMethods [
+	<FMProperty: #numberOfPublicMethods type: #Number>
+	<derived>
+	<FMComment: 'The number of public methods in a class'>		
+		
+	^self
+		lookUpPropertyNamed: #numberOfPublicMethods
+		computedAs: [(self methods select: [:each | each isPublic]) size]
+]
+
+{ #category : #metrics }
+FamixTWithMethods >> numberOfPublicMethods: aNumber [
+
+	self privateState propertyAt: #numberOfPublicMethods put: aNumber
+]
+
+{ #category : #metrics }
+FamixTWithMethods >> tightClassCohesion [
+	<FMProperty: #tightClassCohesion type: #Number>
+	<derived>
+	<FMComment: 'Tight class cohesion of a class'>
+	self flag: #TODO.
+	^ self
+		lookUpPropertyNamed: #tightClassCohesion
+		computedAs: [ 
+			| tcc accessDictionary nom |
+			tcc := 0.
+			accessDictionary := Dictionary new.
+			self
+				methods do: [ :eachMethod | 
+					eachMethod accesses
+						do: [ :eachAccess | 
+							| var |
+							var := eachAccess variable.
+							var isAttribute
+								ifTrue: [ 
+									| varName accessedFrom |
+									varName := var name.
+									accessedFrom := accessDictionary at: varName ifAbsent: [  ].
+									accessedFrom isNil
+										ifTrue: [ 
+											accessedFrom := Set new.
+											accessDictionary at: varName put: accessedFrom ].
+									accessedFrom add: eachMethod name ] ] ].
+			accessDictionary values
+				do: [ :each | 
+					| size |
+					size := each size.
+					tcc := tcc + (size * (size - 1) / 2) ].
+			nom := self numberOfMethods.
+			tcc := (nom = 0 or: [ nom = 1 ])
+				ifFalse: [ tcc / (nom * (nom - 1) / 2) ]
+				ifTrue: [ 0 ].
+			tcc asFloat ]
+]
+
+{ #category : #metrics }
+FamixTWithMethods >> tightClassCohesion: aNumber [
+
+	self privateState propertyAt: #tightClassCohesion put: aNumber
+]
+
+{ #category : #metrics }
+FamixTWithMethods >> weightedMethodCount [
+	<FMProperty: #weightedMethodCount type: #Number>
+	<derived>
+	<FMComment: 'The sum of the complexity in a class'>
 			
 	^self
 		lookUpPropertyNamed: #weightedMethodCount

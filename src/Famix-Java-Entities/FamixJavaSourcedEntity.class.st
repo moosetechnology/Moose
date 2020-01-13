@@ -9,30 +9,10 @@ Class {
 { #category : #meta }
 FamixJavaSourcedEntity class >> annotation [
 
-	<MSEClass: #SourcedEntity super: #FamixJavaEntity>
+	<FMClass: #SourcedEntity super: #FamixJavaEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaSourcedEntity >> defineMultiSourceAnchorWithPath: aPath [
-
-	 self ensureMultiSourceAnchor addFileAnchorWithPath: aPath
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaSourcedEntity >> ensureMultiSourceAnchor [
-	"This method is also used by other packages"
-	^self sourceAnchor
-		ifNil: [ 
-			self
-				sourceAnchor:
-					(FamixJavaMultipleFileAnchor new
-						element: self;
-						mooseModel: self mooseModel;
-						yourself);
-				sourceAnchor]
 ]
 
 { #category : #'as yet unclassified' }
@@ -65,7 +45,7 @@ FamixJavaSourcedEntity >> fileAnchorPath: aString startPos: anInteger endPos: an
 
 { #category : #'as yet unclassified' }
 FamixJavaSourcedEntity >> numberOfJavaNullChecks [
-	<MSEProperty: #numberOfJavaNullChecks type: #Number> <derived>
+	<FMProperty: #numberOfJavaNullChecks type: #Number> <derived>
 	^self
 		lookUpPropertyNamed: #numberOfJavaNullChecks
 		computedAs: [

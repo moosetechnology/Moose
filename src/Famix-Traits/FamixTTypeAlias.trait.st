@@ -15,7 +15,7 @@ Trait {
 { #category : #meta }
 FamixTTypeAlias classSide >> annotation [
 
-	<MSEClass: #TTypeAlias super: #Trait>
+	<FMClass: #TTypeAlias super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -26,7 +26,7 @@ FamixTTypeAlias >> aliasedType [
 	"Relation named: #aliasedType type: #FamixTWithTypeAliases opposite: #typeAliases"
 
 	<generated>
-	<MSEComment: 'Points to the actual type.'>
+	<FMComment: 'Points to the actual type.'>
 	^ aliasedType
 ]
 
@@ -35,5 +35,4 @@ FamixTTypeAlias >> aliasedType: anObject [
 
 	<generated>
 	aliasedType := anObject
-
 ]

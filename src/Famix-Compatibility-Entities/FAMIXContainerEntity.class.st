@@ -1,15 +1,15 @@
 Class {
 	#name : #FAMIXContainerEntity,
 	#superclass : #FAMIXNamedEntity,
-	#traits : 'FamixTContainingWithInvocationsGlue + FamixTContainingWithStatementsGlue + FamixTWithAnnotationTypes + FamixTWithClasses + FamixTWithFunctions + FamixTWithTypes + TOODependencyQueries',
-	#classTraits : 'FamixTContainingWithInvocationsGlue classTrait + FamixTContainingWithStatementsGlue classTrait + FamixTWithAnnotationTypes classTrait + FamixTWithClasses classTrait + FamixTWithFunctions classTrait + FamixTWithTypes classTrait + TOODependencyQueries classTrait',
+	#traits : 'FamixTWithAnnotationTypes + FamixTWithClasses + FamixTWithFunctions + FamixTWithTypes + TOODependencyQueries',
+	#classTraits : 'FamixTWithAnnotationTypes classTrait + FamixTWithClasses classTrait + FamixTWithFunctions classTrait + FamixTWithTypes classTrait + TOODependencyQueries classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 
 { #category : #meta }
 FAMIXContainerEntity class >> annotation [
 
-	<MSEClass: #ContainerEntity super: #FAMIXNamedEntity>
+	<FMClass: #ContainerEntity super: #FAMIXNamedEntity>
 	<package: #FAMIX>
 	<generated>
 	^self

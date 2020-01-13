@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTDefinedInModule classSide >> annotation [
 
-	<MSEClass: #TDefinedInModule super: #Trait>
+	<FMClass: #TDefinedInModule super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -20,7 +20,7 @@ FamixTDefinedInModule >> parentModule [
 	"Relation named: #parentModule type: #FamixTModule opposite: #moduleEntities"
 
 	<generated>
-	<MSEComment: 'Module that contains the definition of this entity'>
+	<FMComment: 'Module that contains the definition of this entity'>
 	^ parentModule
 ]
 
@@ -29,5 +29,4 @@ FamixTDefinedInModule >> parentModule: anObject [
 
 	<generated>
 	parentModule := anObject
-
 ]

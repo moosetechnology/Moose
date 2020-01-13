@@ -10,7 +10,7 @@ Trait {
 { #category : #meta }
 FamixTTraitUsage classSide >> annotation [
 
-	<MSEClass: #TTraitUsage super: #Trait>
+	<FMClass: #TTraitUsage super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -50,7 +50,6 @@ FamixTTraitUsage >> trait: anObject [
 
 	<generated>
 	trait := anObject
-
 ]
 
 { #category : #accessing }
@@ -67,5 +66,4 @@ FamixTTraitUsage >> user: anObject [
 
 	<generated>
 	user := anObject
-
 ]

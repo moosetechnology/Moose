@@ -21,3 +21,9 @@ FamixMetamodelGenerator >> builderWithStandardTraits [
 		generator: self;
 		yourself.
 ]
+
+{ #category : #'*Famix-Deprecated' }
+FamixMetamodelGenerator class >> metamodel [
+	self deprecated: 'Use the model to access the metamodel instead.' transformWith: '`@receiver metamodel' -> (self mooseModelName , ' metamodel').
+	^ self withMooseModelDo: [ :m | m metamodel ]
+]

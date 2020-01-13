@@ -1,14 +1,6 @@
-"
-FamixMetamodelBuilderTrait
-"
 Class {
 	#name : #FmxMBTrait,
 	#superclass : #FmxMBBehavior,
-	#instVars : [
-		'sides',
-		'gluedTraits',
-		'glueingCondition'
-	],
 	#category : #'Famix-MetamodelBuilder-Core-Implementation'
 }
 
@@ -21,35 +13,7 @@ FmxMBTrait >> acceptVisitor: aVisitor [
 
 { #category : #accessing }
 FmxMBTrait >> allTraitGeneralizations [
-
-	^ (self traitGeneralizations flatCollect: [ :each | {each}, each allTraitGeneralizations ]) asSet.
-	
-
-]
-
-{ #category : #accessing }
-FmxMBTrait >> allTraitNames [
-
-	^ self traitGeneralizations collect: #fullName
-]
-
-{ #category : #generating }
-FmxMBTrait >> as: aTraitName property: propertyName [
-
-	self name = aTraitName
-		ifFalse: [ FmxMBTraitRenamingError signal ].
-	
-	^ self property: propertyName
-
-	
-]
-
-{ #category : #testing }
-FmxMBTrait >> canGlueTo: aClass [
-
-	^ glueingCondition 
-		ifNotNil: [ glueingCondition value: aClass ]
-		ifNil: [ false ]
+	^ (self traitGeneralizations flatCollect: [ :each | {each} , each allTraitGeneralizations ]) asSet
 ]
 
 { #category : #generating }
@@ -67,6 +31,13 @@ FmxMBTrait >> classGeneralization: anObject [
 FmxMBTrait >> defaultSuperclass [
 	
 	^ self builder environment basicTrait
+]
+
+{ #category : #accessing }
+FmxMBTrait >> defaultSuperclassName [
+	"In case of Traits we want the annotation to point Object as superclass."
+
+	^ 'Object'
 ]
 
 { #category : #'settings-default' }
@@ -95,7 +66,6 @@ FmxMBTrait >> generate [
 	self generateAnnotationIn: aTrait as: self name superclass: nil.
 	
 	self generateTestingMethodsIn: aTrait.
-	self generateRootMetamodelMethodIn: aTrait.
 	self generateMethodsToRemoveFromTraitCompositionFor: aTrait.
 	
 	self generateNavigationGroupsFor: aTrait.
@@ -104,78 +74,14 @@ FmxMBTrait >> generate [
 
 { #category : #generating }
 FmxMBTrait >> generateRemotes [
-
 	| aTrait traitName |
-		
 	traitName := self fullName.
-	
+
 	aTrait := self builder environment classNamed: traitName asSymbol.
-				
-	self realClass: aTrait.
 
 	self realClass: aTrait.
-	
-	self generateRemoteAccessors.
 
-]
-
-{ #category : #accessing }
-FmxMBTrait >> glueingCondition [
-
-	<ignoreForCoverage>
-	^ glueingCondition
-]
-
-{ #category : #accessing }
-FmxMBTrait >> glueingCondition: anObject [
-	glueingCondition := anObject
-]
-
-{ #category : #testing }
-FmxMBTrait >> glues: otherTraits [
-
-	gluedTraits := otherTraits asSet. 
-]
-
-{ #category : #testing }
-FmxMBTrait >> glues: trait1 with: trait2 [
-
-	self glues: { trait1. trait2 }.
-	
-
-]
-
-{ #category : #testing }
-FmxMBTrait >> gluesOneOf: selectedTraits [
-
-	gluedTraits ifEmpty: [ ^ false ].
-
-	^ selectedTraits anySatisfy: [ :each | gluedTraits includes: each ]
-]
-
-{ #category : #testing }
-FmxMBTrait >> gluesSomeOf: selectedTraits [
-
-	gluedTraits ifEmpty: [ ^ false ].
-
-	^ selectedTraits includesAll: gluedTraits
-]
-
-{ #category : #initialization }
-FmxMBTrait >> initialize [
-
-	super initialize.
-	
-	gluedTraits := Set new.
-	
-
-]
-
-{ #category : #testing }
-FmxMBTrait >> isGlueingTrait [
-	
-	<ignoreForCoverage>
-	^ false
+	self generateRemoteAccessors
 ]
 
 { #category : #testing }
@@ -186,32 +92,12 @@ FmxMBTrait >> isMetamodelTrait [
 
 { #category : #'name conversion' }
 FmxMBTrait >> pluralPropertyName [
-
-	| uncapitalized |
-	
-	uncapitalized := (self name withoutPrefix: 'T') uncapitalized.
-	^ self pluralOf: uncapitalized
-
+	^ self pluralOf: self propertyName
 ]
 
 { #category : #'name conversion' }
 FmxMBTrait >> propertyName [
-	
-	^ (self name withoutPrefix: 'T') uncapitalized.
-	
-	
-]
-
-{ #category : #'name conversion' }
-FmxMBTrait >> relatedOwnerTraitName [
-
-	^ self name
-]
-
-{ #category : #accessing }
-FmxMBTrait >> relatedTraitName [
-
-	^ self name
+	^ (self name withoutPrefix: 'T') uncapitalized
 ]
 
 { #category : #accessing }

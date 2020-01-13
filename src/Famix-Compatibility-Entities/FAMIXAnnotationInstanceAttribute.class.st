@@ -9,17 +9,10 @@ Class {
 { #category : #meta }
 FAMIXAnnotationInstanceAttribute class >> annotation [
 
-	<MSEClass: #AnnotationInstanceAttribute super: #FAMIXSourcedEntity>
+	<FMClass: #AnnotationInstanceAttribute super: #FAMIXSourcedEntity>
 	<package: #FAMIX>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FAMIXAnnotationInstanceAttribute class >> requirements [
-
-	<generated>
-	^ { FAMIXAnnotationInstance }
 ]
 
 { #category : #'as yet unclassified' }

@@ -61,7 +61,7 @@ FmxMBGeneratorCleaningStrategyTest >> generateClasses [
 		compile:
 			'annotation
 
-	<MSEClass: #AddedClassFromFamix super: #MooseEntity>
+	<FMClass: #AddedClassFromFamix super: #MooseEntity>
 	<package: #'',  self packageName , ''>
 	<generated>
 	^self'.
@@ -76,7 +76,7 @@ FmxMBGeneratorCleaningStrategyTest >> generateClasses [
 		compile:
 			'annotation
 
-	<MSEClass: #TAddedClassFromFamix super: #Trait>
+	<FMClass: #TAddedClassFromFamix super: #Trait>
 	<package: #'',  self packageName , ''>
 	<generated>
 	^self'.
@@ -112,7 +112,7 @@ FmxMBGeneratorCleaningStrategyTest >> tearDown [
 	super tearDown.
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningCleaning [
 	generator withoutCleaning cleaningStrategy cleanBeforeGeneration: generator.
 	self class environment
@@ -144,7 +144,7 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningCleaning [
 	self class environment at: #TFmxCleanerTestAddedTrait ifPresent: [ :class | self assert: class package name equals: self packageName ] ifAbsent: [ self fail ]
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningGeneration [
 	generator generateWithoutCleaning.
 
@@ -183,7 +183,7 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningGeneration [
 	self class environment at: #TFmxCleanerTestAddedTrait ifPresent: [ :class | self assert: class package name equals: self packageName ] ifAbsent: [ self fail ]
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FmxMBGeneratorCleaningStrategyTest >> testGenerateTotalCleaningCleaning [
 	generator withCleaning cleaningStrategy cleanBeforeGeneration: generator.
 	self should: [ self class environment at: #FmxTestCleaningStrategyFmxTestEntity ] raise: KeyNotFound.
@@ -195,7 +195,7 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateTotalCleaningCleaning [
 	self assert: (self class methodDict at: #extensionsMethodForTest ifPresent: [ false ] ifAbsent: [ true ])
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FmxMBGeneratorCleaningStrategyTest >> testGenerateTotalCleaningGeneration [
 	generator generateWithCleaning.
 

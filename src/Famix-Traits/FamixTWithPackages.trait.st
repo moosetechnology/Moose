@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithPackages classSide >> annotation [
 
-	<MSEClass: #TWithPackages super: #Trait>
+	<FMClass: #TWithPackages super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -35,5 +35,4 @@ FamixTWithPackages >> packages: anObject [
 
 	<generated>
 	packages value: anObject
-
 ]

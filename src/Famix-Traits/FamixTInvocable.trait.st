@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTInvocable classSide >> annotation [
 
-	<MSEClass: #TInvocable super: #Trait>
+	<FMClass: #TInvocable super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -25,7 +25,7 @@ FamixTInvocable >> incomingInvocations [
 	"Relation named: #incomingInvocations type: #FamixTInvocation opposite: #candidates"
 
 	<generated>
-	<MSEComment: 'Incoming invocations from other behaviours computed by the candidate operator.'>
+	<FMComment: 'Incoming invocations from other behaviours computed by the candidate operator.'>
 	<derived>
 	^ incomingInvocations
 ]
@@ -35,5 +35,4 @@ FamixTInvocable >> incomingInvocations: anObject [
 
 	<generated>
 	incomingInvocations value: anObject
-
 ]

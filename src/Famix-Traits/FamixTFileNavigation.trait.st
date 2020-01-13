@@ -6,13 +6,13 @@ Trait {
 		'#startColumn => FMProperty',
 		'#startLine => FMProperty'
 	],
-	#category : #'Famix-Traits-Traits'
+	#category : #'Famix-Traits-SourceAnchor'
 }
 
 { #category : #meta }
 FamixTFileNavigation classSide >> annotation [
 
-	<MSEClass: #TFileNavigation super: #Trait>
+	<FMClass: #TFileNavigation super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -44,35 +44,31 @@ FamixTFileNavigation classSide >> fileName: aString startLine: anInteger startCo
 { #category : #accessing }
 FamixTFileNavigation >> endColumn [
 
-	<MSEProperty: #endColumn type: #Number>
+	<FMProperty: #endColumn type: #Number>
 	<generated>
-	<MSEComment: 'Number of the end column'>
+	<FMComment: 'Number of the end column'>
 	^ endColumn
 ]
 
 { #category : #accessing }
 FamixTFileNavigation >> endColumn: anObject [
-
 	<generated>
 	endColumn := anObject
-
 ]
 
 { #category : #accessing }
 FamixTFileNavigation >> endLine [
 
-	<MSEProperty: #endLine type: #Number>
+	<FMProperty: #endLine type: #Number>
 	<generated>
-	<MSEComment: 'Number of the end line'>
+	<FMComment: 'Number of the end line'>
 	^ endLine
 ]
 
 { #category : #accessing }
 FamixTFileNavigation >> endLine: anObject [
-
 	<generated>
 	endLine := anObject
-
 ]
 
 { #category : #accessing }
@@ -118,6 +114,21 @@ FamixTFileNavigation >> lineCount [
 	
 ]
 
+{ #category : #printing }
+FamixTFileNavigation >> mooseNameOn: aStream [
+	aStream
+		nextPutAll: self fileName asString;
+		nextPut: $(;
+		nextPutAll: self startLine asString;
+		nextPut: $@;
+		nextPutAll: self startColumn asString;
+		nextPut: $-;
+		nextPutAll: self endLine asString;
+		nextPut: $@;
+		nextPutAll: self endColumn asString;
+		nextPut: $)
+]
+
 { #category : #accessing }
 FamixTFileNavigation >> sourceText [
 	(self startLine isNil and: [ self endLine isNil ]) ifTrue: [ ^ self completeText ].
@@ -137,33 +148,29 @@ FamixTFileNavigation >> sourceText [
 { #category : #accessing }
 FamixTFileNavigation >> startColumn [
 
-	<MSEProperty: #startColumn type: #Number>
+	<FMProperty: #startColumn type: #Number>
 	<generated>
-	<MSEComment: 'Number of the start column'>
+	<FMComment: 'Number of the start column'>
 	^ startColumn
 ]
 
 { #category : #accessing }
 FamixTFileNavigation >> startColumn: anObject [
-
 	<generated>
 	startColumn := anObject
-
 ]
 
 { #category : #accessing }
 FamixTFileNavigation >> startLine [
 
-	<MSEProperty: #startLine type: #Number>
+	<FMProperty: #startLine type: #Number>
 	<generated>
-	<MSEComment: 'Number of the start line'>
+	<FMComment: 'Number of the start line'>
 	^ startLine
 ]
 
 { #category : #accessing }
 FamixTFileNavigation >> startLine: anObject [
-
 	<generated>
 	startLine := anObject
-
 ]

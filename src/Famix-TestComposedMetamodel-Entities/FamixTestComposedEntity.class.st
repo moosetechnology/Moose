@@ -7,7 +7,7 @@ Class {
 { #category : #meta }
 FamixTestComposedEntity class >> annotation [
 
-	<MSEClass: #Entity super: #MooseEntity>
+	<FMClass: #Entity super: #MooseEntity>
 	<package: #'Famix-TestComposedMetamodel-Entities'>
 	<generated>
 	^self
@@ -17,15 +17,15 @@ FamixTestComposedEntity class >> annotation [
 FamixTestComposedEntity class >> metamodel [
 
 	<generated>
-	^ (self class environment at: #FamixTestComposedGenerator) metamodel
+	^ FamixTestComposedModel metamodel
 ]
 
 { #category : #accessing }
 FamixTestComposedEntity >> method [
-	"Relation named: #method type: #FamixTestComposedMethod opposite: #entity"
+	"Relation named: #method type: #FamixTestComposed1Method opposite: #entity"
 
 	<generated>
-	<MSEProperty: #method type: #Object>
+	<FMProperty: #method type: #FamixTestComposed1Method opposite: #entity>
 	^ self privateState attributeAt: #method ifAbsent: [ nil ]
 ]
 

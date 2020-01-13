@@ -14,7 +14,8 @@ Class {
 		'basicTraitName',
 		'wantsToGenerateImportingContext',
 		'navigationForContainers',
-		'navigationForNonContainers'
+		'navigationForNonContainers',
+		'mooseModelName'
 	],
 	#category : #'Famix-MetamodelBuilder-Core-Basic'
 }
@@ -88,6 +89,16 @@ FmxMBConfiguration >> initialize [
 	
 	
 	
+]
+
+{ #category : #accessing }
+FmxMBConfiguration >> mooseModelName [
+	^ mooseModelName
+]
+
+{ #category : #accessing }
+FmxMBConfiguration >> mooseModelName: anObject [
+	mooseModelName := anObject
 ]
 
 { #category : #accessing }

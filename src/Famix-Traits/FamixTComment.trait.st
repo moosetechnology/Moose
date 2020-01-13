@@ -13,7 +13,7 @@ Trait {
 { #category : #meta }
 FamixTComment classSide >> annotation [
 
-	<MSEClass: #TComment super: #Trait>
+	<FMClass: #TComment super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -31,7 +31,7 @@ FamixTComment >> container [
 	"Relation named: #container type: #FamixTWithComments opposite: #comments"
 
 	<generated>
-	<MSEComment: 'Source code entity containing the comment'>
+	<FMComment: 'Source code entity containing the comment'>
 	^ container
 ]
 
@@ -46,16 +46,14 @@ FamixTComment >> container: anObject [
 { #category : #accessing }
 FamixTComment >> content [
 
-	<MSEProperty: #content type: #String>
+	<FMProperty: #content type: #String>
 	<generated>
-	<MSEComment: 'Content of the comment as a String'>
+	<FMComment: 'Content of the comment as a String'>
 	^ content
 ]
 
 { #category : #accessing }
 FamixTComment >> content: anObject [
-
 	<generated>
 	content := anObject
-
 ]

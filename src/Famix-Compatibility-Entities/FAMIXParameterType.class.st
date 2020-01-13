@@ -1,13 +1,15 @@
 Class {
 	#name : #FAMIXParameterType,
 	#superclass : #FAMIXType,
+	#traits : 'FamixTParameterType',
+	#classTraits : 'FamixTParameterType classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 
 { #category : #meta }
 FAMIXParameterType class >> annotation [
 
-	<MSEClass: #ParameterType super: #FAMIXType>
+	<FMClass: #ParameterType super: #FAMIXType>
 	<package: #FAMIX>
 	<generated>
 	^self

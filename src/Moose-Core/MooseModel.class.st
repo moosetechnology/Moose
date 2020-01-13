@@ -5,7 +5,6 @@ Class {
 	#name : #MooseModel,
 	#superclass : #MooseAbstractGroup,
 	#instVars : [
-		'sourceLanguage',
 		'name',
 		'metamodel'
 	],
@@ -13,17 +12,33 @@ Class {
 		'MostRecentOwner'
 	],
 	#classInstVars : [
-		'rootModel',
-		'metaTower'
+		'metamodel'
 	],
 	#category : #'Moose-Core'
 }
 
+{ #category : #accessing }
+MooseModel class >> allSubmetamodelsPackagesNames [
+	^ #()
+]
+
 { #category : #meta }
 MooseModel class >> annotation [
-	<MSEClass: #Model super: #MooseAbstractGroup>
+	<FMClass: #Model super: #MooseAbstractGroup>
 	<package: #Moose>
 
+]
+
+{ #category : #accessing }
+MooseModel class >> defaultPackagesToProcess [
+	"We add to the creation of a metamodel all the metamodel entities of packages declaring to be part of the metamodels by default. 
+	
+	If a user of Famix wishes to add entities to all metamodels, they should add a methode #shouldBeIncludedByDefaultInMetamodels to their package manifest to return true."
+
+	^ RPackageOrganizer default packages
+		select: [ :package | package packageManifestOrNil
+			ifNil: [ false ]
+			ifNotNil: #shouldBeIncludedByDefaultInMetamodels ]
 ]
 
 { #category : #'import-export' }
@@ -45,18 +60,21 @@ MooseModel class >> exportMetamodel: aMetamodel to: aStream [
 { #category : #'import-export' }
 MooseModel class >> exportMetamodelTo: aStream [
 	self deprecated: 'Use exportMetamodelTo: in instance side'.
-	self exportMetamodel: self meta to: aStream
+	self exportMetamodel: self metamodel to: aStream
+]
+
+{ #category : #accessing }
+MooseModel class >> factory [
+	^ FMMetamodelFactory forModel: self
 ]
 
 { #category : #meta }
 MooseModel class >> generateClassesFrom: aCollection [
 	"I generate the implementation for some meta-described classes. aCollection need to contain the full set of meta-described classes so that the metamodel is complete. Warning, part of classes will be overwritten."
 
-	| tower generator |
-	tower := self metaBuilder: aCollection withProcessor: self newPragmaProcessor.
-	generator := FMDefaultCodeGenerator new.
-	generator visit: tower metamodel.
-	generator previewChanges
+	FMDefaultCodeGenerator new
+		visit: (FMMetaModelBuilder metamodelFrom: aCollection);
+		previewChanges
 ]
 
 { #category : #meta }
@@ -67,10 +85,9 @@ MooseModel class >> generateClassesFrom: aCollection inPackage: aString [
 	MooseModel generateClassesFrom: MooseModel metamodelClasses inPackage: 'NewExtension'
 	"
 
-	| tower generator fm3Package |
-	tower := self metaBuilder: aCollection withProcessor: self newPragmaProcessor.
+	| generator fm3Package |
 	generator := FMDefaultCodeGenerator new.
-	fm3Package := tower metamodel packageNamed: aString.
+	fm3Package := (FMMetaModelBuilder metamodelFrom: aCollection) packageNamed: aString.
 	generator acceptFamePackage: fm3Package.
 	self flag: #classExtensionNotSupported.	"currently the generator does not handle extension to other packages - cf #acceptFamePackage:"
 	generator previewChanges
@@ -91,55 +108,54 @@ MooseModel class >> importFrom: aStream filteredBy: anImportingContext [
 
 { #category : #'import-export' }
 MooseModel class >> importFrom: aStream withMetamodel: aMetamodel [
-
-	| tower importer |
-	tower := FMCompleteTower new.
-	tower metamodel addAll: aMetamodel elements.
-	importer := MSEImporter new.
-	importer repository: tower model.
+	| model importer areWarningsEnabled |
+	model := FMModel withMetamodel: aMetamodel.
+	importer := FMImporter model: model.
+	importer autorizeDandlingReferencesAtEnd.
 	importer stream: aStream.
-	importer run.
-	tower model updateCache.
-	^ tower model
+
+	"We are currently updating the meta models and most parsers are not up to date.
+	We disable warnings to avoid all deprecation warnings during the transition phase."
+	areWarningsEnabled := Deprecation raiseWarning.
+	[ Deprecation raiseWarning: false.
+	importer run ]
+		ensure: [ Deprecation raiseWarning: areWarningsEnabled ].
+
+	model updateCache.
+	^ model
 ]
 
 { #category : #'import-export' }
 MooseModel class >> importFrom: aStream withMetamodel: aMetamodel filteredBy: anImportingContext [
-
-	| tower importer famixElementNames importerFilter |
-	
-	famixElementNames := OrderedCollection new.
-	anImportingContext entityKindsToBeExtracted do: [:each | famixElementNames add: 'FAMIX.',each asString ].
+	| model importer famixElementNames importerFilter |
+	famixElementNames := anImportingContext entityKindsToBeExtracted collect: [ :each | 'FAMIX.' , each asString ].
 	"anImportingContext  shouldImportMethodBody 
 		ifTrue: [famixElementNames add: 'FAMIX.Parameter'.
 			anImportingContext shouldImportAccess ifTrue:[famixElementNames add:'FAMIX.Reference']]."
-	
+
 	"famixElementNames := anImportingContext fullNamesOfEntitiesToBeExtracted ."
-	
-	tower := FMCompleteTower new.
-	tower metamodel addAll: aMetamodel elements.
-	importer := MSEImporter new.
-	importer repository: tower model.
+
+	model := FMModel withMetamodel: aMetamodel.
+	importer := FMImporter model: model.
+	importer autorizeDandlingReferencesAtEnd.
 	importer stream: aStream.
-	importerFilter := FMImporterFilter onClient: importer withFilter: famixElementNames.
-	importerFilter  run.
-	tower model updateCache.
-	^ tower model
+	importerFilter := FMImporterFilter on: importer filtering: famixElementNames.
+	importerFilter run.
+	model updateCache.
+	^ model
 ]
 
 { #category : #'import-export' }
 MooseModel class >> importFrom: aStream withMetamodel: aMetamodel translationDictionary: translationDict [
-
-	| tower importer |
-	tower := FMCompleteTower new.
-	tower metamodel addAll: aMetamodel elements.
-	importer := MSEImporter new.
-	importer repository: tower model.
+	| model importer |
+	model := FMModel withMetamodel: aMetamodel.	
+	importer := FMImporter model: model.
+	importer autorizeDandlingReferencesAtEnd.
 	importer stream: aStream.
 	importer nameTranslator: translationDict.
 	importer run.
-	tower model updateCache.
-	^ tower model
+	model updateCache.
+	^ model
 ]
 
 { #category : #'import-export' }
@@ -151,77 +167,26 @@ MooseModel class >> importFromMSEStream: aStream [
 
 { #category : #'import-export' }
 MooseModel class >> importMetamodelFrom: aStream [
-
-	| tower generator |
-	tower := FMCompleteTower new.
-	tower metamodel importStream: aStream.
+	| mm generator |
+	mm := FMMetaModel new.
+	mm importStream: aStream.
 	generator := FMDefaultCodeGenerator new.
-	generator visit: tower metamodel.
-	generator previewChanges. "keep shift pressed to see the changes"
-
+	generator visit: mm.
+	generator previewChanges	"keep shift pressed to see the changes"
 ]
 
 { #category : #meta }
-MooseModel class >> metaBuilder: aCollectionOfClasses [
-	"I take as parameter a collection of classes described with Fame pragmas"
-
-	^ self
-		metaBuilder: aCollectionOfClasses
-		withProcessor: self newPragmaProcessor
+MooseModel class >> metamodel [
+	self flag: #TODO. "The next line is a hack to not break everything in Moose. It should be removed later."
+	self = MooseModel ifTrue: [ ^ FAMIXModel metamodel ].
+	^ metamodel ifNil: [ self resetMetamodel ]
 ]
 
-{ #category : #meta }
-MooseModel class >> metaBuilder: aCollectionOfClasses withProcessor: aPragmaProcessor [
-	"I take as parameters a collection of classes described with Fame pragmas and a processor for Fame pragmas"
-
-	aPragmaProcessor queue: aCollectionOfClasses; run.
-	^ aPragmaProcessor asTower
-]
-
-{ #category : #meta }
-MooseModel class >> metaTower [
-
-	^metaTower ifNil: [
-		metaTower := self metaBuilder: self metamodelClasses ]
-]
-
-{ #category : #meta }
-MooseModel class >> metamodelClasses [
-
-	^ MooseEntity withAllSubclasses
-]
-
-{ #category : #'import-export' }
-MooseModel class >> metamodelComposedOf: aCollectionOfMetamodels [
-	
-	| elements  builder repo |
-	
-	elements := aCollectionOfMetamodels flatCollect: #elements.
-
-	builder := FMPragmaProcessor new.
-	builder buildFM3.
-	repo := FMMetaRepository basicNew.
-	repo initialize: repo.
-	repo addAll: elements.
-
-	^ repo
-]
-
-{ #category : #meta }
-MooseModel class >> newPragmaProcessor [
-	^ MoosePragmaProcessor new
-]
-
-{ #category : #'private-instance creation' }
-MooseModel class >> newWithDefaultModels [ 
-	 
-	| result | 
-	result := self new. 
-	(Pragma 
-		allNamed: #defaultModel 
-		in: self class) 
-		do: [:pragma | result add: (self perform: pragma selector)]. 
-	^result
+{ #category : #'instance creation' }
+MooseModel class >> named: aString [
+	^ self new
+		name: aString;
+		yourself
 ]
 
 { #category : #accessing }
@@ -241,20 +206,37 @@ MooseModel class >> ownerOf: element [
 			self allInstances detect: [ :model | model includesID: elementID ] ifFound: [ :model | MostRecentOwner := model ] ifNone: [ nil ] ]
 ]
 
-{ #category : #'root model' }
-MooseModel class >> resetRoot [
+{ #category : #meta }
+MooseModel class >> packagesToProcessToCreateMetamodel [
+	^ (Set with: self package)
+		addAll: (self allSubmetamodelsPackagesNames collect: #asPackage);
+		addAll: self defaultPackagesToProcess;
+		yourself
+]
 
-	rootModel := nil
+{ #category : #meta }
+MooseModel class >> resetMetamodel [
+	metamodel := FMMetaModelBuilder metamodelFromPackages: self packagesToProcessToCreateMetamodel.
+
+	"MooseEntity has a cache for some infos. When we regenerate a MM we need to flush this cache."
+	metamodel classes do: [ :fm3Class | fm3Class implementingClass resetMooseEntityCache ].
+	^ metamodel
+]
+
+{ #category : #accessing }
+MooseModel class >> resetMetamodels [
+	<script>
+	self allSubclassesDo: #resetMetamodel
 ]
 
 { #category : #'root model' }
-MooseModel class >> root [ 
-	 
-	^ rootModel 
-		ifNil: 
-			[ rootModel := (self new) 
-				name: 'Root'; 
-				yourself ]
+MooseModel class >> resetRoot [
+	MooseModelRoot resetRoot
+]
+
+{ #category : #'root model' }
+MooseModel class >> root [
+	^ MooseModelRoot root
 ]
 
 { #category : #'entity collection' }
@@ -373,13 +355,15 @@ MooseModel >> exportToMSEStream: aStream [
 ]
 
 { #category : #'import-export' }
-MooseModel >> exportWithMetamodel: aMetamodel to: aStream [ 
-	| tower repository |
-	tower := FMCompleteTower new.
-	tower metaMetamodel: aMetamodel metamodel.
-	tower metamodel: aMetamodel.
-	tower model: (repository := (FMRepository with: aMetamodel) addAll: self entities).
-	tower model exportOn: aStream
+MooseModel >> exportWithMetamodel: aMetamodel to: aStream [
+	(FMModel withMetamodel: aMetamodel)
+		addAll: self entities;
+		exportOn: aStream
+]
+
+{ #category : #accessing }
+MooseModel >> factory [
+	^ self class factory
 ]
 
 { #category : #actions }
@@ -442,10 +426,10 @@ MooseModel >> includesElementsOfType: aClass [
 ]
 
 { #category : #'initialize-release' }
-MooseModel >> initialize [ 
-	 
-	super initialize. 
-	name := #noname
+MooseModel >> initialize [
+	super initialize.
+	name := #noname.
+	self metamodel: self class metamodel
 ]
 
 { #category : #actions }
@@ -469,11 +453,6 @@ MooseModel >> intersection: aGroup [
 	result := MooseGroup withAll: (self entities intersection: aGroup entities). 
 	result description: self description , '  intersected with ' , aGroup description. 
 	^result
-]
-
-{ #category : #'Famix-Extensions' }
-MooseModel >> isSmalltalk [
-	^ self sourceLanguage notNil and: [self sourceLanguage isSmalltalk]
 ]
 
 { #category : #accessing }
@@ -500,12 +479,6 @@ MooseModel >> mooseDescription [
 { #category : #accessing }
 MooseModel >> mooseDescriptionFor: class [
 	^ self metamodel descriptionOf: class instanceSide
-]
-
-{ #category : #accessing }
-MooseModel >> mooseDescriptionIn: aMetamodel [
-
-	^ aMetamodel descriptionOf: self class instanceSide
 ]
 
 { #category : #printing }
@@ -536,8 +509,8 @@ MooseModel >> name: aStringOrSymbol [
 
 { #category : #'Famix-Extensions' }
 MooseModel >> numberOfClasses [
-	<MSEProperty: #numberOfClasses type: #Number>
-	<MSEComment: 'The number of classes'>
+	<FMProperty: #numberOfClasses type: #Number>
+	<FMComment: 'The number of classes'>
 	
 	^self
 		lookUpPropertyNamed: #numberOfClasses
@@ -546,8 +519,8 @@ MooseModel >> numberOfClasses [
 
 { #category : #'Famix-Extensions' }
 MooseModel >> numberOfLinesOfCodePerClass [
-	<MSEProperty: #numberOfLinesOfCodePerClass type: #Number>
-	<MSEComment: 'The number of lines of code per class in the model'>
+	<FMProperty: #numberOfLinesOfCodePerClass type: #Number>
+	<FMComment: 'The number of lines of code per class in the model'>
 	^ self
 		lookUpPropertyNamed: #numberOfLinesOfCodePerClass
 		computedAs: [ self numberOfLinesOfCode / self numberOfClasses ]
@@ -628,21 +601,6 @@ MooseModel >> size [
 	^ self entityStorage size
 ]
 
-{ #category : #'Famix-Extensions' }
-MooseModel >> sourceLanguage [
-	<MSEProperty: #sourceLanguage type: #FamixTSourceLanguage>
-	<MSEComment: 'Source of the Language to which the model corresponds'>
-	^ sourceLanguage
-		ifNil: [ sourceLanguage := self allSourceLanguages
-				detect: [ :each | each isAttached not ]
-				ifNone: [ nil ] ]
-]
-
-{ #category : #'Famix-Extensions' }
-MooseModel >> sourceLanguage: aSymbol [
-	sourceLanguage := aSymbol
-]
-
 { #category : #'set operations' }
 MooseModel >> union: aGroup [ 
 	 
@@ -650,11 +608,4 @@ MooseModel >> union: aGroup [
 	result := MooseGroup withAll: (self entities asSet union: aGroup entities asSet). 
 	result description: self description , '  and ' , aGroup description. 
 	^result
-]
-
-{ #category : #testing }
-MooseModel >> wantsAllEntitiesNavigation [
-
-	^ self propertyNamed: #wantsAllEntitiesNavigation ifAbsent: [ 
-		self metamodel metamodel additionalProperties at: #wantsAllEntitiesNavigation ifAbsent: [ true ] ]
 ]

@@ -9,17 +9,10 @@ Class {
 { #category : #meta }
 FamixStScopingEntity class >> annotation [
 
-	<MSEClass: #ScopingEntity super: #FamixStContainerEntity>
+	<FMClass: #ScopingEntity super: #FamixStContainerEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FamixStScopingEntity class >> requirements [
-
-	<generated>
-	^ { FamixStScopingEntity }
 ]
 
 { #category : #'Famix-Extensions-metrics' }

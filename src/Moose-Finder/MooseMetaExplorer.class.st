@@ -17,12 +17,12 @@ MooseMetaExplorer >> buildBrowser [
 	browser title: 'Famix Explorer' translated.
 	browser
 		column: #hierarchy;
-		column: #attributes.
+		column: #properties.
 	browser transmit
 		to: #hierarchy;
 		andShow: [ :a | self hierarchyIn: a ].
 	browser transmit
-		to: #attributes;
+		to: #properties;
 		from: #hierarchy;
 		andShow: [ :a | 
 			self relationsIn: a.
@@ -32,9 +32,9 @@ MooseMetaExplorer >> buildBrowser [
 				onChangeOfPort: #activePresentation
 				act: [ :presentation | 
 					(presentation pane port: #activePresentation) value
-						ifNotNil: [ :activePresentation | |port| port:=((browser paneNamed: #attributes) port: #selection). port silentValue: nil. port value:nil ] ] ].
+						ifNotNil: [ :activePresentation | |port| port:=((browser paneNamed: #properties) port: #selection). port silentValue: nil. port value:nil ] ] ].
 	browser transmit
-		from: #attributes port: #strongSelection;
+		from: #properties port: #strongSelection;
 		toOutsidePort: #propertyToSelect.
 	browser transmit
 		fromOutsidePort: #propertyToSelect;
@@ -42,7 +42,7 @@ MooseMetaExplorer >> buildBrowser [
 		transformed: [ :property | property owner ].
 	browser transmit
 		fromOutsidePort: #propertyToSelect;
-		to: #attributes port: #selection.
+		to: #properties port: #selection.
 	browser transmit
 		from: #hierarchy;
 		toOutsidePort: #selectedEntity.
@@ -50,26 +50,23 @@ MooseMetaExplorer >> buildBrowser [
 		fromOutsidePort: #entityToSelect;
 		to: #hierarchy port: #selection.
 	browser transmit
-		from: #attributes;
+		from: #properties;
 		toOutsidePort: #selectedAttribute.
 	^ browser
 ]
 
 { #category : #private }
 MooseMetaExplorer >> hierarchyIn: a [
-	^ (a tree)
+	^ a tree
 		title: 'Entities';
-		display: [ :all | (all classes select: [ :each | each superclass = FM3 object ]) sorted: [:x :y | x fullName < y fullName] ];
-		children: [ :c | c subclasses sorted: [:x :y | x fullName < y fullName] ];
+		display: [ :all | (all classes select: [ :each | each superclass = FM3Object instance ]) sorted: [ :x :y | x fullName < y fullName ] ];
+		children: [ :c | c subclasses sorted: [ :x :y | x fullName < y fullName ] ];
 		format: [ :each | self abstractFormattedNameOf: each ];
-		tags: [ :each | 
-					each package isNil
-						ifTrue: [ #() ]
-						ifFalse: [ each package name ] ];
-		morphicSelectionAct: [ :list | list selection implementingClass browse ] 
-							icon: GLMUIThemeExtraIcons glamorousBrowse 
-							on: $b
-							entitled: 'Browse implementation';
+		tags: [ :each | each package isNil ifTrue: [ #() ] ifFalse: [ each package name ] ];
+		morphicSelectionAct: [ :list | list selection implementingClass browse ]
+			icon: GLMUIThemeExtraIcons glamorousBrowse
+			on: $b
+			entitled: 'Browse implementation';
 		morphicSelectionAct: [ :list | list selection inspect ] entitled: 'Inspect'
 ]
 
@@ -124,8 +121,8 @@ MooseMetaExplorer >> methodsIn: a [
 { #category : #private }
 MooseMetaExplorer >> propertiesIn: a [
 	^ a table
-		title: [ :aFM3Class | aFM3Class allPrimitiveAttributes size asString , ' Properties' translated ];
-		display: [ :aFM3Class | aFM3Class allPrimitiveAttributes ];
+		title: [ :aFM3Class | aFM3Class allPrimitiveProperties size asString , ' Properties' translated ];
+		display: [ :aFM3Class | aFM3Class allPrimitiveProperties ];
 		sorted: [ :attribute1 :attribute2 | attribute1 name < attribute2 name ];
 		column: 'name'
 			evaluated: [ :each | 
@@ -149,7 +146,7 @@ MooseMetaExplorer >> propertiesIn: a [
 					(each isDerived
 						ifTrue: [ ' /' ]
 						ifFalse: [ '' ]) ];
-		morphicSelectionAct: [ :list | Smalltalk tools browser openOnClass: list selection mmClass implementingClass selector: list selection implementingSelector ]
+		morphicSelectionAct: [ :list | Smalltalk tools browser openOnClass: list selection implementingClass selector: list selection implementingSelector ]
 			icon: GLMUIThemeExtraIcons glamorousBrowse
 			on: $b
 			entitled: 'Browse implementation';
@@ -159,9 +156,9 @@ MooseMetaExplorer >> propertiesIn: a [
 { #category : #private }
 MooseMetaExplorer >> relationsIn: a [
 	a table
-		title: [ :aFM3Class | aFM3Class allComplexAttributes size asString , ' Relations' translated ];
+		title: [ :aFM3Class | aFM3Class allComplexProperties size asString , ' Relations' translated ];
 		titleAction: [ :any |  ];
-		display: [ :aFM3Class | aFM3Class allComplexAttributes ];
+		display: [ :aFM3Class | aFM3Class allComplexProperties ];
 		sorted: [ :attribute1 :attribute2 | attribute1 name < attribute2 name ];
 		column: 'name'
 			evaluated: [ :each | 

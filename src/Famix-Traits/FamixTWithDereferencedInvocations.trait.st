@@ -9,7 +9,7 @@ Trait {
 { #category : #meta }
 FamixTWithDereferencedInvocations classSide >> annotation [
 
-	<MSEClass: #TWithDereferencedInvocations super: #Trait>
+	<FMClass: #TWithDereferencedInvocations super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -25,7 +25,7 @@ FamixTWithDereferencedInvocations >> dereferencedInvocations [
 	"Relation named: #dereferencedInvocations type: #FamixTDereferencedInvocation opposite: #referencer"
 
 	<generated>
-	<MSEComment: 'List of invocations performed on BehaviouralEntities referenced by this entity'>
+	<FMComment: 'List of invocations performed on BehaviouralEntities referenced by this entity'>
 	<derived>
 	^ dereferencedInvocations
 ]
@@ -35,5 +35,4 @@ FamixTWithDereferencedInvocations >> dereferencedInvocations: anObject [
 
 	<generated>
 	dereferencedInvocations value: anObject
-
 ]

@@ -6,7 +6,7 @@ Trait {
 { #category : #meta }
 FamixTLCOMMetrics classSide >> annotation [
 
-	<MSEClass: #TLCOMMetrics super: #Trait>
+	<FMClass: #TLCOMMetrics super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -66,8 +66,8 @@ FamixTLCOMMetrics >> calculateLCOM3 [
 { #category : #'Famix-Extensions-metrics-support' }
 FamixTLCOMMetrics >> lcom2 [
 
-	<MSEProperty: #lcom2 type: #Number>
-	<MSEComment: 'lack of cohesion in methods 2 (lcom2)'>
+	<FMProperty: #lcom2 type: #Number>
+	<FMComment: 'lack of cohesion in methods 2 (lcom2)'>
 	<derived>
 
 	^ self
@@ -78,8 +78,8 @@ FamixTLCOMMetrics >> lcom2 [
 { #category : #'Famix-Extensions-metrics-support' }
 FamixTLCOMMetrics >> lcom3 [
 
-	<MSEProperty: #lcom3 type: #Number>
-	<MSEComment: 'lack of cohesion in methods 3 (lcom3)'>
+	<FMProperty: #lcom3 type: #Number>
+	<FMComment: 'lack of cohesion in methods 3 (lcom3)'>
 	<derived>
 
 	^ self

@@ -8,8 +8,16 @@ Trait {
 { #category : #meta }
 FamixJavaTStructuralEntity classSide >> annotation [
 
-	<MSEClass: #TStructuralEntity super: #Trait>
+	<FMClass: #TStructuralEntity super: #Object>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
+]
+
+{ #category : #accessing }
+FamixJavaTStructuralEntity >> accessors [
+	<FMProperty: #accessors type: #FamixTWithAccesses>
+	<multivalued>
+	<derived>
+	^ (self incomingAccesses collectAsSet: [ :each | each accessor ]) asMooseGroup
 ]

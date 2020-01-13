@@ -10,7 +10,7 @@ Trait {
 { #category : #meta }
 FamixTFileInclude classSide >> annotation [
 
-	<MSEClass: #TFileInclude super: #Trait>
+	<FMClass: #TFileInclude super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -21,7 +21,7 @@ FamixTFileInclude >> source [
 	"Relation named: #source type: #FamixTWithFileIncludes opposite: #outgoingIncludeRelations"
 
 	<generated>
-	<MSEComment: 'The file that is including'>
+	<FMComment: 'The file that is including'>
 	^ source
 ]
 
@@ -30,7 +30,6 @@ FamixTFileInclude >> source: anObject [
 
 	<generated>
 	source := anObject
-
 ]
 
 { #category : #accessing }
@@ -38,7 +37,7 @@ FamixTFileInclude >> target [
 	"Relation named: #target type: #FamixTWithFileIncludes opposite: #incomingIncludeRelations"
 
 	<generated>
-	<MSEComment: 'The file that is included'>
+	<FMComment: 'The file that is included'>
 	^ target
 ]
 
@@ -47,5 +46,4 @@ FamixTFileInclude >> target: anObject [
 
 	<generated>
 	target := anObject
-
 ]

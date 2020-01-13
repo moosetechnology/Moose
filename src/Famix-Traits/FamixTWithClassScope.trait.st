@@ -6,7 +6,7 @@ Trait {
 { #category : #meta }
 FamixTWithClassScope classSide >> annotation [
 
-	<MSEClass: #TWithClassScope super: #Trait>
+	<FMClass: #TWithClassScope super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self

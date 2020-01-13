@@ -7,13 +7,13 @@ Trait {
 	#name : #TOODependencyQueries,
 	#traits : 'TDependencyQueries',
 	#classTraits : 'TDependencyQueries classTrait',
-	#category : #'Moose-Query'
+	#category : #'Moose-Query-Traits'
 }
 
 { #category : #meta }
 TOODependencyQueries classSide >> annotation [
 
-	<MSEClass: #TOODependencyQueries super: #Trait>
+	<FMClass: #TOODependencyQueries super: #Object>
 	<package: #'Moose-Query'>
 	<generated>
 	^self

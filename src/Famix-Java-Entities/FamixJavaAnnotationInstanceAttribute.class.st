@@ -9,17 +9,10 @@ Class {
 { #category : #meta }
 FamixJavaAnnotationInstanceAttribute class >> annotation [
 
-	<MSEClass: #AnnotationInstanceAttribute super: #FamixJavaSourcedEntity>
+	<FMClass: #AnnotationInstanceAttribute super: #FamixJavaSourcedEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FamixJavaAnnotationInstanceAttribute class >> requirements [
-
-	<generated>
-	^ { FamixJavaAnnotationInstance }
 ]
 
 { #category : #'as yet unclassified' }

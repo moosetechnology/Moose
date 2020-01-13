@@ -1,25 +1,18 @@
 Class {
 	#name : #FamixJavaType,
 	#superclass : #FamixJavaContainerEntity,
-	#traits : 'FamixTClassHierarchyNavigation + FamixTParameterizedTypeUser + FamixTType + FamixTWithTypeAliases',
-	#classTraits : 'FamixTClassHierarchyNavigation classTrait + FamixTParameterizedTypeUser classTrait + FamixTType classTrait + FamixTWithTypeAliases classTrait',
+	#traits : 'FamixTClassHierarchyNavigation + FamixTParameterizedTypeUser + FamixTType + FamixTWithMethods + FamixTWithTypeAliases',
+	#classTraits : 'FamixTClassHierarchyNavigation classTrait + FamixTParameterizedTypeUser classTrait + FamixTType classTrait + FamixTWithMethods classTrait + FamixTWithTypeAliases classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
 { #category : #meta }
 FamixJavaType class >> annotation [
 
-	<MSEClass: #Type super: #FamixJavaContainerEntity>
+	<FMClass: #Type super: #FamixJavaContainerEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FamixJavaType class >> requirements [
-
-	<generated>
-	^ { FamixJavaContainerEntity }
 ]
 
 { #category : #'Famix-Java' }
@@ -46,23 +39,6 @@ FamixJavaType >> anySuperclass [
 			each isInterface
 				ifFalse: [ ^ each ] ].
 	^ nil
-]
-
-{ #category : #accessing }
-FamixJavaType >> container [
-
-	<MSEProperty: #container type: #FamixJavaContainerEntity>
-	<MSEComment: 'Deprected, use typeContainer'>
-	<container>
-	<derived>
-
-	^ self typeContainer
-]
-
-{ #category : #accessing }
-FamixJavaType >> container: aContainer [
-
-	self typeContainer: aContainer
 ]
 
 { #category : #testing }
@@ -108,8 +84,8 @@ FamixJavaType >> incomingAccesses [
 
 { #category : #'Famix-Extensions' }
 FamixJavaType >> isAbstract [
-	<MSEProperty: #isAbstract type: #Boolean> <derived>
-	<MSEComment: 'Flag true for abstract classes.'>
+	<FMProperty: #isAbstract type: #Boolean> <derived>
+	<FMComment: 'Flag true for abstract classes.'>
 	
 	^super isAbstract
 ]
@@ -124,9 +100,9 @@ FamixJavaType >> isAnonymousClass [
 
 { #category : #testing }
 FamixJavaType >> isInnerClass [
-	<MSEProperty: #isInnerClass type: #Boolean>
+	<FMProperty: #isInnerClass type: #Boolean>
 	<derived>
-	<MSEComment:
+	<FMComment:
 		'True if the method is considered as an innerclass (i.e. is contained elsewhere than a java package: class, method, enum,...)'>
 	^ self container ifNotNil: [ :c | c isNamespace not ] ifNil: [ false ]
 ]
@@ -143,9 +119,9 @@ FamixJavaType >> isJUnit3TestCase [
 
 { #category : #testing }
 FamixJavaType >> isJUnit4TestCase [
-	<MSEProperty: #isJUnit4TestCase type: #Boolean>
+	<FMProperty: #isJUnit4TestCase type: #Boolean>
 	<derived>
-	<MSEComment: 'True if the method is considered as a Junit 4 Java test'>
+	<FMComment: 'True if the method is considered as a Junit 4 Java test'>
 	^ self methods anySatisfy: [ :m | m isJUnit4Test ]
 ]
 
@@ -167,9 +143,9 @@ FamixJavaType >> isParameterizedType [
 
 { #category : #testing }
 FamixJavaType >> isTestCase [
-	<MSEProperty: #isTestCase type: #Boolean>
+	<FMProperty: #isTestCase type: #Boolean>
 	<derived>
-	<MSEComment: 'True if the method is considered as a Java test'>
+	<FMComment: 'True if the method is considered as a Java test'>
 	^ self isJUnit3TestCase or: [ self isJUnit4TestCase ] 
 ]
 
@@ -202,18 +178,16 @@ FamixJavaType >> parentScope [
 ]
 
 { #category : #printing }
-FamixJavaType >> printOn: aStream [ 
-	| parent |
-	
+FamixJavaType >> printOn: aStream [
 	self name ifNotNil: [ aStream nextPutAll: self name ].
-	parent := self container.
-	parent ifNotNil: [ 
-		aStream nextPutAll: ' in '.
-		parent mooseNameOn: aStream ].
-	aStream 
+	self typeContainer
+		ifNotNil: [ :parent | 
+			aStream nextPutAll: ' in '.
+			parent mooseNameOn: aStream ].
+	aStream
 		nextPutAll: ' (';
 		nextPutAll: (self class name removePrefix: 'FamixJava');
-		nextPutAll: ')'
+		nextPut: $)
 ]
 
 { #category : #'Famix-Implementation' }

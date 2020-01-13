@@ -14,7 +14,7 @@ Trait {
 { #category : #meta }
 FamixTParameter classSide >> annotation [
 
-	<MSEClass: #TParameter super: #Trait>
+	<FMClass: #TParameter super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -25,7 +25,7 @@ FamixTParameter >> parentBehaviouralEntity [
 	"Relation named: #parentBehaviouralEntity type: #FamixTWithParameters opposite: #parameters"
 
 	<generated>
-	<MSEComment: 'Behavioural entity containing this parameter. belongsTo implementation'>
+	<FMComment: 'Behavioural entity containing this parameter. belongsTo implementation'>
 	<container>
 	^ parentBehaviouralEntity
 ]

@@ -2,10 +2,10 @@ Extension { #name : #FamixTestComposed1CustomEntity3 }
 
 { #category : #'*Famix-TestComposedMetamodel-Entities-accessing' }
 FamixTestComposed1CustomEntity3 >> c23 [
-	"Relation named: #c23 type: #FamixTestComposed1CustomEntity3 opposite: #c13s"
+	"Relation named: #c23 type: #FamixTestComposed2CustomEntity3 opposite: #c13s"
 
 	<generated>
-	<MSEProperty: #c23 type: #Object>
+	<FMProperty: #c23 type: #FamixTestComposed2CustomEntity3 opposite: #c13s>
 	<package: #'Famix-TestComposedMetamodel-Entities'>
 	^ self privateState attributeAt: #c23 ifAbsent: [ nil ]
 ]
@@ -19,11 +19,11 @@ FamixTestComposed1CustomEntity3 >> c23: anObject [
 
 { #category : #'*Famix-TestComposedMetamodel-Entities-accessing' }
 FamixTestComposed1CustomEntity3 >> customEntities3 [
-	"Relation named: #customEntities3 type: #FamixTestComposed1CustomEntity3 opposite: #customEntity3"
+	"Relation named: #customEntities3 type: #FamixTestComposedCustomEntity3 opposite: #customEntity3"
 
 	<generated>
 	<derived>
-	<MSEProperty: #customEntities3 type: #Object>
+	<FMProperty: #customEntities3 type: #FamixTestComposedCustomEntity3 opposite: #customEntity3>
 	<package: #'Famix-TestComposedMetamodel-Entities'>
 	^ self privateState attributeAt: #customEntities3 ifAbsentPut: [ FMMultivalueLink on: self opposite: #customEntity3: ]
 ]

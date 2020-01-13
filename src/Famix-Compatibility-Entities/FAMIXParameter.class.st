@@ -9,17 +9,10 @@ Class {
 { #category : #meta }
 FAMIXParameter class >> annotation [
 
-	<MSEClass: #Parameter super: #FAMIXStructuralEntity>
+	<FMClass: #Parameter super: #FAMIXStructuralEntity>
 	<package: #FAMIX>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FAMIXParameter class >> requirements [
-
-	<generated>
-	^ { FAMIXBehaviouralEntity }
 ]
 
 { #category : #'Famix-Implementation' }

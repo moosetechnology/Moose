@@ -11,15 +11,15 @@ Trait {
 		'#kind => FMProperty',
 		'#parentType => FMOne type: #FamixTWithMethods opposite: #methods'
 	],
-	#traits : 'FamixTWithParameters + FamixTInvocable + FamixTWithInvocations + FamixTWithReferences + FamixTWithAccesses + FamixTWithLocalVariables + FamixTWithImplicitVariables + FamixTWithSignature + FamixTWithClassScope + FamixTTypedStructure',
-	#classTraits : 'FamixTWithParameters classTrait + FamixTInvocable classTrait + FamixTWithInvocations classTrait + FamixTWithReferences classTrait + FamixTWithAccesses classTrait + FamixTWithLocalVariables classTrait + FamixTWithImplicitVariables classTrait + FamixTWithSignature classTrait + FamixTWithClassScope classTrait + FamixTTypedStructure classTrait',
+	#traits : 'FamixTWithParameters + FamixTInvocable + FamixTWithInvocations + FamixTWithReferences + FamixTWithAccesses + FamixTWithLocalVariables + FamixTWithImplicitVariables + FamixTWithSignature + FamixTWithClassScope + FamixTTypedStructure + FamixTSourceEntity',
+	#classTraits : 'FamixTWithParameters classTrait + FamixTInvocable classTrait + FamixTWithInvocations classTrait + FamixTWithReferences classTrait + FamixTWithAccesses classTrait + FamixTWithLocalVariables classTrait + FamixTWithImplicitVariables classTrait + FamixTWithSignature classTrait + FamixTWithClassScope classTrait + FamixTTypedStructure classTrait + FamixTSourceEntity classTrait',
 	#category : #'Famix-Traits-Method'
 }
 
 { #category : #meta }
 FamixTMethod classSide >> annotation [
 
-	<MSEClass: #TMethod super: #Trait>
+	<FMClass: #TMethod super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
@@ -35,8 +35,8 @@ FamixTMethod classSide >> famixTMethodRelatedGroup [
 
 { #category : #metrics }
 FamixTMethod >> cyclomaticComplexity [
-	<MSEProperty: #cyclomaticComplexity type: #Number>
-	<MSEComment: 'The number of linear-independent paths through a method.'>
+	<FMProperty: #cyclomaticComplexity type: #Number>
+	<FMComment: 'The number of linear-independent paths through a method.'>
 	^ self
 		lookUpPropertyNamed:  #cyclomaticComplexity
 		computedAs: [ self notExistentMetricValue ]
@@ -51,50 +51,46 @@ FamixTMethod >> cyclomaticComplexity: aNumber [
 { #category : #accessing }
 FamixTMethod >> isAbstract [
 
-	<MSEProperty: #isAbstract type: #Boolean>
+	<FMProperty: #isAbstract type: #Boolean>
 	<generated>
-	<MSEComment: 'True if abstract method'>
+	<FMComment: 'True if abstract method'>
 	^ isAbstract
 ]
 
 { #category : #accessing }
 FamixTMethod >> isAbstract: anObject [
-
 	<generated>
 	isAbstract := anObject
-
 ]
 
 { #category : #accessing }
 FamixTMethod >> isClassSide [
 
-	<MSEProperty: #isClassSide type: #Boolean>
+	<FMProperty: #isClassSide type: #Boolean>
 	<generated>
-	<MSEComment: 'True if class-side method'>
+	<FMComment: 'True if class-side method'>
 	^ isClassSide
 ]
 
 { #category : #accessing }
 FamixTMethod >> isClassSide: anObject [
-
 	<generated>
 	isClassSide := anObject
-
 ]
 
 { #category : #testing }
 FamixTMethod >> isConstant [
-	<MSEProperty: #isConstant type: #Boolean>
+	<FMProperty: #isConstant type: #Boolean>
 	<derived>
-	<MSEComment: 'True if the method simply returns a constant'>
+	<FMComment: 'True if the method simply returns a constant'>
 	^#constant = self kind
 ]
 
 { #category : #testing }
 FamixTMethod >> isConstructor [
-	<MSEProperty: #isConstructor type: #Boolean>
+	<FMProperty: #isConstructor type: #Boolean>
 	<derived>
-	<MSEComment: 'True if the method is a constructor of the class'>
+	<FMComment: 'True if the method is a constructor of the class'>
 
 	^ #constructor = self kind or: [ 
 		self privateState propertyAt: #isConstructor ifAbsent: [false] ]
@@ -110,9 +106,9 @@ FamixTMethod >> isConstructor: aBoolean [
 
 { #category : #testing }
 FamixTMethod >> isGetter [
-	<MSEProperty: #isGetter type: #Boolean>
+	<FMProperty: #isGetter type: #Boolean>
 	<derived>
-	<MSEComment: 'True if the method is a getter of an attribute'>
+	<FMComment: 'True if the method is a getter of an attribute'>
 	
 	^#getter = self kind
 ]
@@ -133,9 +129,9 @@ FamixTMethod >> isPureAccessor [
 
 { #category : #testing }
 FamixTMethod >> isSetter [
-	<MSEProperty: #isSetter type: #Boolean>
+	<FMProperty: #isSetter type: #Boolean>
 	<derived>
-	<MSEComment: 'True if the method is a setter on an attribute'>
+	<FMComment: 'True if the method is a setter on an attribute'>
 
 	^#setter = self kind
 ]
@@ -143,18 +139,16 @@ FamixTMethod >> isSetter [
 { #category : #accessing }
 FamixTMethod >> kind [
 
-	<MSEProperty: #kind type: #String>
+	<FMProperty: #kind type: #String>
 	<generated>
-	<MSEComment: 'Tag indicating a setter, getter, constant, constructor, or abstract method'>
+	<FMComment: 'Tag indicating a setter, getter, constant, constructor, or abstract method'>
 	^ kind
 ]
 
 { #category : #accessing }
 FamixTMethod >> kind: anObject [
-
 	<generated>
 	kind := anObject
-
 ]
 
 { #category : #printing }
@@ -170,9 +164,9 @@ FamixTMethod >> mooseNameOn: stream [
 
 { #category : #metrics }
 FamixTMethod >> numberOfMessageSends [
-	<MSEProperty: #numberOfMessageSends type: #Number>
+	<FMProperty: #numberOfMessageSends type: #Number>
 	<derived>
-	<MSEComment: 'The number of message from a method'>
+	<FMComment: 'The number of message from a method'>
 	^ self
 		lookUpPropertyNamed: #numberOfMessageSends
 		computedAs: [ self notExistentMetricValue ]
@@ -185,11 +179,19 @@ FamixTMethod >> numberOfMessageSends: aNumber [
 ]
 
 { #category : #accessing }
+FamixTMethod >> numberOfParameters [
+	<FMProperty: #numberOfParameters type: #Number>
+	<FMComment: 'The number of parameters in a method'>
+	<derived>
+	^ self lookUpPropertyNamed: #numberOfParameters computedAs: [ self parameters size ]
+]
+
+{ #category : #accessing }
 FamixTMethod >> parentType [
 	"Relation named: #parentType type: #FamixTWithMethods opposite: #methods"
 
 	<generated>
-	<MSEComment: 'Type declaring the method. It provides the implementation for belongsTo.'>
+	<FMComment: 'Type declaring the method. It provides the implementation for belongsTo.'>
 	<container>
 	^ parentType
 ]

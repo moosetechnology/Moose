@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXBehaviouralEntity class >> annotation [
 
-	<MSEClass: #BehaviouralEntity super: #FAMIXContainerEntity>
+	<FMClass: #BehaviouralEntity super: #FAMIXContainerEntity>
 	<package: #FAMIX>
 	<generated>
 	^self
@@ -17,8 +17,8 @@ FAMIXBehaviouralEntity class >> annotation [
 
 { #category : #'Famix-Extensions' }
 FAMIXBehaviouralEntity >> clientBehaviours [
-	<MSEProperty: #clientBehaviours type: #FAMIXBehaviouralEntity> <multivalued> <derived>
-	<MSEComment: 'All behaviours that depend on the receiver'>
+	<FMProperty: #clientBehaviours type: #FAMIXBehaviouralEntity> <multivalued> <derived>
+	<FMComment: 'All behaviours that depend on the receiver'>
 	^ self invokingBehaviours 
 ]
 
@@ -33,25 +33,16 @@ FAMIXBehaviouralEntity >> computeNumberOfLinesOfCode [
 
 { #category : #'Famix-Extensions-private' }
 FAMIXBehaviouralEntity >> computeNumberOfLinesOfCodeIfSmalltalk [
-	| parser |
-	
-	parser := RBVisitorForFAMIXMetrics new.
-	parser processMethod: self usingImporter: nil inModel: nil.
-	^ parser numberOfLinesOfCode
+	^ (RBVisitorForFAMIXMetrics for: self) numberOfLinesOfCode
 ]
 
 { #category : #'Famix-Extensions' }
 FAMIXBehaviouralEntity >> cyclomaticComplexity [
-	<MSEProperty: #cyclomaticComplexity type: #Number>
-	<MSEComment: 'The number of linear-independent paths through a method.'>
+	<FMProperty: #cyclomaticComplexity type: #Number>
+	<FMComment: 'The number of linear-independent paths through a method.'>
 	^ self
 		lookUpPropertyNamed: #cyclomaticComplexity
-		computedAs: [ self mooseModel isSmalltalk
-				ifTrue: [ | parser |
-					parser := RBVisitorForFAMIXMetrics new.
-					parser processMethod: self usingImporter: nil inModel: nil.
-					parser cyclomaticNumber2 ]
-				ifFalse: [ self notExistentMetricValue ] ]
+		computedAs: [ self mooseModel isSmalltalk ifTrue: [ (RBVisitorForFAMIXMetrics for: self) cyclomaticNumber ] ifFalse: [ self notExistentMetricValue ] ]
 ]
 
 { #category : #'Famix-Extensions' }
@@ -90,9 +81,9 @@ FAMIXBehaviouralEntity >> isBehaviouralEntity [
 
 { #category : #'Famix-Extensions' }
 FAMIXBehaviouralEntity >> numberOfAccesses [
-	<MSEProperty: #numberOfAccesses type: #Number>
+	<FMProperty: #numberOfAccesses type: #Number>
 	<derived>
-	<MSEComment: 'The number of accesses from a method'>
+	<FMComment: 'The number of accesses from a method'>
 	
 	^ self 
 		lookUpPropertyNamed: #numberOfAccesses
@@ -101,8 +92,8 @@ FAMIXBehaviouralEntity >> numberOfAccesses [
 
 { #category : #'Famix-Extensions' }
 FAMIXBehaviouralEntity >> numberOfComments [
-	<MSEProperty: #numberOfComments type: #Number>
-	<MSEComment: 'The number of comment fragments'>
+	<FMProperty: #numberOfComments type: #Number>
+	<FMComment: 'The number of comment fragments'>
 	<derived>
 	^ self lookUpPropertyNamed: #numberOfComments computedAs: [ self comments size ]
 ]
@@ -115,18 +106,11 @@ FAMIXBehaviouralEntity >> numberOfComments: aNumber [
 
 { #category : #'Famix-Extensions' }
 FAMIXBehaviouralEntity >> numberOfConditionals [
-	<MSEProperty: #numberOfConditionals type: #Number>
-	<MSEComment: 'The number of conditionals in a method'>
+	<FMProperty: #numberOfConditionals type: #Number>
+	<FMComment: 'The number of conditionals in a method'>
 	^ self
 		lookUpPropertyNamed: #numberOfConditionals
-		computedAs: [ 
-			self mooseModel isSmalltalk
-				ifTrue: [ 
-					| parser |
-					parser := RBVisitorForFAMIXMetrics new.
-					parser processMethod: self usingImporter: nil inModel: nil.
-					parser numberOfConditionals ]
-				ifFalse: [ self notExistentMetricValue ] ]
+		computedAs: [ self mooseModel isSmalltalk ifTrue: [ (RBVisitorForFAMIXMetrics for: self) numberOfConditionals ] ifFalse: [ self notExistentMetricValue ] ]
 ]
 
 { #category : #'Famix-Extensions' }
@@ -137,8 +121,8 @@ FAMIXBehaviouralEntity >> numberOfConditionals: aNumber [
 
 { #category : #'Famix-Extensions' }
 FAMIXBehaviouralEntity >> numberOfLinesOfCode [
-	<MSEProperty: #numberOfLinesOfCode type: #Number>
-	<MSEComment: 'The number of lines of code in a method.'>
+	<FMProperty: #numberOfLinesOfCode type: #Number>
+	<FMComment: 'The number of lines of code in a method.'>
 	^ self
 		lookUpPropertyNamed: #numberOfLinesOfCode
 		computedAs: [ self computeNumberOfLinesOfCode ]
@@ -152,26 +136,19 @@ FAMIXBehaviouralEntity >> numberOfLinesOfCode: aNumber [
 
 { #category : #'Famix-Extensions' }
 FAMIXBehaviouralEntity >> numberOfMessageSends [
-	<MSEProperty: #numberOfMessageSends type: #Number>
+	<FMProperty: #numberOfMessageSends type: #Number>
 	<derived>
-	<MSEComment: 'The number of message from a method'>
+	<FMComment: 'The number of message from a method'>
 	^ self
 		lookUpPropertyNamed: #numberOfMessageSends
-		computedAs: [ 
-			self mooseModel isSmalltalk
-				ifTrue: [ 
-					| parser |
-					parser := RBVisitorForFAMIXMetrics new.
-					parser processMethod: self usingImporter: nil inModel: nil.
-					parser numberOfMessageSends ]
-				ifFalse: [ self notExistentMetricValue ] ]
+		computedAs: [ self mooseModel isSmalltalk ifTrue: [ (RBVisitorForFAMIXMetrics for: self) numberOfMessageSends ] ifFalse: [ self notExistentMetricValue ] ]
 ]
 
 { #category : #'Famix-Extensions' }
 FAMIXBehaviouralEntity >> numberOfOutgoingInvocations [
-	<MSEProperty: #numberOfOutgoingInvocations type: #Number>
+	<FMProperty: #numberOfOutgoingInvocations type: #Number>
 	<derived>
-	<MSEComment: 'The number of invocations in a method'>
+	<FMComment: 'The number of invocations in a method'>
 	
 	^self
 		lookUpPropertyNamed: #numberOfOutgoingInvocations
@@ -180,27 +157,17 @@ FAMIXBehaviouralEntity >> numberOfOutgoingInvocations [
 
 { #category : #'Famix-Extensions' }
 FAMIXBehaviouralEntity >> numberOfStatements [
-	<MSEProperty: #numberOfStatements type: #Number>
-	<MSEComment: 'The number of statements in a method'>
+	<FMProperty: #numberOfStatements type: #Number>
+	<FMComment: 'The number of statements in a method'>
 	^ self
 		lookUpPropertyNamed: #numberOfStatements
-		computedAs: [ self mooseModel isSmalltalk
-				ifTrue: [ | parser |
-					parser := RBVisitorForFAMIXMetrics new.
-					parser processMethod: self usingImporter: nil inModel: nil.
-					parser numberOfStatements ]
-				ifFalse: [ self notExistentMetricValue ] ]
-]
-
-{ #category : #'moosequery-queries-outgoing' }
-FAMIXBehaviouralEntity >> outgoingTypeDeclarations [
-	^ self declaredType ifNil: [ {} ] ifNotNil: [ :dt | {(MooseQueryTypeDeclarationAssociation newFrom: self to: dt)} ]
+		computedAs: [ self mooseModel isSmalltalk ifTrue: [ (RBVisitorForFAMIXMetrics for: self) numberOfStatements ] ifFalse: [ self notExistentMetricValue ] ]
 ]
 
 { #category : #'Famix-Extensions' }
 FAMIXBehaviouralEntity >> providerBehaviours [
-	<MSEProperty: #providerBehaviours type: #FAMIXBehaviouralEntity> <derived> <multivalued>
-	<MSEComment: 'All behaviours that the receiver depends on'>
+	<FMProperty: #providerBehaviours type: #FAMIXBehaviouralEntity> <derived> <multivalued>
+	<FMComment: 'All behaviours that the receiver depends on'>
 
 	^ self invokedBehaviours 
 ]

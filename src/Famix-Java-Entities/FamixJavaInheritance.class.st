@@ -1,15 +1,15 @@
 Class {
 	#name : #FamixJavaInheritance,
 	#superclass : #FamixJavaAssociation,
-	#traits : 'FamixTInheritanceGlue + FamixTSubInheritance + FamixTSuperInheritance',
-	#classTraits : 'FamixTInheritanceGlue classTrait + FamixTSubInheritance classTrait + FamixTSuperInheritance classTrait',
+	#traits : 'FamixTInheritance',
+	#classTraits : 'FamixTInheritance classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
 { #category : #meta }
 FamixJavaInheritance class >> annotation [
 
-	<MSEClass: #Inheritance super: #FamixJavaAssociation>
+	<FMClass: #Inheritance super: #FamixJavaAssociation>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self

@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaAssociation class >> annotation [
 
-	<MSEClass: #Association super: #FamixJavaSourcedEntity>
+	<FMClass: #Association super: #FamixJavaSourcedEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
@@ -28,8 +28,8 @@ FamixJavaAssociation >> from [
 	It should be refined by subclasses by delegating to a concrete property.
 	This property should always remain derived."
 	
-	<MSEProperty: #from type: #FamixJavaNamedEntity> <derived>
-	<MSEComment: 'Generic accessor to the entity originating the association. Refined by subclasses'>
+	<FMProperty: #from type: #FamixJavaNamedEntity> <derived>
+	<FMComment: 'Generic accessor to the entity originating the association. Refined by subclasses'>
 	^ self subclassResponsibility
 ]
 
@@ -50,7 +50,7 @@ FamixJavaAssociation >> to [
 	It should be refined by subclasses by delegating to a concrete property.
 	This property should always remain derived."
 
-	<MSEProperty: #to type: #FamixJavaNamedEntity> <derived>
-	<MSEComment: 'Generic accessor to the target entity of the association'>
+	<FMProperty: #to type: #FamixJavaNamedEntity> <derived>
+	<FMComment: 'Generic accessor to the target entity of the association'>
 	^ self subclassResponsibility
 ]
