@@ -228,6 +228,9 @@ MooseModel class >> resetMetamodel [
 
 	"MooseEntity has a cache for some infos. When we regenerate a MM we need to flush this cache."
 	metamodel classes do: [ :fm3Class | fm3Class implementingClass resetMooseEntityCache ].
+	
+	self allInstancesDo: [ :model | model updateMetamodelTo: metamodel ].
+
 	^ metamodel
 ]
 
@@ -446,7 +449,7 @@ MooseModel >> includesElementsOfType: aClass [
 	^ (self allWithType: aClass) isEmpty not
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseModel >> initialize [
 	super initialize.
 	name := #noname.
@@ -629,4 +632,11 @@ MooseModel >> union: aGroup [
 	result := MooseGroup withAll: (self entities asSet union: aGroup entities asSet). 
 	result description: self description , '  and ' , aGroup description. 
 	^result
+]
+
+{ #category : #initialization }
+MooseModel >> updateMetamodelTo: aMetamodel [
+	self metamodel ifNil: [ ^ self ].
+
+	self metamodel: aMetamodel
 ]
