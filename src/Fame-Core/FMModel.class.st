@@ -1,30 +1,45 @@
 "
-A FMRepository is a model: a group of instances of FM3Elements.
-A FMMetaRepository is a group of FM3Elements. 
+Description
+--------------------
 
-Note that FMRepository is not part of the FM3 model. It is more an implementation class. 
+I am a model used in the scope of Fame.
 
-As an example when loading the Java class Point in mse format.
+I contains real instances of a class representing a concept in the current metamodel. This class is described by an entity of my meta-model. 
 
-The repository contains an instance of the FAMIXClass representing the Java Point class. 
-The metaRepository contains instances of FM3Element describing FAMIXClass. 
-The metaMetaRepository contains instances describing the FM3Element class.
+I have a meta-model containing descriptions of my content. A FMModel has a FMMetaModel as meta-model which has a FMMetaMetaModel has metamodel. 
+
+For example, in the Smalltalk metamodel of Famix, if we want to represent the Point class we will have:
+- A FMModel containing an instance of FamixStClass representing the Point class.
+- A FMMetaModel containing instances of FM3Elements describing FamixStClass.
+- A FMMetaMetaModel containing instances of FM3Element describing FM3 meta model (Package, Class and Property).
+
+I include a system of caches in case my users want to store informations to speed up an application.
+
+I will initialize myself with a new FMMetaModel but this one can be replaced by an existing one.
+
+Public API and Key Messages
+--------------------
+
+- #metaDescriptionOn: 		Allows one to get the meta-description of an element.
+
+Examples
+--------------------
+	
+	| model |
+	model := FMModel new.
+	model metamodel importString: FMHeinekenExample metamodelMSE.
+	model.
 
 
------
+	model := (FMModel withMetamodel: (FMMetaModel fromString: FMHeinekenExample metamodelMSE)).
+ 
+Internal Representation and Key Implementation Points.
+--------------------
 
-A FMRepository knows its metaRepository instance of FM3MetaRepository
-
-We can add, search, import export the model elements. 
-
-We can get the description of an element using the method metaDescriptionOf:
-
-
-To create a repository we can import it from a stream using importStream:.
-
-You can also use a kind of DSL to describe your model. Have a look at document: senders. 
-
-
+    Instance Variables
+	additionalProperties:		<aDictionary>		A cache used to store some informations about the model.
+	elements:						<aCollection>		All the entities of the model.
+	metamodel:					<aFMMetaModel>		The meta-model describing my entities.
 
 "
 Class {

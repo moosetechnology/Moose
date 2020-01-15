@@ -65,19 +65,13 @@ FAMIXMethod >> compiledMethod [
 
 { #category : #'Famix-Extensions' }
 FAMIXMethod >> cyclomaticComplexity [
-
 	"redefine this method because we need to override an implementation provided by FamixTMethod"
 
 	<FMProperty: #cyclomaticComplexity type: #Number>
 	<FMComment: 'The number of linear-independent paths through a method.'>
 	^ self
 		lookUpPropertyNamed: #cyclomaticComplexity
-		computedAs: [ self mooseModel isSmalltalk
-				ifTrue: [ | parser |
-					parser := RBVisitorForFAMIXMetrics new.
-					parser processMethod: self usingImporter: nil inModel: nil.
-					parser cyclomaticNumber2 ]
-				ifFalse: [ self notExistentMetricValue ] ]
+		computedAs: [ self mooseModel isSmalltalk ifTrue: [ (RBVisitorForFAMIXMetrics for: self) cyclomaticNumber ] ifFalse: [ self notExistentMetricValue ] ]
 ]
 
 { #category : #'Famix-Java' }
@@ -269,14 +263,7 @@ FAMIXMethod >> numberOfMessageSends [
 	<FMComment: 'The number of message from a method'>
 	^ self
 		lookUpPropertyNamed: #numberOfMessageSends
-		computedAs: [ 
-			self mooseModel isSmalltalk
-				ifTrue: [ 
-					| parser |
-					parser := RBVisitorForFAMIXMetrics new.
-					parser processMethod: self usingImporter: nil inModel: nil.
-					parser numberOfMessageSends ]
-				ifFalse: [ self notExistentMetricValue ] ]
+		computedAs: [ self mooseModel isSmalltalk ifTrue: [ (RBVisitorForFAMIXMetrics for: self) numberOfMessageSends ] ifFalse: [ self notExistentMetricValue ] ]
 ]
 
 { #category : #'Famix-Implementation' }

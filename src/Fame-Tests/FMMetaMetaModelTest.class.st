@@ -4,13 +4,13 @@ Class {
 	#instVars : [
 		'metaMetaModel'
 	],
-	#category : #'Fame-Tests'
+	#category : #'Fame-Tests-Core'
 }
 
 { #category : #running }
 FMMetaMetaModelTest >> setUp [
 	super setUp.
-	metaMetaModel := FMMetaMetaModel new
+	metaMetaModel := FMMetaMetaModel default
 ]
 
 { #category : #tests }

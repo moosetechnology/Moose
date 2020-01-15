@@ -1,10 +1,32 @@
+"
+Description
+--------------------
+
+I am an abstract slot used to declare fame properties for a class.
+The declared properties with my subclasses must have an opposite.
+
+A relation slot will have:
+- A name which is the name of the property
+- A type which is the type of the property 
+- An inverse name which is the name of the opposite property.
+
+My sublasses will define everything related to the cardinality of the relation side.
+ 
+Internal Representation and Key Implementation Points.
+--------------------
+
+    Instance Variables
+	inverseName:		<aString>		The name of the opposite slot.
+	inverseSlot:		<aSlot>
+	targetClass:		<aClass>
+
+"
 Class {
 	#name : #FMRelationSlot,
 	#superclass : #InstanceVariableSlot,
 	#instVars : [
 		'targetClass',
-		'inverseName',
-		'inverseSlot'
+		'inverseName'
 	],
 	#category : #'Fame-Core-Utilities'
 }
@@ -71,9 +93,7 @@ FMRelationSlot >> hasSameDefinitionAs: otherSlot [
 
 { #category : #comparing }
 FMRelationSlot >> hash [
-	^ ((self species hash bitXor: self name hash) 
-			bitXor: (self index ifNil: [ 0 ])) 
-				bitXor: self targetClassName hash
+	^ (super hash bitXor: self targetClassName hash) bitXor: inverseName hash
 ]
 
 { #category : #initialization }
@@ -90,13 +110,6 @@ FMRelationSlot >> inverse: anInverseSymbol inClass: aTargetClassOrSymbol [
 { #category : #accessing }
 FMRelationSlot >> inverseName [
 	^ inverseName
-]
-
-{ #category : #accessing }
-FMRelationSlot >> inverseSlot [
-	^ inverseSlot
-		ifNil: [ self linkUp.
-			inverseSlot ]
 ]
 
 { #category : #testing }
@@ -132,14 +145,6 @@ FMRelationSlot >> isToOne [
 { #category : #testing }
 FMRelationSlot >> isWrittenIn: aMethod [
 	^ aMethod allLiterals includes: self
-]
-
-{ #category : #initialization }
-FMRelationSlot >> linkUp [
-	inverseSlot := self targetClass slotNamed: inverseName.
-	self inverseSlot isFMRelationSlot ifFalse: [ self error: 'Invalid association: ... ' ].
-
-	self inverseSlot inverseName = self name ifFalse: [ self error: 'Invalid association: inverse names do not match' ]
 ]
 
 { #category : #printing }

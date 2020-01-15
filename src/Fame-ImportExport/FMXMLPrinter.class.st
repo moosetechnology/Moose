@@ -1,20 +1,22 @@
+"
+Description
+--------------------
+
+I am responsible of printing the XML format markup during a model export.
+
+Examples
+--------------------
+
+	| printer |
+	printer := FMXMLPrinter onString.
+	FMMetaMetaModel default exportWithPrinter: printer.
+	printer stream contents
+"
 Class {
 	#name : #FMXMLPrinter,
 	#superclass : #FMDataStructurePrinter,
 	#category : #'Fame-ImportExport-Exporters'
 }
-
-{ #category : #parsing }
-FMXMLPrinter >> beginAttribute: name [
-
-	stream nextPut: $>.
-	indent := indent + 1.
-	self crTabs.
-	stream 
-		nextPutAll: '<Attribute name="';
-		nextPutAll: name;
-		nextPut: $"
-]
 
 { #category : #parsing }
 FMXMLPrinter >> beginDocument [
@@ -25,7 +27,7 @@ FMXMLPrinter >> beginDocument [
 ]
 
 { #category : #parsing }
-FMXMLPrinter >> beginElement: name [
+FMXMLPrinter >> beginEntity: name [
 
 	stream nextPut: $>.
 	indent := indent + 1.
@@ -37,13 +39,15 @@ FMXMLPrinter >> beginElement: name [
 ]
 
 { #category : #parsing }
-FMXMLPrinter >> endAttribute: name [
+FMXMLPrinter >> beginProperty: name [
 
 	stream nextPut: $>.
+	indent := indent + 1.
 	self crTabs.
 	stream 
-		nextPutAll: '</Attribute'.
-	indent := indent - 1.
+		nextPutAll: '<Attribute name="';
+		nextPutAll: name;
+		nextPut: $"
 ]
 
 { #category : #parsing }
@@ -55,12 +59,22 @@ FMXMLPrinter >> endDocument [
 ]
 
 { #category : #parsing }
-FMXMLPrinter >> endElement: name [
+FMXMLPrinter >> endEntity: name [
 
 	stream nextPut: $>.
 	self crTabs.
 	stream 
 		nextPutAll: '</Element'.
+	indent := indent - 1.
+]
+
+{ #category : #parsing }
+FMXMLPrinter >> endProperty: name [
+
+	stream nextPut: $>.
+	self crTabs.
+	stream 
+		nextPutAll: '</Attribute'.
 	indent := indent - 1.
 ]
 

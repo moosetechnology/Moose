@@ -1,3 +1,39 @@
+"
+Description
+--------------------
+
+I am responsible for the creation and resolutions of entities during the import of a model.
+
+I'll be used by a parser such as a FMMSEParser.
+
+While everything is not resolved, I'll create ""Future"" elements to replace them.
+
+Examples
+--------------------
+
+	(FMImporter model: (FMMetaModel fromString: '((FM3.Package (id: 1) (name ''Office'')))'))
+		fromString: '((FM3.Class (name ''Employee'') (package (ref: Office))))';
+		run;
+		model
+		
+	""Or via a model:""
+	(FMMetaModel fromString: '((FM3.Package (id: 1) (name ''Office'')))')
+ 
+Internal Representation and Key Implementation Points.
+--------------------
+
+    Instance Variables
+	entities:								<aCollection>				The collection of all created entities.
+	ensureNoDandlingReferences:		<aBoolean>					If true, at the end of the import we ensure that every entity was resolved and that we have no dangling reference left.
+	model:									<aModel>						The model to which we should add all the entities.
+	numberOfDanglingReferences:		<anInteger>					The number of dangling references created and unresolved yet. Used to validate that everything is resolved at the end.
+	reminderDict:						<aDictionary>				A dictionary mapping a serial to the dangling references pointing to it.
+	serialDict:							<aDictionary>				A dictionary mapping serials to the real entity they represent.
+	stack:									<aStack>						A stack of the entities been resolved.
+	stream:								<aStream>						The stream to parse in order to import the model.
+	translationUnit:					<aFMTranslationUnit>		A translation unit used to map the names from the MSE to different entities during the import, in case of renaming for example.
+
+"
 Class {
 	#name : #FMImporter,
 	#superclass : #Object,
@@ -5,14 +41,14 @@ Class {
 	#classTraits : 'FMTImportExportStructure classTrait',
 	#instVars : [
 		'stack',
-		'elements',
 		'model',
 		'stream',
-		'tally',
 		'reminderDict',
 		'serialDict',
 		'translationUnit',
-		'ensureNoDandlingReferences'
+		'ensureNoDandlingReferences',
+		'numberOfDanglingReferences',
+		'entities'
 	],
 	#category : #'Fame-ImportExport-Importers'
 }
@@ -32,8 +68,8 @@ FMImporter >> assign: element to: serial [
 	todo
 		do: [ :each | 
 			each resolve: element.
-			tally := tally - 1.
-			self assert: tally >= 0 ]
+			numberOfDanglingReferences := numberOfDanglingReferences - 1.
+			self assert: numberOfDanglingReferences >= 0 ]
 ]
 
 { #category : #accessing }
@@ -44,73 +80,68 @@ FMImporter >> autorizeDandlingReferencesAtEnd [
 ]
 
 { #category : #parsing }
-FMImporter >> beginAttribute: name [ 
-	
-	stack top beginAttribute: name
-]
-
-{ #category : #parsing }
 FMImporter >> beginDocument [
-	
 	stack := Stack new.
-	elements := OrderedCollection new.
+	entities := OrderedCollection new.
 	serialDict := IdentityDictionary new.
 	reminderDict := IdentityDictionary new.
-	tally := 0.
-	
+	numberOfDanglingReferences := 0
 ]
 
 { #category : #parsing }
-FMImporter >> beginElement: name [
+FMImporter >> beginEntity: name [
 	| translatedName |
 	translatedName := self translationUnit translate: name.
-	stack push: (FMFutureElement with: self name: translatedName)
+	stack push: (FMFutureEntity in: self named: translatedName)
+]
+
+{ #category : #parsing }
+FMImporter >> beginProperty: name [
+	self currentEntity beginProperty: name
+]
+
+{ #category : #accessing }
+FMImporter >> currentEntity [
+	^ stack top
 ]
 
 { #category : #private }
 FMImporter >> dangling: reference to: serial [
 	(reminderDict at: serial ifAbsentPut: [ OrderedCollection new ]) add: reference.
-	tally := tally + 1.
+	numberOfDanglingReferences := numberOfDanglingReferences + 1.
 	^ reference
-]
-
-{ #category : #accessing }
-FMImporter >> elements [
-	^ elements
-]
-
-{ #category : #parsing }
-FMImporter >> endAttribute: name [ 
-	
-	stack top endAttribute: name
 ]
 
 { #category : #parsing }
 FMImporter >> endDocument [
 	self assert: stack isEmpty.
 	stack := nil.
-	ensureNoDandlingReferences ifTrue: [ tally = 0 ifFalse: [ FMUnresolvedDanglingReferences signal ] ].
-	model addAll: elements
+	ensureNoDandlingReferences ifTrue: [ numberOfDanglingReferences isZero ifFalse: [ FMUnresolvedDanglingReferences signal ] ].
+	model addAll: entities
 ]
 
 { #category : #parsing }
-FMImporter >> endElement: name [
-	| future element |
+FMImporter >> endEntity: name [
+	| future entity |
 	future := stack pop.
-	element := future instance.
-	elements add: element.
-	stack ifNotEmpty: [ stack top currentAttribute values add: element ]
+	entity := future instance.
+	entities add: entity.
+	stack ifNotEmpty: [ self currentEntity addToPropertyValues: entity ]
+]
+
+{ #category : #parsing }
+FMImporter >> endProperty: name [
+	self currentEntity endProperty
+]
+
+{ #category : #accessing }
+FMImporter >> entityAt: aSerial ifAbsent: aBlock [
+	^ serialDict at: aSerial ifAbsent: aBlock
 ]
 
 { #category : #accessing }
 FMImporter >> fromString: aString [
-
 	self stream: aString readStream
-]
-
-{ #category : #accessing }
-FMImporter >> index [
-	^serialDict
 ]
 
 { #category : #initialization }
@@ -137,17 +168,17 @@ FMImporter >> model: aModel [
 
 { #category : #parsing }
 FMImporter >> primitive: value [
-	stack top currentAttribute values add: value
+	self currentEntity addToPropertyValues: value
 ]
 
 { #category : #parsing }
 FMImporter >> referenceName: name [
-	stack top currentAttribute values add: (model elementNamed: name)
+	self currentEntity addToPropertyValues: (model elementNamed: name)
 ]
 
 { #category : #parsing }
 FMImporter >> referenceNumber: serial [
-	stack top currentAttribute referenceNumber: serial
+	self currentEntity currentProperty referenceNumber: serial
 ]
 
 { #category : #running }
@@ -159,22 +190,18 @@ FMImporter >> run [
 ]
 
 { #category : #parsing }
-FMImporter >> serial: serial [ 
-	
-	stack top serial: serial
+FMImporter >> serial: serial [
+	self assign: self currentEntity instance to: serial
 ]
 
 { #category : #accessing }
 FMImporter >> stream [
-
-	^stream
+	^ stream
 ]
 
 { #category : #accessing }
 FMImporter >> stream: aReadStream [
-
-	stream := aReadStream 
-	
+	stream := aReadStream
 ]
 
 { #category : #accessing }

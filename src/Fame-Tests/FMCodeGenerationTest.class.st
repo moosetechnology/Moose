@@ -47,7 +47,7 @@ FMCodeGenerationTest >> testDefaultClass [
 FMCodeGenerationTest >> testFM3Generation [
 	self
 		shouldnt: [ FMDefaultCodeGenerator new
-				visit: FMMetaMetaModel new;
+				visit: FMMetaMetaModel default;
 				previewChangesIfShiftPressed ]
 		raise: Error
 ]

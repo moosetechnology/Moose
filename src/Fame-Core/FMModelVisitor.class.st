@@ -1,3 +1,9 @@
+"
+Description
+--------------------
+
+I am an abstract visitor able to visit a FMModel, FM3Package, FM3Class or FM3Propery.
+"
 Class {
 	#name : #FMModelVisitor,
 	#superclass : #Object,

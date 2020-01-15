@@ -1,14 +1,52 @@
+"
+Description
+--------------------
+
+I am an exporter of fame model.
+
+I can be used to export a model or a metamodel in different formats. 
+
+The format will be delegated to a FMDataStructurePrinter via a strategy design pattern.
+
+For performance reasons we use a hash table instead of a dictionary to keep the indexes.
+
+Examples
+--------------------
+
+	| metamodel printer |
+	printer := FMMSEPrinter onString.
+	metamodel := FMMetaModelBuilder metamodelFrom: {LIBLibrary . LIBBook . LIBPerson}.
+
+	FMModelExporter new
+		model: metamodel;
+		printer: printer;
+		run.
+		
+	printer stream contents
+ 
+Internal Representation and Key Implementation Points.
+--------------------
+
+    Instance Variables
+	indexMap:							<aDictionary>						Dictionary mapping elements to export with their index.
+	lastUpdate:						<anInteger>							Number a millisecords since we last updated the progress bar. This is used to not update the progress bar too much.
+	numberOfExportedElements:	<anInteger>							Number of elements exported. This is used by the progress bar.
+	printer:							<aFMDataStructurePrinter>		Printer used to print the data structure of the export.
+	progressBar:						<aProgressBar>						Progress bar to update during the export.
+	model:								<aFMModel>							Model to export.
+
+
+"
 Class {
 	#name : #FMModelExporter,
 	#superclass : #Object,
 	#instVars : [
-		'repository',
 		'printer',
-		'index',
-		'nb',
-		'progBar',
-		'roots',
-		'lastUpdate'
+		'lastUpdate',
+		'model',
+		'numberOfExportedElements',
+		'progressBar',
+		'indexMap'
 	],
 	#category : #'Fame-ImportExport-Exporters'
 }
@@ -19,19 +57,17 @@ FMModelExporter class >> new [
 ]
 
 { #category : #exporting }
-FMModelExporter >> basicRun [
-	printer beginDocument.
-	self roots do: [ :each | self exportElement: each ].
-	printer endDocument
+FMModelExporter >> export: aCollectionOfElements [
+	printer inDocumentDo: [ aCollectionOfElements do: [ :each | self exportEntity: each ] ]
 ]
 
 { #category : #exporting }
-FMModelExporter >> exportElement: each [
+FMModelExporter >> exportEntity: each [
 	| meta |
-	meta := repository metaDescriptionOf: each.
+	meta := model metaDescriptionOf: each.
 
 	printer
-		inElement: meta fullName
+		inEntity: meta fullName
 		do: [ printer serial: (self indexOf: each).
 			(self sortedPropertiesOf: meta) do: [ :property | self exportProperty: property for: each ] ].
 
@@ -43,7 +79,7 @@ FMModelExporter >> exportProperty: property for: each [
 	| values |
 	(self shouldIgnoreProperty: property) ifTrue: [ ^ self ].
 
-	values := repository get: property element: each.
+	values := model get: property element: each.
 
 	"Do not export empty properties."
 	values isEmptyOrNil ifTrue: [ ^ self ].
@@ -54,38 +90,43 @@ FMModelExporter >> exportProperty: property for: each [
 { #category : #exporting }
 FMModelExporter >> exportProperty: property withAll: values [
 	printer
-		inAttribute: property name
+		inProperty: property name
 		do: [ values
 				do: [ :each | 
 					property type isPrimitive
 						ifTrue: [ printer primitive: each ]
-						ifFalse: [ printer referenceNumber: (self indexOf: each) ] ] ]
+						ifFalse: [
+							property isChildrenProperty
+								ifTrue: [ self exportEntity: each ]
+								ifFalse: [
+									(FM3Constant constants includes: each)
+										ifTrue: [ printer referenceName: each name ]
+										ifFalse: [ printer referenceNumber: (self indexOf: each) ] ] ] ] ]
 ]
 
 { #category : #exporting }
 FMModelExporter >> incrementProgressBar [
-	nb := nb + 1.
-	(progBar isNotNil and: [ (Time millisecondsSince: lastUpdate) >= 500 ]) ifFalse: [ ^ self ].
+	numberOfExportedElements := numberOfExportedElements + 1.
+	(progressBar isNotNil and: [ (Time millisecondsSince: lastUpdate) >= 500 ]) ifFalse: [ ^ self ].
 
-	progBar value: nb.
+	progressBar value: numberOfExportedElements.
 	lastUpdate := Time millisecondClockValue
 ]
 
 { #category : #private }
 FMModelExporter >> indexOf: each [
-	^ index at: each ifAbsentPut: [ index size + 1 ]
+	^ indexMap at: each ifAbsentPut: [ indexMap size + 1 ]
 ]
 
 { #category : #initialization }
 FMModelExporter >> initialize [
 	super initialize.
-	index := IdentityHashTable new "We use IdentityHashTable because it is more performant than IdentityDictionary for big collections."
+	indexMap := IdentityHashTable new "We use IdentityHashTable because it is more performant than IdentityDictionary for big collections."
 ]
 
 { #category : #accessing }
-FMModelExporter >> model: aRepository [
-	repository := aRepository.
-	roots := nil. "reset cache for roots"
+FMModelExporter >> model: aFMModel [
+	model := aFMModel
 ]
 
 { #category : #accessing }
@@ -95,30 +136,30 @@ FMModelExporter >> printer: aPrinter [
 
 { #category : #private }
 FMModelExporter >> roots [
-	^ roots
-		ifNil: [
-			roots := repository elements iterator
-							| [ :each | FM3Constant constants includes: each ] rejectIt
-							| [ :each | repository isMetamodel not or: [ repository classIsRoot: each ] ] selectIt
-							> Array ]
+	^ model elements iterator
+		| [ :each | FM3Constant constants includes: each ] rejectIt
+		| [ :each | model isMetamodel not or: [ model classIsRoot: each ] ] selectIt
+		> Array 
 ]
 
 { #category : #exporting }
 FMModelExporter >> run [
-	nb := 0.
+	| roots |
+	roots := self roots.
+	numberOfExportedElements := 0.
 	UIManager default
 		displayProgress: 'Writing ' , printer stream localName
 		from: 0
-		to: self roots size
+		to: roots size
 		during: [ :bar | 
-			progBar := bar.
+			progressBar := bar.
 			lastUpdate := 0.
-			self basicRun ]
+			self export: roots ]
 ]
 
 { #category : #exporting }
 FMModelExporter >> shouldIgnoreProperty: property [
-	(repository metamodel includes: property) ifFalse: [ ^ true ].
+	(model metamodel includes: property) ifFalse: [ ^ true ].
 
 	^ property isDerived
 ]

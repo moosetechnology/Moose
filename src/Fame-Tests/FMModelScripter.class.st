@@ -17,30 +17,19 @@ FMModelScripter class >> client: aClient [
 { #category : #'DSL-synonyms' }
 FMModelScripter >> a: attributeName of: valueOrBodyOrArray [
 	
-	self attribute: attributeName with: valueOrBodyOrArray
+	self property: attributeName with: valueOrBodyOrArray
 ]
 
 { #category : #'DSL-synonyms' }
 FMModelScripter >> add: attributeName with: valueOrBodyOrArray [
 	
-	self attribute: attributeName with: valueOrBodyOrArray
+	self property: attributeName with: valueOrBodyOrArray
 ]
 
 { #category : #'DSL-synonyms' }
 FMModelScripter >> an: attributeName of: valueOrBodyOrArray [
 	
-	self attribute: attributeName with: valueOrBodyOrArray
-]
-
-{ #category : #DSL }
-FMModelScripter >> attribute: attributeName with: variant [
-	"Adds an attribute with primitive value or array, or with given body."
-
-	client
-		inAttribute: attributeName
-		do: [ variant isBlock
-				ifTrue: [ variant value ]
-				ifFalse: [ variant isArray ifTrue: [ variant do: [ :each | client primitive: each ] ] ifFalse: [ client primitive: variant ] ] ]
+	self property: attributeName with: valueOrBodyOrArray
 ]
 
 { #category : #accessing }
@@ -64,7 +53,7 @@ FMModelScripter >> document: body [
 FMModelScripter >> element: elementName with: body [
 	"Addes an element with body (which is a block)."
 
-	client inElement: elementName do: [ body value ]
+	client inEntity: elementName do: [ body value ]
 ]
 
 { #category : #DSL }
@@ -77,6 +66,17 @@ FMModelScripter >> id: index [
 FMModelScripter >> new: elementName with: body [ 
 	
 	self element: elementName with: body
+]
+
+{ #category : #DSL }
+FMModelScripter >> property: attributeName with: variant [
+	"Adds a property with primitive value or array, or with given body."
+
+	client
+		inProperty: attributeName
+		do: [ variant isBlock
+				ifTrue: [ variant value ]
+				ifFalse: [ variant isArray ifTrue: [ variant do: [ :each | client primitive: each ] ] ifFalse: [ client primitive: variant ] ] ]
 ]
 
 { #category : #DSL }

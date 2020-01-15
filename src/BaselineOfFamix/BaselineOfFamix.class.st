@@ -30,7 +30,6 @@ BaselineOfFamix >> baseline: spec [
 				referenceTestResources: spec;
 				neoCSV: spec;
 				roelTyper: spec;
-				talents: spec;
 				singularizePluralize: spec.
 
 			"Packages"
@@ -66,8 +65,8 @@ BaselineOfFamix >> baseline: spec [
 
 				package: 'Moose-Query-Test' with: [ spec requires: #('Moose-Query' 'Famix-Java-Entities') ];
 				package: 'FamixTestGenerator' with: [ spec requires: #('BasicTraits') ];
-				package: 'Famix-Tests' with: [ spec requires: #('BasicTraits' 'Talents') ];
-				package: 'Moose-Tests-Core' with: [ spec requires: #('Famix-Compatibility-Entities' 'TestModels') ];
+				package: 'Famix-Tests' with: [ spec requires: #('BasicTraits') ];
+				package: 'Moose-Tests-Core' with: [ spec requires: #('TestModels') ];
 				package: 'Famix-Groups-Tests' with: [ spec requires: #('Famix-Groups' 'Moose-Tests-Core') ];
 				package: 'Moose-GenericImporters-Tests' with: [ spec requires: #('Moose-GenericImporter') ];
 				
@@ -149,7 +148,7 @@ BaselineOfFamix >> fame: spec [
 
 { #category : #dependencies }
 BaselineOfFamix >> kgbTestResources: spec [
-	spec baseline: 'KGBTestResources' with: [ spec repository: repository ]
+	spec baseline: 'KGBTestResources' with: [ spec repository: 'github://moosetechnology/KGBTestResources:v1.x.x/src' ]
 ]
 
 { #category : #dependencies }
@@ -163,7 +162,7 @@ BaselineOfFamix >> neoCSV: spec [
 
 { #category : #dependencies }
 BaselineOfFamix >> packageBlueprintTestResources: spec [
-	spec baseline: 'PackageBlueprintTestResources' with: [ spec repository: repository ]
+	spec baseline: 'PackageBlueprintTestResources' with: [ spec repository: 'github://moosetechnology/PackageBlueprintTestResources:v1.x.x/src' ]
 ]
 
 { #category : #accessing }
@@ -188,7 +187,7 @@ BaselineOfFamix >> projectClass [
 
 { #category : #dependencies }
 BaselineOfFamix >> referenceTestResources: spec [
-	spec baseline: 'ReferenceTestResources' with: [ spec repository: repository ]
+	spec baseline: 'ReferenceTestResources' with: [ spec repository: 'github://moosetechnology/ReferenceTestResources:v1.x.x/src' ]
 ]
 
 { #category : #baseline }
@@ -208,13 +207,4 @@ BaselineOfFamix >> roelTyper: spec [
 { #category : #baseline }
 BaselineOfFamix >> singularizePluralize: spec [
 	spec baseline: 'SingularizePluralize' with: [ spec repository: 'github://olekscode/SingularizePluralize:v1.0/src' ]
-]
-
-{ #category : #dependencies }
-BaselineOfFamix >> talents: spec [
-	spec
-		baseline: 'Talents'
-		with: [ spec
-				loads: 'core';
-				repository: 'github://tesonep/pharo-talents:v2.0.0/src' ]
 ]

@@ -6,6 +6,5 @@ Class {
 
 { #category : #'instance creation' }
 AllMooseMetamodelImportingContext class >> new [
-
-	^ super fromMeta: MooseModel meta elements
+	^ self fromMeta: MooseModel meta elements
 ]

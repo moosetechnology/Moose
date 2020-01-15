@@ -5,7 +5,7 @@ Class {
 		'element',
 		'metaMetamodel'
 	],
-	#category : #'Fame-Tests'
+	#category : #'Fame-Tests-Core'
 }
 
 { #category : #testing }
@@ -32,7 +32,7 @@ FM3ElementTest >> addUnamedOwnerTo: anElement [
 FM3ElementTest >> setUp [
 	super setUp.
 	element := self actualClass new.
-	metaMetamodel := FMMetaMetaModel new
+	metaMetamodel := FMMetaMetaModel default
 ]
 
 { #category : #tests }

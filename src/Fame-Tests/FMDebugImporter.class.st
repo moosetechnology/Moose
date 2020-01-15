@@ -10,18 +10,18 @@ Class {
 }
 
 { #category : #parsing }
-FMDebugImporter >> beginAttribute: name [ 
-	a := a copyWith: (Array with: #beginAttribute: with:  name )
-]
-
-{ #category : #parsing }
 FMDebugImporter >> beginDocument [
 	a := a copyWith: (Array with: #beginDocument)
 ]
 
 { #category : #parsing }
-FMDebugImporter >> beginElement: name [ 
-	a := a copyWith: (Array with:   #beginElement: with: name)
+FMDebugImporter >> beginEntity: name [ 
+	a := a copyWith: (Array with:   #beginEntity: with: name)
+]
+
+{ #category : #parsing }
+FMDebugImporter >> beginProperty: name [ 
+	a := a copyWith: (Array with: #beginProperty: with:  name )
 ]
 
 { #category : #accessing }
@@ -30,18 +30,18 @@ FMDebugImporter >> contents [
 ]
 
 { #category : #parsing }
-FMDebugImporter >> endAttribute: name [ 
-	a := a copyWith: (Array with: #endAttribute: with: name)
-]
-
-{ #category : #parsing }
 FMDebugImporter >> endDocument [
 	a := a copyWith: (Array with: #endDocument)
 ]
 
 { #category : #parsing }
-FMDebugImporter >> endElement: name [ 
-	a := a copyWith: (Array with: #endElement: with: name)
+FMDebugImporter >> endEntity: name [ 
+	a := a copyWith: (Array with: #endEntity: with: name)
+]
+
+{ #category : #parsing }
+FMDebugImporter >> endProperty: name [ 
+	a := a copyWith: (Array with: #endProperty: with: name)
 ]
 
 { #category : #accessing }

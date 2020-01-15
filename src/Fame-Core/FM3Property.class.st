@@ -1,15 +1,47 @@
 "
-A FM3PropertyDescription is a fame property (attribute)
+Description
+--------------------
 
-Instance Variables
-	class:		<Object>
-	implementingSelector:		<Object>
-	isContainer:		<Object>
-	isDerived:		<Object>
-	isMultivalued:		<Object>
-	opposite:		<Object>
-	package:		<Object>
-	type:		<Object>
+I represent property in a fame meta-model.
+
+I am a property of a FM3Class and I can be stored in a FMMetaModel.
+
+If I am an extension property, I will also be contained in a FM3Package.
+
+I know the type of my content. This type can be a constant such as a FM3Number, FM3String or FM3Boolean, but is can also be any FM3Class.
+
+I can have an opposite property that will be my miror.
+
+I have multiple options (See in the API section for details):
+- #isContainer
+- #	isSource
+- #isTarget
+- #isDerived
+- #isMultivalued
+
+Public API and Key Messages
+--------------------
+
+- #isContainer 		Define if I represent a containment link in the containment DAG of the meta-model.
+- #isSource 			Define if I am the source of an association in the meta-model.
+- #isTarget 			Define if I am the target of an association in the meta-model.
+- #isDerived 		If this property is set to true, it means the property can be computed from the non-derived properties. This mean that we can flush the content of the property or we can not export it during serialization.
+- #isMultivalued 	A multivalued property is a property containing a collection as a content. In this case, the type of the property is the type of the content of the collection.	
+ 
+Internal Representation and Key Implementation Points.
+--------------------
+
+    Instance Variables
+	class:							<aFM3Class>			The class holding the property.
+	implementingSelector:		<aSymbol>				The selector of the method returning my content.
+	isContainer:					<aBoolean>			If true, means that I represent a containment link in the containment DAG of the meta-model.
+	isDerived:					<aBoolean>			If true, means that my content can be computed form non-derived properties and can be flushed.
+	isMultivalued:				<aBoolean>			If true, means that my content is a collection.
+	isSource:						<aBoolean>			If true, means that I represent the source of an association.
+	isTarget:						<aBoolean>			If true, means that I represent the target of an association.
+	opposite:						<aFM3Property>		(Optional) A property that is my opposite. This link should be bijectif (1-1 link in miror).
+	package:						<aFM3Package>		(Optional) If I am an extension, represent the package containing me.
+	type:							<aFM3Class>			The type of my content.
 
 "
 Class {

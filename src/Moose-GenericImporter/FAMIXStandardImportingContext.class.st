@@ -6,8 +6,7 @@ Class {
 
 { #category : #'instance creation' }
 FAMIXStandardImportingContext class >> new [
-
 	| collectionOfFM3Eelements |
-	collectionOfFM3Eelements := FAMIXSourcedEntity allSubclasses collect: [:each | each asMooseDescription ].
-	^ super fromMeta: collectionOfFM3Eelements .
+	collectionOfFM3Eelements := FAMIXSourcedEntity allSubclasses collect: [ :each | each asMooseDescription ].
+	^ self fromMeta: collectionOfFM3Eelements
 ]

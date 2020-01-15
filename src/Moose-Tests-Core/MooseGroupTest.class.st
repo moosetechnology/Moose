@@ -120,18 +120,6 @@ MooseGroupTest >> testInitialization [
 ]
 
 { #category : #tests }
-MooseGroupTest >> testNumberOfPackages [
-	self assert: group numberOfPackages equals: 0.
-	group add: FAMIXPackage new.
-	group add: FAMIXPackage new.
-	self assert: group numberOfPackages equals: 2.
-	group := MooseModel new.
-	group add: FAMIXNamespace new.
-	group add: FAMIXNamespace new.
-	self assert: group numberOfPackages equals: 0
-]
-
-{ #category : #tests }
 MooseGroupTest >> testObjectAsMooseGroup [
 	group := 42 asMooseGroup.
 	self assert: (group isKindOf: MooseGroup).

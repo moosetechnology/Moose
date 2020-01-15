@@ -1,3 +1,22 @@
+"
+Description
+--------------------
+
+I am a parser responsible of the MSE syntax parsing. I do not manage the creation of the entities, this part is delegated to a FMImporter.
+ 
+Internal Representation and Key Implementation Points.
+--------------------
+
+    Instance Variables
+	buffer:				<aBuffer>				Buffer used to keep a record of the previously read characters during the parsing.
+	characterSet:		<aCharacterSet>		A character set cached to speed up the reading of the MSE.
+	chararacter:			<aCharacter>			The last character read on the stream.
+	importer:				<aFMImporter>		The FMImporter responsible of the management of the entities to be imported.
+	lastUpdate:			<anInteger>			Time in millisecond since the last progress bar update.
+	progBar:				<aProgressBar>		A progress bar to display the parsing progress.
+	stream:				<aStream>				The stream containing the MSE to be read.
+
+"
 Class {
 	#name : #FMMSEParser,
 	#superclass : #Object,
@@ -14,30 +33,11 @@ Class {
 }
 
 { #category : #expressions }
-FMMSEParser >> Attribute [
-	"Matches an attribute node (returns boolean)."
-
-	"Attribute := OPEN n:NAME { beginAttribute(n) } Value* CLOSE { endAttribute(n) }"
-
-	| pos name |
-	pos := self position.
-	self tOPEN ifFalse: [ ^ self backtrack: pos ].
-	name := self tNAME.
-	name ifNil: [ ^ self backtrack: pos ].
-	importer
-		inAttribute: name
-		do: [ [ self Value ] whileTrue.
-			self tCLOSE ifFalse: [ ^ self syntaxError ] ].
-	self tWHITESPACE.
-	^ true
-]
-
-{ #category : #expressions }
 FMMSEParser >> Document [
 	"Matches a document node (returns a boolean)."
 
 	"Document := EOF { openDocument; closeDocument }
-		| OPEN { openDocument } Element* CLOSE { closeDocument }"
+		| OPEN { openDocument } Entity* CLOSE { closeDocument }"
 
 	self tWHITESPACE.
 	self atEnd
@@ -45,7 +45,7 @@ FMMSEParser >> Document [
 		ifFalse: [ self tOPEN
 				ifFalse: [ ^ self syntaxError ].
 			importer beginDocument.
-			[ self Element ] whileTrue.
+			[ self Entity ] whileTrue.
 			self tCLOSE
 				ifFalse: [ ^ self syntaxError ] ].
 	importer endDocument.
@@ -54,10 +54,10 @@ FMMSEParser >> Document [
 ]
 
 { #category : #expressions }
-FMMSEParser >> Element [
-	"Matches an element node (returns boolean)."
+FMMSEParser >> Entity [
+	"Matches an entity node (returns boolean)."
 
-	"Element := OPEN n:FULLNAME { beginElement(n) } Serial? Attribute* CLOSE { endElement(n) }"
+	"Entity := OPEN n:FULLNAME { beginElement(n) } Serial? Property* CLOSE { endElement(n) }"
 
 	| pos name |
 	pos := self position.
@@ -65,9 +65,9 @@ FMMSEParser >> Element [
 	name := self tFULLNAME.
 	name ifNil: [ ^ self backtrack: pos ].
 	importer
-		inElement: name
+		inEntity: name
 		do: [ self Serial.
-			[ self Attribute ] whileTrue.
+			[ self Property ] whileTrue.
 			self tCLOSE ifFalse: [ ^ self syntaxError ] ].
 
 	self tWHITESPACE.
@@ -155,6 +155,25 @@ FMMSEParser >> Primitive [
 ]
 
 { #category : #expressions }
+FMMSEParser >> Property [
+	"Matches a property node (returns boolean)."
+
+	"Property := OPEN n:NAME { beginProperty(n) } Value* CLOSE { endProperty(n) }"
+
+	| pos name |
+	pos := self position.
+	self tOPEN ifFalse: [ ^ self backtrack: pos ].
+	name := self tNAME.
+	name ifNil: [ ^ self backtrack: pos ].
+	importer
+		inProperty: name
+		do: [ [ self Value ] whileTrue.
+			self tCLOSE ifFalse: [ ^ self syntaxError ] ].
+	self tWHITESPACE.
+	^ true
+]
+
+{ #category : #expressions }
 FMMSEParser >> Reference [
 	"Matches a Reference node (returns boolean)."
 	"Reference --> OPEN REF n:Identifier { client referenceNumber: n } CLOSE"
@@ -220,9 +239,9 @@ FMMSEParser >> String [
 FMMSEParser >> Value [
 	"Matchs a value (returns true)."
 
-	"Value := Reference | Primitive | Element"
+	"Value := Reference | Primitive | Entity"
 
-	^ self Primitive or: [ self Reference or: [ self Reference2 or: [ self Element ] ] ]
+	^ self Primitive or: [ self Reference or: [ self Reference2 or: [ self Entity ] ] ]
 ]
 
 { #category : #testing }
