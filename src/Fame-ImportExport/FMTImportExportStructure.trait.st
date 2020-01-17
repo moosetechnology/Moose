@@ -14,6 +14,11 @@ FMTImportExportStructure >> beginEntity: name [
 ]
 
 { #category : #parsing }
+FMTImportExportStructure >> beginMultivalue: anEntity [
+
+]
+
+{ #category : #parsing }
 FMTImportExportStructure >> beginProperty: name [
 	^ self explicitRequirement
 ]
@@ -26,6 +31,11 @@ FMTImportExportStructure >> endDocument [
 { #category : #parsing }
 FMTImportExportStructure >> endEntity: name [
 	^ self explicitRequirement
+]
+
+{ #category : #parsing }
+FMTImportExportStructure >> endMultivalue: anEntity [
+
 ]
 
 { #category : #parsing }
@@ -57,6 +67,16 @@ FMTImportExportStructure >> inProperty: aString do: aBlock [
 { #category : #parsing }
 FMTImportExportStructure >> primitive: value [
 	^ self explicitRequirement
+]
+
+{ #category : #parsing }
+FMTImportExportStructure >> printEntitySeparator [
+	
+]
+
+{ #category : #parsing }
+FMTImportExportStructure >> printPropertySeparator [
+	
 ]
 
 { #category : #parsing }
