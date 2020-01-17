@@ -67,6 +67,7 @@ FMJSONPrinter >> primitive: value [
 			value do: [ :char | 
 				| charToPrint |
 				$" == char ifTrue: [ stream nextPut: $\ ].
+				$\ == char ifTrue: [ stream nextPut: $\ ].
 				Character cr == char ifTrue: [ 
 					stream nextPut: $\.
 					charToPrint := $n ].

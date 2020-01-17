@@ -58,7 +58,10 @@ FMModelExporter class >> new [
 
 { #category : #exporting }
 FMModelExporter >> export: aCollectionOfElements [
-	printer inDocumentDo: [ aCollectionOfElements do: [ :each | self exportEntity: each ] ]
+	printer inDocumentDo: [ 
+		aCollectionOfElements
+			do: [ :each | self exportEntity: each ]
+			separatedBy: [ printer printEntitySeparator ] ]
 ]
 
 { #category : #exporting }
