@@ -2,7 +2,12 @@ Extension { #name : #FMModel }
 
 { #category : #'*Fame-ImportExport' }
 FMModel >> exportOn: aStream [
-	self exportWithPrinter: (FMMSEPrinter on: aStream)
+	self exportOn: aStream usingPrinter: FMMSEPrinter
+]
+
+{ #category : #'*Fame-ImportExport' }
+FMModel >> exportOn: aStream usingPrinter: aPrinter [
+	self exportWithPrinter: (aPrinter on: aStream)
 ]
 
 { #category : #'*Fame-ImportExport' }

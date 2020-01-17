@@ -341,6 +341,27 @@ MooseModel >> exportTo: aStream [
 	self exportWithMetamodel: self metamodel to: aStream
 ]
 
+{ #category : #'import-export' }
+MooseModel >> exportTo: aStream usingPrinter: aPrinter [
+	self exportWithMetamodel: self metamodel to: aStream usingPrinter: aPrinter
+]
+
+{ #category : #actions }
+MooseModel >> exportToJSONStream: aStream [
+	"Benchmarks on Network packages
+		Time millisecondsToRun: [ self exportToMSEStream: (StandardFileStream forceNewFileNamed: 'network.mse') ]
+		34408ms -> simon.denier 9/11/2009 11:12 - initial run
+		35527ms -> simon.denier 9/11/2009 11:51 - IdentityHashSet in FMRepository#elements, worse?
+		rewind
+		32236ms -> simon.denier 9/11/2009 17:46 - IdentityHashTable in FMRepositoryVisitor, a bit better but not much
+		30963ms -> simon.denier 9/15/2009 12:28 - cache for roots (UI process)
+		24661ms -> simon_denier 9/21/2009 22:32 - removing metrics from MSE
+	"
+
+	self detectEncodingOfAllFileAnchors.
+	self exportTo: aStream usingPrinter: FMJSONPrinter
+]
+
 { #category : #actions }
 MooseModel >> exportToMSEStream: aStream [
 	"Benchmarks on Network packages
@@ -354,14 +375,21 @@ MooseModel >> exportToMSEStream: aStream [
 	"
 
 	self detectEncodingOfAllFileAnchors.
-	self exportTo: aStream
+	self exportTo: aStream usingPrinter: FMMSEPrinter
 ]
 
 { #category : #'import-export' }
 MooseModel >> exportWithMetamodel: aMetamodel to: aStream [
 	(FMModel withMetamodel: aMetamodel)
 		addAll: self entities;
-		exportOn: aStream
+		exportOn: aStream usingPrinter: FMMSEPrinter
+]
+
+{ #category : #'import-export' }
+MooseModel >> exportWithMetamodel: aMetamodel to: aStream usingPrinter: aPrinter [
+	(FMModel withMetamodel: aMetamodel)
+		addAll: self entities;
+		exportOn: aStream usingPrinter: aPrinter
 ]
 
 { #category : #accessing }
