@@ -16,7 +16,7 @@ FMJSONPrinter >> beginEntity: name [
 	stream nextPutAll: '{'.
 	self crTabs.
 	stream
-		nextPutAll: '"FM3": "';
+		nextPutAll: '"FM3":"';
 		nextPutAll: name;
 		nextPutAll: '",'.
 	self crTabs
