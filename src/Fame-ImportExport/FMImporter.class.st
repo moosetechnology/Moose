@@ -48,7 +48,8 @@ Class {
 		'translationUnit',
 		'ensureNoDandlingReferences',
 		'numberOfDanglingReferences',
-		'entities'
+		'entities',
+		'parser'
 	],
 	#category : #'Fame-ImportExport-Importers'
 }
@@ -166,6 +167,16 @@ FMImporter >> model: aModel [
 	model := aModel
 ]
 
+{ #category : #running }
+FMImporter >> parser [
+	^ parser ifNil: [ parser := FMMSEParser ]
+]
+
+{ #category : #running }
+FMImporter >> parser: aParser [
+	parser := aParser
+]
+
 { #category : #parsing }
 FMImporter >> primitive: value [
 	self currentEntity addToPropertyValues: value
@@ -183,7 +194,7 @@ FMImporter >> referenceNumber: serial [
 
 { #category : #running }
 FMImporter >> run [
-	FMMSEParser new
+	self parser new
 		stream: stream;
 		importer: self;
 		run

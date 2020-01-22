@@ -27,10 +27,30 @@ FMModel >> exportWithPrinter: aParseClient [
 ]
 
 { #category : #'*Fame-ImportExport' }
+FMModel class >> fromJSONString: aString [
+	^ self new
+		importJSONString: aString;
+		yourself
+]
+
+{ #category : #'*Fame-ImportExport' }
 FMModel class >> fromString: aString [
 	^ self new
 		importString: aString;
 		yourself
+]
+
+{ #category : #'*Fame-ImportExport' }
+FMModel >> importJSONStream: aReadStream [
+	(FMImporter model: self)
+		stream: aReadStream;
+		parser: FMJSONParser;
+		run
+]
+
+{ #category : #'*Fame-ImportExport' }
+FMModel >> importJSONString: mseString [
+	self importJSONStream: mseString readStream
 ]
 
 { #category : #'*Fame-ImportExport' }
