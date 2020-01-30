@@ -615,7 +615,7 @@ MooseModel >> union: aGroup [
 
 { #category : #initialization }
 MooseModel >> updateMetamodelTo: aMetamodel [
-	self metamodel ifNil: [ ^ self ].
+	metamodel ifNil: [ ^ self ].
 
 	self metamodel: aMetamodel
 ]
