@@ -51,7 +51,11 @@ BaselineOfFame >> baseline: spec [
 
 { #category : #dependencies }
 BaselineOfFame >> hashtable: spec [
-	spec baseline: 'Hashtable' with: [ spec repository: repository ]
+	spec
+		baseline: 'Hashtable'
+		with: [ spec
+				loads: 'Core';
+				repository: 'github://pharo-contributions/Hashtable:v1.x.x/src' ]
 ]
 
 { #category : #dependencies }
