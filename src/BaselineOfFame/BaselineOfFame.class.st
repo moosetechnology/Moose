@@ -54,7 +54,7 @@ BaselineOfFame >> hashtable: spec [
 	spec
 		baseline: 'Hashtable'
 		with: [ spec
-				group: 'Core';
+				loads: 'Core';
 				repository: 'github://pharo-contributions/Hashtable:v1.x.x/src' ]
 ]
 
