@@ -41,7 +41,6 @@ Class {
 		'tModule',
 		'tNamed',
 		'tNamespace',
-		'tNamespaceEntity',
 		'tPackage',
 		'tPackageable',
 		'tParameter',
@@ -469,12 +468,6 @@ FamixGenerator >> commentForTNamespace [
 A namespace denotes an entity that has meaning from a language point of view. For example, in C++, there exist a concept with the same name that has no other responsibility beside providing a lexical scope for the contained classes and funcions.
 
 When an entity is placed inside a namespace, the fully qualified name (mooseName) is affected.'
-]
-
-{ #category : #comments }
-FamixGenerator >> commentForTNamespaceEntity [
-
-	^ ''
 ]
 
 { #category : #comments }
@@ -1223,10 +1216,6 @@ FamixGenerator >> defineRelations [
 	((tDefinedInModule property: #parentModule)
 			comment: 'Module that contains the definition of this entity').
 
-	((tNamespace property: #namespaceEntities))
-		-*
-	((tNamespaceEntity property: #parentNamespace)).
-
 	((tNamespace property: #namespaceOwner))
 		*-
 	((tWithNamespaces property: #namespaces)).
@@ -1477,9 +1466,6 @@ FamixGenerator >> defineTraits [
 	tNamespace := builder newTraitNamed: #TNamespace.
 	tNamespace comment: self commentForTNamespace.
 	tNamespace withTesting.
-
-	tNamespaceEntity := builder newTraitNamed: #TNamespaceEntity.
-	tNamespaceEntity comment: self commentForTNamespaceEntity.
 
 	tPackage := builder newTraitNamed: #TPackage.
 	tPackage comment: self commentForTPackage.
