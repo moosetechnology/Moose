@@ -37,7 +37,7 @@ FamixTest5Generator >> defineClasses [
 	
 	annotationType2 := builder newClassNamed: #AnnotationType2.
 	withAnnotationType2 := builder newClassNamed: #WithAnnotationType2.
-	
+
 ]
 
 { #category : #definition }
@@ -48,5 +48,5 @@ FamixTest5Generator >> defineRelations [
 	self apply: #TAnnotationType on: annotationType1 oppositeTrait: #TWithAnnotationTypes on: withAnnotationType1.
 
 	self apply: #TWithAnnotationTypes on: withAnnotationType2 oppositeOn: annotationType2.
-	
+
 ]
