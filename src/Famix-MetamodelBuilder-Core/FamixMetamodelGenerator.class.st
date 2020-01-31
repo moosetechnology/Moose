@@ -60,7 +60,7 @@ FamixMetamodelGenerator class >> composedMetaModels [
 
 { #category : #generation }
 FamixMetamodelGenerator class >> generate [
-
+	<script>
 	<ignoreForCoverage>
 	self new generate
 ]
@@ -186,6 +186,12 @@ FamixMetamodelGenerator >> allSubBuilders [
 			do: [ :subSubBuilder | (result anySatisfy: [ :b | b generator class = subSubBuilder generator class ])
 				ifFalse: [ result add: subSubBuilder ] ] ].
 	^ result
+]
+
+{ #category : #definition }
+FamixMetamodelGenerator >> apply: aTrait on: aGeneratedClass oppositeTrait: anotherTrait on: anotherGeneratedClass [
+	aGeneratedClass --|> aTrait.
+	anotherGeneratedClass --|> anotherTrait 
 ]
 
 { #category : #accessing }
