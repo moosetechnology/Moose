@@ -7,9 +7,6 @@ When an entity is placed inside a namespace, the fully qualified name (mooseName
 "
 Trait {
 	#name : #FamixTNamespace,
-	#instVars : [
-		'#namespaceOwner => FMOne type: #FamixTWithNamespaces opposite: #namespaces'
-	],
 	#category : #'Famix-Traits-Namespaces'
 }
 
@@ -35,19 +32,4 @@ FamixTNamespace >> isNamespace [
 
 	<generated>
 	^ true
-]
-
-{ #category : #accessing }
-FamixTNamespace >> namespaceOwner [
-	"Relation named: #namespaceOwner type: #FamixTWithNamespaces opposite: #namespaces"
-
-	<generated>
-	^ namespaceOwner
-]
-
-{ #category : #accessing }
-FamixTNamespace >> namespaceOwner: anObject [
-
-	<generated>
-	namespaceOwner := anObject
 ]

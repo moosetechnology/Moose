@@ -810,12 +810,6 @@ FamixGenerator >> commentForTWithMethods [
 ]
 
 { #category : #comments }
-FamixGenerator >> commentForTWithNamespaces [
-
-	^ ''
-]
-
-{ #category : #comments }
 FamixGenerator >> commentForTWithPackages [
 
 	^ ''
@@ -1215,10 +1209,6 @@ FamixGenerator >> defineRelations [
 		-*
 	((tDefinedInModule property: #parentModule)
 			comment: 'Module that contains the definition of this entity').
-
-	((tNamespace property: #namespaceOwner))
-		*-
-	((tWithNamespaces property: #namespaces)).
 
 	((tPackage property: #childEntities))
 		-*
@@ -1620,9 +1610,6 @@ FamixGenerator >> defineTraits [
 
 	tDefinedInModule := builder newTraitNamed: #TDefinedInModule.
 	tDefinedInModule comment: self commentForTDefinedInModule.
-
-	tWithNamespaces := builder newTraitNamed: #TWithNamespaces.
-	tWithNamespaces comment: self commentForTWithNamespaces.
 
 	tWithPackages := builder newTraitNamed: #TWithPackages.
 	tWithPackages comment: self commentForTWithPackages.
