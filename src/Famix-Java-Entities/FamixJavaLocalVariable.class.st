@@ -15,7 +15,7 @@ FamixJavaLocalVariable class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 FamixJavaLocalVariable >> mooseNameOn: stream [ 
 	| parent |
 	parent := self parentBehaviouralEntity.

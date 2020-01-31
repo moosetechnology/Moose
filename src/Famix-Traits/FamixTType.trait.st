@@ -44,6 +44,11 @@ FamixTType >> belongsTo [
 	^ self parentPackage ifNil: [ self parents ifNotEmpty: #anyOne ifEmpty: [ nil ] ]
 ]
 
+{ #category : #testing }
+FamixTType >> entityHasIncomingTypeDeclarations [ 
+	^ self typedEntities isNotEmpty.
+]
+
 { #category : #metrics }
 FamixTType >> fanIn [
 	<FMProperty: #fanIn type: #Number>
@@ -56,6 +61,11 @@ FamixTType >> fanIn [
 FamixTType >> fanIn: aNumber [
 
 	self privateState propertyAt: #fanIn put: aNumber
+]
+
+{ #category : #testing }
+FamixTType >> incomingTypeDeclarations [  
+	^ self typedEntities collect: [ :var | MooseQueryTypeDeclarationAssociation newFrom: var to: self ]
 ]
 
 { #category : #testing }
