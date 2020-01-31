@@ -26,7 +26,7 @@ FmxMBTestingMethodsTest >> setUp [
 	root1 := builder newClassNamed: #Root1.	
 	root2 := builder newClassNamed: #Root2.	
 	entity := builder newClassNamed: #Entity.
-	trait := builder newTraitNamed: #TNamed.
+	trait := builder newTraitNamed: #TNamedEntity.
 	traited := builder newClassNamed: #Named.
 	traitedRoot := builder newClassNamed: #TraitedRoot.
 	
@@ -43,7 +43,7 @@ FmxMBTestingMethodsTest >> setUp [
 	generatedRoot1 := builder testingEnvironment ask classNamed: 'TstRoot1'.
 	generatedRoot2 := builder testingEnvironment ask classNamed: 'TstRoot2'.
 	generatedEntity := builder testingEnvironment ask classNamed: 'TstEntity'.
-	generatedTNamed := builder testingEnvironment ask classNamed: 'TstTNamed'.
+	generatedTNamed := builder testingEnvironment ask classNamed: 'TstTNamedEntity'.
 	generatedNamed := builder testingEnvironment ask classNamed: 'TstNamed'.
 	generatedTraitedRoot := builder testingEnvironment ask classNamed: 'TstTraitedRoot'.
 	
@@ -64,10 +64,10 @@ FmxMBTestingMethodsTest >> testRoots [
 	"all roots should have testing messages with negative answer"
 
 	(generatedRoot1 methodNamed: #isEntity) sourceCode includesSubstring: '^ false'.	
-	(generatedRoot1 methodNamed: #isNamed) sourceCode includesSubstring: '^ false'.
+	(generatedRoot1 methodNamed: #isNamedEntity) sourceCode includesSubstring: '^ false'.
 	
 	(generatedRoot2 methodNamed: #isEntity) sourceCode includesSubstring: '^ false'.	
-	(generatedRoot2 methodNamed: #isNamed) sourceCode includesSubstring: '^ false'.
+	(generatedRoot2 methodNamed: #isNamedEntity) sourceCode includesSubstring: '^ false'.
 ]
 
 { #category : #tests }
@@ -75,7 +75,7 @@ FmxMBTestingMethodsTest >> testTrait [
 
 	"all roots should have testing messages with negative answer"
 
-	(generatedTNamed methodNamed: #isNamed) sourceCode includesSubstring: '^ true'.	
+	(generatedTNamed methodNamed: #isNamedEntity) sourceCode includesSubstring: '^ true'.	
 	self assert: (generatedTNamed methodNamed: #isEntity) isNil.
 ]
 

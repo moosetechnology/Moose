@@ -1450,7 +1450,7 @@ FamixGenerator >> defineTraits [
 	tModule := builder newTraitNamed: #TModule.
 	tModule comment: self commentForTModule.
 
-	tNamed := builder newTraitNamed: #TNamed.
+	tNamed := builder newTraitNamed: #TNamedEntity.
 	tNamed comment: self commentForTNamed.
 
 	tNamespace := builder newTraitNamed: #TNamespace.

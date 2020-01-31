@@ -1,5 +1,5 @@
 Trait {
-	#name : #FamixTNamed,
+	#name : #FamixTNamedEntity,
 	#instVars : [
 		'#name => FMProperty'
 	],
@@ -7,34 +7,34 @@ Trait {
 }
 
 { #category : #meta }
-FamixTNamed classSide >> annotation [
+FamixTNamedEntity classSide >> annotation [
 
-	<FMClass: #TNamed super: #Object>
+	<FMClass: #TNamedEntity super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
 ]
 
 { #category : #'instance creation' }
-FamixTNamed classSide >> named: aString [
+FamixTNamedEntity classSide >> named: aString [
 	^ self new
 		name: aString;
 		yourself
 ]
 
 { #category : #testing }
-FamixTNamed >> hasUniqueMooseNameInModel [
+FamixTNamedEntity >> hasUniqueMooseNameInModel [
 	" all subclasses should call the method: 'resetMooseName' if a change causes the moosename to change "
 	^ true
 ]
 
 { #category : #printing }
-FamixTNamed >> mooseNameOn: stream [
+FamixTNamedEntity >> mooseNameOn: stream [
 	self name ifNotNil: [ :n | stream nextPutAll: n ]
 ]
 
 { #category : #accessing }
-FamixTNamed >> name [
+FamixTNamedEntity >> name [
 
 	<FMProperty: #name type: #String>
 	<generated>
@@ -43,7 +43,7 @@ FamixTNamed >> name [
 ]
 
 { #category : #accessing }
-FamixTNamed >> name: anObject [
+FamixTNamedEntity >> name: anObject [
 
 	name := anObject.
 	self resetMooseName
@@ -51,7 +51,7 @@ FamixTNamed >> name: anObject [
 ]
 
 { #category : #accessing }
-FamixTNamed >> resetMooseName [
+FamixTNamedEntity >> resetMooseName [
 	(super resetMooseName and: [ self class withAllSuperclasses anySatisfy: [ :class | class isComposedBy: TEntityMetaLevelDependency ] ]) ifTrue: [ self children do: [ :entity | entity resetMooseName ] ].
 	^ false
 ]

@@ -22,7 +22,7 @@ FamixStAssociation class >> annotation [
 { #category : #printing }
 FamixStAssociation >> from [
 
-	<FMProperty: #from type: #FamixTNamed> <derived>
+	<FMProperty: #from type: #FamixTNamedEntity> <derived>
 	<FMComment: 'Generic accessor to the entity originating the association. Refined by subclasses'>
 	^ self subclassResponsibility
 ]
@@ -37,7 +37,7 @@ FamixStAssociation >> gtDisplayOn: aStream [
 { #category : #printing }
 FamixStAssociation >> to [
 
-	<FMProperty: #to type: #FamixTNamed> <derived>
+	<FMProperty: #to type: #FamixTNamedEntity> <derived>
 	<FMComment: 'Generic accessor to the target entity of the association'>
 	^ self subclassResponsibility
 ]

@@ -7,7 +7,7 @@ When an entity is placed inside a namespace, the fully qualified name (mooseName
 "
 Trait {
 	#name : #FamixTNamespace,
-	#category : #'Famix-Traits-Namespaces'
+	#category : #'Famix-Traits-Named'
 }
 
 { #category : #meta }

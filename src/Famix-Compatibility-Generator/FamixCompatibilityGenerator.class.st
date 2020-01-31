@@ -210,7 +210,7 @@ FamixCompatibilityGenerator >> defineHierarchy [
 	cSourceLanguage --|> sourceLanguage.
 
 	cUSTOMSourceLanguage --|> sourceLanguage.
-	cUSTOMSourceLanguage --|> #TNamed.
+	cUSTOMSourceLanguage --|> #TNamedEntity.
 
 	caughtException --|> exception.
 	caughtException --|> #TCaughtException.
