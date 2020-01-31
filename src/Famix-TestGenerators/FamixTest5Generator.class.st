@@ -2,15 +2,10 @@ Class {
 	#name : #FamixTest5Generator,
 	#superclass : #FamixMetamodelGenerator,
 	#instVars : [
-		'classEntity',
-		'primitiveType',
-		'method',
-		'type',
-		'reference',
-		'invocation',
-		'annotationType',
-		'withAnnotationType',
-		'annotationInstance'
+		'annotationType1',
+		'withAnnotationType1',
+		'annotationType2',
+		'withAnnotationType2'
 	],
 	#category : #'Famix-TestGenerators'
 }
@@ -37,9 +32,11 @@ FamixTest5Generator >> defineClasses [
 
 	super defineClasses.
 
-	annotationType := builder newClassNamed: #AnnotationType.
-	withAnnotationType := builder newClassNamed: #WithAnnotationType.
-	annotationInstance := builder newClassNamed: #TypedAnnotationInstance.
+	annotationType1 := builder newClassNamed: #AnnotationType1.
+	withAnnotationType1 := builder newClassNamed: #WithAnnotationType1.
+	
+	annotationType2 := builder newClassNamed: #AnnotationType2.
+	withAnnotationType2 := builder newClassNamed: #WithAnnotationType2.
 	
 ]
 
@@ -48,7 +45,8 @@ FamixTest5Generator >> defineRelations [
 
 	super defineRelations.
 
-	self apply: #TAnnotationType on: annotationType oppositeTrait: #TWithAnnotationTypes on: withAnnotationType.
-	"annotationInstance"
+	self apply: #TAnnotationType on: annotationType1 oppositeTrait: #TWithAnnotationTypes on: withAnnotationType1.
+
+	self apply: #TWithAnnotationTypes on: withAnnotationType2 oppositeOn: annotationType2.
 	
 ]
