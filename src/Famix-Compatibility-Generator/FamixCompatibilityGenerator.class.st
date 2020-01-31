@@ -194,7 +194,7 @@ FamixCompatibilityGenerator >> defineHierarchy [
 	behaviouralEntity --|> #TInvocable.
 	behaviouralEntity --|> #TWithInvocations.
 	behaviouralEntity --|> #TWithReferences.
-	behaviouralEntity --|> #TTypedStructure.
+	behaviouralEntity --|> #TTypedEntity.
 	behaviouralEntity --|> #TWithAccesses.
 	behaviouralEntity --|> #TWithLocalVariables.
 	behaviouralEntity --|> #TWithImplicitVariables.

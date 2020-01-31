@@ -8,10 +8,11 @@ A type can have multiple subtypes or supertypes. These are modelled by means of 
 Trait {
 	#name : #FamixTType,
 	#instVars : [
-		'#typeContainer => FMOne type: #FamixTWithTypes opposite: #types'
+		'#typeContainer => FMOne type: #FamixTWithTypes opposite: #types',
+		'#typedEntities => FMMany type: #FamixTTypedEntity opposite: #declaredType'
 	],
-	#traits : 'FamixTReferenceable + FamixTWithTypedStructures',
-	#classTraits : 'FamixTReferenceable classTrait + FamixTWithTypedStructures classTrait',
+	#traits : 'FamixTReferenceable',
+	#classTraits : 'FamixTReferenceable classTrait',
 	#category : #'Famix-Traits-Type'
 }
 
@@ -30,6 +31,12 @@ FamixTType classSide >> famixTTypeRelatedGroup [
 	<mooseGroup>
 	
 	^ FAMIXTypeGroup
+]
+
+{ #category : #adding }
+FamixTType >> addTypedEntity: anObject [
+	<generated>
+	^ self typedEntities add: anObject
 ]
 
 { #category : #deprecated }
@@ -130,4 +137,21 @@ FamixTType >> typeContainerGroup [
 	<generated>
 	<navigation: 'TypeContainer'>
 	^ MooseGroup with: self typeContainer
+]
+
+{ #category : #accessing }
+FamixTType >> typedEntities [
+	"Relation named: #typedEntities type: #FamixTTypedEntity opposite: #declaredType"
+
+	<generated>
+	<FMComment: 'Entities that have this type as declaredType'>
+	<derived>
+	^ typedEntities
+]
+
+{ #category : #accessing }
+FamixTType >> typedEntities: anObject [
+
+	<generated>
+	typedEntities value: anObject
 ]

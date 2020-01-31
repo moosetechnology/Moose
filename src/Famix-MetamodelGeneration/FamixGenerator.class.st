@@ -65,7 +65,6 @@ Class {
 		'tTypeAlias',
 		'tTypedAnnotationInstance',
 		'tTypedAnnotationInstanceAttribute',
-		'tTypedStructure',
 		'tUnknownSourceLanguage',
 		'tWithAccesses',
 		'tWithAnnotationInstanceAttributes',
@@ -101,7 +100,6 @@ Class {
 		'tWithTemplates',
 		'tWithThrownExceptions',
 		'tWithTypeAliases',
-		'tWithTypedStructures',
 		'tWithTypes',
 		'tWithModifiers',
 		'tPossibleStub',
@@ -126,7 +124,8 @@ Class {
 		'tMultipleFileAnchor',
 		'tCohesionCouplingMetrics',
 		'tWithTraits',
-		'tWithFileIncludes'
+		'tWithFileIncludes',
+		'tTypedEntity'
 	],
 	#category : #'Famix-MetamodelGeneration'
 }
@@ -935,7 +934,7 @@ FamixGenerator >> defineHierarchy [
 	tMethod --|> #TWithImplicitVariables.
 	tMethod --|> #TWithSignature.
 	tMethod --|> #TWithClassScope.
-	tMethod --|> #TTypedStructure.
+	tMethod --|> #TTypedEntity.
 	tMethod --|> tSourceEntity.
 
 	tParameter --|> tStructuralEntity.
@@ -943,14 +942,13 @@ FamixGenerator >> defineHierarchy [
 	tStructuralEntity --|> tNamed.
 	tStructuralEntity --|> #TAccessible.
 	tStructuralEntity --|> #TInvocationsReceiver.
-	tStructuralEntity --|> #TTypedStructure.
+	tStructuralEntity --|> #TTypedEntity.
 
 	tSourceEntity --|> #TWithSourceAnchor.
 	tSourceEntity --|> #TWithSourceLanguage.
 	tSourceEntity --|> #TWithComments.
 
 	tType --|> #TReferenceable.
-	tType --|> #TWithTypedStructures
 ]
 
 { #category : #definition }
@@ -1325,11 +1323,11 @@ FamixGenerator >> defineRelations [
 	((tWithTypeAliases property: #typeAliases)
 			comment: 'Aliases').
 
-	((tTypedStructure property: #declaredType)
-			comment: 'Type of the behavioral entity, if any')
+	((tTypedEntity property: #declaredType)
+			comment: 'Type of the entity, if any')
 		*-
-	((tWithTypedStructures property: #structuresWithDeclaredType)
-			comment: 'Structural entities that have this type as declaredType').
+	((tType property: #typedEntities)
+			comment: 'Entities that have this type as declaredType').
 
 
 ]
@@ -1534,8 +1532,8 @@ FamixGenerator >> defineTraits [
 	tTypedAnnotationInstanceAttribute := builder newTraitNamed: #TTypedAnnotationInstanceAttribute.
 	tTypedAnnotationInstanceAttribute comment: self commentForTTypedAnnotationInstanceAttribute.
 
-	tTypedStructure := builder newTraitNamed: #TTypedStructure.
-	tTypedStructure comment: self commentForTTypedStructure.
+	tTypedEntity := builder newTraitNamed: #TTypedEntity.
+	tTypedEntity comment: self commentForTTypedStructure.
 
 	tUnknownSourceLanguage := builder newTraitNamed: #TUnknownSourceLanguage.
 
@@ -1646,9 +1644,6 @@ FamixGenerator >> defineTraits [
 
 	tWithTypeAliases := builder newTraitNamed: #TWithTypeAliases.
 	tWithTypeAliases comment: self commentForTWithTypeAliases.
-
-	tWithTypedStructures := builder newTraitNamed: #TWithTypedStructures.
-	tWithTypedStructures comment: self commentForTWithTypedStructures.
 
 	tWithTypes := builder newTraitNamed: #TWithTypes.
 	tWithTypes comment: self commentForTWithTypes.
