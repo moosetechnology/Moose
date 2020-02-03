@@ -492,21 +492,6 @@ MooseAbstractGroup >> iterator [
 	^ self entityStorage iterator
 ]
 
-{ #category : #'Famix-Java' }
-MooseAbstractGroup >> javaEntityNamed: aSymbol [ 
-	 
-	^self 
-		javaEntityNamed: aSymbol 
-		ifAbsent: [nil]
-]
-
-{ #category : #'Famix-Java' }
-MooseAbstractGroup >> javaEntityNamed: aMooseName ifAbsent: aBlock [
-	^ self entityStorage
-		at: aMooseName
-		ifAbsent: [ self entityStorage at: '<Default Package>::' , aMooseName ifAbsent: aBlock ]
-]
-
 { #category : #accessing }
 MooseAbstractGroup >> last [ 
 	 
