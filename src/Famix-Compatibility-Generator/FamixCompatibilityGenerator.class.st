@@ -194,7 +194,7 @@ FamixCompatibilityGenerator >> defineHierarchy [
 	behaviouralEntity --|> #TInvocable.
 	behaviouralEntity --|> #TWithInvocations.
 	behaviouralEntity --|> #TWithReferences.
-	behaviouralEntity --|> #TTypedStructure.
+	behaviouralEntity --|> #TTypedEntity.
 	behaviouralEntity --|> #TWithAccesses.
 	behaviouralEntity --|> #TWithLocalVariables.
 	behaviouralEntity --|> #TWithImplicitVariables.
@@ -210,7 +210,7 @@ FamixCompatibilityGenerator >> defineHierarchy [
 	cSourceLanguage --|> sourceLanguage.
 
 	cUSTOMSourceLanguage --|> sourceLanguage.
-	cUSTOMSourceLanguage --|> #TNamed.
+	cUSTOMSourceLanguage --|> #TNamedEntity.
 
 	caughtException --|> exception.
 	caughtException --|> #TCaughtException.

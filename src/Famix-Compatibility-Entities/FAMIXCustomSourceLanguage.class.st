@@ -1,8 +1,8 @@
 Class {
 	#name : #FAMIXCustomSourceLanguage,
 	#superclass : #FAMIXSourceLanguage,
-	#traits : 'FamixTNamed',
-	#classTraits : 'FamixTNamed classTrait',
+	#traits : 'FamixTNamedEntity',
+	#classTraits : 'FamixTNamedEntity classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 

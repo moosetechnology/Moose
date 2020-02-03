@@ -41,7 +41,6 @@ Class {
 		'tModule',
 		'tNamed',
 		'tNamespace',
-		'tNamespaceEntity',
 		'tPackage',
 		'tPackageable',
 		'tParameter',
@@ -66,7 +65,6 @@ Class {
 		'tTypeAlias',
 		'tTypedAnnotationInstance',
 		'tTypedAnnotationInstanceAttribute',
-		'tTypedStructure',
 		'tUnknownSourceLanguage',
 		'tWithAccesses',
 		'tWithAnnotationInstanceAttributes',
@@ -102,7 +100,6 @@ Class {
 		'tWithTemplates',
 		'tWithThrownExceptions',
 		'tWithTypeAliases',
-		'tWithTypedStructures',
 		'tWithTypes',
 		'tWithModifiers',
 		'tPossibleStub',
@@ -127,7 +124,8 @@ Class {
 		'tMultipleFileAnchor',
 		'tCohesionCouplingMetrics',
 		'tWithTraits',
-		'tWithFileIncludes'
+		'tWithFileIncludes',
+		'tTypedEntity'
 	],
 	#category : #'Famix-MetamodelGeneration'
 }
@@ -472,12 +470,6 @@ When an entity is placed inside a namespace, the fully qualified name (mooseName
 ]
 
 { #category : #comments }
-FamixGenerator >> commentForTNamespaceEntity [
-
-	^ ''
-]
-
-{ #category : #comments }
 FamixGenerator >> commentForTPackage [
 
 	^ 'FAMIXPackage represents a package in the source language, meaning that it provides a means to group entities without any baring on lexical scoping. 
@@ -817,12 +809,6 @@ FamixGenerator >> commentForTWithMethods [
 ]
 
 { #category : #comments }
-FamixGenerator >> commentForTWithNamespaces [
-
-	^ ''
-]
-
-{ #category : #comments }
 FamixGenerator >> commentForTWithPackages [
 
 	^ ''
@@ -948,7 +934,7 @@ FamixGenerator >> defineHierarchy [
 	tMethod --|> #TWithImplicitVariables.
 	tMethod --|> #TWithSignature.
 	tMethod --|> #TWithClassScope.
-	tMethod --|> #TTypedStructure.
+	tMethod --|> #TTypedEntity.
 	tMethod --|> tSourceEntity.
 
 	tParameter --|> tStructuralEntity.
@@ -956,14 +942,13 @@ FamixGenerator >> defineHierarchy [
 	tStructuralEntity --|> tNamed.
 	tStructuralEntity --|> #TAccessible.
 	tStructuralEntity --|> #TInvocationsReceiver.
-	tStructuralEntity --|> #TTypedStructure.
+	tStructuralEntity --|> #TTypedEntity.
 
 	tSourceEntity --|> #TWithSourceAnchor.
 	tSourceEntity --|> #TWithSourceLanguage.
 	tSourceEntity --|> #TWithComments.
 
 	tType --|> #TReferenceable.
-	tType --|> #TWithTypedStructures
 ]
 
 { #category : #definition }
@@ -1223,14 +1208,6 @@ FamixGenerator >> defineRelations [
 	((tDefinedInModule property: #parentModule)
 			comment: 'Module that contains the definition of this entity').
 
-	((tNamespace property: #namespaceEntities))
-		-*
-	((tNamespaceEntity property: #parentNamespace)).
-
-	((tNamespace property: #namespaceOwner))
-		*-
-	((tWithNamespaces property: #namespaces)).
-
 	((tPackage property: #childEntities))
 		-*
 	((tPackageable property: #parentPackage)
@@ -1346,11 +1323,11 @@ FamixGenerator >> defineRelations [
 	((tWithTypeAliases property: #typeAliases)
 			comment: 'Aliases').
 
-	((tTypedStructure property: #declaredType)
-			comment: 'Type of the behavioral entity, if any')
+	((tTypedEntity property: #declaredType)
+			comment: 'Type of the entity, if any')
 		*-
-	((tWithTypedStructures property: #structuresWithDeclaredType)
-			comment: 'Structural entities that have this type as declaredType').
+	((tType property: #typedEntities)
+			comment: 'Entities that have this type as declaredType').
 
 
 ]
@@ -1471,15 +1448,12 @@ FamixGenerator >> defineTraits [
 	tModule := builder newTraitNamed: #TModule.
 	tModule comment: self commentForTModule.
 
-	tNamed := builder newTraitNamed: #TNamed.
+	tNamed := builder newTraitNamed: #TNamedEntity.
 	tNamed comment: self commentForTNamed.
 
 	tNamespace := builder newTraitNamed: #TNamespace.
 	tNamespace comment: self commentForTNamespace.
 	tNamespace withTesting.
-
-	tNamespaceEntity := builder newTraitNamed: #TNamespaceEntity.
-	tNamespaceEntity comment: self commentForTNamespaceEntity.
 
 	tPackage := builder newTraitNamed: #TPackage.
 	tPackage comment: self commentForTPackage.
@@ -1558,8 +1532,8 @@ FamixGenerator >> defineTraits [
 	tTypedAnnotationInstanceAttribute := builder newTraitNamed: #TTypedAnnotationInstanceAttribute.
 	tTypedAnnotationInstanceAttribute comment: self commentForTTypedAnnotationInstanceAttribute.
 
-	tTypedStructure := builder newTraitNamed: #TTypedStructure.
-	tTypedStructure comment: self commentForTTypedStructure.
+	tTypedEntity := builder newTraitNamed: #TTypedEntity.
+	tTypedEntity comment: self commentForTTypedStructure.
 
 	tUnknownSourceLanguage := builder newTraitNamed: #TUnknownSourceLanguage.
 
@@ -1635,9 +1609,6 @@ FamixGenerator >> defineTraits [
 	tDefinedInModule := builder newTraitNamed: #TDefinedInModule.
 	tDefinedInModule comment: self commentForTDefinedInModule.
 
-	tWithNamespaces := builder newTraitNamed: #TWithNamespaces.
-	tWithNamespaces comment: self commentForTWithNamespaces.
-
 	tWithPackages := builder newTraitNamed: #TWithPackages.
 	tWithPackages comment: self commentForTWithPackages.
 
@@ -1673,9 +1644,6 @@ FamixGenerator >> defineTraits [
 
 	tWithTypeAliases := builder newTraitNamed: #TWithTypeAliases.
 	tWithTypeAliases comment: self commentForTWithTypeAliases.
-
-	tWithTypedStructures := builder newTraitNamed: #TWithTypedStructures.
-	tWithTypedStructures comment: self commentForTWithTypedStructures.
 
 	tWithTypes := builder newTraitNamed: #TWithTypes.
 	tWithTypes comment: self commentForTWithTypes.

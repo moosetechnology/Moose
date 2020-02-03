@@ -67,7 +67,7 @@ FM3Class >> addTraits: aCollection [
 
 { #category : #'accessing-query' }
 FM3Class >> allComplexProperties [
-	^ self allProperties reject: [ :attr | attr type isPrimitive ]
+	^ self allProperties reject: [ :attr | attr type isNotNil and: [ attr type isPrimitive ] ]
 ]
 
 { #category : #'accessing-query' }
@@ -77,7 +77,7 @@ FM3Class >> allContainerProperties [
 
 { #category : #'accessing-query' }
 FM3Class >> allPrimitiveProperties [
-	^ self allProperties select: [ :attr | attr type isPrimitive ]
+	^ self allProperties select: [ :attr | attr type isNotNil and: [ attr type isPrimitive ] ]
 ]
 
 { #category : #'accessing-query' }

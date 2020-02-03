@@ -56,7 +56,7 @@ FamixJavaAttribute >> initialize [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 FamixJavaAttribute >> mooseNameOn: aStream [ 
 	| parent |
 	parent := self belongsTo.
