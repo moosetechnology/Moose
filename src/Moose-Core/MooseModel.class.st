@@ -128,12 +128,7 @@ MooseModel class >> importFrom: aStream withMetamodel: aMetamodel [
 { #category : #'import-export' }
 MooseModel class >> importFrom: aStream withMetamodel: aMetamodel filteredBy: anImportingContext [
 	| model importer famixElementNames importerFilter |
-	famixElementNames := anImportingContext entityKindsToBeExtracted collect: [ :each | 'FAMIX.' , each asString ].
-	"anImportingContext  shouldImportMethodBody 
-		ifTrue: [famixElementNames add: 'FAMIX.Parameter'.
-			anImportingContext shouldImportAccess ifTrue:[famixElementNames add:'FAMIX.Reference']]."
-
-	"famixElementNames := anImportingContext fullNamesOfEntitiesToBeExtracted ."
+	famixElementNames := anImportingContext imports collect: [ :each | each mooseDescription fullName ].
 
 	model := FMModel withMetamodel: aMetamodel.
 	importer := FMImporter model: model.
@@ -409,7 +404,7 @@ MooseModel >> importFromMSEStream: aStream [
 MooseModel >> importFromMSEStream: aStream filteredBy: anImportingContext [
 	
 	| repository |
-	repository := self class importFrom: aStream filteredBy: anImportingContext.
+	repository := self class importFrom: aStream withMetamodel: self metamodel filteredBy: anImportingContext.
 	repository elements do: [ :e | self add: e ].
 	self entityStorage forRuntime
 ]

@@ -51,8 +51,8 @@ source2b''))
 FmxImportingContextTest >> testImportingClasses [
 	self modelMSE
 		readStreamDo: [ :s | 
-			model := FamixTest1Model
-				importFrom: s
+			model := FamixTest1Model new
+				importFromMSEStream: s
 				filteredBy:
 					(FamixTest1ImportingContext new
 						importClass;
