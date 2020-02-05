@@ -361,3 +361,10 @@ FamixCompatibilityGenerator >> defineHierarchy [
 	
 
 ]
+
+{ #category : #definition }
+FamixCompatibilityGenerator >> newBuilder [
+	^ super newBuilder
+		withImportingContext;
+		yourself
+]
