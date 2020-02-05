@@ -68,3 +68,10 @@ FamixTest1Generator >> defineHierarchy [
 	attribute --|> namedEntity.
 	attribute --|> #TAttribute
 ]
+
+{ #category : #definition }
+FamixTest1Generator >> newBuilder [
+	^ super newBuilder
+		withImportingContext;
+		yourself
+]

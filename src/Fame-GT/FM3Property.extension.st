@@ -16,7 +16,7 @@ FM3Property >> gtInspectorSourceIn: composite [
 FM3Property >> gtTypeString [
 	^ String
 		streamContents: [ :s | 
-			self type ifNotNil: [ :t | t nextPutAll: self type name ].
+			self type ifNotNil: [ :t | s nextPutAll: t name ].
 			self isMultivalued ifTrue: [ s nextPutAll: ' *' ].
 			self isDerived ifTrue: [ s nextPutAll: ' /' ] ]
 ]
