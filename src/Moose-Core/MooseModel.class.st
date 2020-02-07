@@ -163,6 +163,13 @@ MooseModel class >> importFromMSEStream: aStream [
 ]
 
 { #category : #'import-export' }
+MooseModel class >> importFromMSEStream: aStream filteredBy: anImportingContext [
+	^ self new
+		importFromMSEStream: aStream filteredBy: anImportingContext;
+		yourself
+]
+
+{ #category : #'import-export' }
 MooseModel class >> importMetamodelFrom: aStream [
 	| mm generator |
 	mm := FMMetaModel new.
@@ -384,6 +391,13 @@ MooseModel >> flushProperties [
 ]
 
 { #category : #actions }
+MooseModel >> importFrom: aFMModel named: aString [
+	self silentlyAddAll: aFMModel elements.
+	self entityStorage forRuntime.
+	self name: aString
+]
+
+{ #category : #actions }
 MooseModel >> importFromMSEStream: aStream [
 	"Benchmarks
 	Time millisecondsToRun: [ MooseModel new importFromMSEStream: (StandardFileStream readOnlyFileNamed: 'network3.mse') ].
@@ -393,22 +407,14 @@ MooseModel >> importFromMSEStream: aStream [
 	 17560 -> simon_denier 9/21/2009 22:34 - removing metrics from MSE
 	"
 
-	| repository |
-	repository := self class importFrom: aStream withMetamodel: self metamodel.
-	self silentlyAddAll: repository elements.
-	self entityStorage forRuntime.
-	self name: (aStream localName removeSuffix: '.mse').
-	"aStream isFileStream
-		ifTrue: [ self rootFolder: aStream fullName asFileReference parent ]"
+	^ self importFrom: (self class importFrom: aStream withMetamodel: self metamodel) named: (aStream localName removeSuffix: '.mse')
 ]
 
 { #category : #actions }
 MooseModel >> importFromMSEStream: aStream filteredBy: anImportingContext [
-	
-	| repository |
-	repository := self class importFrom: aStream withMetamodel: self metamodel filteredBy: anImportingContext.
-	repository elements do: [ :e | self add: e ].
-	self entityStorage forRuntime
+	^ self
+		importFrom: (self class importFrom: aStream withMetamodel: self metamodel filteredBy: anImportingContext)
+		named: (aStream localName removeSuffix: '.mse')
 ]
 
 { #category : #testing }
