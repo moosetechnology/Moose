@@ -50,11 +50,12 @@ FamixTMethod >> cyclomaticComplexity: aNumber [
 
 { #category : #accessing }
 FamixTMethod >> isAbstract [
+	"The #ifNil: branch is here while we migrate the parser from the use of modifiers to the use of a variable.
+	If we remove this branch later we should remove the method and regenerate the MM."
 
 	<FMProperty: #isAbstract type: #Boolean>
-	<generated>
 	<FMComment: 'True if abstract method'>
-	^ isAbstract
+	^ isAbstract ifNil: [ self modifiers includes: #abstract ]
 ]
 
 { #category : #accessing }
@@ -83,7 +84,7 @@ FamixTMethod >> isConstant [
 	<FMProperty: #isConstant type: #Boolean>
 	<derived>
 	<FMComment: 'True if the method simply returns a constant'>
-	^#constant = self kind
+	^ #constant = self kind
 ]
 
 { #category : #testing }
@@ -91,17 +92,12 @@ FamixTMethod >> isConstructor [
 	<FMProperty: #isConstructor type: #Boolean>
 	<derived>
 	<FMComment: 'True if the method is a constructor of the class'>
-
-	^ #constructor = self kind or: [ 
-		self privateState propertyAt: #isConstructor ifAbsent: [false] ]
+	^ #constructor = self kind or: [ self privateState propertyAt: #isConstructor ifAbsent: [ false ] ]
 ]
 
 { #category : #testing }
 FamixTMethod >> isConstructor: aBoolean [
-	aBoolean 
-		ifTrue: [ self kind: #constructor ]
-		ifFalse: [ 
-			self isConstructor ifTrue: [ self kind: nil ] ]
+	aBoolean ifTrue: [ self kind: #constructor ] ifFalse: [ self isConstructor ifTrue: [ self kind: nil ] ]
 ]
 
 { #category : #testing }
@@ -109,8 +105,7 @@ FamixTMethod >> isGetter [
 	<FMProperty: #isGetter type: #Boolean>
 	<derived>
 	<FMComment: 'True if the method is a getter of an attribute'>
-	
-	^#getter = self kind
+	^ #getter = self kind
 ]
 
 { #category : #testing }
