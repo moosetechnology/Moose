@@ -105,11 +105,22 @@ MooseModel class >> importFrom: aStream filteredBy: anImportingContext [
 
 { #category : #'import-export' }
 MooseModel class >> importFrom: aStream withMetamodel: aMetamodel [
+	"Here we build with the default importer"
+
+	^ self importFrom: aStream withMetamodel: aMetamodel customizingImporterWith: [ :importer | importer ]
+]
+
+{ #category : #'import-export' }
+MooseModel class >> importFrom: aStream withMetamodel: aMetamodel customizingImporterWith: aBlock [
+	"I import a MSE with its metamodel and return a FMModel from it. It is possible to customize the importer via a block"
+
 	| model importer areWarningsEnabled |
 	model := FMModel withMetamodel: aMetamodel.
-	importer := FMImporter model: model.
-	importer autorizeDandlingReferencesAtEnd.
-	importer stream: aStream.
+	importer := aBlock
+		value:
+			((FMImporter model: model) autorizeDandlingReferencesAtEnd
+				stream: aStream;
+				yourself).
 
 	"We are currently updating the meta models and most parsers are not up to date.
 	We disable warnings to avoid all deprecation warnings during the transition phase."
@@ -124,30 +135,24 @@ MooseModel class >> importFrom: aStream withMetamodel: aMetamodel [
 
 { #category : #'import-export' }
 MooseModel class >> importFrom: aStream withMetamodel: aMetamodel filteredBy: anImportingContext [
-	| model importer famixElementNames importerFilter |
-	famixElementNames := anImportingContext imports collect: [ :each | each mooseDescription fullName ].
+	"In the way to import a model we filter the entites we want to import via a FmxImportContext."
 
-	model := FMModel withMetamodel: aMetamodel.
-	importer := FMImporter model: model.
-	importer autorizeDandlingReferencesAtEnd.
-	importer stream: aStream.
-	importerFilter := FMImporterFilter on: importer filtering: famixElementNames.
-	importerFilter run.
-	model updateCache.
-	^ model
+	| famixElementNames |
+	famixElementNames := anImportingContext imports collect: [ :each | each mooseDescription fullName ].
+	^ self importFrom: aStream withMetamodel: aMetamodel customizingImporterWith: [ :importer | FMImporterFilter on: importer filtering: famixElementNames ]
 ]
 
 { #category : #'import-export' }
 MooseModel class >> importFrom: aStream withMetamodel: aMetamodel translationDictionary: translationDict [
-	| model importer |
-	model := FMModel withMetamodel: aMetamodel.	
-	importer := FMImporter model: model.
-	importer autorizeDandlingReferencesAtEnd.
-	importer stream: aStream.
-	importer nameTranslator: translationDict.
-	importer run.
-	model updateCache.
-	^ model
+	"In this case we use a translation dictionary to import model by updating the names from the MSE."
+
+	^ self
+		importFrom: aStream
+		withMetamodel: aMetamodel
+		customizingImporterWith: [ :importer | 
+			importer
+				nameTranslator: translationDict;
+				yourself ]
 ]
 
 { #category : #'import-export' }
