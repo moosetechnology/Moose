@@ -95,15 +95,12 @@ MooseModel class >> generateClassesFrom: aCollection inPackage: aString [
 
 { #category : #'import-export' }
 MooseModel class >> importFrom: aStream [
-	^ self importFrom: aStream withMetamodel: self meta
+	^ self importFrom: aStream withMetamodel: self metamodel
 ]
 
 { #category : #'import-export' }
-MooseModel class >> importFrom: aStream filteredBy: anImportingContext [ 
-	^self 
-		importFrom: aStream
-		withMetamodel: self meta
-		filteredBy: anImportingContext
+MooseModel class >> importFrom: aStream filteredBy: anImportingContext [
+	^ self importFrom: aStream withMetamodel: self metamodel filteredBy: anImportingContext
 ]
 
 { #category : #'import-export' }
