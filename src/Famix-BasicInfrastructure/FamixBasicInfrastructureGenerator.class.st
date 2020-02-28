@@ -63,7 +63,7 @@ FamixBasicInfrastructureGenerator >> defineHierarchy [
 	comment --|> #TComment.
 
 	namedEntity --|> sourcedEntity.
-	namedEntity --|> #TNamed.
+	namedEntity --|> #TNamedEntity.
 	namedEntity --|> #TDependencyQueries.
 	namedEntity --|> #TEntityMetaLevelDependency.
 

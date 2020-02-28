@@ -302,7 +302,7 @@ FmxMBTraitTest >> testTestingMethods [
 	
 	| tNamed |
 
-	tNamed := builder newTraitNamed: #TNamed.	
+	tNamed := builder newTraitNamed: #TNamedEntity.	
 
 	self deny: tNamed isMetamodelClass.
 	self assert: tNamed isMetamodelTrait.

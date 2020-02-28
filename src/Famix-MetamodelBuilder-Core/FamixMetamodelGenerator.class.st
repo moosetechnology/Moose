@@ -60,7 +60,7 @@ FamixMetamodelGenerator class >> composedMetaModels [
 
 { #category : #generation }
 FamixMetamodelGenerator class >> generate [
-
+	<script>
 	<ignoreForCoverage>
 	self new generate
 ]
@@ -186,6 +186,31 @@ FamixMetamodelGenerator >> allSubBuilders [
 			do: [ :subSubBuilder | (result anySatisfy: [ :b | b generator class = subSubBuilder generator class ])
 				ifFalse: [ result add: subSubBuilder ] ] ].
 	^ result
+]
+
+{ #category : #definition }
+FamixMetamodelGenerator >> apply: aTrait on: aGeneratedClass oppositeOn: anotherGeneratedClass [
+	"A shorter version of #apply:on:oppositeTrait:on:
+	Only works if aTrait has excatly 1 opposite (slot)"
+	| oppositeTrait |
+
+	((builder getTraitNamed: aTrait) properties size = 1) ifFalse: [ self error: '#apply:on:oppositeOn: only accept traits with a unique opposite' ].
+
+	oppositeTrait := (builder getTraitNamed: aTrait) properties anyOne relation side relatedClass name.	
+	self apply: aTrait on: aGeneratedClass oppositeTrait: oppositeTrait on: anotherGeneratedClass
+]
+
+{ #category : #definition }
+FamixMetamodelGenerator >> apply: aTrait on: aGeneratedClass oppositeTrait: anotherTrait on: anotherGeneratedClass [
+	"This is a syntactic sugar mehtod to help using traits that work by pair like #TWithMethods and #TMethods.
+	To use it, start by defining two classes:
+		builder newClassNamed: #Class1
+		builder newClassNamed: #Class2
+	Then indicate how they are related in #defineRelations
+		self apply: #TWithMethods on: class1 oppositeTrait: #TMethod on: class2"
+
+	aGeneratedClass --|> aTrait.
+	anotherGeneratedClass --|> anotherTrait 
 ]
 
 { #category : #accessing }
@@ -332,7 +357,7 @@ FamixMetamodelGenerator >> remoteEntity: anEntityName withPrefix: aPrefixName [
 
 { #category : #definition }
 FamixMetamodelGenerator >> remoteTrait: anEntityName withPrefix: aPrefixName [
-	^ ((subBuildersMapByPrefix at: aPrefixName) ensureTraitNamed: anEntityName)
+	^ ((subBuildersMapByPrefix at: aPrefixName) traitNamed: anEntityName)
 		isRemote: true;
 		remoteBuilder: builder;
 		yourself

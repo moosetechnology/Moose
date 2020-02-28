@@ -3,7 +3,7 @@ Trait {
 	#instVars : [
 		'#functions => FMMany type: #FamixTFunction opposite: #functionOwner'
 	],
-	#category : #'Famix-Traits-Function'
+	#category : #'Famix-Traits-Behavioral'
 }
 
 { #category : #meta }

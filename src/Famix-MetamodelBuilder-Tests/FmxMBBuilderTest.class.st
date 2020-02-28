@@ -102,18 +102,6 @@ FmxMBBuilderTest >> testEnsureLocalTraitNamedExisting [
 ]
 
 { #category : #tests }
-FmxMBBuilderTest >> testEnsureTraitNamed [
-
-	| t1 |
-	
-	t1 := builder ensureTraitNamed: #T1.
-	self assert: t1 isMetamodelTrait.
-	self assert: (builder ensureTraitNamed: #T1) identicalTo: t1.
-	
-	
-]
-
-{ #category : #tests }
 FmxMBBuilderTest >> testMultipleClassesCreation [
 
 	"it should not be possible to create two classes with the same name"
@@ -228,9 +216,9 @@ FmxMBBuilderTest >> testSortedTratis [
 
 	| t1 t2 t3 |
 	
-	t2 := builder ensureTraitNamed: #T2.
-	t1 := builder ensureTraitNamed: #T1.
-	t3 := builder ensureTraitNamed: #T3.
+	t2 := builder newTraitNamed: #T2.
+	t1 := builder newTraitNamed: #T1.
+	t3 := builder newTraitNamed: #T3.
 
 	self assertCollection: builder sortedTraits asArray equals: { t1. t2. t3 }.
 	
@@ -240,13 +228,11 @@ FmxMBBuilderTest >> testSortedTratis [
 { #category : #tests }
 FmxMBBuilderTest >> testTraitNamed [
 
-	| t c |
+	| c |
+	self should: [ builder traitNamed: #T1 ] raise: FamixMetamodelGeneratorUnknownTrait.
 	
-	t := builder ensureTraitNamed: #T1.
 	c := builder ensureClassNamed: #C1.	
-	
-	self assert: (builder traitNamed: #T1) equals: t.
-	self should: [ builder traitNamed: #C1 ] raise: NotFound.
+	self should: [ builder traitNamed: #C1 ] raise: FamixMetamodelGeneratorUnknownTrait.
 
 	
 ]

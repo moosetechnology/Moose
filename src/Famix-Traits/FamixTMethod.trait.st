@@ -11,9 +11,9 @@ Trait {
 		'#kind => FMProperty',
 		'#parentType => FMOne type: #FamixTWithMethods opposite: #methods'
 	],
-	#traits : 'FamixTWithParameters + FamixTInvocable + FamixTWithInvocations + FamixTWithReferences + FamixTWithAccesses + FamixTWithLocalVariables + FamixTWithImplicitVariables + FamixTWithSignature + FamixTWithClassScope + FamixTTypedStructure + FamixTSourceEntity',
-	#classTraits : 'FamixTWithParameters classTrait + FamixTInvocable classTrait + FamixTWithInvocations classTrait + FamixTWithReferences classTrait + FamixTWithAccesses classTrait + FamixTWithLocalVariables classTrait + FamixTWithImplicitVariables classTrait + FamixTWithSignature classTrait + FamixTWithClassScope classTrait + FamixTTypedStructure classTrait + FamixTSourceEntity classTrait',
-	#category : #'Famix-Traits-Method'
+	#traits : 'FamixTHasSignature + FamixTInvocable + FamixTSourceEntity + FamixTTypedEntity + FamixTWithAccesses + FamixTWithClassScope + FamixTWithImplicitVariables + FamixTWithInvocations + FamixTWithLocalVariables + FamixTWithParameters + FamixTWithReferences',
+	#classTraits : 'FamixTHasSignature classTrait + FamixTInvocable classTrait + FamixTSourceEntity classTrait + FamixTTypedEntity classTrait + FamixTWithAccesses classTrait + FamixTWithClassScope classTrait + FamixTWithImplicitVariables classTrait + FamixTWithInvocations classTrait + FamixTWithLocalVariables classTrait + FamixTWithParameters classTrait + FamixTWithReferences classTrait',
+	#category : #'Famix-Traits-Behavioral'
 }
 
 { #category : #meta }

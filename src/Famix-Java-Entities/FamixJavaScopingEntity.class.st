@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaScopingEntity,
 	#superclass : #FamixJavaContainerEntity,
-	#traits : 'FamixTGlobalVariableScope + FamixTScopingEntity',
-	#classTraits : 'FamixTGlobalVariableScope classTrait + FamixTScopingEntity classTrait',
+	#traits : 'FamixTScopingEntity + FamixTWithGlobalVariables',
+	#classTraits : 'FamixTScopingEntity classTrait + FamixTWithGlobalVariables classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 

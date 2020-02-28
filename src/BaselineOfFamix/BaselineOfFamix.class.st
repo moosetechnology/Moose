@@ -30,7 +30,6 @@ BaselineOfFamix >> baseline: spec [
 				referenceTestResources: spec;
 				neoCSV: spec;
 				roelTyper: spec;
-				talents: spec;
 				singularizePluralize: spec.
 
 			"Packages"
@@ -44,7 +43,7 @@ BaselineOfFamix >> baseline: spec [
 				package: 'Famix-MetamodelGeneration' with: [ spec requires: #('Famix-MetamodelBuilder-Core') ];
 				package: 'Famix-BasicInfrastructure' with: [ spec requires: #('Famix-MetamodelGeneration') ];
 				package: 'Famix-Smalltalk-Utils' with: [ spec requires: #('Moose-Core') ];
-				package: 'Moose-GenericImporter' with: [ spec requires: #('Famix-Compatibility-Entities') ];
+				package: 'Moose-GenericImporter' with: [ spec requires: #('BasicTraits') ];
 				package: 'Moose-SmalltalkImporter' with: [ spec requires: #('Moose-GenericImporter' 'RoelTyper' 'Famix-PharoSmalltalk-Entities') ];
 	
 				package: 'Famix-Compatibility-Generator' with: [ spec requires: #('Basic') ];
@@ -66,7 +65,7 @@ BaselineOfFamix >> baseline: spec [
 
 				package: 'Moose-Query-Test' with: [ spec requires: #('Moose-Query' 'Famix-Java-Entities') ];
 				package: 'FamixTestGenerator' with: [ spec requires: #('BasicTraits') ];
-				package: 'Famix-Tests' with: [ spec requires: #('BasicTraits' 'Talents') ];
+				package: 'Famix-Tests' with: [ spec requires: #('BasicTraits') ];
 				package: 'Moose-Tests-Core' with: [ spec requires: #('TestModels') ];
 				package: 'Famix-Groups-Tests' with: [ spec requires: #('Famix-Groups' 'Moose-Tests-Core') ];
 				package: 'Moose-GenericImporters-Tests' with: [ spec requires: #('Moose-GenericImporter') ];
@@ -87,6 +86,8 @@ BaselineOfFamix >> baseline: spec [
 				package: 'Famix-Test3-Tests' with: [ spec requires: #('Famix-Test3-Entities') ];
 				package: 'Famix-Test4-Entities' with: [ spec requires: #('BasicTraits') ];
 				package: 'Famix-Test4-Tests' with: [ spec requires: #('Famix-Test4-Entities') ];
+				package: 'Famix-Test5-Entities' with: [ spec requires: #('BasicTraits') ];
+				package: 'Famix-Test5-Tests' with: [ spec requires: #('Famix-Test5-Entities') ];
 				package: 'Famix-TestComposedSubmetamodel1-Entities' with: [ spec requires: #('BasicTraits') ];
 				package: 'Famix-TestComposedSubmetamodel2-Entities' with: [ spec requires: #('BasicTraits') ];
 				package: 'Famix-TestComposedMetamodel-Entities' with: [ spec requires: #('Famix-Test2-Entities' 'Famix-TestComposedSubmetamodel1-Entities' 'Famix-TestComposedSubmetamodel2-Entities') ];
@@ -208,13 +209,4 @@ BaselineOfFamix >> roelTyper: spec [
 { #category : #baseline }
 BaselineOfFamix >> singularizePluralize: spec [
 	spec baseline: 'SingularizePluralize' with: [ spec repository: 'github://olekscode/SingularizePluralize:v1.0/src' ]
-]
-
-{ #category : #dependencies }
-BaselineOfFamix >> talents: spec [
-	spec
-		baseline: 'Talents'
-		with: [ spec
-				loads: 'core';
-				repository: 'github://tesonep/pharo-talents:v2.0.0/src' ]
 ]

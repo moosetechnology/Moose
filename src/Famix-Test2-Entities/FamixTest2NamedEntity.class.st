@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixTest2NamedEntity,
 	#superclass : #FamixTest2SourcedEntity,
-	#traits : 'FamixTNamed + TDependencyQueries + TEntityMetaLevelDependency',
-	#classTraits : 'FamixTNamed classTrait + TDependencyQueries classTrait + TEntityMetaLevelDependency classTrait',
+	#traits : 'FamixTNamedEntity + TDependencyQueries + TEntityMetaLevelDependency',
+	#classTraits : 'FamixTNamedEntity classTrait + TDependencyQueries classTrait + TEntityMetaLevelDependency classTrait',
 	#category : #'Famix-Test2-Entities-Entities'
 }
 

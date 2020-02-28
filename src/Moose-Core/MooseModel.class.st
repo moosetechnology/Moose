@@ -95,24 +95,32 @@ MooseModel class >> generateClassesFrom: aCollection inPackage: aString [
 
 { #category : #'import-export' }
 MooseModel class >> importFrom: aStream [
-	^ self importFrom: aStream withMetamodel: self meta
+	^ self importFrom: aStream withMetamodel: self metamodel
 ]
 
 { #category : #'import-export' }
-MooseModel class >> importFrom: aStream filteredBy: anImportingContext [ 
-	^self 
-		importFrom: aStream
-		withMetamodel: self meta
-		filteredBy: anImportingContext
+MooseModel class >> importFrom: aStream filteredBy: anImportingContext [
+	^ self importFrom: aStream withMetamodel: self metamodel filteredBy: anImportingContext
 ]
 
 { #category : #'import-export' }
 MooseModel class >> importFrom: aStream withMetamodel: aMetamodel [
+	"Here we build with the default importer"
+
+	^ self importFrom: aStream withMetamodel: aMetamodel customizingImporterWith: [ :importer | importer ]
+]
+
+{ #category : #'import-export' }
+MooseModel class >> importFrom: aStream withMetamodel: aMetamodel customizingImporterWith: aBlock [
+	"I import a MSE with its metamodel and return a FMModel from it. It is possible to customize the importer via a block"
+
 	| model importer areWarningsEnabled |
 	model := FMModel withMetamodel: aMetamodel.
-	importer := FMImporter model: model.
-	importer autorizeDandlingReferencesAtEnd.
-	importer stream: aStream.
+	importer := aBlock
+		value:
+			((FMImporter model: model) autorizeDandlingReferencesAtEnd
+				stream: aStream;
+				yourself).
 
 	"We are currently updating the meta models and most parsers are not up to date.
 	We disable warnings to avoid all deprecation warnings during the transition phase."
@@ -127,41 +135,37 @@ MooseModel class >> importFrom: aStream withMetamodel: aMetamodel [
 
 { #category : #'import-export' }
 MooseModel class >> importFrom: aStream withMetamodel: aMetamodel filteredBy: anImportingContext [
-	| model importer famixElementNames importerFilter |
-	famixElementNames := anImportingContext entityKindsToBeExtracted collect: [ :each | 'FAMIX.' , each asString ].
-	"anImportingContext  shouldImportMethodBody 
-		ifTrue: [famixElementNames add: 'FAMIX.Parameter'.
-			anImportingContext shouldImportAccess ifTrue:[famixElementNames add:'FAMIX.Reference']]."
+	"In the way to import a model we filter the entites we want to import via a FmxImportContext."
 
-	"famixElementNames := anImportingContext fullNamesOfEntitiesToBeExtracted ."
-
-	model := FMModel withMetamodel: aMetamodel.
-	importer := FMImporter model: model.
-	importer autorizeDandlingReferencesAtEnd.
-	importer stream: aStream.
-	importerFilter := FMImporterFilter on: importer filtering: famixElementNames.
-	importerFilter run.
-	model updateCache.
-	^ model
+	| famixElementNames |
+	famixElementNames := anImportingContext imports collect: [ :each | each mooseDescription fullName ].
+	^ self importFrom: aStream withMetamodel: aMetamodel customizingImporterWith: [ :importer | FMImporterFilter on: importer filtering: famixElementNames ]
 ]
 
 { #category : #'import-export' }
 MooseModel class >> importFrom: aStream withMetamodel: aMetamodel translationDictionary: translationDict [
-	| model importer |
-	model := FMModel withMetamodel: aMetamodel.	
-	importer := FMImporter model: model.
-	importer autorizeDandlingReferencesAtEnd.
-	importer stream: aStream.
-	importer nameTranslator: translationDict.
-	importer run.
-	model updateCache.
-	^ model
+	"In this case we use a translation dictionary to import model by updating the names from the MSE."
+
+	^ self
+		importFrom: aStream
+		withMetamodel: aMetamodel
+		customizingImporterWith: [ :importer | 
+			importer
+				nameTranslator: translationDict;
+				yourself ]
 ]
 
 { #category : #'import-export' }
 MooseModel class >> importFromMSEStream: aStream [
 	^ self new
 		importFromMSEStream: aStream;
+		yourself
+]
+
+{ #category : #'import-export' }
+MooseModel class >> importFromMSEStream: aStream filteredBy: anImportingContext [
+	^ self new
+		importFromMSEStream: aStream filteredBy: anImportingContext;
 		yourself
 ]
 
@@ -220,6 +224,9 @@ MooseModel class >> resetMetamodel [
 
 	"MooseEntity has a cache for some infos. When we regenerate a MM we need to flush this cache."
 	metamodel classes do: [ :fm3Class | fm3Class implementingClass resetMooseEntityCache ].
+	
+	self allInstancesDo: [ :model | model updateMetamodelTo: metamodel ].
+
 	^ metamodel
 ]
 
@@ -384,6 +391,13 @@ MooseModel >> flushProperties [
 ]
 
 { #category : #actions }
+MooseModel >> importFrom: aFMModel named: aString [
+	self silentlyAddAll: aFMModel elements.
+	self entityStorage forRuntime.
+	self name: aString
+]
+
+{ #category : #actions }
 MooseModel >> importFromMSEStream: aStream [
 	"Benchmarks
 	Time millisecondsToRun: [ MooseModel new importFromMSEStream: (StandardFileStream readOnlyFileNamed: 'network3.mse') ].
@@ -393,22 +407,14 @@ MooseModel >> importFromMSEStream: aStream [
 	 17560 -> simon_denier 9/21/2009 22:34 - removing metrics from MSE
 	"
 
-	| repository |
-	repository := self class importFrom: aStream withMetamodel: self metamodel.
-	self silentlyAddAll: repository elements.
-	self entityStorage forRuntime.
-	self name: (aStream localName removeSuffix: '.mse').
-	"aStream isFileStream
-		ifTrue: [ self rootFolder: aStream fullName asFileReference parent ]"
+	^ self importFrom: (self class importFrom: aStream withMetamodel: self metamodel) named: (aStream localName removeSuffix: '.mse')
 ]
 
 { #category : #actions }
 MooseModel >> importFromMSEStream: aStream filteredBy: anImportingContext [
-	
-	| repository |
-	repository := self class importFrom: aStream filteredBy: anImportingContext.
-	repository elements do: [ :e | self add: e ].
-	self entityStorage forRuntime
+	^ self
+		importFrom: (self class importFrom: aStream withMetamodel: self metamodel filteredBy: anImportingContext)
+		named: (aStream localName removeSuffix: '.mse')
 ]
 
 { #category : #testing }
@@ -425,7 +431,7 @@ MooseModel >> includesElementsOfType: aClass [
 	^ (self allWithType: aClass) isEmpty not
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseModel >> initialize [
 	super initialize.
 	name := #noname.
@@ -608,4 +614,11 @@ MooseModel >> union: aGroup [
 	result := MooseGroup withAll: (self entities asSet union: aGroup entities asSet). 
 	result description: self description , '  and ' , aGroup description. 
 	^result
+]
+
+{ #category : #initialization }
+MooseModel >> updateMetamodelTo: aMetamodel [
+	metamodel ifNil: [ ^ self ].
+
+	self metamodel: aMetamodel
 ]

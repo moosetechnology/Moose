@@ -42,6 +42,17 @@ FmxMBGeneratorTest >> testResetMetamodel [
 ]
 
 { #category : #tests }
+FmxMBGeneratorTest >> testResetMetamodelSetNewMetamodelToInstances [
+	| model oldMetamodel metamodel |
+	model := FamixTest1Model new.
+	oldMetamodel := model metamodel.
+	self assert: model metamodel identicalTo: oldMetamodel.
+	metamodel := FamixTest1Model resetMetamodel.
+	self deny: model metamodel identicalTo: oldMetamodel.
+	self assert: model metamodel identicalTo: metamodel
+]
+
+{ #category : #tests }
 FmxMBGeneratorTest >> testSubmetamodles [
 
 	self assert: FamixMetamodelGenerator submetamodels isEmpty

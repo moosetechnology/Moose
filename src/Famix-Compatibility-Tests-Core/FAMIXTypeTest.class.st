@@ -16,8 +16,8 @@ FAMIXTypeTest >> testBehaviorsWithDeclaredType [
 	behaviour := FAMIXBehaviouralEntity new.
 	behaviour declaredType: type.
 	self assert: behaviour declaredType identicalTo: type.
-	self assert: type structuresWithDeclaredType size equals: 1.
-	self assert: (type structuresWithDeclaredType includes: behaviour)
+	self assert: type typedEntities size equals: 1.
+	self assert: (type typedEntities includes: behaviour)
 ]
 
 { #category : #tests }
@@ -27,6 +27,6 @@ FAMIXTypeTest >> testStructuresWithDeclaredType [
 	structure := FAMIXStructuralEntity new.
 	structure declaredType: type.
 	self assert: structure declaredType identicalTo: type.
-	self assert: type structuresWithDeclaredType size equals: 1.
-	self assert: (type structuresWithDeclaredType includes: structure)
+	self assert: type typedEntities size equals: 1.
+	self assert: (type typedEntities includes: structure)
 ]

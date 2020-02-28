@@ -187,7 +187,7 @@ FamixJavaGenerator >> defineHierarchy [
 
 	invocation --|> association.
 	invocation --|> #TInvocation.
-	invocation --|> #TWithSignature.
+	invocation --|> #THasSignature.
 
 	localVariable --|> namedEntity.
 	localVariable --|> tStructuralEntity.
@@ -225,7 +225,7 @@ FamixJavaGenerator >> defineHierarchy [
 	reference --|> #TReference.
 
 	scopingEntity --|> containerEntity.
-	scopingEntity --|> #TGlobalVariableScope.
+	scopingEntity --|> #TWithGlobalVariables.
 	scopingEntity --|> #TScopingEntity.
 
 	thrownException --|> exception.

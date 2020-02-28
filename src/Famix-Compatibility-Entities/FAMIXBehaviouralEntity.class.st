@@ -1,8 +1,8 @@
 Class {
 	#name : #FAMIXBehaviouralEntity,
 	#superclass : #FAMIXContainerEntity,
-	#traits : 'FamixTInvocable + FamixTTypedStructure + FamixTWithAccesses + FamixTWithDereferencedInvocations + FamixTWithImplicitVariables + FamixTWithInvocations + FamixTWithLocalVariables + FamixTWithParameters + FamixTWithReferences + FamixTWithSignature + FamixTWithStatements',
-	#classTraits : 'FamixTInvocable classTrait + FamixTTypedStructure classTrait + FamixTWithAccesses classTrait + FamixTWithDereferencedInvocations classTrait + FamixTWithImplicitVariables classTrait + FamixTWithInvocations classTrait + FamixTWithLocalVariables classTrait + FamixTWithParameters classTrait + FamixTWithReferences classTrait + FamixTWithSignature classTrait + FamixTWithStatements classTrait',
+	#traits : 'FamixTHasSignature + FamixTInvocable + FamixTTypedEntity + FamixTWithAccesses + FamixTWithDereferencedInvocations + FamixTWithImplicitVariables + FamixTWithInvocations + FamixTWithLocalVariables + FamixTWithParameters + FamixTWithReferences + FamixTWithStatements',
+	#classTraits : 'FamixTHasSignature classTrait + FamixTInvocable classTrait + FamixTTypedEntity classTrait + FamixTWithAccesses classTrait + FamixTWithDereferencedInvocations classTrait + FamixTWithImplicitVariables classTrait + FamixTWithInvocations classTrait + FamixTWithLocalVariables classTrait + FamixTWithParameters classTrait + FamixTWithReferences classTrait + FamixTWithStatements classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 
