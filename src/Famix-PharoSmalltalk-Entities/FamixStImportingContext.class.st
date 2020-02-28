@@ -35,12 +35,6 @@ FamixStImportingContext >> importAnnotationTypeAttribute [
 ]
 
 { #category : #testing }
-FamixStImportingContext >> importAssociation [
-	<generated>
-	^ self import: FamixStAssociation
-]
-
-{ #category : #testing }
 FamixStImportingContext >> importAttribute [
 	<generated>
 	^ self import: FamixStAttribute
@@ -206,12 +200,6 @@ FamixStImportingContext >> shouldImportAnnotationType [
 FamixStImportingContext >> shouldImportAnnotationTypeAttribute [
 	<generated>
 	^ self shouldImport: FamixStAnnotationTypeAttribute
-]
-
-{ #category : #testing }
-FamixStImportingContext >> shouldImportAssociation [
-	<generated>
-	^ self shouldImport: FamixStAssociation
 ]
 
 { #category : #testing }

@@ -17,6 +17,8 @@ Trait {
 		'#receiver => FMOne type: #FamixTInvocationsReceiver opposite: #receivingInvocations',
 		'#sender => FMOne type: #FamixTWithInvocations opposite: #outgoingInvocations'
 	],
+	#traits : 'FamixTAssociation',
+	#classTraits : 'FamixTAssociation classTrait',
 	#category : #'Famix-Traits-Invocation'
 }
 
@@ -66,16 +68,6 @@ FamixTInvocation >> candidates: anObject [
 	candidates value: anObject
 ]
 
-{ #category : #accessing }
-FamixTInvocation >> from [
-	^ self sender
-]
-
-{ #category : #accessing }
-FamixTInvocation >> from: aSender [
-	self sender: aSender
-]
-
 { #category : #testing }
 FamixTInvocation >> isInvocation [
 
@@ -117,11 +109,21 @@ FamixTInvocation >> sender: anObject [
 ]
 
 { #category : #accessing }
-FamixTInvocation >> to [
+FamixTInvocation >> source [
+	^ self sender
+]
+
+{ #category : #accessing }
+FamixTInvocation >> source: aSender [
+	self sender: aSender
+]
+
+{ #category : #accessing }
+FamixTInvocation >> target [
 	^ self candidates
 ]
 
 { #category : #accessing }
-FamixTInvocation >> to: aCollCandidates [
+FamixTInvocation >> target: aCollCandidates [
 	self candidates: aCollCandidates 
 ]

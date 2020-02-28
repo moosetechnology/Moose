@@ -29,7 +29,8 @@ Class {
 	#instVars : [
 		'classEntity',
 		'method',
-		'attribute'
+		'attribute',
+		'association'
 	],
 	#category : #'Famix-TestGenerators'
 }
@@ -52,7 +53,8 @@ FamixTest1Generator >> defineClasses [
 
 	classEntity := builder newClassNamed: #Class.
 	method := builder newClassNamed: #Method.
-	attribute := builder newClassNamed: #Attribute
+	attribute := builder newClassNamed: #Attribute.
+	association := builder newClassNamed: #Association.
 ]
 
 { #category : #definition }
@@ -66,7 +68,9 @@ FamixTest1Generator >> defineHierarchy [
 	classEntity --|> #TClass.
 
 	attribute --|> namedEntity.
-	attribute --|> #TAttribute
+	attribute --|> #TAttribute.
+	
+	association --|> #TAssociation.
 ]
 
 { #category : #definition }

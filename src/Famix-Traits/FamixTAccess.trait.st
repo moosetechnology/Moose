@@ -19,6 +19,8 @@ Trait {
 		'#isWrite => FMProperty',
 		'#variable => FMOne type: #FamixTAccessible opposite: #incomingAccesses'
 	],
+	#traits : 'FamixTAssociation',
+	#classTraits : 'FamixTAssociation classTrait',
 	#category : #'Famix-Traits-Access'
 }
 
@@ -46,16 +48,6 @@ FamixTAccess >> accessor: anObject [
 
 	<generated>
 	accessor := anObject
-]
-
-{ #category : #accessing }
-FamixTAccess >> from [
-	^ self accessor 
-]
-
-{ #category : #accessing }
-FamixTAccess >> from: anAccessor [
-	self accessor: anAccessor 
 ]
 
 { #category : #testing }
@@ -97,13 +89,23 @@ FamixTAccess >> isWrite: anObject [
 ]
 
 { #category : #accessing }
-FamixTAccess >> to [	
+FamixTAccess >> source [
+	^ self accessor
+]
+
+{ #category : #accessing }
+FamixTAccess >> source: anAccessor [
+	self accessor: anAccessor 
+]
+
+{ #category : #accessing }
+FamixTAccess >> target [
 	^ self variable 
 ]
 
 { #category : #accessing }
-FamixTAccess >> to: aVariable [
-	self variable: aVariable
+FamixTAccess >> target: aTarget [
+	self variable: aTarget
 ]
 
 { #category : #accessing }

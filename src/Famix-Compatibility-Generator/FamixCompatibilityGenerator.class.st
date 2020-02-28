@@ -166,7 +166,6 @@ FamixCompatibilityGenerator >> defineHierarchy [
 
 	entity <|-- exception.
 	
-	access --|> association.
 	access --|> #TAccess.
 
 	annotationInstance --|> sourcedEntity.
@@ -258,13 +257,10 @@ FamixCompatibilityGenerator >> defineHierarchy [
 	implicitVariable --|> structuralEntity.
 	implicitVariable --|> #TImplicitVariable.
 
-	include --|> association.
 	include --|> #TFileInclude.
 
-	inheritance --|> association.
 	inheritance --|> #TInheritance.
 
-	invocation --|> association.
 	invocation --|> #TInvocation.
 	invocation --|> #THasSignature.
 
@@ -322,7 +318,6 @@ FamixCompatibilityGenerator >> defineHierarchy [
 
 	primitiveType --|> type.
 
-	reference --|> association.
 	reference --|> #TReference.
 
 	sMALLTALKSourceLanguage --|> sourceLanguage.
@@ -356,7 +351,6 @@ FamixCompatibilityGenerator >> defineHierarchy [
 	trait --|> type.
 	trait --|> #TTrait.
 	
-	traitUsage --|> association.
 	traitUsage --|> #TTraitUsage.
 	
 

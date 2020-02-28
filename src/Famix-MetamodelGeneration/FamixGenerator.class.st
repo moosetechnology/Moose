@@ -895,6 +895,10 @@ FamixGenerator >> commentForTWithTypes [
 { #category : #definition }
 FamixGenerator >> defineHierarchy [
 	super defineHierarchy.
+	tAccess --|> tAssociation.
+	
+	tAssociation --|> #TAssociationMetaLevelDependency.
+	tAssociation --|> tSourceEntity.
 
 	tAttribute --|> tStructuralEntity.
 
@@ -916,10 +920,16 @@ FamixGenerator >> defineHierarchy [
 	tClass --|> #TWithComments.
 
 	tFile --|> tFileSystemEntity.
+	
+	tFileInclude --|> tAssociation.
 
 	tFolder --|> tFileSystemEntity.
 
 	tGlobalVariable --|> tStructuralEntity.
+
+	tInheritance --|> tAssociation.
+
+	tInvocation --|> tAssociation.
 
 	tImplicitVariable --|> tStructuralEntity.
 
@@ -938,6 +948,8 @@ FamixGenerator >> defineHierarchy [
 	tMethod --|> tSourceEntity.
 
 	tParameter --|> tStructuralEntity.
+	
+	tReference --|> tAssociation.
 
 	tStructuralEntity --|> tNamed.
 	tStructuralEntity --|> #TAccessible.
@@ -948,6 +960,8 @@ FamixGenerator >> defineHierarchy [
 	tSourceEntity --|> #TWithSourceLanguage.
 	tSourceEntity --|> #TWithComments.
 
+	tTraitUsage --|> tAssociation.
+	
 	tType --|> #TReferenceable.
 ]
 
@@ -1070,7 +1084,7 @@ FamixGenerator >> defineRelations [
 			comment: 'Previous association in an ordered collection of associations. Currently not supported by the Moose importer')
 		-
 	((tAssociation property: #next)
-			comment: 'Next association in an ordered collection of associations. Currently not supported by the Moose importer').
+			comment: 'Next association in an ordered collection of associations. Currently not supported by the Moose importer').	
 
 	((tAttribute property: #parentType)
 			comment: 'Type declaring the attribute. belongsTo implementation';

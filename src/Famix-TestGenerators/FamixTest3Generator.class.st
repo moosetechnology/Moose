@@ -57,9 +57,7 @@ FamixTest3Generator >> defineHierarchy [
 	primitiveType --|> #TWithTypes.
 	primitiveType --|> #TReferenceable.
 
-	reference --|> association.
 	reference --|> #TReference.
 	
-	invocation --|> association.
 	invocation --|> #TInvocation
 ]

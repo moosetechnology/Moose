@@ -89,7 +89,7 @@ MooseAbstractGroupTest >> testAllWithSubTypesOfAny [
 		assert: (group allWithSubTypesOfAny: {FamixTest3NamedEntity}) size
 		equals: 2.
 		self
-		assert: (group allWithSubTypesOfAny: {FamixTest3NamedEntity. FamixTest3Association}) size
+		assert: (group allWithSubTypesOfAny: {FamixTest3NamedEntity. FamixTest3Invocation}) size
 		equals: 3
 ]
 

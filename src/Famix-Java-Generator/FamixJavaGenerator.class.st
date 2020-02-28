@@ -118,7 +118,6 @@ FamixJavaGenerator >> defineHierarchy [
 
 	entity <|-- exception.
 	
-	access --|> association.
 	access --|> #TAccess.
 
 	annotationInstance --|> sourcedEntity.
@@ -182,10 +181,8 @@ FamixJavaGenerator >> defineHierarchy [
 	implicitVariable --|> tStructuralEntity.
 	implicitVariable --|> #TImplicitVariable.
 
-	inheritance --|> association.
 	inheritance --|> #TInheritance.
 
-	invocation --|> association.
 	invocation --|> #TInvocation.
 	invocation --|> #THasSignature.
 
@@ -221,7 +218,6 @@ FamixJavaGenerator >> defineHierarchy [
 
 	primitiveType --|> type.
 
-	reference --|> association.
 	reference --|> #TReference.
 
 	scopingEntity --|> containerEntity.

@@ -4,6 +4,8 @@ Trait {
 		'#subclass => FMOne type: #FamixTWithInheritances opposite: #superInheritances',
 		'#superclass => FMOne type: #FamixTWithInheritances opposite: #subInheritances'
 	],
+	#traits : 'FamixTAssociation',
+	#classTraits : 'FamixTAssociation classTrait',
 	#category : #'Famix-Traits-Inheritance'
 }
 
@@ -16,21 +18,21 @@ FamixTInheritance classSide >> annotation [
 	^self
 ]
 
-{ #category : #accessing }
-FamixTInheritance >> from [
-	^ self subclass
-]
-
-{ #category : #accessing }
-FamixTInheritance >> from: aSubclass [
-	self subclass: aSubclass
-]
-
 { #category : #testing }
 FamixTInheritance >> isInheritance [
 
 	<generated>
 	^ true
+]
+
+{ #category : #accessing }
+FamixTInheritance >> source [
+	^ self subclass
+]
+
+{ #category : #accessing }
+FamixTInheritance >> source: aSubclass [
+	self subclass: aSubclass
 ]
 
 { #category : #accessing }
@@ -68,11 +70,11 @@ FamixTInheritance >> superclass: anObject [
 ]
 
 { #category : #accessing }
-FamixTInheritance >> to [
+FamixTInheritance >> target [
 	^ self superclass
 ]
 
 { #category : #accessing }
-FamixTInheritance >> to: aSuperclass [
+FamixTInheritance >> target: aSuperclass [
 	self superclass: aSuperclass
 ]

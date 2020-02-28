@@ -23,6 +23,8 @@ Trait {
 		'#next => FMOne type: #FamixTAssociation opposite: #previous',
 		'#previous => FMOne type: #FamixTAssociation opposite: #next'
 	],
+	#traits : 'FamixTSourceEntity + TAssociationMetaLevelDependency',
+	#classTraits : 'FamixTSourceEntity classTrait + TAssociationMetaLevelDependency classTrait',
 	#category : #'Famix-Traits-Association'
 }
 
@@ -33,6 +35,16 @@ FamixTAssociation classSide >> annotation [
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
+]
+
+{ #category : #accessing }
+FamixTAssociation >> from [
+	^ self source
+]
+
+{ #category : #accessing }
+FamixTAssociation >> from: aFrom [
+	self source: aFrom
 ]
 
 { #category : #testing }
@@ -73,4 +85,34 @@ FamixTAssociation >> previous: anObject [
 
 	<generated>
 	previous := anObject
+]
+
+{ #category : #accessing }
+FamixTAssociation >> source [
+	^ self explicitRequirement
+]
+
+{ #category : #accessing }
+FamixTAssociation >> source: aSource [
+	self explicitRequirement
+]
+
+{ #category : #accessing }
+FamixTAssociation >> target [
+	^ self explicitRequirement
+]
+
+{ #category : #accessing }
+FamixTAssociation >> target: aTarget [
+	self explicitRequirement
+]
+
+{ #category : #accessing }
+FamixTAssociation >> to [
+	^ self target
+]
+
+{ #category : #accessing }
+FamixTAssociation >> to: aTo [
+	self target: aTo
 ]

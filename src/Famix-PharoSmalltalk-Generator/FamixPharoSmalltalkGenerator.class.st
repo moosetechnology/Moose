@@ -69,7 +69,6 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 
 	super defineHierarchy.
 
-	access --|> association.
 	access --|> #TAccess.
 
 	annotationInstance --|> sourcedEntity.
@@ -110,10 +109,8 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	implicitVariable --|> namedEntity.
 	implicitVariable --|> #TImplicitVariable.
 
-	inheritance --|> association.
 	inheritance --|> #TInheritance.
 
-	invocation --|> association.
 	invocation --|> #TInvocation.
 	invocation --|> #THasSignature.
 
@@ -139,7 +136,6 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	parameter --|> namedEntity.
 	parameter --|> #TParameter.
 
-	reference --|> association.
 	reference --|> #TReference.
 
 	scopingEntity --|> containerEntity.
