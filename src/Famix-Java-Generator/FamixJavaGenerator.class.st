@@ -187,7 +187,7 @@ FamixJavaGenerator >> defineHierarchy [
 
 	invocation --|> association.
 	invocation --|> #TInvocation.
-	invocation --|> #TWithSignature.
+	invocation --|> #THasSignature.
 
 	localVariable --|> namedEntity.
 	localVariable --|> tStructuralEntity.

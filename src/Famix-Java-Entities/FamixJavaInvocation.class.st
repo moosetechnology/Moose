@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaInvocation,
 	#superclass : #FamixJavaAssociation,
-	#traits : 'FamixTInvocation + FamixTWithSignature',
-	#classTraits : 'FamixTInvocation classTrait + FamixTWithSignature classTrait',
+	#traits : 'FamixTHasSignature + FamixTInvocation',
+	#classTraits : 'FamixTHasSignature classTrait + FamixTInvocation classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
