@@ -1,6 +1,6 @@
 Class {
 	#name : #FAMIXInvocation,
-	#superclass : #FAMIXAssociation,
+	#superclass : #MooseEntity,
 	#traits : 'FamixTHasSignature + FamixTInvocation',
 	#classTraits : 'FamixTHasSignature classTrait + FamixTInvocation classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
@@ -9,10 +9,17 @@ Class {
 { #category : #meta }
 FAMIXInvocation class >> annotation [
 
-	<FMClass: #Invocation super: #FAMIXAssociation>
+	<FMClass: #Invocation super: #MooseEntity>
 	<package: #FAMIX>
 	<generated>
 	^self
+]
+
+{ #category : #meta }
+FAMIXInvocation class >> metamodel [
+
+	<generated>
+	^ FAMIXModel metamodel
 ]
 
 { #category : #'Famix-Extensions' }
@@ -85,9 +92,107 @@ FAMIXInvocation >> isASureInvocation [
 			[invoRVar class = FAMIXClass or: [invoRVar isImplicitVariable and: [invoRVar isSelf or: [invoRVar isSuper]]]]
 ]
 
+{ #category : #testing }
+FAMIXInvocation >> isAccess [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FAMIXInvocation >> isAssociation [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FAMIXInvocation >> isAttribute [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FAMIXInvocation >> isClass [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FAMIXInvocation >> isFunction [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FAMIXInvocation >> isImplicitVariable [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FAMIXInvocation >> isInheritance [
+
+	<generated>
+	^ false
+]
+
 { #category : #'Famix-Implementation' }
 FAMIXInvocation >> isInvocation [ 	
 	^true
+]
+
+{ #category : #testing }
+FAMIXInvocation >> isMethod [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FAMIXInvocation >> isNamespace [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FAMIXInvocation >> isPackage [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FAMIXInvocation >> isPrimitiveType [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FAMIXInvocation >> isReference [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FAMIXInvocation >> isStructuralEntity [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FAMIXInvocation >> isType [
+
+	<generated>
+	^ false
 ]
 
 { #category : #'Famix-Implementation' }

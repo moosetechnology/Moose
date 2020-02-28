@@ -41,12 +41,6 @@ FamixJavaImportingContext >> importAnnotationTypeAttribute [
 ]
 
 { #category : #testing }
-FamixJavaImportingContext >> importAssociation [
-	<generated>
-	^ self import: FamixJavaAssociation
-]
-
-{ #category : #testing }
 FamixJavaImportingContext >> importAttribute [
 	<generated>
 	^ self import: FamixJavaAttribute
@@ -314,12 +308,6 @@ FamixJavaImportingContext >> shouldImportAnnotationType [
 FamixJavaImportingContext >> shouldImportAnnotationTypeAttribute [
 	<generated>
 	^ self shouldImport: FamixJavaAnnotationTypeAttribute
-]
-
-{ #category : #testing }
-FamixJavaImportingContext >> shouldImportAssociation [
-	<generated>
-	^ self shouldImport: FamixJavaAssociation
 ]
 
 { #category : #testing }

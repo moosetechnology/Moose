@@ -17,6 +17,8 @@ Trait {
 		'#source => FMOne type: #FamixTWithReferences opposite: #outgoingReferences',
 		'#target => FMOne type: #FamixTReferenceable opposite: #incomingReferences'
 	],
+	#traits : 'FamixTAssociation',
+	#classTraits : 'FamixTAssociation classTrait',
 	#category : #'Famix-Traits-Reference'
 }
 

@@ -17,6 +17,8 @@ Trait {
 		'#receiver => FMOne type: #FamixTInvocationsReceiver opposite: #receivingInvocations',
 		'#sender => FMOne type: #FamixTWithInvocations opposite: #outgoingInvocations'
 	],
+	#traits : 'FamixTAssociation',
+	#classTraits : 'FamixTAssociation classTrait',
 	#category : #'Famix-Traits-Invocation'
 }
 

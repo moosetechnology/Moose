@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixJavaInvocation,
-	#superclass : #FamixJavaAssociation,
+	#superclass : #MooseEntity,
 	#traits : 'FamixTHasSignature + FamixTInvocation',
 	#classTraits : 'FamixTHasSignature classTrait + FamixTInvocation classTrait',
 	#category : #'Famix-Java-Entities-Entities'
@@ -9,10 +9,17 @@ Class {
 { #category : #meta }
 FamixJavaInvocation class >> annotation [
 
-	<FMClass: #Invocation super: #FamixJavaAssociation>
+	<FMClass: #Invocation super: #MooseEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
+]
+
+{ #category : #meta }
+FamixJavaInvocation class >> metamodel [
+
+	<generated>
+	^ FamixJavaModel metamodel
 ]
 
 { #category : #'as yet unclassified' }
@@ -86,8 +93,99 @@ FamixJavaInvocation >> isASureInvocation [
 ]
 
 { #category : #testing }
+FamixJavaInvocation >> isAccess [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaInvocation >> isAssociation [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaInvocation >> isAttribute [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaInvocation >> isClass [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaInvocation >> isImplicitVariable [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaInvocation >> isInheritance [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
 FamixJavaInvocation >> isInvocation [ 	
 	^true
+]
+
+{ #category : #testing }
+FamixJavaInvocation >> isMethod [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaInvocation >> isNamespace [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaInvocation >> isPackage [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaInvocation >> isPrimitiveType [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaInvocation >> isReference [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaInvocation >> isStructuralEntity [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixJavaInvocation >> isType [
+
+	<generated>
+	^ false
 ]
 
 { #category : #'as yet unclassified' }

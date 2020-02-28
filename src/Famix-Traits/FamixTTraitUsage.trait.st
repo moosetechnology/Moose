@@ -4,6 +4,8 @@ Trait {
 		'#trait => FMOne type: #FamixTTrait opposite: #incomingTraitUsages',
 		'#user => FMOne type: #FamixTTraitUser opposite: #outgoingTraitUsages'
 	],
+	#traits : 'FamixTAssociation',
+	#classTraits : 'FamixTAssociation classTrait',
 	#category : #'Famix-Traits-Trait'
 }
 

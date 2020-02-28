@@ -41,12 +41,6 @@ FAMIXImportingContext >> importAnnotationTypeAttribute [
 ]
 
 { #category : #testing }
-FAMIXImportingContext >> importAssociation [
-	<generated>
-	^ self import: FAMIXAssociation
-]
-
-{ #category : #testing }
 FAMIXImportingContext >> importAttribute [
 	<generated>
 	^ self import: FAMIXAttribute
@@ -446,12 +440,6 @@ FAMIXImportingContext >> shouldImportAnnotationType [
 FAMIXImportingContext >> shouldImportAnnotationTypeAttribute [
 	<generated>
 	^ self shouldImport: FAMIXAnnotationTypeAttribute
-]
-
-{ #category : #testing }
-FAMIXImportingContext >> shouldImportAssociation [
-	<generated>
-	^ self shouldImport: FAMIXAssociation
 ]
 
 { #category : #testing }

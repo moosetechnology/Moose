@@ -1,6 +1,6 @@
 Class {
 	#name : #FAMIXInheritance,
-	#superclass : #FAMIXAssociation,
+	#superclass : #MooseEntity,
 	#traits : 'FamixTInheritance',
 	#classTraits : 'FamixTInheritance classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
@@ -9,16 +9,121 @@ Class {
 { #category : #meta }
 FAMIXInheritance class >> annotation [
 
-	<FMClass: #Inheritance super: #FAMIXAssociation>
+	<FMClass: #Inheritance super: #MooseEntity>
 	<package: #FAMIX>
 	<generated>
 	^self
+]
+
+{ #category : #meta }
+FAMIXInheritance class >> metamodel [
+
+	<generated>
+	^ FAMIXModel metamodel
 ]
 
 { #category : #'Moose-Hismo' }
 FAMIXInheritance >> historicalUniqueName [
 	
 	^(self subclass mooseName , '->' , self superclass mooseName) asSymbol
+]
+
+{ #category : #testing }
+FAMIXInheritance >> isAccess [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FAMIXInheritance >> isAssociation [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FAMIXInheritance >> isAttribute [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FAMIXInheritance >> isClass [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FAMIXInheritance >> isFunction [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FAMIXInheritance >> isImplicitVariable [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FAMIXInheritance >> isInvocation [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FAMIXInheritance >> isMethod [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FAMIXInheritance >> isNamespace [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FAMIXInheritance >> isPackage [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FAMIXInheritance >> isPrimitiveType [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FAMIXInheritance >> isReference [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FAMIXInheritance >> isStructuralEntity [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FAMIXInheritance >> isType [
+
+	<generated>
+	^ false
 ]
 
 { #category : #'Famix-Implementation' }
