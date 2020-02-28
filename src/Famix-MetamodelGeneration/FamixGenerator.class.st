@@ -94,7 +94,6 @@ Class {
 		'tWithParameterizedTypes',
 		'tWithParameters',
 		'tWithReferences',
-		'tWithSignature',
 		'tWithSourceAnchor',
 		'tWithSourceLanguage',
 		'tWithTemplates',
@@ -125,7 +124,8 @@ Class {
 		'tCohesionCouplingMetrics',
 		'tWithTraits',
 		'tWithFileIncludes',
-		'tTypedEntity'
+		'tTypedEntity',
+		'tHasSignature'
 	],
 	#category : #'Famix-MetamodelGeneration'
 }
@@ -379,6 +379,12 @@ FamixGenerator >> commentForTGlobalVariable [
 FamixGenerator >> commentForTGlobalVariableScope [
 
 	^ ''
+]
+
+{ #category : #comments }
+FamixGenerator >> commentForTHasSignature [
+
+	^ 'The signature of any behavioural entity'
 ]
 
 { #category : #comments }
@@ -839,12 +845,6 @@ FamixGenerator >> commentForTWithReferences [
 ]
 
 { #category : #comments }
-FamixGenerator >> commentForTWithSignature [
-
-	^ ''
-]
-
-{ #category : #comments }
 FamixGenerator >> commentForTWithSourceAnchor [
 
 	^ ''
@@ -932,7 +932,7 @@ FamixGenerator >> defineHierarchy [
 	tMethod --|> #TWithAccesses.
 	tMethod --|> #TWithLocalVariables.
 	tMethod --|> #TWithImplicitVariables.
-	tMethod --|> #TWithSignature.
+	tMethod --|> #THasSignature.
 	tMethod --|> #TWithClassScope.
 	tMethod --|> #TTypedEntity.
 	tMethod --|> tSourceEntity.
@@ -981,7 +981,7 @@ FamixGenerator >> defineProperties [
 	((tMethod property: #isAbstract type: #Boolean) 
 		comment: 'True if abstract method').
 
-	((tWithSignature property: #signature type: #String)
+	((tHasSignature property: #signature type: #String)
 		comment: 'Signature of the message being sent').
 
 	((tComment property: #content type: #String) 
@@ -1624,8 +1624,8 @@ FamixGenerator >> defineTraits [
 	tWithReferences := builder newTraitNamed: #TWithReferences.
 	tWithReferences comment: self commentForTWithReferences.
 
-	tWithSignature := builder newTraitNamed: #TWithSignature.
-	tWithSignature comment: self commentForTWithSignature.
+	tHasSignature := builder newTraitNamed: #THasSignature.
+	tHasSignature comment: self commentForTHasSignature.
 
 	tWithSourceAnchor := builder newTraitNamed: #TWithSourceAnchor.
 	tWithSourceAnchor comment: self commentForTWithSourceAnchor.

@@ -1,22 +1,25 @@
+"
+The signature of any behavioural entity
+"
 Trait {
-	#name : #FamixTWithSignature,
+	#name : #FamixTHasSignature,
 	#instVars : [
 		'#signature => FMProperty'
 	],
-	#category : #'Famix-Traits-Signature'
+	#category : #'Famix-Traits-Traits'
 }
 
 { #category : #meta }
-FamixTWithSignature classSide >> annotation [
+FamixTHasSignature classSide >> annotation [
 
-	<FMClass: #TWithSignature super: #Object>
+	<FMClass: #THasSignature super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
 ]
 
 { #category : #accessing }
-FamixTWithSignature >> signature [
+FamixTHasSignature >> signature [
 
 	<FMProperty: #signature type: #String>
 	<generated>
@@ -25,9 +28,7 @@ FamixTWithSignature >> signature [
 ]
 
 { #category : #accessing }
-FamixTWithSignature >> signature: anObject [
-
-	signature := anObject.
-	self resetMooseName.
-
+FamixTHasSignature >> signature: anObject [
+	<generated>
+	signature := anObject
 ]
