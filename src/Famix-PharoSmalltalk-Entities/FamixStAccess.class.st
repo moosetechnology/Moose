@@ -106,7 +106,7 @@ FamixStAccess >> isType [
 	^ false
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'*Moose-Finder' }
 FamixStAccess >> mooseFinderSourceTextIn: composite [
 	<moosePresentationOrder: 20>
 	composite text

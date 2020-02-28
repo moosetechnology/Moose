@@ -1,7 +1,7 @@
-Extension { #name : #FAMIXAssociation }
+Extension { #name : #FamixStAccess }
 
 { #category : #'*Moose-Finder' }
-FAMIXAssociation >> mooseFinderSourceTextIn: composite [
+FamixStAccess >> mooseFinderSourceTextIn: composite [
 	<moosePresentationOrder: 20>
 	composite text
 			title: 'Source';

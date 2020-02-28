@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixTest2SourceTextAnchor,
 	#superclass : #FamixTest2SourceAnchor,
-	#traits : 'FamixTWithImmediateSource',
-	#classTraits : 'FamixTWithImmediateSource classTrait',
+	#traits : 'FamixTHasImmediateSource',
+	#classTraits : 'FamixTHasImmediateSource classTrait',
 	#category : #'Famix-Test2-Entities-Entities'
 }
 

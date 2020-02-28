@@ -87,7 +87,6 @@ Class {
 		'tWithLocalVariables',
 		'tWithMethods',
 		'tDefinedInModule',
-		'tWithNamespaces',
 		'tWithPackages',
 		'tWithParameterizedTypeUsers',
 		'tWithParameterizedTypes',
@@ -99,14 +98,12 @@ Class {
 		'tWithThrownExceptions',
 		'tWithTypeAliases',
 		'tWithTypes',
-		'tWithModifiers',
 		'tPossibleStub',
 		'tClass',
 		'tFolder',
 		'tFileSystemEntity',
 		'tFileNavigation',
 		'tIndexedFileNavigation',
-		'tWithImmediateSource',
 		'tClassHierarchyNavigation',
 		'tLCOMMetrics',
 		'tInheritanceGlue',
@@ -115,17 +112,17 @@ Class {
 		'tTraitUser',
 		'tClassWithInvocationsGlue',
 		'tWithStatements',
-		'tWithMethodsWithModifiersGlue',
 		'tContainingWithStatementsGlue',
 		'tContainingWithInvocationsGlue',
-		'tWithMethodsWithAccessesGlue',
 		'tMultipleFileAnchor',
 		'tCohesionCouplingMetrics',
 		'tWithTraits',
 		'tWithFileIncludes',
 		'tTypedEntity',
 		'tHasSignature',
-		'tWithGlobalVariables'
+		'tWithGlobalVariables',
+		'tHasModifiers',
+		'tHasImmediateSource'
 	],
 	#category : #'Famix-MetamodelGeneration'
 }
@@ -373,6 +370,12 @@ FamixGenerator >> commentForTGlobalVariable [
 
 	^ 'FAMIXGlobalVariable represents a global variable in the source code.
 '
+]
+
+{ #category : #comments }
+FamixGenerator >> commentForTHasImmediateSource [
+
+	^ 'An immediate source is the source code of the entity stored directly into its sourceAnchor instead of accessing it (for example in a file) through its sourceAnchor'
 ]
 
 { #category : #comments }
@@ -779,12 +782,6 @@ FamixGenerator >> commentForTWithHeader [
 ]
 
 { #category : #comments }
-FamixGenerator >> commentForTWithImmediateSource [
-
-	^ ''
-]
-
-{ #category : #comments }
 FamixGenerator >> commentForTWithImplicitVariables [
 
 	^ ''
@@ -984,7 +981,7 @@ FamixGenerator >> defineProperties [
 	((tNamed property: #name type: #String)
 		comment: 'Basic name of the entity, not full reference.').
 
-	((tWithModifiers property: #modifiers type: #String)
+	((tHasModifiers property: #modifiers type: #String)
 		comment: 'Generic container for language dependent modifiers.';
 		multivalued).
 
@@ -1018,10 +1015,7 @@ FamixGenerator >> defineProperties [
 	((tIndexedFileNavigation property: #endPos type: #Number)
 		comment: 'Stop position in the source').
 
-	((tWithImmediateSource property: #source type: #String)
-		comment: 'Actual source code of the source entity').
-		
-	((tWithImmediateSource property: #source type: #String)
+	((tHasImmediateSource property: #source type: #String)
 		comment: 'Actual source code of the source entity').
 		
 	((tMultipleFileAnchor property: #allFiles type: #FamixTFileAnchor)
@@ -1662,10 +1656,10 @@ FamixGenerator >> defineTraits [
 	tWithTypes := builder newTraitNamed: #TWithTypes.
 	tWithTypes comment: self commentForTWithTypes.
 
-	tWithImmediateSource := builder newTraitNamed: #TWithImmediateSource.
-	tWithImmediateSource comment: self commentForTWithImmediateSource.
+	tHasImmediateSource := builder newTraitNamed: #THasImmediateSource.
+	tHasImmediateSource comment: self commentForTHasImmediateSource.
 
-	tWithModifiers := builder newTraitNamed: #TWithModifiers.
+	tHasModifiers := builder newTraitNamed: #THasModifiers.
 
 	tWithStatements := builder newTraitNamed: #TWithStatements.
 
