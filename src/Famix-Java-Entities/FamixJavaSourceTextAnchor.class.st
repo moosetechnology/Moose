@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaSourceTextAnchor,
 	#superclass : #FamixJavaSourceAnchor,
-	#traits : 'FamixTWithImmediateSource',
-	#classTraits : 'FamixTWithImmediateSource classTrait',
+	#traits : 'FamixTHasImmediateSource',
+	#classTraits : 'FamixTHasImmediateSource classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 

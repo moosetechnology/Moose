@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixStSourceTextAnchor,
 	#superclass : #FamixStSourceAnchor,
-	#traits : 'FamixTWithImmediateSource',
-	#classTraits : 'FamixTWithImmediateSource classTrait',
+	#traits : 'FamixTHasImmediateSource',
+	#classTraits : 'FamixTHasImmediateSource classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 

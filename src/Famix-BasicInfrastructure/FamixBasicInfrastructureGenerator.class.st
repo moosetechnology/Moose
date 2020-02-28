@@ -61,7 +61,7 @@ FamixBasicInfrastructureGenerator >> defineHierarchy [
 	namedEntity --|> #TEntityMetaLevelDependency.
 
 	sourceTextAnchor --|> sourceAnchor.
-	sourceTextAnchor --|> #TWithImmediateSource.
+	sourceTextAnchor --|> #THasImmediateSource.
 
 	unknownSourceLanguage --|> sourceLanguage.
 	unknownSourceLanguage --|> #TUnknownSourceLanguage

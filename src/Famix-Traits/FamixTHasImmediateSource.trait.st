@@ -1,5 +1,8 @@
+"
+An immediate source is the source code of the entity stored directly into its sourceAnchor instead of accessing it (for example in a file) through its sourceAnchor
+"
 Trait {
-	#name : #FamixTWithImmediateSource,
+	#name : #FamixTHasImmediateSource,
 	#instVars : [
 		'#source => FMProperty'
 	],
@@ -7,22 +10,22 @@ Trait {
 }
 
 { #category : #meta }
-FamixTWithImmediateSource classSide >> annotation [
+FamixTHasImmediateSource classSide >> annotation [
 
-	<FMClass: #TWithImmediateSource super: #Object>
+	<FMClass: #THasImmediateSource super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
 ]
 
 { #category : #accessing }
-FamixTWithImmediateSource >> isFile [
+FamixTHasImmediateSource >> isFile [
 
 	^ false
 ]
 
 { #category : #accessing }
-FamixTWithImmediateSource >> source [
+FamixTHasImmediateSource >> source [
 
 	<FMProperty: #source type: #String>
 	<generated>
@@ -31,13 +34,13 @@ FamixTWithImmediateSource >> source [
 ]
 
 { #category : #accessing }
-FamixTWithImmediateSource >> source: anObject [
+FamixTHasImmediateSource >> source: anObject [
 	<generated>
 	source := anObject
 ]
 
 { #category : #accessing }
-FamixTWithImmediateSource >> sourceText [
+FamixTHasImmediateSource >> sourceText [
 
 	^ self source
 ]

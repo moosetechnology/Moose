@@ -123,7 +123,7 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	namedEntity --|> #TPackageable.
 	namedEntity --|> #TInvocationsReceiver.
 	namedEntity --|> #TWithAnnotationInstances.
-	namedEntity --|> #TWithModifiers.
+	namedEntity --|> #THasModifiers.
 
 	namespace --|> scopingEntity.
 	namespace --|> #TNamespace.
@@ -145,7 +145,7 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	unknownVariable --|> namedEntity.
 	unknownVariable --|> #TStructuralEntity.
 
-	sourceAnchor --|> #TWithImmediateSource.
+	sourceAnchor --|> #THasImmediateSource.
 	
 
 	
