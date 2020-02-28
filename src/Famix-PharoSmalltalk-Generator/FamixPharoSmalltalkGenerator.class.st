@@ -115,7 +115,7 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 
 	invocation --|> association.
 	invocation --|> #TInvocation.
-	invocation --|> #TWithSignature.
+	invocation --|> #THasSignature.
 
 	localVariable --|> namedEntity.
 	localVariable --|> #TLocalVariable.
@@ -143,7 +143,7 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	reference --|> #TReference.
 
 	scopingEntity --|> containerEntity.
-	scopingEntity --|> #TGlobalVariableScope.
+	scopingEntity --|> #TWithGlobalVariables.
 	scopingEntity --|> #TScopingEntity.
 
 	unknownVariable --|> namedEntity.

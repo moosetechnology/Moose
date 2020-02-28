@@ -1,8 +1,8 @@
 Class {
 	#name : #FAMIXInvocation,
 	#superclass : #FAMIXAssociation,
-	#traits : 'FamixTInvocation + FamixTWithSignature',
-	#classTraits : 'FamixTInvocation classTrait + FamixTWithSignature classTrait',
+	#traits : 'FamixTHasSignature + FamixTInvocation',
+	#classTraits : 'FamixTHasSignature classTrait + FamixTInvocation classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 

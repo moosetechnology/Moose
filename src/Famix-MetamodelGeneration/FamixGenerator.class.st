@@ -29,7 +29,6 @@ Class {
 		'tFileInclude',
 		'tFunction',
 		'tGlobalVariable',
-		'tGlobalVariableScope',
 		'tHeader',
 		'tImplicitVariable',
 		'tInheritance',
@@ -94,7 +93,6 @@ Class {
 		'tWithParameterizedTypes',
 		'tWithParameters',
 		'tWithReferences',
-		'tWithSignature',
 		'tWithSourceAnchor',
 		'tWithSourceLanguage',
 		'tWithTemplates',
@@ -125,7 +123,9 @@ Class {
 		'tCohesionCouplingMetrics',
 		'tWithTraits',
 		'tWithFileIncludes',
-		'tTypedEntity'
+		'tTypedEntity',
+		'tHasSignature',
+		'tWithGlobalVariables'
 	],
 	#category : #'Famix-MetamodelGeneration'
 }
@@ -376,9 +376,9 @@ FamixGenerator >> commentForTGlobalVariable [
 ]
 
 { #category : #comments }
-FamixGenerator >> commentForTGlobalVariableScope [
+FamixGenerator >> commentForTHasSignature [
 
-	^ ''
+	^ 'The signature of any behavioural entity'
 ]
 
 { #category : #comments }
@@ -767,6 +767,12 @@ FamixGenerator >> commentForTWithFunctions [
 ]
 
 { #category : #comments }
+FamixGenerator >> commentForTWithGlobalVariables [
+
+	^ 'A container having Global variables'
+]
+
+{ #category : #comments }
 FamixGenerator >> commentForTWithHeader [
 
 	^ ''
@@ -834,12 +840,6 @@ FamixGenerator >> commentForTWithParameters [
 
 { #category : #comments }
 FamixGenerator >> commentForTWithReferences [
-
-	^ ''
-]
-
-{ #category : #comments }
-FamixGenerator >> commentForTWithSignature [
 
 	^ ''
 ]
@@ -932,7 +932,7 @@ FamixGenerator >> defineHierarchy [
 	tMethod --|> #TWithAccesses.
 	tMethod --|> #TWithLocalVariables.
 	tMethod --|> #TWithImplicitVariables.
-	tMethod --|> #TWithSignature.
+	tMethod --|> #THasSignature.
 	tMethod --|> #TWithClassScope.
 	tMethod --|> #TTypedEntity.
 	tMethod --|> tSourceEntity.
@@ -981,7 +981,7 @@ FamixGenerator >> defineProperties [
 	((tMethod property: #isAbstract type: #Boolean) 
 		comment: 'True if abstract method').
 
-	((tWithSignature property: #signature type: #String)
+	((tHasSignature property: #signature type: #String)
 		comment: 'Signature of the message being sent').
 
 	((tComment property: #content type: #String) 
@@ -1154,7 +1154,7 @@ FamixGenerator >> defineRelations [
 			comment: 'Scope declaring the global variable. belongsTo implementation';
 			container)
 		*-
-	((tGlobalVariableScope property: #globalVariables)
+	((tWithGlobalVariables property: #globalVariables)
 			comment: 'Global variables defined in the scope, if any.').
 
 	((tHeader property: #headerOwner))
@@ -1414,8 +1414,8 @@ FamixGenerator >> defineTraits [
 	tGlobalVariable := builder newTraitNamed: #TGlobalVariable.
 	tGlobalVariable comment: self commentForTGlobalVariable.
 
-	tGlobalVariableScope := builder newTraitNamed: #TGlobalVariableScope.
-	tGlobalVariableScope comment: self commentForTGlobalVariableScope.
+	tWithGlobalVariables := builder newTraitNamed: #TWithGlobalVariables.
+	tWithGlobalVariables comment: self commentForTWithGlobalVariables.
 
 	tHeader := builder newTraitNamed: #THeader.
 	tHeader comment: self commentForTHeader.
@@ -1624,8 +1624,8 @@ FamixGenerator >> defineTraits [
 	tWithReferences := builder newTraitNamed: #TWithReferences.
 	tWithReferences comment: self commentForTWithReferences.
 
-	tWithSignature := builder newTraitNamed: #TWithSignature.
-	tWithSignature comment: self commentForTWithSignature.
+	tHasSignature := builder newTraitNamed: #THasSignature.
+	tHasSignature comment: self commentForTHasSignature.
 
 	tWithSourceAnchor := builder newTraitNamed: #TWithSourceAnchor.
 	tWithSourceAnchor comment: self commentForTWithSourceAnchor.

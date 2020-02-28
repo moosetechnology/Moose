@@ -1,8 +1,8 @@
 Class {
 	#name : #FAMIXScopingEntity,
 	#superclass : #FAMIXContainerEntity,
-	#traits : 'FamixTGlobalVariableScope + FamixTScopingEntity',
-	#classTraits : 'FamixTGlobalVariableScope classTrait + FamixTScopingEntity classTrait',
+	#traits : 'FamixTScopingEntity + FamixTWithGlobalVariables',
+	#classTraits : 'FamixTScopingEntity classTrait + FamixTWithGlobalVariables classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 

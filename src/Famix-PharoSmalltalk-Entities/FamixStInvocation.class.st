@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixStInvocation,
 	#superclass : #FamixStAssociation,
-	#traits : 'FamixTInvocation + FamixTWithSignature',
-	#classTraits : 'FamixTInvocation classTrait + FamixTWithSignature classTrait',
+	#traits : 'FamixTHasSignature + FamixTInvocation',
+	#classTraits : 'FamixTHasSignature classTrait + FamixTInvocation classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 

@@ -128,19 +128,8 @@ FamixMetamodelBuilder >> ensureClassNamed: aString [
 
 { #category : #initialization }
 FamixMetamodelBuilder >> ensureLocalTraitNamed: aString [
-
 	<ignoreForMutations: #(ReplaceAndWithEqvMutantOperator)>
-
-	^ self traits detect: [ :each | each name = aString and: [each prefix = self configuration prefix]] ifNone: [ self unsafeNewTraitNamed: aString ]
-
-]
-
-{ #category : #initialization }
-FamixMetamodelBuilder >> ensureTraitNamed: aString [
-
-	^ self traits detect: [ :each | each name = aString] ifNone: [ self newTraitNamed: aString ]
-
-	
+	^ self traits detect: [ :each | each name = aString and: [ each prefix = self configuration prefix ] ] ifNone: [ self unsafeNewTraitNamed: aString ]
 ]
 
 { #category : #accessing }
@@ -283,7 +272,7 @@ In order to fix the issue you should use #remoteTrait:withPrefix: in your genera
 	self flag: #todo. "Later we should raise an error here. For local traits, they should be declared."
 	self traits detect: [ :each | each name = aSymbol ] ifFound: [ :trait | ^ trait ].
 
-	^ self ensureTraitNamed: aSymbol
+	^ self traitNamed: aSymbol
 ]
 
 { #category : #accessing }
@@ -472,9 +461,10 @@ FamixMetamodelBuilder >> testingSelectorsMapping [
 ]
 
 { #category : #initialization }
-FamixMetamodelBuilder >> traitNamed: aTraitName [
-
-	^ self traits detect: [ :each | each name = aTraitName].
+FamixMetamodelBuilder >> traitNamed: aString [
+	^ self traits
+		detect: [ :each | each name = aString ]
+		ifNone: [ FamixMetamodelGeneratorUnknownTrait signal: 'Trait ' , aString , ' not found in the metamodel. Please add it or refer to a submetamodel.' ]
 ]
 
 { #category : #accessing }

@@ -199,7 +199,7 @@ FamixCompatibilityGenerator >> defineHierarchy [
 	behaviouralEntity --|> #TWithLocalVariables.
 	behaviouralEntity --|> #TWithImplicitVariables.
 	behaviouralEntity --|> #TWithDereferencedInvocations.
-	behaviouralEntity --|> #TWithSignature.
+	behaviouralEntity --|> #THasSignature.
 	behaviouralEntity --|> #TWithStatements.
 
 	cFile --|> file.
@@ -266,7 +266,7 @@ FamixCompatibilityGenerator >> defineHierarchy [
 
 	invocation --|> association.
 	invocation --|> #TInvocation.
-	invocation --|> #TWithSignature.
+	invocation --|> #THasSignature.
 
 	jAVASourceLanguage --|> sourceLanguage.
 
@@ -328,7 +328,7 @@ FamixCompatibilityGenerator >> defineHierarchy [
 	sMALLTALKSourceLanguage --|> sourceLanguage.
 
 	scopingEntity --|> containerEntity.
-	scopingEntity --|> #TGlobalVariableScope.
+	scopingEntity --|> #TWithGlobalVariables.
 	scopingEntity --|> #TScopingEntity.
 
 	structuralEntity --|> leafEntity.

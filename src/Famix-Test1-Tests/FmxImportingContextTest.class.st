@@ -51,7 +51,7 @@ source2b''))
 FmxImportingContextTest >> testImportingClasses [
 	self modelMSE
 		readStreamDo: [ :s | 
-			model := FamixTest1Model new
+			model := FamixTest1Model
 				importFromMSEStream: s
 				filteredBy:
 					(FamixTest1ImportingContext new
@@ -67,7 +67,7 @@ FmxImportingContextTest >> testImportingClasses [
 FmxImportingContextTest >> testImportingClassesAndMethods [
 	self modelMSE
 		readStreamDo: [ :s | 
-			model := FamixTest1Model new
+			model := FamixTest1Model
 				importFromMSEStream: s
 				filteredBy:
 					(FamixTest1ImportingContext new
@@ -84,7 +84,7 @@ FmxImportingContextTest >> testImportingClassesAndMethods [
 FmxImportingContextTest >> testImportingMethodsBringClassesAsRequirement [
 	self modelMSE
 		readStreamDo: [ :s | 
-			model := FamixTest1Model new
+			model := FamixTest1Model
 				importFromMSEStream: s
 				filteredBy:
 					(FamixTest1ImportingContext new

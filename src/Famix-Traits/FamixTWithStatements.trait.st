@@ -1,6 +1,6 @@
 Trait {
 	#name : #FamixTWithStatements,
-	#category : #'Famix-Traits-Traits'
+	#category : #'Famix-Traits-Behavioral'
 }
 
 { #category : #meta }
