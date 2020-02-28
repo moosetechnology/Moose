@@ -6,7 +6,7 @@ Trait {
 	#instVars : [
 		'#functionOwner => FMOne type: #FamixTWithFunctions opposite: #functions'
 	],
-	#category : #'Famix-Traits-Function'
+	#category : #'Famix-Traits-Behavioral'
 }
 
 { #category : #meta }

@@ -6,7 +6,7 @@ Trait {
 	#instVars : [
 		'#signature => FMProperty'
 	],
-	#category : #'Famix-Traits-Traits'
+	#category : #'Famix-Traits-Behavioral'
 }
 
 { #category : #meta }

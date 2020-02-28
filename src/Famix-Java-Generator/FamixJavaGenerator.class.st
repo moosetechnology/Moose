@@ -225,7 +225,7 @@ FamixJavaGenerator >> defineHierarchy [
 	reference --|> #TReference.
 
 	scopingEntity --|> containerEntity.
-	scopingEntity --|> #TGlobalVariableScope.
+	scopingEntity --|> #TWithGlobalVariables.
 	scopingEntity --|> #TScopingEntity.
 
 	thrownException --|> exception.

@@ -3,7 +3,7 @@ Trait {
 	#instVars : [
 		'#methods => FMMany type: #FamixTMethod opposite: #parentType'
 	],
-	#category : #'Famix-Traits-Method'
+	#category : #'Famix-Traits-Behavioral'
 }
 
 { #category : #meta }

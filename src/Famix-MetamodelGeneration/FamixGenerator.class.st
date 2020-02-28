@@ -29,7 +29,6 @@ Class {
 		'tFileInclude',
 		'tFunction',
 		'tGlobalVariable',
-		'tGlobalVariableScope',
 		'tHeader',
 		'tImplicitVariable',
 		'tInheritance',
@@ -125,7 +124,8 @@ Class {
 		'tWithTraits',
 		'tWithFileIncludes',
 		'tTypedEntity',
-		'tHasSignature'
+		'tHasSignature',
+		'tWithGlobalVariables'
 	],
 	#category : #'Famix-MetamodelGeneration'
 }
@@ -373,12 +373,6 @@ FamixGenerator >> commentForTGlobalVariable [
 
 	^ 'FAMIXGlobalVariable represents a global variable in the source code.
 '
-]
-
-{ #category : #comments }
-FamixGenerator >> commentForTGlobalVariableScope [
-
-	^ ''
 ]
 
 { #category : #comments }
@@ -773,6 +767,12 @@ FamixGenerator >> commentForTWithFunctions [
 ]
 
 { #category : #comments }
+FamixGenerator >> commentForTWithGlobalVariables [
+
+	^ 'A container having Global variables'
+]
+
+{ #category : #comments }
 FamixGenerator >> commentForTWithHeader [
 
 	^ ''
@@ -1154,7 +1154,7 @@ FamixGenerator >> defineRelations [
 			comment: 'Scope declaring the global variable. belongsTo implementation';
 			container)
 		*-
-	((tGlobalVariableScope property: #globalVariables)
+	((tWithGlobalVariables property: #globalVariables)
 			comment: 'Global variables defined in the scope, if any.').
 
 	((tHeader property: #headerOwner))
@@ -1414,8 +1414,8 @@ FamixGenerator >> defineTraits [
 	tGlobalVariable := builder newTraitNamed: #TGlobalVariable.
 	tGlobalVariable comment: self commentForTGlobalVariable.
 
-	tGlobalVariableScope := builder newTraitNamed: #TGlobalVariableScope.
-	tGlobalVariableScope comment: self commentForTGlobalVariableScope.
+	tWithGlobalVariables := builder newTraitNamed: #TWithGlobalVariables.
+	tWithGlobalVariables comment: self commentForTWithGlobalVariables.
 
 	tHeader := builder newTraitNamed: #THeader.
 	tHeader comment: self commentForTHeader.
