@@ -143,7 +143,7 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	reference --|> #TReference.
 
 	scopingEntity --|> containerEntity.
-	scopingEntity --|> #TGlobalVariableScope.
+	scopingEntity --|> #TWithGlobalVariables.
 	scopingEntity --|> #TScopingEntity.
 
 	unknownVariable --|> namedEntity.

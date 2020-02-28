@@ -1,5 +1,8 @@
+"
+A container having Global variables
+"
 Trait {
-	#name : #FamixTGlobalVariableScope,
+	#name : #FamixTWithGlobalVariables,
 	#instVars : [
 		'#globalVariables => FMMany type: #FamixTGlobalVariable opposite: #parentScope'
 	],
@@ -7,21 +10,22 @@ Trait {
 }
 
 { #category : #meta }
-FamixTGlobalVariableScope classSide >> annotation [
+FamixTWithGlobalVariables classSide >> annotation [
 
-	<FMClass: #TGlobalVariableScope super: #Object>
+	<FMClass: #TWithGlobalVariables super: #Object>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
 ]
 
-{ #category : #accessing }
-FamixTGlobalVariableScope >> addGlobalVariable: aGlobalVariable [ 
-	globalVariables add: aGlobalVariable
+{ #category : #adding }
+FamixTWithGlobalVariables >> addGlobalVariable: anObject [
+	<generated>
+	^ self globalVariables add: anObject
 ]
 
 { #category : #accessing }
-FamixTGlobalVariableScope >> globalVariables [
+FamixTWithGlobalVariables >> globalVariables [
 	"Relation named: #globalVariables type: #FamixTGlobalVariable opposite: #parentScope"
 
 	<generated>
@@ -31,7 +35,7 @@ FamixTGlobalVariableScope >> globalVariables [
 ]
 
 { #category : #accessing }
-FamixTGlobalVariableScope >> globalVariables: anObject [
+FamixTWithGlobalVariables >> globalVariables: anObject [
 
 	<generated>
 	globalVariables value: anObject

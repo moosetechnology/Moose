@@ -328,7 +328,7 @@ FamixCompatibilityGenerator >> defineHierarchy [
 	sMALLTALKSourceLanguage --|> sourceLanguage.
 
 	scopingEntity --|> containerEntity.
-	scopingEntity --|> #TGlobalVariableScope.
+	scopingEntity --|> #TWithGlobalVariables.
 	scopingEntity --|> #TScopingEntity.
 
 	structuralEntity --|> leafEntity.

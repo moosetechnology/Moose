@@ -5,7 +5,7 @@ FAMIXGlobalVariable represents a global variable in the source code.
 Trait {
 	#name : #FamixTGlobalVariable,
 	#instVars : [
-		'#parentScope => FMOne type: #FamixTGlobalVariableScope opposite: #globalVariables'
+		'#parentScope => FMOne type: #FamixTWithGlobalVariables opposite: #globalVariables'
 	],
 	#traits : 'FamixTStructuralEntity',
 	#classTraits : 'FamixTStructuralEntity classTrait',
@@ -31,7 +31,7 @@ FamixTGlobalVariable classSide >> famixTGlobalVariableRelatedGroup [
 
 { #category : #accessing }
 FamixTGlobalVariable >> parentScope [
-	"Relation named: #parentScope type: #FamixTGlobalVariableScope opposite: #globalVariables"
+	"Relation named: #parentScope type: #FamixTWithGlobalVariables opposite: #globalVariables"
 
 	<generated>
 	<FMComment: 'Scope declaring the global variable. belongsTo implementation'>
