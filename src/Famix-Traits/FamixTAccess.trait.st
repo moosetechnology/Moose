@@ -50,16 +50,6 @@ FamixTAccess >> accessor: anObject [
 	accessor := anObject
 ]
 
-{ #category : #accessing }
-FamixTAccess >> from [
-	^ self accessor 
-]
-
-{ #category : #accessing }
-FamixTAccess >> from: anAccessor [
-	self accessor: anAccessor 
-]
-
 { #category : #testing }
 FamixTAccess >> isAccess [
 
@@ -99,13 +89,23 @@ FamixTAccess >> isWrite: anObject [
 ]
 
 { #category : #accessing }
-FamixTAccess >> to [	
+FamixTAccess >> source [
+	^ self accessor
+]
+
+{ #category : #accessing }
+FamixTAccess >> source: anAccessor [
+	self accessor: anAccessor 
+]
+
+{ #category : #accessing }
+FamixTAccess >> target [
 	^ self variable 
 ]
 
 { #category : #accessing }
-FamixTAccess >> to: aVariable [
-	self variable: aVariable
+FamixTAccess >> target: aTarget [
+	self variable: aTarget
 ]
 
 { #category : #accessing }

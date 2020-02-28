@@ -36,16 +36,6 @@ FamixTReference classSide >> source: source target: target [
 	^ self new source: source; target: target
 ]
 
-{ #category : #accessing }
-FamixTReference >> from [
-	^ self source. 
-]
-
-{ #category : #accessing }
-FamixTReference >> from: aSource [
-	self source: aSource. 
-]
-
 { #category : #testing }
 FamixTReference >> isReference [
 
@@ -85,14 +75,4 @@ FamixTReference >> target: anObject [
 
 	<generated>
 	target := anObject
-]
-
-{ #category : #accessing }
-FamixTReference >> to [
-	^ self target
-]
-
-{ #category : #accessing }
-FamixTReference >> to: aTarget [
-	self target: aTarget
 ]

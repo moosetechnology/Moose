@@ -19,22 +19,22 @@ FamixTTraitUsage classSide >> annotation [
 ]
 
 { #category : #accessing }
-FamixTTraitUsage >> from [
+FamixTTraitUsage >> source [
 	^ self user
 ]
 
 { #category : #accessing }
-FamixTTraitUsage >> from: anObject [
+FamixTTraitUsage >> source: anObject [
 	self user: anObject
 ]
 
 { #category : #accessing }
-FamixTTraitUsage >> to [
+FamixTTraitUsage >> target [
 	^ self trait
 ]
 
 { #category : #accessing }
-FamixTTraitUsage >> to: anObject [
+FamixTTraitUsage >> target: anObject [
 	self trait: anObject
 ]
 

@@ -37,6 +37,16 @@ FamixTAssociation classSide >> annotation [
 	^self
 ]
 
+{ #category : #accessing }
+FamixTAssociation >> from [
+	^ self source
+]
+
+{ #category : #accessing }
+FamixTAssociation >> from: aFrom [
+	self source: aFrom
+]
+
 { #category : #testing }
 FamixTAssociation >> isAssociation [
 
@@ -75,4 +85,34 @@ FamixTAssociation >> previous: anObject [
 
 	<generated>
 	previous := anObject
+]
+
+{ #category : #accessing }
+FamixTAssociation >> source [
+	^ self explicitRequirement
+]
+
+{ #category : #accessing }
+FamixTAssociation >> source: aSource [
+	self explicitRequirement
+]
+
+{ #category : #accessing }
+FamixTAssociation >> target [
+	^ self explicitRequirement
+]
+
+{ #category : #accessing }
+FamixTAssociation >> target: aTarget [
+	self explicitRequirement
+]
+
+{ #category : #accessing }
+FamixTAssociation >> to [
+	^ self target
+]
+
+{ #category : #accessing }
+FamixTAssociation >> to: aTo [
+	self target: aTo
 ]
