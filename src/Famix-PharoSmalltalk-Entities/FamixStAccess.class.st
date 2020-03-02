@@ -106,16 +106,6 @@ FamixStAccess >> isType [
 	^ false
 ]
 
-{ #category : #'*Moose-Finder' }
-FamixStAccess >> mooseFinderSourceTextIn: composite [
-	<moosePresentationOrder: 20>
-	composite text
-			title: 'Source';
-			titleIcon: MooseIcons mooseSourceText;
-			when: [ self from notNil and: [self from sourceText notEmpty ]];
-			format: [ self from formattedSourceText ]
-]
-
 { #category : #printing }
 FamixStAccess >> printOn: aStream [
 	super printOn: aStream.
