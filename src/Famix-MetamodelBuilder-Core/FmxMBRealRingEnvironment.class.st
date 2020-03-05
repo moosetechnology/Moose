@@ -165,9 +165,18 @@ FmxMBRealRingEnvironment >> regenerationIsNeeded [
 FmxMBRealRingEnvironment >> traitStringFrom: realClass to: aRGClass [
 	"We need to collect the generated traits + the custom traits added by the user."
 
-	| customTraitNames traitsDefinitions |
+	| customTraitNames traitsDefinitions traitCompositionString precedingTrait |
 	customTraitNames := (realClass traitComposition rootMembers select: [ :e | realClass customTraitNames includes: e name ]) collect: #traitCompositionExpression.
 	traitsDefinitions := aRGClass traitsDefinitions ifEmpty: [ {} ] ifNotEmpty: [ :rgDefinitions | {rgDefinitions anyOne} , (rgDefinitions allButFirst collect: [ :e | '(' , e , ')' ]) ].
 	traitsDefinitions := traitsDefinitions , customTraitNames.
-	^ traitsDefinitions ifEmpty: [ '{ }' ] ifNotEmpty: [ traitsDefinitions joinUsing: ' + ' ]
+	
+	traitCompositionString := traitsDefinitions ifEmpty: [ ^ '{ }' ] ifNotEmpty: [ traitsDefinitions joinUsing: ' + ' ].
+	
+	precedingTrait := aRGClass propertyNamed: #precedingTrait ifAbsent: [ ^ traitCompositionString ].
+	
+	^ String streamContents: [ :s | s nextPutAll: '(( ' ; 
+			nextPutAll: traitCompositionString ; 
+			nextPutAll: ' ) withPrecedenceOf: '; nextPutAll: precedingTrait; nextPutAll: ' )' ].
+	
+	
 ]

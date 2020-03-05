@@ -12,9 +12,9 @@ RGBehavior >> dependsOn: anotherBehavior [
 
 { #category : #'*Famix-MetamodelBuilder-Core' }
 RGBehavior >> traitsDefinitions [
-	| methodsToRemoveMap traitCompositionString precedingTrait |
+	| methodsToRemoveMap |
 	methodsToRemoveMap := self propertyNamed: #methodsToRemoveFromTraitComposition ifAbsent: [ Dictionary new ].
-	traitCompositionString := self traitComposition transformations
+	^ self traitComposition transformations
 		collect: [ :trait | 
 			methodsToRemoveMap
 				at: trait name
@@ -27,10 +27,5 @@ RGBehavior >> traitsDefinitions [
 							methods sorted printAsSelfEvaluatingFormOn: s ] ]
 				ifAbsent: [ trait asString ] ].
 	
-	precedingTrait := self propertyNamed: #precedingTrait ifAbsent: [ ^ traitCompositionString ].
-	
-	^ String streamContents: [ :s | s nextPutAll: '(( ' ; 
-			nextPutAll: traitCompositionString ; 
-			nextPutAll: ' withPrecedenceOf: '; nextPutAll: precedingTrait; nextPutAll: ' )' ].
 	
 ]
