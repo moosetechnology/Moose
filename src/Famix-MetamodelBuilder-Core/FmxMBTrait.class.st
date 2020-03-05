@@ -67,6 +67,7 @@ FmxMBTrait >> generate [
 	
 	self generateTestingMethodsIn: aTrait.
 	self generateMethodsToRemoveFromTraitCompositionFor: aTrait.
+	self generatePrecedenceInTraitComposition: aTrait.
 	
 	self generateNavigationGroupsFor: aTrait.
 	self generateAddToCollectionFor: aTrait
