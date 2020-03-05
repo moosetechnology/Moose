@@ -122,7 +122,6 @@ FamixTHasModifiers >> modifierSet: aBoolean for: aSymbol [
 FamixTHasModifiers >> modifiers [
 
 	<FMProperty: #modifiers type: #String>
-	<generated>
 	<multivalued>
 	<FMComment: 'Generic container for language dependent modifiers.'>
 	^ modifiers ifNil: [ modifiers := Set new ]
