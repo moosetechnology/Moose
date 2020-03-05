@@ -208,6 +208,18 @@ FmxMBBehavior >> generateNavigationGroupsFor: aClass [
 ]
 
 { #category : #generating }
+FmxMBBehavior >> generatePrecedenceInTraitComposition: aBehavioral [
+	"In case of method conflict the user can select methods to remove from a trait. In that case we give the information to ring here."
+
+	self additionalProperties
+		at: #precedingTrait
+		ifPresent: [ :value |
+			aBehavioral
+				propertyNamed: #precedingTrait
+				put: value ]
+]
+
+{ #category : #generating }
 FmxMBBehavior >> generateRemoteAccessors [
 	(self properties select: #isRemote) do: [ :each | each generateAccessorsIn: self realClass ]
 ]
@@ -450,6 +462,14 @@ FmxMBBehavior >> traitGeneralizations [
 FmxMBBehavior >> uses: aTrait [
 
 	^ self generalization: aTrait
+]
+
+{ #category : #generalization }
+FmxMBBehavior >> withPrecedenceOf: aTrait [
+
+	self additionalProperties
+		at: #precedingTrait
+		put: aTrait
 ]
 
 { #category : #'testing selectors' }
