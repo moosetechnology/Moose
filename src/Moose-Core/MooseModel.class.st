@@ -179,6 +179,15 @@ MooseModel class >> importMetamodelFrom: aStream [
 	generator previewChanges	"keep shift pressed to see the changes"
 ]
 
+{ #category : #'world menu' }
+MooseModel class >> menuCommandOn: aBuilder [
+	<worldMenu>
+	(aBuilder item: #Moose)
+		order: 6.0; 
+		withSeparatorAfter;
+		icon: MooseIcons mooseIcon
+]
+
 { #category : #meta }
 MooseModel class >> metamodel [
 	self flag: #TODO. "The next line is a hack to not break everything in Moose. It should be removed later."
