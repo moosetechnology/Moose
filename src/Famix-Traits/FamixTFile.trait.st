@@ -4,6 +4,7 @@ It represents a file in the file system.
 Trait {
 	#name : #FamixTFile,
 	#instVars : [
+		'#anchors => FMMany type: #FamixTFileAnchor opposite: #correspondingFile',
 		'#entities => FMMany type: #FamixTWithFiles opposite: #containerFiles'
 	],
 	#traits : 'FamixTFileSystemEntity',
@@ -28,9 +29,32 @@ FamixTFile classSide >> famixTFileRelatedGroup [
 	^ FAMIXFileGroup
 ]
 
+{ #category : #adding }
+FamixTFile >> addAnchor: anObject [
+	<generated>
+	^ self anchors add: anObject
+]
+
 { #category : #accessing }
 FamixTFile >> addEntity: famixEntity [
 	self entities add: famixEntity
+]
+
+{ #category : #accessing }
+FamixTFile >> anchors [
+	"Relation named: #anchors type: #FamixTFileAnchor opposite: #correspondingFile"
+
+	<generated>
+	<FMComment: 'Source anchor refering this file'>
+	<derived>
+	^ anchors
+]
+
+{ #category : #accessing }
+FamixTFile >> anchors: anObject [
+
+	<generated>
+	anchors value: anObject
 ]
 
 { #category : #accessing }

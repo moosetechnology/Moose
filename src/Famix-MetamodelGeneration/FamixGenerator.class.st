@@ -965,8 +965,6 @@ FamixGenerator >> defineHierarchy [
 { #category : #definition }
 FamixGenerator >> defineProperties [
 	super defineProperties.
-	((tFileAnchor property: #correspondingFile type: #FamixTFile) 
-		comment: 'File associated to this source anchor').
 	((tFileAnchor property: #encoding type: #String) 
 		comment: 'A string representing the encoding of a file').
 	((tFileAnchor property: #fileName type: #String) 
@@ -1016,328 +1014,198 @@ FamixGenerator >> defineProperties [
 		comment: 'Stop position in the source').
 
 	((tHasImmediateSource property: #source type: #String)
-		comment: 'Actual source code of the source entity').
-		
-	((tMultipleFileAnchor property: #allFiles type: #FamixTFileAnchor)
-		comment: 'All source code definition files';
-		multivalued).
+		comment: 'Actual source code of the source entity')
 ]
 
 { #category : #definition }
 FamixGenerator >> defineRelations [
-
 	((tAccess property: #accessor)
-			comment: 'Behavioural entity making the access to the variable. from-side of the association';
-			source)
-		*-
-	((tWithAccesses property: #accesses)
-			comment: 'Accesses to variables made by this behaviour.').
+		comment: 'Behavioural entity making the access to the variable. from-side of the association';
+		source) *- ((tWithAccesses property: #accesses) comment: 'Accesses to variables made by this behaviour.').
 
 	((tAccess property: #variable)
-			comment: 'Variable accessed. to-side of the association';
-			target)
-		*-
-	((tAccessible property: #incomingAccesses)
-			comment: 'All Famix accesses pointing to this structural entity').
+		comment: 'Variable accessed. to-side of the association';
+		target) *- ((tAccessible property: #incomingAccesses) comment: 'All Famix accesses pointing to this structural entity').
 
 	((tAnnotationInstance property: #annotatedEntity)
-			comment: 'The NamedEntity on which the annotation occurs.';
-			container)
-		*-
-	((tWithAnnotationInstances property: #annotationInstances)
-			comment: 'This property corresponds to the set of annotations associated to the entity').
+		comment: 'The NamedEntity on which the annotation occurs.';
+		container)
+		*- ((tWithAnnotationInstances property: #annotationInstances) comment: 'This property corresponds to the set of annotations associated to the entity').
 
 	((tAnnotationInstanceAttribute property: #parentAnnotationInstance)
-			comment: 'The instance of the annotation in which the attribute is used.';
-			container)
-		*-
-	((tWithAnnotationInstanceAttributes property: #attributes)
-			comment: 'This corresponds to the actual values of the attributes in an AnnotationInstance').
+		comment: 'The instance of the annotation in which the attribute is used.';
+		container)
+		*- ((tWithAnnotationInstanceAttributes property: #attributes) comment: 'This corresponds to the actual values of the attributes in an AnnotationInstance').
 
-	((tAnnotationType property: #instances)
-			comment: 'Annotations of this type')
+	((tAnnotationType property: #instances) comment: 'Annotations of this type')
 		-*
-	((tTypedAnnotationInstance property: #annotationType)
-			comment: 'Refers to the type of an annotation. (In some languages, Java and C#, an annotation as an explicit type). '";
-			container"). "TODO: resolve"
+			((tTypedAnnotationInstance property: #annotationType)
+				comment: 'Refers to the type of an annotation. (In some languages, Java and C#, an annotation as an explicit type). ').	";
+			container"	"TODO: resolve"
 
 	((tAnnotationType property: #annotationTypesContainer)
-			comment: 'Container in which an AnnotationType may reside';
-			container	)
-		*-
-	((tWithAnnotationTypes property: #definedAnnotationTypes)
-			comment: 'The container in which the AnnotationTypes may be declared').
+		comment: 'Container in which an AnnotationType may reside';
+		container) *- ((tWithAnnotationTypes property: #definedAnnotationTypes) comment: 'The container in which the AnnotationTypes may be declared').
 
 	((tAnnotationTypeAttribute property: #annotationAttributeInstances)
-			comment: 'A collection of AnnotationInstanceAttribute which hold the usages of this attribute in actual AnnotationInstances')
-		-*
-	((tTypedAnnotationInstanceAttribute property: #annotationTypeAttribute)
-			comment: 'This corresponds to the type of the attribute in an AnnotationInstance').
+		comment: 'A collection of AnnotationInstanceAttribute which hold the usages of this attribute in actual AnnotationInstances')
+		-* ((tTypedAnnotationInstanceAttribute property: #annotationTypeAttribute) comment: 'This corresponds to the type of the attribute in an AnnotationInstance').
 
-	((tAssociation property: #previous)
-			comment: 'Previous association in an ordered collection of associations. Currently not supported by the Moose importer')
-		-
-	((tAssociation property: #next)
-			comment: 'Next association in an ordered collection of associations. Currently not supported by the Moose importer').	
+	((tAssociation property: #previous) comment: 'Previous association in an ordered collection of associations. Currently not supported by the Moose importer')
+		- ((tAssociation property: #next) comment: 'Next association in an ordered collection of associations. Currently not supported by the Moose importer').
 
 	((tAttribute property: #parentType)
-			comment: 'Type declaring the attribute. belongsTo implementation';
-			container)
-		*-
-	((tWithAttributes property: #attributes)
-			comment: 'List of attributes declared by this type.').
+		comment: 'Type declaring the attribute. belongsTo implementation';
+		container) *- ((tWithAttributes property: #attributes) comment: 'List of attributes declared by this type.').
 
-	((tCaughtException property: #definingEntity))
-		*-
-	((tWithCaughtExceptions property: #caughtExceptions)
-			comment: 'The exceptions caught by the method').
+	(tCaughtException property: #definingEntity) *- ((tWithCaughtExceptions property: #caughtExceptions) comment: 'The exceptions caught by the method').
 
-	((tComment property: #container)
-			comment: 'Source code entity containing the comment')
-		*-
-	((tWithComments property: #comments)
-			comment: 'list of comments defined in the entity').
+	((tComment property: #container) comment: 'Source code entity containing the comment')
+		*- ((tWithComments property: #comments) comment: 'list of comments defined in the entity').
 
-	((tCompilationUnit property: #compilationUnitOwner)
-			comment: 'The compilation unit that defines this module')
-		-
-	((tWithCompilationUnit property: #compilationUnit)).
+	((tCompilationUnit property: #compilationUnitOwner) comment: 'The compilation unit that defines this module')
+		- (tWithCompilationUnit property: #compilationUnit).
 
-	((tDeclaredException property: #definingEntity))
-		*-
-	((tWithDeclaredExceptions property: #declaredExceptions)
-			comment: 'The exceptions declared by the method').
+	(tDeclaredException property: #definingEntity) *- ((tWithDeclaredExceptions property: #declaredExceptions) comment: 'The exceptions declared by the method').
 
-	((tDereferencedInvocation property: #referencer)
-			comment: 'Structural entity that references the BehaviouralEntity invoked')
-		*-
-	((tWithDereferencedInvocations property: #dereferencedInvocations)
-			comment: 'List of invocations performed on BehaviouralEntities referenced by this entity').
+	((tDereferencedInvocation property: #referencer) comment: 'Structural entity that references the BehaviouralEntity invoked')
+		*- ((tWithDereferencedInvocations property: #dereferencedInvocations) comment: 'List of invocations performed on BehaviouralEntities referenced by this entity').
 
 	((tEnumValue property: #parentEnum)
-			comment: 'The Enum declaring this value. It offers the implementation of belongsTo';
-			container)
-		*-
-	((tWithEnumValues property: #enumValues)).
+		comment: 'The Enum declaring this value. It offers the implementation of belongsTo';
+		container) *- (tWithEnumValues property: #enumValues).
 
-	((tException property: #exceptionClass)
-			comment: 'Class to which the exception points. It is specific to Java')
-		*-
-	((tWithExceptions property: #exceptions)
-			comment: 'Exceptions which class is myself.').
+	((tException property: #exceptionClass) comment: 'Class to which the exception points. It is specific to Java')
+		*- ((tWithExceptions property: #exceptions) comment: 'Exceptions which class is myself.').
 
-	((tFolder property: #childrenFileSystemEntities)
-			comment: 'List of entities contained in this folder.')
+	((tFolder property: #childrenFileSystemEntities) comment: 'List of entities contained in this folder.')
 		-*
-	((tFileSystemEntity property: #parentFolder)
-		comment: 'Folder entity containing this file.';
-		container).
+			((tFileSystemEntity property: #parentFolder)
+				comment: 'Folder entity containing this file.';
+				container).
 
-	((tFile property: #entities)
-			comment: 'List of entities defined in the file')
-		*-*
-	((tWithFiles property: #containerFiles)
-			comment: 'List of files containing the entity').
+	((tFile property: #entities) comment: 'List of entities defined in the file')
+		*-* ((tWithFiles property: #containerFiles) comment: 'List of files containing the entity').
 
-	((tFileInclude property: #source)
-			comment: 'The file that is including')
-		*-
-	((tWithFileIncludes property: #outgoingIncludeRelations)
-			comment: 'The include entities that have this file as a source.').
+	((tFileInclude property: #source) comment: 'The file that is including')
+		*- ((tWithFileIncludes property: #outgoingIncludeRelations) comment: 'The include entities that have this file as a source.').
 
-	((tFileInclude property: #target)
-			comment: 'The file that is included')
-		*-
-	((tWithFileIncludes property: #incomingIncludeRelations)
-			comment: 'The include entities that have this file as a target.').
+	((tFileInclude property: #target) comment: 'The file that is included')
+		*- ((tWithFileIncludes property: #incomingIncludeRelations) comment: 'The include entities that have this file as a target.').
 
 	((tFunction property: #functionOwner)
-			comment: 'The container defining the function. The function is placed in a container, because certain languages can nest functions in functions.';
-			container)
-		*-
-	((tWithFunctions property: #functions)
-			comment: 'Functions defined in the container, if any.').
+		comment: 'The container defining the function. The function is placed in a container, because certain languages can nest functions in functions.';
+		container) *- ((tWithFunctions property: #functions) comment: 'Functions defined in the container, if any.').
 
 	((tGlobalVariable property: #parentScope)
-			comment: 'Scope declaring the global variable. belongsTo implementation';
-			container)
-		*-
-	((tWithGlobalVariables property: #globalVariables)
-			comment: 'Global variables defined in the scope, if any.').
+		comment: 'Scope declaring the global variable. belongsTo implementation';
+		container) *- ((tWithGlobalVariables property: #globalVariables) comment: 'Global variables defined in the scope, if any.').
 
-	((tHeader property: #headerOwner))
-		-
-	((tWithHeader property: #header)
-			comment: 'The header file that defines this module').
+	(tHeader property: #headerOwner) - ((tWithHeader property: #header) comment: 'The header file that defines this module').
 
 	((tImplicitVariable property: #parentBehaviouralEntity)
-			comment: 'The behaviour containing this implicit variable. belongsTo implementation';
-			container)
-		*-
-	((tWithImplicitVariables property: #implicitVariables)
-			comment: 'Implicit variables used locally by this behaviour.').
+		comment: 'The behaviour containing this implicit variable. belongsTo implementation';
+		container) *- ((tWithImplicitVariables property: #implicitVariables) comment: 'Implicit variables used locally by this behaviour.').
 
-	((tInvocable property: #incomingInvocations)
-			comment: 'Incoming invocations from other behaviours computed by the candidate operator.')
+	((tInvocable property: #incomingInvocations) comment: 'Incoming invocations from other behaviours computed by the candidate operator.')
 		*-*
-	((tInvocation property: #candidates) 
-			comment: 'List of candidate behavioural entities for receiving the invocation';
-			target).
+			((tInvocation property: #candidates)
+				comment: 'List of candidate behavioural entities for receiving the invocation';
+				target).
 
 	((tInvocation property: #sender)
-			comment: 'Behavioural entity making the call. from-side of the association';
-			source)
-		*-
-	((tWithInvocations property: #outgoingInvocations)
-			comment: 'Outgoing invocations sent by this behaviour.').
+		comment: 'Behavioural entity making the call. from-side of the association';
+		source) *- ((tWithInvocations property: #outgoingInvocations) comment: 'Outgoing invocations sent by this behaviour.').
 
-	((tInvocation property: #receiver)
-			comment: 'Named entity (variable, class...) receiving the invocation. to-side of the association')
-		*-
-	((tInvocationsReceiver property: #receivingInvocations)
-			comment: 'List of invocations performed on this entity (considered as the receiver)').
+	((tInvocation property: #receiver) comment: 'Named entity (variable, class...) receiving the invocation. to-side of the association')
+		*- ((tInvocationsReceiver property: #receivingInvocations) comment: 'List of invocations performed on this entity (considered as the receiver)').
 
 	((tLocalVariable property: #parentBehaviouralEntity)
-			comment: 'Behavioural entity declaring this local variable. belongsTo implementation';
-			container)
-		*-
-	((tWithLocalVariables property: #localVariables)
-			comment: 'Variables locally defined by this behaviour.').
+		comment: 'Behavioural entity declaring this local variable. belongsTo implementation';
+		container) *- ((tWithLocalVariables property: #localVariables) comment: 'Variables locally defined by this behaviour.').
 
 	((tMethod property: #parentType)
-			comment: 'Type declaring the method. It provides the implementation for belongsTo.';
-			container)
-		*-
-	((tWithMethods property: #methods)
-			comment: 'Methods declared by this type.').
+		comment: 'Type declaring the method. It provides the implementation for belongsTo.';
+		container) *- ((tWithMethods property: #methods) comment: 'Methods declared by this type.').
 
-	((tModule property: #moduleEntities))
+	(tModule property: #moduleEntities) -* ((tDefinedInModule property: #parentModule) comment: 'Module that contains the definition of this entity').
+
+	(tPackage property: #childEntities)
 		-*
-	((tDefinedInModule property: #parentModule)
-			comment: 'Module that contains the definition of this entity').
+			((tPackageable property: #parentPackage)
+				comment: 'Package containing the entity in the code structure (if applicable)';
+				container).
 
-	((tPackage property: #childEntities))
-		-*
-	((tPackageable property: #parentPackage)
-		comment: 'Package containing the entity in the code structure (if applicable)';
-		container).
-
-	((tPackage property: #packageOwner))
-		*-
-	((tWithPackages property: #packages)).
+	(tPackage property: #packageOwner) *- (tWithPackages property: #packages).
 
 	((tParameter property: #parentBehaviouralEntity)
-			comment: 'Behavioural entity containing this parameter. belongsTo implementation';
-			container)
-		*-
-	((tWithParameters property: #parameters)
-			comment: 'List of formal parameters declared by this behaviour.').
+		comment: 'Behavioural entity containing this parameter. belongsTo implementation';
+		container) *- ((tWithParameters property: #parameters) comment: 'List of formal parameters declared by this behaviour.').
 
-	((tParameterizedType property: #parameterizableClass)
-			comment: 'Base type of this parameterized type.')
-		*-
-	((tWithParameterizedTypes property: #parameterizedTypes)).
+	((tParameterizedType property: #parameterizableClass) comment: 'Base type of this parameterized type.')
+		*- (tWithParameterizedTypes property: #parameterizedTypes).
 
-	((tParameterizedTypeUser property: #argumentsInParameterizedTypes))
-		*-*
-	((tWithParameterizedTypeUsers property: #arguments)).
+	(tParameterizedTypeUser property: #argumentsInParameterizedTypes) *-* (tWithParameterizedTypeUsers property: #arguments).
 
 	((tReference property: #source)
-			comment: 'Source entity making the reference. from-side of the association';
-			source)
-		*-
-	((tWithReferences property: #outgoingReferences)
-			comment: 'References from this entity to other entities.').
+		comment: 'Source entity making the reference. from-side of the association';
+		source) *- ((tWithReferences property: #outgoingReferences) comment: 'References from this entity to other entities.').
 
 	((tReference property: #target)
-			comment: 'Target entity referenced. to-side of the association';
-			target)
-		*-
-	((tReferenceable property: #incomingReferences)
-			comment: 'References to this entity by other entities.').
+		comment: 'Target entity referenced. to-side of the association';
+		target) *- ((tReferenceable property: #incomingReferences) comment: 'References to this entity by other entities.').
 
 	((tScopingEntity property: #parentScope)
-			comment: 'Parent scope embedding this scope, if any.';
-			container)
-		*-
-	((tScopingEntity property: #childScopes)
-			comment: 'Child scopes embedded in this scope, if any.').
+		comment: 'Parent scope embedding this scope, if any.';
+		container) *- ((tScopingEntity property: #childScopes) comment: 'Child scopes embedded in this scope, if any.').
 
-	((tSourceAnchor property: #element)
-			comment: 'Enable the accessibility to the famix entity that this class is a source pointer for') "this realtion was a container in the old FAMIX"
-		-
-	((tWithSourceAnchor property: #sourceAnchor)
-			comment: 'SourceAnchor entity linking to the original source code for this entity').
+	((tSourceAnchor property: #element) comment: 'Enable the accessibility to the famix entity that this class is a source pointer for')
+		- ((tWithSourceAnchor property: #sourceAnchor) comment: 'SourceAnchor entity linking to the original source code for this entity').	"this realtion was a container in the old FAMIX"
 
-	((tSourceLanguage property: #sourcedEntities)
-			comment: 'References to the entities saying explicitly that are written in this language.')
-		-*
-	((tWithSourceLanguage property: #declaredSourceLanguage)
-			comment: 'The declared SourceLanguage for the source code of this entity').
+	((tSourceLanguage property: #sourcedEntities) comment: 'References to the entities saying explicitly that are written in this language.')
+		-* ((tWithSourceLanguage property: #declaredSourceLanguage) comment: 'The declared SourceLanguage for the source code of this entity').
 
 	((tInheritance property: #subclass)
-			comment: 'Subclass linked to in this relationship. from-side of the association';
-			source)
-		*-
-	((tWithInheritances property: #superInheritances)
-			comment: 'Superinheritance relationships, i.e. known superclasses of this type.').
+		comment: 'Subclass linked to in this relationship. from-side of the association';
+		source) *- ((tWithInheritances property: #superInheritances) comment: 'Superinheritance relationships, i.e. known superclasses of this type.').
 
 	((tInheritance property: #superclass)
-			comment: 'Superclass linked to in this relationship. to-side of the association';
-			target)
-		*-
-	((tWithInheritances property: #subInheritances)
-			comment: 'Subinheritance relationships, i.e. known subclasses of this type.').
+		comment: 'Superclass linked to in this relationship. to-side of the association';
+		target) *- ((tWithInheritances property: #subInheritances) comment: 'Subinheritance relationships, i.e. known subclasses of this type.').
 
-	((tTemplate property: #templateOwner))
-		*-
-	((tWithTemplates property: #templates)).
+	(tTemplate property: #templateOwner) *- (tWithTemplates property: #templates).
 
-	((tTemplate property: #templateUsers))
-		-*
-	((tTemplateUser property: #template)).
+	(tTemplate property: #templateUsers) -* (tTemplateUser property: #template).
 
-	((tThrownException property: #definingEntity))
-		*-
-	((tWithThrownExceptions property: #thrownExceptions)
-			comment: 'The exceptions thrown by the method').
+	(tThrownException property: #definingEntity) *- ((tWithThrownExceptions property: #thrownExceptions) comment: 'The exceptions thrown by the method').
 
-	((tTrait property: #traitOwner))
-		*-
-	((tWithTraits property: #traits)).
+	(tTrait property: #traitOwner) *- (tWithTraits property: #traits).
 
-	((tTrait property: #incomingTraitUsages))
-		-*
-	((tTraitUsage property: #trait)
-			source).
+	(tTrait property: #incomingTraitUsages) -* (tTraitUsage property: #trait) source.
 
-	((tTraitUser property: #outgoingTraitUsages))
-		-*
-	((tTraitUsage property: #user)
-			target).
+	(tTraitUser property: #outgoingTraitUsages) -* (tTraitUsage property: #user) target.
 
 
 	((tType property: #typeContainer)
-			comment: 'Container entity to which this type belongs to. Container is a namespace, not a package (Smalltalk).';
-			container)
+		comment: 'Container entity to which this type belongs to. Container is a namespace, not a package (Smalltalk).';
+		container)
 		*-
-	((tWithTypes property: #types)
-		comment: 'Types contained (declared) in this entity, if any.
+			((tWithTypes property: #types)
+				comment:
+					'Types contained (declared) in this entity, if any.
 #types is declared in ContainerEntity because different kinds of container can embed types. Types are usually contained in a Famix.Namespace. But types can also be contained in a Famix.Class or Famix.Method (in Java with inner classes for example). Famix.Function can also contain some types such as structs.').
 
-	((tTypeAlias property: #aliasedType)
-			comment: 'Points to the actual type.')
-		*-
-	((tWithTypeAliases property: #typeAliases)
-			comment: 'Aliases').
+	((tTypeAlias property: #aliasedType) comment: 'Points to the actual type.') *- ((tWithTypeAliases property: #typeAliases) comment: 'Aliases').
 
-	((tTypedEntity property: #declaredType)
-			comment: 'Type of the entity, if any')
-		*-
-	((tType property: #typedEntities)
-			comment: 'Entities that have this type as declaredType').
+	((tTypedEntity property: #declaredType) comment: 'Type of the entity, if any')
+		*- ((tType property: #typedEntities) comment: 'Entities that have this type as declaredType').
 
 
+	((tFileAnchor property: #correspondingFile) comment: 'File associated to this source anchor')
+		*- ((tFile property: #anchors) comment: 'Source anchor refering this file').
+		
+	((tMultipleFileAnchor property: #allFiles)
+		comment: 'All source code definition files') *-* ((tFileAnchor property: #multipleFileAnchor) comment: 'The multiple file anchors I''m part of')
 ]
 
 { #category : #definition }

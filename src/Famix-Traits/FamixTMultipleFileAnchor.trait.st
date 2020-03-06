@@ -1,7 +1,7 @@
 Trait {
 	#name : #FamixTMultipleFileAnchor,
 	#instVars : [
-		'#allFiles => FMProperty'
+		'#allFiles => FMMany type: #FamixTFileAnchor opposite: #multipleFileAnchor'
 	],
 	#category : #'Famix-Traits-SourceAnchor'
 }
@@ -13,6 +13,12 @@ FamixTMultipleFileAnchor classSide >> annotation [
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
+]
+
+{ #category : #adding }
+FamixTMultipleFileAnchor >> addAllFile: anObject [
+	<generated>
+	^ self allFiles add: anObject
 ]
 
 { #category : #adding }
@@ -42,8 +48,9 @@ FamixTMultipleFileAnchor >> allFiles [
 
 { #category : #accessing }
 FamixTMultipleFileAnchor >> allFiles: anObject [
+
 	<generated>
-	allFiles := anObject
+	allFiles value: anObject
 ]
 
 { #category : #accessing }

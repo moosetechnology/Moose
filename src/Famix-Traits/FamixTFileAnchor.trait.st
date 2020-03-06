@@ -4,9 +4,10 @@ This offers a source anchor that connects a sourced entity to a file through a r
 Trait {
 	#name : #FamixTFileAnchor,
 	#instVars : [
-		'#correspondingFile => FMProperty',
+		'#correspondingFile => FMOne type: #FamixTFile opposite: #anchors',
 		'#encoding => FMProperty',
-		'#fileName => FMProperty'
+		'#fileName => FMProperty',
+		'#multipleFileAnchor => FMMany type: #FamixTMultipleFileAnchor opposite: #allFiles'
 	],
 	#category : #'Famix-Traits-SourceAnchor'
 }
@@ -18,6 +19,12 @@ FamixTFileAnchor classSide >> annotation [
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
+]
+
+{ #category : #adding }
+FamixTFileAnchor >> addMultipleFileAnchor: anObject [
+	<generated>
+	^ self multipleFileAnchor add: anObject
 ]
 
 { #category : #adding }
@@ -41,8 +48,8 @@ FamixTFileAnchor >> containerFiles [
 
 { #category : #accessing }
 FamixTFileAnchor >> correspondingFile [
+	"Relation named: #correspondingFile type: #FamixTFile opposite: #anchors"
 
-	<FMProperty: #correspondingFile type: #FamixTFile>
 	<generated>
 	<FMComment: 'File associated to this source anchor'>
 	^ correspondingFile
@@ -50,6 +57,7 @@ FamixTFileAnchor >> correspondingFile [
 
 { #category : #accessing }
 FamixTFileAnchor >> correspondingFile: anObject [
+
 	<generated>
 	correspondingFile := anObject
 ]
@@ -116,6 +124,22 @@ FamixTFileAnchor >> lineCount [
 { #category : #printing }
 FamixTFileAnchor >> mooseNameOn: aStream [
 	aStream nextPutAll: self fileName asString
+]
+
+{ #category : #accessing }
+FamixTFileAnchor >> multipleFileAnchor [
+	"Relation named: #multipleFileAnchor type: #FamixTMultipleFileAnchor opposite: #allFiles"
+
+	<generated>
+	<FMComment: 'The multiple file anchors I''m part of'>
+	^ multipleFileAnchor
+]
+
+{ #category : #accessing }
+FamixTFileAnchor >> multipleFileAnchor: anObject [
+
+	<generated>
+	multipleFileAnchor value: anObject
 ]
 
 { #category : #private }
