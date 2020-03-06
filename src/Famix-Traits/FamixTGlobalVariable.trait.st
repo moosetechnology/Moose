@@ -8,7 +8,6 @@ Trait {
 		'#parentScope => FMOne type: #FamixTWithGlobalVariables opposite: #globalVariables'
 	],
 	#traits : 'FamixTStructuralEntity',
-	#classTraits : 'FamixTStructuralEntity classTrait',
 	#category : #'Famix-Traits-GlobalVariable'
 }
 

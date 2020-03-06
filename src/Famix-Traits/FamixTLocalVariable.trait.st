@@ -7,7 +7,6 @@ Trait {
 		'#parentBehaviouralEntity => FMOne type: #FamixTWithLocalVariables opposite: #localVariables'
 	],
 	#traits : 'FamixTStructuralEntity',
-	#classTraits : 'FamixTStructuralEntity classTrait',
 	#category : #'Famix-Traits-LocalVariable'
 }
 

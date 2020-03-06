@@ -5,7 +5,6 @@ Trait {
 		'#superclass => FMOne type: #FamixTWithInheritances opposite: #subInheritances'
 	],
 	#traits : 'FamixTAssociation',
-	#classTraits : 'FamixTAssociation classTrait',
 	#category : #'Famix-Traits-Inheritance'
 }
 
