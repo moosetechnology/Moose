@@ -921,6 +921,9 @@ FamixGenerator >> defineHierarchy [
 	tFileInclude --|> tAssociation.
 
 	tFolder --|> tFileSystemEntity.
+	
+	tFunction --|> tHasSignature.
+	tFunction --|> tTypedEntity.
 
 	tGlobalVariable --|> tStructuralEntity.
 
