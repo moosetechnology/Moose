@@ -78,24 +78,18 @@ FamixTest3Test >> setUp [
 	pt1 := FamixTest3PrimitiveType named: 'int'.
 	pt2 := FamixTest3PrimitiveType named: 'float'.
 
-	ref1 := FamixTest3Reference new.
-	ref2 := FamixTest3Reference new.
+	ref1 := FamixTest3Reference source: m1 target: pt1.
+	ref2 := FamixTest3Reference source: m1 target: c1.
 	inv1 := FamixTest3Invocation new.
 
 	c1 addMethod: m1.
 	c2 addMethod: m2.
 
-	ref1
-		source: m1;
-		target: pt1.
-	ref2
-		source: m1;
-		target: c1.
 	inv1
 		from: m1;
 		to: {m1}.
 
-	model addAll: {c1 . c2 . m1 . m2 . pt1 . pt2. ref1. ref2. inv1}
+	model addAll: {c1 . c2 . m1 . m2 . pt1 . pt2 . ref1 . ref2 . inv1}
 ]
 
 { #category : #tests }
