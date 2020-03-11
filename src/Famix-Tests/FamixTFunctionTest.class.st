@@ -11,8 +11,7 @@ Class {
 FamixTFunctionTest >> setUp [
 	super setUp.
 	function := MooseEntity new
-		copyWithTalent: FamixTFunction;
-		addTalent: FamixTNamed;
+		addTalent: FamixTFunction;
 		yourself
 ]
 
