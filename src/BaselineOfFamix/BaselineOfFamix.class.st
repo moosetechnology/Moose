@@ -30,7 +30,8 @@ BaselineOfFamix >> baseline: spec [
 				referenceTestResources: spec;
 				neoCSV: spec;
 				roelTyper: spec;
-				singularizePluralize: spec.
+				singularizePluralize: spec;
+				talents: spec.
 
 			"Packages"
 			spec
