@@ -93,9 +93,11 @@ MooseAbstractGroup >> allUsing: aTrait [
 { #category : #groups }
 MooseAbstractGroup >> allUsing: aTrait ofGroupClass: aGroupClass [
 	aTrait isTrait ifFalse: [ MooseAllUsingOnClass signal ].
-	^ aGroupClass
-		withAll: ((aTrait allUsers flattened flatCollect: #withAllSubclasses) asSet flatCollect: [ :each | self entityStorage selectAllWithType: each ])
-		withDescription: 'All ' , aTrait name asLowercase asEnglishPlural
+	^ self privateState
+		cacheAt: aTrait
+		ifAbsentPut: [ aGroupClass
+				withAll: ((aTrait allUsers flattened flatCollect: #withAllSubclasses) asSet flatCollect: [ :each | self entityStorage selectAllWithType: each ])
+				withDescription: 'All ' , aTrait name asLowercase asEnglishPlural ]
 ]
 
 { #category : #groups }
@@ -106,9 +108,11 @@ MooseAbstractGroup >> allWithSubTypesOf: aFamixClass [
 { #category : #groups }
 MooseAbstractGroup >> allWithSubTypesOf: aFamixClass ofGroupClass: aGroupClass [
 	aFamixClass isTrait ifTrue: [ MooseAllWithTypeOnTrait signal ].
-	^ aGroupClass
-		withAll: ((aFamixClass withAllSubclasses) asSet flatCollect: [ :each | self entityStorage selectAllWithType: each ])
-		withDescription: 'All ' , aFamixClass name asLowercase asEnglishPlural
+	^ self privateState
+		cacheAt: aFamixClass
+		ifAbsentPut: [ aGroupClass
+				withAll: (aFamixClass withAllSubclasses asSet flatCollect: [ :each | self entityStorage selectAllWithType: each ])
+				withDescription: 'All ' , aFamixClass name asLowercase asEnglishPlural ]
 ]
 
 { #category : #groups }
