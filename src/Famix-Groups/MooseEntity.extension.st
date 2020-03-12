@@ -8,7 +8,7 @@ MooseEntity class >> relatedGroupType [
 	type, the most specialize one selected."
 
 	| definingMethods selectedMethods selectedMethod |
-	definingMethods := self class allMethods select: [ :each | each hasPragmaNamed: #mooseGroup ].
+	definingMethods :=(Pragma allNamed: #mooseGroup from: self class to: Object) collect: #method.
 	definingMethods ifEmpty: [ ^ MooseGroup ].
 
 	"We need to find the most specialized method, so we select the lower in the hierarchy."
