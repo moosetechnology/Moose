@@ -190,16 +190,6 @@ MooseGroup >> mooseDescription [
 		ifNotNil: [ :model | model mooseDescriptionFor: self class ]
 ]
 
-{ #category : #printing }
-MooseGroup >> mooseDisplayStringOn: stream [
-	stream 
-			nextPutAll: self description; 
-			space; 
-			nextPut: $(; 
-			print: self size;
-			nextPut: $)
-]
-
 { #category : #accessing }
 MooseGroup >> name [
 

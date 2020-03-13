@@ -7,7 +7,7 @@ It stores the contained entities in a storage variable that points to a MooseGro
 "
 Class {
 	#name : #MooseAbstractGroup,
-	#superclass : #MooseEntity,
+	#superclass : #MooseObject,
 	#traits : 'TMooseGroupDependencyQueries',
 	#classTraits : 'TMooseGroupDependencyQueries classTrait',
 	#instVars : [
@@ -18,7 +18,7 @@ Class {
 
 { #category : #meta }
 MooseAbstractGroup class >> annotation [
-	<FMClass: #AbstractGroup super: #MooseEntity>
+	<FMClass: #AbstractGroup super: #MooseObject>
 	<package: #Moose>
 	<abstract>
 
@@ -522,12 +522,6 @@ MooseAbstractGroup >> mooseModel [
 	^ self ifEmpty: [ nil ] ifNotEmpty: [ self anyOne mooseModel ]
 ]
 
-{ #category : #accessing }
-MooseAbstractGroup >> mooseModel: anObject [ 
-	 
-	self shouldNotImplement
-]
-
 { #category : #testing }
 MooseAbstractGroup >> notEmpty [ 
 	 
@@ -555,11 +549,10 @@ MooseAbstractGroup >> postCopy [
 ]
 
 { #category : #printing }
-MooseAbstractGroup >> printOn: aStream [ 
-	 
-	super printOn: aStream. 
-	aStream nextPut: $(. 
-	aStream nextPutAll: self size printString. 
+MooseAbstractGroup >> printOn: aStream [
+	super printOn: aStream.
+	aStream nextPut: $(.
+	aStream print: self size.
 	aStream nextPut: $)
 ]
 
