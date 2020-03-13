@@ -501,7 +501,7 @@ MooseModel >> mooseDescriptionFor: class [
 MooseModel >> mooseModel [
 	"Answer the containing moose model of self, if any."
 
-	^ self privateState attributeAt: #privateModel ifAbsent: [ MooseModel ownerOf: self ]
+	^ self privateState attributeAt: #privateModel ifAbsent: [ nil ]
 ]
 
 { #category : #accessing }
