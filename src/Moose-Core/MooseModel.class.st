@@ -500,7 +500,8 @@ MooseModel >> mooseDescriptionFor: class [
 { #category : #accessing }
 MooseModel >> mooseModel [
 	"Answer the containing moose model of self, if any."
-	^ self privateState model
+
+	^ self privateState attributeAt: #privateModel ifAbsent: [ MooseModel ownerOf: self ]
 ]
 
 { #category : #accessing }
@@ -514,8 +515,9 @@ MooseModel >> name: aStringOrSymbol [
 	| oldName |
 	oldName := name.
 	name := aStringOrSymbol.
-	(oldName notNil and: [oldName ~= name]) ifTrue: [ 
-		self announcer announce: (MooseEntityRenamed new oldName: oldName) ]
+	(oldName notNil and: [ oldName ~= name ])
+		ifTrue: [ self resetMooseName.
+			self announcer announce: (MooseEntityRenamed new oldName: oldName) ]
 ]
 
 { #category : #'Famix-Extensions' }
@@ -535,6 +537,11 @@ MooseModel >> numberOfLinesOfCodePerClass [
 	^ self
 		lookUpPropertyNamed: #numberOfLinesOfCodePerClass
 		computedAs: [ self numberOfLinesOfCode / self numberOfClasses ]
+]
+
+{ #category : #accessing }
+MooseModel >> privateSetMooseModel: aMooseModel [
+	self privateState attributeAt: #privateModel put: aMooseModel
 ]
 
 { #category : #actions }

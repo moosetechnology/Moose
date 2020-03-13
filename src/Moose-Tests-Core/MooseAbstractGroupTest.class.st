@@ -316,11 +316,11 @@ MooseAbstractGroupTest >> testIndexOf [
 
 { #category : #tests }
 MooseAbstractGroupTest >> testIntersection [
-	| group2 el1 el2 el3 el4 |
+	| group2 el1 el2 el3 |
 	group add: (el1 := MooseEntity new).
 	group add: (el2 := MooseEntity new).
 	group add: (el3 := MooseEntity new).
-	group2 := self actualClass with: (el4 := MooseEntity new).
+	group2 := self actualClass with: MooseEntity new.
 	self assertEmpty: (group intersection: group2).
 	self assertEmpty: (group intersection: self actualClass new).
 	self assertCollection: (group intersection: group) hasSameElements: {el1 . el2 . el3}.

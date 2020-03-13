@@ -28,6 +28,9 @@ YourEntity>>yourExtendingAttribute
 Class {
 	#name : #MooseEntity,
 	#superclass : #MooseObject,
+	#instVars : [
+		'mooseModel'
+	],
 	#classInstVars : [
 		'cache'
 	],
@@ -142,14 +145,19 @@ MooseEntity >> localMooseModel [
 { #category : #accessing }
 MooseEntity >> mooseModel [
 	"Answers the model containing the current entity"
-	^ self privateState model
+
+	^ mooseModel
 ]
 
 { #category : #accessing }
-MooseEntity >> mooseModel: aMooseModel [ 
-	 
-	aMooseModel add: self. 
-	self privateState model: aMooseModel
+MooseEntity >> mooseModel: aMooseModel [
+	aMooseModel add: self.
+	self privateSetMooseModel: aMooseModel
+]
+
+{ #category : #private }
+MooseEntity >> privateSetMooseModel: aMooseModel [
+	mooseModel := aMooseModel
 ]
 
 { #category : #testing }
