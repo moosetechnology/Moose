@@ -190,6 +190,11 @@ MooseObject >> gtDisplayOn: aStream [
 	self mooseNameOn: aStream
 ]
 
+{ #category : #testing }
+MooseObject >> hasMooseModel [
+	^ self mooseModel isNotNil
+]
+
 { #category : #initialization }
 MooseObject >> initialize [
 	super initialize.
@@ -216,8 +221,7 @@ MooseObject >> lookUpPropertyNamed: selector computedAs: aBlock [
 
 { #category : #accessing }
 MooseObject >> metamodel [
-
-	^ self privateModelOrNil
+	^ self mooseModel
 		ifNil: [ super metamodel ]
 		ifNotNil: [ :aModel | aModel metamodel ]
 
@@ -250,7 +254,7 @@ MooseObject >> mooseName [
 	Do not override this method.
 	Instead, use mooseNameOn: to customize the result."
 
-	self privateState hasMooseModel
+	self hasMooseModel
 		ifFalse: [ "do not cache yet"
 			| stream |
 			stream := (String new: 64) writeStream.
@@ -306,16 +310,9 @@ MooseObject >> privateClearMooseName [
 	self privateState removeProperty: #mooseName
 ]
 
-{ #category : #accessing }
-MooseObject >> privateModelOrNil [
-
-	^ self privateState attributeAt: #privateModel ifAbsent: [ nil ]
-]
-
 { #category : #private }
-MooseObject >> privateSetMooseModel: aMooseModel [ 
-	 
-	self privateState model: aMooseModel
+MooseObject >> privateSetMooseModel: aMooseModel [
+	"Do nothing in Object"
 ]
 
 { #category : #private }
@@ -398,7 +395,7 @@ MooseObject >> removeFromModel [
 MooseObject >> resetMooseName [
 	"If needed I reset my moose name in the MooseModel. I return true if my MooseName was updated and false if it was not."
 
-	(self hasUniqueMooseNameInModel and: [ self privateState hasMooseModel ]) ifFalse: [ ^ false ].
+	(self hasUniqueMooseNameInModel and: [ self hasMooseModel ]) ifFalse: [ ^ false ].
 
 	self mooseModel resetMooseNameFor: self.
 

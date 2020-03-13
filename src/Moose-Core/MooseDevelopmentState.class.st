@@ -138,17 +138,6 @@ MooseDevelopmentState >> flushProperties [
 ]
 
 { #category : #testing }
-MooseDevelopmentState >> hasMooseModel [
-	| each | 
-	1 to: attributes size 
-		do: [ :n |
-			each := attributes at: n.
-			each key = #privateModel ifTrue: [ ^true ] ].
-	^false
-
-]
-
-{ #category : #testing }
 MooseDevelopmentState >> includesKey: selector [ 
 	 
 	^propertyCache includesKey: selector

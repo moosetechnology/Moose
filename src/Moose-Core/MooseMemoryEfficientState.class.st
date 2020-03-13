@@ -95,14 +95,6 @@ MooseMemoryEfficientState >> flushProperties [
 ]
 
 { #category : #testing }
-MooseMemoryEfficientState >> hasMooseModel [
-	1 to: attributes size do: [ :n | 
-		(attributes at: n) key = #privateModel
-			ifTrue: [ ^ true ] ].
-	^ false
-]
-
-{ #category : #testing }
 MooseMemoryEfficientState >> includesKey: selector [
 	^ propertyCache includesKey: selector
 ]

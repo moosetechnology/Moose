@@ -65,13 +65,11 @@ MooseEntityState >> cacheAt: name put: value [
 ]
 
 { #category : #'initialize-release' }
-MooseEntityState >> clone: newOwner [ 
-	 
-	| newState | 
-	newState := self copy. 
-	newState initialize: newOwner. 
-	newState model: nil. 
-	^newState
+MooseEntityState >> clone: newOwner [
+	| newState |
+	newState := self copy.
+	newState initialize: newOwner.
+	^ newState
 ]
 
 { #category : #'accessing-common attributes' }
@@ -120,11 +118,6 @@ MooseEntityState >> flushProperties [
 ]
 
 { #category : #testing }
-MooseEntityState >> hasMooseModel [
-	^self subclassResponsibility
-]
-
-{ #category : #testing }
 MooseEntityState >> includesKey: selector [ 
 	 
 	self subclassResponsibility
@@ -145,19 +138,6 @@ MooseEntityState >> isStub [
 MooseEntityState >> isStub: boolean [ 
 	 
 	^self attributeAt: #privateIsStub put: boolean
-]
-
-{ #category : #'accessing-common attributes' }
-MooseEntityState >> model [ 
-	 
-	^self 
-		attributeAt: #privateModel 
-		ifAbsent: [MooseModel ownerOf: self entity]
-]
-
-{ #category : #'accessing-common attributes' }
-MooseEntityState >> model: anObject [
-	^ self attributeAt: #privateModel put: anObject
 ]
 
 { #category : #'accessing-properties' }
