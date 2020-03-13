@@ -1,14 +1,7 @@
-Extension { #name : #MooseEntity }
+Extension { #name : #MooseObject }
 
 { #category : #'*Moose-Finder' }
-MooseEntity >> asMooseFinderItemNamed: aString in: aMooseEntity [
-	| itemName |
-	itemName := aString capitalized, ': ', self mooseName.
-	^ MooseGroup with: self withDescription: itemName
-]
-
-{ #category : #'*Moose-Finder' }
-MooseEntity >> bookmarkEntity [
+MooseObject >> bookmarkEntity [
 	<menuItem: 'Bookmark Entity' category: 'Utilities'>
 	
 	| groupName |
@@ -20,9 +13,9 @@ MooseEntity >> bookmarkEntity [
 ]
 
 { #category : #'*Moose-Finder' }
-MooseEntity >> complexPropertyPragmas [
+MooseObject >> complexPropertyPragmas [
 	| navProps definedProps |
-	navProps := (Pragma allNamed: #navigation: from: self class to: MooseEntity) sorted: [ :a :b | (a argumentAt: 1) < (b argumentAt: 1) ].
+	navProps := (Pragma allNamed: #navigation: from: self class to: MooseObject) sorted: [ :a :b | (a argumentAt: 1) < (b argumentAt: 1) ].
 	definedProps := (self mooseDescription allProperties reject: [ :a | a type isPrimitive ])
 		flatCollect: [ :prop | prop compiledMethod pragmas select: [ :each | each selector beginsWith: 'FMProperty:' ] ].
 	^ (OrderedCollection withAll: definedProps)
@@ -31,22 +24,24 @@ MooseEntity >> complexPropertyPragmas [
 ]
 
 { #category : #'*Moose-Finder' }
-MooseEntity >> customNavigationItems [
+MooseObject >> customNavigationItems [
 
 	^ {  }
 ]
 
 { #category : #'*Moose-Finder' }
-MooseEntity class >> formatForNavigationPresentation [
+MooseObject class >> formatForNavigationPresentation [
 	^ 'All ', self name, ' - '
 ]
 
 { #category : #'*Moose-Finder' }
-MooseEntity >> gtInspectorActionOpenInMoose [
+MooseObject >> gtInspectorActionOpenInMoose [
 	<gtInspectorAction>
-	[self mooseDescription] on: NotFound do: [ ^ GLMGenericAction new
+	[ self mooseDescription ]
+		on: NotFound
+		do: [ ^ GLMGenericAction new
 				action: [ self inform: 'Moose description not initialized' ];
-				icon: (Smalltalk ui icons iconNamed: #error);
+				icon: (self iconNamed: #error);
 				title: 'Moose description not initialized' ].
 	^ GLMGenericAction new
 		action: [ self openInMoose ];
@@ -55,7 +50,7 @@ MooseEntity >> gtInspectorActionOpenInMoose [
 ]
 
 { #category : #'*Moose-Finder' }
-MooseEntity >> gtInspectorPresentationsIn: composite inContext: aGTInspector [
+MooseObject >> gtInspectorPresentationsIn: composite inContext: aGTInspector [
 	| pragmas |
 	[self mooseDescription] on: NotFound do: [ super gtInspectorPresentationsIn: composite inContext: aGTInspector.
 		^ self ].
@@ -79,12 +74,12 @@ MooseEntity >> gtInspectorPresentationsIn: composite inContext: aGTInspector [
 ]
 
 { #category : #'*Moose-Finder' }
-MooseEntity >> mooseDescriptionsOfNumberProperties [
+MooseObject >> mooseDescriptionsOfNumberProperties [
 	^ self mooseDescription allProperties select: [ :each | each type = FM3Number instance ]
 ]
 
 { #category : #'*Moose-Finder' }
-MooseEntity >> mooseFinderFameDescription: composite [
+MooseObject >> mooseFinderFameDescription: composite [
 	<moosePresentationOrder: 400>
 	self mooseDescription ifNil: [ ^ self ].
 	(self mooseDescription gtInspectorRelationsIn: composite)
@@ -93,35 +88,39 @@ MooseEntity >> mooseFinderFameDescription: composite [
 ]
 
 { #category : #'*Moose-Finder' }
-MooseEntity >> mooseFinderNavigationIn: composite [
+MooseObject >> mooseFinderNavigationIn: composite [
 	<moosePresentationOrder: 1>
 	self mooseDescription ifNil: [ ^ composite custom: GLMCompositePresentation new].
 	composite custom: MooseNavigationPresentation new
 ]
 
 { #category : #'*Moose-Finder' }
-MooseEntity >> mooseFinderPropertiesIn: composite [
+MooseObject >> mooseFinderPropertiesIn: composite [
 	<moosePresentationOrder: 2>
 	composite table
 		noSelection;
 		title: 'Properties';
 		titleIcon: MooseIcons mooseProperties;
 		display: [ :anObject | anObject mooseInterestingEntity mooseDescription allPrimitiveProperties ];
-		sorted: [:x :y | x name < y name];
-		column: 'Properties' evaluated: [:each | each name ];
-		column: 'Value' evaluated: [:each :anObject | [(anObject mooseInterestingEntity mmGetProperty: each) asString] on: Error do: ['error'] ];
+		sorted: [ :x :y | x name < y name ];
+		column: 'Properties' evaluated: [ :each | each name ];
+		column: 'Value'
+			evaluated: [ :each :anObject | 
+			[ (anObject mooseInterestingEntity mmGetProperty: each) asString ]
+				on: Error
+				do: [ 'error' ] ];
 		when: [ :anObject | 
-			(anObject mooseInterestingEntity isKindOf: MooseEntity) and: [
-				anObject mooseInterestingEntity mooseDescription notNil and: [anObject mooseInterestingEntity mooseDescription allPrimitiveProperties notEmpty] ]].
+			(anObject mooseInterestingEntity isKindOf: MooseObject)
+				and: [ anObject mooseInterestingEntity mooseDescription notNil and: [ anObject mooseInterestingEntity mooseDescription allPrimitiveProperties notEmpty ] ] ]
 ]
 
 { #category : #'*Moose-Finder' }
-MooseEntity >> mooseIcon [
+MooseObject >> mooseIcon [
 	^ MooseIcons mooseMetamodelEntity
 ]
 
 { #category : #'*Moose-Finder' }
-MooseEntity >> mooseSpecificSpotterProcessorsFor: aSpotterStep [
+MooseObject >> mooseSpecificSpotterProcessorsFor: aSpotterStep [
 	| entity assocs pragmaValueAssociations |
 	entity := self mooseInterestingEntity.
 	pragmaValueAssociations := entity complexPropertyPragmas
@@ -149,7 +148,7 @@ MooseEntity >> mooseSpecificSpotterProcessorsFor: aSpotterStep [
 ]
 
 { #category : #'*Moose-Finder' }
-MooseEntity >> navigationItemsFromAttributes [
+MooseObject >> navigationItemsFromAttributes [
 	| entity assocs attrs result |
 	
 	"returns associations in form name->object for navigation entities obtained from
@@ -172,7 +171,7 @@ MooseEntity >> navigationItemsFromAttributes [
 ]
 
 { #category : #'*Moose-Finder' }
-MooseEntity >> navigationItemsFromPragmas [
+MooseObject >> navigationItemsFromPragmas [
 	| entity assocs pragmaValueAssociations |
 	
 	"returns associations in form name->object for navigation entities obtained from
@@ -199,25 +198,15 @@ MooseEntity >> navigationItemsFromPragmas [
 ]
 
 { #category : #'*Moose-Finder' }
-MooseEntity >> navigationPragmas [
+MooseObject >> navigationPragmas [
 	| navProps |
-	navProps := (Pragma
-		allNamed: #navigation:
-		from: self class
-		to: MooseEntity)
-		sorted: [ :a :b | (a argumentAt: 1) < (b argumentAt: 1) ].
-		
-	^ navProps asOrderedCollection.
+	navProps := (Pragma allNamed: #navigation: from: self class to: MooseObject) sorted: [ :a :b | (a argumentAt: 1) < (b argumentAt: 1) ].
+
+	^ navProps asOrderedCollection
 ]
 
 { #category : #'*Moose-Finder' }
-MooseEntity >> openInEasel [
-
-	^ self openInGlamorousRoassalEasel
-]
-
-{ #category : #'*Moose-Finder' }
-MooseEntity >> openInGlamorousEditor [
+MooseObject >> openInGlamorousEditor [
 	<menuItem: 'In Glamour Editor' category: 'Browse'> 
 
 	| symbol className prefixesToIgnore |
@@ -231,7 +220,7 @@ MooseEntity >> openInGlamorousEditor [
 ]
 
 { #category : #'*Moose-Finder' }
-MooseEntity >> spotterProcessorsFor: aSpotterStep [
+MooseObject >> spotterProcessorsFor: aSpotterStep [
 	super spotterProcessorsFor: aSpotterStep.
 	[ self mooseSpecificSpotterProcessorsFor: aSpotterStep ]
 		on: NotFound

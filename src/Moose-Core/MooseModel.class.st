@@ -247,6 +247,7 @@ MooseModel class >> resetMetamodels [
 
 { #category : #'root model' }
 MooseModel class >> resetRoot [
+	<script>
 	MooseModelRoot resetRoot
 ]
 
@@ -494,11 +495,6 @@ MooseModel >> mooseDescription [
 { #category : #accessing }
 MooseModel >> mooseDescriptionFor: class [
 	^ self metamodel descriptionOf: class instanceSide
-]
-
-{ #category : #printing }
-MooseModel >> mooseDisplayStringOn: stream [
-	stream nextPutAll: self name
 ]
 
 { #category : #accessing }

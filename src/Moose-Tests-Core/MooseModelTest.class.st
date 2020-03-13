@@ -212,11 +212,6 @@ MooseModelTest >> testRootFolder [
 ]
 
 { #category : #tests }
-MooseModelTest >> testRootModel [
-	self assert: self actualClass new mooseID > 0
-]
-
-{ #category : #tests }
 MooseModelTest >> testRootUniqueness [
 	self assert: self actualClass root identicalTo: MooseModel root
 ]

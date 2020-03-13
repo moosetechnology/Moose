@@ -1,32 +1,24 @@
 Extension { #name : #MooseAbstractGroup }
 
 { #category : #'*moose-finder' }
-MooseAbstractGroup >> asMooseFinderItemNamed: aString in: aMooseEntity [
-
-	^ self
-]
-
-{ #category : #'*moose-finder' }
 MooseAbstractGroup >> customNavigationItems [
+	| classes result |
+	classes := self metamodel allImplementingClasses select: [ :each | each inheritsFrom: MooseObject ].
 
-	| classes result | 
-	
-	classes := self metamodel allImplementingClasses select: [ :each | each inheritsFrom: MooseEntity].
-	
 	result := OrderedCollection new.
-	classes do: [ :each |
-		| aGroup |
-		aGroup := self allWithType: each.
-		aGroup isEmpty ifFalse: [ 
-			result add: (each -> (self allWithType: each)) ]].
+	classes
+		do: [ :each | 
+			| aGroup |
+			aGroup := self allWithType: each.
+			aGroup isEmpty ifFalse: [ result add: each -> (self allWithType: each) ] ].
 	^ result
 ]
 
 { #category : #'*moose-finder' }
-MooseAbstractGroup >> gtDisplayOn: aStream [ 
+MooseAbstractGroup >> gtDisplayOn: aStream [
 	super gtDisplayOn: aStream.
-	aStream nextPut: $(. 
-	aStream nextPutAll: self size printString. 
+	aStream nextPut: $(.
+	aStream print: self size.
 	aStream nextPut: $)
 ]
 
