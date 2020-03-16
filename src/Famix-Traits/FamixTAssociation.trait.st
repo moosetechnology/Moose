@@ -37,6 +37,21 @@ FamixTAssociation classSide >> annotation [
 	^self
 ]
 
+{ #category : #'instance creation' }
+FamixTAssociation classSide >> source: anEntity target: anotherEntity [
+	^ self new
+		source: anEntity;
+		target: anotherEntity;
+		yourself
+]
+
+{ #category : #'instance creation' }
+FamixTAssociation classSide >> source: anEntity target: anotherEntity model: aMooseModel [
+	^ (self source: anEntity target: anotherEntity)
+		mooseModel: aMooseModel;
+		yourself
+]
+
 { #category : #accessing }
 FamixTAssociation >> from [
 	^ self source
