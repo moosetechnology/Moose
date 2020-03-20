@@ -202,7 +202,6 @@ FamixJavaGenerator >> defineHierarchy [
 	package --|> #TPackage.
 
 	parameter --|> namedEntity.
-	parameter --|> tStructuralEntity.
 	parameter --|> #TParameter.
 
 	parameterType --|> type.
