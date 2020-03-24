@@ -41,7 +41,7 @@ FamixStInvocation >> getReceivingFAMIXClass [
 			ifFalse: [^tmpReceiver]
 ]
 
-{ #category : #'instance creation' }
+{ #category : #initialization }
 FamixStInvocation >> initialize [
 
 	super initialize.

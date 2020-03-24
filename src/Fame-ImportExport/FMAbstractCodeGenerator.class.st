@@ -169,10 +169,11 @@ FMAbstractCodeGenerator >> ensureClass: fameClass superclass: rbSuperclass [
 
 { #category : #initialization }
 FMAbstractCodeGenerator >> initialize [
+	super initialize.
 	model := self createRBModel.
 	self classNamePrefix: ''.
-	self defaultSuperclass: Object.	
-	self skipDerivedMethods: false.
+	self defaultSuperclass: Object.
+	self skipDerivedMethods: false
 ]
 
 { #category : #compiling }

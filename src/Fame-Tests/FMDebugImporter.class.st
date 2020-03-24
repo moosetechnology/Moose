@@ -54,6 +54,7 @@ FMDebugImporter >> exportString [
 
 { #category : #initialization }
 FMDebugImporter >> initialize [
+	super initialize.
 	self reset
 ]
 

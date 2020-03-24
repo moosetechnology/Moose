@@ -55,7 +55,7 @@ FamixStAttribute >> hierarchyNestingLevel: aNumber [
 	self privateState propertyAt: #hierarchyNestingLevel put: aNumber
 ]
 
-{ #category : #'Famix-Implementation' }
+{ #category : #initialization }
 FamixStAttribute >> initialize [
 	super initialize.
 	hasClassScope := false.

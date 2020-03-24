@@ -53,8 +53,9 @@ MooseGroupSetupStorage >> first [
 ]
 
 { #category : #initialization }
-MooseGroupSetupStorage >> initialize [ 
-	 
+MooseGroupSetupStorage >> initialize [
+	super initialize.
+
 	elements := OrderedCollection new: 10000
 ]
 
