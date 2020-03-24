@@ -7,7 +7,7 @@ Class {
 	#category : #'Moose-Finder'
 }
 
-{ #category : #'world menu' }
+{ #category : #initialization }
 MoosePlayground class >> initialize [
 	Smalltalk tools workspaceTool: self
 ]

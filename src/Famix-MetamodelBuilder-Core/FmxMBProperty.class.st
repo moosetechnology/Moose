@@ -34,7 +34,7 @@ FmxMBProperty >> generateSetterIn: aClassOrTrait [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 FmxMBProperty >> initialize [
 	super initialize.
 	comment := ''

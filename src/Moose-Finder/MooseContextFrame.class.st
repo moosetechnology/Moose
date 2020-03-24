@@ -137,10 +137,11 @@ MooseContextFrame >> getSelectedContexts [
 
 { #category : #initialization }
 MooseContextFrame >> initialize [
+	super initialize.
 
 	contextSelected := self allContexts.
-	
-	self createContextFrame  
+
+	self createContextFrame
 ]
 
 { #category : #'morph - creation context frame' }

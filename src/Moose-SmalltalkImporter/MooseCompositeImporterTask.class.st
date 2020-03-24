@@ -71,7 +71,7 @@ MooseCompositeImporterTask >> factory [
 	^ super factory ifNil: [ factory := self model factory ]
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 MooseCompositeImporterTask >> initialize [
 
 	super initialize.

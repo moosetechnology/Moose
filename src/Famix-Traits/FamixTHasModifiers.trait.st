@@ -35,7 +35,7 @@ FamixTHasModifiers >> bePublic [
 	^ self isPublic: true
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 FamixTHasModifiers >> isAbstract [
 	<FMProperty: #isAbstract type: #Boolean> <derived>
 	<FMComment: 'Flag true for abstract entities. Language dependent.'>

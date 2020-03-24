@@ -53,7 +53,7 @@ FamixJavaInvocation >> gtDisplayOn: aStream [
 		ifTrue: [ self anyCandidate gtDisplayOn: aStream ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 FamixJavaInvocation >> initialize [
 
 	super initialize.

@@ -49,7 +49,7 @@ FamixJavaAttribute >> hierarchyNestingLevel: aNumber [
 	self privateState propertyAt: #hierarchyNestingLevel put: aNumber
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 FamixJavaAttribute >> initialize [
 	super initialize.
 	hasClassScope := false.

@@ -445,7 +445,7 @@ MooseImportingContext class >> importingPackage [
 	^#Package
 ]
 
-{ #category : #initialize }
+{ #category : #initialization }
 MooseImportingContext class >> initialize [
 	"self initialize"
 	

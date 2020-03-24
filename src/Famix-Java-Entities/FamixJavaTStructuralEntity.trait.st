@@ -1,6 +1,7 @@
 Trait {
 	#name : #FamixJavaTStructuralEntity,
 	#traits : 'FamixTStructuralEntity + FamixTWithDereferencedInvocations',
+	#classTraits : 'FamixTStructuralEntity classTrait + FamixTWithDereferencedInvocations classTrait',
 	#category : #'Famix-Java-Entities-Traits'
 }
 

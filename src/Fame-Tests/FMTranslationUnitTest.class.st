@@ -1,5 +1,5 @@
 Class {
-	#name : #FMTranslationUnitTests,
+	#name : #FMTranslationUnitTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'unit'
@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #tests }
-FMTranslationUnitTests >> testCopyReplaceTranslationUnitAppliesAllTheRulesInOrder [
+FMTranslationUnitTest >> testCopyReplaceTranslationUnitAppliesAllTheRulesInOrder [
 	unit := FMCopyReplaceTranslationUnit new.
 	unit
 		replacing: 'mix' with: 'Famix';
@@ -20,7 +20,7 @@ FMTranslationUnitTests >> testCopyReplaceTranslationUnitAppliesAllTheRulesInOrde
 ]
 
 { #category : #tests }
-FMTranslationUnitTests >> testCopyReplaceTranslationUnitCopyReplacesParts [
+FMTranslationUnitTest >> testCopyReplaceTranslationUnitCopyReplacesParts [
 	unit := FMCopyReplaceTranslationUnit new.
 	unit
 		replacing: 'mix' with: 'Famix';
@@ -31,7 +31,7 @@ FMTranslationUnitTests >> testCopyReplaceTranslationUnitCopyReplacesParts [
 ]
 
 { #category : #tests }
-FMTranslationUnitTests >> testDictionaryTranslationUnitGivesTheSameString [
+FMTranslationUnitTest >> testDictionaryTranslationUnitGivesTheSameString [
 	unit := FMDictionaryTranslationUnit new.
 	unit dictionary: { 'hello' -> 'olleh' . 'famix' -> 'ximaf' } asDictionary .
 
@@ -41,7 +41,7 @@ FMTranslationUnitTests >> testDictionaryTranslationUnitGivesTheSameString [
 ]
 
 { #category : #tests }
-FMTranslationUnitTests >> testNullUnitTranslatorGivesTheSameString [
+FMTranslationUnitTest >> testNullUnitTranslatorGivesTheSameString [
 	unit := FMNullTranslationUnit new.
 	self assert: (unit translate: 'hi') equals: 'hi'
 ]

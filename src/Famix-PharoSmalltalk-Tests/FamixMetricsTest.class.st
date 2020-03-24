@@ -66,8 +66,8 @@ FamixMetricsTest >> importLCOMClasses [
 
 { #category : #running }
 FamixMetricsTest >> setUp [
-	self flag: #todo. "Ideally we should also have metrics tests with a test model in Moose-Tests-Core."
 	super setUp.
+	self flag: #todo.	"Ideally we should also have metrics tests with a test model in Moose-Tests-Core."
 	self
 		importKGBPackages;
 		importBlueprintPackages;

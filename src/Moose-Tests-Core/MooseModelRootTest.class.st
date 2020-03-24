@@ -1,5 +1,5 @@
 Class {
-	#name : #MooseModelRootTests,
+	#name : #MooseModelRootTest,
 	#superclass : #ParametrizedTestCase,
 	#instVars : [
 		'model',
@@ -10,37 +10,37 @@ Class {
 }
 
 { #category : #'building suites' }
-MooseModelRootTests class >> testParameters [
+MooseModelRootTest class >> testParameters [
 	^ ParametrizedTestMatrix new
 		forSelector: #modelClass
 		addOptions: MooseModel allSubclasses
 ]
 
 { #category : #tests }
-MooseModelRootTests >> modelClass [
+MooseModelRootTest >> modelClass [
 	^ modelClass
 ]
 
 { #category : #tests }
-MooseModelRootTests >> modelClass: aMooseModelClass [
+MooseModelRootTest >> modelClass: aMooseModelClass [
 	modelClass := aMooseModelClass
 ]
 
 { #category : #running }
-MooseModelRootTests >> setUp [
+MooseModelRootTest >> setUp [
 	super setUp.
 	savedRoot := MooseModelRoot installedRoot.
 	MooseModelRoot resetRoot
 ]
 
 { #category : #running }
-MooseModelRootTests >> tearDown [
-	super tearDown.
-	MooseModelRoot installRoot: savedRoot
+MooseModelRootTest >> tearDown [
+	MooseModelRoot installRoot: savedRoot.
+	super tearDown
 ]
 
 { #category : #tests }
-MooseModelRootTests >> testCreate [
+MooseModelRootTest >> testCreate [
 
 	model := self modelClass new.
 	self deny: (MooseModel root includes: model).
@@ -51,12 +51,12 @@ MooseModelRootTests >> testCreate [
 ]
 
 { #category : #tests }
-MooseModelRootTests >> testModelRootPointsToMooseModelRootRoot [
+MooseModelRootTest >> testModelRootPointsToMooseModelRootRoot [
 	self assert: self modelClass root equals: MooseModelRoot root
 ]
 
 { #category : #tests }
-MooseModelRootTests >> testRemove [
+MooseModelRootTest >> testRemove [
 	model := self modelClass new.
 	self modelClass root add: model.
 	model remove.

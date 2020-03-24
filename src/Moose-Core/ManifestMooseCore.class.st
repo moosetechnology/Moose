@@ -7,7 +7,7 @@ Class {
 	#category : #'Moose-Core-Manifest'
 }
 
-{ #category : #'class initialization' }
+{ #category : #initialization }
 ManifestMooseCore class >> initialize [
 	ShouldTuneGCParameters := true.
 	SessionManager default registerUserClassNamed: self name.

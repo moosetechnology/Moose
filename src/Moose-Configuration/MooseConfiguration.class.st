@@ -4,7 +4,7 @@ Class {
 	#category : #'Moose-Configuration'
 }
 
-{ #category : #'class initialization' }
+{ #category : #initialization }
 MooseConfiguration class >> initialize [
 	self installLogo.
 ]
