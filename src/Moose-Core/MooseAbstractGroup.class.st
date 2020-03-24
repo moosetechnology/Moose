@@ -331,10 +331,8 @@ MooseAbstractGroup >> entityNamed: aMooseName ifAbsent: aBlock [
 { #category : #'public interface' }
 MooseAbstractGroup >> entityNamed: aMooseName ifAbsent: aBlock ifPresent: anotherBlock [
 	| entity |
-	entity := self entityStorage at: aMooseName ifAbsent: [nil].
-	^ entity isNil 
-		ifTrue: [aBlock value]
-		ifFalse: [anotherBlock value: entity]
+	entity := self entityStorage at: aMooseName ifAbsent: [ nil ].
+	^ entity ifNil: [ aBlock value ] ifNotNil: [ anotherBlock value: entity ]
 ]
 
 { #category : #'public interface' }

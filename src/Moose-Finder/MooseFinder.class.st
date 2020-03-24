@@ -29,9 +29,9 @@ MooseFinder >> compose [
 				title: each mooseInterestingEntity gtDisplayString , ' (' , each mooseInterestingEntity class name , ')';
 				dynamicActions: [ :list | list entity mooseInterestingEntity mooseFinderActions asOrderedCollection , each gtInspectorActions asOrderedCollection ].
 			each mooseInterestingEntity gtInspectorPresentationsIn: a inContext: self.
-			a updateOn: MooseEntityAdded from: [ each isNil ifFalse: [ each announcer ] ifTrue: [ nil ] ].
-			a updateOn: MooseEntityRemoved from: [ each isNil ifFalse: [ each announcer ] ifTrue: [ nil ] ].
-			a updateOn: MooseEntityRenamed from: [ each isNil ifFalse: [ each announcer ] ifTrue: [ nil ] ] ]
+			a updateOn: MooseEntityAdded from: [ each ifNil: [ nil ] ifNotNil: [ each announcer ] ].
+			a updateOn: MooseEntityRemoved from: [ each ifNil: [ nil ] ifNotNil: [ each announcer ] ].
+			a updateOn: MooseEntityRenamed from: [ each ifNil: [ nil ] ifNotNil: [ each announcer ] ] ]
 ]
 
 { #category : #accessing }
