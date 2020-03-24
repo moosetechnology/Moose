@@ -7,7 +7,7 @@ Class {
 	#category : #'Moose-Finder'
 }
 
-{ #category : #utils }
+{ #category : #utilities }
 MooseFinder class >> announcerFor: anObject [
 	^ (anObject respondsTo: #announcer) 
 		ifTrue: [anObject announcer] 

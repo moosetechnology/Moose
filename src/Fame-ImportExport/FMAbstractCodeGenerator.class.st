@@ -122,7 +122,7 @@ FMAbstractCodeGenerator >> compileInitialize: attributesString [
 
 ]
 
-{ #category : #utils }
+{ #category : #utilities }
 FMAbstractCodeGenerator >> createRBModel [
 	^RBNamespace new
 		name: 'Fame-Generated';

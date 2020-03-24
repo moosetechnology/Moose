@@ -143,7 +143,7 @@ MooseDevelopmentState >> includesKey: selector [
 	^propertyCache includesKey: selector
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseDevelopmentState >> initialize: aMooseEntity [ 
 	 
 	attributes := #(). 

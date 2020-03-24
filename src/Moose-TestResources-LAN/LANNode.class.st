@@ -43,7 +43,7 @@ LANNode >> canOutput [
 	^false
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 LANNode >> initialize [ 
 	"This is the default initialize method that is always called when new instances are created. My  
 	subclasses will likely override this method to be initialized." 

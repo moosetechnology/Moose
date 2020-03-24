@@ -70,7 +70,7 @@ MooseMetacelloWizard >> defaultVersionSelector: aVersionNumberString commitType:
 				nextPut: $: ]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseMetacelloWizard >> initializeContent: shouldUpdateProject [
 
 	| versions |
@@ -84,7 +84,7 @@ MooseMetacelloWizard >> initializeContent: shouldUpdateProject [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseMetacelloWizard >> initializeSourcePaneWith: versions [
 	
 	| sourcePane part1 part2 currentVersion |		
@@ -112,7 +112,7 @@ MooseMetacelloWizard >> initializeSourcePaneWith: versions [
 	^ sourcePane
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseMetacelloWizard >> initializeVersionPaneWith: versions [
 
 	| lastPane part3 part4 part5 part6 part7 |

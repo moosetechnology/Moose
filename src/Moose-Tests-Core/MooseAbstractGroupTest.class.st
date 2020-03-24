@@ -470,7 +470,7 @@ MooseAbstractGroupTest >> testWithIndexDo [
 	self assertCollection: t hasSameElements: {{el1 . 1} . {el2 . 2} . {el3 . 3}}
 ]
 
-{ #category : #utility }
+{ #category : #utilities }
 MooseAbstractGroupTest >> twoClasses [
 	| classA classB |
 	classA := FamixTest1Class new.

@@ -40,7 +40,7 @@ MooseCustomTask >> length [
 	^ length
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseCustomTask >> with: aBlock description: aDescription length: aNumber [
 	computation := aBlock.
 	description := aDescription.

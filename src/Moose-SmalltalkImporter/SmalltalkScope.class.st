@@ -32,7 +32,7 @@ SmalltalkScope >> do: aBlock [
 	dictionary do: aBlock
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 SmalltalkScope >> initialize [ 
 
 	super initialize. 

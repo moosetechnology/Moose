@@ -135,7 +135,7 @@ MooseContextFrame >> getSelectedContexts [
 	^ result
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseContextFrame >> initialize [
 
 	contextSelected := self allContexts.

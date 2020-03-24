@@ -15,7 +15,7 @@ FamixTest5Test >> setUp [
 
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTest5Test >> testApplyOnOppositeOn [
 	| ctype ttype cwith twith|
 	ctype := model metamodel elementNamed: 'Famix-Test5-Entities.AnnotationType2'.
@@ -27,7 +27,7 @@ FamixTest5Test >> testApplyOnOppositeOn [
 	self assert: (cwith traits includes: twith)
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FamixTest5Test >> testApplyOnOppositeTraitOn [
 	| ctype ttype cwith twith|
 	ctype := model metamodel elementNamed: 'Famix-Test5-Entities.AnnotationType1'.

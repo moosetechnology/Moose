@@ -109,14 +109,14 @@ MooseQueryResult >> do: aBlock [
 	^ storage do: aBlock 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseQueryResult >> initialize [
 
 	super initialize.
 	self initialize: OrderedCollection new
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseQueryResult >> initialize: aCollectionForStorage [
 
 	storage := aCollectionForStorage 
@@ -135,7 +135,7 @@ MooseQueryResult >> intersection: aCollection [
 	^ result
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseQueryResult >> newObjectResultWith: aCollection [
 
 	^ MooseObjectQueryResult on: self receiver withAll: aCollection

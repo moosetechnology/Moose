@@ -81,7 +81,7 @@ FMDebugImporter >> replayOn: aParseClient [
 			withArguments: each allButFirst ].
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 FMDebugImporter >> reset [
 	a := #()
 ]
