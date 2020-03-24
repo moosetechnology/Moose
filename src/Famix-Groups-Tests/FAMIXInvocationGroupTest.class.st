@@ -10,7 +10,7 @@ Class {
 	#category : #'Famix-Groups-Tests'
 }
 
-{ #category : #test }
+{ #category : #running }
 FAMIXInvocationGroupTest >> setUp [
 	| fromMethod fromClass fromNamespace fromNamespaceNamespace invocation toMethod toClass  toNamespace toNamespaceNamespace |
 	super setUp.

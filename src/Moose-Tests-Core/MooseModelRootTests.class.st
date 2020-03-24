@@ -26,14 +26,14 @@ MooseModelRootTests >> modelClass: aMooseModelClass [
 	modelClass := aMooseModelClass
 ]
 
-{ #category : #tests }
+{ #category : #running }
 MooseModelRootTests >> setUp [
 	super setUp.
 	savedRoot := MooseModelRoot installedRoot.
 	MooseModelRoot resetRoot
 ]
 
-{ #category : #tests }
+{ #category : #running }
 MooseModelRootTests >> tearDown [
 	super tearDown.
 	MooseModelRoot installRoot: savedRoot

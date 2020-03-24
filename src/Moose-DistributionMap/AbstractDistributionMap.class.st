@@ -53,7 +53,7 @@ AbstractDistributionMap >> elementsFor: aPart [
 	^ partsAndElements at: aPart
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 AbstractDistributionMap >> initialize [
 
 	super initialize.
@@ -62,7 +62,7 @@ AbstractDistributionMap >> initialize [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 AbstractDistributionMap >> onContainers: aGroup elements: elementsBlockOrSelector properties: propertyBlockOrSelector [
 
 	aGroup do: [:part | |elementsCollection|
@@ -77,7 +77,7 @@ AbstractDistributionMap >> onContainers: aGroup elements: elementsBlockOrSelecto
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 AbstractDistributionMap >> onElements: aGroup containers: containersBlockOrSelector properties: propertyBlockOrSelector [
 
 	aGroup do: [ :element | 

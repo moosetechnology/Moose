@@ -15,7 +15,7 @@ Class {
 	#category : #'Moose-RoassalPaintings'
 }
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 FAMIXSystemAttraction >> initialize [ 
 	classStrongColor := Color black.
 	classPaleColor := Color r: 0.7 g: 0.7 b: 0.7.	

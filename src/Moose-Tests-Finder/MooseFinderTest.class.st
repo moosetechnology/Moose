@@ -8,7 +8,7 @@ Class {
 	#category : #'Moose-Tests-Finder'
 }
 
-{ #category : #utils }
+{ #category : #utilities }
 MooseFinderTest >> allActionMorphsIn: aMorph [
 	| answer |
 	answer := OrderedCollection new.
@@ -20,7 +20,7 @@ MooseFinderTest >> allActionMorphsIn: aMorph [
 	^ answer
 ]
 
-{ #category : #utils }
+{ #category : #utilities }
 MooseFinderTest >> assertAction: action [
 	| tsystemWindows |
 	(self itemsToExclude includes: action contents)
@@ -53,7 +53,7 @@ MooseFinderTest >> buildModel [
 	^ model
 ]
 
-{ #category : #utils }
+{ #category : #utilities }
 MooseFinderTest >> getAllWindows [
 	^ World submorphs select: #isSystemWindow
 
@@ -61,7 +61,7 @@ MooseFinderTest >> getAllWindows [
 	"^ SystemWindow withAllSubclasses inject: #() into: [:sum :el | sum, el allInstances ]"
 ]
 
-{ #category : #utils }
+{ #category : #utilities }
 MooseFinderTest >> itemsToExclude [ 
 	^ #('Distribution Map for these parts' 'Distribution Map for these elements')
 ]

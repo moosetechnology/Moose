@@ -449,7 +449,7 @@ MooseAbstractGroup >> includesID: elementID [
 	^self entityStorage includesID: elementID
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseAbstractGroup >> initialize [ 
 	 
 	super initialize.

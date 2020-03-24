@@ -64,7 +64,7 @@ MooseEntityState >> cacheAt: name put: value [
 	self subclassResponsibility 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseEntityState >> clone: newOwner [
 	| newState |
 	newState := self copy.
@@ -86,7 +86,7 @@ MooseEntityState >> description: text [
 	^ self attributeAt: #privateDescription put: text
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseEntityState >> entity [
 	
 	^ self subclassResponsibility
@@ -123,7 +123,7 @@ MooseEntityState >> includesKey: selector [
 	self subclassResponsibility
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseEntityState >> initialize: aMooseEntity [ 
 	 
 	self subclassResponsibility

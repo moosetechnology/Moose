@@ -83,7 +83,7 @@ OpenDistributionMapBasedOnPartsWizard >> elementsTextFieldPart [
 		yourself
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 OpenDistributionMapBasedOnPartsWizard >> initializeFirstPane: aWizardPane [
 	aWizardPane addPart: self containersPart associatedTo: #groupClass.
 	aWizardPane addPart: self elementsCompositePart associatedTo: #entitiesToComputeSelector.
@@ -91,7 +91,7 @@ OpenDistributionMapBasedOnPartsWizard >> initializeFirstPane: aWizardPane [
 	self setConditionsTo: aWizardPane
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 OpenDistributionMapBasedOnPartsWizard >> initializeWithPartGroup: aMooseGroup [
 	"DistributionMapWizard new open"
 
@@ -226,7 +226,7 @@ OpenDistributionMapBasedOnPartsWizard >> removeAllNonComputableAttributesFrom: a
 	
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 OpenDistributionMapBasedOnPartsWizard >> setConditionsTo: aWizardPane [
 	aWizardPane
 		condition: [ :wizardInfos | 

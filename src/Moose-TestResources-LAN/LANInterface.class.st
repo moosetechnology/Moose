@@ -158,7 +158,7 @@ LANInterface >> contents [
 		ifFalse: [contents]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 LANInterface >> initialize [ 
 	 
 	super initialize. 

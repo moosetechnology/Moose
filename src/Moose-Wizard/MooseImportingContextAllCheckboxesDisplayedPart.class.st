@@ -4,7 +4,7 @@ Class {
 	#category : #'Moose-Wizard'
 }
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseImportingContextAllCheckboxesDisplayedPart >> initialize [
 
 	super initialize.

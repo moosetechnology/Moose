@@ -69,7 +69,7 @@ MooseGroupRuntimeStorage >> elements [
 	^ elements
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseGroupRuntimeStorage >> initialize: capacity [
 	byType := IdentityDictionary new: 24.
 	byName := IdentityDictionary new: capacity.

@@ -7,12 +7,12 @@ Class {
 	#category : #'Moose-Core'
 }
 
-{ #category : #utils }
+{ #category : #utilities }
 MooseIcons class >> icons [
 	^ icons ifNil: [icons := Dictionary new]
 ]
 
-{ #category : #utils }
+{ #category : #utilities }
 MooseIcons class >> mooseIcon [
 ^ self icons
 		at: #mooseIcon ifAbsentPut: [(Form
@@ -22,7 +22,7 @@ MooseIcons class >> mooseIcon [
 	offset: (0@0))]
 ]
 
-{ #category : #utils }
+{ #category : #utilities }
 MooseIcons class >> resetIcons [
 	icons := nil
 ]

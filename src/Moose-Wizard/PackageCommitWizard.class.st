@@ -42,7 +42,7 @@ PackageCommitWizard >> goferCommitPackage: wCopy with: commitMessage [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PackageCommitWizard >> initializeContent: workingCopies [
 
 	| lastPane messagePart packagesPart |

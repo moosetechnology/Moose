@@ -99,7 +99,7 @@ MooseMemoryEfficientState >> includesKey: selector [
 	^ propertyCache includesKey: selector
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseMemoryEfficientState >> initialize: aMooseEntity [
 	attributes := #().
 	propertyCache := SmallDictionary new.
