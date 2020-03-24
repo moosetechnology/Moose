@@ -221,7 +221,7 @@ FAMIXStepwiseImporterTest >> testImportMethodBody [
 	self assert: importedClasses isDictionary.	"Make sure that the node is present, this assertion is probably redundant with other tests"
 	self assert: (importedClasses contains: [ :famixClass | famixClass name == #LANNode ]).	"The class node is present, we can now get a reference on it"
 	famixClassNode := importedClasses detect: [ :famixClass | famixClass name == #LANNode ].	"The number of methods of the imported class should be the same than the real class _and_ its metaclass (because of the mergeClassAndMetaclass)"
-	self deny: famixClassNode methods size = LANNode methodDict size.
+	self deny: famixClassNode methods size equals: LANNode methodDict size.
 	self assert: famixClassNode methods size equals: LANNode methodDict size + LANNode class methodDict size.	"Browser Node>>nextNode to see the code that has been imported"
 	nextNodeMethod := famixClassNode methods detect: [ :fm | fm name == #nextNode ].
 	self assert: nextNodeMethod parameters isEmpty.
