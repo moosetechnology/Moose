@@ -12,7 +12,6 @@ Trait {
 		'#parentType => FMOne type: #FamixTWithMethods opposite: #methods'
 	],
 	#traits : 'FamixTHasSignature + FamixTInvocable + FamixTSourceEntity + FamixTTypedEntity + FamixTWithAccesses + FamixTWithClassScope + FamixTWithImplicitVariables + FamixTWithInvocations + FamixTWithLocalVariables + FamixTWithParameters + FamixTWithReferences',
-	#classTraits : 'FamixTHasSignature classTrait + FamixTInvocable classTrait + FamixTSourceEntity classTrait + FamixTTypedEntity classTrait + FamixTWithAccesses classTrait + FamixTWithClassScope classTrait + FamixTWithImplicitVariables classTrait + FamixTWithInvocations classTrait + FamixTWithLocalVariables classTrait + FamixTWithParameters classTrait + FamixTWithReferences classTrait',
 	#category : #'Famix-Traits-Behavioral'
 }
 

@@ -230,9 +230,7 @@ FAMIXPackage >> extensionMethods [
 
 { #category : #'Moose-Hismo' }
 FAMIXPackage >> historicalUniqueName [
-	^ (self parentPackage isNil 
-		ifTrue: [ self name ]
-		ifFalse: [ self parentPackage historicalUniqueName , '.' , self name ]) asSymbol
+	^ (self parentPackage ifNil: [ self name ] ifNotNil: [ self parentPackage historicalUniqueName , '.' , self name ]) asSymbol
 ]
 
 { #category : #'Famix-Smalltalk' }

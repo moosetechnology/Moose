@@ -49,8 +49,8 @@ MooseCompositeImporterTask >> basicRun [
 
 { #category : #'protected hooks' }
 MooseCompositeImporterTask >> candidateClass [
-	candidateClass isNil ifTrue: [ candidateClass := CandidateListOperator].
-	^ candidateClass 
+	candidateClass ifNil: [ candidateClass := CandidateListOperator ].
+	^ candidateClass
 ]
 
 { #category : #'protected hooks' }

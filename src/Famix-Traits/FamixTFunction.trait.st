@@ -7,7 +7,6 @@ Trait {
 		'#functionOwner => FMOne type: #FamixTWithFunctions opposite: #functions'
 	],
 	#traits : 'FamixTHasSignature + FamixTNamedEntity + FamixTTypedEntity',
-	#classTraits : 'FamixTHasSignature classTrait + FamixTNamedEntity classTrait + FamixTTypedEntity classTrait',
 	#category : #'Famix-Traits-Behavioral'
 }
 
