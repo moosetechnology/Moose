@@ -35,9 +35,8 @@ AbstractDistributionMap >> defaultTitle [
 { #category : #'element-titles' }
 AbstractDistributionMap >> elementTitleBlock [
 	"by default the title is just the title"
-	^ elementTitleBlock isNil 
-		ifTrue:  [self defaultElementTitleFormattingBlock]
-		ifFalse: [elementTitleBlock]
+
+	^ elementTitleBlock ifNil: [ self defaultElementTitleFormattingBlock ] ifNotNil: [ elementTitleBlock ]
 ]
 
 { #category : #'element-titles' }

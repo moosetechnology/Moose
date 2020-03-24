@@ -63,10 +63,8 @@ FMAbstractCodeGenerator >> annotationStringForProperty: property [
 ]
 
 { #category : #'compiling-names' }
-FMAbstractCodeGenerator >> categoryNameFor: fameClass [ 
-	^self defaultCategory isNil
-			ifTrue: [ fameClass package name asString ]
-			ifFalse: [ self defaultCategory ]
+FMAbstractCodeGenerator >> categoryNameFor: fameClass [
+	^ self defaultCategory ifNil: [ fameClass package name asString ] ifNotNil: [ self defaultCategory ]
 ]
 
 { #category : #'compiling-names' }
@@ -259,10 +257,8 @@ FMAbstractCodeGenerator >> visitClass: fameClass [
 ]
 
 { #category : #visiting }
-FMAbstractCodeGenerator >> visitClassDone: fameClass [ 
-	instVarNames do: [ :symbol | 
-		(rbClass whoDefinesInstanceVariable: symbol) isNil 
-			ifTrue: [ rbClass addInstanceVariable: symbol ]].
+FMAbstractCodeGenerator >> visitClassDone: fameClass [
+	instVarNames do: [ :symbol | (rbClass whoDefinesInstanceVariable: symbol) ifNil: [ rbClass addInstanceVariable: symbol ] ].
 	self compileInitialize: initializeSource contents
 ]
 
