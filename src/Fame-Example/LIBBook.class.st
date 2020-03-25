@@ -37,8 +37,7 @@ LIBBook >> authors: aPerson [
 { #category : #initialization }
 LIBBook >> initialize [
 	super initialize.
-	title := nil.
-	authors := FMMultiMultivalueLink on: self opposite: #books.
+	authors := FMMultiMultivalueLink on: self opposite: #books
 ]
 
 { #category : #printing }

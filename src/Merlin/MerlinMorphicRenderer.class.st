@@ -32,7 +32,7 @@ MerlinMorphicRenderer >> doOpen: aDialogWindow [
 	self builder openModal: aDialogWindow.
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MerlinMorphicRenderer >> initialize [
 
 	super initialize.

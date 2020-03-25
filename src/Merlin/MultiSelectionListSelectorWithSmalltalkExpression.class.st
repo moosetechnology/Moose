@@ -8,7 +8,7 @@ Class {
 	#category : #'Merlin-ToBeRemoved'
 }
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MultiSelectionListSelectorWithSmalltalkExpression >> addSmalltalkExpressionRowToPackageSelector [
 	self 
 		addRowWithAll: { 
@@ -44,7 +44,7 @@ MultiSelectionListSelectorWithSmalltalkExpression >> evaluateTextEntryContents [
 			]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MultiSelectionListSelectorWithSmalltalkExpression >> initialize: aCollectionOfItems [
 
 	super initialize: aCollectionOfItems.

@@ -72,13 +72,6 @@ MooseFinderTest >> setUp [
 	self buildModel
 ]
 
-{ #category : #running }
-MooseFinderTest >> tearDown [
-	super tearDown.
-"	World doOneCycle."
-"	(self getAllWindows copyWithoutAll: systemWindows) do: #delete."
-]
-
 { #category : #tests }
 MooseFinderTest >> testDelete [
 

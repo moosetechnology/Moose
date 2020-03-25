@@ -59,7 +59,7 @@ MerlinMorphicPaneRenderer >> forwardSign [
 	^ 'Next >>'
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MerlinMorphicPaneRenderer >> initialize [
 
 	super initialize.

@@ -23,7 +23,7 @@ ChooseFilePart >> dialogLabel: aString [
 	dialogLabel := aString 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 ChooseFilePart >> initialize [
 
 	super initialize.
