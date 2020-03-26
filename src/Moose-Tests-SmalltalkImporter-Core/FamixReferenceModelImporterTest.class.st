@@ -95,15 +95,11 @@ FamixReferenceModelImporterTest >> testAccessSharedVariableFromTheInstanceSide [
 FamixReferenceModelImporterTest >> testAccessSharedVariableOfSuperclassClassSide [
 	"self debug: #testaccessSharedVariableOfSuperclassClassSide"
 
-	| attributeName definingClassName classNameWhereAccess instVarUniqueName accessDefinition methodUniqueName methodName |
-	attributeName := #TheRootSharedVariable.
-	definingClassName := TheRoot mooseName.
-	classNameWhereAccess := SubRootLevelOne class mooseName.
+	| instVarUniqueName accessDefinition methodUniqueName methodName |
 	methodName := #accessSharedVariableOfSuperClassClassSide.
 	methodUniqueName := (SubRootLevelOne class >> methodName) mooseName.
 	instVarUniqueName := TheRoot @ #TheRootSharedVariable.
-	accessDefinition := self model allAccesses
-		select: [ :acc | acc variable mooseName = instVarUniqueName and: [ acc accessor mooseName = methodUniqueName ] ].
+	accessDefinition := self model allAccesses select: [ :acc | acc variable mooseName = instVarUniqueName and: [ acc accessor mooseName = methodUniqueName ] ].
 	self assert: accessDefinition size equals: 1.
 	self assert: (accessDefinition at: 1) isWrite
 ]
@@ -112,19 +108,15 @@ FamixReferenceModelImporterTest >> testAccessSharedVariableOfSuperclassClassSide
 FamixReferenceModelImporterTest >> testAccessSharedVariableOfSuperclassClassSide2 [
 	"self debug: #testaccessSharedVariableOfSuperclassClassSide"
 
-	| attributeName definingClassName classNameWhereAccess instVarUniqueName accessDefinition methodUniqueName methodName |
+	| instVarUniqueName accessDefinition methodUniqueName methodName |
 	"we test
 		SubRootLevelOne class>>accessSharedVariableOfSuperSuperClassClassSide
 
 			DependentsFields := 6"
-	attributeName := #DependentsFields.
-	definingClassName := TheRoot mooseName.
-	classNameWhereAccess := SubRootLevelOne class mooseName.
 	methodName := #accessSharedVariableOfSuperSuperClassClassSide.
 	methodUniqueName := (SubRootLevelOne class >> methodName) mooseName.
 	instVarUniqueName := Object @ #DependentsFields.
-	accessDefinition := self model allAccesses
-		select: [ :acc | acc variable mooseName = instVarUniqueName and: [ acc accessor mooseName = methodUniqueName ] ].
+	accessDefinition := self model allAccesses select: [ :acc | acc variable mooseName = instVarUniqueName and: [ acc accessor mooseName = methodUniqueName ] ].
 	self assert: accessDefinition size equals: 1.
 	self assert: (accessDefinition at: 1) isWrite
 ]
@@ -177,12 +169,10 @@ FamixReferenceModelImporterTest >> testAccessingGlobalVariableFromInstanceSide [
 FamixReferenceModelImporterTest >> testAccessingGlobalVariableHavingNamespaceNameFromInstanceSide [
 	"self debug: #testAccessingGlobalVariableFromInstanceSide"
 
-	| definingClassName accessDefinition methodUniqueName methodName |
-	definingClassName := TheRoot mooseName.
+	| accessDefinition methodUniqueName methodName |
 	methodName := #accessingGlobalVariableHavingNamespaceName.
 	methodUniqueName := (TheRoot >> methodName) mooseName.
-	accessDefinition := (self model entityNamed: methodUniqueName) accesses
-		select: [ :acc | acc to mooseName = #SmalltalkGlobalVariable ].
+	accessDefinition := (self model entityNamed: methodUniqueName) accesses select: [ :acc | acc to mooseName = #SmalltalkGlobalVariable ].
 	self assert: accessDefinition size equals: 1
 ]
 
@@ -237,13 +227,11 @@ FamixReferenceModelImporterTest >> testAccessingNamespaceAsGlobalVariable [
 FamixReferenceModelImporterTest >> testAccessingStubClassWithinReturnVariable [
 	"self debug: #testAccessingStubClassWithinReturnVariable"
 
-	| classNameWhereAccess accessDefinition methodUniqueName methodName classUniqueName |
+	| accessDefinition methodUniqueName methodName classUniqueName |
 	classUniqueName := String mooseName.
-	classNameWhereAccess := TheRoot mooseName.
 	methodName := #returningStubClass.
 	methodUniqueName := (TheRoot >> methodName) mooseName.
-	accessDefinition := self model allReferences
-		select: [ :acc | acc to mooseName = classUniqueName and: [ acc from mooseName = methodUniqueName ] ].
+	accessDefinition := self model allReferences select: [ :acc | acc to mooseName = classUniqueName and: [ acc from mooseName = methodUniqueName ] ].
 	self assert: accessDefinition size equals: 1
 ]
 
@@ -373,12 +361,10 @@ FamixReferenceModelImporterTest >> testClassReferenceFromTheInstanceSide [
 
 		Object new"
 
-	| definingClassName methodName className refs |
+	| methodName className refs |
 	className := Object mooseName.
-	definingClassName := TheRoot mooseName.
 	methodName := (TheRoot >> #accessingClass) mooseName.
-	refs := self model allReferences
-		select: [ :acc | acc from mooseName = methodName and: [ acc to mooseName = className ] ].
+	refs := self model allReferences select: [ :acc | acc from mooseName = methodName and: [ acc to mooseName = className ] ].
 	self assert: refs size equals: 1
 ]
 
@@ -393,21 +379,20 @@ FamixReferenceModelImporterTest >> testClassReferencesByFullNameReified [
 FamixReferenceModelImporterTest >> testClassSelfSend [
 	"self debug: #testClassSelfSend"
 
-	| invocations calleeMethodName callingMethodUniqueName referenceModelTheRootMetaclassName |
+	| invocations calleeMethodName callingMethodUniqueName |
 	"We want to represent
 	TheRoot class>>classSend
 
 			Object new
 	"
 	calleeMethodName := #new mooseName.
-	referenceModelTheRootMetaclassName := TheRoot class mooseName.
 	callingMethodUniqueName := (TheRoot class >> #classSend) mooseName.
 	invocations := self model allInvocations
 		select: [ :invocation | 
 			invocation signature = (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: calleeMethodName)
 				and: [ invocation sender mooseName = callingMethodUniqueName ] ].
 	self assert: invocations size equals: 1.
-	self assert: invocations first receiver mooseName equals: #Smalltalk::Object_class
+	self assert: invocations first receiver mooseName equals: #'Smalltalk::Object_class'
 ]
 
 { #category : #tests }
@@ -793,12 +778,11 @@ FamixReferenceModelImporterTest >> testSingleSelfSend [
 FamixReferenceModelImporterTest >> testSingleSelfSendOnClassSide [
 	"self debug: #testSingleSelfSendOnClassSide"
 
-	| definingClassName invocations calleeMethodName callingMethodUniqueName |
+	| invocations calleeMethodName callingMethodUniqueName |
 	"Want to represent
 	TheRoot class>>accessSharedVariableFromTheClassSide
 			TheRootSharedVariable := 4"
 	calleeMethodName := #accessSharedVariableFromTheClassSide.
-	definingClassName := TheRoot class mooseName.
 	callingMethodUniqueName := (TheRoot class >> #singleSelfSendOnClassSide) mooseName.
 	invocations := self model allInvocations
 		select: [ :invocation | 
@@ -812,13 +796,12 @@ FamixReferenceModelImporterTest >> testSingleSelfSendOnClassSide [
 FamixReferenceModelImporterTest >> testSingleSelfSendWithReturn [
 	"self debug: #testSingleSelfSendWithReturn"
 
-	| definingClassName invocations calleeMethodName callingMethodUniqueName |
+	| invocations calleeMethodName callingMethodUniqueName |
 	"We want to make sure that we represent well
 	TheRoot>>returningSingleSelfSend
 
 		^self accessSharedVariableFromTheInstanceSide"
 	calleeMethodName := #accessSharedVariableFromTheInstanceSide.
-	definingClassName := TheRoot mooseName.
 	callingMethodUniqueName := (TheRoot >> #returningSingleSelfSend) mooseName.
 	invocations := self model allInvocations
 		select: [ :invocation | 
