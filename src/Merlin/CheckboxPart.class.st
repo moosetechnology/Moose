@@ -78,7 +78,7 @@ CheckboxPart >> contents: newContents [
 		]  
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 CheckboxPart >> initialize [ 
 
 	super initialize.

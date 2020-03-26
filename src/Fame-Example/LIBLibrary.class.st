@@ -37,8 +37,7 @@ LIBLibrary >> books: aBook [
 { #category : #initialization }
 LIBLibrary >> initialize [
 	super initialize.
-	librarian := nil.
-	books := OrderedCollection new.
+	books := OrderedCollection new
 ]
 
 { #category : #accessing }

@@ -113,13 +113,13 @@ ListSelector >> deleteStringMessageFromRowIndexedBy: anIndex [
 	
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 ListSelector >> initialList: aCollectionOfString [
 	"	enable this PackageSelector to use aCollectionOfString as initial packages list"
 	initialList := aCollectionOfString asSortedCollection: [ :a :b | a < b ]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 ListSelector >> initialize [
 
 	super initialize.

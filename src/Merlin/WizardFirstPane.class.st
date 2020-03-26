@@ -7,14 +7,6 @@ Class {
 	#category : #'Merlin-Panes'
 }
 
-{ #category : #'initialize-release' }
-WizardFirstPane >> initialize [
-
-	super initialize.
-	
-	
-]
-
 { #category : #rendering }
 WizardFirstPane >> merlinSpecificRenderer [ 
 

@@ -26,7 +26,7 @@ ButtonPart >> enable [
 	buttonEnabled := true.
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 ButtonPart >> initialize [
 
 	super initialize.

@@ -14,7 +14,7 @@ ListSelectorWithSelectionBySmalltalkExpression class >> on: collectionOfItems [
 	^ (super on: collectionOfItems ) addSmalltalkExpressionRowToPackageSelector ; yourself
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 ListSelectorWithSelectionBySmalltalkExpression >> addSmalltalkExpressionRowToPackageSelector [
 	self 
 		addRowWithAll: { 

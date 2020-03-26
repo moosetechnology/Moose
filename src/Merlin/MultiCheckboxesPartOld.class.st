@@ -102,7 +102,7 @@ MultiCheckboxesPartOld >> allCheckboxLabels: aCollectionOfString [
 	^ allCheckboxLabels 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MultiCheckboxesPartOld >> initialize: aCollectionOfLabels [
 
 	| elements |
@@ -126,7 +126,7 @@ MultiCheckboxesPartOld >> initialize: aCollectionOfLabels [
 	
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MultiCheckboxesPartOld >> initialize: aCollectionOfLabels inGroupBoxNamed: aName [
 
 	| elements |
