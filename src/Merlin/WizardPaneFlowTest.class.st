@@ -9,7 +9,7 @@ Class {
 
 { #category : #tests }
 WizardPaneFlowTest >> testWizardMiddlePaneFlow [
-	| wizardControl wizardPane1 wizardPane2 wizardPane3 firstDropListPart firstListPart listPartSelectedValue |
+	| wizardControl wizardPane1 wizardPane2 wizardPane3 firstDropListPart firstListPart |
 	wizardControl := MockWizardControl new.
 	wizardPane1 := WizardFirstPane new.
 	wizardPane2 := WizardMiddlePane new.
@@ -26,7 +26,7 @@ WizardPaneFlowTest >> testWizardMiddlePaneFlow [
 		inGroupboxNamed: 'Same selection than previous dropList';
 		defaultValue: 2;
 		list: #('un' 'deux' 'trois' 'quatre');
-		callback: [ :outputValue | listPartSelectedValue := outputValue ];
+		callback: [ :outputValue | outputValue ];
 		yourself.
 
 	wizardPane1 row: firstDropListPart associatedTo: #firstDropListValue.

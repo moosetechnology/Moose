@@ -317,40 +317,36 @@ FmxMBClassTest >> testTagForClass [
 
 { #category : #'tests - tags' }
 FmxMBClassTest >> testTagForClassFromBuilder [
-
-	| access generatedAccess comment generatedComment |
-
-	access := builder newClassNamed: #Access.	
-	comment := builder newClassNamed: #Comment.	
+	| generatedAccess comment generatedComment |
+	builder newClassNamed: #Access.
+	comment := builder newClassNamed: #Comment.
 
 	builder configuration classTag: #classes.
 	comment tag: #support.
 
 	builder generate.
-		
+
 	generatedAccess := builder testingEnvironment ask classNamed: #TstAccess.
 	generatedComment := builder testingEnvironment ask classNamed: #TstComment.
-	self assertCollection: generatedAccess tags hasSameElements: { #classes }.
-	self assertCollection: generatedComment tags hasSameElements: { #support }.
+	self assertCollection: generatedAccess tags hasSameElements: {#classes}.
+	self assertCollection: generatedComment tags hasSameElements: {#support}
 ]
 
 { #category : #'tests - tags' }
 FmxMBClassTest >> testTagForTraitFromBuilder [
-
-	| tAccess generatedTAccess tComment generatedTComment |
-
-	tAccess := builder newTraitNamed: #TAccess.	
-	tComment := builder newTraitNamed: #TComment.	
+	| generatedTAccess tComment generatedTComment |
+	builder newTraitNamed: #TAccess.
+	tComment := builder newTraitNamed: #TComment.
 
 	builder configuration traitTag: #classes.
 	tComment tag: #support.
 
 	builder generate.
-		
+
 	generatedTAccess := builder testingEnvironment ask classNamed: #TstTAccess.
 	generatedTComment := builder testingEnvironment ask classNamed: #TstTComment.
-	self assertCollection: generatedTAccess tags hasSameElements: { #classes }.
-	self assertCollection: generatedTComment tags hasSameElements: { #support }.
+	self assertCollection: generatedTAccess tags hasSameElements: {#classes}.
+	self assertCollection: generatedTComment tags hasSameElements: {#support}
 ]
 
 { #category : #'tests - tags' }
