@@ -68,8 +68,8 @@ FamixModelExtractionTest >> setUp [
 FamixModelExtractionTest >> testAccessesFromAndToShouldNotBeNil [
 	| accesses |
 	accesses := self model allAccesses.
-	self assertEmpty: (accesses select: [ :a | a from isNil ]).
-	self assertEmpty: (accesses select: [ :a | a to isNil ])
+	self assertEmpty: (accesses select: [ :a | a source isNil ]).
+	self assertEmpty: (accesses select: [ :a | a target isNil ])
 ]
 
 { #category : #tests }

@@ -172,7 +172,7 @@ FamixReferenceModelImporterTest >> testAccessingGlobalVariableHavingNamespaceNam
 	| accessDefinition methodUniqueName methodName |
 	methodName := #accessingGlobalVariableHavingNamespaceName.
 	methodUniqueName := (TheRoot >> methodName) mooseName.
-	accessDefinition := (self model entityNamed: methodUniqueName) accesses select: [ :acc | acc to mooseName = #SmalltalkGlobalVariable ].
+	accessDefinition := (self model entityNamed: methodUniqueName) accesses select: [ :acc | acc target mooseName = #SmalltalkGlobalVariable ].
 	self assert: accessDefinition size equals: 1
 ]
 
@@ -182,8 +182,8 @@ FamixReferenceModelImporterTest >> testAccessingImportedClassWithinReturnVariabl
 
 	| methodName var accesses |
 	methodName := self model entityNamed: #'Smalltalk::TheRoot.returningImportedClass()'.
-	var := self model entityNamed: #Smalltalk::TheRoot.
-	accesses := self model allReferences select: [ :each | each from = methodName and: [ each to = var ] ].
+	var := self model entityNamed: #'Smalltalk::TheRoot'.
+	accesses := self model allReferences select: [ :each | each source = methodName and: [ each target = var ] ].
 	self assert: accesses size equals: 1
 ]
 
@@ -203,7 +203,7 @@ FamixReferenceModelImporterTest >> testAccessingNamespace2 [
 
 	| accessDefinition |
 	accessDefinition := (self model entityNamed: 'Smalltalk::TheRoot.accessingGlobalVariableHavingNamespaceName()') accesses
-		select: [ :acc | acc to mooseName = #SmalltalkGlobalVariable ].
+		select: [ :acc | acc target mooseName = #SmalltalkGlobalVariable ].
 	self assert: accessDefinition size equals: 1
 ]
 
@@ -217,9 +217,9 @@ FamixReferenceModelImporterTest >> testAccessingNamespaceAsGlobalVariable [
 	globalVariable := self model entityNamed: #SmalltalkGlobalVariable.
 	method := self model entityNamed: (TheRoot >> #accessingNamespace) mooseName.	"since we have two methods accessing to Smalltalk 
 	we have two accesses"
-	self assert: (self model allAccesses select: [ :acc | acc to name = #SmalltalkGlobalVariable ]) size equals: 2.
-	self assert: (self model allAccesses select: [ :ref | ref to = globalVariable ]) size equals: 2.
-	accessDefinition := self model allAccesses select: [ :ref | ref to = globalVariable and: [ ref from == method ] ].
+	self assert: (self model allAccesses select: [ :acc | acc target name = #SmalltalkGlobalVariable ]) size equals: 2.
+	self assert: (self model allAccesses select: [ :ref | ref target = globalVariable ]) size equals: 2.
+	accessDefinition := self model allAccesses select: [ :ref | ref target = globalVariable and: [ ref source == method ] ].
 	self assert: accessDefinition size equals: 1
 ]
 
@@ -231,7 +231,7 @@ FamixReferenceModelImporterTest >> testAccessingStubClassWithinReturnVariable [
 	classUniqueName := String mooseName.
 	methodName := #returningStubClass.
 	methodUniqueName := (TheRoot >> methodName) mooseName.
-	accessDefinition := self model allReferences select: [ :acc | acc to mooseName = classUniqueName and: [ acc from mooseName = methodUniqueName ] ].
+	accessDefinition := self model allReferences select: [ :acc | acc target mooseName = classUniqueName and: [ acc source mooseName = methodUniqueName ] ].
 	self assert: accessDefinition size equals: 1
 ]
 
@@ -364,7 +364,7 @@ FamixReferenceModelImporterTest >> testClassReferenceFromTheInstanceSide [
 	| methodName className refs |
 	className := Object mooseName.
 	methodName := (TheRoot >> #accessingClass) mooseName.
-	refs := self model allReferences select: [ :acc | acc from mooseName = methodName and: [ acc to mooseName = className ] ].
+	refs := self model allReferences select: [ :acc | acc source mooseName = methodName and: [ acc target mooseName = className ] ].
 	self assert: refs size equals: 1
 ]
 

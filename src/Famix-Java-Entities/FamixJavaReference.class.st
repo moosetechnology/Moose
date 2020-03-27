@@ -117,9 +117,9 @@ FamixJavaReference >> isType [
 FamixJavaReference >> mooseNameOn: aStream [
 	"aStream nextPutAll: 'Reference'."
 
-	self from ifNotNil: [ aStream nextPutAll: self from name ].
+	self source ifNotNil: [ aStream nextPutAll: self source name ].
 	aStream nextPutAll: ' refers to '.
-	self to ifNotNil: [ aStream nextPutAll: self to name ]
+	self target ifNotNil: [ aStream nextPutAll: self target name ]
 ]
 
 { #category : #'as yet unclassified' }
