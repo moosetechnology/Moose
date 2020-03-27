@@ -282,7 +282,7 @@ FmxMBBehavior >> packageName: anObject [
 	packageName := anObject
 ]
 
-{ #category : #utility }
+{ #category : #utilities }
 FmxMBBehavior >> pluralOf: aString [
 
 	| stringParts pluralized |

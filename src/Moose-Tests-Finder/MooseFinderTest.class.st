@@ -8,7 +8,7 @@ Class {
 	#category : #'Moose-Tests-Finder'
 }
 
-{ #category : #utils }
+{ #category : #utilities }
 MooseFinderTest >> allActionMorphsIn: aMorph [
 	| answer |
 	answer := OrderedCollection new.
@@ -20,7 +20,7 @@ MooseFinderTest >> allActionMorphsIn: aMorph [
 	^ answer
 ]
 
-{ #category : #utils }
+{ #category : #utilities }
 MooseFinderTest >> assertAction: action [
 	| tsystemWindows |
 	(self itemsToExclude includes: action contents)
@@ -53,7 +53,7 @@ MooseFinderTest >> buildModel [
 	^ model
 ]
 
-{ #category : #utils }
+{ #category : #utilities }
 MooseFinderTest >> getAllWindows [
 	^ World submorphs select: #isSystemWindow
 
@@ -61,7 +61,7 @@ MooseFinderTest >> getAllWindows [
 	"^ SystemWindow withAllSubclasses inject: #() into: [:sum :el | sum, el allInstances ]"
 ]
 
-{ #category : #utils }
+{ #category : #utilities }
 MooseFinderTest >> itemsToExclude [ 
 	^ #('Distribution Map for these parts' 'Distribution Map for these elements')
 ]
@@ -70,29 +70,6 @@ MooseFinderTest >> itemsToExclude [
 MooseFinderTest >> setUp [
 	super setUp.
 	self buildModel
-]
-
-{ #category : #running }
-MooseFinderTest >> tearDown [
-	super tearDown.
-"	World doOneCycle."
-"	(self getAllWindows copyWithoutAll: systemWindows) do: #delete."
-]
-
-{ #category : #tests }
-MooseFinderTest >> testAsMooseFinderItemNamed [
-	| entity1 entity2 model2 |
-	entity1 := FAMIXType new.
-	entity1 name: 'hello'.
-	entity2 := FAMIXType new.
-	entity2 name: 'hello2'.
-	model := MooseModel new.
-	model addAll: {entity1 . entity2}.
-	self assert: (model asMooseFinderItemNamed: 'bouba' in: model) identicalTo: model.
-	model2 := entity1 asMooseFinderItemNamed: 'bouba' in: model.
-	self assert: model2 class identicalTo: FAMIXTypeGroup.
-	self assert: model2 name equals: 'Bouba: hello'.
-	self assert: model2 entities asArray equals: {entity1}
 ]
 
 { #category : #tests }

@@ -86,7 +86,7 @@ FamixStMethod >> hierarchyNestingLevel: aNumber [
 	self privateState propertyAt: #hierarchyNestingLevel put: aNumber
 ]
 
-{ #category : #'Famix-Extensions-metrics-support' }
+{ #category : #initialization }
 FamixStMethod >> initialize [
 	super initialize.
 	isClassSide := false

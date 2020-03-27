@@ -49,8 +49,8 @@ MooseCompositeImporterTask >> basicRun [
 
 { #category : #'protected hooks' }
 MooseCompositeImporterTask >> candidateClass [
-	candidateClass isNil ifTrue: [ candidateClass := CandidateListOperator].
-	^ candidateClass 
+	candidateClass ifNil: [ candidateClass := CandidateListOperator ].
+	^ candidateClass
 ]
 
 { #category : #'protected hooks' }
@@ -71,7 +71,7 @@ MooseCompositeImporterTask >> factory [
 	^ super factory ifNil: [ factory := self model factory ]
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 MooseCompositeImporterTask >> initialize [
 
 	super initialize.

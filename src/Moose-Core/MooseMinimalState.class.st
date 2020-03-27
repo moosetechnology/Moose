@@ -87,11 +87,6 @@ MooseMinimalState >> flushProperties [
 ]
 
 { #category : #testing }
-MooseMinimalState >> hasMooseModel [
-	^false
-]
-
-{ #category : #testing }
 MooseMinimalState >> includesKey: selector [ 
 	" *** This method was defined by SCG.Moose.EntityState as a subclass responsibility. 
 	Replace its body with a proper implementation. *** " 
@@ -116,12 +111,6 @@ MooseMinimalState >> isStub [
 MooseMinimalState >> isStub: boolean [ 
 	 
 	[boolean == false] assert
-]
-
-{ #category : #'accessing-common attributes' }
-MooseMinimalState >> model: anObject [ 
-	 
-	
 ]
 
 { #category : #error }

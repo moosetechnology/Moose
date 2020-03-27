@@ -1,14 +1,14 @@
-Extension { #name : #MooseEntity }
+Extension { #name : #MooseObject }
 
 { #category : #'*Famix-Groups' }
-MooseEntity class >> relatedGroupType [
+MooseObject class >> relatedGroupType [
 	" The entities can specify what is the prefered type of MooseGroup they want to be stored in.
 	They do that using a class side method with uniqueName that contains pragma <mooseGroup>. 
 	Because such methods are stored mostly in traits and a class can have more than prefered group
 	type, the most specialize one selected."
 
 	| definingMethods selectedMethods selectedMethod |
-	definingMethods := self class allMethods select: [ :each | each hasPragmaNamed: #mooseGroup ].
+	definingMethods :=(Pragma allNamed: #mooseGroup from: self class to: Object) collect: #method.
 	definingMethods ifEmpty: [ ^ MooseGroup ].
 
 	"We need to find the most specialized method, so we select the lower in the hierarchy."

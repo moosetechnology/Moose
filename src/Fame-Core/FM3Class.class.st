@@ -179,7 +179,7 @@ FM3Class >> initialize [
 	traits := Set new
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 FM3Class >> isAbstract [
 	<FMProperty: #abstract type: #Boolean>
 	^ isAbstract

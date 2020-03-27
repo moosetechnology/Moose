@@ -62,7 +62,7 @@ MooseMetaExplorer >> hierarchyIn: a [
 		display: [ :all | (all classes select: [ :each | each superclass = FM3Object instance ]) sorted: [ :x :y | x fullName < y fullName ] ];
 		children: [ :c | c subclasses sorted: [ :x :y | x fullName < y fullName ] ];
 		format: [ :each | self abstractFormattedNameOf: each ];
-		tags: [ :each | each package isNil ifTrue: [ #() ] ifFalse: [ each package name ] ];
+		tags: [ :each | each package ifNil: [ #() ] ifNotNil: [ each package name ] ];
 		morphicSelectionAct: [ :list | list selection implementingClass browse ]
 			icon: GLMUIThemeExtraIcons glamorousBrowse
 			on: $b
@@ -78,15 +78,10 @@ MooseMetaExplorer >> methodsIn: a [
 		sorted: [ :attribute1 :attribute2 | attribute1 name < attribute2 name ];
 		column: 'name'
 			evaluated: [ :each | 
-			each compiledMethod isNil
-				ifTrue: [ each name ]
-				ifFalse: [ each compiledMethod isDeprecated
-						ifTrue: [ each name asText addAttribute: TextEmphasis struckOut ]
-						ifFalse: [ each selector ] ] ]
-			tags: [ :each :aFM3Class | 
-				each methodClass ~= aFM3Class
-					ifTrue: [ each methodClass name ]
-					ifFalse: [ OrderedCollection new ] ];
+			each compiledMethod
+				ifNil: [ each name ]
+				ifNotNil: [ each compiledMethod isDeprecated ifTrue: [ each name asText addAttribute: TextEmphasis struckOut ] ifFalse: [ each selector ] ] ]
+			tags: [ :each :aFM3Class | each methodClass ~= aFM3Class ifTrue: [ each methodClass name ] ifFalse: [ OrderedCollection new ] ];
 		"column: 'input type'
 			evaluated: [ :each | 
 			each type name
@@ -126,26 +121,13 @@ MooseMetaExplorer >> propertiesIn: a [
 		sorted: [ :attribute1 :attribute2 | attribute1 name < attribute2 name ];
 		column: 'name'
 			evaluated: [ :each | 
-			each compiledMethod isNil
-				ifTrue: [ each name ]
-				ifFalse: [ each compiledMethod isDeprecated
-						ifTrue: [ each name asText addAttribute: TextEmphasis struckOut ]
-						ifFalse: [ each name ] ] ]
-			tags: [ :each :aFM3Class | 
-				each mmClass ~= aFM3Class
-					ifTrue: [ each mmClass name ]
-					ifFalse: [ OrderedCollection new ] ];
+			each compiledMethod
+				ifNil: [ each name ]
+				ifNotNil: [ each compiledMethod isDeprecated ifTrue: [ each name asText addAttribute: TextEmphasis struckOut ] ifFalse: [ each name ] ] ]
+			tags: [ :each :aFM3Class | each mmClass ~= aFM3Class ifTrue: [ each mmClass name ] ifFalse: [ OrderedCollection new ] ];
 		column: 'type'
-			evaluated: [ :each | 
-			each type name
-				,
-					(each isMultivalued
-						ifTrue: [ ' *' ]
-						ifFalse: [ '' ])
-				,
-					(each isDerived
-						ifTrue: [ ' /' ]
-						ifFalse: [ '' ]) ];
+			evaluated:
+				[ :each | each type name , (each isMultivalued ifTrue: [ ' *' ] ifFalse: [ '' ]) , (each isDerived ifTrue: [ ' /' ] ifFalse: [ '' ]) ];
 		morphicSelectionAct: [ :list | Smalltalk tools browser openOnClass: list selection implementingClass selector: list selection implementingSelector ]
 			icon: GLMUIThemeExtraIcons glamorousBrowse
 			on: $b
@@ -162,13 +144,12 @@ MooseMetaExplorer >> relationsIn: a [
 		sorted: [ :attribute1 :attribute2 | attribute1 name < attribute2 name ];
 		column: 'name'
 			evaluated: [ :each | 
-			each compiledMethod isNil
-				ifTrue: [ each name ]
-				ifFalse: [ each compiledMethod isDeprecated ifTrue: [ each name asText addAttribute: TextEmphasis struckOut ] ifFalse: [ each name ] ] ]
+			each compiledMethod
+				ifNil: [ each name ]
+				ifNotNil: [ each compiledMethod isDeprecated ifTrue: [ each name asText addAttribute: TextEmphasis struckOut ] ifFalse: [ each name ] ] ]
 			tags: [ :each :aFM3Class | each mmClass ~= aFM3Class ifTrue: [ each mmClass name ] ifFalse: [ OrderedCollection new ] ];
 		column: 'type'
-			evaluated:
-				[ :each | each type name , (each isMultivalued ifTrue: [ ' *' ] ifFalse: [ '' ]) , (each isDerived ifTrue: [ ' /' ] ifFalse: [ '' ]) ];
+			evaluated: [ :each | each type name , (each isMultivalued ifTrue: [ ' *' ] ifFalse: [ '' ]) , (each isDerived ifTrue: [ ' /' ] ifFalse: [ '' ]) ];
 		column: 'opposite' evaluated: [ :each | each opposite ifNil: [ '' ] ifNotNil: [ :opposite | opposite name ] ];
 		selectionPopulate: #strongSelection
 			on: $o

@@ -95,19 +95,11 @@ MooseMemoryEfficientState >> flushProperties [
 ]
 
 { #category : #testing }
-MooseMemoryEfficientState >> hasMooseModel [
-	1 to: attributes size do: [ :n | 
-		(attributes at: n) key = #privateModel
-			ifTrue: [ ^ true ] ].
-	^ false
-]
-
-{ #category : #testing }
 MooseMemoryEfficientState >> includesKey: selector [
 	^ propertyCache includesKey: selector
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseMemoryEfficientState >> initialize: aMooseEntity [
 	attributes := #().
 	propertyCache := SmallDictionary new.

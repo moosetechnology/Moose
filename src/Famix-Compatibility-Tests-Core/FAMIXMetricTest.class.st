@@ -10,7 +10,7 @@ FAMIXMetricTest >> assertNoErrorForAllMetricsOf: entity [
 		do: [ :each | self shouldnt: (entity mmGetProperty: each) raise: Error ]
 ]
 
-{ #category : #utility }
+{ #category : #utilities }
 FAMIXMetricTest >> model [
 	" to debug and avoid caching behavior: LANPackageTestResource reset."
 	^ LANPackageTestResource current model 

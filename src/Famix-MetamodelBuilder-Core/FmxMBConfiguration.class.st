@@ -77,7 +77,7 @@ FmxMBConfiguration >> defaultTraitTag [
 	^ #Traits
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 FmxMBConfiguration >> initialize [
 
 	super initialize.

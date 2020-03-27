@@ -54,12 +54,7 @@ DropListPart >> formatBlock [
 
 { #category : #accessing }
 DropListPart >> formatedList [
-
-	^ self list collect: [:each |
-		each isNil
-			ifTrue: ['']
-			ifFalse: [self formatBlock meValue: each]
-		 ]
+	^ self list collect: [ :each | each ifNil: [ '' ] ifNotNil: [ self formatBlock meValue: each ] ]
 ]
 
 { #category : #accessing }
@@ -75,7 +70,7 @@ DropListPart >> horizontalSize: anInteger [
 	horizontalSize := anInteger.
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 DropListPart >> initialize [ 
 
 	super initialize.  

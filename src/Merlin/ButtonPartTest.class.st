@@ -17,9 +17,8 @@ ButtonPartTest >> testEnableAndDisable [
 
 { #category : #tests }
 ButtonPartTest >> testLabel [
-
 	| buttonPart |
 	buttonPart := ButtonPart new.
 	buttonPart label: 'something'.
-	self assert: buttonPart label = 'something'.
+	self assert: buttonPart label equals: 'something'
 ]

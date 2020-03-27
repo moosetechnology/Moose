@@ -92,7 +92,7 @@ MultiSelectionItemSelectorPart >> initialListSelectionAt: anIndex put: value [
 	^ initialListSelections at: anIndex put: value
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MultiSelectionItemSelectorPart >> initialize [
 
 	super initialize.

@@ -18,9 +18,7 @@ RPGHero class >> annotation [
 { #category : #initialization }
 RPGHero >> initialize [
 	super initialize.
-	twin := nil.
-	talisman := nil.
-	kills := FMMultiMultivalueLink on: self opposite: #killedBy.
+	kills := FMMultiMultivalueLink on: self opposite: #killedBy
 ]
 
 { #category : #accessing }

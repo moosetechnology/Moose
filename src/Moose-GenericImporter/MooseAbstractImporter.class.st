@@ -65,7 +65,7 @@ MooseAbstractImporter >> importingContext: anObject [
 	importingContext := anObject
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseAbstractImporter >> initialize [
 	super initialize.
 	targetModel := MooseModel new.

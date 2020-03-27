@@ -82,7 +82,7 @@ FamixJavaType >> incomingAccesses [
 		ifAbsentPut: [ attributes flatCollect: [ :each | each incomingAccesses ] ]
 ]
 
-{ #category : #'Famix-Extensions' }
+{ #category : #testing }
 FamixJavaType >> isAbstract [
 	<FMProperty: #isAbstract type: #Boolean> <derived>
 	<FMComment: 'Flag true for abstract classes.'>

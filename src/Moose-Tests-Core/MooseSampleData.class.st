@@ -13,6 +13,7 @@ Class {
 
 { #category : #initialization }
 MooseSampleData >> initialize [
+	super initialize.
 	moosemodel1 := (self readMSEString: self modelVersion1) name: #'Simple model 1'.
 	moosemodel2 := (self readMSEString: self modelVersion2) name: #'Simple model 2'.
 	moosemodel3 := (self readMSEString: self modelVersion3) name: #'Simple model 3'.

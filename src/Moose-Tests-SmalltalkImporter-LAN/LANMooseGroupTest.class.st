@@ -4,7 +4,7 @@ Class {
 	#category : #'Moose-Tests-SmalltalkImporter-LAN'
 }
 
-{ #category : #utility }
+{ #category : #utilities }
 LANMooseGroupTest >> model [
 	" to debug and avoid caching behavior: LANPackageTestResource reset."
 	^ LANPackageTestResource current model .
@@ -87,7 +87,7 @@ LANMooseGroupTest >> testGroupInsideGroup [
 	methods := self model allMethods.
 	group2 := MooseGroup withAll: methods.
 	group3 := MooseGroup withAll: (OrderedCollection with: group1 with: group2).
-	self assert: (group3 select: [ :each | each mooseID = group2 mooseID ]) isNotEmpty.
+	self assert: (group3 select: [ :each | each == group2 ]) isNotEmpty.
 	self assert: (self model allClasses isMemberOf: FAMIXClassGroup).
 	self assert: self model allClasses size equals: numberOfClasses
 ]

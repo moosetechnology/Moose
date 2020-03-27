@@ -28,7 +28,7 @@ ProjectVersionWizard >> configuration: aClass [
 	configuration := aClass.
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 ProjectVersionWizard >> initializeContent: shouldUpdateProject [
 
 	| versions |
@@ -42,7 +42,7 @@ ProjectVersionWizard >> initializeContent: shouldUpdateProject [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 ProjectVersionWizard >> initializeSourcePaneWith: versions [
 	
 	| sourcePane part2 currentVersion |		
@@ -60,7 +60,7 @@ ProjectVersionWizard >> initializeSourcePaneWith: versions [
 	^ sourcePane
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 ProjectVersionWizard >> initializeVersionPaneWith: versions [
 
 	| lastPane part3 part4 part5 part6 |

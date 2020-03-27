@@ -1,7 +1,7 @@
-Extension { #name : #MooseModelRootTests }
+Extension { #name : #MooseModelRootTest }
 
 { #category : #'*Moose-Tests-Finder' }
-MooseModelRootTests >> testDelete [
+MooseModelRootTest >> testDelete [
 	model := self modelClass new.
 	self modelClass root add: model.
 	[ model delete ]
@@ -14,7 +14,7 @@ MooseModelRootTests >> testDelete [
 ]
 
 { #category : #'*Moose-Tests-Finder' }
-MooseModelRootTests >> testDeleteNonRegisteredModelRaisesError [
+MooseModelRootTest >> testDeleteNonRegisteredModelRaisesError [
 	"Raise an error since it is not in the root"
 	self
 		should: [ [ self modelClass new delete ] valueSupplyingAnswer: true ]

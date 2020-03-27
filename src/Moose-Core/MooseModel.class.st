@@ -179,6 +179,15 @@ MooseModel class >> importMetamodelFrom: aStream [
 	generator previewChanges	"keep shift pressed to see the changes"
 ]
 
+{ #category : #'world menu' }
+MooseModel class >> menuCommandOn: aBuilder [
+	<worldMenu>
+	(aBuilder item: #Moose)
+		order: 6.0; 
+		withSeparatorAfter;
+		icon: MooseIcons mooseIcon
+]
+
 { #category : #meta }
 MooseModel class >> metamodel [
 	self flag: #TODO. "The next line is a hack to not break everything in Moose. It should be removed later."
@@ -238,6 +247,7 @@ MooseModel class >> resetMetamodels [
 
 { #category : #'root model' }
 MooseModel class >> resetRoot [
+	<script>
 	MooseModelRoot resetRoot
 ]
 
@@ -487,15 +497,11 @@ MooseModel >> mooseDescriptionFor: class [
 	^ self metamodel descriptionOf: class instanceSide
 ]
 
-{ #category : #printing }
-MooseModel >> mooseDisplayStringOn: stream [
-	stream nextPutAll: self name
-]
-
 { #category : #accessing }
 MooseModel >> mooseModel [
 	"Answer the containing moose model of self, if any."
-	^ self privateState model
+
+	^ self privateState attributeAt: #privateModel ifAbsent: [ nil ]
 ]
 
 { #category : #accessing }
@@ -509,8 +515,9 @@ MooseModel >> name: aStringOrSymbol [
 	| oldName |
 	oldName := name.
 	name := aStringOrSymbol.
-	(oldName notNil and: [oldName ~= name]) ifTrue: [ 
-		self announcer announce: (MooseEntityRenamed new oldName: oldName) ]
+	(oldName notNil and: [ oldName ~= name ])
+		ifTrue: [ self resetMooseName.
+			self announcer announce: (MooseEntityRenamed new oldName: oldName) ]
 ]
 
 { #category : #'Famix-Extensions' }
@@ -530,6 +537,11 @@ MooseModel >> numberOfLinesOfCodePerClass [
 	^ self
 		lookUpPropertyNamed: #numberOfLinesOfCodePerClass
 		computedAs: [ self numberOfLinesOfCode / self numberOfClasses ]
+]
+
+{ #category : #accessing }
+MooseModel >> privateSetMooseModel: aMooseModel [
+	self privateState attributeAt: #privateModel put: aMooseModel
 ]
 
 { #category : #actions }

@@ -47,111 +47,104 @@ WizardPaneTest >> setUp [
 
 { #category : #tests }
 WizardPaneTest >> testWizardPaneNextBack [
-	
 	wizardControl open.
-	self assert: wizardControl currentPane == wizardControl wizardPanes first.
+	self assert: wizardControl currentPane identicalTo: wizardControl wizardPanes first.
 	wizardControl performNextButtonAction.
-	self assert: wizardControl  currentPane == wizardControl wizardPanes second.
+	self assert: wizardControl currentPane identicalTo: wizardControl wizardPanes second.
 	wizardControl performPreviousButtonAction.
-	self assert: wizardControl  currentPane == wizardControl wizardPanes first.
+	self assert: wizardControl currentPane identicalTo: wizardControl wizardPanes first
 ]
 
 { #category : #tests }
 WizardPaneTest >> testWizardPaneNumberOfSubcomponents [
-	
-     | wizardPane1 firstCheckBoxPart secondCheckBoxPart |
+	| wizardPane1 firstCheckBoxPart secondCheckBoxPart |
 	wizardControl := WizardControl new.
 	wizardPane1 := WizardSinglePane new.
-	
+
 	firstCheckBoxPart := CheckboxPart new
-									label: 'if selected, next one not selected';
-									inGroupboxNamed: 'Test';
-									defaultValue: true;
-									useLatePopulateContents: false;
-									yourself.
-									
+		label: 'if selected, next one not selected';
+		inGroupboxNamed: 'Test';
+		defaultValue: true;
+		useLatePopulateContents: false;
+		yourself.
+
 	secondCheckBoxPart := CheckboxPart new
-									label: 'selected if previous one not selected';
-									inGroupboxNamed: 'Test';
-									defaultValue: false;
-									yourself.
-		
-		
+		label: 'selected if previous one not selected';
+		inGroupboxNamed: 'Test';
+		defaultValue: false;
+		yourself.
+
+
 	wizardPane1 row: firstCheckBoxPart associatedTo: #firstCheckbocValue.
-	self assert: wizardPane1 numberOfSubComponents = 1.
+	self assert: wizardPane1 numberOfSubComponents equals: 1.
 	wizardPane1 row: secondCheckBoxPart associatedTo: #secondCheckbocValue requiring: {#firstCheckbocValue}.
-	self assert: wizardPane1 numberOfSubComponents = 2.
+	self assert: wizardPane1 numberOfSubComponents equals: 2.
 	"wizardPane1 removeAllParts.
 	self assert: wizardPane1 numberOfSubComponents = 0.
-	"	
-	wizardControl 
-		addPane: wizardPane1.
+	"
+	wizardControl addPane: wizardPane1
 ]
 
 { #category : #tests }
 WizardPaneTest >> testWizardPaneRemoveSubcomponentAt [
-	
-      | wizardPane1 firstCheckBoxPart secondCheckBoxPart |
+	| wizardPane1 firstCheckBoxPart secondCheckBoxPart |
 	wizardControl := MockWizardControl new.
 	wizardPane1 := WizardSinglePane new.
-	
+
 	firstCheckBoxPart := CheckboxPart new
-									label: 'if selected, next one not selected';
-									inGroupboxNamed: 'Test';
-									defaultValue: true;
-									useLatePopulateContents: false;
-									yourself.
-									
+		label: 'if selected, next one not selected';
+		inGroupboxNamed: 'Test';
+		defaultValue: true;
+		useLatePopulateContents: false;
+		yourself.
+
 	secondCheckBoxPart := CheckboxPart new
-									label: 'selected if previous one not selected';
-									inGroupboxNamed: 'Test';
-									defaultValue: false;
-									yourself.
-		
-		
+		label: 'selected if previous one not selected';
+		inGroupboxNamed: 'Test';
+		defaultValue: false;
+		yourself.
+
+
 	wizardPane1 row: firstCheckBoxPart associatedTo: #firstCheckbocValue.
-	self assert: wizardPane1 numberOfSubComponents = 1.
+	self assert: wizardPane1 numberOfSubComponents equals: 1.
 	wizardPane1 row: secondCheckBoxPart associatedTo: #secondCheckbocValue requiring: {#firstCheckbocValue}.
-	self assert: wizardPane1 numberOfSubComponents = 2.
-	
-	wizardControl 
-		addPane: wizardPane1.
+	self assert: wizardPane1 numberOfSubComponents equals: 2.
+
+	wizardControl addPane: wizardPane1.
 	wizardControl open.
-	self assert: (wizardPane1 subComponentAt: 1) = firstCheckBoxPart.
-	self assert: (wizardPane1 subComponentAt: 2) = secondCheckBoxPart.
+	self assert: (wizardPane1 subComponentAt: 1) equals: firstCheckBoxPart.
+	self assert: (wizardPane1 subComponentAt: 2) equals: secondCheckBoxPart.
 	wizardPane1 removeSubComponentAt: 1.
-	self deny: (wizardPane1 subComponentAt: 1) = firstCheckBoxPart.
-	self assert: (wizardPane1 subComponentAt: 1) = secondCheckBoxPart.
+	self deny: (wizardPane1 subComponentAt: 1) equals: firstCheckBoxPart.
+	self assert: (wizardPane1 subComponentAt: 1) equals: secondCheckBoxPart
 ]
 
 { #category : #tests }
 WizardPaneTest >> testWizardPaneSubcomponentAt [
-	
-      | wizardPane1 firstCheckBoxPart secondCheckBoxPart |
+	| wizardPane1 firstCheckBoxPart secondCheckBoxPart |
 	wizardControl := WizardControl new.
 	wizardPane1 := WizardSinglePane new.
-	
+
 	firstCheckBoxPart := CheckboxPart new
-									label: 'if selected, next one not selected';
-									inGroupboxNamed: 'Test';
-									defaultValue: true;
-									useLatePopulateContents: false;
-									yourself.
-									
+		label: 'if selected, next one not selected';
+		inGroupboxNamed: 'Test';
+		defaultValue: true;
+		useLatePopulateContents: false;
+		yourself.
+
 	secondCheckBoxPart := CheckboxPart new
-									label: 'selected if previous one not selected';
-									inGroupboxNamed: 'Test';
-									defaultValue: false;
-									yourself.
-		
-		
+		label: 'selected if previous one not selected';
+		inGroupboxNamed: 'Test';
+		defaultValue: false;
+		yourself.
+
+
 	wizardPane1 row: firstCheckBoxPart associatedTo: #firstCheckbocValue.
-	self assert: (wizardPane1 subComponentAt: 1) = firstCheckBoxPart.
+	self assert: (wizardPane1 subComponentAt: 1) equals: firstCheckBoxPart.
 	wizardPane1 row: secondCheckBoxPart associatedTo: #secondCheckbocValue requiring: {#firstCheckbocValue}.
-	self assert: (wizardPane1 subComponentAt: 2) = secondCheckBoxPart.
-	self deny: (wizardPane1 subComponentAt: 1) = secondCheckBoxPart.
-	
-		
-	wizardControl 
-		addPane: wizardPane1.
+	self assert: (wizardPane1 subComponentAt: 2) equals: secondCheckBoxPart.
+	self deny: (wizardPane1 subComponentAt: 1) equals: secondCheckBoxPart.
+
+
+	wizardControl addPane: wizardPane1
 ]

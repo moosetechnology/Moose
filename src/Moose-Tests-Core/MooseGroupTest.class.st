@@ -120,6 +120,18 @@ MooseGroupTest >> testInitialization [
 ]
 
 { #category : #tests }
+MooseGroupTest >> testNumberOfPackages [
+	self assert: group numberOfPackages equals: 0.
+	group add: (MooseEntity new copyWithTalent: FamixTPackage).
+	group add: (MooseEntity new copyWithTalent: FamixTPackage).
+	self assert: group numberOfPackages equals: 2.
+	group := MooseModel new.
+	group add: (MooseEntity new copyWithTalent: FamixTNamespace).
+	group add: (MooseEntity new copyWithTalent: FamixTNamespace).
+	self assert: group numberOfPackages equals: 0
+]
+
+{ #category : #tests }
 MooseGroupTest >> testObjectAsMooseGroup [
 	group := 42 asMooseGroup.
 	self assert: (group isKindOf: MooseGroup).

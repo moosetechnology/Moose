@@ -33,7 +33,7 @@ MooseMetacelloRadioButtonsPart >> defaultSelection: aSymbol [
 		ifFalse: [ self beMainDev ]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseMetacelloRadioButtonsPart >> initialize [ 
 	
 	super initialize.

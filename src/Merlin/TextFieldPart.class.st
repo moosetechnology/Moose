@@ -38,7 +38,7 @@ TextFieldPart >> horizontalSize: anInteger [
 	horizontalSize := anInteger
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 TextFieldPart >> initialize [ 
 
 	super initialize.
@@ -48,7 +48,7 @@ TextFieldPart >> initialize [
 	
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 TextFieldPart >> initialize: defaultText [
 
 	self initialize.

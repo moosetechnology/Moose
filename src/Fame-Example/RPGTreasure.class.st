@@ -14,13 +14,6 @@ RPGTreasure class >> annotation [
 	<package: #RPG>
 ]
 
-{ #category : #initialization }
-RPGTreasure >> initialize [
-	super initialize.
-	keeper := nil.
-	owner := nil.
-]
-
 { #category : #accessing }
 RPGTreasure >> keeper [
 	<FMProperty: #keeper type: #RPGDragon opposite: #hoard>

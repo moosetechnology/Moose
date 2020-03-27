@@ -227,12 +227,7 @@ FmxMBBuilderTest >> testSortedTratis [
 
 { #category : #tests }
 FmxMBBuilderTest >> testTraitNamed [
-
-	| c |
 	self should: [ builder traitNamed: #T1 ] raise: FamixMetamodelGeneratorUnknownTrait.
-	
-	c := builder ensureClassNamed: #C1.	
-	self should: [ builder traitNamed: #C1 ] raise: FamixMetamodelGeneratorUnknownTrait.
-
-	
+	builder ensureClassNamed: #C1.
+	self should: [ builder traitNamed: #C1 ] raise: FamixMetamodelGeneratorUnknownTrait
 ]

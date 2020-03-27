@@ -35,7 +35,7 @@ MooseQueryResultTest >> testCollect [
 	result := group collect: [ :e | e + 1 ].
 	self assert: (result includesAll: {2 . 3 . 4}).
 	self assert: result receiver equals: group receiver.
-	self deny: group == result
+	self deny: group identicalTo: result
 ]
 
 { #category : #tests }
@@ -55,7 +55,7 @@ MooseQueryResultTest >> testReject [
 	self assert: (result includes: 2).
 	self deny: (result includesAll: {1 . 3}).
 	self assert: result receiver equals: group receiver.
-	self deny: group == result
+	self deny: group identicalTo: result
 ]
 
 { #category : #tests }
@@ -66,5 +66,5 @@ MooseQueryResultTest >> testSelect [
 	self assert: (result includes: 2).
 	self deny: (result includesAll: {1 . 3}).
 	self assert: result receiver equals: group receiver.
-	self deny: group == result
+	self deny: group identicalTo: result
 ]

@@ -38,7 +38,6 @@ Class {
 		'tLocalVariable',
 		'tMethod',
 		'tModule',
-		'tNamed',
 		'tNamespace',
 		'tPackage',
 		'tPackageable',
@@ -122,7 +121,8 @@ Class {
 		'tHasSignature',
 		'tWithGlobalVariables',
 		'tHasModifiers',
-		'tHasImmediateSource'
+		'tHasImmediateSource',
+		'tNamedEntity'
 	],
 	#category : #'Famix-MetamodelGeneration'
 }
@@ -910,7 +910,7 @@ FamixGenerator >> defineHierarchy [
 	tClass --|> #TWithMethods.
 	tClass --|> tWithInheritances.
 	tClass --|> #TWithAttributes.
-	tClass inheritsFromTrait: tNamed without: #(#mooseNameOn:).
+	tClass inheritsFromTrait: tNamedEntity without: #(#mooseNameOn:).
 	tClass --|> tType.
 	tClass --|> #TPackageable.
 	tClass --|> #TInvocationsReceiver.
@@ -923,6 +923,10 @@ FamixGenerator >> defineHierarchy [
 	tFileInclude --|> tAssociation.
 
 	tFolder --|> tFileSystemEntity.
+	
+	tFunction --|> tNamedEntity.
+	tFunction --|> tHasSignature.
+	tFunction --|> tTypedEntity.
 
 	tGlobalVariable --|> tStructuralEntity.
 
@@ -945,7 +949,7 @@ FamixGenerator >> defineHierarchy [
 	tMethod --|> #TWithClassScope.
 	tMethod --|> #TTypedEntity.
 	tMethod --|> tSourceEntity.
-	tMethod --|> tNamed.
+	tMethod --|> tNamedEntity.
 	tMethod --|> #TOODependencyQueries.
 	tMethod withPrecedenceOf: #TTypedEntity.
 
@@ -954,8 +958,8 @@ FamixGenerator >> defineHierarchy [
 	tReference --|> tAssociation.
 
 	tScopingEntity  --|> #TOODependencyQueries.
+	tStructuralEntity --|> tNamedEntity.
 
-	tStructuralEntity --|> tNamed.
 	tStructuralEntity --|> #TAccessible.
 	tStructuralEntity --|> #TInvocationsReceiver.
 	tStructuralEntity --|> #TTypedEntity.
@@ -967,7 +971,7 @@ FamixGenerator >> defineHierarchy [
 	tTraitUsage --|> tAssociation.
 	
 	tType --|> #TReferenceable.
-	tType --|> tNamed.
+	tType --|> tNamedEntity.
 	
 
 ]
@@ -988,7 +992,7 @@ FamixGenerator >> defineProperties [
 	((tAnnotationInstanceAttribute property: #value type: #String)
 		comment: 'Actual value of the attribute used in an annotation').
 
-	((tNamed property: #name type: #String)
+	((tNamedEntity property: #name type: #String)
 		comment: 'Basic name of the entity, not full reference.').
 
 	((tHasModifiers property: #modifiers type: #String)
@@ -1466,8 +1470,8 @@ FamixGenerator >> defineTraits [
 	tModule := builder newTraitNamed: #TModule.
 	tModule comment: self commentForTModule.
 
-	tNamed := builder newTraitNamed: #TNamedEntity.
-	tNamed comment: self commentForTNamed.
+	tNamedEntity := builder newTraitNamed: #TNamedEntity.
+	tNamedEntity comment: self commentForTNamed.
 
 	tNamespace := builder newTraitNamed: #TNamespace.
 	tNamespace comment: self commentForTNamespace.

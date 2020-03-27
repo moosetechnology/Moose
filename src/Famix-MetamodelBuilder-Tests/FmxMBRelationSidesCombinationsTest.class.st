@@ -1,11 +1,11 @@
 Class {
-	#name : #FmxMBRelationSidesCombinationsTests,
+	#name : #FmxMBRelationSidesCombinationsTest,
 	#superclass : #FmxMBTestCase,
 	#category : #'Famix-MetamodelBuilder-Tests'
 }
 
 { #category : #tests }
-FmxMBRelationSidesCombinationsTests >> testClassToClass [
+FmxMBRelationSidesCombinationsTest >> testClassToClass [
 
 	"test simple relation between class and class"
 	
@@ -32,7 +32,7 @@ FmxMBRelationSidesCombinationsTests >> testClassToClass [
 ]
 
 { #category : #tests }
-FmxMBRelationSidesCombinationsTests >> testClassToTrait [
+FmxMBRelationSidesCombinationsTest >> testClassToTrait [
 
 	"test simple relation between class and trait"
 	
@@ -56,7 +56,7 @@ FmxMBRelationSidesCombinationsTests >> testClassToTrait [
 ]
 
 { #category : #tests }
-FmxMBRelationSidesCombinationsTests >> testTraitToClass [
+FmxMBRelationSidesCombinationsTest >> testTraitToClass [
 
 	"test simple relation between class and trait"
 	
@@ -80,7 +80,7 @@ FmxMBRelationSidesCombinationsTests >> testTraitToClass [
 ]
 
 { #category : #tests }
-FmxMBRelationSidesCombinationsTests >> testTraitToTrait [
+FmxMBRelationSidesCombinationsTest >> testTraitToTrait [
 
 	"test simple relation between trait and trait"
 	
