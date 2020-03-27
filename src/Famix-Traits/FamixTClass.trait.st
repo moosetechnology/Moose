@@ -21,6 +21,25 @@ FamixTClass classSide >> annotation [
 ]
 
 { #category : #groups }
+FamixTClass classSide >> annotationFamixTClassGroup [
+	<generated>
+	<mooseGroup>
+	^ FamixTClassGroup
+]
+
+{ #category : #groups }
+FamixTClass classSide >> famixFamixTClassGroup [
+	<mooseGroup>
+	^ FamixTClassGroup
+]
+
+{ #category : #groups }
+FamixTClass classSide >> famixTClassGroup [
+	<mooseGroup>
+	^ TClassGroup
+]
+
+{ #category : #groups }
 FamixTClass classSide >> famixTClassRelatedGroup [
 
 	<mooseGroup>

@@ -21,6 +21,13 @@ FamixTGlobalVariable classSide >> annotation [
 ]
 
 { #category : #groups }
+FamixTGlobalVariable classSide >> annotationFamixTGlobalVariableGroup [
+	<generated>
+	<mooseGroup>
+	^ FamixTGlobalVariableGroup
+]
+
+{ #category : #groups }
 FamixTGlobalVariable classSide >> famixTGlobalVariableRelatedGroup [
 
 	<mooseGroup>

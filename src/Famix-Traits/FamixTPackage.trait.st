@@ -22,6 +22,13 @@ FamixTPackage classSide >> annotation [
 ]
 
 { #category : #groups }
+FamixTPackage classSide >> annotationFamixTPackageGroup [
+	<generated>
+	<mooseGroup>
+	^ FamixTPackageGroup
+]
+
+{ #category : #groups }
 FamixTPackage classSide >> famixTPackageRelatedGroup [
 
 	<mooseGroup>

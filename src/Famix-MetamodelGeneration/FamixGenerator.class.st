@@ -122,7 +122,9 @@ Class {
 		'tWithGlobalVariables',
 		'tHasModifiers',
 		'tHasImmediateSource',
-		'tNamedEntity'
+		'tNamedEntity',
+		'tTypeGroup',
+		'tClassGroup'
 	],
 	#category : #'Famix-MetamodelGeneration'
 }
@@ -973,7 +975,8 @@ FamixGenerator >> defineHierarchy [
 	tType --|> #TReferenceable.
 	tType --|> tNamedEntity.
 	
-
+	"groups"
+	tClassGroup --|> tTypeGroup.
 ]
 
 { #category : #definition }
@@ -1369,12 +1372,14 @@ FamixGenerator >> defineTraits [
 
 	tAnnotationInstance := builder newTraitNamed: #TAnnotationInstance.
 	tAnnotationInstance comment: self commentForTAnnotationInstance.
+	tAnnotationInstance withGroup.
 
 	tAnnotationInstanceAttribute := builder newTraitNamed: #TAnnotationInstanceAttribute.
 	tAnnotationInstanceAttribute comment: self commentForTAnnotationInstanceAttribute.
 
 	tAnnotationType := builder newTraitNamed: #TAnnotationType.
 	tAnnotationType comment: self commentForTAnnotationType.
+	tAnnotationType withGroup.
 
 	tAnnotationTypeAttribute := builder newTraitNamed: #TAnnotationTypeAttribute.
 	tAnnotationTypeAttribute comment: self commentForTAnnotationTypeAttribute.
@@ -1399,6 +1404,7 @@ FamixGenerator >> defineTraits [
 	tClass := builder newTraitNamed: #TClass.
 	tClass comment: self commentForTClass.
 	tClass withTesting.
+	tClassGroup := tClass withGroup.
 
 	tDeclaredException := builder newTraitNamed: #TDeclaredException.
 	tDeclaredException comment: self commentForTDeclaredException.
@@ -1414,9 +1420,11 @@ FamixGenerator >> defineTraits [
 
 	tFile := builder newTraitNamed: #TFile.
 	tFile comment: self commentForTFile.
+	tFile withGroup.
 
 	tFolder := builder newTraitNamed: #TFolder.
 	tFolder comment: self commentForTFolder.
+	tFolder withGroup.
 
 	tFileSystemEntity := builder newTraitNamed: #TFileSystemEntity.
 
@@ -1438,6 +1446,7 @@ FamixGenerator >> defineTraits [
 
 	tGlobalVariable := builder newTraitNamed: #TGlobalVariable.
 	tGlobalVariable comment: self commentForTGlobalVariable.
+	tGlobalVariable withGroup.
 
 	tWithGlobalVariables := builder newTraitNamed: #TWithGlobalVariables.
 	tWithGlobalVariables comment: self commentForTWithGlobalVariables.
@@ -1459,6 +1468,7 @@ FamixGenerator >> defineTraits [
 	tInvocation := builder newTraitNamed: #TInvocation.
 	tInvocation comment: self commentForTInvocation.
 	tInvocation withTesting.
+	tInvocation withGroup.
 
 	tInvocationsReceiver := builder newTraitNamed: #TInvocationsReceiver.
 	tInvocationsReceiver comment: self commentForTInvocationsReceiver.
@@ -1469,6 +1479,7 @@ FamixGenerator >> defineTraits [
 	tMethod := builder newTraitNamed: #TMethod.
 	tMethod comment: self commentForTMethod.
 	tMethod withTesting.
+	tMethod withGroup.
 
 	tModule := builder newTraitNamed: #TModule.
 	tModule comment: self commentForTModule.
@@ -1479,10 +1490,12 @@ FamixGenerator >> defineTraits [
 	tNamespace := builder newTraitNamed: #TNamespace.
 	tNamespace comment: self commentForTNamespace.
 	tNamespace withTesting.
+	tNamespace withGroup.
 
 	tPackage := builder newTraitNamed: #TPackage.
 	tPackage comment: self commentForTPackage.
 	tPackage withTesting.
+	tPackage withGroup.
 
 	tPackageable := builder newTraitNamed: #TPackageable.
 	tPackageable comment: self commentForTPackageable.
@@ -1547,6 +1560,7 @@ FamixGenerator >> defineTraits [
 	tType := builder newTraitNamed: #TType.
 	tType comment: self commentForTType.
 	tType withTesting.
+	tTypeGroup := tType withGroup.
 
 	tTypeAlias := builder newTraitNamed: #TTypeAlias.
 	tTypeAlias comment: self commentForTTypeAlias.

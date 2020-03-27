@@ -31,6 +31,13 @@ FamixTInvocation classSide >> annotation [
 ]
 
 { #category : #groups }
+FamixTInvocation classSide >> annotationFamixTInvocationGroup [
+	<generated>
+	<mooseGroup>
+	^ FamixTInvocationGroup
+]
+
+{ #category : #groups }
 FamixTInvocation classSide >> famixTInvocationRelatedGroup [
 
 	<mooseGroup>
