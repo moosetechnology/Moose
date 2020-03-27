@@ -22,11 +22,6 @@ FAMIXInclude class >> metamodel [
 	^ FAMIXModel metamodel
 ]
 
-{ #category : #accessing }
-FAMIXInclude >> from [	
-	^ self source
-]
-
 { #category : #testing }
 FAMIXInclude >> isAccess [
 
@@ -130,9 +125,4 @@ FAMIXInclude >> isType [
 
 	<generated>
 	^ false
-]
-
-{ #category : #accessing }
-FAMIXInclude >> to [
-	^ self target
 ]

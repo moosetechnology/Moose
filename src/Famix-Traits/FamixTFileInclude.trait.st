@@ -5,7 +5,6 @@ Trait {
 		'#target => FMOne type: #FamixTWithFileIncludes opposite: #incomingIncludeRelations'
 	],
 	#traits : 'FamixTAssociation',
-	#classTraits : 'FamixTAssociation classTrait',
 	#category : #'Famix-Traits-FileInclude'
 }
 
