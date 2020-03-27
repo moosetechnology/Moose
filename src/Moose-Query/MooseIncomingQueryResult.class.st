@@ -14,6 +14,5 @@ Class {
 
 { #category : #private }
 MooseIncomingQueryResult >> opposite: aDependency [
-
-	^ aDependency from
+	^ aDependency source
 ]
