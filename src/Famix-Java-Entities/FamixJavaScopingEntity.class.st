@@ -1,15 +1,15 @@
 Class {
 	#name : #FamixJavaScopingEntity,
-	#superclass : #FamixJavaContainerEntity,
-	#traits : 'FamixTScopingEntity + FamixTWithGlobalVariables',
-	#classTraits : 'FamixTScopingEntity classTrait + FamixTWithGlobalVariables classTrait',
+	#superclass : #FamixJavaNamedEntity,
+	#traits : 'FamixTScopingEntity + FamixTWithAnnotationTypes + FamixTWithClasses + FamixTWithGlobalVariables + FamixTWithTypes',
+	#classTraits : 'FamixTScopingEntity classTrait + FamixTWithAnnotationTypes classTrait + FamixTWithClasses classTrait + FamixTWithGlobalVariables classTrait + FamixTWithTypes classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
 { #category : #meta }
 FamixJavaScopingEntity class >> annotation [
 
-	<FMClass: #ScopingEntity super: #FamixJavaContainerEntity>
+	<FMClass: #ScopingEntity super: #FamixJavaNamedEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
