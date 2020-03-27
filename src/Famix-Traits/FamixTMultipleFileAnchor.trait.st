@@ -1,7 +1,8 @@
 Trait {
 	#name : #FamixTMultipleFileAnchor,
 	#instVars : [
-		'#allFiles => FMProperty'
+		'#allFiles => FMProperty',
+		'#fileAnchors => FMProperty'
 	],
 	#category : #'Famix-Traits-SourceAnchor'
 }
@@ -17,14 +18,14 @@ FamixTMultipleFileAnchor classSide >> annotation [
 
 { #category : #adding }
 FamixTMultipleFileAnchor >> addFileAnchorWithPath: aPath [
-	self allFiles
+	self fileAnchors
 		detect: [ :each | each fileName = aPath ]
 		ifNone: [ self createAnchorWithPath: aPath ]
 ]
 
 { #category : #accessing }
 FamixTMultipleFileAnchor >> addSourceAnchor: aSourceAnchor [
-	self allFiles add: aSourceAnchor
+	self fileAnchors add: aSourceAnchor
 ]
 
 { #category : #accessing }
@@ -37,7 +38,10 @@ FamixTMultipleFileAnchor >> allFiles [
 	<FMProperty: #allFiles type: #FamixTFileAnchor>
 	<multivalued>
 	<FMComment: 'All source code definition files'>
-	^ allFiles ifNil: [ allFiles := OrderedCollection new. ]
+	self
+		deprecated: 'Use fileAnchors instad'
+		transformWith: '`@receiver allFiles' -> '`@receiver fileAnchors'.
+	^ fileAnchors
 ]
 
 { #category : #accessing }
@@ -48,7 +52,9 @@ FamixTMultipleFileAnchor >> allFiles: anObject [
 
 { #category : #accessing }
 FamixTMultipleFileAnchor >> containerFiles [
-	^ self propertyNamed: #containerFiles ifAbsentPut: [ self allFiles collect: #correspondingFile thenReject: #isNil ]
+	^ self
+		propertyNamed: #containerFiles
+		ifAbsentPut: [ self fileAnchors collect: #correspondingFile thenReject: #isNil ]
 ]
 
 { #category : #adding }
@@ -72,6 +78,20 @@ FamixTMultipleFileAnchor >> fileAnchorClass [
 ]
 
 { #category : #accessing }
+FamixTMultipleFileAnchor >> fileAnchors [
+	<FMProperty: #fileAnchors type: #FamixTFileAnchor>
+	<multivalued>
+	<FMComment: 'All source code definition files'>
+	^ fileAnchors ifNil: [ fileAnchors := OrderedCollection new ]
+]
+
+{ #category : #accessing }
+FamixTMultipleFileAnchor >> fileAnchors: anObject [
+	<generated>
+	fileAnchors := anObject
+]
+
+{ #category : #accessing }
 FamixTMultipleFileAnchor >> fileName [
 	"for compatibility with FAMIXFileAnchor, guard condition not needed: it has atleast one file anchor"
 	^ self allFiles anyOne fileName
@@ -84,7 +104,7 @@ FamixTMultipleFileAnchor >> isMultiple [
 
 { #category : #accessing }
 FamixTMultipleFileAnchor >> lineCount [
-	^ self allFiles
+	^ self fileAnchors
 		ifEmpty: [ self notExistentMetricValue ]
 		ifNotEmpty: [ :files | files detectSum: #lineCount ]
 ]
@@ -93,7 +113,7 @@ FamixTMultipleFileAnchor >> lineCount [
 FamixTMultipleFileAnchor >> sourceText [
 	^ String
 		streamContents: [ :s | 
-			self allFiles
+			self fileAnchors
 				do: [ :file | 
 					s
 						<< '=======================';

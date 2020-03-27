@@ -47,7 +47,7 @@ FamixTMethod >> cyclomaticComplexity: aNumber [
 	self privateState propertyAt: #cyclomaticComplexity put: aNumber
 ]
 
-{ #category : #testing }
+{ #category : #accessing }
 FamixTMethod >> isAbstract [
 
 	<FMProperty: #isAbstract type: #Boolean>

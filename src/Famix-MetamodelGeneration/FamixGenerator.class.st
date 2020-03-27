@@ -1032,7 +1032,10 @@ FamixGenerator >> defineProperties [
 	((tHasImmediateSource property: #source type: #String)
 		comment: 'Actual source code of the source entity').
 		
-	((tMultipleFileAnchor property: #allFiles type: #FamixTFileAnchor)
+	((tMultipleFileAnchor property: #fileAnchors type: #FamixTFileAnchor)
+		comment: 'All source code definition files';
+		multivalued).
+		((tMultipleFileAnchor property: #allFiles type: #FamixTFileAnchor)
 		comment: 'All source code definition files';
 		multivalued).
 ]
