@@ -521,9 +521,8 @@ MooseAbstractGroup >> mooseModel [
 ]
 
 { #category : #testing }
-MooseAbstractGroup >> notEmpty [ 
-	 
-	^self entities notEmpty
+MooseAbstractGroup >> notEmpty [
+	^ self entities notEmpty
 ]
 
 { #category : #'as yet unclassified' }
@@ -532,11 +531,10 @@ MooseAbstractGroup >> numberOfEntityUsing: aTrait [
 ]
 
 { #category : #accessing }
-MooseAbstractGroup >> numberOfItems [ 
+MooseAbstractGroup >> numberOfItems [
 	<FMProperty: #numberOfItems type: #Number>
 	<FMComment: 'The total number of items in the group'>
-	
-	^self size
+	^ self size
 ]
 
 { #category : #enumerating }
