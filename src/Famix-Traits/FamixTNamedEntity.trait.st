@@ -15,13 +15,6 @@ FamixTNamedEntity classSide >> annotation [
 	^self
 ]
 
-{ #category : #groups }
-FamixTNamedEntity classSide >> annotationFamixTNamedEntityGroup [
-	<generated>
-	<mooseGroup>
-	^ FamixTNamedEntityGroup
-]
-
 { #category : #'instance creation' }
 FamixTNamedEntity classSide >> named: aString [
 	^ self new
