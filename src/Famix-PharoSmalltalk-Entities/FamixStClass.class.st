@@ -1,15 +1,15 @@
 Class {
 	#name : #FamixStClass,
-	#superclass : #FamixStContainerEntity,
-	#traits : 'FamixTClass + FamixTClassHierarchyNavigation + FamixTWithExceptions',
-	#classTraits : 'FamixTClass classTrait + FamixTClassHierarchyNavigation classTrait + FamixTWithExceptions classTrait',
+	#superclass : #FamixStNamedEntity,
+	#traits : 'FamixTClass + FamixTClassHierarchyNavigation + FamixTWithExceptions + FamixTWithTypes',
+	#classTraits : 'FamixTClass classTrait + FamixTClassHierarchyNavigation classTrait + FamixTWithExceptions classTrait + FamixTWithTypes classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 
 { #category : #meta }
 FamixStClass class >> annotation [
 
-	<FMClass: #Class super: #FamixStContainerEntity>
+	<FMClass: #Class super: #FamixStNamedEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self

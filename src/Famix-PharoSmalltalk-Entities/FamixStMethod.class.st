@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixStMethod,
-	#superclass : #FamixStContainerEntity,
-	#traits : 'FamixTMethod',
-	#classTraits : 'FamixTMethod classTrait',
+	#superclass : #FamixStNamedEntity,
+	#traits : 'FamixTMethod + FamixTWithAnnotationTypes',
+	#classTraits : 'FamixTMethod classTrait + FamixTWithAnnotationTypes classTrait',
 	#instVars : [
 		'#protocol => FMProperty'
 	],
@@ -12,7 +12,7 @@ Class {
 { #category : #meta }
 FamixStMethod class >> annotation [
 
-	<FMClass: #Method super: #FamixStContainerEntity>
+	<FMClass: #Method super: #FamixStNamedEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
