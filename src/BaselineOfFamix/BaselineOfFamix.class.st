@@ -95,7 +95,7 @@ BaselineOfFamix >> baseline: spec [
 				package: 'Famix-TestComposedComposedMetamodel-Entities' with: [ spec requires: #('Famix-TestComposedMetamodel-Entities') ];
 				package: 'Famix-TestComposed3Metamodel-Entities' with: [ spec requires: #('Famix-TestComposedMetamodel-Entities') ];
 				package: 'Famix-TestComposedMetamodel' with: [ spec requires: #('Famix-TestComposedMetamodel-Entities') ];
-
+				package: 'Famix-TestTags' with: [ spec requires: #('BasicTraits') ];
 				package: 'Famix-Deprecated' with: [ spec requires: #('Core' 'ModelCompatibility' 'ModelJava' 'ModelSmalltalk' 'Tests') ].
 
 			"Groups"

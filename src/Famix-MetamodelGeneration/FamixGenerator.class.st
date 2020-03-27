@@ -122,7 +122,9 @@ Class {
 		'tWithGlobalVariables',
 		'tHasModifiers',
 		'tHasImmediateSource',
-		'tNamedEntity'
+		'tNamedEntity',
+		'tWithTags',
+		'tag'
 	],
 	#category : #'Famix-MetamodelGeneration'
 }
@@ -606,6 +608,11 @@ FamixGenerator >> commentForTSuper [
 	^ ''
 ]
 
+{ #category : #comment }
+FamixGenerator >> commentForTTag [
+	^'Trait to generate a Tag class in a meta-model'
+]
+
 { #category : #comments }
 FamixGenerator >> commentForTTemplate [
 
@@ -853,6 +860,11 @@ FamixGenerator >> commentForTWithSourceLanguage [
 	^ ''
 ]
 
+{ #category : #comment }
+FamixGenerator >> commentForTWithTags [
+	^ 'Trait to enable tags on an entity'
+]
+
 { #category : #comments }
 FamixGenerator >> commentForTWithTemplates [
 
@@ -890,9 +902,17 @@ FamixGenerator >> commentForTWithTypes [
 ]
 
 { #category : #definition }
+FamixGenerator >> defineClasses [
+	super defineClasses.
+	tag := builder newClassNamed: #Tag
+]
+
+{ #category : #definition }
 FamixGenerator >> defineHierarchy [
 	super defineHierarchy.
 	tAccess --|> tAssociation.
+	
+	tag --|>#TNamedEntity .
 	
 	tAssociation --|> #TAssociationMetaLevelDependency.
 	tAssociation --|> tSourceEntity.
@@ -905,6 +925,7 @@ FamixGenerator >> defineHierarchy [
 	tAnnotationInstanceAttribute --|> #TEntityMetaLevelDependency.
 	tAnnotationInstanceAttribute --|> #TDependencyQueries.
 
+	
 	tCohesionCouplingMetrics --|> tPackage.
 
 	tClass --|> #TWithMethods.
@@ -967,7 +988,7 @@ FamixGenerator >> defineHierarchy [
 	tSourceEntity --|> #TWithSourceAnchor.
 	tSourceEntity --|> #TWithSourceLanguage.
 	tSourceEntity --|> #TWithComments.
-
+	
 	tTraitUsage --|> tAssociation.
 	
 	tType --|> #TReferenceable.
@@ -979,65 +1000,56 @@ FamixGenerator >> defineHierarchy [
 { #category : #definition }
 FamixGenerator >> defineProperties [
 	super defineProperties.
-	((tFileAnchor property: #correspondingFile type: #FamixTFile) 
-		comment: 'File associated to this source anchor').
-	((tFileAnchor property: #encoding type: #String) 
-		comment: 'A string representing the encoding of a file').
-	((tFileAnchor property: #fileName type: #String) 
-		comment: 'Name of the source file').
-
-	((tAccess property: #isWrite type: #Boolean) 
-		comment: 'Write access').
-
-	((tAnnotationInstanceAttribute property: #value type: #String)
-		comment: 'Actual value of the attribute used in an annotation').
-
-	((tNamedEntity property: #name type: #String)
-		comment: 'Basic name of the entity, not full reference.').
-
-	((tHasModifiers property: #modifiers type: #String)
+	(tFileAnchor property: #correspondingFile type: #FamixTFile)
+		comment: 'File associated to this source anchor'.
+	(tFileAnchor property: #encoding type: #String)
+		comment: 'A string representing the encoding of a file'.
+	(tFileAnchor property: #fileName type: #String)
+		comment: 'Name of the source file'.
+	(tAccess property: #isWrite type: #Boolean) comment: 'Write access'.
+	(tAnnotationInstanceAttribute property: #value type: #String)
+		comment: 'Actual value of the attribute used in an annotation'.
+	(tNamedEntity property: #name type: #String)
+		comment: 'Basic name of the entity, not full reference.'.
+	(tHasModifiers property: #modifiers type: #String)
 		comment: 'Generic container for language dependent modifiers.';
-		multivalued).
-
-	((tMethod property: #kind type: #String) 
-		comment: 'Tag indicating a setter, getter, constant, constructor, or abstract method').
-	((tMethod property: #isClassSide type: #Boolean) 
-		comment: 'True if class-side method').
-	((tMethod property: #isAbstract type: #Boolean) 
-		comment: 'True if abstract method').
-
-	((tHasSignature property: #signature type: #String)
-		comment: 'Signature of the message being sent').
-
-	((tComment property: #content type: #String) 
-		comment: 'Content of the comment as a String').
-
-	((tSourceEntity property: #isStub type: #Boolean)
-		comment: 'Flag true if the entity attributes are incomplete, either because the entity is missing or not imported.').
-
-	((tFileNavigation property: #startLine type: #Number)
-		comment: 'Number of the start line').
-	((tFileNavigation property: #endLine type: #Number)
-		comment: 'Number of the end line').
-	((tFileNavigation property: #startColumn type: #Number)
-		comment: 'Number of the start column').
-	((tFileNavigation property: #endColumn type: #Number)
-		comment: 'Number of the end column').
-
-	((tIndexedFileNavigation property: #startPos type: #Number)
-		comment: 'Start position in the source').
-	((tIndexedFileNavigation property: #endPos type: #Number)
-		comment: 'Stop position in the source').
-
-	((tHasImmediateSource property: #source type: #String)
-		comment: 'Actual source code of the source entity').
-		
-	((tMultipleFileAnchor property: #fileAnchors type: #FamixTFileAnchor)
+		multivalued.
+	(tMethod property: #kind type: #String)
+		comment:
+			'Tag indicating a setter, getter, constant, constructor, or abstract method'.
+	(tMethod property: #isClassSide type: #Boolean)
+		comment: 'True if class-side method'.
+	(tMethod property: #isAbstract type: #Boolean)
+		comment: 'True if abstract method'.
+	(tHasSignature property: #signature type: #String)
+		comment: 'Signature of the message being sent'.
+	(tComment property: #content type: #String)
+		comment: 'Content of the comment as a String'.
+	(tSourceEntity property: #isStub type: #Boolean)
+		comment:
+			'Flag true if the entity attributes are incomplete, either because the entity is missing or not imported.'.
+	(tFileNavigation property: #startLine type: #Number)
+		comment: 'Number of the start line'.
+	(tFileNavigation property: #endLine type: #Number)
+		comment: 'Number of the end line'.
+	(tFileNavigation property: #startColumn type: #Number)
+		comment: 'Number of the start column'.
+	(tFileNavigation property: #endColumn type: #Number)
+		comment: 'Number of the end column'.
+	(tIndexedFileNavigation property: #startPos type: #Number)
+		comment: 'Start position in the source'.
+	(tIndexedFileNavigation property: #endPos type: #Number)
+		comment: 'Stop position in the source'.
+	(tHasImmediateSource property: #source type: #String)
+		comment: 'Actual source code of the source entity'.
+	(tMultipleFileAnchor property: #fileAnchors type: #FamixTFileAnchor)
 		comment: 'All source code definition files';
-		multivalued).
-		((tMultipleFileAnchor property: #allFiles type: #FamixTFileAnchor)
+		multivalued.
+	(tMultipleFileAnchor property: #allFiles type: #FamixTFileAnchor)
 		comment: 'All source code definition files';
-		multivalued).
+		multivalued.
+	(tag  property: #color type: #Object)
+		comment: 'The color of the tag'.
 ]
 
 { #category : #definition }
@@ -1306,6 +1318,12 @@ FamixGenerator >> defineRelations [
 	((tWithInheritances property: #subInheritances)
 			comment: 'Subinheritance relationships, i.e. known subclasses of this type.').
 
+	((tag  property: #entities)
+			comment: 'List of entities with this tag')
+		*-*
+	((tWithTags  property: #tags)
+			comment: 'List of Tags of this entity').
+	
 	((tTemplate property: #templateOwner))
 		*-
 	((tWithTemplates property: #templates)).
@@ -1353,6 +1371,8 @@ FamixGenerator >> defineRelations [
 		*-
 	((tType property: #typedEntities)
 			comment: 'Entities that have this type as declaredType').
+			
+	
 
 
 ]
@@ -1363,328 +1383,253 @@ FamixGenerator >> defineTraits [
 	tAccess := builder newTraitNamed: #TAccess.
 	tAccess comment: self commentForTAccess.
 	tAccess withTesting.
-
 	tAccessible := builder newTraitNamed: #TAccessible.
 	tAccessible comment: self commentForTAccessible.
-
 	tAnnotationInstance := builder newTraitNamed: #TAnnotationInstance.
 	tAnnotationInstance comment: self commentForTAnnotationInstance.
-
-	tAnnotationInstanceAttribute := builder newTraitNamed: #TAnnotationInstanceAttribute.
-	tAnnotationInstanceAttribute comment: self commentForTAnnotationInstanceAttribute.
-
+	tAnnotationInstanceAttribute := builder
+		newTraitNamed: #TAnnotationInstanceAttribute.
+	tAnnotationInstanceAttribute
+		comment: self commentForTAnnotationInstanceAttribute.
 	tAnnotationType := builder newTraitNamed: #TAnnotationType.
 	tAnnotationType comment: self commentForTAnnotationType.
-
-	tAnnotationTypeAttribute := builder newTraitNamed: #TAnnotationTypeAttribute.
-	tAnnotationTypeAttribute comment: self commentForTAnnotationTypeAttribute.
-
+	tAnnotationTypeAttribute := builder
+		newTraitNamed: #TAnnotationTypeAttribute.
+	tAnnotationTypeAttribute
+		comment: self commentForTAnnotationTypeAttribute.
 	tAssociation := builder newTraitNamed: #TAssociation.
 	tAssociation comment: self commentForTAssociation.
 	tAssociation withTesting.
-
 	tAttribute := builder newTraitNamed: #TAttribute.
 	tAttribute comment: self commentForTAttribute.
 	tAttribute withTesting.
-
 	tCaughtException := builder newTraitNamed: #TCaughtException.
 	tCaughtException comment: self commentForTCaughtException.
-
 	tComment := builder newTraitNamed: #TComment.
 	tComment comment: self commentForTComment.
-
 	tCompilationUnit := builder newTraitNamed: #TCompilationUnit.
 	tCompilationUnit comment: self commentForTCompilationUnit.
-
 	tClass := builder newTraitNamed: #TClass.
 	tClass comment: self commentForTClass.
 	tClass withTesting.
-
 	tDeclaredException := builder newTraitNamed: #TDeclaredException.
 	tDeclaredException comment: self commentForTDeclaredException.
-
-	tDereferencedInvocation := builder newTraitNamed: #TDereferencedInvocation.
-	tDereferencedInvocation comment: self commentForTDereferencedInvocation.
-
+	tDereferencedInvocation := builder
+		newTraitNamed: #TDereferencedInvocation.
+	tDereferencedInvocation
+		comment: self commentForTDereferencedInvocation.
 	tEnumValue := builder newTraitNamed: #TEnumValue.
 	tEnumValue comment: self commentForTEnumValue.
-
 	tException := builder newTraitNamed: #TException.
 	tException comment: self commentForTException.
-
 	tFile := builder newTraitNamed: #TFile.
 	tFile comment: self commentForTFile.
-
 	tFolder := builder newTraitNamed: #TFolder.
 	tFolder comment: self commentForTFolder.
-
 	tFileSystemEntity := builder newTraitNamed: #TFileSystemEntity.
-
 	tFileAnchor := builder newTraitNamed: #TFileAnchor.
 	tFileAnchor comment: self commentForTFileAnchor.
-
 	tFileNavigation := builder newTraitNamed: #TFileNavigation.
 	tFileNavigation comment: self commentForTFileNavigation.
-
-	tIndexedFileNavigation := builder newTraitNamed: #TIndexedFileNavigation.
+	tIndexedFileNavigation := builder
+		newTraitNamed: #TIndexedFileNavigation.
 	tIndexedFileNavigation comment: self commentForTIndexedFileNavigation.
-
 	tFileInclude := builder newTraitNamed: #TFileInclude.
 	tFileInclude comment: self commentForTFileInclude.
-
 	tFunction := builder newTraitNamed: #TFunction.
 	tFunction comment: self commentForTFunction.
 	tFunction withTesting.
-
 	tGlobalVariable := builder newTraitNamed: #TGlobalVariable.
 	tGlobalVariable comment: self commentForTGlobalVariable.
-
 	tWithGlobalVariables := builder newTraitNamed: #TWithGlobalVariables.
 	tWithGlobalVariables comment: self commentForTWithGlobalVariables.
-
 	tHeader := builder newTraitNamed: #THeader.
 	tHeader comment: self commentForTHeader.
-
 	tImplicitVariable := builder newTraitNamed: #TImplicitVariable.
 	tImplicitVariable comment: self commentForTImplicitVariable.
 	tImplicitVariable withTesting.
-
 	tInheritance := builder newTraitNamed: #TInheritance.
 	tInheritance comment: self commentForTInheritance.
 	tInheritance withTesting.
-
 	tInvocable := builder newTraitNamed: #TInvocable.
 	tInvocable comment: self commentForTInvocable.
-
 	tInvocation := builder newTraitNamed: #TInvocation.
 	tInvocation comment: self commentForTInvocation.
 	tInvocation withTesting.
-
 	tInvocationsReceiver := builder newTraitNamed: #TInvocationsReceiver.
 	tInvocationsReceiver comment: self commentForTInvocationsReceiver.
-
 	tLocalVariable := builder newTraitNamed: #TLocalVariable.
 	tLocalVariable comment: self commentForTLocalVariable.
-
 	tMethod := builder newTraitNamed: #TMethod.
 	tMethod comment: self commentForTMethod.
 	tMethod withTesting.
-
 	tModule := builder newTraitNamed: #TModule.
 	tModule comment: self commentForTModule.
-
 	tNamedEntity := builder newTraitNamed: #TNamedEntity.
 	tNamedEntity comment: self commentForTNamed.
-
 	tNamespace := builder newTraitNamed: #TNamespace.
 	tNamespace comment: self commentForTNamespace.
 	tNamespace withTesting.
-
 	tPackage := builder newTraitNamed: #TPackage.
 	tPackage comment: self commentForTPackage.
 	tPackage withTesting.
-
 	tPackageable := builder newTraitNamed: #TPackageable.
 	tPackageable comment: self commentForTPackageable.
-
 	tParameter := builder newTraitNamed: #TParameter.
 	tParameter comment: self commentForTParameter.
-
 	tParameterizedType := builder newTraitNamed: #TParameterType.
 	tParameterizedType comment: self commentForTParameterType.
-
 	tParameterizedType := builder newTraitNamed: #TParameterizedType.
 	tParameterizedType comment: self commentForTParameterizedType.
-
-	tParameterizedTypeUser := builder newTraitNamed: #TParameterizedTypeUser.
+	tParameterizedTypeUser := builder
+		newTraitNamed: #TParameterizedTypeUser.
 	tParameterizedTypeUser comment: self commentForTParameterizedTypeUser.
-
 	tPreprocessorDefine := builder newTraitNamed: #TPreprocessorDefine.
 	tPreprocessorDefine comment: self commentForTPreprocessorDefine.
-
 	tPreprocessorIfdef := builder newTraitNamed: #TPreprocessorIfdef.
 	tPreprocessorIfdef comment: self commentForTPreprocessorIfdef.
-
 	tReference := builder newTraitNamed: #TReference.
 	tReference comment: self commentForTReference.
 	tReference withTesting.
-
 	tReferenceable := builder newTraitNamed: #TReferenceable.
 	tReferenceable comment: self commentForTReferenceable.
-
 	tScopingEntity := builder newTraitNamed: #TScopingEntity.
 	tScopingEntity comment: self commentForTScopingEntity.
-
 	tSourceAnchor := builder newTraitNamed: #TSourceAnchor.
 	tSourceAnchor comment: self commentForTSourceAnchor.
-
 	tSourceEntity := builder newTraitNamed: #TSourceEntity.
 	tSourceEntity comment: self commentForTSourceEntity.
-
 	tSourceLanguage := builder newTraitNamed: #TSourceLanguage.
 	tSourceLanguage comment: self commentForTSourceLanguage.
-
 	tStructuralEntity := builder newTraitNamed: #TStructuralEntity.
 	tStructuralEntity comment: self commentForTStructuralEntity.
 	tStructuralEntity withTesting.
-
 	tTemplate := builder newTraitNamed: #TTemplate.
 	tTemplate comment: self commentForTTemplate.
-
 	tTemplateUser := builder newTraitNamed: #TTemplateUser.
 	tTemplateUser comment: self commentForTTemplateUser.
-
 	tThrownException := builder newTraitNamed: #TThrownException.
 	tThrownException comment: self commentForTThrownException.
-
 	tTrait := builder newTraitNamed: #TTrait.
 	tTrait comment: self commentForTTrait.
-
 	tTraitUsage := builder newTraitNamed: #TTraitUsage.
-
 	tTraitUser := builder newTraitNamed: #TTraitUser.
-
 	tType := builder newTraitNamed: #TType.
 	tType comment: self commentForTType.
 	tType withTesting.
-
 	tTypeAlias := builder newTraitNamed: #TTypeAlias.
 	tTypeAlias comment: self commentForTTypeAlias.
-
-	tTypedAnnotationInstance := builder newTraitNamed: #TTypedAnnotationInstance.
-	tTypedAnnotationInstance comment: self commentForTTypedAnnotationInstance.
-
-	tTypedAnnotationInstanceAttribute := builder newTraitNamed: #TTypedAnnotationInstanceAttribute.
-	tTypedAnnotationInstanceAttribute comment: self commentForTTypedAnnotationInstanceAttribute.
-
+	tTypedAnnotationInstance := builder
+		newTraitNamed: #TTypedAnnotationInstance.
+	tTypedAnnotationInstance
+		comment: self commentForTTypedAnnotationInstance.
+	tTypedAnnotationInstanceAttribute := builder
+		newTraitNamed: #TTypedAnnotationInstanceAttribute.
+	tTypedAnnotationInstanceAttribute
+		comment: self commentForTTypedAnnotationInstanceAttribute.
 	tTypedEntity := builder newTraitNamed: #TTypedEntity.
 	tTypedEntity comment: self commentForTTypedStructure.
-
-	tUnknownSourceLanguage := builder newTraitNamed: #TUnknownSourceLanguage.
-
+	tUnknownSourceLanguage := builder
+		newTraitNamed: #TUnknownSourceLanguage.
 	tWithAccesses := builder newTraitNamed: #TWithAccesses.
 	tWithAccesses comment: self commentForTWithAccesses.
-
-	tWithAnnotationInstanceAttributes := builder newTraitNamed: #TWithAnnotationInstanceAttributes.
-	tWithAnnotationInstanceAttributes comment: self commentForTWithAnnotationInstanceAttributes.
-
-	tWithAnnotationInstances := builder newTraitNamed: #TWithAnnotationInstances.
-	tWithAnnotationInstances comment: self commentForTWithAnnotationInstances.
-
+	tWithAnnotationInstanceAttributes := builder
+		newTraitNamed: #TWithAnnotationInstanceAttributes.
+	tWithAnnotationInstanceAttributes
+		comment: self commentForTWithAnnotationInstanceAttributes.
+	tWithAnnotationInstances := builder
+		newTraitNamed: #TWithAnnotationInstances.
+	tWithAnnotationInstances
+		comment: self commentForTWithAnnotationInstances.
 	tWithAnnotationTypes := builder newTraitNamed: #TWithAnnotationTypes.
 	tWithAnnotationTypes comment: self commentForTWithAnnotationTypes.
-
 	tWithAttributes := builder newTraitNamed: #TWithAttributes.
 	tWithAttributes comment: self commentForTWithAttributes.
-
-	tWithCaughtExceptions := builder newTraitNamed: #TWithCaughtExceptions.
+	tWithCaughtExceptions := builder
+		newTraitNamed: #TWithCaughtExceptions.
 	tWithCaughtExceptions comment: self commentForTWithCaughtExceptions.
-
 	tWithClasses := builder newTraitNamed: #TWithClasses.
 	tWithClasses comment: self commentForTWithClasses.
-
 	tWithClassScope := builder newTraitNamed: #TWithClassScope.
 	tWithClassScope comment: self commentForTWithClassScope.
-
 	tWithComments := builder newTraitNamed: #TWithComments.
 	tWithComments comment: self commentForTWithComments.
-
 	tWithCompilationUnit := builder newTraitNamed: #TWithCompilationUnit.
 	tWithCompilationUnit comment: self commentForTWithCompilationUnit.
-
-	tWithDeclaredExceptions := builder newTraitNamed: #TWithDeclaredExceptions.
-	tWithDeclaredExceptions comment: self commentForTWithDeclaredExceptions.
-
-	tWithDereferencedInvocations := builder newTraitNamed: #TWithDereferencedInvocations.
-	tWithDereferencedInvocations comment: self commentForTWithDereferencedInvocations.
-
+	tWithDeclaredExceptions := builder
+		newTraitNamed: #TWithDeclaredExceptions.
+	tWithDeclaredExceptions
+		comment: self commentForTWithDeclaredExceptions.
+	tWithDereferencedInvocations := builder
+		newTraitNamed: #TWithDereferencedInvocations.
+	tWithDereferencedInvocations
+		comment: self commentForTWithDereferencedInvocations.
 	tWithEnumValues := builder newTraitNamed: #TWithEnumValues.
 	tWithEnumValues comment: self commentForTWithEnumValues.
-
 	tWithExceptions := builder newTraitNamed: #TWithExceptions.
 	tWithExceptions comment: self commentForTWithExceptions.
-
 	tWithFileIncludes := builder newTraitNamed: #TWithFileIncludes.
 	tWithFileIncludes comment: self commentForTWithFileIncludes.
-
 	tWithFiles := builder newTraitNamed: #TWithFiles.
 	tWithFiles comment: self commentForTWithFiles.
-
 	tWithFunctions := builder newTraitNamed: #TWithFunctions.
 	tWithFunctions comment: self commentForTWithFunctions.
-
 	tWithHeader := builder newTraitNamed: #TWithHeader.
 	tWithHeader comment: self commentForTWithHeader.
-
-	tWithImplicitVariables := builder newTraitNamed: #TWithImplicitVariables.
+	tWithImplicitVariables := builder
+		newTraitNamed: #TWithImplicitVariables.
 	tWithImplicitVariables comment: self commentForTWithImplicitVariables.
-
 	tWithInheritances := builder newTraitNamed: #TWithInheritances.
 	tWithInheritances comment: self commentForTWithInheritances.
-
 	tWithInvocations := builder newTraitNamed: #TWithInvocations.
 	tWithInvocations comment: self commentForTWithInvocations.
-
 	tWithLocalVariables := builder newTraitNamed: #TWithLocalVariables.
 	tWithLocalVariables comment: self commentForTWithLocalVariables.
-
 	tWithMethods := builder newTraitNamed: #TWithMethods.
 	tWithMethods comment: self commentForTWithMethods.
-
 	tDefinedInModule := builder newTraitNamed: #TDefinedInModule.
 	tDefinedInModule comment: self commentForTDefinedInModule.
-
 	tWithPackages := builder newTraitNamed: #TWithPackages.
 	tWithPackages comment: self commentForTWithPackages.
-
-	tWithParameterizedTypeUsers := builder newTraitNamed: #TWithParameterizedTypeUsers.
-	tWithParameterizedTypeUsers comment: self commentForTWithParameterizedTypeUsers.
-
-	tWithParameterizedTypes := builder newTraitNamed: #TWithParameterizedTypes.
-	tWithParameterizedTypes comment: self commentForTWithParameterizedTypes.
-
+	tWithParameterizedTypeUsers := builder
+		newTraitNamed: #TWithParameterizedTypeUsers.
+	tWithParameterizedTypeUsers
+		comment: self commentForTWithParameterizedTypeUsers.
+	tWithParameterizedTypes := builder
+		newTraitNamed: #TWithParameterizedTypes.
+	tWithParameterizedTypes
+		comment: self commentForTWithParameterizedTypes.
 	tWithParameters := builder newTraitNamed: #TWithParameters.
 	tWithParameters comment: self commentForTWithParameters.
-
 	tWithReferences := builder newTraitNamed: #TWithReferences.
 	tWithReferences comment: self commentForTWithReferences.
-
 	tHasSignature := builder newTraitNamed: #THasSignature.
 	tHasSignature comment: self commentForTHasSignature.
-
 	tWithSourceAnchor := builder newTraitNamed: #TWithSourceAnchor.
 	tWithSourceAnchor comment: self commentForTWithSourceAnchor.
-
 	tWithSourceLanguage := builder newTraitNamed: #TWithSourceLanguage.
 	tWithSourceLanguage comment: self commentForTWithSourceLanguage.
-
+	tWithTags := builder newTraitNamed: #TWithTags.
+	tWithTags comment: self commentForTWithTags.
 	tWithTemplates := builder newTraitNamed: #TWithTemplates.
 	tWithTemplates comment: self commentForTWithTemplates.
-
-	tWithThrownExceptions := builder newTraitNamed: #TWithThrownExceptions.
+	tWithThrownExceptions := builder
+		newTraitNamed: #TWithThrownExceptions.
 	tWithThrownExceptions comment: self commentForTWithThrownExceptions.
-
 	tWithTraits := builder newTraitNamed: #TWithTraits.
 	tWithTraits comment: self commentForTWithTraits.
-
 	tWithTypeAliases := builder newTraitNamed: #TWithTypeAliases.
 	tWithTypeAliases comment: self commentForTWithTypeAliases.
-
 	tWithTypes := builder newTraitNamed: #TWithTypes.
 	tWithTypes comment: self commentForTWithTypes.
-
 	tHasImmediateSource := builder newTraitNamed: #THasImmediateSource.
 	tHasImmediateSource comment: self commentForTHasImmediateSource.
-
 	tHasModifiers := builder newTraitNamed: #THasModifiers.
-
 	tWithStatements := builder newTraitNamed: #TWithStatements.
-
 	tMultipleFileAnchor := builder newTraitNamed: #TMultipleFileAnchor.
-
-	tCohesionCouplingMetrics := builder newTraitNamed: #TCohesionCouplingMetrics.
-
-	tClassHierarchyNavigation := builder newTraitNamed: #TClassHierarchyNavigation.
-
+	tCohesionCouplingMetrics := builder
+		newTraitNamed: #TCohesionCouplingMetrics.
+	tClassHierarchyNavigation := builder
+		newTraitNamed: #TClassHierarchyNavigation.
 	tLCOMMetrics := builder newTraitNamed: #TLCOMMetrics
 ]
