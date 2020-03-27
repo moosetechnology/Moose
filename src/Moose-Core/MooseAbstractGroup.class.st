@@ -8,8 +8,8 @@ It stores the contained entities in a storage variable that points to a MooseGro
 Class {
 	#name : #MooseAbstractGroup,
 	#superclass : #MooseObject,
-	#traits : 'TMooseGroupDependencyQueries',
-	#classTraits : 'TMooseGroupDependencyQueries classTrait',
+	#traits : 'TMooseGroupDependencyQueries + FamixTGroup',
+	#classTraits : 'TMooseGroupDependencyQueries classTrait + FamixTGroup classTrait',
 	#instVars : [
 		'storage'
 	],
