@@ -259,7 +259,7 @@ MooseAbstractGroup >> allTypes [
 MooseAbstractGroup >> numberOfAssociations [
 	<FMProperty: #numberOfAssociations type: #Number>
 	<FMComment: 'The total number of associations'>
-	^ (self allWithSubTypesOf: FamixTAssociation) size
+	^ self numberOfEntityUsing: FamixTAssociation
 ]
 
 { #category : #'*Famix-Traits' }
@@ -282,5 +282,5 @@ MooseAbstractGroup >> numberOfLinesOfCode [
 MooseAbstractGroup >> numberOfPackages [
 	<FMProperty: #numberOfPackages type: #Number>
 	<FMComment: 'Total number of packages'>
-	^ self privateState propertyAt: #numberOfPackages ifAbsentPut: [ self allPackages size ] 
+	^ self privateState propertyAt: #numberOfPackages ifAbsentPut: [ self numberOfEntityUsing: FamixTPackage ] 
 ]
