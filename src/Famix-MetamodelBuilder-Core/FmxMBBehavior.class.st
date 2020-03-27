@@ -474,7 +474,7 @@ FmxMBBehavior >> uses: aTrait [
 
 { #category : #'testing selectors' }
 FmxMBBehavior >> withGroup [
-	self builder groupOf: self
+	^ self builder groupOf: self
 ]
 
 { #category : #generalization }
