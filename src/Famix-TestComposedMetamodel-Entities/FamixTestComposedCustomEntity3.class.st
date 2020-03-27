@@ -51,3 +51,10 @@ FamixTestComposedCustomEntity3 >> customEntity3: anObject [
 	<generated>
 	self privateState attributeAt: #customEntity3 put: (FMMultivalueLink on: self update: #customEntities3 from: self customEntity3 to: anObject).
 ]
+
+{ #category : #testing }
+FamixTestComposedCustomEntity3 >> isAssociation [
+
+	<generated>
+	^ false
+]

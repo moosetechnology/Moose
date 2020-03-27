@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixTestComposedAssociation,
 	#superclass : #FamixTestComposedEntity,
-	#traits : 'TAssociationMetaLevelDependency',
-	#classTraits : 'TAssociationMetaLevelDependency classTrait',
+	#traits : 'FamixTAssociation + TAssociationMetaLevelDependency',
+	#classTraits : 'FamixTAssociation classTrait + TAssociationMetaLevelDependency classTrait',
 	#category : #'Famix-TestComposedMetamodel-Entities-Entities'
 }
 
@@ -50,25 +50,21 @@ FamixTestComposedAssociation >> c25: anObject [
 ]
 
 { #category : #accessing }
-FamixTestComposedAssociation >> from [
-
+FamixTestComposedAssociation >> source [
 	^ self c25
 ]
 
 { #category : #accessing }
-FamixTestComposedAssociation >> from: anObject [
-
-	^ self c25: anObject
+FamixTestComposedAssociation >> source: aSource [
+	^ self c25: aSource
 ]
 
 { #category : #accessing }
-FamixTestComposedAssociation >> to [
-
+FamixTestComposedAssociation >> target [
 	^ self c15
 ]
 
 { #category : #accessing }
-FamixTestComposedAssociation >> to: anObject [
-
-	^ self c15: anObject
+FamixTestComposedAssociation >> target: aTarget [
+	^ self c15: aTarget
 ]

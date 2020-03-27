@@ -72,3 +72,10 @@ FamixTestComposedCustomEntity1 >> customEntity1Group [
 	<navigation: 'CustomEntity1'>
 	^ MooseGroup with: self customEntity1
 ]
+
+{ #category : #testing }
+FamixTestComposedCustomEntity1 >> isAssociation [
+
+	<generated>
+	^ false
+]
