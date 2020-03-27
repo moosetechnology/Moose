@@ -469,7 +469,7 @@ FmxMBBehavior >> withPrecedenceOf: aTrait [
 
 	self additionalProperties
 		at: #precedingTrait
-		put: (aTrait isSymbol ifTrue: [ prefix , aTrait ] ifFalse: [aTrait fullName])
+		put: (aTrait isSymbol ifTrue: [ (self builder getTraitNamed: aTrait) fullName ] ifFalse: [aTrait fullName])
 ]
 
 { #category : #'testing selectors' }
