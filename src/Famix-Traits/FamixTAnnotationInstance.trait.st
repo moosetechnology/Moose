@@ -36,14 +36,6 @@ FamixTAnnotationInstance classSide >> annotationFamixTAnnotationInstanceGroup [
 	^ FamixTAnnotationInstanceGroup
 ]
 
-{ #category : #groups }
-FamixTAnnotationInstance classSide >> famixTAnnotationInstanceRelatedGroup [
-
-	<mooseGroup>
-	
-	^ FAMIXAnnotationInstanceGroup
-]
-
 { #category : #accessing }
 FamixTAnnotationInstance >> annotatedEntity [
 	"Relation named: #annotatedEntity type: #FamixTWithAnnotationInstances opposite: #annotationInstances"

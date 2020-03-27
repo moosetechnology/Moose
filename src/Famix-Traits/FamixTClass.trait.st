@@ -27,26 +27,6 @@ FamixTClass classSide >> annotationFamixTClassGroup [
 	^ FamixTClassGroup
 ]
 
-{ #category : #groups }
-FamixTClass classSide >> famixFamixTClassGroup [
-	<mooseGroup>
-	^ FamixTClassGroup
-]
-
-{ #category : #groups }
-FamixTClass classSide >> famixTClassGroup [
-	<mooseGroup>
-	^ TClassGroup
-]
-
-{ #category : #groups }
-FamixTClass classSide >> famixTClassRelatedGroup [
-
-	<mooseGroup>
-	
-	^ FAMIXClassGroup
-]
-
 { #category : #testing }
 FamixTClass >> isClass [
 

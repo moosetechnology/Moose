@@ -7,6 +7,7 @@ Trait {
 		'#childrenFileSystemEntities => FMMany type: #FamixTFileSystemEntity opposite: #parentFolder'
 	],
 	#traits : 'FamixTFileSystemEntity',
+	#classTraits : 'FamixTFileSystemEntity classTrait',
 	#category : #'Famix-Traits-File'
 }
 
@@ -24,14 +25,6 @@ FamixTFolder classSide >> annotationFamixTFolderGroup [
 	<generated>
 	<mooseGroup>
 	^ FamixTFolderGroup
-]
-
-{ #category : #groups }
-FamixTFolder classSide >> famixTFolderRelatedGroup [
-
-	<mooseGroup>
-	
-	^ FAMIXFolderGroup
 ]
 
 { #category : #adding }
@@ -86,7 +79,7 @@ FamixTFolder >> files [
 { #category : #adding }
 FamixTFolder >> filesGroup [
 	<navigation: 'Files'>
-	^FAMIXFileGroup withAll: self files withDescription: 'Files'
+	^FamixTFileGroup withAll: self files withDescription: 'Files'
 ]
 
 { #category : #adding }
@@ -97,7 +90,7 @@ FamixTFolder >> folders [
 { #category : #adding }
 FamixTFolder >> foldersGroup [
 	<navigation: 'Folders'>
-	^FAMIXFolderGroup withAll: self folders withDescription: 'Folders'
+	^FamixTFolderGroup withAll: self folders withDescription: 'Folders'
 ]
 
 { #category : #testing }

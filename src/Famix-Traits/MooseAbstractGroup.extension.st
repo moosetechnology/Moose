@@ -38,7 +38,7 @@ MooseAbstractGroup >> allCaughtExceptions [
 { #category : #'*Famix-Traits' }
 MooseAbstractGroup >> allClasses [
 	<navigation: 'All classes'>
-	^ self allUsing: FamixTClass ofGroupClass: FAMIXClassGroup
+	^ self allUsing: FamixTClass ofGroupClass: FamixTClassGroup
 ]
 
 { #category : #'*Famix-Traits' }
@@ -252,7 +252,7 @@ MooseAbstractGroup >> allThrownExceptions [
 { #category : #'*Famix-Traits' }
 MooseAbstractGroup >> allTypes [
 	<navigation: 'All types'>
-	^ self allUsing: FamixTType ofGroupClass: FAMIXTypeGroup
+	^ self allUsing: FamixTType ofGroupClass: FamixTTypeGroup
 ]
 
 { #category : #'*Famix-Traits' }

@@ -37,14 +37,6 @@ FamixTInvocation classSide >> annotationFamixTInvocationGroup [
 	^ FamixTInvocationGroup
 ]
 
-{ #category : #groups }
-FamixTInvocation classSide >> famixTInvocationRelatedGroup [
-
-	<mooseGroup>
-	
-	^ FAMIXInvocationGroup
-]
-
 { #category : #adding }
 FamixTInvocation >> addCandidate: aBehaviouralEntity [ 
 	candidates add: aBehaviouralEntity

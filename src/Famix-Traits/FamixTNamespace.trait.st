@@ -26,14 +26,6 @@ FamixTNamespace classSide >> annotationFamixTNamespaceGroup [
 	^ FamixTNamespaceGroup
 ]
 
-{ #category : #groups }
-FamixTNamespace classSide >> famixTNamespaceRelatedGroup [
-
-	<mooseGroup>
-	
-	^ FAMIXNamespaceGroup
-]
-
 { #category : #testing }
 FamixTNamespace >> isNamespace [
 

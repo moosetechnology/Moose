@@ -28,14 +28,6 @@ FamixTPackage classSide >> annotationFamixTPackageGroup [
 	^ FamixTPackageGroup
 ]
 
-{ #category : #groups }
-FamixTPackage classSide >> famixTPackageRelatedGroup [
-
-	<mooseGroup>
-	
-	^ FAMIXPackageGroup
-]
-
 { #category : #accessing }
 FamixTPackage >> addChildEntity: anObject [
 	childEntities add: anObject

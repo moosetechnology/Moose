@@ -1,7 +1,7 @@
-Extension { #name : #FAMIXTypeGroup }
+Extension { #name : #FamixTTypeGroup }
 
 { #category : #'*Famix-Traits' }
-FAMIXTypeGroup >> afferentCoupling [
+FamixTTypeGroup >> afferentCoupling [
 	"Afferent coupling for a class group is the number of external classes that depend upon this class group"
 
 	<FMProperty: #afferentCoupling type: #Number>
@@ -17,7 +17,7 @@ FAMIXTypeGroup >> afferentCoupling [
 ]
 
 { #category : #'*Famix-Traits' }
-FAMIXTypeGroup >> bunchCohesion [
+FamixTTypeGroup >> bunchCohesion [
 	"Computing cohesion (Bunch formula). It is also considered anonymous and inner classes (in Java)."
 
 	<FMProperty: #bunchCohesion type: #Number>
@@ -37,7 +37,7 @@ FAMIXTypeGroup >> bunchCohesion [
 ]
 
 { #category : #'*Famix-Traits' }
-FAMIXTypeGroup >> bunchCouplingWith: aClassGroup [
+FamixTTypeGroup >> bunchCouplingWith: aClassGroup [
 	"Computing coupling (Bunch formula) from aClassGroup to receiver. It is also considered anonymous and inner classes (in Java)"
 
 	| cgClasses cgTypes dependClasses dependTypes interConnectivities |
@@ -63,7 +63,7 @@ FAMIXTypeGroup >> bunchCouplingWith: aClassGroup [
 ]
 
 { #category : #'*Famix-Traits' }
-FAMIXTypeGroup >> efferentCoupling [
+FamixTTypeGroup >> efferentCoupling [
 	"Efferent coupling for a class group is the number of classes it depends upon"
 
 	<FMProperty: #efferentCoupling type: #Number>

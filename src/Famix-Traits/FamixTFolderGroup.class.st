@@ -19,3 +19,12 @@ FamixTFolderGroup class >> metamodel [
 	<generated>
 	^ FamixModel metamodel
 ]
+
+{ #category : #'accessing-dynamic' }
+FamixTFolderGroup >> allFiles [
+	| files |
+	
+	files := OrderedCollection new.
+	self do: [:folder | files addAll: folder files].
+	^ files 
+]

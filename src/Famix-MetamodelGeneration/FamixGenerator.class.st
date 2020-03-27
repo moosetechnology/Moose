@@ -1486,6 +1486,7 @@ FamixGenerator >> defineTraits [
 
 	tNamedEntity := builder newTraitNamed: #TNamedEntity.
 	tNamedEntity comment: self commentForTNamed.
+	tNamedEntity withGroup.
 
 	tNamespace := builder newTraitNamed: #TNamespace.
 	tNamespace comment: self commentForTNamespace.

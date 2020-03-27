@@ -1,7 +1,7 @@
-Extension { #name : #FAMIXNamespaceGroup }
+Extension { #name : #FamixTNamespaceGroup }
 
 { #category : #'*Moose-RoassalPaintings' }
-FAMIXNamespaceGroup >> viewDependenciesWithCycles [
+FamixTNamespaceGroup >> viewDependenciesWithCycles [
 	<menuItem: 'Dependencies (cycles)' category: 'Visualize'>
 	|view |
 	view := RTMondrian new.
@@ -10,7 +10,7 @@ FAMIXNamespaceGroup >> viewDependenciesWithCycles [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FAMIXNamespaceGroup >> viewDependenciesWithCyclesOn: view [
+FamixTNamespaceGroup >> viewDependenciesWithCyclesOn: view [
 	| tarjan |
 	tarjan := MalTarjan new.
 	tarjan nodes: self.
@@ -30,7 +30,7 @@ FAMIXNamespaceGroup >> viewDependenciesWithCyclesOn: view [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FAMIXNamespaceGroup >> viewHierarchy [
+FamixTNamespaceGroup >> viewHierarchy [
 	<menuItem: 'Namespace Hierarchy' category: 'Visualize'>
 	| view |
 	view := RTMondrian new.
@@ -39,7 +39,7 @@ FAMIXNamespaceGroup >> viewHierarchy [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FAMIXNamespaceGroup >> viewHierarchyOn: view [
+FamixTNamespaceGroup >> viewHierarchyOn: view [
 	view shape label text: #name.
 	view nodes: self.
 	view shape orthoHorizontalLine color: Color veryLightGray.
@@ -48,7 +48,7 @@ FAMIXNamespaceGroup >> viewHierarchyOn: view [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FAMIXNamespaceGroup >> viewWithinOverallHierarchy [
+FamixTNamespaceGroup >> viewWithinOverallHierarchy [
 	<menuItem: 'Within overall hierarchy' category: 'Visualize'>
 	| view |
 	view := RTMondrian new.
@@ -57,7 +57,7 @@ FAMIXNamespaceGroup >> viewWithinOverallHierarchy [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FAMIXNamespaceGroup >> viewWithinOverallHierarchyOn: view [ 
+FamixTNamespaceGroup >> viewWithinOverallHierarchyOn: view [ 
 	view shape label
 		text: #name;
 		color: [:each | (self includes: each) ifTrue: [Color black] ifFalse: [Color gray] ] .

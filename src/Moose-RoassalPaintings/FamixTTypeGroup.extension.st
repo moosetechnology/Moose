@@ -1,7 +1,7 @@
-Extension { #name : #FAMIXTypeGroup }
+Extension { #name : #FamixTTypeGroup }
 
 { #category : #'*Moose-RoassalPaintings' }
-FAMIXTypeGroup >> addSystemComplexityLegendOn: view [
+FamixTTypeGroup >> addSystemComplexityLegendOn: view [
 
 	| lb |
 	lb := RTLegendBuilder new.
@@ -17,7 +17,7 @@ FAMIXTypeGroup >> addSystemComplexityLegendOn: view [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FAMIXTypeGroup >> viewAnnotationConstellation [
+FamixTTypeGroup >> viewAnnotationConstellation [
 	<menuItem: 'Annotation Constellation' category: 'Visualize'>
 	| view |
 	view := RTMondrian new.
@@ -26,12 +26,12 @@ FAMIXTypeGroup >> viewAnnotationConstellation [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FAMIXTypeGroup >> viewAnnotationConstellationOn: view [
-	(FAMIXAnnotationTypeGroup withAll: (self flatCollectAsSet: #annotationTypes)) viewAnnotationConstellationOf: self on: view
+FamixTTypeGroup >> viewAnnotationConstellationOn: view [
+	(FamixTAnnotationTypeGroup withAll: (self flatCollectAsSet: #annotationTypes)) viewAnnotationConstellationOf: self on: view
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FAMIXTypeGroup >> viewBlueprintComplexity [
+FamixTTypeGroup >> viewBlueprintComplexity [
 	<menuItem: 'Blueprint complexity' category: 'Visualize'> 
 	
 	| view |
@@ -44,7 +44,7 @@ FAMIXTypeGroup >> viewBlueprintComplexity [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FAMIXTypeGroup >> viewBlueprintOn: view [
+FamixTTypeGroup >> viewBlueprintOn: view [
 
 	| nodes edges eb |
 	nodes := RTBox new color: Color transparent; elementsOn: self.
@@ -66,7 +66,7 @@ FAMIXTypeGroup >> viewBlueprintOn: view [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FAMIXTypeGroup >> viewSimpleSystemComplexityOn: b [ 
+FamixTTypeGroup >> viewSimpleSystemComplexityOn: b [ 
 	"b is an instance of RTMondrian"
 	
 	| aRectangle |
@@ -85,7 +85,7 @@ FAMIXTypeGroup >> viewSimpleSystemComplexityOn: b [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FAMIXTypeGroup >> viewSimpleSystemComplexityWithSelection: selectedClassGroup height: heightBlock width: widthBlock color: colorBlock on: view [
+FamixTTypeGroup >> viewSimpleSystemComplexityWithSelection: selectedClassGroup height: heightBlock width: widthBlock color: colorBlock on: view [
 	view shape box
 		height: heightBlock;
 		width: widthBlock;
@@ -107,7 +107,7 @@ FAMIXTypeGroup >> viewSimpleSystemComplexityWithSelection: selectedClassGroup he
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FAMIXTypeGroup >> viewSystemAttraction [
+FamixTTypeGroup >> viewSystemAttraction [
 	<menuItem: 'System Attraction' category: 'Visualize'>
 	| view |
 	view := RTMondrian new.
@@ -116,17 +116,17 @@ FAMIXTypeGroup >> viewSystemAttraction [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FAMIXTypeGroup >> viewSystemAttractionHighlighting: strongClasses on: view [
+FamixTTypeGroup >> viewSystemAttractionHighlighting: strongClasses on: view [
 	^ FAMIXSystemAttraction new view: self highlighting: strongClasses on: view
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FAMIXTypeGroup >> viewSystemAttractionOn: view [
+FamixTTypeGroup >> viewSystemAttractionOn: view [
 	^ FAMIXSystemAttraction new view: self on: view
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FAMIXTypeGroup >> viewSystemComplexity [
+FamixTTypeGroup >> viewSystemComplexity [
 	<menuItem: 'System complexity' category: 'Visualize'> 
 	| b |
 	b := RTMondrian new.
@@ -136,7 +136,7 @@ FAMIXTypeGroup >> viewSystemComplexity [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FAMIXTypeGroup >> viewSystemNestingMap [
+FamixTTypeGroup >> viewSystemNestingMap [
 	| view |
 	view := RTView new.
 	self viewSystemNestingMapOnRaw: view.
@@ -144,7 +144,7 @@ FAMIXTypeGroup >> viewSystemNestingMap [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FAMIXTypeGroup >> viewSystemNestingMapOnRaw: view [
+FamixTTypeGroup >> viewSystemNestingMapOnRaw: view [
 	^ FAMIXSystemNestingMap new
 		viewNamespaces: (self mooseModel allNamespaces select: [ :each | each allClasses anySatisfy: [ :c | c isStub not ] ])
 		highlighting: self
@@ -152,7 +152,7 @@ FAMIXTypeGroup >> viewSystemNestingMapOnRaw: view [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FAMIXTypeGroup >> viewUML [
+FamixTTypeGroup >> viewUML [
 	<menuItem: 'UML class diagram' category: 'Visualize'> 
 	
 	| view |
@@ -162,7 +162,7 @@ FAMIXTypeGroup >> viewUML [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FAMIXTypeGroup >> viewUMLOn: view [
+FamixTTypeGroup >> viewUMLOn: view [
 	view
 		addObjects: self;
 		classname: #name;
@@ -174,7 +174,7 @@ FAMIXTypeGroup >> viewUMLOn: view [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FAMIXTypeGroup >> viewWithinClusteredHierarchyOf: largerGroup on: view [
+FamixTTypeGroup >> viewWithinClusteredHierarchyOf: largerGroup on: view [
 	"highlights the types from the current group within a clustered
 	inheritance hierarchy of the largerGroup"
 	| all selected |

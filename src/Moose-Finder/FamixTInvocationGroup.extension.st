@@ -1,7 +1,7 @@
-Extension { #name : #FAMIXInvocationGroup }
+Extension { #name : #FamixTInvocationGroup }
 
 { #category : #'*Moose-Finder' }
-FAMIXInvocationGroup >> mooseFinderListIn: composite [
+FamixTInvocationGroup >> mooseFinderListIn: composite [
 	composite fastTable
 		beMultiple;
 		installExportToCSV;

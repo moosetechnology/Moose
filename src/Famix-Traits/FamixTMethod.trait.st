@@ -31,14 +31,6 @@ FamixTMethod classSide >> annotationFamixTMethodGroup [
 	^ FamixTMethodGroup
 ]
 
-{ #category : #groups }
-FamixTMethod classSide >> famixTMethodRelatedGroup [
-
-	<mooseGroup>
-	
-	^ FAMIXMethodGroup
-]
-
 { #category : #metrics }
 FamixTMethod >> cyclomaticComplexity [
 	<FMProperty: #cyclomaticComplexity type: #Number>

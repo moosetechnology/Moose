@@ -81,16 +81,16 @@ FamixMetricsTest >> testAbstractnessFAMIXClassGroup [
 	class2 := (p2m1 allClasses detect: [ :each | each name = #M1P2C2ReferencerOutSideRefereeInSide ]).
 	class3 := (p2m1 allClasses detect: [ :each | each name = #M1P2C3ReferencerInSideRefereeOutSide ]).
 	class4 := (p2m1 allClasses detect: [ :each | each name = #M1P2C4FullRefereeInSide ]).
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f add: class1.
 	self assert: f abstractness equals: 0.0.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class2;
 		add: class3;
 		add: class4.
 	self assert: f abstractness equals: 0.0.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class1;
 		add: class2;
@@ -114,7 +114,7 @@ FamixMetricsTest >> testAbstractnessFAMIXClassGroup [
 	class14 := (p3m2 allClasses detect: [ :each | each name = #C3 ]).
 	class15 := (p4m2 allClasses detect: [ :each | each name = #A4 ]).
 	class16 := (p4m2 allClasses detect: [ :each | each name = #B4 ]).
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class1;
 		add: class2;
@@ -126,23 +126,23 @@ FamixMetricsTest >> testAbstractnessFAMIXClassGroup [
 		add: class8;
 		add: class9.
 	self assert: f abstractness equals: 0.0.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class10;
 		add: class11.
 	self assert: f abstractness equals: 0.0.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class12;
 		add: class13;
 		add: class14.
 	self assert: f abstractness equals: 0.0.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class15;
 		add: class16.
 	self assert: f abstractness equals: 0.0.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class1;
 		add: class2;
@@ -156,7 +156,7 @@ FamixMetricsTest >> testAbstractnessFAMIXClassGroup [
 		add: class10;
 		add: class11.
 	self assert: f abstractness equals: 0.0.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class12;
 		add: class13;
@@ -183,16 +183,16 @@ FamixMetricsTest >> testAfferentCouplingFAMIXClassGroup [
 	class2 := p2m1 allClasses detect: [ :each | each name = #M1P2C2ReferencerOutSideRefereeInSide ].
 	class3 := p2m1 allClasses detect: [ :each | each name = #M1P2C3ReferencerInSideRefereeOutSide ].
 	class4 := p2m1 allClasses detect: [ :each | each name = #M1P2C4FullRefereeInSide ].
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f add: class1.
 	self assert: f afferentCoupling equals: 0.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class2;
 		add: class3;
 		add: class4.	"M1P1C1FullReferencerOutSide"
 	self assert: f afferentCoupling equals: 1.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class1;
 		add: class2;
@@ -215,7 +215,7 @@ FamixMetricsTest >> testAfferentCouplingFAMIXClassGroup [
 	class14 := p3m2 allClasses detect: [ :each | each name = #C3 ].
 	class15 := p4m2 allClasses detect: [ :each | each name = #A4 ].
 	class16 := p4m2 allClasses detect: [ :each | each name = #B4 ].
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class1;
 		add: class2;
@@ -227,23 +227,23 @@ FamixMetricsTest >> testAfferentCouplingFAMIXClassGroup [
 		add: class8;
 		add: class9.
 	self assert: f afferentCoupling equals: 0.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class10;
 		add: class11.
 	self assert: f afferentCoupling equals: 2.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class12;
 		add: class13;
 		add: class14.
 	self assert: f afferentCoupling equals: 3.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class15;
 		add: class16.
 	self assert: f afferentCoupling equals: 1.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class1;
 		add: class2;
@@ -257,7 +257,7 @@ FamixMetricsTest >> testAfferentCouplingFAMIXClassGroup [
 		add: class10;
 		add: class11.
 	self assert: f afferentCoupling equals: 0.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class12;
 		add: class13;
@@ -284,16 +284,16 @@ FamixMetricsTest >> testDistanceFAMIXClassGroup [
 	class2 := p2m1 allClasses detect: [ :each | each name = #M1P2C2ReferencerOutSideRefereeInSide ].
 	class3 := p2m1 allClasses detect: [ :each | each name = #M1P2C3ReferencerInSideRefereeOutSide ].
 	class4 := p2m1 allClasses detect: [ :each | each name = #M1P2C4FullRefereeInSide ].
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f add: class1.
 	self assert: f distance equals: 0.0.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class2;
 		add: class3;
 		add: class4.
 	self assert: f distance equals: -0.25.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class1;
 		add: class2;
@@ -317,7 +317,7 @@ FamixMetricsTest >> testDistanceFAMIXClassGroup [
 	class15 := p4m2 allClasses detect: [ :each | each name = #A4 ].
 	class16 := p4m2 allClasses detect: [ :each | each name = #B4 ].
 	
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class1;
 		add: class2;
@@ -329,23 +329,23 @@ FamixMetricsTest >> testDistanceFAMIXClassGroup [
 		add: class8;
 		add: class9.
 	self assert: f distance equals: 0.0.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class10;
 		add: class11.
 	self assert: (f distance roundUpTo: 0.001) equals: -0.666.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class12;
 		add: class13;
 		add: class14.
 	self assert: f distance equals: -0.75.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class15;
 		add: class16.
 	self assert: (f distance roundUpTo: 0.001) equals: -0.333.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class1;
 		add: class2;
@@ -359,7 +359,7 @@ FamixMetricsTest >> testDistanceFAMIXClassGroup [
 		add: class10;
 		add: class11.
 	self assert: f distance equals: 0.0.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class12;
 		add: class13;
@@ -386,13 +386,13 @@ FamixMetricsTest >> testEfferentCouplingFAMIXClassGroup [
 	class2 := p2m1 allClasses detect: [ :each | each name = #M1P2C2ReferencerOutSideRefereeInSide ].
 	class3 := p2m1 allClasses detect: [ :each | each name = #M1P2C3ReferencerInSideRefereeOutSide ].
 	class4 := p2m1 allClasses detect: [ :each | each name = #M1P2C4FullRefereeInSide ].
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f add: class1.	"M2P6C13FullRefereeInSideOutSide 
 	M2P5C11FullRefereeOutSide
 	M1P2C3ReferencerInSideRefereeOutSide
 	Object"
 	self assert: f efferentCoupling equals: 4.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class2;
 		add: class3;
@@ -400,7 +400,7 @@ FamixMetricsTest >> testEfferentCouplingFAMIXClassGroup [
 	M2P5C11FullRefereeOutSide
 	Object"
 	self assert: f efferentCoupling equals: 3.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class1;
 		add: class2;
@@ -426,7 +426,7 @@ FamixMetricsTest >> testEfferentCouplingFAMIXClassGroup [
 	class14 := p3m2 allClasses detect: [ :each | each name = #C3 ].
 	class15 := p4m2 allClasses detect: [ :each | each name = #A4 ].
 	class16 := p4m2 allClasses detect: [ :each | each name = #B4 ].
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class1;
 		add: class2;
@@ -442,24 +442,24 @@ FamixMetricsTest >> testEfferentCouplingFAMIXClassGroup [
 	A4
 	Object"
 	self assert: f efferentCoupling equals: 7.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class10;
 		add: class11.	"Object"
 	self assert: f efferentCoupling equals: 1.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class12;
 		add: class13;
 		add: class14.	"Object"
 	self assert: f efferentCoupling equals: 1.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class15;
 		add: class16.	"B3
 	Object"
 	self assert: f efferentCoupling equals: 2.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class1;
 		add: class2;
@@ -475,7 +475,7 @@ FamixMetricsTest >> testEfferentCouplingFAMIXClassGroup [
 	A4
 	Object"
 	self assert: f efferentCoupling equals: 5.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class12;
 		add: class13;
@@ -502,16 +502,16 @@ FamixMetricsTest >> testInstabilityFAMIXClassGroup [
 	class2 := p2m1 allClasses detect: [ :each | each name = #M1P2C2ReferencerOutSideRefereeInSide ].
 	class3 := p2m1 allClasses detect: [ :each | each name = #M1P2C3ReferencerInSideRefereeOutSide ].
 	class4 := p2m1 allClasses detect: [ :each | each name = #M1P2C4FullRefereeInSide ].
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f add: class1.
 	self assert: f instability equals: 1.0.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class2;
 		add: class3;
 		add: class4.
 	self assert: f instability equals: 0.75.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class1;
 		add: class2;
@@ -534,7 +534,7 @@ FamixMetricsTest >> testInstabilityFAMIXClassGroup [
 	class14 := p3m2 allClasses detect: [ :each | each name = #C3 ].
 	class15 := p4m2 allClasses detect: [ :each | each name = #A4 ].
 	class16 := p4m2 allClasses detect: [ :each | each name = #B4 ].
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class1;
 		add: class2;
@@ -546,23 +546,23 @@ FamixMetricsTest >> testInstabilityFAMIXClassGroup [
 		add: class8;
 		add: class9.
 	self assert: f instability equals: 1.0.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class10;
 		add: class11.
 	self assert: f instability equals: (1 / 3) asFloat.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class12;
 		add: class13;
 		add: class14.
 	self assert: f instability equals: (1 / 4) asFloat.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class15;
 		add: class16.
 	self assert: f instability equals: (2 / 3) asFloat.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class1;
 		add: class2;
@@ -576,7 +576,7 @@ FamixMetricsTest >> testInstabilityFAMIXClassGroup [
 		add: class10;
 		add: class11.
 	self assert: f instability equals: 1.0.
-	f := FAMIXTypeGroup new.
+	f := FamixTTypeGroup new.
 	f
 		add: class12;
 		add: class13;

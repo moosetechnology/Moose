@@ -106,7 +106,7 @@ MooseGroupTest >> testEntityNamedIfAbsentPutWithIncorrectEntityAsParameter [
 
 { #category : #tests }
 MooseGroupTest >> testExplicitEmptyCreation [
-	self assert: ((FAMIXTypeGroup withAll: #()) isKindOf: FAMIXTypeGroup)
+	self assert: ((FamixTTypeGroup withAll: #()) isKindOf: FamixTTypeGroup)
 ]
 
 { #category : #tests }

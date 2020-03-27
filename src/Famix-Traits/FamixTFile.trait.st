@@ -26,12 +26,6 @@ FamixTFile classSide >> annotationFamixTFileGroup [
 	^ FamixTFileGroup
 ]
 
-{ #category : #groups }
-FamixTFile classSide >> famixTFileRelatedGroup [
-	<mooseGroup>
-	^ FAMIXFileGroup
-]
-
 { #category : #accessing }
 FamixTFile >> addEntity: famixEntity [
 	self entities add: famixEntity

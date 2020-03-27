@@ -5,7 +5,7 @@ MooseObjectTest >> testAllPropertySelectors [
 	| model class |
 	model := FamixTest1Model new.
 	self assert: (FamixTest1Entity allPropertySelectorsComputableIn: model) equals: IdentityDictionary new.
-	model := FAMIXTypeGroup new.
+	model := FamixTTypeGroup new.
 	class := FamixTest1Class named: 'AClass'.
 	model add: class.
 	self assert: (FamixTest1Entity allPropertySelectorsComputableIn: model) equals: IdentityDictionary new.

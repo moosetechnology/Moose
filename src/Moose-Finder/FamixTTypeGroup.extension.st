@@ -1,13 +1,13 @@
-Extension { #name : #FAMIXTypeGroup }
+Extension { #name : #FamixTTypeGroup }
 
 { #category : #'*Moose-Finder' }
-FAMIXTypeGroup >> browseAsSelectionInSystemComplexityLocator [
+FamixTTypeGroup >> browseAsSelectionInSystemComplexityLocator [
 	<menuItem: 'As selection within system complexity' category: 'Browse'> 
 	MooseSystemComplexityLocator openOn: self mooseModel allModelClasses withSelection: self
 ]
 
 { #category : #'*Moose-Finder' }
-FAMIXTypeGroup >> mooseFinderComplexityIn: composite [
+FamixTTypeGroup >> mooseFinderComplexityIn: composite [
 	<moosePresentationOrder: 20>
 	composite roassal2
 			title: 'Hierarchy';
@@ -20,7 +20,7 @@ FAMIXTypeGroup >> mooseFinderComplexityIn: composite [
 ]
 
 { #category : #'*Moose-Finder' }
-FAMIXTypeGroup >> mooseFinderUMLIn: composite [
+FamixTTypeGroup >> mooseFinderUMLIn: composite [
     <moosePresentationOrder: 20>
     composite roassal2
 			title: 'UML';
@@ -30,7 +30,7 @@ FAMIXTypeGroup >> mooseFinderUMLIn: composite [
 ]
 
 { #category : #'*Moose-Finder' }
-FAMIXTypeGroup >> mooseFinderWithinNestedMapIn: composite [
+FamixTTypeGroup >> mooseFinderWithinNestedMapIn: composite [
 	<moosePresentationOrder: 30>
 	composite roassal2
 			title: 'Nesting';
@@ -41,12 +41,12 @@ FAMIXTypeGroup >> mooseFinderWithinNestedMapIn: composite [
 ]
 
 { #category : #'*Moose-Finder' }
-FAMIXTypeGroup >> mooseIcon [
+FamixTTypeGroup >> mooseIcon [
 	^ MooseIcons famixClassGroup 
 ]
 
 { #category : #'*Moose-Finder' }
-FAMIXTypeGroup >> viewSystemComplexityInWizard [
+FamixTTypeGroup >> viewSystemComplexityInWizard [
 	<menuItem: 'Customizable System Complexity' category: 'Visualize'>
 	self isEmpty ifTrue: [ ^ self ].
 	^ MooseCustomizableSystemComplexityBrowser 

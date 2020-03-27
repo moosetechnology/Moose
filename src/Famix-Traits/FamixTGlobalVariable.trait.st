@@ -27,14 +27,6 @@ FamixTGlobalVariable classSide >> annotationFamixTGlobalVariableGroup [
 	^ FamixTGlobalVariableGroup
 ]
 
-{ #category : #groups }
-FamixTGlobalVariable classSide >> famixTGlobalVariableRelatedGroup [
-
-	<mooseGroup>
-	
-	^ FAMIXGlobalVariableGroup
-]
-
 { #category : #accessing }
 FamixTGlobalVariable >> parentScope [
 	"Relation named: #parentScope type: #FamixTWithGlobalVariables opposite: #globalVariables"

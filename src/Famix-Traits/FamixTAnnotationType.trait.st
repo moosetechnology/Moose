@@ -30,14 +30,6 @@ FamixTAnnotationType classSide >> annotationFamixTAnnotationTypeGroup [
 	^ FamixTAnnotationTypeGroup
 ]
 
-{ #category : #groups }
-FamixTAnnotationType classSide >> famixTAnnotationTypeRelatedGroup [
-
-	<mooseGroup>
-	
-	^ FAMIXAnnotationTypeGroup
-]
-
 { #category : #accessing }
 FamixTAnnotationType >> addInstance: anObject [
 

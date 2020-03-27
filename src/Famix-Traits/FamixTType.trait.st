@@ -31,14 +31,6 @@ FamixTType classSide >> annotationFamixTTypeGroup [
 	^ FamixTTypeGroup
 ]
 
-{ #category : #groups }
-FamixTType classSide >> famixTTypeRelatedGroup [
-
-	<mooseGroup>
-	
-	^ FAMIXTypeGroup
-]
-
 { #category : #adding }
 FamixTType >> addTypedEntity: anObject [
 	<generated>
