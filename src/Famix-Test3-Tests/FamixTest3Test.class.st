@@ -32,6 +32,11 @@ FamixTest3Test >> checkAtScopeWithNonMatchingEntitiesDoWith: aBehavior [
 
 ]
 
+{ #category : #tests }
+FamixTest3Test >> classGroup [
+	^ self class environment at: #FamixTest3ClassGroup
+]
+
 { #category : #accessing }
 FamixTest3Test >> inv1 [
 	^ (model allUsing: FamixTInvocation) anyOne
@@ -141,8 +146,24 @@ FamixTest3Test >> testChildrenTypes [
 ]
 
 { #category : #tests }
+FamixTest3Test >> testClassGroupSuperclassIsTypeGroup [
+	self assert: self classGroup superclass equals: self typeGroup
+]
+
+{ #category : #tests }
+FamixTest3Test >> testGroupsAreGenerated [
+	self assert: (self class environment includesKey: #FamixTest3TypeGroup).
+	self assert: (self class environment includesKey: #FamixTest3ClassGroup)
+]
+
+{ #category : #tests }
 FamixTest3Test >> testIncomingReferences [
 	self assertCollection: self pt1 incomingReferences hasSameElements: {self ref1}
+]
+
+{ #category : #tests }
+FamixTest3Test >> testMooseGroupAllWith [
+	self assert: (model allUsing: FamixTClass) class equals: self classGroup
 ]
 
 { #category : #tests }
@@ -153,4 +174,9 @@ FamixTest3Test >> testParentTypes [
 { #category : #tests }
 FamixTest3Test >> testQueryIncomingDependencies [
 	self assertCollection: self pt1 queryIncomingDependencies hasSameElements: {self ref1}
+]
+
+{ #category : #tests }
+FamixTest3Test >> typeGroup [
+	^ self class environment at: #FamixTest3TypeGroup
 ]

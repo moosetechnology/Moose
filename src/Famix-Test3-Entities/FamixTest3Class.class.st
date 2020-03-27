@@ -14,3 +14,10 @@ FamixTest3Class class >> annotation [
 	<generated>
 	^self
 ]
+
+{ #category : #groups }
+FamixTest3Class class >> annotationFamixTest3ClassGroup [
+	<generated>
+	<mooseGroup>
+	^ FamixTest3ClassGroup
+]
