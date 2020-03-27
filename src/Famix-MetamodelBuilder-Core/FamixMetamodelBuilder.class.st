@@ -278,10 +278,10 @@ In order to fix the issue you should use #remoteTrait:withPrefix: in your genera
 { #category : #generating }
 FamixMetamodelBuilder >> groupOf: aClass [
 	| group |
-	
-	group := (self newClassGroupNamed: aClass name , 'Group').
+	group := (self newClassGroupNamed: aClass name , 'Group')
+		innerClass: aClass;
+		yourself.
 	^ group
-	
 ]
 
 { #category : #accessing }
