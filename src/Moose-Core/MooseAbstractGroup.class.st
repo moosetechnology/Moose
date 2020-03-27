@@ -526,6 +526,11 @@ MooseAbstractGroup >> notEmpty [
 	^self entities notEmpty
 ]
 
+{ #category : #'as yet unclassified' }
+MooseAbstractGroup >> numberOfEntityUsing: aTrait [
+	^ (self allUsing: aTrait) size
+]
+
 { #category : #accessing }
 MooseAbstractGroup >> numberOfItems [ 
 	<FMProperty: #numberOfItems type: #Number>
