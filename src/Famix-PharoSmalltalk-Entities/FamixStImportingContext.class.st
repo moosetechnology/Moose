@@ -53,12 +53,6 @@ FamixStImportingContext >> importComment [
 ]
 
 { #category : #testing }
-FamixStImportingContext >> importContainerEntity [
-	<generated>
-	^ self import: FamixStContainerEntity
-]
-
-{ #category : #testing }
 FamixStImportingContext >> importEntity [
 	<generated>
 	^ self import: FamixStEntity
@@ -218,12 +212,6 @@ FamixStImportingContext >> shouldImportClass [
 FamixStImportingContext >> shouldImportComment [
 	<generated>
 	^ self shouldImport: FamixStComment
-]
-
-{ #category : #testing }
-FamixStImportingContext >> shouldImportContainerEntity [
-	<generated>
-	^ self shouldImport: FamixStContainerEntity
 ]
 
 { #category : #testing }

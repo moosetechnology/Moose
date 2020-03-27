@@ -915,6 +915,8 @@ FamixGenerator >> defineHierarchy [
 	tClass --|> #TPackageable.
 	tClass --|> #TInvocationsReceiver.
 	tClass --|> #TWithComments.
+	tClass --|> #TOODependencyQueries.
+	tClass withPrecedenceOf: tType.
 
 	tFile --|> tFileSystemEntity.
 	
@@ -947,12 +949,17 @@ FamixGenerator >> defineHierarchy [
 	tMethod --|> #TWithClassScope.
 	tMethod --|> #TTypedEntity.
 	tMethod --|> tSourceEntity.
+	tMethod --|> tNamedEntity.
+	tMethod --|> #TOODependencyQueries.
+	tMethod withPrecedenceOf: #TTypedEntity.
 
 	tParameter --|> tStructuralEntity.
 	
 	tReference --|> tAssociation.
 
+	tScopingEntity  --|> #TOODependencyQueries.
 	tStructuralEntity --|> tNamedEntity.
+
 	tStructuralEntity --|> #TAccessible.
 	tStructuralEntity --|> #TInvocationsReceiver.
 	tStructuralEntity --|> #TTypedEntity.
@@ -964,6 +971,9 @@ FamixGenerator >> defineHierarchy [
 	tTraitUsage --|> tAssociation.
 	
 	tType --|> #TReferenceable.
+	tType --|> tNamedEntity.
+	
+
 ]
 
 { #category : #definition }

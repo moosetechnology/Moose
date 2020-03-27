@@ -9,7 +9,6 @@ Class {
 		'annotationTypeAttribute',
 		'attribute',
 		'class',
-		'containerEntity',
 		'globalVariable',
 		'implicitVariable',
 		'inheritance',
@@ -49,7 +48,6 @@ FamixPharoSmalltalkGenerator >> defineClasses [
 	annotationTypeAttribute := builder newClassNamed: #AnnotationTypeAttribute.
 	attribute := builder newClassNamed: #Attribute.
 	class := builder newClassNamed: #Class.
-	containerEntity := builder newClassNamed: #ContainerEntity.
 	globalVariable := builder newClassNamed: #GlobalVariable.
 	implicitVariable := builder newClassNamed: #ImplicitVariable.
 	inheritance := builder newClassNamed: #Inheritance.
@@ -80,7 +78,7 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	annotationInstanceAttribute --|> #TAnnotationInstanceAttribute.
 	annotationInstanceAttribute --|> #TTypedAnnotationInstanceAttribute.
 
-	annotationType --|> containerEntity.
+	annotationType --|> namedEntity.
 	annotationType --|> #TAnnotationType.
 	annotationType --|> #TWithAttributes.
 
@@ -92,16 +90,12 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	attribute --|> #TAttribute.
 	attribute --|> #TWithClassScope.
 
-	class --|> containerEntity.
+	class --|> namedEntity.
+	self flag: 'WithTypes should not be necessary but needed in tests like FamixMetricsTest>>testAfferentCouplingFAMIXClassGroup'.
+	class --|> #TWithTypes.
 	class --|> #TWithExceptions.
 	class --|> #TClass.
 	class --|> #TClassHierarchyNavigation.
-	
-	containerEntity --|> namedEntity.
-	containerEntity --|> #TWithTypes.
-	containerEntity --|> #TWithClasses.
-	containerEntity --|> #TWithAnnotationTypes.
-	containerEntity --|> #TOODependencyQueries.
 
 	globalVariable --|> namedEntity.
 	globalVariable --|> #TGlobalVariable.
@@ -117,8 +111,9 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	localVariable --|> namedEntity.
 	localVariable --|> #TLocalVariable.
 
-	method --|> containerEntity.
+	method --|> namedEntity.
 	method --|> #TMethod.
+	method --|> #TWithAnnotationTypes.
 
 	namedEntity --|> #TPackageable.
 	namedEntity --|> #TInvocationsReceiver.
@@ -138,9 +133,11 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 
 	reference --|> #TReference.
 
-	scopingEntity --|> containerEntity.
+	scopingEntity --|> namedEntity.
 	scopingEntity --|> #TWithGlobalVariables.
 	scopingEntity --|> #TScopingEntity.
+	scopingEntity --|> #TWithTypes.
+	scopingEntity --|> #TWithClasses.
 
 	unknownVariable --|> namedEntity.
 	unknownVariable --|> #TStructuralEntity.
