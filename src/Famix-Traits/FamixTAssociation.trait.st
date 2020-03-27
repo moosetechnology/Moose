@@ -51,16 +51,6 @@ FamixTAssociation classSide >> source: anEntity target: anotherEntity model: aMo
 		yourself
 ]
 
-{ #category : #accessing }
-FamixTAssociation >> from [
-	^ self source
-]
-
-{ #category : #accessing }
-FamixTAssociation >> from: aFrom [
-	self source: aFrom
-]
-
 { #category : #testing }
 FamixTAssociation >> isAssociation [
 
@@ -119,14 +109,4 @@ FamixTAssociation >> target [
 { #category : #accessing }
 FamixTAssociation >> target: aTarget [
 	self explicitRequirement
-]
-
-{ #category : #accessing }
-FamixTAssociation >> to [
-	^ self target
-]
-
-{ #category : #accessing }
-FamixTAssociation >> to: aTo [
-	self target: aTo
 ]

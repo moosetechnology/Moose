@@ -74,6 +74,7 @@ FamixTestComposedGenerator >> define [
 
 	association := builder newClassNamed: #Association.
 	association --|> entity.
+	association --|> #TAssociation.
 	association --|> #TAssociationMetaLevelDependency.
 
 	test1Custom5 := self remoteEntity: #CustomEntity5 withPrefix: #FamixTestComposed1.

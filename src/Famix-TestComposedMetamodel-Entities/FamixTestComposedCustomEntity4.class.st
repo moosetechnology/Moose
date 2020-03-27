@@ -65,3 +65,10 @@ FamixTestComposedCustomEntity4 >> customEntities4: anObject [
 	<generated>
 	self customEntities4 value: anObject
 ]
+
+{ #category : #testing }
+FamixTestComposedCustomEntity4 >> isAssociation [
+
+	<generated>
+	^ false
+]

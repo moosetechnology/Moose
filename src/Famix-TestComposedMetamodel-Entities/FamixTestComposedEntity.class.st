@@ -20,6 +20,13 @@ FamixTestComposedEntity class >> metamodel [
 	^ FamixTestComposedModel metamodel
 ]
 
+{ #category : #testing }
+FamixTestComposedEntity >> isAssociation [
+
+	<generated>
+	^ false
+]
+
 { #category : #accessing }
 FamixTestComposedEntity >> method [
 	"Relation named: #method type: #FamixTestComposed1Method opposite: #entity"

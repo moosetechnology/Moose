@@ -86,8 +86,8 @@ FamixTest3Test >> setUp [
 	c2 addMethod: m2.
 
 	inv1
-		from: m1;
-		to: {m1}.
+		source: m1;
+		target: {m1}.
 
 	model addAll: {c1 . c2 . m1 . m2 . pt1 . pt2 . ref1 . ref2 . inv1}
 ]

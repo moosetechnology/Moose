@@ -39,5 +39,5 @@ MooseQueryOutgoingDirectionStrategy class >> queryResultOn: anEntity with: aColl
 MooseQueryOutgoingDirectionStrategy class >> symbolToCollectEntities [
 	"I should return a Symbol to collect entities. For example an Incoming direction will have #from as symbol to collect entities."
 
-	^ #to
+	^ #target
 ]
