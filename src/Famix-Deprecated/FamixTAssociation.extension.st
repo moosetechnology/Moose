@@ -4,7 +4,7 @@ Extension { #name : #FamixTAssociation }
 FamixTAssociation >> from [
 	self
 		deprecated: 'Use association source instad'
-		transformWith: '`@receiver from' -> '@receiver source'.
+		transformWith: '`@receiver from' -> '`@receiver source'.
 	^ self source
 ]
 
@@ -12,7 +12,7 @@ FamixTAssociation >> from [
 FamixTAssociation >> from: aFrom [
 	self
 		deprecated: 'Use association source instad'
-		transformWith: '`@receiver from: `arg' -> '@receiver source: `arg'.
+		transformWith: '`@receiver from: `@arg' -> '`@receiver source: `@arg'.
 	self source: aFrom
 ]
 
@@ -20,7 +20,7 @@ FamixTAssociation >> from: aFrom [
 FamixTAssociation >> to [
 	self
 		deprecated: 'Use association target instad'
-		transformWith: '`@receiver to' -> '@receiver target'.
+		transformWith: '`@receiver to' -> '`@receiver target'.
 	^ self target
 ]
 
@@ -28,6 +28,6 @@ FamixTAssociation >> to [
 FamixTAssociation >> to: aTo [
 	self
 		deprecated: 'Use association target instad'
-		transformWith: '`@receiver to: `arg' -> '@receiver target: `arg'.
+		transformWith: '`@receiver to: `@arg' -> '`@receiver target: `@arg'.
 	self target: aTo
 ]
