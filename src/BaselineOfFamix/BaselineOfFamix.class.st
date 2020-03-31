@@ -122,8 +122,7 @@ BaselineOfFamix >> baseline: spec [
 			self parametrizedTests: spec.
 			spec
 				package: 'Famix-MetamodelBuilder-Core' with: [ spec requires: #('Ring2') ];
-				package: 'Moose-Core' with: [ spec includes: #('Famix-Pharo7' 'ParametrizedTests') ];
-				package: 'Famix-Pharo7' ]
+				package: 'Moose-Core' with: [ spec includes: #('ParametrizedTests') ]]
 ]
 
 { #category : #dependencies }

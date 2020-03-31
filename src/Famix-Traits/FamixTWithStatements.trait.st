@@ -1,5 +1,7 @@
 Trait {
 	#name : #FamixTWithStatements,
+	#traits : 'FamixTWithAccesses + FamixTWithInvocations',
+	#classTraits : 'FamixTWithAccesses classTrait + FamixTWithInvocations classTrait',
 	#category : #'Famix-Traits-Behavioral'
 }
 

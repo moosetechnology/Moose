@@ -357,6 +357,14 @@ MooseAbstractGroupTest >> testLast [
 ]
 
 { #category : #tests }
+MooseAbstractGroupTest >> testNumberOfEntityUsing [
+	group addAll: {FamixTest3Class new . FamixTest3Type new}.
+	self should: [ group numberOfEntityUsing: FamixTest3Type ] raise: MooseAllUsingOnClass.
+	self assert: (group numberOfEntityUsing: FamixTClass) equals: 1.
+	self assert: (group numberOfEntityUsing: FamixTType) equals: 2
+]
+
+{ #category : #tests }
 MooseAbstractGroupTest >> testNumberOfPackages [
 	self assert: group numberOfPackages equals: 0
 ]
