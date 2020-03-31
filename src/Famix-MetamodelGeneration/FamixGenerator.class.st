@@ -940,9 +940,8 @@ FamixGenerator >> defineHierarchy [
 
 	tMethod --|> #TWithParameters.
 	tMethod --|> #TInvocable.
-	tMethod --|> #TWithInvocations.
 	tMethod --|> #TWithReferences.
-	tMethod --|> #TWithAccesses.
+	tMethod --|> tWithStatements.
 	tMethod --|> #TWithLocalVariables.
 	tMethod --|> #TWithImplicitVariables.
 	tMethod --|> #THasSignature.
@@ -973,6 +972,8 @@ FamixGenerator >> defineHierarchy [
 	tType --|> #TReferenceable.
 	tType --|> tNamedEntity.
 	
+	tWithStatements --|> #TWithAccesses.
+	tWithStatements --|> #TWithInvocations
 
 ]
 
