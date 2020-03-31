@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/moosetechnology/Moose.svg?branch=development)](https://travis-ci.org/moosetechnology/Moose)
+[![Build Status](https://travis-ci.com/moosetechnology/Moose.svg?branch=development)](https://travis-ci.com/moosetechnology/Moose)
  
 Moose is an extensive platform for software and data analysis.
 

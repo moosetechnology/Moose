@@ -1,8 +1,8 @@
 Class {
 	#name : #FAMIXBehaviouralEntity,
 	#superclass : #FAMIXContainerEntity,
-	#traits : 'FamixTHasSignature + FamixTInvocable + FamixTTypedEntity + FamixTWithAccesses + FamixTWithDereferencedInvocations + FamixTWithImplicitVariables + FamixTWithInvocations + FamixTWithLocalVariables + FamixTWithParameters + FamixTWithReferences + FamixTWithStatements',
-	#classTraits : 'FamixTHasSignature classTrait + FamixTInvocable classTrait + FamixTTypedEntity classTrait + FamixTWithAccesses classTrait + FamixTWithDereferencedInvocations classTrait + FamixTWithImplicitVariables classTrait + FamixTWithInvocations classTrait + FamixTWithLocalVariables classTrait + FamixTWithParameters classTrait + FamixTWithReferences classTrait + FamixTWithStatements classTrait',
+	#traits : 'FamixTHasSignature + FamixTInvocable + FamixTTypedEntity + FamixTWithDereferencedInvocations + FamixTWithImplicitVariables + FamixTWithLocalVariables + FamixTWithParameters + FamixTWithReferences + FamixTWithStatements',
+	#classTraits : 'FamixTHasSignature classTrait + FamixTInvocable classTrait + FamixTTypedEntity classTrait + FamixTWithDereferencedInvocations classTrait + FamixTWithImplicitVariables classTrait + FamixTWithLocalVariables classTrait + FamixTWithParameters classTrait + FamixTWithReferences classTrait + FamixTWithStatements classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 

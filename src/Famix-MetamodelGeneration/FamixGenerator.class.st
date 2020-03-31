@@ -920,6 +920,8 @@ FamixGenerator >> defineHierarchy [
 	tClass --|> #TOODependencyQueries.
 	tClass withPrecedenceOf: tType.
 
+	tClassGroup --|> tTypeGroup.
+  
 	tFile --|> tFileSystemEntity.
 	
 	tFileInclude --|> tAssociation.
@@ -942,9 +944,8 @@ FamixGenerator >> defineHierarchy [
 
 	tMethod --|> #TWithParameters.
 	tMethod --|> #TInvocable.
-	tMethod --|> #TWithInvocations.
 	tMethod --|> #TWithReferences.
-	tMethod --|> #TWithAccesses.
+	tMethod --|> tWithStatements.
 	tMethod --|> #TWithLocalVariables.
 	tMethod --|> #TWithImplicitVariables.
 	tMethod --|> #THasSignature.
@@ -975,8 +976,9 @@ FamixGenerator >> defineHierarchy [
 	tType --|> #TReferenceable.
 	tType --|> tNamedEntity.
 	
-	"groups"
-	tClassGroup --|> tTypeGroup.
+	tWithStatements --|> #TWithAccesses.
+	tWithStatements --|> #TWithInvocations
+
 ]
 
 { #category : #definition }

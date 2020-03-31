@@ -145,7 +145,7 @@ FamixJavaGenerator >> defineHierarchy [
 	method --|> #TWithThrownExceptions.
 	method --|> #TWithDeclaredExceptions.
 	method --|> #TWithCaughtExceptions.
-	method --|> #TWithStatements.
+	"method --|> #TWithStatements."
 
 	caughtException --|> exception.
 	caughtException --|> #TCaughtException.
