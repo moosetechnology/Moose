@@ -11,8 +11,8 @@ Trait {
 		'#kind => FMProperty',
 		'#parentType => FMOne type: #FamixTWithMethods opposite: #methods'
 	],
-	#traits : '(FamixTHasSignature + FamixTInvocable + FamixTNamedEntity + FamixTSourceEntity + FamixTTypedEntity + FamixTWithAccesses + FamixTWithClassScope + FamixTWithImplicitVariables + FamixTWithInvocations + FamixTWithLocalVariables + FamixTWithParameters + FamixTWithReferences + TOODependencyQueries withPrecedenceOf: FamixTTypedEntity)',
-	#classTraits : '(FamixTHasSignature classTrait + FamixTInvocable classTrait + FamixTNamedEntity classTrait + FamixTSourceEntity classTrait + FamixTTypedEntity classTrait + FamixTWithAccesses classTrait + FamixTWithClassScope classTrait + FamixTWithImplicitVariables classTrait + FamixTWithInvocations classTrait + FamixTWithLocalVariables classTrait + FamixTWithParameters classTrait + FamixTWithReferences classTrait + TOODependencyQueries classTrait withPrecedenceOf: FamixTTypedEntity classTrait)',
+	#traits : '(FamixTHasSignature + FamixTInvocable + FamixTNamedEntity + FamixTSourceEntity + FamixTTypedEntity + FamixTWithClassScope + FamixTWithImplicitVariables + FamixTWithLocalVariables + FamixTWithParameters + FamixTWithReferences + FamixTWithStatements + TOODependencyQueries withPrecedenceOf: FamixTTypedEntity)',
+	#classTraits : '(FamixTHasSignature classTrait + FamixTInvocable classTrait + FamixTNamedEntity classTrait + FamixTSourceEntity classTrait + FamixTTypedEntity classTrait + FamixTWithClassScope classTrait + FamixTWithImplicitVariables classTrait + FamixTWithLocalVariables classTrait + FamixTWithParameters classTrait + FamixTWithReferences classTrait + FamixTWithStatements classTrait + TOODependencyQueries classTrait withPrecedenceOf: FamixTTypedEntity classTrait)',
 	#category : #'Famix-Traits-Behavioral'
 }
 
