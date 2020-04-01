@@ -1,13 +1,6 @@
 Extension { #name : #MooseAbstractGroup }
 
 { #category : #'*Famix-Compatibility-Entities' }
-MooseAbstractGroup >> allParameterTypes [
-	<navigation: 'All parameter types'>
-	<package: #Java>
-	^ self allUsing: FamixTParameterType
-]
-
-{ #category : #'*Famix-Compatibility-Entities' }
 MooseAbstractGroup >> allPrimitiveTypes [
 	
 	<navigation: 'All primitive types'>
