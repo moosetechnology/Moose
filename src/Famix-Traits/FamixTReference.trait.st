@@ -14,10 +14,11 @@ Note that FAMIXReference was defined between two FAMIXContainerEntity entities. 
 Trait {
 	#name : #FamixTReference,
 	#instVars : [
-		'#source => FMOne type: #FamixTWithReferences opposite: #outgoingReferences',
-		'#target => FMOne type: #FamixTReferenceable opposite: #incomingReferences'
+		'#referencer => FMOne type: #FamixTWithReferences opposite: #outgoingReferences',
+		'#referredType => FMOne type: #FamixTReferenceable opposite: #incomingReferences'
 	],
 	#traits : 'FamixTAssociation',
+	#classTraits : 'FamixTAssociation classTrait',
 	#category : #'Famix-Traits-Reference'
 }
 
@@ -43,35 +44,55 @@ FamixTReference >> isReference [
 ]
 
 { #category : #accessing }
-FamixTReference >> source [
-	"Relation named: #source type: #FamixTWithReferences opposite: #outgoingReferences"
+FamixTReference >> referencer [
+	"Relation named: #referencer type: #FamixTWithReferences opposite: #outgoingReferences"
 
 	<generated>
 	<FMComment: 'Source entity making the reference. from-side of the association'>
 	<source>
-	^ source
+	^ referencer
 ]
 
 { #category : #accessing }
-FamixTReference >> source: anObject [
+FamixTReference >> referencer: anObject [
 
 	<generated>
-	source := anObject
+	referencer := anObject
 ]
 
 { #category : #accessing }
-FamixTReference >> target [
-	"Relation named: #target type: #FamixTReferenceable opposite: #incomingReferences"
+FamixTReference >> referredType [
+	"Relation named: #referredType type: #FamixTReferenceable opposite: #incomingReferences"
 
 	<generated>
 	<FMComment: 'Target entity referenced. to-side of the association'>
 	<target>
-	^ target
+	^ referredType
 ]
 
 { #category : #accessing }
-FamixTReference >> target: anObject [
+FamixTReference >> referredType: anObject [
 
 	<generated>
-	target := anObject
+	referredType := anObject
+]
+
+{ #category : #accessing }
+FamixTReference >> source [
+	^ self referencer
+]
+
+{ #category : #accessing }
+FamixTReference >> source: aSource [
+	self referencer: aSource 
+]
+
+{ #category : #accessing }
+FamixTReference >> target [
+	^ referredType 
+]
+
+{ #category : #accessing }
+FamixTReference >> target: aTarget [
+	self referredType: aTarget 
 ]
