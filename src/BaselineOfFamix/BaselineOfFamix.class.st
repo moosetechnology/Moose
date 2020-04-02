@@ -111,7 +111,7 @@ BaselineOfFamix >> baseline: spec [
 
 				group: 'TaggingMinimal' with: #('FamixTagging');
 				group: 'Tagging' with: #('TaggingMinimal' 'FamixTagging-Code');
-				group: 'TaggingTests' with: #('FamixTagging-Test');
+				group: 'TaggingTests' with: #('FamixTagging-Tests');
 
 				group: 'TestsResources' with: #('ReferenceTestResources' 'Moose-TestResources-LAN' 'Moose-TestResources-LCOM' 'KGBTestResources' 'PackageBlueprintTestResources');
 				group: 'BasicTraits' with: #('Famix-Traits');
