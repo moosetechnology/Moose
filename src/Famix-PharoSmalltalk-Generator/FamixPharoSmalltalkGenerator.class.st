@@ -140,9 +140,7 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	scopingEntity --|> #TWithClasses.
 
 	unknownVariable --|> namedEntity.
-	unknownVariable --|> #TStructuralEntity.
-
-	sourceAnchor --|> #THasImmediateSource.
+	unknownVariable --|> #TStructuralEntity
 	
 
 	
