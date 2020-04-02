@@ -44,7 +44,7 @@ FamixTScopingEntity >> allChildScopesDo: aBlock [
 { #category : #accessing }
 FamixTScopingEntity >> allChildScopesGroup [
 	<navigation: 'All child scopes'>
-	^ FAMIXNamespaceGroup withAll: self allChildScopes withDescription: 'All child scopes from ', self printString
+	^ FamixTNamespaceGroup withAll: self allChildScopes withDescription: 'All child scopes from ', self printString
 ]
 
 { #category : #accessing }

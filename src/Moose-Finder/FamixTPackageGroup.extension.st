@@ -1,7 +1,7 @@
-Extension { #name : #FAMIXPackageGroup }
+Extension { #name : #FamixTPackageGroup }
 
 { #category : #'*moose-finder' }
-FAMIXPackageGroup >> mooseFinderDependenciesIn: composite [
+FamixTPackageGroup >> mooseFinderDependenciesIn: composite [
 	"Does not work, and no idea how to fix it"
 	"<moosePresentationOrder: 20>"
 	composite roassal2
@@ -13,7 +13,7 @@ FAMIXPackageGroup >> mooseFinderDependenciesIn: composite [
 ]
 
 { #category : #'*moose-finder' }
-FAMIXPackageGroup >> mooseFinderPackageInternalIn: composite [
+FamixTPackageGroup >> mooseFinderPackageInternalIn: composite [
 	<moosePresentationOrder: 20>
 	composite roassal2
 			title: 'Dependencies';
@@ -24,6 +24,6 @@ FAMIXPackageGroup >> mooseFinderPackageInternalIn: composite [
 ]
 
 { #category : #'*moose-finder' }
-FAMIXPackageGroup >> mooseIcon [
+FamixTPackageGroup >> mooseIcon [
 	^ MooseIcons famixPackageGroup 
 ]

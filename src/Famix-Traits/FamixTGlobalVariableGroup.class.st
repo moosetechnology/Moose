@@ -1,44 +1,51 @@
-"
-FAMIXGlobalVariableGroup is a MooseGroup containing only FAMIX enities of type FAMIXGlobalVariable.
-"
 Class {
-	#name : #FAMIXGlobalVariableGroup,
+	#name : #FamixTGlobalVariableGroup,
 	#superclass : #MooseGroup,
-	#category : #'Famix-Groups'
+	#category : #'Famix-Traits-Entities'
 }
 
 { #category : #meta }
-FAMIXGlobalVariableGroup class >> annotation [
-	<FMClass: #GlobalVariableGroup super: #MooseGroup>
-	<package: #FAMIX>
+FamixTGlobalVariableGroup class >> annotation [
+
+	<FMClass: #TGlobalVariableGroup super: #MooseGroup>
+	<package: #'Famix-Traits'>
+	<generated>
+	^self
+]
+
+{ #category : #meta }
+FamixTGlobalVariableGroup class >> metamodel [
+
+	<generated>
+	^ FamixModel metamodel
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXGlobalVariableGroup >> variableNamed: aVarName [
+FamixTGlobalVariableGroup >> variableNamed: aVarName [
 	"Maybe mooseName should be used instead"
 	^ self detect: [:var | var name = aVarName ]
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXGlobalVariableGroup >> variableUnused [
+FamixTGlobalVariableGroup >> variableUnused [
 	^ self select: [:var | var incomingAccesses size = 0 ]
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXGlobalVariableGroup >> variableUnusedGroup [
+FamixTGlobalVariableGroup >> variableUnusedGroup [
 	<navigation: 'Variable unsued'>
 	^ self class withAll: self variableUnused  
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXGlobalVariableGroup >> variablesAccessedFromDifferentPackages [
+FamixTGlobalVariableGroup >> variablesAccessedFromDifferentPackages [
 	^ self select: [:var | 
 		((var incomingAccesses collect: #accessor)
 			collect: #parentScope) asSet size > 1]
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXGlobalVariableGroup >> variablesAccessedFromDifferentPackagesGroup [
+FamixTGlobalVariableGroup >> variablesAccessedFromDifferentPackagesGroup [
 	<navigation: 'Variables accessed from more than one package'>
 	^ self class withAll: self variablesAccessedFromDifferentPackages  
 ]

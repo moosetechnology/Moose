@@ -21,11 +21,10 @@ FamixTGlobalVariable classSide >> annotation [
 ]
 
 { #category : #groups }
-FamixTGlobalVariable classSide >> famixTGlobalVariableRelatedGroup [
-
+FamixTGlobalVariable classSide >> annotationFamixTGlobalVariableGroup [
+	<generated>
 	<mooseGroup>
-	
-	^ FAMIXGlobalVariableGroup
+	^ FamixTGlobalVariableGroup
 ]
 
 { #category : #accessing }

@@ -30,11 +30,10 @@ FamixTAnnotationInstance classSide >> annotation [
 ]
 
 { #category : #groups }
-FamixTAnnotationInstance classSide >> famixTAnnotationInstanceRelatedGroup [
-
+FamixTAnnotationInstance classSide >> annotationFamixTAnnotationInstanceGroup [
+	<generated>
 	<mooseGroup>
-	
-	^ FAMIXAnnotationInstanceGroup
+	^ FamixTAnnotationInstanceGroup
 ]
 
 { #category : #accessing }

@@ -115,6 +115,14 @@ FmxMBBehavior >> defaultTag [
 ]
 
 { #category : #accessing }
+FmxMBBehavior >> ensureRealClass [
+	^ realClass
+		ifNil: [ self generate.
+			self willGenerate: false.
+			self realClass ]
+]
+
+{ #category : #accessing }
 FmxMBBehavior >> fullName [
 	^ (self prefix , self name) asSymbol
 ]
@@ -462,6 +470,11 @@ FmxMBBehavior >> traitGeneralizations [
 FmxMBBehavior >> uses: aTrait [
 
 	^ self generalization: aTrait
+]
+
+{ #category : #'testing selectors' }
+FmxMBBehavior >> withGroup [
+	^ self builder groupOf: self
 ]
 
 { #category : #generalization }

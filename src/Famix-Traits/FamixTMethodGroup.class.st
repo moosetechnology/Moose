@@ -1,37 +1,43 @@
-"
-FAMIXMethodGroup is a MooseGroup containing only FAMIX enities of type FAMIXMethod.
-"
 Class {
-	#name : #FAMIXMethodGroup,
+	#name : #FamixTMethodGroup,
 	#superclass : #MooseGroup,
-	#category : #'Famix-Groups'
+	#category : #'Famix-Traits-Entities'
 }
 
 { #category : #meta }
-FAMIXMethodGroup class >> annotation [
-	<FMClass: #MethodGroup super: #MooseGroup>
-	<package: #FAMIX>
+FamixTMethodGroup class >> annotation [
 
+	<FMClass: #TMethodGroup super: #MooseGroup>
+	<package: #'Famix-Traits'>
+	<generated>
+	^self
+]
+
+{ #category : #meta }
+FamixTMethodGroup class >> metamodel [
+
+	<generated>
+	^ FamixModel metamodel
 ]
 
 { #category : #navigation }
-FAMIXMethodGroup >> allClasses [
-	^ FAMIXTypeGroup withAll: (self entities flatCollectAsSet: [ :m | m atScope: FamixTClass ])
+FamixTMethodGroup >> allClasses [
+	^ FamixTTypeGroup withAll: (self entities flatCollectAsSet: [ :m | m atScope: FamixTClass ])
 ]
 
 { #category : #navigation }
-FAMIXMethodGroup >> allMethods [
+FamixTMethodGroup >> allMethods [
 
 	^ self
 ]
 
 { #category : #navigation }
-FAMIXMethodGroup >> allPackages [
-	^ FAMIXPackageGroup withAll: (self entities flatCollectAsSet: [ :m | m atScope: FamixTPackage ])
+FamixTMethodGroup >> allPackages [
+	^ FamixTPackageGroup withAll: (self entities flatCollectAsSet: [ :m | m atScope: FamixTPackage ])
 ]
 
 { #category : #metrics }
-FAMIXMethodGroup >> averageNumberOfInvocations [
+FamixTMethodGroup >> averageNumberOfInvocations [
 	<FMProperty: #averageNumberOfInvocations type: #Number>
 	<FMComment: 'Average number of invocations per methods'>
 
@@ -41,7 +47,7 @@ FAMIXMethodGroup >> averageNumberOfInvocations [
 ]
 
 { #category : #metrics }
-FAMIXMethodGroup >> averageNumberOfLinesOfCode [
+FamixTMethodGroup >> averageNumberOfLinesOfCode [
 	<FMProperty: #averageNumberOfLinesOfCode type: #Number>
 	<FMComment: 'Average number of lines of code per methods'>
 
@@ -51,7 +57,7 @@ FAMIXMethodGroup >> averageNumberOfLinesOfCode [
 ]
 
 { #category : #metrics }
-FAMIXMethodGroup >> averageNumberOfParameters [
+FamixTMethodGroup >> averageNumberOfParameters [
 	<FMProperty: #averageNumberOfParameters type: #Number>
 	<FMComment: 'Average number of parameters per methods'>
 	

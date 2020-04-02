@@ -20,11 +20,10 @@ FamixTNamespace classSide >> annotation [
 ]
 
 { #category : #groups }
-FamixTNamespace classSide >> famixTNamespaceRelatedGroup [
-
+FamixTNamespace classSide >> annotationFamixTNamespaceGroup [
+	<generated>
 	<mooseGroup>
-	
-	^ FAMIXNamespaceGroup
+	^ FamixTNamespaceGroup
 ]
 
 { #category : #testing }

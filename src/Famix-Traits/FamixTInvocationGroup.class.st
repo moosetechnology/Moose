@@ -1,18 +1,27 @@
 Class {
-	#name : #FAMIXInvocationGroup,
+	#name : #FamixTInvocationGroup,
 	#superclass : #MooseGroup,
-	#category : #'Famix-Groups'
+	#category : #'Famix-Traits-Entities'
 }
 
 { #category : #meta }
-FAMIXInvocationGroup class >> annotation [
-	<FMClass: #InvocationGroup super: #MooseGroup>
-	<package: #FAMIX>
+FamixTInvocationGroup class >> annotation [
 
+	<FMClass: #TInvocationGroup super: #MooseGroup>
+	<package: #'Famix-Traits'>
+	<generated>
+	^self
+]
+
+{ #category : #meta }
+FamixTInvocationGroup class >> metamodel [
+
+	<generated>
+	^ FamixModel metamodel
 ]
 
 { #category : #export }
-FAMIXInvocationGroup >> exportToCsvStream: stream [
+FamixTInvocationGroup >> exportToCsvStream: stream [
 	(NeoCSVWriter on: stream)
 		fieldWriter: #raw;
 		lineEndConvention: #cr;

@@ -275,6 +275,15 @@ In order to fix the issue you should use #remoteTrait:withPrefix: in your genera
 	^ self traitNamed: aSymbol
 ]
 
+{ #category : #generating }
+FamixMetamodelBuilder >> groupOf: aClass [
+	| group |
+	group := (self newClassGroupNamed: aClass name , 'Group')
+		innerClass: aClass;
+		yourself.
+	^ group
+]
+
 { #category : #accessing }
 FamixMetamodelBuilder >> importingContextName [
 	^ (self configuration prefix , 'ImportingContext') asSymbol
@@ -305,6 +314,27 @@ FamixMetamodelBuilder >> newClass [
 	self classes add: aClass.
 	^ aClass
 	
+]
+
+{ #category : #initialization }
+FamixMetamodelBuilder >> newClassGroup [
+
+	| aClass |
+	
+	aClass := FmxMBClassGroup new.
+	aClass builder: self.
+	aClass prefix: self configuration prefix.
+	aClass packageName: self configuration packageName.
+	self classes add: aClass.
+	^ aClass
+	
+]
+
+{ #category : #initialization }
+FamixMetamodelBuilder >> newClassGroupNamed: aClassName [
+	(self classes select: [ :each | each name = aClassName ]) ifNotEmpty: [ FmxMBEntityAlreadyExists signal ].
+
+	^ self newClassGroup name: aClassName
 ]
 
 { #category : #initialization }
