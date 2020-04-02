@@ -1264,14 +1264,14 @@ FamixGenerator >> defineRelations [
 		*-*
 	((tWithParameterizedTypeUsers property: #arguments)).
 
-	((tReference property: #source)
+	((tReference property: #referencer)
 			comment: 'Source entity making the reference. from-side of the association';
 			source)
 		*-
 	((tWithReferences property: #outgoingReferences)
 			comment: 'References from this entity to other entities.').
 
-	((tReference property: #target)
+	((tReference property: #referredType)
 			comment: 'Target entity referenced. to-side of the association';
 			target)
 		*-
