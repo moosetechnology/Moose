@@ -1,11 +1,11 @@
 Extension { #name : #Character }
 
-{ #category : #'*Famix-Groups' }
+{ #category : #'*Famix-Traits' }
 Character >> isCr [
 	^ self asInteger = 13
 ]
 
-{ #category : #'*Famix-Groups' }
+{ #category : #'*Famix-Traits' }
 Character >> isLf [
 	^ self asInteger = 10
 ]
