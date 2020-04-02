@@ -44,6 +44,13 @@ FamixTagTestSourceTextAnchor >> isAttribute [
 ]
 
 { #category : #testing }
+FamixTagTestSourceTextAnchor >> isClass [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
 FamixTagTestSourceTextAnchor >> isInvocation [
 
 	<generated>
@@ -66,6 +73,13 @@ FamixTagTestSourceTextAnchor >> isPackage [
 
 { #category : #testing }
 FamixTagTestSourceTextAnchor >> isStructuralEntity [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixTagTestSourceTextAnchor >> isType [
 
 	<generated>
 	^ false

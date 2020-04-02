@@ -42,6 +42,13 @@ FamixTagTestEntity >> isAttribute [
 ]
 
 { #category : #testing }
+FamixTagTestEntity >> isClass [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
 FamixTagTestEntity >> isInvocation [
 
 	<generated>
@@ -64,6 +71,13 @@ FamixTagTestEntity >> isPackage [
 
 { #category : #testing }
 FamixTagTestEntity >> isStructuralEntity [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixTagTestEntity >> isType [
 
 	<generated>
 	^ false
