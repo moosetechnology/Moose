@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'model'
 	],
-	#category : #'Famix-Groups-Tests'
+	#category : #'Famix-Traits'
 }
 
 { #category : #running }
