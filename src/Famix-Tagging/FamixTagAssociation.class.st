@@ -180,7 +180,7 @@ FamixTagAssociation >> stonMapForTagModel: aTagModel [
 		yourself
 ]
 
-{ #category : #'*MooseTagging-Ston' }
+{ #category : #ston }
 FamixTagAssociation >> stonOn: stonWriter [
 	stonWriter writeObject: self do: [ stonWriter encodeMap: (self stonMapForTagModel: stonWriter tagModel) ]
 ]
