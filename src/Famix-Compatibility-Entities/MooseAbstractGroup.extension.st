@@ -2,9 +2,8 @@ Extension { #name : #MooseAbstractGroup }
 
 { #category : #'*Famix-Compatibility-Entities' }
 MooseAbstractGroup >> allPrimitiveTypes [
-	
 	<navigation: 'All primitive types'>
-	^(self allWithType: FAMIXPrimitiveType) sorted: [:a :b | a name < b name]; yourself
+	^ self allWithType: FAMIXPrimitiveType
 ]
 
 { #category : #'*Famix-Compatibility-Entities' }
