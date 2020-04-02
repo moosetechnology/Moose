@@ -180,6 +180,16 @@ MooseAbstractGroup >> allModelPureClasses [
 ]
 
 { #category : #'*Famix-Traits' }
+MooseAbstractGroup >> allModelTypes [
+	<navigation: 'All model types'>
+
+	^ self privateState cacheAt: 'All model types'
+		ifAbsentPut: [
+			(self allTypes reject: [:each | each isStub ])
+				description: 'All model types' ]
+]
+
+{ #category : #'*Famix-Traits' }
 MooseAbstractGroup >> allNamespaces [
 	
 	<navigation: 'All namespaces'>
@@ -191,6 +201,13 @@ MooseAbstractGroup >> allPackages [
 	
 	<navigation: 'All packages'>
 	^self allUsing: FamixTPackage 
+]
+
+{ #category : #'*Famix-Traits' }
+MooseAbstractGroup >> allParameterTypes [
+	<navigation: 'All parameter types'>
+	<package: #Java>
+	^ self allUsing: FamixTParameterType
 ]
 
 { #category : #'*Famix-Traits' }

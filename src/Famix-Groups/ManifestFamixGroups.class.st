@@ -5,6 +5,6 @@ Class {
 }
 
 { #category : #asserting }
-ManifestFamixGroups class >> shouldBeIncludedByDefaultInMetamodels [
+ManifestFamixGroups class >> shouldBeIncludedByDefaultInMetamodelsWith: aCollectionOfPackages [
 	^ true
 ]
