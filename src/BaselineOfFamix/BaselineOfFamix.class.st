@@ -29,7 +29,6 @@ BaselineOfFamix >> baseline: spec [
 				materialColor: spec;
 				packageBlueprintTestResources: spec;
 				referenceTestResources: spec;
-				neoCSV: spec;
 				roelTyper: spec;
 				singularizePluralize: spec;
 				talents: spec.
@@ -39,7 +38,7 @@ BaselineOfFamix >> baseline: spec [
 				package: 'Moose-Query' with: [ spec requires: #('Fame' 'DeepTraverser' 'CollectionExtensions') ];
 				package: 'Moose-Core' with: [ spec requires: #('Fame' 'Moose-Query') ];
 				package: 'Moose-Query-Extensions' with: [ spec requires: #('Moose-Query' 'BasicTraits') ];
-				package: 'Famix-Traits' with: [ spec requires: #('Moose-Core' 'NeoCSV') ];
+				package: 'Famix-Traits' with: [ spec requires: #('Moose-Core') ];
 				package: 'Famix-MetamodelBuilder-Core' with: [ spec requires: #('Moose-Core' 'SingularizePluralize') ];
 				package: 'Famix-MetamodelGeneration' with: [ spec requires: #('Famix-MetamodelBuilder-Core') ];
 				package: 'Famix-BasicInfrastructure' with: [ spec requires: #('Famix-MetamodelGeneration') ];
@@ -171,15 +170,6 @@ BaselineOfFamix >> kgbTestResources: spec [
 { #category : #dependencies }
 BaselineOfFamix >> materialColor: spec [
 	spec baseline: 'MaterialColors' with: [ spec repository: 'github://DuneSt/MaterialColors:v2.x.x/src' ]
-]
-
-{ #category : #dependencies }
-BaselineOfFamix >> neoCSV: spec [
-	spec
-		baseline: 'NeoCSV'
-		with: [ spec
-				loads: 'core';
-				repository: 'github://svenvc/NeoCSV/repository' ]
 ]
 
 { #category : #dependencies }
