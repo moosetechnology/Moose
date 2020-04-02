@@ -15,7 +15,7 @@ ManifestMooseCore class >> initialize [
 ]
 
 { #category : #asserting }
-ManifestMooseCore class >> shouldBeIncludedByDefaultInMetamodels [
+ManifestMooseCore class >> shouldBeIncludedByDefaultInMetamodelsWith: aCollectionOfPackages [
 	^ true
 ]
 
