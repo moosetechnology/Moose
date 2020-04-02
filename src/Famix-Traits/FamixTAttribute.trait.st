@@ -8,6 +8,7 @@ Trait {
 		'#parentType => FMOne type: #FamixTWithAttributes opposite: #attributes'
 	],
 	#traits : 'FamixTStructuralEntity',
+	#classTraits : 'FamixTStructuralEntity classTrait',
 	#category : #'Famix-Traits-Attribute'
 }
 
@@ -25,6 +26,15 @@ FamixTAttribute >> isAttribute [
 
 	<generated>
 	^ true
+]
+
+{ #category : #printing }
+FamixTAttribute >> mooseNameOn: aStream [
+	self parentType
+		ifNotNil: [ :parent | 
+			parent mooseNameOn: aStream.
+			aStream nextPut: $. ].
+	self name ifNotNil: [ aStream nextPutAll: self name ]
 ]
 
 { #category : #accessing }

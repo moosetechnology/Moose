@@ -14,12 +14,3 @@ FamixTagTestAttribute class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #printing }
-FamixTagTestAttribute >> mooseNameOn: aStream [
-	self parentType
-		ifNotNil: [ :parent | 
-			parent mooseNameOn: aStream.
-			aStream nextPut: $. ].
-	self name ifNotNil: [ aStream nextPutAll: self name ]
-]

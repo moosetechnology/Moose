@@ -67,13 +67,3 @@ FamixStAttribute >> isSharedVariable [
 
 	^ self propertyNamed: #sharedVariable ifNil: [false]
 ]
-
-{ #category : #'Famix-Implementation' }
-FamixStAttribute >> mooseNameOn: aStream [ 
-	| parent |
-	parent := self belongsTo.
-	parent ifNotNil: 
-		[ parent mooseNameOn: aStream.
-		aStream nextPut: $. ].
-	self name ifNotNil: [ aStream nextPutAll: self name ].
-]
