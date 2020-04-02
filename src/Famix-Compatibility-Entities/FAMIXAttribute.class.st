@@ -76,16 +76,6 @@ FAMIXAttribute >> isSharedVariable [
 ]
 
 { #category : #'Famix-Implementation' }
-FAMIXAttribute >> mooseNameOn: aStream [ 
-	| parent |
-	parent := self belongsTo.
-	parent ifNotNil: 
-		[ parent mooseNameOn: aStream.
-		aStream nextPut: $. ].
-	self name ifNotNil: [ aStream nextPutAll: self name ].
-]
-
-{ #category : #'Famix-Implementation' }
 FAMIXAttribute >> printOn: aStream [ 
 	| parent |
 	parent := self belongsTo.
