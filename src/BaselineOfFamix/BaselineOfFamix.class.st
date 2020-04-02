@@ -62,10 +62,10 @@ BaselineOfFamix >> baseline: spec [
 				package: 'Famix-Java-Entities' with: [ spec requires: #('BasicTraits') ];
 				package: 'Famix-Java-Tests' with: [ spec requires: #('Famix-Java-Entities' 'Famix-Java-Generator') ];
 				
-				package: 'FamixTagging' with: [ spec requires: #('MaterialColors' 'Moose-Core') ];
-				package: 'FamixTagging-Code' with: [ spec requires: #('FamixTagging' 'BasicTraits') ];
-				package: 'FamixTagging-Tests-Entities' with: [ spec requires: #('BasicTraits') ];
-				package: 'FamixTagging-Tests' with: [ spec requires: #('FamixTagging' 'FamixTagging-Code' 'FamixTagging-Tests-Entities') ];
+				package: 'Famix-Tagging' with: [ spec requires: #('MaterialColors' 'Moose-Core') ];
+				package: 'Famix-Tagging-Code' with: [ spec requires: #('Famix-Tagging' 'BasicTraits') ];
+				package: 'Famix-Tagging-Tests-Entities' with: [ spec requires: #('BasicTraits') ];
+				package: 'Famix-Tagging-Tests' with: [ spec requires: #('Famix-Tagging' 'Famix-Tagging-Code' 'Famix-Tagging-Tests-Entities') ];
 
 				package: 'Moose-TestResources-LAN';
 				package: 'Moose-TestResources-LCOM';
@@ -109,9 +109,9 @@ BaselineOfFamix >> baseline: spec [
 				group: 'Core' with: #('Famix-Traits' 'Moose-Query-Extensions');
 				group: 'Basic' with: #('Famix-BasicInfrastructure' 'Famix-MetamodelGeneration');
 
-				group: 'TaggingMinimal' with: #('FamixTagging');
-				group: 'Tagging' with: #('TaggingMinimal' 'FamixTagging-Code');
-				group: 'TaggingTests' with: #('FamixTagging-Tests');
+				group: 'TaggingMinimal' with: #('Famix-Tagging');
+				group: 'Tagging' with: #('TaggingMinimal' 'Famix-Tagging-Code');
+				group: 'TaggingTests' with: #('Famix-Tagging-Tests');
 
 				group: 'TestsResources' with: #('ReferenceTestResources' 'Moose-TestResources-LAN' 'Moose-TestResources-LCOM' 'KGBTestResources' 'PackageBlueprintTestResources');
 				group: 'BasicTraits' with: #('Famix-Traits');
