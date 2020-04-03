@@ -232,6 +232,8 @@ FamixJavaGenerator >> defineHierarchy [
 	primitiveType --|> type.
 
 	reference --|> #TReference.
+	
+	sourcedEntity --|> #TWithFiles.
 
 	scopingEntity --|> containerEntity.
 	scopingEntity --|> #TWithGlobalVariables.
