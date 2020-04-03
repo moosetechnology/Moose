@@ -1,6 +1,6 @@
 Class {
 	#name : #FAMIXAnnotationInstanceGroup,
-	#superclass : #FamixTAnnotationInstanceGroup,
+	#superclass : #FamixAnnotationInstanceGroup,
 	#category : #'Famix-Deprecated'
 }
 

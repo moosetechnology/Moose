@@ -1,6 +1,6 @@
 Class {
 	#name : #FAMIXInvocationGroup,
-	#superclass : #FamixTInvocationGroup,
+	#superclass : #FamixInvocationGroup,
 	#category : #'Famix-Deprecated'
 }
 

@@ -269,7 +269,7 @@ MooseAbstractGroup >> allThrownExceptions [
 { #category : #'*Famix-Traits' }
 MooseAbstractGroup >> allTypes [
 	<navigation: 'All types'>
-	^ self allUsing: FamixTType ofGroupClass: FamixTTypeGroup
+	^ self allUsing: FamixTType ofGroupClass: FamixTypeGroup
 ]
 
 { #category : #'*Famix-Traits' }

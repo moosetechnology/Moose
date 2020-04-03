@@ -20,7 +20,7 @@ LANMooseGroupTest >> testAllLikeSelectors [
 	self assert: self model allClasses size equals: self model allClasses allClasses size.
 	self assert: (self model allClasses , self model allMethods) allClasses size equals: self model allClasses size.
 	self assert: (self model allClasses , self model allMethods) allMethods size equals: self model allMethods size.
-	self assert: ((self model allClasses , self model allMethods) allClasses isKindOf: FamixTTypeGroup)
+	self assert: ((self model allClasses , self model allMethods) allClasses isKindOf: FamixTypeGroup)
 ]
 
 { #category : #tests }
@@ -47,7 +47,7 @@ LANMooseGroupTest >> testClassGroupType [
 LANMooseGroupTest >> testCollectGroupType [
 	| collectedClasses |
 	collectedClasses := self model allMethods collect: #parentType.
-	self assert: (collectedClasses isKindOf: FamixTTypeGroup)
+	self assert: (collectedClasses isKindOf: FamixTypeGroup)
 ]
 
 { #category : #tests }

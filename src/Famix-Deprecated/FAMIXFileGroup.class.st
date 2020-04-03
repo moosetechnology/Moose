@@ -1,6 +1,6 @@
 Class {
 	#name : #FAMIXFileGroup,
-	#superclass : #FamixTFileGroup,
+	#superclass : #FamixFileGroup,
 	#category : #'Famix-Deprecated'
 }
 
