@@ -18,7 +18,7 @@ AbstractSmalltalkMetamodelFactory >> access [
 { #category : #accessing }
 AbstractSmalltalkMetamodelFactory >> anchor [
 
-	^ self entityNamed: #SourceAnchor
+	^ self entityNamed: #PharoEntitySourceAnchor
 ]
 
 { #category : #accessing }

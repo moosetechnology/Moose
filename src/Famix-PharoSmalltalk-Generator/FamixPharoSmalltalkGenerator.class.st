@@ -20,7 +20,8 @@ Class {
 		'parameter',
 		'reference',
 		'scopingEntity',
-		'unknownVariable'
+		'unknownVariable',
+		'pharoEntitySourceAnchor'
 	],
 	#category : #'Famix-PharoSmalltalk-Generator'
 }
@@ -53,6 +54,7 @@ FamixPharoSmalltalkGenerator >> defineClasses [
 	inheritance := builder newClassNamed: #Inheritance.
 	invocation := builder newClassNamed: #Invocation.
 	localVariable := builder newClassNamed: #LocalVariable.
+	pharoEntitySourceAnchor := builder newClassNamed: #PharoEntitySourceAnchor.
 	method := builder newClassNamed: #Method.
 	namespace := builder newClassNamed: #Namespace.
 	package := builder newClassNamed: #Package.
@@ -141,7 +143,10 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	scopingEntity --|> #TScopingEntity.
 	scopingEntity --|> #TWithTypes.
 	scopingEntity --|> #TWithClasses.
-
+	
+	pharoEntitySourceAnchor --|> sourceAnchor.
+	pharoEntitySourceAnchor --|> #TSourceAnchor.
+ 
 	unknownVariable --|> namedEntity.
 	unknownVariable --|> #TStructuralEntity
 	

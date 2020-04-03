@@ -119,6 +119,12 @@ FamixStImportingContext >> importParameter [
 ]
 
 { #category : #testing }
+FamixStImportingContext >> importPharoEntitySourceAnchor [
+	<generated>
+	^ self import: FamixStPharoEntitySourceAnchor
+]
+
+{ #category : #testing }
 FamixStImportingContext >> importReference [
 	<generated>
 	^ self import: FamixStReference
@@ -278,6 +284,12 @@ FamixStImportingContext >> shouldImportPackage [
 FamixStImportingContext >> shouldImportParameter [
 	<generated>
 	^ self shouldImport: FamixStParameter
+]
+
+{ #category : #testing }
+FamixStImportingContext >> shouldImportPharoEntitySourceAnchor [
+	<generated>
+	^ self shouldImport: FamixStPharoEntitySourceAnchor
 ]
 
 { #category : #testing }
