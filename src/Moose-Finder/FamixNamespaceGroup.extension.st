@@ -1,7 +1,7 @@
-Extension { #name : #FamixTNamespaceGroup }
+Extension { #name : #FamixNamespaceGroup }
 
-{ #category : #'*moose-finder' }
-FamixTNamespaceGroup >> mooseFinderWithinHierarchyIn: composite [
+{ #category : #'*Moose-Finder' }
+FamixNamespaceGroup >> mooseFinderWithinHierarchyIn: composite [
 	<moosePresentationOrder: 20>
 	composite roassal2
 			title: 'Within overall hierarchy';
@@ -11,7 +11,7 @@ FamixTNamespaceGroup >> mooseFinderWithinHierarchyIn: composite [
 				each mooseInterestingEntity viewWithinOverallHierarchyOn: view ]
 ]
 
-{ #category : #'*moose-finder' }
-FamixTNamespaceGroup >> mooseIcon [
+{ #category : #'*Moose-Finder' }
+FamixNamespaceGroup >> mooseIcon [
 	^ MooseIcons famixNamespaceGroup 
 ]

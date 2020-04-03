@@ -1,27 +1,27 @@
 Class {
-	#name : #FamixTTypeGroup,
+	#name : #FamixTypeGroup,
 	#superclass : #MooseGroup,
 	#category : #'Famix-Traits-Entities'
 }
 
 { #category : #meta }
-FamixTTypeGroup class >> annotation [
+FamixTypeGroup class >> annotation [
 
-	<FMClass: #TTypeGroup super: #MooseGroup>
+	<FMClass: #TypeGroup super: #MooseGroup>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
 ]
 
 { #category : #meta }
-FamixTTypeGroup class >> metamodel [
+FamixTypeGroup class >> metamodel [
 
 	<generated>
 	^ FamixModel metamodel
 ]
 
 { #category : #metrics }
-FamixTTypeGroup >> abstractness [
+FamixTypeGroup >> abstractness [
 	"Abstractness is the ratio between the number of abstract classes and the total number of classes in a package, in the range [0, 1]. 0 means the package is fully concrete, 1 it is fully abstract."
 
 	<FMProperty: #abstractness type: #Number>
@@ -35,8 +35,8 @@ FamixTTypeGroup >> abstractness [
 	^ (nsClasses select: [:c | c isAbstract]) size / (nsClasses size) asFloat
 ]
 
-{ #category : #'*Famix-Traits' }
-FamixTTypeGroup >> afferentCoupling [
+{ #category : #metrics }
+FamixTypeGroup >> afferentCoupling [
 	"Afferent coupling for a class group is the number of external classes that depend upon this class group"
 
 	<FMProperty: #afferentCoupling type: #Number>
@@ -51,8 +51,23 @@ FamixTTypeGroup >> afferentCoupling [
 		asSet size
 ]
 
+{ #category : #navigation }
+FamixTypeGroup >> allClasses [
+	^ self
+]
+
+{ #category : #navigation }
+FamixTypeGroup >> allMethods [
+	^ self flatCollect: [ :c | c methods ]
+]
+
+{ #category : #navigation }
+FamixTypeGroup >> allPackages [
+	^ FamixPackageGroup withAll: (self entities flatCollectAsSet: [ :c | c atScope: FamixTPackage ])
+]
+
 { #category : #metrics }
-FamixTTypeGroup >> ahh [ 
+FamixTypeGroup >> averageHierarchyHeighth [ 
 	"average hierarchy height" 
 
 	| allHierarchies |
@@ -63,25 +78,8 @@ FamixTTypeGroup >> ahh [
 
 ]
 
-{ #category : #navigation }
-FamixTTypeGroup >> allClasses [
-
-	^ self
-]
-
-{ #category : #navigation }
-FamixTTypeGroup >> allMethods [
-
-	^ self flatCollect: [:c | c methods]
-]
-
-{ #category : #navigation }
-FamixTTypeGroup >> allPackages [
-	^ FamixTPackageGroup withAll: (self entities flatCollectAsSet: [ :c | c atScope: FamixTPackage ])
-]
-
 { #category : #metrics }
-FamixTTypeGroup >> averageNumberOfAttributes [
+FamixTypeGroup >> averageNumberOfAttributes [
 	<FMProperty: #averageNumberOfAttributes type: #Number>
 	<FMComment: 'Average number of attributes per class'>
 
@@ -91,7 +89,7 @@ FamixTTypeGroup >> averageNumberOfAttributes [
 ]
 
 { #category : #metrics }
-FamixTTypeGroup >> averageNumberOfLinesOfCode [
+FamixTypeGroup >> averageNumberOfLinesOfCode [
 	<FMProperty: #averageNumberOfMethods type: #Number>
 	<FMComment: 'Average number of methods per class'>
 	
@@ -101,7 +99,7 @@ FamixTTypeGroup >> averageNumberOfLinesOfCode [
 ]
 
 { #category : #metrics }
-FamixTTypeGroup >> averageNumberOfMethods [
+FamixTypeGroup >> averageNumberOfMethods [
 	<FMProperty: #averageNumberOfMethods type: #Number>
 	<FMComment: 'Average number of methods per class'>
 
@@ -111,7 +109,7 @@ FamixTTypeGroup >> averageNumberOfMethods [
 ]
 
 { #category : #metrics }
-FamixTTypeGroup >> averageNumberOfStatements [
+FamixTypeGroup >> averageNumberOfStatements [
 	<FMProperty: #averageNumberOfStatements type: #Number>
 	<FMComment: 'Average number of statements per class'>	
 
@@ -120,8 +118,8 @@ FamixTTypeGroup >> averageNumberOfStatements [
 		computedAs: [(self average: [:each | each numberOfStatements]) asFloat]
 ]
 
-{ #category : #'*Famix-Traits' }
-FamixTTypeGroup >> bunchCohesion [
+{ #category : #metrics }
+FamixTypeGroup >> bunchCohesion [
 	"Computing cohesion (Bunch formula). It is also considered anonymous and inner classes (in Java)."
 
 	<FMProperty: #bunchCohesion type: #Number>
@@ -140,8 +138,8 @@ FamixTTypeGroup >> bunchCohesion [
 	^ intraConnectivities / cgClasses size squared asFloat
 ]
 
-{ #category : #'*Famix-Traits' }
-FamixTTypeGroup >> bunchCouplingWith: aClassGroup [
+{ #category : #metrics }
+FamixTypeGroup >> bunchCouplingWith: aClassGroup [
 	"Computing coupling (Bunch formula) from aClassGroup to receiver. It is also considered anonymous and inner classes (in Java)"
 
 	| cgClasses cgTypes dependClasses dependTypes interConnectivities |
@@ -167,7 +165,7 @@ FamixTTypeGroup >> bunchCouplingWith: aClassGroup [
 ]
 
 { #category : #navigation }
-FamixTTypeGroup >> collaboratingClassesAndMethods [
+FamixTypeGroup >> collaboratingClassesAndMethods [
 	"this returns the set of methods belonging to these classes that call at least
 	one other method from at least one other class from the group"
 	| selectedMethods invokingMethods invokedMethods methods |
@@ -185,7 +183,7 @@ FamixTTypeGroup >> collaboratingClassesAndMethods [
 ]
 
 { #category : #navigation }
-FamixTTypeGroup >> commonExternalSuperclasses [
+FamixTypeGroup >> commonExternalSuperclasses [
 	| result |
 	result := Set new.
 	self do: [:each | 
@@ -194,7 +192,7 @@ FamixTTypeGroup >> commonExternalSuperclasses [
 ]
 
 { #category : #metrics }
-FamixTTypeGroup >> distance [
+FamixTypeGroup >> distance [
 	"D = A + I - 1. A package should be balanced between abstractness and instability, i.e., somewhere between abstract and stable or concrete and unstable. This rule defines the main sequence by the equation A + I - 1 = 0. D is the distance to the main sequence."
 	<FMProperty: #distance type: #Number>
 	<derived>
@@ -208,8 +206,8 @@ FamixTTypeGroup >> distance [
 	^ abstractness + instability - 1
 ]
 
-{ #category : #'*Famix-Traits' }
-FamixTTypeGroup >> efferentCoupling [
+{ #category : #metrics }
+FamixTypeGroup >> efferentCoupling [
 	"Efferent coupling for a class group is the number of classes it depends upon"
 
 	<FMProperty: #efferentCoupling type: #Number>
@@ -223,7 +221,7 @@ FamixTTypeGroup >> efferentCoupling [
 ]
 
 { #category : #metrics }
-FamixTTypeGroup >> instability [
+FamixTypeGroup >> instability [
 	"I =	Ce(P)/(Ce(P)+Ca(P)), in the range [0, 1]. 0 means package is maximally stable (i.e., no dependency to other packages and can not change without big consequences), 1 means it is unstable."
 	<FMProperty: #instability type: #Number>
 	<derived>
@@ -238,7 +236,7 @@ FamixTTypeGroup >> instability [
 ]
 
 { #category : #navigation }
-FamixTTypeGroup >> withCommonSuperclasses [
+FamixTypeGroup >> withCommonSuperclasses [
 	| result |
 	result := self asSet.
 	self do: [:each | result addAll: each superclassHierarchy].

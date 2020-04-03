@@ -1,7 +1,7 @@
-Extension { #name : #FamixTPackageGroup }
+Extension { #name : #FamixPackageGroup }
 
 { #category : #'*Moose-RoassalPaintings' }
-FamixTPackageGroup >> viewDependenciesWithCycles [
+FamixPackageGroup >> viewDependenciesWithCycles [
 	<menuItem: 'Dependencies (cycles)' category: 'Visualize'>
 	|view |
 	view := RTMondrian new.
@@ -10,7 +10,7 @@ FamixTPackageGroup >> viewDependenciesWithCycles [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FamixTPackageGroup >> viewDependenciesWithCyclesOn: aView [
+FamixPackageGroup >> viewDependenciesWithCyclesOn: aView [
 	| tarjan |
 	tarjan := MalTarjan new.
 	tarjan nodes: self.
@@ -28,14 +28,14 @@ FamixTPackageGroup >> viewDependenciesWithCyclesOn: aView [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FamixTPackageGroup >> viewPackageInternal [
+FamixPackageGroup >> viewPackageInternal [
 	<menuItem: 'Package internals' category: 'Visualize'> 
 
 	self viewPackageInternalOn: RTView new
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FamixTPackageGroup >> viewPackageInternalOn: view [
+FamixPackageGroup >> viewPackageInternalOn: view [
 	| allClasses b lb |
 	allClasses := self flatCollect: #allClasses.
 	b := RTMondrian new.
@@ -70,7 +70,7 @@ FamixTPackageGroup >> viewPackageInternalOn: view [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FamixTPackageGroup >> viewSystemComplexity [
+FamixPackageGroup >> viewSystemComplexity [
 	<menuItem: 'Package-wise System Complexity' category: 'Visualize'> 
 
 	| view | 
@@ -80,7 +80,7 @@ FamixTPackageGroup >> viewSystemComplexity [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FamixTPackageGroup >> viewSystemComplexityOn: view [
+FamixPackageGroup >> viewSystemComplexityOn: view [
 	view shape rectangle.
 	view
 		nodes: self

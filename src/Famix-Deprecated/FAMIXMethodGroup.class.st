@@ -1,6 +1,6 @@
 Class {
 	#name : #FAMIXMethodGroup,
-	#superclass : #FamixTMethodGroup,
+	#superclass : #FamixMethodGroup,
 	#category : #'Famix-Deprecated'
 }
 

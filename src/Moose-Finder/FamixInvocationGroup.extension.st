@@ -1,21 +1,7 @@
-Extension { #name : #FamixTInvocationGroup }
+Extension { #name : #FamixInvocationGroup }
 
 { #category : #'*Moose-Finder' }
-FamixTInvocationGroup >> exportToCsvStream: stream [
-	(NeoCSVWriter on: stream)
-		fieldWriter: #raw;
-		lineEndConvention: #cr;
-		nextPut: #('FromNamespace' 'FromClass' 'FromMethod' 'ToNamespace' 'ToClass' 'ToMethod');
-		fieldWriter: #quoted;
-		addFields:
-			{[ :inv | (inv source atScope: FamixTNamespace) anyOne mooseName ] . [ :inv | (inv source atScope: FamixTType) anyOne name ].
-			[ :inv | inv source signature ] . [ :inv | (inv anyCandidate atScope: FamixTNamespace) anyOne mooseName ].
-			[ :inv | (inv anyCandidate atScope: FamixTType) anyOne name ] . [ :inv | inv anyCandidate signature ]};
-		nextPutAll: self
-]
-
-{ #category : #'*Moose-Finder' }
-FamixTInvocationGroup >> mooseFinderListIn: composite [
+FamixInvocationGroup >> mooseFinderListIn: composite [
 	composite fastTable
 		beMultiple;
 		installExportToCSV;

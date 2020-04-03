@@ -1,6 +1,6 @@
 Class {
 	#name : #FAMIXFolderGroup,
-	#superclass : #FamixTFolderGroup,
+	#superclass : #FamixFolderGroup,
 	#category : #'Famix-Deprecated'
 }
 

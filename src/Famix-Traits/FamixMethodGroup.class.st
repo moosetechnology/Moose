@@ -1,43 +1,42 @@
 Class {
-	#name : #FamixTMethodGroup,
+	#name : #FamixMethodGroup,
 	#superclass : #MooseGroup,
 	#category : #'Famix-Traits-Entities'
 }
 
 { #category : #meta }
-FamixTMethodGroup class >> annotation [
+FamixMethodGroup class >> annotation [
 
-	<FMClass: #TMethodGroup super: #MooseGroup>
+	<FMClass: #MethodGroup super: #MooseGroup>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
 ]
 
 { #category : #meta }
-FamixTMethodGroup class >> metamodel [
+FamixMethodGroup class >> metamodel [
 
 	<generated>
 	^ FamixModel metamodel
 ]
 
 { #category : #navigation }
-FamixTMethodGroup >> allClasses [
-	^ FamixTTypeGroup withAll: (self entities flatCollectAsSet: [ :m | m atScope: FamixTClass ])
+FamixMethodGroup >> allClasses [
+	^ FamixTypeGroup withAll: (self entities flatCollectAsSet: [ :m | m atScope: FamixTClass ])
 ]
 
 { #category : #navigation }
-FamixTMethodGroup >> allMethods [
-
+FamixMethodGroup >> allMethods [
 	^ self
 ]
 
 { #category : #navigation }
-FamixTMethodGroup >> allPackages [
-	^ FamixTPackageGroup withAll: (self entities flatCollectAsSet: [ :m | m atScope: FamixTPackage ])
+FamixMethodGroup >> allPackages [
+	^ FamixPackageGroup withAll: (self entities flatCollectAsSet: [ :m | m atScope: FamixTPackage ])
 ]
 
 { #category : #metrics }
-FamixTMethodGroup >> averageNumberOfInvocations [
+FamixMethodGroup >> averageNumberOfInvocations [
 	<FMProperty: #averageNumberOfInvocations type: #Number>
 	<FMComment: 'Average number of invocations per methods'>
 
@@ -47,7 +46,7 @@ FamixTMethodGroup >> averageNumberOfInvocations [
 ]
 
 { #category : #metrics }
-FamixTMethodGroup >> averageNumberOfLinesOfCode [
+FamixMethodGroup >> averageNumberOfLinesOfCode [
 	<FMProperty: #averageNumberOfLinesOfCode type: #Number>
 	<FMComment: 'Average number of lines of code per methods'>
 
@@ -57,7 +56,7 @@ FamixTMethodGroup >> averageNumberOfLinesOfCode [
 ]
 
 { #category : #metrics }
-FamixTMethodGroup >> averageNumberOfParameters [
+FamixMethodGroup >> averageNumberOfParameters [
 	<FMProperty: #averageNumberOfParameters type: #Number>
 	<FMComment: 'Average number of parameters per methods'>
 	

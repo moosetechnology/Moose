@@ -25,10 +25,10 @@ FamixTMethod classSide >> annotation [
 ]
 
 { #category : #groups }
-FamixTMethod classSide >> annotationFamixTMethodGroup [
+FamixTMethod classSide >> annotationFamixMethodGroup [
 	<generated>
 	<mooseGroup>
-	^ FamixTMethodGroup
+	^ FamixMethodGroup
 ]
 
 { #category : #metrics }

@@ -1,6 +1,6 @@
 Class {
 	#name : #FAMIXGlobalVariableGroup,
-	#superclass : #FamixTGlobalVariableGroup,
+	#superclass : #FamixGlobalVariableGroup,
 	#category : #'Famix-Deprecated'
 }
 

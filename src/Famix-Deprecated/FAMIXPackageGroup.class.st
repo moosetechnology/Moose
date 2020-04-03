@@ -1,6 +1,6 @@
 Class {
 	#name : #FAMIXPackageGroup,
-	#superclass : #FamixTPackageGroup,
+	#superclass : #FamixPackageGroup,
 	#category : #'Famix-Deprecated'
 }
 

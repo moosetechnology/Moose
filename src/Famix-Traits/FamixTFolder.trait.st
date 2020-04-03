@@ -20,10 +20,10 @@ FamixTFolder classSide >> annotation [
 ]
 
 { #category : #groups }
-FamixTFolder classSide >> annotationFamixTFolderGroup [
+FamixTFolder classSide >> annotationFamixFolderGroup [
 	<generated>
 	<mooseGroup>
-	^ FamixTFolderGroup
+	^ FamixFolderGroup
 ]
 
 { #category : #adding }

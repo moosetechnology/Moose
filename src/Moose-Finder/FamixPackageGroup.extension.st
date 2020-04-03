@@ -1,7 +1,7 @@
-Extension { #name : #FamixTPackageGroup }
+Extension { #name : #FamixPackageGroup }
 
-{ #category : #'*moose-finder' }
-FamixTPackageGroup >> mooseFinderDependenciesIn: composite [
+{ #category : #'*Moose-Finder' }
+FamixPackageGroup >> mooseFinderDependenciesIn: composite [
 	"Does not work, and no idea how to fix it"
 	"<moosePresentationOrder: 20>"
 	composite roassal2
@@ -12,8 +12,8 @@ FamixTPackageGroup >> mooseFinderDependenciesIn: composite [
 						each mooseInterestingEntity viewDependenciesWithCyclesOn: view ]
 ]
 
-{ #category : #'*moose-finder' }
-FamixTPackageGroup >> mooseFinderPackageInternalIn: composite [
+{ #category : #'*Moose-Finder' }
+FamixPackageGroup >> mooseFinderPackageInternalIn: composite [
 	<moosePresentationOrder: 20>
 	composite roassal2
 			title: 'Dependencies';
@@ -23,7 +23,7 @@ FamixTPackageGroup >> mooseFinderPackageInternalIn: composite [
 						each  viewPackageInternalOn: view ]
 ]
 
-{ #category : #'*moose-finder' }
-FamixTPackageGroup >> mooseIcon [
+{ #category : #'*Moose-Finder' }
+FamixPackageGroup >> mooseIcon [
 	^ MooseIcons famixPackageGroup 
 ]

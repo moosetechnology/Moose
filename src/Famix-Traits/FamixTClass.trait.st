@@ -21,10 +21,10 @@ FamixTClass classSide >> annotation [
 ]
 
 { #category : #groups }
-FamixTClass classSide >> annotationFamixTClassGroup [
+FamixTClass classSide >> annotationFamixClassGroup [
 	<generated>
 	<mooseGroup>
-	^ FamixTClassGroup
+	^ FamixClassGroup
 ]
 
 { #category : #testing }
