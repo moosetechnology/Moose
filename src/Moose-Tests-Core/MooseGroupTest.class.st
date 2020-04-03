@@ -120,6 +120,19 @@ MooseGroupTest >> testInitialization [
 ]
 
 { #category : #tests }
+MooseGroupTest >> testIsOfType [
+	| mGroup entity object |
+	mGroup := MooseGroup new.
+	entity := MooseEntity new.
+	object := MooseObject new.
+	self assert: (mGroup isOfType: MooseAbstractGroup).
+	self assert: (entity isOfType: MooseEntity).
+	self deny: (object isOfType: MooseEntity).
+	self deny: (object isOfType: MooseGroup).
+	self deny: (mGroup isOfType: MooseEntity)
+]
+
+{ #category : #tests }
 MooseGroupTest >> testNumberOfPackages [
 	self assert: group numberOfPackages equals: 0.
 	group add: (MooseEntity new copyWithTalent: FamixTPackage).

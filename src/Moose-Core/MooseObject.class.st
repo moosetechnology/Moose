@@ -50,6 +50,9 @@ Class {
 		'DefaultState',
 		'MooseID'
 	],
+	#classInstVars : [
+		'cache'
+	],
 	#category : #'Moose-Core'
 }
 
@@ -65,6 +68,11 @@ MooseObject class >> annotation [
 	<FMClass: #Object super: #Object>
 	<package: #Moose>
 	<abstract>
+]
+
+{ #category : #accessing }
+MooseObject class >> cache [
+	^ cache ifNil: [ cache := Dictionary new ]
 ]
 
 { #category : #accessing }
@@ -96,6 +104,11 @@ MooseObject class >> isAbstract [
 	^ self = MooseObject
 ]
 
+{ #category : #testing }
+MooseObject class >> isOfType: aClassFAMIX [
+	^ self superclassesAndFamixTraits includes: aClassFAMIX
+]
+
 { #category : #'as yet unclassified' }
 MooseObject class >> relatedGroupType [
 	" The entities can specify what is the prefered type of MooseGroup they want to be stored in.
@@ -123,11 +136,21 @@ MooseObject class >> resetIDGeneration [
 	MooseID := nil
 ]
 
+{ #category : #initialization }
+MooseObject class >> resetMooseEntityCache [
+	cache := nil
+]
+
 { #category : #private }
 MooseObject class >> setMooseID: anInteger [
 	"This method is used in the unit test"
 	
 	MooseID := anInteger 
+]
+
+{ #category : #testing }
+MooseObject class >> superclassesAndFamixTraits [
+	^ self cache at: #superclassesAndFamixTraits ifAbsentPut: [ self usedStatefulTraits , self withAllSuperclasses ]
 ]
 
 { #category : #'meta information' }

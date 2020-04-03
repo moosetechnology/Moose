@@ -31,9 +31,6 @@ Class {
 	#instVars : [
 		'mooseModel'
 	],
-	#classInstVars : [
-		'cache'
-	],
 	#category : #'Moose-Core'
 }
 
@@ -43,11 +40,6 @@ MooseEntity class >> annotation [
 	<package: #Moose>
 	<abstract>
 	
-]
-
-{ #category : #accessing }
-MooseEntity class >> cache [
-	^ cache ifNil: [ cache := Dictionary new ]
 ]
 
 { #category : #accessing }
@@ -69,11 +61,6 @@ MooseEntity class >> isContainerEntityIn: aMetamodel [
 		ifAbsentPut: [ (self allDeclaredPropertiesIn: aMetamodel) anySatisfy: #isChildrenProperty ]
 ]
 
-{ #category : #testing }
-MooseEntity class >> isOfType: aClassFAMIX [
-	^ self superclassesAndFamixTraits includes: aClassFAMIX
-]
-
 { #category : #accessing }
 MooseEntity class >> requirements [
 	| metamodelClasses usedBehaviors |
@@ -85,16 +72,6 @@ MooseEntity class >> requirements [
 			aBehavior isTrait
 				ifTrue: [ metamodelClasses select: [ :each | each isComposedBy: aBehavior ] ]
 				ifFalse: [ {aBehavior} ] ]) asSet
-]
-
-{ #category : #initialization }
-MooseEntity class >> resetMooseEntityCache [
-	cache := nil
-]
-
-{ #category : #testing }
-MooseEntity class >> superclassesAndFamixTraits [
-	^ self cache at: #superclassesAndFamixTraits ifAbsentPut: [ self usedStatefulTraits , self withAllSuperclasses ]
 ]
 
 { #category : #'stateful traits' }
