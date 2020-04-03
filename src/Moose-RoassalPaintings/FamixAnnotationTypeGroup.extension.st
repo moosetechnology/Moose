@@ -1,7 +1,7 @@
-Extension { #name : #FamixTAnnotationTypeGroup }
+Extension { #name : #FamixAnnotationTypeGroup }
 
 { #category : #'*Moose-RoassalPaintings' }
-FamixTAnnotationTypeGroup >> viewAnnotationConstellation [
+FamixAnnotationTypeGroup >> viewAnnotationConstellation [
 	<menuItem: 'Annotation Constellation' category: 'Visualize'>
 	| view |
 	view := RTMondrian new.
@@ -10,7 +10,7 @@ FamixTAnnotationTypeGroup >> viewAnnotationConstellation [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FamixTAnnotationTypeGroup >> viewAnnotationConstellationOf: aClassGroup on: view [
+FamixAnnotationTypeGroup >> viewAnnotationConstellationOf: aClassGroup on: view [
 	view shape ellipse
 		color: (Color veryLightGray alpha: 0.5);
 		borderColor: Color transparent.
@@ -33,7 +33,7 @@ FamixTAnnotationTypeGroup >> viewAnnotationConstellationOf: aClassGroup on: view
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FamixTAnnotationTypeGroup >> viewAnnotationConstellationOn: view [
+FamixAnnotationTypeGroup >> viewAnnotationConstellationOn: view [
 	| annotated classes |
 
 	annotated := self flatCollect: #annotatedEntities.

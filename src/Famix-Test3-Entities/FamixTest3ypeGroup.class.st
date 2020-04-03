@@ -1,62 +1,62 @@
 Class {
-	#name : #FamixTest3TypeGroup,
+	#name : #FamixTest3ypeGroup,
 	#superclass : #MooseGroup,
 	#category : #'Famix-Test3-Entities-Entities'
 }
 
 { #category : #meta }
-FamixTest3TypeGroup class >> annotation [
+FamixTest3ypeGroup class >> annotation [
 
-	<FMClass: #TypeGroup super: #MooseGroup>
+	<FMClass: #ypeGroup super: #MooseGroup>
 	<package: #'Famix-Test3-Entities'>
 	<generated>
 	^self
 ]
 
 { #category : #meta }
-FamixTest3TypeGroup class >> metamodel [
+FamixTest3ypeGroup class >> metamodel [
 
 	<generated>
 	^ FamixTest3Model metamodel
 ]
 
 { #category : #testing }
-FamixTest3TypeGroup >> isAssociation [
+FamixTest3ypeGroup >> isAssociation [
 
 	<generated>
 	^ false
 ]
 
 { #category : #testing }
-FamixTest3TypeGroup >> isClass [
+FamixTest3ypeGroup >> isClass [
 
 	<generated>
 	^ false
 ]
 
 { #category : #testing }
-FamixTest3TypeGroup >> isInvocation [
+FamixTest3ypeGroup >> isInvocation [
 
 	<generated>
 	^ false
 ]
 
 { #category : #testing }
-FamixTest3TypeGroup >> isMethod [
+FamixTest3ypeGroup >> isMethod [
 
 	<generated>
 	^ false
 ]
 
 { #category : #testing }
-FamixTest3TypeGroup >> isReference [
+FamixTest3ypeGroup >> isReference [
 
 	<generated>
 	^ false
 ]
 
 { #category : #testing }
-FamixTest3TypeGroup >> isType [
+FamixTest3ypeGroup >> isType [
 
 	<generated>
 	^ false

@@ -1,7 +1,7 @@
-Extension { #name : #FamixTAnnotationTypeGroup }
+Extension { #name : #FamixAnnotationTypeGroup }
 
 { #category : #'*Moose-Finder' }
-FamixTAnnotationTypeGroup >> gtInspectorAnnotationConstallationOn: composite [
+FamixAnnotationTypeGroup >> gtInspectorAnnotationConstallationOn: composite [
 	<gtInspectorPresentationOrder: 40>
 	composite roassal2
 		title: 'Constellation';
@@ -10,6 +10,6 @@ FamixTAnnotationTypeGroup >> gtInspectorAnnotationConstallationOn: composite [
 ]
 
 { #category : #'*Moose-Finder' }
-FamixTAnnotationTypeGroup >> mooseIcon [
+FamixAnnotationTypeGroup >> mooseIcon [
 	^ MooseIcons famixAnnotationTypeGroup
 ]

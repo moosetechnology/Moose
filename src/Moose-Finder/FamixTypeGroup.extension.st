@@ -1,13 +1,13 @@
-Extension { #name : #FamixTTypeGroup }
+Extension { #name : #FamixTypeGroup }
 
 { #category : #'*Moose-Finder' }
-FamixTTypeGroup >> browseAsSelectionInSystemComplexityLocator [
+FamixTypeGroup >> browseAsSelectionInSystemComplexityLocator [
 	<menuItem: 'As selection within system complexity' category: 'Browse'> 
 	MooseSystemComplexityLocator openOn: self mooseModel allModelClasses withSelection: self
 ]
 
 { #category : #'*Moose-Finder' }
-FamixTTypeGroup >> mooseFinderComplexityIn: composite [
+FamixTypeGroup >> mooseFinderComplexityIn: composite [
 	<moosePresentationOrder: 20>
 	composite roassal2
 			title: 'Hierarchy';
@@ -20,7 +20,7 @@ FamixTTypeGroup >> mooseFinderComplexityIn: composite [
 ]
 
 { #category : #'*Moose-Finder' }
-FamixTTypeGroup >> mooseFinderUMLIn: composite [
+FamixTypeGroup >> mooseFinderUMLIn: composite [
     <moosePresentationOrder: 20>
     composite roassal2
 			title: 'UML';
@@ -30,7 +30,7 @@ FamixTTypeGroup >> mooseFinderUMLIn: composite [
 ]
 
 { #category : #'*Moose-Finder' }
-FamixTTypeGroup >> mooseFinderWithinNestedMapIn: composite [
+FamixTypeGroup >> mooseFinderWithinNestedMapIn: composite [
 	<moosePresentationOrder: 30>
 	composite roassal2
 			title: 'Nesting';
@@ -41,17 +41,39 @@ FamixTTypeGroup >> mooseFinderWithinNestedMapIn: composite [
 ]
 
 { #category : #'*Moose-Finder' }
-FamixTTypeGroup >> mooseIcon [
+FamixTypeGroup >> mooseIcon [
 	^ MooseIcons famixClassGroup 
 ]
 
 { #category : #'*Moose-Finder' }
-FamixTTypeGroup >> viewSystemComplexityInWizard [
+FamixTypeGroup >> viewSystemComplexityInWizard [
 	<menuItem: 'Customizable System Complexity' category: 'Visualize'>
 	self isEmpty ifTrue: [ ^ self ].
-	^ MooseCustomizableSystemComplexityBrowser 
-					openOnClassGroup: self
-					heightToSelect: #numberOfMethods
-					widthToSelect: #numberOfAttributes
-					colorToSelect: #numberOfLinesOfCode
+	^ MooseCustomizableSystemComplexityBrowser
+		openOnClassGroup: self
+		heightToSelect: #numberOfMethods
+		widthToSelect: #numberOfAttributes
+		colorToSelect: #numberOfLinesOfCode
+]
+
+{ #category : #'*Moose-Finder' }
+FamixTypeGroup >> viewUML [
+	<menuItem: 'UML class diagram' category: 'Visualize'> 
+	
+	| view |
+	view := RTUMLClassBuilder new.
+	self viewUMLOn: view.
+	^ view openWithToolbarEntitled: 'UML class diagram'
+]
+
+{ #category : #'*Moose-Finder' }
+FamixTypeGroup >> viewUMLOn: view [
+	view
+		addObjects: self;
+		classname: #name;
+		instanceVariables: #attributes;
+		methodsNames: #methods;
+		methodselector: #name;
+		superclass: #superclass;
+		treeLayout
 ]
