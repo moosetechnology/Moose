@@ -104,6 +104,7 @@ BaselineOfFamix >> baseline: spec [
 			"Groups"
 			spec
 				group: 'Core' with: #('Famix-Traits' 'Moose-Query-Extensions');
+				group: 'Minimal' with: #('Moose-Core');
 				group: 'Basic' with: #('Famix-BasicInfrastructure' 'Famix-MetamodelGeneration');
 
 				group: 'TaggingMinimal' with: #('Famix-Tagging');
