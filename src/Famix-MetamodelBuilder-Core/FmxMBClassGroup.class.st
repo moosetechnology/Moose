@@ -42,5 +42,8 @@ FmxMBClassGroup >> innerClass: anObject [
 { #category : #'settings - default' }
 FmxMBClassGroup >> name [
 	"I am override to avoid the presence of the T in the generated class"
-	^ super name withoutPrefix: #'T'
+
+	^ self innerClass isMetamodelClass
+		ifTrue: [ super name ]
+		ifFalse: [ "So my inner class is a metamodel Trait" super name withoutPrefix: #T ]
 ]

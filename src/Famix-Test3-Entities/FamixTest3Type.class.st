@@ -16,8 +16,8 @@ FamixTest3Type class >> annotation [
 ]
 
 { #category : #groups }
-FamixTest3Type class >> annotationFamixTest3ypeGroup [
+FamixTest3Type class >> annotationFamixTest3TypeGroup [
 	<generated>
 	<mooseGroup>
-	^ FamixTest3ypeGroup
+	^ FamixTest3TypeGroup
 ]
