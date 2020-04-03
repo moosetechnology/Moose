@@ -1,6 +1,7 @@
 Trait {
 	#name : #FamixJavaTStructuralEntity,
 	#traits : 'FamixTStructuralEntity + FamixTWithDereferencedInvocations',
+	#classTraits : 'FamixTStructuralEntity classTrait + FamixTWithDereferencedInvocations classTrait',
 	#category : #'Famix-Java-Entities-Traits'
 }
 
@@ -18,5 +19,6 @@ FamixJavaTStructuralEntity >> accessors [
 	<FMProperty: #accessors type: #FamixTWithAccesses>
 	<multivalued>
 	<derived>
+
 	^ (self incomingAccesses collectAsSet: [ :each | each accessor ]) asMooseGroup
 ]
