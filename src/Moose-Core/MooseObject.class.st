@@ -233,6 +233,11 @@ MooseObject >> isBookmarked: aBoolean [
 	self propertyNamed: #isBookmarked put: aBoolean
 ]
 
+{ #category : #testing }
+MooseObject >> isOfType: aClassFAMIX [
+	^ self class isOfType: aClassFAMIX
+]
+
 { #category : #properties }
 MooseObject >> lookUpPropertyNamed: selector computedAs: aBlock [ 
 	 

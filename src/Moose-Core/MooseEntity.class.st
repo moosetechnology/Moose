@@ -123,11 +123,6 @@ MooseEntity >> isContainerEntity [
 ]
 
 { #category : #testing }
-MooseEntity >> isOfType: aClassFAMIX [
-	^ self class isOfType: aClassFAMIX
-]
-
-{ #category : #testing }
 MooseEntity >> isStub [ 
 	^ self privateState isStub
 ]
