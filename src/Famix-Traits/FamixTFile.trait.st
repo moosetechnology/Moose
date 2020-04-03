@@ -20,10 +20,10 @@ FamixTFile classSide >> annotation [
 ]
 
 { #category : #groups }
-FamixTFile classSide >> annotationFamixTFileGroup [
+FamixTFile classSide >> annotationFamixFileGroup [
 	<generated>
 	<mooseGroup>
-	^ FamixTFileGroup
+	^ FamixFileGroup
 ]
 
 { #category : #accessing }

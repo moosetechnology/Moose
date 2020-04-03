@@ -31,10 +31,10 @@ FamixTInvocation classSide >> annotation [
 ]
 
 { #category : #groups }
-FamixTInvocation classSide >> annotationFamixTInvocationGroup [
+FamixTInvocation classSide >> annotationFamixInvocationGroup [
 	<generated>
 	<mooseGroup>
-	^ FamixTInvocationGroup
+	^ FamixInvocationGroup
 ]
 
 { #category : #adding }

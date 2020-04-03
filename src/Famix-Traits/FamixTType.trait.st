@@ -25,10 +25,10 @@ FamixTType classSide >> annotation [
 ]
 
 { #category : #groups }
-FamixTType classSide >> annotationFamixTTypeGroup [
+FamixTType classSide >> annotationFamixTypeGroup [
 	<generated>
 	<mooseGroup>
-	^ FamixTTypeGroup
+	^ FamixTypeGroup
 ]
 
 { #category : #adding }

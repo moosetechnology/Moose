@@ -24,10 +24,10 @@ FamixTAnnotationType classSide >> annotation [
 ]
 
 { #category : #groups }
-FamixTAnnotationType classSide >> annotationFamixTAnnotationTypeGroup [
+FamixTAnnotationType classSide >> annotationFamixAnnotationTypeGroup [
 	<generated>
 	<mooseGroup>
-	^ FamixTAnnotationTypeGroup
+	^ FamixAnnotationTypeGroup
 ]
 
 { #category : #accessing }

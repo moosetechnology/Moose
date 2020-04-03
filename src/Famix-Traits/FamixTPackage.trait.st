@@ -22,10 +22,10 @@ FamixTPackage classSide >> annotation [
 ]
 
 { #category : #groups }
-FamixTPackage classSide >> annotationFamixTPackageGroup [
+FamixTPackage classSide >> annotationFamixPackageGroup [
 	<generated>
 	<mooseGroup>
-	^ FamixTPackageGroup
+	^ FamixPackageGroup
 ]
 
 { #category : #accessing }

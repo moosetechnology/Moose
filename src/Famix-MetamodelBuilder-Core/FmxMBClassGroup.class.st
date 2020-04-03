@@ -38,3 +38,9 @@ FmxMBClassGroup >> innerClass [
 FmxMBClassGroup >> innerClass: anObject [
 	innerClass := anObject
 ]
+
+{ #category : #'settings - default' }
+FmxMBClassGroup >> name [
+	"I am override to avoid the presence of the T in the generated class"
+	^ super name withoutPrefix: #'T'
+]

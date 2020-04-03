@@ -1,20 +1,20 @@
 Class {
-	#name : #FamixTInvocationGroup,
+	#name : #FamixPackageGroup,
 	#superclass : #MooseGroup,
 	#category : #'Famix-Traits-Entities'
 }
 
 { #category : #meta }
-FamixTInvocationGroup class >> annotation [
+FamixPackageGroup class >> annotation [
 
-	<FMClass: #TInvocationGroup super: #MooseGroup>
+	<FMClass: #PackageGroup super: #MooseGroup>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
 ]
 
 { #category : #meta }
-FamixTInvocationGroup class >> metamodel [
+FamixPackageGroup class >> metamodel [
 
 	<generated>
 	^ FamixModel metamodel

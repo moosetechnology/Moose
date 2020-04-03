@@ -1,20 +1,20 @@
 Class {
-	#name : #FamixTFileGroup,
+	#name : #FamixNamespaceGroup,
 	#superclass : #MooseGroup,
 	#category : #'Famix-Traits-Entities'
 }
 
 { #category : #meta }
-FamixTFileGroup class >> annotation [
+FamixNamespaceGroup class >> annotation [
 
-	<FMClass: #TFileGroup super: #MooseGroup>
+	<FMClass: #NamespaceGroup super: #MooseGroup>
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
 ]
 
 { #category : #meta }
-FamixTFileGroup class >> metamodel [
+FamixNamespaceGroup class >> metamodel [
 
 	<generated>
 	^ FamixModel metamodel
