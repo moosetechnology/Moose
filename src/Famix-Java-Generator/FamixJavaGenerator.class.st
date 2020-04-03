@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixJavaGenerator,
-	#superclass : #FamixFileBasedLanguageGenerator,
+	#superclass : #FamixBasicInfrastructureGenerator,
 	#instVars : [
 		'access',
 		'annotationInstance',
@@ -33,7 +33,10 @@ Class {
 		'type',
 		'unknownVariable',
 		'parameterizedType',
-		'tStructuralEntity'
+		'tStructuralEntity',
+		'file',
+		'folder',
+		'indexedFileAnchor'
 	],
 	#category : #'Famix-Java-Generator'
 }
@@ -52,7 +55,6 @@ FamixJavaGenerator class >> prefix [
 
 { #category : #definition }
 FamixJavaGenerator >> defineClasses [
-
 	super defineClasses.
 
 	access := builder newClassNamed: #Access.
@@ -68,8 +70,11 @@ FamixJavaGenerator >> defineClasses [
 	enum := builder newClassNamed: #Enum.
 	enumValue := builder newClassNamed: #EnumValue.
 	exception := builder newClassNamed: #Exception.
+	file := builder newClassNamed: #File.
+	folder := builder newClassNamed: #Folder.
 	globalVariable := builder newClassNamed: #GlobalVariable.
 	implicitVariable := builder newClassNamed: #ImplicitVariable.
+	indexedFileAnchor := builder newClassNamed: #IndexedFileAnchor.
 	inheritance := builder newClassNamed: #Inheritance.
 	invocation := builder newClassNamed: #Invocation.
 	localVariable := builder newClassNamed: #LocalVariable.
@@ -139,6 +144,15 @@ FamixJavaGenerator >> defineHierarchy [
 	attribute --|> namedEntity.
 	attribute --|> #TAttribute.
 	attribute --|> #TWithClassScope.
+	
+	file --|> namedEntity.
+	file --|> #TFile.
+	
+	folder --|> namedEntity.
+	folder --|> #TFolder.
+
+	indexedFileAnchor --|> sourceAnchor.
+	indexedFileAnchor --|> #TIndexedFileNavigation.
 
 	method --|> containerEntity.
 	method --|> #TMethod.

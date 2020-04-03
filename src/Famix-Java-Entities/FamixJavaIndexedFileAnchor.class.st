@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixJavaIndexedFileAnchor,
-	#superclass : #FamixJavaAbstractFileAnchor,
+	#superclass : #FamixJavaSourceAnchor,
 	#traits : 'FamixTIndexedFileNavigation',
 	#classTraits : 'FamixTIndexedFileNavigation classTrait',
 	#category : #'Famix-Java-Entities-Entities'
@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaIndexedFileAnchor class >> annotation [
 
-	<FMClass: #IndexedFileAnchor super: #FamixJavaAbstractFileAnchor>
+	<FMClass: #IndexedFileAnchor super: #FamixJavaSourceAnchor>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
