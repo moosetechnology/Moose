@@ -89,6 +89,7 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	attribute --|> namedEntity.
 	attribute --|> #TAttribute.
 	attribute --|> #TWithClassScope.
+	attribute --|> #THasModifiers.	
 
 	class --|> namedEntity.
 	self flag: 'WithTypes should not be necessary but needed in tests like FamixMetricsTest>>testAfferentCouplingFAMIXClassGroup'.
