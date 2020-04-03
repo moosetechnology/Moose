@@ -18,12 +18,13 @@ BaselineOfMoose >> baseline: spec [
 		for: #common
 		do: [ self
 				famix: spec;
+				famixTagging: spec;
 				mooseAlgos: spec;
 				mooseEasy: spec;
 				neoCSV: spec;
 				roassal2: spec.
 			spec
-				package: 'Moose-Finder' with: [ spec requires: #('Famix' 'MooseAlgos' 'Moose-RoassalPaintings' 'NeoCSV') ];
+				package: 'Moose-Finder' with: [ spec requires: #('Famix' 'FamixTaggingWithoutFamix' 'MooseAlgos' 'Moose-RoassalPaintings' 'NeoCSV') ];
 				package: 'Moose-MenuBar' with: [ spec requires: #('Moose-Finder') ];
 				package: 'Moose-Configuration';
 				package: 'Glamour-Tools';
@@ -60,6 +61,11 @@ BaselineOfMoose >> customProjectAttributes [
 { #category : #dependencies }
 BaselineOfMoose >> famix: spec [
 	spec baseline: 'Famix' with: [ spec repository: repository ]
+]
+
+{ #category : #dependencies }
+BaselineOfMoose >> famixTagging: spec [
+	spec baseline: 'FamixTaggingWithoutFamix' with: [ spec repository: 'github://moosetechnology/FamixTagging:v1.x.x/src' ]
 ]
 
 { #category : #dependencies }
