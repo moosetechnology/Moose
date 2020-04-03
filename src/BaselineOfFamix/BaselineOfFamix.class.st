@@ -26,7 +26,6 @@ BaselineOfFamix >> baseline: spec [
 				fame: spec;
 				kgbTestResources: spec;
 				collectionExtensions: spec;
-				materialColor: spec;
 				packageBlueprintTestResources: spec;
 				referenceTestResources: spec;
 				roelTyper: spec;
@@ -59,11 +58,6 @@ BaselineOfFamix >> baseline: spec [
 				package: 'Famix-Java-Generator' with: [ spec requires: #('Basic') ];
 				package: 'Famix-Java-Entities' with: [ spec requires: #('BasicTraits') ];
 				package: 'Famix-Java-Tests' with: [ spec requires: #('Famix-Java-Entities' 'Famix-Java-Generator') ];
-				
-				package: 'Famix-Tagging' with: [ spec requires: #('MaterialColors' 'Moose-Core') ];
-				package: 'Famix-Tagging-Code' with: [ spec requires: #('Famix-Tagging' 'BasicTraits') ];
-				package: 'Famix-Tagging-Tests-Entities' with: [ spec requires: #('BasicTraits') ];
-				package: 'Famix-Tagging-Tests' with: [ spec requires: #('Famix-Tagging' 'Famix-Tagging-Code' 'Famix-Tagging-Tests-Entities') ];
 
 				package: 'Moose-TestResources-LAN';
 				package: 'Moose-TestResources-LCOM';
@@ -106,11 +100,6 @@ BaselineOfFamix >> baseline: spec [
 				group: 'Core' with: #('Famix-Traits' 'Moose-Query-Extensions');
 				group: 'Minimal' with: #('Moose-Core');
 				group: 'Basic' with: #('Famix-BasicInfrastructure' 'Famix-MetamodelGeneration');
-
-				group: 'TaggingMinimal' with: #('Famix-Tagging');
-				group: 'Tagging' with: #('TaggingMinimal' 'Famix-Tagging-Code');
-				group: 'TaggingTests' with: #('Famix-Tagging-Tests');
-
 				group: 'TestsResources' with: #('ReferenceTestResources' 'Moose-TestResources-LAN' 'Moose-TestResources-LCOM' 'KGBTestResources' 'PackageBlueprintTestResources');
 				group: 'BasicTraits' with: #('Famix-Traits');
 				group: 'EntitiesCompatibility' with: #('Famix-Compatibility-Entities');
@@ -122,7 +111,7 @@ BaselineOfFamix >> baseline: spec [
 				group: 'Importers' with: #('Moose-GenericImporter' 'Moose-SmalltalkImporter');
 				group: 'TestModels' with: #('Famix-Test1-Entities' 'Famix-Test2-Entities' 'Famix-Test3-Entities' 'Famix-Test4-Entities');
 				group: 'Tests' with: #(
-								'Famix-Tests' 'TaggingTests' 'Moose-Query-Test' 'Moose-Tests-Core' 'Famix-Smalltalk-Utils-Tests'
+								'Famix-Tests' 'Moose-Query-Test' 'Moose-Tests-Core' 'Famix-Smalltalk-Utils-Tests'
 								'Moose-Tests-SmalltalkImporter-LAN' 'Moose-Tests-SmalltalkImporter-Core' 'Moose-Tests-SmalltalkImporter-KGB'
 								'Famix-Java-Tests' 'Famix-Compatibility-Tests-C' 'Famix-VerveineJ-Tests'
 								'Famix-Compatibility-Tests-Core' 'Famix-PharoSmalltalk-Tests' 'Famix-TestGenerators'
@@ -166,11 +155,6 @@ BaselineOfFamix >> fame: spec [
 { #category : #dependencies }
 BaselineOfFamix >> kgbTestResources: spec [
 	spec baseline: 'KGBTestResources' with: [ spec repository: 'github://moosetechnology/KGBTestResources:v1.x.x/src' ]
-]
-
-{ #category : #dependencies }
-BaselineOfFamix >> materialColor: spec [
-	spec baseline: 'MaterialColors' with: [ spec repository: 'github://DuneSt/MaterialColors:v2.x.x/src' ]
 ]
 
 { #category : #dependencies }
