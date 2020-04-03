@@ -73,7 +73,7 @@ MooseObjectTest >> testGroupFor [
 	model := FamixTest1Model new.
 	model addAll: {entity1 . entity2}.
 	classGroup := model groupFor: #allClasses.
-	self assert: classGroup class identicalTo: FamixTClassGroup.
+	self assert: classGroup class identicalTo: FamixClassGroup.
 	self assert: (classGroup entities includesAll: {entity1 . entity2}).
 	methodGroup := model groupFor: #allMethods.
 	self assert: methodGroup class identicalTo: MooseGroup.
