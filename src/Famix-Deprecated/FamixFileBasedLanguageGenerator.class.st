@@ -9,12 +9,21 @@ Class {
 		'indexedFileAnchor',
 		'multipleFileAnchor'
 	],
-	#category : #'Famix-BasicInfrastructure'
+	#category : #'Famix-Deprecated'
 }
 
 { #category : #testing }
 FamixFileBasedLanguageGenerator class >> isAbstract [
 	^ self = FamixFileBasedLanguageGenerator
+]
+
+{ #category : #testing }
+FamixFileBasedLanguageGenerator class >> isDeprecated [
+	"You should not use me but FamixMetamodelGenerator instead.
+	
+	Generators should not be subclassed but composed."
+
+	^ true
 ]
 
 { #category : #definition }

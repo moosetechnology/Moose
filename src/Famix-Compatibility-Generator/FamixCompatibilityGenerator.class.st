@@ -6,7 +6,7 @@ FamixCompatibilityGenerator resetMetamodel.
 "
 Class {
 	#name : #FamixCompatibilityGenerator,
-	#superclass : #FamixFileBasedLanguageGenerator,
+	#superclass : #FamixBasicInfrastructureGenerator,
 	#instVars : [
 		'access',
 		'annotationInstance',
@@ -60,7 +60,13 @@ Class {
 		'typeAlias',
 		'unknownVariable',
 		'trait',
-		'traitUsage'
+		'traitUsage',
+		'abstractFileAnchor',
+		'file',
+		'fileAnchor',
+		'folder',
+		'indexedFileAnchor',
+		'multipleFileAnchor'
 	],
 	#category : #'Famix-Compatibility-Generator'
 }
@@ -153,6 +159,14 @@ FamixCompatibilityGenerator >> defineClasses [
 	unknownVariable := builder newClassNamed: #UnknownVariable.
 	trait := builder newClassNamed: #Trait.
 	traitUsage := builder newClassNamed: #TraitUsage.
+	
+	
+	abstractFileAnchor := builder newClassNamed: #AbstractFileAnchor.
+	file := builder newClassNamed: #File.
+	fileAnchor := builder newClassNamed: #FileAnchor.
+	folder := builder newClassNamed: #Folder.
+	indexedFileAnchor := builder newClassNamed: #IndexedFileAnchor.
+	multipleFileAnchor := builder newClassNamed: #MultipleFileAnchor.
 
 	primitiveType withTesting
 
@@ -350,6 +364,26 @@ FamixCompatibilityGenerator >> defineHierarchy [
 	trait --|> #TTrait.
 	
 	traitUsage --|> #TTraitUsage.
+	
+	abstractFileAnchor --|> sourceAnchor.
+	abstractFileAnchor --|> #TFileAnchor.
+
+	file --|> namedEntity.
+	file --|> #TFile.
+
+	fileAnchor --|> abstractFileAnchor.
+	fileAnchor --|> #TFileNavigation.
+
+	folder --|> namedEntity.
+	folder --|> #TFolder.
+
+	indexedFileAnchor --|> abstractFileAnchor.
+	indexedFileAnchor --|> #TIndexedFileNavigation.
+
+	multipleFileAnchor --|> sourceAnchor.
+	multipleFileAnchor --|> #TMultipleFileAnchor.
+
+	sourcedEntity --|> #TWithFiles
 	
 
 ]
