@@ -126,6 +126,18 @@ FamixMetamodelBuilder >> ensureClassNamed: aString [
 	^ self classes detect: [ :each | each name = aString ] ifNone: [ self newClassNamed: aString ]
 ]
 
+{ #category : #generating }
+FamixMetamodelBuilder >> ensureEntityClassIsTheCommonSuperclass [
+	"All classes should have a common superclass called Entity. Here we ensure it is created and used."
+
+	self classes iterator
+		| #isRoot selectIt
+		| #isMetamodelClassGroup rejectIt
+		| [ :class | class name = #Entity ] rejectIt
+		| [ :class | class --|> (self ensureClassNamed: #Entity) ] doIt
+		> NullAddableObject
+]
+
 { #category : #initialization }
 FamixMetamodelBuilder >> ensureLocalTraitNamed: aString [
 	<ignoreForMutations: #(ReplaceAndWithEqvMutantOperator)>
@@ -415,6 +427,7 @@ FamixMetamodelBuilder >> parentBuilderPackageName [
 FamixMetamodelBuilder >> prepareGeneration [
 	self registerPackages.
 
+	self ensureEntityClassIsTheCommonSuperclass.
 	self traitsWithSubBuildersTraits do: [ :each | self testingSelectorsMapping at: each put: each testingSelectors ].
 	self classes do: [ :each | self testingSelectorsMapping at: each put: each testingSelectors ].
 	self traits do: [ :each | each generate ].

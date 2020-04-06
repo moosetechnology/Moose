@@ -177,8 +177,6 @@ FamixCompatibilityGenerator >> defineClasses [
 FamixCompatibilityGenerator >> defineHierarchy [
 
 	super defineHierarchy.
-
-	entity <|-- exception.
 	
 	access --|> #TAccess.
 

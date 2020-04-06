@@ -66,7 +66,6 @@ FamixPharoSmalltalkGenerator >> defineClasses [
 
 { #category : #initialization }
 FamixPharoSmalltalkGenerator >> defineHierarchy [
-
 	super defineHierarchy.
 
 	access --|> #TAccess.

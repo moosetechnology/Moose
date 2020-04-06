@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixTest2Inheritance,
-	#superclass : #MooseEntity,
+	#superclass : #FamixTest2Entity,
 	#traits : 'FamixTInheritance',
 	#classTraits : 'FamixTInheritance classTrait',
 	#category : #'Famix-Test2-Entities-Entities'
@@ -9,36 +9,8 @@ Class {
 { #category : #meta }
 FamixTest2Inheritance class >> annotation [
 
-	<FMClass: #Inheritance super: #MooseEntity>
+	<FMClass: #Inheritance super: #FamixTest2Entity>
 	<package: #'Famix-Test2-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FamixTest2Inheritance class >> metamodel [
-
-	<generated>
-	^ FamixTest2Model metamodel
-]
-
-{ #category : #testing }
-FamixTest2Inheritance >> isAssociation [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixTest2Inheritance >> isClass [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixTest2Inheritance >> isType [
-
-	<generated>
-	^ false
 ]

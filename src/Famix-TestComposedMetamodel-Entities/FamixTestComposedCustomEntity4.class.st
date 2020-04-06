@@ -1,23 +1,16 @@
 Class {
 	#name : #FamixTestComposedCustomEntity4,
-	#superclass : #MooseEntity,
+	#superclass : #FamixTestComposedEntity,
 	#category : #'Famix-TestComposedMetamodel-Entities-Entities'
 }
 
 { #category : #meta }
 FamixTestComposedCustomEntity4 class >> annotation [
 
-	<FMClass: #CustomEntity4 super: #MooseEntity>
+	<FMClass: #CustomEntity4 super: #FamixTestComposedEntity>
 	<package: #'Famix-TestComposedMetamodel-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FamixTestComposedCustomEntity4 class >> metamodel [
-
-	<generated>
-	^ FamixTestComposedModel metamodel
 ]
 
 { #category : #adding }
@@ -64,11 +57,4 @@ FamixTestComposedCustomEntity4 >> customEntities4: anObject [
 
 	<generated>
 	self customEntities4 value: anObject
-]
-
-{ #category : #testing }
-FamixTestComposedCustomEntity4 >> isAssociation [
-
-	<generated>
-	^ false
 ]

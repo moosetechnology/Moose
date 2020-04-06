@@ -1,23 +1,16 @@
 Class {
 	#name : #FamixTestComposedCustomEntity3,
-	#superclass : #MooseEntity,
+	#superclass : #FamixTestComposedEntity,
 	#category : #'Famix-TestComposedMetamodel-Entities-Entities'
 }
 
 { #category : #meta }
 FamixTestComposedCustomEntity3 class >> annotation [
 
-	<FMClass: #CustomEntity3 super: #MooseEntity>
+	<FMClass: #CustomEntity3 super: #FamixTestComposedEntity>
 	<package: #'Famix-TestComposedMetamodel-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FamixTestComposedCustomEntity3 class >> metamodel [
-
-	<generated>
-	^ FamixTestComposedModel metamodel
 ]
 
 { #category : #accessing }
@@ -50,11 +43,4 @@ FamixTestComposedCustomEntity3 >> customEntity3: anObject [
 
 	<generated>
 	self privateState attributeAt: #customEntity3 put: (FMMultivalueLink on: self update: #customEntities3 from: self customEntity3 to: anObject).
-]
-
-{ #category : #testing }
-FamixTestComposedCustomEntity3 >> isAssociation [
-
-	<generated>
-	^ false
 ]
