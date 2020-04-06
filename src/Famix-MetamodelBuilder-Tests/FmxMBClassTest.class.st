@@ -35,16 +35,16 @@ FmxMBClassTest >> newEntityNamed: aString [
 
 { #category : #'tests - settings' }
 FmxMBClassTest >> testBasicSuperclass [
-
-	"check if a new class has correct superclass (the default one)"
+	"check if a new class has correct superclass (Entity for most of them. The default one for Entity.)"
 
 	| generated |
-	
-	builder newClassNamed: #Comment.	
+	builder newClassNamed: #Comment.
 	builder generate.
 	generated := builder testingEnvironment ask classNamed: 'TstComment'.
-	self assert: generated superclass name equals: builder configuration defaultBasicSuperclassName.
+	self assert: generated superclass name equals: #TstEntity.
 
+	generated := builder testingEnvironment ask classNamed: 'TstEntity'.
+	self assert: generated superclass name equals: builder configuration defaultBasicSuperclassName
 ]
 
 { #category : #'tests - settings' }
@@ -178,17 +178,15 @@ FmxMBClassTest >> testCustomPackageForUserClassesChanged [
 
 { #category : #'tests - settings' }
 FmxMBClassTest >> testCustomSuperclass [
-
 	"test if a custom basic superclass can correctly set"
 
 	| generated |
-	
 	builder configuration basicSuperclassName: #BasicSuperclass.
-	builder newClassNamed: #Comment.
-	builder generate.
-	generated := builder testingEnvironment ask classNamed: 'TstComment'.
-	self assert: generated superclass name equals: 'BasicSuperclass'.
 
+	builder newClassNamed: #Entity.
+	builder generate.
+	generated := builder testingEnvironment ask classNamed: 'TstEntity'.
+	self assert: generated superclass name equals: 'BasicSuperclass'
 ]
 
 { #category : #tests }
@@ -235,6 +233,27 @@ FmxMBClassTest >> testEmptyComment [
 ]
 
 { #category : #tests }
+FmxMBClassTest >> testEntityClass [
+	"check expected parameters of a newely generated entity class"
+
+	| generated method |
+	builder newClassNamed: #Entity.
+	builder generate.
+	generated := builder testingEnvironment ask classNamed: 'TstEntity'.
+	self assert: generated isNotNil.
+	self assert: generated isClass.
+	self assert: generated superclass name equals: 'MooseEntity'.
+	self assertEmpty: generated slots.
+	self assertEmpty: generated instanceSide localSelectors.
+	self assertCollection: generated classSide localSelectors sorted equals: #(annotation metamodel).
+
+	method := generated classSide methodNamed: #annotation.
+	self assert: (method sourceCode includesSubstring: '<FMClass: #Entity super: #MooseEntity>').
+	self assert: (method sourceCode includesSubstring: '<generated>').
+	self assert: (method sourceCode includesSubstring: '<package: #Tst>')
+]
+
+{ #category : #tests }
 FmxMBClassTest >> testMultipleClasses [
 
 	"trivial test if we can generate several different classes"
@@ -258,29 +277,26 @@ FmxMBClassTest >> testSimpleClass [
 	builder newClassNamed: #Comment.
 	builder generate.
 	generated := builder testingEnvironment ask classNamed: 'TstComment'.
-	self assert: generated notNil.
+	self assert: generated isNotNil.
 	self assert: generated isClass.
-	self assert: generated superclass name equals: 'MooseEntity'.
-	self assert: generated slots isEmpty.
-	self assert: generated instanceSide localSelectors isEmpty.
-	self assertCollection: generated classSide localSelectors sorted equals: #(annotation #metamodel)
+	self assert: generated superclass name equals: 'TstEntity'.
+	self assertEmpty: generated slots.
+	self assertEmpty: generated instanceSide localSelectors.
+	self assertCollection: generated classSide localSelectors sorted equals: #(annotation)
 ]
 
 { #category : #tests }
 FmxMBClassTest >> testSimpleClassAnnotation [
-
 	"test correct generation of class annotations"
 
 	| generated method |
-		
-	builder newClassNamed: #Comment.	
+	builder newClassNamed: #Comment.
 	builder generate.
 	generated := builder testingEnvironment ask classNamed: 'TstComment'.
 	method := generated classSide methodNamed: #annotation.
-	self assert: (method sourceCode includesSubstring: '<FMClass: #Comment super: #MooseEntity>').
+	self assert: (method sourceCode includesSubstring: '<FMClass: #Comment super: #TstEntity>').
 	self assert: (method sourceCode includesSubstring: '<generated>').
-	self assert: (method sourceCode includesSubstring: '<package: #Tst>').
-
+	self assert: (method sourceCode includesSubstring: '<package: #Tst>')
 ]
 
 { #category : #'tests - names' }

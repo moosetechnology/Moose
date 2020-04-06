@@ -6,9 +6,9 @@ Class {
 
 { #category : #tests }
 FmxMBGeneratorTest >> testBuilderWithDefinitions [
-
 	builder := FamixTest1Generator builderWithDefinitions.
-	self assert: (builder classNamed: #Entity) notNil.
+	builder prepareGeneration.
+	self assert: (builder classNamed: #Entity) isNotNil
 ]
 
 { #category : #tests }
