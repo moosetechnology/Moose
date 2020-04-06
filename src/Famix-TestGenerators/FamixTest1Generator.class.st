@@ -25,12 +25,17 @@ model.
 "
 Class {
 	#name : #FamixTest1Generator,
-	#superclass : #FamixFileBasedLanguageGenerator,
+	#superclass : #FamixBasicInfrastructureGenerator,
 	#instVars : [
-		'classEntity',
 		'method',
 		'attribute',
-		'association'
+		'association',
+		'file',
+		'fileAnchor',
+		'folder',
+		'indexedFileAnchor',
+		'multipleFileAnchor',
+		'class'
 	],
 	#category : #'Famix-TestGenerators'
 }
@@ -51,26 +56,49 @@ FamixTest1Generator class >> prefix [
 FamixTest1Generator >> defineClasses [
 	super defineClasses.
 
-	classEntity := builder newClassNamed: #Class.
+	class := builder newClassNamed: #Class.
 	method := builder newClassNamed: #Method.
 	attribute := builder newClassNamed: #Attribute.
 	association := builder newClassNamed: #Association.
+
+	file := builder newClassNamed: #File.
+	fileAnchor := builder newClassNamed: #FileAnchor.
+	folder := builder newClassNamed: #Folder.
+	indexedFileAnchor := builder newClassNamed: #IndexedFileAnchor.
+	multipleFileAnchor := builder newClassNamed: #MultipleFileAnchor
 ]
 
 { #category : #definition }
 FamixTest1Generator >> defineHierarchy [
 	super defineHierarchy.
 
-	method --|> namedEntity.
-	method --|> #TMethod.
-
-	classEntity --|> namedEntity.
-	classEntity --|> #TClass.
+	association --|> #TAssociation.
 
 	attribute --|> namedEntity.
 	attribute --|> #TAttribute.
-	
-	association --|> #TAssociation.
+
+	class --|> namedEntity.
+	class --|> #TClass.
+
+	file --|> namedEntity.
+	file --|> #TFile.
+
+	fileAnchor --|> sourceAnchor.
+	fileAnchor --|> #TFileNavigation.
+
+	folder --|> namedEntity.
+	folder --|> #TFolder.
+
+	indexedFileAnchor --|> sourceAnchor.
+	indexedFileAnchor --|> #TIndexedFileNavigation.
+
+	method --|> namedEntity.
+	method --|> #TMethod.
+
+	multipleFileAnchor --|> sourceAnchor.
+	multipleFileAnchor --|> #TMultipleFileAnchor.
+
+	sourcedEntity --|> #TWithFiles
 ]
 
 { #category : #definition }
