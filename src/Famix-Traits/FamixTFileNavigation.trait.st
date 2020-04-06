@@ -6,6 +6,8 @@ Trait {
 		'#startColumn => FMProperty',
 		'#startLine => FMProperty'
 	],
+	#traits : 'FamixTFileAnchor',
+	#classTraits : 'FamixTFileAnchor classTrait',
 	#category : #'Famix-Traits-SourceAnchor'
 }
 
