@@ -39,6 +39,11 @@ FmxMBClassGroup >> innerClass: anObject [
 	innerClass := anObject
 ]
 
+{ #category : #testing }
+FmxMBClassGroup >> isMetamodelClassGroup [
+	^ true
+]
+
 { #category : #'settings - default' }
 FmxMBClassGroup >> name [
 	"I am override to avoid the presence of the T in the generated class"

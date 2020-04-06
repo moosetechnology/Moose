@@ -265,6 +265,12 @@ FmxMBBehavior >> isMetamodelClass [
 ]
 
 { #category : #testing }
+FmxMBBehavior >> isMetamodelClassGroup [
+
+	^ false
+]
+
+{ #category : #testing }
 FmxMBBehavior >> isMetamodelTrait [
 
 	^ false

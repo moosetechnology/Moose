@@ -2,7 +2,6 @@ Class {
 	#name : #FamixTest4Generator,
 	#superclass : #FamixMetamodelGenerator,
 	#instVars : [
-		'entity',
 		'book',
 		'person',
 		'principal',
@@ -43,10 +42,8 @@ FamixTest4Generator >> adoptBuilder: aBuilder [
 
 { #category : #definition }
 FamixTest4Generator >> defineClasses [
-
 	super defineClasses.
 
-	entity := builder newClassNamed: #Entity.
 	book := builder newClassNamed: #Book.
 	person := builder newClassNamed: #Person.
 	principal := builder newClassNamed: #Principal.
@@ -55,32 +52,25 @@ FamixTest4Generator >> defineClasses [
 	school := builder newClassNamed: #School.
 	room := builder newClassNamed: #Room.
 	classroom := builder newClassNamed: #Classroom.
-	cafeteria := builder newClassNamed: #Cafeteria.
-
-
+	cafeteria := builder newClassNamed: #Cafeteria
 ]
 
 { #category : #definition }
 FamixTest4Generator >> defineHierarchy [
 	super defineHierarchy.
 
-	book --|> entity.
-	person --|> entity.
 	principal --|> person.
 	student --|> person.
 	teacher --|> person.
-	school --|> entity.
-	room --|> entity.
 	classroom --|> room.
 	cafeteria --|> room
 ]
 
 { #category : #definition }
 FamixTest4Generator >> defineProperties [
-
 	super defineProperties.
 
-	entity property: #name type: #String.
+	(builder ensureClassNamed: #Entity) property: #name type: #String
 ]
 
 { #category : #definition }

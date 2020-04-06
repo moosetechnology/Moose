@@ -99,7 +99,9 @@ FamixJavaGenerator >> defineClasses [
 
 { #category : #definition }
 FamixJavaGenerator >> defineComments [
-	entity comment: 'file :=  ''ArgoUML-0.34.mse'' asFileReference readStream.
+	(builder ensureClassNamed: #Entity)
+		comment:
+			'file :=  ''ArgoUML-0.34.mse'' asFileReference readStream.
 
 dictionary := Dictionary newFrom: (
 	FamixJavaEntity withAllSubclasses collect: [ :c | 
@@ -118,11 +120,8 @@ model.'
 
 { #category : #definition }
 FamixJavaGenerator >> defineHierarchy [
-
 	super defineHierarchy.
 
-	entity <|-- exception.
-	
 	access --|> #TAccess.
 
 	annotationInstance --|> sourcedEntity.
