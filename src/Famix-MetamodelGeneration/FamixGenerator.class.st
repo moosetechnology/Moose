@@ -925,6 +925,8 @@ FamixGenerator >> defineHierarchy [
 	tFile --|> tFileSystemEntity.
 	
 	tFileInclude --|> tAssociation.
+	
+	tFileNavigation --|> tFileAnchor.
 
 	tFolder --|> tFileSystemEntity.
 	
@@ -933,6 +935,8 @@ FamixGenerator >> defineHierarchy [
 	tFunction --|> tTypedEntity.
 
 	tGlobalVariable --|> tStructuralEntity.
+	
+	tIndexedFileNavigation --|> tFileAnchor.
 
 	tInheritance --|> tAssociation.
 

@@ -53,7 +53,5 @@ FamixTSourceAnchor >> lineCount [
 
 { #category : #accessing }
 FamixTSourceAnchor >> sourceText [
-
-	"I should be overriden in my users"
-	^ nil
+	^ self explicitRequirement
 ]

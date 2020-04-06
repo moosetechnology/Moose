@@ -4,6 +4,8 @@ Trait {
 		'#endPos => FMProperty',
 		'#startPos => FMProperty'
 	],
+	#traits : 'FamixTFileAnchor',
+	#classTraits : 'FamixTFileAnchor classTrait',
 	#category : #'Famix-Traits-SourceAnchor'
 }
 
