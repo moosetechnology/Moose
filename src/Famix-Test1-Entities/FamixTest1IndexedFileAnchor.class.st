@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixTest1IndexedFileAnchor,
 	#superclass : #FamixTest1SourceAnchor,
-	#traits : 'FamixTFileAnchor + FamixTIndexedFileNavigation',
-	#classTraits : 'FamixTFileAnchor classTrait + FamixTIndexedFileNavigation classTrait',
+	#traits : 'FamixTIndexedFileNavigation',
+	#classTraits : 'FamixTIndexedFileNavigation classTrait',
 	#category : #'Famix-Test1-Entities-Entities'
 }
 

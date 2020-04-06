@@ -84,14 +84,12 @@ FamixTest1Generator >> defineHierarchy [
 	file --|> #TFile.
 
 	fileAnchor --|> sourceAnchor.
-	fileAnchor --|> #TFileAnchor.
 	fileAnchor --|> #TFileNavigation.
 
 	folder --|> namedEntity.
 	folder --|> #TFolder.
 
 	indexedFileAnchor --|> sourceAnchor.
-	indexedFileAnchor --|> #TFileAnchor.
 	indexedFileAnchor --|> #TIndexedFileNavigation.
 
 	method --|> namedEntity.
