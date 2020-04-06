@@ -1,7 +1,7 @@
 Class {
 	#name : #FamixSlotDeprecation,
 	#superclass : #Deprecation,
-	#category : #'Famix-BasicInfrastructure'
+	#category : #'Moose-Core'
 }
 
 { #category : #accessing }

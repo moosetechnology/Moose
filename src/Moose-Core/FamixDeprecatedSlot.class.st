@@ -26,7 +26,7 @@ Class {
 	#instVars : [
 		'message'
 	],
-	#category : #'Famix-BasicInfrastructure'
+	#category : #'Moose-Core'
 }
 
 { #category : #accessing }
