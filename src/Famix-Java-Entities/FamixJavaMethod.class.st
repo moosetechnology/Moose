@@ -237,12 +237,6 @@ FamixJavaMethod >> numberOfComments [
 	^ self lookUpPropertyNamed: #numberOfComments computedAs: [ self comments size ]
 ]
 
-{ #category : #accessing }
-FamixJavaMethod >> numberOfComments: aNumber [
-
-	self privateState propertyAt: #numberOfComments put: aNumber
-]
-
 { #category : #'Famix-Extensions-private' }
 FamixJavaMethod >> numberOfConditionals [
 	<FMProperty: #numberOfConditionals type: #Number>
