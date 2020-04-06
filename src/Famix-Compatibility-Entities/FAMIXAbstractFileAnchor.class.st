@@ -15,6 +15,11 @@ FAMIXAbstractFileAnchor class >> annotation [
 	^self
 ]
 
+{ #category : #testing }
+FAMIXAbstractFileAnchor class >> isAbstract [
+	^ self = FAMIXAbstractFileAnchor
+]
+
 { #category : #'Famix-File' }
 FAMIXAbstractFileAnchor >> <= aFileAnchor [
 	^ self fileName <= aFileAnchor fileName

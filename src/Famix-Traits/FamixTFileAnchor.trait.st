@@ -115,7 +115,11 @@ FamixTFileAnchor >> lineCount [
 
 { #category : #printing }
 FamixTFileAnchor >> mooseNameOn: aStream [
-	aStream nextPutAll: self fileName
+	aStream
+		nextPutAll:
+			(self fileName
+				ifNotNil: [ :fn | fn ]
+				ifNil: [ 'No associated file' ])
 ]
 
 { #category : #private }
