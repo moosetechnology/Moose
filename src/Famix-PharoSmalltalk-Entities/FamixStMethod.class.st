@@ -210,12 +210,6 @@ FamixStMethod >> numberOfComments [
 ]
 
 { #category : #'Famix-Extensions-private' }
-FamixStMethod >> numberOfComments: aNumber [
-
-	self privateState propertyAt: #numberOfComments put: aNumber
-]
-
-{ #category : #'Famix-Extensions-private' }
 FamixStMethod >> numberOfConditionals [
 	<FMProperty: #numberOfConditionals type: #Number>
 	<FMComment: 'The number of conditionals in a method'>
@@ -261,12 +255,6 @@ FamixStMethod >> numberOfStatements [
 	<FMProperty: #numberOfStatements type: #Number>
 	<FMComment: 'The number of statements in a method'>
 	^ self lookUpPropertyNamed: #numberOfStatements computedAs: [ (RBVisitorForFAMIXMetrics for: self) numberOfStatements ]
-]
-
-{ #category : #'Famix-Extensions-private' }
-FamixStMethod >> numberOfStatements: aNumber [
-
-	self privateState propertyAt: #numberOfStatements put: aNumber
 ]
 
 { #category : #accessing }

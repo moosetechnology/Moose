@@ -56,8 +56,8 @@ FamixTFileAnchor >> correspondingFile: anObject [
 
 { #category : #decoding }
 FamixTFileAnchor >> detectEncoding [
-	self fileReference exists
-		ifFalse: [ ^ nil ].
+	self fileReference exists ifFalse: [ ^ nil ].
+
 	^ [ self fileReference binaryReadStreamDo: [ :in | (ZnCharacterEncoder detectEncoding: in upToEnd) identifier ] ]
 		on: ZnCharacterEncodingError
 		do: [ nil ]
@@ -97,7 +97,7 @@ FamixTFileAnchor >> fileReference [
 
 { #category : #accessing }
 FamixTFileAnchor >> hasSourceText [
-	^ self completeText notEmpty 
+	^ self completeText isNotEmpty
 ]
 
 { #category : #testing }
@@ -115,7 +115,11 @@ FamixTFileAnchor >> lineCount [
 
 { #category : #printing }
 FamixTFileAnchor >> mooseNameOn: aStream [
-	aStream nextPutAll: self fileName asString
+	aStream
+		nextPutAll:
+			(self fileName
+				ifNotNil: [ :fn | fn ]
+				ifNil: [ 'No associated file' ])
 ]
 
 { #category : #private }
@@ -128,19 +132,9 @@ FamixTFileAnchor >> rootFolder [
 	^ self mooseModel rootFolder
 ]
 
-{ #category : #initialization }
-FamixTFileAnchor >> setCorrespondingFile [
-	"files have already been added to the model"
-	^ self mooseModel allFiles asOrderedCollection
-		detect: [ :file | file mooseName = self fileName ]
-		ifFound: [ :aFile | self correspondingFile: aFile ]
-]
-
 { #category : #accessing }
 FamixTFileAnchor >> sourceText [
-
-	"I should be overriden in my users"
-	^ String new
+	^ self explicitRequirement
 ]
 
 { #category : #testing }
