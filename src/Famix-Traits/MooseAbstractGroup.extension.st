@@ -29,6 +29,12 @@ MooseAbstractGroup >> allAttributes [
 ]
 
 { #category : #'*Famix-Traits' }
+MooseAbstractGroup >> allBehaviourals [
+	<navigation: 'All behavioural entities'>
+	^ self allUsing: FamixTWithStatements
+]
+
+{ #category : #'*Famix-Traits' }
 MooseAbstractGroup >> allCaughtExceptions [
 	<navigation: 'All caught exceptions'>
 	<package: #Java>
@@ -130,6 +136,12 @@ MooseAbstractGroup >> allMethods [
 ]
 
 { #category : #'*Famix-Traits' }
+MooseAbstractGroup >> allModelBehaviourals [
+	<navigation: 'All model behavioural entities'>
+	^ self lookUpPropertyNamed: #allModelBehaviourals computedAs: [ self computeAllModelBehaviourals ]
+]
+
+{ #category : #'*Famix-Traits' }
 MooseAbstractGroup >> allModelClasses [
 	<navigation: 'All model classes'>
 
@@ -177,6 +189,12 @@ MooseAbstractGroup >> allModelPureClasses [
 			MooseGroup
 				withAll: ((self allClasses reject: [:each | each isStub or: [each isInterface]]) )
 				withDescription: 'All model classes' ]
+]
+
+{ #category : #'*Famix-Traits' }
+MooseAbstractGroup >> allModelStructuralEntities [
+	<navigation: 'All model structural entities'>
+	^ self lookUpPropertyNamed: #allModelStructuralEntities computedAs: [ self computeAllModelStructuralEntities ]
 ]
 
 { #category : #'*Famix-Traits' }
@@ -270,6 +288,16 @@ MooseAbstractGroup >> allThrownExceptions [
 MooseAbstractGroup >> allTypes [
 	<navigation: 'All types'>
 	^ self allUsing: FamixTType ofGroupClass: FamixTypeGroup
+]
+
+{ #category : #'*Famix-Traits' }
+MooseAbstractGroup >> computeAllModelBehaviourals [
+	^ self allBehaviourals reject: #isStub
+]
+
+{ #category : #'*Famix-Traits' }
+MooseAbstractGroup >> computeAllModelStructuralEntities [
+	^ self allStructuralEntities reject: #isStub
 ]
 
 { #category : #'*Famix-Traits' }

@@ -73,6 +73,12 @@ MooseAbstractGroup >> allContainers [
 	^ self lookUpPropertyNamed: #allContainers computedAs: [ self entities select: #isContainerEntity ]
 ]
 
+{ #category : #accessing }
+MooseAbstractGroup >> allModelContainers [
+	<navigation: 'All model containers'>
+	^ self lookUpPropertyNamed: #allModelContainers computedAs: [ self computeAllModelContainers ]
+]
+
 { #category : #groups }
 MooseAbstractGroup >> allModels [ 
 	 "returns all known Models (be them MooseModels or of a subclass of it)"
@@ -231,6 +237,11 @@ MooseAbstractGroup >> collectAsSet: aBlock [
 { #category : #accessing }
 MooseAbstractGroup >> commonSuperclass [ 
 	^ self entityStorage commonSuperclass
+]
+
+{ #category : #accessing }
+MooseAbstractGroup >> computeAllModelContainers [
+	^ self allContainers reject: #isStub
 ]
 
 { #category : #enumerating }

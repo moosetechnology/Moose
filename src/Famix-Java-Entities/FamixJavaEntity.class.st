@@ -59,6 +59,13 @@ FamixJavaEntity >> isAttribute [
 ]
 
 { #category : #testing }
+FamixJavaEntity >> isBehavioural [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
 FamixJavaEntity >> isClass [
 
 	<generated>
