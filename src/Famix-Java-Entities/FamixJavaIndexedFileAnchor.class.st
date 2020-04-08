@@ -14,22 +14,3 @@ FamixJavaIndexedFileAnchor class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #'as yet unclassified' }
-FamixJavaIndexedFileAnchor >> lineCount [
-
-	^ self lineCountFromFileReference: self fileReference
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaIndexedFileAnchor >> mooseNameOn: aStream [
-	super mooseNameOn: aStream.
-	aStream
-		nextPut: $(;
-		nextPut: $(;
-		nextPutAll: self startPos asString;
-		nextPut: $-;
-		nextPutAll: self endPos asString;
-		nextPut: $).
-
-]

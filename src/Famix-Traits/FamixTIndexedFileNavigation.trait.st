@@ -75,20 +75,31 @@ FamixTIndexedFileNavigation >> endPos: anObject [
 ]
 
 { #category : #accessing }
-FamixTIndexedFileNavigation >> intervalAsCharPos [
-	^ self startPos to: self endPos
+FamixTIndexedFileNavigation >> lineCount [
+	^ self lineCountFromFileReference: self fileReference
 ]
 
 { #category : #private }
 FamixTIndexedFileNavigation >> lineCountFromFileReference: file [
-
-	^ file exists
-		ifTrue: [ file
+	^ file
+		ifExists: [ file
 				binaryReadStreamDo: [ :in | 
 					| stream |
 					stream := ZnCharacterReadStream on: in encoding: self encoding.
 					self countNumberOfLinesRuturnsFrom: stream from: (startPos ifNil: [ 1 ]) to: (self endPos ifNil: [ in size ]) ] ]
-		ifFalse: [ super lineCount ]
+		ifAbsent: [ self privateLineCount ]
+]
+
+{ #category : #printing }
+FamixTIndexedFileNavigation >> mooseNameOn: aStream [
+	super mooseNameOn: aStream.
+	aStream
+		nextPut: $(;
+		nextPut: $(;
+		nextPutAll: self startPos asString;
+		nextPut: $-;
+		nextPutAll: self endPos asString;
+		nextPut: $)
 ]
 
 { #category : #private }

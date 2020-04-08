@@ -14,13 +14,3 @@ FAMIXSourceTextAnchor class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #'Famix-File' }
-FAMIXSourceTextAnchor >> containerFiles [
-	^ {}
-]
-
-{ #category : #accessing }
-FAMIXSourceTextAnchor >> lineCount [
-	^ self sourceText ifNotNil: #lineCount ifNil: [ self notExistentMetricValue ]
-]

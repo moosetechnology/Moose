@@ -921,6 +921,8 @@ FamixGenerator >> defineHierarchy [
 	tClass withPrecedenceOf: tType.
 
 	tClassGroup --|> tTypeGroup.
+	
+	tFileAnchor --|> tSourceAnchor.
   
 	tFile --|> tFileSystemEntity.
 	
@@ -936,6 +938,8 @@ FamixGenerator >> defineHierarchy [
 	tFunction --|> tWithStatements.
 
 	tGlobalVariable --|> tStructuralEntity.
+	
+	tHasImmediateSource --|> tSourceAnchor.
 	
 	tIndexedFileNavigation --|> tFileAnchor.
 
@@ -1043,9 +1047,6 @@ FamixGenerator >> defineProperties [
 		comment: 'Actual source code of the source entity').
 		
 	((tMultipleFileAnchor property: #fileAnchors type: #FamixTFileAnchor)
-		comment: 'All source code definition files';
-		multivalued).
-		((tMultipleFileAnchor property: #allFiles type: #FamixTFileAnchor)
 		comment: 'All source code definition files';
 		multivalued).
 ]
