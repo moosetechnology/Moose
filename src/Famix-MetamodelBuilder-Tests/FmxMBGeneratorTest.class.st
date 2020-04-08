@@ -21,7 +21,7 @@ FmxMBGeneratorTest >> testGenerateMooseModelSubclass [
 
 { #category : #tests }
 FmxMBGeneratorTest >> testGeneratorsAreUpToDate [
-	FamixMetamodelGenerator individualGenerators
+	FamixMetamodelGenerator generatorsToKeepUpToDate
 		do: [ :mm | 
 			self
 				deny: mm new regenerationIsNeeded
