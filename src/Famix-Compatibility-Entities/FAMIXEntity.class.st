@@ -41,6 +41,13 @@ FAMIXEntity >> isAttribute [
 	^ false
 ]
 
+{ #category : #testing }
+FAMIXEntity >> isBehavioural [
+
+	<generated>
+	^ false
+]
+
 { #category : #'testing - custom' }
 FAMIXEntity >> isBehaviouralEntity [
 	^ false

@@ -909,14 +909,14 @@ FamixGenerator >> defineHierarchy [
 
 	tCohesionCouplingMetrics --|> tPackage.
 
-	tClass --|> #TWithMethods.
+	tClass --|> tWithMethods.
 	tClass --|> tWithInheritances.
-	tClass --|> #TWithAttributes.
+	tClass --|> tWithAttributes.
 	tClass inheritsFromTrait: tNamedEntity without: #(#mooseNameOn:).
 	tClass --|> tType.
-	tClass --|> #TPackageable.
-	tClass --|> #TInvocationsReceiver.
-	tClass --|> #TWithComments.
+	tClass --|> tPackageable.
+	tClass --|> tInvocationsReceiver.
+	tClass --|> tWithComments.
 	tClass --|> #TOODependencyQueries.
 	tClass withPrecedenceOf: tType.
 
@@ -933,6 +933,7 @@ FamixGenerator >> defineHierarchy [
 	tFunction --|> tNamedEntity.
 	tFunction --|> tHasSignature.
 	tFunction --|> tTypedEntity.
+	tFunction --|> tWithStatements.
 
 	tGlobalVariable --|> tStructuralEntity.
 	
@@ -946,19 +947,19 @@ FamixGenerator >> defineHierarchy [
 
 	tLocalVariable --|> tStructuralEntity.
 
-	tMethod --|> #TWithParameters.
-	tMethod --|> #TInvocable.
-	tMethod --|> #TWithReferences.
+	tMethod --|> tWithParameters.
+	tMethod --|> tInvocable.
+	tMethod --|> tWithReferences.
 	tMethod --|> tWithStatements.
-	tMethod --|> #TWithLocalVariables.
-	tMethod --|> #TWithImplicitVariables.
-	tMethod --|> #THasSignature.
-	tMethod --|> #TWithClassScope.
-	tMethod --|> #TTypedEntity.
+	tMethod --|> tWithLocalVariables.
+	tMethod --|> tWithImplicitVariables.
+	tMethod --|> tHasSignature.
+	tMethod --|> tWithClassScope.
+	tMethod --|> tTypedEntity.
 	tMethod --|> tSourceEntity.
 	tMethod --|> tNamedEntity.
 	tMethod --|> #TOODependencyQueries.
-	tMethod withPrecedenceOf: #TTypedEntity.
+	tMethod withPrecedenceOf: tTypedEntity.
 
 	tParameter --|> tStructuralEntity.
 	
@@ -967,21 +968,21 @@ FamixGenerator >> defineHierarchy [
 	tScopingEntity  --|> #TOODependencyQueries.
 	tStructuralEntity --|> tNamedEntity.
 
-	tStructuralEntity --|> #TAccessible.
-	tStructuralEntity --|> #TInvocationsReceiver.
-	tStructuralEntity --|> #TTypedEntity.
-
-	tSourceEntity --|> #TWithSourceAnchor.
-	tSourceEntity --|> #TWithSourceLanguage.
-	tSourceEntity --|> #TWithComments.
+	tStructuralEntity --|> tAccessible.
+	tStructuralEntity --|> tInvocationsReceiver.
+	tStructuralEntity --|> tTypedEntity.
+ 
+	tSourceEntity --|> tWithSourceAnchor.
+	tSourceEntity --|> tWithSourceLanguage.
+	tSourceEntity --|> tWithComments.
 
 	tTraitUsage --|> tAssociation.
 	
-	tType --|> #TReferenceable.
+	tType --|> tReferenceable.
 	tType --|> tNamedEntity.
 	
-	tWithStatements --|> #TWithAccesses.
-	tWithStatements --|> #TWithInvocations
+	tWithStatements --|> tWithAccesses.
+	tWithStatements --|> tWithInvocations
 
 ]
 
@@ -1699,6 +1700,7 @@ FamixGenerator >> defineTraits [
 	tHasModifiers := builder newTraitNamed: #THasModifiers.
 
 	tWithStatements := builder newTraitNamed: #TWithStatements.
+	tWithStatements testingSelector: #isBehavioural.
 
 	tMultipleFileAnchor := builder newTraitNamed: #TMultipleFileAnchor.
 
