@@ -1,7 +1,6 @@
 Trait {
 	#name : #FamixTMultipleFileAnchor,
 	#instVars : [
-		'#allFiles => FMProperty',
 		'#fileAnchors => FMProperty'
 	],
 	#category : #'Famix-Traits-SourceAnchor'
@@ -30,24 +29,7 @@ FamixTMultipleFileAnchor >> addSourceAnchor: aSourceAnchor [
 
 { #category : #accessing }
 FamixTMultipleFileAnchor >> addToFile: entity [
-	^ self allFiles do: [ :each | each addToFile: entity ]
-]
-
-{ #category : #accessing }
-FamixTMultipleFileAnchor >> allFiles [
-	<FMProperty: #allFiles type: #FamixTFileAnchor>
-	<multivalued>
-	<FMComment: 'All source code definition files'>
-	self
-		deprecated: 'Use fileAnchors instad'
-		transformWith: '`@receiver allFiles' -> '`@receiver fileAnchors'.
-	^ fileAnchors
-]
-
-{ #category : #accessing }
-FamixTMultipleFileAnchor >> allFiles: anObject [
-	<generated>
-	allFiles := anObject
+	^ self fileAnchors do: [ :each | each addToFile: entity ]
 ]
 
 { #category : #accessing }
@@ -94,10 +76,11 @@ FamixTMultipleFileAnchor >> fileAnchors: anObject [
 { #category : #accessing }
 FamixTMultipleFileAnchor >> fileName [
 	"for compatibility with FAMIXFileAnchor, guard condition not needed: it has atleast one file anchor"
-	^ self allFiles anyOne fileName
+
+	^ self fileAnchors anyOne fileName
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 FamixTMultipleFileAnchor >> isMultiple [
 	^ true
 ]

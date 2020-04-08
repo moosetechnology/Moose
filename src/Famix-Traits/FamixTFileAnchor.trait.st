@@ -8,6 +8,8 @@ Trait {
 		'#encoding => FMProperty',
 		'#fileName => FMProperty'
 	],
+	#traits : 'FamixTSourceAnchor',
+	#classTraits : 'FamixTSourceAnchor classTrait',
 	#category : #'Famix-Traits-SourceAnchor'
 }
 
@@ -28,10 +30,8 @@ FamixTFileAnchor >> addToFile: entity [
 { #category : #accessing }
 FamixTFileAnchor >> completeText [
 	self sourcesAreReadable ifFalse: [ ^ '' ].
-	
-	^ self fileReference
-		binaryReadStreamDo:
-			[ :in | (ZnCharacterReadStream on: in encoding: self encoding) upToEnd ]
+
+	^ self fileReference binaryReadStreamDo: [ :in | (ZnCharacterReadStream on: in encoding: self encoding) upToEnd ]
 ]
 
 { #category : #accessing }
@@ -56,7 +56,7 @@ FamixTFileAnchor >> correspondingFile: anObject [
 
 { #category : #decoding }
 FamixTFileAnchor >> detectEncoding [
-	self fileReference exists ifFalse: [ ^ nil ].
+	self fileReference ifAbsent: [ ^ nil ].
 
 	^ [ self fileReference binaryReadStreamDo: [ :in | (ZnCharacterEncoder detectEncoding: in upToEnd) identifier ] ]
 		on: ZnCharacterEncodingError
@@ -115,11 +115,7 @@ FamixTFileAnchor >> lineCount [
 
 { #category : #printing }
 FamixTFileAnchor >> mooseNameOn: aStream [
-	aStream
-		nextPutAll:
-			(self fileName
-				ifNotNil: [ :fn | fn ]
-				ifNil: [ 'No associated file' ])
+	aStream nextPutAll: (self fileName ifNil: [ 'No associated file' ])
 ]
 
 { #category : #private }
@@ -132,13 +128,9 @@ FamixTFileAnchor >> rootFolder [
 	^ self mooseModel rootFolder
 ]
 
-{ #category : #accessing }
-FamixTFileAnchor >> sourceText [
-	^ self explicitRequirement
-]
-
 { #category : #testing }
 FamixTFileAnchor >> sourcesAreReadable [
-	| file |
-	^ (file := self fileReference) exists and: [ file size > 0 ]
+	^ self fileReference
+		ifExists: [ :file | file size > 0 ]
+		ifAbsent: [ false ]
 ]
