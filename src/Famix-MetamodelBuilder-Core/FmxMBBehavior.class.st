@@ -432,7 +432,7 @@ FmxMBBehavior >> slotDefinitions [
 	slotGroups := (self properties select: #producesSlot thenCollect: [ :property | property asSlot ]) groupedBy: #name.
 
 	"check that all slots with the same name have the same properties"
-	slotGroups valuesDo: [ :similarSlots | self assert: (similarSlots collect: #name) asSet size equals: 1 ].
+	slotGroups valuesDo: [ :similarSlots | self assert: (similarSlots collect: #name) asSet size = 1 ].
 
 	^ slotGroups values collect: [ :each | each anyOne ]
 ]
