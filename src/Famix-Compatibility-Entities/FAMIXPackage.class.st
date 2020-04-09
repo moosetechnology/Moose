@@ -196,7 +196,7 @@ FAMIXPackage >> extendedClasses [
 FAMIXPackage >> extendedClassesGroup [
 	<navigation: 'Extended classes in package'>
 	
-	^ FamixTClassGroup 
+	^ FamixClassGroup 
 		withAll: self extendedClasses
 		withDescription: 'Extended classes in package ', self name
 ]
@@ -214,7 +214,7 @@ FAMIXPackage >> extensionClasses [
 FAMIXPackage >> extensionClassesGroup [
 	<navigation: 'Classes extended by package'>
 	
-	^ FamixTClassGroup 
+	^ FamixClassGroup 
 		withAll: self extensionClasses
 		withDescription: 'Classes extended by package', self name
 ]
@@ -244,7 +244,7 @@ FAMIXPackage >> localClasses [
 FAMIXPackage >> localClassesGroup [
 	<navigation: 'Local classes'>
 
-	^ FamixTClassGroup 
+	^ FamixClassGroup 
 		withAll: self localClasses
 		withDescription: 'Local classes'
 ]
