@@ -165,7 +165,7 @@ FAMIXType >> isAnonymousClass [
 
 { #category : #'Famix-Extensions' }
 FAMIXType >> isBrainClass [
-	^ self propertyNamed: #BrainClass
+	^ (self propertyNamed: #BrainClass) = true
 ]
 
 { #category : #'Famix-Smalltalk' }
@@ -178,7 +178,7 @@ FAMIXType >> isClassSide [
 
 { #category : #'Famix-Extensions' }
 FAMIXType >> isDataClass [
-	^ self propertyNamed: #DataClass
+	^ (self propertyNamed: #DataClass) = true
 ]
 
 { #category : #'Famix-Smalltalk' }
@@ -189,7 +189,7 @@ FAMIXType >> isExtended [
 
 { #category : #'Famix-Extensions' }
 FAMIXType >> isGodClass [
-	^ self propertyNamed: #GodClass
+	^ (self propertyNamed: #GodClass) = true
 ]
 
 { #category : #'Famix-Java' }
