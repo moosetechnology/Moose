@@ -212,7 +212,7 @@ FMMultivalueLink >> value: aCollection [
 
 { #category : #private }
 FMMultivalueLink >> with: element opposite: oppositeSelector [
-	self assert: oppositeSelector numArgs = 1.
+	self assert: oppositeSelector numArgs equals: 1.
 	values := OrderedCollection new.
 	owner := element.
 	opposite := oppositeSelector

@@ -75,13 +75,6 @@ FamixJavaType >> implements: aString [
 		anySatisfy: [ :each | aString = each signature	 "was changed from match: for performances and because signature is case sensitive" ]
 ]
 
-{ #category : #accessing }
-FamixJavaType >> incomingAccesses [
-	^ self privateState 
-		cacheAt: #incomingAccesses
-		ifAbsentPut: [ attributes flatCollect: [ :each | each incomingAccesses ] ]
-]
-
 { #category : #testing }
 FamixJavaType >> isAbstract [
 	<FMProperty: #isAbstract type: #Boolean> <derived>

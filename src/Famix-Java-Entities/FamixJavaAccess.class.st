@@ -15,7 +15,7 @@ FamixJavaAccess class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 FamixJavaAccess >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPutAll: ' (Access)'

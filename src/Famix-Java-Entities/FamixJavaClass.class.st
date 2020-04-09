@@ -25,6 +25,13 @@ FamixJavaClass >> accessedAttributes [
 	^ self methodsWithoutSutbsAndConstructors asOrderedCollection flatCollect: [ :method | method accessedAttributes ]
 ]
 
+{ #category : #accessing }
+FamixJavaClass >> incomingAccesses [
+	^ self privateState 
+		cacheAt: #incomingAccesses
+		ifAbsentPut: [ attributes flatCollect: [ :each | each incomingAccesses ] ]
+]
+
 { #category : #testing }
 FamixJavaClass >> isADirectSubclassOf: aClass [ 
 	 
@@ -92,18 +99,6 @@ FamixJavaClass >> isInterface [
 FamixJavaClass >> isInterface: aBoolean [
 
 	^ self privateState attributeAt: #isInterface put: true
-]
-
-{ #category : #testing }
-FamixJavaClass >> isInvokedBy: anInvocation [ 
-	 
-	^(anInvocation candidateList notNil 
-		and: [anInvocation candidateList notEmpty]) 
-		ifTrue: 
-			[anInvocation candidateList 
-				anySatisfy: 
-					[:mtd | mtd class name = #FmxStMethod and: [mtd belongsTo == self]]] 
-		ifFalse: [false]
 ]
 
 { #category : #'Famix-Extensions-metrics-support' }

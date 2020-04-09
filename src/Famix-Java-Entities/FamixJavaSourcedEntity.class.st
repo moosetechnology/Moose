@@ -21,7 +21,7 @@ FamixJavaSourcedEntity >> fileAnchorPath: aString startLine: anInteger startColu
 
 	self
 		sourceAnchor:
-			(FamixJavaFileAnchor
+			(FamixJavaIndexedFileAnchor
 				fileName: aString
 				startLine: anInteger
 				startColumn: anInteger2
