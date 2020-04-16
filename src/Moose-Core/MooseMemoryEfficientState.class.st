@@ -54,12 +54,27 @@ MooseMemoryEfficientState >> attributes [
 
 { #category : #accessing }
 MooseMemoryEfficientState >> cacheAt: name ifAbsent: aBlock [
-	^ propertyCache at: name ifAbsent: [ aBlock value ]
+	^ propertyCache at: name ifAbsent: aBlock
+]
+
+{ #category : #accessing }
+MooseMemoryEfficientState >> cacheAt: name ifAbsent: absentBlock ifPresent: presentBlock [
+	^ propertyCache at: name ifPresent: presentBlock ifAbsent: absentBlock
 ]
 
 { #category : #accessing }
 MooseMemoryEfficientState >> cacheAt: name ifAbsentPut: aBlock [
 	^ propertyCache at: name ifAbsentPut: aBlock
+]
+
+{ #category : #accessing }
+MooseMemoryEfficientState >> cacheAt: name ifPresent: aBlock [
+	^ propertyCache at: name ifPresent: [ :value | aBlock cull: value ]
+]
+
+{ #category : #accessing }
+MooseMemoryEfficientState >> cacheAt: name ifPresent: presentBlock ifAbsentPut: aBlock [
+	^ propertyCache at: name ifPresent: presentBlock ifAbsentPut: aBlock
 ]
 
 { #category : #accessing }

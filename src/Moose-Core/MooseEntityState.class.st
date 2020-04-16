@@ -53,7 +53,25 @@ MooseEntityState >> cacheAt: name ifAbsent: aBlock [
 ]
 
 { #category : #'accessing group' }
+MooseEntityState >> cacheAt: name ifAbsent: absentBlock ifPresent: presentBlock [
+
+	self subclassResponsibility 
+]
+
+{ #category : #'accessing group' }
 MooseEntityState >> cacheAt: name ifAbsentPut: aBlock [
+
+	self subclassResponsibility 
+]
+
+{ #category : #'accessing group' }
+MooseEntityState >> cacheAt: name ifPresent: aBlock [
+
+	self subclassResponsibility 
+]
+
+{ #category : #'accessing group' }
+MooseEntityState >> cacheAt: name ifPresent: presentBlock ifAbsentPut: aBlock [
 
 	self subclassResponsibility 
 ]

@@ -52,8 +52,23 @@ MooseMinimalState >> cacheAt: name ifAbsent: aBlock [
 ]
 
 { #category : #accessing }
+MooseMinimalState >> cacheAt: name ifAbsent: absentBlock ifPresent: presentBlock [
+	^ absentBlock value
+]
+
+{ #category : #accessing }
 MooseMinimalState >> cacheAt: name ifAbsentPut: value [
 	^ self nullStateError
+]
+
+{ #category : #accessing }
+MooseMinimalState >> cacheAt: name ifPresent: aBlock [
+	self nullStateError
+]
+
+{ #category : #accessing }
+MooseMinimalState >> cacheAt: name ifPresent: presentBlock ifAbsentPut: aBlock [
+	^ aBlock value
 ]
 
 { #category : #accessing }
