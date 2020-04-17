@@ -29,7 +29,6 @@ Class {
 		'tFileInclude',
 		'tFunction',
 		'tGlobalVariable',
-		'tGlobalVariableScope',
 		'tHeader',
 		'tImplicitVariable',
 		'tInheritance',
@@ -39,9 +38,7 @@ Class {
 		'tLocalVariable',
 		'tMethod',
 		'tModule',
-		'tNamed',
 		'tNamespace',
-		'tNamespaceEntity',
 		'tPackage',
 		'tPackageable',
 		'tParameter',
@@ -66,7 +63,6 @@ Class {
 		'tTypeAlias',
 		'tTypedAnnotationInstance',
 		'tTypedAnnotationInstanceAttribute',
-		'tTypedStructure',
 		'tUnknownSourceLanguage',
 		'tWithAccesses',
 		'tWithAnnotationInstanceAttributes',
@@ -90,28 +86,23 @@ Class {
 		'tWithLocalVariables',
 		'tWithMethods',
 		'tDefinedInModule',
-		'tWithNamespaces',
 		'tWithPackages',
 		'tWithParameterizedTypeUsers',
 		'tWithParameterizedTypes',
 		'tWithParameters',
 		'tWithReferences',
-		'tWithSignature',
 		'tWithSourceAnchor',
 		'tWithSourceLanguage',
 		'tWithTemplates',
 		'tWithThrownExceptions',
 		'tWithTypeAliases',
-		'tWithTypedStructures',
 		'tWithTypes',
-		'tWithModifiers',
 		'tPossibleStub',
 		'tClass',
 		'tFolder',
 		'tFileSystemEntity',
 		'tFileNavigation',
 		'tIndexedFileNavigation',
-		'tWithImmediateSource',
 		'tClassHierarchyNavigation',
 		'tLCOMMetrics',
 		'tInheritanceGlue',
@@ -120,14 +111,20 @@ Class {
 		'tTraitUser',
 		'tClassWithInvocationsGlue',
 		'tWithStatements',
-		'tWithMethodsWithModifiersGlue',
 		'tContainingWithStatementsGlue',
 		'tContainingWithInvocationsGlue',
-		'tWithMethodsWithAccessesGlue',
 		'tMultipleFileAnchor',
 		'tCohesionCouplingMetrics',
 		'tWithTraits',
-		'tWithFileIncludes'
+		'tWithFileIncludes',
+		'tTypedEntity',
+		'tHasSignature',
+		'tWithGlobalVariables',
+		'tHasModifiers',
+		'tHasImmediateSource',
+		'tNamedEntity',
+		'tTypeGroup',
+		'tClassGroup'
 	],
 	#category : #'Famix-MetamodelGeneration'
 }
@@ -378,9 +375,15 @@ FamixGenerator >> commentForTGlobalVariable [
 ]
 
 { #category : #comments }
-FamixGenerator >> commentForTGlobalVariableScope [
+FamixGenerator >> commentForTHasImmediateSource [
 
-	^ ''
+	^ 'An immediate source is the source code of the entity stored directly into its sourceAnchor instead of accessing it (for example in a file) through its sourceAnchor'
+]
+
+{ #category : #comments }
+FamixGenerator >> commentForTHasSignature [
+
+	^ 'The signature of any behavioural entity'
 ]
 
 { #category : #comments }
@@ -469,12 +472,6 @@ FamixGenerator >> commentForTNamespace [
 A namespace denotes an entity that has meaning from a language point of view. For example, in C++, there exist a concept with the same name that has no other responsibility beside providing a lexical scope for the contained classes and funcions.
 
 When an entity is placed inside a namespace, the fully qualified name (mooseName) is affected.'
-]
-
-{ #category : #comments }
-FamixGenerator >> commentForTNamespaceEntity [
-
-	^ ''
 ]
 
 { #category : #comments }
@@ -775,13 +772,13 @@ FamixGenerator >> commentForTWithFunctions [
 ]
 
 { #category : #comments }
-FamixGenerator >> commentForTWithHeader [
+FamixGenerator >> commentForTWithGlobalVariables [
 
-	^ ''
+	^ 'A container having Global variables'
 ]
 
 { #category : #comments }
-FamixGenerator >> commentForTWithImmediateSource [
+FamixGenerator >> commentForTWithHeader [
 
 	^ ''
 ]
@@ -817,12 +814,6 @@ FamixGenerator >> commentForTWithMethods [
 ]
 
 { #category : #comments }
-FamixGenerator >> commentForTWithNamespaces [
-
-	^ ''
-]
-
-{ #category : #comments }
 FamixGenerator >> commentForTWithPackages [
 
 	^ ''
@@ -848,12 +839,6 @@ FamixGenerator >> commentForTWithParameters [
 
 { #category : #comments }
 FamixGenerator >> commentForTWithReferences [
-
-	^ ''
-]
-
-{ #category : #comments }
-FamixGenerator >> commentForTWithSignature [
 
 	^ ''
 ]
@@ -909,6 +894,10 @@ FamixGenerator >> commentForTWithTypes [
 { #category : #definition }
 FamixGenerator >> defineHierarchy [
 	super defineHierarchy.
+	tAccess --|> tAssociation.
+	
+	tAssociation --|> #TAssociationMetaLevelDependency.
+	tAssociation --|> tSourceEntity.
 
 	tAttribute --|> tStructuralEntity.
 
@@ -920,50 +909,85 @@ FamixGenerator >> defineHierarchy [
 
 	tCohesionCouplingMetrics --|> tPackage.
 
-	tClass --|> #TWithMethods.
+	tClass --|> tWithMethods.
 	tClass --|> tWithInheritances.
-	tClass --|> #TWithAttributes.
-	tClass inheritsFromTrait: tNamed without: #(#mooseNameOn:).
+	tClass --|> tWithAttributes.
+	tClass inheritsFromTrait: tNamedEntity without: #(#mooseNameOn:).
 	tClass --|> tType.
-	tClass --|> #TPackageable.
-	tClass --|> #TInvocationsReceiver.
-	tClass --|> #TWithComments.
+	tClass --|> tPackageable.
+	tClass --|> tInvocationsReceiver.
+	tClass --|> tWithComments.
+	tClass --|> #TOODependencyQueries.
+	tClass withPrecedenceOf: tType.
 
+	tClassGroup --|> tTypeGroup.
+	
+	tFileAnchor --|> tSourceAnchor.
+  
 	tFile --|> tFileSystemEntity.
+	
+	tFileInclude --|> tAssociation.
+	
+	tFileNavigation --|> tFileAnchor.
 
 	tFolder --|> tFileSystemEntity.
+	
+	tFunction --|> tNamedEntity.
+	tFunction --|> tHasSignature.
+	tFunction --|> tTypedEntity.
+	tFunction --|> tWithStatements.
 
 	tGlobalVariable --|> tStructuralEntity.
+	
+	tHasImmediateSource --|> tSourceAnchor.
+	
+	tIndexedFileNavigation --|> tFileAnchor.
+
+	tInheritance --|> tAssociation.
+
+	tInvocation --|> tAssociation.
 
 	tImplicitVariable --|> tStructuralEntity.
 
 	tLocalVariable --|> tStructuralEntity.
 
-	tMethod --|> #TWithParameters.
-	tMethod --|> #TInvocable.
-	tMethod --|> #TWithInvocations.
-	tMethod --|> #TWithReferences.
-	tMethod --|> #TWithAccesses.
-	tMethod --|> #TWithLocalVariables.
-	tMethod --|> #TWithImplicitVariables.
-	tMethod --|> #TWithSignature.
-	tMethod --|> #TWithClassScope.
-	tMethod --|> #TTypedStructure.
+	tMethod --|> tWithParameters.
+	tMethod --|> tInvocable.
+	tMethod --|> tWithReferences.
+	tMethod --|> tWithStatements.
+	tMethod --|> tWithLocalVariables.
+	tMethod --|> tWithImplicitVariables.
+	tMethod --|> tHasSignature.
+	tMethod --|> tWithClassScope.
+	tMethod --|> tTypedEntity.
 	tMethod --|> tSourceEntity.
+	tMethod --|> tNamedEntity.
+	tMethod --|> #TOODependencyQueries.
+	tMethod withPrecedenceOf: tTypedEntity.
 
 	tParameter --|> tStructuralEntity.
+	
+	tReference --|> tAssociation.
 
-	tStructuralEntity --|> tNamed.
-	tStructuralEntity --|> #TAccessible.
-	tStructuralEntity --|> #TInvocationsReceiver.
-	tStructuralEntity --|> #TTypedStructure.
+	tScopingEntity  --|> #TOODependencyQueries.
+	tStructuralEntity --|> tNamedEntity.
 
-	tSourceEntity --|> #TWithSourceAnchor.
-	tSourceEntity --|> #TWithSourceLanguage.
-	tSourceEntity --|> #TWithComments.
+	tStructuralEntity --|> tAccessible.
+	tStructuralEntity --|> tInvocationsReceiver.
+	tStructuralEntity --|> tTypedEntity.
+ 
+	tSourceEntity --|> tWithSourceAnchor.
+	tSourceEntity --|> tWithSourceLanguage.
+	tSourceEntity --|> tWithComments.
 
-	tType --|> #TReferenceable.
-	tType --|> #TWithTypedStructures
+	tTraitUsage --|> tAssociation.
+	
+	tType --|> tReferenceable.
+	tType --|> tNamedEntity.
+	
+	tWithStatements --|> tWithAccesses.
+	tWithStatements --|> tWithInvocations
+
 ]
 
 { #category : #definition }
@@ -982,10 +1006,10 @@ FamixGenerator >> defineProperties [
 	((tAnnotationInstanceAttribute property: #value type: #String)
 		comment: 'Actual value of the attribute used in an annotation').
 
-	((tNamed property: #name type: #String)
+	((tNamedEntity property: #name type: #String)
 		comment: 'Basic name of the entity, not full reference.').
 
-	((tWithModifiers property: #modifiers type: #String)
+	((tHasModifiers property: #modifiers type: #String)
 		comment: 'Generic container for language dependent modifiers.';
 		multivalued).
 
@@ -996,7 +1020,7 @@ FamixGenerator >> defineProperties [
 	((tMethod property: #isAbstract type: #Boolean) 
 		comment: 'True if abstract method').
 
-	((tWithSignature property: #signature type: #String)
+	((tHasSignature property: #signature type: #String)
 		comment: 'Signature of the message being sent').
 
 	((tComment property: #content type: #String) 
@@ -1019,13 +1043,10 @@ FamixGenerator >> defineProperties [
 	((tIndexedFileNavigation property: #endPos type: #Number)
 		comment: 'Stop position in the source').
 
-	((tWithImmediateSource property: #source type: #String)
+	((tHasImmediateSource property: #source type: #String)
 		comment: 'Actual source code of the source entity').
 		
-	((tWithImmediateSource property: #source type: #String)
-		comment: 'Actual source code of the source entity').
-		
-	((tMultipleFileAnchor property: #allFiles type: #FamixTFileAnchor)
+	((tMultipleFileAnchor property: #fileAnchors type: #FamixTFileAnchor)
 		comment: 'All source code definition files';
 		multivalued).
 ]
@@ -1085,7 +1106,7 @@ FamixGenerator >> defineRelations [
 			comment: 'Previous association in an ordered collection of associations. Currently not supported by the Moose importer')
 		-
 	((tAssociation property: #next)
-			comment: 'Next association in an ordered collection of associations. Currently not supported by the Moose importer').
+			comment: 'Next association in an ordered collection of associations. Currently not supported by the Moose importer').	
 
 	((tAttribute property: #parentType)
 			comment: 'Type declaring the attribute. belongsTo implementation';
@@ -1169,7 +1190,7 @@ FamixGenerator >> defineRelations [
 			comment: 'Scope declaring the global variable. belongsTo implementation';
 			container)
 		*-
-	((tGlobalVariableScope property: #globalVariables)
+	((tWithGlobalVariables property: #globalVariables)
 			comment: 'Global variables defined in the scope, if any.').
 
 	((tHeader property: #headerOwner))
@@ -1223,14 +1244,6 @@ FamixGenerator >> defineRelations [
 	((tDefinedInModule property: #parentModule)
 			comment: 'Module that contains the definition of this entity').
 
-	((tNamespace property: #namespaceEntities))
-		-*
-	((tNamespaceEntity property: #parentNamespace)).
-
-	((tNamespace property: #namespaceOwner))
-		*-
-	((tWithNamespaces property: #namespaces)).
-
 	((tPackage property: #childEntities))
 		-*
 	((tPackageable property: #parentPackage)
@@ -1257,14 +1270,14 @@ FamixGenerator >> defineRelations [
 		*-*
 	((tWithParameterizedTypeUsers property: #arguments)).
 
-	((tReference property: #source)
+	((tReference property: #referencer)
 			comment: 'Source entity making the reference. from-side of the association';
 			source)
 		*-
 	((tWithReferences property: #outgoingReferences)
 			comment: 'References from this entity to other entities.').
 
-	((tReference property: #target)
+	((tReference property: #referredType)
 			comment: 'Target entity referenced. to-side of the association';
 			target)
 		*-
@@ -1346,11 +1359,11 @@ FamixGenerator >> defineRelations [
 	((tWithTypeAliases property: #typeAliases)
 			comment: 'Aliases').
 
-	((tTypedStructure property: #declaredType)
-			comment: 'Type of the behavioral entity, if any')
+	((tTypedEntity property: #declaredType)
+			comment: 'Type of the entity, if any')
 		*-
-	((tWithTypedStructures property: #structuresWithDeclaredType)
-			comment: 'Structural entities that have this type as declaredType').
+	((tType property: #typedEntities)
+			comment: 'Entities that have this type as declaredType').
 
 
 ]
@@ -1367,12 +1380,14 @@ FamixGenerator >> defineTraits [
 
 	tAnnotationInstance := builder newTraitNamed: #TAnnotationInstance.
 	tAnnotationInstance comment: self commentForTAnnotationInstance.
+	tAnnotationInstance withGroup.
 
 	tAnnotationInstanceAttribute := builder newTraitNamed: #TAnnotationInstanceAttribute.
 	tAnnotationInstanceAttribute comment: self commentForTAnnotationInstanceAttribute.
 
 	tAnnotationType := builder newTraitNamed: #TAnnotationType.
 	tAnnotationType comment: self commentForTAnnotationType.
+	tAnnotationType withGroup.
 
 	tAnnotationTypeAttribute := builder newTraitNamed: #TAnnotationTypeAttribute.
 	tAnnotationTypeAttribute comment: self commentForTAnnotationTypeAttribute.
@@ -1397,6 +1412,7 @@ FamixGenerator >> defineTraits [
 	tClass := builder newTraitNamed: #TClass.
 	tClass comment: self commentForTClass.
 	tClass withTesting.
+	tClassGroup := tClass withGroup.
 
 	tDeclaredException := builder newTraitNamed: #TDeclaredException.
 	tDeclaredException comment: self commentForTDeclaredException.
@@ -1412,9 +1428,11 @@ FamixGenerator >> defineTraits [
 
 	tFile := builder newTraitNamed: #TFile.
 	tFile comment: self commentForTFile.
+	tFile withGroup.
 
 	tFolder := builder newTraitNamed: #TFolder.
 	tFolder comment: self commentForTFolder.
+	tFolder withGroup.
 
 	tFileSystemEntity := builder newTraitNamed: #TFileSystemEntity.
 
@@ -1436,9 +1454,10 @@ FamixGenerator >> defineTraits [
 
 	tGlobalVariable := builder newTraitNamed: #TGlobalVariable.
 	tGlobalVariable comment: self commentForTGlobalVariable.
+	tGlobalVariable withGroup.
 
-	tGlobalVariableScope := builder newTraitNamed: #TGlobalVariableScope.
-	tGlobalVariableScope comment: self commentForTGlobalVariableScope.
+	tWithGlobalVariables := builder newTraitNamed: #TWithGlobalVariables.
+	tWithGlobalVariables comment: self commentForTWithGlobalVariables.
 
 	tHeader := builder newTraitNamed: #THeader.
 	tHeader comment: self commentForTHeader.
@@ -1457,6 +1476,7 @@ FamixGenerator >> defineTraits [
 	tInvocation := builder newTraitNamed: #TInvocation.
 	tInvocation comment: self commentForTInvocation.
 	tInvocation withTesting.
+	tInvocation withGroup.
 
 	tInvocationsReceiver := builder newTraitNamed: #TInvocationsReceiver.
 	tInvocationsReceiver comment: self commentForTInvocationsReceiver.
@@ -1467,23 +1487,23 @@ FamixGenerator >> defineTraits [
 	tMethod := builder newTraitNamed: #TMethod.
 	tMethod comment: self commentForTMethod.
 	tMethod withTesting.
+	tMethod withGroup.
 
 	tModule := builder newTraitNamed: #TModule.
 	tModule comment: self commentForTModule.
 
-	tNamed := builder newTraitNamed: #TNamed.
-	tNamed comment: self commentForTNamed.
+	tNamedEntity := builder newTraitNamed: #TNamedEntity.
+	tNamedEntity comment: self commentForTNamed.
 
 	tNamespace := builder newTraitNamed: #TNamespace.
 	tNamespace comment: self commentForTNamespace.
 	tNamespace withTesting.
-
-	tNamespaceEntity := builder newTraitNamed: #TNamespaceEntity.
-	tNamespaceEntity comment: self commentForTNamespaceEntity.
+	tNamespace withGroup.
 
 	tPackage := builder newTraitNamed: #TPackage.
 	tPackage comment: self commentForTPackage.
 	tPackage withTesting.
+	tPackage withGroup.
 
 	tPackageable := builder newTraitNamed: #TPackageable.
 	tPackageable comment: self commentForTPackageable.
@@ -1548,6 +1568,7 @@ FamixGenerator >> defineTraits [
 	tType := builder newTraitNamed: #TType.
 	tType comment: self commentForTType.
 	tType withTesting.
+	tTypeGroup := tType withGroup.
 
 	tTypeAlias := builder newTraitNamed: #TTypeAlias.
 	tTypeAlias comment: self commentForTTypeAlias.
@@ -1558,8 +1579,8 @@ FamixGenerator >> defineTraits [
 	tTypedAnnotationInstanceAttribute := builder newTraitNamed: #TTypedAnnotationInstanceAttribute.
 	tTypedAnnotationInstanceAttribute comment: self commentForTTypedAnnotationInstanceAttribute.
 
-	tTypedStructure := builder newTraitNamed: #TTypedStructure.
-	tTypedStructure comment: self commentForTTypedStructure.
+	tTypedEntity := builder newTraitNamed: #TTypedEntity.
+	tTypedEntity comment: self commentForTTypedStructure.
 
 	tUnknownSourceLanguage := builder newTraitNamed: #TUnknownSourceLanguage.
 
@@ -1635,9 +1656,6 @@ FamixGenerator >> defineTraits [
 	tDefinedInModule := builder newTraitNamed: #TDefinedInModule.
 	tDefinedInModule comment: self commentForTDefinedInModule.
 
-	tWithNamespaces := builder newTraitNamed: #TWithNamespaces.
-	tWithNamespaces comment: self commentForTWithNamespaces.
-
 	tWithPackages := builder newTraitNamed: #TWithPackages.
 	tWithPackages comment: self commentForTWithPackages.
 
@@ -1653,8 +1671,8 @@ FamixGenerator >> defineTraits [
 	tWithReferences := builder newTraitNamed: #TWithReferences.
 	tWithReferences comment: self commentForTWithReferences.
 
-	tWithSignature := builder newTraitNamed: #TWithSignature.
-	tWithSignature comment: self commentForTWithSignature.
+	tHasSignature := builder newTraitNamed: #THasSignature.
+	tHasSignature comment: self commentForTHasSignature.
 
 	tWithSourceAnchor := builder newTraitNamed: #TWithSourceAnchor.
 	tWithSourceAnchor comment: self commentForTWithSourceAnchor.
@@ -1674,18 +1692,16 @@ FamixGenerator >> defineTraits [
 	tWithTypeAliases := builder newTraitNamed: #TWithTypeAliases.
 	tWithTypeAliases comment: self commentForTWithTypeAliases.
 
-	tWithTypedStructures := builder newTraitNamed: #TWithTypedStructures.
-	tWithTypedStructures comment: self commentForTWithTypedStructures.
-
 	tWithTypes := builder newTraitNamed: #TWithTypes.
 	tWithTypes comment: self commentForTWithTypes.
 
-	tWithImmediateSource := builder newTraitNamed: #TWithImmediateSource.
-	tWithImmediateSource comment: self commentForTWithImmediateSource.
+	tHasImmediateSource := builder newTraitNamed: #THasImmediateSource.
+	tHasImmediateSource comment: self commentForTHasImmediateSource.
 
-	tWithModifiers := builder newTraitNamed: #TWithModifiers.
+	tHasModifiers := builder newTraitNamed: #THasModifiers.
 
 	tWithStatements := builder newTraitNamed: #TWithStatements.
+	tWithStatements testingSelector: #isBehavioural.
 
 	tMultipleFileAnchor := builder newTraitNamed: #TMultipleFileAnchor.
 

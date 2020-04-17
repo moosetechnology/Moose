@@ -25,7 +25,7 @@ MooseContextCheckboxesPart >> dependenciesFor: aCollectionOfContexts [
 		ifFalse: [^ self dependenciesFor: dependenciesForContext ].
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseContextCheckboxesPart >> initialize: aDictionaryWithEntityDependencies [
 
 	super initialize: (aDictionaryWithEntityDependencies keys collect: [:each | each asString]).

@@ -23,6 +23,7 @@ Trait {
 		'#next => FMOne type: #FamixTAssociation opposite: #previous',
 		'#previous => FMOne type: #FamixTAssociation opposite: #next'
 	],
+	#traits : 'FamixTSourceEntity + TAssociationMetaLevelDependency',
 	#category : #'Famix-Traits-Association'
 }
 
@@ -33,6 +34,21 @@ FamixTAssociation classSide >> annotation [
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
+]
+
+{ #category : #'instance creation' }
+FamixTAssociation classSide >> source: anEntity target: anotherEntity [
+	^ self new
+		source: anEntity;
+		target: anotherEntity;
+		yourself
+]
+
+{ #category : #'instance creation' }
+FamixTAssociation classSide >> source: anEntity target: anotherEntity model: aMooseModel [
+	^ (self source: anEntity target: anotherEntity)
+		mooseModel: aMooseModel;
+		yourself
 ]
 
 { #category : #testing }
@@ -73,4 +89,24 @@ FamixTAssociation >> previous: anObject [
 
 	<generated>
 	previous := anObject
+]
+
+{ #category : #accessing }
+FamixTAssociation >> source [
+	^ self explicitRequirement
+]
+
+{ #category : #accessing }
+FamixTAssociation >> source: aSource [
+	self explicitRequirement
+]
+
+{ #category : #accessing }
+FamixTAssociation >> target [
+	^ self explicitRequirement
+]
+
+{ #category : #accessing }
+FamixTAssociation >> target: aTarget [
+	self explicitRequirement
 ]

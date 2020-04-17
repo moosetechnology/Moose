@@ -1,6 +1,6 @@
 Class {
 	#name : #FAMIXInclude,
-	#superclass : #FAMIXAssociation,
+	#superclass : #FAMIXEntity,
 	#traits : 'FamixTFileInclude',
 	#classTraits : 'FamixTFileInclude classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
@@ -9,18 +9,8 @@ Class {
 { #category : #meta }
 FAMIXInclude class >> annotation [
 
-	<FMClass: #Include super: #FAMIXAssociation>
+	<FMClass: #Include super: #FAMIXEntity>
 	<package: #FAMIX>
 	<generated>
 	^self
-]
-
-{ #category : #accessing }
-FAMIXInclude >> from [	
-	^ self source
-]
-
-{ #category : #accessing }
-FAMIXInclude >> to [
-	^ self target
 ]

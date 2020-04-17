@@ -1,15 +1,15 @@
 Class {
 	#name : #FamixStInvocation,
-	#superclass : #FamixStAssociation,
-	#traits : 'FamixTInvocation + FamixTWithSignature',
-	#classTraits : 'FamixTInvocation classTrait + FamixTWithSignature classTrait',
+	#superclass : #FamixStEntity,
+	#traits : 'FamixTHasSignature + FamixTInvocation',
+	#classTraits : 'FamixTHasSignature classTrait + FamixTInvocation classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 
 { #category : #meta }
 FamixStInvocation class >> annotation [
 
-	<FMClass: #Invocation super: #FamixStAssociation>
+	<FMClass: #Invocation super: #FamixStEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
@@ -34,7 +34,7 @@ FamixStInvocation >> getReceivingFAMIXClass [
 			ifFalse: [^tmpReceiver]
 ]
 
-{ #category : #'instance creation' }
+{ #category : #initialization }
 FamixStInvocation >> initialize [
 
 	super initialize.

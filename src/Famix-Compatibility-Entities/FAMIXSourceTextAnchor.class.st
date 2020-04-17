@@ -1,8 +1,8 @@
 Class {
 	#name : #FAMIXSourceTextAnchor,
 	#superclass : #FAMIXSourceAnchor,
-	#traits : 'FamixTWithImmediateSource',
-	#classTraits : 'FamixTWithImmediateSource classTrait',
+	#traits : 'FamixTHasImmediateSource',
+	#classTraits : 'FamixTHasImmediateSource classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 
@@ -13,14 +13,4 @@ FAMIXSourceTextAnchor class >> annotation [
 	<package: #FAMIX>
 	<generated>
 	^self
-]
-
-{ #category : #'Famix-File' }
-FAMIXSourceTextAnchor >> containerFiles [
-	^ {}
-]
-
-{ #category : #accessing }
-FAMIXSourceTextAnchor >> lineCount [
-	^ self sourceText ifNotNil: #lineCount ifNil: [ self notExistentMetricValue ]
 ]

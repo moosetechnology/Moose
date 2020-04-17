@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixJavaInheritance,
-	#superclass : #FamixJavaAssociation,
+	#superclass : #FamixJavaEntity,
 	#traits : 'FamixTInheritance',
 	#classTraits : 'FamixTInheritance classTrait',
 	#category : #'Famix-Java-Entities-Entities'
@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaInheritance class >> annotation [
 
-	<FMClass: #Inheritance super: #FamixJavaAssociation>
+	<FMClass: #Inheritance super: #FamixJavaEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self

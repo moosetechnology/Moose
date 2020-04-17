@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixTest1IndexedFileAnchor,
-	#superclass : #FamixTest1AbstractFileAnchor,
+	#superclass : #FamixTest1SourceAnchor,
 	#traits : 'FamixTIndexedFileNavigation',
 	#classTraits : 'FamixTIndexedFileNavigation classTrait',
 	#category : #'Famix-Test1-Entities-Entities'
@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixTest1IndexedFileAnchor class >> annotation [
 
-	<FMClass: #IndexedFileAnchor super: #FamixTest1AbstractFileAnchor>
+	<FMClass: #IndexedFileAnchor super: #FamixTest1SourceAnchor>
 	<package: #'Famix-Test1-Entities'>
 	<generated>
 	^self

@@ -7,7 +7,9 @@ Class {
 		'method',
 		'type',
 		'reference',
-		'invocation'
+		'invocation',
+		'classEntitygroup',
+		'typeGroup'
 	],
 	#category : #'Famix-TestGenerators'
 }
@@ -30,8 +32,10 @@ FamixTest3Generator >> defineClasses [
 	super defineClasses.
 
 	classEntity := builder newClassNamed: #Class.
+	classEntitygroup := classEntity withGroup.
 	method := builder newClassNamed: #Method.
 	type := builder newClassNamed: #Type.
+	typeGroup := type withGroup.
 	primitiveType := builder newClassNamed: #PrimitiveType.
 	reference := builder newClassNamed: #Reference.
 	invocation := builder newClassNamed: #Invocation.
@@ -57,9 +61,10 @@ FamixTest3Generator >> defineHierarchy [
 	primitiveType --|> #TWithTypes.
 	primitiveType --|> #TReferenceable.
 
-	reference --|> association.
 	reference --|> #TReference.
 	
-	invocation --|> association.
-	invocation --|> #TInvocation
+	invocation --|> #TInvocation.
+	
+	"groups"
+	classEntitygroup --|> typeGroup.
 ]

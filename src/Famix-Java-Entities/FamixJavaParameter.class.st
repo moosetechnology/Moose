@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaParameter,
 	#superclass : #FamixJavaNamedEntity,
-	#traits : 'FamixJavaTStructuralEntity + FamixTParameter',
-	#classTraits : 'FamixJavaTStructuralEntity classTrait + FamixTParameter classTrait',
+	#traits : 'FamixTParameter',
+	#classTraits : 'FamixTParameter classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
@@ -15,7 +15,7 @@ FamixJavaParameter class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 FamixJavaParameter >> mooseNameOn: stream [ 
 	| parent |
 	parent := self parentBehaviouralEntity.

@@ -1,6 +1,6 @@
 Class {
 	#name : #FAMIXReference,
-	#superclass : #FAMIXAssociation,
+	#superclass : #FAMIXEntity,
 	#traits : 'FamixTReference',
 	#classTraits : 'FamixTReference classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXReference class >> annotation [
 
-	<FMClass: #Reference super: #FAMIXAssociation>
+	<FMClass: #Reference super: #FAMIXEntity>
 	<package: #FAMIX>
 	<generated>
 	^self
@@ -19,9 +19,9 @@ FAMIXReference class >> annotation [
 FAMIXReference >> mooseNameOn: aStream [
 	"aStream nextPutAll: 'Reference'."
 
-	self from ifNotNil: [ aStream nextPutAll: self from name ].
+	self source ifNotNil: [ aStream nextPutAll: self from name ].
 	aStream nextPutAll: ' refers to '.
-	self to ifNotNil: [ aStream nextPutAll: self to name ]
+	self target ifNotNil: [ aStream nextPutAll: self to name ]
 ]
 
 { #category : #'Famix-Implementation' }

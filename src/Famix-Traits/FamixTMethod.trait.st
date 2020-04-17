@@ -11,9 +11,8 @@ Trait {
 		'#kind => FMProperty',
 		'#parentType => FMOne type: #FamixTWithMethods opposite: #methods'
 	],
-	#traits : 'FamixTWithParameters + FamixTInvocable + FamixTWithInvocations + FamixTWithReferences + FamixTWithAccesses + FamixTWithLocalVariables + FamixTWithImplicitVariables + FamixTWithSignature + FamixTWithClassScope + FamixTTypedStructure + FamixTSourceEntity',
-	#classTraits : 'FamixTWithParameters classTrait + FamixTInvocable classTrait + FamixTWithInvocations classTrait + FamixTWithReferences classTrait + FamixTWithAccesses classTrait + FamixTWithLocalVariables classTrait + FamixTWithImplicitVariables classTrait + FamixTWithSignature classTrait + FamixTWithClassScope classTrait + FamixTTypedStructure classTrait + FamixTSourceEntity classTrait',
-	#category : #'Famix-Traits-Method'
+	#traits : '(FamixTHasSignature + FamixTInvocable + FamixTNamedEntity + FamixTSourceEntity + FamixTTypedEntity + FamixTWithClassScope + FamixTWithImplicitVariables + FamixTWithLocalVariables + FamixTWithParameters + FamixTWithReferences + FamixTWithStatements + TOODependencyQueries withPrecedenceOf: FamixTTypedEntity)',
+	#category : #'Famix-Traits-Behavioral'
 }
 
 { #category : #meta }
@@ -26,11 +25,10 @@ FamixTMethod classSide >> annotation [
 ]
 
 { #category : #groups }
-FamixTMethod classSide >> famixTMethodRelatedGroup [
-
+FamixTMethod classSide >> annotationFamixMethodGroup [
+	<generated>
 	<mooseGroup>
-	
-	^ FAMIXMethodGroup
+	^ FamixMethodGroup
 ]
 
 { #category : #metrics }

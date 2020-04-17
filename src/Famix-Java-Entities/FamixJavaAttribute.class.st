@@ -49,21 +49,11 @@ FamixJavaAttribute >> hierarchyNestingLevel: aNumber [
 	self privateState propertyAt: #hierarchyNestingLevel put: aNumber
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 FamixJavaAttribute >> initialize [
 	super initialize.
 	hasClassScope := false.
 
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaAttribute >> mooseNameOn: aStream [ 
-	| parent |
-	parent := self belongsTo.
-	parent ifNotNil: 
-		[ parent mooseNameOn: aStream.
-		aStream nextPut: $. ].
-	self name ifNotNil: [ aStream nextPutAll: self name ].
 ]
 
 { #category : #'as yet unclassified' }

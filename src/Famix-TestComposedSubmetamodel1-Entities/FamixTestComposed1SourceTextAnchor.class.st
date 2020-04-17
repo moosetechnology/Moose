@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixTestComposed1SourceTextAnchor,
 	#superclass : #FamixTestComposed1SourceAnchor,
-	#traits : 'FamixTWithImmediateSource',
-	#classTraits : 'FamixTWithImmediateSource classTrait',
+	#traits : 'FamixTHasImmediateSource',
+	#classTraits : 'FamixTHasImmediateSource classTrait',
 	#category : #'Famix-TestComposedSubmetamodel1-Entities-Entities'
 }
 

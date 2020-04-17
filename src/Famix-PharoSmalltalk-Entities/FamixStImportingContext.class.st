@@ -35,12 +35,6 @@ FamixStImportingContext >> importAnnotationTypeAttribute [
 ]
 
 { #category : #testing }
-FamixStImportingContext >> importAssociation [
-	<generated>
-	^ self import: FamixStAssociation
-]
-
-{ #category : #testing }
 FamixStImportingContext >> importAttribute [
 	<generated>
 	^ self import: FamixStAttribute
@@ -56,12 +50,6 @@ FamixStImportingContext >> importClass [
 FamixStImportingContext >> importComment [
 	<generated>
 	^ self import: FamixStComment
-]
-
-{ #category : #testing }
-FamixStImportingContext >> importContainerEntity [
-	<generated>
-	^ self import: FamixStContainerEntity
 ]
 
 { #category : #testing }
@@ -128,6 +116,12 @@ FamixStImportingContext >> importPackage [
 FamixStImportingContext >> importParameter [
 	<generated>
 	^ self import: FamixStParameter
+]
+
+{ #category : #testing }
+FamixStImportingContext >> importPharoEntitySourceAnchor [
+	<generated>
+	^ self import: FamixStPharoEntitySourceAnchor
 ]
 
 { #category : #testing }
@@ -209,12 +203,6 @@ FamixStImportingContext >> shouldImportAnnotationTypeAttribute [
 ]
 
 { #category : #testing }
-FamixStImportingContext >> shouldImportAssociation [
-	<generated>
-	^ self shouldImport: FamixStAssociation
-]
-
-{ #category : #testing }
 FamixStImportingContext >> shouldImportAttribute [
 	<generated>
 	^ self shouldImport: FamixStAttribute
@@ -230,12 +218,6 @@ FamixStImportingContext >> shouldImportClass [
 FamixStImportingContext >> shouldImportComment [
 	<generated>
 	^ self shouldImport: FamixStComment
-]
-
-{ #category : #testing }
-FamixStImportingContext >> shouldImportContainerEntity [
-	<generated>
-	^ self shouldImport: FamixStContainerEntity
 ]
 
 { #category : #testing }
@@ -302,6 +284,12 @@ FamixStImportingContext >> shouldImportPackage [
 FamixStImportingContext >> shouldImportParameter [
 	<generated>
 	^ self shouldImport: FamixStParameter
+]
+
+{ #category : #testing }
+FamixStImportingContext >> shouldImportPharoEntitySourceAnchor [
+	<generated>
+	^ self shouldImport: FamixStPharoEntitySourceAnchor
 ]
 
 { #category : #testing }

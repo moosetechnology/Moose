@@ -115,6 +115,14 @@ FmxMBBehavior >> defaultTag [
 ]
 
 { #category : #accessing }
+FmxMBBehavior >> ensureRealClass [
+	^ realClass
+		ifNil: [ self generate.
+			self willGenerate: false.
+			self realClass ]
+]
+
+{ #category : #accessing }
 FmxMBBehavior >> fullName [
 	^ (self prefix , self name) asSymbol
 ]
@@ -208,6 +216,18 @@ FmxMBBehavior >> generateNavigationGroupsFor: aClass [
 ]
 
 { #category : #generating }
+FmxMBBehavior >> generatePrecedenceInTraitComposition: aBehavioral [
+	"In case of method conflict the user can select methods to remove from a trait. In that case we give the information to ring here."
+
+	self additionalProperties
+		at: #precedingTrait
+		ifPresent: [ :value |
+			aBehavioral
+				propertyNamed: #precedingTrait
+				put: value ]
+]
+
+{ #category : #generating }
 FmxMBBehavior >> generateRemoteAccessors [
 	(self properties select: #isRemote) do: [ :each | each generateAccessorsIn: self realClass ]
 ]
@@ -245,6 +265,12 @@ FmxMBBehavior >> isMetamodelClass [
 ]
 
 { #category : #testing }
+FmxMBBehavior >> isMetamodelClassGroup [
+
+	^ false
+]
+
+{ #category : #testing }
 FmxMBBehavior >> isMetamodelTrait [
 
 	^ false
@@ -270,7 +296,7 @@ FmxMBBehavior >> packageName: anObject [
 	packageName := anObject
 ]
 
-{ #category : #utility }
+{ #category : #utilities }
 FmxMBBehavior >> pluralOf: aString [
 
 	| stringParts pluralized |
@@ -450,6 +476,21 @@ FmxMBBehavior >> traitGeneralizations [
 FmxMBBehavior >> uses: aTrait [
 
 	^ self generalization: aTrait
+]
+
+{ #category : #'testing selectors' }
+FmxMBBehavior >> withGroup [
+	^ self builder groupOf: self
+]
+
+{ #category : #generalization }
+FmxMBBehavior >> withPrecedenceOf: aTrait [
+	self additionalProperties
+		at: #precedingTrait
+		put:
+			(aTrait isSymbol
+				ifTrue: [ (self builder getTraitNamed: aTrait) fullName ]
+				ifFalse: [ aTrait fullName ])
 ]
 
 { #category : #'testing selectors' }

@@ -6,6 +6,7 @@ Trait {
 		'#startColumn => FMProperty',
 		'#startLine => FMProperty'
 	],
+	#traits : 'FamixTFileAnchor',
 	#category : #'Famix-Traits-SourceAnchor'
 }
 
@@ -72,46 +73,27 @@ FamixTFileNavigation >> endLine: anObject [
 ]
 
 { #category : #accessing }
-FamixTFileNavigation >> includeLine: anInteger [
-	^ anInteger between: startLine and: endLine
-]
-
-{ #category : #accessing }
 FamixTFileNavigation >> interval [
 	| start end index |
 	index := 0.
 	start := 1.
 	end := 0.
-	self completeText lineIndicesDo: [:lineStart :lineEnd :y | 
-		index := index + 1.
-		self startLine = index ifTrue: [ start := lineStart ].
-		self endLine = index ifTrue: [end := lineEnd ] ].
-	^ start to: end
-]
-
-{ #category : #accessing }
-FamixTFileNavigation >> intervalAsCharPos [
-	| start end index |
-	index := 0.
-	start := 1.
-	end := 0.
-	self completeText lineIndicesDo: [:lineStart :lineEnd :y | 
-		index := index + 1.
-		self startLine = index ifTrue: [ start := lineStart ].
-		self endLine = index ifTrue: [end := lineEnd ] ].
+	self completeText
+		lineIndicesDo: [ :lineStart :lineEnd :y | 
+			index := index + 1.
+			self startLine = index ifTrue: [ start := lineStart ].
+			self endLine = index ifTrue: [ end := lineEnd ] ].
 	^ start to: end
 ]
 
 { #category : #accessing }
 FamixTFileNavigation >> lineCount [
-	(endLine notNil and: [ startLine notNil ])
-		ifTrue: [ ^ endLine - startLine + 1 ].
+	(endLine notNil and: [ startLine notNil ]) ifTrue: [ ^ endLine - startLine + 1 ].
 
 	"if no start/end position, use the comple text ..."
-	^ self hasSourceText 
+	^ self hasSourceText
 		ifTrue: [ self completeText lineCount ]
 		ifFalse: [ self notExistentMetricValue ]
-	
 ]
 
 { #category : #printing }

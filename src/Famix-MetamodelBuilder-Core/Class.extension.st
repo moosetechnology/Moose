@@ -30,6 +30,10 @@ Class >> needToAdaptTo: aRGClass [
 		select: [ :member | generatedTraitNames includes: member name ]
 		thenCollect: #traitCompositionExpression.
 
+	aRGClass properties at:#precedingTrait ifPresent: [ :aTrait | 
+		self traitComposition isPrecedingSequence ifFalse: [ ^ true ].
+		(self traitComposition preferedTrait name = aTrait) ifFalse: [ ^ true ]].
+
 	(generatedTraitDefinitions equalsTo: aRGClass traitsDefinitions) ifFalse: [ ^ true ].
 
 	((self generatedSlots collect: #definitionString) equalsTo: (aRGClass slots collect: #definitionString)) ifFalse: [ ^ true ].

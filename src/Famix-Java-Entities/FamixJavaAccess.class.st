@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixJavaAccess,
-	#superclass : #FamixJavaAssociation,
+	#superclass : #FamixJavaEntity,
 	#traits : 'FamixTAccess',
 	#classTraits : 'FamixTAccess classTrait',
 	#category : #'Famix-Java-Entities-Entities'
@@ -9,13 +9,13 @@ Class {
 { #category : #meta }
 FamixJavaAccess class >> annotation [
 
-	<FMClass: #Access super: #FamixJavaAssociation>
+	<FMClass: #Access super: #FamixJavaEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 FamixJavaAccess >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPutAll: ' (Access)'

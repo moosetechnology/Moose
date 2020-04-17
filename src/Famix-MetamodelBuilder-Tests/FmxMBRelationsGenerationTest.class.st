@@ -10,7 +10,7 @@ Class {
 	#category : #'Famix-MetamodelBuilder-Tests'
 }
 
-{ #category : #utility }
+{ #category : #utilities }
 FmxMBRelationsGenerationTest >> assertContainerInAccessMethod: selector [
 
 	self assert: ((generatedAccess methodNamed: selector) sourceCode includesSubstring: '<container>').
@@ -19,7 +19,7 @@ FmxMBRelationsGenerationTest >> assertContainerInAccessMethod: selector [
 
 ]
 
-{ #category : #utility }
+{ #category : #utilities }
 FmxMBRelationsGenerationTest >> assertContainerInVariableMethod: selector [
 
 	self assert: ((generatedVariable methodNamed: selector) sourceCode includesSubstring: '<container>').
@@ -28,7 +28,7 @@ FmxMBRelationsGenerationTest >> assertContainerInVariableMethod: selector [
 
 ]
 
-{ #category : #utility }
+{ #category : #utilities }
 FmxMBRelationsGenerationTest >> cardinalityInAccess: selector1 inVariable: selector2 [
 
 	self assert: generatedAccess slots first name equals: selector1.
@@ -36,7 +36,7 @@ FmxMBRelationsGenerationTest >> cardinalityInAccess: selector1 inVariable: selec
 
 ]
 
-{ #category : #utility }
+{ #category : #utilities }
 FmxMBRelationsGenerationTest >> checkSlotsCount [		
 
 	self assert: generatedAccess slots size equals: 1.
@@ -44,7 +44,7 @@ FmxMBRelationsGenerationTest >> checkSlotsCount [
 
 ]
 
-{ #category : #utility }
+{ #category : #utilities }
 FmxMBRelationsGenerationTest >> denyContainerInAccessMethod: selector [
 
 	self deny: ((generatedAccess methodNamed: selector) sourceCode includesSubstring: '<container>').
@@ -53,7 +53,7 @@ FmxMBRelationsGenerationTest >> denyContainerInAccessMethod: selector [
 
 ]
 
-{ #category : #utility }
+{ #category : #utilities }
 FmxMBRelationsGenerationTest >> denyContainerInVarialbeMethod: selector [
 
 	self deny: ((generatedVariable methodNamed: selector) sourceCode includesSubstring: '<container>').
@@ -62,7 +62,7 @@ FmxMBRelationsGenerationTest >> denyContainerInVarialbeMethod: selector [
 
 ]
 
-{ #category : #utility }
+{ #category : #utilities }
 FmxMBRelationsGenerationTest >> generate [
 
 	builder generate.
@@ -84,7 +84,7 @@ FmxMBRelationsGenerationTest >> setUp [
 
 ]
 
-{ #category : #utility }
+{ #category : #utilities }
 FmxMBRelationsGenerationTest >> slotCardinalityinAccess: accessCardinality inVariable: variableCardinality [
 
 	"slot expression example: FMMany type: #TstAccess opposite: #accessOwner"
@@ -93,7 +93,7 @@ FmxMBRelationsGenerationTest >> slotCardinalityinAccess: accessCardinality inVar
 
 ]
 
-{ #category : #utility }
+{ #category : #utilities }
 FmxMBRelationsGenerationTest >> slotNameinAccess: selector1 inVariable: selector2 [
 
 	self assert: generatedAccess slots first name equals: selector1.

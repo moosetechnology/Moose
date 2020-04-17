@@ -9,6 +9,8 @@ Trait {
 		'#childScopes => FMMany type: #FamixTScopingEntity opposite: #parentScope',
 		'#parentScope => FMOne type: #FamixTScopingEntity opposite: #childScopes'
 	],
+	#traits : 'TOODependencyQueries',
+	#classTraits : 'TOODependencyQueries classTrait',
 	#category : #'Famix-Traits-ScopingEntity'
 }
 
@@ -43,7 +45,7 @@ FamixTScopingEntity >> allChildScopesDo: aBlock [
 { #category : #accessing }
 FamixTScopingEntity >> allChildScopesGroup [
 	<navigation: 'All child scopes'>
-	^ FAMIXNamespaceGroup withAll: self allChildScopes withDescription: 'All child scopes from ', self printString
+	^ FamixNamespaceGroup withAll: self allChildScopes withDescription: 'All child scopes from ', self printString
 ]
 
 { #category : #accessing }

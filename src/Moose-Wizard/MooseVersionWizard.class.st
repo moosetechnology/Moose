@@ -58,7 +58,7 @@ MooseVersionWizard >> defaultVersionSelector: aVersionNumberString commitType: a
 				nextPut: $: ]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseVersionWizard >> initializeContent: shouldUpdateProject [
 
 	| versions |
@@ -72,7 +72,7 @@ MooseVersionWizard >> initializeContent: shouldUpdateProject [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseVersionWizard >> initializeSourcePaneWith: versions [
 	
 	| sourcePane part1 part2 currentVersion |		
@@ -100,7 +100,7 @@ MooseVersionWizard >> initializeSourcePaneWith: versions [
 	^ sourcePane
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseVersionWizard >> initializeVersionPaneWith: versions [
 
 	| lastPane part3 part4 part5 part6 |

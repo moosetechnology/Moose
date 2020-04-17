@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixStMethod,
-	#superclass : #FamixStContainerEntity,
-	#traits : 'FamixTMethod',
-	#classTraits : 'FamixTMethod classTrait',
+	#superclass : #FamixStNamedEntity,
+	#traits : '(FamixTHasModifiers + FamixTMethod + FamixTWithAnnotationTypes withPrecedenceOf: FamixTMethod)',
+	#classTraits : '(FamixTHasModifiers classTrait + FamixTMethod classTrait + FamixTWithAnnotationTypes classTrait withPrecedenceOf: FamixTMethod classTrait)',
 	#instVars : [
 		'#protocol => FMProperty'
 	],
@@ -12,7 +12,7 @@ Class {
 { #category : #meta }
 FamixStMethod class >> annotation [
 
-	<FMClass: #Method super: #FamixStContainerEntity>
+	<FMClass: #Method super: #FamixStNamedEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self
@@ -86,7 +86,7 @@ FamixStMethod >> hierarchyNestingLevel: aNumber [
 	self privateState propertyAt: #hierarchyNestingLevel put: aNumber
 ]
 
-{ #category : #'Famix-Extensions-metrics-support' }
+{ #category : #initialization }
 FamixStMethod >> initialize [
 	super initialize.
 	isClassSide := false
@@ -210,12 +210,6 @@ FamixStMethod >> numberOfComments [
 ]
 
 { #category : #'Famix-Extensions-private' }
-FamixStMethod >> numberOfComments: aNumber [
-
-	self privateState propertyAt: #numberOfComments put: aNumber
-]
-
-{ #category : #'Famix-Extensions-private' }
 FamixStMethod >> numberOfConditionals [
 	<FMProperty: #numberOfConditionals type: #Number>
 	<FMComment: 'The number of conditionals in a method'>
@@ -261,12 +255,6 @@ FamixStMethod >> numberOfStatements [
 	<FMProperty: #numberOfStatements type: #Number>
 	<FMComment: 'The number of statements in a method'>
 	^ self lookUpPropertyNamed: #numberOfStatements computedAs: [ (RBVisitorForFAMIXMetrics for: self) numberOfStatements ]
-]
-
-{ #category : #'Famix-Extensions-private' }
-FamixStMethod >> numberOfStatements: aNumber [
-
-	self privateState propertyAt: #numberOfStatements put: aNumber
 ]
 
 { #category : #accessing }

@@ -54,12 +54,27 @@ MooseMemoryEfficientState >> attributes [
 
 { #category : #accessing }
 MooseMemoryEfficientState >> cacheAt: name ifAbsent: aBlock [
-	^ propertyCache at: name ifAbsent: [ aBlock value ]
+	^ propertyCache at: name ifAbsent: aBlock
+]
+
+{ #category : #accessing }
+MooseMemoryEfficientState >> cacheAt: name ifAbsent: absentBlock ifPresent: presentBlock [
+	^ propertyCache at: name ifPresent: presentBlock ifAbsent: absentBlock
 ]
 
 { #category : #accessing }
 MooseMemoryEfficientState >> cacheAt: name ifAbsentPut: aBlock [
 	^ propertyCache at: name ifAbsentPut: aBlock
+]
+
+{ #category : #accessing }
+MooseMemoryEfficientState >> cacheAt: name ifPresent: aBlock [
+	^ propertyCache at: name ifPresent: [ :value | aBlock cull: value ]
+]
+
+{ #category : #accessing }
+MooseMemoryEfficientState >> cacheAt: name ifPresent: presentBlock ifAbsentPut: aBlock [
+	^ propertyCache at: name ifPresent: presentBlock ifAbsentPut: aBlock
 ]
 
 { #category : #accessing }
@@ -95,19 +110,11 @@ MooseMemoryEfficientState >> flushProperties [
 ]
 
 { #category : #testing }
-MooseMemoryEfficientState >> hasMooseModel [
-	1 to: attributes size do: [ :n | 
-		(attributes at: n) key = #privateModel
-			ifTrue: [ ^ true ] ].
-	^ false
-]
-
-{ #category : #testing }
 MooseMemoryEfficientState >> includesKey: selector [
 	^ propertyCache includesKey: selector
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseMemoryEfficientState >> initialize: aMooseEntity [
 	attributes := #().
 	propertyCache := SmallDictionary new.

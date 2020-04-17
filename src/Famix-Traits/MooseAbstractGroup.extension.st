@@ -29,6 +29,12 @@ MooseAbstractGroup >> allAttributes [
 ]
 
 { #category : #'*Famix-Traits' }
+MooseAbstractGroup >> allBehaviourals [
+	<navigation: 'All behavioural entities'>
+	^ self allUsing: FamixTWithStatements
+]
+
+{ #category : #'*Famix-Traits' }
 MooseAbstractGroup >> allCaughtExceptions [
 	<navigation: 'All caught exceptions'>
 	<package: #Java>
@@ -38,7 +44,7 @@ MooseAbstractGroup >> allCaughtExceptions [
 { #category : #'*Famix-Traits' }
 MooseAbstractGroup >> allClasses [
 	<navigation: 'All classes'>
-	^ self allUsing: FamixTClass ofGroupClass: FAMIXClassGroup
+	^ self allUsing: FamixTClass ofGroupClass: FamixClassGroup
 ]
 
 { #category : #'*Famix-Traits' }
@@ -130,6 +136,12 @@ MooseAbstractGroup >> allMethods [
 ]
 
 { #category : #'*Famix-Traits' }
+MooseAbstractGroup >> allModelBehaviourals [
+	<navigation: 'All model behavioural entities'>
+	^ self lookUpPropertyNamed: #allModelBehaviourals computedAs: [ self computeAllModelBehaviourals ]
+]
+
+{ #category : #'*Famix-Traits' }
 MooseAbstractGroup >> allModelClasses [
 	<navigation: 'All model classes'>
 
@@ -180,6 +192,22 @@ MooseAbstractGroup >> allModelPureClasses [
 ]
 
 { #category : #'*Famix-Traits' }
+MooseAbstractGroup >> allModelStructuralEntities [
+	<navigation: 'All model structural entities'>
+	^ self lookUpPropertyNamed: #allModelStructuralEntities computedAs: [ self computeAllModelStructuralEntities ]
+]
+
+{ #category : #'*Famix-Traits' }
+MooseAbstractGroup >> allModelTypes [
+	<navigation: 'All model types'>
+
+	^ self privateState cacheAt: 'All model types'
+		ifAbsentPut: [
+			(self allTypes reject: [:each | each isStub ])
+				description: 'All model types' ]
+]
+
+{ #category : #'*Famix-Traits' }
 MooseAbstractGroup >> allNamespaces [
 	
 	<navigation: 'All namespaces'>
@@ -191,6 +219,13 @@ MooseAbstractGroup >> allPackages [
 	
 	<navigation: 'All packages'>
 	^self allUsing: FamixTPackage 
+]
+
+{ #category : #'*Famix-Traits' }
+MooseAbstractGroup >> allParameterTypes [
+	<navigation: 'All parameter types'>
+	<package: #Java>
+	^ self allUsing: FamixTParameterType
 ]
 
 { #category : #'*Famix-Traits' }
@@ -252,14 +287,24 @@ MooseAbstractGroup >> allThrownExceptions [
 { #category : #'*Famix-Traits' }
 MooseAbstractGroup >> allTypes [
 	<navigation: 'All types'>
-	^ self allUsing: FamixTType ofGroupClass: FAMIXTypeGroup
+	^ self allUsing: FamixTType ofGroupClass: FamixTypeGroup
+]
+
+{ #category : #'*Famix-Traits' }
+MooseAbstractGroup >> computeAllModelBehaviourals [
+	^ self allBehaviourals reject: #isStub
+]
+
+{ #category : #'*Famix-Traits' }
+MooseAbstractGroup >> computeAllModelStructuralEntities [
+	^ self allStructuralEntities reject: #isStub
 ]
 
 { #category : #'*Famix-Traits' }
 MooseAbstractGroup >> numberOfAssociations [
 	<FMProperty: #numberOfAssociations type: #Number>
 	<FMComment: 'The total number of associations'>
-	^ (self allWithSubTypesOf: FamixTAssociation) size
+	^ self numberOfEntityUsing: FamixTAssociation
 ]
 
 { #category : #'*Famix-Traits' }
@@ -282,5 +327,5 @@ MooseAbstractGroup >> numberOfLinesOfCode [
 MooseAbstractGroup >> numberOfPackages [
 	<FMProperty: #numberOfPackages type: #Number>
 	<FMComment: 'Total number of packages'>
-	^ self privateState propertyAt: #numberOfPackages ifAbsentPut: [ self allPackages size ] 
+	^ self privateState propertyAt: #numberOfPackages ifAbsentPut: [ self numberOfEntityUsing: FamixTPackage ] 
 ]

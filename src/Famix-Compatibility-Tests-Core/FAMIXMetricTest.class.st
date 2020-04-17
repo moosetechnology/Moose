@@ -10,7 +10,7 @@ FAMIXMetricTest >> assertNoErrorForAllMetricsOf: entity [
 		do: [ :each | self shouldnt: (entity mmGetProperty: each) raise: Error ]
 ]
 
-{ #category : #utility }
+{ #category : #utilities }
 FAMIXMetricTest >> model [
 	" to debug and avoid caching behavior: LANPackageTestResource reset."
 	^ LANPackageTestResource current model 
@@ -39,7 +39,7 @@ FAMIXMetricTest >> testAverageHierarchyHeight [
 
 	| classes |
 	classes := self model allClasses.
-	self assert: classes ahh asInteger equals: 1 "was 2 before stateful traits conversion"
+	self assert: classes averageHierarchyHeighth asInteger equals: 1	"was 2 before stateful traits conversion"
 ]
 
 { #category : #testing }

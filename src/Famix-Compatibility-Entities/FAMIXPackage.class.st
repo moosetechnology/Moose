@@ -196,7 +196,7 @@ FAMIXPackage >> extendedClasses [
 FAMIXPackage >> extendedClassesGroup [
 	<navigation: 'Extended classes in package'>
 	
-	^ FAMIXClassGroup 
+	^ FamixClassGroup 
 		withAll: self extendedClasses
 		withDescription: 'Extended classes in package ', self name
 ]
@@ -214,7 +214,7 @@ FAMIXPackage >> extensionClasses [
 FAMIXPackage >> extensionClassesGroup [
 	<navigation: 'Classes extended by package'>
 	
-	^ FAMIXClassGroup 
+	^ FamixClassGroup 
 		withAll: self extensionClasses
 		withDescription: 'Classes extended by package', self name
 ]
@@ -230,9 +230,7 @@ FAMIXPackage >> extensionMethods [
 
 { #category : #'Moose-Hismo' }
 FAMIXPackage >> historicalUniqueName [
-	^ (self parentPackage isNil 
-		ifTrue: [ self name ]
-		ifFalse: [ self parentPackage historicalUniqueName , '.' , self name ]) asSymbol
+	^ (self parentPackage ifNil: [ self name ] ifNotNil: [ self parentPackage historicalUniqueName , '.' , self name ]) asSymbol
 ]
 
 { #category : #'Famix-Smalltalk' }
@@ -246,7 +244,7 @@ FAMIXPackage >> localClasses [
 FAMIXPackage >> localClassesGroup [
 	<navigation: 'Local classes'>
 
-	^ FAMIXClassGroup 
+	^ FamixClassGroup 
 		withAll: self localClasses
 		withDescription: 'Local classes'
 ]

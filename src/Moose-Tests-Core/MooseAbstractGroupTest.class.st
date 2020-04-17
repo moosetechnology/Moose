@@ -89,7 +89,7 @@ MooseAbstractGroupTest >> testAllWithSubTypesOfAny [
 		assert: (group allWithSubTypesOfAny: {FamixTest3NamedEntity}) size
 		equals: 2.
 		self
-		assert: (group allWithSubTypesOfAny: {FamixTest3NamedEntity. FamixTest3Association}) size
+		assert: (group allWithSubTypesOfAny: {FamixTest3NamedEntity. FamixTest3Invocation}) size
 		equals: 3
 ]
 
@@ -316,11 +316,11 @@ MooseAbstractGroupTest >> testIndexOf [
 
 { #category : #tests }
 MooseAbstractGroupTest >> testIntersection [
-	| group2 el1 el2 el3 el4 |
+	| group2 el1 el2 el3 |
 	group add: (el1 := MooseEntity new).
 	group add: (el2 := MooseEntity new).
 	group add: (el3 := MooseEntity new).
-	group2 := self actualClass with: (el4 := MooseEntity new).
+	group2 := self actualClass with: MooseEntity new.
 	self assertEmpty: (group intersection: group2).
 	self assertEmpty: (group intersection: self actualClass new).
 	self assertCollection: (group intersection: group) hasSameElements: {el1 . el2 . el3}.
@@ -354,6 +354,14 @@ MooseAbstractGroupTest >> testLast [
 	self assertCollection: (group last: 2) hasSameElements: {el2 . el3}.
 	self assertCollection: (group last: 4) hasSameElements: {el1 . el1 . el2 . el3}.
 	self should: [ group last: 5 ] raise: Error
+]
+
+{ #category : #tests }
+MooseAbstractGroupTest >> testNumberOfEntityUsing [
+	group addAll: {FamixTest3Class new . FamixTest3Type new}.
+	self should: [ group numberOfEntityUsing: FamixTest3Type ] raise: MooseAllUsingOnClass.
+	self assert: (group numberOfEntityUsing: FamixTClass) equals: 1.
+	self assert: (group numberOfEntityUsing: FamixTType) equals: 2
 ]
 
 { #category : #tests }
@@ -470,7 +478,7 @@ MooseAbstractGroupTest >> testWithIndexDo [
 	self assertCollection: t hasSameElements: {{el1 . 1} . {el2 . 2} . {el3 . 3}}
 ]
 
-{ #category : #utility }
+{ #category : #utilities }
 MooseAbstractGroupTest >> twoClasses [
 	| classA classB |
 	classA := FamixTest1Class new.

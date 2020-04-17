@@ -16,7 +16,7 @@ FAMIXClassBlueprint >> createEdgesFor: aClass andLayers: layers on: view [
 		line;
 		color: Color lightBlue;
 		horizontalAttachPoint.
-	edges := aClass incomingAccesses flatCollect: [ :acc | eb connectFrom: acc from to: acc to ].
+	edges := aClass queryIncomingAccesses flatCollect: [ :acc | eb connectFrom: acc from to: acc to ].
 	edges do: [ :each | each moveBehind: (layers flatCollect: #value) ].
 
 	eb := RTEdgeBuilder new.
@@ -25,7 +25,7 @@ FAMIXClassBlueprint >> createEdgesFor: aClass andLayers: layers on: view [
 		line;
 		horizontalAttachPoint.
 	to := [ :each | each candidates detect: [ :c | (c atScope: FamixTType) anyOne = aClass ] ifNone: [ nil ] ].
-	edges := aClass outgoingInvocations flatCollect: [ :acc | eb connectFrom: acc from to: (to value: acc) ].
+	edges := (aClass queryOutgoing: FamixTInvocation) flatCollect: [ :acc | eb connectFrom: acc from to: (to value: acc) ].
 	edges do: [ :each | each moveBehind: (layers flatCollect: #value) ]
 ]
 

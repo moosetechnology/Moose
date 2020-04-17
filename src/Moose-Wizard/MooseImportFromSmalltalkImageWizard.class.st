@@ -14,14 +14,14 @@ Class {
 	#category : #'Moose-Wizard'
 }
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseImportFromSmalltalkImageWizard >> buildMooseWizardControl [
 	
 	self buildMooseWizardPackageControl.
 	self buildMooseWizardModelAttributes.
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseImportFromSmalltalkImageWizard >> buildMooseWizardModelAttributes [
 
 	| lastPane modelNameTextField mergeClassesCheckbox importSubclassesCheckbox computeAttributesCheckbox importerList importerAttributes strategyDropList metamodelFactoryList |
@@ -94,7 +94,7 @@ MooseImportFromSmalltalkImageWizard >> buildMooseWizardModelAttributes [
 	self addPane: lastPane.
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseImportFromSmalltalkImageWizard >> buildMooseWizardPackageControl [
 	"Here we initialize the first wizard panel, which is related to selecting the packages
 	 that will be added to the model"
@@ -206,7 +206,7 @@ MooseImportFromSmalltalkImageWizard >> importerSelected [
 	^ Smalltalk at: (wizardInformations at: #importer)
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseImportFromSmalltalkImageWizard >> initialize [
 	super initialize.
 	self buildMooseWizardControl

@@ -1,8 +1,8 @@
 Class {
 	#name : #FAMIXScopingEntity,
 	#superclass : #FAMIXContainerEntity,
-	#traits : 'FamixTGlobalVariableScope + FamixTScopingEntity',
-	#classTraits : 'FamixTGlobalVariableScope classTrait + FamixTScopingEntity classTrait',
+	#traits : 'FamixTScopingEntity + FamixTWithGlobalVariables',
+	#classTraits : 'FamixTScopingEntity classTrait + FamixTWithGlobalVariables classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 
@@ -40,7 +40,7 @@ FAMIXScopingEntity >> allClasses [
 { #category : #'Famix-Extensions' }
 FAMIXScopingEntity >> allClassesGroup [
 	<navigation: 'All classes'>
-	^ FAMIXTypeGroup withAll: self allClasses withDescription: 'All classes from ', self printString
+	^ FamixTypeGroup withAll: self allClasses withDescription: 'All classes from ', self printString
 ]
 
 { #category : #'Famix-Extensions-metrics' }

@@ -126,21 +126,22 @@ FamixMetamodelBuilder >> ensureClassNamed: aString [
 	^ self classes detect: [ :each | each name = aString ] ifNone: [ self newClassNamed: aString ]
 ]
 
-{ #category : #initialization }
-FamixMetamodelBuilder >> ensureLocalTraitNamed: aString [
+{ #category : #generating }
+FamixMetamodelBuilder >> ensureEntityClassIsTheCommonSuperclass [
+	"All classes should have a common superclass called Entity. Here we ensure it is created and used."
 
-	<ignoreForMutations: #(ReplaceAndWithEqvMutantOperator)>
-
-	^ self traits detect: [ :each | each name = aString and: [each prefix = self configuration prefix]] ifNone: [ self unsafeNewTraitNamed: aString ]
-
+	self classes iterator
+		| #isRoot selectIt
+		| #isMetamodelClassGroup rejectIt
+		| [ :class | class name = #Entity ] rejectIt
+		| [ :class | class --|> (self ensureClassNamed: #Entity) ] doIt
+		> NullAddableObject
 ]
 
 { #category : #initialization }
-FamixMetamodelBuilder >> ensureTraitNamed: aString [
-
-	^ self traits detect: [ :each | each name = aString] ifNone: [ self newTraitNamed: aString ]
-
-	
+FamixMetamodelBuilder >> ensureLocalTraitNamed: aString [
+	<ignoreForMutations: #(ReplaceAndWithEqvMutantOperator)>
+	^ self traits detect: [ :each | each name = aString and: [ each prefix = self configuration prefix ] ] ifNone: [ self unsafeNewTraitNamed: aString ]
 ]
 
 { #category : #accessing }
@@ -283,7 +284,16 @@ In order to fix the issue you should use #remoteTrait:withPrefix: in your genera
 	self flag: #todo. "Later we should raise an error here. For local traits, they should be declared."
 	self traits detect: [ :each | each name = aSymbol ] ifFound: [ :trait | ^ trait ].
 
-	^ self ensureTraitNamed: aSymbol
+	^ self traitNamed: aSymbol
+]
+
+{ #category : #generating }
+FamixMetamodelBuilder >> groupOf: aClass [
+	| group |
+	group := (self newClassGroupNamed: aClass name , 'Group')
+		innerClass: aClass;
+		yourself.
+	^ group
 ]
 
 { #category : #accessing }
@@ -316,6 +326,27 @@ FamixMetamodelBuilder >> newClass [
 	self classes add: aClass.
 	^ aClass
 	
+]
+
+{ #category : #initialization }
+FamixMetamodelBuilder >> newClassGroup [
+
+	| aClass |
+	
+	aClass := FmxMBClassGroup new.
+	aClass builder: self.
+	aClass prefix: self configuration prefix.
+	aClass packageName: self configuration packageName.
+	self classes add: aClass.
+	^ aClass
+	
+]
+
+{ #category : #initialization }
+FamixMetamodelBuilder >> newClassGroupNamed: aClassName [
+	(self classes select: [ :each | each name = aClassName ]) ifNotEmpty: [ FmxMBEntityAlreadyExists signal ].
+
+	^ self newClassGroup name: aClassName
 ]
 
 { #category : #initialization }
@@ -396,6 +427,7 @@ FamixMetamodelBuilder >> parentBuilderPackageName [
 FamixMetamodelBuilder >> prepareGeneration [
 	self registerPackages.
 
+	self ensureEntityClassIsTheCommonSuperclass.
 	self traitsWithSubBuildersTraits do: [ :each | self testingSelectorsMapping at: each put: each testingSelectors ].
 	self classes do: [ :each | self testingSelectorsMapping at: each put: each testingSelectors ].
 	self traits do: [ :each | each generate ].
@@ -472,9 +504,10 @@ FamixMetamodelBuilder >> testingSelectorsMapping [
 ]
 
 { #category : #initialization }
-FamixMetamodelBuilder >> traitNamed: aTraitName [
-
-	^ self traits detect: [ :each | each name = aTraitName].
+FamixMetamodelBuilder >> traitNamed: aString [
+	^ self traits
+		detect: [ :each | each name = aString ]
+		ifNone: [ FamixMetamodelGeneratorUnknownTrait signal: 'Trait ' , aString , ' not found in the metamodel. Please add it or refer to a submetamodel.' ]
 ]
 
 { #category : #accessing }

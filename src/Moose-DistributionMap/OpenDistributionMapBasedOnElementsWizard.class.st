@@ -70,7 +70,7 @@ OpenDistributionMapBasedOnElementsWizard >> elementsPart [
 		yourself
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 OpenDistributionMapBasedOnElementsWizard >> initializeFirstPane: aWizardPane [
 
 	"compositeParts
@@ -82,7 +82,7 @@ OpenDistributionMapBasedOnElementsWizard >> initializeFirstPane: aWizardPane [
 	self setConditionsTo: aWizardPane 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 OpenDistributionMapBasedOnElementsWizard >> initializeWithElementGroup: aMooseGroup [
 	"DistributionMapWizard new open"
 
@@ -193,7 +193,7 @@ OpenDistributionMapBasedOnElementsWizard >> propertyTextFieldPart [
 			yourself.
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 OpenDistributionMapBasedOnElementsWizard >> setConditionsTo: aWizardPane [
 
 	aWizardPane

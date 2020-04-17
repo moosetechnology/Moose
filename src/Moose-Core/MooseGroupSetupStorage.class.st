@@ -52,13 +52,14 @@ MooseGroupSetupStorage >> first [
 	^elements first
 ]
 
-{ #category : #'initialize-release' }
-MooseGroupSetupStorage >> initialize [ 
-	 
+{ #category : #initialization }
+MooseGroupSetupStorage >> initialize [
+	super initialize.
+
 	elements := OrderedCollection new: 10000
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseGroupSetupStorage >> initialize: capacity [ 
 	 
 	elements := OrderedCollection new: capacity

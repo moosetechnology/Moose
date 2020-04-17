@@ -155,14 +155,14 @@ MooseGroup >> indexOf: anEntity [
 	^self entities indexOf: anEntity
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseGroup >> initialize: capacity [ 
 	 
 	self initialize. 
 	self description: 'Group'
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseGroup >> initializeWithAll: aCollection [
 	self entityStorage addAll: aCollection.
 ]
@@ -188,16 +188,6 @@ MooseGroup >> mooseDescription [
 	^ self mooseModel
 		ifNil: [ FM3NullClass new ]
 		ifNotNil: [ :model | model mooseDescriptionFor: self class ]
-]
-
-{ #category : #printing }
-MooseGroup >> mooseDisplayStringOn: stream [
-	stream 
-			nextPutAll: self description; 
-			space; 
-			nextPut: $(; 
-			print: self size;
-			nextPut: $)
 ]
 
 { #category : #accessing }

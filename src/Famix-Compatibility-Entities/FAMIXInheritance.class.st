@@ -1,6 +1,6 @@
 Class {
 	#name : #FAMIXInheritance,
-	#superclass : #FAMIXAssociation,
+	#superclass : #FAMIXEntity,
 	#traits : 'FamixTInheritance',
 	#classTraits : 'FamixTInheritance classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXInheritance class >> annotation [
 
-	<FMClass: #Inheritance super: #FAMIXAssociation>
+	<FMClass: #Inheritance super: #FAMIXEntity>
 	<package: #FAMIX>
 	<generated>
 	^self

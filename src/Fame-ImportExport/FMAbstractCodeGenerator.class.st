@@ -63,10 +63,8 @@ FMAbstractCodeGenerator >> annotationStringForProperty: property [
 ]
 
 { #category : #'compiling-names' }
-FMAbstractCodeGenerator >> categoryNameFor: fameClass [ 
-	^self defaultCategory isNil
-			ifTrue: [ fameClass package name asString ]
-			ifFalse: [ self defaultCategory ]
+FMAbstractCodeGenerator >> categoryNameFor: fameClass [
+	^ self defaultCategory ifNil: [ fameClass package name asString ] ifNotNil: [ self defaultCategory ]
 ]
 
 { #category : #'compiling-names' }
@@ -122,7 +120,7 @@ FMAbstractCodeGenerator >> compileInitialize: attributesString [
 
 ]
 
-{ #category : #utils }
+{ #category : #utilities }
 FMAbstractCodeGenerator >> createRBModel [
 	^RBNamespace new
 		name: 'Fame-Generated';
@@ -171,10 +169,11 @@ FMAbstractCodeGenerator >> ensureClass: fameClass superclass: rbSuperclass [
 
 { #category : #initialization }
 FMAbstractCodeGenerator >> initialize [
+	super initialize.
 	model := self createRBModel.
 	self classNamePrefix: ''.
-	self defaultSuperclass: Object.	
-	self skipDerivedMethods: false.
+	self defaultSuperclass: Object.
+	self skipDerivedMethods: false
 ]
 
 { #category : #compiling }
@@ -259,10 +258,8 @@ FMAbstractCodeGenerator >> visitClass: fameClass [
 ]
 
 { #category : #visiting }
-FMAbstractCodeGenerator >> visitClassDone: fameClass [ 
-	instVarNames do: [ :symbol | 
-		(rbClass whoDefinesInstanceVariable: symbol) isNil 
-			ifTrue: [ rbClass addInstanceVariable: symbol ]].
+FMAbstractCodeGenerator >> visitClassDone: fameClass [
+	instVarNames do: [ :symbol | (rbClass whoDefinesInstanceVariable: symbol) ifNil: [ rbClass addInstanceVariable: symbol ] ].
 	self compileInitialize: initializeSource contents
 ]
 

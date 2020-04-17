@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixStInheritance,
-	#superclass : #FamixStAssociation,
+	#superclass : #FamixStEntity,
 	#traits : 'FamixTInheritance',
 	#classTraits : 'FamixTInheritance classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixStInheritance class >> annotation [
 
-	<FMClass: #Inheritance super: #FamixStAssociation>
+	<FMClass: #Inheritance super: #FamixStEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self

@@ -147,7 +147,7 @@ FAMIXType >> instanceSide [
 		ifFalse: [self]
 ]
 
-{ #category : #'Famix-Extensions' }
+{ #category : #testing }
 FAMIXType >> isAbstract [
 	<FMProperty: #isAbstract type: #Boolean> <derived>
 	<FMComment: 'Flag true for abstract classes.'>

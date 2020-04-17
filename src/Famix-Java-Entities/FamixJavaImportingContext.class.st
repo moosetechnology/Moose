@@ -5,12 +5,6 @@ Class {
 }
 
 { #category : #testing }
-FamixJavaImportingContext >> importAbstractFileAnchor [
-	<generated>
-	^ self import: FamixJavaAbstractFileAnchor
-]
-
-{ #category : #testing }
 FamixJavaImportingContext >> importAccess [
 	<generated>
 	^ self import: FamixJavaAccess
@@ -38,12 +32,6 @@ FamixJavaImportingContext >> importAnnotationType [
 FamixJavaImportingContext >> importAnnotationTypeAttribute [
 	<generated>
 	^ self import: FamixJavaAnnotationTypeAttribute
-]
-
-{ #category : #testing }
-FamixJavaImportingContext >> importAssociation [
-	<generated>
-	^ self import: FamixJavaAssociation
 ]
 
 { #category : #testing }
@@ -113,12 +101,6 @@ FamixJavaImportingContext >> importFile [
 ]
 
 { #category : #testing }
-FamixJavaImportingContext >> importFileAnchor [
-	<generated>
-	^ self import: FamixJavaFileAnchor
-]
-
-{ #category : #testing }
 FamixJavaImportingContext >> importFolder [
 	<generated>
 	^ self import: FamixJavaFolder
@@ -164,12 +146,6 @@ FamixJavaImportingContext >> importLocalVariable [
 FamixJavaImportingContext >> importMethod [
 	<generated>
 	^ self import: FamixJavaMethod
-]
-
-{ #category : #testing }
-FamixJavaImportingContext >> importMultipleFileAnchor [
-	<generated>
-	^ self import: FamixJavaMultipleFileAnchor
 ]
 
 { #category : #testing }
@@ -281,12 +257,6 @@ FamixJavaImportingContext >> importUnknownVariable [
 ]
 
 { #category : #testing }
-FamixJavaImportingContext >> shouldImportAbstractFileAnchor [
-	<generated>
-	^ self shouldImport: FamixJavaAbstractFileAnchor
-]
-
-{ #category : #testing }
 FamixJavaImportingContext >> shouldImportAccess [
 	<generated>
 	^ self shouldImport: FamixJavaAccess
@@ -314,12 +284,6 @@ FamixJavaImportingContext >> shouldImportAnnotationType [
 FamixJavaImportingContext >> shouldImportAnnotationTypeAttribute [
 	<generated>
 	^ self shouldImport: FamixJavaAnnotationTypeAttribute
-]
-
-{ #category : #testing }
-FamixJavaImportingContext >> shouldImportAssociation [
-	<generated>
-	^ self shouldImport: FamixJavaAssociation
 ]
 
 { #category : #testing }
@@ -389,12 +353,6 @@ FamixJavaImportingContext >> shouldImportFile [
 ]
 
 { #category : #testing }
-FamixJavaImportingContext >> shouldImportFileAnchor [
-	<generated>
-	^ self shouldImport: FamixJavaFileAnchor
-]
-
-{ #category : #testing }
 FamixJavaImportingContext >> shouldImportFolder [
 	<generated>
 	^ self shouldImport: FamixJavaFolder
@@ -440,12 +398,6 @@ FamixJavaImportingContext >> shouldImportLocalVariable [
 FamixJavaImportingContext >> shouldImportMethod [
 	<generated>
 	^ self shouldImport: FamixJavaMethod
-]
-
-{ #category : #testing }
-FamixJavaImportingContext >> shouldImportMultipleFileAnchor [
-	<generated>
-	^ self shouldImport: FamixJavaMultipleFileAnchor
 ]
 
 { #category : #testing }

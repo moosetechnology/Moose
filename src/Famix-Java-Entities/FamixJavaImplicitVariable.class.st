@@ -15,7 +15,7 @@ FamixJavaImplicitVariable class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 FamixJavaImplicitVariable >> mooseNameOn: stream [ 
 	| parent |
 	parent := self parentBehaviouralEntity.

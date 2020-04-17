@@ -10,17 +10,13 @@ FAMIXType >> abstractMethods [
 { #category : #'*Moose-RoassalPaintings-Support' }
 FAMIXType >> abstractMethodsGroup [
 	<navigation: 'Abstract methods'>
-	
-	^ FAMIXMethodGroup 	withAll: (self abstractMethods)
-							withDescription: 'Abstract methods in ', self name
+	^ FamixMethodGroup withAll: self abstractMethods withDescription: 'Abstract methods in ' , self name
 ]
 
 { #category : #'*Moose-RoassalPaintings-Support' }
 FAMIXType >> accessorMethodsGroup [
 	<navigation: 'Accessor methods'>
-	
-	^ FAMIXMethodGroup 	withAll: (self accessorMethods)
-							withDescription: 'Pure accessors in ', self name
+	^ FamixMethodGroup withAll: self accessorMethods withDescription: 'Pure accessors in ' , self name
 ]
 
 { #category : #'*Moose-RoassalPaintings-Support' }

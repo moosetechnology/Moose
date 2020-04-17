@@ -51,7 +51,7 @@ OverviewPyramid class >> fanoutCallsSymbol [
 	^ #FanoutCalls
 ]
 
-{ #category : #'class initialization' }
+{ #category : #initialization }
 OverviewPyramid class >> initialize [
 	"self initialize"
 	self initializeJavaTreesholds.

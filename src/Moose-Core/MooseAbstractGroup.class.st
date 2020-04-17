@@ -7,7 +7,7 @@ It stores the contained entities in a storage variable that points to a MooseGro
 "
 Class {
 	#name : #MooseAbstractGroup,
-	#superclass : #MooseEntity,
+	#superclass : #MooseObject,
 	#traits : 'TMooseGroupDependencyQueries',
 	#classTraits : 'TMooseGroupDependencyQueries classTrait',
 	#instVars : [
@@ -18,7 +18,7 @@ Class {
 
 { #category : #meta }
 MooseAbstractGroup class >> annotation [
-	<FMClass: #AbstractGroup super: #MooseEntity>
+	<FMClass: #AbstractGroup super: #MooseObject>
 	<package: #Moose>
 	<abstract>
 
@@ -73,6 +73,12 @@ MooseAbstractGroup >> allContainers [
 	^ self lookUpPropertyNamed: #allContainers computedAs: [ self entities select: #isContainerEntity ]
 ]
 
+{ #category : #accessing }
+MooseAbstractGroup >> allModelContainers [
+	<navigation: 'All model containers'>
+	^ self lookUpPropertyNamed: #allModelContainers computedAs: [ self computeAllModelContainers ]
+]
+
 { #category : #groups }
 MooseAbstractGroup >> allModels [ 
 	 "returns all known Models (be them MooseModels or of a subclass of it)"
@@ -93,9 +99,11 @@ MooseAbstractGroup >> allUsing: aTrait [
 { #category : #groups }
 MooseAbstractGroup >> allUsing: aTrait ofGroupClass: aGroupClass [
 	aTrait isTrait ifFalse: [ MooseAllUsingOnClass signal ].
-	^ aGroupClass
-		withAll: ((aTrait allUsers flattened flatCollect: #withAllSubclasses) asSet flatCollect: [ :each | self entityStorage selectAllWithType: each ])
-		withDescription: 'All ' , aTrait name asLowercase asEnglishPlural
+	^ self privateState
+		cacheAt: aTrait
+		ifAbsentPut: [ aGroupClass
+				withAll: ((aTrait allUsers flattened flatCollect: #withAllSubclasses) asSet flatCollect: [ :each | self entityStorage selectAllWithType: each ])
+				withDescription: 'All ' , aTrait name asLowercase asEnglishPlural ]
 ]
 
 { #category : #groups }
@@ -106,9 +114,11 @@ MooseAbstractGroup >> allWithSubTypesOf: aFamixClass [
 { #category : #groups }
 MooseAbstractGroup >> allWithSubTypesOf: aFamixClass ofGroupClass: aGroupClass [
 	aFamixClass isTrait ifTrue: [ MooseAllWithTypeOnTrait signal ].
-	^ aGroupClass
-		withAll: ((aFamixClass withAllSubclasses) asSet flatCollect: [ :each | self entityStorage selectAllWithType: each ])
-		withDescription: 'All ' , aFamixClass name asLowercase asEnglishPlural
+	^ self privateState
+		cacheAt: aFamixClass
+		ifAbsentPut: [ aGroupClass
+				withAll: (aFamixClass withAllSubclasses asSet flatCollect: [ :each | self entityStorage selectAllWithType: each ])
+				withDescription: 'All ' , aFamixClass name asLowercase asEnglishPlural ]
 ]
 
 { #category : #groups }
@@ -229,6 +239,11 @@ MooseAbstractGroup >> commonSuperclass [
 	^ self entityStorage commonSuperclass
 ]
 
+{ #category : #accessing }
+MooseAbstractGroup >> computeAllModelContainers [
+	^ self allContainers reject: #isStub
+]
+
 { #category : #enumerating }
 MooseAbstractGroup >> contains: aBlock [ 
 	 
@@ -327,10 +342,8 @@ MooseAbstractGroup >> entityNamed: aMooseName ifAbsent: aBlock [
 { #category : #'public interface' }
 MooseAbstractGroup >> entityNamed: aMooseName ifAbsent: aBlock ifPresent: anotherBlock [
 	| entity |
-	entity := self entityStorage at: aMooseName ifAbsent: [nil].
-	^ entity isNil 
-		ifTrue: [aBlock value]
-		ifFalse: [anotherBlock value: entity]
+	entity := self entityStorage at: aMooseName ifAbsent: [ nil ].
+	^ entity ifNil: [ aBlock value ] ifNotNil: [ anotherBlock value: entity ]
 ]
 
 { #category : #'public interface' }
@@ -445,7 +458,7 @@ MooseAbstractGroup >> includesID: elementID [
 	^self entityStorage includesID: elementID
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseAbstractGroup >> initialize [ 
 	 
 	super initialize.
@@ -492,21 +505,6 @@ MooseAbstractGroup >> iterator [
 	^ self entityStorage iterator
 ]
 
-{ #category : #'Famix-Java' }
-MooseAbstractGroup >> javaEntityNamed: aSymbol [ 
-	 
-	^self 
-		javaEntityNamed: aSymbol 
-		ifAbsent: [nil]
-]
-
-{ #category : #'Famix-Java' }
-MooseAbstractGroup >> javaEntityNamed: aMooseName ifAbsent: aBlock [
-	^ self entityStorage
-		at: aMooseName
-		ifAbsent: [ self entityStorage at: '<Default Package>::' , aMooseName ifAbsent: aBlock ]
-]
-
 { #category : #accessing }
 MooseAbstractGroup >> last [ 
 	 
@@ -533,24 +531,21 @@ MooseAbstractGroup >> mooseModel [
 	^ self ifEmpty: [ nil ] ifNotEmpty: [ self anyOne mooseModel ]
 ]
 
-{ #category : #accessing }
-MooseAbstractGroup >> mooseModel: anObject [ 
-	 
-	self shouldNotImplement
-]
-
 { #category : #testing }
-MooseAbstractGroup >> notEmpty [ 
-	 
-	^self entities notEmpty
+MooseAbstractGroup >> notEmpty [
+	^ self entities notEmpty
+]
+
+{ #category : #'as yet unclassified' }
+MooseAbstractGroup >> numberOfEntityUsing: aTrait [
+	^ (self allUsing: aTrait) size
 ]
 
 { #category : #accessing }
-MooseAbstractGroup >> numberOfItems [ 
+MooseAbstractGroup >> numberOfItems [
 	<FMProperty: #numberOfItems type: #Number>
 	<FMComment: 'The total number of items in the group'>
-	
-	^self size
+	^ self size
 ]
 
 { #category : #enumerating }
@@ -566,11 +561,10 @@ MooseAbstractGroup >> postCopy [
 ]
 
 { #category : #printing }
-MooseAbstractGroup >> printOn: aStream [ 
-	 
-	super printOn: aStream. 
-	aStream nextPut: $(. 
-	aStream nextPutAll: self size printString. 
+MooseAbstractGroup >> printOn: aStream [
+	super printOn: aStream.
+	aStream nextPut: $(.
+	aStream print: self size.
 	aStream nextPut: $)
 ]
 

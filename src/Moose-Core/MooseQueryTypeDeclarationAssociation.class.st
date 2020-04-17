@@ -50,6 +50,30 @@ MooseQueryTypeDeclarationAssociation >> printOn: aStream [
 ]
 
 { #category : #accessing }
+MooseQueryTypeDeclarationAssociation >> source [
+	self flag: 'https://github.com/moosetechnology/Moose/issues/2092'.
+	^ self from
+]
+
+{ #category : #accessing }
+MooseQueryTypeDeclarationAssociation >> source: anObject [
+	self flag: 'https://github.com/moosetechnology/Moose/issues/2092'.
+	self from: anObject
+]
+
+{ #category : #accessing }
+MooseQueryTypeDeclarationAssociation >> target [
+	self flag: 'https://github.com/moosetechnology/Moose/issues/2092'.
+	^ self to
+]
+
+{ #category : #accessing }
+MooseQueryTypeDeclarationAssociation >> target: anObject [
+	self flag: 'https://github.com/moosetechnology/Moose/issues/2092'.
+	self to: anObject
+]
+
+{ #category : #accessing }
 MooseQueryTypeDeclarationAssociation >> to [
 	^ to
 ]

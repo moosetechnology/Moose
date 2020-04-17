@@ -9,7 +9,6 @@ Class {
 		'annotationTypeAttribute',
 		'attribute',
 		'class',
-		'containerEntity',
 		'globalVariable',
 		'implicitVariable',
 		'inheritance',
@@ -21,7 +20,8 @@ Class {
 		'parameter',
 		'reference',
 		'scopingEntity',
-		'unknownVariable'
+		'unknownVariable',
+		'pharoEntitySourceAnchor'
 	],
 	#category : #'Famix-PharoSmalltalk-Generator'
 }
@@ -49,12 +49,12 @@ FamixPharoSmalltalkGenerator >> defineClasses [
 	annotationTypeAttribute := builder newClassNamed: #AnnotationTypeAttribute.
 	attribute := builder newClassNamed: #Attribute.
 	class := builder newClassNamed: #Class.
-	containerEntity := builder newClassNamed: #ContainerEntity.
 	globalVariable := builder newClassNamed: #GlobalVariable.
 	implicitVariable := builder newClassNamed: #ImplicitVariable.
 	inheritance := builder newClassNamed: #Inheritance.
 	invocation := builder newClassNamed: #Invocation.
 	localVariable := builder newClassNamed: #LocalVariable.
+	pharoEntitySourceAnchor := builder newClassNamed: #PharoEntitySourceAnchor.
 	method := builder newClassNamed: #Method.
 	namespace := builder newClassNamed: #Namespace.
 	package := builder newClassNamed: #Package.
@@ -66,10 +66,8 @@ FamixPharoSmalltalkGenerator >> defineClasses [
 
 { #category : #initialization }
 FamixPharoSmalltalkGenerator >> defineHierarchy [
-
 	super defineHierarchy.
 
-	access --|> association.
 	access --|> #TAccess.
 
 	annotationInstance --|> sourcedEntity.
@@ -81,7 +79,7 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	annotationInstanceAttribute --|> #TAnnotationInstanceAttribute.
 	annotationInstanceAttribute --|> #TTypedAnnotationInstanceAttribute.
 
-	annotationType --|> containerEntity.
+	annotationType --|> namedEntity.
 	annotationType --|> #TAnnotationType.
 	annotationType --|> #TWithAttributes.
 
@@ -92,17 +90,15 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	attribute --|> namedEntity.
 	attribute --|> #TAttribute.
 	attribute --|> #TWithClassScope.
+	attribute --|> #THasModifiers.	
 
-	class --|> containerEntity.
+	class --|> namedEntity.
+	self flag: 'WithTypes should not be necessary but needed in tests like FamixMetricsTest>>testAfferentCouplingFAMIXClassGroup'.
+	class --|> #TWithTypes.
 	class --|> #TWithExceptions.
 	class --|> #TClass.
 	class --|> #TClassHierarchyNavigation.
-	
-	containerEntity --|> namedEntity.
-	containerEntity --|> #TWithTypes.
-	containerEntity --|> #TWithClasses.
-	containerEntity --|> #TWithAnnotationTypes.
-	containerEntity --|> #TOODependencyQueries.
+	class --|> #THasModifiers.
 
 	globalVariable --|> namedEntity.
 	globalVariable --|> #TGlobalVariable.
@@ -110,23 +106,23 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	implicitVariable --|> namedEntity.
 	implicitVariable --|> #TImplicitVariable.
 
-	inheritance --|> association.
 	inheritance --|> #TInheritance.
 
-	invocation --|> association.
 	invocation --|> #TInvocation.
-	invocation --|> #TWithSignature.
+	invocation --|> #THasSignature.
 
 	localVariable --|> namedEntity.
 	localVariable --|> #TLocalVariable.
 
-	method --|> containerEntity.
+	method --|> namedEntity.
 	method --|> #TMethod.
+	method --|> #TWithAnnotationTypes.
+	method --|> #THasModifiers.
+	method withPrecedenceOf: #TMethod.
 
 	namedEntity --|> #TPackageable.
 	namedEntity --|> #TInvocationsReceiver.
 	namedEntity --|> #TWithAnnotationInstances.
-	namedEntity --|> #TWithModifiers.
 
 	namespace --|> scopingEntity.
 	namespace --|> #TNamespace.
@@ -139,17 +135,19 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	parameter --|> namedEntity.
 	parameter --|> #TParameter.
 
-	reference --|> association.
 	reference --|> #TReference.
 
-	scopingEntity --|> containerEntity.
-	scopingEntity --|> #TGlobalVariableScope.
+	scopingEntity --|> namedEntity.
+	scopingEntity --|> #TWithGlobalVariables.
 	scopingEntity --|> #TScopingEntity.
-
+	scopingEntity --|> #TWithTypes.
+	scopingEntity --|> #TWithClasses.
+	
+	pharoEntitySourceAnchor --|> sourceAnchor.
+	pharoEntitySourceAnchor --|> #TSourceAnchor.
+ 
 	unknownVariable --|> namedEntity.
-	unknownVariable --|> #TStructuralEntity.
-
-	sourceAnchor --|> #TWithImmediateSource.
+	unknownVariable --|> #TStructuralEntity
 	
 
 	

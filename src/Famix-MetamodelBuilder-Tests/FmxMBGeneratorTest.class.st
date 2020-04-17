@@ -6,9 +6,9 @@ Class {
 
 { #category : #tests }
 FmxMBGeneratorTest >> testBuilderWithDefinitions [
-
 	builder := FamixTest1Generator builderWithDefinitions.
-	self assert: (builder classNamed: #Entity) notNil.
+	builder prepareGeneration.
+	self assert: (builder classNamed: #Entity) isNotNil
 ]
 
 { #category : #tests }
@@ -21,7 +21,7 @@ FmxMBGeneratorTest >> testGenerateMooseModelSubclass [
 
 { #category : #tests }
 FmxMBGeneratorTest >> testGeneratorsAreUpToDate [
-	FamixMetamodelGenerator individualGenerators
+	FamixMetamodelGenerator generatorsToKeepUpToDate
 		do: [ :mm | 
 			self
 				deny: mm new regenerationIsNeeded

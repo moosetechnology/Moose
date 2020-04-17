@@ -1,6 +1,6 @@
 Class {
 	#name : #FAMIXTraitUsage,
-	#superclass : #FAMIXAssociation,
+	#superclass : #FAMIXEntity,
 	#traits : 'FamixTTraitUsage',
 	#classTraits : 'FamixTTraitUsage classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXTraitUsage class >> annotation [
 
-	<FMClass: #TraitUsage super: #FAMIXAssociation>
+	<FMClass: #TraitUsage super: #FAMIXEntity>
 	<package: #FAMIX>
 	<generated>
 	^self

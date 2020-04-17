@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixJavaReference,
-	#superclass : #FamixJavaAssociation,
+	#superclass : #FamixJavaEntity,
 	#traits : 'FamixTReference',
 	#classTraits : 'FamixTReference classTrait',
 	#category : #'Famix-Java-Entities-Entities'
@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaReference class >> annotation [
 
-	<FMClass: #Reference super: #FamixJavaAssociation>
+	<FMClass: #Reference super: #FamixJavaEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
@@ -19,9 +19,9 @@ FamixJavaReference class >> annotation [
 FamixJavaReference >> mooseNameOn: aStream [
 	"aStream nextPutAll: 'Reference'."
 
-	self from ifNotNil: [ aStream nextPutAll: self from name ].
+	self source ifNotNil: [ aStream nextPutAll: self source name ].
 	aStream nextPutAll: ' refers to '.
-	self to ifNotNil: [ aStream nextPutAll: self to name ]
+	self target ifNotNil: [ aStream nextPutAll: self target name ]
 ]
 
 { #category : #'as yet unclassified' }

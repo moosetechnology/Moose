@@ -11,10 +11,12 @@ FAMIXTraitTest >> actualClass [
 
 { #category : #tests }
 FAMIXTraitTest >> testBackReferences [
-	| trait user traitUsage |
+	| trait user |
 	trait := FAMIXTrait new.
 	user := FAMIXClass new.
-	traitUsage := FAMIXTraitUsage new user: user; trait: trait.
+	FAMIXTraitUsage new
+		user: user;
+		trait: trait.
 	self assert: user outgoingTraitUsages size equals: 1.
-	self assert: trait incomingTraitUsages size equals: 1.
+	self assert: trait incomingTraitUsages size equals: 1
 ]

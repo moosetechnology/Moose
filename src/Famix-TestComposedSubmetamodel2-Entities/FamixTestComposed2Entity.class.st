@@ -21,7 +21,7 @@ FamixTestComposed2Entity class >> metamodel [
 ]
 
 { #category : #testing }
-FamixTestComposed2Entity >> isAssociation [
+FamixTestComposed2Entity >> isBehavioural [
 
 	<generated>
 	^ false

@@ -71,6 +71,7 @@ FmxMBClass >> generate [
 	self generateRootMetamodelMethodIn: aClass.
 
 	self generateMethodsToRemoveFromTraitCompositionFor: aClass.
+	self generatePrecedenceInTraitComposition: aClass.
 	
 	self generateNavigationGroupsFor: aClass.
 	self generateAddToCollectionFor: aClass

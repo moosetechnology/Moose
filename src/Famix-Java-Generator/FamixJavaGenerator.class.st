@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixJavaGenerator,
-	#superclass : #FamixFileBasedLanguageGenerator,
+	#superclass : #FamixBasicInfrastructureGenerator,
 	#instVars : [
 		'access',
 		'annotationInstance',
@@ -33,7 +33,10 @@ Class {
 		'type',
 		'unknownVariable',
 		'parameterizedType',
-		'tStructuralEntity'
+		'tStructuralEntity',
+		'file',
+		'folder',
+		'indexedFileAnchor'
 	],
 	#category : #'Famix-Java-Generator'
 }
@@ -52,7 +55,6 @@ FamixJavaGenerator class >> prefix [
 
 { #category : #definition }
 FamixJavaGenerator >> defineClasses [
-
 	super defineClasses.
 
 	access := builder newClassNamed: #Access.
@@ -68,8 +70,11 @@ FamixJavaGenerator >> defineClasses [
 	enum := builder newClassNamed: #Enum.
 	enumValue := builder newClassNamed: #EnumValue.
 	exception := builder newClassNamed: #Exception.
+	file := builder newClassNamed: #File.
+	folder := builder newClassNamed: #Folder.
 	globalVariable := builder newClassNamed: #GlobalVariable.
 	implicitVariable := builder newClassNamed: #ImplicitVariable.
+	indexedFileAnchor := builder newClassNamed: #IndexedFileAnchor.
 	inheritance := builder newClassNamed: #Inheritance.
 	invocation := builder newClassNamed: #Invocation.
 	localVariable := builder newClassNamed: #LocalVariable.
@@ -94,7 +99,9 @@ FamixJavaGenerator >> defineClasses [
 
 { #category : #definition }
 FamixJavaGenerator >> defineComments [
-	entity comment: 'file :=  ''ArgoUML-0.34.mse'' asFileReference readStream.
+	(builder ensureClassNamed: #Entity)
+		comment:
+			'file :=  ''ArgoUML-0.34.mse'' asFileReference readStream.
 
 dictionary := Dictionary newFrom: (
 	FamixJavaEntity withAllSubclasses collect: [ :c | 
@@ -113,12 +120,8 @@ model.'
 
 { #category : #definition }
 FamixJavaGenerator >> defineHierarchy [
-
 	super defineHierarchy.
 
-	entity <|-- exception.
-	
-	access --|> association.
 	access --|> #TAccess.
 
 	annotationInstance --|> sourcedEntity.
@@ -140,13 +143,22 @@ FamixJavaGenerator >> defineHierarchy [
 	attribute --|> namedEntity.
 	attribute --|> #TAttribute.
 	attribute --|> #TWithClassScope.
+	
+	file --|> namedEntity.
+	file --|> #TFile.
+	
+	folder --|> namedEntity.
+	folder --|> #TFolder.
+
+	indexedFileAnchor --|> sourceAnchor.
+	indexedFileAnchor --|> #TIndexedFileNavigation.
 
 	method --|> containerEntity.
 	method --|> #TMethod.
 	method --|> #TWithThrownExceptions.
 	method --|> #TWithDeclaredExceptions.
 	method --|> #TWithCaughtExceptions.
-	method --|> #TWithStatements.
+	"method --|> #TWithStatements."
 
 	caughtException --|> exception.
 	caughtException --|> #TCaughtException.
@@ -182,12 +194,10 @@ FamixJavaGenerator >> defineHierarchy [
 	implicitVariable --|> tStructuralEntity.
 	implicitVariable --|> #TImplicitVariable.
 
-	inheritance --|> association.
 	inheritance --|> #TInheritance.
 
-	invocation --|> association.
 	invocation --|> #TInvocation.
-	invocation --|> #TWithSignature.
+	invocation --|> #THasSignature.
 
 	localVariable --|> namedEntity.
 	localVariable --|> tStructuralEntity.
@@ -196,7 +206,7 @@ FamixJavaGenerator >> defineHierarchy [
 	namedEntity --|> #TPackageable.
 	namedEntity --|> #TInvocationsReceiver.
 	namedEntity --|> #TWithAnnotationInstances.
-	namedEntity --|> #TWithModifiers.
+	namedEntity --|> #THasModifiers.
 
 	namespace --|> scopingEntity.
 	namespace --|> #TNamespace.
@@ -205,7 +215,6 @@ FamixJavaGenerator >> defineHierarchy [
 	package --|> #TPackage.
 
 	parameter --|> namedEntity.
-	parameter --|> tStructuralEntity.
 	parameter --|> #TParameter.
 
 	parameterType --|> type.
@@ -221,11 +230,12 @@ FamixJavaGenerator >> defineHierarchy [
 
 	primitiveType --|> type.
 
-	reference --|> association.
 	reference --|> #TReference.
+	
+	sourcedEntity --|> #TWithFiles.
 
 	scopingEntity --|> containerEntity.
-	scopingEntity --|> #TGlobalVariableScope.
+	scopingEntity --|> #TWithGlobalVariables.
 	scopingEntity --|> #TScopingEntity.
 
 	thrownException --|> exception.

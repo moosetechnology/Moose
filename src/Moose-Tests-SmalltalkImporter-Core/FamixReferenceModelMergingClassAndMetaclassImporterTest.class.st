@@ -153,12 +153,9 @@ FamixReferenceModelMergingClassAndMetaclassImporterTest >> testReferencesInRoot 
 	"self debug:#testReferencesInRoot "
 
 	| theRoot |
-	theRoot := self model entityNamed: #Smalltalk::TheRoot.
+	theRoot := self model entityNamed: #'Smalltalk::TheRoot'.
 	self assert: (theRoot methods flatCollect: [ :each | each outgoingReferences ]) size equals: 6.
-	self
-		assert:
-			(theRoot methods flatCollect: [ :each | each outgoingReferences select: [ :access | access to name = #Object ] ]) size
-		equals: 2
+	self assert: (theRoot methods flatCollect: [ :each | each outgoingReferences select: [ :access | access target name = #Object ] ]) size equals: 2
 ]
 
 { #category : #tests }

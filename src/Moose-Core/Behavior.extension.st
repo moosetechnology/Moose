@@ -13,6 +13,11 @@ Behavior >> mooseInheritsFrom: aClass [
 ]
 
 { #category : #'*Moose-Core' }
+Behavior >> relatedGroupType [
+	^ MooseGroup
+]
+
+{ #category : #'*Moose-Core' }
 Behavior >> resetMooseEntityCache [
 	"Do nothing here"
 ]

@@ -1,15 +1,15 @@
 Class {
 	#name : #FamixJavaInvocation,
-	#superclass : #FamixJavaAssociation,
-	#traits : 'FamixTInvocation + FamixTWithSignature',
-	#classTraits : 'FamixTInvocation classTrait + FamixTWithSignature classTrait',
+	#superclass : #FamixJavaEntity,
+	#traits : 'FamixTHasSignature + FamixTInvocation',
+	#classTraits : 'FamixTHasSignature classTrait + FamixTInvocation classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
 { #category : #meta }
 FamixJavaInvocation class >> annotation [
 
-	<FMClass: #Invocation super: #FamixJavaAssociation>
+	<FMClass: #Invocation super: #FamixJavaEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
@@ -36,17 +36,16 @@ FamixJavaInvocation >> getReceivingFAMIXClass [
 
 { #category : #'as yet unclassified' }
 FamixJavaInvocation >> gtDisplayOn: aStream [
-	self from ifNotNil: [ self from gtDisplayOn: aStream ].
+	self source ifNotNil: [ self source gtDisplayOn: aStream ].
 	aStream nextPutAll: ' -> '.
 	self receiver ifNotNil: [ aStream nextPutAll: self receiver name ].
 	aStream nextPut: $#.
 	aStream nextPutAll: self signature.
 	aStream nextPutAll: ' -> '.
-	self candidates size = 1
-		ifTrue: [ self anyCandidate gtDisplayOn: aStream ]
+	self candidates size = 1 ifTrue: [ self anyCandidate gtDisplayOn: aStream ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 FamixJavaInvocation >> initialize [
 
 	super initialize.

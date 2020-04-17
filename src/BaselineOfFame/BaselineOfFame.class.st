@@ -21,12 +21,13 @@ BaselineOfFame >> baseline: spec [
 			self
 				hashtable: spec;
 				mocketry: spec;
+				pharoBackwardCompatibility: spec;
 				iterators: spec;
 				treeQuery: spec.
 
 			"Packages"
 			spec
-				package: 'Fame-Core' with: [ spec requires: #('Hashtable' 'TreeQuery' 'Iterators') ];
+				package: 'Fame-Core' with: [ spec requires: #('Hashtable' 'TreeQuery' 'Iterators' 'PharoBackwardCompatibility') ];
 				package: 'Fame-Rules';
 				package: 'Fame-ImportExport' with: [ spec requires: #('Fame-Core') ];
 				package: 'Fame-Example';
@@ -39,19 +40,16 @@ BaselineOfFame >> baseline: spec [
 				group: 'Core' with: #('Fame-Core' 'Fame-ImportExport' 'Fame-Rules');
 				group: 'GT' with: #('Core' 'Fame-GT');
 				group: 'Deprecated' with: #('Core' 'Fame-Deprecated');
-				group: 'Tests' with: #('Fame-Tests') ].
-			
-	spec
-		for: #'pharo7.x'
-		do: [ 
-			spec
-				package: 'Fame-Pharo8Compatibility';
-				package: 'Fame-Core' with: [ spec includes: #('Fame-Pharo8Compatibility') ] ]
+				group: 'Tests' with: #('Fame-Tests') ]
 ]
 
 { #category : #dependencies }
 BaselineOfFame >> hashtable: spec [
-	spec baseline: 'Hashtable' with: [ spec repository: repository ]
+	spec
+		baseline: 'Hashtable'
+		with: [ spec
+				loads: 'Core';
+				repository: 'github://pharo-contributions/Hashtable:v1.x.x/src' ]
 ]
 
 { #category : #dependencies }
@@ -77,6 +75,11 @@ BaselineOfFame >> packageRepositoryURL [
 		ifEmpty: [ | packageName |
 			packageName := self class package name.
 			'tonel://' , (IceRepository registry detect: [ :repo | repo workingCopy packageNames includes: packageName ] ifFound: [ :repo | repo location pathString , '/' , repo subdirectory ] ifNone: [ '' ]) ]
+]
+
+{ #category : #dependencies }
+BaselineOfFame >> pharoBackwardCompatibility: spec [
+	spec baseline: 'PharoBackwardCompatibility' with: [ spec repository: 'github://jecisc/PharoBackwardCompatibility:v1.x.x/src' ]
 ]
 
 { #category : #accessing }

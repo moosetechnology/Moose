@@ -14,7 +14,7 @@ MoosePropertyGroupTest >> testBasic [
 	self assert: propertyGroup property identicalTo: #numberOfLinesOfCode.
 	self assert: propertyGroup propertyRatio equals: 0.5.
 	self assert: propertyGroup propertyTotal equals: 30.
-	self assert: propertyGroup asMooseGroup class identicalTo: FAMIXClassGroup.
+	self assert: propertyGroup asMooseGroup class identicalTo: FamixClassGroup.
 	self assert: propertyGroup propertyTotalOriginal equals: 60.
 	self assert: (propertyGroup sizeRatio * 100) asInteger equals: 66.
 	self assert: propertyGroup sizeOriginal equals: allClasses size

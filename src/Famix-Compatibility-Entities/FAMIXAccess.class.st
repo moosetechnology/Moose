@@ -1,6 +1,6 @@
 Class {
 	#name : #FAMIXAccess,
-	#superclass : #FAMIXAssociation,
+	#superclass : #FAMIXEntity,
 	#traits : 'FamixTAccess',
 	#classTraits : 'FamixTAccess classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FAMIXAccess class >> annotation [
 
-	<FMClass: #Access super: #FAMIXAssociation>
+	<FMClass: #Access super: #FAMIXEntity>
 	<package: #FAMIX>
 	<generated>
 	^self

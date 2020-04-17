@@ -17,6 +17,7 @@ Trait {
 		'#receiver => FMOne type: #FamixTInvocationsReceiver opposite: #receivingInvocations',
 		'#sender => FMOne type: #FamixTWithInvocations opposite: #outgoingInvocations'
 	],
+	#traits : 'FamixTAssociation',
 	#category : #'Famix-Traits-Invocation'
 }
 
@@ -30,11 +31,10 @@ FamixTInvocation classSide >> annotation [
 ]
 
 { #category : #groups }
-FamixTInvocation classSide >> famixTInvocationRelatedGroup [
-
+FamixTInvocation classSide >> annotationFamixInvocationGroup [
+	<generated>
 	<mooseGroup>
-	
-	^ FAMIXInvocationGroup
+	^ FamixInvocationGroup
 ]
 
 { #category : #adding }
@@ -64,16 +64,6 @@ FamixTInvocation >> candidates: anObject [
 
 	<generated>
 	candidates value: anObject
-]
-
-{ #category : #accessing }
-FamixTInvocation >> from [
-	^ self sender
-]
-
-{ #category : #accessing }
-FamixTInvocation >> from: aSender [
-	self sender: aSender
 ]
 
 { #category : #testing }
@@ -117,11 +107,21 @@ FamixTInvocation >> sender: anObject [
 ]
 
 { #category : #accessing }
-FamixTInvocation >> to [
+FamixTInvocation >> source [
+	^ self sender
+]
+
+{ #category : #accessing }
+FamixTInvocation >> source: aSender [
+	self sender: aSender
+]
+
+{ #category : #accessing }
+FamixTInvocation >> target [
 	^ self candidates
 ]
 
 { #category : #accessing }
-FamixTInvocation >> to: aCollCandidates [
+FamixTInvocation >> target: aCollCandidates [
 	self candidates: aCollCandidates 
 ]

@@ -206,29 +206,23 @@ FmxMBTraitTest >> testAutogereatedOneToOne [
 
 { #category : #tests }
 FmxMBTraitTest >> testCustomPackageForUserClasses [
-
-	| simpleClass generated |
-	
+	| generated |
 	builder configuration packageName: 'Custom'.
-	
-	simpleClass := builder newTraitNamed: #TComment.	
+	builder newTraitNamed: #TComment.
 	builder generate.
 	generated := builder testingEnvironment ask classNamed: 'TstTComment'.
 
-	self assert: generated package name equals: #Custom.
-	
+	self assert: generated package name equals: #Custom
 ]
 
 { #category : #tests }
 FmxMBTraitTest >> testCustomPackageForUserClassesChanged [
-	| simpleClass generated generatedAccess |
+	| generated generatedAccess |
 	builder configuration packageName: 'Custom'.
-
-	simpleClass := builder newTraitNamed: #TComment.
+	builder newTraitNamed: #TComment.
 
 	builder configuration packageName: 'Custom2'.
-
-	simpleClass := builder newTraitNamed: #TAccess.
+	builder newTraitNamed: #TAccess.
 
 	builder generate.
 	generated := builder testingEnvironment ask classNamed: 'TstTComment'.
@@ -240,8 +234,8 @@ FmxMBTraitTest >> testCustomPackageForUserClassesChanged [
 
 { #category : #tests }
 FmxMBTraitTest >> testDefaultPackageForUserClasses [
-	| simpleClass userClass |
-	simpleClass := builder newTraitNamed: #TComment.
+	| userClass |
+	builder newTraitNamed: #TComment.
 	builder generate.
 	userClass := builder testingEnvironment ask classNamed: 'TstTComment'.
 
@@ -302,7 +296,7 @@ FmxMBTraitTest >> testTestingMethods [
 	
 	| tNamed |
 
-	tNamed := builder newTraitNamed: #TNamed.	
+	tNamed := builder newTraitNamed: #TNamedEntity.	
 
 	self deny: tNamed isMetamodelClass.
 	self assert: tNamed isMetamodelTrait.
@@ -336,21 +330,17 @@ FmxMBTraitTest >> testTraitTestingSelectors [
 
 { #category : #tests }
 FmxMBTraitTest >> testUses [
-
 	| behavior tBehavior generatedBehavior generatedTBehavior |
-	
-	behavior := builder newClassNamed: #Behavior.	
+	behavior := builder newClassNamed: #Behavior.
 	tBehavior := builder newTraitNamed: #TBehavior.
 
 	behavior uses: tBehavior.
-	
+
 	builder generate.
 
 	generatedBehavior := builder testingEnvironment ask classNamed: 'TstBehavior'.
 	generatedTBehavior := builder testingEnvironment ask classNamed: 'TstTBehavior'.
-	
-	self deny: (generatedBehavior superclass = generatedTBehavior).
-	self assertCollection: generatedBehavior traits asArray equals: { generatedTBehavior }.
-		
 
+	self deny: generatedBehavior superclass equals: generatedTBehavior.
+	self assertCollection: generatedBehavior traits asArray equals: {generatedTBehavior}
 ]

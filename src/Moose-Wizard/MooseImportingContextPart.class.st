@@ -57,7 +57,7 @@ MooseImportingContextPart >> displayContextFrameInsideTheContextBox [
 	"groupBox addContentMorph: (self newRowWith:{ self newReduceContextButton} )"
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseImportingContextPart >> initialize [
 
 	super initialize.
