@@ -58,50 +58,49 @@ FMModelExporter class >> new [
 
 { #category : #exporting }
 FMModelExporter >> export: aCollectionOfElements [
-	printer inDocumentDo: [ aCollectionOfElements do: [ :each | self exportEntity: each ] ]
+	printer inDocumentDo: [ 
+		aCollectionOfElements
+			do: [ :each | self exportEntity: each ]
+			separatedBy: [ printer printEntitySeparator ] ]
 ]
 
 { #category : #exporting }
 FMModelExporter >> exportEntity: each [
 	| meta |
 	meta := model metaDescriptionOf: each.
-
-	printer
-		inEntity: meta fullName
-		do: [ printer serial: (self indexOf: each).
-			(self sortedPropertiesOf: meta) do: [ :property | self exportProperty: property for: each ] ].
-
+	printer inEntity: meta fullName do: [ 
+		printer serial: (self indexOf: each).
+		((self sortedPropertiesOf: meta)
+			select: [ :property | 
+			self shouldExportProperty: property for: each ])
+			do:  [ :property | self exportProperty: property for: each ] separatedBy: [ printer printPropertySeparator ] ].
 	self incrementProgressBar
 ]
 
 { #category : #exporting }
 FMModelExporter >> exportProperty: property for: each [
 	| values |
-	(self shouldIgnoreProperty: property) ifTrue: [ ^ self ].
-
 	values := model get: property element: each.
-
-	"Do not export empty properties."
-	values isEmptyOrNil ifTrue: [ ^ self ].
-
 	self exportProperty: property withAll: values
 ]
 
 { #category : #exporting }
 FMModelExporter >> exportProperty: property withAll: values [
-	printer
-		inProperty: property name
-		do: [ values
-				do: [ :each | 
-					property type isPrimitive
-						ifTrue: [ printer primitive: each ]
-						ifFalse: [
-							property isChildrenProperty
-								ifTrue: [ self exportEntity: each ]
-								ifFalse: [
-									(FM3Constant constants includes: each)
-										ifTrue: [ printer referenceName: each name ]
-										ifFalse: [ printer referenceNumber: (self indexOf: each) ] ] ] ] ]
+	printer inProperty: property name do: [ 
+		property isMultivalued ifTrue: [ printer beginMultivalue: property ].
+		values
+			do: [ :each | 
+				property type isPrimitive
+					ifTrue: [ printer primitive: each ]
+					ifFalse: [ 
+						property isChildrenProperty
+							ifTrue: [ self exportEntity: each ]
+							ifFalse: [ 
+								(FM3Constant constants includes: each)
+									ifTrue: [ printer referenceName: each name ]
+									ifFalse: [ printer referenceNumber: (self indexOf: each) ] ] ] ]
+			separatedBy: [ printer printEntitySeparator ].
+		property isMultivalued ifTrue: [ printer endMultivalue: property ] ]
 ]
 
 { #category : #exporting }
@@ -155,6 +154,17 @@ FMModelExporter >> run [
 			progressBar := bar.
 			lastUpdate := 0.
 			self export: roots ]
+]
+
+{ #category : #exporting }
+FMModelExporter >> shouldExportProperty: property for: each [
+	| values |
+	(self shouldIgnoreProperty: property) ifTrue: [ ^ false ].
+	values := model get: property element: each.
+
+	"Do not export empty properties."
+	values isEmptyOrNil ifTrue: [ ^ false ].
+	^ true
 ]
 
 { #category : #exporting }

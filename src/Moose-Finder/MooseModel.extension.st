@@ -49,6 +49,20 @@ MooseModel >> delete [
 ]
 
 { #category : #'*Moose-Finder' }
+MooseModel >> exportToJSON [
+	<menuItem: 'Export model to JSON' category: 'Import / Export'>
+	| fileReference |
+	fileReference := UITheme builder
+		                 chooseForSaveFileReference: 'Choose location'
+		                 extensions: #( 'json' )
+		                 path: ''.
+	fileReference ifNotNil: [ 
+		fileReference writeStreamDo: [ :stream | 
+			self exportToJSONStream: stream.
+			Notification signal: 'Save successful!' ] ]
+]
+
+{ #category : #'*Moose-Finder' }
 MooseModel >> exportToMSE [
 	<menuItem: 'Export model to MSE' category: 'Import / Export'>
 	| fileReference |
