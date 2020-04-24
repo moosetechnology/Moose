@@ -1,15 +1,15 @@
 Class {
 	#name : #FamixJavaType,
-	#superclass : #FamixJavaContainerEntity,
-	#traits : 'FamixTClassHierarchyNavigation + FamixTParameterizedTypeUser + FamixTType + FamixTWithMethods + FamixTWithTypeAliases',
-	#classTraits : 'FamixTClassHierarchyNavigation classTrait + FamixTParameterizedTypeUser classTrait + FamixTType classTrait + FamixTWithMethods classTrait + FamixTWithTypeAliases classTrait',
+	#superclass : #FamixJavaNamedEntity,
+	#traits : 'FamixTClassHierarchyNavigation + FamixTParameterizedTypeUser + FamixTType + FamixTWithAnnotationTypes + FamixTWithMethods + FamixTWithTypeAliases + FamixTWithTypes',
+	#classTraits : 'FamixTClassHierarchyNavigation classTrait + FamixTParameterizedTypeUser classTrait + FamixTType classTrait + FamixTWithAnnotationTypes classTrait + FamixTWithMethods classTrait + FamixTWithTypeAliases classTrait + FamixTWithTypes classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
 { #category : #meta }
 FamixJavaType class >> annotation [
 
-	<FMClass: #Type super: #FamixJavaContainerEntity>
+	<FMClass: #Type super: #FamixJavaNamedEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self

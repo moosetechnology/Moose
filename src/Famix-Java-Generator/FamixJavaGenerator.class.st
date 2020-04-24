@@ -10,7 +10,6 @@ Class {
 		'attribute',
 		'caughtException',
 		'class',
-		'containerEntity',
 		'declaredException',
 		'enum',
 		'enumValue',
@@ -65,7 +64,6 @@ FamixJavaGenerator >> defineClasses [
 	attribute := builder newClassNamed: #Attribute.
 	caughtException := builder newClassNamed: #CaughtException.
 	class := builder newClassNamed: #Class.
-	containerEntity := builder newClassNamed: #ContainerEntity.
 	declaredException := builder newClassNamed: #DeclaredException.
 	enum := builder newClassNamed: #Enum.
 	enumValue := builder newClassNamed: #EnumValue.
@@ -153,7 +151,7 @@ FamixJavaGenerator >> defineHierarchy [
 	indexedFileAnchor --|> sourceAnchor.
 	indexedFileAnchor --|> #TIndexedFileNavigation.
 
-	method --|> containerEntity.
+	method --|> namedEntity.
 	method --|> #TMethod.
 	method --|> #TWithThrownExceptions.
 	method --|> #TWithDeclaredExceptions.
@@ -167,12 +165,6 @@ FamixJavaGenerator >> defineHierarchy [
 	class --|> #TWithExceptions.
 	class --|> #TClass.
 	class --|> #TLCOMMetrics.
-
-	containerEntity --|> namedEntity.
-	containerEntity --|> #TWithTypes.
-	containerEntity --|> #TWithClasses.
-	containerEntity --|> #TWithAnnotationTypes.
-	containerEntity --|> #TOODependencyQueries.
 
 	declaredException --|> exception.
 	declaredException --|> #TDeclaredException.
@@ -234,15 +226,20 @@ FamixJavaGenerator >> defineHierarchy [
 	
 	sourcedEntity --|> #TWithFiles.
 
-	scopingEntity --|> containerEntity.
+	scopingEntity --|> namedEntity.
+	scopingEntity  --|> #TWithAnnotationTypes.
+	scopingEntity --|> #TWithTypes.
+	scopingEntity --|> #TWithClasses.
 	scopingEntity --|> #TWithGlobalVariables.
 	scopingEntity --|> #TScopingEntity.
 
 	thrownException --|> exception.
 	thrownException --|> #TThrownException.
 
-	type --|> containerEntity.
+	type --|> namedEntity.
 	type --|> #TType.
+	type --|> #TWithTypes.
+	type --|> #TWithAnnotationTypes.
 	type --|> #TWithTypeAliases.
 	type --|> #TParameterizedTypeUser.
 	type --|> #TClassHierarchyNavigation. 

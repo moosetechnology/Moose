@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixJavaMethod,
-	#superclass : #FamixJavaContainerEntity,
+	#superclass : #FamixJavaNamedEntity,
 	#traits : 'FamixTMethod + FamixTWithCaughtExceptions + FamixTWithDeclaredExceptions + FamixTWithThrownExceptions',
 	#classTraits : 'FamixTMethod classTrait + FamixTWithCaughtExceptions classTrait + FamixTWithDeclaredExceptions classTrait + FamixTWithThrownExceptions classTrait',
 	#category : #'Famix-Java-Entities-Entities'
@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaMethod class >> annotation [
 
-	<FMClass: #Method super: #FamixJavaContainerEntity>
+	<FMClass: #Method super: #FamixJavaNamedEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self

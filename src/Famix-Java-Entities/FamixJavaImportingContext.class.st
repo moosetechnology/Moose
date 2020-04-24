@@ -59,12 +59,6 @@ FamixJavaImportingContext >> importComment [
 ]
 
 { #category : #testing }
-FamixJavaImportingContext >> importContainerEntity [
-	<generated>
-	^ self import: FamixJavaContainerEntity
-]
-
-{ #category : #testing }
 FamixJavaImportingContext >> importDeclaredException [
 	<generated>
 	^ self import: FamixJavaDeclaredException
@@ -308,12 +302,6 @@ FamixJavaImportingContext >> shouldImportClass [
 FamixJavaImportingContext >> shouldImportComment [
 	<generated>
 	^ self shouldImport: FamixJavaComment
-]
-
-{ #category : #testing }
-FamixJavaImportingContext >> shouldImportContainerEntity [
-	<generated>
-	^ self shouldImport: FamixJavaContainerEntity
 ]
 
 { #category : #testing }
