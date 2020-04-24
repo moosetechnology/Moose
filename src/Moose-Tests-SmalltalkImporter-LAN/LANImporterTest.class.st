@@ -66,12 +66,6 @@ LANImporterTest >> testAllImplicitVariablesAreStoredInTheModel [
 ]
 
 { #category : #tests }
-LANImporterTest >> testClassModifiers [	
-	self model allClasses 
-		do: [:each | self assert: (each modifiers isKindOf: Set)].
-]
-
-{ #category : #tests }
 LANImporterTest >> testClassName [ 
 	 "self debug: #testClassName"
 	

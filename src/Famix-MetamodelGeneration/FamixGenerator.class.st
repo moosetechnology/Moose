@@ -1005,13 +1005,15 @@ FamixGenerator >> defineProperties [
 
 	((tAnnotationInstanceAttribute property: #value type: #String)
 		comment: 'Actual value of the attribute used in an annotation').
+		
+	((tClass  property: #isAbstract type: #Boolean) 
+		comment: 'True if abstract method').
 
 	((tNamedEntity property: #name type: #String)
 		comment: 'Basic name of the entity, not full reference.').
 
-	((tHasModifiers property: #modifiers type: #String)
-		comment: 'Generic container for language dependent modifiers.';
-		multivalued).
+	((tHasModifiers property: #visibility  type: #String)
+		comment: 'Generic container for language dependent visibility(public, private, protected, default, ...).').
 
 	((tMethod property: #kind type: #String) 
 		comment: 'Tag indicating a setter, getter, constant, constructor, or abstract method').
