@@ -18,7 +18,7 @@ CandidateListOperator >> allCandidatesFor: invocation [
 			(groups 
 				at: invocation signature 
 				ifAbsent: [ | stubs |
-					stubs := self importer ensureStubMethodsFor: invocation signature.
+					stubs := self importer ensureSmalltalkStubMethodsFor: invocation signature.
 					groups at: invocation signature put: stubs.
 					stubs do: [:each | model add: each].
 					stubs ])

@@ -419,7 +419,7 @@ SmalltalkImporter >> ensurePackage: aPackageModel [
 ]
 
 { #category : #'public-entity-creation' }
-SmalltalkImporter >> ensureStubMethod: aCompiledMethod [ 
+SmalltalkImporter >> ensureSmalltalkStubMethod: aCompiledMethod [ 
 	 
 	^methods 
 		at: aCompiledMethod 
@@ -427,14 +427,14 @@ SmalltalkImporter >> ensureStubMethod: aCompiledMethod [
 ]
 
 { #category : #'public-entity-creation' }
-SmalltalkImporter >> ensureStubMethodsFor: aSignature [
+SmalltalkImporter >> ensureSmalltalkStubMethodsFor: aSignature [
 	| implementors |
-	"importingContext shouldImportStubMethod
-		ifFalse: [^#()]."
+	importingContext shouldImportSmalltalkStubMethod
+		ifFalse: [^#()].
 	implementors := self allImplementorsOf: aSignature.
 	implementors ifEmpty: [
 		^{ self basicCreateMethod: (aSignature copyUpTo: $() withSignature: aSignature } ].
-	^ implementors collect: [ :meth | self ensureStubMethod: meth ]
+	^ implementors collect: [ :meth | self ensureSmalltalkStubMethod: meth ]
 ]
 
 { #category : #'public-entity-creation' }
