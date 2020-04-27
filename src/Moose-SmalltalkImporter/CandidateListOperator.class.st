@@ -13,12 +13,15 @@ Class {
 
 { #category : #running }
 CandidateListOperator >> allCandidatesFor: invocation [ 
-	 
 	^Array 
 		withAll: 
 			(groups 
 				at: invocation signature 
-				ifAbsent: #())
+				ifAbsent: [ | stubs |
+					stubs := self importer ensureStubMethodsFor: invocation signature.
+					groups at: invocation signature put: stubs.
+					stubs do: [:each | model add: each].
+					stubs ])
 ]
 
 { #category : #running }

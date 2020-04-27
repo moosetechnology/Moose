@@ -409,6 +409,12 @@ LANImporterTest >> testStubClassesCreation [
 ]
 
 { #category : #tests }
+LANImporterTest >> testStubMethodCreation [
+	self assert: (self model allMethods select: #isStub) notEmpty.
+	self assert: self model allModelMethods notEmpty.
+]
+
+{ #category : #tests }
 LANImporterTest >> testSubClassHierarchy [
 	self assert: (self model entityNamed: LANNode mooseName) subclassHierarchy size equals: 4.
 	self assert: (self model entityNamed: LANNode mooseName) withSubclassHierarchy size equals: 5
