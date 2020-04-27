@@ -6,6 +6,7 @@ Trait {
 	#instVars : [
 		'#source => FMProperty'
 	],
+	#traits : 'FamixTSourceAnchor',
 	#category : #'Famix-Traits-SourceAnchor'
 }
 

@@ -8,7 +8,6 @@ Trait {
 		'#parentScope => FMOne type: #FamixTWithGlobalVariables opposite: #globalVariables'
 	],
 	#traits : 'FamixTStructuralEntity',
-	#classTraits : 'FamixTStructuralEntity classTrait',
 	#category : #'Famix-Traits-GlobalVariable'
 }
 
@@ -22,11 +21,10 @@ FamixTGlobalVariable classSide >> annotation [
 ]
 
 { #category : #groups }
-FamixTGlobalVariable classSide >> famixTGlobalVariableRelatedGroup [
-
+FamixTGlobalVariable classSide >> annotationFamixGlobalVariableGroup [
+	<generated>
 	<mooseGroup>
-	
-	^ FAMIXGlobalVariableGroup
+	^ FamixGlobalVariableGroup
 ]
 
 { #category : #accessing }

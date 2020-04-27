@@ -74,6 +74,11 @@ FamixMetamodelGenerator class >> generateAllMetamodels [
 ]
 
 { #category : #generation }
+FamixMetamodelGenerator class >> generatorsToKeepUpToDate [
+	^ self individualGenerators select: #shouldBeUpToDateInLatestMoose
+]
+
+{ #category : #generation }
 FamixMetamodelGenerator class >> individualGenerators [
 	^ self allSubclasses select: [ :c | c isRealMetamodel and: [ c isPartOfComposedMetaModel not ] ]
 ]
@@ -155,6 +160,11 @@ FamixMetamodelGenerator class >> prefix [
 FamixMetamodelGenerator class >> resetMetamodels [
 	<script>
 	MooseModel allSubclassesDo: #resetMetamodel
+]
+
+{ #category : #testing }
+FamixMetamodelGenerator class >> shouldBeUpToDateInLatestMoose [
+	^ true
 ]
 
 { #category : #accessing }

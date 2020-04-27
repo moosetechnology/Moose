@@ -17,7 +17,6 @@ Trait {
 		'#annotatedEntity => FMOne type: #FamixTWithAnnotationInstances opposite: #annotationInstances'
 	],
 	#traits : 'TEntityMetaLevelDependency + TDependencyQueries',
-	#classTraits : 'TEntityMetaLevelDependency classTrait + TDependencyQueries classTrait',
 	#category : #'Famix-Traits-AnnotationInstance'
 }
 
@@ -31,11 +30,10 @@ FamixTAnnotationInstance classSide >> annotation [
 ]
 
 { #category : #groups }
-FamixTAnnotationInstance classSide >> famixTAnnotationInstanceRelatedGroup [
-
+FamixTAnnotationInstance classSide >> annotationFamixAnnotationInstanceGroup [
+	<generated>
 	<mooseGroup>
-	
-	^ FAMIXAnnotationInstanceGroup
+	^ FamixAnnotationInstanceGroup
 ]
 
 { #category : #accessing }

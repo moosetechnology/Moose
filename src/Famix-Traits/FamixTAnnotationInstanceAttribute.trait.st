@@ -16,7 +16,6 @@ Trait {
 		'#value => FMProperty'
 	],
 	#traits : 'TEntityMetaLevelDependency + TDependencyQueries',
-	#classTraits : 'TEntityMetaLevelDependency classTrait + TDependencyQueries classTrait',
 	#category : #'Famix-Traits-AnnotationInstanceAttribute'
 }
 

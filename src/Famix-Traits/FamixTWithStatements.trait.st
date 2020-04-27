@@ -1,5 +1,6 @@
 Trait {
 	#name : #FamixTWithStatements,
+	#traits : 'FamixTWithAccesses + FamixTWithInvocations',
 	#category : #'Famix-Traits-Behavioral'
 }
 
@@ -10,6 +11,13 @@ FamixTWithStatements classSide >> annotation [
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
+]
+
+{ #category : #testing }
+FamixTWithStatements >> isBehavioural [
+
+	<generated>
+	^ true
 ]
 
 { #category : #metrics }

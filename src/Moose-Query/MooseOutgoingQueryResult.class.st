@@ -14,6 +14,5 @@ Class {
 
 { #category : #private }
 MooseOutgoingQueryResult >> opposite: aDependency [
-
-	^ aDependency to
+	^ aDependency target
 ]

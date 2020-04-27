@@ -9,6 +9,7 @@ Class {
 
 { #category : #running }
 FamixJavaMethodTest >> setUp [
+	super setUp.
 	method := FamixJavaMethod new
 ]
 

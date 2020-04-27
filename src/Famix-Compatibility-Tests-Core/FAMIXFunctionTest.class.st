@@ -22,7 +22,7 @@ FAMIXFunctionTest >> testHandlingOfWrongSourceAnchor [
 
 { #category : #tests }
 FAMIXFunctionTest >> testIsMethod [
-	self assert: self actualClass new isMethod equals: false
+	self deny: self actualClass new isMethod
 ]
 
 { #category : #tests }

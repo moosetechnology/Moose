@@ -5,12 +5,6 @@ Class {
 }
 
 { #category : #testing }
-FamixTest1ImportingContext >> importAbstractFileAnchor [
-	<generated>
-	^ self import: FamixTest1AbstractFileAnchor
-]
-
-{ #category : #testing }
 FamixTest1ImportingContext >> importAssociation [
 	<generated>
 	^ self import: FamixTest1Association
@@ -110,12 +104,6 @@ FamixTest1ImportingContext >> importSourcedEntity [
 FamixTest1ImportingContext >> importUnknownSourceLanguage [
 	<generated>
 	^ self import: FamixTest1UnknownSourceLanguage
-]
-
-{ #category : #testing }
-FamixTest1ImportingContext >> shouldImportAbstractFileAnchor [
-	<generated>
-	^ self shouldImport: FamixTest1AbstractFileAnchor
 ]
 
 { #category : #testing }

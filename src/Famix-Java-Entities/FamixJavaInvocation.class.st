@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixJavaInvocation,
-	#superclass : #MooseEntity,
+	#superclass : #FamixJavaEntity,
 	#traits : 'FamixTHasSignature + FamixTInvocation',
 	#classTraits : 'FamixTHasSignature classTrait + FamixTInvocation classTrait',
 	#category : #'Famix-Java-Entities-Entities'
@@ -9,17 +9,10 @@ Class {
 { #category : #meta }
 FamixJavaInvocation class >> annotation [
 
-	<FMClass: #Invocation super: #MooseEntity>
+	<FMClass: #Invocation super: #FamixJavaEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FamixJavaInvocation class >> metamodel [
-
-	<generated>
-	^ FamixJavaModel metamodel
 ]
 
 { #category : #'as yet unclassified' }
@@ -43,17 +36,16 @@ FamixJavaInvocation >> getReceivingFAMIXClass [
 
 { #category : #'as yet unclassified' }
 FamixJavaInvocation >> gtDisplayOn: aStream [
-	self from ifNotNil: [ self from gtDisplayOn: aStream ].
+	self source ifNotNil: [ self source gtDisplayOn: aStream ].
 	aStream nextPutAll: ' -> '.
 	self receiver ifNotNil: [ aStream nextPutAll: self receiver name ].
 	aStream nextPut: $#.
 	aStream nextPutAll: self signature.
 	aStream nextPutAll: ' -> '.
-	self candidates size = 1
-		ifTrue: [ self anyCandidate gtDisplayOn: aStream ]
+	self candidates size = 1 ifTrue: [ self anyCandidate gtDisplayOn: aStream ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 FamixJavaInvocation >> initialize [
 
 	super initialize.
@@ -93,99 +85,8 @@ FamixJavaInvocation >> isASureInvocation [
 ]
 
 { #category : #testing }
-FamixJavaInvocation >> isAccess [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaInvocation >> isAssociation [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaInvocation >> isAttribute [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaInvocation >> isClass [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaInvocation >> isImplicitVariable [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaInvocation >> isInheritance [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
 FamixJavaInvocation >> isInvocation [ 	
 	^true
-]
-
-{ #category : #testing }
-FamixJavaInvocation >> isMethod [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaInvocation >> isNamespace [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaInvocation >> isPackage [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaInvocation >> isPrimitiveType [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaInvocation >> isReference [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaInvocation >> isStructuralEntity [
-
-	<generated>
-	^ false
-]
-
-{ #category : #testing }
-FamixJavaInvocation >> isType [
-
-	<generated>
-	^ false
 ]
 
 { #category : #'as yet unclassified' }

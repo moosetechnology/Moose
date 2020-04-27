@@ -75,5 +75,5 @@ FAMIXModelQueriesTest >> testAllTypes [
 
 { #category : #tests }
 FAMIXModelQueriesTest >> testAllWithTypeOfGroupClass [
-	self assert: (model allWithType: FAMIXClass ofGroupClass: FAMIXTypeGroup) size equals: 4
+	self assert: (model allWithType: FAMIXClass ofGroupClass: FamixTypeGroup) size equals: 4
 ]

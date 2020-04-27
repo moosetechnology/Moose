@@ -77,6 +77,12 @@ MooseDevelopmentState >> cacheAt: name ifAbsent: aBlock [
 ]
 
 { #category : #'accessing groups' }
+MooseDevelopmentState >> cacheAt: name ifAbsent: absentBlock ifPresent: presentBlock [
+	 
+	^ queryCache at: name ifPresent: presentBlock ifAbsent: [absentBlock value]
+]
+
+{ #category : #'accessing groups' }
 MooseDevelopmentState >> cacheAt: name ifAbsentPut: aBlock [ 
 
 	^ queryCache at: name ifAbsentPut: aBlock.
@@ -90,6 +96,18 @@ MooseDevelopmentState >> cacheAt: name ifAbsentPut: aBlock [
 				^each value]]. 
 	queryCache := queryCache copyWith: name -> aBlock value. 
 	^queryCache last value"
+]
+
+{ #category : #'accessing groups' }
+MooseDevelopmentState >> cacheAt: name ifPresent: aBlock [
+	 
+	^ queryCache at: name ifPresent: aBlock
+]
+
+{ #category : #'accessing groups' }
+MooseDevelopmentState >> cacheAt: name ifPresent: presentBlock ifAbsentPut: aBlock [
+	 
+	^ queryCache at: name ifPresent: presentBlock ifAbsentPut: aBlock
 ]
 
 { #category : #'accessing groups' }
@@ -138,23 +156,12 @@ MooseDevelopmentState >> flushProperties [
 ]
 
 { #category : #testing }
-MooseDevelopmentState >> hasMooseModel [
-	| each | 
-	1 to: attributes size 
-		do: [ :n |
-			each := attributes at: n.
-			each key = #privateModel ifTrue: [ ^true ] ].
-	^false
-
-]
-
-{ #category : #testing }
 MooseDevelopmentState >> includesKey: selector [ 
 	 
 	^propertyCache includesKey: selector
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseDevelopmentState >> initialize: aMooseEntity [ 
 	 
 	attributes := #(). 

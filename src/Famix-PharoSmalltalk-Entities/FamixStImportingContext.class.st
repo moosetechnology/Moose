@@ -53,12 +53,6 @@ FamixStImportingContext >> importComment [
 ]
 
 { #category : #testing }
-FamixStImportingContext >> importContainerEntity [
-	<generated>
-	^ self import: FamixStContainerEntity
-]
-
-{ #category : #testing }
 FamixStImportingContext >> importEntity [
 	<generated>
 	^ self import: FamixStEntity
@@ -122,6 +116,12 @@ FamixStImportingContext >> importPackage [
 FamixStImportingContext >> importParameter [
 	<generated>
 	^ self import: FamixStParameter
+]
+
+{ #category : #testing }
+FamixStImportingContext >> importPharoEntitySourceAnchor [
+	<generated>
+	^ self import: FamixStPharoEntitySourceAnchor
 ]
 
 { #category : #testing }
@@ -221,12 +221,6 @@ FamixStImportingContext >> shouldImportComment [
 ]
 
 { #category : #testing }
-FamixStImportingContext >> shouldImportContainerEntity [
-	<generated>
-	^ self shouldImport: FamixStContainerEntity
-]
-
-{ #category : #testing }
 FamixStImportingContext >> shouldImportEntity [
 	<generated>
 	^ self shouldImport: FamixStEntity
@@ -290,6 +284,12 @@ FamixStImportingContext >> shouldImportPackage [
 FamixStImportingContext >> shouldImportParameter [
 	<generated>
 	^ self shouldImport: FamixStParameter
+]
+
+{ #category : #testing }
+FamixStImportingContext >> shouldImportPharoEntitySourceAnchor [
+	<generated>
+	^ self shouldImport: FamixStPharoEntitySourceAnchor
 ]
 
 { #category : #testing }

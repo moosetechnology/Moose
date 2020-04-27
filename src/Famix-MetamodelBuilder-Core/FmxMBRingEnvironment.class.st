@@ -14,6 +14,12 @@ FmxMBRingEnvironment >> apply [
 ]
 
 { #category : #accessing }
+FmxMBRingEnvironment >> basicGroupSuperclass [
+
+	^ self ringEnvironment ensureClassNamed: self builder configuration basicGroupSuperclassName
+]
+
+{ #category : #accessing }
 FmxMBRingEnvironment >> basicSuperclass [
 
 	^ self ringEnvironment ensureClassNamed: self builder configuration basicSuperclassName

@@ -75,7 +75,7 @@ MooseImportClassesTask >> description [
 		expandMacrosWith: self classes size
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseImportClassesTask >> initialize [
 	super initialize. 
 	classes := IdentitySet new. 

@@ -2,14 +2,14 @@ Class {
 	#name : #FamixBasicInfrastructureGenerator,
 	#superclass : #FamixMetamodelGenerator,
 	#instVars : [
-		'entity',
-		'sourceAnchor',
-		'sourceLanguage',
-		'sourcedEntity',
-		'comment',
-		'namedEntity',
-		'sourceTextAnchor',
-		'unknownSourceLanguage'
+		'#entity => FamixDeprecatedSlot message: \'This variable should not be used anymore. XXXEntity is now the default root and you don\'\'t need to declare you inherit from it. If you wish to add property to it, get the class with `self ensureClassNamed: #Entity`.\'',
+		'#sourceAnchor',
+		'#sourceLanguage',
+		'#sourcedEntity',
+		'#comment',
+		'#namedEntity',
+		'#sourceTextAnchor',
+		'#unknownSourceLanguage'
 	],
 	#category : #'Famix-BasicInfrastructure'
 }
@@ -26,29 +26,24 @@ FamixBasicInfrastructureGenerator class >> submetamodels [
 
 { #category : #definition }
 FamixBasicInfrastructureGenerator >> defineClasses [
-
 	super defineClasses.
 
-	entity := builder newClassNamed: #Entity.
 	sourceAnchor := builder newClassNamed: #SourceAnchor.
 	sourceLanguage := builder newClassNamed: #SourceLanguage.
 	unknownSourceLanguage := builder newClassNamed: #UnknownSourceLanguage.
 	sourcedEntity := builder newClassNamed: #SourcedEntity.
 	comment := builder newClassNamed: #Comment.
 	namedEntity := builder newClassNamed: #NamedEntity.
-	sourceTextAnchor := builder newClassNamed: #SourceTextAnchor.
-
+	sourceTextAnchor := builder newClassNamed: #SourceTextAnchor
 ]
 
 { #category : #definition }
 FamixBasicInfrastructureGenerator >> defineHierarchy [
-	sourceAnchor --|> entity.
+
 	sourceAnchor --|> #TSourceAnchor.
 
-	sourceLanguage --|> entity.
 	sourceLanguage --|> #TSourceLanguage.
 
-	sourcedEntity --|> entity.
 	sourcedEntity --|> #TSourceEntity.
 	sourcedEntity --|> #TWithComments.
 

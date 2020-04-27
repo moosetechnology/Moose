@@ -28,6 +28,13 @@ FamixTest3Entity >> isAssociation [
 ]
 
 { #category : #testing }
+FamixTest3Entity >> isBehavioural [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
 FamixTest3Entity >> isClass [
 
 	<generated>

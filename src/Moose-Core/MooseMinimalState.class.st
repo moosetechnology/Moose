@@ -52,8 +52,23 @@ MooseMinimalState >> cacheAt: name ifAbsent: aBlock [
 ]
 
 { #category : #accessing }
+MooseMinimalState >> cacheAt: name ifAbsent: absentBlock ifPresent: presentBlock [
+	^ absentBlock value
+]
+
+{ #category : #accessing }
 MooseMinimalState >> cacheAt: name ifAbsentPut: value [
 	^ self nullStateError
+]
+
+{ #category : #accessing }
+MooseMinimalState >> cacheAt: name ifPresent: aBlock [
+	self nullStateError
+]
+
+{ #category : #accessing }
+MooseMinimalState >> cacheAt: name ifPresent: presentBlock ifAbsentPut: aBlock [
+	^ aBlock value
 ]
 
 { #category : #accessing }
@@ -87,11 +102,6 @@ MooseMinimalState >> flushProperties [
 ]
 
 { #category : #testing }
-MooseMinimalState >> hasMooseModel [
-	^false
-]
-
-{ #category : #testing }
 MooseMinimalState >> includesKey: selector [ 
 	" *** This method was defined by SCG.Moose.EntityState as a subclass responsibility. 
 	Replace its body with a proper implementation. *** " 
@@ -116,12 +126,6 @@ MooseMinimalState >> isStub [
 MooseMinimalState >> isStub: boolean [ 
 	 
 	[boolean == false] assert
-]
-
-{ #category : #'accessing-common attributes' }
-MooseMinimalState >> model: anObject [ 
-	 
-	
 ]
 
 { #category : #error }

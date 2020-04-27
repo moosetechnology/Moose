@@ -126,6 +126,18 @@ FamixMetamodelBuilder >> ensureClassNamed: aString [
 	^ self classes detect: [ :each | each name = aString ] ifNone: [ self newClassNamed: aString ]
 ]
 
+{ #category : #generating }
+FamixMetamodelBuilder >> ensureEntityClassIsTheCommonSuperclass [
+	"All classes should have a common superclass called Entity. Here we ensure it is created and used."
+
+	self classes iterator
+		| #isRoot selectIt
+		| #isMetamodelClassGroup rejectIt
+		| [ :class | class name = #Entity ] rejectIt
+		| [ :class | class --|> (self ensureClassNamed: #Entity) ] doIt
+		> NullAddableObject
+]
+
 { #category : #initialization }
 FamixMetamodelBuilder >> ensureLocalTraitNamed: aString [
 	<ignoreForMutations: #(ReplaceAndWithEqvMutantOperator)>
@@ -275,6 +287,15 @@ In order to fix the issue you should use #remoteTrait:withPrefix: in your genera
 	^ self traitNamed: aSymbol
 ]
 
+{ #category : #generating }
+FamixMetamodelBuilder >> groupOf: aClass [
+	| group |
+	group := (self newClassGroupNamed: aClass name , 'Group')
+		innerClass: aClass;
+		yourself.
+	^ group
+]
+
 { #category : #accessing }
 FamixMetamodelBuilder >> importingContextName [
 	^ (self configuration prefix , 'ImportingContext') asSymbol
@@ -305,6 +326,27 @@ FamixMetamodelBuilder >> newClass [
 	self classes add: aClass.
 	^ aClass
 	
+]
+
+{ #category : #initialization }
+FamixMetamodelBuilder >> newClassGroup [
+
+	| aClass |
+	
+	aClass := FmxMBClassGroup new.
+	aClass builder: self.
+	aClass prefix: self configuration prefix.
+	aClass packageName: self configuration packageName.
+	self classes add: aClass.
+	^ aClass
+	
+]
+
+{ #category : #initialization }
+FamixMetamodelBuilder >> newClassGroupNamed: aClassName [
+	(self classes select: [ :each | each name = aClassName ]) ifNotEmpty: [ FmxMBEntityAlreadyExists signal ].
+
+	^ self newClassGroup name: aClassName
 ]
 
 { #category : #initialization }
@@ -385,6 +427,7 @@ FamixMetamodelBuilder >> parentBuilderPackageName [
 FamixMetamodelBuilder >> prepareGeneration [
 	self registerPackages.
 
+	self ensureEntityClassIsTheCommonSuperclass.
 	self traitsWithSubBuildersTraits do: [ :each | self testingSelectorsMapping at: each put: each testingSelectors ].
 	self classes do: [ :each | self testingSelectorsMapping at: each put: each testingSelectors ].
 	self traits do: [ :each | each generate ].

@@ -35,7 +35,7 @@ FamixTHasModifiers >> bePublic [
 	^ self isPublic: true
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 FamixTHasModifiers >> isAbstract [
 	<FMProperty: #isAbstract type: #Boolean> <derived>
 	<FMComment: 'Flag true for abstract entities. Language dependent.'>
@@ -122,7 +122,6 @@ FamixTHasModifiers >> modifierSet: aBoolean for: aSymbol [
 FamixTHasModifiers >> modifiers [
 
 	<FMProperty: #modifiers type: #String>
-	<generated>
 	<multivalued>
 	<FMComment: 'Generic container for language dependent modifiers.'>
 	^ modifiers ifNil: [ modifiers := Set new ]

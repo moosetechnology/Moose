@@ -103,7 +103,7 @@ WizardControl >> information: aSymbol withValue: value [
 		put: value
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 WizardControl >> initialize [
 	
 	super initialize.

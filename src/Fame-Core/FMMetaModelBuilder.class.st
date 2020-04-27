@@ -166,6 +166,8 @@ FMMetaModelBuilder >> implementingPackages: aColl [
 FMMetaModelBuilder >> initialize [
 	"Used for queuing classes before running."
 
+	super initialize.
+
 	queue := OrderedCollection new.
 	"Used to store resulting FM3 elements."
 	elements := OrderedCollection new.

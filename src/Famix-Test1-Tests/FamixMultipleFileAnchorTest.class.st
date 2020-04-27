@@ -21,13 +21,12 @@ FamixMultipleFileAnchorTest >> setUp [
 
 { #category : #tests }
 FamixMultipleFileAnchorTest >> testAdditionOfFiles [
-	self assert: multipleFileAnchor allFiles size equals: 1.
+	self assert: multipleFileAnchor fileAnchors size equals: 1.
 	multipleFileAnchor addFileAnchorWithPath: 'aFileName1'.
-	self assert: multipleFileAnchor allFiles size equals: 2.
-	self assert: multipleFileAnchor sourceText lines size equals:2.
+	self assert: multipleFileAnchor fileAnchors size equals: 2.
+	self assert: multipleFileAnchor sourceText lines size equals: 2.
 	multipleFileAnchor addFileAnchorWithPath: 'aFileName2'.
-	self assert: multipleFileAnchor sourceText lines size equals:3.
-	
+	self assert: multipleFileAnchor sourceText lines size equals: 3
 ]
 
 { #category : #tests }
@@ -76,12 +75,12 @@ FamixMultipleFileAnchorTest >> testMultipleSourceAnchorEntity [
 	class := FamixTest1Class new
 		mooseModel: FamixTest1Model new;
 		defineMultiSourceAnchorWithPath: 'aClassName'.
-	self assert: class sourceAnchor allFiles size equals: 1
+	self assert: class sourceAnchor fileAnchors size equals: 1
 ]
 
 { #category : #tests }
 FamixMultipleFileAnchorTest >> testSimilarFileAnchors [
-	self assert: multipleFileAnchor allFiles size equals: 1.
+	self assert: multipleFileAnchor fileAnchors size equals: 1
 ]
 
 { #category : #tests }

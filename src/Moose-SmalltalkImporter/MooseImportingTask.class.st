@@ -44,7 +44,7 @@ MooseImportingTask >> importerClass: anObject [
 	importerClass := anObject
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseImportingTask >> initialize [
 	super initialize.
 	importerClass := self defaultImporterClass

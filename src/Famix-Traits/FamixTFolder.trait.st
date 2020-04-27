@@ -21,11 +21,10 @@ FamixTFolder classSide >> annotation [
 ]
 
 { #category : #groups }
-FamixTFolder classSide >> famixTFolderRelatedGroup [
-
+FamixTFolder classSide >> annotationFamixFolderGroup [
+	<generated>
 	<mooseGroup>
-	
-	^ FAMIXFolderGroup
+	^ FamixFolderGroup
 ]
 
 { #category : #adding }
@@ -80,7 +79,7 @@ FamixTFolder >> files [
 { #category : #adding }
 FamixTFolder >> filesGroup [
 	<navigation: 'Files'>
-	^FAMIXFileGroup withAll: self files withDescription: 'Files'
+	^FamixFileGroup withAll: self files withDescription: 'Files'
 ]
 
 { #category : #adding }
@@ -91,7 +90,7 @@ FamixTFolder >> folders [
 { #category : #adding }
 FamixTFolder >> foldersGroup [
 	<navigation: 'Folders'>
-	^FAMIXFolderGroup withAll: self folders withDescription: 'Folders'
+	^FamixFolderGroup withAll: self folders withDescription: 'Folders'
 ]
 
 { #category : #testing }

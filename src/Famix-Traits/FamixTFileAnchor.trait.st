@@ -8,6 +8,7 @@ Trait {
 		'#encoding => FMProperty',
 		'#fileName => FMProperty'
 	],
+	#traits : 'FamixTSourceAnchor',
 	#category : #'Famix-Traits-SourceAnchor'
 }
 
@@ -28,10 +29,8 @@ FamixTFileAnchor >> addToFile: entity [
 { #category : #accessing }
 FamixTFileAnchor >> completeText [
 	self sourcesAreReadable ifFalse: [ ^ '' ].
-	
-	^ self fileReference
-		binaryReadStreamDo:
-			[ :in | (ZnCharacterReadStream on: in encoding: self encoding) upToEnd ]
+
+	^ self fileReference binaryReadStreamDo: [ :in | (ZnCharacterReadStream on: in encoding: self encoding) upToEnd ]
 ]
 
 { #category : #accessing }
@@ -56,8 +55,8 @@ FamixTFileAnchor >> correspondingFile: anObject [
 
 { #category : #decoding }
 FamixTFileAnchor >> detectEncoding [
-	self fileReference exists
-		ifFalse: [ ^ nil ].
+	self fileReference ifAbsent: [ ^ nil ].
+
 	^ [ self fileReference binaryReadStreamDo: [ :in | (ZnCharacterEncoder detectEncoding: in upToEnd) identifier ] ]
 		on: ZnCharacterEncodingError
 		do: [ nil ]
@@ -97,7 +96,7 @@ FamixTFileAnchor >> fileReference [
 
 { #category : #accessing }
 FamixTFileAnchor >> hasSourceText [
-	^ self completeText notEmpty 
+	^ self completeText isNotEmpty
 ]
 
 { #category : #testing }
@@ -115,7 +114,7 @@ FamixTFileAnchor >> lineCount [
 
 { #category : #printing }
 FamixTFileAnchor >> mooseNameOn: aStream [
-	aStream nextPutAll: self fileName asString
+	aStream nextPutAll: (self fileName ifNil: [ 'No associated file' ])
 ]
 
 { #category : #private }
@@ -128,23 +127,9 @@ FamixTFileAnchor >> rootFolder [
 	^ self mooseModel rootFolder
 ]
 
-{ #category : #initialization }
-FamixTFileAnchor >> setCorrespondingFile [
-	"files have already been added to the model"
-	^ self mooseModel allFiles asOrderedCollection
-		detect: [ :file | file mooseName = self fileName ]
-		ifFound: [ :aFile | self correspondingFile: aFile ]
-]
-
-{ #category : #accessing }
-FamixTFileAnchor >> sourceText [
-
-	"I should be overriden in my users"
-	^ String new
-]
-
 { #category : #testing }
 FamixTFileAnchor >> sourcesAreReadable [
-	| file |
-	^ (file := self fileReference) exists and: [ file size > 0 ]
+	^ self fileReference
+		ifExists: [ :file | file size > 0 ]
+		ifAbsent: [ false ]
 ]

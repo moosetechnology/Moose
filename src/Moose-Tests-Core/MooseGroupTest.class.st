@@ -106,7 +106,7 @@ MooseGroupTest >> testEntityNamedIfAbsentPutWithIncorrectEntityAsParameter [
 
 { #category : #tests }
 MooseGroupTest >> testExplicitEmptyCreation [
-	self assert: ((FAMIXTypeGroup withAll: #()) isKindOf: FAMIXTypeGroup)
+	self assert: ((FamixTypeGroup withAll: #()) isKindOf: FamixTypeGroup)
 ]
 
 { #category : #tests }
@@ -117,6 +117,31 @@ MooseGroupTest >> testInitialization [
 	self assert: group1 entities equals: group2 entities.
 	self assert: group2 description equals: 'Group number 2'.
 	self assert: group1 description equals: 'Group'
+]
+
+{ #category : #tests }
+MooseGroupTest >> testIsOfType [
+	| mGroup entity object |
+	mGroup := MooseGroup new.
+	entity := MooseEntity new.
+	object := MooseObject new.
+	self assert: (mGroup isOfType: MooseAbstractGroup).
+	self assert: (entity isOfType: MooseEntity).
+	self deny: (object isOfType: MooseEntity).
+	self deny: (object isOfType: MooseGroup).
+	self deny: (mGroup isOfType: MooseEntity)
+]
+
+{ #category : #tests }
+MooseGroupTest >> testNumberOfPackages [
+	self assert: group numberOfPackages equals: 0.
+	group add: (MooseEntity new copyWithTalent: FamixTPackage).
+	group add: (MooseEntity new copyWithTalent: FamixTPackage).
+	self assert: group numberOfPackages equals: 2.
+	group := MooseModel new.
+	group add: (MooseEntity new copyWithTalent: FamixTNamespace).
+	group add: (MooseEntity new copyWithTalent: FamixTNamespace).
+	self assert: group numberOfPackages equals: 0
 ]
 
 { #category : #tests }

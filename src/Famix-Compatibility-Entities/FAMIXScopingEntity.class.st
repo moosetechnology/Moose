@@ -40,7 +40,7 @@ FAMIXScopingEntity >> allClasses [
 { #category : #'Famix-Extensions' }
 FAMIXScopingEntity >> allClassesGroup [
 	<navigation: 'All classes'>
-	^ FAMIXTypeGroup withAll: self allClasses withDescription: 'All classes from ', self printString
+	^ FamixTypeGroup withAll: self allClasses withDescription: 'All classes from ', self printString
 ]
 
 { #category : #'Famix-Extensions-metrics' }

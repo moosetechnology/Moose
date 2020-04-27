@@ -32,6 +32,11 @@ FamixTest3Test >> checkAtScopeWithNonMatchingEntitiesDoWith: aBehavior [
 
 ]
 
+{ #category : #tests }
+FamixTest3Test >> classGroup [
+	^ self class environment at: #FamixTest3ClassGroup
+]
+
 { #category : #accessing }
 FamixTest3Test >> inv1 [
 	^ (model allUsing: FamixTInvocation) anyOne
@@ -78,24 +83,18 @@ FamixTest3Test >> setUp [
 	pt1 := FamixTest3PrimitiveType named: 'int'.
 	pt2 := FamixTest3PrimitiveType named: 'float'.
 
-	ref1 := FamixTest3Reference new.
-	ref2 := FamixTest3Reference new.
+	ref1 := FamixTest3Reference source: m1 target: pt1.
+	ref2 := FamixTest3Reference source: m1 target: c1.
 	inv1 := FamixTest3Invocation new.
 
 	c1 addMethod: m1.
 	c2 addMethod: m2.
 
-	ref1
-		source: m1;
-		target: pt1.
-	ref2
-		source: m1;
-		target: c1.
 	inv1
-		from: m1;
-		to: {m1}.
+		source: m1;
+		target: {m1}.
 
-	model addAll: {c1 . c2 . m1 . m2 . pt1 . pt2. ref1. ref2. inv1}
+	model addAll: {c1 . c2 . m1 . m2 . pt1 . pt2 . ref1 . ref2 . inv1}
 ]
 
 { #category : #tests }
@@ -147,8 +146,24 @@ FamixTest3Test >> testChildrenTypes [
 ]
 
 { #category : #tests }
+FamixTest3Test >> testClassGroupSuperclassIsTypeGroup [
+	self assert: self classGroup superclass equals: self typeGroup
+]
+
+{ #category : #tests }
+FamixTest3Test >> testGroupsAreGenerated [
+	self assert: (self class environment includesKey: #FamixTest3TypeGroup).
+	self assert: (self class environment includesKey: #FamixTest3ClassGroup)
+]
+
+{ #category : #tests }
 FamixTest3Test >> testIncomingReferences [
 	self assertCollection: self pt1 incomingReferences hasSameElements: {self ref1}
+]
+
+{ #category : #tests }
+FamixTest3Test >> testMooseGroupAllWith [
+	self assert: (model allUsing: FamixTClass) class equals: self classGroup
 ]
 
 { #category : #tests }
@@ -159,4 +174,9 @@ FamixTest3Test >> testParentTypes [
 { #category : #tests }
 FamixTest3Test >> testQueryIncomingDependencies [
 	self assertCollection: self pt1 queryIncomingDependencies hasSameElements: {self ref1}
+]
+
+{ #category : #tests }
+FamixTest3Test >> typeGroup [
+	^ self class environment at: #FamixTest3TypeGroup
 ]

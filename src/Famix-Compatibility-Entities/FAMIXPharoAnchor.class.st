@@ -16,11 +16,6 @@ FAMIXPharoAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #'Famix-File' }
-FAMIXPharoAnchor >> containerFiles [
-	^ {  }
-]
-
 { #category : #initialization }
 FAMIXPharoAnchor >> initialize [
 	super initialize.

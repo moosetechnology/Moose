@@ -18,7 +18,6 @@ Trait {
 		'#sender => FMOne type: #FamixTWithInvocations opposite: #outgoingInvocations'
 	],
 	#traits : 'FamixTAssociation',
-	#classTraits : 'FamixTAssociation classTrait',
 	#category : #'Famix-Traits-Invocation'
 }
 
@@ -32,11 +31,10 @@ FamixTInvocation classSide >> annotation [
 ]
 
 { #category : #groups }
-FamixTInvocation classSide >> famixTInvocationRelatedGroup [
-
+FamixTInvocation classSide >> annotationFamixInvocationGroup [
+	<generated>
 	<mooseGroup>
-	
-	^ FAMIXInvocationGroup
+	^ FamixInvocationGroup
 ]
 
 { #category : #adding }

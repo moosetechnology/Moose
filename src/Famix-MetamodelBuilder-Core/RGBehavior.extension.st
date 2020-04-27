@@ -25,5 +25,7 @@ RGBehavior >> traitsDefinitions [
 								nextPutAll: trait asString;
 								nextPutAll: ' - '.
 							methods sorted printAsSelfEvaluatingFormOn: s ] ]
-				ifAbsent: [ trait asString ] ]
+				ifAbsent: [ trait asString ] ].
+	
+	
 ]

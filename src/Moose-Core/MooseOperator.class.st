@@ -60,6 +60,7 @@ MooseOperator >> args: anObject [
 
 { #category : #initialization }
 MooseOperator >> initialize [
+	super initialize.
 	args := Dictionary new
 ]
 

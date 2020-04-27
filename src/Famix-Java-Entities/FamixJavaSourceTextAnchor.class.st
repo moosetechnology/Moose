@@ -14,13 +14,3 @@ FamixJavaSourceTextAnchor class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #'as yet unclassified' }
-FamixJavaSourceTextAnchor >> containerFiles [
-	^ {}
-]
-
-{ #category : #'as yet unclassified' }
-FamixJavaSourceTextAnchor >> lineCount [
-	^ self sourceText ifNotNil: #lineCount ifNil: [ self notExistentMetricValue ]
-]

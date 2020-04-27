@@ -1,7 +1,7 @@
 Trait {
 	#name : #FamixTWithReferences,
 	#instVars : [
-		'#outgoingReferences => FMMany type: #FamixTReference opposite: #source'
+		'#outgoingReferences => FMMany type: #FamixTReference opposite: #referencer'
 	],
 	#category : #'Famix-Traits-Reference'
 }
@@ -22,7 +22,7 @@ FamixTWithReferences >> addOutgoingReference: aReference [
 
 { #category : #accessing }
 FamixTWithReferences >> outgoingReferences [
-	"Relation named: #outgoingReferences type: #FamixTReference opposite: #source"
+	"Relation named: #outgoingReferences type: #FamixTReference opposite: #referencer"
 
 	<generated>
 	<FMComment: 'References from this entity to other entities.'>

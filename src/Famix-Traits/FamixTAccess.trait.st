@@ -20,7 +20,6 @@ Trait {
 		'#variable => FMOne type: #FamixTAccessible opposite: #incomingAccesses'
 	],
 	#traits : 'FamixTAssociation',
-	#classTraits : 'FamixTAssociation classTrait',
 	#category : #'Famix-Traits-Access'
 }
 
@@ -59,10 +58,10 @@ FamixTAccess >> isAccess [
 
 { #category : #accessing }
 FamixTAccess >> isRead [
-	<FMProperty: #isRead type: #Boolean> <derived>
+	<FMProperty: #isRead type: #Boolean>
+	<derived>
 	<FMComment: 'Read access'>
-	
-	^ isWrite isNil ifTrue: [ false ] ifFalse: [ isWrite not ]
+	^ isWrite ifNil: [ false ] ifNotNil: [ isWrite not ]
 ]
 
 { #category : #accessing }

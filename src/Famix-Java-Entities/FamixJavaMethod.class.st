@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaMethod,
 	#superclass : #FamixJavaContainerEntity,
-	#traits : 'FamixTMethod + FamixTWithCaughtExceptions + FamixTWithDeclaredExceptions + FamixTWithStatements + FamixTWithThrownExceptions',
-	#classTraits : 'FamixTMethod classTrait + FamixTWithCaughtExceptions classTrait + FamixTWithDeclaredExceptions classTrait + FamixTWithStatements classTrait + FamixTWithThrownExceptions classTrait',
+	#traits : 'FamixTMethod + FamixTWithCaughtExceptions + FamixTWithDeclaredExceptions + FamixTWithThrownExceptions',
+	#classTraits : 'FamixTMethod classTrait + FamixTWithCaughtExceptions classTrait + FamixTWithDeclaredExceptions classTrait + FamixTWithThrownExceptions classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
@@ -235,12 +235,6 @@ FamixJavaMethod >> numberOfComments [
 	<FMComment: 'The number of comment fragments'>
 	<derived>
 	^ self lookUpPropertyNamed: #numberOfComments computedAs: [ self comments size ]
-]
-
-{ #category : #accessing }
-FamixJavaMethod >> numberOfComments: aNumber [
-
-	self privateState propertyAt: #numberOfComments put: aNumber
 ]
 
 { #category : #'Famix-Extensions-private' }

@@ -109,7 +109,7 @@ FmxMBRelationSide >> hasRelation [
 	^ self relation notNil
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 FmxMBRelationSide >> initialize [
 	super initialize.
 

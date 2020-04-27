@@ -457,7 +457,7 @@ SmalltalkImporter >> importClassExtension: aClassExtension [
  	]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 SmalltalkImporter >> initialize [ 
 	super initialize. 
 	methods := IdentityDictionary new. 

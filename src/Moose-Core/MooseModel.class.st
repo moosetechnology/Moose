@@ -30,15 +30,16 @@ MooseModel class >> annotation [
 ]
 
 { #category : #accessing }
-MooseModel class >> defaultPackagesToProcess [
+MooseModel class >> defaultPackagesToProcessWith: aCollectionOfPackages [
 	"We add to the creation of a metamodel all the metamodel entities of packages declaring to be part of the metamodels by default. 
 	
-	If a user of Famix wishes to add entities to all metamodels, they should add a methode #shouldBeIncludedByDefaultInMetamodels to their package manifest to return true."
+	If a user of Famix wishes to add entities to all metamodels, they should add a methode #shouldBeIncludedByDefaultInMetamodelsWith: to their package manifest to return true."
 
 	^ RPackageOrganizer default packages
-		select: [ :package | package packageManifestOrNil
-			ifNil: [ false ]
-			ifNotNil: #shouldBeIncludedByDefaultInMetamodels ]
+		select: [ :package | 
+			package packageManifestOrNil
+				ifNil: [ false ]
+				ifNotNil: [ :manifest | manifest shouldBeIncludedByDefaultInMetamodelsWith: aCollectionOfPackages ] ]
 ]
 
 { #category : #'import-export' }
@@ -179,6 +180,15 @@ MooseModel class >> importMetamodelFrom: aStream [
 	generator previewChanges	"keep shift pressed to see the changes"
 ]
 
+{ #category : #'world menu' }
+MooseModel class >> menuCommandOn: aBuilder [
+	<worldMenu>
+	(aBuilder item: #Moose)
+		order: 6.0; 
+		withSeparatorAfter;
+		icon: MooseIcons mooseIcon
+]
+
 { #category : #meta }
 MooseModel class >> metamodel [
 	self flag: #TODO. "The next line is a hack to not break everything in Moose. It should be removed later."
@@ -212,10 +222,11 @@ MooseModel class >> ownerOf: element [
 
 { #category : #meta }
 MooseModel class >> packagesToProcessToCreateMetamodel [
-	^ (Set with: self package)
-		addAll: (self allSubmetamodelsPackagesNames collect: #asPackage);
-		addAll: self defaultPackagesToProcess;
-		yourself
+	| packages |
+	packages := Set with: self package.
+	packages addAll: (self allSubmetamodelsPackagesNames collect: #asPackage).
+	packages addAll: (self defaultPackagesToProcessWith: packages).
+	^ packages
 ]
 
 { #category : #meta }
@@ -238,6 +249,7 @@ MooseModel class >> resetMetamodels [
 
 { #category : #'root model' }
 MooseModel class >> resetRoot [
+	<script>
 	MooseModelRoot resetRoot
 ]
 
@@ -345,6 +357,27 @@ MooseModel >> exportTo: aStream [
 	self exportWithMetamodel: self metamodel to: aStream
 ]
 
+{ #category : #'import-export' }
+MooseModel >> exportTo: aStream usingPrinter: aPrinter [
+	self exportWithMetamodel: self metamodel to: aStream usingPrinter: aPrinter
+]
+
+{ #category : #actions }
+MooseModel >> exportToJSONStream: aStream [
+	"Benchmarks on Network packages
+		Time millisecondsToRun: [ self exportToMSEStream: (StandardFileStream forceNewFileNamed: 'network.mse') ]
+		34408ms -> simon.denier 9/11/2009 11:12 - initial run
+		35527ms -> simon.denier 9/11/2009 11:51 - IdentityHashSet in FMRepository#elements, worse?
+		rewind
+		32236ms -> simon.denier 9/11/2009 17:46 - IdentityHashTable in FMRepositoryVisitor, a bit better but not much
+		30963ms -> simon.denier 9/15/2009 12:28 - cache for roots (UI process)
+		24661ms -> simon_denier 9/21/2009 22:32 - removing metrics from MSE
+	"
+
+	self detectEncodingOfAllFileAnchors.
+	self exportTo: aStream usingPrinter: FMJSONPrinter
+]
+
 { #category : #actions }
 MooseModel >> exportToMSEStream: aStream [
 	"Benchmarks on Network packages
@@ -358,14 +391,21 @@ MooseModel >> exportToMSEStream: aStream [
 	"
 
 	self detectEncodingOfAllFileAnchors.
-	self exportTo: aStream
+	self exportTo: aStream usingPrinter: FMMSEPrinter
 ]
 
 { #category : #'import-export' }
 MooseModel >> exportWithMetamodel: aMetamodel to: aStream [
 	(FMModel withMetamodel: aMetamodel)
 		addAll: self entities;
-		exportOn: aStream
+		exportOn: aStream usingPrinter: FMMSEPrinter
+]
+
+{ #category : #'import-export' }
+MooseModel >> exportWithMetamodel: aMetamodel to: aStream usingPrinter: aPrinter [
+	(FMModel withMetamodel: aMetamodel)
+		addAll: self entities;
+		exportOn: aStream usingPrinter: aPrinter
 ]
 
 { #category : #accessing }
@@ -487,15 +527,11 @@ MooseModel >> mooseDescriptionFor: class [
 	^ self metamodel descriptionOf: class instanceSide
 ]
 
-{ #category : #printing }
-MooseModel >> mooseDisplayStringOn: stream [
-	stream nextPutAll: self name
-]
-
 { #category : #accessing }
 MooseModel >> mooseModel [
 	"Answer the containing moose model of self, if any."
-	^ self privateState model
+
+	^ self privateState attributeAt: #privateModel ifAbsent: [ nil ]
 ]
 
 { #category : #accessing }
@@ -509,8 +545,9 @@ MooseModel >> name: aStringOrSymbol [
 	| oldName |
 	oldName := name.
 	name := aStringOrSymbol.
-	(oldName notNil and: [oldName ~= name]) ifTrue: [ 
-		self announcer announce: (MooseEntityRenamed new oldName: oldName) ]
+	(oldName notNil and: [ oldName ~= name ])
+		ifTrue: [ self resetMooseName.
+			self announcer announce: (MooseEntityRenamed new oldName: oldName) ]
 ]
 
 { #category : #'Famix-Extensions' }
@@ -530,6 +567,11 @@ MooseModel >> numberOfLinesOfCodePerClass [
 	^ self
 		lookUpPropertyNamed: #numberOfLinesOfCodePerClass
 		computedAs: [ self numberOfLinesOfCode / self numberOfClasses ]
+]
+
+{ #category : #accessing }
+MooseModel >> privateSetMooseModel: aMooseModel [
+	self privateState attributeAt: #privateModel put: aMooseModel
 ]
 
 { #category : #actions }

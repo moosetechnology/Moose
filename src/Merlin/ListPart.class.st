@@ -29,7 +29,7 @@ ListPart >> initialList: anObject [
 	list := anObject.
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 ListPart >> initialize [
 
 	super initialize.

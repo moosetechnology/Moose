@@ -6,6 +6,7 @@ Trait {
 	#instVars : [
 		'#functionOwner => FMOne type: #FamixTWithFunctions opposite: #functions'
 	],
+	#traits : 'FamixTHasSignature + FamixTNamedEntity + FamixTTypedEntity + FamixTWithStatements',
 	#category : #'Famix-Traits-Behavioral'
 }
 
@@ -48,4 +49,14 @@ FamixTFunction >> isFunction [
 
 	<generated>
 	^ true
+]
+
+{ #category : #printing }
+FamixTFunction >> mooseNameOn: stream [
+	| parent |
+	parent := self functionOwner.
+	parent
+		ifNotNil: [ parent mooseNameOn: stream.
+			stream nextPut: $. ].
+	self signature ifNotNil: [ stream nextPutAll: self signature ] ifNil: [ self name ifNotNil: [ stream nextPutAll: self name ] ]
 ]

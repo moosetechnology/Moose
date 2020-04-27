@@ -1,23 +1,16 @@
 Class {
 	#name : #FamixTestComposedCustomEntity2,
-	#superclass : #MooseEntity,
+	#superclass : #FamixTestComposedEntity,
 	#category : #'Famix-TestComposedMetamodel-Entities-Entities'
 }
 
 { #category : #meta }
 FamixTestComposedCustomEntity2 class >> annotation [
 
-	<FMClass: #CustomEntity2 super: #MooseEntity>
+	<FMClass: #CustomEntity2 super: #FamixTestComposedEntity>
 	<package: #'Famix-TestComposedMetamodel-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #meta }
-FamixTestComposedCustomEntity2 class >> metamodel [
-
-	<generated>
-	^ FamixTestComposedModel metamodel
 ]
 
 { #category : #adding }

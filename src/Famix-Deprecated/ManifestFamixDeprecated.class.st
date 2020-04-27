@@ -13,6 +13,6 @@ ManifestFamixDeprecated class >> isDeprecated [
 ]
 
 { #category : #asserting }
-ManifestFamixDeprecated class >> shouldBeIncludedByDefaultInMetamodels [
+ManifestFamixDeprecated class >> shouldBeIncludedByDefaultInMetamodelsWith: aCollectionOfPackages [
 	^ true
 ]

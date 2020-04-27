@@ -24,7 +24,6 @@ Trait {
 		'#previous => FMOne type: #FamixTAssociation opposite: #next'
 	],
 	#traits : 'FamixTSourceEntity + TAssociationMetaLevelDependency',
-	#classTraits : 'FamixTSourceEntity classTrait + TAssociationMetaLevelDependency classTrait',
 	#category : #'Famix-Traits-Association'
 }
 
@@ -37,14 +36,19 @@ FamixTAssociation classSide >> annotation [
 	^self
 ]
 
-{ #category : #accessing }
-FamixTAssociation >> from [
-	^ self source
+{ #category : #'instance creation' }
+FamixTAssociation classSide >> source: anEntity target: anotherEntity [
+	^ self new
+		source: anEntity;
+		target: anotherEntity;
+		yourself
 ]
 
-{ #category : #accessing }
-FamixTAssociation >> from: aFrom [
-	self source: aFrom
+{ #category : #'instance creation' }
+FamixTAssociation classSide >> source: anEntity target: anotherEntity model: aMooseModel [
+	^ (self source: anEntity target: anotherEntity)
+		mooseModel: aMooseModel;
+		yourself
 ]
 
 { #category : #testing }
@@ -105,14 +109,4 @@ FamixTAssociation >> target [
 { #category : #accessing }
 FamixTAssociation >> target: aTarget [
 	self explicitRequirement
-]
-
-{ #category : #accessing }
-FamixTAssociation >> to [
-	^ self target
-]
-
-{ #category : #accessing }
-FamixTAssociation >> to: aTo [
-	self target: aTo
 ]

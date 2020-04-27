@@ -28,20 +28,6 @@ FAMIXClass >> accessedAttributes [
 	^ self methodsWithoutSutbsAndConstructors asOrderedCollection flatCollect: [ :method | method accessedAttributes ]
 ]
 
-{ #category : #'Famix-Extensions-Testing' }
-FAMIXClass >> containsTheReceiverOf: anInvocation [ 
-	 
-	^anInvocation receivingVariable notNil 
-		ifTrue: 
-			[anInvocation receivingVariable class name = #FAMIXClass 
-				ifTrue: [anInvocation receivingVariable == self] 
-				ifFalse: 
-					[anInvocation receivingVariable class name = #FAMIXImplicitVariable 
-						ifTrue: [anInvocation receivingVariable belongsTo == self] 
-						ifFalse: [false]]] 
-		ifFalse: [false]
-]
-
 { #category : #initialization }
 FAMIXClass >> initialize [
 
@@ -113,18 +99,6 @@ FAMIXClass >> isInterface [
 { #category : #accessing }
 FAMIXClass >> isInterface: boolean [
 	isInterface := boolean
-]
-
-{ #category : #'Famix-Extensions-Testing' }
-FAMIXClass >> isInvokedBy: anInvocation [ 
-	 
-	^(anInvocation candidateList notNil 
-		and: [anInvocation candidateList notEmpty]) 
-		ifTrue: 
-			[anInvocation candidateList 
-				anySatisfy: 
-					[:mtd | mtd class name = #FmxStMethod and: [mtd belongsTo == self]]] 
-		ifFalse: [false]
 ]
 
 { #category : #'Famix-Extensions-metrics-support' }

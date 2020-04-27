@@ -95,7 +95,7 @@ MoosePharoImporterTask >> description [
 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MoosePharoImporterTask >> initialize [
 
 	super initialize.

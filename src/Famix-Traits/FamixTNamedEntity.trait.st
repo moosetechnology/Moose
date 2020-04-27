@@ -22,6 +22,14 @@ FamixTNamedEntity classSide >> named: aString [
 		yourself
 ]
 
+{ #category : #'instance creation' }
+FamixTNamedEntity classSide >> named: aString model: aMooseModel [
+	^ self new
+		mooseModel: aMooseModel;
+		name: aString;
+		yourself
+]
+
 { #category : #testing }
 FamixTNamedEntity >> hasUniqueMooseNameInModel [
 	" all subclasses should call the method: 'resetMooseName' if a change causes the moosename to change "

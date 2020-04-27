@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixStAttribute,
 	#superclass : #FamixStNamedEntity,
-	#traits : 'FamixTAttribute + FamixTWithClassScope',
-	#classTraits : 'FamixTAttribute classTrait + FamixTWithClassScope classTrait',
+	#traits : 'FamixTAttribute + FamixTHasModifiers + FamixTWithClassScope',
+	#classTraits : 'FamixTAttribute classTrait + FamixTHasModifiers classTrait + FamixTWithClassScope classTrait',
 	#instVars : [
 		'#hasClassScope'
 	],
@@ -55,7 +55,7 @@ FamixStAttribute >> hierarchyNestingLevel: aNumber [
 	self privateState propertyAt: #hierarchyNestingLevel put: aNumber
 ]
 
-{ #category : #'Famix-Implementation' }
+{ #category : #initialization }
 FamixStAttribute >> initialize [
 	super initialize.
 	hasClassScope := false.
@@ -66,14 +66,4 @@ FamixStAttribute >> initialize [
 FamixStAttribute >> isSharedVariable [
 
 	^ self propertyNamed: #sharedVariable ifNil: [false]
-]
-
-{ #category : #'Famix-Implementation' }
-FamixStAttribute >> mooseNameOn: aStream [ 
-	| parent |
-	parent := self belongsTo.
-	parent ifNotNil: 
-		[ parent mooseNameOn: aStream.
-		aStream nextPut: $. ].
-	self name ifNotNil: [ aStream nextPutAll: self name ].
 ]

@@ -39,7 +39,7 @@ MultiDependentCheckboxesPart >> dependenciesFor: aCollectionOfContexts [
 		ifFalse: [^ self dependenciesFor: dependenciesForContext ].
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MultiDependentCheckboxesPart >> initializeFromLabelsAndDependencies: aDictionaryWithDependencies [
 
 	self labels: (aDictionaryWithDependencies keys collect: [:each | each asString]).
@@ -75,7 +75,7 @@ MultiDependentCheckboxesPart >> revertDependenciesFor: aCollectionOfContexts [
 	ifFalse: [^ self revertDependenciesFor: revertDependenciesForContext ].
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MultiDependentCheckboxesPart >> update: aChange [
 
 	(self options includes: aChange) ifTrue: [
