@@ -11,7 +11,6 @@ Trait {
 		'#isAbstract => FMProperty'
 	],
 	#traits : '(FamixTInvocationsReceiver + (FamixTNamedEntity - {#mooseNameOn:}) + FamixTPackageable + FamixTType + FamixTWithAttributes + FamixTWithComments + FamixTWithInheritances + FamixTWithMethods + TOODependencyQueries withPrecedenceOf: FamixTType)',
-	#classTraits : '(FamixTInvocationsReceiver classTrait + FamixTNamedEntity classTrait + FamixTPackageable classTrait + FamixTType classTrait + FamixTWithAttributes classTrait + FamixTWithComments classTrait + FamixTWithInheritances classTrait + FamixTWithMethods classTrait + TOODependencyQueries classTrait withPrecedenceOf: FamixTType classTrait)',
 	#category : #'Famix-Traits-Class'
 }
 
