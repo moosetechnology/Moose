@@ -590,6 +590,20 @@ MooseModel >> remove: anElement [
 ]
 
 { #category : #'entity collection' }
+MooseModel >> removeAll [
+	"It may look ineficient.
+	However, it allows to remove all entities correctly. 
+	Setting the mooseModel of all entities at nil.
+	And we can iterate over the same collection (ie entityStorage)."
+	self entities
+		do: [ :anElement | 
+			anElement privateSetMooseModel: nil.
+			self privateState flushGroups.
+			self announcer announce: (MooseEntityRemoved new entity: anElement) ].
+	self entityStorage removeAll
+]
+
+{ #category : #'entity collection' }
 MooseModel >> removeAll: collection [ 
 	 collection do: [:each | self remove: each]. 
 ]
