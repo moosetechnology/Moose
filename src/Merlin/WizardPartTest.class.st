@@ -4,7 +4,7 @@ Class {
 	#category : #'Merlin-Tests'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 WizardPartTest class >> packageNamesUnderTest [
 	 ^#('Merlin')
 ]

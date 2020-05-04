@@ -15,19 +15,19 @@ FamixJavaGlobalVariable class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixJavaGlobalVariable >> isPrivate [
 	^ self isPublic not
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixJavaGlobalVariable >> isPublic [
 	"checker whether I am called outside the module in which I am defined"
 	^ self incomingAccesses anySatisfy: [:inv |
 			inv accessor parentScope ~~ self parentScope]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 FamixJavaGlobalVariable >> printOn: aStream [ 
 	| parent |
 	parent := self belongsTo.

@@ -15,13 +15,13 @@ FamixJavaContainerEntity class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #adding }
 FamixJavaContainerEntity >> addClass: aClass [
 	
 	types add: aClass
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Java' }
 FamixJavaContainerEntity >> mooseNameWithDots [
 	^ self mooseName ifNotNil: [ '.' join: (self mooseName substrings: '::') ]
 ]

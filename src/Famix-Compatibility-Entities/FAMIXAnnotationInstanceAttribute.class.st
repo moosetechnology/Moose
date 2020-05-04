@@ -15,7 +15,7 @@ FAMIXAnnotationInstanceAttribute class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXAnnotationInstanceAttribute >> name [
 	^ self annotationTypeAttribute ifNotNil: #name
 ]

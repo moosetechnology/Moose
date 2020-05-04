@@ -15,7 +15,7 @@ FamixJavaAnnotationInstance class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 FamixJavaAnnotationInstance >> mooseNameOn: aStream [
 	self annotationType ifNotNil: [ :at | at mooseNameOn: aStream ].
 	aStream nextPut: $(.
@@ -25,7 +25,7 @@ FamixJavaAnnotationInstance >> mooseNameOn: aStream [
 	self annotatedEntity ifNotNil: [ :ae | ae mooseNameOn: aStream ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixJavaAnnotationInstance >> name [
 	^ String
 		streamContents: [ :stream | 

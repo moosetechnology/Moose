@@ -15,12 +15,12 @@ FamixJavaEnum class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixJavaEnum >> values [
 	^ self enumValues
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixJavaEnum >> values: anObject [
 	self enumValues: anObject
 ]

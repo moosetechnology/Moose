@@ -7,7 +7,7 @@ Class {
 	#category : #'Moose-Finder'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #building }
 MooseSendersBrowser >> buildBrowser [ 
 	browser := GLMFinder new.
 	browser title: 'Senders browser'.

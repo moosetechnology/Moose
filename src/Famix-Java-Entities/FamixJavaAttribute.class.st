@@ -18,7 +18,7 @@ FamixJavaAttribute class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixJavaAttribute >> hasClassScope [
 	<FMProperty: #hasClassScope type: #Boolean>
 	<FMComment: 'True if class-side attribute'>
@@ -26,13 +26,13 @@ FamixJavaAttribute >> hasClassScope [
 	^ hasClassScope
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixJavaAttribute >> hasClassScope: aBoolean [
 
 	hasClassScope := aBoolean
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #metrics }
 FamixJavaAttribute >> hierarchyNestingLevel [
 	<FMProperty: #hierarchyNestingLevel type: #Number>
 	<derived>
@@ -43,7 +43,7 @@ FamixJavaAttribute >> hierarchyNestingLevel [
 		computedAs: [self belongsTo hierarchyNestingLevel]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #metrics }
 FamixJavaAttribute >> hierarchyNestingLevel: aNumber [
 
 	self privateState propertyAt: #hierarchyNestingLevel put: aNumber
@@ -56,7 +56,7 @@ FamixJavaAttribute >> initialize [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 FamixJavaAttribute >> printOn: aStream [ 
 	| parent |
 	parent := self belongsTo.

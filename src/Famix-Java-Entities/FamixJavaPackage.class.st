@@ -21,7 +21,7 @@ FamixJavaPackage >> abstractClasses [
 	^ self classes select: [:c | c isAbstract]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions-metrics' }
 FamixJavaPackage >> abstractness [
 	"Abstractness is the ratio between the number of abstract classes and the total number of classes in a package, in the range [0, 1]. 0 means the package is fully concrete, 1 it is fully abstract."
 
@@ -40,7 +40,7 @@ FamixJavaPackage >> addChildNamedEntity: aNamedEntity [
 	childEntities add: aNamedEntity
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions-metrics' }
 FamixJavaPackage >> afferentCoupling [
 	"Afferent coupling for a package is the number of classes that depend upon this package"
 
@@ -50,13 +50,13 @@ FamixJavaPackage >> afferentCoupling [
 	^ ((self queryIncomingDependencies atScope: FamixTType) outOfParentUsing: FamixTPackage) size
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions' }
 FamixJavaPackage >> allClasses [
 	self flag: #check. "Maybe we should just have #classes later..."
 	^ self classes
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions-metrics' }
 FamixJavaPackage >> bunchCohesion [
 	"Computing cohesion (Bunch formula)"
 
@@ -71,7 +71,7 @@ FamixJavaPackage >> bunchCohesion [
 	^ intraConnectivities / myClasses size squared asFloat
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions-metrics' }
 FamixJavaPackage >> bunchCouplingWith: aPackage [
 	"Computing coupling (Bunch formula) between receiver and aPackage"
 
@@ -110,7 +110,7 @@ FamixJavaPackage >> bunchCouplingWithAll [
 	^ interConnectivities / (2 * myClasses size * (allClasses size - myClasses size)) asFloat
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions' }
 FamixJavaPackage >> childrenOfMyKind [
 	^ self childEntities allWithSubTypesOf: self class
 ]
@@ -130,7 +130,7 @@ FamixJavaPackage >> containedEntities: collection [
 	self definedClasses: collection.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions-metrics' }
 FamixJavaPackage >> distance [
 	"D = A + I - 1. A package should be balanced between abstractness and instability, i.e., somewhere between abstract and stable or concrete and unstable. This rule defines the main sequence by the equation A + I - 1 = 0. D is the distance to the main sequence."
 	<FMProperty: #distance type: #Number>
@@ -147,7 +147,7 @@ FamixJavaPackage >> distance [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions-metrics' }
 FamixJavaPackage >> efferentCoupling [
 	"Efferent coupling for a package is the number of classes it depends upon"
 
@@ -157,7 +157,7 @@ FamixJavaPackage >> efferentCoupling [
 	^ ((self queryAllOutgoing outOfParentUsing: FamixTPackage) atScope: FamixTType) size
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions-metrics' }
 FamixJavaPackage >> instability [
 	"I =	Ce(P)/(Ce(P)+Ca(P)), in the range [0, 1]. 0 means package is maximally stable (i.e., no dependency to other packages and can not change without big consequences), 1 means it is unstable."
 

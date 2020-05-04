@@ -15,24 +15,24 @@ FamixJavaAnnotationType class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'accessing-query' }
 FamixJavaAnnotationType >> annotatedEntities [
 	^ self instances collect: [:each | each annotatedEntity ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'accessing-query' }
 FamixJavaAnnotationType >> annotatedEntitiesGroup [
 	<navigation: 'Annotated entities'>
 	^ self annotatedEntities asMooseGroup
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixJavaAnnotationType >> typeContainer [
 
 	^ self annotationTypesContainer
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixJavaAnnotationType >> typeContainer: anObject [
 
 	^ self annotationTypesContainer: anObject
