@@ -4,7 +4,7 @@ Class {
 	#category : #'Merlin-Parts'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #rendering }
 DirectoryChoosePart >> merlinRendering [
 
 	^ self renderer merlinDirectoryChooseRenderingFor: self

@@ -26,7 +26,7 @@ FamixJavaImplicitVariable >> mooseNameOn: stream [
 	self name ifNotNil: [ stream nextPutAll: self name ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 FamixJavaImplicitVariable >> printOn: aStream [ 
 	| parent |
 	parent := self parentBehaviouralEntity.

@@ -15,7 +15,7 @@ FamixJavaSourcedEntity class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-SourceAnchor' }
 FamixJavaSourcedEntity >> fileAnchorPath: aString startLine: anInteger startColumn: anInteger2 endLine: anInteger3 endColumn: anInteger4 [
 	"I need to be called after the mooseModel is set."
 
@@ -30,7 +30,7 @@ FamixJavaSourcedEntity >> fileAnchorPath: aString startLine: anInteger startColu
 				model: self mooseModel)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-SourceAnchor' }
 FamixJavaSourcedEntity >> fileAnchorPath: aString startPos: anInteger endPos: anotherInteger [
 	"I need to be called after the mooseModel is set."
 
@@ -43,7 +43,7 @@ FamixJavaSourcedEntity >> fileAnchorPath: aString startPos: anInteger endPos: an
 				model: self mooseModel)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions' }
 FamixJavaSourcedEntity >> numberOfJavaNullChecks [
 	<FMProperty: #numberOfJavaNullChecks type: #Number> <derived>
 	^self
@@ -59,7 +59,7 @@ FamixJavaSourcedEntity >> sourceLanguage [
 	^ self sourceLanguageOr: FamixJavaUnknownSourceLanguage
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions' }
 FamixJavaSourcedEntity >> structuralChildren [ 
 	^ #()
 ]

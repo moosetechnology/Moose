@@ -15,7 +15,7 @@ FamixJavaNamespace class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions-metrics' }
 FamixJavaNamespace >> abstractness [
 	"Abstractness is the ratio between the number of abstract classes and the total number of classes in a package, in the range [0, 1]. 0 means the package is fully concrete, 1 it is fully abstract."
 
@@ -35,7 +35,7 @@ FamixJavaNamespace >> abstractness: aNumber [
 	self privateState propertyAt: #abstractness put: aNumber
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions-metrics' }
 FamixJavaNamespace >> afferentCoupling [
 	<FMProperty: #afferentCoupling type: #Number>
 	<derived>
@@ -55,7 +55,7 @@ FamixJavaNamespace >> allParentsUpTo: aNamespace [
 	^ self parentScope withAllParentsUpTo: aNamespace
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions-metrics' }
 FamixJavaNamespace >> bunchCohesion [
 	"Computing cohesion (Bunch formula)"
 
@@ -76,7 +76,7 @@ FamixJavaNamespace >> bunchCohesion: aNumber [
 	self privateState propertyAt: #bunchCohesion put: aNumber
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions-metrics' }
 FamixJavaNamespace >> bunchCouplingWith: aNamespace [
 	"Computing coupling (Bunch formula) between receiver and aNamespace"
 
@@ -117,7 +117,7 @@ FamixJavaNamespace >> bunchCouplingWithAll [
 	^ interConnectivities / (2 * myClasses size * (allClasses size - myClasses size)) asFloat
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions' }
 FamixJavaNamespace >> childrenOfMyKind [
 	^ self childScopes
 ]
@@ -132,7 +132,7 @@ FamixJavaNamespace >> containedEntities: collection [
 	self types: collection.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions-metrics' }
 FamixJavaNamespace >> distance [
 	"D = A + I - 1. A package should be balanced between abstractness and instability, i.e., somewhere between abstract and stable or concrete and unstable. This rule defines the main sequence by the equation A + I - 1 = 0. D is the distance to the main sequence."
 	<FMProperty: #distance type: #Number>
@@ -153,7 +153,7 @@ FamixJavaNamespace >> distance: aNumber [
 	self privateState propertyAt: #distance put: aNumber
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions-metrics' }
 FamixJavaNamespace >> efferentCoupling [
 	"Efferent coupling for a module is the number of classes it depends upon"
 
@@ -169,7 +169,7 @@ FamixJavaNamespace >> efferentCoupling: aNumber [
 	self privateState propertyAt: #efferentCoupling put: aNumber
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions-metrics' }
 FamixJavaNamespace >> instability [
 	"I =	Ce(P)/(Ce(P)+Ca(P)), in the range [0, 1]. 0 means package is maximally stable (i.e., no dependency to other packages and can not change without big consequences), 1 means it is unstable."
 	<FMProperty: #instability type: #Number>
