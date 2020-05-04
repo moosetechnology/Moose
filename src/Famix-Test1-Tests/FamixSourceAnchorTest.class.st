@@ -58,8 +58,8 @@ FamixSourceAnchorTest >> testImportFileAnchors [
 	self assert: aMethod sourceAnchor fileName equals: 'afile'.
 	self assert: aMethod sourceAnchor startLine equals: 3.
 	self assert: aMethod sourceAnchor endLine equals: 30.
-	self assert: aMethod sourceAnchor completeText isEmpty.
-	self assert: aMethod sourceText isEmpty.
+	self assertEmpty: aMethod sourceAnchor completeText.
+	self assertEmpty: aMethod sourceText.
 	self assert: aMethod sourceAnchor lineCount equals: 28.
 	self deny: aMethod sourceAnchor hasSourceText.
 	self assert: aMethod numberOfLinesOfCode equals: 28.

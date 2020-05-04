@@ -282,8 +282,8 @@ FmxMBTraitTest >> testSimpleTrait [
 	self assert: generated isNotNil.
 	self assert: generated isClass.
 	self assert: generated superclass name equals: 'Trait'.
-	self assert: generated slots isEmpty.
-	self assert: generated instanceSide localSelectors isEmpty.
+	self assertEmpty: generated slots.
+	self assertEmpty: generated instanceSide localSelectors.
 	self assertCollection: generated classSide localSelectors sorted equals: #(annotation)
 ]
 
@@ -315,15 +315,13 @@ FmxMBTraitTest >> testTraitGeneralization [
 
 { #category : #tests }
 FmxMBTraitTest >> testTraitTestingSelectors [
-
 	"test automatic generation of testing methods in the entities hierarchy"
 
 	| simpleClass |
-	
-	simpleClass := builder newTraitNamed: #TComment.	
-	self assert: simpleClass testingSelectors isEmpty.
+	simpleClass := builder newTraitNamed: #TComment.
+	self assertEmpty: simpleClass testingSelectors.
 	simpleClass withTesting.
-	self assertCollection: simpleClass testingSelectors hasSameElements: #(isComment).
+	self assertCollection: simpleClass testingSelectors hasSameElements: #(isComment)
 ]
 
 { #category : #tests }

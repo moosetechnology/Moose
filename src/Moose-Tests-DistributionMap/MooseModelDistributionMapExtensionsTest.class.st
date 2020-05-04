@@ -23,8 +23,7 @@ MooseModelDistributionMapExtensionsTest >> testPropertiesForDistributionMap [
 
 { #category : #tests }
 MooseModelDistributionMapExtensionsTest >> testPropertiesOnEmpty [
-
-	self assert: DistributionMap new properties isEmpty
+	self assertEmpty: DistributionMap new properties
 ]
 
 { #category : #tests }

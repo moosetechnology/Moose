@@ -29,7 +29,7 @@ MooseMSEImporterTest >> testComplex [
 	(FAMIX.Package (id: 202) (name ''aPackage'') (parentPackage (ref: 201)))
 )' readStream.
 
-	self assert: mooseModel entities isNotEmpty.
+	self denyEmpty: mooseModel entities.
 	self assert: ((mooseModel allPackages collect: #name) includes: 'aPackage').
 	self assert: ((mooseModel allClasses collect: #name) includes: 'ClassA')
 ]
@@ -38,7 +38,7 @@ MooseMSEImporterTest >> testComplex [
 MooseMSEImporterTest >> testOneClass [
 	| mooseModel |
 	mooseModel := self readMSEStream: '((FAMIX.Class (name ''ClassA'')))' readStream.
-	self assert: mooseModel entities isNotEmpty.
+	self denyEmpty: mooseModel entities.
 	self assert: (mooseModel allClasses collect: #name) first equals: 'ClassA'
 ]
 
@@ -51,7 +51,7 @@ MooseMSEImporterTest >> testOneClassAndOnePackage [
 	(FAMIX.Class (id: 2) (name ''ClassA'') (parentPackage (ref: 201)))
 	(FAMIX.Package (id: 201) (name ''aPackage''))	
 )' readStream.
-	self assert: mooseModel entities isNotEmpty.
+	self denyEmpty: mooseModel entities.
 	self assert: (mooseModel allPackages collect: #name) first equals: 'aPackage'.
 	self assert: (mooseModel allClasses collect: #name) first equals: 'ClassA'
 ]
@@ -61,7 +61,7 @@ MooseMSEImporterTest >> testOnePackage [
 	| mooseModel |
 	mooseModel := self readMSEStream: '((FAMIX.Package (name ''PackageA'')))' readStream.
 
-	self assert: mooseModel entities isNotEmpty.
+	self denyEmpty: mooseModel entities.
 	self assert: ((mooseModel allPackages collect: #name) includes: 'PackageA')
 ]
 
@@ -69,7 +69,7 @@ MooseMSEImporterTest >> testOnePackage [
 MooseMSEImporterTest >> testOnePrimitiveType [
 	| mooseModel |
 	mooseModel := self readMSEStream: '((FAMIX.PrimitiveType (name ''int'')))' readStream.
-	self assert: mooseModel entities isNotEmpty.
+	self denyEmpty: mooseModel entities.
 	self assert: (mooseModel allPrimitiveTypes collect: #name) first equals: 'int'
 ]
 
@@ -100,7 +100,7 @@ MooseMSEImporterTest >> testSimple [
 	| mooseSample mooseModel classA |
 	mooseSample := MooseSampleData new.
 	mooseModel := self readMSEStream: mooseSample modelVersion1 readStream.
-	self assert: mooseModel entities isNotEmpty.
+	self denyEmpty: mooseModel entities.
 	self assert: (mooseModel allClasses collect: #name) asSortedCollection asArray equals: {'ClassA' . 'ClassB'}.
 	self assert: (mooseModel allPackages collect: #name) asArray equals: {'aPackage' . 'aPackage'}.
 	classA := mooseModel entityNamed: #'aNamespace::ClassA'.

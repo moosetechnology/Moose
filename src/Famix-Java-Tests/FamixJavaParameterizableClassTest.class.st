@@ -29,5 +29,5 @@ FamixJavaParameterizableClassTest >> testParameterTypes [
 	self assert: aParameterizableClass parameters size equals: 1.
 	self assert: aParameterizableClass parameters first equals: (model allParameterTypes entityNamed: #'ParameterizableClassB::C').
 	aParameterizableClass := model allParameterizableClasses entityNamed: #ParameterizableClassC.
-	self assert: aParameterizableClass parameters isEmpty
+	self assertEmpty: aParameterizableClass parameters
 ]

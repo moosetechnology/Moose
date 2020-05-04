@@ -96,17 +96,13 @@ FmxMBBehaviorTest >> testPluralOf [
 
 { #category : #tests }
 FmxMBBehaviorTest >> testTestingSelectors [
-
 	"test automatic generation of testing methods in the entities hierarchy"
 
 	| simpleClass |
-	
-	simpleClass := self newEntityNamed: #Comment.	
-	self assert: simpleClass testingSelectors isEmpty.
+	simpleClass := self newEntityNamed: #Comment.
+	self assertEmpty: simpleClass testingSelectors.
 	simpleClass withTesting.
-	self assertCollection: simpleClass testingSelectors hasSameElements: #(isComment).
-	
-
+	self assertCollection: simpleClass testingSelectors hasSameElements: #(isComment)
 ]
 
 { #category : #tests }

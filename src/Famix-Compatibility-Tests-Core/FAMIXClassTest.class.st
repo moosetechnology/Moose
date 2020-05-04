@@ -20,5 +20,5 @@ FAMIXClassTest >> testIsInterface [
 
 { #category : #tests }
 FAMIXClassTest >> testModifiers [
-	self assert: self actualClass new modifiers isEmpty
+	self assertEmpty: self actualClass new modifiers
 ]
