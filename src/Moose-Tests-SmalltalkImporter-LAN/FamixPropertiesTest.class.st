@@ -51,7 +51,7 @@ FamixPropertiesTest >> testAttributesOfStubClasses [
 FamixPropertiesTest >> testClassAllProperties [
 	| class |
 	class := self model entityNamed: LANNode mooseName.
-	self denyEmpty: (class allDeclaredProperties select: [ :each | each name = #modifiers ])
+	self denyEmpty: (class allDeclaredProperties select: [ :each | each name = #visibility ])
 ]
 
 { #category : #testing }

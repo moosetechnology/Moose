@@ -1,7 +1,7 @@
 Trait {
 	#name : #FamixTHasModifiers,
 	#instVars : [
-		'#modifiers => FMProperty'
+		'#visibility => FMProperty'
 	],
 	#category : #'Famix-Traits-Modifiers'
 }
@@ -13,11 +13,6 @@ FamixTHasModifiers classSide >> annotation [
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
-]
-
-{ #category : #accessing }
-FamixTHasModifiers >> addModifier: aString [
-	self modifiers add: aString
 ]
 
 { #category : #accessing }
@@ -35,105 +30,94 @@ FamixTHasModifiers >> bePublic [
 	^ self isPublic: true
 ]
 
-{ #category : #testing }
-FamixTHasModifiers >> isAbstract [
-	<FMProperty: #isAbstract type: #Boolean> <derived>
-	<FMComment: 'Flag true for abstract entities. Language dependent.'>
-	
-	^ self modifiers includes: #abstract
-]
-
-{ #category : #accessing }
-FamixTHasModifiers >> isAbstract: aBoolean [
-	^ self modifierSet: aBoolean for: #abstract
-]
-
 { #category : #accessing }
 FamixTHasModifiers >> isFinal [
-	<FMProperty: #isFinal type: #Boolean> <derived>
-	<FMComment: 'Flag true for entities defined as being final. Language dependent.'>	
-
-	^ self modifiers includes: #final
+	<FMProperty: #isFinal type: #Boolean>
+	<derived>
+	<FMComment: 'Flag true for entities defined as being final. Language dependent.'>
+	^ self visibility = #final
 ]
 
 { #category : #accessing }
 FamixTHasModifiers >> isFinal: aBoolean [
-	^ self modifierSet: aBoolean for: #final
+	^ aBoolean
+		ifTrue: [ self visibility: #final ]
+		ifFalse: [ self ]
 ]
 
 { #category : #accessing }
 FamixTHasModifiers >> isPackage [
-	<FMProperty: #isPackage type: #Boolean> <derived>
-	<FMComment: 'Flag true for entities that have a package visibility. Language dependent.'>
-	
-	^ self modifiers includes: #package
+	<FMProperty: #isPackage type: #Boolean>
+	<derived>
+	<FMComment:
+		'Flag true for entities that have a package visibility. Language dependent.'>
+	^ self visibility = #package
 ]
 
 { #category : #accessing }
 FamixTHasModifiers >> isPackage: aBoolean [
-	^ self modifierSet: aBoolean for: #package
+	^ aBoolean
+		ifTrue: [ self visibility: #package ]
+		ifFalse: [ self ]
 ]
 
 { #category : #accessing }
 FamixTHasModifiers >> isPrivate [
-	<FMProperty: #isPrivate type: #Boolean> <derived>
-	<FMComment: 'Flag true for entities invisible out of their owner scope. Language dependent.'>
-	
-	^ self modifiers includes: #private
+	<FMProperty: #isPrivate type: #Boolean>
+	<derived>
+	<FMComment:
+		'Flag true for entities invisible out of their owner scope. Language dependent.'>
+	^ self visibility = #private
 ]
 
 { #category : #accessing }
 FamixTHasModifiers >> isPrivate: aBoolean [
-	^ self modifierSet: aBoolean for: #private
+	^ aBoolean
+		ifTrue: [ self visibility: #private ]
+		ifFalse: [ self ]
 ]
 
 { #category : #accessing }
 FamixTHasModifiers >> isProtected [
-	<FMProperty: #isProtected type: #Boolean> <derived>
+	<FMProperty: #isProtected type: #Boolean>
+	<derived>
 	<FMComment: 'Flag true for protected entities, depending on language semantics.'>
-	
-	^ self modifiers includes: #protected
+	^ self visibility = #protected
 ]
 
 { #category : #accessing }
 FamixTHasModifiers >> isProtected: aBoolean [
-	^ self modifierSet: aBoolean for: #protected
+	^ aBoolean
+		ifTrue: [ self visibility: #protected ]
+		ifFalse: [ self ]
 ]
 
 { #category : #accessing }
 FamixTHasModifiers >> isPublic [
-	<FMProperty: #isPublic type: #Boolean> <derived>
-	<FMComment: 'Flag true for entities accessible from anywhere. Language dependent.'>	
-
-	^ self modifiers includes: #public
+	<FMProperty: #isPublic type: #Boolean>
+	<derived>
+	<FMComment: 'Flag true for entities accessible from anywhere. Language dependent.'>
+	^ self visibility = #public
 ]
 
 { #category : #accessing }
 FamixTHasModifiers >> isPublic: aBoolean [
-	^ self modifierSet: aBoolean for: #public
+	^ aBoolean
+		ifTrue: [ self visibility: #public ]
+		ifFalse: [ self ]
 ]
 
 { #category : #accessing }
-FamixTHasModifiers >> modifierSet: aBoolean for: aSymbol [
-	^ aBoolean ifTrue: [self addModifier: aSymbol] ifFalse: [self removeModifier: aSymbol]
-]
+FamixTHasModifiers >> visibility [
 
-{ #category : #accessing }
-FamixTHasModifiers >> modifiers [
-
-	<FMProperty: #modifiers type: #String>
-	<multivalued>
-	<FMComment: 'Generic container for language dependent modifiers.'>
-	^ modifiers ifNil: [ modifiers := Set new ]
-]
-
-{ #category : #accessing }
-FamixTHasModifiers >> modifiers: anObject [
+	<FMProperty: #visibility type: #String>
 	<generated>
-	modifiers := anObject
+	<FMComment: 'Generic container for language dependent visibility(public, private, protected, default, ...).'>
+	^ visibility
 ]
 
 { #category : #accessing }
-FamixTHasModifiers >> removeModifier: aString [
-	self modifiers remove: aString ifAbsent: []
+FamixTHasModifiers >> visibility: anObject [
+	<generated>
+	visibility := anObject
 ]
