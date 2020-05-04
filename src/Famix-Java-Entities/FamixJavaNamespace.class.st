@@ -272,12 +272,6 @@ FamixJavaNamespace >> numberOfLinesOfCode [
 				into: [ :sum :each | sum + each numberOfLinesOfCode]]
 ]
 
-{ #category : #'Famix-Implementation' }
-FamixJavaNamespace >> numberOfLinesOfCode: aNumber [
-
-	self privateState propertyAt: #numberOfLinesOfCode put: aNumber
-]
-
 { #category : #accessing }
 FamixJavaNamespace >> numberOfMethods [
 	<FMProperty: #numberOfMethods type: #Number>

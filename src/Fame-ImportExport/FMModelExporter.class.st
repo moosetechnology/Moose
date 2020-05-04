@@ -51,11 +51,6 @@ Class {
 	#category : #'Fame-ImportExport-Exporters'
 }
 
-{ #category : #'instance creation' }
-FMModelExporter class >> new [
-	^self basicNew initialize
-]
-
 { #category : #exporting }
 FMModelExporter >> export: aCollectionOfElements [
 	printer inDocumentDo: [ 

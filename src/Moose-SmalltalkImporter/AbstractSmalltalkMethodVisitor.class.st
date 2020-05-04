@@ -285,14 +285,6 @@ AbstractSmalltalkMethodVisitor >> visitMethodNode: aMethodNode [
 	self classifyMethodNode: aMethodNode
 ]
 
-{ #category : #visiting }
-AbstractSmalltalkMethodVisitor >> visitNode: aNode [ 
-	"	aNode comments do: [ :comment | 
-		comment halt ]." 
-	 
-	^aNode acceptVisitor: self
-]
-
 { #category : #'visitor-double dispatching' }
 AbstractSmalltalkMethodVisitor >> visitPragmaNode: aPragmaNode [
 	| annotationInstance annotationType |

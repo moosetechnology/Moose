@@ -30,15 +30,6 @@ ChooseFilePart >> initialize [
 	self selectedPathName: FileSystem disk workingDirectory fullName.
 ]
 
-{ #category : #accessing }
-ChooseFilePart >> latePopulateContents [
-	
-	
-
-	
-	
-]
-
 { #category : #rendering }
 ChooseFilePart >> merlinRendering [
 

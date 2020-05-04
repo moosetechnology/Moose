@@ -23,15 +23,6 @@ FAMIXBehaviouralEntity >> clientBehaviours [
 ]
 
 { #category : #'Famix-Extensions-private' }
-FAMIXBehaviouralEntity >> computeNumberOfLinesOfCode [
-	self hasSourceAnchor 
-		ifTrue: [ ^ self sourceAnchor lineCount ].
-	^ (self sourceText = '')
-			ifTrue: [ self notExistentMetricValue ]
-			ifFalse: [ self sourceText lineCount ]
-]
-
-{ #category : #'Famix-Extensions-private' }
 FAMIXBehaviouralEntity >> computeNumberOfLinesOfCodeIfSmalltalk [
 	^ (RBVisitorForFAMIXMetrics for: self) numberOfLinesOfCode
 ]
@@ -99,12 +90,6 @@ FAMIXBehaviouralEntity >> numberOfComments [
 ]
 
 { #category : #'Famix-Extensions' }
-FAMIXBehaviouralEntity >> numberOfComments: aNumber [
-
-	self privateState propertyAt: #numberOfComments put: aNumber
-]
-
-{ #category : #'Famix-Extensions' }
 FAMIXBehaviouralEntity >> numberOfConditionals [
 	<FMProperty: #numberOfConditionals type: #Number>
 	<FMComment: 'The number of conditionals in a method'>
@@ -117,21 +102,6 @@ FAMIXBehaviouralEntity >> numberOfConditionals [
 FAMIXBehaviouralEntity >> numberOfConditionals: aNumber [
 
 	self privateState propertyAt: #numberOfConditionals put: aNumber
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXBehaviouralEntity >> numberOfLinesOfCode [
-	<FMProperty: #numberOfLinesOfCode type: #Number>
-	<FMComment: 'The number of lines of code in a method.'>
-	^ self
-		lookUpPropertyNamed: #numberOfLinesOfCode
-		computedAs: [ self computeNumberOfLinesOfCode ]
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXBehaviouralEntity >> numberOfLinesOfCode: aNumber [
-
-	self privateState propertyAt: #numberOfLinesOfCode put: aNumber
 ]
 
 { #category : #'Famix-Extensions' }

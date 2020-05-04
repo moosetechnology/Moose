@@ -15,15 +15,6 @@ FamixJavaType class >> annotation [
 	^self
 ]
 
-{ #category : #'Famix-Java' }
-FamixJavaType >> allAnnotationInstances [
-	| result |
-	result := OrderedCollection new.
-	result addAll: self annotationInstances.
-	result addAll: (self methods flatCollect: [ :each | each annotationInstances ]).
-	^ result 
-]
-
 { #category : #'Famix-Extensions' }
 FamixJavaType >> allAnnotationTypes [
 	^ self allAnnotationInstances collectAsSet: #annotationType

@@ -277,16 +277,6 @@ FmxMBBehavior >> isMetamodelTrait [
 ]
 
 { #category : #accessing }
-FmxMBBehavior >> name [
-	^ name
-]
-
-{ #category : #accessing }
-FmxMBBehavior >> name: anObject [
-	name := anObject
-]
-
-{ #category : #accessing }
 FmxMBBehavior >> packageName [
 	^ packageName
 ]

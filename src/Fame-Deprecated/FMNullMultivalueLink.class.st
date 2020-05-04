@@ -150,11 +150,6 @@ FMNullMultivalueLink >> unsafeRemove: anElement [
 ]
 
 { #category : #accessing }
-FMNullMultivalueLink >> value [
-	^self
-]
-
-{ #category : #accessing }
 FMNullMultivalueLink >> value: aCollection [
 	aCollection ifEmpty: [ ^self ].
 	^self noMoreNull value: aCollection

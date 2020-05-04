@@ -5,11 +5,6 @@ Class {
 }
 
 { #category : #private }
-MooseAllWithTypeOnTrait >> isResumable [ 
-	^ false
-]
-
-{ #category : #private }
 MooseAllWithTypeOnTrait >> messageText [
 	^ 'Use #allUsing: with Traits'
 ]
