@@ -18,6 +18,7 @@ Trait {
 		'#sender => FMOne type: #FamixTWithInvocations opposite: #outgoingInvocations'
 	],
 	#traits : 'FamixTAssociation',
+	#classTraits : 'FamixTAssociation classTrait',
 	#category : #'Famix-Traits-Invocation'
 }
 
@@ -44,9 +45,7 @@ FamixTInvocation >> addCandidate: aBehaviouralEntity [
 
 { #category : #accessing }
 FamixTInvocation >> anyCandidate [
-	^self candidates isEmpty
-		ifFalse: [self candidates at: 1]
-		ifTrue: [nil]
+	^ self candidates ifEmpty: [ nil ] ifNotEmpty: [ self candidates at: 1 ]
 ]
 
 { #category : #accessing }

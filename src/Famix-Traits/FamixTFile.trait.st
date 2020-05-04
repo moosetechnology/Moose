@@ -7,6 +7,7 @@ Trait {
 		'#entities => FMMany type: #FamixTWithFiles opposite: #containerFiles'
 	],
 	#traits : 'FamixTFileSystemEntity',
+	#classTraits : 'FamixTFileSystemEntity classTrait',
 	#category : #'Famix-Traits-File'
 }
 
@@ -154,9 +155,9 @@ FamixTFile >> totalNumberOfLinesOfText [
 	<derived>
 	^ self
 		lookUpPropertyNamed: #totalNumberOfLinesOfText
-		computedAs: [ self sourceText isEmpty
-				ifFalse: [ self sourceText lineCount ]
-				ifTrue: [ (self name isNotNil and: [ self exists ])
-					ifTrue: [ (self sourceText select: [ :each | each = Character cr ]) size + 1 ]
-					ifFalse: [ 0 ] ] ]
+		computedAs: [ self sourceText
+				ifEmpty: [ (self name isNotNil and: [ self exists ])
+						ifTrue: [ (self sourceText select: [ :each | each = Character cr ]) size + 1 ]
+						ifFalse: [ 0 ] ]
+				ifNotEmpty: [ self sourceText lineCount ] ]
 ]

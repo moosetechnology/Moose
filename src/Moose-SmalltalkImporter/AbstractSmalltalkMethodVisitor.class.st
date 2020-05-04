@@ -86,15 +86,10 @@ AbstractSmalltalkMethodVisitor >> initializeForMethod: aMethod inClass: aClass [
 ]
 
 { #category : #'method-classifying' }
-AbstractSmalltalkMethodVisitor >> matchConstant: aMethodNode [ 
-	aMethodNode body isSequence 
-		ifTrue: 
-			[aMethodNode body statements isEmpty 
-				ifFalse: 
-					[aMethodNode body statements last isReturn 
-						ifTrue: 
-							[aMethodNode body statements last value isLiteralNode
-								ifTrue: [famixMethod kind: #constant]]]]
+AbstractSmalltalkMethodVisitor >> matchConstant: aMethodNode [
+	aMethodNode body isSequence
+		ifTrue: [ aMethodNode body statements
+				ifNotEmpty: [ :statements | statements last isReturn ifTrue: [ statements last value isLiteralNode ifTrue: [ famixMethod kind: #constant ] ] ] ]
 ]
 
 { #category : #'method-classifying' }
@@ -104,15 +99,15 @@ AbstractSmalltalkMethodVisitor >> matchConstructor: aMethodNode [
 
 { #category : #'method-classifying' }
 AbstractSmalltalkMethodVisitor >> matchGetter: aMethodNode [
-	| return |
-	aMethodNode arguments isEmpty
-		ifTrue: [ aMethodNode body isSequence
-				ifTrue: [ aMethodNode body statements size = 1
-						ifTrue: [ return := aMethodNode body statements first.
-							return isReturn
-								ifTrue: [ return value isVariable
-										ifTrue: [ (methodScope resolve: return value name ifAbsent: nil)
-												ifNotNil: [ :attribute | attribute class = self importer factory attribute ifTrue: [ famixMethod kind: #getter ] ] ] ] ] ] ]
+	aMethodNode arguments ifNotEmpty: [ ^ self ].
+	aMethodNode body isSequence
+		ifTrue: [ aMethodNode body statements size = 1
+				ifTrue: [ | return |
+					return := aMethodNode body statements first.
+					return isReturn
+						ifTrue: [ return value isVariable
+								ifTrue: [ (methodScope resolve: return value name ifAbsent: nil)
+										ifNotNil: [ :attribute | attribute class = self importer factory attribute ifTrue: [ famixMethod kind: #getter ] ] ] ] ] ]
 ]
 
 { #category : #'method-classifying' }
@@ -221,11 +216,8 @@ AbstractSmalltalkMethodVisitor >> visitBlockNode: aBlockNode [
 ]
 
 { #category : #'visitor-double dispatching' }
-AbstractSmalltalkMethodVisitor >> visitCascadeNode: aCascadeNode [ 
-	 
-	aCascadeNode messages isEmpty 
-		ifFalse: 
-			[aCascadeNode messages yourself do: [:each | self visitNode: each]]. 
+AbstractSmalltalkMethodVisitor >> visitCascadeNode: aCascadeNode [
+	aCascadeNode messages ifNotEmpty: [ :messages | messages do: [ :each | self visitNode: each ] ].
 	self extractCommentsFromNode: aCascadeNode
 ]
 

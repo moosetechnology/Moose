@@ -445,8 +445,8 @@ MultiSelectionListSelector >> setTitleMessage: aString toGroupboxInRowIndexedBy:
 
 { #category : #actions }
 MultiSelectionListSelector >> updateWhenAddingItem [
-	|    selectedItemsInInitialList tmpList initialListOfItems |
-	selectedItemsInInitialList := self initialListSelectedItems .
+	| selectedItemsInInitialList tmpList initialListOfItems |
+	selectedItemsInInitialList := self initialListSelectedItems.
 	tmpList := SortedCollection withAll: self selectionList.
 	tmpList addAll: selectedItemsInInitialList.
 
@@ -454,31 +454,29 @@ MultiSelectionListSelector >> updateWhenAddingItem [
 	initialListOfItems := self initialList asOrderedCollection.
 	initialListOfItems removeAll: selectedItemsInInitialList.
 	self initialList: initialListOfItems.
-	
+
 	"if the initial become empty, we disable de add button"
-	initialListOfItems isEmpty ifTrue: [addButton disable].	
+	initialListOfItems ifEmpty: [ addButton disable ].
 
 	" we update the list of packages of the selection morph list :"
-	self selectionList: tmpList.
-
+	self selectionList: tmpList
 ]
 
 { #category : #actions }
 MultiSelectionListSelector >> updateWhenRemovingItem [
-
 	"we remove the selected item from the selection list : "
+
 	| selectedItems tmpSelectionList tmpList |
 	selectedItems := self selectionListSelectedItems.
 	tmpSelectionList := self selectionList.
 	tmpSelectionList removeAll: selectedItems.
 	self selectionList: tmpSelectionList.
-	
+
 	"if the selection become empty, we disable the remove button :"
-	tmpSelectionList isEmpty ifTrue: [removeButton disable]. 
+	tmpSelectionList ifEmpty: [ removeButton disable ].
 
 	"we move the removed package into the initial list :"
-	tmpList := self initialList asSortedCollection: [:a :b | a<b].
+	tmpList := self initialList asSortedCollection: [ :a :b | a < b ].
 	tmpList addAll: selectedItems.
-	self initialList: tmpList.
-
+	self initialList: tmpList
 ]

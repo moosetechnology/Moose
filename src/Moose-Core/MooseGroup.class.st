@@ -134,19 +134,16 @@ MooseGroup >> distributionOverAGroupOfGroups: aGroupOfGroups [
 ]
 
 { #category : #'public interface' }
-MooseGroup >> encapsulationOfAGroupOfGroups: aGroupOfGroups [ 
-	 
-	| encapsulation | 
-	self isEmpty ifTrue: [^0]. 
-	encapsulation := 0. 
-	aGroupOfGroups 
-		do: 
-			[:eachReferenceGroup |  
-			| intersection | 
-			intersection := self intersection: eachReferenceGroup. 
-			encapsulation := intersection size / eachReferenceGroup size 
-				* (intersection size / self size) + encapsulation]. 
-	^encapsulation
+MooseGroup >> encapsulationOfAGroupOfGroups: aGroupOfGroups [
+	| encapsulation |
+	self ifEmpty: [ ^ 0 ].
+	encapsulation := 0.
+	aGroupOfGroups
+		do: [ :eachReferenceGroup | 
+			| intersection |
+			intersection := self intersection: eachReferenceGroup.
+			encapsulation := intersection size / eachReferenceGroup size * (intersection size / self size) + encapsulation ].
+	^ encapsulation
 ]
 
 { #category : #'public interface' }
@@ -204,24 +201,17 @@ MooseGroup >> noneSatisfy: aBlock [
 ]
 
 { #category : #printing }
-MooseGroup >> printOn: aStream [ 
-
-	aStream 
-		nextPutAll: self description; 
-		space; 
-		nextPut: $(; 
-		print: self size; 
-		space. 
-	self isEmpty ifTrue: [aStream nextPutAll: 'entities']. 
-	self size = 1 ifTrue: [aStream nextPutAll: self anyOne class name]. 
-	self size > 1 ifTrue: [aStream nextPutAll: storage commonSuperclass name asEnglishPlural]. 
-	aStream nextPut: $).
-	
-"	aStream nextPut: Character space.
-	aStream nextPut: $(.
-	self entities do: [:element | aStream print: element] separatedBy: [aStream space].
+MooseGroup >> printOn: aStream [
+	aStream
+		nextPutAll: self description;
+		space;
+		nextPut: $(;
+		print: self size;
+		space.
+	self ifEmpty: [ aStream nextPutAll: 'entities' ].
+	self size = 1 ifTrue: [ aStream nextPutAll: self anyOne class name ].
+	self size > 1 ifTrue: [ aStream nextPutAll: storage commonSuperclass name asEnglishPlural ].
 	aStream nextPut: $)
-"	
 ]
 
 { #category : #enumerating }
