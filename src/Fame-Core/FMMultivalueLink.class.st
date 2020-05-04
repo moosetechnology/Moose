@@ -199,12 +199,6 @@ FMMultivalueLink >> unsafeRemove: element [
 ]
 
 { #category : #accessing }
-FMMultivalueLink >> value [
-
-	^self
-]
-
-{ #category : #accessing }
 FMMultivalueLink >> value: aCollection [
 
 	^self removeAll: values copy; addAll: aCollection

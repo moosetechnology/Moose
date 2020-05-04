@@ -78,22 +78,6 @@ FMJSONParser >> Property [
 ]
 
 { #category : #tokens }
-FMJSONParser >> Reference [
-	"Matches a Reference node (returns boolean)."
-	"Reference --> OPEN REF n:Identifier { client referenceNumber: n } CLOSE"
-	| position serial |
-	position := self position.
-	self tOPEN ifFalse: [ ^ self backtrack: position ].
-	self tREF ifFalse: [ ^ self backtrack: position ].
-	serial := self Identifier.
-	serial ifNil: [ ^ self backtrack: position ].
-	importer referenceNumber: serial.
-	self tCLOSE ifFalse: [ ^ self syntaxError ].
-	self tWHITESPACE.
-	^ true
-]
-
-{ #category : #tokens }
 FMJSONParser >> Reference2 [
 	"Matches a Reference node (returns boolean)."
 	"Reference --> OPEN REF n:Name { client referenceName: n } CLOSE"

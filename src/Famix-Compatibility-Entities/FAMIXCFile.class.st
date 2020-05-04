@@ -49,16 +49,6 @@ FAMIXCFile >> includingFiles [
 	^ incomingIncludeRelations collect: [ :each | each source ]
 ]
 
-{ #category : #testing }
-FAMIXCFile >> isCompilationUnit [
-	^ false
-]
-
-{ #category : #testing }
-FAMIXCFile >> isHeader [
-	^ false
-]
-
 { #category : #queries }
 FAMIXCFile >> numberOfIncludes [
 	"Return the number of files I include"

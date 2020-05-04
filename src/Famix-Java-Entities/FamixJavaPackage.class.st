@@ -228,12 +228,6 @@ FamixJavaPackage >> numberOfLinesOfCode [
 			self childEntities inject: 0 into: [ :sum :each | sum + each numberOfLinesOfCode ] ]
 ]
 
-{ #category : #'Famix-Implementation' }
-FamixJavaPackage >> numberOfLinesOfCode: aNumber [
-
-	self privateState propertyAt: #numberOfLinesOfCode put: aNumber
-]
-
 { #category : #accessing }
 FamixJavaPackage >> numberOfMethods [
 	<FMProperty: #numberOfMethods type: #Number>

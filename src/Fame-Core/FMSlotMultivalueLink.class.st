@@ -176,12 +176,6 @@ FMSlotMultivalueLink >> unsafeRemove: element [
 ]
 
 { #category : #accessing }
-FMSlotMultivalueLink >> value [
-
-	^self
-]
-
-{ #category : #accessing }
 FMSlotMultivalueLink >> value: aCollection [
 
 	^self removeAll: values copy; addAll: aCollection

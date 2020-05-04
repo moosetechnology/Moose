@@ -39,12 +39,6 @@ MerlinMultiSelectionItemsSelectorWidget >> checkForEnablingAddRemoveButtons [
 	
 ]
 
-{ #category : #'control - initial list ' }
-MerlinMultiSelectionItemsSelectorWidget >> initialListIndex [
-
-	^ self wizardPart initialListIndex
-]
-
 { #category : #'accessing - morphs' }
 MerlinMultiSelectionItemsSelectorWidget >> initialListMorph [ 
 
@@ -72,12 +66,6 @@ MerlinMultiSelectionItemsSelectorWidget >> initialListSelectionAt: anIndex put: 
 
 		self wizardPart initialListSelectionAt: anIndex put: value.
 		"self widgetStateChanged."
-]
-
-{ #category : #'control - selection list' }
-MerlinMultiSelectionItemsSelectorWidget >> selectionListIndex [
-
-	^ self wizardPart selectionListIndex
 ]
 
 { #category : #'accessing - morphs' }

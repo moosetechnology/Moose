@@ -658,11 +658,6 @@ MooseModel >> silentlyRemoveAll: collection [
 	
 ]
 
-{ #category : #accessing }
-MooseModel >> size [
-	^ self entityStorage size
-]
-
 { #category : #'set operations' }
 MooseModel >> union: aGroup [ 
 	 
