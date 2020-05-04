@@ -17,12 +17,12 @@ FAMIXAnnotationInstance class >> annotation [
 
 { #category : #accessing }
 FAMIXAnnotationInstance >> mooseNameOn: aStream [
-	self annotationType isNotNil ifTrue: [ self annotationType mooseNameOn: aStream ].
+	self annotationType ifNotNil: [ :at | at mooseNameOn: aStream ].
 	aStream nextPut: $(.
 	self attributes do: [ :each | aStream nextPutAll: each value asString ] separatedBy: [ aStream nextPut: $, ].
 	aStream nextPut: $).
 	aStream nextPut: $-.
-	self annotatedEntity isNotNil ifTrue: [ self annotatedEntity mooseNameOn: aStream ]
+	self annotatedEntity ifNotNil: [ :ae | ae mooseNameOn: aStream ]
 ]
 
 { #category : #accessing }

@@ -294,8 +294,8 @@ MooseMetaBrowser >> viewClass: fm3Class property: fm3Prop in: all on: view [
 		width: [ :each | each primitiveProperties size ].
 	view nodes: all classes.
 	edges := view edgesFrom: #superclass.
-	fm3Class isNotNil
-		ifTrue: [ view shape line
+	fm3Class
+		ifNotNil: [ view shape line
 				color: Color blue muchLighter;
 				width: [ :each | 
 					each = fm3Prop

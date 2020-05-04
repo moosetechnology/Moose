@@ -662,7 +662,7 @@ FMJSONParserTest >> setUp [
 	p importer: r
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMJSONParserTest >> testFamixModel [
 	| metamodel names famixPackage accessClass accessorProperty behaviouralEntity outgoingAccesses |
 	metamodel := FMMetaModel fromJSONString: self class famix30mse.

@@ -71,12 +71,12 @@ MooseDependencyBrowser >> detailsIn: a [
 MooseDependencyBrowser >> viewNamespaceMapOf: aBlock fromModel: model namespace: namespace class: class method: method on: view [
 	| source invokedNamespaces allInvokedNamespaces layoutEdges |
 	source := method ifNil: [ class ].
-	invokedNamespaces := source isNotNil
-		ifTrue: [ aBlock value: source ]
-		ifFalse: [ #() ].
-	allInvokedNamespaces := namespace isNotNil
-		ifTrue: [ aBlock value: namespace ]
-		ifFalse: [ #() ].
+	invokedNamespaces := source
+		ifNil: [ #() ]
+		ifNotNil: [ aBlock value: source ].
+	allInvokedNamespaces := namespace
+		ifNil: [ #() ]
+		ifNotNil: [ aBlock value: namespace ].
 	view shape rectangle
 		height: #numberOfClasses;
 		width: 7;

@@ -38,7 +38,7 @@ FamixJavaParameterizedType >> isParameterizedType [
 
 { #category : #'as yet unclassified' }
 FamixJavaParameterizedType >> mooseNameOn: aStream [
-	self parameterizableClass isNotNil ifTrue: [ self parameterizableClass mooseNameOn: aStream ].
+	self parameterizableClass ifNotNil: [ :pc | pc mooseNameOn: aStream ].
 	aStream nextPut: $<.
 	self arguments do: [ :each | each mooseNameOn: aStream ] separatedBy: [ aStream nextPut: $, ].
 	aStream nextPut: $>
