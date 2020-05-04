@@ -12,6 +12,7 @@ Trait {
 		'#parentType => FMOne type: #FamixTWithMethods opposite: #methods'
 	],
 	#traits : '(FamixTHasSignature + FamixTInvocable + FamixTNamedEntity + FamixTSourceEntity + FamixTTypedEntity + FamixTWithClassScope + FamixTWithImplicitVariables + FamixTWithLocalVariables + FamixTWithParameters + FamixTWithReferences + FamixTWithStatements + TOODependencyQueries withPrecedenceOf: FamixTTypedEntity)',
+	#classTraits : '(FamixTHasSignature classTrait + FamixTInvocable classTrait + FamixTNamedEntity classTrait + FamixTSourceEntity classTrait + FamixTTypedEntity classTrait + FamixTWithClassScope classTrait + FamixTWithImplicitVariables classTrait + FamixTWithLocalVariables classTrait + FamixTWithParameters classTrait + FamixTWithReferences classTrait + FamixTWithStatements classTrait + TOODependencyQueries classTrait withPrecedenceOf: FamixTTypedEntity classTrait)',
 	#category : #'Famix-Traits-Behavioral'
 }
 
@@ -174,14 +175,6 @@ FamixTMethod >> numberOfMessageSends [
 FamixTMethod >> numberOfMessageSends: aNumber [
 
 	self privateState propertyAt: #numberOfMessageSends put: aNumber
-]
-
-{ #category : #accessing }
-FamixTMethod >> numberOfParameters [
-	<FMProperty: #numberOfParameters type: #Number>
-	<FMComment: 'The number of parameters in a method'>
-	<derived>
-	^ self lookUpPropertyNamed: #numberOfParameters computedAs: [ self parameters size ]
 ]
 
 { #category : #accessing }

@@ -1,6 +1,7 @@
 Trait {
 	#name : #FamixJavaTStructuralEntity,
 	#traits : 'FamixTStructuralEntity + FamixTWithDereferencedInvocations',
+	#classTraits : 'FamixTStructuralEntity classTrait + FamixTWithDereferencedInvocations classTrait',
 	#category : #'Famix-Java-Entities-Traits'
 }
 
@@ -11,13 +12,4 @@ FamixJavaTStructuralEntity classSide >> annotation [
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #accessing }
-FamixJavaTStructuralEntity >> accessors [
-	<FMProperty: #accessors type: #FamixTWithAccesses>
-	<multivalued>
-	<derived>
-
-	^ (self incomingAccesses collectAsSet: [ :each | each accessor ]) asMooseGroup
 ]
