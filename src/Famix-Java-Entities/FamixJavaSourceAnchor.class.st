@@ -15,7 +15,7 @@ FamixJavaSourceAnchor class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaSourceAnchor >> isFile [
 	^ false
 ]

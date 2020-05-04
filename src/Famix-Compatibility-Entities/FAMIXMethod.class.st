@@ -63,17 +63,6 @@ FAMIXMethod >> compiledMethod [
 	
 ]
 
-{ #category : #'Famix-Extensions' }
-FAMIXMethod >> cyclomaticComplexity [
-	"redefine this method because we need to override an implementation provided by FamixTMethod"
-
-	<FMProperty: #cyclomaticComplexity type: #Number>
-	<FMComment: 'The number of linear-independent paths through a method.'>
-	^ self
-		lookUpPropertyNamed: #cyclomaticComplexity
-		computedAs: [ self mooseModel isSmalltalk ifTrue: [ (RBVisitorForFAMIXMetrics for: self) cyclomaticNumber ] ifFalse: [ self notExistentMetricValue ] ]
-]
-
 { #category : #'Famix-Java' }
 FAMIXMethod >> hasInnerClassImplementingMethods [
 	^ self innerClassesImplementingMethods isNotEmpty
@@ -215,25 +204,16 @@ FAMIXMethod >> isOverriding [
 ]
 
 { #category : #'Famix-Extensions-InvocationTesting' }
-FAMIXMethod >> isSurelyInvokedBy: aFAMIXMethod [ 
-	 
+FAMIXMethod >> isSurelyInvokedBy: aFAMIXMethod [
 	| outgoingInvo |
-
-	((self isAbstract or: [aFAMIXMethod isAbstract]) 
-		or: [(outgoingInvo := aFAMIXMethod queryAllOutgoingInvocations) isEmpty])
-		ifFalse: 
-			[
-			(outgoingInvo do:[:invo |
-				(invo signature = self signature and: [invo isASureInvocation]) ifTrue:[
-					| invocationRVar | 
-					invocationRVar := invo getReceivingFAMIXClass. 
-					(invocationRVar notNil 
-						and: [(invocationRVar lookUp: self signature) = self]) 
-							ifTrue:[^true]
-				]
-			]).
-		].
-	^false
+	((self isAbstract or: [ aFAMIXMethod isAbstract ]) or: [ (outgoingInvo := aFAMIXMethod queryAllOutgoingInvocations) isEmpty ])
+		ifFalse: [ outgoingInvo
+				do: [ :invo | 
+					(invo signature = self signature and: [ invo isASureInvocation ])
+						ifTrue: [ | invocationRVar |
+							invocationRVar := invo getReceivingFAMIXClass.
+							(invocationRVar isNotNil and: [ (invocationRVar lookUp: self signature) = self ]) ifTrue: [ ^ true ] ] ] ].
+	^ false
 ]
 
 { #category : #'Famix-Extensions' }
@@ -254,16 +234,6 @@ FAMIXMethod >> numberOfInvokedMethods [
 	<derived>
 	
 	^ self privateState propertyAt: #numberOfInvokedMethods ifAbsentPut: [self invokedMethods size]
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXMethod >> numberOfMessageSends [
-	<FMProperty: #numberOfMessageSends type: #Number>
-	<derived>
-	<FMComment: 'The number of message from a method'>
-	^ self
-		lookUpPropertyNamed: #numberOfMessageSends
-		computedAs: [ self mooseModel isSmalltalk ifTrue: [ (RBVisitorForFAMIXMetrics for: self) numberOfMessageSends ] ifFalse: [ self notExistentMetricValue ] ]
 ]
 
 { #category : #'Famix-Implementation' }

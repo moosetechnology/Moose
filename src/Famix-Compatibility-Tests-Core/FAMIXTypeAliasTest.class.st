@@ -18,7 +18,7 @@ FAMIXTypeAliasTest >> expectedFailures [
 FAMIXTypeAliasTest >> testAliasOpposite [
 	| type alias |
 	type := FAMIXType new.
-	self assert: type typeAliases isEmpty.
+	self assertEmpty: type typeAliases.
 	alias := self actualClass new
 		aliasedType: type;
 		yourself.
@@ -90,7 +90,7 @@ FAMIXTypeAliasTest >> testAllTypeAliases [
 	aliasalias := self actualClass new name: 'Alias'.
 	aliasalias aliasedType: alias.
 	self assert: alias allTypeAliases size equals: 1.
-	self assert: aliasalias allTypeAliases isEmpty.
+	self assertEmpty: aliasalias allTypeAliases.
 	self assert: type allTypeAliases size equals: 2
 ]
 
@@ -100,8 +100,8 @@ FAMIXTypeAliasTest >> testNullAliasedType [
 	alias := self actualClass new
 		name: 'Alias';
 		yourself.
-	self assert: alias superclassHierarchy isEmpty.
-	self assert: alias subclassHierarchy isEmpty
+	self assertEmpty: alias superclassHierarchy.
+	self assertEmpty: alias subclassHierarchy
 ]
 
 { #category : #tests }

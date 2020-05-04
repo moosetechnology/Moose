@@ -8,7 +8,11 @@ FamixInvocationGroup >> mooseFinderListIn: composite [
 		display: [ self ];
 		column: 'From' evaluated: [ :each | each from ];
 		column: 'To' evaluated: [ :each | each anyCandidate ];
-		send: [ :each | each ifNil: [ nil ] ifNotNil: [ each size = 1 ifTrue: [ each first ] ifFalse: [ each asMooseGroup ] ] ];
+		send: [ :each | 
+			each
+				ifNotNil: [ each size = 1
+						ifTrue: [ each first ]
+						ifFalse: [ each asMooseGroup ] ] ];
 		icon: #mooseIcon;
 		title: [ :each | each mooseInterestingEntity size asString , ' items' ];
 		titleIcon: MooseIcons mooseList;

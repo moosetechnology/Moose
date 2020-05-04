@@ -662,7 +662,7 @@ FMJSONParserTest >> setUp [
 	p importer: r
 ]
 
-{ #category : #running }
+{ #category : #tests }
 FMJSONParserTest >> testFamixModel [
 	| metamodel names famixPackage accessClass accessorProperty behaviouralEntity outgoingAccesses |
 	metamodel := FMMetaModel fromJSONString: self class famix30mse.
@@ -728,7 +728,7 @@ FMJSONParserTest >> testFamixModel [
 	accessorProperty := accessClass propertyNamed: 'accessor'.
 	self assert: accessorProperty isFM3Property.
 	self assert: accessorProperty name equals: #accessor.
-	self assert: accessorProperty opposite notNil.
+	self assert: accessorProperty opposite isNotNil.
 	behaviouralEntity := famixPackage classNamed: 'BehaviouralEntity'.
 	self assert: behaviouralEntity isFM3Class.
 	outgoingAccesses := behaviouralEntity propertyNamed: 'outgoingAccesses'.

@@ -15,7 +15,7 @@ FamixJavaParameterType class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaParameterType >> isParameterType [
 	^ true
 ]

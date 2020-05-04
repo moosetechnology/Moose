@@ -31,11 +31,9 @@ FmxMBClassGeneralizationsTest >> checkGeneralizationWithAnnotations [
 
 { #category : #running }
 FmxMBClassGeneralizationsTest >> checkHierarchy [
-
-	self assert: named allClassGeneralizations isEmpty.
-	self assertCollection: behavior allClassGeneralizations hasSameElements: { named }.
-	self assertCollection: class allClassGeneralizations hasSameElements: { named. behavior }.
-
+	self assertEmpty: named allClassGeneralizations.
+	self assertCollection: behavior allClassGeneralizations hasSameElements: {named}.
+	self assertCollection: class allClassGeneralizations hasSameElements: {named . behavior}
 ]
 
 { #category : #running }

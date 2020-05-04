@@ -77,7 +77,7 @@ MooseObjectTest >> testGroupFor [
 	self assert: (classGroup entities includesAll: {entity1 . entity2}).
 	methodGroup := model groupFor: #allMethods.
 	self assert: methodGroup class identicalTo: MooseGroup.
-	self assert: methodGroup isEmpty
+	self assertEmpty: methodGroup
 ]
 
 { #category : #tests }
@@ -105,7 +105,7 @@ MooseObjectTest >> testPrivateStateMutator [
 	| entity state mooseState |
 	entity := self actualClass new.
 	state := entity privateState.
-	self assert: state notNil.
+	self assert: state isNotNil.
 
 	mooseState := MooseMemoryEfficientState new.
 	entity privateState: mooseState.

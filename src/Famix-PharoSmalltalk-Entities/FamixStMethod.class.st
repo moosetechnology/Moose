@@ -158,25 +158,16 @@ FamixStMethod >> isOverriding [
 ]
 
 { #category : #'Famix-Extensions-metrics-support' }
-FamixStMethod >> isSurelyInvokedBy: aFAMIXMethod [ 
-	 
+FamixStMethod >> isSurelyInvokedBy: aFAMIXMethod [
 	| outgoingInvo |
-
-	((self isAbstract or: [aFAMIXMethod isAbstract]) 
-		or: [(outgoingInvo := aFAMIXMethod queryAllOutgoingInvocations) isEmpty])
-		ifFalse: 
-			[
-			(outgoingInvo do:[:invo |
-				(invo signature = self signature and: [invo isASureInvocation]) ifTrue:[
-					| invocationRVar | 
-					invocationRVar := invo getReceivingFAMIXClass. 
-					(invocationRVar notNil 
-						and: [(invocationRVar lookUp: self signature) = self]) 
-							ifTrue:[^true]
-				]
-			]).
-		].
-	^false
+	((self isAbstract or: [ aFAMIXMethod isAbstract ]) or: [ (outgoingInvo := aFAMIXMethod queryAllOutgoingInvocations) isEmpty ])
+		ifFalse: [ outgoingInvo
+				do: [ :invo | 
+					(invo signature = self signature and: [ invo isASureInvocation ])
+						ifTrue: [ | invocationRVar |
+							invocationRVar := invo getReceivingFAMIXClass.
+							(invocationRVar isNotNil and: [ (invocationRVar lookUp: self signature) = self ]) ifTrue: [ ^ true ] ] ] ].
+	^ false
 ]
 
 { #category : #'Famix-Extensions-private' }

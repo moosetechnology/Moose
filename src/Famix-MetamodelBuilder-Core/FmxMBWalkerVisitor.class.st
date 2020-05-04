@@ -32,18 +32,7 @@ FmxMBWalkerVisitor >> visitClass: aClass [
 ]
 
 { #category : #visiting }
-FmxMBWalkerVisitor >> visitRelationSide: aRelationSide [
-	"Node leaf, no more walking needed"
-]
-
-{ #category : #visiting }
 FmxMBWalkerVisitor >> visitTrait: aTrait [
 	"visit aTrait leaves"
 	aTrait properties do: [ :each | each acceptVisitor: self ].
-]
-
-{ #category : #visiting }
-FmxMBWalkerVisitor >> visitTypedProperty: aTypedProperty [
-	"Leaf node, no more walk needed."
-
 ]

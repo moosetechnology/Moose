@@ -7,8 +7,8 @@ Class {
 { #category : #open }
 MockWizardControl >> open [
 	"launch the wizard system by opening the first wizard pane."
-	
-	wizardPanes isEmpty ifTrue: [ ^ self ].
+
+	wizardPanes ifEmpty: [ ^ self ].
 	currentPane := 1.
 	(wizardPanes at: currentPane) testOpen
 ]

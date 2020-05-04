@@ -42,8 +42,8 @@ FAMIXException >> definingMethod: aMethod [
 ]
 
 { #category : #accessing }
-FAMIXException >> mooseNameOn: aStream [ 
+FAMIXException >> mooseNameOn: aStream [
 	aStream nextPutAll: (self class name withoutPrefix: 'FAMIX').
 	aStream nextPut: $-.
-	self exceptionClass notNil ifTrue: [self exceptionClass mooseNameOn: aStream]
+	self exceptionClass ifNotNil: [ :ec | ec mooseNameOn: aStream ]
 ]

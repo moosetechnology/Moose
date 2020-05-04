@@ -15,7 +15,7 @@ FamixJavaAnnotationTypeAttribute class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixJavaAnnotationTypeAttribute >> parentAnnotationType [
 	<FMProperty: #parentAnnotationType type: #FamixJavaAnnotationType> 
 	<derived> 
@@ -24,7 +24,7 @@ FamixJavaAnnotationTypeAttribute >> parentAnnotationType [
 	^ self parentType
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixJavaAnnotationTypeAttribute >> parentAnnotationType: anAnnotationType [
 	self parentType: anAnnotationType
 ]

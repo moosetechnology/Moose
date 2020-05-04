@@ -28,12 +28,6 @@ MerlinMorphicWizardRenderer >> currentPane [
 	^ self wizardControl currentPane
 ]
 
-{ #category : #accessing }
-MerlinMorphicWizardRenderer >> dialogWindow [ 
-
-	^ dialogWindow 
-]
-
 { #category : #buttonsActions }
 MerlinMorphicWizardRenderer >> performCancelButtonAction [
 	

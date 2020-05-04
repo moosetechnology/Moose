@@ -6,12 +6,11 @@ Class {
 
 { #category : #tests }
 LANImporterTest >> couldOnlyBeUsedForVisualWorksExtractedModeltestNamespaceInNamespace [
-	 
-	| namespace | 
-	namespace := self model allNamespaces entityNamed: #Smalltalk. 
-	self assert: namespace namespaces notEmpty. 
-	namespace := self model allNamespaces entityNamed: #'LAN'. 
-	self assert: namespace namespaces isEmpty
+	| namespace |
+	namespace := self model allNamespaces entityNamed: #Smalltalk.
+	self denyEmpty: namespace namespaces.
+	namespace := self model allNamespaces entityNamed: #LAN.
+	self assertEmpty: namespace namespaces
 ]
 
 { #category : #tests }
@@ -84,11 +83,10 @@ LANImporterTest >> testClassNameAndUniqueName [
 
 { #category : #tests }
 LANImporterTest >> testClassNameDoesNotIncludeSpace [
-	 "self debug: #testClassNameDoesNotIncludeSpace"
-	
-	self deny: self model allClasses isEmpty.
-	self model allClasses 
-		do: [:each | self assert: (each name includes: Character space) not]
+	"self debug: #testClassNameDoesNotIncludeSpace"
+
+	self denyEmpty: self model allClasses.
+	self model allClasses do: [ :each | self assert: (each name includes: Character space) not ]
 ]
 
 { #category : #tests }
@@ -175,12 +173,12 @@ LANImporterTest >> testImportCategory [
 ]
 
 { #category : #tests }
-LANImporterTest >> testImportClassComments [ 
+LANImporterTest >> testImportClassComments [
 	"self debug: #testImportClassComments"
-	
-	self deny: (self model allComments select: [:each | each belongsTo isClass]) isEmpty. 
-	self deny: (self model allClasses select: [:each | each comments isEmpty not]) isEmpty. 
-	self deny: (self model entityNamed: #'Smalltalk::LANInterface') comments isEmpty.
+
+	self denyEmpty: (self model allComments select: [ :each | each belongsTo isClass ]).
+	self denyEmpty: (self model allClasses select: [ :each | each comments isEmpty not ]).
+	self denyEmpty: (self model entityNamed: #'Smalltalk::LANInterface') comments
 ]
 
 { #category : #tests }

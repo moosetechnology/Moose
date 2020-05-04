@@ -545,7 +545,7 @@ MooseModel >> name: aStringOrSymbol [
 	| oldName |
 	oldName := name.
 	name := aStringOrSymbol.
-	(oldName notNil and: [ oldName ~= name ])
+	(oldName isNotNil and: [ oldName ~= name ])
 		ifTrue: [ self resetMooseName.
 			self announcer announce: (MooseEntityRenamed new oldName: oldName) ]
 ]
@@ -587,6 +587,20 @@ MooseModel >> remove: anElement [
 	self privateState flushGroups. 
 	self announcer announce: (MooseEntityRemoved new entity: anElement).
 	^anElement
+]
+
+{ #category : #'entity collection' }
+MooseModel >> removeAll [
+	"It may look ineficient.
+	However, it allows to remove all entities correctly. 
+	Setting the mooseModel of all entities at nil.
+	And we can iterate over the same collection (ie entityStorage)."
+	self entities
+		do: [ :anElement | 
+			anElement privateSetMooseModel: nil.
+			self privateState flushGroups.
+			self announcer announce: (MooseEntityRemoved new entity: anElement) ].
+	self entityStorage removeAll
 ]
 
 { #category : #'entity collection' }
@@ -642,11 +656,6 @@ MooseModel >> silentlyRemoveAll: collection [
 	collection do: [:each | self silentlyRemove: each].
 	^collection
 	
-]
-
-{ #category : #accessing }
-MooseModel >> size [
-	^ self entityStorage size
 ]
 
 { #category : #'set operations' }

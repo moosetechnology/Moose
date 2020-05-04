@@ -134,8 +134,7 @@ MooseModelTest >> testMenuCommandOn [
 	self assert: builder itemList isNil.
 	MooseModel menuCommandOn: builder.
 	self assert: builder itemList isCollection.
-	self assert: builder itemList notEmpty.
-
+	self denyEmpty: builder itemList
 ]
 
 { #category : #tests }
@@ -158,6 +157,20 @@ MooseModelTest >> testReferenceModel [
 ]
 
 { #category : #tests }
+MooseModelTest >> testRemoveAllEntity [
+	| mooseModel entity1 entity2 |
+	mooseModel := self actualClass new.
+	entity1 := MooseEntity new.
+	entity2 := MooseEntity new.
+	mooseModel add: entity1.
+	mooseModel add: entity2.
+	mooseModel removeAll.
+	self assertEmpty: mooseModel.
+	self assert: entity1 mooseModel isNil.
+	self assert: entity2 mooseModel isNil
+]
+
+{ #category : #tests }
 MooseModelTest >> testRemoveAnnouncement [
 	| entity announcedEntity |
 	entity := MooseEntity new.
@@ -166,6 +179,17 @@ MooseModelTest >> testRemoveAnnouncement [
 	self assert: announcedEntity isNil.
 	group remove: entity.
 	self assert: announcedEntity identicalTo: entity
+]
+
+{ #category : #tests }
+MooseModelTest >> testRemoveEntity [
+	| mooseModel entity |
+	mooseModel := self actualClass new.
+	entity := MooseEntity new.
+	mooseModel add: entity.
+	mooseModel remove: entity.
+	self assertEmpty: mooseModel.
+	self assert: entity mooseModel isNil
 ]
 
 { #category : #tests }

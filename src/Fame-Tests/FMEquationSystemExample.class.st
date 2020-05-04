@@ -68,7 +68,7 @@ FMEquationSystemExample >> setUp [
 
 { #category : #tests }
 FMEquationSystemExample >> testAllSubclasses [
-	self assert: (metaModel elementNamed: 'EQ.Expression') notNil.
+	self assert: (metaModel elementNamed: 'EQ.Expression') isNotNil.
 	self assert: (metaModel elementNamed: 'EQ.Expression') allSubclasses size equals: 4
 ]
 
@@ -82,7 +82,7 @@ FMEquationSystemExample >> testMetamodel [
 
 { #category : #tests }
 FMEquationSystemExample >> testMetamodelContainsCompound [
-	self assert: (metaModel elementNamed: 'EQ.Compound') notNil
+	self assert: (metaModel elementNamed: 'EQ.Compound') isNotNil
 ]
 
 { #category : #tests }

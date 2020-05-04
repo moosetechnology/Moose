@@ -25,7 +25,7 @@ FamixJavaLocalVariable >> mooseNameOn: stream [
 	self name ifNotNil: [stream nextPutAll: self name]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 FamixJavaLocalVariable >> printOn: stream [ 
 	| parent |
 	self name ifNotNil: [ stream nextPutAll: self name ].

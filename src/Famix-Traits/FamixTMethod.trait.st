@@ -46,7 +46,7 @@ FamixTMethod >> cyclomaticComplexity: aNumber [
 	self privateState propertyAt: #cyclomaticComplexity put: aNumber
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 FamixTMethod >> isAbstract [
 
 	<FMProperty: #isAbstract type: #Boolean>
@@ -174,14 +174,6 @@ FamixTMethod >> numberOfMessageSends [
 FamixTMethod >> numberOfMessageSends: aNumber [
 
 	self privateState propertyAt: #numberOfMessageSends put: aNumber
-]
-
-{ #category : #accessing }
-FamixTMethod >> numberOfParameters [
-	<FMProperty: #numberOfParameters type: #Number>
-	<FMComment: 'The number of parameters in a method'>
-	<derived>
-	^ self lookUpPropertyNamed: #numberOfParameters computedAs: [ self parameters size ]
 ]
 
 { #category : #accessing }

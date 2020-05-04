@@ -4,7 +4,7 @@ Class {
 	#category : #'Moose-Finder'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #building }
 MooseClassMethodsBrowser >> buildBrowser [ 
 	browser := GLMTabulator new.
 	browser title: 'Methods'.

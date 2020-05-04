@@ -68,7 +68,7 @@ FamixTWithAnnotationInstances >> annotationTypes [
 
 { #category : #'Famix-Java' }
 FamixTWithAnnotationInstances >> isAnnotated [
-	^ self annotationInstances notEmpty
+	^ self annotationInstances isNotEmpty
 ]
 
 { #category : #'Famix-Java' }

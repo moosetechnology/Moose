@@ -174,13 +174,9 @@ MooseModel >> mooseInterestingEntity [
 { #category : #'*Moose-Finder' }
 MooseModel >> rename [
 	<menuItem: 'Rename' category: 'Utilities'>
-
 	| newName |
-	newName := UITheme builder
-		textEntry: 'Set new name for MooseModel ', self name.
-	(newName notNil and: [newName notEmpty])
-		ifTrue: [ self name: newName ]
-
+	newName := UITheme builder textEntry: 'Set new name for MooseModel ' , self name.
+	(newName isNotNil and: [ newName isNotEmpty ]) ifTrue: [ self name: newName ]
 ]
 
 { #category : #'*Moose-Finder' }
@@ -194,14 +190,14 @@ MooseModel >> setRootFolder [
 
 { #category : #'*Moose-Finder' }
 MooseModel >> spotter: aStringTitle on: aCandidatesBlock for: aStep [
-	aCandidatesBlock value isEmpty ifTrue: [ ^ self ].
+	aCandidatesBlock value ifEmpty: [ ^ self ].
 	^ aStep listProcessor
 		title: aStringTitle;
 		candidatesLimit: 5;
 		allCandidates: aCandidatesBlock;
 		itemName: [ :each | each mooseName ];
 		itemIcon: [ :each | each mooseIcon ];
-		actLogic: [ :each :step |
+		actLogic: [ :each :step | 
 			step exit.
 			each openInMoose ];
 		filter: GTFilterSubstring;

@@ -49,8 +49,7 @@ FamixTScopingEntity >> allChildScopesGroup [
 
 { #category : #accessing }
 FamixTScopingEntity >> allParentScopesDo: aBlock [
-	self parentScope notNil ifTrue: [
-		self parentScope withAllParentScopesDo: aBlock ]
+	self parentScope ifNotNil: [ :ps | ps withAllParentScopesDo: aBlock ]
 ]
 
 { #category : #accessing }

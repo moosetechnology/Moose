@@ -15,7 +15,7 @@ FamixTest1NamedEntity class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixTest1NamedEntity class >> dependencyFM3PropertyDescription [
 	"TODO: Clean"
 

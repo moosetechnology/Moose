@@ -12,12 +12,3 @@ FamixJavaTStructuralEntity classSide >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #accessing }
-FamixJavaTStructuralEntity >> accessors [
-	<FMProperty: #accessors type: #FamixTWithAccesses>
-	<multivalued>
-	<derived>
-
-	^ (self incomingAccesses collectAsSet: [ :each | each accessor ]) asMooseGroup
-]

@@ -15,7 +15,7 @@ FamixJavaParameterizableClass class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixJavaParameterizableClass >> parameters [
 	<FMProperty: #parameters type: #FamixJavaParameterType> <multivalued> <derived>
 	<FMComment: 'Parameter types of this class.'>
@@ -23,7 +23,7 @@ FamixJavaParameterizableClass >> parameters [
 	^self types select: [:each | each isParameterType]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixJavaParameterizableClass >> parameters: aCollection [
 
 	self privateState attributeAt: #parameters put: aCollection

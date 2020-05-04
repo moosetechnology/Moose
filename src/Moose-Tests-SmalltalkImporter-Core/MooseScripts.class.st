@@ -266,12 +266,12 @@ MooseScripts class >> packagesForConfigurationVersion: aConfiguration [
 	version ignoreImage: true.
 	directive := version record loadDirective.
 	packages := OrderedCollection new.
-	directive versionDirectivesDo: [:vrsnDirective | | spec |
-	spec := vrsnDirective spec.
-	(spec notNil and: [spec project = aConfiguration spec project ])
-		ifTrue: [ 
-			vrsnDirective packagesDo: [:pkgDirective | 
-				packages add: (self extractPackageNameOutOfMetacelloFile: pkgDirective file) ]]].
+	directive
+		versionDirectivesDo: [ :vrsnDirective | 
+			| spec |
+			spec := vrsnDirective spec.
+			(spec isNotNil and: [ spec project = aConfiguration spec project ])
+				ifTrue: [ vrsnDirective packagesDo: [ :pkgDirective | packages add: (self extractPackageNameOutOfMetacelloFile: pkgDirective file) ] ] ].
 	^ packages asSet reject: [ :each | each beginsWith: 'ConfigurationOf' ]
 ]
 

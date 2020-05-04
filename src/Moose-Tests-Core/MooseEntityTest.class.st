@@ -73,10 +73,10 @@ MooseEntityTest >> testMooseModelAccessor [
 	self assert: (entity mooseModel isNil).
 "
 	model := MooseModel new.
-	self assert: model isEmpty.
+	self assertEmpty: model.
 	entity mooseModel: model.
 	self assert: entity mooseModel identicalTo: model.
-	self deny: model isEmpty
+	self denyEmpty: model
 ]
 
 { #category : #tests }

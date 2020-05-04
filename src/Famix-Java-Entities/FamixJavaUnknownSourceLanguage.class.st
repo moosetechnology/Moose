@@ -15,7 +15,7 @@ FamixJavaUnknownSourceLanguage class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixJavaUnknownSourceLanguage >> name [
 	
 	<FMProperty: #name type: #String> 

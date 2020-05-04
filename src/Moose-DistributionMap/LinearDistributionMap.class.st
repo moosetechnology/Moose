@@ -38,7 +38,7 @@ LinearDistributionMap >> orderElementsFor: aContainer [
 		(elementsAndPropertyValue at: a) >= (elementsAndPropertyValue at: b) ] 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 LinearDistributionMap >> orderParts: aCollection [
 
 	^ aCollection sorted: [ :a :b | | sizea sizeb|

@@ -7,7 +7,7 @@ Class {
 	#category : #'Moose-Finder'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 MoosePanelCommand class >> allCommands [
 	^ self allSubclasses reject: #isAbstractCommand
 ]

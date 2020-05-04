@@ -15,7 +15,7 @@ FamixJavaSourceLanguage class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaSourceLanguage >> isC [ 
 	^ false
 ]
@@ -25,7 +25,7 @@ FamixJavaSourceLanguage >> isJava [
 	^ true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixJavaSourceLanguage >> name [
 	
 	<FMProperty: #name type: #String> 

@@ -9,12 +9,12 @@ SmalltalkCompatibilityMetamodelFactory class >> defaultModel [
 	^ FAMIXModel
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SmalltalkCompatibilityMetamodelFactory >> anchor [
 	^ FAMIXPharoAnchor
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SmalltalkCompatibilityMetamodelFactory >> sourceLanguage [
 	^ FAMIXSmalltalkSourceLanguage
 ]

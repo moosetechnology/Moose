@@ -68,7 +68,7 @@ FamixTestGenerator >> package [
 	^ package
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #run }
 FamixTestGenerator >> runFor: aClass [.
 	self subclassResponsibility .
 ]

@@ -16,8 +16,8 @@ FamixJavaException class >> annotation [
 ]
 
 { #category : #accessing }
-FamixJavaException >> mooseNameOn: aStream [ 
+FamixJavaException >> mooseNameOn: aStream [
 	aStream nextPutAll: (self class name withoutPrefix: 'FamixJava').
 	aStream nextPut: $-.
-	self exceptionClass notNil ifTrue: [self exceptionClass mooseNameOn: aStream]
+	self exceptionClass ifNotNil: [ :ec | ec mooseNameOn: aStream ]
 ]
