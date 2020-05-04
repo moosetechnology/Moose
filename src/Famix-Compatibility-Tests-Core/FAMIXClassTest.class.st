@@ -69,7 +69,4 @@ FAMIXClassTest >> testIsPublic [
 { #category : #tests }
 FAMIXClassTest >> testVisiblity [
 	self assert: self actualClass new visibility isNil
-
-FAMIXClassTest >> testModifiers [
-	self assertEmpty: self actualClass new modifiers
 ]
