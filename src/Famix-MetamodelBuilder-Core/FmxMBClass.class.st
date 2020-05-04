@@ -16,15 +16,14 @@ FmxMBClass >> acceptVisitor: aVisitor [
 
 { #category : #accessing }
 FmxMBClass >> allClassGeneralizations [
-
-	| result c g|
+	| result c g |
 	result := OrderedCollection new.
 	c := self.
-	[ g := c classGeneralization. g notNil ] whileTrue: [ 
-		result add: g.
-		c := g ].
+	[ g := c classGeneralization.
+	g isNotNil ]
+		whileTrue: [ result add: g.
+			c := g ].
 	^ result
-
 ]
 
 { #category : #accessing }

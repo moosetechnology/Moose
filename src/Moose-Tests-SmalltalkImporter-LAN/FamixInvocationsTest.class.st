@@ -29,7 +29,7 @@ FamixInvocationsTest >> outputServerAcceptMethod [
 FamixInvocationsTest >> testCandidateAbstractMethodWithTwoSubclasses [
 	| invocation |
 	invocation := self invocationFrom: #'Smalltalk::LANOutputServer.accept:(Object)' to: #'output:(Object)'.
-	self assert: invocation notNil.
+	self assert: invocation isNotNil.
 	self assert: invocation candidates size equals: 2.
 	self assert: (invocation candidates includes: (self model entityNamed: #'Smalltalk::LANFileServer.output:(Object)')).
 	self assert: (invocation candidates includes: (self model entityNamed: #'Smalltalk::LANPrintServer.output:(Object)'))
@@ -39,7 +39,7 @@ FamixInvocationsTest >> testCandidateAbstractMethodWithTwoSubclasses [
 FamixInvocationsTest >> testCandidateInvocationsAbstractMethodWithTwoSubclasses [
 	| invocation |
 	invocation := self invocationFrom: #'Smalltalk::LANOutputServer.accept:(Object)' to: #'output:(Object)'.
-	self assert: invocation notNil.
+	self assert: invocation isNotNil.
 	self assert: invocation candidates size equals: 2.
 	self assert: (invocation candidates includes: (self model entityNamed: #'Smalltalk::LANFileServer.output:(Object)')).
 	self assert: (invocation candidates includes: (self model entityNamed: #'Smalltalk::LANPrintServer.output:(Object)'))	"	self assert: (invocation candidates includes: (self model entityNamed: #'Root::Smalltalk::LAN::OutputServer.output:(Object)'))."
@@ -60,7 +60,7 @@ FamixInvocationsTest >> testCandidateInvocationsClassMethodsDefinedInSuperclass 
 FamixInvocationsTest >> testCandidateInvocationsOnlyDefinedInSuperclass [
 	| invocation |
 	invocation := self invocationFrom: #'Smalltalk::LANOutputServer.accept:(Object)' to: #'send:(Object)'.
-	self assert: invocation notNil.
+	self assert: invocation isNotNil.
 	self assert: invocation candidates size equals: 1.
 	self assert: (invocation candidates includes: (self model entityNamed: #'Smalltalk::LANNode.send:(Object)'))
 ]
@@ -69,7 +69,7 @@ FamixInvocationsTest >> testCandidateInvocationsOnlyDefinedInSuperclass [
 FamixInvocationsTest >> testCandidateInvocationsThree [
 	| invocation |
 	invocation := self invocationFrom: #'Smalltalk::LANSingleDestinationAddress.equalsSingle:(Object)' to: #'id()'.
-	self assert: invocation notNil.
+	self assert: invocation isNotNil.
 	self assert: invocation candidates size equals: 1.
 	self assert: (invocation candidates includes: (self model entityNamed: #'Smalltalk::LANSingleDestinationAddress.id()'))
 ]
@@ -78,17 +78,16 @@ FamixInvocationsTest >> testCandidateInvocationsThree [
 FamixInvocationsTest >> testCandidateInvocationsTwo [
 	| invocation |
 	invocation := self invocationFrom: #'Smalltalk::LANInterface.originate()' to: #'originate:(Object)'.
-	self assert: invocation notNil.
+	self assert: invocation isNotNil.
 	self assert: invocation candidates size equals: 1.
-	self
-		assert: (invocation candidates includes: (self model entityNamed: #'Smalltalk::LANWorkStation.originate:(Object)'))
+	self assert: (invocation candidates includes: (self model entityNamed: #'Smalltalk::LANWorkStation.originate:(Object)'))
 ]
 
 { #category : #tests }
 FamixInvocationsTest >> testCandidateInvocationsUnknownReceiver [
 	| invocation |
 	invocation := self invocationFrom: #'Smalltalk::LANNode.send:(Object)' to: #'accept:(Object)'.
-	self assert: invocation notNil.
+	self assert: invocation isNotNil.
 	self assert: invocation candidates size equals: 3.
 	self assert: (invocation candidates includes: (self model entityNamed: #'Smalltalk::LANNode.accept:(Object)')).
 	self assert: (invocation candidates includes: (self model entityNamed: #'Smalltalk::LANWorkStation.accept:(Object)')).
@@ -101,7 +100,7 @@ FamixInvocationsTest >> testReceivingFormalParameter [
 
 	| invocation |
 	invocation := self invocationFromOutputServerAcceptMethodTo: #'addressee()'.
-	self assert: invocation notNil.
+	self assert: invocation isNotNil.
 	self assert: invocation receiver name equals: #thePacket
 ]
 
@@ -109,7 +108,7 @@ FamixInvocationsTest >> testReceivingFormalParameter [
 FamixInvocationsTest >> testReceivingKnownClass [
 	| invocation |
 	invocation := self invocationFrom: #'Smalltalk::LANInterface.newNode()' to: #'new()'.
-	self assert: invocation notNil.
+	self assert: invocation isNotNil.
 	self assert: invocation receiver mooseName equals: LANNode class mooseName
 ]
 
@@ -117,23 +116,23 @@ FamixInvocationsTest >> testReceivingKnownClass [
 FamixInvocationsTest >> testReceivingKnownClass2 [
 	| invocation |
 	invocation := self invocationFrom: #'Smalltalk::LANInterface.newWorkstation()' to: #'new()'.
-	self assert: invocation notNil.
-	self assert: invocation receiver mooseName equals: #Smalltalk::LANWorkStation_class
+	self assert: invocation isNotNil.
+	self assert: invocation receiver mooseName equals: #'Smalltalk::LANWorkStation_class'
 ]
 
 { #category : #tests }
 FamixInvocationsTest >> testReceivingKnownClass3 [
 	| invocation |
 	invocation := self invocationFrom: #'Smalltalk::LANInterface.newFileServer()' to: #'new()'.
-	self assert: invocation notNil.
-	self assert: invocation receiver mooseName equals: #Smalltalk::LANFileServer_class
+	self assert: invocation isNotNil.
+	self assert: invocation receiver mooseName equals: #'Smalltalk::LANFileServer_class'
 ]
 
 { #category : #tests }
 FamixInvocationsTest >> testReceivingSelf [
 	| invocation |
 	invocation := self invocationFromOutputServerAcceptMethodTo: #'output:(Object)'.
-	self assert: invocation notNil.
+	self assert: invocation isNotNil.
 	self assert: invocation receiver mooseName equals: #'Smalltalk::LANOutputServer.accept:(Object).self'
 ]
 
@@ -141,7 +140,7 @@ FamixInvocationsTest >> testReceivingSelf [
 FamixInvocationsTest >> testReceivingSelf2 [
 	| invocation |
 	invocation := self invocationFromOutputServerAcceptMethodTo: #'name()'.
-	self assert: invocation notNil.
+	self assert: invocation isNotNil.
 	self assert: invocation receiver mooseName equals: #'Smalltalk::LANOutputServer.accept:(Object).self'
 ]
 
@@ -149,7 +148,7 @@ FamixInvocationsTest >> testReceivingSelf2 [
 FamixInvocationsTest >> testReceivingSelf3 [
 	| invocation |
 	invocation := self invocationFromOutputServerAcceptMethodTo: #'send:(Object)'.
-	self assert: invocation notNil.
+	self assert: invocation isNotNil.
 	self assert: invocation receiver mooseName equals: #'Smalltalk::LANOutputServer.accept:(Object).self'
 ]
 
@@ -157,7 +156,7 @@ FamixInvocationsTest >> testReceivingSelf3 [
 FamixInvocationsTest >> testReceivingSelf9 [
 	| invocation |
 	invocation := self invocationFrom: #'Smalltalk::LANOutputServer.output:(Object)' to: #'subclassResponsibility()'.
-	self assert: invocation notNil.
+	self assert: invocation isNotNil.
 	self assert: invocation receiver mooseName equals: #'Smalltalk::LANOutputServer.output:(Object).self'
 ]
 
@@ -165,7 +164,7 @@ FamixInvocationsTest >> testReceivingSelf9 [
 FamixInvocationsTest >> testReceivingSuper [
 	| invocation |
 	invocation := self invocationFrom: #'Smalltalk::LANInterface.initialize()' to: #'initialize()'.
-	self assert: invocation notNil.
+	self assert: invocation isNotNil.
 	self assert: invocation receiver mooseName equals: #'Smalltalk::LANInterface.initialize().super'
 ]
 
@@ -173,7 +172,7 @@ FamixInvocationsTest >> testReceivingSuper [
 FamixInvocationsTest >> testReceivingSuper2 [
 	| invocation |
 	invocation := self invocationFrom: (LANNode >> #printOn:) mooseName to: #'printOn:(Object)'.
-	self assert: invocation notNil.
+	self assert: invocation isNotNil.
 	self assert: invocation receiver mooseName equals: (LANNode mooseName , '.printOn:(Object).super') asSymbol
 ]
 
@@ -181,7 +180,7 @@ FamixInvocationsTest >> testReceivingSuper2 [
 FamixInvocationsTest >> testReceivingSuper3 [
 	| invocation |
 	invocation := self invocationFrom: (LANNode class >> #new) mooseName to: #'new()'.
-	self assert: invocation notNil.
+	self assert: invocation isNotNil.
 	self assert: invocation receiver mooseName equals: (LANNode class mooseName , '.new().super') asSymbol
 ]
 
@@ -189,7 +188,7 @@ FamixInvocationsTest >> testReceivingSuper3 [
 FamixInvocationsTest >> testReceivingSuper4 [
 	| invocation |
 	invocation := self invocationFrom: #'Smalltalk::LANWorkStation.name()' to: #'name()'.
-	self assert: invocation notNil.
+	self assert: invocation isNotNil.
 	self assert: invocation receiver mooseName equals: #'Smalltalk::LANWorkStation.name().super'
 ]
 
@@ -197,7 +196,7 @@ FamixInvocationsTest >> testReceivingSuper4 [
 FamixInvocationsTest >> testReceivingSuper5 [
 	| invocation |
 	invocation := self invocationFrom: #'Smalltalk::LANFileServer.name()' to: #'name()'.
-	self assert: invocation notNil.
+	self assert: invocation isNotNil.
 	self assert: invocation receiver mooseName equals: #'Smalltalk::LANFileServer.name().super'
 ]
 
@@ -205,17 +204,17 @@ FamixInvocationsTest >> testReceivingSuper5 [
 FamixInvocationsTest >> testReceivingSuper6 [
 	| invocation |
 	invocation := self invocationFrom: #'Smalltalk::LANPacket.printOn:(Object)' to: #'printOn:(Object)'.
-	self assert: invocation notNil.
+	self assert: invocation isNotNil.
 	self assert: invocation receiver mooseName equals: #'Smalltalk::LANPacket.printOn:(Object).super'
 ]
 
 { #category : #tests }
 FamixInvocationsTest >> testReceivingUnknownType [
 	"self debug: #testReceivingUnknownType"
-	
+
 	| invocation |
 	invocation := self invocationFromOutputServerAcceptMethodTo: #'isDestinationFor:(Object)'.
 
-	self assert: invocation notNil.
+	self assert: invocation isNotNil.
 	self assert: invocation receiver isNil
 ]

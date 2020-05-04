@@ -50,8 +50,7 @@ MooseModelFinderExtensionsTest >> testMenuBrowseMetaOn [
 	self assert: builder itemList isNil.
 	MooseModel menuBrowseMetaOn: builder.
 	self assert: builder itemList isCollection.
-	self assert: builder itemList notEmpty.
-
+	self assert: builder itemList isNotEmpty
 ]
 
 { #category : #tests }

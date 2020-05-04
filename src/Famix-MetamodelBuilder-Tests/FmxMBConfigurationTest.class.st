@@ -6,13 +6,11 @@ Class {
 
 { #category : #tests }
 FmxMBConfigurationTest >> testConfiguration [
-
-	| config | 
-	
+	| config |
 	config := builder configuration.
-	
-	self assert: config notNil.
-	
+
+	self assert: config isNotNil.
+
 	self assert: config basicSuperclassName equals: config defaultBasicSuperclassName.
 	config basicSuperclassName: #TestValue1.
 	self assert: config basicSuperclassName equals: #TestValue1.
@@ -35,6 +33,5 @@ FmxMBConfigurationTest >> testConfiguration [
 
 	self deny: config wantsToGenerateImportingContext.
 	config wantsToGenerateImportingContext: true.
-	self assert: config wantsToGenerateImportingContext.
-
+	self assert: config wantsToGenerateImportingContext
 ]

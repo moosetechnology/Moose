@@ -7,7 +7,6 @@ Trait {
 		'#entities => FMMany type: #FamixTWithFiles opposite: #containerFiles'
 	],
 	#traits : 'FamixTFileSystemEntity',
-	#classTraits : 'FamixTFileSystemEntity classTrait',
 	#category : #'Famix-Traits-File'
 }
 

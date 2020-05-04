@@ -85,10 +85,7 @@ FamixJavaType >> isAbstract [
 
 { #category : #testing }
 FamixJavaType >> isAnonymousClass [
-	^  self container notNil and: [
-			self container isMethod or: [
-				self name isAllDigits or: [
-					'*_anonymous_*' match: self name ]] ]
+	^ self container isNotNil and: [ self container isMethod or: [ self name isAllDigits or: [ '*_anonymous_*' match: self name ] ] ]
 ]
 
 { #category : #testing }
@@ -143,7 +140,7 @@ FamixJavaType >> isTestCase [
 ]
 
 { #category : #'Famix-Extensions-operations' }
-FamixJavaType >> lookUp: aMethodSignature [ 
+FamixJavaType >> lookUp: aMethodSignature [
 	"Returns the first method that has as signature #aMethodSignature. 
 	The search starts from the receiver's methods and traveses the inherited methods from the receiver's superclasses heirarchy.
 	If such a method has not been found, it returns nil"
@@ -152,15 +149,14 @@ FamixJavaType >> lookUp: aMethodSignature [
 	c := self.
 	searchedM := nil.
 	toSearchIt := true.
-	[c notNil and: [toSearchIt]] whileTrue: 
-			[searchedM := c methods 
-						detect: [:m | m signature = aMethodSignature]
-						ifNone: [nil].
+	[ c isNotNil and: [ toSearchIt ] ]
+		whileTrue: [ searchedM := c methods
+				detect: [ :m | m signature = aMethodSignature ]
+				ifNone: [ nil ].
 			searchedM
-				ifNil: [c := c superclass]
-				ifNotNil: [toSearchIt := false]
-			].
-	^searchedM
+				ifNil: [ c := c superclass ]
+				ifNotNil: [ toSearchIt := false ] ].
+	^ searchedM
 ]
 
 { #category : #accessing }

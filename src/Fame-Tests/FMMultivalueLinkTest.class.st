@@ -9,9 +9,9 @@ FMMultivalueLinkTest >> testBookPerson [
 	| book person |
 	book := LIBBook new.
 	person := LIBPerson new.
-	self assert: book authors notNil.
+	self assert: book authors isNotNil.
 	self assert: book authors isCollection.
-	self assert: person books notNil.
+	self assert: person books isNotNil.
 	self assert: person books isCollection.
 	book authors add: person.
 	self assert: book authors size equals: 1.
@@ -25,7 +25,7 @@ FMMultivalueLinkTest >> testClassPackage [
 	| package meta |
 	package := FM3Package new.
 	meta := FM3Class new.
-	self assert: package classes notNil.
+	self assert: package classes isNotNil.
 	self assert: package classes isCollection.
 	self assert: meta package isNil.
 	meta package: package.
@@ -39,7 +39,7 @@ FMMultivalueLinkTest >> testClassProperty [
 	| meta prop |
 	meta := FM3Class new.
 	prop := FM3Property new.
-	self assert: meta properties notNil.
+	self assert: meta properties isNotNil.
 	self assert: meta properties isCollection.
 	self assert: prop mmClass isNil.
 	meta properties add: prop.
@@ -89,7 +89,7 @@ FMMultivalueLinkTest >> testPackageClass [
 	| package meta |
 	package := FM3Package new.
 	meta := FM3Class new.
-	self assert: package classes notNil.
+	self assert: package classes isNotNil.
 	self assert: package classes isCollection.
 	self assert: meta package isNil.
 	package classes add: meta.
@@ -103,7 +103,7 @@ FMMultivalueLinkTest >> testPackageProperty [
 	| package prop |
 	package := FM3Package new.
 	prop := FM3Property new.
-	self assert: package extensions notNil.
+	self assert: package extensions isNotNil.
 	self assert: package extensions isCollection.
 	self assert: prop package isNil.
 	package extensions add: prop.
@@ -117,9 +117,9 @@ FMMultivalueLinkTest >> testPersonBook [
 	| book person |
 	book := LIBBook new.
 	person := LIBPerson new.
-	self assert: book authors notNil.
+	self assert: book authors isNotNil.
 	self assert: book authors isCollection.
-	self assert: person books notNil.
+	self assert: person books isNotNil.
 	self assert: person books isCollection.
 	person books add: book.
 	self assert: book authors size equals: 1.
@@ -133,7 +133,7 @@ FMMultivalueLinkTest >> testPropertyClass [
 	| meta prop |
 	meta := FM3Class new.
 	prop := FM3Property new.
-	self assert: meta properties notNil.
+	self assert: meta properties isNotNil.
 	self assert: meta properties isCollection.
 	self assert: prop mmClass isNil.
 	prop mmClass: meta.
@@ -147,7 +147,7 @@ FMMultivalueLinkTest >> testPropertyPackage [
 	| package prop |
 	package := FM3Package new.
 	prop := FM3Property new.
-	self assert: package extensions notNil.
+	self assert: package extensions isNotNil.
 	self assert: package extensions isCollection.
 	self assert: prop package isNil.
 	prop package: package.

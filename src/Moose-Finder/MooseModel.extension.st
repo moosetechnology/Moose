@@ -174,13 +174,9 @@ MooseModel >> mooseInterestingEntity [
 { #category : #'*Moose-Finder' }
 MooseModel >> rename [
 	<menuItem: 'Rename' category: 'Utilities'>
-
 	| newName |
-	newName := UITheme builder
-		textEntry: 'Set new name for MooseModel ', self name.
-	(newName notNil and: [newName notEmpty])
-		ifTrue: [ self name: newName ]
-
+	newName := UITheme builder textEntry: 'Set new name for MooseModel ' , self name.
+	(newName isNotNil and: [ newName isNotEmpty ]) ifTrue: [ self name: newName ]
 ]
 
 { #category : #'*Moose-Finder' }

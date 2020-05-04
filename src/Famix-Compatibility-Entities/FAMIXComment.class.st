@@ -30,15 +30,14 @@ FAMIXComment >> belongsTo [
 FAMIXComment >> gtDisplayOn: aStream [
 	| preview |
 	preview := self sourceText truncateWithElipsisTo: 10.
-	preview := preview copyReplaceAll: (String with: Character cr with: Character lf) with: ' '.	
-	preview := preview copyReplaceAll: (String with: Character cr) with: ' '.	
+	preview := preview copyReplaceAll: (String with: Character cr with: Character lf) with: ' '.
+	preview := preview copyReplaceAll: (String with: Character cr) with: ' '.
 	preview := preview copyReplaceAll: (String with: Character lf) with: ' '.
-	aStream 
+	aStream
 		nextPut: $";
 		nextPutAll: preview;
 		nextPutAll: '" in '.
-	self belongsTo notNil ifTrue: [
-		self belongsTo gtDisplayOn: aStream ]
+	self belongsTo isNotNil ifTrue: [ self belongsTo gtDisplayOn: aStream ]
 ]
 
 { #category : #'Famix-Implementation' }

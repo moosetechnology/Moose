@@ -106,7 +106,7 @@ FAMIXStepwiseImporterTest >> testImportAttributeAccesses [
 	nodeClass := importer classes at: LANNode.
 	self assert: nodeClass attributes size equals: 2.
 	attr := nodeClass attributes at: 1.
-	self assert: attr readAccesses notEmpty
+	self assert: attr readAccesses isNotEmpty
 ]
 
 { #category : #tests }

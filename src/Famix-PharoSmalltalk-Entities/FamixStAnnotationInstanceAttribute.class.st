@@ -16,8 +16,8 @@ FamixStAnnotationInstanceAttribute class >> annotation [
 ]
 
 { #category : #accessing }
-FamixStAnnotationInstanceAttribute >> name [ 
-	^ self annotationTypeAttribute notNil 
+FamixStAnnotationInstanceAttribute >> name [
+	^ self annotationTypeAttribute isNotNil
 		ifTrue: [ self annotationTypeAttribute name ]
 		ifFalse: [ nil ]
 ]

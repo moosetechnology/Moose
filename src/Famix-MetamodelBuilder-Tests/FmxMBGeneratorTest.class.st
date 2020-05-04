@@ -38,7 +38,7 @@ FmxMBGeneratorTest >> testMooseModelSubclassHasMetaModel [
 FmxMBGeneratorTest >> testResetMetamodel [
 	| metamodel |
 	metamodel := FamixTest1Model resetMetamodel.
-	self assert: (metamodel elementNamed: 'Famix-Test1-Entities.Entity' ifAbsent: [ nil ]) notNil
+	self assert: (metamodel elementNamed: 'Famix-Test1-Entities.Entity' ifAbsent: [ nil ]) isNotNil
 ]
 
 { #category : #tests }

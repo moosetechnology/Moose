@@ -44,8 +44,8 @@ FamixStInvocation >> initialize [
 { #category : #'instance creation' }
 FamixStInvocation >> isASureInvocation [
 	"Test if the receiver (an invocation) is sure (i.e. we know for sure the class of the invocation's receiver)"
+
 	| invoRVar |
 	invoRVar := self receiver.
-	^(invoRVar notNil) and: 
-			[invoRVar class = FamixStClass or: [invoRVar isImplicitVariable and: [invoRVar isSelf or: [invoRVar isSuper]]]]
+	^ invoRVar isNotNil and: [ invoRVar class = FamixStClass or: [ invoRVar isImplicitVariable and: [ invoRVar isSelf or: [ invoRVar isSuper ] ] ] ]
 ]

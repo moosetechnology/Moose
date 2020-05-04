@@ -16,8 +16,8 @@ FAMIXAnnotationInstanceAttribute class >> annotation [
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXAnnotationInstanceAttribute >> name [ 
-	^ self annotationTypeAttribute notNil 
+FAMIXAnnotationInstanceAttribute >> name [
+	^ self annotationTypeAttribute isNotNil
 		ifTrue: [ self annotationTypeAttribute name ]
 		ifFalse: [ nil ]
 ]

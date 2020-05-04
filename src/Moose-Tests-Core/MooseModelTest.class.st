@@ -134,8 +134,7 @@ MooseModelTest >> testMenuCommandOn [
 	self assert: builder itemList isNil.
 	MooseModel menuCommandOn: builder.
 	self assert: builder itemList isCollection.
-	self assert: builder itemList notEmpty.
-
+	self assert: builder itemList isNotEmpty
 ]
 
 { #category : #tests }

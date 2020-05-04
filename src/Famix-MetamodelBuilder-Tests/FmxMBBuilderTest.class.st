@@ -17,28 +17,24 @@ Class {
 
 { #category : #tests }
 FmxMBBuilderTest >> testChildBuildersGeneration [
-
 	| parentBuilder childBuilder environment |
-	
 	parentBuilder := FamixMetamodelBuilder forTesting.
 	parentBuilder configuration packageName: 'ParentBuilderPackage'.
 	parentBuilder ensureClassNamed: 'ParentEntity'.
-	
+
 	childBuilder := FamixMetamodelBuilder new.
 	childBuilder parentBuilder: parentBuilder.
 	childBuilder configuration packageName: 'ChildBuilderPackage'.
 	childBuilder ensureClassNamed: 'ChildEntity'.
-	
+
 	parentBuilder generate.
 	parentBuilder generateRemotes.
-	
+
 	environment := parentBuilder environment ringEnvironment.
-	
-	self assert: (environment ask behaviorNamed: #TstParentEntity) notNil.
-	self assert: (environment ask behaviorNamed: #TstParentEntity) package name equals: 'ParentBuilderPackage'. 
-	self assert: (environment ask behaviorNamed: #TstChildEntity) isNil.
-	
-	
+
+	self assert: (environment ask behaviorNamed: #TstParentEntity) isNotNil.
+	self assert: (environment ask behaviorNamed: #TstParentEntity) package name equals: 'ParentBuilderPackage'.
+	self assert: (environment ask behaviorNamed: #TstChildEntity) isNil
 ]
 
 { #category : #tests }
