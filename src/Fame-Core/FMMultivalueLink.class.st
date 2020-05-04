@@ -51,11 +51,11 @@ FMMultivalueLink class >> on: element opposite: oppositeSelector [
 { #category : #'instance creation' }
 FMMultivalueLink class >> on: element update: selector from: old to: new [
 	"refresh the other side of the relations to reflect change in value"
-	
-	old ~= new ifTrue: [
-		old notNil ifTrue: [ (old perform: selector) unsafeRemove: element ].
-		new notNil ifTrue: [ (new perform: selector) unsafeAdd: element ]].
-	^new
+
+	old ~= new
+		ifTrue: [ old ifNotNil: [ (old perform: selector) unsafeRemove: element ].
+			new ifNotNil: [ (new perform: selector) unsafeAdd: element ] ].
+	^ new
 ]
 
 { #category : #copying }
@@ -196,12 +196,6 @@ FMMultivalueLink >> unsafeAdd: element [
 FMMultivalueLink >> unsafeRemove: element [
 
 	values remove: element ifAbsent: nil
-]
-
-{ #category : #accessing }
-FMMultivalueLink >> value [
-
-	^self
 ]
 
 { #category : #accessing }

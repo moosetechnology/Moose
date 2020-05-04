@@ -9,7 +9,7 @@ FAMIXModuleTest >> testFunctions [
 	| module function |
 	self skip: 'Test skipped until C metamodel definition'.
 	module := FAMIXModule new.
-	self assert: module functions isEmpty.
+	self assertEmpty: module functions.
 	function := FAMIXFunction new.
 	function parentModule: module.
 	self assert: function parentModule identicalTo: module.

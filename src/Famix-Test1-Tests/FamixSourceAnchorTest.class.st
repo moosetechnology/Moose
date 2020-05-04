@@ -48,18 +48,18 @@ FamixSourceAnchorTest >> testImportFileAnchors [
 		(Famix-Test1-Entities.FileAnchor (id: 4) (element (ref: 2)) (fileName ''afile'') (startLine 3) (endLine 30))
 	)' readStream.
 	self assert: model entities size equals: 4.
-	self assert: model allClasses first sourceAnchor notNil.
+	self assert: model allClasses first sourceAnchor isNotNil.
 	self assert: model allClasses first sourceAnchor mooseModel identicalTo: model.
 	self assert: (model allClasses first sourceAnchor isKindOf: FamixTest1SourceAnchor).
 	self assert: model allClasses first sourceAnchor fileName equals: 'afile'.
 	aMethod := model allMethods first.
 	self assert: aMethod hasSourceAnchor.
-	self assert: aMethod sourceAnchor notNil.
+	self assert: aMethod sourceAnchor isNotNil.
 	self assert: aMethod sourceAnchor fileName equals: 'afile'.
 	self assert: aMethod sourceAnchor startLine equals: 3.
 	self assert: aMethod sourceAnchor endLine equals: 30.
-	self assert: aMethod sourceAnchor completeText isEmpty.
-	self assert: aMethod sourceText isEmpty.
+	self assertEmpty: aMethod sourceAnchor completeText.
+	self assertEmpty: aMethod sourceText.
 	self assert: aMethod sourceAnchor lineCount equals: 28.
 	self deny: aMethod sourceAnchor hasSourceText.
 	self assert: aMethod numberOfLinesOfCode equals: 28.

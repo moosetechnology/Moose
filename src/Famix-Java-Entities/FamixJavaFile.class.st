@@ -15,7 +15,7 @@ FamixJavaFile class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaFile >> isSourceCodeLoaded [
 	self propertyNamed: #sourceText ifAbsentPut: [ ^ false].
 	^ true

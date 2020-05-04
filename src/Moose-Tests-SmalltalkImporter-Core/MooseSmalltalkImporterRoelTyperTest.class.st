@@ -10,9 +10,8 @@ MooseSmalltalkImporterRoelTyperTest >> testASTCore [
 	model := FamixStModel new.
 	self timeLimit: 60 seconds.
 	importer := MoosePharoImporterTask new.
-	importer importingContext
-		mergeClassAndMetaclass";
-		computeTypeOfAttributes".
+	importer importingContext mergeClassAndMetaclass.	";
+		computeTypeOfAttributes"
 	importer runCandidateOperator.
 	self
 		shouldnt: [ importer
@@ -20,5 +19,5 @@ MooseSmalltalkImporterRoelTyperTest >> testASTCore [
 				addFromPackagesNamed: #('AST-Core');
 				run ]
 		raise: Error.
-	self deny: model isEmpty
+	self denyEmpty: model
 ]

@@ -181,30 +181,20 @@ FamixJavaMethod >> isOverriding [
 
 { #category : #printing }
 FamixJavaMethod >> isStub [
-	^ super isStub
-		or: [ self parentType notNil and: [ self parentType isStub ] ]
+	^ super isStub or: [ self parentType isNotNil and: [ self parentType isStub ] ]
 ]
 
 { #category : #testing }
-FamixJavaMethod >> isSurelyInvokedBy: aFAMIXMethod [ 
-	 
+FamixJavaMethod >> isSurelyInvokedBy: aFAMIXMethod [
 	| outgoingInvo |
-
-	((self isAbstract or: [aFAMIXMethod isAbstract]) 
-		or: [(outgoingInvo := aFAMIXMethod queryAllOutgoingInvocations) isEmpty])
-		ifFalse: 
-			[
-			(outgoingInvo do:[:invo |
-				(invo signature = self signature and: [invo isASureInvocation]) ifTrue:[
-					| invocationRVar | 
-					invocationRVar := invo getReceivingFAMIXClass. 
-					(invocationRVar notNil 
-						and: [(invocationRVar lookUp: self signature) = self]) 
-							ifTrue:[^true]
-				]
-			]).
-		].
-	^false
+	((self isAbstract or: [ aFAMIXMethod isAbstract ]) or: [ (outgoingInvo := aFAMIXMethod queryAllOutgoingInvocations) isEmpty ])
+		ifFalse: [ outgoingInvo
+				do: [ :invo | 
+					(invo signature = self signature and: [ invo isASureInvocation ])
+						ifTrue: [ | invocationRVar |
+							invocationRVar := invo getReceivingFAMIXClass.
+							(invocationRVar isNotNil and: [ (invocationRVar lookUp: self signature) = self ]) ifTrue: [ ^ true ] ] ] ].
+	^ false
 ]
 
 { #category : #accessing }

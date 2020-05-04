@@ -317,12 +317,6 @@ FAMIXPackage >> numberOfLinesOfCode [
 ]
 
 { #category : #'Famix-Extensions' }
-FAMIXPackage >> numberOfLinesOfCode: aNumber [
-
-	self privateState propertyAt: #numberOfLinesOfCode put: aNumber
-]
-
-{ #category : #'Famix-Extensions' }
 FAMIXPackage >> numberOfMethods [
 	<FMProperty: #numberOfMethods type: #Number>
 	<FMComment: 'The number of methods in a package'>

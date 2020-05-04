@@ -43,7 +43,7 @@ FMLibraryExample >> testBookstore2 [
 	class := package classNamed: 'Book'.
 	self assert: class isFM3Class.	"The superclass of Book should be Object"
 	objectMetaDescription := class superclass.
-	self assert: objectMetaDescription notNil.
+	self assert: objectMetaDescription isNotNil.
 	self assert: objectMetaDescription name equals: #Object.
 	attribute := class propertyNamed: 'authors'.
 	self assert: attribute isFM3Property.
@@ -54,7 +54,7 @@ FMLibraryExample >> testBookstore2 [
 	self flag: 'Maybe we should rename package to extensionPackage, and make package be derived from [ package or class package ].'.
 	self assert: attribute mmClass equals: class.
 	self assert: attribute type equals: (package classNamed: 'Person').
-	self assert: attribute opposite notNil
+	self assert: attribute opposite isNotNil
 ]
 
 { #category : #tests }
@@ -84,21 +84,21 @@ FMLibraryExample >> testMetamodelSmalltalkBinding [
 	self assert: metamodel classes anyOne isFM3Class.
 	self assert: metamodel properties anyOne isFM3Property.
 	b := metamodel elementNamed: 'LIB.Book'.
-	self assert: b notNil.
+	self assert: b isNotNil.
 	self assert: b isFM3Class.
 	self assert: b name equals: #Book.
 	self assert: b package name equals: #LIB.
 	self assert: b properties size equals: 2.
 	self assert: b implementingClass equals: LIBBook.
 	p := metamodel elementNamed: 'LIB.Person'.
-	self assert: p notNil.
+	self assert: p isNotNil.
 	self assert: p isFM3Class.
 	self assert: p name equals: #Person.
 	self assert: p package name equals: #LIB.
 	self assert: p properties size equals: 2.
 	self assert: p implementingClass equals: LIBPerson.
 	lib := metamodel elementNamed: 'LIB.Library'.
-	self assert: lib notNil.
+	self assert: lib isNotNil.
 	self assert: lib isFM3Class.
 	self assert: lib name equals: #Library.
 	self assert: lib package name equals: #LIB.

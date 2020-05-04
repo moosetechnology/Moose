@@ -84,7 +84,7 @@ FMMetaModelBuilderTest >> testSimple [
 	self assert: elements size equals: originalSize + 1.
 	props := rep properties.
 	self assert: props size equals: 1.
-	self assert: props anyOne mmClass notNil.
+	self assert: props anyOne mmClass isNotNil.
 	self assert: (elements includes: props anyOne mmClass).
 	mmClass := props anyOne mmClass.
 	self assert: mmClass name equals: #FMAnnotationTest.

@@ -25,7 +25,7 @@ FamixReferenceModelImporterTest >> privateTestAccessingVar: aVarName from: aMeth
 	var := (self model allUsing: FamixTAccessible) entityNamed: aVarName.
 	self assert: (var incomingAccesses select: [ :each | each accessor = methodName ]) size equals: anInteger.
 	access := (var incomingAccesses select: [ :each | each accessor = methodName ]) first.
-	self assert: access isRead == aBoolean.
+	self assert: access isRead identicalTo: aBoolean.
 	self assert: access isWrite ~~ aBoolean
 ]
 
@@ -239,7 +239,7 @@ FamixReferenceModelImporterTest >> testAccessingStubClassWithinReturnVariable [
 FamixReferenceModelImporterTest >> testAnnotationInstanceAttributes [
 	| unaryAnnType withParameterAnnType |
 	unaryAnnType := self model allAnnotationTypes detect: [ :each | each name = #aPragma ].
-	self assert: unaryAnnType instances first attributes isEmpty.
+	self assertEmpty: unaryAnnType instances first attributes.
 	withParameterAnnType := self model allAnnotationTypes detect: [ :each | each name = #aPragma:parameter: ].
 	self assert: withParameterAnnType instances first attributes size equals: 2.
 	self assert: withParameterAnnType instances last attributes size equals: 2.
@@ -283,7 +283,7 @@ FamixReferenceModelImporterTest >> testAnnotationInstancesConnectedToMethods [
 FamixReferenceModelImporterTest >> testAnnotationTypeAttributes [
 	| unaryAnnType withParameterAnnType |
 	unaryAnnType := self model allAnnotationTypes detect: [ :each | each name = #aPragma ].
-	self assert: unaryAnnType attributes isEmpty.
+	self assertEmpty: unaryAnnType attributes.
 	withParameterAnnType := self model allAnnotationTypes detect: [ :each | each name = #aPragma:parameter: ].
 	self assert: withParameterAnnType attributes size equals: 2
 ]
@@ -371,8 +371,8 @@ FamixReferenceModelImporterTest >> testClassReferenceFromTheInstanceSide [
 { #category : #tests }
 FamixReferenceModelImporterTest >> testClassReferencesByFullNameReified [
 	"self debug: #testClassReferencesByFullNameReified"
-	
-	self assert: (self model entityNamed: TestCase class mooseName) notNil
+
+	self assert: (self model entityNamed: TestCase class mooseName) isNotNil
 ]
 
 { #category : #tests }
@@ -453,7 +453,7 @@ FamixReferenceModelImporterTest >> testExtendedPackage [
 	extendedClass := self model entityNamed: SubRootModelTwo mooseName.
 	self assert: (extendedPackage localClasses includes: extendedClass).
 	self assert: (extendedPackage extendedClasses includes: extendedClass).
-	self assert: extendedPackage extensionClasses isEmpty.
+	self assertEmpty: extendedPackage extensionClasses.
 	self assert: extendedPackage methods size equals: 2.
 	self assert: extendedPackage localMethods size equals: 2
 ]
@@ -503,18 +503,12 @@ FamixReferenceModelImporterTest >> testExtensionPackage [
 	self deny: (extensionPackage extensionClasses includes: normalClass).
 	self assert: (extensionPackage extensionClasses includes: extendedClass).
 	self assert: (extensionPackage extensionClasses includes: externalExtendedClass).
-	self assert: extensionPackage extendedClasses isEmpty.
+	self assertEmpty: extensionPackage extendedClasses.
 	self assert: extensionPackage methods size equals: 3.
 	self assert: extensionPackage localMethods size equals: 1.
 	self assert: extensionPackage extensionMethods size equals: 2.
-	self
-		assert:
-			(extensionPackage extensionMethods
-				includes:
-					(self model entityNamed: (ExternalReferenceClass >> #externalClassExtensionForTest) mooseName)).
-	self
-		assert:
-			(extensionPackage extensionMethods includes: (self model entityNamed: (SubRootModelTwo >> #extendedMethodOne) mooseName))
+	self assert: (extensionPackage extensionMethods includes: (self model entityNamed: (ExternalReferenceClass >> #externalClassExtensionForTest) mooseName)).
+	self assert: (extensionPackage extensionMethods includes: (self model entityNamed: (SubRootModelTwo >> #extendedMethodOne) mooseName))
 ]
 
 { #category : #tests }
@@ -553,10 +547,10 @@ FamixReferenceModelImporterTest >> testExternalExtension [
 { #category : #tests }
 FamixReferenceModelImporterTest >> testFormalParameterReified [
 	"self debug: #testFormalParameterReified"
-	
+
 	| formalParameterName |
 	formalParameterName := #'Smalltalk::TheRoot.accessingArgument:(Object).anArgument'.
-	self assert: (self model entityNamed: formalParameterName) notNil
+	self assert: (self model entityNamed: formalParameterName) isNotNil
 ]
 
 { #category : #tests }
@@ -857,7 +851,7 @@ FamixReferenceModelImporterTest >> testSubRootLevelOneInheritsFromTheRoot [
 	self assert: (referenceModelSubRootLevelOne superInheritances at: 1) superclass name equals: TheRoot name.
 	self assert: (referenceModelSubRootLevelOne superInheritances at: 1) subclass name equals: SubRootLevelOne name.
 	self assert: (referenceModelSubRootLevelOne superInheritances at: 1) superclass name equals: TheRoot name.
-	self assert: referenceModelSubRootLevelOne subInheritances isEmpty
+	self assertEmpty: referenceModelSubRootLevelOne subInheritances
 ]
 
 { #category : #tests }

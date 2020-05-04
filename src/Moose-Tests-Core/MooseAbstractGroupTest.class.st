@@ -99,7 +99,7 @@ MooseAbstractGroupTest >> testAllWithType [
 	self assert: (group allWithType: FamixTest3Class) size equals: 1.
 	self assert: (group allWithType: FamixTest3Type) size equals: 1.
 	self should: [ (group allWithType: FamixTClass) size ] raise: MooseAllWithTypeOnTrait.
-	self assert: (group allWithType: Object) isEmpty
+	self assertEmpty: (group allWithType: Object)
 ]
 
 { #category : #tests }
@@ -108,7 +108,7 @@ MooseAbstractGroupTest >> testAllWithTypeAtRuntime [
 	group entityStorage forRuntime.
 	self assert: (group allWithType: FamixTest3Class) size equals: 1.
 	self assert: (group allWithType: FamixTest3Method) size equals: 1.
-	self assert: (group allWithType: FamixTest3Invocation) isEmpty
+	self assertEmpty: (group allWithType: FamixTest3Invocation)
 ]
 
 { #category : #tests }
@@ -117,7 +117,7 @@ MooseAbstractGroupTest >> testAllWithTypeAtSetup [
 	group entityStorage forSetup.
 	self assert: (group allWithType: FamixTest3Class) size equals: 1.
 	self assert: (group allWithType: FamixTest3Method) size equals: 1.
-	self assert: (group allWithType: FamixTest3Invocation) isEmpty
+	self assertEmpty: (group allWithType: FamixTest3Invocation)
 ]
 
 { #category : #tests }

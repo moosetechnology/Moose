@@ -82,11 +82,7 @@ FamixPackageGroup >> viewSystemComplexity [
 { #category : #'*Moose-RoassalPaintings' }
 FamixPackageGroup >> viewSystemComplexityOn: view [
 	view shape rectangle.
-	view
-		nodes: self
-		forEach: [ :p | 
-			p classes isEmpty
-				ifFalse: [ p classes viewSimpleSystemComplexityOn: view ] ].
+	view nodes: self forEach: [ :p | p classes ifNotEmpty: [ :classes | classes viewSimpleSystemComplexityOn: view ] ].
 	view shape orthoVerticalLine.
 	view edges connectFrom: #yourself toAll: [ :each | each queryIncomingInheritances atScope: FamixTPackage ].
 	view layout dominanceTree

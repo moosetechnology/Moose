@@ -68,7 +68,7 @@ WizardPart >> contents: aCollectionOfMorphElements [
 	self populateContents: aCollectionOfMorphElements .
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 WizardPart >> contentsChanged [
 	self changed: #contents
 ]

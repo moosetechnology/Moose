@@ -169,10 +169,10 @@ FMImporterTest >> testResolvingMultiArgs [
 	ref2 := pack classNamed: 'MyName2'.
 	ref4 := pack classNamed: 'MyName4'.
 	ref5 := pack classNamed: 'MyName5'.
-	self assert: pack notNil.
-	self assert: ref2 notNil.
-	self assert: ref4 notNil.
-	self assert: ref5 notNil.
+	self assert: pack isNotNil.
+	self assert: ref2 isNotNil.
+	self assert: ref4 isNotNil.
+	self assert: ref5 isNotNil.
 	self assert: (pack classes includes: ref2).
 	self assert: (pack classes includes: ref4).
 	self assert: (pack classes includes: ref5)

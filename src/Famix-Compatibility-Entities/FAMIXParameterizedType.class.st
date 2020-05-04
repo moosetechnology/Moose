@@ -37,13 +37,9 @@ FAMIXParameterizedType >> isParameterizedType [
 ]
 
 { #category : #printing }
-FAMIXParameterizedType >> mooseNameOn: aStream [ 
-	self parameterizableClass notNil 
-		ifTrue: [self parameterizableClass mooseNameOn: aStream].
+FAMIXParameterizedType >> mooseNameOn: aStream [
+	self parameterizableClass ifNotNil: [ :pc | pc mooseNameOn: aStream ].
 	aStream nextPut: $<.
-	self arguments 
-		do: [:each | each mooseNameOn: aStream]
-		separatedBy: [aStream nextPut: $,].  
-	aStream nextPut: $>.  
-
+	self arguments do: [ :each | each mooseNameOn: aStream ] separatedBy: [ aStream nextPut: $, ].
+	aStream nextPut: $>
 ]

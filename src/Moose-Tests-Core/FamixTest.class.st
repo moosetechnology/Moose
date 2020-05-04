@@ -99,5 +99,5 @@ FamixTest >> testSourcesAnchorsAreNotDuplicatedAfterExport [
 	tempFile writeStreamDo: [ :s | model exportToMSEStream: s ].
 	importedModel := FamixTest3Model new importFromMSEStream: tempFile readStream.
 	self assert: importedModel size equals: model size.
-	self assert: importedModel allClasses anyOne sourceAnchor notNil
+	self assert: importedModel allClasses anyOne sourceAnchor isNotNil
 ]

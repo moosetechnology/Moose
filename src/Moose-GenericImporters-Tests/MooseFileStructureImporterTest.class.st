@@ -225,7 +225,7 @@ MooseFileStructureImporterTest >> testNestedFiles [
 MooseFileStructureImporterTest >> testSourceText [
 	| files |
 	files := model allFiles.
-	self assert: (files entityNamed: #'folders/fileWith9Chars2Lines') sourceText notEmpty
+	self denyEmpty: (files entityNamed: #'folders/fileWith9Chars2Lines') sourceText
 ]
 
 { #category : #accessing }

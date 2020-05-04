@@ -59,10 +59,7 @@ MooseImportingContext class >> allDependentsOf: aKey alreadyIn: aSet [
 
 { #category : #defaults }
 MooseImportingContext class >> defaultMergeClassAndMetaclass [
-	
-	DefaultMergeClassAndMetaclass isNil
-		ifTrue: [DefaultMergeClassAndMetaclass := false].
-	^DefaultMergeClassAndMetaclass
+	^ DefaultMergeClassAndMetaclass ifNil: [ DefaultMergeClassAndMetaclass := false ]
 ]
 
 { #category : #defaults }

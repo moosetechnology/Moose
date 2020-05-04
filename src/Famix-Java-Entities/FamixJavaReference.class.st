@@ -15,7 +15,7 @@ FamixJavaReference class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 FamixJavaReference >> mooseNameOn: aStream [
 	"aStream nextPutAll: 'Reference'."
 
@@ -24,7 +24,7 @@ FamixJavaReference >> mooseNameOn: aStream [
 	self target ifNotNil: [ aStream nextPutAll: self target name ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 FamixJavaReference >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPutAll: ' (Reference)'

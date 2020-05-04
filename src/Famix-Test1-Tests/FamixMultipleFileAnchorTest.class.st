@@ -87,8 +87,8 @@ FamixMultipleFileAnchorTest >> testSimilarFileAnchors [
 FamixMultipleFileAnchorTest >> testSourceText [
 	| sourceText |
 	sourceText := multipleFileAnchor sourceText.
-	self assert: sourceText isNotEmpty.
-	self assert: (sourceText includesSubstring: '=============', String lf)
+	self denyEmpty: sourceText.
+	self assert: (sourceText includesSubstring: '=============' , String lf)
 ]
 
 { #category : #tests }

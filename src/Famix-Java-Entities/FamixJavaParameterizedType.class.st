@@ -15,7 +15,7 @@ FamixJavaParameterizedType class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #enumerating }
 FamixJavaParameterizedType >> allSubclassesDo: aBlock [
 	"we override this traversal because we want to
 	traverse the parameter type"
@@ -23,7 +23,7 @@ FamixJavaParameterizedType >> allSubclassesDo: aBlock [
 	self parameterizableClass ifNotNil: [ :a | a withSubclassesDo: aBlock ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #enumerating }
 FamixJavaParameterizedType >> allSuperclassesDo: aBlock [
 	"we override this traversal because we want to
 	traverse the parameter type"
@@ -31,19 +31,15 @@ FamixJavaParameterizedType >> allSuperclassesDo: aBlock [
 	self parameterizableClass ifNotNil: [ :a | a withSuperclassesDo: aBlock ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaParameterizedType >> isParameterizedType [
 	^ true
 ]
 
-{ #category : #'as yet unclassified' }
-FamixJavaParameterizedType >> mooseNameOn: aStream [ 
-	self parameterizableClass notNil 
-		ifTrue: [self parameterizableClass mooseNameOn: aStream].
+{ #category : #accessing }
+FamixJavaParameterizedType >> mooseNameOn: aStream [
+	self parameterizableClass ifNotNil: [ :pc | pc mooseNameOn: aStream ].
 	aStream nextPut: $<.
-	self arguments 
-		do: [:each | each mooseNameOn: aStream]
-		separatedBy: [aStream nextPut: $,].  
-	aStream nextPut: $>.  
-
+	self arguments do: [ :each | each mooseNameOn: aStream ] separatedBy: [ aStream nextPut: $, ].
+	aStream nextPut: $>
 ]

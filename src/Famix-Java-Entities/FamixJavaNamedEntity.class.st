@@ -15,7 +15,7 @@ FamixJavaNamedEntity class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions' }
 FamixJavaNamedEntity >> stubFormattedName [
 	 ^ self isStub 
 		ifTrue: [ Text 

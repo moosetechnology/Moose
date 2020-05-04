@@ -25,12 +25,12 @@ FamixJavaParameter >> mooseNameOn: stream [
 	self name ifNotNil: [stream nextPutAll: self name]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixJavaParameter >> parentType [
 	^self parentBehaviouralEntity parentType
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 FamixJavaParameter >> printOn: stream [ 
 	| parent |
 	self name ifNotNil: [ stream nextPutAll: self name ].

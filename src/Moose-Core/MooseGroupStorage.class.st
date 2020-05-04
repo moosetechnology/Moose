@@ -82,12 +82,6 @@ MooseGroupStorage >> collect: aBlock [
 	^newCollection
 ]
 
-{ #category : #enumerating }
-MooseGroupStorage >> do: aBlock [ 
-	 
-	self subclassResponsibility
-]
-
 { #category : #accessing }
 MooseGroupStorage >> elements [ 
 	 

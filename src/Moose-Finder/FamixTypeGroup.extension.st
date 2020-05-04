@@ -48,7 +48,7 @@ FamixTypeGroup >> mooseIcon [
 { #category : #'*Moose-Finder' }
 FamixTypeGroup >> viewSystemComplexityInWizard [
 	<menuItem: 'Customizable System Complexity' category: 'Visualize'>
-	self isEmpty ifTrue: [ ^ self ].
+	self ifEmpty: [ ^ self ].
 	^ MooseCustomizableSystemComplexityBrowser
 		openOnClassGroup: self
 		heightToSelect: #numberOfMethods

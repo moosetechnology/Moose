@@ -33,7 +33,7 @@ FAMIXType >> allAnnotationTypes [
 { #category : #'Famix-Implementation' }
 FAMIXType >> allSuperclassesDo: aBlock [
 	self allSuperclassesWithoutAliasesDo: aBlock.
-	(self mooseModel sourceLanguage notNil and: [self mooseModel sourceLanguage isC])
+	(self mooseModel sourceLanguage isNotNil and: [ self mooseModel sourceLanguage isC ])
 		ifTrue: [ self typeAliases do: [ :each | each allSuperclassesWithoutAliasesDo: aBlock ] ]
 ]
 
@@ -157,10 +157,7 @@ FAMIXType >> isAbstract [
 
 { #category : #'Famix-Java' }
 FAMIXType >> isAnonymousClass [
-	^  self container notNil and: [
-			self container isMethod or: [
-				self name isAllDigits or: [
-					'*_anonymous_*' match: self name ]] ]
+	^ self container isNotNil and: [ self container isMethod or: [ self name isAllDigits or: [ '*_anonymous_*' match: self name ] ] ]
 ]
 
 { #category : #'Famix-Extensions' }
@@ -263,7 +260,7 @@ FAMIXType >> localMethods [
 ]
 
 { #category : #'Famix-Extensions-operations' }
-FAMIXType >> lookUp: aMethodSignature [ 
+FAMIXType >> lookUp: aMethodSignature [
 	"Returns the first method that has as signature #aMethodSignature. 
 	The search starts from the receiver's methods and traveses the inherited methods from the receiver's superclasses heirarchy.
 	If such a method has not been found, it returns nil"
@@ -272,15 +269,14 @@ FAMIXType >> lookUp: aMethodSignature [
 	c := self.
 	searchedM := nil.
 	toSearchIt := true.
-	[c notNil and: [toSearchIt]] whileTrue: 
-			[searchedM := c methods 
-						detect: [:m | m signature = aMethodSignature]
-						ifNone: [nil].
+	[ c isNotNil and: [ toSearchIt ] ]
+		whileTrue: [ searchedM := c methods
+				detect: [ :m | m signature = aMethodSignature ]
+				ifNone: [ nil ].
 			searchedM
-				ifNil: [c := c superclass]
-				ifNotNil: [toSearchIt := false]
-			].
-	^searchedM
+				ifNil: [ c := c superclass ]
+				ifNotNil: [ toSearchIt := false ] ].
+	^ searchedM
 ]
 
 { #category : #'Famix-Implementation' }

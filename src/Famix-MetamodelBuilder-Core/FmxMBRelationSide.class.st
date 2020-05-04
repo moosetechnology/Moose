@@ -106,7 +106,7 @@ FmxMBRelationSide >> generationStrategy: anObject [
 
 { #category : #testing }
 FmxMBRelationSide >> hasRelation [
-	^ self relation notNil
+	^ self relation isNotNil
 ]
 
 { #category : #initialization }

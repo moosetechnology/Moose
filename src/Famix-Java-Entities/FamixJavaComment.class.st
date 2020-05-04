@@ -15,33 +15,32 @@ FamixJavaComment class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #converting }
 FamixJavaComment >> asFamixJavaComment [
 	^ self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #deprecated }
 FamixJavaComment >> belongsTo [
 	
 	^ self container
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 FamixJavaComment >> gtDisplayOn: aStream [
 	| preview |
 	preview := self sourceText truncateWithElipsisTo: 10.
-	preview := preview copyReplaceAll: (String with: Character cr with: Character lf) with: ' '.	
-	preview := preview copyReplaceAll: (String with: Character cr) with: ' '.	
+	preview := preview copyReplaceAll: (String with: Character cr with: Character lf) with: ' '.
+	preview := preview copyReplaceAll: (String with: Character cr) with: ' '.
 	preview := preview copyReplaceAll: (String with: Character lf) with: ' '.
-	aStream 
+	aStream
 		nextPut: $";
 		nextPutAll: preview;
 		nextPutAll: '" in '.
-	self belongsTo notNil ifTrue: [
-		self belongsTo gtDisplayOn: aStream ]
+	self belongsTo ifNotNil: [ :bt | bt gtDisplayOn: aStream ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 FamixJavaComment >> printOn: aStream [
 	self sourceText ifNotNil: [ :sourceText | aStream nextPutAll: (sourceText contractTo: 50) ].
 	aStream nextPutAll: ' (comment on '.
@@ -49,7 +48,7 @@ FamixJavaComment >> printOn: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixJavaComment >> sourceText [
 	^ self content ifNil: [ self sourceAnchor ifNil: [ '' ] ifNotNil: [ :sa | sa sourceText ] ]
 ]

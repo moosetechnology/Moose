@@ -108,7 +108,7 @@ FamixJavaParameterizedTypeTest >> testArgumentTypes [
 FamixJavaParameterizedTypeTest >> testArguments [
 	| parameterizableType |
 	parameterizableType := model allParameterizedTypes entityNamed: #'ParameterizableClassA<TypeB,TypeC>'.
-	self assert: parameterizableType arguments notEmpty.
+	self denyEmpty: parameterizableType arguments.
 	self assert: parameterizableType arguments size equals: 2
 ]
 
@@ -135,10 +135,9 @@ FamixJavaParameterizedTypeTest >> testModelSize [
 
 { #category : #tests }
 FamixJavaParameterizedTypeTest >> testMooseName [
-
 	| parameterizableType |
 	parameterizableType := model allParameterizedTypes entityNamed: #'ParameterizableClassA<TypeB,TypeC>'.
-	self assert: parameterizableType notNil
+	self assert: parameterizableType isNotNil
 ]
 
 { #category : #tests }

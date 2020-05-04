@@ -221,12 +221,6 @@ FAMIXNamespace >> numberOfLinesOfCode [
 ]
 
 { #category : #'Famix-Extensions' }
-FAMIXNamespace >> numberOfLinesOfCode: aNumber [
-
-	self privateState propertyAt: #numberOfLinesOfCode put: aNumber
-]
-
-{ #category : #'Famix-Extensions' }
 FAMIXNamespace >> numberOfMethods [
 	<FMProperty: #numberOfMethods type: #Number>
 	<derived>

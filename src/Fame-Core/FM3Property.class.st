@@ -95,12 +95,12 @@ FM3Property >> getRawFrom: element [
 
 { #category : #testing }
 FM3Property >> hasImplementingSelector [
-	^ self implementingSelector notNil
+	^ self implementingSelector isNotNil
 ]
 
 { #category : #testing }
 FM3Property >> hasOpposite [
-	^opposite notNil
+	^ opposite isNotNil
 ]
 
 { #category : #accessing }
@@ -168,7 +168,7 @@ FM3Property >> isDerived: anObject [
 
 { #category : #accessing }
 FM3Property >> isExtension [
-	^ self package notNil
+	^ self package isNotNil
 ]
 
 { #category : #testing }

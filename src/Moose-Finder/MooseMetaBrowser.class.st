@@ -174,9 +174,12 @@ MooseMetaBrowser >> commentOfProperty: fm3Prop [
 MooseMetaBrowser >> commentsIn: a [
 	a text
 		title: 'Comment' translated;
-		display: [ :fm3Class | fm3Class implementingClass ifNil: [ '' ] ifNotNil: [ :class | class comment ] ];
+		display: [ :fm3Class | 
+			fm3Class implementingClass
+				ifNil: [ '' ]
+				ifNotNil: [ :class | class comment ] ];
 		useExplicitNotNil;
-		when: [ :fm3Class :fm3Prop | fm3Class notNil and: [ fm3Prop isNil ] ];
+		when: [ :fm3Class :fm3Prop | fm3Class isNotNil and: [ fm3Prop isNil ] ];
 		act: [ :text :fm3Class | fm3Class implementingClass ifNotNil: [ :class | class comment: text text ] ]
 			icon: MooseIcons mooseAccept
 			on: $s
@@ -188,7 +191,7 @@ MooseMetaBrowser >> commentsIn: a [
 			icon: MooseIcons mooseAccept
 			on: $s
 			entitled: 'Accept';
-		when: [ :fm3Class :fm3Prop | fm3Prop notNil ]
+		when: [ :fm3Class :fm3Prop | fm3Prop isNotNil ]
 ]
 
 { #category : #private }
@@ -223,21 +226,28 @@ MooseMetaBrowser >> metamodelMapIn: a [
 		painting: [ :view :all :fm3Class :fm3Prop | 
 			b := RTMondrian new.
 			b view: view.
-			self viewClass: fm3Class property: fm3Prop in: all on: b.
+			self
+				viewClass: fm3Class
+				property: fm3Prop
+				in: all
+				on: b.
 			b build.
-			
+
 			self addClassLegendOn: view ];
 		useExplicitNotNil;
-		when: [ :fm3Class | fm3Class notNil ]
+		when: [ :fm3Class | fm3Class isNotNil ]
 ]
 
 { #category : #building }
 MooseMetaBrowser >> methodCommentsIn: a [
 	a text
 		title: 'Comment' translated;
-		display: [ :fm3Class | fm3Class implementingClass ifNil: [ '' ] ifNotNil: [ :class | class comment ] ];
+		display: [ :fm3Class | 
+			fm3Class implementingClass
+				ifNil: [ '' ]
+				ifNotNil: [ :class | class comment ] ];
 		useExplicitNotNil;
-		when: [ :fm3Class :compiledMethod | fm3Class notNil and: [ compiledMethod isNil ] ];
+		when: [ :fm3Class :compiledMethod | fm3Class isNotNil and: [ compiledMethod isNil ] ];
 		act: [ :text :fm3Class | fm3Class implementingClass ifNotNil: [ fm3Class implementingClass comment: text text ] ]
 			icon: MooseIcons mooseAccept
 			on: $s
@@ -249,7 +259,7 @@ MooseMetaBrowser >> methodCommentsIn: a [
 			icon: MooseIcons mooseAccept
 			on: $s
 			entitled: 'Accept';
-		when: [ :fm3Class :compiledMethod | compiledMethod notNil ]
+		when: [ :fm3Class :compiledMethod | compiledMethod isNotNil ]
 ]
 
 { #category : #private }
@@ -267,23 +277,27 @@ MooseMetaBrowser >> viewClass: fm3Class property: fm3Prop in: all on: view [
 	| edges |
 	view interaction popupText: [ :each | each fullName asString ].
 	view shape rectangle
-		fillColor: [ :each | each = fm3Class ifTrue: [ Color blue muchLighter ] ifFalse: [
-				each implementingClass 
-					ifNil: [Color lightRed]
-					ifNotNil: [:aClass | aClass organization classComment isNotEmpty ifTrue: [ Color white ] ifFalse: [ Color lightRed ] ]
-				] ];
-		borderColor: [ :each | each = fm3Class ifTrue: [ Color blue lighter ] ifFalse: [ Color gray ] ];
+		fillColor: [ :each | 
+			each = fm3Class
+				ifTrue: [ Color blue muchLighter ]
+				ifFalse: [ each implementingClass
+						ifNil: [ Color lightRed ]
+						ifNotNil: [ :aClass | aClass organization classComment ifEmpty: [ Color lightRed ] ifNotEmpty: [ Color white ] ] ] ];
+		borderColor: [ :each | 
+			each = fm3Class
+				ifTrue: [ Color blue lighter ]
+				ifFalse: [ Color gray ] ];
 		height: [ :each | each complexProperties size * 2 + 5 ];
 		width: [ :each | each primitiveProperties size ].
 	view nodes: all classes.
 	edges := view edgesFrom: #superclass.
-	fm3Class notNil ifTrue: [
-		view shape line 
-			color: Color blue muchLighter ;
-			width: [:each | each = fm3Prop ifTrue: [ 3 ] ifFalse: [ 1 ] ].
-		view 
-			edges source: fm3Class allComplexProperties 
-			connectFrom: fm3Class 
-			to: [ :attr | attr type ] ].
+	fm3Class
+		ifNotNil: [ view shape line
+				color: Color blue muchLighter;
+				width: [ :each | 
+					each = fm3Prop
+						ifTrue: [ 3 ]
+						ifFalse: [ 1 ] ].
+			view edges source: fm3Class allComplexProperties connectFrom: fm3Class to: [ :attr | attr type ] ].
 	view treeLayout userDefinedEdges: edges
 ]

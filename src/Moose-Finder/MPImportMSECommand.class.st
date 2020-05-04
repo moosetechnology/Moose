@@ -6,12 +6,9 @@ Class {
 
 { #category : #hooks }
 MPImportMSECommand >> execute [
-	[ 
-	| model |
-	model := MooseModel new.
-	model importFromMSE.
-	model notEmpty
-		ifTrue: [ 
+	[ MooseModel new
+		importFromMSE;
+		ifNotEmpty: [ :model | 
 			model install.
 			self addModel: model ] ] fork
 ]

@@ -17,11 +17,11 @@ FMMetamodelScripterTest >> setUp [
 { #category : #tests }
 FMMetamodelScripterTest >> testClasses [
 	self assert: metamodel classes size equals: 3.
-	self assert: (metamodel elementNamed: 'RPG.Dragon') notNil.
+	self assert: (metamodel elementNamed: 'RPG.Dragon') isNotNil.
 	self assert: (metamodel elementNamed: 'RPG.Dragon') isFM3Class.
-	self assert: (metamodel elementNamed: 'RPG.Treasure') notNil.
+	self assert: (metamodel elementNamed: 'RPG.Treasure') isNotNil.
 	self assert: (metamodel elementNamed: 'RPG.Treasure') isFM3Class.
-	self assert: (metamodel elementNamed: 'RPG.Hero') notNil.
+	self assert: (metamodel elementNamed: 'RPG.Hero') isNotNil.
 	self assert: (metamodel elementNamed: 'RPG.Hero') isFM3Class
 ]
 
@@ -83,18 +83,18 @@ FMMetamodelScripterTest >> testPackages [
 { #category : #tests }
 FMMetamodelScripterTest >> testProperties [
 	self assert: metamodel properties size equals: 7.
-	self assert: (metamodel elementNamed: 'RPG.Dragon.hoard') notNil.
+	self assert: (metamodel elementNamed: 'RPG.Dragon.hoard') isNotNil.
 	self assert: (metamodel elementNamed: 'RPG.Dragon.hoard') isFM3Property.
-	self assert: (metamodel elementNamed: 'RPG.Dragon.killedBy') notNil.
+	self assert: (metamodel elementNamed: 'RPG.Dragon.killedBy') isNotNil.
 	self assert: (metamodel elementNamed: 'RPG.Dragon.killedBy') isFM3Property.
-	self assert: (metamodel elementNamed: 'RPG.Treasure.keeper') notNil.
+	self assert: (metamodel elementNamed: 'RPG.Treasure.keeper') isNotNil.
 	self assert: (metamodel elementNamed: 'RPG.Treasure.keeper') isFM3Property.
-	self assert: (metamodel elementNamed: 'RPG.Treasure.owner') notNil.
+	self assert: (metamodel elementNamed: 'RPG.Treasure.owner') isNotNil.
 	self assert: (metamodel elementNamed: 'RPG.Treasure.owner') isFM3Property.
-	self assert: (metamodel elementNamed: 'RPG.Hero.twin') notNil.
+	self assert: (metamodel elementNamed: 'RPG.Hero.twin') isNotNil.
 	self assert: (metamodel elementNamed: 'RPG.Hero.twin') isFM3Property.
-	self assert: (metamodel elementNamed: 'RPG.Hero.kills') notNil.
+	self assert: (metamodel elementNamed: 'RPG.Hero.kills') isNotNil.
 	self assert: (metamodel elementNamed: 'RPG.Hero.kills') isFM3Property.
-	self assert: (metamodel elementNamed: 'RPG.Hero.talisman') notNil.
+	self assert: (metamodel elementNamed: 'RPG.Hero.talisman') isNotNil.
 	self assert: (metamodel elementNamed: 'RPG.Hero.talisman') isFM3Property
 ]

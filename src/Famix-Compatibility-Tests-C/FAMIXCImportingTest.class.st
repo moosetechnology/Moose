@@ -68,7 +68,7 @@ FAMIXCImportingTest >> testCompilationUnitIncludes [
 	| cu |
 	self skip: 'Test skipped until C metamodel definition'.
 	cu := model entities detect: [ :e | e class == FAMIXCompilationUnit ].
-	self assert: cu notNil.
+	self assert: cu isNotNil.
 	self assert: cu name equals: 'foobar.cpp'.
 	self assert: cu numberOfIncludes equals: 2
 ]
@@ -100,6 +100,6 @@ FAMIXCImportingTest >> testModuleHasCompilationUnit [
 	self skip: 'Test skipped until C metamodel definition'.
 	module := model entities detect: [ :e | e class == FAMIXModule ].
 	cu := module compilationUnit.
-	self assert: cu notNil.
+	self assert: cu isNotNil.
 	self assert: cu name equals: 'foobar.cpp'
 ]

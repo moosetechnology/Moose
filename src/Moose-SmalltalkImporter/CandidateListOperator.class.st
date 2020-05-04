@@ -59,14 +59,6 @@ CandidateListOperator >> computeCandidateListFor: anInvocation [
 ]
 
 { #category : #running }
-CandidateListOperator >> computeCandidateListFor: anInvocation withBaseClass: aClass [
-	aClass ~~ nil
-		ifTrue: [ | candidate |
-			candidate := aClass lookUp: anInvocation signature.
-			(candidate ~~ nil and: [ candidate isAbstract not ]) ifTrue: [ anInvocation candidates: (Array with: candidate) ] ]
-]
-
-{ #category : #running }
 CandidateListOperator >> computeCandidateListFor: anInvocation withReceivingClass: aClass [
 	| candidate candidates |
 	aClass ~~ nil
@@ -120,19 +112,6 @@ CandidateListOperator >> containerOf: anInstVarName startingAt: aClass [
 		ifFalse: [ ^ self containerOf: anInstVarName startingAt: aClass ].
 		
 		 .
-]
-
-{ #category : #accessing }
-CandidateListOperator >> description [ 
-	 
-	^'Computing candidate list for <1p> invocations'
-		expandMacrosWith: model allInvocations size
-]
-
-{ #category : #accessing }
-CandidateListOperator >> length [ 
-	 
-	^model allInvocations size
 ]
 
 { #category : #running }

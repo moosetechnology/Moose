@@ -53,11 +53,8 @@ FamixSourceLanguageTest >> testIsFile [
 
 { #category : #tests }
 FamixSourceLanguageTest >> testSourcedEntities [
-
-	self assert: lang sourcedEntities isEmpty.
+	self assertEmpty: lang sourcedEntities.
 	lang addSourcedEntity: m1.
 	lang addSourcedEntity: m2.
-	self assertCollection: lang sourcedEntities hasSameElements: { m1. m2 }.
-
-
+	self assertCollection: lang sourcedEntities hasSameElements: {m1 . m2}
 ]

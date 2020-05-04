@@ -41,11 +41,12 @@ RPGHero >> talisman [
 
 { #category : #accessing }
 RPGHero >> talisman: aTreasure [
-	talisman ~= aTreasure ifTrue: [ | old |
-		old := talisman.
-		talisman := aTreasure.
-		old notNil ifTrue: [ old owner: nil ].
-		aTreasure notNil ifTrue: [ aTreasure owner: self ]]
+	talisman ~= aTreasure
+		ifTrue: [ | old |
+			old := talisman.
+			talisman := aTreasure.
+			old ifNotNil: [ old owner: nil ].
+			aTreasure ifNotNil: [ aTreasure owner: self ] ]
 ]
 
 { #category : #accessing }
@@ -57,9 +58,10 @@ RPGHero >> twin [
 
 { #category : #accessing }
 RPGHero >> twin: aHero [
-	twin ~= aHero ifTrue: [ | old |
-		old := twin.
-		twin := aHero.
-		old notNil ifTrue: [ old twin: nil ].
-		aHero notNil ifTrue: [ aHero twin: self ]]
+	twin ~= aHero
+		ifTrue: [ | old |
+			old := twin.
+			twin := aHero.
+			old ifNotNil: [ old twin: nil ].
+			aHero ifNotNil: [ aHero twin: self ] ]
 ]

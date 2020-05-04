@@ -6,6 +6,7 @@ For more informations: https://moosequery.ferlicot.fr/
 Trait {
 	#name : #TOODependencyQueries,
 	#traits : 'TDependencyQueries',
+	#classTraits : 'TDependencyQueries classTrait',
 	#category : #'Moose-Query-Traits'
 }
 
@@ -29,13 +30,6 @@ TOODependencyQueries >> hasIncomingTypeDeclaration [
 				| coll |
 				1 to: (coll := children asCollection) size do: [ :i | ((coll at: i) hasIncomingTypeDeclarations) ifTrue: [ ^ true ]  ] ] ].
 	 ^ self entityHasIncomingTypeDeclarations.
-]
-
-{ #category : #testing }
-TOODependencyQueries >> hasOutgoingDependencies [
-	"Associations + typeDeclaractions"
-
-	^ self hasOutgoing or: [ self hasOutgoingTypeDeclarations ]
 ]
 
 { #category : #testing }

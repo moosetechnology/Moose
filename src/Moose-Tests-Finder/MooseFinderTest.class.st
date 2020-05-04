@@ -37,13 +37,10 @@ MooseFinderTest >> assertAction: action [
 
 { #category : #tests }
 MooseFinderTest >> assertAllActionsOf: group [
-	
 	| allActionMorphs |
-
-	group isEmpty ifTrue: [^ self ].
+	group ifEmpty: [ ^ self ].
 	allActionMorphs := self allActionMorphsIn: group mooseMenu.
-	allActionMorphs 
-		do: [ :action | self assertAction: action ]
+	allActionMorphs do: [ :action | self assertAction: action ]
 ]
 
 { #category : #running }
@@ -153,11 +150,11 @@ MooseFinderTest >> testMooseIcon [
 MooseFinderTest >> testProperty [
 	| entity |
 	entity := FAMIXEntity new.
-	self assert: entity properties isEmpty.
+	self assertEmpty: entity properties.
 	self assert: (entity propertyNamed: #aKey ifNil: [ 10 ]) equals: 10.
 	entity propertyNamed: #aKey ifAbsentPut: 20.
 	self assert: (entity propertyNamed: #aKey ifNil: [ 10 ]) equals: 20.
-	self deny: entity properties isEmpty.
-	self assert: entity complexPropertyPragmas isEmpty.
+	self denyEmpty: entity properties.
+	self assertEmpty: entity complexPropertyPragmas.
 	self assert: entity notExistentMetricValue equals: -1
 ]

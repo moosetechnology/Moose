@@ -15,7 +15,7 @@ FamixJavaInvocation class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 FamixJavaInvocation >> getReceivingFAMIXClass [
 	|tmpReceiver|
 	"return the FAMIXClass of the receiver. If the receiver is a FAMIXClass, this one is returned. If it is self or super, the corresponding FAMIXClass is returned. The receiver may not be nil"
@@ -34,7 +34,7 @@ FamixJavaInvocation >> getReceivingFAMIXClass [
 			ifFalse: [^tmpReceiver]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 FamixJavaInvocation >> gtDisplayOn: aStream [
 	self source ifNotNil: [ self source gtDisplayOn: aStream ].
 	aStream nextPutAll: ' -> '.
@@ -52,7 +52,7 @@ FamixJavaInvocation >> initialize [
 	signature := 'nosignature'.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaInvocation >> isAPotentialInvocation [
 	"test if the sender is a potential invocation"
 	| invokedMtdSignature invoRVar invokedMtd |
@@ -75,13 +75,13 @@ FamixJavaInvocation >> isAPotentialInvocation [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 FamixJavaInvocation >> isASureInvocation [
 	"Test if the receiver (an invocation) is sure (i.e. we know for sure the class of the invocation's receiver)"
+
 	| invoRVar |
 	invoRVar := self receiver.
-	^(invoRVar notNil) and: 
-			[invoRVar class = FamixJavaClass or: [invoRVar isImplicitVariable and: [invoRVar isSelf or: [invoRVar isSuper]]]]
+	^ invoRVar isNotNil and: [ invoRVar class = FamixJavaClass or: [ invoRVar isImplicitVariable and: [ invoRVar isSelf or: [ invoRVar isSuper ] ] ] ]
 ]
 
 { #category : #testing }
@@ -89,7 +89,7 @@ FamixJavaInvocation >> isInvocation [
 	^true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 FamixJavaInvocation >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPut: $#.
@@ -97,7 +97,7 @@ FamixJavaInvocation >> printOn: aStream [
 	aStream << ' (Invocation)'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FamixJavaInvocation >> receiverSourceCode [
 	^ self receiver sourceText
 ]
