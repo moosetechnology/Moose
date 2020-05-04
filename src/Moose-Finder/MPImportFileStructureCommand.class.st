@@ -6,11 +6,10 @@ Class {
 
 { #category : #hooks }
 MPImportFileStructureCommand >> execute [
-	| model |
-	model := MooseModel new.
-	model importFileStructure.
-	model isNotEmpty
-		ifTrue: [ model install.
+	MooseModel new
+		importFileStructure;
+		ifNotEmpty: [ :model | 
+			model install.
 			self addModel: model ]
 ]
 

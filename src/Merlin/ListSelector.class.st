@@ -310,28 +310,27 @@ ListSelector >> updateWhenAddingItem [
 	initialPackages remove: package.
 	self list: initialPackages.
 	"if the initial become empty, we disable de add button"
-	initialPackages isEmpty ifTrue: [addButton disable].	
+	initialPackages ifEmpty: [ addButton disable ].
 
 	" we update the list of packages of the selection morph list :"
 	"listModel packagesList: list."
-	self selectionList: tmpPackagesList.
-
+	self selectionList: tmpPackagesList
 ]
 
 { #category : #actions }
 ListSelector >> updateWhenRemovingItem [
 	"we remove the selected item from the selection list : "
+
 	| list package tmpPackagesList |
 	package := self selectionListSelectedItem.
 	list := self selectionList.
 	list remove: package.
 	self selectionList: list.
 	"if the selection become empty, we disable the remove button :"
-	list isEmpty ifTrue: [removeButton disable]. 
+	list ifEmpty: [ removeButton disable ].
 
 	"we move the removed package into the packages list :"
 	tmpPackagesList := self list.
 	tmpPackagesList add: package.
-	self list: tmpPackagesList.
-
+	self list: tmpPackagesList
 ]

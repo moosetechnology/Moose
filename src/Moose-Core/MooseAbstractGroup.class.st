@@ -424,16 +424,13 @@ MooseAbstractGroup >> groupedBy: aBlock [
 
 { #category : #testing }
 MooseAbstractGroup >> ifEmpty: emptyBlock ifNotEmpty: notEmptyBlock [
-	self isEmpty
-		ifTrue: [ ^ emptyBlock value ].
+	self ifEmpty: [ ^ emptyBlock value ].
 	^ notEmptyBlock cull: self
 ]
 
 { #category : #testing }
 MooseAbstractGroup >> ifNotEmpty: aBlock [
-	^ self isEmpty
-		ifTrue: [ self ]
-		ifFalse: [ aBlock cull: self ]
+	^ self ifEmpty: [ self ] ifNotEmpty: [ aBlock cull: self ]
 ]
 
 { #category : #testing }

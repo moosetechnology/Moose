@@ -304,14 +304,10 @@ MerlinMorphWidget >> newSaveFileDialogNamed: title [
 
 { #category : #'utils - morph creation' }
 MerlinMorphWidget >> newTabGroupBoxFor: labelsAndControls [
-
-	^(TabGroupMorph  new
-		"font: self labelFont;"
-		"cornerStyle: #rounded;"
+	^ (TabGroupMorph new
 		hResizing: #spaceFill;
 		vResizing: #spaceFill;
-		labelsAndPages: labelsAndControls)
-		selectedPageIndex: (labelsAndControls isEmpty ifTrue: [0] ifFalse: [1])
+		labelsAndPages: labelsAndControls) selectedPageIndex: (labelsAndControls ifEmpty: [ 0 ] ifNotEmpty: [ 1 ])
 ]
 
 { #category : #'utils - morph creation' }

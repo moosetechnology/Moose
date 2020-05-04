@@ -28,9 +28,8 @@ MerlinItemsSelectorWidget >> addButtonMorph [
 
 { #category : #actions }
 MerlinItemsSelectorWidget >> checkForEnablingAddRemoveButtons [
-
-	self wizardPart initialList isEmpty ifTrue: [self addButtonMorph disable].
-	self wizardPart selectionList isEmpty ifTrue: [self removeButtonMorph disable]  	
+	self wizardPart initialList ifEmpty: [ self addButtonMorph disable ].
+	self wizardPart selectionList ifEmpty: [ self removeButtonMorph disable ]
 ]
 
 { #category : #'control - initial list ' }
@@ -184,23 +183,18 @@ MerlinItemsSelectorWidget >> textFieldMorph [
 
 { #category : #actions }
 MerlinItemsSelectorWidget >> updateWhenAddingItem [
-
-	self wizardPart initialList isEmpty
-		ifTrue: [ self addButtonMorph disable ].
+	self wizardPart initialList ifEmpty: [ self addButtonMorph disable ].
 	self wizardPart updateWhenAddingItem.
 	self checkForEnablingAddRemoveButtons.
-	self widgetStateChanged.
+	self widgetStateChanged
 ]
 
 { #category : #actions }
 MerlinItemsSelectorWidget >> updateWhenRemovingItem [
-	
-	self wizardPart selectionList isEmpty ifTrue: [self removeButtonMorph disable].
+	self wizardPart selectionList ifEmpty: [ self removeButtonMorph disable ].
 	self wizardPart updateWhenRemovingItem.
-	self checkForEnablingAddRemoveButtons. 
-	self widgetStateChanged.
-	 
-
+	self checkForEnablingAddRemoveButtons.
+	self widgetStateChanged
 ]
 
 { #category : #actions }

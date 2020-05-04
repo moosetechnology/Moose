@@ -2,15 +2,11 @@ Extension { #name : #MooseAbstractGroup }
 
 { #category : #'*moose-finder' }
 MooseAbstractGroup >> customNavigationItems [
-	| classes result |
-	classes := self metamodel allImplementingClasses select: [ :each | each inheritsFrom: MooseObject ].
-
+	| result |
 	result := OrderedCollection new.
-	classes
-		do: [ :each | 
-			| aGroup |
-			aGroup := self allWithType: each.
-			aGroup isEmpty ifFalse: [ result add: each -> (self allWithType: each) ] ].
+	self metamodel allImplementingClasses
+		select: [ :each | each inheritsFrom: MooseObject ]
+		thenDo: [ :each | (self allWithType: each) ifNotEmpty: [ :aGroup | result add: each -> aGroup ] ].
 	^ result
 ]
 

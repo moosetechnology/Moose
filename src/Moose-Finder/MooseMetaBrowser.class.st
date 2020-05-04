@@ -282,10 +282,7 @@ MooseMetaBrowser >> viewClass: fm3Class property: fm3Prop in: all on: view [
 				ifTrue: [ Color blue muchLighter ]
 				ifFalse: [ each implementingClass
 						ifNil: [ Color lightRed ]
-						ifNotNil: [ :aClass | 
-							aClass organization classComment isNotEmpty
-								ifTrue: [ Color white ]
-								ifFalse: [ Color lightRed ] ] ] ];
+						ifNotNil: [ :aClass | aClass organization classComment ifEmpty: [ Color lightRed ] ifNotEmpty: [ Color white ] ] ] ];
 		borderColor: [ :each | 
 			each = fm3Class
 				ifTrue: [ Color blue lighter ]

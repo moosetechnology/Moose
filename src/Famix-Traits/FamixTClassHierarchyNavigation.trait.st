@@ -280,19 +280,16 @@ FamixTClassHierarchyNavigation >> subclassHierarchy [
 ]
 
 { #category : #metrics }
-FamixTClassHierarchyNavigation >> subclassHierarchyDepth [ 
+FamixTClassHierarchyNavigation >> subclassHierarchyDepth [
 	<FMProperty: #subclassHierarchyDepth type: #Number>
 	<derived>
 	<FMComment: 'The depth of the class hierarchy for which I am the root'>
-		
-	^ self directSubclasses isEmpty 
-		ifTrue: [ 0 ] 
-		ifFalse: 
-			[ | currentMaxDepth| 
-				currentMaxDepth := 0. 
-				self allSubclassesDo: 
-					[ :aClass | currentMaxDepth := currentMaxDepth max: aClass subclassHierarchyDepth ]. 
-            1 + currentMaxDepth ] 
+	^ self directSubclasses
+		ifEmpty: [ 0 ]
+		ifNotEmpty: [ | currentMaxDepth |
+			currentMaxDepth := 0.
+			self allSubclassesDo: [ :aClass | currentMaxDepth := currentMaxDepth max: aClass subclassHierarchyDepth ].
+			1 + currentMaxDepth ]
 ]
 
 { #category : #metrics }

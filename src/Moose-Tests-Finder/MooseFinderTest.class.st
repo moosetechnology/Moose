@@ -37,13 +37,10 @@ MooseFinderTest >> assertAction: action [
 
 { #category : #tests }
 MooseFinderTest >> assertAllActionsOf: group [
-	
 	| allActionMorphs |
-
-	group isEmpty ifTrue: [^ self ].
+	group ifEmpty: [ ^ self ].
 	allActionMorphs := self allActionMorphsIn: group mooseMenu.
-	allActionMorphs 
-		do: [ :action | self assertAction: action ]
+	allActionMorphs do: [ :action | self assertAction: action ]
 ]
 
 { #category : #running }
