@@ -10,6 +10,7 @@ Trait {
 		'#parentScope => FMOne type: #FamixTScopingEntity opposite: #childScopes'
 	],
 	#traits : 'TOODependencyQueries',
+	#classTraits : 'TOODependencyQueries classTrait',
 	#category : #'Famix-Traits-ScopingEntity'
 }
 
@@ -49,8 +50,7 @@ FamixTScopingEntity >> allChildScopesGroup [
 
 { #category : #accessing }
 FamixTScopingEntity >> allParentScopesDo: aBlock [
-	self parentScope notNil ifTrue: [
-		self parentScope withAllParentScopesDo: aBlock ]
+	self parentScope isNotNil ifTrue: [ self parentScope withAllParentScopesDo: aBlock ]
 ]
 
 { #category : #accessing }

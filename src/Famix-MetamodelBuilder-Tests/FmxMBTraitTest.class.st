@@ -275,18 +275,16 @@ FmxMBTraitTest >> testSimpleClassAnnotation [
 
 { #category : #tests }
 FmxMBTraitTest >> testSimpleTrait [
-
 	| generated |
-	
-	builder newTraitNamed: #TComment.	
+	builder newTraitNamed: #TComment.
 	builder generate.
 	generated := builder testingEnvironment ask classNamed: 'TstTComment'.
-	self assert: generated notNil.
+	self assert: generated isNotNil.
 	self assert: generated isClass.
 	self assert: generated superclass name equals: 'Trait'.
 	self assert: generated slots isEmpty.
-	self assert: generated instanceSide localSelectors isEmpty.	
-	self assertCollection: generated classSide localSelectors sorted equals: #(annotation).
+	self assert: generated instanceSide localSelectors isEmpty.
+	self assertCollection: generated classSide localSelectors sorted equals: #(annotation)
 ]
 
 { #category : #tests }

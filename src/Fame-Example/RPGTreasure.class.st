@@ -36,9 +36,10 @@ RPGTreasure >> owner [
 
 { #category : #accessing }
 RPGTreasure >> owner: aHero [
-	owner ~= aHero ifTrue: [ | old |
-		old := owner.
-		owner := aHero.
-		old notNil ifTrue: [ old talisman: nil ].
-		aHero notNil ifTrue: [ aHero talisman: self ]]
+	owner ~= aHero
+		ifTrue: [ | old |
+			old := owner.
+			owner := aHero.
+			old isNotNil ifTrue: [ old talisman: nil ].
+			aHero isNotNil ifTrue: [ aHero talisman: self ] ]
 ]

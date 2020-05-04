@@ -239,10 +239,9 @@ FamixModelExtractionTest >> testReferenceModel [
 
 { #category : #tests }
 FamixModelExtractionTest >> testUnderstands [
-
 	| aFamixClass |
 	aFamixClass := self model entityNamed: LANFileServer mooseName.
-	self assert: aFamixClass notNil.
+	self assert: aFamixClass isNotNil.
 
 	"method defined in the same class"
 	self assert: (aFamixClass understands: #'output:(Object)').

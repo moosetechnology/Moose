@@ -141,7 +141,7 @@ LANMooseGroupTest >> testIncludes [
 
 { #category : #tests }
 LANMooseGroupTest >> testIncludesAllOf [
-	self assert:	(self model allClasses includesAllOf: self model allClasses)
+	self assert: (self model allClasses includesAll: self model allClasses)
 ]
 
 { #category : #tests }

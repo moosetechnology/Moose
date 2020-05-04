@@ -26,7 +26,7 @@ FamixTWithSourceAnchor >> computeNumberOfLinesOfCode [
 
 { #category : #testing }
 FamixTWithSourceAnchor >> hasSourceAnchor [
-	^ self sourceAnchor notNil
+	^ self sourceAnchor isNotNil
 ]
 
 { #category : #properties }

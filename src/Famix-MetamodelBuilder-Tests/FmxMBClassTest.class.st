@@ -63,46 +63,40 @@ FmxMBClassTest >> testBasicTrait [
 
 { #category : #tests }
 FmxMBClassTest >> testBuilderPackageChange [
-	
 	"if we set for a builder a packag name, all newely defined entities should use be assigned to this package. If no explicit package name is set, the default one is used."
 
 	| generated |
-	
-	builder newClassNamed: #Comment.	
+	builder newClassNamed: #Comment.
 	builder configuration packageName: 'Another'.
-	builder newClassNamed: #Method.	
+	builder newClassNamed: #Method.
 	builder generate.
 	generated := builder testingEnvironment ask classNamed: 'TstComment'.
-	self assert: generated notNil.
+	self assert: generated isNotNil.
 	self assert: generated isClass.
 	self assert: generated package name equals: #Tst.
 	generated := builder testingEnvironment ask classNamed: 'TstMethod'.
-	self assert: generated notNil.
+	self assert: generated isNotNil.
 	self assert: generated isClass.
-	self assert: generated package name equals: #Another.
-
+	self assert: generated package name equals: #Another
 ]
 
 { #category : #tests }
 FmxMBClassTest >> testBuilderPrefixChange [
-
 	"if we set for a builder a prefix, all newely defined entities should use it. If no explicit prefix is set, the default one is used."
 
 	| generated |
-	
-	builder newClassNamed: #Comment.	
+	builder newClassNamed: #Comment.
 	builder configuration prefix: 'Another'.
-	builder newClassNamed: #Method.	
+	builder newClassNamed: #Method.
 	builder generate.
 	generated := builder testingEnvironment ask classNamed: 'TstComment'.
-	self assert: generated notNil.
+	self assert: generated isNotNil.
 	self assert: generated isClass.
 	self assert: generated package name equals: #Tst.
 	generated := builder testingEnvironment ask classNamed: 'AnotherMethod'.
-	self assert: generated notNil.
+	self assert: generated isNotNil.
 	self assert: generated isClass.
-	self assert: generated package name equals: #Tst.
-
+	self assert: generated package name equals: #Tst
 ]
 
 { #category : #tests }

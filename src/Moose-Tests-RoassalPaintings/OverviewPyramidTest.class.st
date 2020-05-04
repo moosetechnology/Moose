@@ -17,7 +17,7 @@ OverviewPyramidTest >> model [
 OverviewPyramidTest >> prepareAnyMooseModel [
 	| model importer models |
 	models := MooseModel root allModels.
-	models notEmpty ifTrue: [ ^ models anyOne ].
+	models isNotEmpty ifTrue: [ ^ models anyOne ].
 	model := FamixStModel new.
 	model name: 'AST'.
 	importer := MoosePharoImporterTask new.

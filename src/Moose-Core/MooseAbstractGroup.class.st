@@ -533,7 +533,7 @@ MooseAbstractGroup >> mooseModel [
 
 { #category : #testing }
 MooseAbstractGroup >> notEmpty [
-	^ self entities notEmpty
+	^ self entities isNotEmpty
 ]
 
 { #category : #'as yet unclassified' }

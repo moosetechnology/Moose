@@ -47,7 +47,7 @@ FmxMBImportingContextTest >> testDefineImport [
 
 { #category : #tests }
 FmxMBImportingContextTest >> testGeneratedContextClass [
-	self assert: generatedContext notNil.
+	self assert: generatedContext isNotNil.
 	self assert: generatedContext superclass name equals: #FmxImportingContext
 ]
 

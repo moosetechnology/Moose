@@ -6,11 +6,10 @@ Class {
 
 { #category : #tests }
 LANImporterTest >> couldOnlyBeUsedForVisualWorksExtractedModeltestNamespaceInNamespace [
-	 
-	| namespace | 
-	namespace := self model allNamespaces entityNamed: #Smalltalk. 
-	self assert: namespace namespaces notEmpty. 
-	namespace := self model allNamespaces entityNamed: #'LAN'. 
+	| namespace |
+	namespace := self model allNamespaces entityNamed: #Smalltalk.
+	self assert: namespace namespaces isNotEmpty.
+	namespace := self model allNamespaces entityNamed: #LAN.
 	self assert: namespace namespaces isEmpty
 ]
 

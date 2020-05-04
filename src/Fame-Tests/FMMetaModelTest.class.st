@@ -48,8 +48,8 @@ FMMetaModelTest >> testDescriptionOfIfPresentIfAbsent [
 FMMetaModelTest >> testElementNamed [
 	| metamodel |
 	metamodel := FMMetaModel fromString: '((FM3.Package (name ''EG'') (classes (FM3.Class (name ''Boe'')))))'.
-	self assert: (metamodel elementNamed: 'EG') notNil.
-	self assert: (metamodel elementNamed: 'EG.Boe') notNil
+	self assert: (metamodel elementNamed: 'EG') isNotNil.
+	self assert: (metamodel elementNamed: 'EG.Boe') isNotNil
 ]
 
 { #category : #tests }

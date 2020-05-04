@@ -111,7 +111,7 @@ MooseObject >> mooseFinderPropertiesIn: composite [
 				do: [ 'error' ] ];
 		when: [ :anObject | 
 			(anObject mooseInterestingEntity isKindOf: MooseObject)
-				and: [ anObject mooseInterestingEntity mooseDescription notNil and: [ anObject mooseInterestingEntity mooseDescription allPrimitiveProperties notEmpty ] ] ]
+				and: [ anObject mooseInterestingEntity mooseDescription isNotNil and: [ anObject mooseInterestingEntity mooseDescription allPrimitiveProperties isNotEmpty ] ] ]
 ]
 
 { #category : #'*Moose-Finder' }

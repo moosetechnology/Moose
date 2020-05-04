@@ -54,35 +54,30 @@ FmxMBRingEnvironment >> compile: aSource in: aClass classified: aProtocol packag
 
 { #category : #initialization }
 FmxMBRingEnvironment >> createClassNamed: aClassName superclass: aSuperclass traitNames: traitNames slots: slots in: packageName overwrite: shouldOverwrite [
-
 	| aClass existingClass composition |
-	
 	existingClass := self ringEnvironment ask behaviorNamed: aClassName asSymbol.
-	
-	(existingClass notNil and: [ shouldOverwrite not]) 
-		ifTrue: [ ^ existingClass ].
-		
+
+	(existingClass isNotNil and: [ shouldOverwrite not ]) ifTrue: [ ^ existingClass ].
+
 	aClass := self ringEnvironment ensureClassNamed: aClassName.
 	aClass superclass: (self ringEnvironment ensureClassNamed: aSuperclass name).
 
 	composition := RGTraitComposition parent: aClass.
 	aClass traitComposition: composition.
-	traitNames do: [ :each |
-		composition addTransformation: (self ringEnvironment ensureTraitNamed: each) ].	
-	
+	traitNames do: [ :each | composition addTransformation: (self ringEnvironment ensureTraitNamed: each) ].
+
 	aClass package: (self ringEnvironment ensurePackageNamed: packageName).
 	aClass layout makeResolved.
-	slots do: [ :slotInBadEnvironment |
-		| slot |
-		slot := slotInBadEnvironment isSpecial
-			ifTrue: [ 			
-				(RGUnknownSlot named: slotInBadEnvironment name parent: aClass layout) 
-					expression: slotInBadEnvironment expression;
-					yourself ]
-			ifFalse: [ 
-				RGInstanceVariableSlot named: slotInBadEnvironment name parent: aClass layout ].
-		aClass layout addSlot: slot.
-		slot propertyNamed: #isGenerated put: true ].
+	slots
+		do: [ :slotInBadEnvironment | 
+			| slot |
+			slot := slotInBadEnvironment isSpecial
+				ifTrue: [ (RGUnknownSlot named: slotInBadEnvironment name parent: aClass layout)
+						expression: slotInBadEnvironment expression;
+						yourself ]
+				ifFalse: [ RGInstanceVariableSlot named: slotInBadEnvironment name parent: aClass layout ].
+			aClass layout addSlot: slot.
+			slot propertyNamed: #isGenerated put: true ].
 
 	^ aClass
 ]
@@ -106,37 +101,32 @@ FmxMBRingEnvironment >> createImportingcontextClassNamed: aClassName in: package
 
 { #category : #initialization }
 FmxMBRingEnvironment >> createTraitNamed: traitName uses: traitNames slots: slots in: packageName overwrite: shouldOverwrite [
-
 	| aPackage aTrait existingClass composition |
-
 	existingClass := self ringEnvironment ask behaviorNamed: traitName asSymbol.
-	
-	(existingClass notNil and: [ shouldOverwrite not]) 
-		ifTrue: [ ^ existingClass ].
+
+	(existingClass isNotNil and: [ shouldOverwrite not ]) ifTrue: [ ^ existingClass ].
 
 	aPackage := self ringEnvironment ensurePackageNamed: packageName.
-	aTrait := ringEnvironment ensureTraitNamed: traitName. 
+	aTrait := ringEnvironment ensureTraitNamed: traitName.
 	aTrait superclass: self basicTrait.
-	
+
 	composition := RGTraitComposition parent: aTrait.
 	aTrait traitComposition: composition.
-	traitNames do: [ :each |
-		composition addTransformation: (self ringEnvironment ensureTraitNamed: each) ].	
-	
+	traitNames do: [ :each | composition addTransformation: (self ringEnvironment ensureTraitNamed: each) ].
+
 	aTrait package: aPackage.
 	aTrait layout makeResolved.
-	slots do: [ :slotInBadEnvironment |
-		| slot |
-		slot := slotInBadEnvironment isSpecial
-			ifTrue: [ 			
-				(RGUnknownSlot named: slotInBadEnvironment name parent: aTrait layout) 
-					expression: slotInBadEnvironment expression;
-					yourself ]
-			ifFalse: [ 
-				RGInstanceVariableSlot named: slotInBadEnvironment name parent: aTrait layout ].
-		aTrait layout addSlot: slot.
-		slot propertyNamed: #isGenerated put: true ].
-	
+	slots
+		do: [ :slotInBadEnvironment | 
+			| slot |
+			slot := slotInBadEnvironment isSpecial
+				ifTrue: [ (RGUnknownSlot named: slotInBadEnvironment name parent: aTrait layout)
+						expression: slotInBadEnvironment expression;
+						yourself ]
+				ifFalse: [ RGInstanceVariableSlot named: slotInBadEnvironment name parent: aTrait layout ].
+			aTrait layout addSlot: slot.
+			slot propertyNamed: #isGenerated put: true ].
+
 	^ aTrait
 ]
 

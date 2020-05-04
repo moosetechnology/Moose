@@ -9,9 +9,8 @@ MPImportFileStructureCommand >> execute [
 	| model |
 	model := MooseModel new.
 	model importFileStructure.
-	model notEmpty
-		ifTrue: [ 
-			model install.
+	model isNotEmpty
+		ifTrue: [ model install.
 			self addModel: model ]
 ]
 

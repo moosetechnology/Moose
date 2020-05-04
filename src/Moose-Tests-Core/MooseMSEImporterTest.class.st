@@ -12,8 +12,9 @@ MooseMSEImporterTest >> readMSEStream: aStream [
 { #category : #tests }
 MooseMSEImporterTest >> testComplex [
 	| mooseModel |
-	mooseModel := self readMSEStream: (
-'(
+	mooseModel := self
+		readMSEStream:
+			'(
 	(FAMIX.Namespace (id: 1) (name ''aNamespace''))
 
 	(FAMIX.Class (id: 2) (name ''ClassA'') (container (ref: 1)) (parentPackage (ref: 201)))
@@ -26,18 +27,18 @@ MooseMSEImporterTest >> testComplex [
 
 	(FAMIX.Package (id: 201) (name ''aPackage''))
 	(FAMIX.Package (id: 202) (name ''aPackage'') (parentPackage (ref: 201)))
-)' readStream).
-	
-	self assert: (mooseModel entities notEmpty).
+)' readStream.
+
+	self assert: mooseModel entities isNotEmpty.
 	self assert: ((mooseModel allPackages collect: #name) includes: 'aPackage').
-	self assert: ((mooseModel allClasses collect: #name) includes: 'ClassA').
+	self assert: ((mooseModel allClasses collect: #name) includes: 'ClassA')
 ]
 
 { #category : #tests }
 MooseMSEImporterTest >> testOneClass [
 	| mooseModel |
 	mooseModel := self readMSEStream: '((FAMIX.Class (name ''ClassA'')))' readStream.
-	self assert: mooseModel entities notEmpty.
+	self assert: mooseModel entities isNotEmpty.
 	self assert: (mooseModel allClasses collect: #name) first equals: 'ClassA'
 ]
 
@@ -50,7 +51,7 @@ MooseMSEImporterTest >> testOneClassAndOnePackage [
 	(FAMIX.Class (id: 2) (name ''ClassA'') (parentPackage (ref: 201)))
 	(FAMIX.Package (id: 201) (name ''aPackage''))	
 )' readStream.
-	self assert: mooseModel entities notEmpty.
+	self assert: mooseModel entities isNotEmpty.
 	self assert: (mooseModel allPackages collect: #name) first equals: 'aPackage'.
 	self assert: (mooseModel allClasses collect: #name) first equals: 'ClassA'
 ]
@@ -58,17 +59,17 @@ MooseMSEImporterTest >> testOneClassAndOnePackage [
 { #category : #tests }
 MooseMSEImporterTest >> testOnePackage [
 	| mooseModel |
-	mooseModel := self readMSEStream: ('((FAMIX.Package (name ''PackageA'')))' readStream).
-	
-	self assert: (mooseModel entities notEmpty).
-	self assert: ((mooseModel allPackages collect: #name) includes: 'PackageA').
+	mooseModel := self readMSEStream: '((FAMIX.Package (name ''PackageA'')))' readStream.
+
+	self assert: mooseModel entities isNotEmpty.
+	self assert: ((mooseModel allPackages collect: #name) includes: 'PackageA')
 ]
 
 { #category : #tests }
 MooseMSEImporterTest >> testOnePrimitiveType [
 	| mooseModel |
 	mooseModel := self readMSEStream: '((FAMIX.PrimitiveType (name ''int'')))' readStream.
-	self assert: mooseModel entities notEmpty.
+	self assert: mooseModel entities isNotEmpty.
 	self assert: (mooseModel allPrimitiveTypes collect: #name) first equals: 'int'
 ]
 
@@ -99,11 +100,11 @@ MooseMSEImporterTest >> testSimple [
 	| mooseSample mooseModel classA |
 	mooseSample := MooseSampleData new.
 	mooseModel := self readMSEStream: mooseSample modelVersion1 readStream.
-	self assert: mooseModel entities notEmpty.
+	self assert: mooseModel entities isNotEmpty.
 	self assert: (mooseModel allClasses collect: #name) asSortedCollection asArray equals: {'ClassA' . 'ClassB'}.
 	self assert: (mooseModel allPackages collect: #name) asArray equals: {'aPackage' . 'aPackage'}.
 	classA := mooseModel entityNamed: #'aNamespace::ClassA'.
-	self assert: classA notNil.
+	self assert: classA isNotNil.
 	self assert: classA container identicalTo: (mooseModel entityNamed: #aNamespace).
 	self assert: classA methods size equals: 1.	"====="
 	self shouldnt: [ self readMSEStream: mooseSample modelVersion2 readStream ] raise: Error.
@@ -117,6 +118,6 @@ MooseMSEImporterTest >> testUndeclaredProperty [
 	| mooseModel |
 	mooseModel := self readMSEStream: '((FAMIX.Class (name ''ClassA'') (Undeclared 42) ))' readStream.
 	self assert: mooseModel allClasses first name equals: 'ClassA'.
-	self assert: (mooseModel allClasses first propertyNamed: #Undeclared) notNil.
+	self assert: (mooseModel allClasses first propertyNamed: #Undeclared) isNotNil.
 	self assert: (mooseModel allClasses first propertyNamed: #Undeclared) equals: 42
 ]

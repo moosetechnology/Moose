@@ -371,8 +371,8 @@ FamixReferenceModelImporterTest >> testClassReferenceFromTheInstanceSide [
 { #category : #tests }
 FamixReferenceModelImporterTest >> testClassReferencesByFullNameReified [
 	"self debug: #testClassReferencesByFullNameReified"
-	
-	self assert: (self model entityNamed: TestCase class mooseName) notNil
+
+	self assert: (self model entityNamed: TestCase class mooseName) isNotNil
 ]
 
 { #category : #tests }
@@ -553,10 +553,10 @@ FamixReferenceModelImporterTest >> testExternalExtension [
 { #category : #tests }
 FamixReferenceModelImporterTest >> testFormalParameterReified [
 	"self debug: #testFormalParameterReified"
-	
+
 	| formalParameterName |
 	formalParameterName := #'Smalltalk::TheRoot.accessingArgument:(Object).anArgument'.
-	self assert: (self model entityNamed: formalParameterName) notNil
+	self assert: (self model entityNamed: formalParameterName) isNotNil
 ]
 
 { #category : #tests }

@@ -633,7 +633,7 @@ FMMSEParserTest >> testFamixModel [
 	accessorProperty := accessClass propertyNamed: 'accessor'.
 	self assert: accessorProperty isFM3Property.
 	self assert: accessorProperty name equals: #accessor.
-	self assert: accessorProperty opposite notNil.
+	self assert: accessorProperty opposite isNotNil.
 	behaviouralEntity := famixPackage classNamed: 'BehaviouralEntity'.
 	self assert: behaviouralEntity isFM3Class.
 	outgoingAccesses := behaviouralEntity propertyNamed: 'outgoingAccesses'.
