@@ -86,7 +86,7 @@ MooseBrowsers >> codeNavigator [
 				tags: [ :method | 
 					col := method modifiers copy.
 					method hasClassScope ifTrue: [ col add: 'isStatic' ].
-					method kind isNotNil ifTrue: [ col add: method kind ].
+					method kind ifNotNil: [ :kind | col add: kind ].
 					col ];
 				dynamicActionsOnSelection: [ :list | list selection mooseInterestingEntity mooseFinderActions ] ].
 	browser transmit

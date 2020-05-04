@@ -17,7 +17,5 @@ FamixJavaAnnotationInstanceAttribute class >> annotation [
 
 { #category : #'as yet unclassified' }
 FamixJavaAnnotationInstanceAttribute >> name [
-	^ self annotationTypeAttribute isNotNil
-		ifTrue: [ self annotationTypeAttribute name ]
-		ifFalse: [ nil ]
+	^ self annotationTypeAttribute ifNotNil: #name
 ]

@@ -37,7 +37,7 @@ FAMIXComment >> gtDisplayOn: aStream [
 		nextPut: $";
 		nextPutAll: preview;
 		nextPutAll: '" in '.
-	self belongsTo isNotNil ifTrue: [ self belongsTo gtDisplayOn: aStream ]
+	self belongsTo ifNotNil: [ :bt | bt gtDisplayOn: aStream ]
 ]
 
 { #category : #'Famix-Implementation' }

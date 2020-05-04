@@ -99,36 +99,35 @@ AbstractSmalltalkMethodVisitor >> matchConstant: aMethodNode [
 
 { #category : #'method-classifying' }
 AbstractSmalltalkMethodVisitor >> matchConstructor: aMethodNode [
-	famixMethod protocol isNotNil ifTrue: [ ('*instance*creation*' match: famixMethod protocol asLowercase) ifTrue: [ famixMethod kind: #constructor ] ]
+	famixMethod protocol ifNotNil: [ ('*instance*creation*' match: famixMethod protocol asLowercase) ifTrue: [ famixMethod kind: #constructor ] ]
 ]
 
 { #category : #'method-classifying' }
 AbstractSmalltalkMethodVisitor >> matchGetter: aMethodNode [
-	| return attribute |
+	| return |
 	aMethodNode arguments isEmpty
 		ifTrue: [ aMethodNode body isSequence
 				ifTrue: [ aMethodNode body statements size = 1
 						ifTrue: [ return := aMethodNode body statements first.
 							return isReturn
 								ifTrue: [ return value isVariable
-										ifTrue: [ attribute := methodScope resolve: return value name ifAbsent: nil.
-											attribute isNotNil ifTrue: [ attribute class = self importer factory attribute ifTrue: [ famixMethod kind: #getter ] ] ] ] ] ] ]
+										ifTrue: [ (methodScope resolve: return value name ifAbsent: nil)
+												ifNotNil: [ :attribute | attribute class = self importer factory attribute ifTrue: [ famixMethod kind: #getter ] ] ] ] ] ] ]
 ]
 
 { #category : #'method-classifying' }
 AbstractSmalltalkMethodVisitor >> matchSetter: aMethodNode [
-	| assignment attribute |
+	| assignment |
 	aMethodNode arguments size = 1
 		ifTrue: [ aMethodNode body isSequence
 				ifTrue: [ aMethodNode body statements size = 1
 						ifTrue: [ assignment := aMethodNode body statements first.
 							assignment isReturn ifTrue: [ assignment := assignment value ].
 							assignment isAssignment
-								ifTrue: [ attribute := methodScope resolve: assignment variable name ifAbsent: nil.
-									attribute isNotNil
-										ifTrue: [ attribute class = self importer factory attribute
-												ifTrue:
-													[ assignment value isVariable ifTrue: [ assignment value name = aMethodNode arguments first name ifTrue: [ famixMethod kind: #setter ] ] ] ] ] ] ] ]
+								ifTrue: [ (methodScope resolve: assignment variable name ifAbsent: nil)
+										ifNotNil: [ :attribute | 
+											attribute class = self importer factory attribute
+												ifTrue: [ assignment value isVariable ifTrue: [ assignment value name = aMethodNode arguments first name ifTrue: [ famixMethod kind: #setter ] ] ] ] ] ] ] ]
 ]
 
 { #category : #accessing }
