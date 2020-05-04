@@ -221,8 +221,8 @@ FamixJavaQueryTest >> testFamixMethodHasTypeDeclarationsWithoutSelfLoops [
 
 { #category : #'tests - method' }
 FamixJavaQueryTest >> testFamixMethodIncomingTypeDeclarations [
-	self assert: m1 queryIncomingTypeDeclarations isEmpty.
-	self assert: m3 queryIncomingTypeDeclarations isEmpty
+	self assertEmpty: m1 queryIncomingTypeDeclarations.
+	self assertEmpty: m3 queryIncomingTypeDeclarations
 ]
 
 { #category : #'tests - method' }
@@ -233,7 +233,7 @@ FamixJavaQueryTest >> testFamixMethodOutgoingTypeDeclarations [
 
 { #category : #'tests - method' }
 FamixJavaQueryTest >> testFamixMethodTypeDeclarationsWithoutSelfLoops [
-	self assert: m1 queryIncomingTypeDeclarations withoutSelfLoops isEmpty.
+	self assertEmpty: m1 queryIncomingTypeDeclarations withoutSelfLoops.
 	self assertCollection: (m3 queryOutgoingTypeDeclarations withoutSelfLoops atScope: FamixTType) hasSameElements: {c1 . c2 . c3}
 ]
 

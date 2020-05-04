@@ -25,44 +25,44 @@ FmxMBGeneratorRemoteAccessorTest >> setUp [
 FmxMBGeneratorRemoteAccessorTest >> testCanRemoveManyRelationFromEntityA [
 	entityA manyB add: entityB.
 	entityA manyB removeAll.
-	self assert: entityA manyB isEmpty.
+	self assertEmpty: entityA manyB.
 	self assert: entityB oneA equals: nil.
 	entityA manyB add: entityB.
 	entityA manyB remove: entityB.
-	self assert: entityA manyB isEmpty.
-	self assert: entityB oneA equals: nil.
+	self assertEmpty: entityA manyB.
+	self assert: entityB oneA equals: nil
 ]
 
 { #category : #tests }
 FmxMBGeneratorRemoteAccessorTest >> testCanRemoveMultiMultiRelationFromEntityA [
 	entityA manyManyB add: entityB.
 	entityA manyManyB removeAll.
-	self assert: entityA manyManyB isEmpty.
-	self assert: entityB manyManyA isEmpty.
+	self assertEmpty: entityA manyManyB.
+	self assertEmpty: entityB manyManyA.
 	entityA manyManyB add: entityB.
 	entityA manyManyB remove: entityB.
-	self assert: entityA manyManyB isEmpty.
-	self assert: entityB manyManyA isEmpty.
+	self assertEmpty: entityA manyManyB.
+	self assertEmpty: entityB manyManyA
 ]
 
 { #category : #tests }
 FmxMBGeneratorRemoteAccessorTest >> testCanRemoveMultiMultiRelationFromEntityB [
 	entityB manyManyA add: entityA.
 	entityB manyManyA removeAll.
-	self assert: entityA manyManyB isEmpty.
-	self assert: entityB manyManyA isEmpty.
+	self assertEmpty: entityA manyManyB.
+	self assertEmpty: entityB manyManyA.
 	entityB manyManyA add: entityA.
 	entityB manyManyA remove: entityA.
-	self assert: entityA manyManyB isEmpty.
-	self assert: entityB manyManyA isEmpty.
+	self assertEmpty: entityA manyManyB.
+	self assertEmpty: entityB manyManyA
 ]
 
 { #category : #tests }
 FmxMBGeneratorRemoteAccessorTest >> testCanRemoveOneRelationFromEntityB [
 	entityB oneA: entityA.
 	entityB oneA: nil.
-	self assert: entityA manyB isEmpty.
-	self assert: entityB oneA equals: nil.
+	self assertEmpty: entityA manyB.
+	self assert: entityB oneA equals: nil
 ]
 
 { #category : #tests }

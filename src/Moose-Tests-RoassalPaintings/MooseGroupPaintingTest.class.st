@@ -17,7 +17,7 @@ MooseGroupPaintingTest >> tearDown [
 MooseGroupPaintingTest >> testBasic [
 	| m |
 	m := MooseGroup new.
-	self assert: m symbolsUsedInName isEmpty.
+	self assertEmpty: m symbolsUsedInName.
 	window := m viewNameCloud.
 	self assert: window isNotNil
 ]

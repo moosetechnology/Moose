@@ -32,10 +32,10 @@ FmxMBNavigationGroupTest >> testRelationGroupsForTraits [
 	class --|> tClass.
 	method --|> tMethod.
 
-	self assert: tClass allNavigationGroups isNotEmpty.
-	self assert: tMethod allNavigationGroups isNotEmpty.
-	self assert: class allNavigationGroups isEmpty.
-	self assert: method allNavigationGroups isEmpty.
+	self denyEmpty: tClass allNavigationGroups.
+	self denyEmpty: tMethod allNavigationGroups.
+	self assertEmpty: class allNavigationGroups.
+	self assertEmpty: method allNavigationGroups.
 
 	self assert: tClass allNavigationGroups anyOne relation equals: relation
 ]

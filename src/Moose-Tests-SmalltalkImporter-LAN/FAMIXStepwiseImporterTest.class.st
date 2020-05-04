@@ -106,7 +106,7 @@ FAMIXStepwiseImporterTest >> testImportAttributeAccesses [
 	nodeClass := importer classes at: LANNode.
 	self assert: nodeClass attributes size equals: 2.
 	attr := nodeClass attributes at: 1.
-	self assert: attr readAccesses isNotEmpty
+	self denyEmpty: attr readAccesses
 ]
 
 { #category : #tests }
@@ -191,7 +191,7 @@ FAMIXStepwiseImporterTest >> testImportLANPackage [
 		addFromPackageNamed: #'Moose-TestResources-LAN';
 		run;
 		yourself.
-	self deny: model allPackages isEmpty.
+	self denyEmpty: model allPackages.
 	package := model entityNamed: #'Moose-TestResources-LAN'.
 	class := model entityNamed: #'Smalltalk::LANNode'.
 	self assert: class parentPackage identicalTo: package
@@ -224,7 +224,7 @@ FAMIXStepwiseImporterTest >> testImportMethodBody [
 	self deny: famixClassNode methods size equals: LANNode methodDict size.
 	self assert: famixClassNode methods size equals: LANNode methodDict size + LANNode class methodDict size.	"Browser Node>>nextNode to see the code that has been imported"
 	nextNodeMethod := famixClassNode methods detect: [ :fm | fm name == #nextNode ].
-	self assert: nextNodeMethod parameters isEmpty.
+	self assertEmpty: nextNodeMethod parameters.
 	self assert: nextNodeMethod signature identicalTo: #'nextNode()'.
 	self assert: nextNodeMethod mooseName identicalTo: #'Smalltalk::LANNode.nextNode()'.
 	nameMethod := famixClassNode methods detect: [ :fm | fm name == #name: ].

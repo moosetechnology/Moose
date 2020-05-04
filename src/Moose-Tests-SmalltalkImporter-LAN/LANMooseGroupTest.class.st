@@ -87,7 +87,7 @@ LANMooseGroupTest >> testGroupInsideGroup [
 	methods := self model allMethods.
 	group2 := MooseGroup withAll: methods.
 	group3 := MooseGroup withAll: (OrderedCollection with: group1 with: group2).
-	self assert: (group3 select: [ :each | each == group2 ]) isNotEmpty.
+	self denyEmpty: (group3 select: [ :each | each == group2 ]).
 	self assert: (self model allClasses isMemberOf: FamixClassGroup).
 	self assert: self model allClasses size equals: numberOfClasses
 ]
@@ -167,7 +167,7 @@ LANMooseGroupTest >> testPrintOn [
 LANMooseGroupTest >> testSelectEightyCoverForMetric [
 	| top |
 	top := self model allMethods selectEightyCoverForMetric: #numberOfLinesOfCode.
-	self assert: top isNotEmpty
+	self denyEmpty: top
 ]
 
 { #category : #tests }

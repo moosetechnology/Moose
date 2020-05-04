@@ -214,16 +214,13 @@ TEntityMetaLevelDependencyTest >> testParentTypes [
 
 { #category : #tests }
 TEntityMetaLevelDependencyTest >> testParents [
-
 	| newMethod |
-	
-	self assertCollection: m1 parents hasSameElements: { c1 }.
-	self assertCollection: m2 parents hasSameElements: { c2 }.
-	self assertCollection: m3 parents hasSameElements: { c2 }.
-	
-	newMethod := FamixTest1Method new.
-	self assert: newMethod parents isEmpty.
+	self assertCollection: m1 parents hasSameElements: {c1}.
+	self assertCollection: m2 parents hasSameElements: {c2}.
+	self assertCollection: m3 parents hasSameElements: {c2}.
 
+	newMethod := FamixTest1Method new.
+	self assertEmpty: newMethod parents
 ]
 
 { #category : #tests }

@@ -54,6 +54,5 @@ FmxMBGeneratorTest >> testResetMetamodelSetNewMetamodelToInstances [
 
 { #category : #tests }
 FmxMBGeneratorTest >> testSubmetamodles [
-
-	self assert: FamixMetamodelGenerator submetamodels isEmpty
+	self assertEmpty: FamixMetamodelGenerator submetamodels
 ]

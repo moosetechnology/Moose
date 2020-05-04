@@ -134,7 +134,7 @@ MooseModelTest >> testMenuCommandOn [
 	self assert: builder itemList isNil.
 	MooseModel menuCommandOn: builder.
 	self assert: builder itemList isCollection.
-	self assert: builder itemList isNotEmpty
+	self denyEmpty: builder itemList
 ]
 
 { #category : #tests }
@@ -165,7 +165,7 @@ MooseModelTest >> testRemoveAllEntity [
 	mooseModel add: entity1.
 	mooseModel add: entity2.
 	mooseModel removeAll.
-	self assert: mooseModel isEmpty.
+	self assertEmpty: mooseModel.
 	self assert: entity1 mooseModel isNil.
 	self assert: entity2 mooseModel isNil
 ]
@@ -188,7 +188,7 @@ MooseModelTest >> testRemoveEntity [
 	entity := MooseEntity new.
 	mooseModel add: entity.
 	mooseModel remove: entity.
-	self assert: mooseModel isEmpty.
+	self assertEmpty: mooseModel.
 	self assert: entity mooseModel isNil
 ]
 

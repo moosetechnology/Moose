@@ -6,22 +6,18 @@ Class {
 
 { #category : #tests }
 FmxMBRelationSideTest >> testBasics [
-
 	"check trivial testing and accessing methods"
 
 	| side |
-	
 	side := FmxMBRelationSide new.
-	
+
 	self assert: side cardinality equals: #one.
 	self deny: side isContainer.
 	self deny: side isDerived.
 	self deny: side isTarget.
 	self deny: side isSource.
 	self assert: side willGenerate.
-	self assert: side comment isEmpty.
-	
-	
+	self assertEmpty: side comment
 ]
 
 { #category : #tests }
@@ -177,54 +173,46 @@ FmxMBRelationSideTest >> testProperties [
 
 { #category : #tests }
 FmxMBRelationSideTest >> testPropertyType [
-
 	"test if after changing of related trait of a relation side all will be consistent"
 
 	| tClass tComment tAccess side |
-		
-	tClass := builder newTraitNamed: #TClass. 
-	tComment := builder newTraitNamed: #TComment. 
-	tAccess := builder newTraitNamed: #TAccess. 
+	tClass := builder newTraitNamed: #TClass.
+	tComment := builder newTraitNamed: #TComment.
+	tAccess := builder newTraitNamed: #TAccess.
 
-	(side := (tClass property: #property1)) - (tComment property: #property2).
-	
+	(side := tClass property: #property1) - (tComment property: #property2).
+
 	self assert: side relatedEntity equals: tClass.
-	self assertCollection: tClass sides asArray equals: { side }.
-	self assert: tAccess sides isEmpty.
+	self assertCollection: tClass sides asArray equals: {side}.
+	self assertEmpty: tAccess sides.
 
 	side trait: tAccess.
 
 	self assert: side relatedEntity equals: tAccess.
-	self assert: tClass sides isEmpty.
-	self assertCollection: tAccess sides asArray equals: { side }.
-
-	
+	self assertEmpty: tClass sides.
+	self assertCollection: tAccess sides asArray equals: {side}
 ]
 
 { #category : #tests }
 FmxMBRelationSideTest >> testReconnection [
-
 	"test if after changing of related trait of a relation side all will be consistent"
 
 	| tClass tComment tAccess side |
-		
-	tClass := builder newTraitNamed: #TClass. 
-	tComment := builder newTraitNamed: #TComment. 
-	tAccess := builder newTraitNamed: #TAccess. 
+	tClass := builder newTraitNamed: #TClass.
+	tComment := builder newTraitNamed: #TComment.
+	tAccess := builder newTraitNamed: #TAccess.
 
-	(side := (tClass property: #property1)) - (tComment property: #property2).
-	
+	(side := tClass property: #property1) - (tComment property: #property2).
+
 	self assert: side relatedEntity equals: tClass.
-	self assertCollection: tClass sides asArray equals: { side }.
-	self assert: tAccess sides isEmpty.
+	self assertCollection: tClass sides asArray equals: {side}.
+	self assertEmpty: tAccess sides.
 
 	side trait: tAccess.
 
 	self assert: side trait equals: tAccess.
-	self assert: tClass sides isEmpty.
-	self assertCollection: tAccess sides asArray equals: { side }.
-
-	
+	self assertEmpty: tClass sides.
+	self assertCollection: tAccess sides asArray equals: {side}
 ]
 
 { #category : #tests }

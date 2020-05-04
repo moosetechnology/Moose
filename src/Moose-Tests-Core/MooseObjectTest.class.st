@@ -77,7 +77,7 @@ MooseObjectTest >> testGroupFor [
 	self assert: (classGroup entities includesAll: {entity1 . entity2}).
 	methodGroup := model groupFor: #allMethods.
 	self assert: methodGroup class identicalTo: MooseGroup.
-	self assert: methodGroup isEmpty
+	self assertEmpty: methodGroup
 ]
 
 { #category : #tests }
