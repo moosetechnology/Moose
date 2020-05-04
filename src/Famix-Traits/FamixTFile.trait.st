@@ -7,6 +7,7 @@ Trait {
 		'#entities => FMMany type: #FamixTWithFiles opposite: #containerFiles'
 	],
 	#traits : 'FamixTFileSystemEntity',
+	#classTraits : 'FamixTFileSystemEntity classTrait',
 	#category : #'Famix-Traits-File'
 }
 
@@ -82,12 +83,6 @@ FamixTFile >> fileExists [
 FamixTFile >> ifFileExistsDo: aBlock [
 	self name ifNil: [ ^ aBlock value ].
 	^ self fileExists ifTrue: [ aBlock value ]
-]
-
-{ #category : #testing }
-FamixTFile >> isFolder [
-
-	^ false
 ]
 
 { #category : #properties }
