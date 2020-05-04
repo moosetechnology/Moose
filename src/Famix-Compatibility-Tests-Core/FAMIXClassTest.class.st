@@ -35,7 +35,6 @@ FAMIXClassTest >> testIsInterface [
 ]
 
 { #category : #tests }
-
 FAMIXClassTest >> testIsPackage [
 	| entity |
 	entity := self actualClass new.
