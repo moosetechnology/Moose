@@ -3,9 +3,6 @@ Class {
 	#superclass : #FamixJavaNamedEntity,
 	#traits : 'FamixTAttribute + FamixTWithClassScope',
 	#classTraits : 'FamixTAttribute classTrait + FamixTWithClassScope classTrait',
-	#instVars : [
-		'#hasClassScope'
-	],
 	#category : #'Famix-Java-Entities-Entities'
 }
 
@@ -16,20 +13,6 @@ FamixJavaAttribute class >> annotation [
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
-]
-
-{ #category : #accessing }
-FamixJavaAttribute >> hasClassScope [
-	<FMProperty: #hasClassScope type: #Boolean>
-	<FMComment: 'True if class-side attribute'>
-
-	^ hasClassScope
-]
-
-{ #category : #accessing }
-FamixJavaAttribute >> hasClassScope: aBoolean [
-
-	hasClassScope := aBoolean
 ]
 
 { #category : #metrics }
@@ -47,13 +30,6 @@ FamixJavaAttribute >> hierarchyNestingLevel [
 FamixJavaAttribute >> hierarchyNestingLevel: aNumber [
 
 	self privateState propertyAt: #hierarchyNestingLevel put: aNumber
-]
-
-{ #category : #initialization }
-FamixJavaAttribute >> initialize [
-	super initialize.
-	hasClassScope := false.
-
 ]
 
 { #category : #printing }

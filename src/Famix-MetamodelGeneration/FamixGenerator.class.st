@@ -1002,6 +1002,9 @@ FamixGenerator >> defineProperties [
 
 	((tAccess property: #isWrite type: #Boolean) 
 		comment: 'Write access').
+		
+	((tAttribute property: #isClassSide type: #Boolean) 
+		comment: 'True if class-side attribute').
 
 	((tAnnotationInstanceAttribute property: #value type: #String)
 		comment: 'Actual value of the attribute used in an annotation').

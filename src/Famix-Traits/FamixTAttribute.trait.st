@@ -5,9 +5,11 @@ FAMIXAttribute represents a field of a class. It is an attribute of the parent t
 Trait {
 	#name : #FamixTAttribute,
 	#instVars : [
+		'#isClassSide => FMProperty',
 		'#parentType => FMOne type: #FamixTWithAttributes opposite: #attributes'
 	],
 	#traits : 'FamixTStructuralEntity',
+	#classTraits : 'FamixTStructuralEntity classTrait',
 	#category : #'Famix-Traits-Attribute'
 }
 
@@ -25,6 +27,19 @@ FamixTAttribute >> isAttribute [
 
 	<generated>
 	^ true
+]
+
+{ #category : #accessing }
+FamixTAttribute >> isClassSide [
+	<FMProperty: #isClassSide type: #Boolean>
+	<FMComment: 'True if class-side attribute'>
+	^ isClassSide ifNil: [ false ]
+]
+
+{ #category : #accessing }
+FamixTAttribute >> isClassSide: anObject [
+	<generated>
+	isClassSide := anObject
 ]
 
 { #category : #printing }
