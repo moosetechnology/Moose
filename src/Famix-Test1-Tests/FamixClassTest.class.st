@@ -15,21 +15,17 @@ Class {
 
 { #category : #running }
 FamixClassTest >> setUp [
-
 	super setUp.
 
 	model := FamixTest1Model new.
-	model metamodel: FamixTest1Class metamodel.	
+	model metamodel: FamixTest1Class metamodel.
 	c1 := FamixTest1Class named: 'Class1'.
 	c2 := FamixTest1Class named: 'Class2'.
 	m1 := FamixTest1Method named: 'method1'.
 	m2 := FamixTest1Method named: 'method2'.
-	anchor1 := FamixTest1SourceTextAnchor new source: 'method1\source1' withCRs .
-	anchor2 := FamixTest1SourceTextAnchor new source: 'method2\source2a\source2b' withCRs.
-	model addAll: { c1. c2. m1. m2. anchor1. anchor2 }.
-	
-
-
+	anchor1 := FamixTest1SourceTextAnchor source: 'method1\source1' withCRs.
+	anchor2 := FamixTest1SourceTextAnchor source: 'method2\source2a\source2b' withCRs.
+	model addAll: {c1 . c2 . m1 . m2 . anchor1 . anchor2}
 ]
 
 { #category : #tests }

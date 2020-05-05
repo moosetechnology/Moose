@@ -19,6 +19,20 @@ FamixTHasImmediateSource classSide >> annotation [
 	^self
 ]
 
+{ #category : #'instance creation' }
+FamixTHasImmediateSource classSide >> source: aString [
+	^ self new
+		source: aString;
+		yourself
+]
+
+{ #category : #'instance creation' }
+FamixTHasImmediateSource classSide >> source: aString model: aMooseModel [
+	^ (self source: aString)
+		mooseModel: aMooseModel;
+		yourself
+]
+
 { #category : #accessing }
 FamixTHasImmediateSource >> isFile [
 

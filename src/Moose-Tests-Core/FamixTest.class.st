@@ -89,11 +89,7 @@ FamixTest >> testSourcesAnchorsAreNotDuplicatedAfterExport [
 	model := FamixTest3Model new name: 'Perdu'.
 	FamixTest3Class new
 		name: 'Class';
-		sourceAnchor:
-			(FamixTest3SourceTextAnchor new
-				source: 'some text';
-				mooseModel: model;
-				yourself);
+		sourceAnchor: (FamixTest3SourceTextAnchor source: 'some text' model: model);
 		mooseModel: model.
 	tempFile := (FileSystem memory / 'export-test.mse') ensureCreateFile.
 	tempFile writeStreamDo: [ :s | model exportToMSEStream: s ].

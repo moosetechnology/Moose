@@ -13,18 +13,15 @@ Class {
 
 { #category : #running }
 FamixAssociationTest >> setUp [
-
 	super setUp.
 
 	model := FamixTest1Model new.
 	model metamodel: FamixTest1Class metamodel.
 	c1 := FamixTest1Class named: 'Class1'.
 	m1 := FamixTest1Method named: 'method1'.
-	anchor1 := FamixTest1SourceTextAnchor new source: 'method1\source1' withCRs .
+	anchor1 := FamixTest1SourceTextAnchor source: 'method1\source1' withCRs.
 	association1 := FamixTest1Association new.
-	model addAll: { c1. m1. anchor1. association1 }.
-	
-	
+	model addAll: {c1 . m1 . anchor1 . association1}
 ]
 
 { #category : #tests }

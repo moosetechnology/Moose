@@ -31,27 +31,15 @@ MooseAbstractGroupWithTest1ModelTest >> setUp [
 	m3 := FamixTest1Method named: 'method3' model: model.
 	a1 := FamixTest1Attribute named: 'attribute1' model: model.
 	a2 := FamixTest1Attribute named: 'attribute2' model: model.
-	anchor1 := FamixTest1SourceTextAnchor new
-		source: 'method1\source1' withCRs;
-		mooseModel: model;
-		yourself.
-	anchor2 := FamixTest1SourceTextAnchor new
-		source: 'method2\source2a\source2b' withCRs;
-		mooseModel: model;
-		yourself.
-	anchor3 := FamixTest1SourceTextAnchor new
-		source: 'method3\source3a\source3b\source3c' withCRs;
-		mooseModel: model;
-		yourself.
-	anchorC1 := FamixTest1SourceTextAnchor new
-		source: 'Class1 definition' withCRs;
-		mooseModel: model;
-		yourself.
+	anchor1 := FamixTest1SourceTextAnchor source: 'method1\source1' withCRs model: model.
+	anchor2 := FamixTest1SourceTextAnchor source: 'method2\source2a\source2b' withCRs model: model.
+	anchor3 := FamixTest1SourceTextAnchor source: 'method3\source3a\source3b\source3c' withCRs model: model.
+	anchorC1 := FamixTest1SourceTextAnchor source: 'Class1 definition' withCRs model: model.
 
 	c2 isStub: true.
 	m3 isStub: true.
 	a2 isStub: true.
-	
+
 	c1 addMethod: m1.
 	m2 parentType: c2.	"opposite way"
 	c2 addMethod: m3.
