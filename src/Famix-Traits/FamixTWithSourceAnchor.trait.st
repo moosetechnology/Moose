@@ -22,6 +22,11 @@ FamixTWithSourceAnchor >> allSourceAnchors [
 		ifNotNil: #allSourceAnchors
 ]
 
+{ #category : #enumerating }
+FamixTWithSourceAnchor >> allSourceAnchorsDo: aBlock [
+	^ self sourceAnchor ifNotNil: [ :sa | sa allSourceAnchorsDo: aBlock ]
+]
+
 { #category : #metrics }
 FamixTWithSourceAnchor >> computeNumberOfLinesOfCode [
 	self hasSourceAnchor ifTrue: [ ^ self sourceAnchor lineCount ].
