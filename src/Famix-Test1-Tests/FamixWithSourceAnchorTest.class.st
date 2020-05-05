@@ -46,6 +46,22 @@ FamixWithSourceAnchorTest >> testAllSourceAnchors [
 ]
 
 { #category : #tests }
+FamixWithSourceAnchorTest >> testAllSourceAnchorsDo [
+	| res multipleFileAnchor |
+	multipleFileAnchor := FamixTest1MultipleFileAnchor model: model.
+	1 to: 3 do: [ :each | multipleFileAnchor addFileAnchorWithPath: 'aFileName' , each asString ].
+
+	m3 sourceAnchor: multipleFileAnchor.
+
+
+	res := OrderedCollection new.
+	m3 allSourceAnchorsDo: [ :each | res add: each ].
+
+	self assert: res size equals: 3.
+	res do: [ :each | self assert: each isFileAnchor ]
+]
+
+{ #category : #tests }
 FamixWithSourceAnchorTest >> testAllSourceAnchorsWithMultipleFileAnchor [
 	| multipleFileAnchor |
 	self assertEmpty: m3 allSourceAnchors.

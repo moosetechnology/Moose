@@ -27,6 +27,15 @@ FamixSourceAnchorTest >> testAllSourceAnchors [
 ]
 
 { #category : #tests }
+FamixSourceAnchorTest >> testAllSourceAnchorsDo [
+	| anchor res |
+	anchor := self actualClass new.
+	res := OrderedCollection new.
+	anchor allSourceAnchorsDo: [ :each | res add: each ].
+	self assertCollection: res hasSameElements: {anchor}
+]
+
+{ #category : #tests }
 FamixSourceAnchorTest >> testEntity [
 	| anchor m1 m2 |
 	anchor := self actualClass new.

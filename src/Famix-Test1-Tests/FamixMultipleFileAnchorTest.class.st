@@ -36,6 +36,16 @@ FamixMultipleFileAnchorTest >> testAllSourceAnchors [
 ]
 
 { #category : #tests }
+FamixMultipleFileAnchorTest >> testAllSourceAnchorsDo [
+	| res |
+	res := OrderedCollection new.
+	multipleFileAnchor allSourceAnchorsDo: [ :each | res add: each ].
+
+	self assert: res size equals: 2.
+	res do: [ :each | self assert: each isFileAnchor ]
+]
+
+{ #category : #tests }
 FamixMultipleFileAnchorTest >> testContainerFiles [
 	| anchor |
 	anchor := self actualClass new
