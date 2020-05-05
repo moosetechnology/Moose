@@ -30,10 +30,6 @@ FAMIXCommentTest >> testSourceText [
 	self assert: comment sourceText equals: 'something'.
 	comment content: nil.
 	self assertEmpty: comment sourceText.
-	comment
-		sourceAnchor:
-			(FAMIXSourceTextAnchor new
-				source: 'something';
-				yourself).
+	comment sourceAnchor: (FAMIXSourceTextAnchor source: 'something').
 	self assert: comment sourceText equals: 'something'
 ]

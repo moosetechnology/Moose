@@ -29,10 +29,10 @@ MooseEntityWithTest1ModelTest >> setUp [
 	m2 := FamixTest1Method named: 'method2'.
 	m3 := FamixTest1Method named: 'method3'.
 	a1 := FamixTest1Attribute named: 'attribute1'.
-	anchor1 := FamixTest1SourceTextAnchor new source: 'method1\source1' withCRs.
-	anchor2 := FamixTest1SourceTextAnchor new source: 'method2\source2a\source2b' withCRs.
-	anchor3 := FamixTest1SourceTextAnchor new source: 'method3\source3a\source3b\source3c' withCRs.
-	anchorC1 := FamixTest1SourceTextAnchor new source: 'Class1 definition' withCRs.
+	anchor1 := FamixTest1SourceTextAnchor source: 'method1\source1' withCRs.
+	anchor2 := FamixTest1SourceTextAnchor source: 'method2\source2a\source2b' withCRs.
+	anchor3 := FamixTest1SourceTextAnchor source: 'method3\source3a\source3b\source3c' withCRs.
+	anchorC1 := FamixTest1SourceTextAnchor source: 'Class1 definition' withCRs.
 
 	model addAll: {c1 . c2 . m1 . m2 . m3 . anchor1 . anchor2}.
 

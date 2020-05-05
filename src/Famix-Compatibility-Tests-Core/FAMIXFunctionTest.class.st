@@ -16,7 +16,7 @@ FAMIXFunctionTest >> testHandlingOfWrongSourceAnchor [
 
 	| function |
 	function := self actualClass new.
-	function sourceAnchor: (FAMIXSourceTextAnchor new source: 'pathtosomefile').
+	function sourceAnchor: (FAMIXSourceTextAnchor source: 'pathtosomefile').
 	self assert: function sourceText equals: 'pathtosomefile'
 ]
 

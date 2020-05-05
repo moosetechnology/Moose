@@ -18,7 +18,6 @@ Class {
 
 { #category : #running }
 FamixSmalltalkMethodTest >> setUp [
-
 	super setUp.
 
 	model := FamixStModel new.
@@ -27,19 +26,18 @@ FamixSmalltalkMethodTest >> setUp [
 	m1 := FamixStMethod named: 'method1'.
 	m2 := FamixStMethod named: 'method2'.
 	m3 := FamixStMethod named: 'method3'.
-	anchor1 := FamixStSourceTextAnchor new source: 'method1\source1' withCRs .
-	anchor2 := FamixStSourceTextAnchor new source: 'method2\source2a\source2b' withCRs.
-	anchor3 := FamixStSourceTextAnchor new source: 'method3\source3a\source3b\source3c' withCRs.
-	
-	model addAll: { c1. c2. m1. m2. m3. anchor1. anchor2 }.
-	
+	anchor1 := FamixStSourceTextAnchor source: 'method1\source1' withCRs.
+	anchor2 := FamixStSourceTextAnchor source: 'method2\source2a\source2b' withCRs.
+	anchor3 := FamixStSourceTextAnchor source: 'method3\source3a\source3b\source3c' withCRs.
+
+	model addAll: {c1 . c2 . m1 . m2 . m3 . anchor1 . anchor2}.
+
 	c1 addMethod: m1.
-	m2 parentType: c2. "opposite way"
+	m2 parentType: c2.	"opposite way"
 	c2 addMethod: m3.
 	m1 sourceAnchor: anchor1.
 	m2 sourceAnchor: anchor2.
-	m3 sourceAnchor: anchor3.
-
+	m3 sourceAnchor: anchor3
 ]
 
 { #category : #tests }
