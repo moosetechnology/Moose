@@ -9,3 +9,9 @@ MPImportCommand >> category [
 
 	^ 'Import'
 ]
+
+{ #category : #hooks }
+MPImportCommand >> label [
+
+	^ 'Moose Playground'
+]
