@@ -61,6 +61,13 @@ MooseEntity class >> isContainerEntityIn: aMetamodel [
 		ifAbsentPut: [ (self allDeclaredPropertiesIn: aMetamodel) anySatisfy: #isChildrenProperty ]
 ]
 
+{ #category : #'instance creation' }
+MooseEntity class >> model: aMooseModel [
+	^ self new
+		mooseModel: aMooseModel;
+		yourself
+]
+
 { #category : #accessing }
 MooseEntity class >> requirements [
 	| metamodelClasses usedBehaviors |

@@ -15,18 +15,24 @@ FamixMultipleFileAnchorTest >> actualClass [
 { #category : #running }
 FamixMultipleFileAnchorTest >> setUp [
 	super setUp.
-	multipleFileAnchor := self actualClass new mooseModel: FamixTest1Model new.
-	1 to: 2 do: [ :each | multipleFileAnchor addFileAnchorWithPath: 'aFileName' ]
+	multipleFileAnchor := self actualClass model: FamixTest1Model new.
+	1 to: 2 do: [ :each | multipleFileAnchor addFileAnchorWithPath: 'aFileName' , each asString ]
 ]
 
 { #category : #tests }
 FamixMultipleFileAnchorTest >> testAdditionOfFiles [
-	self assert: multipleFileAnchor fileAnchors size equals: 1.
-	multipleFileAnchor addFileAnchorWithPath: 'aFileName1'.
 	self assert: multipleFileAnchor fileAnchors size equals: 2.
-	self assert: multipleFileAnchor sourceText lines size equals: 2.
-	multipleFileAnchor addFileAnchorWithPath: 'aFileName2'.
-	self assert: multipleFileAnchor sourceText lines size equals: 3
+	multipleFileAnchor addFileAnchorWithPath: 'newFileName1'.
+	self assert: multipleFileAnchor fileAnchors size equals: 3.
+	self assert: multipleFileAnchor sourceText lines size equals: 3.
+	multipleFileAnchor addFileAnchorWithPath: 'newFileName2'.
+	self assert: multipleFileAnchor sourceText lines size equals: 4
+]
+
+{ #category : #tests }
+FamixMultipleFileAnchorTest >> testAllSourceAnchors [
+	self assert: multipleFileAnchor allSourceAnchors size equals: 2.
+	multipleFileAnchor allSourceAnchors do: [ :each | self assert: each isFileAnchor ]
 ]
 
 { #category : #tests }
@@ -80,7 +86,10 @@ FamixMultipleFileAnchorTest >> testMultipleSourceAnchorEntity [
 
 { #category : #tests }
 FamixMultipleFileAnchorTest >> testSimilarFileAnchors [
-	self assert: multipleFileAnchor fileAnchors size equals: 1
+	"Try to add again the same source anchors."
+
+	1 to: 2 do: [ :each | multipleFileAnchor addFileAnchorWithPath: 'aFileName' , each asString ].
+	self assert: multipleFileAnchor fileAnchors size equals: 2
 ]
 
 { #category : #tests }
@@ -100,5 +109,5 @@ FamixMultipleFileAnchorTest >> testWritingAndReadingInMSE [
 	tempFile writeStreamDo: [ :s | multipleFileAnchor mooseModel exportToMSEStream: s ].
 	tempFile readStreamDo: [ :s | importedModel := FamixTest1Model importFromMSEStream: s ].
 	self assert: (importedModel allUsing: FamixTMultipleFileAnchor) size equals: 1.
-	self assert: (importedModel allUsing: FamixTFileAnchor) size equals: 1
+	self assert: (importedModel allUsing: FamixTFileAnchor) size equals: 2
 ]

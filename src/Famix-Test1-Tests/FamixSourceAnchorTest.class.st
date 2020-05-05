@@ -20,6 +20,13 @@ FamixSourceAnchorTest >> actualClass [
 ]
 
 { #category : #tests }
+FamixSourceAnchorTest >> testAllSourceAnchors [
+	| anchor |
+	anchor := self actualClass new.
+	self assertCollection: anchor allSourceAnchors hasSameElements: { anchor }
+]
+
+{ #category : #tests }
 FamixSourceAnchorTest >> testEntity [
 	| anchor m1 m2 |
 	anchor := self actualClass new.
@@ -65,6 +72,11 @@ FamixSourceAnchorTest >> testImportFileAnchors [
 	self assert: aMethod numberOfLinesOfCode equals: 28.
 	self shouldnt: [ model allMethods collect: #numberOfLinesOfCode ] raise: Error.
 	self shouldnt: [ model allClasses collect: #numberOfLinesOfCode ] raise: Error
+]
+
+{ #category : #tests }
+FamixSourceAnchorTest >> testIsFileAnchor [
+	^ self deny: self actualClass new isFileAnchor
 ]
 
 { #category : #tests }
