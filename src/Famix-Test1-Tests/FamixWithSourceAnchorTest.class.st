@@ -41,6 +41,24 @@ FamixWithSourceAnchorTest >> setUp [
 ]
 
 { #category : #tests }
+FamixWithSourceAnchorTest >> testAllSourceAnchors [
+	self assertCollection: m1 allSourceAnchors hasSameElements: {anchor1}
+]
+
+{ #category : #tests }
+FamixWithSourceAnchorTest >> testAllSourceAnchorsWithMultipleFileAnchor [
+	| multipleFileAnchor |
+	self assertEmpty: m3 allSourceAnchors.
+
+	multipleFileAnchor := FamixTest1MultipleFileAnchor model: model.
+	1 to: 3 do: [ :each | multipleFileAnchor addFileAnchorWithPath: 'aFileName' , each asString ].
+
+	m3 sourceAnchor: multipleFileAnchor.
+
+	self assert: m3 allSourceAnchors size equals: 3
+]
+
+{ #category : #tests }
 FamixWithSourceAnchorTest >> testHasSourceAnchor [
 
 	self assert: m1 hasSourceAnchor.

@@ -33,6 +33,16 @@ FamixTMultipleFileAnchor >> addToFile: entity [
 ]
 
 { #category : #accessing }
+FamixTMultipleFileAnchor >> allSourceAnchors [
+	^ self fileAnchors
+]
+
+{ #category : #enumerating }
+FamixTMultipleFileAnchor >> allSourceAnchorsDo: aBlock [
+	^ self allSourceAnchors do: [ :sa | sa allSourceAnchorsDo: aBlock ]
+]
+
+{ #category : #accessing }
 FamixTMultipleFileAnchor >> containerFiles [
 	^ self
 		propertyNamed: #containerFiles

@@ -50,6 +50,11 @@ FamixAbstractFileAnchorTest >> testFileNameHasOnlySlashes [
 ]
 
 { #category : #tests }
+FamixAbstractFileAnchorTest >> testIsFileAnchor [
+	^ self assert: self actualClass new isFileAnchor
+]
+
+{ #category : #tests }
 FamixAbstractFileAnchorTest >> testLineCount [
 	| file anchor |
 	(file := FileSystem memory / 'test.txt')
