@@ -3,9 +3,6 @@ Class {
 	#superclass : #FAMIXStructuralEntity,
 	#traits : 'FamixTAttribute + FamixTWithClassScope',
 	#classTraits : 'FamixTAttribute classTrait + FamixTWithClassScope classTrait',
-	#instVars : [
-		'#hasClassScope'
-	],
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 
@@ -30,20 +27,6 @@ FAMIXAttribute >> beSharedVariable [
 	self propertyNamed: #sharedVariable put: true 
 ]
 
-{ #category : #accessing }
-FAMIXAttribute >> hasClassScope [
-	<FMProperty: #hasClassScope type: #Boolean>
-	<FMComment: 'True if class-side attribute'>
-
-	^ hasClassScope
-]
-
-{ #category : #accessing }
-FAMIXAttribute >> hasClassScope: aBoolean [
-
-	hasClassScope := aBoolean
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXAttribute >> hierarchyNestingLevel [
 	<FMProperty: #hierarchyNestingLevel type: #Number>
@@ -59,13 +42,6 @@ FAMIXAttribute >> hierarchyNestingLevel [
 FAMIXAttribute >> hierarchyNestingLevel: aNumber [
 
 	self privateState propertyAt: #hierarchyNestingLevel put: aNumber
-]
-
-{ #category : #initialization }
-FAMIXAttribute >> initialize [
-	super initialize.
-	hasClassScope := false.
-
 ]
 
 { #category : #'Famix-Smalltalk' }

@@ -61,7 +61,7 @@ MooseCodeNavigator >> methodsIn: a [
 		format: #stubFormattedName;
 		tags: [ :method | 
 			col := method modifiers copy.
-			method hasClassScope ifTrue: [ col add: 'isStatic' ].
+			method isClassSide ifTrue: [ col add: 'isStatic' ].
 			method kind ifNotNil: [ :kind | col add: kind ].
 			col ];
 		dynamicActionsOnSelection: [ :list | list selection mooseInterestingEntity mooseFinderActions ]

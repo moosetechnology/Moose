@@ -3,9 +3,6 @@ Class {
 	#superclass : #FamixStNamedEntity,
 	#traits : 'FamixTAttribute + FamixTHasModifiers + FamixTWithClassScope',
 	#classTraits : 'FamixTAttribute classTrait + FamixTHasModifiers classTrait + FamixTWithClassScope classTrait',
-	#instVars : [
-		'#hasClassScope'
-	],
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 
@@ -24,20 +21,6 @@ FamixStAttribute >> beSharedVariable [
 	self propertyNamed: #sharedVariable put: true 
 ]
 
-{ #category : #testing }
-FamixStAttribute >> hasClassScope [
-	<FMProperty: #hasClassScope type: #Boolean>
-	<FMComment: 'True if class-side attribute'>
-
-	^ hasClassScope
-]
-
-{ #category : #testing }
-FamixStAttribute >> hasClassScope: aBoolean [
-
-	hasClassScope := aBoolean
-]
-
 { #category : #'Famix-Implementation' }
 FamixStAttribute >> hierarchyNestingLevel [
 	<FMProperty: #hierarchyNestingLevel type: #Number>
@@ -53,13 +36,6 @@ FamixStAttribute >> hierarchyNestingLevel [
 FamixStAttribute >> hierarchyNestingLevel: aNumber [
 
 	self privateState propertyAt: #hierarchyNestingLevel put: aNumber
-]
-
-{ #category : #initialization }
-FamixStAttribute >> initialize [
-	super initialize.
-	hasClassScope := false.
-
 ]
 
 { #category : #'Famix-Implementation' }

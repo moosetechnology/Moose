@@ -133,11 +133,11 @@ FamixModelExtractionTest >> testInheritedAttributes [
 	inheritedAtts := msePrinterClass inheritedAttributes.
 	self assert: msePrinterClass superclassHierarchy size equals: 5.
 	self assert: inheritedAtts size equals: (self totalNumberOfAttributesFor: LANPrintServer superclass).
-	self assert: (inheritedAtts reject: [ :each | each hasClassScope ]) size equals: 5.
+	self assert: (inheritedAtts reject: [ :each | each isClassSide ]) size equals: 5.
 	self assert: (inheritedAtts includes: nodeName).
 	self assert: (inheritedAtts includes: nextNode).
 	self assert: (inheritedAtts includes: serverType).
-	self assert: (inheritedAtts select: [ :each | each hasClassScope ]) size equals: 1
+	self assert: (inheritedAtts select: [ :each | each isClassSide ]) size equals: 1
 ]
 
 { #category : #tests }

@@ -50,8 +50,8 @@ FamixReferenceModelMergingClassAndMetaclassImporterTest >> testClassAttributeHas
 
 	| attribute theRoot |
 	attribute := self model entityNamed: #'Smalltalk::TheRoot.x'.
-	theRoot := self model entityNamed: #Smalltalk::TheRoot.
-	self assert: attribute hasClassScope not.
+	theRoot := self model entityNamed: #'Smalltalk::TheRoot'.
+	self assert: attribute isClassSide not.
 	self assert: attribute belongsTo equals: theRoot
 ]
 
@@ -63,10 +63,10 @@ FamixReferenceModelMergingClassAndMetaclassImporterTest >> testClassMetaclassIns
 	insVar := self model entityNamed: #'Smalltalk::TheRoot.z'.
 	insMetaclassVar := self model entityNamed: #'Smalltalk::TheRoot.CIV#mz'.
 	shared := self model entityNamed: #'Smalltalk::TheRoot.TheRootSharedVariable'.
-	theRoot := self model entityNamed: #Smalltalk::TheRoot.
-	self deny: insVar hasClassScope.
-	self assert: insMetaclassVar hasClassScope.
-	self assert: shared hasClassScope.
+	theRoot := self model entityNamed: #'Smalltalk::TheRoot'.
+	self deny: insVar isClassSide.
+	self assert: insMetaclassVar isClassSide.
+	self assert: shared isClassSide.
 	self assert: insVar belongsTo equals: theRoot.
 	self assert: insMetaclassVar belongsTo equals: theRoot.
 	self assert: shared belongsTo equals: theRoot.
@@ -83,10 +83,10 @@ FamixReferenceModelMergingClassAndMetaclassImporterTest >> testConflictingInstan
 	insVar := self model entityNamed: #'Smalltalk::TheRoot.instanceAndClassPotentiallyConflictingName'.
 	insMetaclassVar := self model entityNamed: #'Smalltalk::TheRoot.CIV#instanceAndClassPotentiallyConflictingName'.
 	shared := self model entityNamed: #'Smalltalk::TheRoot.TheRootSharedVariable'.
-	theRoot := self model entityNamed: #Smalltalk::TheRoot.
-	self deny: insVar hasClassScope.
-	self assert: insMetaclassVar hasClassScope.
-	self assert: shared hasClassScope.
+	theRoot := self model entityNamed: #'Smalltalk::TheRoot'.
+	self deny: insVar isClassSide.
+	self assert: insMetaclassVar isClassSide.
+	self assert: shared isClassSide.
 	self assert: insVar belongsTo equals: theRoot.
 	self assert: insMetaclassVar belongsTo equals: theRoot.
 	self assert: shared belongsTo equals: theRoot
@@ -104,13 +104,11 @@ FamixReferenceModelMergingClassAndMetaclassImporterTest >> testInstanceAndClassS
 ]
 
 { #category : #tests }
-FamixReferenceModelMergingClassAndMetaclassImporterTest >> testMetaclassAttributeHasClassScope [
-	"self debug: #testMetaclassAttributeHasClassScope"
-
+FamixReferenceModelMergingClassAndMetaclassImporterTest >> testMetaclassAttributeIsClassSide [
 	| attribute theRoot |
 	attribute := self model entityNamed: #'Smalltalk::TheRoot.CIV#mz'.
-	theRoot := self model entityNamed: #Smalltalk::TheRoot.
-	self assert: attribute hasClassScope.
+	theRoot := self model entityNamed: #'Smalltalk::TheRoot'.
+	self assert: attribute isClassSide.
 	self assert: attribute belongsTo equals: theRoot
 ]
 
@@ -164,7 +162,7 @@ FamixReferenceModelMergingClassAndMetaclassImporterTest >> testSharedVariableRei
 
 	| shared |
 	shared := self model entityNamed: #'Smalltalk::TheRoot.TheRootSharedVariable'.
-	self assert: shared hasClassScope.
+	self assert: shared isClassSide.
 	self assert: shared isSharedVariable.
 	self assert: shared isProtected.
 	self assert: shared belongsTo equals: (self model entityNamed: TheRoot mooseName)

@@ -111,7 +111,7 @@ SmalltalkImporter >> createAttribute: name for: aClass [
 	importingContext shouldMergeClassAndMetaclass
 		ifTrue: [ attribute parentType: (self ensureClass: aClass instanceSide) ]
 		ifFalse: [ attribute parentType: (self ensureClass: aClass) ].
-	attribute hasClassScope: aClass isMeta.
+	attribute isClassSide: aClass isMeta.
 	attribute beProtected.
 	"now we use RoelTyper to see a unique type can be retrieve for this attribute: "
 	importingContext shouldComputeTypeOfAttributes
@@ -172,7 +172,7 @@ SmalltalkImporter >> createClassVarAttribute: name for: aClass [
 	attribute stub: true.
 	attribute name: name asSymbol.
 	attribute parentType: (self ensureClass: aClass instanceSide).
-	attribute hasClassScope: true.
+	attribute isClassSide: true.
 	attribute beSharedVariable.
 	attribute beProtected.
 	^ attribute
