@@ -7,6 +7,11 @@ Class {
 	#category : #'Famix-MetamodelBuilder-Tests'
 }
 
+{ #category : #accessing }
+FmxMBGeneratorCleaningStrategyTest class >> defaultTimeLimit [
+	^ 20 seconds
+]
+
 { #category : #running }
 FmxMBGeneratorCleaningStrategyTest >> generateClasses [
 	| generatedClassToRemove generatedTraitToRemove |
