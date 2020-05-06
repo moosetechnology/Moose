@@ -81,16 +81,6 @@ TDependencyQueries >> createOutgoingQueryResultWith: aCollection [
 ]
 
 { #category : #testing }
-TDependencyQueries >> entityHasIncomingTypeDeclarations [
-	^ false
-]
-
-{ #category : #testing }
-TDependencyQueries >> entityHasOutgoingTypeDeclarations [
-	^ false
-]
-
-{ #category : #testing }
 TDependencyQueries >> has: anInOutSymbol [
 	"Check the incoming or outgoing associations of the receiver or its children.
 
@@ -266,24 +256,6 @@ TDependencyQueries >> hasOutgoingTypeDeclarations [
 				| coll |
 				1 to: (coll := children asCollection) size do: [ :i | ((coll at: i) hasOutgoingTypeDeclarations) ifTrue: [ ^ true ]  ] ] ].
 	 ^ self entityHasOutgoingTypeDeclarations.
-]
-
-{ #category : #'query dependencies' }
-TDependencyQueries >> incomingTypeDeclarations [
-	"Should return the incoming type declarations of the entity as MooseQueryTypeDeclarationAssociation.
-	
-	typeDeclaration is a virtual association that relates a structural entity (i.e. a variable) to its type."
-
-	^ {}
-]
-
-{ #category : #'query dependencies' }
-TDependencyQueries >> outgoingTypeDeclarations [
-	"Should return the outgoing type declarations of the entity as MooseQueryTypeDeclarationAssociation.
-	
-	typeDeclaration is a virtual association that relates a structural entity (i.e. a variable) to its type."
-
-	^ {}
 ]
 
 { #category : #'query dependencies' }

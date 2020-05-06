@@ -912,13 +912,11 @@ FamixGenerator >> defineHierarchy [
 	tClass --|> tWithMethods.
 	tClass --|> tWithInheritances.
 	tClass --|> tWithAttributes.
-	tClass inheritsFromTrait: tNamedEntity without: #(#mooseNameOn:).
 	tClass --|> tType.
 	tClass --|> tPackageable.
 	tClass --|> tInvocationsReceiver.
 	tClass --|> tWithComments.
 	tClass --|> #TOODependencyQueries.
-	tClass withPrecedenceOf: tType.
 
 	tClassGroup --|> tTypeGroup.
 	
@@ -966,6 +964,9 @@ FamixGenerator >> defineHierarchy [
 	tMethod withPrecedenceOf: tTypedEntity.
 	
 	tMultipleFileAnchor --|> tSourceAnchor.
+	
+	tNamedEntity --|> #TDependencyQueries.
+	tNamedEntity --|> #TEntityMetaLevelDependency.
 
 	tParameter --|> tStructuralEntity.
 	
