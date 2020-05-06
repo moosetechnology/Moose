@@ -27,9 +27,8 @@ FamixWithImmediateSourceTest >> setUp [
 ]
 
 { #category : #tests }
-FamixWithImmediateSourceTest >> testIsFile [
-
-	self deny: anchor isFile
+FamixWithImmediateSourceTest >> testIsFileAnchor [
+	self deny: anchor isFileAnchor
 ]
 
 { #category : #tests }
