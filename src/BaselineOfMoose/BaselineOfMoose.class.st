@@ -64,6 +64,11 @@ BaselineOfMoose >> famix: spec [
 ]
 
 { #category : #dependencies }
+BaselineOfMoose >> famixReplication: spec [
+	spec baseline: 'FamixReplicationWithoutFamix' with: [ spec repository: 'github://moosetechnology/FamixReplication:v1.x.x/src' ]
+]
+
+{ #category : #dependencies }
 BaselineOfMoose >> famixTagging: spec [
 	spec baseline: 'FamixTaggingWithoutFamix' with: [ spec repository: 'github://moosetechnology/FamixTagging:v1.x.x/src' ]
 ]
