@@ -22,11 +22,6 @@ FAMIXBehaviouralEntity >> clientBehaviours [
 	^ self invokingBehaviours 
 ]
 
-{ #category : #'Famix-Extensions-private' }
-FAMIXBehaviouralEntity >> computeNumberOfLinesOfCodeIfSmalltalk [
-	^ (RBVisitorForFAMIXMetrics for: self) numberOfLinesOfCode
-]
-
 { #category : #'Famix-Extensions' }
 FAMIXBehaviouralEntity >> cyclomaticComplexity [
 	<FMProperty: #cyclomaticComplexity type: #Number>
