@@ -1,17 +1,17 @@
-Extension { #name : #MooseEntity }
+Extension { #name : #Object }
 
 { #category : #'*Moose-Query' }
-MooseEntity >> entityHasIncomingTypeDeclarations [
+Object >> entityHasIncomingTypeDeclarations [
 	^ false
 ]
 
 { #category : #'*Moose-Query' }
-MooseEntity >> entityHasOutgoingTypeDeclarations [
+Object >> entityHasOutgoingTypeDeclarations [
 	^ false
 ]
 
 { #category : #'*Moose-Query' }
-MooseEntity >> incomingTypeDeclarations [
+Object >> incomingTypeDeclarations [
 	"Should return the incoming type declarations of the entity as MooseQueryTypeDeclarationAssociation.
 	
 	typeDeclaration is a virtual association that relates a structural entity (i.e. a variable) to its type."
@@ -20,7 +20,7 @@ MooseEntity >> incomingTypeDeclarations [
 ]
 
 { #category : #'*Moose-Query' }
-MooseEntity >> outgoingTypeDeclarations [
+Object >> outgoingTypeDeclarations [
 	"Should return the outgoing type declarations of the entity as MooseQueryTypeDeclarationAssociation.
 	
 	typeDeclaration is a virtual association that relates a structural entity (i.e. a variable) to its type."
