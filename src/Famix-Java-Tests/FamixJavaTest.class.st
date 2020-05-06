@@ -18,7 +18,7 @@ FamixJavaTest >> testImportAnnotations [
 		(Famix-Java-Entities.Class (id: 3) (name ''AnAnnotationDefinitionClass''))
 		(Famix-Java-Entities.AnnotationType (id: 4) (name ''AnAnnotation'') (typeContainer (ref: 100)))
 		(Famix-Java-Entities.Class (id: 5) (name ''AnotherAnnotationDefinitionClass''))
-		(Famix-Java-Entities.AnnotationType (id: 6) (name ''AnotherAnnotation'') (container (ref: 100)))
+		(Famix-Java-Entities.AnnotationType (id: 6) (name ''AnotherAnnotation'') (typeContainer (ref: 100)))
 		(Famix-Java-Entities.AnnotationInstance (id: 7) (annotatedEntity (ref: 1)) (annotationType (ref: 4)))
 		(Famix-Java-Entities.AnnotationInstance (id: 8) (annotatedEntity (ref: 10)) (annotationType (ref: 4)))
 		(Famix-Java-Entities.AnnotationInstance (id: 9) (annotatedEntity (ref: 2)) (annotationType (ref: 6)))
