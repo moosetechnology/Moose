@@ -12,6 +12,7 @@ Trait {
 		'#typedEntities => FMMany type: #FamixTTypedEntity opposite: #declaredType'
 	],
 	#traits : 'FamixTNamedEntity + FamixTReferenceable',
+	#classTraits : 'FamixTNamedEntity classTrait + FamixTReferenceable classTrait',
 	#category : #'Famix-Traits-Type'
 }
 
@@ -42,7 +43,7 @@ FamixTType >> belongsTo [
 	^ self parentPackage ifNil: [ self parents ifNotEmpty: #anyOne ifEmpty: [ nil ] ]
 ]
 
-{ #category : #testing }
+{ #category : #'as yet unclassified' }
 FamixTType >> entityHasIncomingTypeDeclarations [ 
 	^ self typedEntities isNotEmpty.
 ]
