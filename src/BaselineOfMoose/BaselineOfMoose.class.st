@@ -31,13 +31,13 @@ BaselineOfMoose >> baseline: spec [
 				package: 'Glamour-Magritte-Presentations';
 				package: 'Moose-Help';
 				package: 'Moose-RoassalPaintings' with: [ spec requires: #('Roassal2') ];
-				package: 'Moose-Tests-Finder';
-				package: 'Moose-Tests-RoassalPaintings';
+				package: 'Moose-Finder-Tests';
+				package: 'Moose-RoassalPaintings-Tests';
 				package: 'Merlin';
 				package: 'Moose-Wizard';
 				package: 'Merlin';
 				package: 'Moose-DistributionMap';
-				package: 'Moose-Tests-DistributionMap' ].
+				package: 'Moose-DistributionMap-Tests' ].
 	spec
 		for: #'pharo8.x'
 		do: [ spec
