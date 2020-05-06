@@ -7,10 +7,22 @@ Class {
 	#category : #'Famix-MetamodelBuilder-Tests'
 }
 
+{ #category : #accessing }
+FmxMBGeneratorCleaningStrategyTest class >> defaultTimeLimit [
+	^ 20 seconds
+]
+
 { #category : #running }
 FmxMBGeneratorCleaningStrategyTest >> generateClasses [
 	| generatedClassToRemove generatedTraitToRemove |
 	FamixMetamodelCleaningStrategiesTestGenerator new generate.
+
+	"We add a Trait precedence to ensure it will be removed."
+	self class environment
+		at: #FmxTestCleaningStrategyFmxTestEntityWithTraitPrecedenceToRemove
+		ifPresent: [ :class | class setTraitComposition: (class traitComposition withPrecedenceOf: (self class environment at: #FmxTestCleaningStrategyTATrait)) ]
+		ifAbsent: [ self fail ].
+
 	self class environment
 		at: #FmxTestCleaningStrategyFmxTestEntity
 		ifPresent: [ :class | 
@@ -131,17 +143,37 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningCleaning [
 			self assert: (class slotNamed: #fursonas) definitionString equals: '#fursonas => FMMany type: #FmxTestCleaningStrategyFmxTestEntity opposite: #furry' ]
 		ifAbsent: [ self fail ].
 
+	"Before the generation the precedence we added should still be here."
+	self class environment
+		at: #FmxTestCleaningStrategyFmxTestEntityWithTraitPrecedenceToRemove
+		ifPresent: [ :class | self assert: class traitComposition isPrecedingSequence ]
+		ifAbsent: [ self fail ].
+
 	"Before the generation, the superclass should not be updated."
-	self class environment at: #FmxTestCleaningStrategyFmxTestEntityWithDifferentSuperclass ifPresent: [ :class | self assert: class superclass name equals: #MooseEntity ] ifAbsent: [ self fail ].
+	self class environment
+		at: #FmxTestCleaningStrategyFmxTestEntityWithDifferentSuperclass
+		ifPresent: [ :class | self assert: class superclass name equals: #MooseEntity ]
+		ifAbsent: [ self fail ].
 
 	"Before the generation, the generated class and trait that were removed from the generator should still be here."
 	self class environment at: #FmxCleanerTestAddedClassFromFamix ifAbsent: [ self fail ].
 	self class environment at: #FmxCleanerTestTAddedClassFromFamix ifAbsent: [ self fail ].
 
-	self assert: (self class methodDict at: #extensionsMethodForTest ifPresent: [ true ] ifAbsent: [ false ]).
+	self
+		assert:
+			(self class methodDict
+				at: #extensionsMethodForTest
+				ifPresent: [ true ]
+				ifAbsent: [ false ]).
 
-	self class environment at: #FmxCleanerTestAddedClass ifPresent: [ :class | self assert: class package name equals: self packageName ] ifAbsent: [ self fail ].
-	self class environment at: #TFmxCleanerTestAddedTrait ifPresent: [ :class | self assert: class package name equals: self packageName ] ifAbsent: [ self fail ]
+	self class environment
+		at: #FmxCleanerTestAddedClass
+		ifPresent: [ :class | self assert: class package name equals: self packageName ]
+		ifAbsent: [ self fail ].
+	self class environment
+		at: #TFmxCleanerTestAddedTrait
+		ifPresent: [ :class | self assert: class package name equals: self packageName ]
+		ifAbsent: [ self fail ]
 ]
 
 { #category : #tests }
@@ -165,6 +197,12 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateNoCleaningGeneration [
 			self assert: (class class hasInstVarNamed: #grandFrais).
 			self assert: (class hasInstVarNamed: #fursonas).
 			self assert: (class slotNamed: #fursonas) definitionString equals: '#fursonas => FMMany type: #FmxTestCleaningStrategyFmxTestEntityWithDifferentSuperclass opposite: #furry' ]
+		ifAbsent: [ self fail ].
+		
+	"The generation should remove the precedence that is not present anymore"
+	self class environment
+		at: #FmxTestCleaningStrategyFmxTestEntityWithTraitPrecedenceToRemove
+		ifPresent: [ :class | self deny: class traitComposition isPrecedingSequence ]
 		ifAbsent: [ self fail ].
 
 	"After the generation, the superclass should be updated to be the one described in the generator."
@@ -192,6 +230,8 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateTotalCleaningCleaning [
 	self should: [ self class environment at: #TFmxCleanerTestAddedTrait ] raise: KeyNotFound.
 	self should: [ self class environment at: #FmxCleanerTestAddedClassFromFamix ] raise: KeyNotFound.
 	self should: [ self class environment at: #FmxCleanerTestTAddedClassFromFamix ] raise: KeyNotFound.
+	self should: [ self class environment at: #FmxTestCleaningStrategyFmxTestEntityWithTraitPrecedenceToRemove ] raise: KeyNotFound.
+
 	self assert: (self class methodDict at: #extensionsMethodForTest ifPresent: [ false ] ifAbsent: [ true ])
 ]
 
@@ -212,6 +252,12 @@ FmxMBGeneratorCleaningStrategyTest >> testGenerateTotalCleaningGeneration [
 			self deny: (class class hasInstVarNamed: #grandFrais).
 			self assert: (class hasInstVarNamed: #fursonas).
 			self assert: (class slotNamed: #fursonas) definitionString equals: '#fursonas => FMMany type: #FmxTestCleaningStrategyFmxTestEntityWithDifferentSuperclass opposite: #furry' ]
+		ifAbsent: [ self fail ].
+
+	"The generation should remove the precedence that is not present anymore"
+	self class environment
+		at: #FmxTestCleaningStrategyFmxTestEntityWithTraitPrecedenceToRemove
+		ifPresent: [ :class | self deny: class traitComposition isPrecedingSequence ]
 		ifAbsent: [ self fail ].
 
 	"After the generation, the superclass should be updated."
