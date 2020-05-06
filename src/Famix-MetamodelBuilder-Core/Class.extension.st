@@ -30,9 +30,12 @@ Class >> needToAdaptTo: aRGClass [
 		select: [ :member | generatedTraitNames includes: member name ]
 		thenCollect: #traitCompositionExpression.
 
-	aRGClass properties at:#precedingTrait ifPresent: [ :aTrait | 
-		self traitComposition isPrecedingSequence ifFalse: [ ^ true ].
-		(self traitComposition preferedTrait name = aTrait) ifFalse: [ ^ true ]].
+	"If the new class has a trait precedence, we check that the current one also have the same. Else we need to adapt.
+	If the new class does not have a trait precedent, we check that the current one also does not have one. Else we need to adapt."
+	aRGClass properties
+		at: #precedingTrait
+		ifPresent: [ :aTrait | (self traitComposition isPrecedingSequence and: [ self traitComposition preferedTrait name = aTrait ]) ifFalse: [ ^ true ] ]
+		ifAbsent: [ self traitComposition isPrecedingSequence ifTrue: [ ^ true ] ].
 
 	(generatedTraitDefinitions equalsTo: aRGClass traitsDefinitions) ifFalse: [ ^ true ].
 
