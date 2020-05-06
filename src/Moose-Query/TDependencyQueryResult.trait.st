@@ -109,7 +109,7 @@ TDependencyQueryResult >> selectDependencies: aConditionBlock [
 
 { #category : #accessing }
 TDependencyQueryResult >> sources [
-	^ (self collectAsSet: #from) flattened
+	^ (self collectAsSet: #source) flattened
 ]
 
 { #category : #accessing }
@@ -119,7 +119,7 @@ TDependencyQueryResult >> sourcesAtScope: aFamixTraitOrClass [
 
 { #category : #accessing }
 TDependencyQueryResult >> targets [
-	^ (self collectAsSet: #to) flattened
+	^ (self collectAsSet: #target) flattened
 ]
 
 { #category : #accessing }
