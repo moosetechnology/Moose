@@ -6,7 +6,6 @@ For more informations: https://moosequery.ferlicot.fr/
 Trait {
 	#name : #TOODependencyQueries,
 	#traits : 'TDependencyQueries',
-	#classTraits : 'TDependencyQueries classTrait',
 	#category : #'Moose-Query-Traits'
 }
 
