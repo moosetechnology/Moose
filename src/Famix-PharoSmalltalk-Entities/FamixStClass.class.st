@@ -32,6 +32,15 @@ FamixStClass >> classSide [
 		ifTrue: [ self ]
 ]
 
+{ #category : #metrics }
+FamixStClass >> computeNumberOfLinesOfCode [
+	"The source anchor only contains the definition while the source text return the full tonel export. So we count the lines of the full tonel export"
+
+	^ self sourceText
+		ifNotEmpty: #lineCount
+		ifEmpty: [ self notExistentMetricValue ]
+]
+
 { #category : #accessing }
 FamixStClass >> extendedInPackages [
 	^ self extendedMethods flatCollectAsSet: [ :m | m atScope: FamixTPackage ]
