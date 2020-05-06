@@ -9,6 +9,7 @@ Trait {
 		'#fileName => FMProperty'
 	],
 	#traits : 'FamixTSourceAnchor',
+	#classTraits : 'FamixTSourceAnchor classTrait',
 	#category : #'Famix-Traits-SourceAnchor'
 }
 
@@ -97,11 +98,6 @@ FamixTFileAnchor >> fileReference [
 { #category : #accessing }
 FamixTFileAnchor >> hasSourceText [
 	^ self completeText isNotEmpty
-]
-
-{ #category : #testing }
-FamixTFileAnchor >> isFile [
-	^ true
 ]
 
 { #category : #testing }
