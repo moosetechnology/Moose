@@ -43,9 +43,9 @@ FamixTType >> belongsTo [
 	^ self parentPackage ifNil: [ self parents ifNotEmpty: #anyOne ifEmpty: [ nil ] ]
 ]
 
-{ #category : #'as yet unclassified' }
-FamixTType >> entityHasIncomingTypeDeclarations [ 
-	^ self typedEntities isNotEmpty.
+{ #category : #testing }
+FamixTType >> entityHasIncomingTypeDeclarations [
+	^ self typedEntities isNotEmpty
 ]
 
 { #category : #metrics }
