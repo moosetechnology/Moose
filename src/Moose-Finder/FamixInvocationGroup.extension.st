@@ -6,8 +6,8 @@ FamixInvocationGroup >> mooseFinderListIn: composite [
 		beMultiple;
 		installExportToCSV;
 		display: [ self ];
-		column: 'From' evaluated: [ :each | each from ];
-		column: 'To' evaluated: [ :each | each anyCandidate ];
+		column: 'Source' evaluated: #source;
+		column: 'Target' evaluated: #anyCandidate;
 		send: [ :each | 
 			each
 				ifNotNil: [ each size = 1
