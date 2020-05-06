@@ -16,7 +16,7 @@ FAMIXClassBlueprint >> createEdgesFor: aClass andLayers: layers on: view [
 		line;
 		color: Color lightBlue;
 		horizontalAttachPoint.
-	edges := aClass queryIncomingAccesses flatCollect: [ :acc | eb connectFrom: acc from to: acc to ].
+	edges := aClass queryIncomingAccesses flatCollect: [ :acc | eb connectFrom: acc source to: acc target ].
 	edges do: [ :each | each moveBehind: (layers flatCollect: #value) ].
 
 	eb := RTEdgeBuilder new.
@@ -90,7 +90,7 @@ FAMIXClassBlueprint >> nestLayers: layers [
 				on: layer value
 					edges:
 						(layer value
-								flatCollect: [ :each | each connectedEdges select: [ :edge | (layer value includes: edge from) and: [ layer value includes: edge to ] ] ]).
+								flatCollect: [ :each | each connectedEdges select: [ :edge | (layer value includes: edge source) and: [ layer value includes: edge target ] ] ]).
 			RTNest new
 				centerOn: layer key elements: layer value;
 				makeElements: layer value draggableBy: layer key ]

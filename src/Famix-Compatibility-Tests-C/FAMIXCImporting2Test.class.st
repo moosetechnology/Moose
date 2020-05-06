@@ -76,6 +76,6 @@ FAMIXCImporting2Test >> testCompilationUnitIncludes [
 	self assert: cu outgoingIncludeRelations size equals: 1.
 	self assert: cu outgoingIncludeRelations anyOne isNotNil.
 	self assert: cu outgoingIncludeRelations anyOne class equals: FAMIXInclude.
-	self assert: cu outgoingIncludeRelations anyOne from equals: cu.
-	self assert: cu outgoingIncludeRelations anyOne to equals: header
+	self assert: cu outgoingIncludeRelations anyOne source equals: cu.
+	self assert: cu outgoingIncludeRelations anyOne target equals: header
 ]

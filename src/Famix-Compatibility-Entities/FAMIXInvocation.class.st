@@ -36,7 +36,7 @@ FAMIXInvocation >> getReceivingFAMIXClass [
 
 { #category : #'Famix-Implementation' }
 FAMIXInvocation >> gtDisplayOn: aStream [
-	self source ifNotNil: [ self from gtDisplayOn: aStream ].
+	self source ifNotNil: [ :s | s gtDisplayOn: aStream ].
 	aStream nextPutAll: ' -> '.
 	self receiver ifNotNil: [ aStream nextPutAll: self receiver name ].
 	aStream nextPut: $#.
