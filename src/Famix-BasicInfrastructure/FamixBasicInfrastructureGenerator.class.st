@@ -52,8 +52,6 @@ FamixBasicInfrastructureGenerator >> defineHierarchy [
 
 	namedEntity --|> sourcedEntity.
 	namedEntity --|> #TNamedEntity.
-	namedEntity --|> #TDependencyQueries.
-	namedEntity --|> #TEntityMetaLevelDependency.
 
 	sourceTextAnchor --|> sourceAnchor.
 	sourceTextAnchor --|> #THasImmediateSource.
