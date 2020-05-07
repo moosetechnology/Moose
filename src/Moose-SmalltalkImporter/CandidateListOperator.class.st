@@ -36,36 +36,25 @@ CandidateListOperator >> basicRun [
 ]
 
 { #category : #running }
-CandidateListOperator >> computeCandidateListFor: anInvocation [ 
-	| receiver | 
-	receiver := anInvocation receiver. 
-	receiver ~~ nil 
-		ifTrue: 
-			[(receiver isImplicitVariable and: [receiver isSuper]) 
-				ifTrue: 
-					[^self 
-						computeCandidateListFor: anInvocation 
-						withBaseClass: receiver belongsTo parentType superclass]. 
-			(receiver isImplicitVariable and: [receiver isSelf]) 
-				ifTrue: 
-					[^self 
-						computeCandidateListFor: anInvocation 
-						withReceivingClass: receiver belongsTo parentType]. 
-			receiver isClass 
-				ifTrue: 
-					[^self computeCandidateListFor: anInvocation withBaseClass: receiver].
-			]. 
+CandidateListOperator >> computeCandidateListFor: anInvocation [
+	anInvocation receiver
+		ifNotNil: [ :receiver | 
+			(receiver isImplicitVariable and: [ receiver isSuper ])
+				ifTrue: [ ^ self computeCandidateListFor: anInvocation withBaseClass: receiver belongsTo parentType superclass ].
+			(receiver isImplicitVariable and: [ receiver isSelf ])
+				ifTrue: [ ^ self computeCandidateListFor: anInvocation withReceivingClass: receiver belongsTo parentType ].
+			receiver isClass ifTrue: [ ^ self computeCandidateListFor: anInvocation withBaseClass: receiver ] ].
 	anInvocation candidates: (self allCandidatesFor: anInvocation)
 ]
 
 { #category : #running }
 CandidateListOperator >> computeCandidateListFor: anInvocation withReceivingClass: aClass [
 	| candidate candidates |
-	aClass ~~ nil
-		ifTrue: [ candidates := self allCandidatesFor: anInvocation.
+	aClass
+		ifNotNil: [ candidates := self allCandidatesFor: anInvocation.
 			candidates := candidates select: [ :each | (each atScope: FamixTClass) anyOne inheritsFrom: aClass ].
 			candidate := aClass lookUp: anInvocation signature.
-			(candidate ~~ nil and: [ candidate isAbstract not ]) ifTrue: [ candidates := candidates copyWith: candidate ].
+			(candidate isNotNil and: [ candidate isAbstract not ]) ifTrue: [ candidates := candidates copyWith: candidate ].
 			anInvocation candidates: candidates ]
 ]
 
@@ -89,15 +78,13 @@ CandidateListOperator >> computeInstanceVariableCandidateListFor: anInvocation [
 ]
 
 { #category : #running }
-CandidateListOperator >> computeTemporaryVariableCandidateListFor: anInvocation [ 
-	 
+CandidateListOperator >> computeTemporaryVariableCandidateListFor: anInvocation [
 	| aClass |
-	aClass ~~ nil 
-		ifTrue: 
-			[| candidate | 
-			candidate := aClass lookUp: anInvocation signature. 
-			(candidate ~~ nil and: [candidate isAbstract not]) 
-				ifTrue: [anInvocation candidates: (Array with: candidate)]]
+	self flag: #todo. "Cyril: This code can never be executed but there is a different implementation in the super class. We should look into this."
+	aClass
+		ifNotNil: [ | candidate |
+			candidate := aClass lookUp: anInvocation signature.
+			(candidate isNotNil and: [ candidate isAbstract not ]) ifTrue: [ anInvocation candidates: (Array with: candidate) ] ]
 ]
 
 { #category : #private }

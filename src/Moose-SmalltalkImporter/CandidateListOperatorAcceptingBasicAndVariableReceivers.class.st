@@ -15,33 +15,17 @@ Class {
 }
 
 { #category : #running }
-CandidateListOperatorAcceptingBasicAndVariableReceivers >> computeCandidateListFor: anInvocation [ 
-	| receiver | 
-	receiver := anInvocation receiver. 
-	receiver ~~ nil 
-		ifTrue: 
-			[(receiver isImplicitVariable and: [receiver isSuper]) 
-				ifTrue: 
-					[^self 
-						computeCandidateListFor: anInvocation 
-						withBaseClass: receiver belongsTo belongsTo superclass]. 
-			(receiver isImplicitVariable and: [receiver isSelf]) 
-				ifTrue: 
-					[^self 
-						computeCandidateListFor: anInvocation 
-						withReceivingClass: receiver belongsTo belongsTo]. 
-			receiver isClass 
-				ifTrue: 
-					[^self computeCandidateListFor: anInvocation withBaseClass: receiver].
-				
-			(receiver class = self importer factory attribute and: [receiver isSharedVariable not])
+CandidateListOperatorAcceptingBasicAndVariableReceivers >> computeCandidateListFor: anInvocation [
+	anInvocation receiver
+		ifNotNil: [ :receiver | 
+			(receiver isImplicitVariable and: [ receiver isSuper ])
+				ifTrue: [ ^ self computeCandidateListFor: anInvocation withBaseClass: receiver belongsTo belongsTo superclass ].
+			(receiver isImplicitVariable and: [ receiver isSelf ])
+				ifTrue: [ ^ self computeCandidateListFor: anInvocation withReceivingClass: receiver belongsTo belongsTo ].
+			receiver isClass ifTrue: [ ^ self computeCandidateListFor: anInvocation withBaseClass: receiver ].
+
+			(receiver class = self importer factory attribute and: [ receiver isSharedVariable not ])
+				ifTrue: [ "Transcript show: receiver belongsTo name, '-->', receiver name, '  - roelTyperResult :- '," "not working yet :" "receiver class = FAMIXLocalVariable  
 				ifTrue:
-					["Transcript show: receiver belongsTo name, '-->', receiver name, '  - roelTyperResult :- ',"(self computeInstanceVariableCandidateListFor: anInvocation ) "sString, '//////      '"].
-				
-			"not working yet :"	
-			"receiver class = FAMIXLocalVariable  
-				ifTrue:
-					[Transcript show: receiver belongsTo name, '-->', receiver name, '  - roelTyperResult :- ',(self computeTemporaryVariableCandidateListFor: anInvocation ) asString, '//////      ']"
-			]. 
-	
+					[Transcript show: receiver belongsTo name, '-->', receiver name, '  - roelTyperResult :- ',(self computeTemporaryVariableCandidateListFor: anInvocation ) asString, '//////      ']" self computeInstanceVariableCandidateListFor: anInvocation	"sString, '//////      '" ] ]
 ]

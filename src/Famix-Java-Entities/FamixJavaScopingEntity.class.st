@@ -85,7 +85,7 @@ FamixJavaScopingEntity >> instability [
 	self subclassResponsibility
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions' }
 FamixJavaScopingEntity >> structuralChildren [ 
 	^ (OrderedCollection withAll: self childScopes), self classes 
 ]

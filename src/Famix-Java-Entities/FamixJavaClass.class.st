@@ -110,7 +110,7 @@ FamixJavaClass >> methodsWithoutSutbsAndConstructors [
 		each isStub not and: [each isConstructor not]]) asSet
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'Famix-Extensions' }
 FamixJavaClass >> structuralChildren [
 	^ (OrderedCollection withAll: self methods), self attributes
 ]
