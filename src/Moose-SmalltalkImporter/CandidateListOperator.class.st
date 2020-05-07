@@ -12,7 +12,31 @@ Class {
 }
 
 { #category : #running }
-CandidateListOperator >> computeCandidateListFor: anInvocation [
+CandidateListOperator >> allCandidatesFor: invocation [ 
+	^Array 
+		withAll: 
+			(groups 
+				at: invocation signature 
+				ifAbsent: [ | stubs |
+					stubs := self importer ensureSmalltalkStubMethodsFor: invocation signature.
+					groups at: invocation signature put: stubs.
+					stubs do: [:each | model add: each].
+					stubs ])
+]
+
+{ #category : #running }
+CandidateListOperator >> basicRun [ 
+	 
+	model allInvocations 
+		do: 
+			[:invocation |  
+			self computeCandidateListFor: invocation. 
+			"self reifyIncomingInvocationsFor: invocation. "
+			self increment]
+]
+
+{ #category : #running }
+CandidateListOperator >> computeCandidateListFor: anInvocation [ 
 	anInvocation receiver
 		ifNotNil: [ :receiver | 
 			(receiver isImplicitVariable and: [ receiver isSuper ])
@@ -20,7 +44,6 @@ CandidateListOperator >> computeCandidateListFor: anInvocation [
 			(receiver isImplicitVariable and: [ receiver isSelf ])
 				ifTrue: [ ^ self computeCandidateListFor: anInvocation withReceivingClass: receiver belongsTo parentType ].
 			receiver isClass ifTrue: [ ^ self computeCandidateListFor: anInvocation withBaseClass: receiver ] ].
-	anInvocation candidates: (self allCandidatesFor: anInvocation)
 ]
 
 { #category : #running }

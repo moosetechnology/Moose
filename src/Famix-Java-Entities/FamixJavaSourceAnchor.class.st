@@ -14,8 +14,3 @@ FamixJavaSourceAnchor class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #testing }
-FamixJavaSourceAnchor >> isFile [
-	^ false
-]

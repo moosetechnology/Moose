@@ -34,12 +34,6 @@ FamixTHasImmediateSource classSide >> source: aString model: aMooseModel [
 ]
 
 { #category : #accessing }
-FamixTHasImmediateSource >> isFile [
-
-	^ false
-]
-
-{ #category : #accessing }
 FamixTHasImmediateSource >> source [
 
 	<FMProperty: #source type: #String>

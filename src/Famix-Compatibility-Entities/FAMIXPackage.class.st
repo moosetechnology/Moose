@@ -305,18 +305,6 @@ FAMIXPackage >> numberOfClientPackages: aNumber [
 ]
 
 { #category : #'Famix-Extensions' }
-FAMIXPackage >> numberOfLinesOfCode [
-	<FMProperty: #numberOfLinesOfCode type: #Number>
-	<derived>
-	<FMComment: 'The number of lines of code in a namespace'>
-	
-	^self
-		lookUpPropertyNamed: #numberOfLinesOfCode
-		computedAs: [
-			self methods inject: 0 into: [ :sum :each | sum + each numberOfLinesOfCode ] ]
-]
-
-{ #category : #'Famix-Extensions' }
 FAMIXPackage >> numberOfMethods [
 	<FMProperty: #numberOfMethods type: #Number>
 	<FMComment: 'The number of methods in a package'>

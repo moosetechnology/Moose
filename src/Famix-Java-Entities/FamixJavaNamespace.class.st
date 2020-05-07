@@ -259,19 +259,6 @@ FamixJavaNamespace >> numberOfClasses: aNumber [
 	self privateState propertyAt: #numberOfClasses put: aNumber
 ]
 
-{ #category : #'Famix-Implementation' }
-FamixJavaNamespace >> numberOfLinesOfCode [
-	<FMProperty: #numberOfLinesOfCode type: #Number>
-	<derived>
-	<FMComment: 'The number of lines of code in a namespace'>
-	
-	^self
-		lookUpPropertyNamed: #numberOfLinesOfCode
-		computedAs: [
-			self functions inject: (self types inject: 0 into: [ :sum :each | sum + each numberOfLinesOfCode])
-				into: [ :sum :each | sum + each numberOfLinesOfCode]]
-]
-
 { #category : #accessing }
 FamixJavaNamespace >> numberOfMethods [
 	<FMProperty: #numberOfMethods type: #Number>

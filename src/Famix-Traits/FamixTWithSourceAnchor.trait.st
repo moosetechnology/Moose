@@ -27,12 +27,21 @@ FamixTWithSourceAnchor >> allSourceAnchorsDo: aBlock [
 	^ self sourceAnchor ifNotNil: [ :sa | sa allSourceAnchorsDo: aBlock ]
 ]
 
+{ #category : #testing }
+FamixTWithSourceAnchor >> canHaveBehaviouralChildren [
+	self isContainerEntity ifFalse: [ ^ false ].
+
+	^ self childrenTypes anySatisfy: [ :c | c usesFamixTrait: FamixTWithStatements ]
+]
+
 { #category : #metrics }
 FamixTWithSourceAnchor >> computeNumberOfLinesOfCode [
 	self hasSourceAnchor ifTrue: [ ^ self sourceAnchor lineCount ].
-	^ self sourceText = ''
-		ifTrue: [ self notExistentMetricValue ]
-		ifFalse: [ self sourceText lineCount ]
+	self sourceText = '' ifFalse: [ ^ self sourceText lineCount ].
+
+	(self isStub not and: [ self canHaveBehaviouralChildren ]) ifFalse: [ ^ self notExistentMetricValue ].
+
+	^ (self children select: #isBehavioural) sumNumbers: #numberOfLinesOfCode
 ]
 
 { #category : #testing }

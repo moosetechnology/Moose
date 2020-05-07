@@ -99,9 +99,11 @@ FamixPropertiesTest >> testClassInvocations [
 
 { #category : #testing }
 FamixPropertiesTest >> testClassLinesOfCode [
+	"2020/05/06 - Cyril - I updated the value for the number of lines of code because before we were using only the sum of methods while now we use the tonel export that contains also the class definition."
+
 	self model allClasses do: [ :each | self assert: each numberOfLinesOfCode >= 0 ].
-	self assert: (self nodeClass propertyNamed: #numberOfLinesOfCode) equals: 58.
-	self assert: self nodeClass numberOfLinesOfCode equals: 58
+	self assert: (self nodeClass propertyNamed: #numberOfLinesOfCode) equals: 112.
+	self assert: self nodeClass numberOfLinesOfCode equals: 112
 ]
 
 { #category : #testing }

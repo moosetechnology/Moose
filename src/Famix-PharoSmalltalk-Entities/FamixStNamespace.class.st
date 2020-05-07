@@ -64,19 +64,6 @@ FamixStNamespace >> numberOfClasses: aNumber [
 ]
 
 { #category : #'Famix-Extensions' }
-FamixStNamespace >> numberOfLinesOfCode [
-	<FMProperty: #numberOfLinesOfCode type: #Number>
-	<derived>
-	<FMComment: 'The number of lines of code in a namespace'>
-	
-	^self
-		lookUpPropertyNamed: #numberOfLinesOfCode
-		computedAs: [
-			self functions inject: (self types inject: 0 into: [ :sum :each | sum + each numberOfLinesOfCode])
-				into: [ :sum :each | sum + each numberOfLinesOfCode]]
-]
-
-{ #category : #'Famix-Extensions' }
 FamixStNamespace >> numberOfMethods [
 	<FMProperty: #numberOfMethods type: #Number>
 	<derived>

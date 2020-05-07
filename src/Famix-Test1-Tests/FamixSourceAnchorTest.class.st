@@ -85,7 +85,7 @@ FamixSourceAnchorTest >> testImportFileAnchors [
 
 { #category : #tests }
 FamixSourceAnchorTest >> testIsFileAnchor [
-	^ self deny: self actualClass new isFileAnchor
+	self deny: self actualClass new isFileAnchor
 ]
 
 { #category : #tests }

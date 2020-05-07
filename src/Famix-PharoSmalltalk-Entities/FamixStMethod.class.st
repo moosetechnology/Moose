@@ -45,11 +45,6 @@ FamixStMethod >> compiledMethod [
 ]
 
 { #category : #'Famix-Extensions-private' }
-FamixStMethod >> computeNumberOfLinesOfCodeIfSmalltalk [
-	^self sourceText lineCount.
-]
-
-{ #category : #'Famix-Extensions-private' }
 FamixStMethod >> cyclomaticComplexity [
 	<FMProperty: #cyclomaticComplexity type: #Number>
 	<FMComment: 'The number of linear-independent paths through a method.'>
@@ -211,15 +206,6 @@ FamixStMethod >> numberOfConditionals [
 FamixStMethod >> numberOfConditionals: aNumber [
 
 	self privateState propertyAt: #numberOfConditionals put: aNumber
-]
-
-{ #category : #'Famix-Extensions-private' }
-FamixStMethod >> numberOfLinesOfCode [
-	<FMProperty: #numberOfLinesOfCode type: #Number>
-	<FMComment: 'The number of lines of code in a method.'>
-	^ self
-		lookUpPropertyNamed: #numberOfLinesOfCode
-		computedAs: [ self computeNumberOfLinesOfCodeIfSmalltalk ]
 ]
 
 { #category : #'Famix-Extensions-private' }

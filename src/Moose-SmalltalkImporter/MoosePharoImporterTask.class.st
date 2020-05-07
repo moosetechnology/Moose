@@ -87,6 +87,15 @@ MoosePharoImporterTask >> classes [
 	^classes
 ]
 
+{ #category : #initialization }
+MoosePharoImporterTask >> defaultImportingContext [
+	"does not import stub methods by default because it can create a lot of methods"
+	| context |
+	context := super defaultImportingContext.
+	context entityKindsToBeExtracted remove: (context class importingSmalltalkStubMethod).
+	^context
+]
+
 { #category : #accessing }
 MoosePharoImporterTask >> description [
 
