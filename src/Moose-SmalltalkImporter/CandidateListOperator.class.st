@@ -12,6 +12,30 @@ Class {
 }
 
 { #category : #running }
+CandidateListOperator >> allCandidatesFor: invocation [ 
+	^Array 
+		withAll: 
+			(groups 
+				at: invocation signature 
+				ifAbsent: [ | stubs |
+					stubs := self importer ensureSmalltalkStubMethodsFor: invocation signature.
+					groups at: invocation signature put: stubs.
+					stubs do: [:each | model add: each].
+					stubs ])
+]
+
+{ #category : #running }
+CandidateListOperator >> basicRun [ 
+	 
+	model allInvocations 
+		do: 
+			[:invocation |  
+			self computeCandidateListFor: invocation. 
+			"self reifyIncomingInvocationsFor: invocation. "
+			self increment]
+]
+
+{ #category : #running }
 CandidateListOperator >> computeCandidateListFor: anInvocation [ 
 	| receiver | 
 	receiver := anInvocation receiver. 

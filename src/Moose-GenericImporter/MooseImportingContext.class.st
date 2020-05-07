@@ -203,7 +203,15 @@ MooseImportingContext class >> defineEntityDependencies [
 				add: self importingGlobalVariable;
 				add: self importingArgument;
 				add: self importingFormalParameter;
-				yourself)
+				yourself).
+	self entityDependencies
+		at: self importingSmalltalkStubMethod
+		put:
+			((Set new)
+				add: self importingMethod;
+				add: self importingSmalltalkStubMethod;
+				yourself).
+
 ]
 
 { #category : #initialize }
@@ -328,6 +336,12 @@ MooseImportingContext class >> importPackage [
 	^ Set with: self importingPackage
 ]
 
+{ #category : #'importing-filters' }
+MooseImportingContext class >> importSmalltalkStubMethod [
+	
+	^self allDependentsOf: self importingSmalltalkStubMethod
+]
+
 { #category : #'basic representation' }
 MooseImportingContext class >> importingAccess [
 	
@@ -440,6 +454,12 @@ MooseImportingContext class >> importingNamespace [
 MooseImportingContext class >> importingPackage [
 	
 	^#Package
+]
+
+{ #category : #'basic representation' }
+MooseImportingContext class >> importingSmalltalkStubMethod [
+	
+	^#StubMethod
 ]
 
 { #category : #initialization }
@@ -680,6 +700,13 @@ MooseImportingContext >> importPackage [
 	self entityKindsToBeExtracted addAll: self class importPackage
 ]
 
+{ #category : #'importing-filters' }
+MooseImportingContext >> importSmalltalkStubMethod [
+	"Kind of a hack to import stub-methods in smalltalk"
+	
+	self entityKindsToBeExtracted addAll: self class importSmalltalkStubMethod
+]
+
 { #category : #'import options' }
 MooseImportingContext >> importSubclasses [
 	"When a class is created, we automatically import all its subclasses"
@@ -782,6 +809,12 @@ MooseImportingContext >> importingPackage [
 	^self class importingPackage
 ]
 
+{ #category : #'basic representation' }
+MooseImportingContext >> importingSmalltalkStubMethod [
+	
+	^self class importingSmalltalkStubMethod
+]
+
 { #category : #initialization }
 MooseImportingContext >> initialize [
 	super initialize.
@@ -808,9 +841,10 @@ MooseImportingContext >> mergeClassAndMetaclass [
 	mergeClassAndMetaclass := true
 ]
 
-{ #category : #'import options' }
+{ #category : #'importing queries' }
 MooseImportingContext >> shouldComputeTypeOfAttributes [
 	"return true if the importer has to compute the type of attributes. False if not. "
+	self flag: 'why does it not use #shouldImport: ?'.
 
 	^ computeAttributeTypes
 ]
@@ -928,14 +962,22 @@ MooseImportingContext >> shouldImportPackage [
 	^self shouldImport: self class importingPackage
 ]
 
-{ #category : #'import options' }
-MooseImportingContext >> shouldImportSubclasses [
+{ #category : #'importing queries' }
+MooseImportingContext >> shouldImportSmalltalkStubMethod [
 	
+	^self shouldImport: self class importingSmalltalkStubMethod
+]
+
+{ #category : #'importing queries' }
+MooseImportingContext >> shouldImportSubclasses [
+	self flag: 'why does it not use #shouldImport: ?'.
+
 	^importSubclasses
 ]
 
-{ #category : #'import options' }
+{ #category : #'importing queries' }
 MooseImportingContext >> shouldMergeClassAndMetaclass [
-	
+	self flag: 'why does it not use #shouldImport: ?'.
+
 	^mergeClassAndMetaclass
 ]

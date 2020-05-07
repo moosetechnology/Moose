@@ -38,7 +38,6 @@ InstallElementsOperator class >> with: elements runOn: aMooseModel [
 
 { #category : #running }
 InstallElementsOperator >> basicRun [ 
-	 
 	model entityStorage forSetup. 
 	self container 
 		do: 

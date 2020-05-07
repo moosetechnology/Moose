@@ -53,6 +53,12 @@ SmalltalkImporter >> allElements [
 	^stream contents
 ]
 
+{ #category : #'private utils' }
+SmalltalkImporter >> allImplementorsOf: aSignature [
+	^(SystemNavigation default allImplementorsOf: (aSignature copyUpTo: $( ) asSymbol)
+		collect: #compiledMethod
+]
+
 { #category : #'private-entity-creation' }
 SmalltalkImporter >> basicClassCreation: aClass [
 	| class anchor |
@@ -68,6 +74,19 @@ SmalltalkImporter >> basicClassCreation: aClass [
 	class sourceAnchor: anchor.
 	self addEntity: anchor.
 	^ class
+]
+
+{ #category : #'private-entity-creation' }
+SmalltalkImporter >> basicCreateMethod: aSelector withSignature: aSignature [
+	| method |
+	method := self factory method new.
+	method name: aSelector.
+	method isStub: true.
+	method signature: aSignature.
+	method isPublic: true.
+	method isAbstract: false.
+	^ method
+	
 ]
 
 { #category : #'private utils' }
@@ -192,27 +211,8 @@ SmalltalkImporter >> createGlobalVariable: name value: value [
 
 { #category : #'private-entity-creation' }
 SmalltalkImporter >> createMethod: aCompiledMethod [
-	| method thisClass anchor |
-	method := methods at: aCompiledMethod put: self factory method new.
-	method name: aCompiledMethod selector.
-	method isAbstract: false.
-	thisClass := aCompiledMethod methodClass.
-	method parentType: (self ensureClass: thisClass).
-	method signature: aCompiledMethod signature.
-	"here we have two possibilities for the parentPackage of the method: 
-	=> the method belong to a package extension, we should refer to this extending packages 
-	=> if not, we should not refer to package of the class"
-	"parentPackage := aCompiledMethod methodClass package."
-	aCompiledMethod methodClass extendingPackages
-		do: [ :aRPackage | 
-			(aCompiledMethod isExtensionInPackage: aRPackage)
-				ifTrue: [ method parentPackage: (self ensurePackage: aRPackage) ] ].
-	method isClassSide: aCompiledMethod methodClass isMeta.
-	method
-		protocol:
-			(aCompiledMethod methodClass organization
-				categoryOfElement: aCompiledMethod selector).
-	method isPublic: true.
+	| method anchor |
+	method := self createStubMethod: aCompiledMethod.
 	importingContext shouldImportMethodBody
 		ifTrue: [ | visitor |
 			visitor := SmalltalkMethodVisitor on: self.
@@ -267,6 +267,30 @@ SmalltalkImporter >> createSpecialVariable: name forFamixMethod: aFamixMethod [
 	attribute name: name.
 	attribute parentBehaviouralEntity: aFamixMethod.
 	^attribute
+]
+
+{ #category : #'private-entity-creation' }
+SmalltalkImporter >> createStubMethod: aCompiledMethod [
+	"same as #createMethod but does not import body"
+	| method thisClass |
+	method := self basicCreateMethod: aCompiledMethod selector withSignature: aCompiledMethod signature.
+	methods at: aCompiledMethod put: method.
+	thisClass := aCompiledMethod methodClass.
+	method parentType: (self ensureClass: thisClass).
+	"here we have two possibilities for the parentPackage of the method: 
+	=> the method belong to a package extension, we should refer to this extending packages 
+	=> if not, we should not refer to package of the class"
+	"parentPackage := aCompiledMethod methodClass package."
+	aCompiledMethod methodClass extendingPackages
+		do: [ :aRPackage | 
+			(aCompiledMethod isExtensionInPackage: aRPackage)
+				ifTrue: [ method parentPackage: (self ensurePackage: aRPackage) ] ].
+	method isClassSide: aCompiledMethod methodClass isMeta.
+	method
+		protocol:
+			(aCompiledMethod methodClass organization
+				categoryOfElement: aCompiledMethod selector).
+	^ method
 ]
 
 { #category : #'private-entity-creation' }
@@ -395,6 +419,25 @@ SmalltalkImporter >> ensurePackage: aPackageModel [
 ]
 
 { #category : #'public-entity-creation' }
+SmalltalkImporter >> ensureSmalltalkStubMethod: aCompiledMethod [ 
+	 
+	^methods 
+		at: aCompiledMethod 
+		ifAbsent: [self createStubMethod: aCompiledMethod]
+]
+
+{ #category : #'public-entity-creation' }
+SmalltalkImporter >> ensureSmalltalkStubMethodsFor: aSignature [
+	| implementors |
+	importingContext shouldImportSmalltalkStubMethod
+		ifFalse: [^#()].
+	implementors := self allImplementorsOf: aSignature.
+	implementors ifEmpty: [
+		^{ self basicCreateMethod: (aSignature copyUpTo: $() withSignature: aSignature } ].
+	^ implementors collect: [ :meth | self ensureSmalltalkStubMethod: meth ]
+]
+
+{ #category : #'public-entity-creation' }
 SmalltalkImporter >> ensureUnknownVariable: name [
 	
 	^globals
@@ -434,7 +477,7 @@ SmalltalkImporter >> importClass: aClass [
 			importingContext shouldImportSubclasses ifTrue: [aClass subclasses do: [:each | self ensureClass: each]]. 
 			importingContext shouldImportMethod 
 				ifTrue: 
-					[aClass methods do: [:each | self ensureMethod: each]. 
+					[aClass methods do: [:each | (self ensureMethod: each) isStub: false ]. 
 					self checkAbstractClass: class]. 
 			importingContext shouldImportComment 
 				ifTrue: 
@@ -451,7 +494,7 @@ SmalltalkImporter >> importClassExtension: aClassExtension [
 	 
 	| method | 
 	importingContext shouldImportClassExtension ifTrue: [
-		method := self ensureMethod: aClassExtension.
+		method := (self ensureMethod: aClassExtension) isStub: false.
 		importingContext shouldImportPackage ifTrue: [
 			method parentPackage isStub: false ].
  	]
