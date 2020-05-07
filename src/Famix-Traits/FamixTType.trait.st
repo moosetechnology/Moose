@@ -12,6 +12,7 @@ Trait {
 		'#typedEntities => FMMany type: #FamixTTypedEntity opposite: #declaredType'
 	],
 	#traits : 'FamixTNamedEntity + FamixTReferenceable',
+	#classTraits : 'FamixTNamedEntity classTrait + FamixTReferenceable classTrait',
 	#category : #'Famix-Traits-Type'
 }
 
@@ -76,10 +77,10 @@ FamixTType >> isType [
 { #category : #accessing }
 FamixTType >> mooseNameOn: aStream [
 	self typeContainer
-		ifNotNil: [ :parent | 
+		ifNotNil: [ :parent |
 			parent mooseNameOn: aStream.
 			aStream nextPutAll: '::' ].
-	self name ifNotNil: [ :name | aStream nextPutAll: name ]
+	self name ifNotNil: [ :n | aStream nextPutAll: n ]
 ]
 
 { #category : #metrics }
