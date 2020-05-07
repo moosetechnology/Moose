@@ -52,14 +52,12 @@ SmalltalkScope >> parent: anObject [
 ]
 
 { #category : #accessing }
-SmalltalkScope >> resolve: name ifAbsent: aBlock [ 
-	 
-	^dictionary 
-		at: name 
-		ifAbsent: 
-			[parent ~~ nil 
-				ifTrue: [parent resolve: name ifAbsent: aBlock] 
-				ifFalse: [aBlock value]]
+SmalltalkScope >> resolve: name ifAbsent: aBlock [
+	^ dictionary
+		at: name
+		ifAbsent: [ parent
+				ifNil: [ aBlock value ]
+				ifNotNil: [ parent resolve: name ifAbsent: aBlock ] ]
 ]
 
 { #category : #accessing }

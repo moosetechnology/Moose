@@ -44,29 +44,22 @@ AbstractCandidateListOperator >> computeCandidateListFor: anInvocation [
 ]
 
 { #category : #running }
-AbstractCandidateListOperator >> computeCandidateListFor: anInvocation withBaseClass: aClass [ 
-	 
-	aClass ~~ nil 
-		ifTrue: 
-			[| candidate | 
-			candidate := aClass lookUp: anInvocation signature. 
-			(candidate ~~ nil and: [candidate isAbstract not]) 
-				ifTrue: [anInvocation candidates: (Array with: candidate)]]
+AbstractCandidateListOperator >> computeCandidateListFor: anInvocation withBaseClass: aClass [
+	aClass
+		ifNotNil: [ | candidate |
+			candidate := aClass lookUp: anInvocation signature.
+			(candidate isNotNil and: [ candidate isAbstract not ]) ifTrue: [ anInvocation candidates: (Array with: candidate) ] ]
 ]
 
 { #category : #running }
-AbstractCandidateListOperator >> computeCandidateListFor: anInvocation withReceivingClass: aClass [ 
-	 
-	| candidate candidates | 
-	aClass ~~ nil 
-		ifTrue: 
-			[candidates := self allCandidatesFor: anInvocation. 
-			candidates := candidates 
-				select: [:each | each belongsTo inheritsFrom: aClass]. 
-			candidate := aClass lookUp: anInvocation signature. 
-			(candidate ~~ nil and: [candidate isAbstract not]) 
-				ifTrue: [candidates := candidates copyWith: candidate]. 
-			anInvocation candidates: candidates]
+AbstractCandidateListOperator >> computeCandidateListFor: anInvocation withReceivingClass: aClass [
+	| candidate candidates |
+	aClass
+		ifNotNil: [ candidates := self allCandidatesFor: anInvocation.
+			candidates := candidates select: [ :each | each belongsTo inheritsFrom: aClass ].
+			candidate := aClass lookUp: anInvocation signature.
+			(candidate isNotNil and: [ candidate isAbstract not ]) ifTrue: [ candidates := candidates copyWith: candidate ].
+			anInvocation candidates: candidates ]
 ]
 
 { #category : #running }

@@ -17,7 +17,7 @@ SmalltalkMethodVisitor >> resolve: name [
 	(name = 'self' or: [ name = 'super' or: [ name = 'thisContext' ] ]) ifTrue: [ ^ importer ensureImplicitVariable: name asSymbol inFamixMethod: famixMethod ].
 	object := self methodEntity isClassSide ifTrue: [ methodScope resolve: self CIVString , name ifAbsent: [ nil ] ].
 	object ifNil: [ object := methodScope resolve: name ifAbsent: nil ].
-	object ~~ nil ifTrue: [ ^ object ].
+	object ifNotNil: [ ^ object ].
 	name asString = 'Smalltalk' ifTrue: [ ^ importer ensureNamespace: Smalltalk ].
 	klass := self methodEntity smalltalkClass instanceSide.
 	(klass usesLocalPoolVarNamed: name)

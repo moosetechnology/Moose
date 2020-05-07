@@ -64,7 +64,7 @@ FMAbstractCodeGenerator >> annotationStringForProperty: property [
 
 { #category : #'compiling-names' }
 FMAbstractCodeGenerator >> categoryNameFor: fameClass [
-	^ self defaultCategory ifNil: [ fameClass package name asString ] ifNotNil: [ self defaultCategory ]
+	^ self defaultCategory ifNil: [ fameClass package name asString ]
 ]
 
 { #category : #'compiling-names' }
