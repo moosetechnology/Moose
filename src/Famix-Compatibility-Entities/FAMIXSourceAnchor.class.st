@@ -21,8 +21,3 @@ FAMIXSourceAnchor >> belongsTo [
 	"define container relationship on element (compatibility)"
 	^ self element
 ]
-
-{ #category : #testing }
-FAMIXSourceAnchor >> isFile [
-	^ false
-]

@@ -100,11 +100,6 @@ FamixTFileAnchor >> hasSourceText [
 ]
 
 { #category : #testing }
-FamixTFileAnchor >> isFile [
-	^ true
-]
-
-{ #category : #testing }
 FamixTFileAnchor >> isFileAnchor [
 	^ true
 ]

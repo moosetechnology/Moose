@@ -51,7 +51,7 @@ FamixAbstractFileAnchorTest >> testFileNameHasOnlySlashes [
 
 { #category : #tests }
 FamixAbstractFileAnchorTest >> testIsFileAnchor [
-	^ self assert: self actualClass new isFileAnchor
+	self assert: self actualClass new isFileAnchor
 ]
 
 { #category : #tests }
