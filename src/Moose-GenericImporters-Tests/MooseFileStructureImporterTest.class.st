@@ -156,7 +156,7 @@ MooseFileStructureImporterTest >> testFolders [
 	| folders folder |
 	folders := model allFolders.
 	self assert: folders size equals: 3.
-	self assert: (folders entityNamed: #folders) isNil not.
+	self assert: (folders entityNamed: #folders) isNotNil.
 	self assert: (folders entityNamed: #folders) isRoot.
 	self assert: (folders select: [ :each | each isRoot ]) size equals: 1.
 	folder := folders entityNamed: #folders.

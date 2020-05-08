@@ -42,12 +42,10 @@ FamixReferenceModelImporterTest >> testAbstractMethodAnnotation [
 	definingClassName := TheRoot mooseName.
 	methodName := (TheRoot >> #sendingSubclassResponsibility) mooseName.
 	method := self model entityNamed: methodName.
-	self assert: method isNil not.
+	self assert: method isNotNil.
 	self assert: method belongsTo equals: (self model entityNamed: TheRoot mooseName).
 	self assert: method isClassSide not.
-	self
-		assert: method signature
-		equals: (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: #sendingSubclassResponsibility).
+	self assert: method signature equals: (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: #sendingSubclassResponsibility).
 	self assert: method isPublic.
 	self assert: method isAbstract.
 	fmClass := self model entityNamed: definingClassName.
@@ -376,7 +374,7 @@ FamixReferenceModelImporterTest >> testConstantMethodAnnotation [
 	| methodUniqueName method |
 	methodUniqueName := (TheRoot >> #constantReturningMethod) mooseName.
 	method := self model entityNamed: methodUniqueName.
-	self assert: method isNil not.
+	self assert: method isNotNil.
 	self assert: method belongsTo equals: (self model entityNamed: TheRoot mooseName).
 	self assert: method isClassSide not.
 	self assert: method signature equals: (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: #constantReturningMethod).
@@ -497,7 +495,7 @@ FamixReferenceModelImporterTest >> testGetterMethod [
 	| methodUniqueName method |
 	methodUniqueName := (TheRoot >> #x) mooseName.
 	method := self model entityNamed: methodUniqueName.
-	self assert: method isNil not.
+	self assert: method isNotNil.
 	self assert: method isClassSide not.
 	self assert: method signature equals: (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: #x).
 	self assert: method isPublic.
@@ -509,7 +507,7 @@ FamixReferenceModelImporterTest >> testGetterMethod [
 FamixReferenceModelImporterTest >> testGlobalVariableReified [
 	| globalVariable |
 	globalVariable := self model entityNamed: #Transcript.
-	self assert: globalVariable isNil not
+	self assert: globalVariable isNotNil
 ]
 
 { #category : #tests }
@@ -652,7 +650,7 @@ FamixReferenceModelImporterTest >> testSetterMethod [
 	| methodUniqueName method |
 	methodUniqueName := (TheRoot >> #x:) mooseName.
 	method := self model entityNamed: methodUniqueName.
-	self assert: method isNil not.
+	self assert: method isNotNil.
 	self assert: method belongsTo equals: (self model entityNamed: TheRoot mooseName).
 	self assert: method isClassSide not.
 	self assert: method signature equals: (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: #x:).
@@ -792,7 +790,7 @@ FamixReferenceModelImporterTest >> testUsedClassReified [
 	| className famixClass |
 	className := Object mooseName.
 	famixClass := self model entityNamed: className ifAbsent: [ nil ].
-	self assert: famixClass isNil not.
+	self assert: famixClass isNotNil.
 	self assert: famixClass isStub
 ]
 

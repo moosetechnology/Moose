@@ -13,9 +13,10 @@ Class {
 { #category : #running }
 ImportStubMethodSpecialTest >> setUp [
 	| importingTask |
+	super setUp.
 	importingTask := MoosePharoImporterTask new
 		importerClass: SmalltalkImporter;
-		model: FamixStModel new ;
+		model: FamixStModel new;
 		addFromPackageNamed: #'Moose-TestResources-LAN';
 		yourself.
 	importingTask importingContext importSmalltalkStubMethod.
@@ -25,6 +26,6 @@ ImportStubMethodSpecialTest >> setUp [
 
 { #category : #tests }
 ImportStubMethodSpecialTest >> testStubMethodCreation [
-	self assert: (model allMethods select: #isStub) notEmpty.
-	self assert: model allModelMethods notEmpty.
+	self denyEmpty: (model allMethods select: #isStub).
+	self denyEmpty: model allModelMethods
 ]

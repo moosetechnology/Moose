@@ -465,10 +465,10 @@ MooseModel >> includes: anItem [
 
 { #category : #'Moose-DistributionMap' }
 MooseModel >> includesElementsOfType: aClass [
-
 	"self entities detect: [:each | each class = aClass] ifNone: [^ false].
-	^true" 
-	^ (self allWithType: aClass) isEmpty not
+	^true"
+
+	^ (self allWithType: aClass) isNotEmpty
 ]
 
 { #category : #initialization }

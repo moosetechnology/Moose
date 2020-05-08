@@ -239,25 +239,21 @@ ListSelector >> selectionList [
 ]
 
 { #category : #'selection list control' }
-ListSelector >> selectionList: anObject [ 
+ListSelector >> selectionList: anObject [
 	"Set the value of selectionList"
-	
+
 	selectionList := anObject.
 	self changed: #selectionList.
-	
+
 	"we check the new size of the selection list. If nothing is selected, we can't go to the next 	'page'"
-	
-	self enableNextButton: (self selectionList isEmpty not).
-	
+
+	self enableNextButton: self selectionList isNotEmpty.
+
 	"Here we check that the selectionIndex is updated according the new list size  "
-	self selectionListSelectionIndex > self selectionList size
-		ifFalse: [^self ].
-	
+	self selectionListSelectionIndex > self selectionList size ifFalse: [ ^ self ].
+
 	self selectionListSelectionIndex: self selectionList size.
-	self changed: #selectionListSelectionIndex .
-	
-	
-			
+	self changed: #selectionListSelectionIndex
 ]
 
 { #category : #'selection list control' }

@@ -98,9 +98,7 @@ FamixTClassHierarchyNavigation >> hierarchyNestingLevel: aNumber [
 FamixTClassHierarchyNavigation >> inheritedAttributes [
 	| inheritedAttrs |
 	inheritedAttrs := OrderedCollection new.
-	self allSuperclassesDo: [:each | 
-			each attributes do: [:attr | 
-				attr isPrivate not ifTrue: [inheritedAttrs add: attr]]].
+	self allSuperclassesDo: [ :each | each attributes do: [ :attr | attr isPrivate ifFalse: [ inheritedAttrs add: attr ] ] ].
 	^ inheritedAttrs
 ]
 
@@ -108,19 +106,15 @@ FamixTClassHierarchyNavigation >> inheritedAttributes [
 FamixTClassHierarchyNavigation >> inheritedMethods [
 	| inheritedMethods |
 	inheritedMethods := OrderedCollection new.
-	self allSuperclassesDo: [:each | 
-			each methods do: [:method | 
-				method isPrivate not ifTrue: [inheritedMethods add: method]]].
-	^inheritedMethods
+	self allSuperclassesDo: [ :each | each methods do: [ :method | method isPrivate ifFalse: [ inheritedMethods add: method ] ] ].
+	^ inheritedMethods
 ]
 
 { #category : #enumerating }
 FamixTClassHierarchyNavigation >> inheritedSignatures [
 	| inheritedSignatures |
 	inheritedSignatures := Set new.
-	self superclassHierarchy do: [:each | 
-			each methods do: [:method | 
-				method isPrivate not ifTrue: [inheritedSignatures add: method signature]]].
+	self superclassHierarchy do: [ :each | each methods do: [ :method | method isPrivate ifFalse: [ inheritedSignatures add: method signature ] ] ].
 	^ inheritedSignatures
 ]
 
