@@ -65,15 +65,11 @@ FamixTWithMethods >> numberOfAccessorMethods [
 	<FMComment: 'The number of accessor methods in a class'>
 	^ self
 		lookUpPropertyNamed: #numberOfAccessorMethods
-		computedAs: [ 
-			| noa |
+		computedAs: [ | noa |
 			noa := 0.
 			self methods
-				do: [ :method | 
-					method isPureAccessor
-						ifNotNil: [ 
-							(method isPureAccessor or: [ (method propertyNamed: #AccessorMethod) isNil not ])
-								ifTrue: [ noa := noa + 1 ] ] ].
+				do:
+					[ :method | method isPureAccessor ifNotNil: [ (method isPureAccessor or: [ (method propertyNamed: #AccessorMethod) isNotNil ]) ifTrue: [ noa := noa + 1 ] ] ].
 			noa ]
 ]
 

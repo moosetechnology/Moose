@@ -130,8 +130,8 @@ OpenDistributionMapBasedOnElementsWizard >> performTerminateButtonAction [
 
 { #category : #'computing possible parts' }
 OpenDistributionMapBasedOnElementsWizard >> possibleContainerTypes [
-
 	"return the list of string to be displayed as possible part types, (when basing the wizard on elements)"
+
 	"| allMetaClasses result |
 	result := OrderedCollection new.
 	allMetaClasses := MooseModel meta elements select: [:each | each isFM3Class].
@@ -150,11 +150,9 @@ OpenDistributionMapBasedOnElementsWizard >> possibleContainerTypes [
 			].
 		].
 	^ result asSet asOrderedCollection."
-	
-	^ self groupMetaClass allComplexAttributes select: [:aFM3Property |
-		aFM3Property isMultivalued not
-		"aFM3Property hasOpposite and: [aFM3Property opposite isMultivalued]"
-		].
+
+	^ self groupMetaClass allComplexAttributes reject: [ :aFM3Property | aFM3Property isMultivalued ]
+	"aFM3Property hasOpposite and: [aFM3Property opposite isMultivalued]"
 ]
 
 { #category : #'initialize - property parts' }

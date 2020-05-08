@@ -5,32 +5,6 @@ Class {
 }
 
 { #category : #tests }
-LANImporterTest >> couldOnlyBeUsedForVisualWorksExtractedModeltestNamespaceInNamespace [
-	| namespace |
-	namespace := self model allNamespaces entityNamed: #Smalltalk.
-	self denyEmpty: namespace namespaces.
-	namespace := self model allNamespaces entityNamed: #LAN.
-	self assertEmpty: namespace namespaces
-]
-
-{ #category : #tests }
-LANImporterTest >> couldWorkbutOnlywhenCreatingAModelFromVWtestNamespaceOptimization [
-	| namespaces namespacesNames theLANNamespace classNamesFromLAN |
-	namespaces := self model allNamespaces.
-	namespacesNames := namespaces collect: [ :each | each name ].
-	self assert: namespaces size equals: 5.
-	self assert: (namespacesNames includes: #LAN).
-	theLANNamespace := namespaces detect: [ :each | each name = #LAN ] ifNone: [ nil ].
-	self deny: theLANNamespace isNil.
-	classNamesFromLAN := theLANNamespace classes collect: [ :each | each name ].
-	self assert: theLANNamespace numberOfClasses equals: 18.
-	self assert: (classNamesFromLAN includes: #LANFileServer).
-	self assert: theLANNamespace isStub not.
-	theLANNamespace := namespaces detect: [ :each | each name = #Root ] ifNone: [ nil ].
-	self assert: theLANNamespace isStub not
-]
-
-{ #category : #tests }
 LANImporterTest >> testAccessReification [ 
 	 
 	self model allAccesses 
@@ -42,8 +16,6 @@ LANImporterTest >> testAccessReification [
 
 { #category : #tests }
 LANImporterTest >> testAccessToPoolVariable [
-	"self debug: #testAccessToPoolVariable"
-
 	| lanEditorAccess group |
 	group := self model allAccesses select: [ :each | each variable name = 'LANEditor' ].
 	self assert: group size equals: 1.
@@ -72,8 +44,6 @@ LANImporterTest >> testClassModifiers [
 
 { #category : #tests }
 LANImporterTest >> testClassName [ 
-	 "self debug: #testClassName"
-	
 	self model allClasses 
 		do: [:each | self assert: (each name includes: Character space) not].
 ]
@@ -89,8 +59,6 @@ LANImporterTest >> testClassNameAndUniqueName [
 
 { #category : #tests }
 LANImporterTest >> testClassNameDoesNotIncludeSpace [
-	"self debug: #testClassNameDoesNotIncludeSpace"
-
 	self denyEmpty: self model allClasses.
 	self model allClasses do: [ :each | self assert: (each name includes: Character space) not ]
 ]
@@ -108,12 +76,7 @@ LANImporterTest >> testClassSides [
 
 { #category : #tests }
 LANImporterTest >> testCommonSuperClasses [
-	"self debug: #testCommonSuperClasses"
-
-	self
-		assert:
-			(self model allPackages entityNamed: #'Moose-TestResources-LAN') localClassesGroup commonExternalSuperclasses size
-		equals: 12
+	self assert: (self model allPackages entityNamed: #'Moose-TestResources-LAN') localClassesGroup commonExternalSuperclasses size equals: 12
 ]
 
 { #category : #tests }
@@ -126,8 +89,6 @@ LANImporterTest >> testCorrectInvocations [
 
 { #category : #tests }
 LANImporterTest >> testCorrectnessOfImport [
-	"self debug: #testCorrectnessOfImport"
-
 	| node outputServer nodeName workstationName fileServerName printServerName uiModelName nodeSubclasses outputServerName outputServerSubclasses |
 	nodeName := LANNode mooseName.
 	workstationName := LANWorkStation mooseName.
@@ -155,14 +116,10 @@ LANImporterTest >> testCorrectnessOfImport [
 
 { #category : #tests }
 LANImporterTest >> testEntityUniquelyNamed [
-	
 	| classes |
 	classes := self model allClasses.
-	self
-		assert: (classes entityNamed: LANNode mooseName) isNil not.
-	self
-		assert:
-			(classes entityNamed: LANNode class mooseName) isNil not
+	self assert: (classes entityNamed: LANNode mooseName) isNotNil.
+	self assert: (classes entityNamed: LANNode class mooseName) isNotNil
 ]
 
 { #category : #tests }
@@ -180,17 +137,14 @@ LANImporterTest >> testImportCategory [
 
 { #category : #tests }
 LANImporterTest >> testImportClassComments [
-	"self debug: #testImportClassComments"
-
 	self denyEmpty: (self model allComments select: [ :each | each belongsTo isClass ]).
-	self denyEmpty: (self model allClasses select: [ :each | each comments isEmpty not ]).
+	self denyEmpty: (self model allClasses reject: [ :each | each comments isEmpty ]).
 	self denyEmpty: (self model entityNamed: #'Smalltalk::LANInterface') comments
 ]
 
 { #category : #tests }
 LANImporterTest >> testImportMethodComments [
-	self model allComments
-		do: [ :eachComment | self assert: (self model entityNamed: eachComment belongsTo mooseName) isNil not ].
+	self model allComments do: [ :eachComment | self assert: (self model entityNamed: eachComment belongsTo mooseName) isNotNil ].
 	self assert: (self model entityNamed: #'Smalltalk::LANInterface.accept()') comments size equals: 1.
 	self assert: (self model entityNamed: #'Smalltalk::LANInterface.originate()') comments size equals: 6
 ]
@@ -207,15 +161,14 @@ LANImporterTest >> testIncomingInvocationReification [
 ]
 
 { #category : #tests }
-LANImporterTest >> testInheritanceReification [ 
-	
-	|inheritances|
+LANImporterTest >> testInheritanceReification [
+	| inheritances |
 	inheritances := self model allInheritanceDefinitions.
-	self assert: inheritances isEmpty not.
-	inheritances do: 
-			[:each |  
-			self assert: (each superclass usesFamixTrait: FamixTClass). 
-			self assert: (each subclass usesFamixTrait: FamixTClass)]
+	self denyEmpty: inheritances.
+	inheritances
+		do: [ :each | 
+			self assert: (each superclass usesFamixTrait: FamixTClass).
+			self assert: (each subclass usesFamixTrait: FamixTClass) ]
 ]
 
 { #category : #tests }
@@ -261,8 +214,6 @@ LANImporterTest >> testIsAbstract [
 
 { #category : #tests }
 LANImporterTest >> testIsClassAbstract [ 
-	 "self debug: #testIsClassAbstract"
-	
 	| famixMethod |
 	famixMethod := self model entityNamed: #'Smalltalk::LANOutputServer.output:(Object)'.
 	self assert: (famixMethod isAbstract).
@@ -289,8 +240,6 @@ LANImporterTest >> testMethodOverriding [
 
 { #category : #tests }
 LANImporterTest >> testMinimalStateofEntity [
-	"self debug: #testMinimalStateofEntity"
-
 	| node |
 	node := self model entityNamed: LANNode mooseName.
 	self assert: (node subInheritances at: 1) mooseModel equals: self model.
@@ -299,8 +248,6 @@ LANImporterTest >> testMinimalStateofEntity [
 
 { #category : #tests }
 LANImporterTest >> testMooseName [
-	"self debug: #testMooseName"
-
 	self assert: LANNode mooseName equals: #Smalltalk::LANNode.
 	self assert: 'Smalltalk::LANNode' mooseName equals: #Smalltalk::LANNode.
 	self assert: LANNode class mooseName equals: #Smalltalk::LANNode_class	"we could also  test here that all the famix entities  understand mooseName but for that we should create model so
@@ -341,8 +288,6 @@ LANImporterTest >> testNameAndUniqueName [
 
 { #category : #tests }
 LANImporterTest >> testNamespace [
-	"self debug: #testNamespace"
-
 	| namespace |
 	namespace := self model entityNamed: #Smalltalk.
 	self assert: (namespace usesFamixTrait: FamixTNamespace)
@@ -355,11 +300,7 @@ LANImporterTest >> testNamespaceReification [
 
 { #category : #tests }
 LANImporterTest >> testNodeIsInModelWithGoodName [
-	 "self debug: #testNodeIsInModelWithGoodName"
-	
-	| node | 
-	node := self model  entityNamed: LANNode mooseName. 
-	self deny: node isNil
+	self deny: (self model entityNamed: LANNode mooseName) isNil
 ]
 
 { #category : #tests }
@@ -372,10 +313,6 @@ LANImporterTest >> testOutgoingInvocationReification [
 
 { #category : #tests }
 LANImporterTest >> testPackageReification [
-	"
-	self new testPackageReification
-	"
-
 	self model allClasses do: [ :each | self assert: (each parentPackage usesFamixTrait: FamixTPackage) ].
 	self model allPackages
 		do: [ :each | each localClasses do: [ :eachClass | self assert: eachClass parentPackage equals: each ] ].
@@ -384,8 +321,6 @@ LANImporterTest >> testPackageReification [
 
 { #category : #tests }
 LANImporterTest >> testPoolVariablesAreReified [
-	"self debug: #testPoolVariablesAreReified"
-
 	| poolVar |
 	poolVar := self model entityNamed: #'Smalltalk::LANPool.LANEditor'.
 	self assert: poolVar parentType name equals: #LANPool
@@ -393,17 +328,15 @@ LANImporterTest >> testPoolVariablesAreReified [
 
 { #category : #tests }
 LANImporterTest >> testReferenceModelInEntities [
-	"self debug: #testReferenceModelInEntities"
-
 	self model entities do: [ :each | self assert: each mooseModel identicalTo: self model ]
 ]
 
 { #category : #tests }
 LANImporterTest >> testStubClassesCreation [
 	self deny: (self model entityNamed: LANNode mooseName) isStub.
-	self assert: (self model entityNamed: #Smalltalk::Object) isStub.
-	self deny: (self model entityNamed: #Smalltalk::LANFileServer_class) isStub.
-	self assert: (self model allClasses select: [ :each | each isStub not ]) size equals: 22
+	self assert: (self model entityNamed: #'Smalltalk::Object') isStub.
+	self deny: (self model entityNamed: #'Smalltalk::LANFileServer_class') isStub.
+	self assert: (self model allClasses reject: [ :each | each isStub ]) size equals: 22
 ]
 
 { #category : #tests }
@@ -414,7 +347,5 @@ LANImporterTest >> testSubClassHierarchy [
 
 { #category : #tests }
 LANImporterTest >> testSuperClassHierarchy [
-	"self debug: #testSuperClassHierarchy"
-
 	self assert: (self model entityNamed: #Smalltalk::LANPrintServer) superclassHierarchy size equals: 5
 ]

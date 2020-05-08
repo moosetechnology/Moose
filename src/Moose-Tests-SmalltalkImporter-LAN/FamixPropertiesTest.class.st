@@ -36,8 +36,8 @@ FamixPropertiesTest >> testAttributeMetrics [
 { #category : #testing }
 FamixPropertiesTest >> testAttributesOfNonStubClasses [
 	"testing issue 960"
-	self model allClasses do: [ :cl |
-		(cl isStub not) ifTrue: [ self assert: (cl attributes noneSatisfy: [:att | att isStub])] ]
+
+	self model allClasses do: [ :cl | cl isStub ifFalse: [ self assert: (cl attributes noneSatisfy: [ :att | att isStub ]) ] ]
 ]
 
 { #category : #testing }

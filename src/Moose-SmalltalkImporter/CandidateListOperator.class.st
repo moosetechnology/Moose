@@ -25,17 +25,6 @@ CandidateListOperator >> allCandidatesFor: invocation [
 ]
 
 { #category : #running }
-CandidateListOperator >> basicRun [ 
-	 
-	model allInvocations 
-		do: 
-			[:invocation |  
-			self computeCandidateListFor: invocation. 
-			"self reifyIncomingInvocationsFor: invocation. "
-			self increment]
-]
-
-{ #category : #running }
 CandidateListOperator >> computeCandidateListFor: anInvocation [
 	anInvocation receiver
 		ifNotNil: [ :receiver | 
