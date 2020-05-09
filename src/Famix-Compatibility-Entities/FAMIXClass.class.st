@@ -36,19 +36,17 @@ FAMIXClass >> initialize [
 ]
 
 { #category : #'Famix-Extensions-HierarchyTesting' }
-FAMIXClass >> isADirectSubclassOf: aClass [ 
-	 
-	aClass class = FAMIXClass 
-		ifTrue: [^aClass directSubclasses includes: self] 
-		ifFalse: [^false]
+FAMIXClass >> isADirectSubclassOf: aClass [
+	^ aClass class = FAMIXClass
+		ifTrue: [ aClass directSubclasses includes: self ]
+		ifFalse: [ false ]
 ]
 
 { #category : #'Famix-Extensions-HierarchyTesting' }
-FAMIXClass >> isADirectSuperclassOf: aClass [ 
-	 
-	aClass class = FAMIXClass 
-		ifTrue: [^aClass superclass = self] 
-		ifFalse: [^false]
+FAMIXClass >> isADirectSuperclassOf: aClass [
+	^ aClass class = FAMIXClass
+		ifTrue: [ aClass superclass = self ]
+		ifFalse: [ false ]
 ]
 
 { #category : #'Famix-Extensions-HierarchyTesting' }

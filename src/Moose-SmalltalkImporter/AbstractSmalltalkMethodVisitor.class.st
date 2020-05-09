@@ -148,11 +148,11 @@ AbstractSmalltalkMethodVisitor >> resolve: name [
 AbstractSmalltalkMethodVisitor >> resolveInstanceSide: aNamedEntity [
 	"We ensure that a reference to a metaclass is considered as a reference to the class itself"
 
-	((aNamedEntity isKindOf: self importer factory classEntity) and: ['*_class' match: aNamedEntity name])
-		ifTrue: [| className |
-				className := aNamedEntity name removeSuffix: '_class'.
-				^ importer ensureClass: (Smalltalk at: className asSymbol) ]
-		ifFalse: [ ^ aNamedEntity ]
+	^ ((aNamedEntity isKindOf: self importer factory classEntity) and: [ '*_class' match: aNamedEntity name ])
+		ifTrue: [ | className |
+			className := aNamedEntity name removeSuffix: '_class'.
+			importer ensureClass: (Smalltalk at: className asSymbol) ]
+		ifFalse: [ aNamedEntity ]
 ]
 
 { #category : #accessing }

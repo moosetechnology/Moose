@@ -54,10 +54,10 @@ PyramidRectangle >> color: anObject [
 
 { #category : #accessing }
 PyramidRectangle >> label [
-	text ifNil: [ 
-		calculation ifNil: [ ^'' ] 
-		ifNotNil: [^calculation value asString]]
-	ifNotNil: [ ^text ]
+	^ text
+		ifNil: [ calculation
+				ifNil: [ '' ]
+				ifNotNil: [ calculation value asString ] ]
 ]
 
 { #category : #accessing }

@@ -163,23 +163,14 @@ MooseMetacelloWizard >> initializeVersionPaneWith: versions [
 
 { #category : #actions }
 MooseMetacelloWizard >> packagesNeedSavingAsStringForVersion: aString [
-
-	|project version dirtyPackages|
+	| project |
 	project := self selectedProjectInstance.
-	version := project version: aString.
-	version ifNotNil: [
-		dirtyPackages := project packagesNeedSaving: version versionString.
-		dirtyPackages 
-			ifEmpty: [
-				^ 'None'.
-				]
-			ifNotEmpty: [
-				^ (self stringForPackages: dirtyPackages).
-				
-				].
-		].
-	^ 'not computable'
-	
+	^ (project version: aString)
+		ifNotNil:
+			[ :version | (project packagesNeedSaving: version versionString)
+				ifEmpty: [ 'None' ]
+				ifNotEmpty: [ :dirtyPackages | self stringForPackages: dirtyPackages ] ]
+		ifNil: [ 'not computable' ]
 ]
 
 { #category : #'wizard panes transition' }
