@@ -135,23 +135,23 @@ FamixTestAndTraitGenerator >> generateCodeForFMManySlotInitialization: aSlot [
 
 { #category : #'generate for FMMany slot' }
 FamixTestAndTraitGenerator >> generateCodeForFMManySlotOppositeAssertion: aSlot [
-| oppositeSlot |
+	| oppositeSlot |
 	oppositeSlot := aSlot targetClass slots detect: [ :s | s name = aSlot inverseName ].
-	(oppositeSlot isKindOf: FMOne) 
-	ifTrue: [ ^ String streamContents: [ :aStream | aStream    nextPutAll: 'self assert: ';
-		nextPutAll: (self generateSlotNameOfTestTraitFrom: aSlot);
-		nextPutAll: '1 ';
-		nextPutAll: aSlot inverseName ;
-		nextPutAll: ' equals: self entity'] ]
-	ifFalse: [ ^ String streamContents: [ :aStream | aStream    nextPutAll: 'self assertCollection: ';
-		nextPutAll: (self generateSlotNameOfTestTraitFrom: aSlot);
-		nextPutAll: '1 ';
-		nextPutAll: aSlot inverseName ;
-		nextPutAll: ' hasSameElements: {self entity}'] ]
-	
-
-	
-
+	^ String
+		streamContents: [ :aStream | 
+			(oppositeSlot isKindOf: FMOne)
+				ifTrue: [ aStream
+						nextPutAll: 'self assert: ';
+						nextPutAll: (self generateSlotNameOfTestTraitFrom: aSlot);
+						nextPutAll: '1 ';
+						nextPutAll: aSlot inverseName;
+						nextPutAll: ' equals: self entity' ]
+				ifFalse: [ aStream
+						nextPutAll: 'self assertCollection: ';
+						nextPutAll: (self generateSlotNameOfTestTraitFrom: aSlot);
+						nextPutAll: '1 ';
+						nextPutAll: aSlot inverseName;
+						nextPutAll: ' hasSameElements: {self entity}' ] ]
 ]
 
 { #category : #'generate for FMOne slot' }
@@ -210,19 +210,21 @@ FamixTestAndTraitGenerator >> generateCodeForFMOneSlotInitialization: aSlot [
 FamixTestAndTraitGenerator >> generateCodeForFMOneSlotOppositeAssertion: aSlot [
 	| oppositeSlot |
 	oppositeSlot := aSlot targetClass slots detect: [ :s | s name = aSlot inverseName ].
-	(oppositeSlot isKindOf: FMOne) 
-	ifTrue: [ ^ String streamContents: [ :aStream | aStream    nextPutAll: 'self assert: ';
-		nextPutAll: aSlot name;
-		nextPutAll: ' ';
-		nextPutAll: aSlot inverseName ;
-		nextPutAll: ' equals: self entity'] ]
-	ifFalse: [ ^ String streamContents: [ :aStream | aStream    nextPutAll: 'self assertCollection: ';
-		nextPutAll: aSlot name;
-		nextPutAll: ' ';
-		nextPutAll: aSlot inverseName ;
-		nextPutAll: ' hasSameElements: {self entity}'] ]
-	
-
+	^ String
+		streamContents: [ :aStream | 
+			(oppositeSlot isKindOf: FMOne)
+				ifTrue: [ aStream
+						nextPutAll: 'self assert: ';
+						nextPutAll: aSlot name;
+						nextPutAll: ' ';
+						nextPutAll: aSlot inverseName;
+						nextPutAll: ' equals: self entity' ]
+				ifFalse: [ aStream
+						nextPutAll: 'self assertCollection: ';
+						nextPutAll: aSlot name;
+						nextPutAll: ' ';
+						nextPutAll: aSlot inverseName;
+						nextPutAll: ' hasSameElements: {self entity}' ] ]
 ]
 
 { #category : #'generate for primitive slot' }

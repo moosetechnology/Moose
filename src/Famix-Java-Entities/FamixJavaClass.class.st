@@ -33,19 +33,17 @@ FamixJavaClass >> incomingAccesses [
 ]
 
 { #category : #testing }
-FamixJavaClass >> isADirectSubclassOf: aClass [ 
-	 
-	aClass class = FamixJavaClass 
-		ifTrue: [^aClass directSubclasses includes: self] 
-		ifFalse: [^false]
+FamixJavaClass >> isADirectSubclassOf: aClass [
+	^ aClass class = FamixJavaClass
+		ifTrue: [ aClass directSubclasses includes: self ]
+		ifFalse: [ false ]
 ]
 
 { #category : #testing }
-FamixJavaClass >> isADirectSuperclassOf: aClass [ 
-	 
-	aClass class = FamixJavaClass 
-		ifTrue: [^aClass superclass = self] 
-		ifFalse: [^false]
+FamixJavaClass >> isADirectSuperclassOf: aClass [
+	^ aClass class = FamixJavaClass
+		ifTrue: [ aClass superclass = self ]
+		ifFalse: [ false ]
 ]
 
 { #category : #testing }

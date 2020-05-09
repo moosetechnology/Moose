@@ -22,12 +22,10 @@ MerlinMorphPartWidget >> defaultValue: anObject [
 
 { #category : #'accessing - morph contents' }
 MerlinMorphPartWidget >> morphContents [
-	self
-		defaultValue: (self wizardPart defaultValue meValue: self wizardPart requiredInputs).
-	self wizardPart groupBoxName
-		ifNotNil:
-			[ :aString | ^ self newGroupBoxNamed: aString with: self specificMorphContents ]
-		ifNil: [ ^ self specificMorphContents ]
+	self defaultValue: (self wizardPart defaultValue meValue: self wizardPart requiredInputs).
+	^ self wizardPart groupBoxName
+		ifNotNil: [ :aString | self newGroupBoxNamed: aString with: self specificMorphContents ]
+		ifNil: [ self specificMorphContents ]
 ]
 
 { #category : #'accessing - wizard management' }
