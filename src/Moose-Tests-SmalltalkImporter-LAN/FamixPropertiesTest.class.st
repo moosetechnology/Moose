@@ -134,7 +134,7 @@ FamixPropertiesTest >> testClassWeightedMethodCount [
 
 { #category : #testing }
 FamixPropertiesTest >> testHasComments [
-	self assert: self nodeClass hasComments not
+	self deny: self nodeClass hasComments
 ]
 
 { #category : #testing }

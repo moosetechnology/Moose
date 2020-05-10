@@ -27,16 +27,11 @@ FamixReferenceModelMergingClassAndMetaclassImporterTest >> model [
 
 { #category : #tests }
 FamixReferenceModelMergingClassAndMetaclassImporterTest >> testAllClassInNamespaceAreCreated [
-	"self debug: #testAllClassInNamespaceAreCreated"
-	
-	self model  allClasses do: [:each | 	
-		self deny: (each name endsWith: '_class')
-	]
+	self model allClasses do: [ :each | self deny: (each name endsWith: '_class') ]
 ]
 
 { #category : #tests }
 FamixReferenceModelMergingClassAndMetaclassImporterTest >> testAttributInRoot [
-	"self debug: #testAttributInRoot"
 	| theRoot |
 	theRoot := self model entityNamed: #'Smalltalk::TheRoot'.
 	self assert: (theRoot attributes inject: false into: [:bool : method | bool or: [method name = #y]]).
@@ -46,19 +41,15 @@ FamixReferenceModelMergingClassAndMetaclassImporterTest >> testAttributInRoot [
 
 { #category : #tests }
 FamixReferenceModelMergingClassAndMetaclassImporterTest >> testClassAttributeHasInstanceScope [
-	"self debug:#testClassAttributeHasInstanceScope"
-
 	| attribute theRoot |
 	attribute := self model entityNamed: #'Smalltalk::TheRoot.x'.
 	theRoot := self model entityNamed: #'Smalltalk::TheRoot'.
-	self assert: attribute isClassSide not.
+	self deny: attribute isClassSide.
 	self assert: attribute belongsTo equals: theRoot
 ]
 
 { #category : #tests }
 FamixReferenceModelMergingClassAndMetaclassImporterTest >> testClassMetaclassInstanceVariableAndShared [
-	"self debug: #testClassMetaclassInstanceVariableAndShared"
-
 	| insVar theRoot insMetaclassVar shared |
 	insVar := self model entityNamed: #'Smalltalk::TheRoot.z'.
 	insMetaclassVar := self model entityNamed: #'Smalltalk::TheRoot.CIV#mz'.
@@ -77,8 +68,6 @@ FamixReferenceModelMergingClassAndMetaclassImporterTest >> testClassMetaclassIns
 
 { #category : #tests }
 FamixReferenceModelMergingClassAndMetaclassImporterTest >> testConflictingInstanceVarNames [
-	"self debug: #testConflictingInstanceVarNames"
-
 	| insVar theRoot insMetaclassVar shared |
 	insVar := self model entityNamed: #'Smalltalk::TheRoot.instanceAndClassPotentiallyConflictingName'.
 	insMetaclassVar := self model entityNamed: #'Smalltalk::TheRoot.CIV#instanceAndClassPotentiallyConflictingName'.
@@ -94,8 +83,6 @@ FamixReferenceModelMergingClassAndMetaclassImporterTest >> testConflictingInstan
 
 { #category : #tests }
 FamixReferenceModelMergingClassAndMetaclassImporterTest >> testInstanceAndClassSideWhenMergingClassAndMetaclass [
-	"self debug: #testInstanceAndClassSideWhenMergingClassAndMetaclass"
-
 	| node |
 	node := self model entityNamed: #'Smalltalk::TheRoot'.
 	self assert: (self model entityNamed: #'Smalltalk::TheRoot_class' ifAbsent: [ nil ]) isNil.
@@ -114,13 +101,11 @@ FamixReferenceModelMergingClassAndMetaclassImporterTest >> testMetaclassAttribut
 
 { #category : #tests }
 FamixReferenceModelMergingClassAndMetaclassImporterTest >> testMetaclassMethodHasClassScope [
-	"self debug: #testMetaclassMethodHasClassScope"
-
 	| theRoot instanceMethod classMethod |
-	theRoot := self model entityNamed: #Smalltalk::TheRoot.
+	theRoot := self model entityNamed: #'Smalltalk::TheRoot'.
 	instanceMethod := self model entityNamed: #'Smalltalk::TheRoot.accessingClass()'.
 	classMethod := self model entityNamed: #'Smalltalk::TheRoot.classSend()'.
-	self assert: instanceMethod isClassSide not.
+	self deny: instanceMethod isClassSide.
 	self assert: classMethod isClassSide.
 	self assert: instanceMethod belongsTo equals: theRoot.
 	self assert: classMethod belongsTo equals: theRoot
@@ -128,8 +113,6 @@ FamixReferenceModelMergingClassAndMetaclassImporterTest >> testMetaclassMethodHa
 
 { #category : #tests }
 FamixReferenceModelMergingClassAndMetaclassImporterTest >> testMethodInRoot [
-	"self debug: #testMethodInRoot"
-	
 	| theRoot |
 	theRoot := self model entityNamed: #'Smalltalk::TheRoot'.
 	self assert: (theRoot methods inject: false into: [:bool : method | bool or: [method name = #classSend]]).
@@ -139,8 +122,6 @@ FamixReferenceModelMergingClassAndMetaclassImporterTest >> testMethodInRoot [
 
 { #category : #tests }
 FamixReferenceModelMergingClassAndMetaclassImporterTest >> testNumberOfStatementsWithNoErrors [
-	"self debug: #testNumberOfStatementsWithNoErrors"
-
 	| classMethod |
 	classMethod := self model entityNamed: #'Smalltalk::TheRoot.classSend()'.
 	self assert: classMethod numberOfStatements equals: 1
@@ -148,8 +129,6 @@ FamixReferenceModelMergingClassAndMetaclassImporterTest >> testNumberOfStatement
 
 { #category : #tests }
 FamixReferenceModelMergingClassAndMetaclassImporterTest >> testReferencesInRoot [
-	"self debug:#testReferencesInRoot "
-
 	| theRoot |
 	theRoot := self model entityNamed: #'Smalltalk::TheRoot'.
 	self assert: (theRoot methods flatCollect: [ :each | each outgoingReferences ]) size equals: 6.
@@ -158,8 +137,6 @@ FamixReferenceModelMergingClassAndMetaclassImporterTest >> testReferencesInRoot 
 
 { #category : #tests }
 FamixReferenceModelMergingClassAndMetaclassImporterTest >> testSharedVariableReification [
-	"self debug: #testSharedVariableReification"
-
 	| shared |
 	shared := self model entityNamed: #'Smalltalk::TheRoot.TheRootSharedVariable'.
 	self assert: shared isClassSide.
@@ -170,10 +147,9 @@ FamixReferenceModelMergingClassAndMetaclassImporterTest >> testSharedVariableRei
 
 { #category : #tests }
 FamixReferenceModelMergingClassAndMetaclassImporterTest >> testStubNotOverride [
-	"self debug:#testStubNotOverride"
 	| theRoot object |
 	theRoot := self model entityNamed: #'Smalltalk::TheRoot'.
 	object := self model entityNamed: #'Smalltalk::Object'.
-	self assert: theRoot isStub not.
+	self deny: theRoot isStub.
 	self assert: object isStub
 ]

@@ -203,14 +203,13 @@ FamixModelExtractionTest >> testIsConstructor [
 
 { #category : #tests }
 FamixModelExtractionTest >> testIsSide [
-
 	| aFamixClass |
 	aFamixClass := self model entityNamed: LANFileServer class mooseName.
 	self assert: aFamixClass isClassSide.
-	self assert: aFamixClass isInstanceSide not.
+	self deny: aFamixClass isInstanceSide.
 	aFamixClass := self model entityNamed: LANFileServer mooseName.
-	self assert: aFamixClass isClassSide not.
-	self assert: aFamixClass isInstanceSide.
+	self deny: aFamixClass isClassSide.
+	self assert: aFamixClass isInstanceSide
 ]
 
 { #category : #tests }
