@@ -21,7 +21,7 @@ FAMIXCSourceLanguageTest >> testIsC [
 { #category : #tests }
 FAMIXCSourceLanguageTest >> testIsUnknown [
 	self skip: 'Test skipped until C metamodel definition'.
-	self assert: FAMIXCSourceLanguage new isUnknown not
+	self deny: FAMIXCSourceLanguage new isUnknown
 ]
 
 { #category : #tests }

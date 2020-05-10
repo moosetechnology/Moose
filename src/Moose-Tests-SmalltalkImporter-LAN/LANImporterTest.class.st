@@ -43,9 +43,8 @@ LANImporterTest >> testClassModifiers [
 ]
 
 { #category : #tests }
-LANImporterTest >> testClassName [ 
-	self model allClasses 
-		do: [:each | self assert: (each name includes: Character space) not].
+LANImporterTest >> testClassName [
+	self model allClasses do: [ :each | self deny: (each name includes: Character space) ]
 ]
 
 { #category : #tests }
@@ -60,7 +59,7 @@ LANImporterTest >> testClassNameAndUniqueName [
 { #category : #tests }
 LANImporterTest >> testClassNameDoesNotIncludeSpace [
 	self denyEmpty: self model allClasses.
-	self model allClasses do: [ :each | self assert: (each name includes: Character space) not ]
+	self model allClasses do: [ :each | self deny: (each name includes: Character space) ]
 ]
 
 { #category : #tests }

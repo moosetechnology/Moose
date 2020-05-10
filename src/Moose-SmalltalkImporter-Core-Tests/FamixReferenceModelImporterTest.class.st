@@ -44,7 +44,7 @@ FamixReferenceModelImporterTest >> testAbstractMethodAnnotation [
 	method := self model entityNamed: methodName.
 	self assert: method isNotNil.
 	self assert: method belongsTo equals: (self model entityNamed: TheRoot mooseName).
-	self assert: method isClassSide not.
+	self deny: method isClassSide.
 	self assert: method signature equals: (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: #sendingSubclassResponsibility).
 	self assert: method isPublic.
 	self assert: method isAbstract.
@@ -376,7 +376,7 @@ FamixReferenceModelImporterTest >> testConstantMethodAnnotation [
 	method := self model entityNamed: methodUniqueName.
 	self assert: method isNotNil.
 	self assert: method belongsTo equals: (self model entityNamed: TheRoot mooseName).
-	self assert: method isClassSide not.
+	self deny: method isClassSide.
 	self assert: method signature equals: (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: #constantReturningMethod).
 	self assert: method isPublic.
 	self assert: method isConstant
@@ -496,7 +496,7 @@ FamixReferenceModelImporterTest >> testGetterMethod [
 	methodUniqueName := (TheRoot >> #x) mooseName.
 	method := self model entityNamed: methodUniqueName.
 	self assert: method isNotNil.
-	self assert: method isClassSide not.
+	self deny: method isClassSide.
 	self assert: method signature equals: (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: #x).
 	self assert: method isPublic.
 	self assert: method isPureAccessor.
@@ -652,7 +652,7 @@ FamixReferenceModelImporterTest >> testSetterMethod [
 	method := self model entityNamed: methodUniqueName.
 	self assert: method isNotNil.
 	self assert: method belongsTo equals: (self model entityNamed: TheRoot mooseName).
-	self assert: method isClassSide not.
+	self deny: method isClassSide.
 	self assert: method signature equals: (FamixSmalltalkNameResolver signatureFromSmalltalkSelectorOn: #x:).
 	self assert: method isPublic.
 	self assert: method isPureAccessor.

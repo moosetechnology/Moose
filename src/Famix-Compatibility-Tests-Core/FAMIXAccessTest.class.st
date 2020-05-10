@@ -11,7 +11,7 @@ FAMIXAccessTest >> actualClass [
 
 { #category : #tests }
 FAMIXAccessTest >> testDefaultIsRead [
-	self assert: self actualClass new isRead not
+	self deny: self actualClass new isRead
 ]
 
 { #category : #tests }
@@ -21,17 +21,17 @@ FAMIXAccessTest >> testDefaultIsReadWriteUnknown [
 
 { #category : #tests }
 FAMIXAccessTest >> testDefaultIsWrite [
-	self assert: self actualClass new isWrite not
+	self deny: self actualClass new isWrite
 ]
 
 { #category : #tests }
 FAMIXAccessTest >> testIsRead [
 	self assert: (self actualClass new isWrite: false) isRead.
-	self assert: (self actualClass new isWrite: true) isRead not
+	self deny: (self actualClass new isWrite: true) isRead
 ]
 
 { #category : #tests }
 FAMIXAccessTest >> testIsWrite [
-	self assert: (self actualClass new isWrite: false) isWrite not.
+	self deny: (self actualClass new isWrite: false) isWrite.
 	self assert: (self actualClass new isWrite: true) isWrite
 ]
