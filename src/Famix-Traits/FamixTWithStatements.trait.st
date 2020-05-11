@@ -1,7 +1,6 @@
 Trait {
 	#name : #FamixTWithStatements,
 	#traits : 'FamixTSourceEntity + FamixTWithAccesses + FamixTWithInvocations',
-	#classTraits : 'FamixTSourceEntity classTrait + FamixTWithAccesses classTrait + FamixTWithInvocations classTrait',
 	#category : #'Famix-Traits-Behavioral'
 }
 
