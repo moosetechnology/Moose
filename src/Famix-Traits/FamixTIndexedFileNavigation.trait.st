@@ -5,6 +5,7 @@ Trait {
 		'#startPos => FMProperty'
 	],
 	#traits : 'FamixTFileAnchor',
+	#classTraits : 'FamixTFileAnchor classTrait',
 	#category : #'Famix-Traits-SourceAnchor'
 }
 
@@ -19,11 +20,11 @@ FamixTIndexedFileNavigation classSide >> annotation [
 
 { #category : #'instance creation' }
 FamixTIndexedFileNavigation classSide >> fileName: aString startPos: anInteger endPos: anotherInteger [
-	^ self
-		fileName: aString
-		startPos: anInteger
-		endPos: anotherInteger
-		model: nil
+	^ self new
+		fileName: aString;
+		startPos: anInteger;
+		endPos: anotherInteger;
+		yourself
 ]
 
 { #category : #'instance creation' }
@@ -56,6 +57,11 @@ FamixTIndexedFileNavigation >> countNumberOfLinesRuturnsFrom: aStream from: star
 				ifFalse: [ char isLf
 						ifTrue: [ "Since we manage CRLF before we can just increment the counter" count := count + 1 ] ] ].
 	^ count
+]
+
+{ #category : #accessing }
+FamixTIndexedFileNavigation >> endLine [
+	^ self privateState cacheAt: #endLine ifAbsentPut: [ self completeText lineNumberCorrespondingToIndex: self endPos ]
 ]
 
 { #category : #accessing }
@@ -114,6 +120,11 @@ FamixTIndexedFileNavigation >> sourceText [
 			stream := ZnCharacterReadStream on: in encoding: self encoding.
 			1 to: start - 1 do: [ :i | stream next ].
 			stream next: (endPos ifNil: [ in size + 1 ]) - start + 1 ]
+]
+
+{ #category : #accessing }
+FamixTIndexedFileNavigation >> startLine [
+	^ self privateState cacheAt: #startLine ifAbsentPut: [ self completeText lineNumberCorrespondingToIndex: self startPos ]
 ]
 
 { #category : #accessing }

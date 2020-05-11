@@ -38,6 +38,13 @@ FamixTSourceLanguage >> isUnknown [
 	^ false
 ]
 
+{ #category : #printing }
+FamixTSourceLanguage >> mooseNameOn: aStream [
+	aStream
+		nextPutAll: 'a ';
+		nextPutAll: self class name
+]
+
 { #category : #accessing }
 FamixTSourceLanguage >> sourcedEntities [
 	"Relation named: #sourcedEntities type: #FamixTWithSourceLanguage opposite: #declaredSourceLanguage"

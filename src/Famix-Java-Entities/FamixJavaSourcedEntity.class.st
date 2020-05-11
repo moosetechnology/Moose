@@ -54,11 +54,6 @@ FamixJavaSourcedEntity >> numberOfJavaNullChecks [
 			(self sourceText allRegexMatches: ( '|' join: nullCheckTextPatterns)) size ]
 ]
 
-{ #category : #accessing }
-FamixJavaSourcedEntity >> sourceLanguage [
-	^ self sourceLanguageOr: FamixJavaUnknownSourceLanguage
-]
-
 { #category : #'Famix-Extensions' }
 FamixJavaSourcedEntity >> structuralChildren [ 
 	^ #()

@@ -94,11 +94,13 @@ MooseModel >> sourceLanguage [
 	<FMProperty: #sourceLanguage type: #FamixTSourceLanguage>
 	<FMComment: 'Source of the Language to which the model corresponds'>
 	^ self privateState
-		propertyAt: #sourceLanguage
-		ifAbsentPut: [ self allSourceLanguages detect: [ :each | each isAttached not ] ifNone: [ nil ] ]
+		attributeAt: #sourceLanguage
+		ifAbsentPut: [ self allSourceLanguages
+				detect: [ :each | each isAttached not ]
+				ifNone: [ nil ] ]
 ]
 
 { #category : #'*Famix-Traits' }
 MooseModel >> sourceLanguage: aSymbol [
-	self privateState propertyAt: #sourceLanguage put: aSymbol
+	self privateState attributeAt: #sourceLanguage put: aSymbol
 ]

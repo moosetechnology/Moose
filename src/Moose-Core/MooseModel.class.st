@@ -258,6 +258,13 @@ MooseModel class >> root [
 	^ MooseModelRoot root
 ]
 
+{ #category : #'instance creation' }
+MooseModel class >> sourceLanguage: aSourceLanguage [
+	^ self new
+		sourceLanguage: aSourceLanguage;
+		yourself
+]
+
 { #category : #'entity collection' }
 MooseModel >> add: anElement [ 
 	 
@@ -499,6 +506,11 @@ MooseModel >> intersection: aGroup [
 	result := MooseGroup withAll: (self entities intersection: aGroup entities). 
 	result description: self description , '  intersected with ' , aGroup description. 
 	^result
+]
+
+{ #category : #testing }
+MooseModel >> isMooseModel [
+	^ true
 ]
 
 { #category : #accessing }

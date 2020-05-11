@@ -1,12 +1,17 @@
 Class {
 	#name : #FamixFileBasedLanguageMetamodelFactory,
 	#superclass : #FamixBasicInfrastructureMetamodelFactory,
-	#category : #'Moose-GenericImporter-Factories'
+	#category : #'Famix-Deprecated'
 }
 
 { #category : #testing }
 FamixFileBasedLanguageMetamodelFactory class >> isAbstract [
 	^ self = FamixFileBasedLanguageMetamodelFactory
+]
+
+{ #category : #testing }
+FamixFileBasedLanguageMetamodelFactory class >> isDeprecated [
+	^ true
 ]
 
 { #category : #accessing }

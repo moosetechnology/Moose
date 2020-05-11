@@ -42,8 +42,3 @@ FamixStComment >> printOn: aStream [
 	self container printOn: aStream.
 	aStream nextPut: $)
 ]
-
-{ #category : #printing }
-FamixStComment >> sourceText [
-	^ self content ifNil: [ self sourceAnchor ifNil: [ '' ] ifNotNil: [ :sa | sa sourceText ] ]
-]

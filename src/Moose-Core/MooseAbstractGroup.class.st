@@ -287,6 +287,11 @@ MooseAbstractGroup >> do: aBlock [
 	^self entityStorage do: aBlock
 ]
 
+{ #category : #enumeration }
+MooseAbstractGroup >> do: aBlock displayingProgress: aString [
+	^ self entityStorage do: aBlock displayingProgress: aString
+]
+
 { #category : #enumerating }
 MooseAbstractGroup >> do: elementBlock separatedBy: separatorBlock [
 	^ self entities do: elementBlock separatedBy: separatorBlock

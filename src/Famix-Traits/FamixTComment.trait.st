@@ -57,3 +57,11 @@ FamixTComment >> content: anObject [
 	<generated>
 	content := anObject
 ]
+
+{ #category : #accessing }
+FamixTComment >> sourceText [
+	^ self content
+		ifNil: [ self sourceAnchor
+				ifNil: [ '' ]
+				ifNotNil: #sourceText ]
+]

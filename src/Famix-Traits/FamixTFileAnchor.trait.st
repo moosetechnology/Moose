@@ -9,6 +9,7 @@ Trait {
 		'#fileName => FMProperty'
 	],
 	#traits : 'FamixTSourceAnchor',
+	#classTraits : 'FamixTSourceAnchor classTrait',
 	#category : #'Famix-Traits-SourceAnchor'
 }
 
@@ -76,6 +77,11 @@ FamixTFileAnchor >> encoding: anObject [
 ]
 
 { #category : #accessing }
+FamixTFileAnchor >> endLine [
+	^ self explicitRequirement
+]
+
+{ #category : #accessing }
 FamixTFileAnchor >> fileName [
 
 	<FMProperty: #fileName type: #String>
@@ -97,6 +103,17 @@ FamixTFileAnchor >> fileReference [
 { #category : #accessing }
 FamixTFileAnchor >> hasSourceText [
 	^ self completeText isNotEmpty
+]
+
+{ #category : #testing }
+FamixTFileAnchor >> isContiguousWith: anotherFileAnchor [
+	"compute to see if two entities are contiguous (i.e one followed by the other on consective lines) in a file by looking at their indexed file anchors"
+
+	self fileName = anotherFileAnchor fileName ifFalse: [ ^ false ].
+
+	self endLine + 1 = anotherFileAnchor startLine ifTrue: [ ^ true ].
+
+	^ anotherFileAnchor endLine + 1 = self startLine
 ]
 
 { #category : #testing }
@@ -132,4 +149,9 @@ FamixTFileAnchor >> sourcesAreReadable [
 	^ self fileReference
 		ifExists: [ :file | file size > 0 ]
 		ifAbsent: [ false ]
+]
+
+{ #category : #accessing }
+FamixTFileAnchor >> startLine [
+	^ self explicitRequirement
 ]
