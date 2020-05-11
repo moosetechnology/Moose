@@ -257,6 +257,11 @@ MooseObject >> isBookmarked: aBoolean [
 ]
 
 { #category : #testing }
+MooseObject >> isMooseModel [
+	^ false
+]
+
+{ #category : #testing }
 MooseObject >> isOfType: aClassFAMIX [
 	^ self class isOfType: aClassFAMIX
 ]

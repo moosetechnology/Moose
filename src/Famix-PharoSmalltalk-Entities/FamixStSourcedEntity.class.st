@@ -14,8 +14,3 @@ FamixStSourcedEntity class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #accessing }
-FamixStSourcedEntity >> sourceLanguage [
-	^ self sourceLanguageOr: FamixStUnknownSourceLanguage
-]

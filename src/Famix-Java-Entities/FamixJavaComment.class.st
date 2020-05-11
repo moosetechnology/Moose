@@ -47,8 +47,3 @@ FamixJavaComment >> printOn: aStream [
 	self container printOn: aStream.
 	aStream nextPut: $)
 ]
-
-{ #category : #accessing }
-FamixJavaComment >> sourceText [
-	^ self content ifNil: [ self sourceAnchor ifNil: [ '' ] ifNotNil: [ :sa | sa sourceText ] ]
-]

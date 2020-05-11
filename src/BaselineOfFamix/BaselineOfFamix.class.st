@@ -44,6 +44,9 @@ BaselineOfFamix >> baseline: spec [
 				package: 'Famix-Smalltalk-Utils' with: [ spec requires: #('Moose-Core') ];
 				package: 'Moose-GenericImporter' with: [ spec requires: #('BasicTraits') ];
 				package: 'Moose-SmalltalkImporter' with: [ spec requires: #('Moose-GenericImporter' 'RoelTyper' 'Famix-PharoSmalltalk-Entities') ];
+				
+				package: 'Famix-CommentAnalyzer' with: [ spec requires: #('BasicTraits') ];
+				package: 'Famix-CommentAnalyzer-Tests' with: [ spec requires: #('Famix-CommentAnalyzer' 'TestModels') ];
 	
 				package: 'Famix-Compatibility-Generator' with: [ spec requires: #('Basic') ];
 				package: 'Famix-Compatibility-Entities' with: [ spec requires: #('BasicTraits' 'Famix-Smalltalk-Utils') ];
@@ -100,6 +103,7 @@ BaselineOfFamix >> baseline: spec [
 				group: 'Core' with: #('Famix-Traits' 'Moose-Query-Extensions');
 				group: 'Minimal' with: #('Moose-Core');
 				group: 'Basic' with: #('Famix-BasicInfrastructure' 'Famix-MetamodelGeneration');
+				group: 'CommentAnalyzes' with: #('Famix-CommentAnalyzer');
 				group: 'TestsResources' with: #('ReferenceTestResources' 'Moose-TestResources-LAN' 'Moose-TestResources-LCOM' 'KGBTestResources' 'PackageBlueprintTestResources');
 				group: 'BasicTraits' with: #('Famix-Traits');
 				group: 'EntitiesCompatibility' with: #('Famix-Compatibility-Entities');
@@ -118,7 +122,7 @@ BaselineOfFamix >> baseline: spec [
 								'Famix-MetamodelBuilder-Tests' 'Famix-Test1-Tests' 'Famix-Test2-Tests' 'Famix-Test3-Tests'
 								'Famix-Test4-Tests' 'Famix-TestComposedSubmetamodel1-Entities' 'Famix-TestComposedSubmetamodel2-Entities'
 								'Famix-TestComposedMetamodel-Entities' 'Famix-TestComposedMetamodel' 'Famix-TestComposedComposedMetamodel-Entities'
-								'Famix-TestComposed3Metamodel-Entities' 'Moose-GenericImporters-Tests') ].
+								'Famix-TestComposed3Metamodel-Entities' 'Moose-GenericImporters-Tests' 'Famix-CommentAnalyzer-Tests') ].
 
 	spec
 		for: #'pharo7.x'
