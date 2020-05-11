@@ -958,7 +958,6 @@ FamixGenerator >> defineHierarchy [
 	tMethod --|> tHasSignature.
 	tMethod --|> tWithClassScope.
 	tMethod --|> tTypedEntity.
-	tMethod --|> tSourceEntity.
 	tMethod --|> tNamedEntity.
 	tMethod --|> #TOODependencyQueries.
 	tMethod withPrecedenceOf: tTypedEntity.
@@ -973,8 +972,8 @@ FamixGenerator >> defineHierarchy [
 	tReference --|> tAssociation.
 
 	tScopingEntity  --|> #TOODependencyQueries.
+	
 	tStructuralEntity --|> tNamedEntity.
-
 	tStructuralEntity --|> tAccessible.
 	tStructuralEntity --|> tInvocationsReceiver.
 	tStructuralEntity --|> tTypedEntity.
@@ -989,7 +988,8 @@ FamixGenerator >> defineHierarchy [
 	tType --|> tNamedEntity.
 	
 	tWithStatements --|> tWithAccesses.
-	tWithStatements --|> tWithInvocations
+	tWithStatements --|> tWithInvocations.
+	tWithStatements --|> tSourceEntity
 
 ]
 
