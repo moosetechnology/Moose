@@ -960,7 +960,7 @@ FamixGenerator >> defineHierarchy [
 	tMethod --|> tTypedEntity.
 	tMethod --|> tNamedEntity.
 	tMethod --|> #TOODependencyQueries.
-	tMethod withPrecedenceOf: tTypedEntity.
+	"tMethod withPrecedenceOf: tTypedEntity."
 	
 	tMultipleFileAnchor --|> tSourceAnchor.
 	
