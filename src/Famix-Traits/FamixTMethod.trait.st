@@ -11,7 +11,8 @@ Trait {
 		'#kind => FMProperty',
 		'#parentType => FMOne type: #FamixTWithMethods opposite: #methods'
 	],
-	#traits : '(FamixTHasSignature + FamixTInvocable + FamixTNamedEntity + FamixTSourceEntity + FamixTTypedEntity + FamixTWithClassScope + FamixTWithImplicitVariables + FamixTWithLocalVariables + FamixTWithParameters + FamixTWithReferences + FamixTWithStatements + TOODependencyQueries withPrecedenceOf: FamixTTypedEntity)',
+	#traits : 'FamixTHasSignature + FamixTInvocable + FamixTNamedEntity + FamixTTypedEntity + FamixTWithClassScope + FamixTWithImplicitVariables + FamixTWithLocalVariables + FamixTWithParameters + FamixTWithReferences + FamixTWithStatements + TOODependencyQueries',
+	#classTraits : 'FamixTHasSignature classTrait + FamixTInvocable classTrait + FamixTNamedEntity classTrait + FamixTTypedEntity classTrait + FamixTWithClassScope classTrait + FamixTWithImplicitVariables classTrait + FamixTWithLocalVariables classTrait + FamixTWithParameters classTrait + FamixTWithReferences classTrait + FamixTWithStatements classTrait + TOODependencyQueries classTrait',
 	#category : #'Famix-Traits-Behavioral'
 }
 
@@ -46,7 +47,7 @@ FamixTMethod >> cyclomaticComplexity: aNumber [
 	self privateState propertyAt: #cyclomaticComplexity put: aNumber
 ]
 
-{ #category : #testing }
+{ #category : #accessing }
 FamixTMethod >> isAbstract [
 
 	<FMProperty: #isAbstract type: #Boolean>

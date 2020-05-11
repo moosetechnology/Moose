@@ -1,6 +1,6 @@
 Trait {
 	#name : #FamixTWithStatements,
-	#traits : 'FamixTWithAccesses + FamixTWithInvocations',
+	#traits : 'FamixTSourceEntity + FamixTWithAccesses + FamixTWithInvocations',
 	#category : #'Famix-Traits-Behavioral'
 }
 
@@ -32,4 +32,9 @@ FamixTWithStatements >> numberOfStatements [
 FamixTWithStatements >> numberOfStatements: aNumber [
 
 	self privateState propertyAt: #numberOfStatements put: aNumber
+]
+
+{ #category : #asserting }
+FamixTWithStatements >> shouldCountChildrenForLinesOfCodeIfNoSourceAnchor [
+	^ false
 ]
