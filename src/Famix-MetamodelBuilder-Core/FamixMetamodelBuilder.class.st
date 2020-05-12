@@ -266,9 +266,13 @@ FamixMetamodelBuilder >> getTraitNamed: aSymbol [
 	If I do not contain a trait of this name, check if one of my subMM has a trait of this name. If one is found, return it. If more is found raise an error. If non is found, create a new trait of this name and return it."
 
 	| remoteTraits |
-	self flag: #todo. "Maybe we could cache the sub MM entities."
+	self flag: #todo.	"Maybe we could cache the sub MM entities."
 	remoteTraits := Dictionary new.
-	self allSubBuilders do: [ :builder | builder traits detect: [ :each | each name = aSymbol ] ifFound: [ :trait | remoteTraits at: builder put: trait ] ].
+	self allSubBuilders
+		do: [ :builder | 
+			builder traits
+				detect: [ :each | each name = aSymbol ]
+				ifFound: [ :trait | remoteTraits at: builder put: trait ] ].
 	remoteTraits size = 1
 		ifTrue: [ ^ remoteTraits values anyOne
 				isRemote: true;
@@ -280,9 +284,13 @@ FamixMetamodelBuilder >> getTraitNamed: aSymbol [
 					('Multiple remote traits named {1} where found in sub metamodels. Found in: {2}.
 In order to fix the issue you should use #remoteTrait:withPrefix: in your generator to select yourself the right trait to use. If you want to create an entity of this name in your model and not use the trait of this name from a sub metamodel, declare this trait before referencing it.'
 						format: {aSymbol . (', ' join: (remoteTraits keys collect: [ :builder | builder generator asString ]))}) ].
-	
-	self flag: #todo. "Later we should raise an error here. For local traits, they should be declared."
-	self traits detect: [ :each | each name = aSymbol ] ifFound: [ :trait | ^ trait ].
+
+	self flag: #todo.	"Cyril: I introduced this warning in the development of Moose 8 to not break every existing generators. We should remove the full detect in the future, for example in the development of Moose 9 (not before!) and revome the warning class."
+	self traits
+		detect: [ :each | each name = aSymbol ]
+		ifFound: [ :trait | 
+			FamixShouldNotUseSymbolsToAccessLocalEntities signalFor: aSymbol from: self generator.
+			^ trait ].
 
 	^ self traitNamed: aSymbol
 ]
