@@ -107,6 +107,16 @@ MooseEntity >> isContainerEntity [
 ]
 
 { #category : #testing }
+MooseEntity >> isDead [
+	"Only container entities and behaviourals can be dead"
+
+	<MSEProperty: #isDead type: #Boolean>
+	<derived>
+	<MSEComment: 'Is the entity dead (not invoked in the system)'>
+	^ false
+]
+
+{ #category : #testing }
 MooseEntity >> isStub [ 
 	^ self privateState isStub
 ]
