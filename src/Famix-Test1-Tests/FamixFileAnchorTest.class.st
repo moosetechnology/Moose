@@ -21,8 +21,9 @@ FamixFileAnchorTest >> anchorForClassTest [
 		startColumn: 0;
 		endLine: 21;
 		endColumn: 2;
+		fileName: 'test.java';
 		yourself.
-	anchor stub fileReference willReturn: file.
+	anchor stub rootFolder willReturn: file parent.
 	^ anchor
 ]
 

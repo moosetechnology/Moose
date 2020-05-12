@@ -59,6 +59,11 @@ FamixTSourceAnchor >> element: anObject [
 ]
 
 { #category : #testing }
+FamixTSourceAnchor >> hasSource [
+	^ self explicitRequirement
+]
+
+{ #category : #testing }
 FamixTSourceAnchor >> isFileAnchor [
 	^ false
 ]

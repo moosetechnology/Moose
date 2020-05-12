@@ -50,6 +50,16 @@ FamixAbstractFileAnchorTest >> testFileNameHasOnlySlashes [
 ]
 
 { #category : #tests }
+FamixAbstractFileAnchorTest >> testHasSource [
+	| anchor |
+	anchor := self anchorForClassTest.
+	self assert: anchor hasSource.
+
+	anchor fileName: 'banana'.
+	self deny: anchor hasSource
+]
+
+{ #category : #tests }
 FamixAbstractFileAnchorTest >> testIsFileAnchor [
 	self assert: self actualClass new isFileAnchor
 ]

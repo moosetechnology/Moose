@@ -8,3 +8,10 @@ Class {
 FamixSourceTextAnchorTest >> actualClass [
 	^ FamixTest1SourceTextAnchor
 ]
+
+{ #category : #tests }
+FamixSourceTextAnchorTest >> testHasSource [
+	self deny: self actualClass new hasSource.
+	self deny: (self actualClass source: '') hasSource.
+	self assert: (self actualClass source: 'source') hasSource
+]

@@ -7,6 +7,7 @@ Trait {
 		'#source => FMProperty'
 	],
 	#traits : 'FamixTSourceAnchor',
+	#classTraits : 'FamixTSourceAnchor classTrait',
 	#category : #'Famix-Traits-SourceAnchor'
 }
 
@@ -31,6 +32,11 @@ FamixTHasImmediateSource classSide >> source: aString model: aMooseModel [
 	^ (self source: aString)
 		mooseModel: aMooseModel;
 		yourself
+]
+
+{ #category : #testing }
+FamixTHasImmediateSource >> hasSource [
+	^ self source isEmptyOrNil not
 ]
 
 { #category : #accessing }

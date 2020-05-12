@@ -19,8 +19,9 @@ FamixIndexedFileAnchorTest >> anchorForClassTest [
 	anchor := self actualClass new
 		startPos: 50;
 		endPos: 253;
+		fileName: 'test.java';
 		yourself.
-	anchor stub fileReference willReturn: file.
+	anchor stub rootFolder willReturn: file parent.
 	^ anchor
 ]
 
