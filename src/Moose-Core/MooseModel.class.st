@@ -297,6 +297,15 @@ MooseModel >> addNoAnnounce: anElement [
 	^anElement
 ]
 
+{ #category : #'dead code' }
+MooseModel >> allBehaviouralsWithDeadCode [
+	<MSEProperty: #allBehaviouralsWithDeadCode type: #CPPSBehaviouralEntity>
+	<multivalued>
+	<derived>
+	<MSEComment: 'All executables containing dead code'>
+	^ self lookUpPropertyNamed: #allBehaviouralsWithDeadCode computedAs: [ self computeAllBehaviouralsWithDeadCode ]
+]
+
 { #category : #accessing }
 MooseModel >> allBookmarks [
 	<navigation: 'All bookmarks'>
@@ -326,6 +335,18 @@ MooseModel >> cacheMooseGroups [
 			]
 		description: ('Caching <1p> groups in Moose model' expandMacrosWith: selectors size)
 		length: selectors size
+]
+
+{ #category : #'dead code' }
+MooseModel >> computeAllBehaviouralsWithDeadCode [
+	^ self allModelBehaviourals select: #isDead
+]
+
+{ #category : #'dead code' }
+MooseModel >> deadCodeRate [
+	^ self
+		lookUpPropertyNamed: #deadCodeRate
+		computedAs: [ self allBehaviouralsWithDeadCode size / self allModelBehaviourals size ]
 ]
 
 { #category : #actions }
