@@ -299,7 +299,7 @@ MooseModel >> addNoAnnounce: anElement [
 
 { #category : #'dead code' }
 MooseModel >> allBehaviouralsWithDeadCode [
-	<MSEProperty: #allBehaviouralsWithDeadCode type: #CPPSBehaviouralEntity>
+	<MSEProperty: #allBehaviouralsWithDeadCode type: #FamixTWithStatements>
 	<multivalued>
 	<derived>
 	<MSEComment: 'All executables containing dead code'>
