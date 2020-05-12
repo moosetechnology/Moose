@@ -7,6 +7,7 @@ Trait {
 		'#startLine => FMProperty'
 	],
 	#traits : 'FamixTFileAnchor',
+	#classTraits : 'FamixTFileAnchor classTrait',
 	#category : #'Famix-Traits-SourceAnchor'
 }
 
@@ -91,7 +92,7 @@ FamixTFileNavigation >> lineCount [
 	(endLine isNotNil and: [ startLine isNotNil ]) ifTrue: [ ^ endLine - startLine + 1 ].
 
 	"if no start/end position, use the comple text ..."
-	^ self hasSourceText
+	^ self hasSource
 		ifTrue: [ self completeText lineCount ]
 		ifFalse: [ self notExistentMetricValue ]
 ]

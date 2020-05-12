@@ -77,7 +77,7 @@ FamixSourceAnchorTest >> testImportFileAnchors [
 	self assertEmpty: aMethod sourceAnchor completeText.
 	self assertEmpty: aMethod sourceText.
 	self assert: aMethod sourceAnchor lineCount equals: 28.
-	self deny: aMethod sourceAnchor hasSourceText.
+	self deny: aMethod sourceAnchor hasSource.
 	self assert: aMethod numberOfLinesOfCode equals: 28.
 	self shouldnt: [ model allMethods collect: #numberOfLinesOfCode ] raise: Error.
 	self shouldnt: [ model allClasses collect: #numberOfLinesOfCode ] raise: Error

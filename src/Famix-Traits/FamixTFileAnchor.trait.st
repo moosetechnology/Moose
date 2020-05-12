@@ -101,8 +101,8 @@ FamixTFileAnchor >> fileReference [
 ]
 
 { #category : #accessing }
-FamixTFileAnchor >> hasSourceText [
-	^ self completeText isNotEmpty
+FamixTFileAnchor >> hasSource [
+	^ self sourcesAreReadable
 ]
 
 { #category : #testing }
@@ -123,10 +123,9 @@ FamixTFileAnchor >> isFileAnchor [
 
 { #category : #accessing }
 FamixTFileAnchor >> lineCount [
-	^ self hasSourceText 
+	^ self hasSource
 		ifTrue: [ self sourceText lineCount ]
 		ifFalse: [ self notExistentMetricValue ]
-	
 ]
 
 { #category : #printing }

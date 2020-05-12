@@ -4,6 +4,7 @@ Trait {
 		'#fileAnchors => FMProperty'
 	],
 	#traits : 'FamixTSourceAnchor',
+	#classTraits : 'FamixTSourceAnchor classTrait',
 	#category : #'Famix-Traits-SourceAnchor'
 }
 
@@ -89,6 +90,11 @@ FamixTMultipleFileAnchor >> fileName [
 	"for compatibility with FAMIXFileAnchor, guard condition not needed: it has atleast one file anchor"
 
 	^ self fileAnchors anyOne fileName
+]
+
+{ #category : #testing }
+FamixTMultipleFileAnchor >> hasSource [
+	^ self fileAnchors anySatisfy: #hasSource
 ]
 
 { #category : #testing }
