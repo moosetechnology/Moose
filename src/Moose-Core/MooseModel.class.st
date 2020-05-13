@@ -309,6 +309,12 @@ MooseModel >> allBookmarks [
 	^ MooseGroup withAll: (self entityCache select: [ :group | group asMooseGroup isBookmarked ]) withDescription: 'Bookmarks'
 ]
 
+{ #category : #'dead code' }
+MooseModel >> allContainersWithDeadCode [
+	<navigation: 'All containers with dead code'>
+	^ self allModelContainers select: #isDead
+]
+
 { #category : #actions }
 MooseModel >> asMSEString [
 	| stream |
