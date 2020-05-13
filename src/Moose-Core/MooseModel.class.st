@@ -309,10 +309,9 @@ MooseModel >> allBookmarks [
 	^ MooseGroup withAll: (self entityCache select: [ :group | group asMooseGroup isBookmarked ]) withDescription: 'Bookmarks'
 ]
 
-{ #category : #'dead code' }
-MooseModel >> allContainersWithDeadCode [
-	<navigation: 'All containers with dead code'>
-	^ self allModelContainers select: #isDead
+{ #category : #accessing }
+MooseModel >> allRootContainers [
+	^ self allModelContainers select: [ :each | each parents isEmpty ]
 ]
 
 { #category : #actions }
@@ -343,6 +342,11 @@ MooseModel >> cacheMooseGroups [
 { #category : #'dead code' }
 MooseModel >> computeAllBehaviouralsWithDeadCode [
 	^ self allModelBehaviourals select: #isDead
+]
+
+{ #category : #metrics }
+MooseModel >> computeNumberOfLinesOfCode [
+	^ self allRootContainers sum: #numberOfLinesOfCode
 ]
 
 { #category : #'dead code' }
@@ -586,7 +590,7 @@ MooseModel >> name: aStringOrSymbol [
 			self announcer announce: (MooseEntityRenamed new oldName: oldName) ]
 ]
 
-{ #category : #'Famix-Extensions' }
+{ #category : #metrics }
 MooseModel >> numberOfClasses [
 	<FMProperty: #numberOfClasses type: #Number>
 	<FMComment: 'The number of classes'>
@@ -596,7 +600,14 @@ MooseModel >> numberOfClasses [
 		computedAs: [ self allClasses size ]
 ]
 
-{ #category : #'Famix-Extensions' }
+{ #category : #metrics }
+MooseModel >> numberOfLinesOfCode [
+	<FMProperty: #numberOfLinesOfCode type: #Number>
+	<FMComment: 'The number of lines of code of the project.'>
+	^ self lookUpPropertyNamed: #numberOfLinesOfCode computedAs: [ self computeNumberOfLinesOfCode ]
+]
+
+{ #category : #metrics }
 MooseModel >> numberOfLinesOfCodePerClass [
 	<FMProperty: #numberOfLinesOfCodePerClass type: #Number>
 	<FMComment: 'The number of lines of code per class in the model'>
