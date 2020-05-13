@@ -101,6 +101,7 @@ MooseModel >> sourceLanguage [
 ]
 
 { #category : #'*Famix-Traits' }
-MooseModel >> sourceLanguage: aSymbol [
-	self privateState attributeAt: #sourceLanguage put: aSymbol
+MooseModel >> sourceLanguage: aFamixSourceLanguage [
+	self privateState attributeAt: #sourceLanguage put: aFamixSourceLanguage.
+	aFamixSourceLanguage mooseModel: self
 ]
