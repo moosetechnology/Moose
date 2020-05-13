@@ -59,8 +59,19 @@ Class {
 { #category : #meta }
 MooseObject class >> allDeclaredProperties [
 	"All properties described in the metamodel"
-	 
-	^self mooseDescription allProperties
+
+	^ self mooseDescription allProperties
+]
+
+{ #category : #accessing }
+MooseObject class >> allPropertySelectors [
+	"Return a dictionary with all properties of this kind of entity, including metamodel properties, metrics, and navigation groups. Keys are abstract names of properties, values are implementing selectors"
+
+	| props |
+	props := IdentityDictionary new.
+	self allDeclaredProperties do: [ :prop | props at: prop name put: prop implementingSelector ].
+	self navigationPragmas do: [ :p | props at: p selector put: p selector ].
+	^ props
 ]
 
 { #category : #meta }
@@ -109,6 +120,11 @@ MooseObject class >> isOfType: aClassFAMIX [
 	^ self superclassesAndFamixTraits includes: aClassFAMIX
 ]
 
+{ #category : #accessing }
+MooseObject class >> navigationPragmas [
+	^ Pragma allNamed: #navigation: from: self to: MooseObject
+]
+
 { #category : #'as yet unclassified' }
 MooseObject class >> relatedGroupType [
 	" The entities can specify what is the prefered type of MooseGroup they want to be stored in.
@@ -155,21 +171,12 @@ MooseObject class >> superclassesAndFamixTraits [
 
 { #category : #'meta information' }
 MooseObject >> allDeclaredProperties [
-	"All properties described in the metamodel"
-	 
-	^self mooseDescription allProperties
+	^ self class allDeclaredProperties
 ]
 
 { #category : #'meta information' }
 MooseObject >> allPropertySelectors [
-	"Return a dictionary with all properties of the entity, including metamodel properties, metrics, and navigation groups. Keys are abstract names of properties, values are implementing selectors"
-
-	| props |
-	props := IdentityDictionary new.
-	self allDeclaredProperties do: [ :prop | props at: prop name put: prop implementingSelector ].
-	(Pragma allNamed: #navigation: from: self class to: MooseObject) do: [ :p | props at: p methodSelector put: p methodSelector ].
-	(Pragma allNamed: #property:longName:description: from: self class to: MooseObject) do: [ :p | props at: (p argumentAt: 1) put: p selector ].
-	^ props
+	^ self class allPropertySelectors
 ]
 
 { #category : #private }
@@ -210,11 +217,11 @@ MooseObject >> description: characters [
 ]
 
 { #category : #groups }
-MooseObject >> entityCache [ 
-	 
+MooseObject >> entityCache [
 	"should be used read only, i.e. you are not supposed to modify the returned groups.
 	If you want to change entityGroups, use privateState 'set' methods"
-	^self privateState entityCache
+
+	^ self privateState entityCache
 ]
 
 { #category : #groups }
@@ -335,9 +342,14 @@ MooseObject >> name [
 	^ #noname
 ]
 
+{ #category : #accessing }
+MooseObject >> navigationPragmas [
+	^ self class navigationPragmas
+]
+
 { #category : #'meta information' }
 MooseObject >> navigationSelectors [
-	^ (Pragma allNamed: #navigation: from: self class to: MooseObject) collect: [ :p | p methodSelector ]
+	^ self navigationPragmas collect: #methodSelector
 ]
 
 { #category : #properties }
@@ -441,7 +453,9 @@ MooseObject >> propertyNamed: name put: value [
 
 { #category : #accessing }
 MooseObject >> removeFromModel [
-	^ self mooseModel ifNil: [ self ] ifNotNil: [ self mooseModel removeEntity: self ]
+	^ self mooseModel
+		ifNil: [ self ]
+		ifNotNil: [ :model | model removeEntity: self ]
 ]
 
 { #category : #initialization }
