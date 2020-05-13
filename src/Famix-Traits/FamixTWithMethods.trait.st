@@ -105,12 +105,6 @@ FamixTWithMethods >> numberOfConstructorMethods: aNumber [
 ]
 
 { #category : #metrics }
-FamixTWithMethods >> numberOfLinesOfCode: aNumber [
-
-	self privateState propertyAt: #numberOfLinesOfCode put: aNumber
-]
-
-{ #category : #metrics }
 FamixTWithMethods >> numberOfMessageSends [
 	<FMProperty: #numberOfMessageSends type: #Number>
 	<derived>
