@@ -1,5 +1,5 @@
 Class {
-	#name : #MooseAbstractGroupWithTest1ModelTest,
+	#name : #MooseModelTest1lTest,
 	#superclass : #FamixTest1SimpleModelTest,
 	#instVars : [
 		'a2'
@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #running }
-MooseAbstractGroupWithTest1ModelTest >> setUp [
+MooseModelTest1lTest >> setUp [
 	super setUp.
 	a2 := FamixTest1Attribute named: 'attribute2' model: model.
 
@@ -20,31 +20,36 @@ MooseAbstractGroupWithTest1ModelTest >> setUp [
 ]
 
 { #category : #tests }
-MooseAbstractGroupWithTest1ModelTest >> testAllBehaviourals [
+MooseModelTest1lTest >> testAllBehaviourals [
 	self assertCollection: model allBehaviourals hasSameElements: {m1 . m2 . m3}
 ]
 
 { #category : #tests }
-MooseAbstractGroupWithTest1ModelTest >> testAllContainers [
+MooseModelTest1lTest >> testAllContainers [
 	self assertCollection: model allContainers hasSameElements: { c1. c2. m1. m2. m3 }
 ]
 
 { #category : #tests }
-MooseAbstractGroupWithTest1ModelTest >> testAllModelBehaviourals [
+MooseModelTest1lTest >> testAllModelBehaviourals [
 	self assertCollection: model allModelBehaviourals hasSameElements: {m1 . m2}
 ]
 
 { #category : #tests }
-MooseAbstractGroupWithTest1ModelTest >> testAllModelContainers [
+MooseModelTest1lTest >> testAllModelContainers [
 	self assertCollection: model allModelContainers hasSameElements: {c1 . m1 . m2}
 ]
 
 { #category : #tests }
-MooseAbstractGroupWithTest1ModelTest >> testAllModelStructuralEntities [
+MooseModelTest1lTest >> testAllModelStructuralEntities [
 	self assertCollection: model allModelStructuralEntities hasSameElements: { a1 }
 ]
 
 { #category : #tests }
-MooseAbstractGroupWithTest1ModelTest >> testAllStructuralEntities [
+MooseModelTest1lTest >> testAllRootContainers [
+	self assertCollection: model allRootContainers hasSameElements: {c1}
+]
+
+{ #category : #tests }
+MooseModelTest1lTest >> testAllStructuralEntities [
 	self assertCollection: model allStructuralEntities hasSameElements: {a1 . a2}
 ]
