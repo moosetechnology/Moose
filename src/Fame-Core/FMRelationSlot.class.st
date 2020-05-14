@@ -66,7 +66,7 @@ FMRelationSlot >> emitStore: aMethodBuilder [
 		storeTemp: tempName;
 		popTop;
 		pushReceiver;
-		pushLiteralVariable: #slot -> self;
+		pushLiteralVariable: (AdditionalBinding key: #slot value: self);
 		pushTemp: tempName;
 		send: #writeSlot:value:
 ]
@@ -74,7 +74,7 @@ FMRelationSlot >> emitStore: aMethodBuilder [
 { #category : #'code generation' }
 FMRelationSlot >> emitValue: aMethodBuilder [
 	aMethodBuilder
-		pushLiteralVariable: #slot -> self;
+		pushLiteralVariable: (AdditionalBinding key: #slot value: self);
 		pushReceiver;
 		send: #read:
 ]
