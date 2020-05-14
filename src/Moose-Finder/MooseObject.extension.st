@@ -149,7 +149,7 @@ MooseObject >> mooseSpecificSpotterProcessorsFor: aSpotterStep [
 
 { #category : #'*Moose-Finder' }
 MooseObject >> navigationItemsFromAttributes [
-	| entity assocs attrs result |
+	| entity assocs attrs |
 	"returns associations in form name->object for navigation entities obtained from
 	the the meta-model attributes of the item"
 	entity := self mooseInterestingEntity.
@@ -157,9 +157,8 @@ MooseObject >> navigationItemsFromAttributes [
 	assocs := attrs collect: [ :anAttribute | anAttribute -> (entity perform: anAttribute compiledMethod selector) ].
 
 	"filter out nils and empty collections, sort"
-	result := (assocs reject: [ :association | association value isNil or: [ association value isCollection and: [ association value isEmpty ] ] ])
-		sorted: [ :a :b | a key formatForNavigationPresentation asLowercase asString < b key formatForNavigationPresentation asLowercase asString ].
-	^ result
+	^ (assocs reject: [ :association | association value isNil or: [ association value isCollection and: [ association value isEmpty ] ] ])
+		sorted: [ :a | a key formatForNavigationPresentation asLowercase asString ] ascending
 ]
 
 { #category : #'*Moose-Finder' }
