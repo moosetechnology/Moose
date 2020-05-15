@@ -21,7 +21,21 @@ FamixTest3TypeGroup class >> metamodel [
 ]
 
 { #category : #testing }
+FamixTest3TypeGroup >> isAccess [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
 FamixTest3TypeGroup >> isAssociation [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixTest3TypeGroup >> isAttribute [
 
 	<generated>
 	^ false
@@ -56,7 +70,21 @@ FamixTest3TypeGroup >> isMethod [
 ]
 
 { #category : #testing }
+FamixTest3TypeGroup >> isPackage [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
 FamixTest3TypeGroup >> isReference [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixTest3TypeGroup >> isStructuralEntity [
 
 	<generated>
 	^ false

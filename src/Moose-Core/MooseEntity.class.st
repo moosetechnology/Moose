@@ -86,6 +86,64 @@ MooseEntity class >> usedStatefulTraits [
 	^ self cache at: #usedStatefulTraits ifAbsentPut: [ super usedStatefulTraits ]
 ]
 
+{ #category : #dependencies }
+MooseEntity >> addAllChildrenDependenciesThrough: aDirectionStrategy in: aCollection [
+	aCollection addAll: (aDirectionStrategy dependenciesAtReceiverScopeOf: self).
+	self children do: [ :each | each addAllChildrenDependenciesThrough: aDirectionStrategy in: aCollection ].
+	^ aCollection
+]
+
+{ #category : #dependencies }
+MooseEntity >> allChildrenDependenciesThrough: aDirectionStrategy [
+	^ self addAllChildrenDependenciesThrough: aDirectionStrategy in: OrderedCollection new
+]
+
+{ #category : #dependencies }
+MooseEntity >> allClientsIn: aMooseGroup [
+	"Detect all the clients who are present in the Moose group. 
+	For example, if I have a method as client that is not present in this group, but its parent class is present, I'll select it. But in case the method is present, I'll select the method.
+	This is useful when creating visualizations in order to select the dependencies within the entities present in the visualization."
+
+	^ self allClientsIn: aMooseGroup forModel: self mooseModel
+]
+
+{ #category : #dependencies }
+MooseEntity >> allClientsIn: aMooseGroup forModel: aMooseModel [
+	"Detect all the clients who are present in the Moose group for a given model (this is useful when using tags).
+	For example, if I have a method as client that is not present in this group, but its parent class is present, I'll select it. But in case the method is present, I'll select the method.
+	This is useful when creating visualizations in order to select the dependencies within the entities present in the visualization."
+
+	^ FamixDependenciesDetector computeClientsOf: self from: aMooseGroup in: aMooseModel
+]
+
+{ #category : #dependencies }
+MooseEntity >> allProvidersIn: aMooseGroup [
+	"Detect all the providers who are present in the Moose group. 
+	For example, if I have a method as client that is not present in this group, but its parent class is present, I'll select it. But in case the method is present, I'll select the method.
+	This is useful when creating visualizations in order to select the dependencies within the entities present in the visualization."
+
+	^ self allProvidersIn: aMooseGroup forModel: self mooseModel
+]
+
+{ #category : #dependencies }
+MooseEntity >> allProvidersIn: aMooseGroup forModel: aMooseModel [
+	"Detect all the providers who are present in the Moose group for a given model (this is useful when using tags).
+	For example, if I have a method as client that is not present in this group, but its parent class is present, I'll select it. But in case the method is present, I'll select the method.
+	This is useful when creating visualizations in order to select the dependencies within the entities present in the visualization."
+
+	^ FamixDependenciesDetector computeProvidersOf: self from: aMooseGroup in: aMooseModel
+]
+
+{ #category : #dependencies }
+MooseEntity >> detectDependenciesUsing: aDetector [
+	| potentialTags |
+	potentialTags := aDetector potentialDependencies select: #isTag.
+	aDetector
+		detectDependenciesFrom: potentialTags;
+		removeFromPotentialDependencies: potentialTags;
+		detectDependenciesAtAllScopesOfPossibleDependencies
+]
+
 { #category : #properties }
 MooseEntity >> handleFameProperty: aSymbol value: anObject [
 	
@@ -114,6 +172,24 @@ MooseEntity >> isDead [
 	<derived>
 	<MSEComment: 'Is the entity dead (not invoked in the system)'>
 	^ false
+]
+
+{ #category : #dependencies }
+MooseEntity >> isInListOfPossibleLinks: aCollection forModel: aMooseModel [
+	^ aCollection includes: self
+]
+
+{ #category : #dependencies }
+MooseEntity >> isLinkedTo: anEntity dependancyDirection: aDirectionStrategy in: aMooseModel [
+	"find if the specified entities is to linked to this entity at all possible levels in the direction specified by the strategy. All possible levels self, all children and all parents. It is important to see in the all parents because an entity can contain itself"
+
+	| allRecursiveLinks allLinksWithParents |
+	self flag: #todo.	"currenltly, dependencies of self and children are collected, we should rather collect dependencies of self only and concatenate it with the list of children. Like that ugly code in detector will be avoided."
+	allRecursiveLinks := self allChildrenDependenciesThrough: aDirectionStrategy.
+	allLinksWithParents := allRecursiveLinks
+		addAll: (allRecursiveLinks flatCollect: #allParents);
+		yourself.
+	^ anEntity isInListOfPossibleLinks: allLinksWithParents forModel: aMooseModel
 ]
 
 { #category : #testing }
