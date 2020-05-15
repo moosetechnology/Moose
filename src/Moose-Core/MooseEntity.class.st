@@ -183,12 +183,10 @@ MooseEntity >> isInListOfPossibleLinks: aCollection forModel: aMooseModel [
 MooseEntity >> isLinkedTo: anEntity dependancyDirection: aDirectionStrategy in: aMooseModel [
 	"find if the specified entities is to linked to this entity at all possible levels in the direction specified by the strategy. All possible levels self, all children and all parents. It is important to see in the all parents because an entity can contain itself"
 
-	| allRecursiveLinks allLinksWithParents |
-	self flag: #todo.	"currenltly, dependencies of self and children are collected, we should rather collect dependencies of self only and concatenate it with the list of children. Like that ugly code in detector will be avoided."
-	allRecursiveLinks := self allChildrenDependenciesThrough: aDirectionStrategy.
-	allLinksWithParents := allRecursiveLinks
-		addAll: (allRecursiveLinks flatCollect: #allParents);
-		yourself.
+	| allLinksWithParents |
+	allLinksWithParents := self allChildrenDependenciesThrough: aDirectionStrategy.
+	allLinksWithParents addAll: (allLinksWithParents flatCollect: #allParents).
+
 	^ anEntity isInListOfPossibleLinks: allLinksWithParents forModel: aMooseModel
 ]
 
