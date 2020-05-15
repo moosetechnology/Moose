@@ -7,7 +7,6 @@ Class {
 	#name : #MooseModelRoot,
 	#superclass : #Object,
 	#classInstVars : [
-		'instance',
 		'root'
 	],
 	#category : #'Moose-Core'
