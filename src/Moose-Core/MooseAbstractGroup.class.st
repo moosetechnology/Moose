@@ -214,7 +214,7 @@ MooseAbstractGroup >> collect: aBlock [
 	^ self entities collect: aBlock
 ]
 
-{ #category : #enumeration }
+{ #category : #enumerating }
 MooseAbstractGroup >> collect: aBlock as: aClass [
 	"Evaluate aBlock with each of the receiver's elements as the argument.  
 	Collect the resulting values into an instance of aClass. Answer the resulting collection."
@@ -287,7 +287,7 @@ MooseAbstractGroup >> do: aBlock [
 	^self entityStorage do: aBlock
 ]
 
-{ #category : #enumeration }
+{ #category : #enumerating }
 MooseAbstractGroup >> do: aBlock displayingProgress: aString [
 	^ self entityStorage do: aBlock displayingProgress: aString
 ]
