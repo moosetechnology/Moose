@@ -11,29 +11,22 @@ Class {
 }
 
 { #category : #running }
-FamixDependencyDetectorTest >> addConnections [
-	FamixTest3Invocation source: self method1 target: {self method2} model: model.
-	FamixTest3Invocation source: self method2 target: {self method1} model: model.
-	FamixTest3Access source: self method1 target: self attribute3
-]
-
-{ #category : #running }
-FamixDependencyDetectorTest >> attribute3 [
+FamixDependencyDetectorTest >> a3 [
 	^ model entityNamed: 'Class3.attribute3'
 ]
 
 { #category : #helpers }
-FamixDependencyDetectorTest >> class1 [
+FamixDependencyDetectorTest >> c1 [
 	^ model entityNamed: 'Class1'
 ]
 
 { #category : #helpers }
-FamixDependencyDetectorTest >> class2 [
+FamixDependencyDetectorTest >> c2 [
 	^ model entityNamed: 'Class2'
 ]
 
 { #category : #helpers }
-FamixDependencyDetectorTest >> class3 [
+FamixDependencyDetectorTest >> c3 [
 	^ model entityNamed: 'Class3'
 ]
 
@@ -51,28 +44,28 @@ FamixDependencyDetectorTest >> createTestEntities: counter [
 ]
 
 { #category : #helpers }
-FamixDependencyDetectorTest >> method1 [
+FamixDependencyDetectorTest >> m1 [
 	^ model entityNamed: 'Class1.method1'
 ]
 
 { #category : #helpers }
-FamixDependencyDetectorTest >> method2 [
+FamixDependencyDetectorTest >> m2 [
 	^ model entityNamed: 'Class2.method2'
 ]
 
 { #category : #helpers }
-FamixDependencyDetectorTest >> package1 [
-	^ model entityNamed: 'package1'
+FamixDependencyDetectorTest >> p1 [
+	^ model entityNamed: #p1
 ]
 
 { #category : #helpers }
-FamixDependencyDetectorTest >> package2 [
-	^ model entityNamed: 'package2'
+FamixDependencyDetectorTest >> p2 [
+	^ model entityNamed: #p2
 ]
 
 { #category : #helpers }
-FamixDependencyDetectorTest >> package3 [
-	^ model entityNamed: 'package3'
+FamixDependencyDetectorTest >> p3 [
+	^ model entityNamed: #p3
 ]
 
 { #category : #running }
@@ -80,35 +73,37 @@ FamixDependencyDetectorTest >> setUp [
 	super setUp.
 	model := FamixTest3Model new.
 	1 to: 3 do: [ :number | self createTestEntities: number ].
-	self addConnections
+	FamixTest3Invocation source: self m1 target: {self m2} model: model.
+	FamixTest3Invocation source: self m2 target: {self m1} model: model.
+	FamixTest3Access source: self m1 target: self a3
 ]
 
 { #category : #'tests-clients' }
 FamixDependencyDetectorTest >> testClientClassesFromMethods [
-	self assertCollection: (self class2 allClientsIn: model allModelMethods) hasSameElements: {self method1}
+	self assertCollection: (self c2 allClientsIn: model allModelMethods) hasSameElements: {self m1}
 ]
 
 { #category : #'tests-clients' }
 FamixDependencyDetectorTest >> testClientMethodFromPackages [
-	self assertCollection: (self method2 allClientsIn: model allModelPackages) hasSameElements: {self package1}
+	self assertCollection: (self m2 allClientsIn: model allModelPackages) hasSameElements: {self p1}
 ]
 
 { #category : #'tests-clients' }
 FamixDependencyDetectorTest >> testClientsMethodFromClasses [
-	self assertCollection: (self method2 allClientsIn: model allModelClasses) hasSameElements: { self class1 }
+	self assertCollection: (self m2 allClientsIn: model allModelClasses) hasSameElements: { self c1 }
 ]
 
 { #category : #'tests-providers' }
 FamixDependencyDetectorTest >> testProviderClassesToMethods [
-	self assertCollection: (self class1 allProvidersIn: model allModelMethods) hasSameElements: { self method2 }
+	self assertCollection: (self c1 allProvidersIn: model allModelMethods) hasSameElements: { self m2 }
 ]
 
 { #category : #'tests-providers' }
 FamixDependencyDetectorTest >> testProviderMethodToClasses [
-	self assertCollection: (self method1 allProvidersIn: model allModelClasses) hasSameElements: { self class3 . self class2 }
+	self assertCollection: (self m1 allProvidersIn: model allModelClasses) hasSameElements: { self c3 . self c2 }
 ]
 
 { #category : #'tests-providers' }
 FamixDependencyDetectorTest >> testProviderMethodToPackages [
-	self assertCollection: (self method1 allProvidersIn: model allModelPackages) hasSameElements: {self package2 . self package3}
+	self assertCollection: (self m1 allProvidersIn: model allModelPackages) hasSameElements: {self p2 . self p3}
 ]
