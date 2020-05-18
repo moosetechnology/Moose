@@ -55,17 +55,17 @@ FamixDependencyDetectorTest >> m2 [
 
 { #category : #helpers }
 FamixDependencyDetectorTest >> p1 [
-	^ model entityNamed: #p1
+	^ model entityNamed: 'package1'
 ]
 
 { #category : #helpers }
 FamixDependencyDetectorTest >> p2 [
-	^ model entityNamed: #p2
+	^ model entityNamed: 'package2'
 ]
 
 { #category : #helpers }
 FamixDependencyDetectorTest >> p3 [
-	^ model entityNamed: #p3
+	^ model entityNamed: 'package3'
 ]
 
 { #category : #running }
