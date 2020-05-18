@@ -80,11 +80,6 @@ FAMIXInvocation >> isASureInvocation [
 ]
 
 { #category : #'Famix-Implementation' }
-FAMIXInvocation >> isInvocation [ 	
-	^true
-]
-
-{ #category : #'Famix-Implementation' }
 FAMIXInvocation >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPut: $#.

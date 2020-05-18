@@ -25,11 +25,6 @@ FAMIXFunction >> container: anObject [
 	^ self functionOwner: anObject
 ]
 
-{ #category : #'Famix-Implementation' }
-FAMIXFunction >> isFunction [
-	^true.
-]
-
 { #category : #testing }
 FAMIXFunction >> isPrivate [
 	^ self isPublic not

@@ -25,11 +25,6 @@ FAMIXAccess class >> toMethod [
 	^ self lookupSelector: #variable
 ]
 
-{ #category : #testing }
-FAMIXAccess >> isAccess [
-	^true
-]
-
 { #category : #'Famix-Implementation' }
 FAMIXAccess >> printOn: aStream [
 	super printOn: aStream.

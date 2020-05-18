@@ -190,11 +190,6 @@ FamixJavaNamespace >> instability: aNumber [
 	self privateState propertyAt: #instability put: aNumber
 ]
 
-{ #category : #testing }
-FamixJavaNamespace >> isNamespace [
-	^ true
-]
-
 { #category : #'Famix-Extensions-metrics' }
 FamixJavaNamespace >> martinCohesion [
 	"Computing cohesion as described by Robert C. Martin"

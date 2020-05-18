@@ -80,11 +80,6 @@ FamixJavaInvocation >> isASureInvocation [
 	^ invoRVar isNotNil and: [ invoRVar class = FamixJavaClass or: [ invoRVar isImplicitVariable and: [ invoRVar isSelf or: [ invoRVar isSuper ] ] ] ]
 ]
 
-{ #category : #testing }
-FamixJavaInvocation >> isInvocation [ 	
-	^true
-]
-
 { #category : #printing }
 FamixJavaInvocation >> printOn: aStream [
 	super printOn: aStream.
