@@ -20,6 +20,20 @@ FmxMBGeneratorTest >> testGenerateMooseModelSubclass [
 ]
 
 { #category : #tests }
+FmxMBGeneratorTest >> testGeneratedClassesDoNotOverrideMethodsWithGeneratedPragmaToAddVersionWithTheSameAST [
+	| duplicatedMethods |
+	duplicatedMethods := SystemNavigation default allClasses iterator
+		| #hasTraitComposition selectIt
+		| #isMetamodelEntity selectIt
+		| [ :class | class localMethods , class class localMethods ] flatCollectIt
+		| [ :method | method pragmas anySatisfy: [ :pragma | pragma selector = #generated ] ] rejectIt
+		| #isEquivalentToGeneratedMethodOfTrait selectIt
+		> Array.
+		
+	self assertEmpty: duplicatedMethods
+]
+
+{ #category : #tests }
 FmxMBGeneratorTest >> testGeneratorsAreUpToDate [
 	FamixMetamodelGenerator generatorsToKeepUpToDate
 		do: [ :mm | 

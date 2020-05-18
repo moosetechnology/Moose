@@ -146,11 +146,6 @@ FAMIXNamespace >> instability: aNumber [
 ]
 
 { #category : #'Famix-Implementation' }
-FAMIXNamespace >> isNamespace [
-	^ true
-]
-
-{ #category : #'Famix-Implementation' }
 FAMIXNamespace >> methods [
 	^ self privateState 
 			cacheAt: #methods 
