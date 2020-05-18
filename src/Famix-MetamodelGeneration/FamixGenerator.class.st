@@ -968,11 +968,15 @@ FamixGenerator >> defineHierarchy [
 	tNamedEntity --|> #TEntityMetaLevelDependency.
 	tNamedEntity --|> tSourceEntity.
 
+	tPackage --|> tScopingEntity.
+
 	tParameter --|> tStructuralEntity.
 	
 	tReference --|> tAssociation.
 
-	tScopingEntity  --|> #TOODependencyQueries.
+	tScopingEntity --|> tNamedEntity.
+	tScopingEntity --|> #TOODependencyQueries.
+	tScopingEntity withPrecedenceOf: #TOODependencyQueries.
 	
 	tStructuralEntity --|> tNamedEntity.
 	tStructuralEntity --|> tAccessible.

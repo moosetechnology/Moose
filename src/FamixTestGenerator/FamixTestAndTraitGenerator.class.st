@@ -18,19 +18,19 @@ FamixTestAndTraitGenerator >> computeAddMethodNameFrom: aSlot [
 	| normalizedName pieces lowerCasePieces |
 	pieces := aSlot name cutCamelCase.
 	lowerCasePieces := OrderedCollection new.
-	pieces do: [ :e | lowerCasePieces add: e asLowercase  ].
+	pieces do: [ :e | lowerCasePieces add: e asLowercase ].
 	pieces removeAll.
 	normalizedName := aSlot name.
-	( lowerCasePieces includes: 'children' ) ifTrue: [ lowerCasePieces := lowerCasePieces copyReplaceAll: {'children'}  with: {'child'}. 
-		normalizedName := (String streamContents: [ :aStream | 
-	lowerCasePieces do: [:element | aStream nextPutAll: element asCamelCase] ]).
-		normalizedName := normalizedName copyReplaceAll: normalizedName first asCollection  with: normalizedName first asLowercase asCollection  ].
+	(lowerCasePieces includes: 'children')
+		ifTrue: [ lowerCasePieces := lowerCasePieces copyReplaceAll: {'children'} with: {'child'}.
+			normalizedName := String streamContents: [ :aStream | lowerCasePieces do: [ :element | aStream nextPutAll: element asCamelCase ] ].
+			normalizedName := normalizedName copyReplaceAll: normalizedName first asCollection with: normalizedName first asLowercase asCollection ].
 	(normalizedName endsWith: 'sses')
 		ifTrue: [ normalizedName := normalizedName withoutSuffix: 'es' ]
-		ifFalse: [ (normalizedName endsWith: 'ies')
-				ifTrue: [ normalizedName := (normalizedName withoutSuffix: 'ies') , 'y' ]
-				ifFalse: [ normalizedName := normalizedName withoutSuffix: 's' ] ].
-	^ 'add' , normalizedName capitalized, ':'
+		ifFalse: [ normalizedName := (normalizedName endsWith: 'ies')
+				ifTrue: [ (normalizedName withoutSuffix: 'ies') , 'y' ]
+				ifFalse: [ normalizedName withoutSuffix: 's' ] ].
+	^ 'add' , normalizedName capitalized , ':'
 ]
 
 { #category : #accessing }

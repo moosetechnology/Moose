@@ -68,23 +68,6 @@ FAMIXMethod >> hasInnerClassImplementingMethods [
 	^ self innerClassesImplementingMethods isNotEmpty
 ]
 
-{ #category : #'Famix-Extensions' }
-FAMIXMethod >> hierarchyNestingLevel [
-	<FMProperty: #hierarchyNestingLevel type: #Number>
-	<derived>
-	<FMComment: 'The nesting level in the hierarchy'>
-	
-	^self
-		lookUpPropertyNamed: #hierarchyNestingLevel
-		computedAs: [self belongsTo hierarchyNestingLevel]
-]
-
-{ #category : #'Famix-Extensions' }
-FAMIXMethod >> hierarchyNestingLevel: aNumber [
-
-	self privateState propertyAt: #hierarchyNestingLevel put: aNumber
-]
-
 { #category : #'Famix-Java' }
 FAMIXMethod >> implementMethod [
 	^ self belongsTo implementedInterfaces

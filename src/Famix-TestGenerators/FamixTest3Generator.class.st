@@ -9,7 +9,10 @@ Class {
 		'reference',
 		'invocation',
 		'classEntitygroup',
-		'typeGroup'
+		'typeGroup',
+		'attribute',
+		'access',
+		'package'
 	],
 	#category : #'Famix-TestGenerators'
 }
@@ -31,9 +34,12 @@ FamixTest3Generator >> defineClasses [
 
 	super defineClasses.
 
+	access := builder newClassNamed: #Access.
+	attribute := builder newClassNamed: #Attribute.
 	classEntity := builder newClassNamed: #Class.
 	classEntitygroup := classEntity withGroup.
 	method := builder newClassNamed: #Method.
+	package := builder newClassNamed: #Package.
 	type := builder newClassNamed: #Type.
 	typeGroup := type withGroup.
 	primitiveType := builder newClassNamed: #PrimitiveType.
@@ -48,6 +54,10 @@ FamixTest3Generator >> defineHierarchy [
 
 	super defineHierarchy.
 
+	access --|> #TAccess.
+
+	attribute --|> #TAttribute.
+	
 	type --|> namedEntity.
 	type --|> #TType.
 
@@ -56,6 +66,8 @@ FamixTest3Generator >> defineHierarchy [
 
 	method --|> namedEntity.
 	method --|> #TMethod.
+	
+	package --|> #TPackage.
 	
 	primitiveType --|> type.
 	primitiveType --|> #TWithTypes.

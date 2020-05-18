@@ -51,6 +51,13 @@ FamixTAssociation classSide >> source: anEntity target: anotherEntity model: aMo
 		yourself
 ]
 
+{ #category : #printing }
+FamixTAssociation >> gtDisplayOn: aStream [
+	self source gtDisplayOn: aStream.
+	aStream nextPutAll: ' -> '.
+	self target gtDisplayOn: aStream
+]
+
 { #category : #testing }
 FamixTAssociation >> isAssociation [
 

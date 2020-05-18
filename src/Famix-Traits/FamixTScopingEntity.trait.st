@@ -9,7 +9,7 @@ Trait {
 		'#childScopes => FMMany type: #FamixTScopingEntity opposite: #parentScope',
 		'#parentScope => FMOne type: #FamixTScopingEntity opposite: #childScopes'
 	],
-	#traits : 'TOODependencyQueries',
+	#traits : '(FamixTNamedEntity + TOODependencyQueries withPrecedenceOf: TOODependencyQueries)',
 	#category : #'Famix-Traits-ScopingEntity'
 }
 
