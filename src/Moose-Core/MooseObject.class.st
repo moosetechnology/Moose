@@ -171,7 +171,11 @@ MooseObject class >> superclassesAndFamixTraits [
 
 { #category : #'meta information' }
 MooseObject >> allDeclaredProperties [
-	^ self class allDeclaredProperties
+	"Do not use the class side version
+
+This method allows us to look for its properties in the metadescription.
+And, the metadescription might be different in the instance and in the class side since we can define for each instance its metamodel (with more or less properties)"
+	^ self mooseDescription allProperties
 ]
 
 { #category : #'meta information' }
