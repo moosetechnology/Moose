@@ -64,23 +64,6 @@ FamixStMethod >> hasEmptyBody [
 	^ self numberOfAccesses = 0 and: [ self numberOfOutgoingInvocations = 0 ]
 ]
 
-{ #category : #'Famix-Extensions-metrics-support' }
-FamixStMethod >> hierarchyNestingLevel [
-	<FMProperty: #hierarchyNestingLevel type: #Number>
-	<derived>
-	<FMComment: 'The nesting level in the hierarchy'>
-	
-	^self
-		lookUpPropertyNamed: #hierarchyNestingLevel
-		computedAs: [self belongsTo hierarchyNestingLevel]
-]
-
-{ #category : #'Famix-Extensions-metrics-support' }
-FamixStMethod >> hierarchyNestingLevel: aNumber [
-
-	self privateState propertyAt: #hierarchyNestingLevel put: aNumber
-]
-
 { #category : #initialization }
 FamixStMethod >> initialize [
 	super initialize.
