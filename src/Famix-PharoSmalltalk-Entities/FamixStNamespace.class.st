@@ -30,11 +30,6 @@ FamixStNamespace >> abstractness [
 ]
 
 { #category : #'Famix-Extensions-nav All Dependencies' }
-FamixStNamespace >> isNamespace [
-	^ true
-]
-
-{ #category : #'Famix-Extensions-nav All Dependencies' }
 FamixStNamespace >> mooseNameOn: aStream [ 
 	| parent |
 	parent := self belongsTo.
