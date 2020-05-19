@@ -25,9 +25,9 @@ FamixTestAndTraitGenerator >> computeAddMethodNameFrom: aSlot [
 		ifTrue: [ lowerCasePieces := lowerCasePieces copyReplaceAll: {'children'} with: {'child'}.
 			normalizedName := String streamContents: [ :aStream | lowerCasePieces do: [ :element | aStream nextPutAll: element asCamelCase ] ].
 			normalizedName := normalizedName copyReplaceAll: normalizedName first asCollection with: normalizedName first asLowercase asCollection ].
-	(normalizedName endsWith: 'sses')
-		ifTrue: [ normalizedName := normalizedName withoutSuffix: 'es' ]
-		ifFalse: [ normalizedName := (normalizedName endsWith: 'ies')
+	normalizedName := (normalizedName endsWith: 'sses')
+		ifTrue: [ normalizedName withoutSuffix: 'es' ]
+		ifFalse: [ (normalizedName endsWith: 'ies')
 				ifTrue: [ (normalizedName withoutSuffix: 'ies') , 'y' ]
 				ifFalse: [ normalizedName withoutSuffix: 's' ] ].
 	^ 'add' , normalizedName capitalized , ':'

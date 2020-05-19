@@ -48,12 +48,15 @@ MooseVersionWizard >> defaultVersionNumberFromSource: sourceVersionNumber within
 { #category : #private }
 MooseVersionWizard >> defaultVersionSelector: aVersionNumberString commitType: aSymbol [
 	"Inspired by Metacello default selector template"
+
 	| selectorPrefix |
-	aSymbol = #branchDev
-		ifTrue: [ selectorPrefix := 'branch' ]
-		ifFalse: [ selectorPrefix := 'version' ].
-	^ String streamContents: [:str|
-			str nextPutAll: selectorPrefix;
+	selectorPrefix := aSymbol = #branchDev
+		ifTrue: [ 'branch' ]
+		ifFalse: [ 'version' ].
+	^ String
+		streamContents: [ :str | 
+			str
+				nextPutAll: selectorPrefix;
 				nextPutAll: ((aVersionNumberString copyWithout: $.) copyWithout: $-);
 				nextPut: $: ]
 ]
@@ -184,10 +187,10 @@ MooseVersionWizard >> prefixMatching: sourceVersionNumber commitType: commitType
 	"
 
 	| index |
-	commitType = #branchDev
-		ifTrue: [ index := 3 ]
-		ifFalse: [ index := 2 ].
-	^ (sourceVersionNumber asMetacelloVersionNumber copyFrom: 1 to: index) printString, '.*'
+	index := commitType = #branchDev
+		ifTrue: [ 3 ]
+		ifFalse: [ 2 ].
+	^ (sourceVersionNumber asMetacelloVersionNumber copyFrom: 1 to: index) printString , '.*'
 ]
 
 { #category : #private }
