@@ -41,11 +41,11 @@ FameNameConventionBetweenFM3AndSmalltalkRule >> addClass: aClass toMetaBuilderCo
 					| argument |
 					argument := pragma argumentAt: 2.
 					argument = #Object
-						ifFalse: [ (argument includes: $.)
+						ifFalse: [ classToAdd := (argument includes: $.)
 								ifTrue: [ classToAdd := ''.
 									(argument substrings: #($.)) do: [ :each | classToAdd := classToAdd , each ].
-									classToAdd := Smalltalk classNamed: classToAdd ]
-								ifFalse: [ classToAdd := Smalltalk classNamed: argument asString ].
+									Smalltalk classNamed: classToAdd ]
+								ifFalse: [ Smalltalk classNamed: argument asString ].
 
 							(aCollectionOfClasses includes: classToAdd) ifFalse: [ self addClass: classToAdd toMetaBuilderCollection: aCollectionOfClasses ] ] ] ]
 ]
