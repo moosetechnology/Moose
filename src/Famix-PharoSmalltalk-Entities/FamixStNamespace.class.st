@@ -54,8 +54,7 @@ FamixStNamespace >> numberOfClasses [
 
 { #category : #'Famix-Extensions' }
 FamixStNamespace >> numberOfClasses: aNumber [
-
-	self privateState propertyAt: #numberOfClasses put: aNumber
+	self privateState cacheAt: #numberOfClasses put: aNumber
 ]
 
 { #category : #'Famix-Extensions' }
@@ -71,6 +70,5 @@ FamixStNamespace >> numberOfMethods [
 
 { #category : #'Famix-Extensions' }
 FamixStNamespace >> numberOfMethods: aNumber [
-
-	self privateState propertyAt: #numberOfMethods put: aNumber
+	self privateState cacheAt: #numberOfMethods put: aNumber
 ]

@@ -12,6 +12,7 @@ Trait {
 		'#typedEntities => FMMany type: #FamixTTypedEntity opposite: #declaredType'
 	],
 	#traits : 'FamixTNamedEntity + FamixTReferenceable',
+	#classTraits : 'FamixTNamedEntity classTrait + FamixTReferenceable classTrait',
 	#category : #'Famix-Traits-Type'
 }
 
@@ -57,8 +58,7 @@ FamixTType >> fanIn [
 
 { #category : #metrics }
 FamixTType >> fanIn: aNumber [
-
-	self privateState propertyAt: #fanIn put: aNumber
+	self privateState cacheAt: #fanIn put: aNumber
 ]
 
 { #category : #testing }
@@ -95,8 +95,7 @@ FamixTType >> numberOfAccessesToForeignData [
 
 { #category : #metrics }
 FamixTType >> numberOfAccessesToForeignData: aNumber [
-
-	self privateState propertyAt: #numberOfAccessesToForeignData put: aNumber
+	self privateState cacheAt: #numberOfAccessesToForeignData put: aNumber
 ]
 
 { #category : #metrics }
@@ -112,8 +111,7 @@ FamixTType >> numberOfDuplicatedLinesOfCodeInternally [
 
 { #category : #metrics }
 FamixTType >> numberOfDuplicatedLinesOfCodeInternally: aNumber [
-
-	self privateState propertyAt: #numberOfDuplicatedLinesOfCodeInternally put: aNumber
+	self privateState cacheAt: #numberOfDuplicatedLinesOfCodeInternally put: aNumber
 ]
 
 { #category : #testing }

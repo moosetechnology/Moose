@@ -187,8 +187,7 @@ FamixStMethod >> numberOfConditionals [
 
 { #category : #'Famix-Extensions-private' }
 FamixStMethod >> numberOfConditionals: aNumber [
-
-	self privateState propertyAt: #numberOfConditionals put: aNumber
+	self privateState cacheAt: #numberOfConditionals put: aNumber
 ]
 
 { #category : #'Famix-Extensions-private' }

@@ -292,7 +292,7 @@ MooseModel >> addAll: entities [
 { #category : #'entity collection' }
 MooseModel >> addNoAnnounce: anElement [ 
 	self entityStorage add: anElement.
-	self privateState flushGroups. 
+	self privateState flush. 
 	anElement privateSetMooseModel: self.
 	^anElement
 ]
@@ -326,7 +326,7 @@ MooseModel >> asMSEString [
 MooseModel >> cacheMooseGroups [
 	<menuItem: 'Cache groups' category: 'Utilities'>
 	| selectors |
-	self privateState flushGroups.
+	self privateState flush.
 	selectors := self navigationSelectors.
 	MooseCustomTask
 		runWithProgress: [ :bar | 
@@ -448,20 +448,12 @@ MooseModel >> factory [
 ]
 
 { #category : #actions }
-MooseModel >> flushGroups [
-	self entities do: [ :entity | entity privateState flushGroups ] displayingProgress: [ :entity | 'Cleaning cache of ' , entity mooseName ]
-]
-
-{ #category : #actions }
 MooseModel >> flushPrivateState [
 	"Clean the private state caches of all the entities of the model. This will not impact attributes in the private state (informations you cannot derive)"
-	self flushProperties.
-	self flushGroups
-]
 
-{ #category : #actions }
-MooseModel >> flushProperties [
-	self entities do: [ :entity | entity privateState flushProperties ] displayingProgress: [ :entity | 'Cleaning cache of ' , entity mooseName ]
+	self entities
+		do: [ :entity | entity privateState flush ]
+		displayingProgress: [ :entity | 'Cleaning cache of ' , entity mooseName ]
 ]
 
 { #category : #actions }
@@ -630,7 +622,7 @@ MooseModel >> remove [
 MooseModel >> remove: anElement [
 	self entityStorage remove: anElement. 
 	anElement privateSetMooseModel: nil. 
-	self privateState flushGroups. 
+	self privateState flush. 
 	self announcer announce: (MooseEntityRemoved new entity: anElement).
 	^anElement
 ]
@@ -644,7 +636,7 @@ MooseModel >> removeAll [
 	self entities
 		do: [ :anElement | 
 			anElement privateSetMooseModel: nil.
-			self privateState flushGroups.
+			self privateState flush.
 			self announcer announce: (MooseEntityRemoved new entity: anElement) ].
 	self entityStorage removeAll
 ]

@@ -323,5 +323,5 @@ MooseAbstractGroup >> numberOfLinesOfCode [
 MooseAbstractGroup >> numberOfPackages [
 	<FMProperty: #numberOfPackages type: #Number>
 	<FMComment: 'Total number of packages'>
-	^ self privateState propertyAt: #numberOfPackages ifAbsentPut: [ self numberOfEntityUsing: FamixTPackage ] 
+	^ self privateState cacheAt: #numberOfPackages ifAbsentPut: [ self numberOfEntityUsing: FamixTPackage ]
 ]

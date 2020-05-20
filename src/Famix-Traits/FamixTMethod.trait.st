@@ -12,6 +12,7 @@ Trait {
 		'#parentType => FMOne type: #FamixTWithMethods opposite: #methods'
 	],
 	#traits : '(FamixTHasSignature + FamixTInvocable + FamixTNamedEntity + FamixTTypedEntity + FamixTWithClassScope + FamixTWithImplicitVariables + FamixTWithLocalVariables + FamixTWithParameters + FamixTWithReferences + FamixTWithStatements + TOODependencyQueries withPrecedenceOf: FamixTWithStatements)',
+	#classTraits : '(FamixTHasSignature classTrait + FamixTInvocable classTrait + FamixTNamedEntity classTrait + FamixTTypedEntity classTrait + FamixTWithClassScope classTrait + FamixTWithImplicitVariables classTrait + FamixTWithLocalVariables classTrait + FamixTWithParameters classTrait + FamixTWithReferences classTrait + FamixTWithStatements classTrait + TOODependencyQueries classTrait withPrecedenceOf: FamixTWithStatements classTrait)',
 	#category : #'Famix-Traits-Behavioral'
 }
 
@@ -42,8 +43,7 @@ FamixTMethod >> cyclomaticComplexity [
 
 { #category : #metrics }
 FamixTMethod >> cyclomaticComplexity: aNumber [
-
-	self privateState propertyAt: #cyclomaticComplexity put: aNumber
+	self privateState cacheAt: #cyclomaticComplexity put: aNumber
 ]
 
 { #category : #metrics }
@@ -59,8 +59,7 @@ FamixTMethod >> hierarchyNestingLevel [
 
 { #category : #metrics }
 FamixTMethod >> hierarchyNestingLevel: aNumber [
-
-	self privateState propertyAt: #hierarchyNestingLevel put: aNumber
+	self privateState cacheAt: #hierarchyNestingLevel put: aNumber
 ]
 
 { #category : #accessing }
@@ -106,9 +105,7 @@ FamixTMethod >> isConstructor [
 	<FMProperty: #isConstructor type: #Boolean>
 	<derived>
 	<FMComment: 'True if the method is a constructor of the class'>
-
-	^ #constructor = self kind or: [ 
-		self privateState propertyAt: #isConstructor ifAbsent: [false] ]
+	^ #constructor = self kind or: [ self privateState cacheAt: #isConstructor ifAbsent: [ false ] ]
 ]
 
 { #category : #testing }
@@ -137,9 +134,7 @@ FamixTMethod >> isMethod [
 
 { #category : #testing }
 FamixTMethod >> isPureAccessor [
-	^self isGetter
-		or: [self isSetter
-		or: [self privateState propertyAt: #isPureAccessor ifAbsent: [false]]]
+	^ self isGetter or: [ self isSetter or: [ self privateState cacheAt: #isPureAccessor ifAbsent: [ false ] ] ]
 ]
 
 { #category : #testing }
@@ -189,8 +184,7 @@ FamixTMethod >> numberOfMessageSends [
 
 { #category : #metrics }
 FamixTMethod >> numberOfMessageSends: aNumber [
-
-	self privateState propertyAt: #numberOfMessageSends put: aNumber
+	self privateState cacheAt: #numberOfMessageSends put: aNumber
 ]
 
 { #category : #accessing }

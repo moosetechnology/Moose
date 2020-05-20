@@ -49,8 +49,7 @@ FamixTWithTypes >> fanOut [
 
 { #category : #metrics }
 FamixTWithTypes >> fanOut: aNumber [
-
-	self privateState propertyAt: #fanOut put: aNumber
+	self privateState cacheAt: #fanOut put: aNumber
 ]
 
 { #category : #accessing }

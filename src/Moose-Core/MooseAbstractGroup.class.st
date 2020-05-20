@@ -52,7 +52,7 @@ MooseAbstractGroup >> \ aCollection [
 MooseAbstractGroup >> add: anItem [ 
 
 	self entityStorage add: anItem.
-	self privateState flushGroups. 
+	self privateState flush. 
 	^ anItem
 ]
 
@@ -608,7 +608,7 @@ MooseAbstractGroup >> removeEntity: anEntity [
 MooseAbstractGroup >> resetMooseNameFor: anEntity [ 
 	self entityStorage resetMooseNameFor: anEntity.
 	" this is safe, but probably a bit overdone "
-	self privateState flushGroups
+	self privateState flush
 ]
 
 { #category : #accessing }

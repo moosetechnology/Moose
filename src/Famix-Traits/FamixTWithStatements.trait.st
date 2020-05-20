@@ -1,6 +1,7 @@
 Trait {
 	#name : #FamixTWithStatements,
 	#traits : 'FamixTSourceEntity + FamixTWithAccesses + FamixTWithInvocations',
+	#classTraits : 'FamixTSourceEntity classTrait + FamixTWithAccesses classTrait + FamixTWithInvocations classTrait',
 	#category : #'Famix-Traits-Behavioral'
 }
 
@@ -30,8 +31,7 @@ FamixTWithStatements >> numberOfStatements [
 
 { #category : #metrics }
 FamixTWithStatements >> numberOfStatements: aNumber [
-
-	self privateState propertyAt: #numberOfStatements put: aNumber
+	self privateState cacheAt: #numberOfStatements put: aNumber
 ]
 
 { #category : #asserting }

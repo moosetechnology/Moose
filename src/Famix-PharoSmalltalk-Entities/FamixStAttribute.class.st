@@ -34,8 +34,7 @@ FamixStAttribute >> hierarchyNestingLevel [
 
 { #category : #'Famix-Implementation' }
 FamixStAttribute >> hierarchyNestingLevel: aNumber [
-
-	self privateState propertyAt: #hierarchyNestingLevel put: aNumber
+	self privateState cacheAt: #hierarchyNestingLevel put: aNumber
 ]
 
 { #category : #'Famix-Implementation' }

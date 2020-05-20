@@ -113,8 +113,7 @@ FAMIXMethod >> isClassInitializer [
 	<FMProperty: #isClassInitializer type: #Boolean>
 	<derived>
 	<FMComment: 'True if the method is an initializer of the class (i.e. contains the attribute init env)'>
-	^ #initializer = self kind
-		or: [ self privateState propertyAt: #isClassInitializer ifAbsent: [ false ] ]
+	^ #initializer = self kind or: [ self privateState cacheAt: #isClassInitializer ifAbsent: [ false ] ]
 ]
 
 { #category : #'Famix-Extensions' }
@@ -215,8 +214,7 @@ FAMIXMethod >> numberOfInvokedMethods [
 	<FMProperty: #numberOfInvokedMethods type: #Number>
 	<FMComment: 'Return a number corresponding to the number of invoked methods'>
 	<derived>
-	
-	^ self privateState propertyAt: #numberOfInvokedMethods ifAbsentPut: [self invokedMethods size]
+	^ self privateState cacheAt: #numberOfInvokedMethods ifAbsentPut: [ self invokedMethods size ]
 ]
 
 { #category : #'Famix-Implementation' }

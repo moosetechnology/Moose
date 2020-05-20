@@ -90,8 +90,7 @@ FamixTClassHierarchyNavigation >> hierarchyNestingLevel [
 
 { #category : #metrics }
 FamixTClassHierarchyNavigation >> hierarchyNestingLevel: aNumber [
-
-	self privateState propertyAt: #hierarchyNestingLevel put: aNumber
+	self privateState cacheAt: #hierarchyNestingLevel put: aNumber
 ]
 
 { #category : #enumerating }
@@ -159,8 +158,7 @@ FamixTClassHierarchyNavigation >> numberOfAttributesInherited [
 
 { #category : #metrics }
 FamixTClassHierarchyNavigation >> numberOfAttributesInherited: aNumber [
-
-	self privateState propertyAt: #numberOfAttributesInherited put: aNumber
+	self privateState cacheAt: #numberOfAttributesInherited put: aNumber
 ]
 
 { #category : #metrics }
@@ -168,14 +166,12 @@ FamixTClassHierarchyNavigation >> numberOfDirectSubclasses [
 	<FMProperty: #numberOfDirectSubclasses type: #Number>
 	<FMComment: 'The number of direct subclasses'>
 	<derived>
-
-	^ self privateState propertyAt: #numberOfDirectSubclasses ifAbsentPut: [self directSubclasses size]
+	^ self privateState cacheAt: #numberOfDirectSubclasses ifAbsentPut: [ self directSubclasses size ]
 ]
 
 { #category : #metrics }
 FamixTClassHierarchyNavigation >> numberOfDirectSubclasses: aNumber [
-
-	self privateState propertyAt: #numberOfDirectSubclasses put: aNumber
+	self privateState cacheAt: #numberOfDirectSubclasses put: aNumber
 ]
 
 { #category : #metrics }
@@ -191,8 +187,7 @@ FamixTClassHierarchyNavigation >> numberOfMethodsAdded [
 
 { #category : #metrics }
 FamixTClassHierarchyNavigation >> numberOfMethodsAdded: aNumber [
-
-	self privateState propertyAt: #numberOfMethodsAdded put: aNumber
+	self privateState cacheAt: #numberOfMethodsAdded put: aNumber
 ]
 
 { #category : #metrics }
@@ -210,8 +205,7 @@ FamixTClassHierarchyNavigation >> numberOfMethodsInHierarchy [
 
 { #category : #metrics }
 FamixTClassHierarchyNavigation >> numberOfMethodsInHierarchy: aNumber [
-
-	self privateState propertyAt: #numberOfMethodsInHierarchy put: aNumber
+	self privateState cacheAt: #numberOfMethodsInHierarchy put: aNumber
 ]
 
 { #category : #metrics }
@@ -227,8 +221,7 @@ FamixTClassHierarchyNavigation >> numberOfMethodsInherited [
 
 { #category : #metrics }
 FamixTClassHierarchyNavigation >> numberOfMethodsInherited: aNumber [
-
-	self privateState propertyAt: #numberOfMethodsInherited put: aNumber
+	self privateState cacheAt: #numberOfMethodsInherited put: aNumber
 ]
 
 { #category : #metrics }
@@ -244,8 +237,7 @@ FamixTClassHierarchyNavigation >> numberOfMethodsOverriden [
 
 { #category : #metrics }
 FamixTClassHierarchyNavigation >> numberOfMethodsOverriden: aNumber [
-
-	self privateState propertyAt: #numberOfMethodsOverriden put: aNumber
+	self privateState cacheAt: #numberOfMethodsOverriden put: aNumber
 ]
 
 { #category : #metrics }
@@ -261,8 +253,7 @@ FamixTClassHierarchyNavigation >> numberOfParents [
 
 { #category : #metrics }
 FamixTClassHierarchyNavigation >> numberOfParents: aNumber [
-
-	self privateState propertyAt: #numberOfParents put: aNumber
+	self privateState cacheAt: #numberOfParents put: aNumber
 ]
 
 { #category : #enumerating }
@@ -288,8 +279,7 @@ FamixTClassHierarchyNavigation >> subclassHierarchyDepth [
 
 { #category : #metrics }
 FamixTClassHierarchyNavigation >> subclassHierarchyDepth: aNumber [
-
-	self privateState propertyAt: #subclassHierarchyDepth put: aNumber
+	self privateState cacheAt: #subclassHierarchyDepth put: aNumber
 ]
 
 { #category : #enumerating }
@@ -334,8 +324,7 @@ FamixTClassHierarchyNavigation >> totalNumberOfChildren [
 
 { #category : #metrics }
 FamixTClassHierarchyNavigation >> totalNumberOfChildren: aNumber [
-
-	self privateState propertyAt: #totalNumberOfChildren put: aNumber
+	self privateState cacheAt: #totalNumberOfChildren put: aNumber
 ]
 
 { #category : #enumerating }

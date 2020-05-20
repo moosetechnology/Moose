@@ -56,8 +56,7 @@ FamixTWithSourceAnchor >> numberOfLinesOfCode [
 
 { #category : #metrics }
 FamixTWithSourceAnchor >> numberOfLinesOfCode: aNumber [
-
-	self privateState propertyAt: #numberOfLinesOfCode put: aNumber
+	self privateState cacheAt: #numberOfLinesOfCode put: aNumber
 ]
 
 { #category : #metrics }

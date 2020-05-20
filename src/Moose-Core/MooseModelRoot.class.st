@@ -24,6 +24,7 @@ MooseModelRoot class >> installedRoot [
 
 { #category : #accessing }
 MooseModelRoot class >> resetRoot [
+	<script>
 	self installRoot: nil
 ]
 

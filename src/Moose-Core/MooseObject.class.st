@@ -88,7 +88,7 @@ MooseObject class >> cache [
 
 { #category : #accessing }
 MooseObject class >> defaultState [
-	^ DefaultState ifNil: [ DefaultState := MooseMemoryEfficientState ]
+	^ DefaultState ifNil: [ DefaultState := MooseEntityState ]
 ]
 
 { #category : #accessing }
@@ -325,7 +325,7 @@ MooseObject >> mooseName [
 			self mooseNameOn: stream.
 			^ stream contents asSymbol ].
 	^ self privateState
-		propertyAt: #mooseName
+		cacheAt: #mooseName
 		ifAbsentPut: [ | stream |
 			stream := (String new: 64) writeStream.
 			self mooseNameOn: stream.
@@ -376,7 +376,8 @@ MooseObject >> printOn: aStream [
 { #category : #private }
 MooseObject >> privateClearMooseName [
 	" this method causes the cache to fail if called directly. Use resetMooseName instead. "
-	self privateState removeProperty: #mooseName
+
+	self privateState removeCache: #mooseName
 ]
 
 { #category : #private }
@@ -402,7 +403,7 @@ MooseObject >> properties [
 	 
 	"for read only uses, i.e. don't change the returned value"
 	
-	^self privateState allProperties
+	^self privateState allCachedValues
 ]
 
 { #category : #properties }
@@ -420,7 +421,7 @@ MooseObject >> propertyNamed: propertyName ifAbsent: aBlock [
 	| prop |
 	prop := propertyName asSymbol.
 	^ self privateState
-		propertyAt: prop
+		cacheAt: prop
 		ifAbsent: [ | property |
 			[ property := self mmGetProperty: (self mooseDescription propertyNamed: propertyName) ]
 				on: Error
@@ -429,9 +430,8 @@ MooseObject >> propertyNamed: propertyName ifAbsent: aBlock [
 ]
 
 { #category : #properties }
-MooseObject >> propertyNamed: name ifAbsentPut: value [ 
-	 
-	^self privateState propertyAt: name ifAbsentPut: value
+MooseObject >> propertyNamed: name ifAbsentPut: value [
+	^ self privateState cacheAt: name ifAbsentPut: value
 ]
 
 { #category : #properties }
@@ -441,7 +441,7 @@ MooseObject >> propertyNamed: propertyName ifNil: aBlock [
 	| prop |
 	prop := propertyName asSymbol.
 	^ self privateState
-		propertyAt: prop
+		cacheAt: prop
 		ifAbsent: [ | property |
 			[ property := self mmGetProperty: (self mooseDescription propertyNamed: propertyName) ]
 				on: Error
@@ -450,9 +450,8 @@ MooseObject >> propertyNamed: propertyName ifNil: aBlock [
 ]
 
 { #category : #properties }
-MooseObject >> propertyNamed: name put: value [ 
-	 
-	^self privateState propertyAt: name put: value
+MooseObject >> propertyNamed: name put: value [
+	^ self privateState cacheAt: name put: value
 ]
 
 { #category : #accessing }
@@ -475,8 +474,7 @@ MooseObject >> resetMooseName [
 
 { #category : #initialization }
 MooseObject >> resetPrivateState [
-
-	state := self defaultStateClass with: self
+	state := self defaultStateClass for: self
 ]
 
 { #category : #private }
