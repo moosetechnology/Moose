@@ -176,6 +176,11 @@ MooseEntityState >> propertyAt: name put: value [
 	self subclassResponsibility.
 ]
 
+{ #category : #'accessing-attributes' }
+MooseEntityState >> removeAttribute: aSymbol [
+	self subclassResponsibility
+]
+
 { #category : #accessing }
 MooseEntityState >> removeProperty: aKey [ 
 	self subclassResponsibility

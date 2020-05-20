@@ -149,6 +149,11 @@ MooseMinimalState >> propertyAt: name put: value [
 	self nullStateError
 ]
 
+{ #category : #'accessing-attributes' }
+MooseMinimalState >> removeAttribute: aSymbol [
+	self nullStateError
+]
+
 { #category : #accessing }
 MooseMinimalState >> removeProperty: name [
 ]

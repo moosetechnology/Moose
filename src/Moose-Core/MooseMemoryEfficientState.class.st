@@ -136,6 +136,16 @@ MooseMemoryEfficientState >> propertyAt: name put: value [
 	^ propertyCache at: name put: value
 ]
 
+{ #category : #'accessing attributes' }
+MooseMemoryEfficientState >> removeAttribute: aSymbol [
+	| each |
+	1 to: attributes size do: [ :n | 
+		aSymbol == (each := attributes at: n) key
+			ifTrue: [ attributes := attributes copyWithout: each.
+				^ true ] ].
+	^ false
+]
+
 { #category : #'accessing properties' }
 MooseMemoryEfficientState >> removeProperty: name [
 	propertyCache removeKey: name ifAbsent: [  ]

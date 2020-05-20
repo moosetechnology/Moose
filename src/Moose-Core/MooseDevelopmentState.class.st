@@ -191,6 +191,17 @@ MooseDevelopmentState >> propertyAt: name put: value [
 
 ]
 
+{ #category : #'accessing attributes' }
+MooseDevelopmentState >> removeAttribute: aSymbol [
+	| each |
+	1 to: attributes size do: [ :n | 
+		each := attributes at: n.
+		aSymbol == each key
+			ifTrue: [ attributes := attributes copyWithout: each.
+				^ true ] ].
+	^ false
+]
+
 { #category : #'accessing properties' }
 MooseDevelopmentState >> removeProperty: name [
 	propertyCache removeKey: name ifAbsent: [ ]
