@@ -8,6 +8,7 @@ A class is typically scoped in a namespace. To model nested or anonymous classes
 Trait {
 	#name : #FamixTClass,
 	#traits : 'FamixTInvocationsReceiver + FamixTPackageable + (FamixTType - {#queryStaticIncomingAssociations. #queryStaticOutgoingAssociations}) + FamixTWithAttributes + FamixTWithComments + FamixTWithInheritances + FamixTWithMethods + TOODependencyQueries',
+	#classTraits : 'FamixTInvocationsReceiver classTrait + FamixTPackageable classTrait + FamixTType classTrait + FamixTWithAttributes classTrait + FamixTWithComments classTrait + FamixTWithInheritances classTrait + FamixTWithMethods classTrait + TOODependencyQueries classTrait',
 	#category : #'Famix-Traits-Class'
 }
 
@@ -62,6 +63,5 @@ FamixTClass >> weightOfAClass [
 
 { #category : #metrics }
 FamixTClass >> weightOfAClass: aNumber [
-
-	self privateState propertyAt: #weightOfAClass put: aNumber
+	self privateState cacheAt: #weightOfAClass put: aNumber
 ]

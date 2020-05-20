@@ -1,96 +1,104 @@
 "
-I represent the state of an entity.
-My main methods are:
+I represent the state of a Moose entity.
 
-	
+The state is composed of two main parts:
+- The attributes 
+- The cache 
+
+Attributes is a collection keeping for a key a certain value. Attributes will never be flushed, they should stay except if the user explicitly remove them!
+
+Cached properties/result is just a cache associating anything to a symbol. This cache should not contain anything that cannot be recomputed because it can be flushed.
 "
 Class {
 	#name : #MooseEntityState,
 	#superclass : #Object,
+	#instVars : [
+		'attributes',
+		'entity',
+		'cache'
+	],
 	#category : #'Moose-Core'
 }
 
 { #category : #'instance creation' }
-MooseEntityState class >> with: aMooseEntity [
-	 
-	^self new initialize: aMooseEntity
+MooseEntityState class >> for: aMooseEntity [
+	^ self new
+		entity: aMooseEntity;
+		yourself
 ]
 
-{ #category : #'accessing-properties' }
-MooseEntityState >> allProperties [ 
-	 
-	"for read only uses, i.e. don't change he returned value"
-	self subclassResponsibility
+{ #category : #'accessing cache' }
+MooseEntityState >> allCachedValues [
+	^ cache values
 ]
 
-{ #category : #'accessing-attributes' }
-MooseEntityState >> attributeAt: name ifAbsent: aBlock [ 
-	 
-	self subclassResponsibility
+{ #category : #'accessing attributes' }
+MooseEntityState >> attributeAt: name ifAbsent: aBlock [
+	1 to: attributes size do: [ :n | 
+		name == (attributes at: n) key
+			ifTrue: [ ^ (attributes at: n) value ] ].
+	^ aBlock value
 ]
 
-{ #category : #'accessing-attributes' }
-MooseEntityState >> attributeAt: name ifAbsentPut: aBlock [ 
-	 
-	self subclassResponsibility
+{ #category : #'accessing attributes' }
+MooseEntityState >> attributeAt: name ifAbsentPut: aBlock [
+	1 to: attributes size do: [ :n | 
+		name == (attributes at: n) key
+			ifTrue: [ ^ (attributes at: n) value ] ].
+	attributes := attributes copyWith: name -> aBlock value.
+	^ attributes last value
 ]
 
-{ #category : #'accessing-attributes' }
-MooseEntityState >> attributeAt: name put: value [ 
-	 
-	self subclassResponsibility
+{ #category : #'accessing attributes' }
+MooseEntityState >> attributeAt: name put: value [
+	1 to: attributes size do: [ :n | 
+		name == (attributes at: n) key
+			ifTrue: [ ^ (attributes at: n) value: value ] ].
+	attributes := attributes copyWith: name -> value.
+	^ attributes last value
 ]
 
-{ #category : #'accessing-properties' }
+{ #category : #'accessing attributes' }
+MooseEntityState >> attributes [
+	^ attributes
+]
+
+{ #category : #'accessing cache' }
 MooseEntityState >> cache: selector initializer: aBlock [
-	^ self propertyAt: selector ifAbsentPut: [ aBlock cullValue: self entity ]
+	^ self cacheAt: selector ifAbsentPut: [ aBlock cullValue: self entity ]
 ]
 
-{ #category : #'accessing group' }
+{ #category : #'accessing cache' }
 MooseEntityState >> cacheAt: name ifAbsent: aBlock [
-
-	self subclassResponsibility 
+	^ cache at: name ifAbsent: [ aBlock value ]
 ]
 
-{ #category : #'accessing group' }
+{ #category : #'accessing cache' }
 MooseEntityState >> cacheAt: name ifAbsent: absentBlock ifPresent: presentBlock [
-
-	self subclassResponsibility 
+	^ cache at: name ifPresent: presentBlock ifAbsent: absentBlock
 ]
 
-{ #category : #'accessing group' }
+{ #category : #'accessing cache' }
 MooseEntityState >> cacheAt: name ifAbsentPut: aBlock [
-
-	self subclassResponsibility 
+	^ cache at: name ifAbsentPut: aBlock
 ]
 
-{ #category : #'accessing group' }
+{ #category : #'accessing cache' }
 MooseEntityState >> cacheAt: name ifPresent: aBlock [
-
-	self subclassResponsibility 
+	^ cache at: name ifPresent: [ :value | aBlock cull: value ]
 ]
 
-{ #category : #'accessing group' }
+{ #category : #'accessing cache' }
 MooseEntityState >> cacheAt: name ifPresent: presentBlock ifAbsentPut: aBlock [
-
-	self subclassResponsibility 
+	^ cache at: name ifPresent: presentBlock ifAbsentPut: aBlock
 ]
 
-{ #category : #'accessing group' }
+{ #category : #'accessing cache' }
 MooseEntityState >> cacheAt: name put: value [
-
-	self subclassResponsibility 
+	^ cache at: name put: value
 ]
 
-{ #category : #initialization }
-MooseEntityState >> clone: newOwner [
-	| newState |
-	newState := self copy.
-	newState initialize: newOwner.
-	^ newState
-]
-
-{ #category : #'accessing-common attributes' }
+{ #category : #accessing }
 MooseEntityState >> description [
 	| entity |
 	^ self
@@ -99,89 +107,65 @@ MooseEntityState >> description [
 			entity mooseName , ' (' , entity mooseDescription name , ')' ]
 ]
 
-{ #category : #'accessing-common attributes' }
+{ #category : #accessing }
 MooseEntityState >> description: text [
 	^ self attributeAt: #privateDescription put: text
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 MooseEntityState >> entity [
-	
-	^ self subclassResponsibility
+	^ entity
 ]
 
 { #category : #accessing }
-MooseEntityState >> entityCache [ 
-	 
-	self subclassResponsibility
+MooseEntityState >> entity: anObject [
+	entity := anObject
+]
+
+{ #category : #'accessing cache' }
+MooseEntityState >> entityCache [
+	^ cache
 ]
 
 { #category : #controlling }
-MooseEntityState >> flush [ 
-	 
-	self flushProperties. 
-	self flushGroups
-]
-
-{ #category : #controlling }
-MooseEntityState >> flushGroups [ 
-	 
-	self subclassResponsibility
-]
-
-{ #category : #controlling }
-MooseEntityState >> flushProperties [ 
-	 
-	self subclassResponsibility
+MooseEntityState >> flush [
+	cache initialize
 ]
 
 { #category : #testing }
-MooseEntityState >> includesKey: selector [ 
-	 
-	self subclassResponsibility
+MooseEntityState >> includesKey: selector [
+	^ cache includesKey: selector
 ]
 
 { #category : #initialization }
-MooseEntityState >> initialize: aMooseEntity [ 
-	 
-	self subclassResponsibility
+MooseEntityState >> initialize [
+	super initialize.
+	attributes := #().
+	cache := SmallDictionary new
 ]
 
-{ #category : #'accessing-common attributes' }
+{ #category : #accessing }
 MooseEntityState >> isStub [
 	^ self attributeAt: #privateIsStub ifAbsent: [ false ]
 ]
 
-{ #category : #'accessing-common attributes' }
+{ #category : #accessing }
 MooseEntityState >> isStub: boolean [ 
 	 
 	^self attributeAt: #privateIsStub put: boolean
 ]
 
-{ #category : #'accessing-properties' }
-MooseEntityState >> propertyAt: name ifAbsent: aBlock [ 
-	 
-	self subclassResponsibility.
-]
-
-{ #category : #'accessing-properties' }
-MooseEntityState >> propertyAt: name ifAbsentPut: aBlock [ 
-	 
-	self subclassResponsibility.
-]
-
-{ #category : #'accessing-properties' }
-MooseEntityState >> propertyAt: name put: value [
-	 
-	self subclassResponsibility.
-]
-
-{ #category : #'accessing-attributes' }
+{ #category : #'accessing attributes' }
 MooseEntityState >> removeAttribute: aSymbol [
-	self subclassResponsibility
+	| each |
+	1 to: attributes size do: [ :n | 
+		aSymbol == (each := attributes at: n) key
+			ifTrue: [ attributes := attributes copyWithout: each.
+				^ true ] ].
+	^ false
 ]
 
-{ #category : #accessing }
-MooseEntityState >> removeProperty: aKey [ 
-	self subclassResponsibility
+{ #category : #'accessing cache' }
+MooseEntityState >> removeCache: name [
+	cache removeKey: name ifAbsent: [  ]
 ]

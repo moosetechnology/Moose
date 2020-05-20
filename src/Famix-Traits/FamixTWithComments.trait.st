@@ -61,7 +61,7 @@ FamixTWithComments >> numberOfComments [
 
 { #category : #accessing }
 FamixTWithComments >> numberOfComments: aNumber [
-	self privateState propertyAt: #numberOfComments put: aNumber
+	self privateState cacheAt: #numberOfComments put: aNumber
 ]
 
 { #category : #removing }

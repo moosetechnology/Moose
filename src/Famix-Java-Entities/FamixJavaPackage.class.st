@@ -212,8 +212,7 @@ FamixJavaPackage >> numberOfClientPackages [
 
 { #category : #accessing }
 FamixJavaPackage >> numberOfClientPackages: aNumber [
-
-	self privateState propertyAt: #numberOfClientPackages put: aNumber
+	self privateState cacheAt: #numberOfClientPackages put: aNumber
 ]
 
 { #category : #accessing }
@@ -228,8 +227,7 @@ FamixJavaPackage >> numberOfMethods [
 
 { #category : #accessing }
 FamixJavaPackage >> numberOfMethods: aNumber [
-
-	self privateState propertyAt: #numberOfMethods put: aNumber
+	self privateState cacheAt: #numberOfMethods put: aNumber
 ]
 
 { #category : #printing }

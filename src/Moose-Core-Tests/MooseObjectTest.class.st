@@ -107,7 +107,7 @@ MooseObjectTest >> testPrivateStateMutator [
 	state := entity privateState.
 	self assert: state isNotNil.
 
-	mooseState := MooseMemoryEfficientState new.
+	mooseState := MooseEntityState new.
 	entity privateState: mooseState.
 	self assert: entity privateState identicalTo: mooseState
 ]

@@ -31,8 +31,7 @@ FamixJavaNamespace >> abstractness [
 
 { #category : #'Famix-Extensions-metrics' }
 FamixJavaNamespace >> abstractness: aNumber [
-
-	self privateState propertyAt: #abstractness put: aNumber
+	self privateState cacheAt: #abstractness put: aNumber
 ]
 
 { #category : #'Famix-Extensions-metrics' }
@@ -45,8 +44,7 @@ FamixJavaNamespace >> afferentCoupling [
 
 { #category : #'Famix-Extensions-metrics' }
 FamixJavaNamespace >> afferentCoupling: aNumber [
-
-	self privateState propertyAt: #afferentCoupling put: aNumber
+	self privateState cacheAt: #afferentCoupling put: aNumber
 ]
 
 { #category : #'Famix-Extensions' }
@@ -72,8 +70,7 @@ FamixJavaNamespace >> bunchCohesion [
 
 { #category : #'Famix-Extensions-metrics' }
 FamixJavaNamespace >> bunchCohesion: aNumber [
-
-	self privateState propertyAt: #bunchCohesion put: aNumber
+	self privateState cacheAt: #bunchCohesion put: aNumber
 ]
 
 { #category : #'Famix-Extensions-metrics' }
@@ -149,8 +146,7 @@ FamixJavaNamespace >> distance [
 
 { #category : #accessing }
 FamixJavaNamespace >> distance: aNumber [
-
-	self privateState propertyAt: #distance put: aNumber
+	self privateState cacheAt: #distance put: aNumber
 ]
 
 { #category : #'Famix-Extensions-metrics' }
@@ -165,8 +161,7 @@ FamixJavaNamespace >> efferentCoupling [
 
 { #category : #'Famix-Extensions-metrics' }
 FamixJavaNamespace >> efferentCoupling: aNumber [
-
-	self privateState propertyAt: #efferentCoupling put: aNumber
+	self privateState cacheAt: #efferentCoupling put: aNumber
 ]
 
 { #category : #'Famix-Extensions-metrics' }
@@ -186,8 +181,7 @@ FamixJavaNamespace >> instability [
 
 { #category : #'Famix-Extensions-metrics' }
 FamixJavaNamespace >> instability: aNumber [
-
-	self privateState propertyAt: #instability put: aNumber
+	self privateState cacheAt: #instability put: aNumber
 ]
 
 { #category : #'Famix-Extensions-metrics' }
@@ -233,8 +227,7 @@ FamixJavaNamespace >> numberOfAttributes [
 
 { #category : #'Famix-Extensions' }
 FamixJavaNamespace >> numberOfAttributes: aNumber [
-
-	self privateState propertyAt: #numberOfAttributes put: aNumber
+	self privateState cacheAt: #numberOfAttributes put: aNumber
 ]
 
 { #category : #'Famix-Extensions' }
@@ -250,8 +243,7 @@ FamixJavaNamespace >> numberOfClasses [
 
 { #category : #'Famix-Extensions' }
 FamixJavaNamespace >> numberOfClasses: aNumber [
-
-	self privateState propertyAt: #numberOfClasses put: aNumber
+	self privateState cacheAt: #numberOfClasses put: aNumber
 ]
 
 { #category : #accessing }
@@ -267,8 +259,7 @@ FamixJavaNamespace >> numberOfMethods [
 
 { #category : #accessing }
 FamixJavaNamespace >> numberOfMethods: aNumber [
-
-	self privateState propertyAt: #numberOfMethods put: aNumber
+	self privateState cacheAt: #numberOfMethods put: aNumber
 ]
 
 { #category : #'Famix-Extensions-metrics' }
@@ -284,8 +275,7 @@ FamixJavaNamespace >> numberOfNonInterfacesClasses [
 
 { #category : #'Famix-Extensions-metrics' }
 FamixJavaNamespace >> numberOfNonInterfacesClasses: aNumber [
-
-	self privateState propertyAt: #numberOfNonInterfacesClasses put: aNumber
+	self privateState cacheAt: #numberOfNonInterfacesClasses put: aNumber
 ]
 
 { #category : #printing }

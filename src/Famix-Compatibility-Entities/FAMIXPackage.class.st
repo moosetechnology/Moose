@@ -300,8 +300,7 @@ FAMIXPackage >> numberOfClientPackages [
 
 { #category : #'Famix-Extensions' }
 FAMIXPackage >> numberOfClientPackages: aNumber [
-
-	self privateState propertyAt: #numberOfClientPackages put: aNumber
+	self privateState cacheAt: #numberOfClientPackages put: aNumber
 ]
 
 { #category : #'Famix-Extensions' }
@@ -316,8 +315,7 @@ FAMIXPackage >> numberOfMethods [
 
 { #category : #'Famix-Extensions' }
 FAMIXPackage >> numberOfMethods: aNumber [
-
-	self privateState propertyAt: #numberOfMethods put: aNumber
+	self privateState cacheAt: #numberOfMethods put: aNumber
 ]
 
 { #category : #'Famix-Implementation' }

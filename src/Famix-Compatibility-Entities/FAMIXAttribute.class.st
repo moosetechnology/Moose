@@ -40,8 +40,7 @@ FAMIXAttribute >> hierarchyNestingLevel [
 
 { #category : #'Famix-Extensions' }
 FAMIXAttribute >> hierarchyNestingLevel: aNumber [
-
-	self privateState propertyAt: #hierarchyNestingLevel put: aNumber
+	self privateState cacheAt: #hierarchyNestingLevel put: aNumber
 ]
 
 { #category : #'Famix-Smalltalk' }

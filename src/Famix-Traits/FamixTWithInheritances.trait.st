@@ -36,8 +36,7 @@ FamixTWithInheritances >> numberOfSubclasses [
 
 { #category : #metrics }
 FamixTWithInheritances >> numberOfSubclasses: aNumber [
-
-	self privateState propertyAt: #numberOfSubclasses put: aNumber
+	self privateState cacheAt: #numberOfSubclasses put: aNumber
 ]
 
 { #category : #accessing }
