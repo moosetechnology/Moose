@@ -24,9 +24,3 @@ FAMIXAccess class >> fromMethod [
 FAMIXAccess class >> toMethod [
 	^ self lookupSelector: #variable
 ]
-
-{ #category : #'Famix-Implementation' }
-FAMIXAccess >> printOn: aStream [
-	super printOn: aStream.
-	aStream nextPutAll: ' (Access)'
-]

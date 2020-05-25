@@ -14,9 +14,3 @@ FamixJavaAccess class >> annotation [
 	<generated>
 	^self
 ]
-
-{ #category : #printing }
-FamixJavaAccess >> printOn: aStream [
-	super printOn: aStream.
-	aStream nextPutAll: ' (Access)'
-]
