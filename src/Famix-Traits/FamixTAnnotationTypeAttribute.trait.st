@@ -21,6 +21,7 @@ Trait {
 	#instVars : [
 		'#annotationAttributeInstances => FMMany type: #FamixTTypedAnnotationInstanceAttribute opposite: #annotationTypeAttribute'
 	],
+	#traits : 'FamixTAttribute',
 	#category : #'Famix-Traits-AnnotationTypeAttribute'
 }
 
