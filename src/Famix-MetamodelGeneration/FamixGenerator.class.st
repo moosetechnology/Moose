@@ -938,6 +938,8 @@ FamixGenerator >> defineHierarchy [
 	
 	tHasImmediateSource --|> tSourceAnchor.
 	
+	tHeader --|> tFile.
+	
 	tIndexedFileNavigation --|> tFileAnchor.
 
 	tInheritance --|> tAssociation.

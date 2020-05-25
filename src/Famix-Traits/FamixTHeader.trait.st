@@ -6,6 +6,8 @@ Trait {
 	#instVars : [
 		'#headerOwner => FMOne type: #FamixTWithHeader opposite: #header'
 	],
+	#traits : 'FamixTFile',
+	#classTraits : 'FamixTFile classTrait',
 	#category : #'Famix-Traits-Header'
 }
 

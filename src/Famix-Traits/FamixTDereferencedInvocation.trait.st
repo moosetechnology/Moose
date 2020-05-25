@@ -11,7 +11,6 @@ Trait {
 		'#referencer => FMOne type: #FamixTWithDereferencedInvocations opposite: #dereferencedInvocations'
 	],
 	#traits : 'FamixTInvocation',
-	#classTraits : 'FamixTInvocation classTrait',
 	#category : #'Famix-Traits-DereferencedInvocation'
 }
 
