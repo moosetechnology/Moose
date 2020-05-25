@@ -6,6 +6,8 @@ Trait {
 	#instVars : [
 		'#compilationUnitOwner => FMOne type: #FamixTWithCompilationUnit opposite: #compilationUnit'
 	],
+	#traits : 'FamixTFile',
+	#classTraits : 'FamixTFile classTrait',
 	#category : #'Famix-Traits-CompilationUnit'
 }
 

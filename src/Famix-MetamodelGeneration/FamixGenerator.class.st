@@ -913,6 +913,8 @@ FamixGenerator >> defineHierarchy [
 
 	tClassGroup --|> tTypeGroup.
 	
+	tCompilationUnit --|> tFile.
+	
 	tFileAnchor --|> tSourceAnchor.
   
 	tFile --|> tFileSystemEntity.
