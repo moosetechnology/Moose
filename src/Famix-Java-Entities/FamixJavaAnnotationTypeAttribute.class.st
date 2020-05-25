@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixJavaAnnotationTypeAttribute,
-	#superclass : #FamixJavaAttribute,
+	#superclass : #FamixJavaNamedEntity,
 	#traits : 'FamixTAnnotationTypeAttribute + FamixTTypedAnnotationInstanceAttribute',
 	#classTraits : 'FamixTAnnotationTypeAttribute classTrait + FamixTTypedAnnotationInstanceAttribute classTrait',
 	#category : #'Famix-Java-Entities-Entities'
@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixJavaAnnotationTypeAttribute class >> annotation [
 
-	<FMClass: #AnnotationTypeAttribute super: #FamixJavaAttribute>
+	<FMClass: #AnnotationTypeAttribute super: #FamixJavaNamedEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self

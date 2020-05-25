@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixStAnnotationTypeAttribute,
-	#superclass : #FamixStAttribute,
+	#superclass : #FamixStNamedEntity,
 	#traits : 'FamixTAnnotationTypeAttribute + FamixTTypedAnnotationInstanceAttribute',
 	#classTraits : 'FamixTAnnotationTypeAttribute classTrait + FamixTTypedAnnotationInstanceAttribute classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
@@ -9,7 +9,7 @@ Class {
 { #category : #meta }
 FamixStAnnotationTypeAttribute class >> annotation [
 
-	<FMClass: #AnnotationTypeAttribute super: #FamixStAttribute>
+	<FMClass: #AnnotationTypeAttribute super: #FamixStNamedEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self

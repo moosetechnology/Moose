@@ -22,23 +22,6 @@ FamixStAttribute >> beSharedVariable [
 ]
 
 { #category : #'Famix-Implementation' }
-FamixStAttribute >> hierarchyNestingLevel [
-	<FMProperty: #hierarchyNestingLevel type: #Number>
-	<derived>
-	<FMComment: 'Attribute hierarchy nesting level'>
-		
-	^self
-		lookUpPropertyNamed: #hierarchyNestingLevel
-		computedAs: [self belongsTo hierarchyNestingLevel]
-]
-
-{ #category : #'Famix-Implementation' }
-FamixStAttribute >> hierarchyNestingLevel: aNumber [
-	self privateState cacheAt: #hierarchyNestingLevel put: aNumber
-]
-
-{ #category : #'Famix-Implementation' }
 FamixStAttribute >> isSharedVariable [
-
-	^ self propertyNamed: #sharedVariable ifNil: [false]
+	^ self propertyNamed: #sharedVariable ifNil: [ false ]
 ]

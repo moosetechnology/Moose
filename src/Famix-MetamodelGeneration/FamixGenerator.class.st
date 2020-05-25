@@ -900,6 +900,8 @@ FamixGenerator >> defineHierarchy [
 	tAnnotationInstanceAttribute --|> #TEntityMetaLevelDependency.
 	tAnnotationInstanceAttribute --|> #TDependencyQueries.
 
+	tAnnotationTypeAttribute --|> tAttribute.
+
 	tCohesionCouplingMetrics --|> tPackage.
 
 	tClass --|> tWithMethods.
@@ -912,8 +914,10 @@ FamixGenerator >> defineHierarchy [
 	tClass --|> #TOODependencyQueries.
 
 	tClassGroup --|> tTypeGroup.
-	
+
 	tCompilationUnit --|> tFile.
+
+	tDereferencedInvocation --|> tInvocation.
 	
 	tFileAnchor --|> tSourceAnchor.
   

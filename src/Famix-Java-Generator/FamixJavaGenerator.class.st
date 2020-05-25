@@ -136,7 +136,7 @@ FamixJavaGenerator >> defineHierarchy [
 	annotationType --|> type.
 	annotationType --|> #TAnnotationType.
 
-	annotationTypeAttribute --|> attribute.
+	annotationTypeAttribute --|> namedEntity.
 	annotationTypeAttribute --|> #TAnnotationTypeAttribute.
 	annotationTypeAttribute --|> #TTypedAnnotationInstanceAttribute.
 
