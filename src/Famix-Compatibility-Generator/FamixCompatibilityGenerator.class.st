@@ -358,6 +358,7 @@ FamixCompatibilityGenerator >> defineHierarchy [
 	typeAlias --|> #TTypeAlias.
 
 	unknownVariable --|> structuralEntity.
+	unknownVariable --|> #TUnknownVariable.
 	
 	trait --|> type.
 	trait --|> #TTrait.

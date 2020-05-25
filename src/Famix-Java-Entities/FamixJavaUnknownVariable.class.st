@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaUnknownVariable,
 	#superclass : #FamixJavaNamedEntity,
-	#traits : 'FamixJavaTStructuralEntity',
-	#classTraits : 'FamixJavaTStructuralEntity classTrait',
+	#traits : 'FamixJavaTStructuralEntity + FamixTUnknownVariable',
+	#classTraits : 'FamixJavaTStructuralEntity classTrait + FamixTUnknownVariable classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 

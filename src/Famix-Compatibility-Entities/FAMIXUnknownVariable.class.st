@@ -1,6 +1,8 @@
 Class {
 	#name : #FAMIXUnknownVariable,
 	#superclass : #FAMIXStructuralEntity,
+	#traits : 'FamixTUnknownVariable',
+	#classTraits : 'FamixTUnknownVariable classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 

@@ -293,6 +293,12 @@ MooseAbstractGroup >> allTypes [
 ]
 
 { #category : #'*Famix-Traits' }
+MooseAbstractGroup >> allUnknownVariables [
+	<navigation: 'All unknown variables'>
+	^ self allUsing: FamixTUnknownVariable
+]
+
+{ #category : #'*Famix-Traits' }
 MooseAbstractGroup >> computeAllModelBehaviourals [
 	^ self allBehaviourals reject: #isStub
 ]
