@@ -1,7 +1,6 @@
 Trait {
 	#name : #FamixTPrimitiveType,
 	#traits : 'FamixTType',
-	#classTraits : 'FamixTType classTrait',
 	#category : #'Famix-Traits-Traits'
 }
 

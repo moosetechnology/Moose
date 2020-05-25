@@ -124,7 +124,8 @@ Class {
 		'tNamedEntity',
 		'tTypeGroup',
 		'tClassGroup',
-		'tPrimitiveType'
+		'tPrimitiveType',
+		'tUnknownVariable'
 	],
 	#category : #'Famix-MetamodelGeneration'
 }
@@ -995,6 +996,8 @@ FamixGenerator >> defineHierarchy [
 	tType --|> tReferenceable.
 	tType --|> tNamedEntity.
 	
+	tUnknownVariable --|> tStructuralEntity.
+	
 	tWithStatements --|> tWithAccesses.
 	tWithStatements --|> tWithInvocations.
 	tWithStatements --|> tSourceEntity
@@ -1600,6 +1603,8 @@ FamixGenerator >> defineTraits [
 	tTypedEntity comment: self commentForTTypedStructure.
 
 	tUnknownSourceLanguage := builder newTraitNamed: #TUnknownSourceLanguage.
+	
+	tUnknownVariable := builder newTraitNamed: #TUnknownVariable.
 
 	tWithAccesses := builder newTraitNamed: #TWithAccesses.
 	tWithAccesses comment: self commentForTWithAccesses.

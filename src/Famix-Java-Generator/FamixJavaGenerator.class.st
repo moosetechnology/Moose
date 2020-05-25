@@ -254,6 +254,7 @@ FamixJavaGenerator >> defineHierarchy [
 
 	unknownVariable --|> namedEntity.
 	unknownVariable --|> tStructuralEntity.
+	unknownVariable --|> #TUnknownVariable.
 	
 
 
