@@ -246,6 +246,12 @@ MooseAbstractGroup >> allParameters [
 ]
 
 { #category : #'*Famix-Traits' }
+MooseAbstractGroup >> allPrimitiveTypes [
+	<navigation: 'All primitive types'>
+	^ self allUsing: FamixTPrimitiveType
+]
+
+{ #category : #'*Famix-Traits' }
 MooseAbstractGroup >> allReferences [
 	
 	<navigation: 'All references'>

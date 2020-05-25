@@ -229,6 +229,7 @@ FamixJavaGenerator >> defineHierarchy [
 	parameterizedType --|> #TWithInheritances.
 
 	primitiveType --|> type.
+	primitiveType --|> #TPrimitiveType.
 
 	reference --|> #TReference.
 	

@@ -327,6 +327,7 @@ FamixCompatibilityGenerator >> defineHierarchy [
 	preprocessorStatement --|> sourcedEntity.
 
 	primitiveType --|> type.
+	primitiveType --|> #TPrimitiveType.
 
 	reference --|> #TReference.
 

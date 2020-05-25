@@ -123,7 +123,8 @@ Class {
 		'tHasImmediateSource',
 		'tNamedEntity',
 		'tTypeGroup',
-		'tClassGroup'
+		'tClassGroup',
+		'tPrimitiveType'
 	],
 	#category : #'Famix-MetamodelGeneration'
 }
@@ -973,6 +974,8 @@ FamixGenerator >> defineHierarchy [
 
 	tParameter --|> tStructuralEntity.
 	
+	tPrimitiveType --|> tType.
+	
 	tReference --|> tAssociation.
 
 	tScopingEntity --|> tNamedEntity.
@@ -1536,6 +1539,9 @@ FamixGenerator >> defineTraits [
 
 	tPreprocessorIfdef := builder newTraitNamed: #TPreprocessorIfdef.
 	tPreprocessorIfdef comment: self commentForTPreprocessorIfdef.
+
+	tPrimitiveType := builder newTraitNamed: #TPrimitiveType.
+	tPrimitiveType withTesting.
 
 	tReference := builder newTraitNamed: #TReference.
 	tReference comment: self commentForTReference.
