@@ -9,6 +9,7 @@ Trait {
 		'#parentType => FMOne type: #FamixTWithAttributes opposite: #attributes'
 	],
 	#traits : 'FamixTStructuralEntity',
+	#classTraits : 'FamixTStructuralEntity classTrait',
 	#category : #'Famix-Traits-Attribute'
 }
 
@@ -19,6 +20,22 @@ FamixTAttribute classSide >> annotation [
 	<package: #'Famix-Traits'>
 	<generated>
 	^self
+]
+
+{ #category : #metrics }
+FamixTAttribute >> hierarchyNestingLevel [
+	<FMProperty: #hierarchyNestingLevel type: #Number>
+	<derived>
+	<FMComment: 'Attribute hierarchy nesting level'>
+		
+	^self
+		lookUpPropertyNamed: #hierarchyNestingLevel
+		computedAs: [self belongsTo hierarchyNestingLevel]
+]
+
+{ #category : #metrics }
+FamixTAttribute >> hierarchyNestingLevel: aNumber [
+	self privateState cacheAt: #hierarchyNestingLevel put: aNumber
 ]
 
 { #category : #testing }
@@ -73,4 +90,15 @@ FamixTAttribute >> parentTypeGroup [
 	<generated>
 	<navigation: 'ParentType'>
 	^ MooseGroup with: self parentType
+]
+
+{ #category : #printing }
+FamixTAttribute >> printOn: aStream [
+	self parentType
+		ifNotNil: [ :parent | 
+			aStream
+				nextPutAll: parent name;
+				nextPut: $. ].
+	self name ifNotNil: [ aStream nextPutAll: self name ].
+	aStream nextPutAll: ' (Attribute)'
 ]
