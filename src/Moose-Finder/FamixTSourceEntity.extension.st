@@ -1,7 +1,7 @@
-Extension { #name : #FamixTWithSourceAnchor }
+Extension { #name : #FamixTSourceEntity }
 
 { #category : #'*Moose-Finder' }
-FamixTWithSourceAnchor >> mooseFinderParentFolderIn: composite [
+FamixTSourceEntity >> mooseFinderParentFolderIn: composite [
 	<moosePresentationOrder: 10>
 	self sourceAnchor ifNil: [ ^ self ].
 	self sourceAnchor isFileAnchor ifFalse: [ ^ self ].
@@ -9,7 +9,7 @@ FamixTWithSourceAnchor >> mooseFinderParentFolderIn: composite [
 ]
 
 { #category : #'*Moose-Finder' }
-FamixTWithSourceAnchor >> mooseFinderSourceTextIn: composite [
+FamixTSourceEntity >> mooseFinderSourceTextIn: composite [
 	<moosePresentationOrder: 10>
 	composite text
 		title: 'Source';
@@ -19,7 +19,7 @@ FamixTWithSourceAnchor >> mooseFinderSourceTextIn: composite [
 ]
 
 { #category : #'*Moose-Finder' }
-FamixTWithSourceAnchor >> spotterPreviewSourceIn: composite [
+FamixTSourceEntity >> spotterPreviewSourceIn: composite [
 	<spotterPreview: 0>
 	composite text 
 		title: [ self mooseName ];

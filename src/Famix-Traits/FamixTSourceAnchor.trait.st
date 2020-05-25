@@ -4,7 +4,7 @@ FAMIXSourceAnchor is an abstract class representing a pointer to a source. The s
 Trait {
 	#name : #FamixTSourceAnchor,
 	#instVars : [
-		'#element => FMOne type: #FamixTWithSourceAnchor opposite: #sourceAnchor'
+		'#element => FMOne type: #FamixTSourceEntity opposite: #sourceAnchor'
 	],
 	#category : #'Famix-Traits-SourceAnchor'
 }
@@ -44,7 +44,7 @@ FamixTSourceAnchor >> containerFiles [
 
 { #category : #accessing }
 FamixTSourceAnchor >> element [
-	"Relation named: #element type: #FamixTWithSourceAnchor opposite: #sourceAnchor"
+	"Relation named: #element type: #FamixTSourceEntity opposite: #sourceAnchor"
 
 	<generated>
 	<FMComment: 'Enable the accessibility to the famix entity that this class is a source pointer for'>

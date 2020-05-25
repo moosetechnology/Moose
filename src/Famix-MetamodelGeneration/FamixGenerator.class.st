@@ -91,7 +91,6 @@ Class {
 		'tWithParameterizedTypes',
 		'tWithParameters',
 		'tWithReferences',
-		'tWithSourceAnchor',
 		'tWithSourceLanguage',
 		'tWithTemplates',
 		'tWithThrownExceptions',
@@ -844,12 +843,6 @@ FamixGenerator >> commentForTWithReferences [
 ]
 
 { #category : #comments }
-FamixGenerator >> commentForTWithSourceAnchor [
-
-	^ ''
-]
-
-{ #category : #comments }
 FamixGenerator >> commentForTWithSourceLanguage [
 
 	^ ''
@@ -983,7 +976,6 @@ FamixGenerator >> defineHierarchy [
 	tStructuralEntity --|> tInvocationsReceiver.
 	tStructuralEntity --|> tTypedEntity.
  
-	tSourceEntity --|> tWithSourceAnchor.
 	tSourceEntity --|> tWithSourceLanguage.
 	tSourceEntity --|> tWithComments.
 
@@ -1305,7 +1297,7 @@ FamixGenerator >> defineRelations [
 	((tSourceAnchor property: #element)
 			comment: 'Enable the accessibility to the famix entity that this class is a source pointer for') "this realtion was a container in the old FAMIX"
 		-
-	((tWithSourceAnchor property: #sourceAnchor)
+	((tSourceEntity property: #sourceAnchor)
 			comment: 'SourceAnchor entity linking to the original source code for this entity').
 
 	((tSourceLanguage property: #sourcedEntities)
@@ -1684,9 +1676,6 @@ FamixGenerator >> defineTraits [
 
 	tHasSignature := builder newTraitNamed: #THasSignature.
 	tHasSignature comment: self commentForTHasSignature.
-
-	tWithSourceAnchor := builder newTraitNamed: #TWithSourceAnchor.
-	tWithSourceAnchor comment: self commentForTWithSourceAnchor.
 
 	tWithSourceLanguage := builder newTraitNamed: #TWithSourceLanguage.
 	tWithSourceLanguage comment: self commentForTWithSourceLanguage.
