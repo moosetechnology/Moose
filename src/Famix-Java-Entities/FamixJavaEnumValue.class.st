@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixJavaEnumValue,
 	#superclass : #FamixJavaNamedEntity,
-	#traits : 'FamixJavaTStructuralEntity - {#mooseNameOn:} + FamixTEnumValue',
-	#classTraits : 'FamixJavaTStructuralEntity classTrait + FamixTEnumValue classTrait',
+	#traits : '(FamixTEnumValue + FamixTStructuralEntity withPrecedenceOf: FamixTStructuralEntity)',
+	#classTraits : '(FamixTEnumValue classTrait + FamixTStructuralEntity classTrait withPrecedenceOf: FamixTStructuralEntity classTrait)',
 	#category : #'Famix-Java-Entities-Entities'
 }
 

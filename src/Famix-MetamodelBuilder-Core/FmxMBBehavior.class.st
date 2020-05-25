@@ -245,7 +245,12 @@ FmxMBBehavior >> generateTestingMethodsIn: aClass [
 { #category : #generalization }
 FmxMBBehavior >> inheritsFromTrait: aTrait without: aCollection [
 	self --|> aTrait.
-	(self additionalProperties at: #methodsToRemoveFromTraitComposition ifAbsentPut: [ Dictionary new ]) at: aTrait fullName put: aCollection
+	(self additionalProperties at: #methodsToRemoveFromTraitComposition ifAbsentPut: [ Dictionary new ])
+		at:
+			(aTrait isString
+				ifTrue: [ builder getTraitNamed: aTrait ]
+				ifFalse: [ aTrait ]) fullName
+		put: aCollection
 ]
 
 { #category : #initialization }

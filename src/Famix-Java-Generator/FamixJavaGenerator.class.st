@@ -33,7 +33,6 @@ Class {
 		'type',
 		'unknownVariable',
 		'parameterizedType',
-		'tStructuralEntity',
 		'file',
 		'folder',
 		'indexedFileAnchor'
@@ -158,7 +157,6 @@ FamixJavaGenerator >> defineHierarchy [
 	method --|> #TWithThrownExceptions.
 	method --|> #TWithDeclaredExceptions.
 	method --|> #TWithCaughtExceptions.
-	"method --|> #TWithStatements."
 
 	caughtException --|> exception.
 	caughtException --|> #TCaughtException.
@@ -181,17 +179,16 @@ FamixJavaGenerator >> defineHierarchy [
 	enum --|> #TWithEnumValues.
 
 	enumValue --|> namedEntity.
-	enumValue inheritsFromTrait: tStructuralEntity without: #(#mooseNameOn:).
+	enumValue --|> #TStructuralEntity.
 	enumValue --|> #TEnumValue.
+	enumValue withPrecedenceOf: #TStructuralEntity.
 
 	exception --|> #TException.
 
 	globalVariable --|> namedEntity.
-	globalVariable --|> tStructuralEntity.
 	globalVariable --|> #TGlobalVariable.
 
 	implicitVariable --|> namedEntity.
-	implicitVariable --|> tStructuralEntity.
 	implicitVariable --|> #TImplicitVariable.
 
 	inheritance --|> #TInheritance.
@@ -200,7 +197,6 @@ FamixJavaGenerator >> defineHierarchy [
 	invocation --|> #THasSignature.
 
 	localVariable --|> namedEntity.
-	localVariable --|> tStructuralEntity.
 	localVariable --|> #TLocalVariable.
 
 	namedEntity --|> #TPackageable.
@@ -249,21 +245,11 @@ FamixJavaGenerator >> defineHierarchy [
 	type --|> #TClassHierarchyNavigation. 
 	type --|> #TWithMethods.
 
-	tStructuralEntity --|> #TStructuralEntity.
-	tStructuralEntity --|> #TWithDereferencedInvocations.
-
 	unknownVariable --|> namedEntity.
-	unknownVariable --|> tStructuralEntity.
 	unknownVariable --|> #TUnknownVariable.
 	
 
 
-]
-
-{ #category : #definition }
-FamixJavaGenerator >> defineTraits [
-	super defineTraits.
-	tStructuralEntity := builder newTraitNamed: #TStructuralEntity
 ]
 
 { #category : #definition }
