@@ -1,6 +1,8 @@
 Class {
 	#name : #FAMIXPrimitiveType,
 	#superclass : #FAMIXType,
+	#traits : 'FamixTPrimitiveType',
+	#classTraits : 'FamixTPrimitiveType classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 
