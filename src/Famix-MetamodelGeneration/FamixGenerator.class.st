@@ -914,7 +914,9 @@ FamixGenerator >> defineHierarchy [
 	tClass --|> #TOODependencyQueries.
 
 	tClassGroup --|> tTypeGroup.
-	
+
+	tCompilationUnit --|> tFile.
+
 	tDereferencedInvocation --|> tInvocation.
 	
 	tFileAnchor --|> tSourceAnchor.
