@@ -8,7 +8,6 @@ Trait {
 		'#sourceAnchor => FMOne type: #FamixTSourceAnchor opposite: #element'
 	],
 	#traits : 'FamixTWithComments + FamixTWithSourceLanguage',
-	#classTraits : 'FamixTWithComments classTrait + FamixTWithSourceLanguage classTrait',
 	#category : #'Famix-Traits-SourceAnchor'
 }
 
