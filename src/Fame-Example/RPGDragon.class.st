@@ -17,6 +17,7 @@ RPGDragon class >> annotation [
 { #category : #accessing }
 RPGDragon >> hoard [
 	<FMProperty: #hoard type: #RPGTreasure opposite: #keeper>
+	<FMComment: 'Hoard of the dragon.'>
 	<multivalued>
 	^ hoard
 ]
@@ -36,6 +37,7 @@ RPGDragon >> initialize [
 { #category : #accessing }
 RPGDragon >> killedBy [
 	<FMProperty: #killedBy type: #RPGHero opposite: #kills>
+	<FMComment: 'Defined the hero who killed the dragon.'>
 	<multivalued>
 	^ killedBy
 ]

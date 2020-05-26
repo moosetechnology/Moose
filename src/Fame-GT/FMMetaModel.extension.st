@@ -19,10 +19,16 @@ FMMetaModel >> gtInspectorHierarchiesIn: composite [
 	<gtInspectorPresentationOrder: 2>
 	^ composite tree
 		title: 'Hierarchies';
-		display: [ (self classes select: [ :each | each superclass = FM3Class object ]) sorted: [ :x :y | x fullName < y fullName ] ];
+		display: [ (self classes select: [ :each | each superclass = FM3Object instance ]) sorted: [ :x :y | x fullName < y fullName ] ];
 		children: [ :c | c subclasses sorted: [ :x :y | x fullName < y fullName ] ];
-		format: [ :each | each isAbstract ifTrue: [ Text string: each fullName attribute: TextEmphasis italic ] ifFalse: [ Text fromString: each fullName ] ];
-		tags: [ :each | each package ifNil: [ #() ] ifNotNil: [ each package name ] ];
+		format: [ :each | 
+			each isAbstract
+				ifTrue: [ Text string: each fullName attribute: TextEmphasis italic ]
+				ifFalse: [ Text fromString: each fullName ] ];
+		tags: [ :each | 
+			each package
+				ifNil: [ #() ]
+				ifNotNil: [ each package name ] ];
 		morphicSelectionAct: [ :list | list selection implementingClass browse ]
 			icon: GLMUIThemeExtraIcons glamorousBrowse
 			on: $b
@@ -44,8 +50,15 @@ FMMetaModel >> gtInspectorPropertiesIn: composite [
 	^ composite table
 		title: 'Properties';
 		display: [ self properties sorted: [ :x :y | x fullName < y fullName ] ];
-		column: 'Name' evaluated: [ :each | each gtDisplayString ] tags: [ :each | each package ifNil: [ #() ] ifNotNil: [ each package name ] ];
+		column: 'Name'
+			evaluated: [ :each | each gtDisplayString ]
+			tags: [ :each | 
+			each package
+				ifNil: [ #() ]
+				ifNotNil: [ each package name ] ];
 		column: 'Type' evaluated: [ :each | each gtTypeString ];
+		column: 'derived?' evaluated: [ :each | each isDerived ] width: 50;
+		column: 'Comment' evaluated: #comment;
 		morphicSelectionAct: [ :list | list selection implementingClass browse ]
 			icon: GLMUIThemeExtraIcons glamorousBrowse
 			on: $b

@@ -8,8 +8,7 @@ FM3Property >> gtDisplayOn: stream [
 { #category : #'*Fame-GT' }
 FM3Property >> gtInspectorSourceIn: composite [
 	<gtInspectorPresentationOrder: 0>
-	self hasImplementingSelector ifTrue: [
-		self compiledMethod ifNotNil: [ :c | c asRingDefinition gtInspectorSourceIn: composite ] ]
+	self hasImplementingSelector ifTrue: [ self compiledMethod ifNotNil: [ :c | c asRingDefinition gtInspectorSourceIn: composite ] ]
 ]
 
 { #category : #'*Fame-GT' }
