@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixStPackage,
 	#superclass : #FamixStNamedEntity,
-	#traits : 'FamixTCohesionCouplingMetrics + FamixTPackage + FamixTWithClasses + FamixTWithGlobalVariables + FamixTWithTypes',
-	#classTraits : 'FamixTCohesionCouplingMetrics classTrait + FamixTPackage classTrait + FamixTWithClasses classTrait + FamixTWithGlobalVariables classTrait + FamixTWithTypes classTrait',
+	#traits : 'FamixTCohesionCouplingMetrics + FamixTPackage + FamixTWithClasses + FamixTWithGlobalVariables + FamixTWithTypes + TOODependencyQueries',
+	#classTraits : 'FamixTCohesionCouplingMetrics classTrait + FamixTPackage classTrait + FamixTWithClasses classTrait + FamixTWithGlobalVariables classTrait + FamixTWithTypes classTrait + TOODependencyQueries classTrait',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 

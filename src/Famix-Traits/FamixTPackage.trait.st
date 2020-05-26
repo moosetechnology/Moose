@@ -10,7 +10,6 @@ Trait {
 		'#packageOwner => FMOne type: #FamixTWithPackages opposite: #packages'
 	],
 	#traits : 'FamixTNamedEntity',
-	#classTraits : 'FamixTNamedEntity classTrait',
 	#category : #'Famix-Traits-Package'
 }
 
