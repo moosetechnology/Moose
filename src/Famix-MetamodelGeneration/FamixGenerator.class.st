@@ -971,7 +971,7 @@ FamixGenerator >> defineHierarchy [
 	tNamedEntity --|> #TEntityMetaLevelDependency.
 	tNamedEntity --|> tSourceEntity.
 
-	tPackage --|> tScopingEntity.
+	tPackage --|> tNamedEntity.
 
 	tParameter --|> tStructuralEntity.
 	
