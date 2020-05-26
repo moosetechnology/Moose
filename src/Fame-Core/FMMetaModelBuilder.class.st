@@ -259,7 +259,11 @@ FMMetaModelBuilder >> processInfosFrom: aMethod for: prop [
 	(aMethod pragmaAt: #derived) ifNotNil: [ prop isDerived: true ].
 	(aMethod pragmaAt: #source) ifNotNil: [ prop isSource: true ].
 	(aMethod pragmaAt: #target) ifNotNil: [ prop isTarget: true ].
-	(aMethod pragmaAt: #multivalued) ifNotNil: [ prop isMultivalued: true ]
+	(aMethod pragmaAt: #multivalued) ifNotNil: [ prop isMultivalued: true ].
+	
+	(aMethod pragmaAt: #FMComment:) ifNotNil: [ :pragma | prop comment: (pragma argumentNamed: #FMComment) ].
+	self flag: #todo. "Next line should be removed in Moose 9 since the pragmas starting by MSE should be updated to the FM version."
+	(aMethod pragmaAt: #MSEComment:) ifNotNil: [ :pragma | prop comment: (pragma argumentNamed: #MSEComment) ]
 ]
 
 { #category : #private }

@@ -69,8 +69,6 @@ FMMetaModelBuilderTest >> testEmptyProcessor [
 
 { #category : #tests }
 FMMetaModelBuilderTest >> testSimple [
-	"--- FIXME: these 4 lines are moot ---"
-
 	| processor rep elements originalSize props mmClass |
 	processor := FMMetaModelBuilder new.
 	originalSize := processor elements size.
@@ -89,5 +87,6 @@ FMMetaModelBuilderTest >> testSimple [
 	mmClass := props anyOne mmClass.
 	self assert: mmClass name equals: #FMAnnotationTest.
 	self assert: mmClass superclass name equals: #Object.
-	self assert: props anyOne type name equals: #Boolean
+	self assert: props anyOne type name equals: #Boolean.
+	self assert: props anyOne comment equals: 'Comment of the simple property'
 ]

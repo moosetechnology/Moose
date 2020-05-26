@@ -15,6 +15,7 @@ FM3Class >> gtInspectorPropertiesIn: composite [
 				ifFalse: [ OrderedCollection new ] ];
 		column: 'type' evaluated: [ :each | each gtTypeString ];
 		column: 'derived?' evaluated: [ :each | each isDerived ] width: 50;
+		column: 'Comment' evaluated: #comment;
 		when: [ self allComplexProperties isNotEmpty ];
 		morphicSelectionAct: [ :list | Smalltalk tools browser openOnClass: list selection implementingClass selector: list selection implementingSelector ]
 			icon: GLMUIThemeExtraIcons glamorousBrowse
@@ -46,6 +47,7 @@ FM3Class >> gtInspectorRelationsIn: composite [
 		column: 'container?' evaluated: [ :each | each isContainer ] width: 50;
 		column: 'isTarget?' evaluated: [ :each | each isTarget ] width: 50;
 		column: 'isSource?' evaluated: [ :each | each isSource ] width: 50;
+		column: 'Comment' evaluated: #comment;
 		when: [ self allComplexProperties isNotEmpty ];
 		selectionPopulate: #selection
 			on: $o

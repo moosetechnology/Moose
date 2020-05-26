@@ -9,8 +9,9 @@ FMMetaModelBuilderTestDummy class >> annotation [
 	<FMClass: #FMAnnotationTest super: #Object>
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #properties }
 FMMetaModelBuilderTestDummy >> simpleProperty [
 	<FMProperty: #aPropertyName type: #Boolean>
-
+	<FMComment: 'Comment of the simple property'>
+	
 ]

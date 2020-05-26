@@ -19,6 +19,8 @@ I have multiple options (See in the API section for details):
 - #isDerived
 - #isMultivalued
 
+The user can comment me to explain the prupose of the property.
+
 Public API and Key Messages
 --------------------
 
@@ -33,6 +35,7 @@ Internal Representation and Key Implementation Points.
 
     Instance Variables
 	class:							<aFM3Class>			The class holding the property.
+	comment: 						<aString> 			An explanation of the purpose of the property.
 	implementingSelector:		<aSymbol>				The selector of the method returning my content.
 	isContainer:					<aBoolean>			If true, means that I represent a containment link in the containment DAG of the meta-model.
 	isDerived:					<aBoolean>			If true, means that my content can be computed form non-derived properties and can be flushed.
@@ -57,7 +60,8 @@ Class {
 		'type',
 		'implementingSelector',
 		'isTarget',
-		'isSource'
+		'isSource',
+		'comment'
 	],
 	#category : #'Fame-Core-Model'
 }
@@ -67,6 +71,16 @@ FM3Property class >> annotation [
 	<FMClass: #Property super: #FM3Element>
 	<package: #FM3>
 
+]
+
+{ #category : #accessing }
+FM3Property >> comment [
+	^ comment
+]
+
+{ #category : #accessing }
+FM3Property >> comment: anObject [
+	comment := anObject
 ]
 
 { #category : #accessing }
