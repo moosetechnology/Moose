@@ -311,7 +311,7 @@ MooseModel >> allBookmarks [
 
 { #category : #accessing }
 MooseModel >> allRootContainers [
-	^ self allModelContainers select: [ :each | each parents isEmpty ]
+	^ self allModelContainers select: #isRoot
 ]
 
 { #category : #actions }
