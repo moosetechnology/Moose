@@ -128,9 +128,14 @@ FamixPharoSmalltalkGenerator >> defineHierarchy [
 	namespace --|> #TNamespace.
 	namespace --|> #TInvocationsReceiver.
 
-	package --|> scopingEntity.
+	package --|> namedEntity.
 	package --|> #TPackage.
+	package --|> #TWithGlobalVariables.
+	package --|> #TWithTypes.
+	package --|> #TWithClasses.
 	package --|> #TCohesionCouplingMetrics.
+	package --|> #TOODependencyQueries.
+	package withPrecedenceOf: #TOODependencyQueries.
 
 	parameter --|> namedEntity.
 	parameter --|> #TParameter.

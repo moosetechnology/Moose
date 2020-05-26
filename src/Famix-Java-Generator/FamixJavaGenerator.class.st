@@ -207,7 +207,8 @@ FamixJavaGenerator >> defineHierarchy [
 	namespace --|> scopingEntity.
 	namespace --|> #TNamespace.
 
-	package --|> scopingEntity.
+	package --|> containerEntity.
+	package --|> #TWithGlobalVariables.
 	package --|> #TPackage.
 
 	parameter --|> namedEntity.

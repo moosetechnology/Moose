@@ -1,15 +1,15 @@
 Class {
 	#name : #FAMIXPackage,
-	#superclass : #FAMIXScopingEntity,
-	#traits : 'FamixTCohesionCouplingMetrics + FamixTPackage',
-	#classTraits : 'FamixTCohesionCouplingMetrics classTrait + FamixTPackage classTrait',
+	#superclass : #FAMIXContainerEntity,
+	#traits : 'FamixTCohesionCouplingMetrics + FamixTPackage + FamixTWithGlobalVariables',
+	#classTraits : 'FamixTCohesionCouplingMetrics classTrait + FamixTPackage classTrait + FamixTWithGlobalVariables classTrait',
 	#category : #'Famix-Compatibility-Entities-Entities'
 }
 
 { #category : #meta }
 FAMIXPackage class >> annotation [
 
-	<FMClass: #Package super: #FAMIXScopingEntity>
+	<FMClass: #Package super: #FAMIXContainerEntity>
 	<package: #FAMIX>
 	<generated>
 	^self

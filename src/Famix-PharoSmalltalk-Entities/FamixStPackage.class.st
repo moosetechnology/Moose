@@ -1,15 +1,15 @@
 Class {
 	#name : #FamixStPackage,
-	#superclass : #FamixStScopingEntity,
-	#traits : 'FamixTCohesionCouplingMetrics + FamixTPackage',
-	#classTraits : 'FamixTCohesionCouplingMetrics classTrait + FamixTPackage classTrait',
+	#superclass : #FamixStNamedEntity,
+	#traits : '(FamixTCohesionCouplingMetrics + FamixTPackage + FamixTWithClasses + FamixTWithGlobalVariables + FamixTWithTypes + TOODependencyQueries withPrecedenceOf: TOODependencyQueries)',
+	#classTraits : '(FamixTCohesionCouplingMetrics classTrait + FamixTPackage classTrait + FamixTWithClasses classTrait + FamixTWithGlobalVariables classTrait + FamixTWithTypes classTrait + TOODependencyQueries classTrait withPrecedenceOf: TOODependencyQueries classTrait)',
 	#category : #'Famix-PharoSmalltalk-Entities-Entities'
 }
 
 { #category : #meta }
 FamixStPackage class >> annotation [
 
-	<FMClass: #Package super: #FamixStScopingEntity>
+	<FMClass: #Package super: #FamixStNamedEntity>
 	<package: #'Famix-PharoSmalltalk-Entities'>
 	<generated>
 	^self

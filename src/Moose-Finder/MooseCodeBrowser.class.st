@@ -176,13 +176,13 @@ MooseCodeBrowser >> onMethodsFromInstVars [
 
 { #category : #building }
 MooseCodeBrowser >> onPackages [
-	browser
-		transmit to: #packages;
-		andShow: [ :a |
+	browser transmit
+		to: #packages;
+		andShow: [ :a | 
 			a tree
 				title: 'Packages';
 				display: [ :scopes | scopes select: #isRoot ];
-				children: [ :scope | scope childScopes ];
+				children: [ :scope | scope childEntities ];
 				format: [ :scope | scope name ];
 				dynamicActionsOnSelection: [ :list | list selection mooseFinderActions ];
 				filterOn: [ :text :each | text match: each name ] ]

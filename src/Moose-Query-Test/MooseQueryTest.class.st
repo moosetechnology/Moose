@@ -137,52 +137,26 @@ MooseQueryTest >> testAllAtScope [
 	self assertCollection: (class1 allAtScope: FamixTClass) hasSameElements: {class1}.
 	self assertCollection: (class1 allAtScope: FamixTType) hasSameElements: {class1}.
 	self assertCollection: (class1 allAtScope: FamixTPackage) hasSameElements: {package1}.
-	self
-		assertCollection: (class1 allAtScope: FamixTScopingEntity)
-		hasSameElements:
-			{namespace.
-			package1}.
+
 	package3 := FamixJavaPackage new
 		name: 'package3';
 		mooseModel: model.
 	package1 parentPackage: package3.
-	self
-		assertCollection: (class1 allAtScope: FamixTPackage)
-		hasSameElements:
-			{package1.
-			package3}.
-	self
-		assertCollection: (class1 allAtScope: FamixTScopingEntity)
-		hasSameElements:
-			{namespace.
-			package1.
-			package3}
+	self assertCollection: (class1 allAtScope: FamixTPackage) hasSameElements: {package1 . package3}
 ]
 
 { #category : #tests }
 MooseQueryTest >> testAllAtScopeUntil [
 	| package3 |
-	self assertCollection: (class1 allAtScope: FamixTClass until: [:famixEntity | famixEntity isOfType: FamixTClass ]) hasSameElements: {class1}.
-	self assertCollection: (class1 allAtScope: FamixTType until: [:famixEntity | famixEntity isOfType: FamixTClass ]) hasSameElements: {class1}.
-	self assertCollection: (class1 allAtScope: FamixTPackage until: [:famixEntity | famixEntity isOfType: FamixTClass ]) hasSameElements: {}.
-	self
-		assertCollection: (class1 allAtScope: FamixTScopingEntity  until: [:famixEntity | famixEntity isOfType: FamixTPackage ])
-		hasSameElements:
-			{namespace.
-			package1}.
+	self assertCollection: (class1 allAtScope: FamixTClass until: [ :famixEntity | famixEntity isOfType: FamixTClass ]) hasSameElements: {class1}.
+	self assertCollection: (class1 allAtScope: FamixTType until: [ :famixEntity | famixEntity isOfType: FamixTClass ]) hasSameElements: {class1}.
+	self assertCollection: (class1 allAtScope: FamixTPackage until: [ :famixEntity | famixEntity isOfType: FamixTClass ]) hasSameElements: {}.
+
 	package3 := FamixJavaPackage new
 		name: 'package3';
 		mooseModel: model.
 	package1 parentPackage: package3.
-	self
-		assertCollection: (class1 allAtScope: FamixTPackage until: [:famixEntity | famixEntity name = 'package1' ])
-		hasSameElements:
-			{package1}.
-	self
-		assertCollection: (class1 allAtScope: FamixTScopingEntity until: [:famixEntity | famixEntity name = 'package1' ])
-		hasSameElements:
-			{namespace.
-			package1}
+	self assertCollection: (class1 allAtScope: FamixTPackage until: [ :famixEntity | famixEntity name = 'package1' ]) hasSameElements: {package1}
 ]
 
 { #category : #tests }
@@ -278,7 +252,6 @@ MooseQueryTest >> testAllWithScope [
 	self assertCollection: (class1 allWithScope: FamixTClass) hasSameElements: {class1}.
 	self assertCollection: (class1 allWithScope: FamixTType) hasSameElements: {class1}.
 	self assertCollection: (class1 allWithScope: FamixTPackage) hasSameElements: {package1}.
-	self assertCollection: (class1 allWithScope: FamixTScopingEntity) hasSameElements: {package1 . namespace}.
 	package3 := FamixJavaPackage new
 		name: 'package3';
 		mooseModel: model.
@@ -290,8 +263,7 @@ MooseQueryTest >> testAllWithScope [
 	self assertCollection: (class1 allWithScope: FamixTMethod) hasSameElements: {method1}.
 	self assertCollection: (class1 allWithScope: FamixTClass) hasSameElements: {class1 . class3}.
 	self assertCollection: (class1 allWithScope: FamixTType) hasSameElements: {class1 . class3}.
-	self assertCollection: (class1 allWithScope: FamixTPackage) hasSameElements: {package1 . package3}.
-	self assertCollection: (class1 allWithScope: FamixTScopingEntity) hasSameElements: {package1 . package3 . namespace}
+	self assertCollection: (class1 allWithScope: FamixTPackage) hasSameElements: {package1 . package3}
 ]
 
 { #category : #tests }
@@ -314,9 +286,7 @@ MooseQueryTest >> testAllWithScopeUntil [
 	self assertCollection: (class1 allWithScope: FamixTType until: [ :el | el name = 'class1' ]) hasSameElements: {class1}.
 	self assertCollection: (class1 allWithScope: FamixTType until: [ :el | el name = 'class3' ]) hasSameElements: {class1 . class3}.
 	self assertCollection: (class1 allWithScope: FamixTPackage until: [ :el | el name = 'package1' ]) hasSameElements: {package1}.
-	self assertCollection: (class1 allWithScope: FamixTPackage until: [ :el | el name = 'package3' ]) hasSameElements: {package1 . package3}.
-	self assertCollection: (class1 allWithScope: FamixTScopingEntity until: [ :el | el name = 'package1' ]) hasSameElements: {package1 . namespace}.
-	self assertCollection: (class1 allWithScope: FamixTScopingEntity until: [ :el | el name = 'package3' ]) hasSameElements: {package1 . package3 . namespace}
+	self assertCollection: (class1 allWithScope: FamixTPackage until: [ :el | el name = 'package3' ]) hasSameElements: {package1 . package3}
 ]
 
 { #category : #tests }
@@ -350,12 +320,7 @@ MooseQueryTest >> testAtAnyScopeUntil [
 MooseQueryTest >> testAtScope [
 	self assertCollection: (class1 atScope: FamixJavaClass) hasSameElements: {class1}.
 	self assertCollection: (class1 atScope: FamixTType) hasSameElements: {class1}.
-	self assertCollection: (class1 atScope: FamixTPackage) hasSameElements: {package1}.
-	self
-		assertCollection: (class1 atScope: FamixTScopingEntity)
-		hasSameElements:
-			{namespace.
-			package1}
+	self assertCollection: (class1 atScope: FamixTPackage) hasSameElements: {package1}
 ]
 
 { #category : #tests }
@@ -717,24 +682,11 @@ MooseQueryTest >> testWithAnyScopeUntil [
 { #category : #tests }
 MooseQueryTest >> testWithScope [
 	self assertCollection: (class1 withScope: FamixTMethod) hasSameElements: {method1}.
-	self
-		assertCollection: (class2 toScope: FamixTAttribute)
-		hasSameElements:
-			{var1.
-			var2}.
-	self
-		assertCollection: (package1 toScope: FamixTMethod)
-		hasSameElements:
-			{method1.
-			methodExt}.
+	self assertCollection: (class2 toScope: FamixTAttribute) hasSameElements: {var1 . var2}.
+	self assertCollection: (package1 toScope: FamixTMethod) hasSameElements: {method1 . methodExt}.
 	self assertCollection: (class1 withScope: FamixTClass) hasSameElements: {class1}.
 	self assertCollection: (class1 withScope: FamixTType) hasSameElements: {class1}.
-	self assertCollection: (class1 withScope: FamixTPackage) hasSameElements: {package1}.
-	self
-		assertCollection: (class1 withScope: FamixTScopingEntity)
-		hasSameElements:
-			{package1.
-			namespace}
+	self assertCollection: (class1 withScope: FamixTPackage) hasSameElements: {package1}
 ]
 
 { #category : #tests }

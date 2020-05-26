@@ -300,8 +300,9 @@ FamixCompatibilityGenerator >> defineHierarchy [
 	namespace --|> scopingEntity.
 	namespace --|> #TNamespace.
 
-	package --|> scopingEntity.
+	package --|> containerEntity.
 	package --|> #TPackage.
+	package --|> #TWithGlobalVariables.
 	package --|> #TCohesionCouplingMetrics.
 
 	parameter --|> structuralEntity.

@@ -9,7 +9,7 @@ Trait {
 		'#childEntities => FMMany type: #FamixTPackageable opposite: #parentPackage',
 		'#packageOwner => FMOne type: #FamixTWithPackages opposite: #packages'
 	],
-	#traits : 'FamixTScopingEntity',
+	#traits : 'FamixTNamedEntity',
 	#category : #'Famix-Traits-Package'
 }
 

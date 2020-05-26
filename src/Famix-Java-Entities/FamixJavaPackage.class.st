@@ -1,15 +1,15 @@
 Class {
 	#name : #FamixJavaPackage,
-	#superclass : #FamixJavaScopingEntity,
-	#traits : 'FamixTPackage',
-	#classTraits : 'FamixTPackage classTrait',
+	#superclass : #FamixJavaContainerEntity,
+	#traits : 'FamixTPackage + FamixTWithGlobalVariables',
+	#classTraits : 'FamixTPackage classTrait + FamixTWithGlobalVariables classTrait',
 	#category : #'Famix-Java-Entities-Entities'
 }
 
 { #category : #meta }
 FamixJavaPackage class >> annotation [
 
-	<FMClass: #Package super: #FamixJavaScopingEntity>
+	<FMClass: #Package super: #FamixJavaContainerEntity>
 	<package: #'Famix-Java-Entities'>
 	<generated>
 	^self
