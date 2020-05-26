@@ -10,6 +10,7 @@ Trait {
 		'#parentScope => FMOne type: #FamixTScopingEntity opposite: #childScopes'
 	],
 	#traits : '(FamixTNamedEntity + TOODependencyQueries withPrecedenceOf: TOODependencyQueries)',
+	#classTraits : '(FamixTNamedEntity classTrait + TOODependencyQueries classTrait withPrecedenceOf: TOODependencyQueries classTrait)',
 	#category : #'Famix-Traits-ScopingEntity'
 }
 
@@ -67,11 +68,6 @@ FamixTScopingEntity >> childScopes: anObject [
 
 	<generated>
 	childScopes value: anObject
-]
-
-{ #category : #accessing }
-FamixTScopingEntity >> isRoot [
-	^ self parentScope isNil
 ]
 
 { #category : #accessing }
