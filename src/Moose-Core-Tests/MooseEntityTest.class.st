@@ -31,6 +31,17 @@ MooseEntityTest >> testBookmark [
 ]
 
 { #category : #tests }
+MooseEntityTest >> testIsRoot [
+	| entity |
+	entity := self actualClass new.
+	entity stub parents willReturn: {  }.
+	self assert: entity isRoot.
+	
+	entity stub parents willReturn: { MooseEntity new }.
+	self deny: entity isRoot
+]
+
+{ #category : #tests }
 MooseEntityTest >> testIsStub [
 	self deny: self actualClass new isStub.
 	self
