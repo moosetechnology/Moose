@@ -153,7 +153,7 @@ BaselineOfFamix >> deepTraverser: spec [
 
 { #category : #dependencies }
 BaselineOfFamix >> fame: spec [
-	spec baseline: 'Fame' with: [ spec repository: repository ]
+	spec baseline: 'Fame' with: [ spec repository: 'github://moosetechnology/Fame:development/src' ]
 ]
 
 { #category : #dependencies }
