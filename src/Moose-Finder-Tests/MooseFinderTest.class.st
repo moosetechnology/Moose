@@ -149,11 +149,9 @@ MooseFinderTest >> testMooseIcon [
 MooseFinderTest >> testProperty [
 	| entity |
 	entity := FAMIXEntity new.
-	self assertEmpty: entity properties.
 	self assert: (entity propertyNamed: #aKey ifNil: [ 10 ]) equals: 10.
 	entity propertyNamed: #aKey ifAbsentPut: 20.
 	self assert: (entity propertyNamed: #aKey ifNil: [ 10 ]) equals: 20.
 	self denyEmpty: entity properties.
-	self assertEmpty: entity complexPropertyPragmas.
 	self assert: entity notExistentMetricValue equals: -1
 ]
