@@ -4,16 +4,12 @@ rce: 22987863
 Class {
 	#name : #BaselineOfMoose,
 	#superclass : #BaselineOf,
-	#instVars : [
-		'repository'
-	],
 	#category : #BaselineOfMoose
 }
 
 { #category : #baseline }
 BaselineOfMoose >> baseline: spec [
 	<baseline>
-	repository := self packageRepositoryURL.
 	spec
 		for: #common
 		do: [ self
@@ -25,7 +21,8 @@ BaselineOfMoose >> baseline: spec [
 				neoCSV: spec;
 				roassal2: spec.
 			spec
-				package: 'Moose-Finder' with: [ spec requires: #('Famix' 'FamixTaggingWithoutFamix' 'FamixReplicationWithoutFamix' 'MooseAlgos' 'Moose-RoassalPaintings' 'NeoCSV') ];
+				package: 'Moose-Finder'
+					with: [ spec requires: #('Famix' 'FamixTaggingWithoutFamix' 'FamixReplicationWithoutFamix' 'MooseAlgos' 'Moose-RoassalPaintings' 'NeoCSV') ];
 				package: 'Moose-MenuBar' with: [ spec requires: #('Moose-Finder') ];
 				package: 'Moose-Configuration';
 				package: 'Glamour-Tools';
@@ -61,7 +58,7 @@ BaselineOfMoose >> customProjectAttributes [
 
 { #category : #dependencies }
 BaselineOfMoose >> famix: spec [
-	spec baseline: 'Famix' with: [ spec repository: repository ]
+	spec baseline: 'Famix' with: [ spec repository: 'github://moosetechnology/Famix:development/src' ]
 ]
 
 { #category : #dependencies }
@@ -95,14 +92,6 @@ BaselineOfMoose >> neoCSV: spec [
 		with: [ spec
 				loads: 'core';
 				repository: 'github://svenvc/NeoCSV/repository' ]
-]
-
-{ #category : #accessing }
-BaselineOfMoose >> packageRepositoryURL [
-	^ super packageRepositoryURL
-		ifEmpty: [ | packageName |
-			packageName := self class package name.
-			'tonel://' , (IceRepository registry detect: [ :repo | repo workingCopy packageNames includes: packageName ] ifFound: [ :repo | repo location pathString , '/' , repo subdirectory ] ifNone: [ '' ]) ]
 ]
 
 { #category : #accessing }
