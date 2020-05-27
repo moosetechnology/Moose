@@ -7,7 +7,7 @@ SmalltalkCISpec {
   ],
   #testing : {
     #include : {
-      #packages : [ 'Fame.*', 'Famix.*' ]
+      #packages : [ 'Fame.*', 'Famix.*', 'Moose.*' ]
      }
   }
 }
