@@ -8,7 +8,7 @@ SmalltalkCISpec {
   #testing : {
     #include : {
       #packages : [ 'Fame.*', 'Famix.*' ],
-      #projects : [ 'BaselineOfFamix', 'BaselineOfFame', 'BaselineOfHashtable', 'BaselineOfKGBTestResources', 'BaselineOfPackageBlueprintTestResources', 'BaselineOfReferenceTestResources', 'BaselineOfRoelTyper' ]
+      #projects : [ 'BaselineOfFamix', 'BaselineOfHashtable', 'BaselineOfKGBTestResources', 'BaselineOfPackageBlueprintTestResources', 'BaselineOfReferenceTestResources', 'BaselineOfRoelTyper' ]
     }
   }
 }
