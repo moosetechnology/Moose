@@ -4,6 +4,11 @@ Class {
 	#category : #'Moose-Finder'
 }
 
+{ #category : #testing }
+MPImportCommand class >> isAbstract [
+	^ self = MPImportCommand
+]
+
 { #category : #hooks }
 MPImportCommand >> category [
 

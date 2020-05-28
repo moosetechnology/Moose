@@ -38,7 +38,9 @@ PaneAbstractLine >> initialize [
 
 { #category : #'accessing - morph contents' }
 PaneAbstractLine >> morphContents [
-	self groupBoxName ifNil: [ ^ self specificMorphContents ] ifNotNil: [ ^ self newGroupboxNamed: self groupBoxName With: self specificMorphContents ]
+	^ self groupBoxName
+		ifNil: [ self specificMorphContents ]
+		ifNotNil: [ :name | self newGroupboxNamed: name With: self specificMorphContents ]
 ]
 
 { #category : #'morph tools' }

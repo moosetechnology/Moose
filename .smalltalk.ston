@@ -7,8 +7,7 @@ SmalltalkCISpec {
   ],
   #testing : {
     #include : {
-      #packages : [ 'Famix-Tagging-Tests.*' ],
-      #projects : [ 'BaselineOfFamix', 'BaselineOfFame', 'BaselineOfHashtable', 'BaselineOfKGBTestResources', 'BaselineOfPackageBlueprintTestResources', 'BaselineOfReferenceTestResources', 'BaselineOfRoelTyper' ]
-    }
+      #packages : [ 'Fame.*', 'Famix.*', 'Moose.*' ]
+     }
   }
 }

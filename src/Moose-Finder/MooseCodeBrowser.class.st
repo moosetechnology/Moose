@@ -113,56 +113,76 @@ MooseCodeBrowser >> onDetailsFromPackagesFromClassesFromMethods [
 
 { #category : #building }
 MooseCodeBrowser >> onInstVarsFromClasses [
-	browser transmit to: #instVars; from: #classes; andShow: [ :a | 
-		a list
+	browser transmit
+		to: #instVars;
+		from: #classes;
+		andShow: [ :a | 
+			a list
 				title: 'Attributes';
 				display: [ :class | class properties ];
-				format: [:attribute | attribute name ];
+				format: [ :attribute | attribute name ];
 				dynamicActionsOnSelection: [ :list | list selection mooseFinderActions ];
 				tags: [ :each | 
-					(OrderedCollection 
-						with: (each hasClassScope ifTrue: [self metaString] ifFalse: [self instanceString])) 
-							addAll: each modifiers; yourself ] ]
+					(OrderedCollection
+						with:
+						(each isClassSide
+						ifTrue: [ self metaString ]
+						ifFalse: [ self instanceString ]))
+						addAll: each modifiers;
+						yourself ] ]
 ]
 
 { #category : #building }
 MooseCodeBrowser >> onMethodsFromClasses [
-	browser transmit to: #methods; from: #classes; andShow: [ :a | 
-		a list
+	browser transmit
+		to: #methods;
+		from: #classes;
+		andShow: [ :a | 
+			a list
 				title: 'Methods';
 				display: [ :class | class methods ];
 				format: #name;
 				dynamicActionsOnSelection: [ :list | list selection mooseFinderActions ];
 				tags: [ :each | 
-					(OrderedCollection 
-						with: (each hasClassScope ifTrue: [self metaString] ifFalse: [self instanceString])) 
-							addAll: each modifiers; yourself ]
-		 ]
+					(OrderedCollection
+						with:
+						(each isClassSide
+						ifTrue: [ self metaString ]
+						ifFalse: [ self instanceString ]))
+						addAll: each modifiers;
+						yourself ] ]
 ]
 
 { #category : #building }
 MooseCodeBrowser >> onMethodsFromInstVars [
-	browser transmit to: #methods; from: #instVars; andShow: [ :a | 
-		a list
+	browser transmit
+		to: #methods;
+		from: #instVars;
+		andShow: [ :a | 
+			a list
 				title: 'Methods';
 				display: [ :var | var accessingMethods ];
 				format: #name;
 				dynamicActionsOnSelection: [ :list | list selection mooseFinderActions ];
 				tags: [ :each | 
-					(OrderedCollection 
-						with: (each hasClassScope ifTrue: [self metaString] ifFalse: [self instanceString])) 
-							addAll: each modifiers; yourself ] ]
+					(OrderedCollection
+						with:
+						(each isClassSide
+						ifTrue: [ self metaString ]
+						ifFalse: [ self instanceString ]))
+						addAll: each modifiers;
+						yourself ] ]
 ]
 
 { #category : #building }
 MooseCodeBrowser >> onPackages [
-	browser
-		transmit to: #packages;
-		andShow: [ :a |
+	browser transmit
+		to: #packages;
+		andShow: [ :a | 
 			a tree
 				title: 'Packages';
 				display: [ :scopes | scopes select: #isRoot ];
-				children: [ :scope | scope childScopes ];
+				children: [ :scope | scope childEntities ];
 				format: [ :scope | scope name ];
 				dynamicActionsOnSelection: [ :list | list selection mooseFinderActions ];
 				filterOn: [ :text :each | text match: each name ] ]

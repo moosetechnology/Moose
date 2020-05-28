@@ -29,14 +29,13 @@ MultiDependentCheckboxesPart >> checkboxForContextNamed: aContextName [
 { #category : #accessing }
 MultiDependentCheckboxesPart >> dependenciesFor: aCollectionOfContexts [
 	"return all contexts depending of contexts in aCollectionOfContexts"
+
 	| dependenciesForContext |
-
 	dependenciesForContext := Set new.
-	aCollectionOfContexts do: [:each | dependenciesForContext addAll: ( entityDependencies at: each)].
-
-	dependenciesForContext size == aCollectionOfContexts size
-		ifTrue: [^ dependenciesForContext ]
-		ifFalse: [^ self dependenciesFor: dependenciesForContext ].
+	aCollectionOfContexts do: [ :each | dependenciesForContext addAll: (entityDependencies at: each) ].
+	^ dependenciesForContext size == aCollectionOfContexts size
+		ifTrue: [ dependenciesForContext ]
+		ifFalse: [ self dependenciesFor: dependenciesForContext ]
 ]
 
 { #category : #initialization }
@@ -62,17 +61,14 @@ MultiDependentCheckboxesPart >> labelsAndDependencies: aDictionary [
 { #category : #accessing }
 MultiDependentCheckboxesPart >> revertDependenciesFor: aCollectionOfContexts [
 	"return all the contexts from wich aCollectionOfContexts depends"
-	| revertDependenciesForContext |
 
+	| revertDependenciesForContext |
 	revertDependenciesForContext := Set new.
-	 entityDependencies.
-	aCollectionOfContexts do: [:each | 
-		entityDependencies associationsDo: [:assoc | 
-		(assoc value includes: each ) ifTrue: [revertDependenciesForContext add: assoc key] ] ].
-	
-	revertDependenciesForContext size == aCollectionOfContexts size
-	ifTrue: [ ^ revertDependenciesForContext ]
-	ifFalse: [^ self revertDependenciesFor: revertDependenciesForContext ].
+	aCollectionOfContexts
+		do: [ :each | entityDependencies associationsDo: [ :assoc | (assoc value includes: each) ifTrue: [ revertDependenciesForContext add: assoc key ] ] ].
+	^ revertDependenciesForContext size == aCollectionOfContexts size
+		ifTrue: [ revertDependenciesForContext ]
+		ifFalse: [ self revertDependenciesFor: revertDependenciesForContext ]
 ]
 
 { #category : #initialization }

@@ -15,8 +15,8 @@ MooseObject >> bookmarkEntity [
 { #category : #'*Moose-Finder' }
 MooseObject >> complexPropertyPragmas [
 	| navProps definedProps |
-	navProps := (Pragma allNamed: #navigation: from: self class to: MooseObject) sorted: [ :a :b | (a argumentAt: 1) < (b argumentAt: 1) ].
-	definedProps := (self mooseDescription allProperties reject: [ :a | a type isPrimitive ])
+	navProps := self navigationPragmas sorted: [ :pragma | pragma argumentNamed: #navigation ] ascending.
+	definedProps := (self allDeclaredProperties reject: [ :a | a type isPrimitive ])
 		flatCollect: [ :prop | prop compiledMethod pragmas select: [ :each | each selector beginsWith: 'FMProperty:' ] ].
 	^ (OrderedCollection withAll: definedProps)
 		addAll: navProps;
@@ -149,74 +149,28 @@ MooseObject >> mooseSpecificSpotterProcessorsFor: aSpotterStep [
 
 { #category : #'*Moose-Finder' }
 MooseObject >> navigationItemsFromAttributes [
-	| entity assocs attrs result |
-	
+	| entity assocs attrs |
 	"returns associations in form name->object for navigation entities obtained from
 	the the meta-model attributes of the item"
-	
 	entity := self mooseInterestingEntity.
-	attrs := entity mooseDescription allProperties reject: [ :attribute | attribute type isPrimitive ].
+	attrs := entity allDeclaredProperties reject: [ :attribute | attribute type isPrimitive ].
 	assocs := attrs collect: [ :anAttribute | anAttribute -> (entity perform: anAttribute compiledMethod selector) ].
-	
-	"filter out nils and empty collections, sort"
-	result := (assocs
-		reject: [ :association | 
-			association value isNil
-				or: [ association value isCollection and: [ association value isEmpty ] ] ])
-		sorted: [ :a :b |
-			a key formatForNavigationPresentation asLowercase asString
-				< b key formatForNavigationPresentation asLowercase asString ].
-	^ result
 
+	"filter out nils and empty collections, sort"
+	^ (assocs reject: [ :association | association value isNil or: [ association value isCollection and: [ association value isEmpty ] ] ])
+		sorted: [ :a | a key formatForNavigationPresentation asLowercase asString ] ascending
 ]
 
 { #category : #'*Moose-Finder' }
 MooseObject >> navigationItemsFromPragmas [
-	| entity assocs pragmaValueAssociations |
-	
+	| pragmaValueAssociations |
 	"returns associations in form name->object for navigation entities obtained from
 	the pragma #navigation:"
-	
-	entity := self mooseInterestingEntity.
-	pragmaValueAssociations := entity navigationPragmas
-		collect: [ :pragma | 
-			pragma
-				->
-					([self mooseInterestingEntity perform: pragma methodSelector] ifError: [nil])
-						mooseInterestingEntity ].
-					
+	pragmaValueAssociations := (self mooseInterestingEntity navigationPragmas sorted: [ :pragma | pragma argumentNamed: #navigation ] ascending)
+		collect: [ :pragma | pragma -> ([ self mooseInterestingEntity perform: pragma methodSelector ] ifError: [ nil ]) mooseInterestingEntity ].
+
 	"filter out nils and empty collections, sort"
-	assocs := (pragmaValueAssociations
-		reject: [ :association | 
-			association value isNil
-				or: [ association value isCollection and: [ association value isEmpty ] ] ])
-		sorted: [ :a :b | 
-			(a key argumentAt: 1) asLowercase asString
-				< (b key argumentAt: 1) asLowercase asString ].
-	^ assocs
-
-]
-
-{ #category : #'*Moose-Finder' }
-MooseObject >> navigationPragmas [
-	| navProps |
-	navProps := (Pragma allNamed: #navigation: from: self class to: MooseObject) sorted: [ :a :b | (a argumentAt: 1) < (b argumentAt: 1) ].
-
-	^ navProps asOrderedCollection
-]
-
-{ #category : #'*Moose-Finder' }
-MooseObject >> openInGlamorousEditor [
-	<menuItem: 'In Glamour Editor' category: 'Browse'> 
-
-	| symbol className prefixesToIgnore |
-	prefixesToIgnore := #( 'FAMIX' 'MSE' 'Moose').
-	className := self class name asString.
-	prefixesToIgnore do: [:each |
-		(className beginsWith: each) ifTrue: [
-			className := className copyFrom: each size + 1 to: className size] ].
-	symbol := className at: 1 put: className first asLowercase; yourself.
-	^ (GLMEditor openOn: { symbol asSymbol -> self }) maximize
+	^ pragmaValueAssociations reject: [ :entity | entity isNil or: [ entity isCollection and: [ entity isEmpty ] ] ]
 ]
 
 { #category : #'*Moose-Finder' }

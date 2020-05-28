@@ -121,13 +121,11 @@ DropListPart >> merlinRendering [
 
 { #category : #'accessing - wizard mangement' }
 DropListPart >> outputValue [
-
 	"this method is an abstract method as only the subclass itself know what is the information to send to the WizardPane which will send it  to the wizarControl "
-	(self list isNil not and: [self list isEmpty not])
-		ifTrue: [^ self selectedItem]
-		ifFalse: [^ nil].
-		
-	
+
+	^ (self list isNotNil and: [ self list isNotEmpty ])
+		ifTrue: [ self selectedItem ]
+		ifFalse: [ nil ]
 ]
 
 { #category : #'list control' }

@@ -13,9 +13,9 @@ MerlinMorphMultiCheckboxesWidget >> addVerticalSeparatorAtTheMiddleOf: aCollecti
 
 	| index result result1 result2 collectionSize |
 	collectionSize := aCollectionOfElements size.
-	collectionSize even
-		ifTrue: [ index := collectionSize // 2 ]
-		ifFalse: [ index := collectionSize // 2 + 1 ].
+	index := collectionSize even
+		ifTrue: [ collectionSize // 2 ]
+		ifFalse: [ collectionSize // 2 + 1 ].
 
 	result := OrderedCollection new.
 	result1 := OrderedCollection new.

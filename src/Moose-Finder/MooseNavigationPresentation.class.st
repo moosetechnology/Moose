@@ -21,16 +21,10 @@ MooseNavigationPresentation >> compose [
 
 { #category : #private }
 MooseNavigationPresentation >> displayFor: anObject [
-	| anEntity items |
-	
+	| anEntity |
 	anEntity := anObject mooseInterestingEntity.
-	
-	items := anEntity navigationItemsFromPragmas.
-	items addAll: anEntity navigationItemsFromAttributes.
-	items addAll: anEntity customNavigationItems.
-	
-	^ items
-	
+
+	^ anEntity navigationItemsFromPragmas , anEntity navigationItemsFromAttributes , anEntity customNavigationItems
 ]
 
 { #category : #private }

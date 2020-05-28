@@ -4,40 +4,38 @@ rce: 22987863
 Class {
 	#name : #BaselineOfMoose,
 	#superclass : #BaselineOf,
-	#instVars : [
-		'repository'
-	],
 	#category : #BaselineOfMoose
 }
 
 { #category : #baseline }
 BaselineOfMoose >> baseline: spec [
 	<baseline>
-	repository := self packageRepositoryURL.
 	spec
 		for: #common
 		do: [ self
 				famix: spec;
 				famixTagging: spec;
+				famixReplication: spec;
 				mooseAlgos: spec;
 				mooseEasy: spec;
 				neoCSV: spec;
 				roassal2: spec.
 			spec
-				package: 'Moose-Finder' with: [ spec requires: #('Famix' 'FamixTaggingWithoutFamix' 'MooseAlgos' 'Moose-RoassalPaintings' 'NeoCSV') ];
+				package: 'Moose-Finder'
+					with: [ spec requires: #('Famix' 'FamixTagging' 'FamixReplication' 'MooseAlgos' 'Moose-RoassalPaintings' 'NeoCSV') ];
 				package: 'Moose-MenuBar' with: [ spec requires: #('Moose-Finder') ];
 				package: 'Moose-Configuration';
 				package: 'Glamour-Tools';
 				package: 'Glamour-Magritte-Presentations';
 				package: 'Moose-Help';
 				package: 'Moose-RoassalPaintings' with: [ spec requires: #('Roassal2') ];
-				package: 'Moose-Tests-Finder';
-				package: 'Moose-Tests-RoassalPaintings';
+				package: 'Moose-Finder-Tests';
+				package: 'Moose-RoassalPaintings-Tests';
 				package: 'Merlin';
 				package: 'Moose-Wizard';
 				package: 'Merlin';
 				package: 'Moose-DistributionMap';
-				package: 'Moose-Tests-DistributionMap' ].
+				package: 'Moose-DistributionMap-Tests' ].
 	spec
 		for: #'pharo8.x'
 		do: [ spec
@@ -60,12 +58,17 @@ BaselineOfMoose >> customProjectAttributes [
 
 { #category : #dependencies }
 BaselineOfMoose >> famix: spec [
-	spec baseline: 'Famix' with: [ spec repository: repository ]
+	spec baseline: 'Famix' with: [ spec repository: 'github://moosetechnology/Famix:development/src' ]
+]
+
+{ #category : #dependencies }
+BaselineOfMoose >> famixReplication: spec [
+	spec baseline: 'FamixReplication' with: [ spec repository: 'github://moosetechnology/FamixReplication:v1.x.x/src' ]
 ]
 
 { #category : #dependencies }
 BaselineOfMoose >> famixTagging: spec [
-	spec baseline: 'FamixTaggingWithoutFamix' with: [ spec repository: 'github://moosetechnology/FamixTagging:v1.x.x/src' ]
+	spec baseline: 'FamixTagging' with: [ spec repository: 'github://moosetechnology/FamixTagging:v1.x.x/src' ]
 ]
 
 { #category : #dependencies }
@@ -89,14 +92,6 @@ BaselineOfMoose >> neoCSV: spec [
 		with: [ spec
 				loads: 'core';
 				repository: 'github://svenvc/NeoCSV/repository' ]
-]
-
-{ #category : #accessing }
-BaselineOfMoose >> packageRepositoryURL [
-	^ super packageRepositoryURL
-		ifEmpty: [ | packageName |
-			packageName := self class package name.
-			'tonel://' , (IceRepository registry detect: [ :repo | repo workingCopy packageNames includes: packageName ] ifFound: [ :repo | repo location pathString , '/' , repo subdirectory ] ifNone: [ '' ]) ]
 ]
 
 { #category : #accessing }

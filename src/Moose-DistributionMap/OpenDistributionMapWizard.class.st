@@ -155,10 +155,9 @@ OpenDistributionMapWizard >> propertyColorPartWithDefault: index [
 
 { #category : #initialization }
 OpenDistributionMapWizard >> propertyMapperDefaultTextFromIndex: aNumber [
-
- 	aNumber = 1
-		ifTrue: [^ self propertyMapperFirstDefaultText]
-		ifFalse: [^ self propertyMapperSecondDefaultText]
+	^ aNumber = 1
+		ifTrue: [ self propertyMapperFirstDefaultText ]
+		ifFalse: [ self propertyMapperSecondDefaultText ]
 ]
 
 { #category : #initialization }
