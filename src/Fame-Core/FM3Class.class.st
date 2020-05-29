@@ -269,7 +269,12 @@ FM3Class >> propertiesNamed: aListOfSymbol [
 
 { #category : #'accessing-query' }
 FM3Class >> propertyNamed: aString [
-	^ self propertyNamed: aString ifAbsent: nil
+	^ self
+		propertyNamed: aString
+		ifAbsent: [ NotFound new
+				messageText: self name , 'does not have a property named ' , aString;
+				object: self;
+				signal ]
 ]
 
 { #category : #'accessing-query' }
