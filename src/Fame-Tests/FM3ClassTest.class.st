@@ -105,7 +105,7 @@ FM3ClassTest >> testPropertyNamed [
 	element := metaMetamodel elementNamed: 'FM3.Class'.
 	self assert: (element propertyNamed: #owner) isNotNil.
 	self assert: (element propertyNamed: #abstract) isNotNil.
-	self should: [ element propertyNamed: #zork ] raise: NotFound
+	self assert: (element propertyNamed: #zork) isNil
 ]
 
 { #category : #tests }

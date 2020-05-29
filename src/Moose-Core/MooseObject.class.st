@@ -385,11 +385,15 @@ MooseObject >> properties [
 ]
 
 { #category : #properties }
-MooseObject >> propertyNamed: propertyName [ 
+MooseObject >> propertyNamed: propertyName [
 	"Return the value of the property named propertyName, return nil if the property does not exist"
 
-	^ self propertyNamed: propertyName ifNil: [ nil ]
-
+	^ self
+		propertyNamed: propertyName
+		ifNil: [ NotFound new
+				messageText: self name , 'does not have a property named ' , propertyName;
+				object: self;
+				signal ]
 ]
 
 { #category : #properties }
