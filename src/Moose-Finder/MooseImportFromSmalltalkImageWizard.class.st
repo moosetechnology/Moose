@@ -11,7 +11,7 @@ Class {
 		'mooseModel',
 		'metamodelList'
 	],
-	#category : #'Moose-Wizard'
+	#category : #'Moose-Finder'
 }
 
 { #category : #initialization }

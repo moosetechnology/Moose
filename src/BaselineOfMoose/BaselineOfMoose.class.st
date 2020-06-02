@@ -33,8 +33,6 @@ BaselineOfMoose >> baseline: spec [
 				package: 'Moose-Finder-Tests';
 				package: 'Moose-RoassalPaintings-Tests';
 				package: 'Merlin';
-				package: 'Moose-Wizard';
-				package: 'Merlin';
 				package: 'Moose-DistributionMap';
 				package: 'Moose-DistributionMap-Tests' ].
 	spec
