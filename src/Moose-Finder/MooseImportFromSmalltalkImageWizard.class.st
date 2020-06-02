@@ -8,8 +8,7 @@ Class {
 	#name : #MooseImportFromSmalltalkImageWizard,
 	#superclass : #WizardControl,
 	#instVars : [
-		'mooseModel',
-		'metamodelList'
+		'mooseModel'
 	],
 	#category : #'Moose-Finder'
 }
