@@ -15,6 +15,7 @@ BaselineOfMoose >> baseline: spec [
 		do: [ self
 				famix: spec;
 				famixTagging: spec;
+				famixPresentation: spec;
 				famixReplication: spec;
 				mooseAlgos: spec;
 				mooseEasy: spec;
