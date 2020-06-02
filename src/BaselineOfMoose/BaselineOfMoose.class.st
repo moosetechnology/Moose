@@ -22,7 +22,7 @@ BaselineOfMoose >> baseline: spec [
 				roassal2: spec.
 			spec
 				package: 'Moose-Finder'
-					with: [ spec requires: #('Famix' 'FamixTagging' 'FamixReplication' 'MooseAlgos' 'Moose-RoassalPaintings' 'NeoCSV') ];
+					with: [ spec requires: #('Famix' 'FamixTagging' 'FamixReplication' 'FamixPresentation' 'MooseAlgos' 'Moose-RoassalPaintings' 'NeoCSV') ];
 				package: 'Moose-MenuBar' with: [ spec requires: #('Moose-Finder') ];
 				package: 'Moose-Configuration';
 				package: 'Glamour-Tools';
@@ -59,6 +59,11 @@ BaselineOfMoose >> customProjectAttributes [
 { #category : #dependencies }
 BaselineOfMoose >> famix: spec [
 	spec baseline: 'Famix' with: [ spec repository: 'github://moosetechnology/Famix:development/src' ]
+]
+
+{ #category : #dependencies }
+BaselineOfMoose >> famixPresentation: spec [
+	spec baseline: 'FamixPresentation' with: [ spec repository: 'github://moosetechnology/FamixPresentation:v1.x.x/src' ]
 ]
 
 { #category : #dependencies }
