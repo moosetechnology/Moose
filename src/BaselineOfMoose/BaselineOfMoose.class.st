@@ -15,6 +15,7 @@ BaselineOfMoose >> baseline: spec [
 		do: [ self
 				famix: spec;
 				famixTagging: spec;
+				famixPresentation: spec;
 				famixReplication: spec;
 				mooseAlgos: spec;
 				mooseEasy: spec;
@@ -22,7 +23,7 @@ BaselineOfMoose >> baseline: spec [
 				roassal2: spec.
 			spec
 				package: 'Moose-Finder'
-					with: [ spec requires: #('Famix' 'FamixTagging' 'FamixReplication' 'MooseAlgos' 'Moose-RoassalPaintings' 'NeoCSV') ];
+					with: [ spec requires: #('Famix' 'FamixTagging' 'FamixReplication' 'FamixPresentation' 'MooseAlgos' 'Moose-RoassalPaintings' 'NeoCSV') ];
 				package: 'Moose-MenuBar' with: [ spec requires: #('Moose-Finder') ];
 				package: 'Moose-Configuration';
 				package: 'Glamour-Tools';
@@ -31,8 +32,6 @@ BaselineOfMoose >> baseline: spec [
 				package: 'Moose-RoassalPaintings' with: [ spec requires: #('Roassal2') ];
 				package: 'Moose-Finder-Tests';
 				package: 'Moose-RoassalPaintings-Tests';
-				package: 'Merlin';
-				package: 'Moose-Wizard';
 				package: 'Merlin';
 				package: 'Moose-DistributionMap';
 				package: 'Moose-DistributionMap-Tests' ].
@@ -59,6 +58,11 @@ BaselineOfMoose >> customProjectAttributes [
 { #category : #dependencies }
 BaselineOfMoose >> famix: spec [
 	spec baseline: 'Famix' with: [ spec repository: 'github://moosetechnology/Famix:development/src' ]
+]
+
+{ #category : #dependencies }
+BaselineOfMoose >> famixPresentation: spec [
+	spec baseline: 'FamixPresentation' with: [ spec repository: 'github://moosetechnology/FamixPresentation:v1.x.x/src' ]
 ]
 
 { #category : #dependencies }

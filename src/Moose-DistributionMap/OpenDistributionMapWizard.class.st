@@ -4,9 +4,7 @@ Class {
 	#instVars : [
 		'colorCollection',
 		'mooseGroup',
-		'mooseModel',
-		'compositeParts',
-		'distributionMapElements'
+		'mooseModel'
 	],
 	#category : #'Moose-DistributionMap'
 }
@@ -105,9 +103,9 @@ OpenDistributionMapWizard >> mooseGroup: aMooseGroup [
 
 { #category : #accessing }
 OpenDistributionMapWizard >> mooseModel [
-
 	"return the mooseGroup concerned by the visualization"
-	^mooseModel ifNil: [mooseModel := self mooseGroup mooseModel]  
+
+	^ mooseModel ifNil: [ mooseModel := self mooseGroup mooseModel ]
 ]
 
 { #category : #'accessing - map parameters' }
