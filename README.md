@@ -4,6 +4,14 @@ Moose is an extensive platform for software and data analysis.
 
 Moose is an open source software. It was started at the Software Composition Group from the University of Bern in 1996 and is currently contributed to and used by multiple partners. It offers multiple services ranging from importing and parsing data, to modeling, to measuring, querying, mining, and to building interactive and visual analysis tools.
 
+### Documentation
+
+Please refer to the [moose wiki](https://moosetechnology.github.io/moose-wiki/) for the documentation.
+
+### Get a built Moose Image
+
+![Download Moose gif](https://moosetechnology.github.io/moose-wiki/Beginners/res/downloadMoose.gif)
+
 ### How to load
 
 **Moose v7**
