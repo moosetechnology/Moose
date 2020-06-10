@@ -23,7 +23,7 @@ BaselineOfMoose >> baseline: spec [
 				roassal2: spec.
 			spec
 				package: 'Moose-Finder'
-					with: [ spec requires: #('Famix' 'FamixTagging' 'FamixReplication' 'FamixPresentation' 'MooseAlgos' 'Moose-RoassalPaintings' 'NeoCSV') ];
+					with: [ spec requires: #('Famix' 'FamixTagging' 'FamixReplication' 'FamixPresentation' 'MooseAlgos' 'Moose-RoassalPaintings' 'NeoCSV' 'Merlin') ];
 				package: 'Moose-MenuBar' with: [ spec requires: #('Moose-Finder') ];
 				package: 'Moose-Configuration';
 				package: 'Glamour-Tools';
