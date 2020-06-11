@@ -1,6 +1,8 @@
 "
 This trait provides a common, paradigm agnostic vocabulary to query dependencies of named entities at meta level.
 
+It relies on associations having the trait TAssociationMetaLevelDependency.
+
 For more informations: https://moosequery.ferlicot.fr/
 "
 Trait {
@@ -59,7 +61,8 @@ TEntityMetaLevelDependency classSide >> childrenTypesIn: aMetamodel [
 
 { #category : #accessing }
 TEntityMetaLevelDependency classSide >> dependencyFM3PropertyDescriptionIn: aMetamodel [
-
+	"finds in aMetamodel all properties that are associations,
+	 (obviously aMetamodel should contain the class self)"
 	aMetamodel ifNil: [ ^ OrderedCollection new ].
 	^ (self allDeclaredPropertiesIn: aMetamodel)
 		select: [ :e | e hasOpposite and: [ e opposite isSource or: [ e opposite isTarget ] ] ]
@@ -74,7 +77,9 @@ TEntityMetaLevelDependency classSide >> incomingAssociationTypesIn: aMetamodel [
 
 { #category : #accessing }
 TEntityMetaLevelDependency classSide >> incomingMSEPropertiesIn: aMetamodel [
+	"computes all properties that are target of association for self (a class) belonging to aMetamodel"
 
+	self flag: 'For non-association properties that we would like to be dependencies I think it should return the opposite of the non-association properties since we are in the incoming case'.
 	^ aMetamodel additionalProperty: #incomingMSEProperties for: self ifAbsentPut: [ self privateIncomingMSEPropertiesIn: aMetamodel ]
 	
 ]
@@ -173,6 +178,9 @@ TEntityMetaLevelDependency classSide >> privateOutgoingAssociationTypesIn: aMeta
 
 { #category : #new }
 TEntityMetaLevelDependency classSide >> privateOutgoingMSEPropertiesIn: aMetamodel [
+	"computes all properties that are sources of association for self (a class) belonging to aMetamodel"
+
+	self flag: 'For non-association properties that we would like to be dependencies it should be enough to return them since we are in the outgoing case'.
 	^ (self dependencyFM3PropertyDescriptionIn: aMetamodel) select: [ :p | p opposite isSource ]
 ]
 
@@ -579,6 +587,7 @@ TEntityMetaLevelDependency >> outgoingAssociationTypes [
 
 { #category : #accessing }
 TEntityMetaLevelDependency >> outgoingMSEProperties [
+	"finds all properties from entities of 'self class' to other entities"
 	^ self class outgoingMSEPropertiesIn: self metamodel
 ]
 

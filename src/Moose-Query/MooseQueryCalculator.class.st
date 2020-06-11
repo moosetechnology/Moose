@@ -155,6 +155,11 @@ MooseQueryCalculator >> queryAllLocalFor: anEntity [
 
 { #category : #query }
 MooseQueryCalculator >> queryAllLocalFor: anEntity in: aCollection [
+	"collects in aCollection all entities on the opposite side of associations with self
+	 Opposite side depends on self strategy (incoming/outgoing)
+	
+	First collects local (not inherited) properties that match the strategy
+	Then applies these properties to find entities associated to self"
 	| properties |
 	"Instead of #to:do: we could just use #do: but this implementation is much faster. Maybe sista will remove the needs of the todo later."
 	1 to: (properties := self strategy msePropertiesOf: anEntity) size do: [ :ind | (anEntity perform: (properties at: ind) name) ifNotNil: [ :coll | aCollection addAll: coll asCollection ] ].
