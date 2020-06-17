@@ -16,12 +16,3 @@ MooseQueryResult >> gtInspectorItemsIn: composite [
 		showOnly: 50;
 		helpMessage: 'Quick selection field. Given your INPUT, it executes: self select: [:each | INPUT ]'
 ]
-
-{ #category : #'*moose-finder' }
-MooseQueryResult >> mooseInterestingEntity [ 
-	"For a group with one element,  it returns that element, instead of the group, useful in the finder to remove extra step when navigating"
-
-	^self size = 1 
-		ifTrue: [ self anyOne ] 
-		ifFalse: [ self asMooseGroup ]
-]
