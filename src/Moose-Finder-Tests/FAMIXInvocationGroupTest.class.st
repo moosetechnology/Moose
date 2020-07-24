@@ -61,7 +61,7 @@ FAMIXInvocationGroupTest >> setUp [
 FAMIXInvocationGroupTest >> testExportToCsvStream [
 	| writeStream |
 	writeStream := WriteStream on: String new.
-	model allInvocations exportToCsvStream: writeStream.
+	model allInvocations specialize exportToCsvStream: writeStream.
 	self
 		assert: writeStream contents
 		equals:
