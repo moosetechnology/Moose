@@ -51,15 +51,24 @@ MooseObject >> gtInspectorActionOpenInMoose [
 
 { #category : #'*Moose-Finder' }
 MooseObject >> gtInspectorPresentationsIn: composite inContext: aGTInspector [
-	| pragmas |
-	[self mooseDescription] on: NotFound do: [ super gtInspectorPresentationsIn: composite inContext: aGTInspector.
-		^ self ].
+	| pragmas acceptedPragmas |
+	[ self mooseDescription ]
+		on: NotFound
+		do: [ super gtInspectorPresentationsIn: composite inContext: aGTInspector.
+			^ self ].
 	pragmas := Pragma
 		allNamed: #moosePresentationOrder:
 		from: self mooseInterestingEntity class
 		to: Object
 		sortedUsing: [ :x :y | (x argumentAt: 1) < (y argumentAt: 1) ].
+	acceptedPragmas := OrderedCollection new.
 	pragmas
+		do: [ :pragma | 
+			(acceptedPragmas
+				anySatisfy:
+					[ :alreadyAcceptedPragma | alreadyAcceptedPragma method origin = pragma method origin and: [ alreadyAcceptedPragma method selector = pragma method selector ] ])
+				ifFalse: [ acceptedPragmas add: pragma ] ].
+	acceptedPragmas
 		do: [ :eachPragma | 
 			(eachPragma methodSelector findTokens: $:) size = 1
 				ifTrue: [ self mooseInterestingEntity
