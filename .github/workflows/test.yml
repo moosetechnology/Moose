@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        smalltalk: [ Pharo64-9.0, Pharo64-8.0, Pharo64-stable ]
+        smalltalk: [ Pharo64-9.0, Pharo64-8.0 ]
     name: ${{ matrix.smalltalk }}
     steps:
       - uses: actions/checkout@v2
