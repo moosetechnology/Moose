@@ -48,14 +48,14 @@ jobs:
           mv TravisCI.image $PROJECT_NAME.image
           mv TravisCI.changes $PROJECT_NAME.changes
           zip -r $PROJECT_NAME.zip $PROJECT_NAME.image $PROJECT_NAME.changes *.sources pharo.version
+          ls
       
       - name: Upload
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PROJECT_NAME: ${{ matrix.smalltalk }}-Moose
         with:
           upload_url: ${{ needs.create_release.outputs.upload_url }}
-          asset_path: $PROJECT_NAME.zip
+          asset_path: .
           asset_name: $PROJECT_NAME.zip
           asset_content_type: application/zip
