@@ -17,7 +17,7 @@ export ARCH_64=true
 export PHARO_SCRIPT="Iceberg enableMetacelloIntegration: false.
 Metacello new
 	baseline: 'Moose';
-	repository: 'github://moosetechnology/Moose';
+	repository: 'github://moosetechnology/Moose/src';
 	load.	
 Iceberg enableMetacelloIntegration: true.
 Smalltalk saveSession."
