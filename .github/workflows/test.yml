@@ -11,8 +11,23 @@ on:
     branches: [ development ]
 
 jobs:
+  create_release:
+    name: Create release
+    runs-on: ubuntu-latest
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+    steps:
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
   build:
     runs-on: ubuntu-latest
+    needs: create_release
     strategy:
       matrix:
         smalltalk: [ Pharo64-9.0, Pharo64-8.0 ]
@@ -25,3 +40,23 @@ jobs:
       - run: smalltalkci -s ${{ matrix.smalltalk }}
         shell: bash
         timeout-minutes: 15
+      
+      - name: package
+        env:
+          PROJECT_NAME: ${{ matrix.smalltalk }}-Moose
+        run: |
+          mv _builds/* .
+          mv TravisCI.image $PROJECT_NAME.image
+          mv TravisCI.changes $PROJECT_NAME.changes
+          zip -r $PROJECT_NAME.zip $PROJECT_NAME.image $PROJECT_NAME.changes *.sources pharo.version
+      
+      - name: Upload
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PROJECT_NAME: ${{ matrix.smalltalk }}-Moose
+        with:
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
+          asset_path: $PROJECT_NAME.zip
+          asset_name: $PROJECT_NAME.zip
+          asset_content_type: application/zip
