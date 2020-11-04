@@ -23,6 +23,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          prerelease: true
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
   build:
@@ -45,7 +46,7 @@ jobs:
         env:
           PROJECT_NAME: ${{ matrix.smalltalk }}-Moose
         run: |
-          mv _builds/* .
+          mv /home/runner/.smalltalkCI/_builds/* .
           mv TravisCI.image $PROJECT_NAME.image
           mv TravisCI.changes $PROJECT_NAME.changes
           zip -r $PROJECT_NAME.zip $PROJECT_NAME.image $PROJECT_NAME.changes *.sources pharo.version
