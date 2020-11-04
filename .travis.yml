@@ -1,5 +1,4 @@
 language: smalltalk
-sudo: false
 
 os:
   - linux
@@ -12,12 +11,27 @@ matrix:
   fast_finish: true
   allow_failures:
     - smalltalk: Pharo64-9.0
-
-after_success:
-  - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
-  - bash upload.sh Pharo.image Pharo.changes
-
-branches:
-  except:
-    - /^(?i:continuous)$/
+  includes:
+    
+    - language: c
+      addons:
+        apt:
+          packages:
+          - git
+          - libasound2:i386
+          - libcairo2:i386
+          - libz1:i386
+          - libbz2-1.0:i386
+          - libssl1.0.0:i386
+          - libfreetype6:i386
+      install:
+        - git clone https://github.com/oliveiraallex/PharoImageCreatorForGithubCi.git
+      script:
+        -  bash PharoImageCreatorForGithubCi/imageCreate.sh
+      after_success:
+        - wget -c https://github.com/oliveiraallex/uploadtool/raw/master/upload.sh
+        - bash upload.sh result/*
+      branches:
+        except:
+        - /^(?i:continuous)$/
 
