@@ -7,8 +7,6 @@ name: CI
 on:
   push:
     branches: [ development ]
-  pull_request:
-    branches: [ development ]
 
 jobs:
   create_release:
