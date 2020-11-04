@@ -6,7 +6,9 @@ name: CI
 # events but only for the development branch
 on:
   push:
-    branches: [ development ]
+    branches: 
+      - development
+      - v* 
 
 jobs:
   build:
