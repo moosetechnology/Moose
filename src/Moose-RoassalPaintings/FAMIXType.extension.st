@@ -145,7 +145,7 @@ FAMIXType >> viewHierarchyOn: view [
 	| hierarchy |
 	hierarchy :=		(self withDeepCollect: [:each | each directSubclasses]), 
 						(self deepCollect: [:each | each directSuperclasses reject: [:c | c isInterface]]).
-	hierarchy asMooseGroup 
+	hierarchy asMooseSpecializedGroup 
 		viewSimpleSystemComplexityWithSelection: { self } 
 		height: [ :c | c numberOfMethods ] 
 		width: [ :c | c numberOfAttributes ] 
