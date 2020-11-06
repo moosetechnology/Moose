@@ -8,7 +8,7 @@ FamixTMethod >> classBlueprintFillColor [
 		ifTrue: [ ^ Color red ].
 	self isGetter
 		ifTrue: [ ^ Color orange ].
-	self isAbstract
+	(self isAbstract isNotNil and: [ self isAbstract ])
 		ifTrue: [ ^ Color cyan ].
 	self isOverriding
 		ifTrue: [ ^ Color brown ].
