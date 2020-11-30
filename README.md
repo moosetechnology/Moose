@@ -52,7 +52,7 @@ To add this project into the pharo launcher:
 sources := {
     PhLTemplateSource new
         type: #HttpListing;
-        name: 'Pharo Language Server';
+        name: 'Moose';
         url: 'https://github.com/moosetechnology/Moose/releases';
         filterPattern: 'href="([^"]*/Pharo[0-9][^"]*.zip)"';
         templateNameFormat: '{6} ({5})' }.
