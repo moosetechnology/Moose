@@ -16,6 +16,7 @@ OverviewPyramidTest >> model [
 { #category : #helpers }
 OverviewPyramidTest >> prepareAnyMooseModel [
 	| model importer models |
+	self timeLimit: 30 seconds.
 	models := MooseModel root allModels.
 	models ifNotEmpty: [ ^ models anyOne ].
 	model := FamixStModel new.
@@ -33,13 +34,25 @@ OverviewPyramidTest >> prepareAnyMooseModel [
 { #category : #tests }
 OverviewPyramidTest >> testOpen [
 
-	| model |
-	self timeLimit: 30 seconds.
-	model := self prepareAnyMooseModel.
-	self shouldnt: (OverviewPyramid on: model) open delete raise: Error.
+	self
+		shouldnt: (OverviewPyramid on: self prepareAnyMooseModel) open delete
+		raise: Error
+]
+
+{ #category : #tests }
+OverviewPyramidTest >> testRectangleSize [
+	| pyramid |
+
+	pyramid := OverviewPyramid on: self prepareAnyMooseModel.
+	self
+		assert:
+			(pyramid rectangles
+				allSatisfy: [ :rectangle | rectangle extent = PyramidRectangleFactory defaultExtent ])
 ]
 
 { #category : #tests }
 OverviewPyramidTest >> testoverviewPyramidMetrics [
-	self assert: (self model overviewPyramidMetrics isKindOf: OverviewPyramidMetrics)
+
+	self
+		assert: (self model overviewPyramidMetrics isKindOf: OverviewPyramidMetrics)
 ]
