@@ -57,12 +57,10 @@ MooseModelFinderExtensionsTest >> testMenuBrowseMetaOn [
 MooseModelFinderExtensionsTest >> testMooseInterestingEntity [
 	| storage state |
 	model := MooseModel new.
-	state := model privateState.
+	state := model.
 	storage := model entityStorage.
-
 	model mooseInterestingEntity.
-
-	self assert: model privateState identicalTo: state.
+	self assert: model identicalTo: state.
 	self assert: model entityStorage identicalTo: storage
 ]
 

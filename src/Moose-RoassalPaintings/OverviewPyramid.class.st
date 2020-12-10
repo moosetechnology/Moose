@@ -204,8 +204,7 @@ OverviewPyramid >> cyclo [
 
 { #category : #initialize }
 OverviewPyramid >> emptyRectangles: aNumber [
-	aNumber timesRepeat: [rectangles add: PyramidRectangle white].
-
+	aNumber timesRepeat: [ rectangles add: PyramidRectangle white ]
 ]
 
 { #category : #'accessing - metrics' }
@@ -375,12 +374,11 @@ Indicator of how much the coupling involves many classes';
 
 { #category : #initialize }
 OverviewPyramid >> initializeWith: aMooseModel [
-
 	mooseModel := aMooseModel.
-	moView := RTMondrian new.
+	moView := RSCanvas new.
 	metrics := aMooseModel overviewPyramidMetrics.
 	self treesholdsToUse: (self class treesholdForModel: aMooseModel).
-	self initializeRectangles.
+	self initializeRectangles
 ]
 
 { #category : #'accessing - metrics' }
@@ -424,7 +422,7 @@ OverviewPyramid >> render [
 ]
 
 { #category : #rendering }
-OverviewPyramid >> renderOn: mondrian [
+OverviewPyramid >> renderOn2: mondrian [
 	| s |
 	s := RTCompositeShape new.
 	s add: (RTBox new 
@@ -440,6 +438,36 @@ OverviewPyramid >> renderOn: mondrian [
 	mondrian layout grid gapSize: 0; lineItemsCount: [ 9 ].
 	
 	
+]
+
+{ #category : #rendering }
+OverviewPyramid >> renderOn: canvas [
+	| nodes |
+	nodes := RSGroup
+		withAll:
+			(rectangles
+				collect: [ :rect | 
+					| shape label |
+					shape := RSBox new
+						model: rect;
+						height: 20;
+						width: 60;
+						color: rect backgroundColor;
+						yourself.
+					label := RSLabel new
+						text: rect label;
+						color: rect textColor;
+						yourself.
+					RSComposite new
+						shapes:
+							{shape.
+							label};
+						yourself ]).
+	canvas addAll: nodes.
+	RSGridLayout new
+		gapSize: 0;
+		on: canvas shapes.
+	canvas @ RSCanvasController
 ]
 
 { #category : #'accessing - treeshold' }
@@ -478,6 +506,5 @@ OverviewPyramid >> useJavaTreesholds [
 
 { #category : #initialize }
 OverviewPyramid >> yellowRectangles: aNumber [
-	aNumber timesRepeat: [rectangles add: PyramidRectangle paleYellow].
-
+	aNumber timesRepeat: [ rectangles add: PyramidRectangle paleYellow ]
 ]

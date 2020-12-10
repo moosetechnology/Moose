@@ -2,7 +2,9 @@ Extension { #name : #MooseModel }
 
 { #category : #'*Moose-RoassalPaintings' }
 MooseModel >> overviewPyramidMetrics [
-	^ self privateState cacheAt: #overviewPyramidMetrics ifAbsentPut: [ OverviewPyramidMetrics on: self ]
+	^ self
+		cacheAt: #overviewPyramidMetrics
+		ifAbsentPut: [ OverviewPyramidMetrics on: self ]
 ]
 
 { #category : #'*Moose-RoassalPaintings-OverviewPyramid' }
