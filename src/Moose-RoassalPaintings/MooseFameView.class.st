@@ -37,22 +37,15 @@ MooseFameView >> propertyLabel: aFM3Property [
 
 { #category : #private }
 MooseFameView >> viewFameClasses: classes [
-	| view |
-	view := RTUMLClassBuilder new.
-	self viewFameClasses: classes on: view.
-	^ view openWithToolbarEntitled: 'Fame UML'
-]
-
-{ #category : #private }
-MooseFameView >> viewFameClasses: classes on: view [
-
-	^ view
-		addObjects: classes;
-		classname: #name;
-		instanceVariables: #allProperties;
-		methodsNames: {};
-		superclass: #superclass;
-		treeLayout
+	| builder |
+	builder := RSUMLClassBuilder new
+		classes: classes;
+		yourself.
+	builder modelDescriptor
+		instVars: #allProperties;
+		methods: {}.
+	builder build.
+	^ builder canvas openWithTitle: 'Fame UML'
 ]
 
 { #category : #opening }
