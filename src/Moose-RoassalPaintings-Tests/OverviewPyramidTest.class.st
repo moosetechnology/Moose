@@ -32,22 +32,24 @@ OverviewPyramidTest >> prepareAnyMooseModel [
 ]
 
 { #category : #tests }
+OverviewPyramidTest >> testBricksSize [
+
+	| pyramid |
+
+	pyramid := OverviewPyramid on: self prepareAnyMooseModel.
+
+	self
+		assert:
+			(pyramid bricks
+				allSatisfy: [ :brick | brick extent = PyramidBrickFactory defaultExtent ])
+]
+
+{ #category : #tests }
 OverviewPyramidTest >> testOpen [
 
 	self
 		shouldnt: (OverviewPyramid on: self prepareAnyMooseModel) open delete
 		raise: Error
-]
-
-{ #category : #tests }
-OverviewPyramidTest >> testRectangleSize [
-	| pyramid |
-
-	pyramid := OverviewPyramid on: self prepareAnyMooseModel.
-	self
-		assert:
-			(pyramid rectangles
-				allSatisfy: [ :rectangle | rectangle extent = PyramidRectangleFactory defaultExtent ])
 ]
 
 { #category : #tests }
