@@ -1,3 +1,11 @@
+"
+I show an overview of a model complexity.
+
+I am use in Moose Panel: Right-click on a model, 'Visualize', 'Overview Pyramid'.
+See also an example on class side.
+
+More documentation here: https://www.simpleorientedarchitecture.com/overview-pyramid-metrics-ndepend/
+"
 Class {
 	#name : #OverviewPyramid,
 	#superclass : #Object,

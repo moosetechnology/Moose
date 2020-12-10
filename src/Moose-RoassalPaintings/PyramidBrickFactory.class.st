@@ -1,3 +1,7 @@
+"
+Utility class for OverviewPyramid.
+I provide RSShapes or RSComposites.
+"
 Class {
 	#name : #PyramidBrickFactory,
 	#superclass : #Object,
