@@ -42,8 +42,10 @@ MooseFameView >> viewFameClasses: classes [
 		classes: classes;
 		yourself.
 	builder modelDescriptor
-		instVars: #allProperties;
-		methods: {}.
+		instVars: [ :metaDescription | metaDescription primitiveProperties ];
+		instVarSelector: [ :metaDescription | metaDescription implementingSelector ];
+		methods: [ :metaDescription | metaDescription complexProperties ];
+		methodSelector: [ :metaDescription | metaDescription implementingSelector ].
 	builder build.
 	^ builder canvas openWithTitle: 'Fame UML'
 ]

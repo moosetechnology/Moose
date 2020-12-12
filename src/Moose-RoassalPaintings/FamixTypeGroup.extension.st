@@ -137,6 +137,7 @@ FamixTypeGroup >> viewSystemComplexity [
 
 { #category : #'*Moose-RoassalPaintings' }
 FamixTypeGroup >> viewSystemNestingMap [
+<menuItem: 'Nesting Map' category: 'Visualize'> 
 	| view |
 	view := RTView new.
 	self viewSystemNestingMapOnRaw: view.
@@ -146,7 +147,10 @@ FamixTypeGroup >> viewSystemNestingMap [
 { #category : #'*Moose-RoassalPaintings' }
 FamixTypeGroup >> viewSystemNestingMapOnRaw: view [
 	^ FAMIXSystemNestingMap new
-		viewNamespaces: (self mooseModel allNamespaces select: [ :each | each allClasses anySatisfy: [ :c | c isStub not ] ])
+		viewNamespaces:
+			(self mooseModel allNamespaces
+				select:
+					[ :each | (each allToScope: FamixTClass) anySatisfy: [ :c | c isStub not ] ])
 		highlighting: self
 		onRaw: view
 ]

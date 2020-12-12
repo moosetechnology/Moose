@@ -141,6 +141,11 @@ FAMIXType >> setterMethods [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
+FAMIXType >> viewBlueprintOn: view [
+	^ FamixBlueprint new view: self on: view
+]
+
+{ #category : #'*Moose-RoassalPaintings' }
 FAMIXType >> viewHierarchyOn: view [
 	| hierarchy |
 	hierarchy :=		(self withDeepCollect: [:each | each directSubclasses]), 

@@ -41,3 +41,8 @@ FAMIXClass >> sureInvokingClassesInto: aFAMIXPackage [
 	self flag: #fixme.
 	^ self sureInvokingClasses
 ]
+
+{ #category : #'*Moose-RoassalPaintings' }
+FAMIXClass >> viewBlueprintOn: view [
+	^ FamixBlueprint new view: self on: view
+]

@@ -47,14 +47,10 @@ FamixTType >> interfaceMethods [
 { #category : #'*Moose-RoassalPaintings' }
 FamixTType >> viewBlueprint [
 	<menuItem: 'Class blueprint' category: 'Visualize'>
-	| view |
-	view := RTView new.
-	view @ RTDraggableView.
-	self viewBlueprintOn: view.
-	^ view open
+	(FamixBlueprint new view: self) open
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
 FamixTType >> viewBlueprintOn: view [
-	^ FAMIXClassBlueprint new view: self on: view
+	^ FamixBlueprint new view: self on: view
 ]

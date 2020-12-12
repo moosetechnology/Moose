@@ -27,14 +27,15 @@ FAMIXSystemNestingMap >> viewNamespaces: namespaces highlighting: classesToHighl
 	| builder packages |
 	builder := RTTreeMapBuilder new.
 	packages := namespaces
-		select:
-			[ :each | each isRoot and: [ each allClasses anySatisfy: [ :c | c isStub not ] ] ].
+		select: [ :each | 
+			each isRoot
+				and: [ (each allToScope: FamixTClass) anySatisfy: [ :c | c isStub not ] ] ].
 	builder
 		weight: [ :el | 
 			el isNamespace
 				ifFalse: [ el numberOfMethods + 1 ]
 				ifTrue:
-					[ el allClasses inject: 5 into: [ :sum :x | sum + x numberOfMethods ] ] ].
+					[ (el allToScope: FamixTClass) inject: 5 into: [ :sum :x | sum + x numberOfMethods ] ] ].
 	builder shape
 		if: [ :x | classesToHighlight includes: x ]
 		fillColor: [ Color blue muchLighter ].
