@@ -31,6 +31,37 @@ FamixBlueprint >> buildLayerNamed: label withMethods: target [
 	canvas add: layer
 ]
 
+{ #category : #private }
+FamixBlueprint >> buildLegend [
+	| legend |
+	legend := RSLegend new.
+	legend container: canvas.
+	legend onDemand.
+	legend title: 'Class Blueprint'.
+	legend text: 'Each class is composed of 5 parts, from left to right:'.
+	legend
+		text:
+			'    Constructors, Public methods, Private methods, Accessors, Variables'.
+	legend
+		text: 'Variable access'
+		withShape:
+			(RSBox new
+				extent: 15 @ 5;
+				color: Color lightBlue).
+	legend
+		text: 'Method invocation'
+		withShape:
+			(RSBox new
+				extent: 15 @ 5;
+				color: Color lightMagenta).
+	legend text: 'Setter' withBoxColor: Color red.
+	legend text: 'Getter' withBoxColor: Color orange.
+	legend text: 'Abstract' withBoxColor: Color cyan.
+	legend text: 'Overriding' withBoxColor: Color brown.
+	legend text: 'Constant' withBoxColor: Color gray.
+	legend build
+]
+
 { #category : #accessing }
 FamixBlueprint >> canvas [
 	^ canvas
@@ -131,6 +162,7 @@ FamixBlueprint >> view: aClass [
 	self createLayersFor: aClass.
 	self createEdgesFor: aClass.
 	self nestLayers.
+	self buildLegend.
 	canvas @ RSCanvasController.
 	^ canvas
 ]
