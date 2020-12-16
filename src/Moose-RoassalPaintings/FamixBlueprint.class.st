@@ -62,11 +62,6 @@ FamixBlueprint >> buildLegend [
 	legend build
 ]
 
-{ #category : #accessing }
-FamixBlueprint >> canvas [
-	^ canvas
-]
-
 { #category : #private }
 FamixBlueprint >> createEdgesFor: aClass [
 	| builder edges |
@@ -106,6 +101,18 @@ FamixBlueprint >> edgeBuilder [
 		yourself
 ]
 
+{ #category : #public }
+FamixBlueprint >> forType: aClass [
+	"This is a public method. This methods render in aCanvas the class blueprint of the famix class aClass"
+
+	self createLayersFor: aClass.
+	self createEdgesFor: aClass.
+	self nestLayers.
+	self buildLegend.
+	canvas @ RSCanvasController.
+	^ canvas
+]
+
 { #category : #initialization }
 FamixBlueprint >> initialize [
 	super initialize.
@@ -117,7 +124,7 @@ FamixBlueprint >> nestLayers [
 	| layers maxHeight |
 	layers := canvas nodes.
 	RSHorizontalTreeLayout new
-		on: (layers flatCollect: #children)
+		on: (layers flatCollect: #nodes)
 		edges: canvas edges.
 	layers do: [ :layer | layer padding: 10 ].
 	maxHeight := layers max: [ :layer | layer height ].
@@ -153,16 +160,4 @@ FamixBlueprint >> shapeForMethod: aMethod [
 		yourself.
 	shape @ RSDraggable.
 	^ shape
-]
-
-{ #category : #public }
-FamixBlueprint >> view: aClass [
-	"This is a public method. This methods render in view the class blueprint of the famix class aClass"
-
-	self createLayersFor: aClass.
-	self createEdgesFor: aClass.
-	self nestLayers.
-	self buildLegend.
-	canvas @ RSCanvasController.
-	^ canvas
 ]

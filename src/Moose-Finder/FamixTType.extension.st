@@ -6,7 +6,5 @@ FamixTType >> mooseFinderBlueprintIn: composite [
 	composite roassal3
 		title: 'Blueprint';
 		titleIcon: MooseIcons mooseBlueprint;
-		initializeCanvas: [ FamixBlueprint new
-				view: self mooseInterestingEntity;
-				canvas ]
+		initializeCanvas: [ self blueprint ]
 ]

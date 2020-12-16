@@ -32,37 +32,33 @@ FamixTypeGroup >> viewAnnotationConstellationOn: view [
 
 { #category : #'*Moose-RoassalPaintings' }
 FamixTypeGroup >> viewBlueprintComplexity [
-	<menuItem: 'Blueprint complexity' category: 'Visualize'> 
-	
-	| view |
-	view := RTView new.
-	view @ RTZoomableView @ RTDraggableView.
-	self viewBlueprintOn: view.
-	self asArray anyOne addBlueprintLegendOn: view. 
-	view inspect.
-
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
-FamixTypeGroup >> viewBlueprintOn: view [
-
-	| nodes edges eb |
-	nodes := RTBox new color: Color transparent; elementsOn: self.
-	view addAll: nodes.
-	"edges := RTEdge buildEdgesFromObjects: self from: #superclass to: #yourself using: (RTMultiLine new color: Color veryLightGray; width: 2; orthoVertical) scope: nodes."
-	eb := RTEdgeBuilder new.
-	eb view: view.
-	eb objects: self.
-	eb shape: (RTMultiLine new color: Color veryLightGray; width: 2; orthoVertical).
-	edges := eb connectFrom: #superclass.
-	view addAll: edges.
-	nodes do: [ :each | 
-		each @ RTDraggable.
-		RTNest new on: each nest: {(each model viewBlueprintOn: view)}
-		].
-
-	edges do: [ :each | each shape withVerticallAttachPoint ].	
-	RTTreeLayout new verticalGap: 40; on: nodes
+	<menuItem: 'Blueprint complexity' category: 'Visualize'>
+	| canvas |
+	canvas := RSCanvas new.
+	canvas
+		addAll:
+			(self
+				collect: [ :type | 
+					| singleBlueprint |
+					singleBlueprint := type blueprint asShape
+						model: type;
+						@ RSDraggable;
+						yourself.
+					"The following is a hack: after copying shapes from singleBlueprint, shapes are unaware of their connected edges."
+					singleBlueprint edges
+						do: [ :edge | 
+							edge from addConnectedEdge: edge.
+							edge to addConnectedEdge: edge ].
+					singleBlueprint ]).
+	RSEdgeBuilder line
+		shapes: canvas nodes;
+		color: Color veryLightGray;
+		withVerticalAttachPoint;
+		connectTo: [ :class | class superclass ].
+	canvas pushBackEdges.
+	RSTreeLayout new on: canvas nodes edges: canvas edges.
+	canvas @ RSCanvasController.
+	canvas open
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
