@@ -28,7 +28,25 @@ FamixTType >> interfaceMethods [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
+FamixTType >> uml [
+	| builder |
+	builder := RSUMLClassBuilder new.
+	builder classes: {self}.
+	builder modelDescriptor
+		instVars: #attributes;
+		methodSelector: #name.
+	builder build.
+	^ builder canvas
+]
+
+{ #category : #'*Moose-RoassalPaintings' }
 FamixTType >> viewBlueprint [
 	<menuItem: 'Class blueprint' category: 'Visualize'>
 	self blueprint openWithTitle: 'Blueprint of ' , self name
+]
+
+{ #category : #'*Moose-RoassalPaintings' }
+FamixTType >> viewUML [
+	<menuItem: 'UML class diagram' category: 'Visualize'>
+	^ self uml openWithTitle: 'UML class diagram'
 ]

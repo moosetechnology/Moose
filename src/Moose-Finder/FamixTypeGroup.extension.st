@@ -22,11 +22,10 @@ FamixTypeGroup >> mooseFinderComplexityIn: composite [
 { #category : #'*Moose-Finder' }
 FamixTypeGroup >> mooseFinderUMLIn: composite [
     <moosePresentationOrder: 20>
-    composite roassal2
+    composite roassal3
 			title: 'UML';
 			titleIcon: MooseIcons mooseUml;
-			initializeView: [ RTUMLClassBuilder new ];
-			painting: [ :view :each | each viewUMLOn: view ]
+			initializeCanvas: [ self uml ]
 ]
 
 { #category : #'*Moose-Finder' }
@@ -46,6 +45,18 @@ FamixTypeGroup >> mooseIcon [
 ]
 
 { #category : #'*Moose-Finder' }
+FamixTypeGroup >> uml [
+	| builder |
+	builder := RSUMLClassBuilder new.
+	builder classes: self.
+	builder modelDescriptor
+		instVars: #attributes;
+		methodSelector: #name.
+	builder build.
+	^ builder canvas
+]
+
+{ #category : #'*Moose-Finder' }
 FamixTypeGroup >> viewSystemComplexityInWizard [
 	<menuItem: 'Customizable System Complexity' category: 'Visualize'>
 	self ifEmpty: [ ^ self ].
@@ -58,22 +69,6 @@ FamixTypeGroup >> viewSystemComplexityInWizard [
 
 { #category : #'*Moose-Finder' }
 FamixTypeGroup >> viewUML [
-	<menuItem: 'UML class diagram' category: 'Visualize'> 
-	
-	| view |
-	view := RTUMLClassBuilder new.
-	self viewUMLOn: view.
-	^ view openWithToolbarEntitled: 'UML class diagram'
-]
-
-{ #category : #'*Moose-Finder' }
-FamixTypeGroup >> viewUMLOn: view [
-	view
-		addObjects: self;
-		classname: #name;
-		instanceVariables: #attributes;
-		methodsNames: #methods;
-		methodselector: #name;
-		superclass: #superclass;
-		treeLayout
+	<menuItem: 'UML class diagram' category: 'Visualize'>
+	^ self uml openWithTitle: 'UML class diagram'
 ]
