@@ -1,19 +1,24 @@
 Extension { #name : #FamixTypeGroup }
 
 { #category : #'*Moose-RoassalPaintings' }
-FamixTypeGroup >> addSystemComplexityLegendOn: view [
-
-	| lb |
-	lb := RTLegendBuilder new.
-	lb onDemand.
-	lb view: view.
-
-	lb addColoredText: 'System complexity view' color: Color black.
-	lb addText: 'box = class'.
-	lb addText: 'line = inheritance (superclass is above subclasses)'.
-	lb addRectanglePolymetricWidth: 'number of attributes' height: 'number of methods' box: 'a class'.
-	lb addColorFadingFrom: Color white to: Color black text: 'Number of lines of code (white = few, black = a lot)'.
-	lb build.
+FamixTypeGroup >> addSystemComplexityLegendOn: aCanvas [
+	| legend |
+	legend := RSLegend new.
+	legend container: aCanvas.
+	legend onDemand.
+	legend title: 'System complexity view'.
+	legend text: 'Box = Class'.
+	legend text: 'Line = Inheritance'.
+	legend
+		polymetricWidth: 'number of attributes'
+		height: 'number of methods'
+		box: 'a class'.
+	legend
+		text: 'Number of lines of code'
+		withFadingRamp:
+			{(0 -> 'white').
+			(1 -> 'black')}.
+	legend build
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
@@ -62,25 +67,6 @@ FamixTypeGroup >> viewBlueprintComplexity [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FamixTypeGroup >> viewSimpleSystemComplexityOn: b [ 
-	"b is an instance of RTMondrian"
-	
-	| aRectangle |
-	aRectangle := b shape rectangle
-		height: [ :cls | [cls numberOfMethods max: 5] ifError: [0]];
-		width: [ :cls | [cls numberOfAttributes max: 5] ifError: [0]];
-		borderColor: Color lightGray.
-
-	[aRectangle linearFillColor: #numberOfLinesOfCode within: self entities ] ifError: [].
-	
-	b interaction popupText.
-	b interaction menu: [ :each | each mooseMenuMorph ].
-	b nodes: self entities.
-	[b edges connectFromAll: [ :cls | cls directSuperclasses] ] ifError: [ ].
-	b layout tree 
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
 FamixTypeGroup >> viewSimpleSystemComplexityWithSelection: selectedClassGroup height: heightBlock width: widthBlock color: colorBlock on: view [
 	view shape box
 		height: heightBlock;
@@ -123,12 +109,8 @@ FamixTypeGroup >> viewSystemAttractionOn: view [
 
 { #category : #'*Moose-RoassalPaintings' }
 FamixTypeGroup >> viewSystemComplexity [
-	<menuItem: 'System complexity' category: 'Visualize'> 
-	| b |
-	b := RTMondrian new.
-	self viewSimpleSystemComplexityOn: b.
-	self addSystemComplexityLegendOn: b view.
-	^ b openWithToolbar title: 'System Complexity'
+	<menuItem: 'System complexity' category: 'Visualize'>
+	^ self systemComplexity openWithTitle: 'System Complexity'
 ]
 
 { #category : #'*Moose-RoassalPaintings' }

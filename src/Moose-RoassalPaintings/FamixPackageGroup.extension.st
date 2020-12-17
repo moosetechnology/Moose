@@ -1,6 +1,34 @@
 Extension { #name : #FamixPackageGroup }
 
 { #category : #'*Moose-RoassalPaintings' }
+FamixPackageGroup >> systemComplexity [
+	| canvas |
+	canvas := RSCanvas new.
+	canvas
+		addAll:
+			(self
+				collect: [ :package | 
+					package classes
+						ifNotEmpty: [ :classes | 
+							classes asMooseSpecializedGroup systemComplexity asShape
+								model: package;
+								padding: 10;
+								color: Color lightGray;
+								popup;
+								@ RSDraggable;
+								yourself ] ]).
+	RSEdgeBuilder orthoVertical
+		shapes: canvas nodes;
+		color: Color veryLightGray;
+		withVerticalAttachPoint;
+		connectToAll:
+				[ :package | package queryIncomingInheritances atScope: FamixTPackage ].
+	RSTreeLayout new on: canvas nodes edges: canvas edges.
+	canvas @ RSCanvasController.
+	^ canvas
+]
+
+{ #category : #'*Moose-RoassalPaintings' }
 FamixPackageGroup >> viewDependenciesWithCycles [
 	<menuItem: 'Dependencies (cycles)' category: 'Visualize'>
 	|view |
@@ -67,23 +95,4 @@ FamixPackageGroup >> viewPackageInternalOn: view [
 	lb addRectanglePolymetricWidth: 'Number of Variables' height: 'Number of methods' box: 'Class'.
 	lb build.
 	^ view
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
-FamixPackageGroup >> viewSystemComplexity [
-	<menuItem: 'Package-wise System Complexity' category: 'Visualize'> 
-
-	| view | 
-	view := RTMondrian new.
-	self viewSystemComplexityOn: view.
-	^ view open setLabel: 'Package-wise System Complexity'
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
-FamixPackageGroup >> viewSystemComplexityOn: view [
-	view shape rectangle.
-	view nodes: self forEach: [ :p | p classes ifNotEmpty: [ :classes | classes viewSimpleSystemComplexityOn: view ] ].
-	view shape orthoVerticalLine.
-	view edges connectFrom: #yourself toAll: [ :each | each queryIncomingInheritances atScope: FamixTPackage ].
-	view layout dominanceTree
 ]
