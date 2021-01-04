@@ -20,7 +20,8 @@ BaselineOfMoose >> baseline: spec [
 				mooseAlgos: spec;
 				mooseEasy: spec;
 				neoCSV: spec;
-				roassal2: spec.
+				roassal2: spec; 
+				roassal3: spec.
 			spec
 				package: 'Moose-Finder'
 					with: [ spec requires: #('Famix' 'FamixTagging' 'FamixReplication' 'FamixPresentation' 'MooseAlgos' 'Moose-RoassalPaintings' 'NeoCSV' 'Merlin') ];
@@ -29,7 +30,7 @@ BaselineOfMoose >> baseline: spec [
 				package: 'Glamour-Tools';
 				package: 'Glamour-Magritte-Presentations';
 				package: 'Moose-Help';
-				package: 'Moose-RoassalPaintings' with: [ spec requires: #('Roassal2') ];
+				package: 'Moose-RoassalPaintings' with: [ spec requires: #('Roassal2' 'Roassal3') ];
 				package: 'Moose-Finder-Tests';
 				package: 'Moose-RoassalPaintings-Tests';
 				package: 'Merlin';
@@ -110,4 +111,12 @@ BaselineOfMoose >> roassal2: spec [
 		with: [ spec
 				loads: 'Minimal';
 				repository: 'github://ObjectProfile/Roassal2:614d7b80eebf6af33a777cec55ecc1c6a7a65482/src' ]
+]
+
+{ #category : #dependencies }
+BaselineOfMoose >> roassal3: spec [
+	spec
+		baseline: 'Roassal2'
+		with:
+			[ spec repository: 'github://ObjectProfile/Roassal3:v0.9.5/src' ]
 ]
