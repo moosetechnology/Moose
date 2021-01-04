@@ -116,7 +116,7 @@ BaselineOfMoose >> roassal2: spec [
 { #category : #dependencies }
 BaselineOfMoose >> roassal3: spec [
 	spec
-		baseline: 'Roassal2'
+		baseline: 'Roassal23'
 		with:
 			[ spec repository: 'github://ObjectProfile/Roassal3:v0.9.5/src' ]
 ]
