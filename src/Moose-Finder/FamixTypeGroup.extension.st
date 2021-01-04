@@ -9,24 +9,19 @@ FamixTypeGroup >> browseAsSelectionInSystemComplexityLocator [
 { #category : #'*Moose-Finder' }
 FamixTypeGroup >> mooseFinderComplexityIn: composite [
 	<moosePresentationOrder: 20>
-	composite roassal2
-			title: 'Hierarchy';
-			titleIcon: MooseIcons mooseSystemComplexity;
-			initializeView: [ RTMondrian new ];
-			painting: [ :b :each | 
-				each mooseInterestingEntity viewSimpleSystemComplexityOn: b.
-				self addSystemComplexityLegendOn: b view ]
-
+	composite roassal3
+		title: 'Hierarchy';
+		titleIcon: MooseIcons mooseSystemComplexity;
+		initializeCanvas: [ self systemComplexity ]
 ]
 
 { #category : #'*Moose-Finder' }
 FamixTypeGroup >> mooseFinderUMLIn: composite [
     <moosePresentationOrder: 20>
-    composite roassal2
+    composite roassal3
 			title: 'UML';
 			titleIcon: MooseIcons mooseUml;
-			initializeView: [ RTUMLClassBuilder new ];
-			painting: [ :view :each | each viewUMLOn: view ]
+			initializeCanvas: [ self uml ]
 ]
 
 { #category : #'*Moose-Finder' }
@@ -46,6 +41,52 @@ FamixTypeGroup >> mooseIcon [
 ]
 
 { #category : #'*Moose-Finder' }
+FamixTypeGroup >> systemComplexity [
+	| canvas |
+	canvas := RSCanvas new.
+	canvas
+		addAll:
+			(self entities
+				collect: [ :type | 
+					RSBox new
+						model: type;
+						borderColor: Color lightGray;
+						popup ]).
+	RSNormalizer height
+		shapes: canvas shapes;
+		normalize: [ :type | type numberOfMethods max: 5 ].
+	RSNormalizer width
+		shapes: canvas shapes;
+		normalize: [ :type | type numberOfAttributes max: 5 ].
+	RSNormalizer color
+		from: Color white;
+		to: Color black;
+		shapes: canvas shapes;
+		normalize: #numberOfLinesOfCode.
+	RSEdgeBuilder line
+		shapes: canvas shapes;
+		withVerticalAttachPoint;
+		connectToAll: #directSuperclasses.
+	canvas pushBackEdges.
+	RSTreeLayout new on: canvas shapes edges: canvas edges.
+	self addSystemComplexityLegendOn: canvas.
+	canvas @ RSCanvasController.
+	^ canvas
+]
+
+{ #category : #'*Moose-Finder' }
+FamixTypeGroup >> uml [
+	| builder |
+	builder := RSUMLClassBuilder new.
+	builder classes: self.
+	builder modelDescriptor
+		instVars: #attributes;
+		methodSelector: #name.
+	builder build.
+	^ builder canvas
+]
+
+{ #category : #'*Moose-Finder' }
 FamixTypeGroup >> viewSystemComplexityInWizard [
 	<menuItem: 'Customizable System Complexity' category: 'Visualize'>
 	self ifEmpty: [ ^ self ].
@@ -58,22 +99,6 @@ FamixTypeGroup >> viewSystemComplexityInWizard [
 
 { #category : #'*Moose-Finder' }
 FamixTypeGroup >> viewUML [
-	<menuItem: 'UML class diagram' category: 'Visualize'> 
-	
-	| view |
-	view := RTUMLClassBuilder new.
-	self viewUMLOn: view.
-	^ view openWithToolbarEntitled: 'UML class diagram'
-]
-
-{ #category : #'*Moose-Finder' }
-FamixTypeGroup >> viewUMLOn: view [
-	view
-		addObjects: self;
-		classname: #name;
-		instanceVariables: #attributes;
-		methodsNames: #methods;
-		methodselector: #name;
-		superclass: #superclass;
-		treeLayout
+	<menuItem: 'UML class diagram' category: 'Visualize'>
+	^ self uml openWithTitle: 'UML class diagram'
 ]
