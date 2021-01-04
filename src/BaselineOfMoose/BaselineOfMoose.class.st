@@ -110,13 +110,13 @@ BaselineOfMoose >> roassal2: spec [
 		baseline: 'Roassal2'
 		with: [ spec
 				loads: 'Minimal';
-				repository: 'github://ObjectProfile/Roassal2:614d7b80eebf6af33a777cec55ecc1c6a7a65482/src' ]
+				repository: 'github://ObjectProfile/Roassal2/src' ]
 ]
 
 { #category : #dependencies }
 BaselineOfMoose >> roassal3: spec [
 	spec
-		baseline: 'Roassal23'
+		baseline: 'Roassal3'
 		with:
 			[ spec repository: 'github://ObjectProfile/Roassal3:v0.9.5/src' ]
 ]
