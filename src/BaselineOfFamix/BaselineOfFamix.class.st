@@ -16,7 +16,7 @@ BaselineOfFamix >> baseline: spec [
 	spec
 		for: #common
 		do: [ "Dependencies"
-			spec baseline: 'Famix' with: [ spec repository: 'github://moosetechnology/Famix:development/src' ].
+			spec baseline: 'Famix' with: [ spec repository: 'github://moosetechnology/Famix:v1.x.x/src' ].
 
 			self
 				famixGroup: 'Core' with: spec;
