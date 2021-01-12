@@ -10,9 +10,6 @@ smalltalk:
 
 matrix:
   fast_finish: true
-  allow_failures:
-    - smalltalk: Pharo64-9.0
-    - smalltalk: Pharo64-8.0
 
 after_success:
   - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
