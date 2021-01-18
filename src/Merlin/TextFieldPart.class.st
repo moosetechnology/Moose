@@ -38,7 +38,7 @@ TextFieldPart >> horizontalSize: anInteger [
 	horizontalSize := anInteger
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 TextFieldPart >> initialize [ 
 
 	super initialize.
@@ -48,7 +48,7 @@ TextFieldPart >> initialize [
 	
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 TextFieldPart >> initialize: defaultText [
 
 	self initialize.
@@ -78,21 +78,18 @@ TextFieldPart >> merlinRendering [
 ]
 
 { #category : #'accessing - wizard mangement' }
-TextFieldPart >> outputValue [ 
+TextFieldPart >> outputValue [
+	"this method is an abstract method as only the subclass itself know what is the information to send to the WizardPane which will send it  to the wizarControl "
 
-		"this method is an abstract method as only the subclass itself know what is the information to send to the WizardPane which will send it  to the wizarControl "
-		"textField  acceptTextInModel."
-		"^ textEntryContents ."
-		"^textField textMorph asText"
-		
-		returnSuffixAndPrefix 
-			ifTrue: [
-				^ prefix, self textEntryContents , suffix. 
-				]
-			ifFalse: [
-				^ self textEntryContents  
-				]
-		
+	"textField  acceptTextInModel."
+
+	"^ textEntryContents ."
+
+	"^textField textMorph asText"
+
+	^ returnSuffixAndPrefix
+		ifTrue: [ prefix , self textEntryContents , suffix ]
+		ifFalse: [ self textEntryContents ]
 ]
 
 { #category : #accessing }
@@ -105,16 +102,6 @@ TextFieldPart >> prefix [
 TextFieldPart >> prefix: aString [
 
 	prefix := aString.
-]
-
-{ #category : #'accessing - wizard mangement' }
-TextFieldPart >> retrieveInputRequired [
-	"this method is an abstract method as only the subclass itself know what to do with the input that it needs to make its work "
-	"by default do nothing"
-	"make here all the thing required to build or make run this wizard part. This method will be clalled by wizardPane before opening the 'page'"
-		
-
-	
 ]
 
 { #category : #accessing }

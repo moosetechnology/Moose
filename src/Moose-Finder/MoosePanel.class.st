@@ -20,17 +20,6 @@ MoosePanel class >> menuCommandOn: aBuilder [
 		withSeparatorAfter
 ]
 
-{ #category : #menu }
-MoosePanel class >> menuOpenGlamorousEditorOn: aBuilder [
-	<worldMenu>
-	(aBuilder item: #'GlamourousEditor')
-		order: 11; 
-		parent: #Moose;
-		label: GLMEditor new defaultTitle;
-		help: 'an editor for creation of moldable tools';
-		action: [GLMEditor open]
-]
-
 { #category : #opening }
 MoosePanel class >> open [
 	^ self new openOn: MooseModel root

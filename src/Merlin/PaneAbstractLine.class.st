@@ -29,22 +29,18 @@ PaneAbstractLine >> inGroupboxNamed: aString [
 	groupBoxName := aString.
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PaneAbstractLine >> initialize [
+	super initialize.
 
-	subComponents := OrderedCollection new.
+	subComponents := OrderedCollection new
 ]
 
 { #category : #'accessing - morph contents' }
-PaneAbstractLine >> morphContents [ 
-
-	self groupBoxName isNil
-		ifTrue: [
-			^ self specificMorphContents
-			]
-		ifFalse: [
-			^ self newGroupboxNamed:  self groupBoxName  With: self specificMorphContents 
-			].
+PaneAbstractLine >> morphContents [
+	^ self groupBoxName
+		ifNil: [ self specificMorphContents ]
+		ifNotNil: [ :name | self newGroupboxNamed: name With: self specificMorphContents ]
 ]
 
 { #category : #'morph tools' }

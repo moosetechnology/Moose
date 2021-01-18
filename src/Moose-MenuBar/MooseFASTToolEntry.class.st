@@ -19,5 +19,5 @@ MooseFASTToolEntry >> label [
 
 { #category : #accessing }
 MooseFASTToolEntry >> version [
-	^ 'v0.0.1'
+	^ 'v1.x.x'
 ]

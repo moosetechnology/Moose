@@ -103,7 +103,7 @@ WizardControl >> information: aSymbol withValue: value [
 		put: value
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 WizardControl >> initialize [
 	
 	super initialize.
@@ -119,11 +119,11 @@ WizardControl >> initialize [
 { #category : #open }
 WizardControl >> open [
 	"launch the wizard system by opening the first wizard pane."
-	
-	wizardPanes isEmpty ifTrue: [ ^ self ].
+
+	wizardPanes ifEmpty: [ ^ self ].
 	currentPane := 1.
 	(wizardPanes at: currentPane) doOpen.
-	self renderer open: self.
+	self renderer open: self
 ]
 
 { #category : #obsolete }
@@ -136,26 +136,17 @@ WizardControl >> openFirstWizardPane [
 { #category : #'wizard panes transition' }
 WizardControl >> performNextButtonAction [
 	"this method is run when a next button is pressed"
-	
-	|tmpCurrentPane tmpProblems|
+
+	| tmpCurrentPane tmpProblems |
 	tmpCurrentPane := wizardPanes at: currentPane.
 	tmpProblems := OrderedCollection new.
-	tmpCurrentPane conditions keysAndValuesDo:  [:aString :aBlock |
-		(aBlock value: self wizardInformations) ifFalse: [
-			tmpProblems add: aString
-			]
-		]. 
-	tmpProblems isEmpty 
-		ifTrue: [
-			tmpCurrentPane failingConditions: #().
+	tmpCurrentPane conditions keysAndValuesDo: [ :aString :aBlock | (aBlock value: self wizardInformations) ifFalse: [ tmpProblems add: aString ] ].
+	tmpProblems
+		ifEmpty: [ tmpCurrentPane failingConditions: #().
 			(wizardPanes at: currentPane) doClose.
-			currentPane := currentPane  + 1.
-			(wizardPanes at: currentPane ) doOpen. 
-		]
-		ifFalse: [
-			tmpCurrentPane failingConditions: tmpProblems 
-			].
-	
+			currentPane := currentPane + 1.
+			(wizardPanes at: currentPane) doOpen ]
+		ifNotEmpty: [ tmpCurrentPane failingConditions: tmpProblems ]
 ]
 
 { #category : #'wizard panes transition' }
@@ -170,27 +161,16 @@ WizardControl >> performPreviousButtonAction [
 { #category : #'wizard panes transition' }
 WizardControl >> performTerminateButtonAction [
 	"by default, just close the last current pane. Override this method if you want to create a subclass of WizardControl making a specific action"
-	|tmpCurrentPane tmpProblems|
+
+	| tmpCurrentPane tmpProblems |
 	tmpCurrentPane := wizardPanes at: currentPane.
 	tmpProblems := OrderedCollection new.
-	tmpCurrentPane conditions keysAndValuesDo:  [:aString :aBlock |
-		(aBlock value: self wizardInformations) ifFalse: [
-			tmpProblems add: aString
-			]
-		]. 
-	tmpProblems isEmpty 
-		ifTrue: [
-			(wizardPanes at: currentPane) doClose.
+	tmpCurrentPane conditions keysAndValuesDo: [ :aString :aBlock | (aBlock value: self wizardInformations) ifFalse: [ tmpProblems add: aString ] ].
+	tmpProblems
+		ifEmpty: [ (wizardPanes at: currentPane) doClose.
 			currentPane := currentPane + 1.
-			self finalActionBlock ifNotNil: [
-				self finalActionBlock value: self wizardInformations
-			].
-		]
-		ifFalse: [
-			tmpCurrentPane failingConditions: tmpProblems 
-			].
-	
-		
+			self finalActionBlock ifNotNil: [ self finalActionBlock value: self wizardInformations ] ]
+		ifNotEmpty: [ tmpCurrentPane failingConditions: tmpProblems ]
 ]
 
 { #category : #'addition / removal' }
@@ -239,10 +219,10 @@ WizardControl >> size [
 { #category : #open }
 WizardControl >> start [
 	"launch the wizard system but does not open any UI window"
-	
-	wizardPanes isEmpty ifTrue: [ ^ self ].
+
+	wizardPanes ifEmpty: [ ^ self ].
 	currentPane := 1.
-	(wizardPanes at: currentPane) doOpen.
+	(wizardPanes at: currentPane) doOpen
 ]
 
 { #category : #accessing }

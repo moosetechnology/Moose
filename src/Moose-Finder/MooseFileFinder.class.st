@@ -7,7 +7,7 @@ Class {
 	#category : #'Moose-Finder'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #building }
 MooseFileFinder >> buildBrowser [ 
 	browser := GLMFinder new.
 	browser show: [:a | 

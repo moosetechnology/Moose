@@ -95,7 +95,7 @@ DistributionMap >> colors: aCollection [
 	colors := aCollection
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 DistributionMap >> defaultColors [ 
 	"The colors that are used when nobody ever mentioned any color scheme."
 	^ defaultColors
@@ -109,7 +109,7 @@ DistributionMap >> elementsWithProperty: aPropertySelector inPart: aPart [
 		].
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 DistributionMap >> initialize [
 
 	super initialize.
@@ -124,21 +124,21 @@ DistributionMap >> numberOfElementsWithProperty: aPropertySelector inPart: aPart
 	^ (self elementsWithProperty: aPropertySelector inPart: aPart)  size.
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 DistributionMap >> onContainers: aGroup elements: elementsBlockOrSelector properties: propertyBlockOrSelector [
 
 	super onContainers: aGroup elements: elementsBlockOrSelector properties: propertyBlockOrSelector.		
 	self orderColorMap.
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 DistributionMap >> onElements: aGroup containers: containersBlockOrSelector properties: propertyBlockOrSelector [
 
 	super onElements: aGroup containers: containersBlockOrSelector properties: propertyBlockOrSelector.	
 	self orderColorMap 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 DistributionMap >> orderColorMap [
 
 	| propertiesAndNumberOfOccurrences result |

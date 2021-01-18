@@ -29,11 +29,13 @@ MooseModel >> browseCodeWithPackages [
 ]
 
 { #category : #'*Moose-Finder' }
+MooseModel >> browseMeta [
+	^ MooseMetaBrowser new openOn: self metamodel
+]
+
+{ #category : #'*Moose-Finder' }
 MooseModel class >> browseMeta [
-	"
-	self browseMeta
-	"
-	^ MooseMetaBrowser new openOn: MooseModel meta
+	^ MooseMetaBrowser new openOn: self metamodel
 ]
 
 { #category : #'*Moose-Finder' }
@@ -47,13 +49,29 @@ MooseModel >> delete [
 ]
 
 { #category : #'*Moose-Finder' }
+MooseModel >> exportToJSON [
+	<menuItem: 'Export model to JSON' category: 'Import / Export'>
+	| fileReference |
+	fileReference := UITheme builder
+		                 chooseForSaveFileReference: 'Choose location'
+		                 extensions: #( 'json' )
+		                 path: ''.
+	fileReference ifNotNil: [ 
+		fileReference writeStreamDo: [ :stream | 
+			self exportToJSONStream: stream.
+			Notification signal: 'Save successful!' ] ]
+]
+
+{ #category : #'*Moose-Finder' }
 MooseModel >> exportToMSE [
 	<menuItem: 'Export model to MSE' category: 'Import / Export'>
 	| fileReference |
-	fileReference := UITheme builder fileSave: 'Your title here' extensions: #('mse') path: nil.
+	fileReference := UITheme builder
+		chooseForSaveFileReference: 'Your title here'
+		extensions: #('mse')
+		path: ''.
 	fileReference
-		ifNotNil: [ 
-			fileReference
+		ifNotNil: [ fileReference
 				writeStreamDo: [ :stream | 
 					self exportToMSEStream: stream.
 					Notification signal: 'Save successful!' ] ]
@@ -74,7 +92,7 @@ MooseModel class >> gtExampleGTModel [
 	model := self new.
 	model name: 'GT-*'.
 	importer := MoosePharoImporterTask new.
-	importer factory: SmalltalkCompatibilityMetamodelFactory.
+	importer factory: SmalltalkMetamodelFactory.
 	importer importingContext mergeClassAndMetaclass.
 	importer runCandidateOperator.
 	importer model: model.
@@ -124,6 +142,11 @@ MooseModel >> importFromMSE [
 ]
 
 { #category : #'*Moose-Finder' }
+MooseModel class >> isTestModel [
+	^ false
+]
+
+{ #category : #'*Moose-Finder' }
 MooseModel class >> menuBrowseMetaOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #'MetaBrowser')
@@ -132,15 +155,6 @@ MooseModel class >> menuBrowseMetaOn: aBuilder [
 		label: 'Meta Browser';
 		help: 'Famix compatiblity meta-model browser';
 		action:[MooseModel browseMeta]
-]
-
-{ #category : #'*Moose-Finder' }
-MooseModel class >> menuCommandOn: aBuilder [
-	<worldMenu>
-	(aBuilder item: #Moose)
-		order: 6.0; 
-		withSeparatorAfter;
-		icon: MooseIcons mooseIcon
 ]
 
 { #category : #'*Moose-Finder' }
@@ -165,13 +179,9 @@ MooseModel >> mooseInterestingEntity [
 { #category : #'*Moose-Finder' }
 MooseModel >> rename [
 	<menuItem: 'Rename' category: 'Utilities'>
-
 	| newName |
-	newName := UITheme builder
-		textEntry: 'Set new name for MooseModel ', self name.
-	(newName notNil and: [newName notEmpty])
-		ifTrue: [ self name: newName ]
-
+	newName := UITheme builder textEntry: 'Set new name for MooseModel ' , self name.
+	(newName isNotNil and: [ newName isNotEmpty ]) ifTrue: [ self name: newName ]
 ]
 
 { #category : #'*Moose-Finder' }
@@ -185,14 +195,14 @@ MooseModel >> setRootFolder [
 
 { #category : #'*Moose-Finder' }
 MooseModel >> spotter: aStringTitle on: aCandidatesBlock for: aStep [
-	aCandidatesBlock value isEmpty ifTrue: [ ^ self ].
+	aCandidatesBlock value ifEmpty: [ ^ self ].
 	^ aStep listProcessor
 		title: aStringTitle;
 		candidatesLimit: 5;
 		allCandidates: aCandidatesBlock;
 		itemName: [ :each | each mooseName ];
 		itemIcon: [ :each | each mooseIcon ];
-		actLogic: [ :each :step |
+		actLogic: [ :each :step | 
 			step exit.
 			each openInMoose ];
 		filter: GTFilterSubstring;

@@ -54,12 +54,7 @@ DropListPart >> formatBlock [
 
 { #category : #accessing }
 DropListPart >> formatedList [
-
-	^ self list collect: [:each |
-		each isNil
-			ifTrue: ['']
-			ifFalse: [self formatBlock meValue: each]
-		 ]
+	^ self list collect: [ :each | each ifNil: [ '' ] ifNotNil: [ self formatBlock meValue: each ] ]
 ]
 
 { #category : #accessing }
@@ -75,7 +70,7 @@ DropListPart >> horizontalSize: anInteger [
 	horizontalSize := anInteger.
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 DropListPart >> initialize [ 
 
 	super initialize.  
@@ -126,21 +121,11 @@ DropListPart >> merlinRendering [
 
 { #category : #'accessing - wizard mangement' }
 DropListPart >> outputValue [
-
 	"this method is an abstract method as only the subclass itself know what is the information to send to the WizardPane which will send it  to the wizarControl "
-	(self list isNil not and: [self list isEmpty not])
-		ifTrue: [^ self selectedItem]
-		ifFalse: [^ nil].
-		
-	
-]
 
-{ #category : #'accessing - wizard mangement' }
-DropListPart >> retrieveInputRequired [
-	"this method is an abstract method as only the subclass itself know what to do with the input that it needs to make its work "
-	"by default do nothing"
-	"make here all the thing required to build or make run this wizard part. This method will be clalled by wizardPane before opening the 'page'"
-		
+	^ (self list isNotNil and: [ self list isNotEmpty ])
+		ifTrue: [ self selectedItem ]
+		ifFalse: [ nil ]
 ]
 
 { #category : #'list control' }

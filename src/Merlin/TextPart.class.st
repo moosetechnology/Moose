@@ -28,24 +28,11 @@ TextPart >> formatBlock [
 
 { #category : #private }
 TextPart >> latePopulateContents [
-
-
-	partValue isNil 
-		ifFalse: [
-			partValue isBlock
-			ifTrue: [
-				self text: (partValue value: self requiredInputs). 
-				]
-			ifFalse: [
-				self text: partValue 
-				].
-			]
-		ifTrue: [
-			|default|
+	partValue
+		ifNil: [ | default |
 			default := defaultValue meValue: self requiredInputs.
-			default ifNotNil: [self text: default.]
-			]
-	
+			default ifNotNil: [ self text: default ] ]
+		ifNotNil: [ partValue isBlock ifTrue: [ self text: (partValue value: self requiredInputs) ] ifFalse: [ self text: partValue ] ]
 ]
 
 { #category : #rendering }

@@ -1,22 +1,6 @@
 Extension { #name : #Collection }
 
 { #category : #'*moose-finder' }
-Collection >> asMooseFinderItemNamed: aString in: aMooseEntity [
-
-	| groupName |
-	^ self size = 1
-		ifTrue: [ self anyOne asMooseFinderItemNamed: aString in: aMooseEntity ]
-		ifFalse: [
-			groupName := aString capitalized, ' in ', aMooseEntity mooseName.
-			MooseGroup withAll: self withDescription: groupName ]
-]
-
-{ #category : #'*moose-finder' }
-Collection >> mooseDisplayStringOn: stream [
-	self gtDisplayOn: stream
-]
-
-{ #category : #'*moose-finder' }
 Collection >> mooseFinderListIn: composite [
 	<moosePresentationOrder: 1>
 	composite list
@@ -40,7 +24,5 @@ Collection >> mooseFinderListIn: composite [
 Collection >> mooseInterestingEntity [ 
 	"For a group with one element,  it returns that element, instead of the group, useful in the finder to remove extra step when navigating"
 
-	^self size = 1 
-		ifTrue: [self anyOne] 
-		ifFalse: [super mooseInterestingEntity]
+	^self asMooseGroup 
 ]

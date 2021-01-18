@@ -6,10 +6,3 @@ FamixTWithSourceLanguage >> formattedSourceText [
 		ifNotNil: [ :language | language format: self sourceText from: self ]
 		ifNil: [ self sourceText ]
 ]
-
-{ #category : #'*Moose-Finder' }
-FamixTWithSourceLanguage >> sourceLanguage [
-
-	"should be redefined"
-	^ nil
-]

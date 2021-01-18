@@ -1,9 +1,6 @@
 Class {
 	#name : #OpenDistributionMapBasedOnElementsWizard,
 	#superclass : #OpenDistributionMapWizard,
-	#instVars : [
-		'properties'
-	],
 	#category : #'Moose-DistributionMap'
 }
 
@@ -70,7 +67,7 @@ OpenDistributionMapBasedOnElementsWizard >> elementsPart [
 		yourself
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 OpenDistributionMapBasedOnElementsWizard >> initializeFirstPane: aWizardPane [
 
 	"compositeParts
@@ -82,13 +79,11 @@ OpenDistributionMapBasedOnElementsWizard >> initializeFirstPane: aWizardPane [
 	self setConditionsTo: aWizardPane 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 OpenDistributionMapBasedOnElementsWizard >> initializeWithElementGroup: aMooseGroup [
 	"DistributionMapWizard new open"
 
 	| propertiyValuesPane partsAndElementsPane |
-	"When using a compositePart, we  don't at the end which part has been selected, and therefore which kind of value will be returned. For that, I store each compositePart in a collection, to ask them at the end which part is selected"
-	compositeParts := OrderedCollection new.
 	self mooseGroup: aMooseGroup .
 	
 	partsAndElementsPane := WizardFirstPane named: 'Parts and elements'.
@@ -130,8 +125,8 @@ OpenDistributionMapBasedOnElementsWizard >> performTerminateButtonAction [
 
 { #category : #'computing possible parts' }
 OpenDistributionMapBasedOnElementsWizard >> possibleContainerTypes [
-
 	"return the list of string to be displayed as possible part types, (when basing the wizard on elements)"
+
 	"| allMetaClasses result |
 	result := OrderedCollection new.
 	allMetaClasses := MooseModel meta elements select: [:each | each isFM3Class].
@@ -150,11 +145,9 @@ OpenDistributionMapBasedOnElementsWizard >> possibleContainerTypes [
 			].
 		].
 	^ result asSet asOrderedCollection."
-	
-	^ self groupMetaClass allComplexAttributes select: [:aFM3Property |
-		aFM3Property isMultivalued not
-		"aFM3Property hasOpposite and: [aFM3Property opposite isMultivalued]"
-		].
+
+	^ self groupMetaClass allComplexAttributes reject: [ :aFM3Property | aFM3Property isMultivalued ]
+	"aFM3Property hasOpposite and: [aFM3Property opposite isMultivalued]"
 ]
 
 { #category : #'initialize - property parts' }
@@ -193,7 +186,7 @@ OpenDistributionMapBasedOnElementsWizard >> propertyTextFieldPart [
 			yourself.
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 OpenDistributionMapBasedOnElementsWizard >> setConditionsTo: aWizardPane [
 
 	aWizardPane

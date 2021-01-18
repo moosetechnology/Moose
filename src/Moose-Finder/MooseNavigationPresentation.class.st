@@ -21,16 +21,10 @@ MooseNavigationPresentation >> compose [
 
 { #category : #private }
 MooseNavigationPresentation >> displayFor: anObject [
-	| anEntity items |
-	
+	| anEntity |
 	anEntity := anObject mooseInterestingEntity.
-	
-	items := anEntity navigationItemsFromPragmas.
-	items addAll: anEntity navigationItemsFromAttributes.
-	items addAll: anEntity customNavigationItems.
-	
-	^ items
-	
+
+	^ anEntity navigationItemsFromPragmas , anEntity navigationItemsFromAttributes , anEntity customNavigationItems
 ]
 
 { #category : #private }
@@ -41,7 +35,7 @@ MooseNavigationPresentation >> dynamicActionsIn: list [
 				action: [ :x | 
 					Smalltalk tools browser
 						openOnClass: list rawSelection key methodClass
-						selector: list rawSelection key methodSelector ];
+						selector: list rawSelection key methodSelector];
 				title: 'Browse the method implementing the navigation';
 				category: 'Utilities');
 		yourself
@@ -49,6 +43,5 @@ MooseNavigationPresentation >> dynamicActionsIn: list [
 
 { #category : #private }
 MooseNavigationPresentation >> formatFor: each [
-	^ (' ' join: ((each key) piecesCutWhereCamelCase collect: #capitalized)) , ' - '
-		, (each value gtDisplayString contractTo: 50)
+	^ each key formatForNavigationPresentation
 ]

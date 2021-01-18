@@ -10,23 +10,13 @@ FAMIXType >> abstractMethods [
 { #category : #'*Moose-RoassalPaintings-Support' }
 FAMIXType >> abstractMethodsGroup [
 	<navigation: 'Abstract methods'>
-	
-	^ FAMIXMethodGroup 	withAll: (self abstractMethods)
-							withDescription: 'Abstract methods in ', self name
-]
-
-{ #category : #'*Moose-RoassalPaintings-Support' }
-FAMIXType >> accessorMethods [
-	
-	^ self methods select: #isPureAccessor
+	^ FamixMethodGroup withAll: self abstractMethods withDescription: 'Abstract methods in ' , self name
 ]
 
 { #category : #'*Moose-RoassalPaintings-Support' }
 FAMIXType >> accessorMethodsGroup [
 	<navigation: 'Accessor methods'>
-	
-	^ FAMIXMethodGroup 	withAll: (self accessorMethods)
-							withDescription: 'Pure accessors in ', self name
+	^ FamixMethodGroup withAll: self accessorMethods withDescription: 'Pure accessors in ' , self name
 ]
 
 { #category : #'*Moose-RoassalPaintings-Support' }
@@ -104,22 +94,6 @@ FAMIXType >> getterMethods [
 ]
 
 { #category : #'*Moose-RoassalPaintings-Support' }
-FAMIXType >> implementationMethods [
-	^ self methods select: #isInternalImplementation
-]
-
-{ #category : #'*Moose-RoassalPaintings-Support' }
-FAMIXType >> initializers [
-
-	^ self methods select: #isInitializer
-]
-
-{ #category : #'*Moose-RoassalPaintings-Support' }
-FAMIXType >> interfaceMethods [
-	^ self methods select: [:each | each isInternalImplementation not & each isInitializer not & each isPureAccessor not]
-]
-
-{ #category : #'*Moose-RoassalPaintings-Support' }
 FAMIXType >> internalFanin [
 
 	^ self clientClassesIntoMyPackage size
@@ -167,26 +141,11 @@ FAMIXType >> setterMethods [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FAMIXType >> viewBlueprint [
-	<menuItem: 'Class blueprint' category: 'Visualize'>
-	| view |
-	view := RTView new.
-	view @ RTDraggableView.
-	self viewBlueprintOn: view.
-	^ view open
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
-FAMIXType >> viewBlueprintOn: view [
-	^ FAMIXClassBlueprint new view: self on: view
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
 FAMIXType >> viewHierarchyOn: view [
 	| hierarchy |
 	hierarchy :=		(self withDeepCollect: [:each | each directSubclasses]), 
 						(self deepCollect: [:each | each directSuperclasses reject: [:c | c isInterface]]).
-	hierarchy asMooseGroup 
+	hierarchy asMooseSpecializedGroup 
 		viewSimpleSystemComplexityWithSelection: { self } 
 		height: [ :c | c numberOfMethods ] 
 		width: [ :c | c numberOfAttributes ] 

@@ -20,11 +20,12 @@ MerlinMorphicPaneRenderer >> adaptSize [
 { #category : #updating }
 MerlinMorphicPaneRenderer >> applyChanges [
 	"make sure that all changes become visible in the frame"
-	
-	| contentMorph |
-	contentMorph := self dialogWindow contentMorph.
-	contentMorph notNil
-		ifTrue: [self dialogWindow contentMorph: contentMorph; model: nil].
+
+	self dialogWindow contentMorph
+		ifNotNil: [ :contentMorph | 
+			self dialogWindow
+				contentMorph: contentMorph;
+				model: nil ]
 ]
 
 { #category : #'accessing - buttons' }
@@ -59,7 +60,7 @@ MerlinMorphicPaneRenderer >> forwardSign [
 	^ 'Next >>'
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MerlinMorphicPaneRenderer >> initialize [
 
 	super initialize.

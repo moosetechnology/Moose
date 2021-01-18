@@ -12,18 +12,21 @@ FAMIXClassBlueprint >> createEdgesFor: aClass andLayers: layers on: view [
 	| eb edges to |
 	eb := RTEdgeBuilder new.
 	eb view: view.
-	eb shape line; color: Color lightBlue; horizontalAttachPoint.
-	edges := aClass incomingAccesses flatCollect: [ :acc | eb connectFrom: acc from to:  acc to ].
+	eb shape
+		line;
+		color: Color lightBlue;
+		horizontalAttachPoint.
+	edges := aClass queryIncomingAccesses flatCollect: [ :acc | eb connectFrom: acc source to: acc target ].
 	edges do: [ :each | each moveBehind: (layers flatCollect: #value) ].
-	
+
 	eb := RTEdgeBuilder new.
 	eb view: view.
-	eb shape line; horizontalAttachPoint.
-	to := [ :each | each candidates detect: [ :c | c typeScope = aClass ] ifNone: [ nil ] ].
-	edges := aClass outgoingInvocations flatCollect: [ :acc | 
-				eb connectFrom: acc from to:  (to value: acc) ].
+	eb shape
+		line;
+		horizontalAttachPoint.
+	to := [ :each | each candidates detect: [ :c | (c atScope: FamixTType) anyOne = aClass ] ifNone: [ nil ] ].
+	edges := (aClass queryOutgoing: FamixTInvocation) flatCollect: [ :acc | eb connectFrom: acc from to: (to value: acc) ].
 	edges do: [ :each | each moveBehind: (layers flatCollect: #value) ]
-
 ]
 
 { #category : #public }
@@ -87,7 +90,7 @@ FAMIXClassBlueprint >> nestLayers: layers [
 				on: layer value
 					edges:
 						(layer value
-								flatCollect: [ :each | each connectedEdges select: [ :edge | (layer value includes: edge from) and: [ layer value includes: edge to ] ] ]).
+								flatCollect: [ :each | each connectedEdges select: [ :edge | (layer value includes: edge source) and: [ layer value includes: edge target ] ] ]).
 			RTNest new
 				centerOn: layer key elements: layer value;
 				makeElements: layer value draggableBy: layer key ]

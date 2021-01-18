@@ -35,58 +35,68 @@ MooseDependencyBrowser >> detailsIn: a [
 		initializeView: [ RTMondrian new ];
 		title: 'Map of providers';
 		painting: [ :view :model :namespace :class :method | 
-					self
-						viewNamespaceMapOf: [ :x | x providerNamespaces ]
-						fromModel: model
-						namespace: namespace
-						class: class
-						method: method
-						on: view ];
+			self
+				viewNamespaceMapOf: [ :x | x allProvidersAtScope: FamixTNamespace ]
+				fromModel: model
+				namespace: namespace
+				class: class
+				method: method
+				on: view ];
 		allowNil;
-		when: [ :model | model notNil ].
+		when: [ :model | model isNotNil ].
 	a roassal2
 		initializeView: [ RTMondrian new ];
 		title: 'Map of clients';
 		painting: [ :view :model :namespace :class :method | 
-					self
-						viewNamespaceMapOf: [ :x | x clientNamespaces ]
-						fromModel: model
-						namespace: namespace
-						class: class
-						method: method
-						on: view ];
+			self
+				viewNamespaceMapOf: [ :x | x allClientsAtScope: FamixTNamespace ]
+				fromModel: model
+				namespace: namespace
+				class: class
+				method: method
+				on: view ];
 		allowNil;
-		when: [ :model | model notNil ].
+		when: [ :model | model isNotNil ].
 	a text
 		title: 'Source code';
 		display: [ :model :namespace :class | class formattedSourceText ];
 		allowNil;
-		when: [ :model :namespace :class :method | class notNil and: [ method isNil ] ].
+		when: [ :model :namespace :class :method | class isNotNil and: [ method isNil ] ].
 	^ a text
 		title: 'Source code';
 		display: [ :model :namespace :class :method | method formattedSourceText ]
 ]
 
 { #category : #reusable }
-MooseDependencyBrowser >> viewNamespaceMapOf: aBlock fromModel: model namespace: namespace class:class method:method on: view [
+MooseDependencyBrowser >> viewNamespaceMapOf: aBlock fromModel: model namespace: namespace class: class method: method on: view [
 	| source invokedNamespaces allInvokedNamespaces layoutEdges |
-	source := method ifNil: [ class  ].
-	invokedNamespaces := source notNil ifTrue: [ aBlock value: source ] ifFalse: [ #() ].
-	allInvokedNamespaces := namespace notNil ifTrue: [ aBlock value: namespace  ] ifFalse: [ #() ].
+	source := method ifNil: [ class ].
+	invokedNamespaces := source
+		ifNil: [ #() ]
+		ifNotNil: [ aBlock value: source ].
+	allInvokedNamespaces := namespace
+		ifNil: [ #() ]
+		ifNotNil: [ aBlock value: namespace ].
 	view shape rectangle
-		height: #numberOfClasses; width: 7; 
-		borderColor: Color lightGray; fillColor: [:each | 
-		each = namespace 
-			ifTrue: [Color blue]
-			ifFalse: [(invokedNamespaces includes: each ) 
-				ifTrue: [Color red] ifFalse: [(allInvokedNamespaces includes: each ) 
-					ifTrue: [Color lightRed] ifFalse: [Color white] ]] ].
+		height: #numberOfClasses;
+		width: 7;
+		borderColor: Color lightGray;
+		fillColor: [ :each | 
+			each = namespace
+				ifTrue: [ Color blue ]
+				ifFalse: [ (invokedNamespaces includes: each)
+						ifTrue: [ Color red ]
+						ifFalse: [ (allInvokedNamespaces includes: each)
+								ifTrue: [ Color lightRed ]
+								ifFalse: [ Color white ] ] ] ].
 	view nodes: model allNamespaces.
 	view shape orthoVerticalLine color: Color veryLightGray.
 	layoutEdges := view edgesFrom: #belongsTo.
-	view layout tree horizontalGap: 1; userDefinedEdges: layoutEdges.
-"				source ~= namespace ifTrue: [
+	view layout tree
+		horizontalGap: 1;
+		userDefinedEdges: layoutEdges
+	"				source ~= namespace ifTrue: [
 					view shape splineLine color: Color red.
 					view edges: {namespace} from: #yourself toAll: invokedNamespaces ]
-"				
+"
 ]

@@ -39,15 +39,6 @@ MooseGroup >> mooseIcon [
 ]
 
 { #category : #'*moose-finder' }
-MooseGroup >> mooseInterestingEntity [ 
-	"For a group with one element,  it returns that element, instead of the group, useful in the finder to remove extra step when navigating"
-	
-	^self size = 1 
-		ifTrue: [self first] 
-		ifFalse: [super mooseInterestingEntity]
-]
-
-{ #category : #'*moose-finder' }
 MooseGroup >> spotterItemsFor: aStep [
 	<spotterOrder: 10>
 	^ aStep listProcessor

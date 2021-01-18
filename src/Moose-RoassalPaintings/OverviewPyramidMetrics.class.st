@@ -96,7 +96,7 @@ OverviewPyramidMetrics >> locNom [
 			self truncatedFloatForFraction: (self loc/self nom) ]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 OverviewPyramidMetrics >> model: aMooseModel [
 	| allModelMethods allModelClasses |
 	MooseCustomTask

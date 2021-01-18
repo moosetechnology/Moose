@@ -16,14 +16,14 @@ LabelPart class >> on: stringText inGroupBoxNamed: groupBoxName [
 	^ super new initializeWith: stringText inGroupBoxNamed: groupBoxName ; yourself .
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 LabelPart >> initializeWith: stringText [
 
 	"self contents: {self newLabel: stringText }"
 	self populateContents: {self newLabel: stringText }
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 LabelPart >> initializeWith: stringText inGroupBoxNamed: groupBoxName [
 
 	self populateContents: {self newGroupboxNamed: groupBoxName  With: (self newLabel: stringText) }

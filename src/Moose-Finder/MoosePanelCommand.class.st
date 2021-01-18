@@ -7,19 +7,14 @@ Class {
 	#category : #'Moose-Finder'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 MoosePanelCommand class >> allCommands [
-	^ self allSubclasses reject: #isAbstractCommand
+	^ self allSubclasses reject: #isAbstract
 ]
 
 { #category : #testing }
-MoosePanelCommand class >> isAbstractCommand [
-	^ self selectors includes: #abstractTag
-]
-
-{ #category : #accessing }
-MoosePanelCommand >> abstractTag [
-	"Say that this class will not taken into consideration when querying command hierarchy"
+MoosePanelCommand class >> isAbstract [
+	^ self = MoosePanelCommand
 ]
 
 { #category : #actions }

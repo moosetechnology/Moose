@@ -110,14 +110,13 @@ MooseContextFrame >> createContextFrame [
 { #category : #'context informations' }
 MooseContextFrame >> dependenciesFor: aCollectionOfContexts [
 	"return all the contexts depending of contexts in aCollectionOfContexts"
+
 	| dependenciesForContext |
-
 	dependenciesForContext := Set new.
-	aCollectionOfContexts do: [:each | dependenciesForContext addAll: (MooseImportingContext entityDependencies at: each)].
-
-	dependenciesForContext size == aCollectionOfContexts size
-		ifTrue: [^ dependenciesForContext ]
-		ifFalse: [^ self dependenciesFor: dependenciesForContext ].
+	aCollectionOfContexts do: [ :each | dependenciesForContext addAll: (MooseImportingContext entityDependencies at: each) ].
+	^ dependenciesForContext size == aCollectionOfContexts size
+		ifTrue: [ dependenciesForContext ]
+		ifFalse: [ self dependenciesFor: dependenciesForContext ]
 ]
 
 { #category : #accessing }
@@ -135,12 +134,13 @@ MooseContextFrame >> getSelectedContexts [
 	^ result
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 MooseContextFrame >> initialize [
+	super initialize.
 
 	contextSelected := self allContexts.
-	
-	self createContextFrame  
+
+	self createContextFrame
 ]
 
 { #category : #'morph - creation context frame' }
@@ -177,19 +177,15 @@ MooseContextFrame >> open [
 { #category : #'context informations' }
 MooseContextFrame >> revertDependenciesFor: aCollectionOfContexts [
 	"return all the contexts from wich aCollectionOfContexts depends"
-	| revertDependenciesForContext entityDependencies |
 
+	| revertDependenciesForContext entityDependencies |
 	revertDependenciesForContext := Set new.
 	entityDependencies := MooseImportingContext entityDependencies.
-	aCollectionOfContexts do: [:each | 
-		entityDependencies associationsDo: [:assoc | 
-		(assoc value includes: each ) ifTrue: [revertDependenciesForContext add: assoc key] ] ].
-	
-	revertDependenciesForContext size == aCollectionOfContexts size
-	ifTrue: [ ^ revertDependenciesForContext ]
-	ifFalse: [^ self revertDependenciesFor: revertDependenciesForContext ].
-	
-
+	aCollectionOfContexts
+		do: [ :each | entityDependencies associationsDo: [ :assoc | (assoc value includes: each) ifTrue: [ revertDependenciesForContext add: assoc key ] ] ].
+	^ revertDependenciesForContext size == aCollectionOfContexts size
+		ifTrue: [ revertDependenciesForContext ]
+		ifFalse: [ self revertDependenciesFor: revertDependenciesForContext ]
 ]
 
 { #category : #accessing }

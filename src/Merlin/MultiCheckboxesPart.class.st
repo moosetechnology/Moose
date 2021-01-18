@@ -47,12 +47,6 @@ MultiCheckboxesPart >> labels: aCollectionOfString [
 	self options: aCollectionOfString
 ]
 
-{ #category : #accessing }
-MultiCheckboxesPart >> latePopulateContents [ 
-
-	
-]
-
 { #category : #rendering }
 MultiCheckboxesPart >> merlinRendering [
 

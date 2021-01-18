@@ -9,28 +9,27 @@ Class {
 
 { #category : #private }
 MerlinMorphMultiCheckboxesWidget >> addVerticalSeparatorAtTheMiddleOf: aCollectionOfElements [
-
 	"return a collection containing all initials morph elements from aCollectionOfElements including a vertical separator at the middle"
-	|  index result result1 result2 collectionSize |
+
+	| index result result1 result2 collectionSize |
 	collectionSize := aCollectionOfElements size.
-	collectionSize even 
-		ifTrue: [index :=  collectionSize // 2.]
-		ifFalse: [index :=  collectionSize // 2 + 1.].
-	
+	index := collectionSize even
+		ifTrue: [ collectionSize // 2 ]
+		ifFalse: [ collectionSize // 2 + 1 ].
+
 	result := OrderedCollection new.
 	result1 := OrderedCollection new.
 	result2 := OrderedCollection new.
-	1 to: (index ) do: [:i | result1 add: (self newRowWith: {(aCollectionOfElements at: i)})].
-	(index + 1) to: aCollectionOfElements size do: [:i | result2 add: (self newRowWith: {(aCollectionOfElements at: i)})].
-	
-	result2 isEmpty
-		ifFalse: [
-			result add: (self newColumnWith:  result1 ); add: (self  newVerticalSeparator) ; add: (self newColumnWith:  result2 ). 
-			]
-		ifTrue: [
-			result add: (self newColumnWith:  result1 ). 
-			].
-	^ result.
+	1 to: index do: [ :i | result1 add: (self newRowWith: {(aCollectionOfElements at: i)}) ].
+	index + 1 to: aCollectionOfElements size do: [ :i | result2 add: (self newRowWith: {(aCollectionOfElements at: i)}) ].
+
+	result2
+		ifEmpty: [ result add: (self newColumnWith: result1) ]
+		ifNotEmpty: [ result
+				add: (self newColumnWith: result1);
+				add: self newVerticalSeparator;
+				add: (self newColumnWith: result2) ].
+	^ result
 ]
 
 { #category : #'accessing - morph contents' }

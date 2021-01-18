@@ -60,12 +60,10 @@ MooseCodeNavigator >> methodsIn: a [
 		display: [ :class | class methods asSortedCollection: [ :x :y | x name < y name ] ];
 		format: #stubFormattedName;
 		tags: [ :method | 
-					col := method modifiers copy.
-					method hasClassScope
-						ifTrue: [ col add: 'isStatic' ].
-					method kind notNil
-						ifTrue: [ col add: method kind ].
-					col ];
+			col := method modifiers copy.
+			method isClassSide ifTrue: [ col add: 'isStatic' ].
+			method kind ifNotNil: [ :kind | col add: kind ].
+			col ];
 		dynamicActionsOnSelection: [ :list | list selection mooseInterestingEntity mooseFinderActions ]
 ]
 
@@ -74,7 +72,7 @@ MooseCodeNavigator >> namespacesIn: a [
 	^ a tree
 		title: 'Namespaces';
 		display: [ :model | (model allNamespaces select: #isRoot) sorted: [ :x :y | x name < y name ] ];
-		children: [ :namespace | namespace childScopes asSortedCollection: [ :x :y | x name < y name ] ];
+		children: [ :namespace | namespace children asSortedCollection: [ :x :y | x name < y name ] ];
 		format: [ :namespace | namespace stubFormattedName ];
 		dynamicActionsOnSelection: [ :list | list selection mooseInterestingEntity mooseFinderActions ]
 ]

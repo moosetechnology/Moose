@@ -72,7 +72,7 @@ ItemSelectorPart >> initialListIndex: anIndex [
 	self changed: #initialListIndex.
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 ItemSelectorPart >> initialize [
 
 	super initialize.

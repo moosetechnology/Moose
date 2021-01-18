@@ -2,7 +2,6 @@ Class {
 	#name : #OpenDistributionMapBasedOnPartsWizard,
 	#superclass : #OpenDistributionMapWizard,
 	#instVars : [
-		'properties',
 		'propertyListPart',
 		'propertyTextFieldPart'
 	],
@@ -69,21 +68,17 @@ OpenDistributionMapBasedOnPartsWizard >> elementsListPart [
 
 { #category : #'initialize - elements parts' }
 OpenDistributionMapBasedOnPartsWizard >> elementsTextFieldPart [
-	^ (TextFieldPart new)
+	^ TextFieldPart new
 		prefix: '[:container |  ';
 		suffix: ' ]';
 		useLatePopulateContents: false;
 		returnSuffixAndPrefix: true;
-		defaultValue:
-				(self possibleElementSelectors isEmpty
-					ifTrue: ['']
-					ifFalse: ['container ' , (self possibleElementSelectors anyOne name)]);
-				
-		transformed: [:aString | aString];
+		defaultValue: (self possibleElementSelectors ifEmpty: [ '' ] ifNotEmpty: [ :selectors | 'container ' , selectors anyOne name ]);
+		transformed: [ :aString | aString ];
 		yourself
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 OpenDistributionMapBasedOnPartsWizard >> initializeFirstPane: aWizardPane [
 	aWizardPane addPart: self containersPart associatedTo: #groupClass.
 	aWizardPane addPart: self elementsCompositePart associatedTo: #entitiesToComputeSelector.
@@ -91,13 +86,11 @@ OpenDistributionMapBasedOnPartsWizard >> initializeFirstPane: aWizardPane [
 	self setConditionsTo: aWizardPane
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 OpenDistributionMapBasedOnPartsWizard >> initializeWithPartGroup: aMooseGroup [
 	"DistributionMapWizard new open"
 
 	| propertiyValuesPane partsAndElementsPane |
-	"When using a compositePart, we  don't at the end which part has been selected, and therefore which kind of value will be returned. For that, I store each compositePart in a collection, to ask them at the end which part is selected"
-	compositeParts := OrderedCollection new.
 	self mooseGroup: aMooseGroup .
 	partsAndElementsPane := WizardFirstPane named: 'Parts and elements'.
 	self initializeFirstPane: partsAndElementsPane.
@@ -198,35 +191,19 @@ OpenDistributionMapBasedOnPartsWizard >> propertyTextFieldPart [
 
 { #category : #'computing possible elements' }
 OpenDistributionMapBasedOnPartsWizard >> removeAllNonComputableAttributesFrom: aCollectionOfFM3Attributes [
-
-
 	| result |
 	result := OrderedCollection new.
-	"aCollectionOfFM3Attributes do: [:aFM3Attribute |
-		|concernedClass|
-		concernedClass := self mooseModel classConcernedByProperty: aFM3Attribute name asSymbol appliedTo: self groupClass.
-		concernedClass ifNotNil: ["
-			"if no elements of this type is present in the mooseModel, we will not be able to compute possible properties"
-	"		(self mooseModel includesElementsOfType: self groupClass)
-				ifTrue: [result add: aFM3Attribute] .
-			]
-		]."
-	aCollectionOfFM3Attributes do: [:aFM3Attribute |
-		[
-		(self mooseGroup flatCollect: [:anEntity | anEntity perform: aFM3Attribute implementingSelector]) isEmpty
-			ifFalse: [
-				"we make sure that the property does not return an empty collection for each element of the group"
-				result add: aFM3Attribute 
-				].
-			] on: Error do: [:error |
-				"if it raises un error, we don't add to the result"
-			]
-		].
-	^ result.
-	
+
+	aCollectionOfFM3Attributes
+		do: [ :aFM3Attribute | 
+			[ (self mooseGroup flatCollect: [ :anEntity | anEntity perform: aFM3Attribute implementingSelector ])
+				ifNotEmpty: [ "we make sure that the property does not return an empty collection for each element of the group" result add: aFM3Attribute ] ]
+				on: Error
+				do: [ :error | "if it raises un error, we don't add to the result" ] ].
+	^ result
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 OpenDistributionMapBasedOnPartsWizard >> setConditionsTo: aWizardPane [
 	aWizardPane
 		condition: [ :wizardInfos | 
@@ -251,17 +228,9 @@ OpenDistributionMapBasedOnPartsWizard >> setConditionsTo: aWizardPane [
 
 { #category : #actions }
 OpenDistributionMapBasedOnPartsWizard >> updatePopertySelectorPart: aWizardPart withType: aFM3Property [
-
 	| elementsClass |
-	aFM3Property isNil
-		ifTrue: [
-			(aWizardPart)
-				list: {}
-			]
-		ifFalse: [
-			elementsClass := aFM3Property type implementingClass.
-			(aWizardPart)
-				list: (self allPropertySelectorsForElementOfType: elementsClass)
-			]
-	
+	aFM3Property
+		ifNil: [ aWizardPart list: {} ]
+		ifNotNil: [ elementsClass := aFM3Property type implementingClass.
+			aWizardPart list: (self allPropertySelectorsForElementOfType: elementsClass) ]
 ]

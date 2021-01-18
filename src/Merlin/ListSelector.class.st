@@ -113,13 +113,13 @@ ListSelector >> deleteStringMessageFromRowIndexedBy: anIndex [
 	
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 ListSelector >> initialList: aCollectionOfString [
 	"	enable this PackageSelector to use aCollectionOfString as initial packages list"
 	initialList := aCollectionOfString asSortedCollection: [ :a :b | a < b ]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 ListSelector >> initialize [
 
 	super initialize.
@@ -239,25 +239,21 @@ ListSelector >> selectionList [
 ]
 
 { #category : #'selection list control' }
-ListSelector >> selectionList: anObject [ 
+ListSelector >> selectionList: anObject [
 	"Set the value of selectionList"
-	
+
 	selectionList := anObject.
 	self changed: #selectionList.
-	
+
 	"we check the new size of the selection list. If nothing is selected, we can't go to the next 	'page'"
-	
-	self enableNextButton: (self selectionList isEmpty not).
-	
+
+	self enableNextButton: self selectionList isNotEmpty.
+
 	"Here we check that the selectionIndex is updated according the new list size  "
-	self selectionListSelectionIndex > self selectionList size
-		ifFalse: [^self ].
-	
+	self selectionListSelectionIndex > self selectionList size ifFalse: [ ^ self ].
+
 	self selectionListSelectionIndex: self selectionList size.
-	self changed: #selectionListSelectionIndex .
-	
-	
-			
+	self changed: #selectionListSelectionIndex
 ]
 
 { #category : #'selection list control' }
@@ -310,28 +306,27 @@ ListSelector >> updateWhenAddingItem [
 	initialPackages remove: package.
 	self list: initialPackages.
 	"if the initial become empty, we disable de add button"
-	initialPackages isEmpty ifTrue: [addButton disable].	
+	initialPackages ifEmpty: [ addButton disable ].
 
 	" we update the list of packages of the selection morph list :"
 	"listModel packagesList: list."
-	self selectionList: tmpPackagesList.
-
+	self selectionList: tmpPackagesList
 ]
 
 { #category : #actions }
 ListSelector >> updateWhenRemovingItem [
 	"we remove the selected item from the selection list : "
+
 	| list package tmpPackagesList |
 	package := self selectionListSelectedItem.
 	list := self selectionList.
 	list remove: package.
 	self selectionList: list.
 	"if the selection become empty, we disable the remove button :"
-	list isEmpty ifTrue: [removeButton disable]. 
+	list ifEmpty: [ removeButton disable ].
 
 	"we move the removed package into the packages list :"
 	tmpPackagesList := self list.
 	tmpPackagesList add: package.
-	self list: tmpPackagesList.
-
+	self list: tmpPackagesList
 ]

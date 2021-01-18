@@ -12,15 +12,10 @@ MooseAbstractMenuEntry >> execute [
 
 { #category : #execution }
 MooseAbstractMenuEntry >> label [
-	^ self subclassResponsibility 
+	self subclassResponsibility
 ]
 
 { #category : #execution }
 MooseAbstractMenuEntry >> run [
 	self execute
-]
-
-{ #category : #execution }
-MooseAbstractMenuEntry >> version [
-	^ self subclassResponsibility
 ]

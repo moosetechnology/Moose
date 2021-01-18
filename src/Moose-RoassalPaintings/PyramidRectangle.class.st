@@ -25,10 +25,11 @@ PyramidRectangle class >> white [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PyramidRectangle >> backgroundColor [
-	color ifNil: [ ^Color white ].
-	^ color value
+	^ color
+		ifNil: [ Color white ]
+		ifNotNil: #value
 ]
 
 { #category : #accessing }
@@ -53,10 +54,10 @@ PyramidRectangle >> color: anObject [
 
 { #category : #accessing }
 PyramidRectangle >> label [
-	text ifNil: [ 
-		calculation ifNil: [ ^'' ] 
-		ifNotNil: [^calculation value asString]]
-	ifNotNil: [ ^text ]
+	^ text
+		ifNil: [ calculation
+				ifNil: [ '' ]
+				ifNotNil: [ calculation value asString ] ]
 ]
 
 { #category : #accessing }
@@ -69,16 +70,14 @@ PyramidRectangle >> popup: anObject [
 	popup := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'public - events-registering' }
 PyramidRectangle >> popupText [
-	popup ifNil: [ ^'' ].
-	^popup
+	^ popup ifNil: [ '' ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 PyramidRectangle >> printString [
-	popup ifNil: [ ^super printString].
-	^popup
+	^ popup ifNil: [ super printString ]
 ]
 
 { #category : #accessing }

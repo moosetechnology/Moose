@@ -23,20 +23,11 @@ ChooseFilePart >> dialogLabel: aString [
 	dialogLabel := aString 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 ChooseFilePart >> initialize [
 
 	super initialize.
 	self selectedPathName: FileSystem disk workingDirectory fullName.
-]
-
-{ #category : #accessing }
-ChooseFilePart >> latePopulateContents [
-	
-	
-
-	
-	
 ]
 
 { #category : #rendering }
