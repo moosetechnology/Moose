@@ -1,3 +1,15 @@
+"
+I am the superclass of Moose visualizations, using Roassal 3.
+
+
+I provide an API to be displayed
+	- in a gt pane: #appearInPaneComposite: 
+	- in a new window: #open.
+
+My subclasses should define a default title and icon, and can override #...Title methods.
+
+I know my visualization canvas and provide an accessor for it.
+"
 Class {
 	#name : #FamixAbstractVisualization,
 	#superclass : #Object,

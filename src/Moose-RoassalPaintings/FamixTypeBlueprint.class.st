@@ -1,3 +1,15 @@
+"
+I show the blueprint of a FamixTType.
+
+The visualization shows 5 layers: 
+	- initialization methods
+	- public methods
+	- private methods
+	- accessors
+	- attributes
+
+Edges represent variable accesses and method invocations.
+"
 Class {
 	#name : #FamixTypeBlueprint,
 	#superclass : #FamixAbstractVisualization,
@@ -63,19 +75,9 @@ FamixTypeBlueprint >> buildLayerNamed: label withEntities: aGroup [
 
 { #category : #building }
 FamixTypeBlueprint >> buildLayers [
-	self
-		buildLayerNamed: 'Initializers'
-		withEntities: famixType initializers.
-	self
-		buildLayerNamed: 'Interface methods'
-		withEntities: famixType interfaceMethods.
-	self
-		buildLayerNamed: 'Implementation methods'
-		withEntities: famixType implementationMethods.
-	self
-		buildLayerNamed: 'Accessors'
-		withEntities: famixType accessorMethods.
-	self buildLayerNamed: 'Attributes' withEntities: famixType attributes
+	self layersEntities
+		keysAndValuesDo:
+			[ :title :entities | self buildLayerNamed: title withEntities: entities ]
 ]
 
 { #category : #building }
@@ -109,7 +111,24 @@ FamixTypeBlueprint >> buildLegend [
 	legend build
 ]
 
-{ #category : #building }
+{ #category : #shapes }
+FamixTypeBlueprint >> colorForMethod: aMethod [
+	aMethod isPureAccessor
+		ifTrue: [ ^ Color orange ].
+	aMethod isSetter
+		ifTrue: [ ^ Color red ].
+	aMethod isGetter
+		ifTrue: [ ^ Color orange ].
+	(aMethod isAbstract isNotNil and: [ aMethod isAbstract ])
+		ifTrue: [ ^ Color cyan ].
+	aMethod isOverriding
+		ifTrue: [ ^ Color brown ].
+	aMethod isConstant
+		ifTrue: [ ^ Color gray ].
+	^ Color white
+]
+
+{ #category : #shapes }
 FamixTypeBlueprint >> edgeBuilder [
 	^ RSEdgeBuilder line
 		shapes: (self canvas nodes flatCollect: #children);
@@ -120,6 +139,25 @@ FamixTypeBlueprint >> edgeBuilder [
 { #category : #accessing }
 FamixTypeBlueprint >> famixType: aFamixType [
 	famixType := aFamixType
+]
+
+{ #category : #building }
+FamixTypeBlueprint >> layersEntities [
+	^ {('Initializers'
+		-> (famixType methods select: [ :method | method isInitializer ])).
+	('Interface methods'
+		->
+			(famixType methods
+				select: [ :each | 
+					each isInternalImplementation not & each isInitializer not
+						& each isPureAccessor not ])).
+	('Implementation methods'
+		->
+			(famixType methods
+				select: [ :method | method isInternalImplementation ])).
+	('Accessors'
+		-> (famixType methods select: [ :method | method isPureAccessor ])).
+	('Attributes' -> famixType attributes)} asDictionary
 ]
 
 { #category : #building }
@@ -155,7 +193,7 @@ FamixTypeBlueprint >> shapeForMethod: aMethod [
 	| shape |
 	shape := RSBox new
 		model: aMethod;
-		color: aMethod classBlueprintFillColor;
+		color: (self colorForMethod: aMethod);
 		borderColor: Color lightGray;
 		width: (aMethod numberOfOutgoingInvocations max: 5);
 		height: (aMethod numberOfLinesOfCode max: 5);

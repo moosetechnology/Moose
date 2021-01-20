@@ -12,31 +12,8 @@ FamixTType >> blueprint [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FamixTType >> implementationMethods [
-	^ self methods select: #isInternalImplementation
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
-FamixTType >> initializers [
-
-	^ self methods select: #isInitializer
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
-FamixTType >> interfaceMethods [
-	^ self methods select: [:each | each isInternalImplementation not & each isInitializer not & each isPureAccessor not]
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
 FamixTType >> uml [
-	| builder |
-	builder := RSUMLClassBuilder new.
-	builder classes: {self}.
-	builder modelDescriptor
-		instVars: #attributes;
-		methodSelector: #name.
-	builder build.
-	^ builder canvas
+	^ FamixTypeUML forType: self
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
@@ -48,5 +25,5 @@ FamixTType >> viewBlueprint [
 { #category : #'*Moose-RoassalPaintings' }
 FamixTType >> viewUML [
 	<menuItem: 'UML class diagram' category: 'Visualize'>
-	^ self uml openWithTitle: 'UML class diagram'
+	^ self uml open
 ]
