@@ -16,3 +16,8 @@ FamixTMethod >> classBlueprintFillColor [
 		ifTrue: [ ^ Color gray ].
 	^ Color white
 ]
+
+{ #category : #'*Moose-RoassalPaintings' }
+FamixTMethod >> shapeInBlueprint: aFamixTypeBlueprint [
+	^ aFamixTypeBlueprint shapeForMethod: self
+]

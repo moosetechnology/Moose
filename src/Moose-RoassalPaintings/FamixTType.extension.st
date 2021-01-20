@@ -8,7 +8,7 @@ FamixTType >> accessorMethods [
 
 { #category : #'*Moose-RoassalPaintings' }
 FamixTType >> blueprint [
-	^ FamixBlueprint new forType: self
+	^ FamixTypeBlueprint forType: self
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
@@ -42,7 +42,7 @@ FamixTType >> uml [
 { #category : #'*Moose-RoassalPaintings' }
 FamixTType >> viewBlueprint [
 	<menuItem: 'Class blueprint' category: 'Visualize'>
-	self blueprint openWithTitle: 'Blueprint of ' , self name
+	self blueprint open
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
