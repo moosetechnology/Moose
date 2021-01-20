@@ -168,27 +168,21 @@ FMRelationSlot >> moosePropertyDictionary [
 
 { #category : #internal }
 FMRelationSlot >> moosePropertyFor: anOwningClassName multivalued: aBoolean [
-
 	| mooseProperty needsToBeSet |
-	
 	needsToBeSet := false.
-	
-	mooseProperty := self moosePropertyDictionary at: anOwningClassName ifAbsentPut: [
-		needsToBeSet := true.
-		FM3PropertyDescription new ].
-	
-	needsToBeSet ifTrue: [ 
-		mooseProperty name: self name asString.
-		mooseProperty setImplementingSelector: self name. "should be a link to slot"
-
-		mooseProperty isMultivalued: aBoolean.
-		mooseProperty isDerived: true.
-		
-		mooseProperty privOpposite: self inverseSlot mooseProperty ].
-	
-	^ mooseProperty.
-
-		
+	mooseProperty := self moosePropertyDictionary
+		at: anOwningClassName
+		ifAbsentPut: [ needsToBeSet := true.
+			FM3PropertyDescription new ].
+	needsToBeSet
+		ifTrue: [ mooseProperty name: self name asString.
+			mooseProperty setImplementingSelector: self name.	"should be a link to slot"
+			mooseProperty isMultivalued: aBoolean.
+			(Pragma
+				inMethod: (self class environment at: anOwningClassName) >> self name
+				named: #derived) ifNotNil: [ mooseProperty isDerived: true ].
+			mooseProperty privOpposite: self inverseSlot mooseProperty ].
+	^ mooseProperty
 ]
 
 { #category : #printing }
