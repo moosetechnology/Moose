@@ -15,15 +15,3 @@ FamixTType >> blueprint [
 FamixTType >> uml [
 	^ FamixTypeUML forType: self
 ]
-
-{ #category : #'*Moose-RoassalPaintings' }
-FamixTType >> viewBlueprint [
-	<menuItem: 'Class blueprint' category: 'Visualize'>
-	self blueprint open
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
-FamixTType >> viewUML [
-	<menuItem: 'UML class diagram' category: 'Visualize'>
-	^ self uml open
-]

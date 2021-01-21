@@ -22,6 +22,16 @@ FamixTypeGroup >> addSystemComplexityLegendOn: aCanvas [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
+FamixTypeGroup >> systemComplexity [
+	^ FamixTypeGroupSystemComplexity forTypeGroup: self
+]
+
+{ #category : #'*Moose-RoassalPaintings' }
+FamixTypeGroup >> uml [
+	^ FamixTypeUML forTypeGroup: self
+]
+
+{ #category : #'*Moose-RoassalPaintings' }
 FamixTypeGroup >> viewAnnotationConstellation [
 	<menuItem: 'Annotation Constellation' category: 'Visualize'>
 	| view |
@@ -108,9 +118,14 @@ FamixTypeGroup >> viewSystemAttractionOn: view [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FamixTypeGroup >> viewSystemComplexity [
-	<menuItem: 'System complexity' category: 'Visualize'>
-	^ self systemComplexity openWithTitle: 'System Complexity'
+FamixTypeGroup >> viewSystemComplexityInWizard [
+	<menuItem: 'Customizable System Complexity' category: 'Visualize'>
+	self ifEmpty: [ ^ self ].
+	^ MooseCustomizableSystemComplexityBrowser
+		openOnClassGroup: self
+		heightToSelect: #numberOfMethods
+		widthToSelect: #numberOfAttributes
+		colorToSelect: #numberOfLinesOfCode
 ]
 
 { #category : #'*Moose-RoassalPaintings' }

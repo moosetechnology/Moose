@@ -5,8 +5,7 @@ Class {
 	#name : #FamixTypeUML,
 	#superclass : #FamixAbstractVisualization,
 	#instVars : [
-		'builder',
-		'famixType'
+		'builder'
 	],
 	#category : #'Moose-RoassalPaintings-FamixVisualizations'
 }
@@ -19,7 +18,15 @@ FamixTypeUML class >> defaultTitle [
 { #category : #public }
 FamixTypeUML class >> forType: aFamixType [
 	^ self new
-		famixType: aFamixType;
+		forType: aFamixType;
+		build;
+		yourself
+]
+
+{ #category : #public }
+FamixTypeUML class >> forTypeGroup: aFamixTypeGroup [
+	^ self new
+		forTypeGroup: aFamixTypeGroup;
 		build;
 		yourself
 ]
@@ -35,9 +42,13 @@ FamixTypeUML >> build [
 ]
 
 { #category : #accessing }
-FamixTypeUML >> famixType: aFamixType [
-	famixType := aFamixType.
+FamixTypeUML >> forType: aFamixType [
 	builder classes: {aFamixType}
+]
+
+{ #category : #accessing }
+FamixTypeUML >> forTypeGroup: aFamixTypeGroup [
+	builder classes: aFamixTypeGroup
 ]
 
 { #category : #initialization }
@@ -55,9 +66,4 @@ FamixTypeUML >> initializeBuilder [
 				collect: #name ];
 		methods: [ :type | type methods sorted: [ :m1 :m2 | m1 name < m2 name ] ];
 		methodSelector: #name
-]
-
-{ #category : #accessing }
-FamixTypeUML >> windowTitle [
-	^ famixType name , ' UML diagram'
 ]

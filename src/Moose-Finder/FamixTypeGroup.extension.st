@@ -9,19 +9,13 @@ FamixTypeGroup >> browseAsSelectionInSystemComplexityLocator [
 { #category : #'*Moose-Finder' }
 FamixTypeGroup >> mooseFinderComplexityIn: composite [
 	<moosePresentationOrder: 20>
-	composite roassal3
-		title: 'Hierarchy';
-		titleIcon: MooseIcons mooseSystemComplexity;
-		initializeCanvas: [ self systemComplexity ]
+	self systemComplexity appearInPaneComposite: composite
 ]
 
 { #category : #'*Moose-Finder' }
 FamixTypeGroup >> mooseFinderUMLIn: composite [
-    <moosePresentationOrder: 20>
-    composite roassal3
-			title: 'UML';
-			titleIcon: MooseIcons mooseUml;
-			initializeCanvas: [ self uml ]
+	<moosePresentationOrder: 20>
+	self uml appearInPaneComposite: composite
 ]
 
 { #category : #'*Moose-Finder' }
@@ -41,64 +35,13 @@ FamixTypeGroup >> mooseIcon [
 ]
 
 { #category : #'*Moose-Finder' }
-FamixTypeGroup >> systemComplexity [
-	| canvas |
-	canvas := RSCanvas new.
-	canvas
-		addAll:
-			(self entities
-				collect: [ :type | 
-					RSBox new
-						model: type;
-						borderColor: Color lightGray;
-						popup ]).
-	RSNormalizer height
-		shapes: canvas shapes;
-		normalize: [ :type | type numberOfMethods max: 5 ].
-	RSNormalizer width
-		shapes: canvas shapes;
-		normalize: [ :type | type numberOfAttributes max: 5 ].
-	RSNormalizer color
-		from: Color white;
-		to: Color black;
-		shapes: canvas shapes;
-		normalize: #numberOfLinesOfCode.
-	RSEdgeBuilder line
-		shapes: canvas shapes;
-		withVerticalAttachPoint;
-		connectToAll: #directSuperclasses.
-	canvas pushBackEdges.
-	RSTreeLayout new on: canvas shapes edges: canvas edges.
-	self addSystemComplexityLegendOn: canvas.
-	canvas @ RSCanvasController.
-	^ canvas
-]
-
-{ #category : #'*Moose-Finder' }
-FamixTypeGroup >> uml [
-	| builder |
-	builder := RSUMLClassBuilder new.
-	builder classes: self.
-	builder modelDescriptor
-		instVars: #attributes;
-		methodSelector: #name.
-	builder build.
-	^ builder canvas
-]
-
-{ #category : #'*Moose-Finder' }
-FamixTypeGroup >> viewSystemComplexityInWizard [
-	<menuItem: 'Customizable System Complexity' category: 'Visualize'>
-	self ifEmpty: [ ^ self ].
-	^ MooseCustomizableSystemComplexityBrowser
-		openOnClassGroup: self
-		heightToSelect: #numberOfMethods
-		widthToSelect: #numberOfAttributes
-		colorToSelect: #numberOfLinesOfCode
+FamixTypeGroup >> viewSystemComplexity [
+	<menuItem: 'System complexity' category: 'Visualize'>
+	^ self systemComplexity open
 ]
 
 { #category : #'*Moose-Finder' }
 FamixTypeGroup >> viewUML [
 	<menuItem: 'UML class diagram' category: 'Visualize'>
-	^ self uml openWithTitle: 'UML class diagram'
+	^ self uml open
 ]
