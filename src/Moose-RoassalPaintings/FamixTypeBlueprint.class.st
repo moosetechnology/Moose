@@ -39,10 +39,10 @@ FamixTypeBlueprint class >> icon [
 
 { #category : #building }
 FamixTypeBlueprint >> build [
+	super build.
 	self buildLayers.
 	self buildEdges.
-	self nestLayers.
-	self buildLegend
+	self nestLayers
 ]
 
 { #category : #building }

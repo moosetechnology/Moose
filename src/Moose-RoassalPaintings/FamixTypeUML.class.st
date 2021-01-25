@@ -38,7 +38,18 @@ FamixTypeUML class >> icon [
 
 { #category : #building }
 FamixTypeUML >> build [
+	super build.
 	builder renderIn: self canvas
+]
+
+{ #category : #building }
+FamixTypeUML >> buildLegend [
+	| legend |
+	legend := RSLegend new.
+	legend container: self canvas.
+	legend onDemand.
+	legend title: 'UML diagram'.
+	legend build
 ]
 
 { #category : #accessing }

@@ -13,25 +13,26 @@ FamixTypeGroup >> mooseFinderComplexityIn: composite [
 ]
 
 { #category : #'*Moose-Finder' }
+FamixTypeGroup >> mooseFinderNestingIn: composite [
+	<moosePresentationOrder: 30>
+	self nesting appearInPaneComposite: composite
+]
+
+{ #category : #'*Moose-Finder' }
 FamixTypeGroup >> mooseFinderUMLIn: composite [
 	<moosePresentationOrder: 20>
 	self uml appearInPaneComposite: composite
 ]
 
 { #category : #'*Moose-Finder' }
-FamixTypeGroup >> mooseFinderWithinNestedMapIn: composite [
-	<moosePresentationOrder: 30>
-	composite roassal2
-			title: 'Nesting';
-			titleIcon: MooseIcons mooseTreeMap;
-			painting: [ :view :each | 
-				each mooseInterestingEntity viewSystemNestingMapOnRaw: view ]
-
+FamixTypeGroup >> mooseIcon [
+	^ MooseIcons famixClassGroup 
 ]
 
 { #category : #'*Moose-Finder' }
-FamixTypeGroup >> mooseIcon [
-	^ MooseIcons famixClassGroup 
+FamixTypeGroup >> viewNesting [
+	<menuItem: 'Nesting Map' category: 'Visualize'>
+	self nesting open
 ]
 
 { #category : #'*Moose-Finder' }

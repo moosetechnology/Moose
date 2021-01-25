@@ -37,6 +37,16 @@ FamixAbstractVisualization >> appearInPaneComposite: aGTComposite [
 		initializeCanvas: [ self canvas ]
 ]
 
+{ #category : #building }
+FamixAbstractVisualization >> build [
+	self buildLegend
+]
+
+{ #category : #building }
+FamixAbstractVisualization >> buildLegend [
+	self subclassResponsibility
+]
+
 { #category : #accessing }
 FamixAbstractVisualization >> canvas [
 	^ canvas

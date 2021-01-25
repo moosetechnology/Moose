@@ -1,3 +1,13 @@
+"
+I show types in a FamixTypeGroup.
+	
+Types are represented as boxes for which:
+		width = number of attributes
+		height = number of methods
+		color = number of lines of code.
+
+Inheritance relations are show as edges.
+"
 Class {
 	#name : #FamixTypeGroupSystemComplexity,
 	#superclass : #FamixAbstractVisualization,
@@ -32,10 +42,10 @@ FamixTypeGroupSystemComplexity >> basicShape [
 
 { #category : #building }
 FamixTypeGroupSystemComplexity >> build [
+	super build.
 	self normalizeNodes.
 	self buildEgdes.
-	self setLayout.
-	self buildLegend
+	self setLayout
 ]
 
 { #category : #building }

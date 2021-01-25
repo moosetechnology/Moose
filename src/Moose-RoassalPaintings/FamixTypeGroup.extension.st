@@ -1,24 +1,8 @@
 Extension { #name : #FamixTypeGroup }
 
 { #category : #'*Moose-RoassalPaintings' }
-FamixTypeGroup >> addSystemComplexityLegendOn: aCanvas [
-	| legend |
-	legend := RSLegend new.
-	legend container: aCanvas.
-	legend onDemand.
-	legend title: 'System complexity view'.
-	legend text: 'Box = Class'.
-	legend text: 'Line = Inheritance'.
-	legend
-		polymetricWidth: 'number of attributes'
-		height: 'number of methods'
-		box: 'a class'.
-	legend
-		text: 'Number of lines of code'
-		withFadingRamp:
-			{(0 -> 'white').
-			(1 -> 'black')}.
-	legend build
+FamixTypeGroup >> nesting [
+	^ FamixTypeGroupNesting forTypeGroup: self
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
@@ -126,26 +110,6 @@ FamixTypeGroup >> viewSystemComplexityInWizard [
 		heightToSelect: #numberOfMethods
 		widthToSelect: #numberOfAttributes
 		colorToSelect: #numberOfLinesOfCode
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
-FamixTypeGroup >> viewSystemNestingMap [
-<menuItem: 'Nesting Map' category: 'Visualize'> 
-	| view |
-	view := RTView new.
-	self viewSystemNestingMapOnRaw: view.
-	view open
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
-FamixTypeGroup >> viewSystemNestingMapOnRaw: view [
-	^ FAMIXSystemNestingMap new
-		viewNamespaces:
-			(self mooseModel allNamespaces
-				select:
-					[ :each | (each allToScope: FamixTClass) anySatisfy: [ :c | c isStub not ] ])
-		highlighting: self
-		onRaw: view
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
