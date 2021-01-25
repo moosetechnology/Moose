@@ -36,6 +36,12 @@ FamixTypeGroup >> viewNesting [
 ]
 
 { #category : #'*Moose-Finder' }
+FamixTypeGroup >> viewSystemAttraction [
+	<menuItem: 'System attraction' category: 'Visualize'>
+	^ self systemAttraction open
+]
+
+{ #category : #'*Moose-Finder' }
 FamixTypeGroup >> viewSystemComplexity [
 	<menuItem: 'System complexity' category: 'Visualize'>
 	^ self systemComplexity open

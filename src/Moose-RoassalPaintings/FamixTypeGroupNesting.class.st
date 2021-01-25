@@ -50,12 +50,7 @@ FamixTypeGroupNesting >> buildLegend [
 	legend onDemand.
 	legend title: 'Nesting'.
 	legend text: 'Boxes represent packages and the classes they contain.'.
-	legend
-		text: 'Selected classes'
-		withShape:
-			(RSBox new
-				extent: 15 @ 15;
-				color: Color blue muchLighter).
+	legend text: 'Selected classes' withBoxColor: Color blue muchLighter.
 	legend build
 ]
 

@@ -6,6 +6,11 @@ FamixTypeGroup >> nesting [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
+FamixTypeGroup >> systemAttraction [
+	^ FamixTypeGroupSystemAttraction forTypeGroup: self
+]
+
+{ #category : #'*Moose-RoassalPaintings' }
 FamixTypeGroup >> systemComplexity [
 	^ FamixTypeGroupSystemComplexity forTypeGroup: self
 ]
@@ -80,25 +85,6 @@ FamixTypeGroup >> viewSimpleSystemComplexityWithSelection: selectedClassGroup he
 			{Color white.
 			Color black}
 	"view edges do: [ :e | e trachelShape pushBack ]."
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
-FamixTypeGroup >> viewSystemAttraction [
-	<menuItem: 'System Attraction' category: 'Visualize'>
-	| view |
-	view := RTMondrian new.
-	self viewSystemAttractionOn: view.
-	^ view openWithToolbar title: 'System Attraction'
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
-FamixTypeGroup >> viewSystemAttractionHighlighting: strongClasses on: view [
-	^ FAMIXSystemAttraction new view: self highlighting: strongClasses on: view
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
-FamixTypeGroup >> viewSystemAttractionOn: view [
-	^ FAMIXSystemAttraction new view: self on: view
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
