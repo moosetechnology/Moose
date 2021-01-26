@@ -21,20 +21,6 @@ FamixTypeGroup >> uml [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FamixTypeGroup >> viewAnnotationConstellation [
-	<menuItem: 'Annotation Constellation' category: 'Visualize'>
-	| view |
-	view := RTMondrian new.
-	self viewAnnotationConstellationOn: view.
-	^ view open setLabel: 'Annotation Constellation'
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
-FamixTypeGroup >> viewAnnotationConstellationOn: view [
-	(FamixAnnotationTypeGroup withAll: (self flatCollectAsSet: #annotationTypes)) viewAnnotationConstellationOf: self on: view
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
 FamixTypeGroup >> viewBlueprintComplexity [
 	<menuItem: 'Blueprint complexity' category: 'Visualize'>
 	| canvas |
