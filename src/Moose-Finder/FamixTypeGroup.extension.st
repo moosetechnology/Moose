@@ -30,6 +30,12 @@ FamixTypeGroup >> mooseIcon [
 ]
 
 { #category : #'*Moose-Finder' }
+FamixTypeGroup >> viewBlueprintComplexity [
+	<menuItem: 'Blueprint complexity' category: 'Visualize'>
+	self blueprintComplexity open
+]
+
+{ #category : #'*Moose-Finder' }
 FamixTypeGroup >> viewNesting [
 	<menuItem: 'Nesting Map' category: 'Visualize'>
 	self nesting open

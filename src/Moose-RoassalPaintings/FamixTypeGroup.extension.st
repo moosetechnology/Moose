@@ -1,6 +1,11 @@
 Extension { #name : #FamixTypeGroup }
 
 { #category : #'*Moose-RoassalPaintings' }
+FamixTypeGroup >> blueprintComplexity [
+	^ FamixTypeGroupBlueprintComplexity forTypeGroup: self
+]
+
+{ #category : #'*Moose-RoassalPaintings' }
 FamixTypeGroup >> nesting [
 	^ FamixTypeGroupNesting forTypeGroup: self
 ]
@@ -18,39 +23,6 @@ FamixTypeGroup >> systemComplexity [
 { #category : #'*Moose-RoassalPaintings' }
 FamixTypeGroup >> uml [
 	^ FamixTypeUML forTypeGroup: self
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
-FamixTypeGroup >> viewBlueprintComplexity [
-	<menuItem: 'Blueprint complexity' category: 'Visualize'>
-	| canvas |
-	canvas := RSCanvas new.
-	canvas
-		addAll:
-			(self
-				collect: [ :type | 
-					| singleBlueprint |
-					singleBlueprint := (type blueprint
-						build;
-						yourself) canvas asShape
-						model: type;
-						@ RSDraggable;
-						yourself.
-					"The following is a hack: after copying shapes from singleBlueprint, shapes are unaware of their connected edges."
-					singleBlueprint edges
-						do: [ :edge | 
-							edge from addConnectedEdge: edge.
-							edge to addConnectedEdge: edge ].
-					singleBlueprint ]).
-	RSEdgeBuilder line
-		shapes: canvas nodes;
-		color: Color veryLightGray;
-		withVerticalAttachPoint;
-		connectTo: [ :class | class superclass ].
-	canvas pushBackEdges.
-	RSTreeLayout new on: canvas nodes edges: canvas edges.
-	canvas @ RSCanvasController.
-	canvas open
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
