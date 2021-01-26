@@ -1,3 +1,6 @@
+"
+I show annotationTypes and the entities annotated with their instances.
+"
 Class {
 	#name : #FamixAnnotationTypeGroupConstellation,
 	#superclass : #FamixAbstractVisualization,
@@ -15,7 +18,7 @@ FamixAnnotationTypeGroupConstellation class >> defaultTitle [
 { #category : #public }
 FamixAnnotationTypeGroupConstellation class >> forAnnotationTypeGroup: aFamixAnnotationTypeGroup [
 	^ self new
-		forAnnotationTypeGroup: aFamixAnnotationTypeGroup;
+		famixAnnotationTypeGroup: aFamixAnnotationTypeGroup;
 		yourself
 ]
 
@@ -81,7 +84,7 @@ FamixAnnotationTypeGroupConstellation >> connectLabels: annotationLabels toNodes
 ]
 
 { #category : #initialization }
-FamixAnnotationTypeGroupConstellation >> forAnnotationTypeGroup: aFamixAnnotationTypeGroup [
+FamixAnnotationTypeGroupConstellation >> famixAnnotationTypeGroup: aFamixAnnotationTypeGroup [
 	famixAnnotationTypeGroup := aFamixAnnotationTypeGroup
 ]
 

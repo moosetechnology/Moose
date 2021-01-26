@@ -21,7 +21,7 @@ FamixTypeGroupSystemAttraction class >> defaultTitle [
 { #category : #public }
 FamixTypeGroupSystemAttraction class >> forTypeGroup: aFamixTypeGroup [
 	^ self new
-		forTypeGroup: aFamixTypeGroup;
+		famixTypeGroup: aFamixTypeGroup;
 		yourself
 ]
 
@@ -161,7 +161,7 @@ FamixTypeGroupSystemAttraction >> connectInvocations: methodsNodes [
 ]
 
 { #category : #initialization }
-FamixTypeGroupSystemAttraction >> forTypeGroup: aTypeGroup [
+FamixTypeGroupSystemAttraction >> famixTypeGroup: aTypeGroup [
 	famixTypeGroup := aTypeGroup
 ]
 

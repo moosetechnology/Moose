@@ -85,8 +85,8 @@ FamixTypeBlueprint >> buildLegend [
 	legend := RSLegend new.
 	legend container: self canvas.
 	legend onDemand.
-	legend title: 'Class Blueprint'.
-	legend text: 'Each class is composed of 5 parts, from left to right:'.
+	legend title: self class defaultTitle.
+	legend text: 'From left to right:'.
 	legend
 		text:
 			'    Constructors, Public methods, Private methods, Accessors, Variables'.
@@ -135,7 +135,7 @@ FamixTypeBlueprint >> edgeBuilder [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 FamixTypeBlueprint >> famixType: aFamixType [
 	famixType := aFamixType
 ]

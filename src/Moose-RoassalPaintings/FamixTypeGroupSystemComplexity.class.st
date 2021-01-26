@@ -11,6 +11,9 @@ Inheritance relations are show as edges.
 Class {
 	#name : #FamixTypeGroupSystemComplexity,
 	#superclass : #FamixAbstractVisualization,
+	#instVars : [
+		'famixTypeGroup'
+	],
 	#category : #'Moose-RoassalPaintings-FamixVisualizations'
 }
 
@@ -22,7 +25,7 @@ FamixTypeGroupSystemComplexity class >> defaultTitle [
 { #category : #public }
 FamixTypeGroupSystemComplexity class >> forTypeGroup: aFamixTypeGroup [
 	^ self new
-		forTypeGroup: aFamixTypeGroup;
+		famixTypeGroup: aFamixTypeGroup;
 		yourself
 ]
 
@@ -42,7 +45,7 @@ FamixTypeGroupSystemComplexity >> basicShape [
 { #category : #building }
 FamixTypeGroupSystemComplexity >> build [
 	super build.
-	self normalizeNodes.
+	self buildNodes.
 	self buildEgdes.
 	self setLayout
 ]
@@ -77,15 +80,21 @@ FamixTypeGroupSystemComplexity >> buildLegend [
 	legend build
 ]
 
-{ #category : #initialization }
-FamixTypeGroupSystemComplexity >> forTypeGroup: aTypeGroup [
+{ #category : #building }
+FamixTypeGroupSystemComplexity >> buildNodes [
 	canvas
 		addAll:
-			(aTypeGroup
+			(famixTypeGroup
 				collect: [ :type | 
 					self basicShape
 						model: type;
-						yourself ])
+						yourself ]).
+	self normalizeNodes
+]
+
+{ #category : #accessing }
+FamixTypeGroupSystemComplexity >> famixTypeGroup: aTypeGroup [
+	famixTypeGroup := aTypeGroup
 ]
 
 { #category : #normalizing }

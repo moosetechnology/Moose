@@ -18,14 +18,14 @@ FamixTypeUML class >> defaultTitle [
 { #category : #public }
 FamixTypeUML class >> forType: aFamixType [
 	^ self new
-		forType: aFamixType;
+		famixType: aFamixType;
 		yourself
 ]
 
 { #category : #public }
 FamixTypeUML class >> forTypeGroup: aFamixTypeGroup [
 	^ self new
-		forTypeGroup: aFamixTypeGroup;
+		famixTypeGroup: aFamixTypeGroup;
 		yourself
 ]
 
@@ -51,12 +51,12 @@ FamixTypeUML >> buildLegend [
 ]
 
 { #category : #accessing }
-FamixTypeUML >> forType: aFamixType [
+FamixTypeUML >> famixType: aFamixType [
 	builder classes: {aFamixType}
 ]
 
 { #category : #accessing }
-FamixTypeUML >> forTypeGroup: aFamixTypeGroup [
+FamixTypeUML >> famixTypeGroup: aFamixTypeGroup [
 	builder classes: aFamixTypeGroup
 ]
 

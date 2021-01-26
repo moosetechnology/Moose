@@ -22,7 +22,7 @@ FamixTypeGroupNesting class >> defaultTitle [
 { #category : #public }
 FamixTypeGroupNesting class >> forTypeGroup: aFamixTypeGroup [
 	^ self new
-		forTypeGroup: aFamixTypeGroup;
+		famixTypeGroup: aFamixTypeGroup;
 		yourself
 ]
 
@@ -77,8 +77,8 @@ FamixTypeGroupNesting >> entitiesIn: aContainer [
 				thenCollect: [ :c | self classShapeFor: c ])
 ]
 
-{ #category : #initialization }
-FamixTypeGroupNesting >> forTypeGroup: aFamixTypeGroup [
+{ #category : #accessing }
+FamixTypeGroupNesting >> famixTypeGroup: aFamixTypeGroup [
 	famixTypeGroup := aFamixTypeGroup
 ]
 
