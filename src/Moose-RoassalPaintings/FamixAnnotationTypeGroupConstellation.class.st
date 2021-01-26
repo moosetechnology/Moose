@@ -12,11 +12,10 @@ FamixAnnotationTypeGroupConstellation class >> defaultTitle [
 	^ 'Annotations constellation'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #public }
 FamixAnnotationTypeGroupConstellation class >> forAnnotationTypeGroup: aFamixAnnotationTypeGroup [
 	^ self new
 		forAnnotationTypeGroup: aFamixAnnotationTypeGroup;
-		build;
 		yourself
 ]
 

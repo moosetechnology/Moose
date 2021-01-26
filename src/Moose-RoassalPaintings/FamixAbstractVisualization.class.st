@@ -34,7 +34,8 @@ FamixAbstractVisualization >> appearInPaneComposite: aGTComposite [
 	aGTComposite roassal3
 		title: self gtCompositeTitle;
 		titleIcon: self class icon;
-		initializeCanvas: [ self canvas ]
+		initializeCanvas: [ self build.
+			self canvas ]
 ]
 
 { #category : #building }
@@ -66,6 +67,7 @@ FamixAbstractVisualization >> initialize [
 
 { #category : #display }
 FamixAbstractVisualization >> open [
+	self build.
 	self canvas openWithTitle: self windowTitle
 ]
 

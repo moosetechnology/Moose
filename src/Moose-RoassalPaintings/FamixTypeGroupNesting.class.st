@@ -19,11 +19,10 @@ FamixTypeGroupNesting class >> defaultTitle [
 	^ 'Nesting'
 ]
 
-{ #category : #accessing }
+{ #category : #public }
 FamixTypeGroupNesting class >> forTypeGroup: aFamixTypeGroup [
 	^ self new
 		forTypeGroup: aFamixTypeGroup;
-		build;
 		yourself
 ]
 
@@ -78,7 +77,7 @@ FamixTypeGroupNesting >> entitiesIn: aContainer [
 				thenCollect: [ :c | self classShapeFor: c ])
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 FamixTypeGroupNesting >> forTypeGroup: aFamixTypeGroup [
 	famixTypeGroup := aFamixTypeGroup
 ]

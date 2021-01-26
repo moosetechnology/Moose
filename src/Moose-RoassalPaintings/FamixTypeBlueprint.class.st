@@ -28,7 +28,6 @@ FamixTypeBlueprint class >> defaultTitle [
 FamixTypeBlueprint class >> forType: aFamixType [
 	^ self new
 		famixType: aFamixType;
-		build;
 		yourself
 ]
 
@@ -136,7 +135,7 @@ FamixTypeBlueprint >> edgeBuilder [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 FamixTypeBlueprint >> famixType: aFamixType [
 	famixType := aFamixType
 ]

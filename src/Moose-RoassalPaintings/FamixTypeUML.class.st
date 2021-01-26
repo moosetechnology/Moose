@@ -19,7 +19,6 @@ FamixTypeUML class >> defaultTitle [
 FamixTypeUML class >> forType: aFamixType [
 	^ self new
 		forType: aFamixType;
-		build;
 		yourself
 ]
 
@@ -27,7 +26,6 @@ FamixTypeUML class >> forType: aFamixType [
 FamixTypeUML class >> forTypeGroup: aFamixTypeGroup [
 	^ self new
 		forTypeGroup: aFamixTypeGroup;
-		build;
 		yourself
 ]
 

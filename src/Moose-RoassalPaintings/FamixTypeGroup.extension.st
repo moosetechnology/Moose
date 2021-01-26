@@ -30,7 +30,9 @@ FamixTypeGroup >> viewBlueprintComplexity [
 			(self
 				collect: [ :type | 
 					| singleBlueprint |
-					singleBlueprint := type blueprint canvas asShape
+					singleBlueprint := (type blueprint
+						build;
+						yourself) canvas asShape
 						model: type;
 						@ RSDraggable;
 						yourself.

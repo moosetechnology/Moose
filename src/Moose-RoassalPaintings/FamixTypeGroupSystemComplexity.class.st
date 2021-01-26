@@ -19,11 +19,10 @@ FamixTypeGroupSystemComplexity class >> defaultTitle [
 	^ 'System complexity'
 ]
 
-{ #category : #accessing }
+{ #category : #public }
 FamixTypeGroupSystemComplexity class >> forTypeGroup: aFamixTypeGroup [
 	^ self new
 		forTypeGroup: aFamixTypeGroup;
-		build;
 		yourself
 ]
 
@@ -78,7 +77,7 @@ FamixTypeGroupSystemComplexity >> buildLegend [
 	legend build
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 FamixTypeGroupSystemComplexity >> forTypeGroup: aTypeGroup [
 	canvas
 		addAll:
