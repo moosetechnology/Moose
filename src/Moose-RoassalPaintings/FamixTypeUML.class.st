@@ -36,8 +36,8 @@ FamixTypeUML class >> icon [
 
 { #category : #building }
 FamixTypeUML >> build [
-	super build.
-	builder renderIn: self canvas
+	builder renderIn: self canvas.
+	super build
 ]
 
 { #category : #building }

@@ -33,12 +33,12 @@ FamixTypeGroupNesting class >> icon [
 
 { #category : #building }
 FamixTypeGroupNesting >> build [
-	super build.
 	canvas
 		addAll: (self modelPackages collect: [ :c | self packageShapeFor: c ]).
 	RSRectanglePackLayout new
 		gap: 0.1;
-		on: canvas nodes
+		on: canvas nodes.
+	super build
 ]
 
 { #category : #building }

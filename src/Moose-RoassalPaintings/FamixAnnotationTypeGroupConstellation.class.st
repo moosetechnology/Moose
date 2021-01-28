@@ -30,12 +30,12 @@ FamixAnnotationTypeGroupConstellation class >> icon [
 { #category : #building }
 FamixAnnotationTypeGroupConstellation >> build [
 	| containerNodes annotationLabels |
-	super build.
 	containerNodes := self buildAnnotationContainerNodes.
 	annotationLabels := self buildAnnotationTypeLabels.
 	self connectLabels: annotationLabels toNodes: containerNodes.
 	RSForceBasedLayout on: canvas nodes.
-	canvas pushBackEdges
+	canvas pushBackEdges.
+	super build
 ]
 
 { #category : #building }

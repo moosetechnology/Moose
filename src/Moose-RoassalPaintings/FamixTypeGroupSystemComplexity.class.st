@@ -12,7 +12,10 @@ Class {
 	#name : #FamixTypeGroupSystemComplexity,
 	#superclass : #FamixAbstractVisualization,
 	#instVars : [
-		'famixTypeGroup'
+		'famixTypeGroup',
+		'widthBlock',
+		'colorBlock',
+		'heightBlock'
 	],
 	#category : #'Moose-RoassalPaintings-FamixVisualizations'
 }
@@ -44,10 +47,10 @@ FamixTypeGroupSystemComplexity >> basicShape [
 
 { #category : #building }
 FamixTypeGroupSystemComplexity >> build [
-	super build.
 	self buildNodes.
 	self buildEgdes.
-	self setLayout
+	self setLayout.
+	super build
 ]
 
 { #category : #building }

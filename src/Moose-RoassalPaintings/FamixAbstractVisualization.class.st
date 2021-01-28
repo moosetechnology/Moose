@@ -40,7 +40,13 @@ FamixAbstractVisualization >> appearInPaneComposite: aGTComposite [
 
 { #category : #building }
 FamixAbstractVisualization >> build [
-	self buildLegend
+	self buildLegend.
+	canvas nodes
+		@
+			(RSMenuActivable new
+				menuDo: [ :menu :node | 
+					menu addTitle: node model mooseName.
+					menu addAllFrom: node model mooseMenu ])
 ]
 
 { #category : #building }

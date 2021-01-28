@@ -38,7 +38,6 @@ FamixTypeGroupSystemAttraction >> attributeColor [
 { #category : #building }
 FamixTypeGroupSystemAttraction >> build [
 	| classesNodes methodsNodes attributesNodes |
-	super build.
 	classesNodes := self buildClassesNodes.
 	methodsNodes := self buildMethodsNodes.
 	attributesNodes := self buildAttributesNodes.
@@ -50,7 +49,9 @@ FamixTypeGroupSystemAttraction >> build [
 
 	"Connecting after setting the layout so these edges are not taken into account when setting the layout. Much more clarity"
 	self connectInvocations: methodsNodes.
-	canvas pushBackEdges
+	
+	canvas pushBackEdges.
+	super build
 ]
 
 { #category : #building }

@@ -50,10 +50,10 @@ FamixTypeGroupBlueprintComplexity >> blueprintOfType: type [
 
 { #category : #building }
 FamixTypeGroupBlueprintComplexity >> build [
-	super build.
 	self buildSingleTypeBlueprints.
 	self connectSingleBlueprints.
-	RSTreeLayout new on: canvas nodes edges: canvas edges
+	RSTreeLayout new on: canvas nodes edges: canvas edges.
+	super build
 ]
 
 { #category : #building }
