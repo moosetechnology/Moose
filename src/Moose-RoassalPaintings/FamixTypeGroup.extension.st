@@ -27,17 +27,21 @@ FamixTypeGroup >> uml [
 
 { #category : #'*Moose-RoassalPaintings' }
 FamixTypeGroup >> viewSimpleSystemComplexityWithSelection: selectedClassGroup height: heightBlock width: widthBlock color: colorBlock on: view [
+	self
+		deprecated:
+			'This method is used for visualizations using Glamour. They should be replace with a single visualization written using Spec2.'.
 	view shape box
 		height: heightBlock;
 		width: widthBlock;
 		borderColor: Color gray;
-		if: [ :each | selectedClassGroup includes: each ] borderColor: Color red.
-	view interaction menu: [ :each | each mooseMenuMorph ].
+		if: [ :each | selectedClassGroup includes: each ]
+			borderColor: Color red.
+	view interaction menu: [ :each | each mooseMenu ].
 	view interaction draggable.
 	view nodes: self entities.
 	view interaction popup textElement: [ :e | e model printString ].
 	view shape shape: RTLine new.
-	view edges connectFrom: [:c | c superclass].
+	view edges connectFrom: [ :c | c superclass ].
 	view treeLayout.
 	view normalizer
 		normalizeColor: colorBlock
@@ -50,10 +54,17 @@ FamixTypeGroup >> viewSimpleSystemComplexityWithSelection: selectedClassGroup he
 { #category : #'*Moose-RoassalPaintings' }
 FamixTypeGroup >> viewSystemComplexityInWizard [
 	<menuItem: 'Customizable System Complexity' category: 'Visualize'>
+	self flag: 'This view needs to be rewritten using Spec2'.
 	self ifEmpty: [ ^ self ].
-	^ MooseCustomizableSystemComplexityBrowser
+	^ RSCanvas new
+		add:
+			(RSLabel
+				text: 'This view is currently not available. It will be restored in Pharo 9.');
+		openWithTitle: 'Cusomizable system complexity'
+
+	"MooseCustomizableSystemComplexityBrowser
 		openOnClassGroup: self
 		heightToSelect: #numberOfMethods
 		widthToSelect: #numberOfAttributes
-		colorToSelect: #numberOfLinesOfCode
+		colorToSelect: #numberOfLinesOfCode"
 ]

@@ -96,8 +96,30 @@ FamixTypeGroupSystemComplexity >> buildNodes [
 ]
 
 { #category : #accessing }
+FamixTypeGroupSystemComplexity >> colorBlock [
+	^ colorBlock
+		ifNil: [ colorBlock := [ :type | type numberOfLinesOfCode ] ]
+]
+
+{ #category : #accessing }
+FamixTypeGroupSystemComplexity >> colorBlock: anObject [
+	colorBlock := anObject
+]
+
+{ #category : #accessing }
 FamixTypeGroupSystemComplexity >> famixTypeGroup: aTypeGroup [
 	famixTypeGroup := aTypeGroup
+]
+
+{ #category : #accessing }
+FamixTypeGroupSystemComplexity >> heightBlock [
+	^ heightBlock
+		ifNil: [ heightBlock := [ :type | type numberOfMethods ] ]
+]
+
+{ #category : #accessing }
+FamixTypeGroupSystemComplexity >> heightBlock: anObject [
+	heightBlock := anObject
 ]
 
 { #category : #normalizing }
@@ -113,24 +135,42 @@ FamixTypeGroupSystemComplexity >> normalizeNodesColor [
 		from: Color white;
 		to: Color black;
 		shapes: canvas shapes;
-		normalize: #numberOfLinesOfCode
+		normalize: self colorBlock
 ]
 
 { #category : #normalizing }
 FamixTypeGroupSystemComplexity >> normalizeNodesHeight [
 	RSNormalizer height
 		shapes: canvas shapes;
-		normalize: [ :type | type numberOfMethods max: 5 ]
+		scale: self shapesSizeScale;
+		normalize: self heightBlock
 ]
 
 { #category : #normalizing }
 FamixTypeGroupSystemComplexity >> normalizeNodesWidth [
 	RSNormalizer width
 		shapes: canvas shapes;
-		normalize: [ :type | type numberOfAttributes max: 5 ]
+		scale: self shapesSizeScale;
+		normalize: self widthBlock
 ]
 
 { #category : #building }
 FamixTypeGroupSystemComplexity >> setLayout [
 	RSTreeLayout new on: canvas shapes edges: canvas edges
+]
+
+{ #category : #normalizing }
+FamixTypeGroupSystemComplexity >> shapesSizeScale [
+	^ NSScale linear range: {5 . 100}
+]
+
+{ #category : #accessing }
+FamixTypeGroupSystemComplexity >> widthBlock [
+	^ widthBlock
+		ifNil: [ widthBlock := [ :type | type numberOfAttributes ] ]
+]
+
+{ #category : #accessing }
+FamixTypeGroupSystemComplexity >> widthBlock: anObject [
+	widthBlock := anObject
 ]
