@@ -15,3 +15,9 @@ FamixNamespaceGroup >> mooseFinderWithinHierarchyIn: composite [
 FamixNamespaceGroup >> mooseIcon [
 	^ MooseIcons famixNamespaceGroup 
 ]
+
+{ #category : #'*Moose-Finder' }
+FamixNamespaceGroup >> viewHierarchy [
+	<menuItem: 'Namespace Hierarchy' category: 'Visualize'>
+	self hierarchy open
+]

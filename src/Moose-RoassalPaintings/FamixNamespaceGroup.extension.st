@@ -1,6 +1,11 @@
 Extension { #name : #FamixNamespaceGroup }
 
 { #category : #'*Moose-RoassalPaintings' }
+FamixNamespaceGroup >> hierarchy [
+	^ FamixNamespaceGroupHierarchy forNamespaceGroup: self
+]
+
+{ #category : #'*Moose-RoassalPaintings' }
 FamixNamespaceGroup >> viewDependenciesWithCycles [
 	<menuItem: 'Dependencies (cycles)' category: 'Visualize'>
 	|view |
@@ -27,24 +32,6 @@ FamixNamespaceGroup >> viewDependenciesWithCyclesOn: view [
 	view edges source: self connectFrom: #yourself toAll: [ :e | e allProvidersAtScope: FamixTNamespace ].
 	view layout dominanceTree layered.
 	view view pushBackEdges
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
-FamixNamespaceGroup >> viewHierarchy [
-	<menuItem: 'Namespace Hierarchy' category: 'Visualize'>
-	| view |
-	view := RTMondrian new.
-	self viewHierarchyOn: view.
-	^ view openWithToolbar title: 'Namespace Hierarchy'.
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
-FamixNamespaceGroup >> viewHierarchyOn: view [
-	view shape label text: #name.
-	view nodes: self.
-	view shape orthoHorizontalLine color: Color veryLightGray.
-	view edges connectFrom: #belongsTo.
-	view layout horizontalTree layered
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
