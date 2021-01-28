@@ -1,6 +1,11 @@
 Extension { #name : #FamixPackageGroup }
 
 { #category : #'*Moose-RoassalPaintings' }
+FamixPackageGroup >> dependencies [
+	^ FamixContainerGroupDependencies forContainerGroup: self
+]
+
+{ #category : #'*Moose-RoassalPaintings' }
 FamixPackageGroup >> systemComplexity [
 	| canvas |
 	canvas := RSCanvas new.
@@ -26,33 +31,6 @@ FamixPackageGroup >> systemComplexity [
 	RSTreeLayout new on: canvas nodes edges: canvas edges.
 	canvas @ RSCanvasController.
 	^ canvas
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
-FamixPackageGroup >> viewDependenciesWithCycles [
-	<menuItem: 'Dependencies (cycles)' category: 'Visualize'>
-	|view |
-	view := RTMondrian new.
-	self viewDependenciesWithCyclesOn: view.
-	^ view openWithToolbar title: 'Dependencies (cycles)'
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
-FamixPackageGroup >> viewDependenciesWithCyclesOn: aView [
-	| tarjan |
-	tarjan := MalTarjan new.
-	tarjan nodes: self.
-	tarjan edges: self from: #yourself toAll: [ :each | (each querySureOutgoingAssociations atScope: FamixTPackage) withoutSelfLoops ].
-	tarjan run.
-
-	aView shape rectangle
-		width: #numberOfClasses;
-		height: [ :each | each numberOfMethods / 10 ];
-		borderColor: Color gray;
-		fillColor: [ :each | (tarjan findNode: each) isInCycle ifTrue: [ Color red ] ifFalse: [ Color white ] ].
-	aView nodes: self.
-	aView edges connectFrom: #yourself toAll: [ :e | e allProvidersAtScope: FamixTPackage ].
-	aView layout dominanceTree
 ]
 
 { #category : #'*Moose-RoassalPaintings' }

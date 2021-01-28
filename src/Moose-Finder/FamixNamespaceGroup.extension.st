@@ -17,6 +17,12 @@ FamixNamespaceGroup >> mooseIcon [
 ]
 
 { #category : #'*Moose-Finder' }
+FamixNamespaceGroup >> viewDependenciesWithCycles [
+	<menuItem: 'Dependencies (cycles)' category: 'Visualize'>
+	self dependencies open
+]
+
+{ #category : #'*Moose-Finder' }
 FamixNamespaceGroup >> viewHierarchy [
 	<menuItem: 'Namespace Hierarchy' category: 'Visualize'>
 	self hierarchy open
