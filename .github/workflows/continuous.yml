@@ -35,6 +35,7 @@ jobs:
           mv /home/runner/.smalltalkCI/_builds/* .
           mv TravisCI.image $PROJECT_NAME.image
           mv TravisCI.changes $PROJECT_NAME.changes
+          echo ${${{ matrix.smalltalk }}: -3} | sed -e 's/\.//g' > pharo.version
           zip -r $PROJECT_NAME.zip $PROJECT_NAME.image $PROJECT_NAME.changes *.sources pharo.version
           ls
       
