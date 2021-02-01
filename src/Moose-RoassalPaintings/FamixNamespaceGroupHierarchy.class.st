@@ -3,7 +3,7 @@ I show namespaces names and their containment relations.
 "
 Class {
 	#name : #FamixNamespaceGroupHierarchy,
-	#superclass : #FamixAbstractVisualization,
+	#superclass : #MooseAbstractVisualization,
 	#instVars : [
 		'famixNamespaceGroup'
 	],

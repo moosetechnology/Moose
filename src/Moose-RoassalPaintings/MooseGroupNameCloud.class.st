@@ -5,7 +5,7 @@ Those keywords are ordered by number of entities in which name they are present.
 "
 Class {
 	#name : #MooseGroupNameCloud,
-	#superclass : #FamixAbstractVisualization,
+	#superclass : #MooseAbstractVisualization,
 	#instVars : [
 		'mooseGroup'
 	],

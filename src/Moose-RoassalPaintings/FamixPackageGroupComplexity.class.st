@@ -11,7 +11,7 @@ Missing: edges to represent inheritance between packages. For now, no layout is 
 "
 Class {
 	#name : #FamixPackageGroupComplexity,
-	#superclass : #FamixAbstractVisualization,
+	#superclass : #MooseAbstractVisualization,
 	#instVars : [
 		'famixPackageGroup'
 	],

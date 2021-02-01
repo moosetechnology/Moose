@@ -3,7 +3,7 @@ I show the UML representation of a FamixTType.
 "
 Class {
 	#name : #FamixTypeUML,
-	#superclass : #FamixAbstractVisualization,
+	#superclass : #MooseAbstractVisualization,
 	#instVars : [
 		'builder'
 	],

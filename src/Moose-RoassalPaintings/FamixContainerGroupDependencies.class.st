@@ -3,7 +3,7 @@ I show dependencies between namespaces/packages using MalTarjan.
 "
 Class {
 	#name : #FamixContainerGroupDependencies,
-	#superclass : #FamixAbstractVisualization,
+	#superclass : #MooseAbstractVisualization,
 	#instVars : [
 		'tarjan',
 		'famixContainerGroup'

@@ -8,7 +8,7 @@ More documentation here: https://www.simpleorientedarchitecture.com/overview-pyr
 "
 Class {
 	#name : #OverviewPyramid,
-	#superclass : #FamixAbstractVisualization,
+	#superclass : #MooseAbstractVisualization,
 	#instVars : [
 		'metrics',
 		'treesholdsToUse',

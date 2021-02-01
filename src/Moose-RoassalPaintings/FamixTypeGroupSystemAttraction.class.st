@@ -6,7 +6,7 @@ See #buildLegend.
 "
 Class {
 	#name : #FamixTypeGroupSystemAttraction,
-	#superclass : #FamixAbstractVisualization,
+	#superclass : #MooseAbstractVisualization,
 	#instVars : [
 		'famixTypeGroup'
 	],

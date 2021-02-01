@@ -3,7 +3,7 @@ I show annotationTypes and the entities annotated with their instances.
 "
 Class {
 	#name : #FamixAnnotationTypeGroupConstellation,
-	#superclass : #FamixAbstractVisualization,
+	#superclass : #MooseAbstractVisualization,
 	#instVars : [
 		'famixAnnotationTypeGroup'
 	],

@@ -11,7 +11,7 @@ My subclasses should define a default title and icon, and can override #...Title
 I know my visualization canvas and provide an accessor for it.
 "
 Class {
-	#name : #FamixAbstractVisualization,
+	#name : #MooseAbstractVisualization,
 	#superclass : #Object,
 	#instVars : [
 		'canvas'
@@ -20,17 +20,17 @@ Class {
 }
 
 { #category : #accessing }
-FamixAbstractVisualization class >> defaultTitle [
+MooseAbstractVisualization class >> defaultTitle [
 	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
-FamixAbstractVisualization class >> icon [
+MooseAbstractVisualization class >> icon [
 	^ self subclassResponsibility
 ]
 
 { #category : #display }
-FamixAbstractVisualization >> appearInPaneComposite: aGTComposite [
+MooseAbstractVisualization >> appearInPaneComposite: aGTComposite [
 	^ aGTComposite roassal3
 		title: self gtCompositeTitle;
 		titleIcon: self class icon;
@@ -39,7 +39,7 @@ FamixAbstractVisualization >> appearInPaneComposite: aGTComposite [
 ]
 
 { #category : #building }
-FamixAbstractVisualization >> build [
+MooseAbstractVisualization >> build [
 	self buildLegend.
 	canvas nodes
 		@
@@ -51,39 +51,39 @@ FamixAbstractVisualization >> build [
 ]
 
 { #category : #building }
-FamixAbstractVisualization >> buildLegend [
+MooseAbstractVisualization >> buildLegend [
 	self subclassResponsibility
 ]
 
 { #category : #accessing }
-FamixAbstractVisualization >> canvas [
+MooseAbstractVisualization >> canvas [
 	^ canvas
 ]
 
 { #category : #accessing }
-FamixAbstractVisualization >> gtCompositeTitle [
+MooseAbstractVisualization >> gtCompositeTitle [
 	^ self class defaultTitle
 ]
 
 { #category : #initialization }
-FamixAbstractVisualization >> initialize [
+MooseAbstractVisualization >> initialize [
 	super initialize.
 	canvas := RSCanvas new.
 	canvas @ RSCanvasController new noLegend
 ]
 
 { #category : #building }
-FamixAbstractVisualization >> mooseInterestingEntityForNode: node [
+MooseAbstractVisualization >> mooseInterestingEntityForNode: node [
 	^ node model
 ]
 
 { #category : #display }
-FamixAbstractVisualization >> open [
+MooseAbstractVisualization >> open [
 	self build.
 	^ self canvas openWithTitle: self windowTitle
 ]
 
 { #category : #accessing }
-FamixAbstractVisualization >> windowTitle [
+MooseAbstractVisualization >> windowTitle [
 	^ self class defaultTitle
 ]

@@ -7,7 +7,7 @@ I highlight the types in the FamixTypeGroup.
 "
 Class {
 	#name : #FamixTypeGroupNesting,
-	#superclass : #FamixAbstractVisualization,
+	#superclass : #MooseAbstractVisualization,
 	#instVars : [
 		'famixTypeGroup'
 	],

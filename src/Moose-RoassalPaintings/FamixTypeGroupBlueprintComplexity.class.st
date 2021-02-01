@@ -5,7 +5,7 @@ Edges between blueprints represent hierarchy
 "
 Class {
 	#name : #FamixTypeGroupBlueprintComplexity,
-	#superclass : #FamixAbstractVisualization,
+	#superclass : #MooseAbstractVisualization,
 	#instVars : [
 		'famixTypeGroup'
 	],

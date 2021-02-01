@@ -10,7 +10,7 @@ Inheritance relations are show as edges.
 "
 Class {
 	#name : #FamixTypeGroupSystemComplexity,
-	#superclass : #FamixAbstractVisualization,
+	#superclass : #MooseAbstractVisualization,
 	#instVars : [
 		'famixTypeGroup',
 		'widthBlock',

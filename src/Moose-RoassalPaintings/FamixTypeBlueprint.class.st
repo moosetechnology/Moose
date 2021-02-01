@@ -12,7 +12,7 @@ Edges represent variable accesses and method invocations.
 "
 Class {
 	#name : #FamixTypeBlueprint,
-	#superclass : #FamixAbstractVisualization,
+	#superclass : #MooseAbstractVisualization,
 	#instVars : [
 		'famixType'
 	],
