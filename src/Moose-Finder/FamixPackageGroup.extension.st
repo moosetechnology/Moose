@@ -1,25 +1,26 @@
 Extension { #name : #FamixPackageGroup }
 
 { #category : #'*Moose-Finder' }
+FamixPackageGroup >> mooseFinderComplexityIn: composite [
+	<moosePresentationOrder: 20>
+	self complexity appearInPaneComposite: composite
+]
+
+{ #category : #'*Moose-Finder' }
 FamixPackageGroup >> mooseFinderDependenciesIn: composite [
 	<moosePresentationOrder: 20>
 	self dependencies appearInPaneComposite: composite
 ]
 
 { #category : #'*Moose-Finder' }
-FamixPackageGroup >> mooseFinderPackageInternalIn: composite [
-	<moosePresentationOrder: 20>
-	composite roassal2
-			title: 'Dependencies';
-			titleIcon: MooseIcons mooseDependencies;
-			initializeView: [ RTView new ];
-			painting: [ :view :each | 
-						each  viewPackageInternalOn: view ]
+FamixPackageGroup >> mooseIcon [
+	^ MooseIcons famixPackageGroup 
 ]
 
 { #category : #'*Moose-Finder' }
-FamixPackageGroup >> mooseIcon [
-	^ MooseIcons famixPackageGroup 
+FamixPackageGroup >> viewComplexity [
+	<menuItem: 'Package complexity' category: 'Visualize'>
+	self complexity open
 ]
 
 { #category : #'*Moose-Finder' }

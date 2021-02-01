@@ -1,0 +1,112 @@
+Class {
+	#name : #FamixPackageGroupComplexity,
+	#superclass : #FamixAbstractVisualization,
+	#instVars : [
+		'famixPackageGroup'
+	],
+	#category : #'Moose-RoassalPaintings-FamixVisualizations'
+}
+
+{ #category : #accessing }
+FamixPackageGroupComplexity class >> defaultTitle [
+	^ 'Packages complexity'
+]
+
+{ #category : #accessing }
+FamixPackageGroupComplexity class >> forPackageGroup: aFamixPackageGroup [
+	^ self new
+		famixPackageGroup: aFamixPackageGroup;
+		yourself
+]
+
+{ #category : #accessing }
+FamixPackageGroupComplexity class >> icon [
+	^ MooseIcons mooseDependencies
+]
+
+{ #category : #shapes }
+FamixPackageGroupComplexity >> alignLabelInShape: shape [
+	RSVerticalLineLayout new
+		alignCenter;
+		on: shape nodes.
+	shape padding: 10
+]
+
+{ #category : #building }
+FamixPackageGroupComplexity >> build [
+	self buildNodes.
+	RSFlowLayout new
+		gapSize: 20;
+		on: canvas nodes.
+	super build
+]
+
+{ #category : #building }
+FamixPackageGroupComplexity >> buildLegend [
+	| legend |
+	legend := RSLegend new.
+	legend container: canvas.
+	legend onDemand.
+	legend title: 'Packages complexity'.
+	legend text: 'Packages' withBoxColor: self packageBackgroudColor.
+	legend title: 'Inside each package:'.
+	legend
+		polymetricWidth: 'Number of attributes'
+		height: 'Number of methods'
+		box: 'Class'.
+	legend text: 'Line = Inheritance'.
+	legend
+		text: 'Number of lines of code'
+		withFadingRamp:
+			{(0 -> 'white').
+			(1 -> 'black')}.
+	legend build
+]
+
+{ #category : #building }
+FamixPackageGroupComplexity >> buildNodes [
+	canvas
+		addAll:
+			(famixPackageGroup
+				collect: [ :package | self shapeForPackage: package ])
+]
+
+{ #category : #accessing }
+FamixPackageGroupComplexity >> famixPackageGroup: anObject [
+	famixPackageGroup := anObject
+]
+
+{ #category : #shapes }
+FamixPackageGroupComplexity >> labelForPackage: aPackage [
+	| label |
+	label := RSLabel new.
+	label text: aPackage name.
+	^ label
+]
+
+{ #category : #color }
+FamixPackageGroupComplexity >> packageBackgroudColor [
+	^ Color veryLightGray
+]
+
+{ #category : #shapes }
+FamixPackageGroupComplexity >> shapeForPackage: aPackage [
+	| shape |
+	shape := RSComposite new
+		model: aPackage;
+		color: self packageBackgroudColor;
+		draggable;
+		popup;
+		add: (self labelForPackage: aPackage);
+		add: (self systemComplexityOf: aPackage);
+		yourself.
+	self alignLabelInShape: shape.
+	^ shape
+]
+
+{ #category : #shapes }
+FamixPackageGroupComplexity >> systemComplexityOf: aPackage [
+	^ (aPackage allClasses asMooseSpecializedGroup systemComplexity
+		build;
+		yourself) canvas asShape
+]

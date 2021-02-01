@@ -58,7 +58,7 @@ FamixTypeGroupSystemComplexity >> buildEgdes [
 	RSEdgeBuilder line
 		shapes: canvas shapes;
 		withVerticalAttachPoint;
-		connectToAll: #directSuperclasses.
+		connectFromAll: #directSuperclasses.
 	canvas pushBackEdges
 ]
 
@@ -68,18 +68,18 @@ FamixTypeGroupSystemComplexity >> buildLegend [
 	legend := RSLegend new.
 	legend container: canvas.
 	legend onDemand.
-	legend title: 'System complexity view'.
-	legend text: 'Box = Class'.
-	legend text: 'Line = Inheritance'.
+	legend title: 'System complexity'.
+	legend text: ''.
 	legend
-		polymetricWidth: 'number of attributes'
-		height: 'number of methods'
-		box: 'a class'.
+		polymetricWidth: 'Number of attributes'
+		height: 'Number of methods'
+		box: 'Class'.
 	legend
 		text: 'Number of lines of code'
 		withFadingRamp:
 			{(0 -> 'white').
 			(1 -> 'black')}.
+	legend text: 'Line = Inheritance'.
 	legend build
 ]
 
@@ -156,7 +156,7 @@ FamixTypeGroupSystemComplexity >> normalizeNodesWidth [
 
 { #category : #building }
 FamixTypeGroupSystemComplexity >> setLayout [
-	RSTreeLayout new on: canvas shapes edges: canvas edges
+	RSDominanceTreeLayout new on: canvas shapes edges: canvas edges
 ]
 
 { #category : #normalizing }
