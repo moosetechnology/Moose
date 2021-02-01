@@ -8,7 +8,7 @@ More documentation here: https://www.simpleorientedarchitecture.com/overview-pyr
 "
 Class {
 	#name : #OverviewPyramid,
-	#superclass : #Object,
+	#superclass : #FamixAbstractVisualization,
 	#instVars : [
 		'metrics',
 		'treesholdsToUse',
@@ -23,10 +23,27 @@ Class {
 	#category : #'Moose-RoassalPaintings-OverviewPyramid'
 }
 
+{ #category : #accessing }
+OverviewPyramid class >> defaultTitle [
+	^ 'Overview pyramid'
+]
+
 { #category : #'instance creation' }
 OverviewPyramid class >> example [
 	<script>
-	(self on: MooseModel root allModels anyOne) open
+	(self forMooseModel: MooseModel root allModels anyOne) open
+]
+
+{ #category : #'instance creation' }
+OverviewPyramid class >> forMooseModel: aMooseModel [
+	^ self new
+		mooseModel: aMooseModel;
+		yourself
+]
+
+{ #category : #accessing }
+OverviewPyramid class >> icon [
+	^ Smalltalk ui theme iconNamed: #smallLanguage
 ]
 
 { #category : #'class initialization' }
@@ -97,11 +114,6 @@ OverviewPyramid class >> initializeSmalltalkTreesholds [
 
 ]
 
-{ #category : #'instance creation' }
-OverviewPyramid class >> on: aMooseModel [
-	^ self new forModel: aMooseModel
-]
-
 { #category : #accessing }
 OverviewPyramid class >> treesholdForModel: aMooseModel [
 	"return the treeshold to use for aMooseModel (it can be Java, smalltalk, cpp treeshold according the source language of the model)"
@@ -109,6 +121,15 @@ OverviewPyramid class >> treesholdForModel: aMooseModel [
 	^ aMooseModel isSmalltalk
 		ifTrue: [ SmalltalkTreesholds ]
 		ifFalse: [ JavaTreesholds ]
+]
+
+{ #category : #building }
+OverviewPyramid >> build [
+	self buildBricks.
+	canvas addAll: bricks.
+	RSGridLayout new
+		gapSize: 0;
+		on: canvas shapes
 ]
 
 { #category : #building }
@@ -199,6 +220,16 @@ OverviewPyramid >> buildEmptyBricks: aNumber [
 OverviewPyramid >> buildEmptySizeAndComplexityBricks: aNumber [
 	aNumber
 		timesRepeat: [ bricks add: PyramidBrickFactory sizeAndComplexity brick ]
+]
+
+{ #category : #building }
+OverviewPyramid >> buildLegend [
+	| legend |
+	legend := RSLegend new.
+	legend container: self canvas.
+	legend onDemand.
+	legend title: self class defaultTitle.
+	legend build
 ]
 
 { #category : #building }
@@ -399,28 +430,20 @@ OverviewPyramid >> colorForMetric: aSymbol withValue: aNumber [
 ]
 
 { #category : #initialization }
-OverviewPyramid >> forModel: aMooseModel [
-	metrics := aMooseModel overviewPyramidMetrics.
-	self treesholdsToUse: (self class treesholdForModel: aMooseModel).
-	self buildBricks
-]
-
-{ #category : #initialization }
 OverviewPyramid >> initialize [
 	super initialize.
 	bricks := RSGroup new
 ]
 
+{ #category : #initialization }
+OverviewPyramid >> mooseModel: aMooseModel [
+	metrics := aMooseModel overviewPyramidMetrics.
+	self treesholdsToUse: (self class treesholdForModel: aMooseModel)
+]
+
 { #category : #opening }
 OverviewPyramid >> open [
-	| canvas |
-	canvas := RSCanvas new.
-	canvas addAll: bricks.
-	RSGridLayout new
-		gapSize: 0;
-		on: canvas shapes.
-	canvas @ RSCanvasController.
-	^ (canvas openWithTitle: 'Overview pyramid') extent: 620 @ 250
+	^ super open extent: 620 @ 250
 ]
 
 { #category : #treeshold }

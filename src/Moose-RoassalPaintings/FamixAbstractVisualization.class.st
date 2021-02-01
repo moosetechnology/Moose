@@ -31,7 +31,7 @@ FamixAbstractVisualization class >> icon [
 
 { #category : #display }
 FamixAbstractVisualization >> appearInPaneComposite: aGTComposite [
-	aGTComposite roassal3
+	^ aGTComposite roassal3
 		title: self gtCompositeTitle;
 		titleIcon: self class icon;
 		initializeCanvas: [ self build.

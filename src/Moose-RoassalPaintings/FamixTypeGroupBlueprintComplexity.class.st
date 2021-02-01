@@ -62,7 +62,7 @@ FamixTypeGroupBlueprintComplexity >> buildLegend [
 	legend := RSLegend new.
 	legend container: self canvas.
 	legend onDemand.
-	legend title: 'Class Blueprints complexity'.
+	legend title: self class defaultTitle.
 	legend text: 'Each class is composed of 5 parts, from left to right:'.
 	legend
 		text:

@@ -47,7 +47,7 @@ FamixTypeGroupNesting >> buildLegend [
 	legend := RSLegend new.
 	legend container: self canvas.
 	legend onDemand.
-	legend title: 'Nesting'.
+	legend title: self class defaultTitle.
 	legend text: 'Boxes represent packages and the classes they contain.'.
 	legend text: 'Selected classes' withBoxColor: Color blue muchLighter.
 	legend build

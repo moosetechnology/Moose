@@ -59,7 +59,7 @@ FamixPackageGroupComplexity >> buildLegend [
 	legend := RSLegend new.
 	legend container: canvas.
 	legend onDemand.
-	legend title: 'Packages complexity'.
+	legend title: self class defaultTitle.
 	legend text: 'Packages' withBoxColor: self packageBackgroudColor.
 	legend title: 'Inside each package:'.
 	legend

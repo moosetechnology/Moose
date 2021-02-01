@@ -68,7 +68,7 @@ FamixTypeGroupSystemComplexity >> buildLegend [
 	legend := RSLegend new.
 	legend container: canvas.
 	legend onDemand.
-	legend title: 'System complexity'.
+	legend title: self class defaultTitle.
 	legend text: ''.
 	legend
 		polymetricWidth: 'Number of attributes'

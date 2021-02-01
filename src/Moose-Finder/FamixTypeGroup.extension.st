@@ -9,19 +9,19 @@ FamixTypeGroup >> browseAsSelectionInSystemComplexityLocator [
 { #category : #'*Moose-Finder' }
 FamixTypeGroup >> mooseFinderComplexityIn: composite [
 	<moosePresentationOrder: 20>
-	self systemComplexity appearInPaneComposite: composite
+	^ self systemComplexity appearInPaneComposite: composite
 ]
 
 { #category : #'*Moose-Finder' }
 FamixTypeGroup >> mooseFinderNestingIn: composite [
 	<moosePresentationOrder: 30>
-	self nesting appearInPaneComposite: composite
+	^ self nesting appearInPaneComposite: composite
 ]
 
 { #category : #'*Moose-Finder' }
 FamixTypeGroup >> mooseFinderUMLIn: composite [
 	<moosePresentationOrder: 20>
-	self uml appearInPaneComposite: composite
+	^ self uml appearInPaneComposite: composite
 ]
 
 { #category : #'*Moose-Finder' }
@@ -32,13 +32,13 @@ FamixTypeGroup >> mooseIcon [
 { #category : #'*Moose-Finder' }
 FamixTypeGroup >> viewBlueprintComplexity [
 	<menuItem: 'Blueprint complexity' category: 'Visualize'>
-	self blueprintComplexity open
+	^ self blueprintComplexity open
 ]
 
 { #category : #'*Moose-Finder' }
 FamixTypeGroup >> viewNesting [
 	<menuItem: 'Nesting Map' category: 'Visualize'>
-	self nesting open
+	^ self nesting open
 ]
 
 { #category : #'*Moose-Finder' }

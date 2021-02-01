@@ -33,11 +33,8 @@ OverviewPyramidTest >> prepareAnyMooseModel [
 
 { #category : #tests }
 OverviewPyramidTest >> testBricksSize [
-
 	| pyramid |
-
-	pyramid := OverviewPyramid on: self prepareAnyMooseModel.
-
+	pyramid := OverviewPyramid forMooseModel: self prepareAnyMooseModel.
 	self
 		assert:
 			(pyramid bricks
@@ -46,9 +43,8 @@ OverviewPyramidTest >> testBricksSize [
 
 { #category : #tests }
 OverviewPyramidTest >> testOpen [
-
 	self
-		shouldnt: (OverviewPyramid on: self prepareAnyMooseModel) open delete
+		shouldnt: (OverviewPyramid forMooseModel: self prepareAnyMooseModel) open delete
 		raise: Error
 ]
 

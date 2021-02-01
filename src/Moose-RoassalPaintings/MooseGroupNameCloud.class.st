@@ -68,7 +68,7 @@ MooseGroupNameCloud >> buildLegend [
 	legend := RSLegend new.
 	legend container: self canvas.
 	legend onDemand.
-	legend title: 'Name cloud'.
+	legend title: self class defaultTitle.
 	legend text: 'Keywords presents in entities names, by frequency'.
 	legend build
 ]

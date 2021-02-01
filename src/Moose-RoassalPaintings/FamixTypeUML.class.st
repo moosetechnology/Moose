@@ -46,7 +46,7 @@ FamixTypeUML >> buildLegend [
 	legend := RSLegend new.
 	legend container: self canvas.
 	legend onDemand.
-	legend title: 'UML diagram'.
+	legend title: self class defaultTitle.
 	legend build
 ]
 

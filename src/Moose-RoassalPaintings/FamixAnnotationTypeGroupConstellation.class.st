@@ -66,7 +66,7 @@ FamixAnnotationTypeGroupConstellation >> buildLegend [
 	legend := RSLegend new.
 	legend container: self canvas.
 	legend onDemand.
-	legend title: self class defaultLabel.
+	legend title: self class defaultTitle.
 	legend
 		text: 'Annotation types and the entities using their instances'.
 	legend text: 'Annotated entities' withCircleColor: self nodeColor.
