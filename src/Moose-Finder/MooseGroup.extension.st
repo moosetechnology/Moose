@@ -54,3 +54,9 @@ MooseGroup >> spotterItemsFor: aStep [
 		filter: GTFilterSubstring;
 		wantsToDisplayOnEmptyQuery: true
 ]
+
+{ #category : #'*Moose-Finder' }
+MooseGroup >> viewNameCloud [
+	<menuItem: 'Name Cloud' category: 'Visualize'>
+	^ self nameCloud open
+]

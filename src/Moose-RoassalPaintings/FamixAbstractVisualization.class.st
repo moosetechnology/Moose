@@ -45,8 +45,9 @@ FamixAbstractVisualization >> build [
 		@
 			(RSMenuActivable new
 				menuDo: [ :menu :node | 
-					menu addTitle: node model mooseName.
-					menu addAllFrom: node model mooseMenu ])
+					menu addTitle: (self mooseInterestingEntityForNode: node) mooseName.
+					menu
+						addAllFrom: (self mooseInterestingEntityForNode: node) mooseMenu ])
 ]
 
 { #category : #building }
@@ -71,10 +72,15 @@ FamixAbstractVisualization >> initialize [
 	canvas @ RSCanvasController new noLegend
 ]
 
+{ #category : #building }
+FamixAbstractVisualization >> mooseInterestingEntityForNode: node [
+	^ node model
+]
+
 { #category : #display }
 FamixAbstractVisualization >> open [
 	self build.
-	self canvas openWithTitle: self windowTitle
+	^ self canvas openWithTitle: self windowTitle
 ]
 
 { #category : #accessing }

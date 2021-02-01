@@ -5,7 +5,6 @@ Types are represented as boxes for which:
 		width = number of attributes
 		height = number of methods
 		color = number of lines of code.
-
 Inheritance relations are show as edges.
 
 Missing: edges to represent inheritance between packages. For now, no layout is available that would make this information readable.
@@ -47,6 +46,7 @@ FamixPackageGroupComplexity >> alignLabelInShape: shape [
 { #category : #building }
 FamixPackageGroupComplexity >> build [
 	self buildNodes.
+	"self connectNodes."
 	RSFlowLayout new
 		gapSize: 20;
 		on: canvas nodes.
@@ -81,6 +81,15 @@ FamixPackageGroupComplexity >> buildNodes [
 		addAll:
 			(famixPackageGroup
 				collect: [ :package | self shapeForPackage: package ])
+]
+
+{ #category : #building }
+FamixPackageGroupComplexity >> connectNodes [
+	RSEdgeBuilder line
+		shapes: canvas nodes;
+		connectToAll:
+				[ :package | package queryIncomingInheritances atScope: FamixTPackage ].
+	canvas pushBackEdges
 ]
 
 { #category : #accessing }
