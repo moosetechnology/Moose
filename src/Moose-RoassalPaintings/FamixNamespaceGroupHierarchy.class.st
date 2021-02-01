@@ -59,7 +59,7 @@ FamixNamespaceGroupHierarchy >> buildNodes [
 FamixNamespaceGroupHierarchy >> connectNodes [
 	RSEdgeBuilder line
 		shapes: canvas nodes;
-		connectToAll: #parents
+		connectToAll: [ :namespace | namespace atScope: FamixTNamespace ]
 ]
 
 { #category : #accessing }
@@ -69,7 +69,7 @@ FamixNamespaceGroupHierarchy >> famixNamespaceGroup: anObject [
 
 { #category : #building }
 FamixNamespaceGroupHierarchy >> setLayout [
-	RSHorizontalTreeLayout new on: canvas nodes
+	RSClusterLayout new on: canvas nodes
 ]
 
 { #category : #shapes }

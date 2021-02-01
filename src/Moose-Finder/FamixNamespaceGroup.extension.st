@@ -3,12 +3,7 @@ Extension { #name : #FamixNamespaceGroup }
 { #category : #'*Moose-Finder' }
 FamixNamespaceGroup >> mooseFinderWithinHierarchyIn: composite [
 	<moosePresentationOrder: 20>
-	composite roassal2
-			title: 'Within overall hierarchy';
-			titleIcon: MooseIcons mooseCluster;
-			initializeView: [ RTMondrian new ];
-			painting: [ :view :each |
-				each mooseInterestingEntity viewWithinOverallHierarchyOn: view ]
+	^ self withinOverallHierarchy appearInPaneComposite: composite
 ]
 
 { #category : #'*Moose-Finder' }
@@ -26,4 +21,10 @@ FamixNamespaceGroup >> viewDependenciesWithCycles [
 FamixNamespaceGroup >> viewHierarchy [
 	<menuItem: 'Namespace Hierarchy' category: 'Visualize'>
 	^ self hierarchy open
+]
+
+{ #category : #'*Moose-Finder' }
+FamixNamespaceGroup >> viewWithinOverallHierarchy [
+	<menuItem: 'Within overall hierarchy' category: 'Visualize'>
+	^ self withinOverallHierarchy open
 ]
