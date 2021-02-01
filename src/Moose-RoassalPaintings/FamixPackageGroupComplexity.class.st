@@ -1,3 +1,15 @@
+"
+I show system complexity of each package in a FamixPackageGroup.
+	
+Types are represented as boxes for which:
+		width = number of attributes
+		height = number of methods
+		color = number of lines of code.
+
+Inheritance relations are show as edges.
+
+Missing: edges to represent inheritance between packages. For now, no layout is available that would make this information readable.
+"
 Class {
 	#name : #FamixPackageGroupComplexity,
 	#superclass : #FamixAbstractVisualization,
