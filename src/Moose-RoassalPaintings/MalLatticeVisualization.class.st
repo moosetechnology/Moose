@@ -7,36 +7,9 @@ I am the visualization for MalLattice.
 "
 Class {
 	#name : #MalLatticeVisualization,
-	#superclass : #MooseAbstractVisualization,
-	#instVars : [
-		'lattice'
-	],
+	#superclass : #MalGraphVisualization,
 	#category : #'Moose-RoassalPaintings-Moose-Algos'
 }
-
-{ #category : #accessing }
-MalLatticeVisualization class >> defaultTitle [
-	^ 'Lattice'
-]
-
-{ #category : #accessing }
-MalLatticeVisualization class >> icon [
-	^ MooseIcons mooseCycles
-]
-
-{ #category : #'instance creation' }
-MalLatticeVisualization class >> on: aLattice [
-	^ self new
-		lattice: aLattice;
-		yourself
-]
-
-{ #category : #building }
-MalLatticeVisualization >> build [
-	self buildNodes.
-	self buildEdges.
-	self setLayout
-]
 
 { #category : #building }
 MalLatticeVisualization >> buildEdges [
@@ -45,25 +18,11 @@ MalLatticeVisualization >> buildEdges [
 		connectToAll: #descendants
 ]
 
-{ #category : #building }
-MalLatticeVisualization >> buildNodes [
-	canvas
-		addAll:
-			(lattice nodes
-				collect: [ :node | 
-					RSCircle new
-						model: node;
-						draggable;
-						popupText: #visualizationLabel;
-						yourself ])
-]
-
-{ #category : #accessing }
-MalLatticeVisualization >> lattice: anObject [
-	lattice := anObject
-]
-
-{ #category : #building }
-MalLatticeVisualization >> setLayout [
-	RSTreeLayout new on: canvas nodes
+{ #category : #shapes }
+MalLatticeVisualization >> shapeForNode: node [
+	^ RSCircle new
+		model: node;
+		draggable;
+		popupText: #visualizationLabel;
+		yourself
 ]
