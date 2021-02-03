@@ -1,81 +1,120 @@
 Class {
 	#name : #DistributionMapExample,
-	#superclass : #Object,
+	#superclass : #MooseAbstractVisualization,
 	#instVars : [
 		'propertiesMap',
 		'propertyBlock',
-		'elements'
+		'elements',
+		'containers',
+		'elementsDescription',
+		'containersDescription'
 	],
 	#category : #'Moose-DistributionMap'
 }
 
-{ #category : #public }
-DistributionMapExample class >> openOn: classes [
-
-	^ (self new render: classes) open
+{ #category : #default }
+DistributionMapExample class >> defaultContainersDescription [
+	^ 'Classes'
 ]
 
-{ #category : #example }
-DistributionMapExample class >> sample [
-
-	(self new properties: self sampleProperties;
-				propertiesMap: self sampleMap;
-				propertyBlock: self sampleBlock;
-				elements: self sampleOrderedElements;
-				render: Collection withAllSubclasses
-				)
-				open
+{ #category : #default }
+DistributionMapExample class >> defaultElementsDescription [
+	^ 'methods'
 ]
 
-{ #category : #example }
-DistributionMapExample class >> sampleBlock [
-	"should extend Dictionary to make a switch control structure"
-	
-	^ [ :method ||numArgs|
-			numArgs := method numArgs.
-			(numArgs = 0)  ifTrue: [ #unary ]
-								ifFalse: [
-									(numArgs = 1) ifTrue: [ #binary ]
-													 ifFalse: [ #keywords ]
-												]]
+{ #category : #default }
+DistributionMapExample class >> defaultOrderedElements [
+	^ [ :class | 
+	| dic orderedMethods |
+	orderedMethods := OrderedCollection new.
+	dic := Dictionary new.
+	self defaultProperties
+		do: [ :prop | dic at: prop put: OrderedCollection new ].
+	class methods
+		do:
+			[ :mth | (dic at: (self defaultPropertiesBlock value: mth)) add: mth ].
+	self defaultProperties
+		do: [ :prop | orderedMethods addAll: (dic at: prop) ].
+	orderedMethods ]
 ]
 
-{ #category : #example }
-DistributionMapExample class >> sampleElements [
-
-	^ #methods
-]
-
-{ #category : #example }
-DistributionMapExample class >> sampleMap [
-
-	^ Dictionary with: (#unary -> Color white) with: (#binary -> Color gray) with: (#keywords -> Color black)
-]
-
-{ #category : #example }
-DistributionMapExample class >> sampleOrderedElements [
-
-	^ [:class ||dic orderedMethods|
-			orderedMethods := OrderedCollection new.
-			dic := Dictionary new.
-			self sampleProperties do: [:prop | dic at: prop put: OrderedCollection new].
-			class methods do: [ :mth|
-				(dic at: (self sampleBlock value: mth)) add: mth
-				].
-			self sampleProperties do: [:prop |
-				orderedMethods addAll: (dic at: prop)
-				].
-			orderedMethods
-		]
-]
-
-{ #category : #example }
-DistributionMapExample class >> sampleProperties [
-
+{ #category : #default }
+DistributionMapExample class >> defaultProperties [
 	^ #(#unary #binary #keywords)
 ]
 
+{ #category : #default }
+DistributionMapExample class >> defaultPropertiesBlock [
+	"should extend Dictionary to make a switch control structure"
+
+	^ [ :method | 
+	| numArgs |
+	numArgs := method numArgs.
+	numArgs = 0
+		ifTrue: [ #unary ]
+		ifFalse: [ numArgs = 1
+				ifTrue: [ #binary ]
+				ifFalse: [ #keywords ] ] ]
+]
+
+{ #category : #default }
+DistributionMapExample class >> defaultPropertiesMap [
+	^ Dictionary
+		with: #unary -> Color white
+		with: #binary -> Color gray
+		with: #keywords -> Color black
+]
+
 { #category : #accessing }
+DistributionMapExample class >> defaultTitle [
+	^ 'Distribution map'
+]
+
+{ #category : #example }
+DistributionMapExample class >> example [
+	^ self new
+		containers: Collection withAllSubclasses;
+		open
+]
+
+{ #category : #accessing }
+DistributionMapExample class >> icon [
+	^ MooseIcons mooseTreeMap
+]
+
+{ #category : #public }
+DistributionMapExample class >> openOn: classes [
+	^ (self new containers: classes) open
+]
+
+{ #category : #building }
+DistributionMapExample >> build [
+	canvas
+		addAll:
+			(containers
+				collect: [ :container | self shapeForContainer: container ]).
+	RSFlowLayout new on: canvas nodes.
+	super build
+]
+
+{ #category : #building }
+DistributionMapExample >> buildLegend [
+	| legend |
+	legend := RSLegend new.
+	legend container: self canvas.
+	legend onDemand.
+	legend title: self class defaultTitle.
+	legend
+		text: self containersDescription
+		withBoxColor: self containersBackgroundColor.
+	legend text: 'Inner elements: ' , self elementsDescription.
+	self propertiesMap
+		keysAndValuesDo:
+			[ :property :color | legend text: property asString withBoxColor: color ].
+	legend build
+]
+
+{ #category : #colors }
 DistributionMapExample >> colorAtIndex: anInteger [
 
 	^ (anInteger <= Color distinctTenStrongColors size)
@@ -84,10 +123,36 @@ DistributionMapExample >> colorAtIndex: anInteger [
 		
 ]
 
-{ #category : #accessing }
+{ #category : #colors }
 DistributionMapExample >> colorForElement: element [
 
 	^ self propertiesMap at: (self propertyBlock value: element)
+]
+
+{ #category : #accessing }
+DistributionMapExample >> containers: anObject [
+	containers := anObject
+]
+
+{ #category : #colors }
+DistributionMapExample >> containersBackgroundColor [
+	^ Color veryLightGray
+]
+
+{ #category : #accessing }
+DistributionMapExample >> containersDescription [
+	^ containersDescription
+		ifNil: [ containersDescription := self class defaultContainersDescription ]
+]
+
+{ #category : #accessing }
+DistributionMapExample >> containersDescription: aString [
+	containersDescription := aString
+]
+
+{ #category : #accessing }
+DistributionMapExample >> elements [
+	^ elements ifNil: [ elements := self class defaultOrderedElements ]
 ]
 
 { #category : #accessing }
@@ -97,26 +162,25 @@ DistributionMapExample >> elements: aSymbolOrBlock [
 ]
 
 { #category : #accessing }
-DistributionMapExample >> elementsFor: aContainer [
-
-	^ elements rtValue: aContainer
+DistributionMapExample >> elementsDescription [
+	^ elementsDescription
+		ifNil: [ elementsDescription := self class defaultElementsDescription ]
 ]
 
 { #category : #accessing }
-DistributionMapExample >> properties: aCollectionOfProperties [
+DistributionMapExample >> elementsDescription: aString [
+	elementsDescription := aString
+]
 
-	| map |
-	map := self propertiesMap.
-	1 to:aCollectionOfProperties size do: [ :i |
-		map add: ((aCollectionOfProperties at: i) -> (self colorAtIndex: i + 1))
-		].
-	^ map
+{ #category : #accessing }
+DistributionMapExample >> elementsFor: aContainer [
+	^ self elements rtValue: aContainer
 ]
 
 { #category : #accessing }
 DistributionMapExample >> propertiesMap [
-
-	^ propertiesMap ifNil: [ propertiesMap := Dictionary new]
+	^ propertiesMap
+		ifNil: [ propertiesMap := self class defaultPropertiesMap ]
 ]
 
 { #category : #accessing }
@@ -127,8 +191,8 @@ DistributionMapExample >> propertiesMap: aDictionary [
 
 { #category : #accessing }
 DistributionMapExample >> propertyBlock [
-
 	^ propertyBlock
+		ifNil: [ propertyBlock := self class defaultPropertiesBlock ]
 ]
 
 { #category : #accessing }
@@ -137,26 +201,29 @@ DistributionMapExample >> propertyBlock: oneParameterBlock [
 	propertyBlock := oneParameterBlock 
 ]
 
-{ #category : #'public-view rendering' }
-DistributionMapExample >> render: classes [
-	"(DistributionMapExample new render: Collection withAllSubclasses) open"
-	"broken: should call #elements: before calling #render:. See test DistributionMapExampleTest>>testSample."
-	| nodes view |
-	nodes := classes.
+{ #category : #shapes }
+DistributionMapExample >> shapeForContainer: container [
+	| containerBox |
+	containerBox := RSComposite new
+		model: container;
+		popup;
+		color: self containersBackgroundColor;
+		popup.
+	containerBox
+		addAll:
+			((self elementsFor: container)
+				collect: [ :element | self shapeForElement: element ]).
+	RSGridLayout new on: containerBox children.
+	containerBox padding: 5.
+	^ containerBox
+]
 
-	view := RTMondrian new.
-	"view interaction nodraggable."
-	view interaction popupText.
-	view nodes: nodes forEach: [ :node |
-		"view interaction nodraggable."
-		view interaction popupText: [:el| el selector].
-		view shape rectangle
-				size: 10 ;
-				fillColor: [:el | self colorForElement: el].
-		view nodes: (self elementsFor: node).
-		view layout grid gapSize: 1.
-	].
-	view layout flow.
-
-	^ view
+{ #category : #shapes }
+DistributionMapExample >> shapeForElement: element [
+	^ RSBox new
+		model: element;
+		popupText: #selector;
+		size: 10;
+		color: (self colorForElement: element);
+		yourself
 ]
