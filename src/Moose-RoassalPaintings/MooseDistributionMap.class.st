@@ -1,3 +1,14 @@
+"
+Distribution map shows containement.
+
+Containers are shown in gray and their elements are shown in colors.
+
+Users must provide:
+- Some expected properties values. Example:  [ :n | n < 5 ],  [ :n | n = 5 ] and  [ :n | n > 5 ]
+- A set of colors to associate whith each values
+
+Each element will be shown with the color corresponding to the value of its property.
+"
 Class {
 	#name : #MooseDistributionMap,
 	#superclass : #MooseAbstractDistributionMap,

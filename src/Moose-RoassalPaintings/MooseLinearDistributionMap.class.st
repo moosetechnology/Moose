@@ -1,3 +1,9 @@
+"
+Distribution map shows containement.
+
+Containers are shown in gray and their elements are shown in colors.
+The color of an elements depends on the value of its property, according to a gradient.
+"
 Class {
 	#name : #MooseLinearDistributionMap,
 	#superclass : #MooseAbstractDistributionMap,

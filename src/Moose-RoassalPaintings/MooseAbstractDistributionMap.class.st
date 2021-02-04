@@ -1,3 +1,8 @@
+"
+DistributionMap is a nice visualization to render container and their elements based on properties. 
+
+See Stéphane Ducasse, Tudor Gîrba and Adrian Kuhn, Distribution Map, Proceedings of 22nd IEEE International Conference on Software Maintenance (ICSM '06), 203–212, IEEE Computer Society, 2006, 28%, PDF, DOI.
+"
 Class {
 	#name : #MooseAbstractDistributionMap,
 	#superclass : #MooseAbstractVisualization,
