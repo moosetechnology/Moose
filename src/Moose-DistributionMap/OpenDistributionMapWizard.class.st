@@ -11,13 +11,14 @@ Class {
 
 { #category : #'computing - possible properties' }
 OpenDistributionMapWizard >> allPropertySelectorsForElementOfType: aClass [
-
 	"return a list of property selectors that can be applied to instances of aClass."
-"	|result|
+
+	"	|result|
 	self halt.
 	result := (aClass allPropertySelectorsComputableForAtLeastOneElementIn: self mooseModel).
 	^ result"
-	^ aClass allPropertySelectors values
+
+	^ (aClass allProperties collect: #name) asSet asArray
 ]
 
 { #category : #accessing }
@@ -116,8 +117,8 @@ OpenDistributionMapWizard >> properties [
 
 { #category : #'accessing - map parameters' }
 OpenDistributionMapWizard >> propertyBlockOrSelector [
-	
-	^ Smalltalk evaluate: (self wizardInformations at: #propertySelector).
+	^ Smalltalk compiler
+		evaluate: (self wizardInformations at: #propertySelector)
 ]
 
 { #category : #'accessing - map parameters' }
@@ -195,17 +196,20 @@ OpenDistributionMapWizard >> propertyValueMapperPartFromIndex: index [
 
 { #category : #'accessing - map parameters' }
 OpenDistributionMapWizard >> propertyValuesMap [
-	
 	| result |
 	result := Dictionary new.
-	1 to: (self wizardInformations at: #numberOfProperties) do: [:int |
-		|blockString propertyValueId|
-		propertyValueId := self wizardInformations at: ('property',int asString,'Name') asSymbol.
-		blockString := '[:propVal | ',(self wizardInformations at: ('property',int asString ,'Mapper') asSymbol), ']'.
-		result at: propertyValueId put: (Smalltalk evaluate:blockString )
-		].
-	^ result.
-	
+	1 to: (self wizardInformations at: #numberOfProperties) do: [ :int | 
+		| blockString propertyValueId |
+		propertyValueId := self wizardInformations
+			at: ('property' , int asString , 'Name') asSymbol.
+		blockString := '[:propVal | '
+			,
+				(self wizardInformations
+					at: ('property' , int asString , 'Mapper') asSymbol) , ']'.
+		result
+			at: propertyValueId
+			put: (Smalltalk compiler evaluate: blockString) ].
+	^ result
 ]
 
 { #category : #initialization }

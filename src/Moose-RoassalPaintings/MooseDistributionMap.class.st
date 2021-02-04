@@ -1,0 +1,117 @@
+Class {
+	#name : #MooseDistributionMap,
+	#superclass : #MooseAbstractDistributionMap,
+	#instVars : [
+		'propertyColorMap',
+		'elementsAndPropertyId',
+		'propertyValueIDMap'
+	],
+	#category : #'Moose-RoassalPaintings'
+}
+
+{ #category : #building }
+MooseDistributionMap >> colorForElement: anElement [
+	^ propertyColorMap
+		at: (elementsAndPropertyId at: anElement)
+		ifAbsent: [ self defaultColor ]
+]
+
+{ #category : #building }
+MooseDistributionMap >> computePropertyIDFor: anElement [
+	^ propertyValueIDMap associations
+		detect: [ :propertyValueIDAndBlock | 
+			propertyValueIDAndBlock value
+				value: (elementsAndPropertyValue at: anElement) ]
+		ifFound: [ :propertyValueIDAndBlock | propertyValueIDAndBlock key ]
+		ifNone: [ #valueNotInRange ]
+]
+
+{ #category : #building }
+MooseDistributionMap >> defaultColor [
+	^ Color black
+]
+
+{ #category : #building }
+MooseDistributionMap >> describeColorsInLegend: legend [
+	propertyColorMap
+		keysAndValuesDo: [ :propertyId :color | legend text: propertyId withBoxColor: color ]
+]
+
+{ #category : #initialization }
+MooseDistributionMap >> initialize [
+	super initialize.
+	elementsAndPropertyId := Dictionary new
+]
+
+{ #category : #'as yet unclassified' }
+MooseDistributionMap >> matchElementsToPropertyID [
+	elementsAndPropertyValue
+		keysAndValuesDo: [ :element :propertyValue | 
+			elementsAndPropertyId
+				at: element
+				put: (self computePropertyIDFor: element) ]
+]
+
+{ #category : #'as yet unclassified' }
+MooseDistributionMap >> orderedContainers [
+	| engine partVectors containers |
+	containers := containersAndElements keys.
+	containers ifEmpty: [ ^ containers ].
+	partVectors := containers
+		collect: [ :container | 
+			MalSimilarityItem
+				with: container
+				andAll:
+					(propertyValueIDMap values
+						collect: [ :propertyBlock | 
+							((self elementsIn: container)
+								select: [ :element | propertyBlock value: (self propertyValueFor: element) ])
+								size ]) ].
+	engine := MalClusterEngine with: partVectors.
+	engine hierarchicalClusteringUsing: #averageLinkage.
+	partVectors := engine dendrogram orderLeafs
+		collect: [ :each | each item ].
+	^ partVectors
+]
+
+{ #category : #'as yet unclassified' }
+MooseDistributionMap >> propertyColorMap: aDictionary [
+	"aDictionary: aPropertyValueID -> aColor
+Example: 'High number' -> Color red."
+
+	propertyColorMap := aDictionary
+]
+
+{ #category : #'as yet unclassified' }
+MooseDistributionMap >> propertyValuesIDMap: aDictionary [
+	"aDictionary: propertyValueName -> aBlockReturningABoolean
+Example: 'High number' -> [ :propertyValue | propertyValue > 100 ]."
+
+	propertyValueIDMap := aDictionary
+]
+
+{ #category : #building }
+MooseDistributionMap >> setElementsColor [
+	(canvas nodes flatCollect: #children)
+		do: [ :node | node color: (self colorForElement: node model) ]
+]
+
+{ #category : #sorting }
+MooseDistributionMap >> sortElementsInContainers [
+	| dictWithElementsSorted |
+	self matchElementsToPropertyID.
+	dictWithElementsSorted := Dictionary new.
+	containersAndElements
+		keysAndValuesDo: [ :container :elements | 
+			| allValuesInContainer |
+			allValuesInContainer := elements
+				collect: [ :element | elementsAndPropertyId at: element ].
+			dictWithElementsSorted
+				at: container
+				put:
+					(elements
+						sortAscending: [ :element | 
+							allValuesInContainer
+								occurrencesOf: (elementsAndPropertyId at: element) ]) ].
+	containersAndElements := dictWithElementsSorted
+]

@@ -174,7 +174,7 @@ DistributionMapExample >> elementsDescription: aString [
 
 { #category : #accessing }
 DistributionMapExample >> elementsFor: aContainer [
-	^ self elements rtValue: aContainer
+	^ self elements value: aContainer
 ]
 
 { #category : #accessing }

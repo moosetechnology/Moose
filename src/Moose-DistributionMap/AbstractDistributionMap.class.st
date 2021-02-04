@@ -63,31 +63,30 @@ AbstractDistributionMap >> initialize [
 
 { #category : #initialization }
 AbstractDistributionMap >> onContainers: aGroup elements: elementsBlockOrSelector properties: propertyBlockOrSelector [
-
-	aGroup do: [:part | |elementsCollection|
-		elementsCollection := partsAndElements at: part put: OrderedCollection new.
-		(elementsBlockOrSelector rtValue: part) do: [:element |
-			|propertyValue|
-			propertyValue := propertyBlockOrSelector rtValue: element.
-			elementsCollection add: element.
-			elementsAndPropertyValue at: element put: propertyValue .
-		].
-	].
-
+	aGroup
+		do: [ :container | 
+			| elementsCollection |
+			elementsCollection := partsAndElements
+				at: container
+				put: OrderedCollection new.
+			(elementsBlockOrSelector rtValue: container)
+				do: [ :element | 
+					| propertyValue |
+					propertyValue := propertyBlockOrSelector rtValue: element.
+					elementsCollection add: element.
+					elementsAndPropertyValue at: element put: propertyValue ] ]
 ]
 
 { #category : #initialization }
 AbstractDistributionMap >> onElements: aGroup containers: containersBlockOrSelector properties: propertyBlockOrSelector [
-
-	aGroup do: [ :element | 
-		| part propertyValue |
-		part := containersBlockOrSelector rtValue: element.
-		propertyValue := propertyBlockOrSelector rtValue: element.
-		(partsAndElements at: part ifAbsentPut: [OrderedCollection new])
-			add: element.
-		elementsAndPropertyValue at: element put: propertyValue
-	].
-
+	aGroup
+		do: [ :element | 
+			| part propertyValue |
+			part := containersBlockOrSelector rtValue: element.
+			propertyValue := propertyBlockOrSelector rtValue: element.
+			(partsAndElements at: part ifAbsentPut: [ OrderedCollection new ])
+				add: element.
+			elementsAndPropertyValue at: element put: propertyValue ]
 ]
 
 { #category : #rendering }
@@ -131,19 +130,26 @@ AbstractDistributionMap >> renderOn: view [
 	| parts partElements shape |
 	parts := self orderParts: self parts.
 	shape := RTCompositeShape new.
-	shape add: (RTLabel new text: (self elementTitleBlock); height: 10; color: Color black).
-	shape add: (RTBox new color: Color transparent; borderColor: Color gray).
+	shape
+		add:
+			(RTLabel new
+				text: self elementTitleBlock;
+				height: 10;
+				color: Color black).
+	shape
+		add:
+			(RTBox new
+				color: Color transparent;
+				borderColor: Color gray).
 	partElements := shape elementsOn: parts.
-	partElements do: [ :each |
-		| elements |
-		view add: each.
-		elements := self renderElementsFrom: each model on: view.
-		view addAll: elements.
-		RTGridLayout on: elements.
-		RTNest new
-			on: each
-			inShape: #second
-			nest: elements.	].
+	partElements
+		do: [ :each | 
+			| elements |
+			view add: each.
+			elements := self renderElementsFrom: each model on: view.
+			view addAll: elements.
+			RTGridLayout on: elements.
+			RTNest new on: each inShape: #second nest: elements ].
 	RTGridLayout on: partElements.
 	partElements @ RTDraggable
 ]

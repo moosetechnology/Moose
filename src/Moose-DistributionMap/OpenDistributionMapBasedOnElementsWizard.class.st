@@ -19,7 +19,7 @@ OpenDistributionMapBasedOnElementsWizard >> computeAndReturnDistributionMapEleme
 { #category : #'accessing map parameters' }
 OpenDistributionMapBasedOnElementsWizard >> containersBlock [
 	
- 	^ Smalltalk evaluate: (self wizardInformations at: #entitiesToComputeSelector).
+ 	^ Smalltalk compiler evaluate: (self wizardInformations at: #entitiesToComputeSelector).
 	
 ]
 
@@ -105,21 +105,19 @@ OpenDistributionMapBasedOnElementsWizard >> initializeWithElementGroup: aMooseGr
 
 { #category : #'wizard panes transition' }
 OpenDistributionMapBasedOnElementsWizard >> performTerminateButtonAction [
-	"by default, just close the last current pane. Override this method if you want to create a subclass of WizardControl making a specific action"
-
-	|tmpDistributionMap|
+	| tmpDistributionMap |
 	super performTerminateButtonAction.
-	tmpDistributionMap := DistributionMap 
-		onElements: self mooseGroup 
-		containers: self containersBlock 
-		properties: self propertyBlockOrSelector.
-
-	(self wizardInformations at: #useDefaultColors) 
-		ifFalse: [
-			tmpDistributionMap 
+	
+	tmpDistributionMap := MooseDistributionMap new
+		elements: self mooseGroup
+		getContainers: self containersBlock
+		property: self propertyBlockOrSelector.
+		
+	(self wizardInformations at: #useDefaultColors)
+		ifFalse: [ tmpDistributionMap
 				propertyColorMap: self propertyColorMap;
-				propertyValuesMap: self propertyValuesMap.
-			].
+				propertyValuesIDMap: self propertyValuesMap ].
+			
 	tmpDistributionMap open
 ]
 
@@ -127,27 +125,14 @@ OpenDistributionMapBasedOnElementsWizard >> performTerminateButtonAction [
 OpenDistributionMapBasedOnElementsWizard >> possibleContainerTypes [
 	"return the list of string to be displayed as possible part types, (when basing the wizard on elements)"
 
-	"| allMetaClasses result |
-	result := OrderedCollection new.
-	allMetaClasses := MooseModel meta elements select: [:each | each isFM3Class].
-	allMetaClasses do: [:aFM3Class |
-		|possibleAttributes|
-		(self mooseModel includesElementsOfType: aFM3Class implementingClass) ifTrue: [
-			possibleAttributes := aFM3Class allAttributesReturningType: self groupMetaClass inModel: self mooseModel. 
-			possibleAttributes do: [:each | 
-				(self mooseModel includesElementsOfType: aFM3Class implementingClass)
-				ifTrue: [
-					each opposite ifNotNil: [
-						result add: each opposite
-						].
-					]. 
-				].
-			].
-		].
-	^ result asSet asOrderedCollection."
-
-	^ self groupMetaClass allComplexAttributes reject: [ :aFM3Property | aFM3Property isMultivalued ]
-	"aFM3Property hasOpposite and: [aFM3Property opposite isMultivalued]"
+	^ ((MooseModel meta elements
+		select: [ :each | 
+			each isFM3Class
+				and: [ self groupClass = each implementingClass
+						or: [ self groupClass traits includes: each implementingClass ] ] ])
+		flatCollectAsSet:
+			[ :each | each allComplexProperties reject: [ :prop | prop isMultivalued ] ])
+		asArray
 ]
 
 { #category : #'initialize - property parts' }

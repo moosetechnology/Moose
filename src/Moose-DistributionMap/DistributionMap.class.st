@@ -103,10 +103,9 @@ DistributionMap >> defaultColors [
 
 { #category : #private }
 DistributionMap >> elementsWithProperty: aPropertySelector inPart: aPart [
-
-	^ (partsAndElements at: aPart) select: [: element |
-			(elementsAndPropertyValue at: element) = aPropertySelector  
-		].
+	^ (partsAndElements at: aPart)
+		select:
+			[ :element | (elementsAndPropertyValue at: element) = aPropertySelector ]
 ]
 
 { #category : #initialization }
@@ -120,49 +119,56 @@ DistributionMap >> initialize [
 
 { #category : #private }
 DistributionMap >> numberOfElementsWithProperty: aPropertySelector inPart: aPart [
-
-	^ (self elementsWithProperty: aPropertySelector inPart: aPart)  size.
+	^ (self elementsWithProperty: aPropertySelector inPart: aPart) size
 ]
 
 { #category : #initialization }
 DistributionMap >> onContainers: aGroup elements: elementsBlockOrSelector properties: propertyBlockOrSelector [
-
-	super onContainers: aGroup elements: elementsBlockOrSelector properties: propertyBlockOrSelector.		
-	self orderColorMap.
+	super
+		onContainers: aGroup
+		elements: elementsBlockOrSelector
+		properties: propertyBlockOrSelector.
+	self orderColorMap
 ]
 
 { #category : #initialization }
 DistributionMap >> onElements: aGroup containers: containersBlockOrSelector properties: propertyBlockOrSelector [
-
-	super onElements: aGroup containers: containersBlockOrSelector properties: propertyBlockOrSelector.	
-	self orderColorMap 
+	super
+		onElements: aGroup
+		containers: containersBlockOrSelector
+		properties: propertyBlockOrSelector.
+	self orderColorMap
 ]
 
 { #category : #initialization }
 DistributionMap >> orderColorMap [
-
 	| propertiesAndNumberOfOccurrences result |
 	propertiesAndNumberOfOccurrences := OrderedCollection new.
 	result := Dictionary new.
+
 	"We first compute the number of occurrences for each property value"
-	elementsAndPropertyValue values do: [ :aPropertyValue |
-		|propAndNbOfOcc|
-		propAndNbOfOcc := propertiesAndNumberOfOccurrences detect: [:assoc | assoc key = aPropertyValue] ifNone: [propertiesAndNumberOfOccurrences add: (aPropertyValue -> 0)].
-		propAndNbOfOcc value: (propAndNbOfOcc value + 1).
-		].
-	"Once the number of occurences computed for each property value, we sort them in a decroissant order, and we  keep as many property values as their is available colors"
-	propertiesAndNumberOfOccurrences  := (propertiesAndNumberOfOccurrences asArray sort: [:a :b | a value > b value]). 
-	propertiesAndNumberOfOccurrences size > self colors size ifTrue: [propertiesAndNumberOfOccurrences := propertiesAndNumberOfOccurrences copyFrom: 1 to:self colors size].
-	properties := propertiesAndNumberOfOccurrences collect: [:anAssoc | anAssoc key].
-	
+	elementsAndPropertyValue
+		valuesDo: [ :aPropertyValue | 
+			| propAndNbOfOcc |
+			propAndNbOfOcc := propertiesAndNumberOfOccurrences
+				detect: [ :assoc | assoc key = aPropertyValue ]
+				ifNone: [ propertiesAndNumberOfOccurrences add: aPropertyValue -> 0 ].
+			propAndNbOfOcc value: propAndNbOfOcc value + 1 ].
+	propertiesAndNumberOfOccurrences := propertiesAndNumberOfOccurrences
+		asArray sort: [ :a :b | a value > b value ].
+	propertiesAndNumberOfOccurrences size > self colors size
+		ifTrue: [ propertiesAndNumberOfOccurrences := propertiesAndNumberOfOccurrences
+				copyFrom: 1
+				to: self colors size ].
+	properties := propertiesAndNumberOfOccurrences
+		collect: [ :anAssoc | anAssoc key ].
+
 	"Then we follow the colors order, and set a color to each property value"
-	(1 to: propertiesAndNumberOfOccurrences size) do: [:index |
-		result at: (propertiesAndNumberOfOccurrences at: index) key put: (self colors at: index).
-		].
-	
-	^ colorMap := result.
-	
-	
+	1 to: propertiesAndNumberOfOccurrences size do: [ :index | 
+		result
+			at: (propertiesAndNumberOfOccurrences at: index) key
+			put: (self colors at: index) ].
+	^ colorMap := result
 ]
 
 { #category : #'dendrogram clustering' }
@@ -207,29 +213,30 @@ DistributionMap >> propertyColorMap: aDictionary [
 ]
 
 { #category : #accessing }
-DistributionMap >> propertyValuesMap [
-
-	"return a Dictionary, mapping each different property value to a block that compute if an element 'belongs to' this property. For example, if the property you are using is based on distinct values (authors of a file for example), you could have: {#propertyValue1 -> [:val | val = 'cyrille delaunay'] . {#propertyValue2 -> [:val | val = 'stephane ducasse'] } "
-	^ propertyValuesMap ifNil: [ propertyValuesMap := Dictionary new]
+DistributionMap >> propertyValuesIDMap: aDictionary [
+	| result |
+	result := Dictionary new.
+	elementsAndPropertyValue
+		keysAndValuesDo: [ :element :propertyValue | 
+			aDictionary
+				keysAndValuesDo: [ :key :value | 
+					(value rtValue: propertyValue)
+						ifTrue: [ result at: element put: key ] ].
+			"a property value may not be between the bounds defined by the user. In this case, we set a default value"
+			(result keys includes: element)
+				ifFalse: [ result at: element put: #notBetweenBounds ] ].
+	self properties: aDictionary keys asArray.
+	elementsAndPropertyValue := result
 ]
 
 { #category : #accessing }
-DistributionMap >> propertyValuesMap: aDictionary [
+DistributionMap >> propertyValuesMap [
+	"return a Dictionary, mapping each different property value to a block that compute if an element 'belongs to' this property. 
+For example, if the property you are using is based on distinct values (authors of a file for example), you could have: 
+	{(#propertyValue1 -> [ :val | val = 'cyrille delaunay' ]).
+	(#propertyValue2 -> [ :val | val = 'stephane ducasse' ])}"
 
-	|result|
-	result := Dictionary new.
-	elementsAndPropertyValue keysAndValuesDo: [:element :propertyValue |
-		aDictionary keysAndValuesDo: [:key :value |
-			(value rtValue: propertyValue) ifTrue: [result at: element put: key]. 
-		].
-		"a property value may not be between the bounds defined by the user. In this case, we set a default value"
-		(result keys includes: element) ifFalse: [result at: element put: #notBetweenBounds].
-	].
-	self properties: aDictionary keys asArray.
-	elementsAndPropertyValue := result.
-
-	 
-
+	^ propertyValuesMap ifNil: [ propertyValuesMap := Dictionary new ]
 ]
 
 { #category : #rendering }
@@ -242,9 +249,9 @@ DistributionMap >> renderElementsFrom: node on: view [
 			color := self propertyColorMap at: property.
 			borderColor := color blacker.
 			"view interaction menu: [ :element | element mooseMenuMorph ]."
-			propertyElements := RTBox new 
-				borderColor: borderColor; 
-				color: color; 
+			propertyElements := RTBox new
+				borderColor: borderColor;
+				color: color;
 				elementsOn: (self elementsWithProperty: property inPart: node).
 			elements addAll: propertyElements ].
 	^ elements
@@ -255,6 +262,8 @@ DistributionMap >> renderLegendOn: view [
 	| lb |
 	lb := RTLegendBuilder new.
 	lb view: view.
-	self properties do: [ :each | lb addColor: (self propertyColorMap at: each) text: each mooseName ].
+	self properties
+		do:
+			[ :each | lb addColor: (self propertyColorMap at: each) text: each mooseName ].
 	lb build
 ]

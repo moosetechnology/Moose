@@ -32,8 +32,8 @@ OpenDistributionMapBasedOnPartsWizard >> containersPart [
 
 { #category : #'accessing - map parameters' }
 OpenDistributionMapBasedOnPartsWizard >> elementsBlockOrSelector [
-
-	^ Smalltalk evaluate: (self wizardInformations at: #entitiesToComputeSelector).
+	^ Smalltalk compiler
+		evaluate: (self wizardInformations at: #entitiesToComputeSelector)
 ]
 
 { #category : #'initialize - elements parts' }
@@ -107,21 +107,20 @@ OpenDistributionMapBasedOnPartsWizard >> initializeWithPartGroup: aMooseGroup [
 
 { #category : #'wizard panes transition' }
 OpenDistributionMapBasedOnPartsWizard >> openDefaultColorsDistributionMapUsingGroupAsParts [
-	(DistributionMap
-		onContainers: self mooseGroup
-		elements: self elementsBlockOrSelector
-		properties: self propertyBlockOrSelector)
-		open
+	(MooseDistributionMap new
+		containers: self mooseGroup
+		getElements: self elementsBlockOrSelector
+		property: self propertyBlockOrSelector) open
 ]
 
 { #category : #'wizard panes transition' }
 OpenDistributionMapBasedOnPartsWizard >> openDistributionMapUsingGroupAsParts [
-	(DistributionMap
-		onContainers: self mooseGroup
-		elements: self elementsBlockOrSelector
-		properties: self propertyBlockOrSelector)
+	(MooseDistributionMap new
+		containers: self mooseGroup
+		getElements: self elementsBlockOrSelector
+		property: self propertyBlockOrSelector)
 		propertyColorMap: self propertyColorMap;
-		propertyValuesMap: self propertyValuesMap;
+		propertyValuesIDMap: self propertyValuesMap;
 		open
 ]
 
@@ -143,16 +142,18 @@ OpenDistributionMapBasedOnPartsWizard >> performTerminateButtonAction [
 
 { #category : #'computing possible elements' }
 OpenDistributionMapBasedOnPartsWizard >> possibleElementSelectors [
-
 	"here we compute types of elements that can be displayed. Given the type of the parts, all type 'contained' in this one can be used as elements. Return a string list of selectors that can be applied to parts to compute elements. This list is ready to be set to the elements-dropListWizardPart  "
-	| partsMetaClass  result |
-	partsMetaClass := self groupMetaClass .
-	result := OrderedCollection new.
-	result addAll: partsMetaClass allComplexAttributes.
-	result := result select: [:each | each isMultivalued].
+
+	| partsMetaClass result |
+	result := (MooseModel meta elements
+		select: [ :each | 
+			each isFM3Class
+				and: [ self groupClass = each implementingClass
+						or: [ self groupClass traits includes: each implementingClass ] ] ])
+		flatCollect: #allComplexProperties.
+	result := result select: [ :each | each isMultivalued ].
 	result := self removeAllNonComputableAttributesFrom: result.
-	^ result.
-	
+	^ result
 ]
 
 { #category : #'initialize - property parts' }
@@ -231,6 +232,7 @@ OpenDistributionMapBasedOnPartsWizard >> updatePopertySelectorPart: aWizardPart 
 	| elementsClass |
 	aFM3Property
 		ifNil: [ aWizardPart list: {} ]
-		ifNotNil: [ elementsClass := aFM3Property type implementingClass.
-			aWizardPart list: (self allPropertySelectorsForElementOfType: elementsClass) ]
+		ifNotNil: [ elementsClass := aFM3Property type.
+			aWizardPart
+				list: (self allPropertySelectorsForElementOfType: elementsClass) ]
 ]
