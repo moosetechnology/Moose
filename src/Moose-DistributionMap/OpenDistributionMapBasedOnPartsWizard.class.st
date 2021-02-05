@@ -144,13 +144,8 @@ OpenDistributionMapBasedOnPartsWizard >> performTerminateButtonAction [
 OpenDistributionMapBasedOnPartsWizard >> possibleElementSelectors [
 	"here we compute types of elements that can be displayed. Given the type of the parts, all type 'contained' in this one can be used as elements. Return a string list of selectors that can be applied to parts to compute elements. This list is ready to be set to the elements-dropListWizardPart  "
 
-	| partsMetaClass result |
-	result := (MooseModel meta elements
-		select: [ :each | 
-			each isFM3Class
-				and: [ self groupClass = each implementingClass
-						or: [ self groupClass traits includes: each implementingClass ] ] ])
-		flatCollect: #allComplexProperties.
+	| result |
+	result := self groupMetaClasses flatCollect: #allComplexProperties.
 	result := result select: [ :each | each isMultivalued ].
 	result := self removeAllNonComputableAttributesFrom: result.
 	^ result

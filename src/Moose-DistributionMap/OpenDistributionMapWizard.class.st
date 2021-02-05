@@ -47,10 +47,18 @@ OpenDistributionMapWizard >> groupClass [
 	^ self mooseGroup anyOne class
 ]
 
-{ #category : #accessing }
-OpenDistributionMapWizard >> groupMetaClass [
+{ #category : #'computing possible elements' }
+OpenDistributionMapWizard >> groupMetaClasses [
+	^ MooseModel meta elements
+		select: [ :each | 
+			each isFM3Class
+				and: [ self groupClass = each implementingClass
+						or: [ self groupTraits includes: each implementingClass ] ] ]
+]
 
-	^ MooseModel meta elements detect: [:each | each isFM3Class and: [each implementingClass = self groupClass ] ] ifNone: [].
+{ #category : #'computing possible elements' }
+OpenDistributionMapWizard >> groupTraits [
+	^ self groupClass traits
 ]
 
 { #category : #initialization }

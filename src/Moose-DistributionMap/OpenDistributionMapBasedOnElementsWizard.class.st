@@ -125,11 +125,7 @@ OpenDistributionMapBasedOnElementsWizard >> performTerminateButtonAction [
 OpenDistributionMapBasedOnElementsWizard >> possibleContainerTypes [
 	"return the list of string to be displayed as possible part types, (when basing the wizard on elements)"
 
-	^ ((MooseModel meta elements
-		select: [ :each | 
-			each isFM3Class
-				and: [ self groupClass = each implementingClass
-						or: [ self groupClass traits includes: each implementingClass ] ] ])
+	^ (self groupMetaClasses
 		flatCollectAsSet:
 			[ :each | each allComplexProperties reject: [ :prop | prop isMultivalued ] ])
 		asArray
@@ -148,27 +144,33 @@ OpenDistributionMapBasedOnElementsWizard >> propertyCompositePart [
 
 { #category : #'initialize - property parts' }
 OpenDistributionMapBasedOnElementsWizard >> propertyListPart [
-
-	^ (DropListPart new)
-		list: (self allPropertySelectorsForElementOfType: self groupClass);
+	^ DropListPart new
+		list:
+			(self groupMetaClasses
+				flatCollectAsSet: [ :metaClass | self allPropertySelectorsForElementOfType: metaClass ])
+				asArray;
 		useLatePopulateContents: false;
 		defaultValue: 1;
 		"callback: [ :outputValue | propertyTextFieldPart textEntryContents: 'element ' , outputValue ];"
-		transformed: [ :outputValue | '[:element | element ' , outputValue , ']' ];
+			transformed: [ :outputValue | '[:element | element ' , outputValue , ']' ];
 		yourself
 ]
 
 { #category : #'initialize - property parts' }
 OpenDistributionMapBasedOnElementsWizard >> propertyTextFieldPart [
-
-	^TextFieldPart new 
-			prefix: '[:element | '; 
-			suffix: ']' ;
-			useLatePopulateContents: false;  
-			returnSuffixAndPrefix: true; 
-			defaultValue: ('element ' ,  (self allPropertySelectorsForElementOfType: self groupClass) first);
-			transformed: [:outputValue |  outputValue];
-			yourself.
+	^ TextFieldPart new
+		prefix: '[:element | ';
+		suffix: ']';
+		useLatePopulateContents: false;
+		returnSuffixAndPrefix: true;
+		defaultValue:
+			'element '
+				,
+					(self
+						allPropertySelectorsForElementOfType: self groupMetaClasses anyOne)
+						first;
+		transformed: [ :outputValue | outputValue ];
+		yourself
 ]
 
 { #category : #initialization }
