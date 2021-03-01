@@ -160,7 +160,7 @@ MooseAbstractDistributionMap >> propertyValueFor: anElement [
 	^ elementsAndPropertyValue at: anElement
 ]
 
-{ #category : #building }
+{ #category : #colors }
 MooseAbstractDistributionMap >> setElementsColor [
 	self subclassResponsibility
 ]
@@ -197,7 +197,7 @@ MooseAbstractDistributionMap >> shapeForElement: element [
 		yourself
 ]
 
-{ #category : #building }
+{ #category : #computing }
 MooseAbstractDistributionMap >> sortElementsInContainers [
 	self subclassResponsibility
 ]

@@ -110,14 +110,6 @@ OpenDistributionMapBasedOnPartsWizard >> openDefaultColorsDistributionMapUsingGr
 	(MooseDistributionMap new
 		containers: self mooseGroup
 		getElements: self elementsBlockOrSelector
-		property: self propertyBlockOrSelector) open
-]
-
-{ #category : #'wizard panes transition' }
-OpenDistributionMapBasedOnPartsWizard >> openDistributionMapUsingGroupAsParts [
-	(MooseDistributionMap new
-		containers: self mooseGroup
-		getElements: self elementsBlockOrSelector
 		property: self propertyBlockOrSelector)
 		propertyColorMap: self propertyColorMap;
 		propertyValuesIDMap: self propertyValuesMap;
@@ -125,19 +117,21 @@ OpenDistributionMapBasedOnPartsWizard >> openDistributionMapUsingGroupAsParts [
 ]
 
 { #category : #'wizard panes transition' }
+OpenDistributionMapBasedOnPartsWizard >> openDistributionMapUsingGroupAsParts [
+	(MooseLinearDistributionMap new
+		containers: self mooseGroup
+		getElements: self elementsBlockOrSelector
+		property: self propertyBlockOrSelector) open
+]
+
+{ #category : #'wizard panes transition' }
 OpenDistributionMapBasedOnPartsWizard >> performTerminateButtonAction [
 	"by default, just close the last current pane. Override this method if you want to create a subclass of WizardControl making a specific action"
 
 	super performTerminateButtonAction.
-	
-	(self wizardInformations at: #useDefaultColors) 
-		ifTrue: [
-			 self openDefaultColorsDistributionMapUsingGroupAsParts .
-			]
-		ifFalse: [
-			 self openDistributionMapUsingGroupAsParts.
-			].
-	
+	(self wizardInformations at: #useColorGradient)
+		ifFalse: [ self openDistributionMapUsingGroupAsParts ]
+		ifTrue: [ self openDefaultColorsDistributionMapUsingGroupAsParts ]
 ]
 
 { #category : #'computing possible elements' }

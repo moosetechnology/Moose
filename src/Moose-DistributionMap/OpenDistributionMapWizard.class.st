@@ -77,8 +77,7 @@ OpenDistributionMapWizard >> initializePropertyValuesPane: aWizardPane [
 ]
 
 { #category : #initialization }
-OpenDistributionMapWizard >> initializePropertyValuesPane: aWizardPane numberOfProp: outputValue [ 
-
+OpenDistributionMapWizard >> initializePropertyValuesPane: aWizardPane numberOfProp: outputValue [
 	1 to: outputValue do: [ :index | 
 		aWizardPane
 			row: [ :r | 
@@ -88,11 +87,13 @@ OpenDistributionMapWizard >> initializePropertyValuesPane: aWizardPane numberOfP
 				r
 					column: (self propertyValueMapperPartFromIndex: index)
 					associatedTo: ('property' , index asString , 'Mapper') asSymbol
-					requiring:
-						{#propertySelector.
-						#entitiesToComputeSelector}.
-				r column: (self propertyColorPartWithDefault: index) associatedTo: ('property' , index asString , 'Color') asSymbol ] ].
-	aWizardPane row: self useDefaultColorsPart associatedTo: #useDefaultColors.
+					requiring: {#propertySelector . #entitiesToComputeSelector}.
+				r
+					column: (self propertyColorPartWithDefault: index)
+					associatedTo: ('property' , index asString , 'Color') asSymbol ] ].
+	aWizardPane
+		row: self useColorGradient
+		associatedTo: #useColorGradient.
 	^ aWizardPane refresh
 ]
 
@@ -221,9 +222,9 @@ OpenDistributionMapWizard >> propertyValuesMap [
 ]
 
 { #category : #initialization }
-OpenDistributionMapWizard >> useDefaultColorsPart [
+OpenDistributionMapWizard >> useColorGradient [
 	^ (CheckboxPart new)
-		label: 'Use a default color for each disctinct value (will only diplay the first ten)';
+		label: 'Use a color gradient';
 		defaultValue: false;
 		useLatePopulateContents: false;
 		yourself

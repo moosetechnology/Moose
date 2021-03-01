@@ -107,17 +107,18 @@ OpenDistributionMapBasedOnElementsWizard >> initializeWithElementGroup: aMooseGr
 OpenDistributionMapBasedOnElementsWizard >> performTerminateButtonAction [
 	| tmpDistributionMap |
 	super performTerminateButtonAction.
-	
-	tmpDistributionMap := MooseDistributionMap new
-		elements: self mooseGroup
-		getContainers: self containersBlock
-		property: self propertyBlockOrSelector.
-		
-	(self wizardInformations at: #useDefaultColors)
-		ifFalse: [ tmpDistributionMap
+	tmpDistributionMap := (self wizardInformations at: #useColorGradient)
+		ifFalse: [ (MooseDistributionMap new
+				elements: self mooseGroup
+				getContainers: self containersBlock
+				property: self propertyBlockOrSelector)
 				propertyColorMap: self propertyColorMap;
-				propertyValuesIDMap: self propertyValuesMap ].
-			
+				propertyValuesIDMap: self propertyValuesMap;
+				yourself ]
+		ifTrue: [ MooseLinearDistributionMap new
+				elements: self mooseGroup
+				getContainers: self containersBlock
+				property: self propertyBlockOrSelector ].
 	tmpDistributionMap open
 ]
 

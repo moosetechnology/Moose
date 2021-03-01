@@ -32,7 +32,14 @@ MooseLinearDistributionMap >> propertyColorScale [
 	(1 -> 'red')}
 ]
 
-{ #category : #building }
+{ #category : #computing }
+MooseLinearDistributionMap >> propertyValueFor: anElement [
+
+"DEAL WITH BOOLEANS"
+	^ super propertyValueFor: anElement
+]
+
+{ #category : #colors }
 MooseLinearDistributionMap >> setElementsColor [
 	RSNormalizer color
 		shapes: (canvas nodes flatCollect: #children);
@@ -41,7 +48,7 @@ MooseLinearDistributionMap >> setElementsColor [
 		normalize: [ :element | self propertyValueFor: element ]
 ]
 
-{ #category : #building }
+{ #category : #computing }
 MooseLinearDistributionMap >> sortElementsInContainers [
 	| dictWithElementsSorted |
 	dictWithElementsSorted := Dictionary new.

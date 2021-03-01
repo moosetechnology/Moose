@@ -54,7 +54,7 @@ MooseDistributionMap >> initialize [
 	elementsAndPropertyId := Dictionary new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #computing }
 MooseDistributionMap >> matchElementsToPropertyID [
 	elementsAndPropertyValue
 		keysAndValuesDo: [ :element :propertyValue | 
@@ -63,7 +63,7 @@ MooseDistributionMap >> matchElementsToPropertyID [
 				put: (self computePropertyIDFor: element) ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #computing }
 MooseDistributionMap >> orderedContainers [
 	| engine partVectors containers |
 	containers := containersAndElements keys.
@@ -85,7 +85,7 @@ MooseDistributionMap >> orderedContainers [
 	^ partVectors
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 MooseDistributionMap >> propertyColorMap: aDictionary [
 	"aDictionary: aPropertyValueID -> aColor
 Example: 'High number' -> Color red."
@@ -93,7 +93,7 @@ Example: 'High number' -> Color red."
 	propertyColorMap := aDictionary
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 MooseDistributionMap >> propertyValuesIDMap: aDictionary [
 	"aDictionary: propertyValueName -> aBlockReturningABoolean
 Example: 'High number' -> [ :propertyValue | propertyValue > 100 ]."
@@ -101,28 +101,24 @@ Example: 'High number' -> [ :propertyValue | propertyValue > 100 ]."
 	propertyValueIDMap := aDictionary
 ]
 
-{ #category : #building }
+{ #category : #colors }
 MooseDistributionMap >> setElementsColor [
 	(canvas nodes flatCollect: #children)
 		do: [ :node | node color: (self colorForElement: node model) ]
 ]
 
-{ #category : #sorting }
+{ #category : #building }
 MooseDistributionMap >> sortElementsInContainers [
 	| dictWithElementsSorted |
 	self matchElementsToPropertyID.
 	dictWithElementsSorted := Dictionary new.
 	containersAndElements
 		keysAndValuesDo: [ :container :elements | 
-			| allValuesInContainer |
-			allValuesInContainer := elements
-				collect: [ :element | elementsAndPropertyId at: element ].
 			dictWithElementsSorted
 				at: container
 				put:
 					(elements
-						sortAscending: [ :element | 
-							allValuesInContainer
-								occurrencesOf: (elementsAndPropertyId at: element) ]) ].
+						sortAscending:
+							[ :element | propertyValueIDMap keys indexOf: (elementsAndPropertyId at: element) ]) ].
 	containersAndElements := dictWithElementsSorted
 ]
