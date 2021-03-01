@@ -19,9 +19,7 @@ BaselineOfMoose >> baseline: spec [
 				famixReplication: spec;
 				mooseAlgos: spec;
 				mooseEasy: spec;
-				neoCSV: spec;
-				roassal2: spec; 
-				roassal3: spec.
+				neoCSV: spec.
 			spec
 				package: 'Moose-Finder'
 					with: [ spec requires: #('Famix' 'FamixTagging' 'FamixReplication' 'FamixPresentation' 'MooseAlgos' 'Moose-RoassalPaintings' 'NeoCSV' 'Merlin') ];
@@ -30,14 +28,14 @@ BaselineOfMoose >> baseline: spec [
 				package: 'Glamour-Tools';
 				package: 'Glamour-Magritte-Presentations';
 				package: 'Moose-Help';
-				package: 'Moose-RoassalPaintings' with: [ spec requires: #('Roassal2' 'Roassal3') ];
+				package: 'Moose-RoassalPaintings';
 				package: 'Moose-Finder-Tests';
 				package: 'Moose-RoassalPaintings-Tests';
 				package: 'Merlin';
 				package: 'Moose-DistributionMap';
 				package: 'Moose-DistributionMap-Tests' ].
 	spec
-		for: #'pharo8.x'
+		for: #(#'pharo8.x' #'pharo9.x' )
 		do: [ spec
 				package: 'Moose-Finder-Pharo8';
 				package: 'Moose-Finder' with: [ spec includes: #('Moose-Finder-Pharo8') ].
@@ -58,7 +56,7 @@ BaselineOfMoose >> customProjectAttributes [
 
 { #category : #dependencies }
 BaselineOfMoose >> famix: spec [
-	spec baseline: 'Famix' with: [ spec repository: 'github://moosetechnology/Famix:development/src' ]
+	spec baseline: 'Famix' with: [ spec repository: 'github://moosetechnology/Famix:v1.x.x/src' ]
 ]
 
 { #category : #dependencies }
@@ -102,21 +100,4 @@ BaselineOfMoose >> neoCSV: spec [
 { #category : #accessing }
 BaselineOfMoose >> projectClass [
 	^ MetacelloCypressBaselineProject
-]
-
-{ #category : #dependencies }
-BaselineOfMoose >> roassal2: spec [
-	spec
-		baseline: 'Roassal2'
-		with: [ spec
-				loads: 'Minimal';
-				repository: 'github://ObjectProfile/Roassal2/src' ]
-]
-
-{ #category : #dependencies }
-BaselineOfMoose >> roassal3: spec [
-	spec
-		baseline: 'Roassal3'
-		with:
-			[ spec repository: 'github://ObjectProfile/Roassal3:master/src' ]
 ]

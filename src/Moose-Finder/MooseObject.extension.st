@@ -176,7 +176,7 @@ MooseObject >> navigationItemsFromPragmas [
 	"returns associations in form name->object for navigation entities obtained from
 	the pragma #navigation:"
 	pragmaValueAssociations := (self mooseInterestingEntity navigationPragmas sorted: [ :pragma | pragma argumentNamed: #navigation ] ascending)
-		collect: [ :pragma | pragma -> ([ self mooseInterestingEntity perform: pragma methodSelector ] ifError: [ nil ]) mooseInterestingEntity ].
+		collect: [ :pragma | pragma -> ([ self mooseInterestingEntity perform: pragma methodSelector ] onErrorDo: [ nil ]) mooseInterestingEntity ].
 
 	"filter out nils and empty collections, sort"
 	^ pragmaValueAssociations reject: [ :entity | entity isNil or: [ entity isCollection and: [ entity isEmpty ] ] ]
