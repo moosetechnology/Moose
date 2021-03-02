@@ -7,7 +7,7 @@ name: Continuous
 on:
   push:
     branches: 
-      - development
+      - v8
   schedule:
     # * is a special character in YAML so you have to quote this string
     - cron:  '0 0 * * *'
@@ -16,10 +16,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      PROJECT_NAME: ${{ matrix.smalltalk }}-Moose
+      PROJECT_NAME: 'Moose 8 - stable'
     strategy:
       matrix:
-        smalltalk: [ Pharo64-9.0, Pharo64-8.0 ]
+        smalltalk: [ Pharo64-8.0 ]
     name: ${{ matrix.smalltalk }}
     steps:
       - uses: actions/checkout@v2
