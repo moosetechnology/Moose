@@ -3,6 +3,8 @@ name: Release-V8
 on:
   release:
     types: [created]
+    branches:
+      - v8
 
 jobs:
   build:
