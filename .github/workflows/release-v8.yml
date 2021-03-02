@@ -1,4 +1,4 @@
-name: Release
+name: Release-V8
 
 on:
   release:
@@ -8,10 +8,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      PROJECT_NAME: ${{ matrix.smalltalk }}-Moose
+      PROJECT_NAME: Moose8-stable
     strategy:
       matrix:
-        smalltalk: [ Pharo64-9.0, Pharo64-8.0 ]
+        smalltalk: [ Pharo64-8.0 ]
     name: ${{ matrix.smalltalk }}
     steps:
       - uses: actions/checkout@v2
