@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Continuous
+name: Continuous-development
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the development branch
@@ -16,7 +16,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      PROJECT_NAME: 'Moose 9 - development'
+      PROJECT_NAME: Moose9-development
     strategy:
       matrix:
         smalltalk: [ Pharo64-9.0 ]
