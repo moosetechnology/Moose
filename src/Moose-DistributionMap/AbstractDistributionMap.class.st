@@ -63,30 +63,29 @@ AbstractDistributionMap >> initialize [
 
 { #category : #initialization }
 AbstractDistributionMap >> onContainers: aGroup elements: elementsBlockOrSelector properties: propertyBlockOrSelector [
-	aGroup
-		do: [ :container | 
-			| elementsCollection |
-			elementsCollection := partsAndElements
-				at: container
-				put: OrderedCollection new.
-			(elementsBlockOrSelector rtValue: container)
-				do: [ :element | 
-					| propertyValue |
-					propertyValue := propertyBlockOrSelector rtValue: element.
-					elementsCollection add: element.
-					elementsAndPropertyValue at: element put: propertyValue ] ]
+
+	aGroup do: [ :container | 
+		| elementsCollection |
+		elementsCollection := partsAndElements
+			                      at: container
+			                      put: OrderedCollection new.
+		(elementsBlockOrSelector value: container) do: [ :element | 
+			| propertyValue |
+			propertyValue := propertyBlockOrSelector value: element.
+			elementsCollection add: element.
+			elementsAndPropertyValue at: element put: propertyValue ] ]
 ]
 
 { #category : #initialization }
 AbstractDistributionMap >> onElements: aGroup containers: containersBlockOrSelector properties: propertyBlockOrSelector [
-	aGroup
-		do: [ :element | 
-			| part propertyValue |
-			part := containersBlockOrSelector rtValue: element.
-			propertyValue := propertyBlockOrSelector rtValue: element.
-			(partsAndElements at: part ifAbsentPut: [ OrderedCollection new ])
-				add: element.
-			elementsAndPropertyValue at: element put: propertyValue ]
+
+	aGroup do: [ :element | 
+		| part propertyValue |
+		part := containersBlockOrSelector value: element.
+		propertyValue := propertyBlockOrSelector value: element.
+		(partsAndElements at: part ifAbsentPut: [ OrderedCollection new ]) 
+			add: element.
+		elementsAndPropertyValue at: element put: propertyValue ]
 ]
 
 { #category : #rendering }

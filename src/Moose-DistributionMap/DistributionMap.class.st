@@ -42,6 +42,23 @@ Class {
 	#category : #'Moose-DistributionMap'
 }
 
+{ #category : #defaults }
+DistributionMap class >> defaultColors [
+
+	^ OrderedCollection new
+		  add: Color red;
+		  add: Color blue;
+		  add: Color orange;
+		  add: Color cyan;
+		  add: Color green;
+		  add: Color pink;
+		  add: Color brown;
+		  add: Color purple;
+		  add: Color yellow;
+		  add: Color gray;
+		  yourself
+]
+
 { #category : #examples }
 DistributionMap class >> example2 [
 
@@ -70,35 +87,28 @@ DistributionMap class >> example3 [
 
 { #category : #examples }
 DistributionMap class >> exampleShowingAContainerBasedDefinition [
-	"self exampleShowingAContainerBasedDefinition"
-	
-	"Here we define the containers and how the elements are computed based on such containers"
-	|dm |
-	dm := self
-			onContainers: Collection withAllSubclasses  
-			elements: #allInstVarNames 
-			properties: [:element | element size > 5].
-	dm title: 'Collection subclasses and their instance variables'.
-	dm open.
-	
 
+	"Here we define the containers and how the elements are computed based on such containers"
+
+	| dm |
+	dm := self
+		      onContainers: Collection withAllSubclasses
+		      elements: #allInstVarNames
+		      properties: [ :element | element size > 5 ].
+	dm title: 'Collection subclasses and their instance variables'.
+	dm open
 ]
 
 { #category : #accessing }
 DistributionMap >> colors [
-	^ colors ifNil: [colors := defaultColors]
+
+	^ colors ifNil: [ colors := self class defaultColors ]
 ]
 
 { #category : #accessing }
 DistributionMap >> colors: aCollection [
 	"To specify the color scheme that we want to use in a Distribution map."
 	colors := aCollection
-]
-
-{ #category : #initialization }
-DistributionMap >> defaultColors [ 
-	"The colors that are used when nobody ever mentioned any color scheme."
-	^ defaultColors
 ]
 
 { #category : #private }
@@ -113,8 +123,7 @@ DistributionMap >> initialize [
 
 	super initialize.
 	colorMap := Dictionary new.
-	defaultColors := Color distinctTenStrongColors.
-	properties := #()
+	properties := #(  )
 ]
 
 { #category : #private }
@@ -214,17 +223,15 @@ DistributionMap >> propertyColorMap: aDictionary [
 
 { #category : #accessing }
 DistributionMap >> propertyValuesIDMap: aDictionary [
+
 	| result |
 	result := Dictionary new.
-	elementsAndPropertyValue
-		keysAndValuesDo: [ :element :propertyValue | 
-			aDictionary
-				keysAndValuesDo: [ :key :value | 
-					(value rtValue: propertyValue)
-						ifTrue: [ result at: element put: key ] ].
-			"a property value may not be between the bounds defined by the user. In this case, we set a default value"
-			(result keys includes: element)
-				ifFalse: [ result at: element put: #notBetweenBounds ] ].
+	elementsAndPropertyValue keysAndValuesDo: [ :element :propertyValue | 
+		aDictionary keysAndValuesDo: [ :key :value | 
+			(value value: propertyValue) ifTrue: [ result at: element put: key ] ].
+		"a property value may not be between the bounds defined by the user. In this case, we set a default value"
+		(result keys includes: element) ifFalse: [ 
+			result at: element put: #notBetweenBounds ] ].
 	self properties: aDictionary keys asArray.
 	elementsAndPropertyValue := result
 ]

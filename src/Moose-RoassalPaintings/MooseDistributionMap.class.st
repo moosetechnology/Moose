@@ -50,8 +50,11 @@ MooseDistributionMap >> describeColorsInLegend: legend [
 
 { #category : #initialization }
 MooseDistributionMap >> initialize [
+
 	super initialize.
-	elementsAndPropertyId := Dictionary new
+	elementsAndPropertyId := Dictionary new.
+	propertyColorMap := Dictionary new.
+	propertyValueIDMap := Dictionary new
 ]
 
 { #category : #computing }

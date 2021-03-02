@@ -18,8 +18,10 @@ MooseModel >> classConcernedByProperty: aSelector appliedTo: aClass [
 
 { #category : #'*Moose-DistributionMap' }
 MooseModel >> resultOfProperty: aSelectorOrAblock appliedTo: aClass [
-	(self allWithType: aClass)
-		ifNotEmpty: [ :concernedEntities | concernedEntities do: [ :each | (aSelectorOrAblock rtValue: each) ifNotNil: [ :result | ^ result ] ] ].
+
+	(self allWithType: aClass) ifNotEmpty: [ :concernedEntities | 
+		concernedEntities do: [ :each | 
+			(aSelectorOrAblock value: each) ifNotNil: [ :result | ^ result ] ] ].
 
 	^ nil
 ]
