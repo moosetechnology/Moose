@@ -5,6 +5,7 @@ on:
     types: [created]
     branches: 
       - development
+      - master
 
 jobs:
   build:
