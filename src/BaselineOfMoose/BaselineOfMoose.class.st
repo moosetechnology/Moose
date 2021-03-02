@@ -19,8 +19,7 @@ BaselineOfMoose >> baseline: spec [
 				famixReplication: spec;
 				mooseAlgos: spec;
 				mooseEasy: spec;
-				neoCSV: spec;
-				roassal2: spec.
+				neoCSV: spec.
 			spec
 				package: 'Moose-Finder'
 					with: [ spec requires: #('Famix' 'FamixTagging' 'FamixReplication' 'FamixPresentation' 'MooseAlgos' 'Moose-RoassalPaintings' 'NeoCSV' 'Merlin') ];
@@ -29,14 +28,14 @@ BaselineOfMoose >> baseline: spec [
 				package: 'Glamour-Tools';
 				package: 'Glamour-Magritte-Presentations';
 				package: 'Moose-Help';
-				package: 'Moose-RoassalPaintings' with: [ spec requires: #('Roassal2') ];
+				package: 'Moose-RoassalPaintings';
 				package: 'Moose-Finder-Tests';
 				package: 'Moose-RoassalPaintings-Tests';
 				package: 'Merlin';
 				package: 'Moose-DistributionMap';
 				package: 'Moose-DistributionMap-Tests' ].
 	spec
-		for: #'pharo8.x'
+		for: #(#'pharo8.x' #'pharo9.x' )
 		do: [ spec
 				package: 'Moose-Finder-Pharo8';
 				package: 'Moose-Finder' with: [ spec includes: #('Moose-Finder-Pharo8') ].
@@ -101,13 +100,4 @@ BaselineOfMoose >> neoCSV: spec [
 { #category : #accessing }
 BaselineOfMoose >> projectClass [
 	^ MetacelloCypressBaselineProject
-]
-
-{ #category : #dependencies }
-BaselineOfMoose >> roassal2: spec [
-	spec
-		baseline: 'Roassal2'
-		with: [ spec
-				loads: 'Minimal';
-				repository: 'github://ObjectProfile/Roassal2:614d7b80eebf6af33a777cec55ecc1c6a7a65482/src' ]
 ]

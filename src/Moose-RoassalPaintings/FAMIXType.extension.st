@@ -153,25 +153,3 @@ FAMIXType >> viewHierarchyOn: view [
 		on: view.
 
 ]
-
-{ #category : #'*Moose-RoassalPaintings' }
-FAMIXType >> viewUML [
-	<menuItem: 'UML class diagram' category: 'Visualize'> 
-	
-	| view |
-	view := RTUMLClassBuilder new.
-	self viewUMLOn: view.
-	^ view openWithToolbarEntitled: 'UML class diagram'
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
-FAMIXType >> viewUMLOn: view [
-
-	view
-		addObjects: {self};
-		classname: #name;
-		instanceVariables: #attributes;
-		methodsNames: #methods;
-		methodselector: #name;
-		superclass: nil
-]

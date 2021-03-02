@@ -16,6 +16,7 @@ OverviewPyramidTest >> model [
 { #category : #helpers }
 OverviewPyramidTest >> prepareAnyMooseModel [
 	| model importer models |
+	self timeLimit: 30 seconds.
 	models := MooseModel root allModels.
 	models ifNotEmpty: [ ^ models anyOne ].
 	model := FamixStModel new.
@@ -31,15 +32,25 @@ OverviewPyramidTest >> prepareAnyMooseModel [
 ]
 
 { #category : #tests }
-OverviewPyramidTest >> testOpen [
+OverviewPyramidTest >> testBricksSize [
+	| pyramid |
+	pyramid := OverviewPyramid forMooseModel: self prepareAnyMooseModel.
+	self
+		assert:
+			(pyramid bricks
+				allSatisfy: [ :brick | brick extent = PyramidBrickFactory defaultExtent ])
+]
 
-	| model |
-	self timeLimit: 30 seconds.
-	model := self prepareAnyMooseModel.
-	self shouldnt: (OverviewPyramid on: model) open delete raise: Error.
+{ #category : #tests }
+OverviewPyramidTest >> testOpen [
+	self
+		shouldnt: (OverviewPyramid forMooseModel: self prepareAnyMooseModel) open delete
+		raise: Error
 ]
 
 { #category : #tests }
 OverviewPyramidTest >> testoverviewPyramidMetrics [
-	self assert: (self model overviewPyramidMetrics isKindOf: OverviewPyramidMetrics)
+
+	self
+		assert: (self model overviewPyramidMetrics isKindOf: OverviewPyramidMetrics)
 ]

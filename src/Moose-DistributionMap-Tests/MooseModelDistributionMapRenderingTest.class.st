@@ -17,40 +17,34 @@ MooseModelDistributionMapRenderingTest >> tearDown [
 MooseModelDistributionMapRenderingTest >> testRenderEmpty [
 
 	| dm |
-	dm := DistributionMap new.
-	self shouldnt: [ window := dm open ] raise: Error 
+	dm := MooseDistributionMap new.
+	window := dm open
 ]
 
 { #category : #tests }
 MooseModelDistributionMapRenderingTest >> testRenderingFromExample [
 
-	self shouldnt: 
-		[ window :=  
-			(DistributionMap 
-				onContainers: DistributionMap  withAllSubclasses  
-				elements: #methods 
-				properties: #isAbstract) open ] raise: Error 
+	window := (MooseDistributionMap new
+		           containers: DistributionMap withAllSubclasses
+		           getElements: #methods
+		           property: #isAbstract) open
 ]
 
 { #category : #tests }
 MooseModelDistributionMapRenderingTest >> testRenderingFromExample3ShowingContainer [
 
-	self shouldnt: 
-		[ window := (DistributionMap 
-							onContainers: Collection withAllSubclasses  
-							elements: #allInstVarNames 
-							properties: [:element | element size > 5])
-							title: 'Collection subclasses and their instance variables';
-							 open ] raise: Error 
+	window := (MooseDistributionMap new
+		           containers: Collection withAllSubclasses
+		           getElements: #allInstVarNames
+		           property: [ :element | element size > 5 ]) open.
+	window setLabel: 'Collection subclasses and their instance variables'
 ]
 
 { #category : #tests }
 MooseModelDistributionMapRenderingTest >> testRenderingFromExampleOpening [
 
-	self shouldnt: 
-		[ window := (DistributionMap 
-							onContainers: DistributionMap  withAllSubclasses  
-							elements: #methods 
-							properties: #isAbstract) open ] raise: Error.
-	
+	window := (MooseDistributionMap new
+		           containers: DistributionMap withAllSubclasses
+		           getElements: #methods
+		           property: #isAbstract) open
 ]
