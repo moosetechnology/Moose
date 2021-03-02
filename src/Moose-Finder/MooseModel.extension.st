@@ -142,6 +142,11 @@ MooseModel >> importFromMSE [
 ]
 
 { #category : #'*Moose-Finder' }
+MooseModel class >> isTestModel [
+	^ false
+]
+
+{ #category : #'*Moose-Finder' }
 MooseModel class >> menuBrowseMetaOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #'MetaBrowser')
