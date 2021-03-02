@@ -1,21 +1,22 @@
-# This is a basic workflow to help you get started with Actions
-
-name: CI
+name: CI-Pharo9
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the development branch
 on:
   pull_request:
     types: [assigned, opened, synchronize, reopened]
+    branches-ignore:
+      - v7
+      - v8
 
 jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      PROJECT_NAME: ${{ matrix.smalltalk }}-Moose
+      PROJECT_NAME: Moose9
     strategy:
       matrix:
-        smalltalk: [ Pharo64-9.0, Pharo64-8.0 ]
+        smalltalk: [ Pharo64-9.0 ]
     name: ${{ matrix.smalltalk }}
     steps:
       - uses: actions/checkout@v2
