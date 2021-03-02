@@ -47,3 +47,15 @@ jobs:
           asset_path: ./${{ env.PROJECT_NAME }}.zip
           asset_name: ${{ env.PROJECT_NAME }}.zip
           asset_content_type: application/zip
+
+      - name: Upload Image to v8.x.x
+        id: upload-image-to-v8.x.x
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: 'https://github.com/moosetechnology/Moose/releases/tag/v8.x.x'
+          asset_path: ./${{ env.PROJECT_NAME }}.zip
+          asset_name: ${{ env.PROJECT_NAME }}.zip
+          asset_content_type: application/zip
+
