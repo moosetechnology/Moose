@@ -16,12 +16,9 @@ FAMIXType >> mooseFinderAttributesIn: composite [
 
 { #category : #'*Moose-Finder' }
 FAMIXType >> mooseFinderHierarchyIn: composite [
+
 	<moosePresentationOrder: 20>
-	composite roassal2
-			title: 'Hierarchy';
-			titleIcon: MooseIcons mooseSystemComplexity;
-			initializeView: [ RTMondrian new ];
-			painting: [ :b | self viewHierarchyOn: b ]
+	self hierarchyVisualization appearInPaneComposite: composite
 ]
 
 { #category : #'*Moose-Finder' }

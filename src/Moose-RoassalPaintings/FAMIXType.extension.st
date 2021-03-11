@@ -93,6 +93,17 @@ FAMIXType >> getterMethods [
 	^ self methods select: #isGetter
 ]
 
+{ #category : #'*Moose-RoassalPaintings' }
+FAMIXType >> hierarchyVisualization [
+
+	| hierarchy |
+	hierarchy := (self withDeepCollect: [ :each | each directSubclasses ])
+	             , (self deepCollect: [ :each | 
+			              each directSuperclasses reject: [ :c | c isInterface ] ]).
+	^ FamixTypeGroupSystemComplexity forTypeGroup:
+		  hierarchy asMooseSpecializedGroup
+]
+
 { #category : #'*Moose-RoassalPaintings-Support' }
 FAMIXType >> internalFanin [
 
