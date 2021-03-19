@@ -6,7 +6,7 @@ on:
 
 jobs:
   # Run only if the release tag is 'v8.smthg'
-  if: startsWith( github.ref, 'ref/tags/v8')
+  if: startsWith(${{github.ref}}, 'ref/tags/v8')
   build:
     runs-on: ubuntu-latest
     env:
