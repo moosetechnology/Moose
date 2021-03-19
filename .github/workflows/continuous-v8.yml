@@ -8,8 +8,8 @@ on:
     - cron:  '0 0 * * *'
 
 jobs:
-  if: github.ref == 'refs/heads/v8'
   build:
+    if: github.ref == 'refs/heads/v8'
     runs-on: ubuntu-latest
     env:
       PROJECT_NAME: Moose8-stable
