@@ -5,9 +5,9 @@ on:
     types: [created]
 
 jobs:
-  # Run only if the release tag is 'v8.smthg'
-  if: startsWith(github.ref, 'refs/tags/v8')
   build:
+    # Run only if the release tag is 'v8.smthg'
+    if: startsWith(github.ref, 'refs/tags/v8')
     runs-on: ubuntu-latest
     env:
       PROJECT_NAME: Moose8-stable
