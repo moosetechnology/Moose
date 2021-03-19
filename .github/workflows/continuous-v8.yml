@@ -40,6 +40,6 @@ jobs:
       - name: Update Release
         uses: johnwbyrd/update-release@v1.0.0
         with:
-          tag: 'v8.x.x'
+          release: 'v8.x.x'
           token: ${{ secrets.GITHUB_TOKEN }}
           files: ${{ env.PROJECT_NAME }}.zip
