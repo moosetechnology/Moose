@@ -9,7 +9,6 @@ on:
 
 jobs:
   build:
-    if: github.ref == 'refs/heads/v8'
     runs-on: ubuntu-latest
     env:
       PROJECT_NAME: Moose8-stable
@@ -23,7 +22,7 @@ jobs:
           ref: v8
       - uses: hpi-swa/setup-smalltalkCI@v1
         with:
-          smalltalk-version: ${{ matrix.smalltalk }}
+          smalltalk-image: ${{ matrix.smalltalk }}
       - run: smalltalkci -s ${{ matrix.smalltalk }}
         shell: bash
         timeout-minutes: 15
