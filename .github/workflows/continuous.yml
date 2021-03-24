@@ -6,7 +6,7 @@ name: Continuous-development
 # events but only for the development branch
 on:
   push:
-    branches: 
+    branches:
       - development
   schedule:
     # * is a special character in YAML so you have to quote this string
@@ -25,11 +25,11 @@ jobs:
       - uses: actions/checkout@v2
       - uses: hpi-swa/setup-smalltalkCI@v1
         with:
-          smalltalk-version: ${{ matrix.smalltalk }}
+          smalltalk-image: ${{ matrix.smalltalk }}
       - run: smalltalkci -s ${{ matrix.smalltalk }}
         shell: bash
         timeout-minutes: 15
-      
+
       - name: package
         run: |
           mv /home/runner/.smalltalkCI/_builds/* .
@@ -38,7 +38,7 @@ jobs:
           echo ${${{ matrix.smalltalk }}} | sed -e 's/\.//g' > pharo.version
           zip -r $PROJECT_NAME.zip $PROJECT_NAME.image $PROJECT_NAME.changes *.sources pharo.version
           ls
-      
+
       - name: Update Release
         # You may pin to the exact commit or the version.
         # uses: johnwbyrd/update-release@1d5ec4791e40507e5eca3b4dbf90f0b27e7e4979
