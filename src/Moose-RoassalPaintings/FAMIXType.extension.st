@@ -150,17 +150,3 @@ FAMIXType >> setterMethods [
 	Alexandre.Bergel 3/28/2009 12:10"
 	^ self methods select: #isSetter
 ]
-
-{ #category : #'*Moose-RoassalPaintings' }
-FAMIXType >> viewHierarchyOn: view [
-	| hierarchy |
-	hierarchy :=		(self withDeepCollect: [:each | each directSubclasses]), 
-						(self deepCollect: [:each | each directSuperclasses reject: [:c | c isInterface]]).
-	hierarchy asMooseSpecializedGroup 
-		viewSimpleSystemComplexityWithSelection: { self } 
-		height: [ :c | c numberOfMethods ] 
-		width: [ :c | c numberOfAttributes ] 
-		color: [ :c | c numberOfLinesOfCode ] 
-		on: view.
-
-]
