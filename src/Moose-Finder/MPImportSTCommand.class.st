@@ -6,9 +6,10 @@ Class {
 
 { #category : #hooks }
 MPImportSTCommand >> execute [
-	(MooseImportFromSmalltalkImageWizard new
-		open;
-		mooseModel) ifNotNil: [ :model | self addModel: model ]
+
+	(MooseImportFromSmalltalkForm new
+		 openModalWithSpec;
+		 mooseModel) ifNotNil: [ :model | self addModel: model ]
 ]
 
 { #category : #hooks }

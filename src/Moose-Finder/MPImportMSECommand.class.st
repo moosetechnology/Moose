@@ -6,13 +6,10 @@ Class {
 
 { #category : #hooks }
 MPImportMSECommand >> execute [
-	[ self modelClass
-		ifNotNil: [ :modelClass | 
-			modelClass new
-				importFromMSE;
-				ifNotEmpty: [ :model | 
-					model install.
-					self addModel: model ] ] ] fork
+
+	(MooseImportFromMSEForm new
+		 openDialogWithSpec;
+		 mooseModel) ifNotNil: [ :model | self addModel: model ]
 ]
 
 { #category : #hooks }
@@ -23,15 +20,4 @@ MPImportMSECommand >> icon [
 { #category : #hooks }
 MPImportMSECommand >> label [
 	^ 'Import model from MSE file'
-]
-
-{ #category : #hooks }
-MPImportMSECommand >> modelClass [
-	| modelClasses |
-	modelClasses := MooseModel withAllSubclasses
-		reject: [ :model | model isDeprecated or: [ model isTestModel ] ].
-	^ UIManager default
-		chooseFrom: (modelClasses collect: [ :model | model name ])
-		values: modelClasses
-		title: 'Please select a metamodel'
 ]
