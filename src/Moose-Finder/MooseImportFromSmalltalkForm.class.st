@@ -14,7 +14,6 @@ Class {
 		'packageNames',
 		'contextCheckBoxes',
 		'entitiesToImport',
-		'modelRootBrowser',
 		'mooseModel'
 	],
 	#category : #'Moose-Finder-Import'
@@ -185,7 +184,7 @@ MooseImportFromSmalltalkForm >> initializeModelNameField [
 MooseImportFromSmalltalkForm >> initializePackagesButton [
 	packagesButton := self newButton
 		label: 'Choose packages';
-		action: [ (MiPackagesChoicePopup on: self) openModalWithSpec ];
+		action: [ (MooseSmalltalkPackagesSelector on: self) openModalWithSpec ];
 		yourself
 ]
 
@@ -270,11 +269,6 @@ MooseImportFromSmalltalkForm >> removeContext: context [
 MooseImportFromSmalltalkForm >> setImportingContext [
 	entitiesToImport
 		do: [ :each | importingContext perform: ('import' , each) asSymbol ]
-]
-
-{ #category : #'accessing model' }
-MooseImportFromSmalltalkForm >> setModelBeforeInitialization: aModelRootBrowser [
-	modelRootBrowser := aModelRootBrowser
 ]
 
 { #category : #updating }
