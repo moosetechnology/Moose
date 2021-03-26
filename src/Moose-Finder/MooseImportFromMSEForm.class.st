@@ -38,7 +38,8 @@ MooseImportFromMSEForm >> initializeDialogWindow: aDialog [
 	aDialog
 		addButton: 'Install' do: [ :presenter | 
 			| model |
-			model := mooseModelDroplist selectedItem new importFromMSE install.
+			model := mooseModelDroplist selectedItem new importFromMSE.
+			model name = #noname ifFalse: [ model install ].
 			presenter close ];
 		addButton: 'Cancel' do: [ :presenter | presenter close ]
 ]
