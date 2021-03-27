@@ -51,15 +51,24 @@ MooseObject >> gtInspectorActionOpenInMoose [
 
 { #category : #'*Moose-Finder' }
 MooseObject >> gtInspectorPresentationsIn: composite inContext: aGTInspector [
-	| pragmas |
-	[self mooseDescription] on: NotFound do: [ super gtInspectorPresentationsIn: composite inContext: aGTInspector.
-		^ self ].
+	| pragmas acceptedPragmas |
+	[ self mooseDescription ]
+		on: NotFound
+		do: [ super gtInspectorPresentationsIn: composite inContext: aGTInspector.
+			^ self ].
 	pragmas := Pragma
 		allNamed: #moosePresentationOrder:
 		from: self mooseInterestingEntity class
 		to: Object
 		sortedUsing: [ :x :y | (x argumentAt: 1) < (y argumentAt: 1) ].
+	acceptedPragmas := OrderedCollection new.
 	pragmas
+		do: [ :pragma | 
+			(acceptedPragmas
+				anySatisfy:
+					[ :alreadyAcceptedPragma | alreadyAcceptedPragma method origin = pragma method origin and: [ alreadyAcceptedPragma method selector = pragma method selector ] ])
+				ifFalse: [ acceptedPragmas add: pragma ] ].
+	acceptedPragmas
 		do: [ :eachPragma | 
 			(eachPragma methodSelector findTokens: $:) size = 1
 				ifTrue: [ self mooseInterestingEntity
@@ -121,30 +130,30 @@ MooseObject >> mooseIcon [
 
 { #category : #'*Moose-Finder' }
 MooseObject >> mooseSpecificSpotterProcessorsFor: aSpotterStep [
+
 	| entity assocs pragmaValueAssociations |
 	entity := self mooseInterestingEntity.
-	pragmaValueAssociations := entity complexPropertyPragmas
-		collect: [ :pragma | 
-			pragma
-				->
-					([self mooseInterestingEntity perform: pragma methodSelector] ifError: [nil])
-						mooseInterestingEntity ].
-	assocs := (pragmaValueAssociations
-		reject: [ :association | 
-			association value isNil
-				or: [ association value isCollection and: [ association value isEmpty ] ] ])
-		sorted: [ :a :b | 
-			(a key argumentAt: 1) asLowercase asString
-				< (b key argumentAt: 1) asLowercase asString ].
-	assocs
-		do: [ :assoc | 
-			aSpotterStep listProcessor
-				allCandidates: [ assoc value asMooseGroup ];
-				title: (assoc key argumentAt: 1);
-				itemIcon: #mooseIcon;
-				filter: GTFilterSubstring;
-				itemName: #gtDisplayString;
-				order: 1 ]
+	pragmaValueAssociations := entity complexPropertyPragmas 
+			collect: [ :pragma | 
+				pragma -> ([ 
+			        self mooseInterestingEntity perform:
+				     pragma methodSelector ] onErrorDo: [ nil ]) mooseInterestingEntity ].
+	
+	assocs := (pragmaValueAssociations reject: [ :association | 
+		           association value isNil or: [ 
+			           association value isCollection and: [ 
+				           association value isEmpty ] ] ]) sorted: [ :a :b | 
+		          (a key argumentAt: 1) asLowercase asString
+		          < (b key argumentAt: 1) asLowercase asString ].
+	
+	assocs do: [ :assoc | 
+		aSpotterStep listProcessor
+			allCandidates: [ assoc value asMooseGroup ];
+			title: (assoc key argumentAt: 1);
+			itemIcon: #mooseIcon;
+			filter: GTFilterSubstring;
+			itemName: #gtDisplayString;
+			order: 1 ]
 ]
 
 { #category : #'*Moose-Finder' }
@@ -167,7 +176,7 @@ MooseObject >> navigationItemsFromPragmas [
 	"returns associations in form name->object for navigation entities obtained from
 	the pragma #navigation:"
 	pragmaValueAssociations := (self mooseInterestingEntity navigationPragmas sorted: [ :pragma | pragma argumentNamed: #navigation ] ascending)
-		collect: [ :pragma | pragma -> ([ self mooseInterestingEntity perform: pragma methodSelector ] ifError: [ nil ]) mooseInterestingEntity ].
+		collect: [ :pragma | pragma -> ([ self mooseInterestingEntity perform: pragma methodSelector ] onErrorDo: [ nil ]) mooseInterestingEntity ].
 
 	"filter out nils and empty collections, sort"
 	^ pragmaValueAssociations reject: [ :entity | entity isNil or: [ entity isCollection and: [ entity isEmpty ] ] ]

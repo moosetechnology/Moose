@@ -11,13 +11,14 @@ Class {
 
 { #category : #'computing - possible properties' }
 OpenDistributionMapWizard >> allPropertySelectorsForElementOfType: aClass [
-
 	"return a list of property selectors that can be applied to instances of aClass."
-"	|result|
+
+	"	|result|
 	self halt.
 	result := (aClass allPropertySelectorsComputableForAtLeastOneElementIn: self mooseModel).
 	^ result"
-	^ aClass allPropertySelectors values
+
+	^ (aClass allProperties collect: #name) asSet asArray
 ]
 
 { #category : #accessing }
@@ -46,10 +47,18 @@ OpenDistributionMapWizard >> groupClass [
 	^ self mooseGroup anyOne class
 ]
 
-{ #category : #accessing }
-OpenDistributionMapWizard >> groupMetaClass [
+{ #category : #'computing possible elements' }
+OpenDistributionMapWizard >> groupMetaClasses [
+	^ MooseModel meta elements
+		select: [ :each | 
+			each isFM3Class
+				and: [ self groupClass = each implementingClass
+						or: [ self groupTraits includes: each implementingClass ] ] ]
+]
 
-	^ MooseModel meta elements detect: [:each | each isFM3Class and: [each implementingClass = self groupClass ] ] ifNone: [].
+{ #category : #'computing possible elements' }
+OpenDistributionMapWizard >> groupTraits [
+	^ self groupClass traits
 ]
 
 { #category : #initialization }
@@ -68,8 +77,7 @@ OpenDistributionMapWizard >> initializePropertyValuesPane: aWizardPane [
 ]
 
 { #category : #initialization }
-OpenDistributionMapWizard >> initializePropertyValuesPane: aWizardPane numberOfProp: outputValue [ 
-
+OpenDistributionMapWizard >> initializePropertyValuesPane: aWizardPane numberOfProp: outputValue [
 	1 to: outputValue do: [ :index | 
 		aWizardPane
 			row: [ :r | 
@@ -79,11 +87,13 @@ OpenDistributionMapWizard >> initializePropertyValuesPane: aWizardPane numberOfP
 				r
 					column: (self propertyValueMapperPartFromIndex: index)
 					associatedTo: ('property' , index asString , 'Mapper') asSymbol
-					requiring:
-						{#propertySelector.
-						#entitiesToComputeSelector}.
-				r column: (self propertyColorPartWithDefault: index) associatedTo: ('property' , index asString , 'Color') asSymbol ] ].
-	aWizardPane row: self useDefaultColorsPart associatedTo: #useDefaultColors.
+					requiring: {#propertySelector . #entitiesToComputeSelector}.
+				r
+					column: (self propertyColorPartWithDefault: index)
+					associatedTo: ('property' , index asString , 'Color') asSymbol ] ].
+	aWizardPane
+		row: self useColorGradient
+		associatedTo: #useColorGradient.
 	^ aWizardPane refresh
 ]
 
@@ -116,8 +126,8 @@ OpenDistributionMapWizard >> properties [
 
 { #category : #'accessing - map parameters' }
 OpenDistributionMapWizard >> propertyBlockOrSelector [
-	
-	^ Smalltalk evaluate: (self wizardInformations at: #propertySelector).
+	^ Smalltalk compiler
+		evaluate: (self wizardInformations at: #propertySelector)
 ]
 
 { #category : #'accessing - map parameters' }
@@ -195,23 +205,26 @@ OpenDistributionMapWizard >> propertyValueMapperPartFromIndex: index [
 
 { #category : #'accessing - map parameters' }
 OpenDistributionMapWizard >> propertyValuesMap [
-	
 	| result |
 	result := Dictionary new.
-	1 to: (self wizardInformations at: #numberOfProperties) do: [:int |
-		|blockString propertyValueId|
-		propertyValueId := self wizardInformations at: ('property',int asString,'Name') asSymbol.
-		blockString := '[:propVal | ',(self wizardInformations at: ('property',int asString ,'Mapper') asSymbol), ']'.
-		result at: propertyValueId put: (Smalltalk evaluate:blockString )
-		].
-	^ result.
-	
+	1 to: (self wizardInformations at: #numberOfProperties) do: [ :int | 
+		| blockString propertyValueId |
+		propertyValueId := self wizardInformations
+			at: ('property' , int asString , 'Name') asSymbol.
+		blockString := '[:propVal | '
+			,
+				(self wizardInformations
+					at: ('property' , int asString , 'Mapper') asSymbol) , ']'.
+		result
+			at: propertyValueId
+			put: (Smalltalk compiler evaluate: blockString) ].
+	^ result
 ]
 
 { #category : #initialization }
-OpenDistributionMapWizard >> useDefaultColorsPart [
+OpenDistributionMapWizard >> useColorGradient [
 	^ (CheckboxPart new)
-		label: 'Use a default color for each disctinct value (will only diplay the first ten)';
+		label: 'Use a color gradient';
 		defaultValue: false;
 		useLatePopulateContents: false;
 		yourself

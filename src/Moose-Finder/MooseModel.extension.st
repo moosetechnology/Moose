@@ -129,16 +129,8 @@ MooseModel >> importFileStructure [
 ]
 
 { #category : #'*Moose-Finder' }
-MooseModel >> importFromMSE [
-	| file |
-	file := UIManager default chooseExistingFileReference: 'Import model from MSE file' extensions: #('mse') path: FileLocator home.
-	file
-		ifNotNil: [
-			| stream | 
-			stream := file readStream.
-			self importFromMSEStream: stream.
-			self name: (file basenameWithoutExtension).
-			stream close ]
+MooseModel class >> isTestModel [
+	^ false
 ]
 
 { #category : #'*Moose-Finder' }
@@ -226,4 +218,10 @@ MooseModel >> spotterMethodsFor: aStep [
 MooseModel >> spotterNamespacesFor: aStep [
 	<spotterOrder: 10>
 	self spotter: 'All namespaces' on: [ self allNamespaces ] for: aStep
+]
+
+{ #category : #'*Moose-Finder' }
+MooseModel >> viewOverviewPyramid [
+	<menuItem: 'Overview Pyramid' category: 'Visualize'>
+	self overviewPyramid open
 ]

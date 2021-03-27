@@ -38,13 +38,9 @@ MooseGroup >> mooseIcon [
 	^ MooseIcons mooseMetamodelGroup
 ]
 
-{ #category : #'*moose-finder' }
-MooseGroup >> mooseInterestingEntity [ 
-	"For a group with one element,  it returns that element, instead of the group, useful in the finder to remove extra step when navigating"
-	
-	^self size = 1 
-		ifTrue: [self first] 
-		ifFalse: [super mooseInterestingEntity]
+{ #category : #'*Moose-Finder' }
+MooseGroup >> mooseInterestingEntity [
+	^ self specialize
 ]
 
 { #category : #'*moose-finder' }
@@ -57,4 +53,10 @@ MooseGroup >> spotterItemsFor: aStep [
 		itemName: [ :each | each gtDisplayString ];
 		filter: GTFilterSubstring;
 		wantsToDisplayOnEmptyQuery: true
+]
+
+{ #category : #'*Moose-Finder' }
+MooseGroup >> viewNameCloud [
+	<menuItem: 'Name Cloud' category: 'Visualize'>
+	^ self nameCloud open
 ]

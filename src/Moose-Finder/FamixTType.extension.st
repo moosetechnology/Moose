@@ -3,12 +3,17 @@ Extension { #name : #FamixTType }
 { #category : #'*Moose-Finder' }
 FamixTType >> mooseFinderBlueprintIn: composite [
 	<moosePresentationOrder: 20>
-	composite roassal2 
-			title: 'Blueprint';
-			titleIcon: MooseIcons mooseBlueprint;
-			painting: [ :view :each | 
-				view @ RTDraggableView.
-				each mooseInterestingEntity viewBlueprintOn: view.
-				self addBlueprintLegendOn: view.
- ]
+	self blueprint appearInPaneComposite: composite
+]
+
+{ #category : #'*Moose-Finder' }
+FamixTType >> viewBlueprint [
+	<menuItem: 'Class blueprint' category: 'Visualize'>
+	self blueprint open
+]
+
+{ #category : #'*Moose-Finder' }
+FamixTType >> viewUML [
+	<menuItem: 'UML class diagram' category: 'Visualize'>
+	^ self uml open
 ]

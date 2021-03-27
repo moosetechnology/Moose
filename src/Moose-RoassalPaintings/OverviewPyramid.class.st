@@ -1,12 +1,18 @@
+"
+I show an overview of a model complexity.
+
+I am use in Moose Panel: Right-click on a model, 'Visualize', 'Overview Pyramid'.
+See also an example on class side.
+
+More documentation here: https://www.simpleorientedarchitecture.com/overview-pyramid-metrics-ndepend/
+"
 Class {
 	#name : #OverviewPyramid,
-	#superclass : #Object,
+	#superclass : #MooseAbstractVisualization,
 	#instVars : [
-		'mooseModel',
 		'metrics',
-		'moView',
 		'treesholdsToUse',
-		'rectangles'
+		'bricks'
 	],
 	#classVars : [
 		'CPPTreesholds',
@@ -18,40 +24,29 @@ Class {
 }
 
 { #category : #accessing }
-OverviewPyramid class >> callNomSymbol [
+OverviewPyramid class >> defaultTitle [
+	^ 'Overview pyramid'
+]
 
-	^ #CallsNom
+{ #category : #'instance creation' }
+OverviewPyramid class >> example [
+	<script>
+	(self forMooseModel: MooseModel root allModels anyOne) open
+]
+
+{ #category : #'instance creation' }
+OverviewPyramid class >> forMooseModel: aMooseModel [
+	^ self new
+		mooseModel: aMooseModel;
+		yourself
 ]
 
 { #category : #accessing }
-OverviewPyramid class >> colorForMetricValue: aNumber fromTreesholds: aCollection [
-
-	| treesholds lowDifference averageDifference hightDifference |
-	treesholds := aCollection.
-	
-	lowDifference := (treesholds first - aNumber) abs.
-	averageDifference := (treesholds second - aNumber) abs.
-	hightDifference := (treesholds third - aNumber) abs.
-	
-	{lowDifference. averageDifference. hightDifference} min = lowDifference ifTrue: [^ Color blue].
-	{lowDifference. averageDifference. hightDifference} min = averageDifference ifTrue: [^ Color green].
-	{lowDifference. averageDifference. hightDifference} min = hightDifference ifTrue: [^ Color red].
-	
+OverviewPyramid class >> icon [
+	^ Smalltalk ui theme iconNamed: #smallLanguage
 ]
 
-{ #category : #accessing }
-OverviewPyramid class >> cycloLocSymbol [
-
-	^ #CycloLoc
-]
-
-{ #category : #accessing }
-OverviewPyramid class >> fanoutCallsSymbol [
-
-	^ #FanoutCalls
-]
-
-{ #category : #initialization }
+{ #category : #'class initialization' }
 OverviewPyramid class >> initialize [
 	"self initialize"
 	self initializeJavaTreesholds.
@@ -120,30 +115,6 @@ OverviewPyramid class >> initializeSmalltalkTreesholds [
 ]
 
 { #category : #accessing }
-OverviewPyramid class >> locNomSymbol [
-
-	^ #LocNom
-]
-
-{ #category : #accessing }
-OverviewPyramid class >> nocNopSymbol [
-
-	^ #NocNop
-]
-
-{ #category : #accessing }
-OverviewPyramid class >> nomNocSymbol [
-
-	^ #NomNoc
-]
-
-{ #category : #'instance creation' }
-OverviewPyramid class >> on: aMooseModel [
-	"(self on: MooseModel root allModels anyOne) open"
-	^ super new initializeWith: aMooseModel.
-]
-
-{ #category : #accessing }
 OverviewPyramid class >> treesholdForModel: aMooseModel [
 	"return the treeshold to use for aMooseModel (it can be Java, smalltalk, cpp treeshold according the source language of the model)"
 
@@ -152,332 +123,354 @@ OverviewPyramid class >> treesholdForModel: aMooseModel [
 		ifFalse: [ JavaTreesholds ]
 ]
 
-{ #category : #rendering }
-OverviewPyramid >> aNode: aNodeSymbol color: aColor popup: aString on: aView [
-	aView shape rectangle withoutBorder width: 70; height: 30; fillColor: aColor.
-		aView node: aNodeSymbol forIt: [
-			aView interaction popupText: [:n | aString]. 
-			aView shape label fillColor: aColor; fontColor: Color black.
-			aView node: aNodeSymbol ].
-
+{ #category : #building }
+OverviewPyramid >> build [
+	self buildBricks.
+	canvas addAll: bricks.
+	RSGridLayout new
+		gapSize: 0;
+		on: canvas shapes
 ]
 
-{ #category : #'accessing - metrics' }
-OverviewPyramid >> ahh [
-
-	^ metrics ahh
+{ #category : #building }
+OverviewPyramid >> buildAHH [
+	bricks
+		add:
+			(PyramidBrickFactory inheritance
+				text: 'AHH';
+				popup: 'Average Hierarchy Height';
+				brick).
+	bricks
+		add:
+			(PyramidBrickFactory new
+				color: (self colorForMetric: #AHH withValue: metrics ahh);
+				textColor: Color white;
+				text: (self truncatedStringForFraction: metrics ahh);
+				popup:
+					'Average Hierarchy Height.
+Tell us how deep the class hierarchies are';
+				brick)
 ]
 
-{ #category : #'accessing - metrics' }
-OverviewPyramid >> andc [
-
-	^ metrics andc
+{ #category : #building }
+OverviewPyramid >> buildANDC [
+	bricks
+		add:
+			(PyramidBrickFactory inheritance
+				text: 'ANDC';
+				popup: 'Average Number of Derived Classes';
+				brick).
+	bricks
+		add:
+			(PyramidBrickFactory new
+				color: (self colorForMetric: #ANDC withValue: metrics andc);
+				textColor: Color white;
+				text: (self truncatedStringForFraction: metrics andc);
+				popup:
+					'Average number of derived classes.
+First sign of how extensively abstractions
+are refined by means of inheritance';
+				brick)
 ]
 
-{ #category : #'accessing - metrics' }
-OverviewPyramid >> calls [
-
-	^ metrics calls
+{ #category : #building }
+OverviewPyramid >> buildBricks [
+	self buildEmptyBricks: 4.
+	self buildANDC.
+	self buildEmptyBricks: 7.
+	self buildAHH.
+	self buildEmptyBricks: 6.
+	self buildNumberOfPackages.
+	self buildEmptyBricks: 5.
+	self buildNumberOfClasses.
+	self buildEmptyBricks: 4.
+	self buildNumberOfMethods.
+	self buildNumberOfCalls.
+	self buildEmptyBricks: 1.
+	self buildNumberOfLOC.
+	self buildNumberOfInvocations.
+	self buildCyclomaticComplexity.
+	self buildNumberOfCalledClasses
 ]
 
-{ #category : #rendering }
+{ #category : #building }
+OverviewPyramid >> buildCyclomaticComplexity [
+	bricks
+		add:
+			(PyramidBrickFactory sizeAndComplexity
+				text: 'CYCLO';
+				popup: 'Cyclomatic Number';
+				brick).
+	self buildEmptySizeAndComplexityBricks: 4.
+	bricks
+		add:
+			(PyramidBrickFactory sizeAndComplexity
+				text: metrics cyclo;
+				popup: 'Cyclomatic Number';
+				brick)
+]
+
+{ #category : #building }
+OverviewPyramid >> buildEmptyBricks: aNumber [
+	aNumber
+		timesRepeat: [ bricks add: PyramidBrickFactory empty brick ]
+]
+
+{ #category : #building }
+OverviewPyramid >> buildEmptySizeAndComplexityBricks: aNumber [
+	aNumber
+		timesRepeat: [ bricks add: PyramidBrickFactory sizeAndComplexity brick ]
+]
+
+{ #category : #building }
+OverviewPyramid >> buildLegend [
+	| legend |
+	legend := RSLegend new.
+	legend container: self canvas.
+	legend onDemand.
+	legend title: self class defaultTitle.
+	legend build
+]
+
+{ #category : #building }
+OverviewPyramid >> buildNumberOfCalledClasses [
+	bricks
+		add:
+			(PyramidBrickFactory coupling
+				text: metrics fanout;
+				popup: 'Number Of Called Classes';
+				brick).
+	bricks add: PyramidBrickFactory coupling brick.
+	bricks
+		add:
+			(PyramidBrickFactory coupling
+				text: 'FANOUT';
+				popup: 'Number Of Called Classes';
+				brick)
+]
+
+{ #category : #building }
+OverviewPyramid >> buildNumberOfCalls [
+	bricks
+		add:
+			(PyramidBrickFactory coupling
+				text: 'NOM';
+				popup: 'Number Of Methods';
+				brick).
+	bricks
+		add:
+			(PyramidBrickFactory new
+				color: (self colorForMetric: #CallsNom withValue: metrics callNom);
+				textColor: Color white;
+				text: metrics callNom;
+				popup:
+					'Coupling intensity (CALLS/Operation).
+Tell us how many other operations are called on average from each operation';
+				brick)
+]
+
+{ #category : #building }
+OverviewPyramid >> buildNumberOfClasses [
+	bricks
+		add:
+			(PyramidBrickFactory new
+				color: (self colorForMetric: #NomNoc withValue: metrics nomNoc);
+				textColor: Color white;
+				text: metrics nomNoc;
+				popup:
+					'Class structuring (NOM/Class).
+Reveals how operations are distributed among classes';
+				brick).
+	bricks
+		add:
+			(PyramidBrickFactory sizeAndComplexity
+				text: 'NOC';
+				popup: 'Number Of Classes';
+				brick).
+	self buildEmptySizeAndComplexityBricks: 1.
+	bricks
+		add:
+			(PyramidBrickFactory sizeAndComplexity
+				text: metrics noc;
+				popup: 'Number Of Classes';
+				brick)
+]
+
+{ #category : #building }
+OverviewPyramid >> buildNumberOfInvocations [
+	bricks
+		add:
+			(PyramidBrickFactory coupling
+				text: metrics calls;
+				popup: 'Number Of Invocations';
+				brick).
+	bricks
+		add:
+			(PyramidBrickFactory coupling
+				text: 'CALL';
+				popup: 'Number Of Invocations';
+				brick).
+	bricks
+		add:
+			(PyramidBrickFactory new
+				color: (self colorForMetric: #FanoutCalls withValue: metrics fanoutCalls);
+				textColor: Color white;
+				text: metrics fanoutCalls;
+				popup:
+					'Coupling dispersion (FANOUT/Operation Call).
+Indicator of how much the coupling involves many classes';
+				brick)
+]
+
+{ #category : #building }
+OverviewPyramid >> buildNumberOfLOC [
+	bricks
+		add:
+			(PyramidBrickFactory new
+				color: (self colorForMetric: #CycloLoc withValue: metrics cycloLoc);
+				textColor: Color white;
+				text: metrics cycloLoc;
+				popup:
+					'Intrinsic operation complexity (CYCLO/Code Line).
+Characterizes how much conditional complexity we are to expect in operations';
+				brick).
+	bricks
+		add:
+			(PyramidBrickFactory sizeAndComplexity
+				text: 'LOC';
+				popup: 'Lines Of Code';
+				brick).
+	self buildEmptySizeAndComplexityBricks: 3.
+	bricks
+		add:
+			(PyramidBrickFactory sizeAndComplexity
+				text: metrics loc;
+				popup: 'Lines Of Code';
+				brick)
+]
+
+{ #category : #building }
+OverviewPyramid >> buildNumberOfMethods [
+	bricks
+		add:
+			(PyramidBrickFactory new
+				color: (self colorForMetric: #LocNom withValue: metrics locNom);
+				textColor: Color white;
+				text: metrics locNom;
+				popup:
+					'Operation Structuring (LOC/Operation).
+Indication of how well the code is distributed among operations';
+				brick).
+	bricks
+		add:
+			(PyramidBrickFactory sizeAndComplexity
+				text: 'NOM';
+				popup: 'Number Of Methods';
+				brick).
+	self buildEmptySizeAndComplexityBricks: 2.
+	bricks
+		add:
+			(PyramidBrickFactory sizeAndComplexity
+				text: metrics nom;
+				popup: 'Number Of Methods';
+				brick)
+]
+
+{ #category : #building }
+OverviewPyramid >> buildNumberOfPackages [
+	bricks
+		add:
+			(PyramidBrickFactory new
+				color: (self colorForMetric: #NocNop withValue: metrics nocNop);
+				textColor: Color white;
+				text: metrics nocNop;
+				popup:
+					'High-level Structuring (NOC/Package).
+Indicates if packages tend to be coarse grained or fine grained';
+				brick).
+	bricks
+		add:
+			(PyramidBrickFactory sizeAndComplexity
+				text: 'NOP';
+				popup: 'Number Of Packages';
+				brick).
+	bricks
+		add:
+			(PyramidBrickFactory sizeAndComplexity
+				text: metrics nop;
+				popup: 'Number Of Packages';
+				brick)
+]
+
+{ #category : #private }
 OverviewPyramid >> colorForMetric: aSymbol withValue: aNumber [
 
 	| treesholds lowDifference averageDifference hightDifference |
+
 	treesholds := self treesholdsToUse at: aSymbol.
-	
+
 	lowDifference := (treesholds first - aNumber) abs.
 	averageDifference := (treesholds second - aNumber) abs.
 	hightDifference := (treesholds third - aNumber) abs.
-	
-	{lowDifference. averageDifference. hightDifference} min = lowDifference ifTrue: [^ Color blue darker].
-	{lowDifference. averageDifference. hightDifference} min = averageDifference ifTrue: [^ Color green muchDarker].
-	{lowDifference. averageDifference. hightDifference} min = hightDifference ifTrue: [^ Color red darker].
-	
+
+	{lowDifference.
+	averageDifference.
+	hightDifference} min = lowDifference
+		ifTrue: [ ^ Color blue darker ].
+
+	{lowDifference.
+	averageDifference.
+	hightDifference} min = averageDifference
+		ifTrue: [ ^ Color green muchDarker ].
+
+	{lowDifference.
+	averageDifference.
+	hightDifference} min = hightDifference
+		ifTrue: [ ^ Color red darker ]
 ]
 
-{ #category : #'accessing - metrics' }
-OverviewPyramid >> cyclo [
-
-	^ metrics cyclo
+{ #category : #initialization }
+OverviewPyramid >> initialize [
+	super initialize.
+	bricks := RSGroup new
 ]
 
-{ #category : #initialize }
-OverviewPyramid >> emptyRectangles: aNumber [
-	aNumber timesRepeat: [rectangles add: PyramidRectangle white].
-
-]
-
-{ #category : #'accessing - metrics' }
-OverviewPyramid >> fanout [
-
-	^ metrics fanout
-]
-
-{ #category : #initialize }
-OverviewPyramid >> initializeRectangles [
-	rectangles := OrderedCollection new.
-	self emptyRectangles: 4.
-	rectangles add: (PyramidRectangle new 
-		color: Color paleGreen; 
-		text: 'ANDC';
-		popup: 'Average Number of Derived Classes';
-		yourself ).
-	rectangles add: (PyramidRectangle new 
-		color: [self colorForMetric: #ANDC withValue: self andc]; 
-		textColor: Color white;
-		calculation: [self truncatedStringForFraction: self andc];
-		popup: 'Average number of derived classes.
-First sign of how extensively abstractions
-are refined by means of inheritance';
-		yourself ).
-	self emptyRectangles: 7.
-	rectangles add: (PyramidRectangle new 
-		color: Color paleGreen; 
-		text: 'AHH';
-		popup: 'Average Hierarchy Height';
-		yourself ).
-	rectangles add: (PyramidRectangle new 
-		color: [self colorForMetric: #AHH withValue: self ahh]; 
-		textColor: Color white;
-		calculation: [self truncatedStringForFraction: self ahh];
-		popup: 'Average Hierarchy Height.
-Tell us how deep the class hierarchies are';
-		yourself ).
-	self emptyRectangles: 6.
-	rectangles add: (PyramidRectangle new 
-		color: [self colorForMetric: #NocNop withValue: metrics nocNop]; 
-		textColor: Color white;
-		calculation: [metrics nocNop];
-		popup: 'High-level Structuring (NOC/Package).
-Indicates if packages tend to be coarse grained or fine grained';
-		yourself ).
-	rectangles add: (PyramidRectangle new 
-		color: Color paleYellow; 
-		text: 'NOP';
-		popup: 'Number Of Packages';
-		yourself ).
-	rectangles add: (PyramidRectangle new 
-		color: Color paleYellow;  
-		calculation: [self nop];
-		popup: 'Number Of Packages';
-		yourself ).
-	self emptyRectangles: 5.
-	rectangles add: (PyramidRectangle new 
-		color: [self colorForMetric: #NomNoc withValue: metrics nomNoc]; 
-		textColor: Color white;
-		calculation: [metrics nomNoc];
-		popup: 'Class structuring (NOM/Class).
-Reveals how operations are distributed among classes';
-		yourself ).
-	rectangles add: (PyramidRectangle new 
-		color: Color paleYellow; 
-		text: 'NOC';
-		popup: 'Number Of Classes';
-		yourself ).
-	self yellowRectangles: 1.
-	rectangles add: (PyramidRectangle new 
-		color: Color paleYellow;  
-		calculation: [self noc];
-		popup: 'Number Of Classes';
-		yourself ).
-	self emptyRectangles: 4.
-	rectangles add: (PyramidRectangle new 
-		color: [self colorForMetric: #LocNom withValue: metrics locNom]; 
-		textColor: Color white;
-		calculation: [metrics locNom];
-		popup: 'Operation Structuring (LOC/Operation).
-Indication of how well the code is distributed among operations';
-		yourself ).
-	rectangles add: (PyramidRectangle new 
-		color: Color paleYellow; 
-		text: 'NOM';
-		popup: 'Number Of Methods';
-		yourself ).
-	self yellowRectangles: 2.
-	rectangles add: (PyramidRectangle new 
-		color: Color paleYellow;  
-		calculation: [self nom];
-		popup: 'Number Of Methods';
-		yourself ).	
-	rectangles add: (PyramidRectangle new 
-		color: Color lightMagenta; 
-		text: 'NOM';
-		popup: 'Number Of Methods';
-		yourself ).
-	rectangles add: (PyramidRectangle new 
-		color: [self colorForMetric: #CallsNom withValue: metrics callNom]; 
-		textColor: Color white;
-		calculation: [metrics callNom];
-		popup: 'Coupling intensity (CALLS/Operation).
-Tell us how many other operations are called on average from each operation';
-		yourself ).
-	self emptyRectangles: 1.
-	rectangles add: (PyramidRectangle new 
-		color: [self colorForMetric: #CycloLoc withValue: metrics cycloLoc]; 
-		textColor: Color white;
-		calculation: [metrics cycloLoc];
-		popup: 'Intrinsic operation complexity (CYCLO/Code Line).
-Characterizes how much conditional complexity we are to expect in operations';
-		yourself ).
-	rectangles add: (PyramidRectangle new 
-		color: Color paleYellow; 
-		text: 'LOC';
-		popup: 'Lines Of Code';
-		yourself ).
-	self yellowRectangles: 3.
-	rectangles add: (PyramidRectangle new 
-		color: Color paleYellow;  
-		calculation: [self loc];
-		popup: 'Lines Of Code';
-		yourself ).	
-	rectangles add: (PyramidRectangle new 
-		color: Color lightMagenta;  
-		calculation: [self calls];
-		popup: 'Number Of Invocations';
-		yourself ).	
-	rectangles add: (PyramidRectangle new 
-		color: Color lightMagenta; 
-		text: 'CALL';
-		popup: 'Number Of Invocations';
-		yourself ).
-	rectangles add: (PyramidRectangle new 
-		color: [self colorForMetric: #FanoutCalls withValue: metrics fanoutCalls]; 
-		textColor: Color white;
-		calculation: [metrics fanoutCalls];
-		popup: 'Coupling dispersion (FANOUT/Operation Call).
-Indicator of how much the coupling involves many classes';
-		yourself ).
-	rectangles add: (PyramidRectangle new 
-		color: Color paleYellow; 
-		text: 'CYCLO';
-		popup: 'Cyclomatic Number';
-		yourself ).
-	self yellowRectangles: 4.
-	rectangles add: (PyramidRectangle new 
-		color: Color paleYellow;  
-		calculation: [self cyclo];
-		popup: 'Cyclomatic Number';
-		yourself ).	
-	rectangles add: (PyramidRectangle new 
-		color: Color lightMagenta;  
-		calculation: [self fanout];
-		popup: 'Number Of Called Classes';
-		yourself ).	
-	rectangles add: (PyramidRectangle new color: Color lightMagenta;yourself).
-	rectangles add: (PyramidRectangle new 
-		color: Color lightMagenta; 
-		text: 'FANOUT';
-		popup: 'Number Of Called Classes';
-		yourself ).
-
-]
-
-{ #category : #initialize }
-OverviewPyramid >> initializeWith: aMooseModel [
-
-	mooseModel := aMooseModel.
-	moView := RTMondrian new.
+{ #category : #initialization }
+OverviewPyramid >> mooseModel: aMooseModel [
 	metrics := aMooseModel overviewPyramidMetrics.
-	self treesholdsToUse: (self class treesholdForModel: aMooseModel).
-	self initializeRectangles.
-]
-
-{ #category : #'accessing - metrics' }
-OverviewPyramid >> loc [
-
-	^ metrics loc
-]
-
-{ #category : #'accessing - metrics' }
-OverviewPyramid >> noc [ 
-
-	^ metrics noc
-]
-
-{ #category : #'accessing - metrics' }
-OverviewPyramid >> nom [
-
-	^ metrics nom
-]
-
-{ #category : #'accessing - metrics' }
-OverviewPyramid >> nop [
-
-	^ metrics nop
+	self treesholdsToUse: (self class treesholdForModel: aMooseModel)
 ]
 
 { #category : #opening }
 OverviewPyramid >> open [
-
-	self render.
-	^ moView open
-		setLabel: 'Overview pyramid';
-		extent: (620@250);
-		yourself.
+	^ super open extent: 620 @ 250
 ]
 
-{ #category : #rendering }
-OverviewPyramid >> render [
-	
-	^ self renderOn: moView 
-]
-
-{ #category : #rendering }
-OverviewPyramid >> renderOn: mondrian [
-	| s |
-	s := RTCompositeShape new.
-	s add: (RTBox new 
-		height: 20; 
-		width: 60;
-		color: [:e | e backgroundColor]).
-	s add: (RTLabel new 
-		text: [:e | e label];
-		color: [:e | e textColor]).
-		
-	mondrian shape shapeInitializer: [ :aShape | ]; shape: s.
-	mondrian nodes: rectangles.
-	mondrian layout grid gapSize: 0; lineItemsCount: [ 9 ].
-	
-	
-]
-
-{ #category : #'accessing - treeshold' }
+{ #category : #treeshold }
 OverviewPyramid >> treesholdsToUse [
 
-	^ treesholdsToUse.
+	^ treesholdsToUse
 ]
 
-{ #category : #'accessing - treeshold' }
+{ #category : #treeshold }
 OverviewPyramid >> treesholdsToUse: aDictionary [
 
-	treesholdsToUse := aDictionary. 
-]
-
-{ #category : #private }
-OverviewPyramid >> truncatedFloatForFraction: aFraction [
-	^ (((aFraction * 100) truncated) / 100 ) asFloat 
+	treesholdsToUse := aDictionary
 ]
 
 { #category : #private }
 OverviewPyramid >> truncatedStringForFraction: aFraction [
-	^ (self truncatedFloatForFraction: aFraction) asString
+	^ (metrics truncatedFloatForFraction: aFraction) asString
 ]
 
-{ #category : #'accessing - treeshold' }
+{ #category : #treeshold }
 OverviewPyramid >> useCPPTreesholds [
 
-	self treesholdsToUse: CPPTreesholds. 
+	self treesholdsToUse: CPPTreesholds
 ]
 
-{ #category : #'accessing - treeshold' }
+{ #category : #treeshold }
 OverviewPyramid >> useJavaTreesholds [
 
-	self treesholdsToUse:  JavaTreesholds. 
-]
-
-{ #category : #initialize }
-OverviewPyramid >> yellowRectangles: aNumber [
-	aNumber timesRepeat: [rectangles add: PyramidRectangle paleYellow].
-
+	self treesholdsToUse: JavaTreesholds
 ]

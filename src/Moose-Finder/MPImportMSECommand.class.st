@@ -6,11 +6,10 @@ Class {
 
 { #category : #hooks }
 MPImportMSECommand >> execute [
-	[ MooseModel new
-		importFromMSE;
-		ifNotEmpty: [ :model | 
-			model install.
-			self addModel: model ] ] fork
+
+	(MooseImportFromMSEForm new
+		 openDialogWithSpec;
+		 mooseModel) ifNotNil: [ :model | self addModel: model ]
 ]
 
 { #category : #hooks }

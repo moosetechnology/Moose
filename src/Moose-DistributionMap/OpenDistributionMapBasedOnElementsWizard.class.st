@@ -19,7 +19,7 @@ OpenDistributionMapBasedOnElementsWizard >> computeAndReturnDistributionMapEleme
 { #category : #'accessing map parameters' }
 OpenDistributionMapBasedOnElementsWizard >> containersBlock [
 	
- 	^ Smalltalk evaluate: (self wizardInformations at: #entitiesToComputeSelector).
+ 	^ Smalltalk compiler evaluate: (self wizardInformations at: #entitiesToComputeSelector).
 	
 ]
 
@@ -105,21 +105,20 @@ OpenDistributionMapBasedOnElementsWizard >> initializeWithElementGroup: aMooseGr
 
 { #category : #'wizard panes transition' }
 OpenDistributionMapBasedOnElementsWizard >> performTerminateButtonAction [
-	"by default, just close the last current pane. Override this method if you want to create a subclass of WizardControl making a specific action"
-
-	|tmpDistributionMap|
+	| tmpDistributionMap |
 	super performTerminateButtonAction.
-	tmpDistributionMap := DistributionMap 
-		onElements: self mooseGroup 
-		containers: self containersBlock 
-		properties: self propertyBlockOrSelector.
-
-	(self wizardInformations at: #useDefaultColors) 
-		ifFalse: [
-			tmpDistributionMap 
+	tmpDistributionMap := (self wizardInformations at: #useColorGradient)
+		ifFalse: [ (MooseDistributionMap new
+				elements: self mooseGroup
+				getContainers: self containersBlock
+				property: self propertyBlockOrSelector)
 				propertyColorMap: self propertyColorMap;
-				propertyValuesMap: self propertyValuesMap.
-			].
+				propertyValuesIDMap: self propertyValuesMap;
+				yourself ]
+		ifTrue: [ MooseLinearDistributionMap new
+				elements: self mooseGroup
+				getContainers: self containersBlock
+				property: self propertyBlockOrSelector ].
 	tmpDistributionMap open
 ]
 
@@ -127,27 +126,10 @@ OpenDistributionMapBasedOnElementsWizard >> performTerminateButtonAction [
 OpenDistributionMapBasedOnElementsWizard >> possibleContainerTypes [
 	"return the list of string to be displayed as possible part types, (when basing the wizard on elements)"
 
-	"| allMetaClasses result |
-	result := OrderedCollection new.
-	allMetaClasses := MooseModel meta elements select: [:each | each isFM3Class].
-	allMetaClasses do: [:aFM3Class |
-		|possibleAttributes|
-		(self mooseModel includesElementsOfType: aFM3Class implementingClass) ifTrue: [
-			possibleAttributes := aFM3Class allAttributesReturningType: self groupMetaClass inModel: self mooseModel. 
-			possibleAttributes do: [:each | 
-				(self mooseModel includesElementsOfType: aFM3Class implementingClass)
-				ifTrue: [
-					each opposite ifNotNil: [
-						result add: each opposite
-						].
-					]. 
-				].
-			].
-		].
-	^ result asSet asOrderedCollection."
-
-	^ self groupMetaClass allComplexAttributes reject: [ :aFM3Property | aFM3Property isMultivalued ]
-	"aFM3Property hasOpposite and: [aFM3Property opposite isMultivalued]"
+	^ (self groupMetaClasses
+		flatCollectAsSet:
+			[ :each | each allComplexProperties reject: [ :prop | prop isMultivalued ] ])
+		asArray
 ]
 
 { #category : #'initialize - property parts' }
@@ -163,27 +145,33 @@ OpenDistributionMapBasedOnElementsWizard >> propertyCompositePart [
 
 { #category : #'initialize - property parts' }
 OpenDistributionMapBasedOnElementsWizard >> propertyListPart [
-
-	^ (DropListPart new)
-		list: (self allPropertySelectorsForElementOfType: self groupClass);
+	^ DropListPart new
+		list:
+			(self groupMetaClasses
+				flatCollectAsSet: [ :metaClass | self allPropertySelectorsForElementOfType: metaClass ])
+				asArray;
 		useLatePopulateContents: false;
 		defaultValue: 1;
 		"callback: [ :outputValue | propertyTextFieldPart textEntryContents: 'element ' , outputValue ];"
-		transformed: [ :outputValue | '[:element | element ' , outputValue , ']' ];
+			transformed: [ :outputValue | '[:element | element ' , outputValue , ']' ];
 		yourself
 ]
 
 { #category : #'initialize - property parts' }
 OpenDistributionMapBasedOnElementsWizard >> propertyTextFieldPart [
-
-	^TextFieldPart new 
-			prefix: '[:element | '; 
-			suffix: ']' ;
-			useLatePopulateContents: false;  
-			returnSuffixAndPrefix: true; 
-			defaultValue: ('element ' ,  (self allPropertySelectorsForElementOfType: self groupClass) first);
-			transformed: [:outputValue |  outputValue];
-			yourself.
+	^ TextFieldPart new
+		prefix: '[:element | ';
+		suffix: ']';
+		useLatePopulateContents: false;
+		returnSuffixAndPrefix: true;
+		defaultValue:
+			'element '
+				,
+					(self
+						allPropertySelectorsForElementOfType: self groupMetaClasses anyOne)
+						first;
+		transformed: [ :outputValue | outputValue ];
+		yourself
 ]
 
 { #category : #initialization }
@@ -194,17 +182,23 @@ OpenDistributionMapBasedOnElementsWizard >> setConditionsTo: aWizardPane [
 			| isOk |
 			isOk := true.
 			[ 
-			 (self containersBlock rtValue: self mooseGroup anyOne) ifNil: [ isOk := false ] .
-			 ] on: Exception do: [ isOk := false ].
+			(self containersBlock value: self mooseGroup anyOne) ifNil: [ 
+				isOk := false ] ]
+				on: Exception
+				do: [ isOk := false ].
 			isOk ]
-		named: 'Invalid containers selector (the choosen selector might return nil for some elements)'.
+		named:
+		'Invalid containers selector (the choosen selector might return nil for some elements)'.
 	aWizardPane
 		condition: [ :wizardInfos | 
 			| isOk |
 			isOk := true.
 			[ 
-			(self propertyBlockOrSelector rtValue: self distributionMapElements anyOne) ifNil: [ isOk := false ]
-			 ] on: Exception do: [ isOk := false ].
+			(self propertyBlockOrSelector value:
+				 self distributionMapElements anyOne) ifNil: [ isOk := false ] ]
+				on: Exception
+				do: [ isOk := false ].
 			isOk ]
-		named: 'Not able to compute properties. (the choosen selector might return nil for some elements)'
+		named:
+		'Not able to compute properties. (the choosen selector might return nil for some elements)'
 ]

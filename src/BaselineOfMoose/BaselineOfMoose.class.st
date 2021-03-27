@@ -9,43 +9,48 @@ Class {
 
 { #category : #baseline }
 BaselineOfMoose >> baseline: spec [
+
 	<baseline>
-	spec
-		for: #common
-		do: [ self
-				famix: spec;
-				famixTagging: spec;
-				famixPresentation: spec;
-				famixReplication: spec;
-				mooseAlgos: spec;
-				mooseEasy: spec;
-				neoCSV: spec;
-				roassal2: spec.
+	spec for: #common do: [ 
+		self
+			famix: spec;
+			famixTagging: spec;
+			famixPresentation: spec;
+			famixReplication: spec;
+			mooseAlgos: spec;
+			mooseEasy: spec;
+			midas: spec;
+			neoCSV: spec.
+		spec
+			package: 'Moose-Finder' with: [ 
+				spec requires:
+						#( 'Famix' 'FamixTagging' 'FamixReplication' 'FamixPresentation'
+						   'MooseAlgos' 'Moose-RoassalPaintings'
+						   'NeoCSV' 'Merlin' ) ];
+			package: 'Moose-MenuBar'
+			with: [ spec requires: #( 'Moose-Finder' ) ];
+			package: 'Moose-Configuration';
+			package: 'Glamour-Tools';
+			package: 'Glamour-Magritte-Presentations';
+			package: 'Moose-Help';
+			package: 'Moose-RoassalPaintings';
+			package: 'Moose-Finder-Tests';
+			package: 'Moose-RoassalPaintings-Tests';
+			package: 'Merlin';
+			package: 'Moose-DistributionMap';
+			package: 'Moose-DistributionMap-Tests' ].
+	spec for: #( #'pharo8.x' #'pharo9.x' ) do: [ 
+		spec
+			package: 'Moose-Finder-Pharo8';
+			package: 'Moose-Finder'
+			with: [ spec includes: #( 'Moose-Finder-Pharo8' ) ].
+		spec for: #( #NewTools ) do: [ 
 			spec
-				package: 'Moose-Finder'
-					with: [ spec requires: #('Famix' 'FamixTagging' 'FamixReplication' 'FamixPresentation' 'MooseAlgos' 'Moose-RoassalPaintings' 'NeoCSV' 'Merlin') ];
-				package: 'Moose-MenuBar' with: [ spec requires: #('Moose-Finder') ];
-				package: 'Moose-Configuration';
-				package: 'Glamour-Tools';
-				package: 'Glamour-Magritte-Presentations';
-				package: 'Moose-Help';
-				package: 'Moose-RoassalPaintings' with: [ spec requires: #('Roassal2') ];
-				package: 'Moose-Finder-Tests';
-				package: 'Moose-RoassalPaintings-Tests';
-				package: 'Merlin';
-				package: 'Moose-DistributionMap';
-				package: 'Moose-DistributionMap-Tests' ].
-	spec
-		for: #'pharo8.x'
-		do: [ spec
 				package: 'Moose-Finder-Pharo8';
-				package: 'Moose-Finder' with: [ spec includes: #('Moose-Finder-Pharo8') ].
-			spec
-				for: #(#NewTools)
-				do: [ spec
-						package: 'Moose-Finder-Pharo8';
-						package: 'Moose-Finder2';
-						package: 'Moose-Finder' with: [ spec includes: #('Moose-Finder-Pharo8' 'Moose-Finder2') ] ] ]
+				package: 'Moose-Finder2';
+				package: 'Moose-Finder'
+				with: [ spec includes: #( 'Moose-Finder-Pharo8'
+						   'Moose-Finder2' ) ] ] ]
 ]
 
 { #category : #baseline }
@@ -76,6 +81,15 @@ BaselineOfMoose >> famixTagging: spec [
 ]
 
 { #category : #dependencies }
+BaselineOfMoose >> midas: spec [
+
+	spec
+		baseline: 'Midas'
+		with: [ 
+		spec repository: 'github://moosetechnology/Midas:development/src' ]
+]
+
+{ #category : #dependencies }
 BaselineOfMoose >> mooseAlgos: spec [
 	spec
 		baseline: 'MooseAlgos'
@@ -101,13 +115,4 @@ BaselineOfMoose >> neoCSV: spec [
 { #category : #accessing }
 BaselineOfMoose >> projectClass [
 	^ MetacelloCypressBaselineProject
-]
-
-{ #category : #dependencies }
-BaselineOfMoose >> roassal2: spec [
-	spec
-		baseline: 'Roassal2'
-		with: [ spec
-				loads: 'Minimal';
-				repository: 'github://ObjectProfile/Roassal2:004ab6f3dfd41cf06526c57115ee42cc921e7668/src' ]
 ]
