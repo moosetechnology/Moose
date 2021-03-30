@@ -15,7 +15,7 @@ FamixTraitGroupVisualizationBrowser class >> menuCommandOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #'Famix traits groups')
 		order: 1.0; 
-		parent: #Moose;
+		parent: (MooseModel mooseDeveloperToolsMenu) ;
 		label: 'Famix trait groups';
 		help: 'Famix traits groups browser';
 		action:[ self openGroupsBrowser];

@@ -14,7 +14,9 @@ MoosePlayground class >> initialize [
 
 { #category : #'world menu' }
 MoosePlayground class >> menuCommandOn: aBuilder [
-	<worldMenu>
+	"moose menu now handled in #open"
+
+	"<worldMenu>
 	(aBuilder item: #'Moose Playground')
 		order: 1.0; 
 		parent: #Moose;
@@ -23,7 +25,14 @@ MoosePlayground class >> menuCommandOn: aBuilder [
 		help: 'Playground enhanced for usage in Moose';
 		icon: (MooseIcons mooseIcon scaledToSize: 16@16);
 		action:[ MoosePlayground open ];
-		withSeparatorAfter
+		withSeparatorAfter"
+]
+
+{ #category : #'instance creation' }
+MoosePlayground class >> open [
+	<example>
+	<mooseTool: #'Moose playground'>
+	^super open
 ]
 
 { #category : #building }
