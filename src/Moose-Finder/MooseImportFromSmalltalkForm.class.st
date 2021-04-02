@@ -1,6 +1,6 @@
 Class {
 	#name : #MooseImportFromSmalltalkForm,
-	#superclass : #MiPresenter,
+	#superclass : #MooseImportForm,
 	#instVars : [
 		'packagesButton',
 		'modelNameField',
@@ -13,8 +13,7 @@ Class {
 		'invocationStrategyDroplist',
 		'packageNames',
 		'contextCheckBoxes',
-		'entitiesToImport',
-		'mooseModel'
+		'entitiesToImport'
 	],
 	#category : #'Moose-Finder-Import'
 }
@@ -28,6 +27,12 @@ MooseImportFromSmalltalkForm class >> defaultSpec [
 { #category : #specs }
 MooseImportFromSmalltalkForm class >> title [
 	^ 'Import model from Pharo image'
+]
+
+{ #category : #initialization }
+MooseImportFromSmalltalkForm class >> windowExtent [
+
+	^ 500 @ 500
 ]
 
 { #category : #updating }
@@ -140,19 +145,6 @@ MooseImportFromSmalltalkForm >> initializeConfigurationCheckBoxes [
 		yourself
 ]
 
-{ #category : #initialization }
-MooseImportFromSmalltalkForm >> initializeDialogWindow: aDialog [
-
-	aDialog
-		initialExtent: 500 @ 500;
-		closeOnBackdropClick: false;
-		addButton: 'Install' do: [ :presenter | 
-			| model |
-			model := self validateImportation.
-			presenter close ];
-		addButton: 'Cancel' do: [ :presenter | presenter close ]
-]
-
 { #category : #'initialization - widgets' }
 MooseImportFromSmalltalkForm >> initializeDroplists [
 	factoryDroplist := self newDropList
@@ -230,12 +222,6 @@ MooseImportFromSmalltalkForm >> modelNameLayout [
 		yourself
 ]
 
-{ #category : #accessing }
-MooseImportFromSmalltalkForm >> mooseModel [
-
-	^ mooseModel
-]
-
 { #category : #layout }
 MooseImportFromSmalltalkForm >> packageButtonLayout [
 	^ SpBoxLayout newHorizontal
@@ -253,6 +239,28 @@ MooseImportFromSmalltalkForm >> packages [
 { #category : #accessing }
 MooseImportFromSmalltalkForm >> packages: anObject [
 	packageNames := anObject
+]
+
+{ #category : #action }
+MooseImportFromSmalltalkForm >> privateImportModel [
+
+	| mooseModel |
+	self flag: #TODO.
+	"Equivalent of (wizardInformations at: #createScript) ifTrue: [ self generateScriptForPackages: selectedPackages ]"
+	self setImportingContext.
+
+	"Create model"
+	mooseModel := self factoryClass new modelClass named: self modelName.
+
+	"Set importation parameters then import"
+	self importerClass new
+		importingContext: importingContext;
+		model: mooseModel;
+		addFromPackagesNamed: packageNames;
+		candidateClass: invocationStrategyDroplist selectedItem;
+		runWithProgress.
+
+	^ mooseModel
 ]
 
 { #category : #updating }
@@ -282,26 +290,4 @@ MooseImportFromSmalltalkForm >> updatePackagesButton [
 							s
 								<< name;
 								cr ] ]) trim
-]
-
-{ #category : #action }
-MooseImportFromSmalltalkForm >> validateImportation [
-
-	self flag: #TODO.
-	"Equivalent of (wizardInformations at: #createScript) ifTrue: [ self generateScriptForPackages: selectedPackages ]"
-	self setImportingContext.
-
-	"Create model"
-	mooseModel := self factoryClass new modelClass named: self modelName.
-
-	"Set importation parameters"
-	self importerClass new
-		importingContext: importingContext;
-		model: mooseModel;
-		addFromPackagesNamed: packageNames;
-		candidateClass: invocationStrategyDroplist selectedItem;
-		runWithProgress.
-
-	"Install model"
-	^ mooseModel install
 ]
