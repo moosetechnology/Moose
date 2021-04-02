@@ -7,9 +7,12 @@ Class {
 { #category : #hooks }
 MPImportMSECommand >> execute [
 
-	(MooseImportFromMSEForm new
-		 openDialogWithSpec;
-		 mooseModel) ifNotNil: [ :model | self addModel: model ]
+	| importForm |
+	importForm := MooseImportFromMSEForm new.
+	importForm announcer
+		when: MPNewModelInstalled
+		do: [ :ann | self addModel: ann newModel ].
+	importForm openModalWithSpec
 ]
 
 { #category : #hooks }

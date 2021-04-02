@@ -7,9 +7,12 @@ Class {
 { #category : #hooks }
 MPImportSTCommand >> execute [
 
-	(MooseImportFromSmalltalkForm new
-		 openModalWithSpec;
-		 mooseModel) ifNotNil: [ :model | self addModel: model ]
+	| importForm |
+	importForm := MooseImportFromSmalltalkForm new.
+	importForm announcer
+		when: MPNewModelInstalled
+		do: [ :ann | self addModel: ann newModel ].
+	importForm openModalWithSpec
 ]
 
 { #category : #hooks }
