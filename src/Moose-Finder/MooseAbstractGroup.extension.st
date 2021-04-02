@@ -11,6 +11,14 @@ MooseAbstractGroup >> customNavigationItems [
 ]
 
 { #category : #'*moose-finder' }
+MooseAbstractGroup >> displayStringOn: aStream [
+	super displayStringOn: aStream.
+	aStream nextPut: $(.
+	aStream print: self size.
+	aStream nextPut: $)
+]
+
+{ #category : #'*moose-finder' }
 MooseAbstractGroup >> gtDisplayOn: aStream [
 	super gtDisplayOn: aStream.
 	aStream nextPut: $(.
