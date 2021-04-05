@@ -5,40 +5,39 @@ Class {
 }
 
 { #category : #'world menu' }
-MooseAbstractInstallToolEntry class >> allToolClasses [
-	^ self subclasses reject: #isCategory
-]
-
-{ #category : #testing }
-MooseAbstractInstallToolEntry class >> isCategory [
-	^ false
-]
-
-{ #category : #'world menu' }
 MooseAbstractInstallToolEntry class >> menuCommandOn: aBuilder [
 	<worldMenu>
-	| b |
-	b := ((aBuilder
-		item: self menuConfigurationSymbol;
-		order: 15;
-		parent: #Moose) icon: MooseIcons mooseIcon)
-		withSeparatorAfter;
+	^aBuilder
+		item: self menuConfigurationSymbol ;
+		order: 100 ;
+		parent: #Moose ;
+		icon: (MooseIcons mooseIcon) ;
+		withSeparatorAfter ;
 		yourself.
-	b
-		with: [ self allToolClasses
-						do: [ :cls | 
-							(aBuilder item: cls new label)
-								order: 20;
-								parent: self menuConfigurationSymbol;
-								label: 'Load ', cls new label;
-								help:'Load ', cls new label;
-								icon: MooseIcons mooseIcon;
-								action: [ cls new run ] ] ].
+
 ]
 
 { #category : #'world menu' }
 MooseAbstractInstallToolEntry class >> menuConfigurationSymbol [
-	^ #'Moose Projects'
+	^ #'Additional modules'
+]
+
+{ #category : #'world menu' }
+MooseAbstractInstallToolEntry class >> menuPriority [
+	^0
+]
+
+{ #category : #'world menu' }
+MooseAbstractInstallToolEntry class >> toolEntryMenuCommandOn: aBuilder [
+	"Configure Moose Menu for sub-entries"
+	^aBuilder
+		item: (self new label) ;
+		parent: (self menuConfigurationSymbol) ;
+		order: (self menuPriority) ;
+		label: ('Load ', self new label) ;
+		icon: (MooseIcons mooseIcon) ;
+		action: [ self new run ] ;
+		yourself
 ]
 
 { #category : #execution }

@@ -21,9 +21,14 @@ MooseAbstractToolEntry class >> isCategory [
 	^ self name = #MooseAbstractToolEntry
 ]
 
+{ #category : #testing }
+MooseAbstractToolEntry class >> isDeprecated [ 
+	^true
+]
+
 { #category : #'world menu' }
 MooseAbstractToolEntry class >> menuCommandOn: aBuilder [
-	<worldMenu>
+	"<worldMenu>"
 	| b |
 	b := ((aBuilder
 		item: self menuConfigurationSymbol;

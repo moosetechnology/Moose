@@ -134,17 +134,6 @@ MooseModel class >> isTestModel [
 ]
 
 { #category : #'*Moose-Finder' }
-MooseModel class >> menuBrowseMetaOn: aBuilder [
-	<worldMenu>
-	(aBuilder item: #'MetaBrowser')
-		order: 100; 
-		parent: (self mooseDeveloperToolsMenu) ;
-		label: 'Meta Browser';
-		help: 'Famix compatiblity meta-model browser';
-		action:[MooseModel browseMeta]
-]
-
-{ #category : #'*Moose-Finder' }
 MooseModel >> mooseFinderRootFolderIn: composite [
 	<moosePresentationOrder: 30>
 	self rootFolder asFileReference exists ifTrue: [ 

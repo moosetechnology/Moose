@@ -47,16 +47,6 @@ MooseModelFinderExtensionsTest >> testBrowseMeta [
 ]
 
 { #category : #tests }
-MooseModelFinderExtensionsTest >> testMenuBrowseMetaOn [
-	| builder |
-	builder := PragmaMenuBuilder new.
-	self assert: builder itemList isNil.
-	MooseModel menuBrowseMetaOn: builder.
-	self assert: builder itemList isCollection.
-	self denyEmpty: builder itemList
-]
-
-{ #category : #tests }
 MooseModelFinderExtensionsTest >> testMooseInterestingEntity [
 	| storage state |
 	model := MooseModel new.
