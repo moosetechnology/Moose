@@ -3,7 +3,7 @@ Dialog used to import MSE models
 "
 Class {
 	#name : #MooseImportFromMSEForm,
-	#superclass : #MiPresenter,
+	#superclass : #MooseImportForm,
 	#instVars : [
 		'mooseModelDroplist'
 	],
@@ -33,15 +33,9 @@ MooseImportFromMSEForm class >> title [
 ]
 
 { #category : #initialization }
-MooseImportFromMSEForm >> initializeDialogWindow: aDialog [
+MooseImportFromMSEForm class >> windowExtent [
 
-	aDialog
-		addButton: 'Install' do: [ :presenter | 
-			| model |
-			model := mooseModelDroplist selectedItem new importFromMSE.
-			model name = #noname ifFalse: [ model install ].
-			presenter close ];
-		addButton: 'Cancel' do: [ :presenter | presenter close ]
+	^ 300 @ (self toolbarHeight + self buttonHeight * 2)
 ]
 
 { #category : #initialization }
@@ -56,12 +50,8 @@ MooseImportFromMSEForm >> initializePresenters [
 		                     yourself
 ]
 
-{ #category : #initialization }
-MooseImportFromMSEForm >> initializeWindow: aWindowPresenter [
+{ #category : #action }
+MooseImportFromMSEForm >> privateImportModel [
 
-	super initializeWindow: aWindowPresenter.
-	aWindowPresenter
-		initialExtent:
-			300 @ (self class toolbarHeight + self class buttonHeight * 2);
-		centered
+	^ mooseModelDroplist selectedItem new importFromMSE
 ]

@@ -9,7 +9,9 @@ Class {
 
 { #category : #menu }
 MoosePanel class >> menuCommandOn: aBuilder [
-	<worldMenu>
+	"moose menu now handled in #open"
+
+	"<worldMenu>
 	(aBuilder item: #'MoosePanel')
 		order: 1.0; 
 		parent: #Moose;
@@ -17,11 +19,13 @@ MoosePanel class >> menuCommandOn: aBuilder [
 		help: 'Moose models management';
 		icon: (MooseIcons mooseIcon scaledToSize: 16@16);
 		action:[MoosePanel open];
-		withSeparatorAfter
+		withSeparatorAfter"
 ]
 
 { #category : #opening }
 MoosePanel class >> open [
+	<example>
+	<mooseTool: #'Moose panel'>
 	^ self new openOn: MooseModel root
 ]
 
