@@ -4,6 +4,18 @@ Class {
 	#category : #'Moose-MenuBar'
 }
 
+{ #category : #'world menu' }
+MoosePlantUMLGizmoEntry class >> menuCommandOn: aBuilder [
+	"method needed for the pragma"
+	<worldMenu>
+	^self toolEntryMenuCommandOn: aBuilder
+]
+
+{ #category : #'world menu' }
+MoosePlantUMLGizmoEntry class >> menuPriority [ 
+	^40
+]
+
 { #category : #execution }
 MoosePlantUMLGizmoEntry >> execute [
 	Metacello new

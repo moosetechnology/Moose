@@ -4,6 +4,18 @@ Class {
 	#category : #'Moose-MenuBar'
 }
 
+{ #category : #'world menu' }
+MooseFASTToolEntry class >> menuCommandOn: aBuilder [
+	"method needed because for the pragma"
+	<worldMenu>
+	^self toolEntryMenuCommandOn: aBuilder
+]
+
+{ #category : #'world menu' }
+MooseFASTToolEntry class >> menuPriority [ 
+	^super menuPriority + 1
+]
+
 { #category : #execution }
 MooseFASTToolEntry >> execute [
 	Metacello new
