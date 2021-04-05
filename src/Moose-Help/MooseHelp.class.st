@@ -13,5 +13,5 @@ MooseHelp class >> menuCommandOn: aBuilder [
 			label: 'Online documentation';
 			help: 'Open the Moose documentation in a web browser';
 			icon: (Smalltalk ui icons iconNamed: #smallHelp);
-			action: [ WebBrowser openOn: 'https://github.com/moosetechnology/moose-wiki' ]
+			action: [ WebBrowser openOn: 'https://modularmoose.org/moose-wiki/' ]
 ]
