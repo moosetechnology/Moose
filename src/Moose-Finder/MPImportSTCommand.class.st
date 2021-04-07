@@ -1,27 +1,35 @@
 Class {
 	#name : #MPImportSTCommand,
 	#superclass : #MPImportCommand,
-	#category : #'Moose-Finder'
+	#category : #'Moose-Finder-Import'
 }
 
 { #category : #hooks }
-MPImportSTCommand >> execute [
+MPImportSTCommand class >> defaultDescription [
 
-	| importForm |
-	importForm := MooseImportFromSmalltalkForm new.
-	importForm announcer
-		when: MPNewModelInstalled
-		do: [ :ann | self addModel: ann newModel ].
-	importForm openModalWithSpec
+	^ 'Import Famix Smalltalk model from the current image'
 ]
 
 { #category : #hooks }
-MPImportSTCommand >> icon [
+MPImportSTCommand class >> defaultIcon [
 	
 	^ MooseIcons mooseImportSmalltalk
 ]
 
 { #category : #hooks }
-MPImportSTCommand >> label [
-	^ 'Import FAMIX Smalltalk model from the current image'
+MPImportSTCommand class >> defaultIconName [
+	
+	^ #mooseImportSmalltalk
+]
+
+{ #category : #hooks }
+MPImportSTCommand class >> defaultName [
+
+	^ 'Import from Smalltalk'
+]
+
+{ #category : #hooks }
+MPImportSTCommand >> importForm [
+
+	^ MooseImportFromSmalltalkForm
 ]

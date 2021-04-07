@@ -1,9 +1,6 @@
 Class {
 	#name : #MoosePanelCommand,
-	#superclass : #Object,
-	#instVars : [
-		'moosePanel'
-	],
+	#superclass : #CmCommand,
 	#category : #'Moose-Finder'
 }
 
@@ -15,18 +12,6 @@ MoosePanelCommand class >> allCommands [
 { #category : #testing }
 MoosePanelCommand class >> isAbstract [
 	^ self = MoosePanelCommand
-]
-
-{ #category : #actions }
-MoosePanelCommand >> addModel: aMooseModel [
-	"Note that MoosePanel has its list refreshed"
-	moosePanel ifNotNil: [moosePanel addModel: aMooseModel]
-]
-
-{ #category : #hooks }
-MoosePanelCommand >> category [
-
-	^ nil
 ]
 
 { #category : #hooks }
@@ -42,15 +27,4 @@ MoosePanelCommand >> icon [
 { #category : #hooks }
 MoosePanelCommand >> label [
 	self subclassResponsibility
-]
-
-{ #category : #accessing }
-MoosePanelCommand >> moosePanel: aMoosePanel [
-	moosePanel := aMoosePanel
-]
-
-{ #category : #actions }
-MoosePanelCommand >> updateModelList [
-	"Refresh the list of models in the moose panel. Note that this is not necessary to call this method when adding a model"
-	moosePanel ifNotNil: [ moosePanel updateModelList]
 ]
