@@ -1,26 +1,35 @@
 Class {
 	#name : #MPImportMSECommand,
 	#superclass : #MPImportCommand,
-	#category : #'Moose-Finder'
+	#category : #'Moose-Finder-Import'
 }
 
 { #category : #hooks }
-MPImportMSECommand >> execute [
+MPImportMSECommand class >> defaultDescription [
 
-	| importForm |
-	importForm := MooseImportFromMSEForm new.
-	importForm announcer
-		when: MPNewModelInstalled
-		do: [ :ann | self addModel: ann newModel ].
-	importForm openModalWithSpec
+	^ 'Import model from MSE file'
 ]
 
 { #category : #hooks }
-MPImportMSECommand >> icon [
+MPImportMSECommand class >> defaultIcon [
+
 	^ MooseIcons mooseImportMse
 ]
 
 { #category : #hooks }
-MPImportMSECommand >> label [
-	^ 'Import model from MSE file'
+MPImportMSECommand class >> defaultIconName [
+
+	^ #mooseImportMse
+]
+
+{ #category : #hooks }
+MPImportMSECommand class >> defaultName [
+
+	^ 'Import from MSE'
+]
+
+{ #category : #hooks }
+MPImportMSECommand >> importForm [
+
+	^ MooseImportFromMSEForm
 ]

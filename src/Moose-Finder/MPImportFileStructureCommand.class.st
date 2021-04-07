@@ -1,19 +1,27 @@
 Class {
 	#name : #MPImportFileStructureCommand,
 	#superclass : #MPImportCommand,
-	#category : #'Moose-Finder'
+	#category : #'Moose-Finder-Import'
 }
+
+{ #category : #default }
+MPImportFileStructureCommand class >> defaultIcon [
+
+	^ nil
+]
+
+{ #category : #default }
+MPImportFileStructureCommand class >> defaultName [
+
+	^ 'Import file model from file system'
+]
 
 { #category : #hooks }
 MPImportFileStructureCommand >> execute [
+
 	MooseModel new
 		importFileStructure;
 		ifNotEmpty: [ :model | 
 			model install.
-			self addModel: model ]
-]
-
-{ #category : #hooks }
-MPImportFileStructureCommand >> label [
-	^ 'Import file model from file system'
+			self context updateForNewModel: model ]
 ]

@@ -24,6 +24,7 @@ MoosePanel class >> menuCommandOn: aBuilder [
 
 { #category : #opening }
 MoosePanel class >> open [
+
 	<example>
 	<mooseTool: #'Moose panel'>
 	^ self new openOn: MooseModel root
@@ -31,14 +32,18 @@ MoosePanel class >> open [
 
 { #category : #building }
 MoosePanel >> browserActionsIn: aBrowser [
-	aBrowser act: [:b | b update] icon: GLMUIThemeExtraIcons glamorousRefresh entitled: 'Update'.
-	aBrowser dynamicActions: [:root | 
-		MoosePanelCommand allCommands asOrderedCollection collect: [:each | 
+
+	aBrowser
+		act: [ :b | b update ]
+		icon: GLMUIThemeExtraIcons glamorousRefresh
+		entitled: 'Update'.
+	aBrowser dynamicActions: [ :root | 
+		(MoosePanelCommand allCommands , MPImportCommand allSubclasses)
+			asOrderedCollection collect: [ :each | 
 			GLMGenericAction new
-				title: each new label;
-				"category: each new category;"
-				action: [each new execute];
-				icon: each new icon ]]		
+				title: each defaultName;
+				action: [ each new execute ];
+				icon: each defaultIcon ] ]
 ]
 
 { #category : #building }

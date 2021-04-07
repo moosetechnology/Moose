@@ -4,10 +4,16 @@ Class {
 	#category : #'Moose-Finder'
 }
 
-{ #category : #accessing }
-MPHelp >> category [
+{ #category : #default }
+MPHelp class >> defaultIcon [
 
-	^ 'Meta'
+	^ GLMUIThemeExtraIcons glamorousHelp
+]
+
+{ #category : #default }
+MPHelp class >> defaultName [
+
+	^ 'Moose Help'
 ]
 
 { #category : #execution }
