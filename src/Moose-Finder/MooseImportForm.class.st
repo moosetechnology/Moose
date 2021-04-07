@@ -29,7 +29,7 @@ MooseImportForm >> importModel [
 MooseImportForm >> initializeDialogWindow: aDialog [
 
 	aDialog initialExtent: self class windowExtent.
-	aDialog addButton: 'Install' do: [ :dialog | 
+	aDialog addButton: 'Import' do: [ :dialog | 
 		dialog close.
 		self importModel ].
 	aDialog addButton: 'Cancel' do: [ :dialog | dialog close ]
