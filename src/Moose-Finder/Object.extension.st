@@ -59,19 +59,6 @@ Object >> mooseFinderEvaluatorIn: composite [
 ]
 
 { #category : #'*Moose-Finder' }
-Object >> mooseFinderExampleSourceIn: composite inContext: aFinder [
-	<moosePresentationOrder: 10>
-	| previousRawSelection |
-	aFinder panes size > 1
-		ifTrue: [ 
-			previousRawSelection := (aFinder panes reversed second port: #rawSelection) value.
-			previousRawSelection isGTExample
-				ifTrue: [ (previousRawSelection gtDisplaySourceIn: composite) 
-					title: 'E.g. source';
-					titleIcon: MooseIcons mooseSourceText ] ]
-]
-
-{ #category : #'*Moose-Finder' }
 Object >> mooseFinderMetaIn: composite [
 	<moosePresentationOrder: 1000>
 	(self mooseInterestingEntity gtInspectorMetaIn: composite)
