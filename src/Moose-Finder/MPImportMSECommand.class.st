@@ -28,8 +28,8 @@ MPImportMSECommand class >> defaultName [
 	^ 'Import from MSE'
 ]
 
-{ #category : #hooks }
-MPImportMSECommand >> importForm [
+{ #category : #accessing }
+MPImportMSECommand class >> importForm [
 
 	^ MooseImportFromMSEForm
 ]

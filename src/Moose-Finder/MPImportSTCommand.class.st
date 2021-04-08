@@ -12,7 +12,7 @@ MPImportSTCommand class >> defaultDescription [
 
 { #category : #hooks }
 MPImportSTCommand class >> defaultIcon [
-	
+
 	^ MooseIcons mooseImportSmalltalk
 ]
 
@@ -28,8 +28,8 @@ MPImportSTCommand class >> defaultName [
 	^ 'Import from Smalltalk'
 ]
 
-{ #category : #hooks }
-MPImportSTCommand >> importForm [
+{ #category : #accessing }
+MPImportSTCommand class >> importForm [
 
 	^ MooseImportFromSmalltalkForm
 ]
