@@ -6,6 +6,7 @@ Simple use:
 
 Link to a context (for example a spec presenter):
 `(MPImportSTCommand forSpecContext: yourPresenter) execute`.
+You can also use class side method `#asCommandGroupForSpecContext:` to build a Spec command group with both MSE and St import commands.
 Your presenter should implement `#updateForNewModel:` to define behavior when a new model is installed successfully
 "
 Class {
@@ -15,21 +16,29 @@ Class {
 }
 
 { #category : #converting }
-MPImportCommand class >> asCommandGroup [
+MPImportCommand class >> addToSpCommandGroup: aSpCommandGroup forSpecContext: aPresenter [
 
-	^ CmCommandGroup new
-		  register: MPImportMSECommand;
-		  register: MPImportSTCommand;
-		  yourself
+	{ 
+		MPImportMSECommand.
+		MPImportSTCommand } do: [ :cmd | 
+		aSpCommandGroup register: ((cmd forSpecContext: aPresenter)
+				 iconName: cmd defaultIconName;
+				 yourself) ].
+	^ aSpCommandGroup
 ]
 
 { #category : #converting }
-MPImportCommand class >> asSpecCommandGroupIn: aPresenter [
+MPImportCommand class >> asCommandGroupForSpecContext: aPresenter [
 
-	^ CmCommandGroup forSpec
-		  register: (MPImportMSECommand forSpecContext: aPresenter);
-		  register: (MPImportSTCommand forSpecContext: aPresenter);
-		  yourself
+	^ self
+		  addToSpCommandGroup: CmCommandGroup forSpec
+		  forSpecContext: aPresenter
+]
+
+{ #category : #accessing }
+MPImportCommand class >> importForm [
+
+	self subclassResponsibility
 ]
 
 { #category : #testing }
@@ -40,11 +49,5 @@ MPImportCommand class >> isAbstract [
 { #category : #hooks }
 MPImportCommand >> execute [
 
-	(self importForm on: self context) openModalWithSpec
-]
-
-{ #category : #hooks }
-MPImportCommand >> importForm [
-
-	self subclassResponsibility
+	(self class importForm on: self context) openModalWithSpec
 ]
