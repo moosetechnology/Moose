@@ -43,11 +43,11 @@ MooseImportFromMSEForm >> initializePresenters [
 
 	super initializePresenters.
 	mooseModelDroplist := self newDropList
-		                     items:
-			                     (MooseModel withAllSubclasses reject: [ :model | 
-					                      model isDeprecated or: [ model isTestModel ] ]);
-		                     selectItem: MooseModel;
-		                     yourself
+		items:
+			(MooseModel withAllSubclasses reject: [ :model | 
+				model isDeprecated or: [ model isTestModel ] ]);
+		selectItem: MooseModel;
+		yourself
 ]
 
 { #category : #action }
