@@ -1,6 +1,4 @@
-[![Build Status](https://travis-ci.com/moosetechnology/Moose.svg?branch=development)](https://travis-ci.com/moosetechnology/Moose)
-
-![Continuous](https://github.com/moosetechnology/Moose/workflows/Continuous/badge.svg?branch=development)
+[![Continuous-v8](https://github.com/moosetechnology/Moose/actions/workflows/continuous-v8.yml/badge.svg)](https://github.com/moosetechnology/Moose/actions/workflows/continuous-v8.yml)
 
 Moose is an extensive platform for software and data analysis.
 
