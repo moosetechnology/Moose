@@ -38,6 +38,15 @@ MooseAbstractVisualization >> appearInPaneComposite: aGTComposite [
 			self canvas ]
 ]
 
+{ #category : #display }
+MooseAbstractVisualization >> asInspectorPresenter [
+
+	self build.
+	^ SpRoassal3InspectorPresenter new
+		  canvas: self canvas;
+		  yourself
+]
+
 { #category : #building }
 MooseAbstractVisualization >> build [
 	self buildLegend.
