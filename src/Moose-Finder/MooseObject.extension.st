@@ -152,7 +152,7 @@ MooseObject >> mooseSpecificSpotterProcessorsFor: aSpotterStep [
 			title: (assoc key argumentAt: 1);
 			itemIcon: #mooseIcon;
 			filter: GTFilterSubstring;
-			itemName: #gtDisplayString;
+			itemName: #displayString;
 			order: 1 ]
 ]
 

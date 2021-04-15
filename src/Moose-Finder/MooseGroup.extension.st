@@ -50,7 +50,7 @@ MooseGroup >> spotterItemsFor: aStep [
 		title: 'Items';
 		candidatesLimit: 50;
 		allCandidates: [ self entities ];
-		itemName: [ :each | each gtDisplayString ];
+		itemName: [ :each | each displayString ];
 		filter: GTFilterSubstring;
 		wantsToDisplayOnEmptyQuery: true
 ]
