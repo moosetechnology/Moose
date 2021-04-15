@@ -28,25 +28,32 @@ MooseAbstractGroup >> gtDisplayOn: aStream [
 
 { #category : #'*moose-finder' }
 MooseAbstractGroup >> mooseFinderListIn: composite [
+
 	<moosePresentationOrder: 1>
 	composite fastList
 		beMultiple;
 		showOnly: 50;
 		display: #mooseInterestingEntity;
-		sortBlock: [ :a :b | a gtDisplayString < b gtDisplayString ];
+		sortBlock: [ :a :b | a displayString < b displayString ];
 		send: [ :each | 
-			each
-				ifNotNil: [ each size = 1
+			each ifNotNil: [ 
+					each size = 1
 						ifTrue: [ each first ]
 						ifFalse: [ each asMooseGroup ] ] ];
-		format: #gtDisplayString;
+		format: #displayString;
 		icon: #mooseIcon;
-		title: [ :each | each mooseInterestingEntity size asString , ' items' ];
+		title: [ :each | 
+			each mooseInterestingEntity size asString , ' items' ];
 		titleIcon: MooseIcons mooseList;
-		when: [ :input | (input mooseInterestingEntity isKindOf: MooseGroup) or: [ input mooseInterestingEntity isKindOf: Collection ] ];
-		dynamicActionsOnSelection: [ :list | list selection mooseInterestingEntity mooseFinderActions ];
-		updateOn: MooseEntityAdded from: [ :anObject | MooseFinder announcerFor: anObject ];
-		updateOn: MooseEntityRemoved from: [ :anObject | MooseFinder announcerFor: anObject ]
+		when: [ :input | 
+			(input mooseInterestingEntity isKindOf: MooseGroup) or: [ 
+					input mooseInterestingEntity isKindOf: Collection ] ];
+		dynamicActionsOnSelection: [ :list | 
+			list selection mooseInterestingEntity mooseFinderActions ];
+		updateOn: MooseEntityAdded
+		from: [ :anObject | MooseFinder announcerFor: anObject ];
+		updateOn: MooseEntityRemoved
+		from: [ :anObject | MooseFinder announcerFor: anObject ]
 ]
 
 { #category : #'*moose-finder' }
