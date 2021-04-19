@@ -2,21 +2,22 @@ Class {
 	#name : #MooseSmalltalkPackagesSelector,
 	#superclass : #MiPresenter,
 	#instVars : [
-		'chosenPackages',
-		'allPackages',
 		'importer',
 		'acceptButton',
-		'cancelButton'
+		'cancelButton',
+		'chosenPackagesFilteringList',
+		'allPackagesFilteringList'
 	],
 	#category : #'Moose-Finder-Import'
 }
 
 { #category : #accessing }
 MooseSmalltalkPackagesSelector class >> defaultSpec [
+
 	^ SpBoxLayout newHorizontal
-		add: #allPackages;
-		add: #chosenPackages;
-		yourself
+		  add: #allPackagesFilteringList;
+		  add: #chosenPackagesFilteringList;
+		  yourself
 ]
 
 { #category : #specs }
@@ -31,7 +32,7 @@ MooseSmalltalkPackagesSelector >> initializeDialogWindow: aDialog [
 		addButton: 'Accept'
 			do: [ :presenter | 
 			importer
-				packages: chosenPackages items;
+				packages: chosenPackagesFilteringList items;
 				updatePackagesButton.
 			presenter close ];
 		addButton: 'Cancel' do: [ :presenter | presenter close ]
@@ -39,18 +40,21 @@ MooseSmalltalkPackagesSelector >> initializeDialogWindow: aDialog [
 
 { #category : #initialization }
 MooseSmalltalkPackagesSelector >> initializePresenters [
+
 	super initializePresenters.
-	allPackages := self newList
+	allPackagesFilteringList := self newFilteringList
+		               items: RPackage organizer packageNames;
+		               yourself.
+	allPackagesFilteringList listPresenter
 		beMultipleSelection;
-		items: RPackage organizer packageNames;
 		sortingBlock: #yourself ascending;
 		selectItems: importer packages;
-		whenSelectionChangedDo: [ chosenPackages items: allPackages selectedItems ];
-		yourself.
-	chosenPackages := self newList
-		items: allPackages selectedItems;
-		sortingBlock: #yourself ascending;
-		yourself
+		whenSelectionChangedDo: [ 
+			chosenPackagesFilteringList items: allPackagesFilteringList listPresenter selectedItems ].
+	chosenPackagesFilteringList := self newFilteringList
+		                  items: allPackagesFilteringList listPresenter selectedItems;
+		                  yourself.
+	chosenPackagesFilteringList listPresenter sortingBlock: #yourself ascending
 ]
 
 { #category : #'accessing model' }
