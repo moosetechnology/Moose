@@ -13,17 +13,20 @@ Class {
 { #category : #'world menu' }
 FamixTraitGroupVisualizationBrowser class >> menuCommandOn: aBuilder [
 	<worldMenu>
-	(aBuilder item: #'Famix traits groups')
-		order: 1.0; 
-		parent: #Moose;
-		label: 'Famix trait groups';
-		help: 'Famix traits groups browser';
-		action:[ self openGroupsBrowser];
-		withSeparatorAfter
+	^(MooseModel developerTool: self menuCommandOn: aBuilder)
+		order: 30 ; 
+		help: 'Analyse usage of metamodel traits in metamodel concepts' ;
+		withSeparatorAfter ;
+		yourself
 ]
 
-{ #category : #'as yet unclassified' }
-FamixTraitGroupVisualizationBrowser class >> openGroupsBrowser [
+{ #category : #'world menu' }
+FamixTraitGroupVisualizationBrowser class >> menuLabel [
+	^'Metamodel traits usage'
+]
+
+{ #category : #'instance creation' }
+FamixTraitGroupVisualizationBrowser class >> open [
 	<script>
 	self new openGroupsBrowser
 ]

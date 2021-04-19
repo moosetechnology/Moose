@@ -28,7 +28,7 @@ MooseCustomizableSystemComplexityBrowser class >> openOn: groupAndProperties hei
 { #category : #'instance creation' }
 MooseCustomizableSystemComplexityBrowser class >> openOnClassGroup: classGroup heightToSelect: heightSelector widthToSelect: widthSelector colorToSelect: colorSelector [
 	^ self 
-		openOn: (classGroup -> (FAMIXClass new mooseDescriptionsOfNumberProperties collect: #implementingSelector))
+		openOn: (classGroup -> (classGroup anyOne mooseDescriptionsOfNumberProperties collect: #implementingSelector))
 		heightToSelect: heightSelector
 		widthToSelect:  widthSelector
 		colorToSelect: colorSelector
@@ -77,13 +77,13 @@ MooseCustomizableSystemComplexityBrowser >> buildBrowser [
 
 { #category : #building }
 MooseCustomizableSystemComplexityBrowser >> complexityIn: a [
-	^ a roassal2
+	a roassal2
 		initializeView: [ RTMondrian new ];
 		painting: [ :view :group :height :width :color :presentation | 
 			group key
 				viewSimpleSystemComplexityWithSelection: OrderedCollection new
-				height: [:e | (height value:e) max: 5]
-				width: [:e | (width value:e) max: 5]
+				height: [ :e | (height value: e) max: 5 ]
+				width: [ :e | (width value: e) max: 5 ]
 				color: color
 				on: view ]
 ]

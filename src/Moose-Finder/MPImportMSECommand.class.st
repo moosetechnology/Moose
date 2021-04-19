@@ -1,37 +1,35 @@
 Class {
 	#name : #MPImportMSECommand,
 	#superclass : #MPImportCommand,
-	#category : #'Moose-Finder'
+	#category : #'Moose-Finder-Import'
 }
 
 { #category : #hooks }
-MPImportMSECommand >> execute [
-	[ self modelClass
-		ifNotNil: [ :modelClass | 
-			modelClass new
-				importFromMSE;
-				ifNotEmpty: [ :model | 
-					model install.
-					self addModel: model ] ] ] fork
-]
+MPImportMSECommand class >> defaultDescription [
 
-{ #category : #hooks }
-MPImportMSECommand >> icon [
-	^ MooseIcons mooseImportMse
-]
-
-{ #category : #hooks }
-MPImportMSECommand >> label [
 	^ 'Import model from MSE file'
 ]
 
 { #category : #hooks }
-MPImportMSECommand >> modelClass [
-	| modelClasses |
-	modelClasses := MooseModel withAllSubclasses
-		reject: [ :model | model isDeprecated or: [ model isTestModel ] ].
-	^ UIManager default
-		chooseFrom: (modelClasses collect: [ :model | model name ])
-		values: modelClasses
-		title: 'Please select a metamodel'
+MPImportMSECommand class >> defaultIcon [
+
+	^ MooseIcons mooseImportMse
+]
+
+{ #category : #hooks }
+MPImportMSECommand class >> defaultIconName [
+
+	^ #mooseImportMse
+]
+
+{ #category : #hooks }
+MPImportMSECommand class >> defaultName [
+
+	^ 'Import from MSE'
+]
+
+{ #category : #accessing }
+MPImportMSECommand class >> importForm [
+
+	^ MooseImportFromMSEForm
 ]

@@ -1,6 +1,9 @@
 Class {
 	#name : #DistributionMapExampleTest,
 	#superclass : #TestCase,
+	#instVars : [
+		'map'
+	],
 	#category : #'Moose-DistributionMap-Tests'
 }
 
@@ -10,16 +13,17 @@ DistributionMapExampleTest class >> lastStoredRun [
 ]
 
 { #category : #tests }
-DistributionMapExampleTest >> testSample [
-	| viewRenderer |
-	viewRenderer := DistributionMapExample new
-		properties: DistributionMapExample sampleProperties;
-		propertiesMap: DistributionMapExample sampleMap;
-		propertyBlock: DistributionMapExample sampleBlock;
-		elements: DistributionMapExample sampleOrderedElements;
-		render: Collection withAllSubclasses.
+DistributionMapExampleTest >> setUp [
+	super setUp.
+	map := DistributionMapExample new
+		containers: Collection withAllSubclasses;
+		yourself
+]
 
-	self assert: viewRenderer class identicalTo: RTMondrian.
-	"self shouldnt: [ viewRenderer getRenderedForm ] raise: Error."
-	self shouldnt: [ viewRenderer open delete ] raise: Error
+{ #category : #tests }
+DistributionMapExampleTest >> testOpen [
+	| window |
+	self shouldnt: [ window := map open ] raise: Error.
+	self assert: map canvas class identicalTo: RSCanvas.
+	self shouldnt: [ window close ] raise: Error
 ]

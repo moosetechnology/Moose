@@ -12,7 +12,7 @@ Class {
 		'andc',
 		'ahh'
 	],
-	#category : #'Moose-RoassalPaintings'
+	#category : #'Moose-RoassalPaintings-OverviewPyramid'
 }
 
 { #category : #'instance creation' }

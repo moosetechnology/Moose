@@ -129,32 +129,8 @@ MooseModel >> importFileStructure [
 ]
 
 { #category : #'*Moose-Finder' }
-MooseModel >> importFromMSE [
-	| file |
-	file := UIManager default chooseExistingFileReference: 'Import model from MSE file' extensions: #('mse') path: FileLocator home.
-	file
-		ifNotNil: [
-			| stream | 
-			stream := file readStream.
-			self importFromMSEStream: stream.
-			self name: (file basenameWithoutExtension).
-			stream close ]
-]
-
-{ #category : #'*Moose-Finder' }
 MooseModel class >> isTestModel [
 	^ false
-]
-
-{ #category : #'*Moose-Finder' }
-MooseModel class >> menuBrowseMetaOn: aBuilder [
-	<worldMenu>
-	(aBuilder item: #'MetaBrowser')
-		order: 100; 
-		parent: #Moose;
-		label: 'Meta Browser';
-		help: 'Famix compatiblity meta-model browser';
-		action:[MooseModel browseMeta]
 ]
 
 { #category : #'*Moose-Finder' }
@@ -231,4 +207,10 @@ MooseModel >> spotterMethodsFor: aStep [
 MooseModel >> spotterNamespacesFor: aStep [
 	<spotterOrder: 10>
 	self spotter: 'All namespaces' on: [ self allNamespaces ] for: aStep
+]
+
+{ #category : #'*Moose-Finder' }
+MooseModel >> viewOverviewPyramid [
+	<menuItem: 'Overview Pyramid' category: 'Visualize'>
+	self overviewPyramid open
 ]

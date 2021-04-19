@@ -15,15 +15,21 @@ MoosePlayground class >> initialize [
 { #category : #'world menu' }
 MoosePlayground class >> menuCommandOn: aBuilder [
 	<worldMenu>
-	(aBuilder item: #'Moose Playground')
-		order: 1.0; 
-		parent: #Moose;
-		keyText: 'o, w';
-		label: 'Moose Playground';
-		help: 'Playground enhanced for usage in Moose';
-		icon: (MooseIcons mooseIcon scaledToSize: 16@16);
-		action:[ MoosePlayground open ];
-		withSeparatorAfter
+	^(MooseModel developerTool: self menuCommandOn: aBuilder)
+		order: 10 ; 
+		help: 'Playground enhanced for usage in Moose' ;
+		yourself
+]
+
+{ #category : #'world menu' }
+MoosePlayground class >> menuLabel [
+	^'Moose Playground'
+]
+
+{ #category : #'instance creation' }
+MoosePlayground class >> open [
+	<example>
+	^super open
 ]
 
 { #category : #building }
@@ -59,20 +65,26 @@ MoosePlayground >> defaultPlaygroundTitle [
 
 { #category : #building }
 MoosePlayground >> modelsIn: composite [
-	composite list 
-			title: 'Models';
-			titleIcon: MooseIcons mooseNavigation;
-			display: [:root | MooseModel root entities];
-			format: #name;
-			updateOn: MooseEntityAdded from: [ :root | MooseModel root announcer ];
-			updateOn: MooseEntityRemoved from: [ :root | MooseModel root announcer ];
-			updateOn: MooseEntityRenamed fromAll: [ :root | MooseModel root entities collectAsSet: #announcer ];
-			dynamicActionsOnSelection: [ :list | list selection mooseInterestingEntity mooseFinderActions ];
-			dynamicActions: [:root | 
-		MoosePanelCommand allCommands asOrderedCollection collect: [:each | 
-			GLMGenericAction new
-				title: each new label;
-				"category: each new category;"
-				action: [each new execute];
-				icon: each new icon ] ]
+
+	composite list
+		title: 'Models';
+		titleIcon: MooseIcons mooseNavigation;
+		display: [ :root | MooseModel root entities ];
+		format: #name;
+		updateOn: MooseEntityAdded
+		from: [ :root | MooseModel root announcer ];
+		updateOn: MooseEntityRemoved
+		from: [ :root | MooseModel root announcer ];
+		updateOn: MooseEntityRenamed
+		fromAll: [ :root | 
+			MooseModel root entities collectAsSet: #announcer ];
+		dynamicActionsOnSelection: [ :list | 
+			list selection mooseInterestingEntity mooseFinderActions ];
+		dynamicActions: [ :root | 
+			(MoosePanelCommand allCommands , MPImportCommand allSubclasses)
+				asOrderedCollection collect: [ :each | 
+					GLMGenericAction new
+						title: each defaultName;
+						action: [ each new execute ];
+						icon: each defaultIcon ] ]
 ]

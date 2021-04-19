@@ -9,35 +9,19 @@ FamixTypeGroup >> browseAsSelectionInSystemComplexityLocator [
 { #category : #'*Moose-Finder' }
 FamixTypeGroup >> mooseFinderComplexityIn: composite [
 	<moosePresentationOrder: 20>
-	composite roassal2
-			title: 'Hierarchy';
-			titleIcon: MooseIcons mooseSystemComplexity;
-			initializeView: [ RTMondrian new ];
-			painting: [ :b :each | 
-				each mooseInterestingEntity viewSimpleSystemComplexityOn: b.
-				self addSystemComplexityLegendOn: b view ]
+	^ self systemComplexity appearInPaneComposite: composite
+]
 
+{ #category : #'*Moose-Finder' }
+FamixTypeGroup >> mooseFinderNestingIn: composite [
+	<moosePresentationOrder: 30>
+	^ self nesting appearInPaneComposite: composite
 ]
 
 { #category : #'*Moose-Finder' }
 FamixTypeGroup >> mooseFinderUMLIn: composite [
-    <moosePresentationOrder: 20>
-    composite roassal2
-			title: 'UML';
-			titleIcon: MooseIcons mooseUml;
-			initializeView: [ RTUMLClassBuilder new ];
-			painting: [ :view :each | each viewUMLOn: view ]
-]
-
-{ #category : #'*Moose-Finder' }
-FamixTypeGroup >> mooseFinderWithinNestedMapIn: composite [
-	<moosePresentationOrder: 30>
-	composite roassal2
-			title: 'Nesting';
-			titleIcon: MooseIcons mooseTreeMap;
-			painting: [ :view :each | 
-				each mooseInterestingEntity viewSystemNestingMapOnRaw: view ]
-
+	<moosePresentationOrder: 20>
+	^ self uml appearInPaneComposite: composite
 ]
 
 { #category : #'*Moose-Finder' }
@@ -46,34 +30,31 @@ FamixTypeGroup >> mooseIcon [
 ]
 
 { #category : #'*Moose-Finder' }
-FamixTypeGroup >> viewSystemComplexityInWizard [
-	<menuItem: 'Customizable System Complexity' category: 'Visualize'>
-	self ifEmpty: [ ^ self ].
-	^ MooseCustomizableSystemComplexityBrowser
-		openOnClassGroup: self
-		heightToSelect: #numberOfMethods
-		widthToSelect: #numberOfAttributes
-		colorToSelect: #numberOfLinesOfCode
+FamixTypeGroup >> viewBlueprintComplexity [
+	<menuItem: 'Blueprint complexity' category: 'Visualize'>
+	^ self blueprintComplexity open
+]
+
+{ #category : #'*Moose-Finder' }
+FamixTypeGroup >> viewNesting [
+	<menuItem: 'Nesting Map' category: 'Visualize'>
+	^ self nesting open
+]
+
+{ #category : #'*Moose-Finder' }
+FamixTypeGroup >> viewSystemAttraction [
+	<menuItem: 'System attraction' category: 'Visualize'>
+	^ self systemAttraction open
+]
+
+{ #category : #'*Moose-Finder' }
+FamixTypeGroup >> viewSystemComplexity [
+	<menuItem: 'System complexity' category: 'Visualize'>
+	^ self systemComplexity open
 ]
 
 { #category : #'*Moose-Finder' }
 FamixTypeGroup >> viewUML [
-	<menuItem: 'UML class diagram' category: 'Visualize'> 
-	
-	| view |
-	view := RTUMLClassBuilder new.
-	self viewUMLOn: view.
-	^ view openWithToolbarEntitled: 'UML class diagram'
-]
-
-{ #category : #'*Moose-Finder' }
-FamixTypeGroup >> viewUMLOn: view [
-	view
-		addObjects: self;
-		classname: #name;
-		instanceVariables: #attributes;
-		methodsNames: #methods;
-		methodselector: #name;
-		superclass: #superclass;
-		treeLayout
+	<menuItem: 'UML class diagram' category: 'Visualize'>
+	^ self uml open
 ]

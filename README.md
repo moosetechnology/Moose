@@ -1,4 +1,5 @@
-![Continuous](https://github.com/moosetechnology/Moose/workflows/Continuous/badge.svg?branch=development)
+
+[![Continuous-development](https://github.com/moosetechnology/Moose/actions/workflows/continuous.yml/badge.svg)](https://github.com/moosetechnology/Moose/actions/workflows/continuous.yml)
 
 Moose is an extensive platform for software and data analysis.
 
@@ -62,9 +63,6 @@ PhLUserTemplateSources sourcesFile writeStreamDo: [ :s |
         prettyPrint: true;
         nextPut: sources ]
 ```
-
-### Learn more
-Check out [the official webpage of the Moose project](http://moosetechnology.org). 
 
 ### Famix generators
 - [Java](https://github.com/feenkcom/jdt2famix) 

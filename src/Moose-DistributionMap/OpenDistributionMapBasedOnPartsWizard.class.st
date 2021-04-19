@@ -17,7 +17,8 @@ OpenDistributionMapBasedOnPartsWizard class >> onGroup: aMooseGroup [
 { #category : #accessing }
 OpenDistributionMapBasedOnPartsWizard >> computeAndReturnDistributionMapElements [
 
-	^ self mooseGroup flatCollect: [:anEntity | self elementsBlockOrSelector rtValue: anEntity]
+	^ self mooseGroup flatCollect: [ :anEntity | 
+		  self elementsBlockOrSelector value: anEntity ]
 ]
 
 { #category : #'initialize - containers parts' }
@@ -32,8 +33,8 @@ OpenDistributionMapBasedOnPartsWizard >> containersPart [
 
 { #category : #'accessing - map parameters' }
 OpenDistributionMapBasedOnPartsWizard >> elementsBlockOrSelector [
-
-	^ Smalltalk evaluate: (self wizardInformations at: #entitiesToComputeSelector).
+	^ Smalltalk compiler
+		evaluate: (self wizardInformations at: #entitiesToComputeSelector)
 ]
 
 { #category : #'initialize - elements parts' }
@@ -107,22 +108,21 @@ OpenDistributionMapBasedOnPartsWizard >> initializeWithPartGroup: aMooseGroup [
 
 { #category : #'wizard panes transition' }
 OpenDistributionMapBasedOnPartsWizard >> openDefaultColorsDistributionMapUsingGroupAsParts [
-	(DistributionMap
-		onContainers: self mooseGroup
-		elements: self elementsBlockOrSelector
-		properties: self propertyBlockOrSelector)
+	(MooseDistributionMap new
+		containers: self mooseGroup
+		getElements: self elementsBlockOrSelector
+		property: self propertyBlockOrSelector)
+		propertyColorMap: self propertyColorMap;
+		propertyValuesIDMap: self propertyValuesMap;
 		open
 ]
 
 { #category : #'wizard panes transition' }
 OpenDistributionMapBasedOnPartsWizard >> openDistributionMapUsingGroupAsParts [
-	(DistributionMap
-		onContainers: self mooseGroup
-		elements: self elementsBlockOrSelector
-		properties: self propertyBlockOrSelector)
-		propertyColorMap: self propertyColorMap;
-		propertyValuesMap: self propertyValuesMap;
-		open
+	(MooseLinearDistributionMap new
+		containers: self mooseGroup
+		getElements: self elementsBlockOrSelector
+		property: self propertyBlockOrSelector) open
 ]
 
 { #category : #'wizard panes transition' }
@@ -130,29 +130,20 @@ OpenDistributionMapBasedOnPartsWizard >> performTerminateButtonAction [
 	"by default, just close the last current pane. Override this method if you want to create a subclass of WizardControl making a specific action"
 
 	super performTerminateButtonAction.
-	
-	(self wizardInformations at: #useDefaultColors) 
-		ifTrue: [
-			 self openDefaultColorsDistributionMapUsingGroupAsParts .
-			]
-		ifFalse: [
-			 self openDistributionMapUsingGroupAsParts.
-			].
-	
+	(self wizardInformations at: #useColorGradient)
+		ifFalse: [ self openDistributionMapUsingGroupAsParts ]
+		ifTrue: [ self openDefaultColorsDistributionMapUsingGroupAsParts ]
 ]
 
 { #category : #'computing possible elements' }
 OpenDistributionMapBasedOnPartsWizard >> possibleElementSelectors [
-
 	"here we compute types of elements that can be displayed. Given the type of the parts, all type 'contained' in this one can be used as elements. Return a string list of selectors that can be applied to parts to compute elements. This list is ready to be set to the elements-dropListWizardPart  "
-	| partsMetaClass  result |
-	partsMetaClass := self groupMetaClass .
-	result := OrderedCollection new.
-	result addAll: partsMetaClass allComplexAttributes.
-	result := result select: [:each | each isMultivalued].
+
+	| result |
+	result := self groupMetaClasses flatCollect: #allComplexProperties.
+	result := result select: [ :each | each isMultivalued ].
 	result := self removeAllNonComputableAttributesFrom: result.
-	^ result.
-	
+	^ result
 ]
 
 { #category : #'initialize - property parts' }
@@ -205,25 +196,31 @@ OpenDistributionMapBasedOnPartsWizard >> removeAllNonComputableAttributesFrom: a
 
 { #category : #initialization }
 OpenDistributionMapBasedOnPartsWizard >> setConditionsTo: aWizardPane [
+
 	aWizardPane
 		condition: [ :wizardInfos | 
 			| isOk |
 			isOk := true.
 			[ 
-			(self elementsBlockOrSelector rtValue: self mooseGroup anyOne) ifNil: [ isOk := false ] .
-			 ] on: Exception do: [ isOk := false ].
+			(self elementsBlockOrSelector value: self mooseGroup anyOne) 
+				ifNil: [ isOk := false ] ]
+				on: Exception
+				do: [ isOk := false ].
 			isOk ]
-		named: 'Invalid elements selector (the choosen selector might return nil for some elements)'.
+		named:
+		'Invalid elements selector (the choosen selector might return nil for some elements)'.
 	aWizardPane
 		condition: [ :wizardInfos | 
 			| isOk |
 			isOk := true.
 			[ 
-			(self propertyBlockOrSelector rtValue: self distributionMapElements anyOne) ifNil: [ isOk := false ].
-			 ] on: Exception do: [ :ex |
-			isOk := false ].
+			(self propertyBlockOrSelector value:
+				 self distributionMapElements anyOne) ifNil: [ isOk := false ] ]
+				on: Exception
+				do: [ :ex | isOk := false ].
 			isOk ]
-		named: 'Not able to compute properties (the choosen selector might return nil for some elements)'
+		named:
+		'Not able to compute properties (the choosen selector might return nil for some elements)'
 ]
 
 { #category : #actions }
@@ -231,6 +228,7 @@ OpenDistributionMapBasedOnPartsWizard >> updatePopertySelectorPart: aWizardPart 
 	| elementsClass |
 	aFM3Property
 		ifNil: [ aWizardPart list: {} ]
-		ifNotNil: [ elementsClass := aFM3Property type implementingClass.
-			aWizardPart list: (self allPropertySelectorsForElementOfType: elementsClass) ]
+		ifNotNil: [ elementsClass := aFM3Property type.
+			aWizardPart
+				list: (self allPropertySelectorsForElementOfType: elementsClass) ]
 ]

@@ -9,7 +9,9 @@ Class {
 
 { #category : #menu }
 MoosePanel class >> menuCommandOn: aBuilder [
-	<worldMenu>
+	"moose menu now handled in #open"
+
+	"<worldMenu>
 	(aBuilder item: #'MoosePanel')
 		order: 1.0; 
 		parent: #Moose;
@@ -17,24 +19,31 @@ MoosePanel class >> menuCommandOn: aBuilder [
 		help: 'Moose models management';
 		icon: (MooseIcons mooseIcon scaledToSize: 16@16);
 		action:[MoosePanel open];
-		withSeparatorAfter
+		withSeparatorAfter"
 ]
 
 { #category : #opening }
 MoosePanel class >> open [
+
+	<example>
+	<mooseTool: #'Moose panel'>
 	^ self new openOn: MooseModel root
 ]
 
 { #category : #building }
 MoosePanel >> browserActionsIn: aBrowser [
-	aBrowser act: [:b | b update] icon: GLMUIThemeExtraIcons glamorousRefresh entitled: 'Update'.
-	aBrowser dynamicActions: [:root | 
-		MoosePanelCommand allCommands asOrderedCollection collect: [:each | 
+
+	aBrowser
+		act: [ :b | b update ]
+		icon: GLMUIThemeExtraIcons glamorousRefresh
+		entitled: 'Update'.
+	aBrowser dynamicActions: [ :root | 
+		(MoosePanelCommand allCommands , MPImportCommand allSubclasses)
+			asOrderedCollection collect: [ :each | 
 			GLMGenericAction new
-				title: each new label;
-				"category: each new category;"
-				action: [each new execute];
-				icon: each new icon ]]		
+				title: each defaultName;
+				action: [ each new execute ];
+				icon: each defaultIcon ] ]
 ]
 
 { #category : #building }

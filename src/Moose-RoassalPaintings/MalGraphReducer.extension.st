@@ -1,52 +1,27 @@
 Extension { #name : #MalGraphReducer }
 
 { #category : #'*Moose-RoassalPaintings-Visualization' }
-MalGraphReducer class >> exampleComplexCycleGraph2ReducedView [
-	| graphReducer view |
-	graphReducer := MalGraphReducer new.
-	MalGraphFixture complexCycleGraph2: graphReducer.
-	graphReducer run.
-
-	view := RTMondrian new.
-	view shape rectangle 
-		withText: [:n| n model printString].
-	view nodes: graphReducer nodes.
-
-	view shape 
-		arrowedLine 
-		color: (Color gray alpha: 0.5).
-	view shape shortestDistanceAttachPoint.
-	
-	view edges
-		moveBehind;
-		objects: graphReducer nodes from: #yourself toAll: #nextNodes.
-
-	view layout forceWithCharge: -3000.
-	^ view
-]
-
-{ #category : #'*Moose-RoassalPaintings-Visualization' }
-MalGraphReducer class >> exampleComplexCycleGraph2View [
-	| view graph builder |
-	view := RTMondrian new.
-	builder := MalGraphStructure new 
+MalGraphReducer class >> complexCycleGraph2 [
+	| graph builder |
+	builder := MalGraphStructure new
 		nodeClass: MalGraphNode;
 		edgeClass: MalGraphEdge;
 		yourself.
 	graph := MalGraphFixture complexCycleGraph2: builder.
-	view shape rectangle 
-		withText: [:n| n model printString].
-	view nodes: graph nodes.
-	view shape 
-		arrowedLine 
-		color: (Color gray alpha: 0.5).
-	view shape shortestDistanceAttachPoint.
-	
-	view edges
-		moveBehind;
-		objects: graph edges;
-		connectFrom: #from to: #to.
+	^ (MalGraphVisualization on: graph) open
+]
 
-	view layout forceWithCharge: -3000.
-	^ view
+{ #category : #'*Moose-RoassalPaintings-Visualization' }
+MalGraphReducer class >> complexCycleGraph2Reduced [
+	| graphReducer |
+	graphReducer := MalGraphReducer new.
+	MalGraphFixture complexCycleGraph2: graphReducer.
+	graphReducer run.
+	^ (MalGraphWithNextVisualization on: graphReducer) open
+]
+
+{ #category : #'*Moose-RoassalPaintings-Visualization' }
+MalGraphReducer class >> exampleComplexCycleGraph2 [
+	self complexCycleGraph2 setLabel: 'Original graph'.
+	self complexCycleGraph2Reduced setLabel: 'Reduced graph'
 ]

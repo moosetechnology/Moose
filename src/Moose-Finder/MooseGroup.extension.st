@@ -38,6 +38,11 @@ MooseGroup >> mooseIcon [
 	^ MooseIcons mooseMetamodelGroup
 ]
 
+{ #category : #'*Moose-Finder' }
+MooseGroup >> mooseInterestingEntity [
+	^ self specialize
+]
+
 { #category : #'*moose-finder' }
 MooseGroup >> spotterItemsFor: aStep [
 	<spotterOrder: 10>
@@ -45,7 +50,13 @@ MooseGroup >> spotterItemsFor: aStep [
 		title: 'Items';
 		candidatesLimit: 50;
 		allCandidates: [ self entities ];
-		itemName: [ :each | each gtDisplayString ];
+		itemName: [ :each | each displayString ];
 		filter: GTFilterSubstring;
 		wantsToDisplayOnEmptyQuery: true
+]
+
+{ #category : #'*Moose-Finder' }
+MooseGroup >> viewNameCloud [
+	<menuItem: 'Name Cloud' category: 'Visualize'>
+	^ self nameCloud open
 ]

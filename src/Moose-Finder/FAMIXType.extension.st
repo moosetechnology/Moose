@@ -8,7 +8,7 @@ FAMIXType >> mooseFinderAttributesIn: composite [
 		titleIcon: MooseIcons famixAttributeGroup;
 		display: [ self attributes ];
 		column: 'Name' evaluated: #name;
-		column: 'Declared type' evaluated: [ :each | each declaredType gtDisplayString ];
+		column: 'Declared type' evaluated: [ :each | each declaredType displayString ];
 		column: 'Modifiers' evaluated: [ '' ] tags: #modifiers;
 		when: [ self attributes isNotEmpty ];
 		selectionPopulate: #selection entitled: 'Open declared type' with: [ :table | table selection declaredType ]
@@ -16,12 +16,9 @@ FAMIXType >> mooseFinderAttributesIn: composite [
 
 { #category : #'*Moose-Finder' }
 FAMIXType >> mooseFinderHierarchyIn: composite [
+
 	<moosePresentationOrder: 20>
-	composite roassal2
-			title: 'Hierarchy';
-			titleIcon: MooseIcons mooseSystemComplexity;
-			initializeView: [ RTMondrian new ];
-			painting: [ :b | self viewHierarchyOn: b ]
+	self hierarchyVisualization appearInPaneComposite: composite
 ]
 
 { #category : #'*Moose-Finder' }
@@ -32,7 +29,7 @@ FAMIXType >> mooseFinderMethodsIn: composite [
 		titleIcon: MooseIcons famixMethodGroup;
 		display: [ self methods ];
 		column: 'Name' evaluated: #signature;
-		column: 'Declared type' evaluated: [ :each | each declaredType gtDisplayString ];
+		column: 'Declared type' evaluated: [ :each | each declaredType displayString ];
 		when: [ self methods isNotEmpty ];
 		selectionPopulate: #selection entitled: 'Open declared type' with: [ :table | table selection declaredType ]
 ]

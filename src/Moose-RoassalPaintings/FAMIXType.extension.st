@@ -93,6 +93,17 @@ FAMIXType >> getterMethods [
 	^ self methods select: #isGetter
 ]
 
+{ #category : #'*Moose-RoassalPaintings' }
+FAMIXType >> hierarchyVisualization [
+
+	| hierarchy |
+	hierarchy := (self withDeepCollect: [ :each | each directSubclasses ])
+	             , (self deepCollect: [ :each | 
+			              each directSuperclasses reject: [ :c | c isInterface ] ]).
+	^ FamixTypeGroupSystemComplexity forTypeGroup:
+		  hierarchy asMooseSpecializedGroup
+]
+
 { #category : #'*Moose-RoassalPaintings-Support' }
 FAMIXType >> internalFanin [
 
@@ -138,40 +149,4 @@ FAMIXType >> setterMethods [
 	"Used for the class blueprint
 	Alexandre.Bergel 3/28/2009 12:10"
 	^ self methods select: #isSetter
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
-FAMIXType >> viewHierarchyOn: view [
-	| hierarchy |
-	hierarchy :=		(self withDeepCollect: [:each | each directSubclasses]), 
-						(self deepCollect: [:each | each directSuperclasses reject: [:c | c isInterface]]).
-	hierarchy asMooseSpecializedGroup 
-		viewSimpleSystemComplexityWithSelection: { self } 
-		height: [ :c | c numberOfMethods ] 
-		width: [ :c | c numberOfAttributes ] 
-		color: [ :c | c numberOfLinesOfCode ] 
-		on: view.
-
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
-FAMIXType >> viewUML [
-	<menuItem: 'UML class diagram' category: 'Visualize'> 
-	
-	| view |
-	view := RTUMLClassBuilder new.
-	self viewUMLOn: view.
-	^ view openWithToolbarEntitled: 'UML class diagram'
-]
-
-{ #category : #'*Moose-RoassalPaintings' }
-FAMIXType >> viewUMLOn: view [
-
-	view
-		addObjects: {self};
-		classname: #name;
-		instanceVariables: #attributes;
-		methodsNames: #methods;
-		methodselector: #name;
-		superclass: nil
 ]
