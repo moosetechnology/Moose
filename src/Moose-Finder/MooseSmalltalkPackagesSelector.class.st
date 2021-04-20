@@ -27,10 +27,9 @@ MooseSmalltalkPackagesSelector class >> title [
 
 { #category : #initialization }
 MooseSmalltalkPackagesSelector >> initializeDialogWindow: aDialog [
+
 	aDialog
-		closeOnBackdropClick: false;
-		addButton: 'Accept'
-			do: [ :presenter | 
+		addButton: 'Accept' do: [ :presenter | 
 			importer
 				packages: chosenPackagesFilteringList items;
 				updatePackagesButton.

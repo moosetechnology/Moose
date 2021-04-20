@@ -49,5 +49,5 @@ MPImportCommand class >> isAbstract [
 { #category : #hooks }
 MPImportCommand >> execute [
 
-	(self class importForm on: self context) openModalWithSpec
+	(self class importForm on: self context) openDialogWithSpec
 ]
