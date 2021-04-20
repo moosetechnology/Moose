@@ -23,10 +23,10 @@ MooseFinder class >> extensionsPragma [
 MooseFinder >> compose [
 	super compose.
 	self pager
-		title: [ :each | 'Moose Finder on ' , each mooseInterestingEntity gtDisplayString ];
+		title: [ :each | 'Moose Finder on ' , each mooseInterestingEntity displayString ];
 		show: [ :a :each | 
 			a
-				title: each mooseInterestingEntity gtDisplayString , ' (' , each mooseInterestingEntity class name , ')';
+				title: each mooseInterestingEntity displayString , ' (' , each mooseInterestingEntity class name , ')';
 				dynamicActions: [ :list | list entity mooseInterestingEntity mooseFinderActions asOrderedCollection , each gtInspectorActions asOrderedCollection ].
 			each mooseInterestingEntity gtInspectorPresentationsIn: a inContext: self.
 			a updateOn: MooseEntityAdded from: [ each ifNotNil: #announcer ].

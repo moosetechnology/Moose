@@ -35,6 +35,7 @@ MooseVisualLocator >> buildBrowser [
 
 { #category : #building }
 MooseVisualLocator >> classesIn: a [
+
 	"Ideally, we should implement it like below, but somehow the original selection is not set properly
 	a dynamic 
 		display: [:group |
@@ -44,27 +45,41 @@ MooseVisualLocator >> classesIn: a [
 			group mooseFinderEvaluatorIn: composite.
 			composite ]"
 
-	(a list)
+	a list
 		icon: #mooseIcon;
-		title: [ :each | each mooseInterestingEntity size asString , ' items' ];
+		title: [ :each | 
+			each mooseInterestingEntity size asString , ' items' ];
 		titleIcon: MooseIcons mooseList;
 		beMultiple;
-		searchOn: [ :text :each | Smalltalk compiler evaluate: ' | entity each | each := self. entity := each.' , text for: each logged: false ];
+		searchOn: [ :text :each | 
+			Smalltalk compiler
+				evaluate: ' | entity each | each := self. entity := each.' , text
+				for: each
+				logged: false ];
 		showOnly: 50;
-		format: #gtDisplayString;
-		dynamicActionsOnSelection: [ :list | list selection mooseInterestingEntity mooseFinderActions ];
-		dynamicActions: [ :list | list entity mooseInterestingEntity mooseFinderActions ].
+		format: #displayString;
+		dynamicActionsOnSelection: [ :list | 
+			list selection mooseInterestingEntity mooseFinderActions ];
+		dynamicActions: [ :list | 
+			list entity mooseInterestingEntity mooseFinderActions ].
 	^ a pharoScript
-		display: [ :entity | 'self' ];
-		title: 'Evaluator';
-		titleIcon: MooseIcons mooseEvaluator;
-		selectionPopulate: #selection
-			on: $o
-			entitled: 'Open script (o)'
-			with: [ :text :entity | Smalltalk compiler evaluate: text selectedText for: entity mooseInterestingEntity logged: false ];
-		selectionAct: [ :text :entity | (Smalltalk compiler evaluate: text selectedText for: entity mooseInterestingEntity logged: false) inspect ]
-			on: $/
-			entitled: 'Inspect script (/)'
+		  display: [ :entity | 'self' ];
+		  title: 'Evaluator';
+		  titleIcon: MooseIcons mooseEvaluator;
+		  selectionPopulate: #selection
+		  on: $o
+		  entitled: 'Open script (o)'
+		  with: [ :text :entity | 
+			  Smalltalk compiler
+				  evaluate: text selectedText
+				  for: entity mooseInterestingEntity
+				  logged: false ];
+		  selectionAct: [ :text :entity | 
+			  (Smalltalk compiler
+				   evaluate: text selectedText
+				   for: entity mooseInterestingEntity
+				   logged: false) inspect ]
+		  on: $/ entitled: 'Inspect script (/)'
 ]
 
 { #category : #building }

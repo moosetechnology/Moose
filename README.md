@@ -1,4 +1,6 @@
-[![Continuous-development](https://github.com/moosetechnology/Moose/actions/workflows/continuous.yml/badge.svg)](https://github.com/moosetechnology/Moose/actions/workflows/continuous.yml)
+
+[![development](https://github.com/moosetechnology/Moose/actions/workflows/continuous.yml/badge.svg)](https://github.com/moosetechnology/Moose/actions/workflows/continuous.yml)
+[![v8](https://github.com/moosetechnology/Moose/actions/workflows/continuous-v8.yml/badge.svg)](https://github.com/moosetechnology/Moose/actions/workflows/continuous-v8.yml)
 
 Moose is an extensive platform for software and data analysis.
 
@@ -10,57 +12,28 @@ Please refer to the [moose wiki](https://moosetechnology.github.io/moose-wiki/) 
 
 ## Installation
 
-### Get a built Moose Image
+### Get a built Moose Image from ![Pharo launcher](https://github.com/pharo-project/pharo-launcher)
 
-![Download Moose gif](https://moosetechnology.github.io/moose-wiki/Beginners/res/downloadMoose.gif)
+![Download Moose gif](ressources/Moose-launcher.gif)
 
-### How to load
+### Load Moose in a Pharo image
 
-**Moose v7**
+**Stable version: Moose 8**
 
 ```smalltalk
 Metacello new
   baseline: 'Moose';
-  repository: 'github://moosetechnology/Moose:v7.x.x/src';
+  repository: 'github://moosetechnology/Moose:v8.0.0/src';
   load.
 ```
 
-**Moose 8 (development)**
+**Development version: Moose 9**
 
 ```smalltalk
 Metacello new
   baseline: 'Moose';
   repository: 'github://moosetechnology/Moose:development/src';
   load.
-```
-
-### From Github Release
-
-The previous build comes from our jenkins.
-You wan also use the releases of github.
-
-
-To add this project into the pharo launcher:
-
-1. Download the PharoLauncher
-2. Open PharoLauncher
-3. Open a playground (Ctrl + O, Ctrl + W)
-4. Execute the following piece of code
-
-```Smalltalk
-| sources |
-sources := {
-    PhLTemplateSource new
-        type: #HttpListing;
-        name: 'Moose';
-        url: 'https://github.com/moosetechnology/Moose/releases';
-        filterPattern: 'href="([^"]*/Pharo[0-9][^"]*.zip)"';
-        templateNameFormat: '{6} ({5})' }.
-PhLUserTemplateSources sourcesFile writeStreamDo: [ :s | 
-    (STON writer on: s)
-        newLine: String lf;
-        prettyPrint: true;
-        nextPut: sources ]
 ```
 
 ### Famix generators
