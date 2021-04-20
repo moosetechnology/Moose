@@ -20,4 +20,4 @@ One can build a pharo model with a package (e.g. `Collections-Atomic`) and a tes
 - **Expected result**  
 Very simple exercise with method  `nextOrNil` that is directly invoked by test methods.
 There are two implementations of `nextOrNil`, classes `LIFOQueue` and  `WaitfreeQueue`. They are invoked in 15 tests.
-BEcause they are direct invocations, one can use a "Navigation query" or a visualization (e.g. "Navigation tree")
+Because they are direct invocations, one can use a "Navigation query" or a visualization (e.g. "Navigation tree")
