@@ -37,7 +37,7 @@ Metacello new
 ```
 
 ### Famix generators
-- [Java](https://github.com/feenkcom/jdt2famix) 
+- Java [VerveineJ](https://modularmoose.org/moose-wiki/Developers/Parsers/VerveineJ) / [JDT2Famix](https://github.com/feenkcom/jdt2famix) 
 - [C#](https://github.com/feenkcom/roslyn2famix) 
 - [.NET](http://www.sharpmetrics.net/index.php/famix-generator)
 - [SAP](https://github.com/RainerWinkler/Moose-FAMIX-SAP-Extractor)
