@@ -14,10 +14,10 @@ Ideally, a scenario:
 - **Goal**  
 Find whether a given method seems (static analysis) to be tested
 - **Indications**  
- 2. Choose a method (not a test) in the model
- 2. Follow incoming invocations and try to find a test method
+(1) Choose a method (not a test) in the model, (2) Follow incoming invocations and try to find a test method
 - **Example model**  
 One can build a pharo model with a package (e.g. `Collections-Atomic`) and a test package (e.g. `Collections-Atomic-Tests`)
 - **Expected result**  
 Very simple exercise with method  `nextOrNil` that is directly invoked by test methods.
-There are two implementations of `nextOrNil`, classes `LIFOQueue` and  `WaitfreeQueue`. They are invoked in 15 tests
+There are two implementations of `nextOrNil`, classes `LIFOQueue` and  `WaitfreeQueue`. They are invoked in 15 tests.
+BEcause they are direct invocations, one can use a "Navigation query" or a visualization (e.g. "Navigation tree")
