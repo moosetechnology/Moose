@@ -7,19 +7,20 @@ Class {
 	#category : #'Moose-Finder'
 }
 
-{ #category : #menu }
+{ #category : #'world menu' }
 MoosePanel class >> menuCommandOn: aBuilder [
-	"moose menu now handled in #open"
 
-	"<worldMenu>
-	(aBuilder item: #'MoosePanel')
-		order: 1.0; 
-		parent: #Moose;
-		label: 'Moose Panel';
-		help: 'Moose models management';
-		icon: (MooseIcons mooseIcon scaledToSize: 16@16);
-		action:[MoosePanel open];
-		withSeparatorAfter"
+	<worldMenu>
+	^ (MooseModel developerTool: self menuCommandOn: aBuilder)
+		  order: 20;
+		  help: 'Moose models management';
+		  yourself
+]
+
+{ #category : #'world menu' }
+MoosePanel class >> menuLabel [
+
+	^ 'Moose Panel'
 ]
 
 { #category : #opening }

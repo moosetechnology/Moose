@@ -12,12 +12,13 @@ Class {
 
 { #category : #'world menu' }
 FamixTraitGroupVisualizationBrowser class >> menuCommandOn: aBuilder [
+
 	<worldMenu>
-	^(MooseModel developerTool: self menuCommandOn: aBuilder)
-		order: 30 ; 
-		help: 'Analyse usage of metamodel traits in metamodel concepts' ;
-		withSeparatorAfter ;
-		yourself
+	^ (MooseModel developerTool: self menuCommandOn: aBuilder)
+		  order: 30;
+		  help: 'Analyse usage of metamodel traits in metamodel concepts';
+		  withSeparatorAfter;
+		  yourself
 ]
 
 { #category : #'world menu' }
