@@ -9,12 +9,13 @@ Class {
 
 { #category : #'world menu' }
 MooseMetaBrowser class >> menuBrowseMetaOn: aBuilder [
+
 	<worldMenu>
-	^(MooseModel developerTool: self menuCommandOn: aBuilder)
-		order: 20 ; 
-		help: 'Famix compatiblity meta-model browser' ;
-		withSeparatorAfter ;
-		yourself
+	^ (MooseModel developerTool: self menuCommandOn: aBuilder)
+		  order: 35;
+		  help: 'Famix compatiblity meta-model browser';
+		  withSeparatorAfter;
+		  yourself
 ]
 
 { #category : #'world menu' }

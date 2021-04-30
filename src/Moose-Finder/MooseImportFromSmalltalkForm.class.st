@@ -174,9 +174,10 @@ MooseImportFromSmalltalkForm >> initializeModelNameField [
 
 { #category : #'initialization - widgets' }
 MooseImportFromSmalltalkForm >> initializePackagesButton [
+
 	packagesButton := self newButton
 		label: 'Choose packages';
-		action: [ (MooseSmalltalkPackagesSelector on: self) openModalWithSpec ];
+		action: [ (MooseSmalltalkPackagesSelector on: self) openDialogWithSpec ];
 		yourself
 ]
 
