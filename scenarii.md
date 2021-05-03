@@ -29,3 +29,43 @@ Because they are direct invocations, one can use a "Navigation query" or a visua
 - **Example model**  
 One can build a pharo model with a package (e.g. `Rubric`) and a pragma (e.g. `example`)
 - **Expected result** At the time of this writing, there are 3 methods with the `example` pragma: `RubFloatingEditorBuilder>>exampleCommandLauncher` ; `RubFloatingEditorBuilder>>exampleEditableStringMorph` ; `RubTextAreaExamples>>nicolaiAttributeFix`
+
+## Class instantiation
+
+### Goal
+
+Find all instantiations of a class and its subclasses.
+
+### Indication
+
+1. Select a class
+2. Select its subclasses
+3. Collect their methods
+4. Select the constructor ones (*i.e.* new MyClass() in Java)
+5. Follow constructors incoming invocation
+
+### Example model
+
+You can easily get a Java model using [VerveineJ](https://modularmoose.org/moose-wiki/Developers/Parsers/VerveineJ).
+
+### Concrete example case study
+
+Try to determine all the widgets creation of a GUI
+
+## Retrieve the REST services of a Java Spring application
+
+### Goal
+
+Retrieve the rest services of a Java Spring application with the possible methods and parameters.
+
+### Indication
+
+1. Look for the annotation `@Path` in a Java Project
+2. Retrieve the classes annotated with the path annotation and the parameter of the path.
+3. Collect the methods of the classes
+4. Select the methods with a REST annotation (*e.g.*: `@GET`,  `@POST`)
+5. Determine the path for those methods using again the `@Path` annotation (but on methods this time)
+
+### Example model
+
+You can easily get a Java model using [VerveineJ](https://modularmoose.org/moose-wiki/Developers/Parsers/VerveineJ)
