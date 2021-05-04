@@ -1,3 +1,6 @@
+"
+I am a form that allows user to import smalltalk packages as Moose model objects.
+"
 Class {
 	#name : #MooseImportFromSmalltalkForm,
 	#superclass : #MooseImportForm,
@@ -106,11 +109,12 @@ MooseImportFromSmalltalkForm >> importerClass [
 
 { #category : #layout }
 MooseImportFromSmalltalkForm >> importerClassLayout [
+
 	^ SpPanedLayout newHorizontal
-		add: 'Importer: ';
-		position: 1.5 / 5;
-		add: #importerDroplist;
-		yourself
+		  add: 'Importer: ';
+		  positionOfSlider: 1.5 / 5;
+		  add: #importerDroplist;
+		  yourself
 ]
 
 { #category : #initialization }
@@ -203,11 +207,12 @@ MooseImportFromSmalltalkForm >> invocationStrategyLayout [
 
 { #category : #layout }
 MooseImportFromSmalltalkForm >> metamodelFactoryLayout [
+
 	^ SpPanedLayout newHorizontal
-		add: 'Metamodel factory: ';
-		position: 1.5 / 5;
-		add: #factoryDroplist;
-		yourself
+		  add: 'Metamodel factory: ';
+		  positionOfSlider: 1.5 / 5;
+		  add: #factoryDroplist;
+		  yourself
 ]
 
 { #category : #accessing }
