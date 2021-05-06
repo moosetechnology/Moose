@@ -12,7 +12,7 @@ Please refer to the [moose wiki](https://moosetechnology.github.io/moose-wiki/) 
 
 ## Installation
 
-### Get a built Moose Image from ![Pharo launcher](https://github.com/pharo-project/pharo-launcher)
+### Get a built Moose Image from [Pharo launcher](https://github.com/pharo-project/pharo-launcher)
 
 ![Download Moose gif](ressources/Moose-launcher.gif)
 
