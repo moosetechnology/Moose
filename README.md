@@ -18,21 +18,21 @@ Please refer to the [moose wiki](https://moosetechnology.github.io/moose-wiki/) 
 
 ### Load Moose in a Pharo image
 
-**Stable version: Moose 8**
-
-```smalltalk
-Metacello new
-  baseline: 'Moose';
-  repository: 'github://moosetechnology/Moose:v8.0.0/src';
-  load.
-```
-
-**Development version: Moose 9**
+**Latest version: Moose 9**
 
 ```smalltalk
 Metacello new
   baseline: 'Moose';
   repository: 'github://moosetechnology/Moose:development/src';
+  load.
+```
+
+**Oldish version: Moose 8**
+
+```smalltalk
+Metacello new
+  baseline: 'Moose';
+  repository: 'github://moosetechnology/Moose:v8.0.0/src';
   load.
 ```
 
