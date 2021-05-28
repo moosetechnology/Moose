@@ -7,7 +7,8 @@ SmalltalkCISpec {
   ],
   #testing : {
     #include : {
-      #packages : [ 'Fame.*', 'Famix.*', 'Moose.*' ]
-     }
+      #packages : [ 'Moose.*', 'Fame.*', 'Famix-.*' ],
+      #classes :  [ #FamixRepCPPCleanerTest, #FamixRepTestEntity, #FamixRepTestSourceTextAnchor, #FamixRepTestModel, #FamixRepImportExportTest, #FamixRepSmalltalkCleanerTest, #FamixRepTestClass, #ManifestFamixReplicationTests, #FamixRepEntitiesTest, #FamixReplicaTest, #FamixRepTestFileAnchor, #FamixTHasImmediateSource, #FamixRepDetectorTest, #FamixRepSourceCleanerTest, #FamixReplicatedFragmentTest, #FamixRepTestMethod, #FamixRepFakeCleaner ]
+    }
   }
 }
