@@ -7,24 +7,6 @@ FamixTypeGroup >> browseAsSelectionInSystemComplexityLocator [
 ]
 
 { #category : #'*Moose-Finder' }
-FamixTypeGroup >> mooseFinderComplexityIn: composite [
-	<moosePresentationOrder: 20>
-	^ self systemComplexity appearInPaneComposite: composite
-]
-
-{ #category : #'*Moose-Finder' }
-FamixTypeGroup >> mooseFinderNestingIn: composite [
-	<moosePresentationOrder: 30>
-	^ self nesting appearInPaneComposite: composite
-]
-
-{ #category : #'*Moose-Finder' }
-FamixTypeGroup >> mooseFinderUMLIn: composite [
-	<moosePresentationOrder: 20>
-	^ self uml appearInPaneComposite: composite
-]
-
-{ #category : #'*Moose-Finder' }
 FamixTypeGroup >> mooseIcon [
 	^ MooseIcons famixClassGroup 
 ]
