@@ -10,7 +10,7 @@ SmalltalkCISpec {
       // This does not run FamixReplication-Tests, on purpose.
       #packages : [ 'Moose.*', 'Fame.*', 'Famix-.*' ],
       // Run FamixReplication-Tests tests without FamixRepDetectorBenchmarkTest.
-      #classes :  [ FamixRepCPPCleanerTest, FamixRepTestEntity, FamixRepTestSourceTextAnchor, FamixRepTestModel, FamixRepImportExportTest, FamixRepSmalltalkCleanerTest, FamixRepTestClass, ManifestFamixReplicationTests, FamixRepEntitiesTest, FamixReplicaTest, FamixRepTestFileAnchor, FamixTHasImmediateSource, FamixRepDetectorTest, FamixRepSourceCleanerTest, FamixReplicatedFragmentTest, FamixRepTestMethod, FamixRepFakeCleaner ]
+      #classes :  [ #FamixRepCPPCleanerTest, #FamixRepTestEntity, #FamixRepTestSourceTextAnchor, #FamixRepTestModel, #FamixRepImportExportTest, #FamixRepSmalltalkCleanerTest, #FamixRepTestClass, #ManifestFamixReplicationTests, #FamixRepEntitiesTest, #FamixReplicaTest, #FamixRepTestFileAnchor, #FamixTHasImmediateSource, #FamixRepDetectorTest, #FamixRepSourceCleanerTest, #FamixReplicatedFragmentTest, #FamixRepTestMethod, #FamixRepFakeCleaner ]
     }
   }
 }
