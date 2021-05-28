@@ -9,6 +9,7 @@ MoosePetitParserToolEntry >> execute [
 	Metacello new
 		baseline: 'PetitParser';
 		repository: 'github://moosetechnology/PetitParser:' , self version, '/src';
+		onConflictUseLoaded;
 		load
 ]
 
