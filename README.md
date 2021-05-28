@@ -27,12 +27,12 @@ Metacello new
   load.
 ```
 
-**Oldish version: Moose 8**
+**Stable version: Moose 8**
 
 ```smalltalk
 Metacello new
   baseline: 'Moose';
-  repository: 'github://moosetechnology/Moose:v8.0.0/src';
+  repository: 'github://moosetechnology/Moose:v8.x.x/src';
   load.
 ```
 
