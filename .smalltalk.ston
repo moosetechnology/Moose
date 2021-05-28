@@ -8,6 +8,9 @@ SmalltalkCISpec {
   #testing : {
     #include : {
       #packages : [ 'Fame.*', 'Famix.*', 'Moose.*' ]
-     }
+    },
+    #exclude : {
+      #classes : [ 'FamixRepDetectorBenchmarkTest' ]
+    }
   }
 }
