@@ -15,13 +15,6 @@ FAMIXType >> mooseFinderAttributesIn: composite [
 ]
 
 { #category : #'*Moose-Finder' }
-FAMIXType >> mooseFinderHierarchyIn: composite [
-
-	<moosePresentationOrder: 20>
-	self hierarchyVisualization appearInPaneComposite: composite
-]
-
-{ #category : #'*Moose-Finder' }
 FAMIXType >> mooseFinderMethodsIn: composite [
 	<moosePresentationOrder: 20>
 	composite table
