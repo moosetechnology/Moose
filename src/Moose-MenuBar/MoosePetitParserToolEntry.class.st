@@ -21,6 +21,7 @@ MoosePetitParserToolEntry >> execute [
 	Metacello new
 		baseline: 'PetitParser';
 		repository: 'github://moosetechnology/PetitParser:' , self version, '/src';
+		onConflictUseIncoming;
 		load
 ]
 
@@ -31,5 +32,5 @@ MoosePetitParserToolEntry >> label [
 
 { #category : #accessing }
 MoosePetitParserToolEntry >> version [
-	^ 'v2.1.x'
+	^ 'v3.x.x'
 ]
