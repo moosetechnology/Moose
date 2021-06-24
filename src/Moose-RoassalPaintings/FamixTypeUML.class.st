@@ -62,17 +62,8 @@ FamixTypeUML >> famixTypeGroup: aFamixTypeGroup [
 
 { #category : #initialization }
 FamixTypeUML >> initialize [
-	super initialize.
-	self initializeBuilder
-]
 
-{ #category : #initialization }
-FamixTypeUML >> initializeBuilder [
+	super initialize.
 	builder := RSUMLClassBuilder new.
-	builder modelDescriptor
-		instVars: [ :type | 
-			(type attributes sorted: [ :a1 :a2 | a1 name < a2 name ])
-				collect: #name ];
-		methods: [ :type | type methods sorted: [ :m1 :m2 | m1 name < m2 name ] ];
-		methodSelector: #name
+	builder modelDescriptor forFamix
 ]
