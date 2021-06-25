@@ -12,6 +12,7 @@ BaselineOfMoose >> baseline: spec [
 
 	<baseline>
 	spec for: #common do: [ 
+		spec postLoadDoIt: #'postload:package:'.
 		self
 			famix: spec;
 			famixTagging: spec;
@@ -26,7 +27,7 @@ BaselineOfMoose >> baseline: spec [
 				spec requires:
 						#( 'Famix' 'FamixTagging' 'FamixReplication' 'FamixPresentation'
 						   'MooseAlgos' 'Moose-RoassalPaintings'
-						   'NeoCSV' 'Merlin' ) ];
+						   'NeoCSV' 'Merlin' 'Glamour-Tools' ) ];
 			package: 'Moose-MenuBar'
 			with: [ spec requires: #( 'Moose-Finder' ) ];
 			package: 'Moose-Configuration';
@@ -110,6 +111,13 @@ BaselineOfMoose >> neoCSV: spec [
 		with: [ spec
 				loads: 'core';
 				repository: 'github://svenvc/NeoCSV/repository' ]
+]
+
+{ #category : #actions }
+BaselineOfMoose >> postload: loader package: packageSpec [
+
+	HelpBrowser allInstances do: #close.
+	MooseWelcome openForRelease
 ]
 
 { #category : #accessing }
