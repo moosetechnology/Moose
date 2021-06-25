@@ -1,3 +1,6 @@
+"
+I am the welcome window that opens when a Moose image
+"
 Class {
 	#name : #MooseWelcome,
 	#superclass : #CustomHelp,
@@ -49,8 +52,12 @@ MooseWelcome class >> pages [
 
 { #category : #accessing }
 MooseWelcome class >> welcome [
-
-	^ HelpTopic title: 'Welcome to Moose 9' contents: (self heading: 'Moose 9.0' withSubtitle: '') , 'Moose is a platform for software analysis.
+	| version |
+	version := MooseVersion current.
+	
+	^HelpTopic
+		title: 'Welcome to Moose ' , version major
+		contents: (self heading: 'Moose ' , version versionNumber withSubtitle: '') , 'Moose is a platform for software analysis.
 
 It allows to represent software system in a model, to query, manipulate, transform, visualize this model.
 

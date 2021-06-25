@@ -1,3 +1,7 @@
+"
+I am the class responsible for giving help on Moose
+
+"
 Class {
 	#name : #MooseHelp,
 	#superclass : #Object,
