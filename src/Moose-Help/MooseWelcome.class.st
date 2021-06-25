@@ -1,3 +1,6 @@
+"
+I am the welcome window that opens when a Moose image
+"
 Class {
 	#name : #MooseWelcome,
 	#superclass : #CustomHelp,
