@@ -30,16 +30,16 @@ jobs:
         shell: bash
         timeout-minutes: 15
 
+      - name: set-version
+        run: |
+          ./$SMALLTALK_CI_VM/pharo $PROJECT_NAME.image --save eval "Transcript crShow: $GITHUB_SHA"
+          
       - name: rename
         run: |
           mv /home/runner/.smalltalkCI/_builds/* .
           mv TravisCI.image $PROJECT_NAME.image
           mv TravisCI.changes $PROJECT_NAME.changes
           echo ${${{ matrix.smalltalk }}} | sed -e 's/\.//g' > pharo.version
-        
-      - name: set-version
-        run: |
-          ./$SMALLTALK_CI_VM/pharo $PROJECT_NAME.image --save eval "Transcript crShow: 'hello'"
         
       - name: package
         run: |
