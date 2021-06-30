@@ -116,8 +116,13 @@ BaselineOfMoose >> neoCSV: spec [
 { #category : #actions }
 BaselineOfMoose >> postload: loader package: packageSpec [
 
-	HelpBrowser allInstances do: #close.
-	MooseWelcome openForRelease
+	"When loading Moose packages from a subproject's baseline, MooseWelcome may not be loaded."
+
+	(Smalltalk classNamed: 'MooseWelcome')
+		ifNil: [  ]
+		ifNotNil: [ :mooseWelcome | 
+			HelpBrowser allInstances do: #close.
+			mooseWelcome openForRelease ]
 ]
 
 { #category : #accessing }
