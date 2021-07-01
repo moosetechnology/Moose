@@ -11,6 +11,13 @@ FamixNamespaceGroup >> hierarchy [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
+FamixNamespaceGroup >> inspectorShowInHierarchy [
+
+	<inspectorPresentationOrder: 10 title: 'Hierarchy'>
+	^ self withinOverallHierarchy asInspectorPresenter
+]
+
+{ #category : #'*Moose-RoassalPaintings' }
 FamixNamespaceGroup >> withinOverallHierarchy [
 	^ FamixNamespaceGroupOverallHierarchy forNamespaceGroup: self
 ]
