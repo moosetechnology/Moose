@@ -12,7 +12,7 @@ BaselineOfMoose >> baseline: spec [
 
 	<baseline>
 	spec for: #common do: [ 
-		spec postLoadDoIt: #'postload:package:'.
+		spec postLoadDoIt: #postload:package:.
 		self
 			famix: spec;
 			famixTagging: spec;
@@ -27,7 +27,7 @@ BaselineOfMoose >> baseline: spec [
 				spec requires:
 						#( 'Famix' 'FamixTagging' 'FamixReplication' 'FamixPresentation'
 						   'MooseAlgos' 'Moose-RoassalPaintings'
-						   'NeoCSV' 'Merlin' 'Glamour-Tools' ) ];
+						   'NeoCSV' 'Merlin' 'Glamour-Tools' 'Midas' ) ];
 			package: 'Moose-MenuBar'
 			with: [ spec requires: #( 'Moose-Finder' ) ];
 			package: 'Moose-Configuration';
