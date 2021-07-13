@@ -33,7 +33,7 @@ jobs:
       - name: set-version
         run: |
           ls -l $SMALLTALK_CI_VM
-          $SMALLTALK_CI_VM  $SMALLTALK_CI_IMAGE eval --save MooseVersion current commitHash: $GITHUB_SHA
+          $SMALLTALK_CI_VM  $SMALLTALK_CI_IMAGE eval --save "MooseVersion current commitHash: '$GITHUB_SHA'"
           
       - name: rename
         run: |
