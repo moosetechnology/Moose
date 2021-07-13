@@ -32,9 +32,8 @@ jobs:
 
       - name: set-version
         run: |
-          echo $SMALLTALK_CI_VM
-          ls $SMALLTALK_CI_VM
-          ./$SMALLTALK_CI_VM/pharo $PROJECT_NAME.image --save eval "Transcript crShow: $GITHUB_SHA"
+          ls -l $SMALLTALK_CI_VM
+          ./$SMALLTALK_CI_VM $PROJECT_NAME.image --save eval "Transcript crShow: $GITHUB_SHA"
           
       - name: rename
         run: |
