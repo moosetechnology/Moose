@@ -6,14 +6,21 @@ FamixTypeGroup >> blueprintComplexity [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FamixTypeGroup >> miComplexityInspectorExtension [
+FamixTypeGroup >> inspectorShowComplexity [
 
 	<inspectorPresentationOrder: 10 title: 'System Complexity'>
 	^ self systemComplexity asInspectorPresenter
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
-FamixTypeGroup >> miUMLInspectorExtension [
+FamixTypeGroup >> inspectorShowNesting [
+
+	<inspectorPresentationOrder: 10 title: 'Nesting'>
+	^ self nesting asInspectorPresenter
+]
+
+{ #category : #'*Moose-RoassalPaintings' }
+FamixTypeGroup >> inspectorShowUML [
 
 	<inspectorPresentationOrder: 10 title: 'UML'>
 	^ self uml asInspectorPresenter

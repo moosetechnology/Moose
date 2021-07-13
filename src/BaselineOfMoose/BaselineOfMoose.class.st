@@ -12,7 +12,7 @@ BaselineOfMoose >> baseline: spec [
 
 	<baseline>
 	spec for: #common do: [ 
-		spec postLoadDoIt: #'postload:package:'.
+		spec postLoadDoIt: #postload:package:.
 		self
 			famix: spec;
 			famixTagging: spec;
@@ -27,7 +27,7 @@ BaselineOfMoose >> baseline: spec [
 				spec requires:
 						#( 'Famix' 'FamixTagging' 'FamixReplication' 'FamixPresentation'
 						   'MooseAlgos' 'Moose-RoassalPaintings'
-						   'NeoCSV' 'Merlin' 'Glamour-Tools' ) ];
+						   'NeoCSV' 'Merlin' 'Glamour-Tools' 'Midas' ) ];
 			package: 'Moose-MenuBar'
 			with: [ spec requires: #( 'Moose-Finder' ) ];
 			package: 'Moose-Configuration';
@@ -116,8 +116,13 @@ BaselineOfMoose >> neoCSV: spec [
 { #category : #actions }
 BaselineOfMoose >> postload: loader package: packageSpec [
 
-	HelpBrowser allInstances do: #close.
-	MooseWelcome openForRelease
+	"When loading Moose packages from a subproject's baseline, MooseWelcome may not be loaded."
+
+	(Smalltalk classNamed: 'MooseWelcome')
+		ifNil: [  ]
+		ifNotNil: [ :mooseWelcome | 
+			HelpBrowser allInstances do: #close.
+			mooseWelcome openForRelease ]
 ]
 
 { #category : #accessing }
