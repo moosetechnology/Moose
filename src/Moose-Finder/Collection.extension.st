@@ -19,10 +19,3 @@ Collection >> mooseFinderListIn: composite [
 		updateOn: MooseEntityRemoved from: [ :anObject | MooseFinder announcerFor: anObject ];
 		helpMessage: 'A selection boolean statement using ''each'' to refer to each element', String cr, 'For example: ', String cr, 'each beginsWith:''C'''.
 ]
-
-{ #category : #'*moose-finder' }
-Collection >> mooseInterestingEntity [ 
-	"For a group with one element,  it returns that element, instead of the group, useful in the finder to remove extra step when navigating"
-
-	^self asMooseGroup 
-]

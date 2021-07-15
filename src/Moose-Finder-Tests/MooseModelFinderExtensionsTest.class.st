@@ -47,17 +47,6 @@ MooseModelFinderExtensionsTest >> testBrowseMeta [
 ]
 
 { #category : #tests }
-MooseModelFinderExtensionsTest >> testMooseInterestingEntity [
-	| storage state |
-	model := MooseModel new.
-	state := model.
-	storage := model entityStorage.
-	model mooseInterestingEntity.
-	self assert: model identicalTo: state.
-	self assert: model entityStorage identicalTo: storage
-]
-
-{ #category : #tests }
 MooseModelFinderExtensionsTest >> testbrowseCodeWithDependencies [
 
 	"MetaBrowser is to be fixed using Spec2"
