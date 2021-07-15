@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      PROJECT_NAME: Moose8-stable
+      PROJECT_NAME: ${{ matrix.smalltalk }}-Moose
     strategy:
       matrix:
         smalltalk: [ Pharo64-8.0 ]
