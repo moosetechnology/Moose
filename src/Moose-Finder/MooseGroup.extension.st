@@ -38,11 +38,6 @@ MooseGroup >> mooseIcon [
 	^ MooseIcons mooseMetamodelGroup
 ]
 
-{ #category : #'*Moose-Finder' }
-MooseGroup >> mooseInterestingEntity [
-	^ self specialize
-]
-
 { #category : #'*moose-finder' }
 MooseGroup >> spotterItemsFor: aStep [
 	<spotterOrder: 10>
