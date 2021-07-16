@@ -30,12 +30,20 @@ jobs:
         shell: bash
         timeout-minutes: 15
 
-      - name: package
+      - name: set-version
         run: |
-          mv /home/runner/.smalltalkCI/_builds/* .
+          ls -l $SMALLTALK_CI_VM
+          $SMALLTALK_CI_VM  $SMALLTALK_CI_IMAGE eval --save "MooseVersion current commitHash: '$GITHUB_SHA'. HelpBrowser allInstances do: #close. MooseWelcome openForRelease"
+          
+      - name: rename
+        run: |
+          mv $SMALLTALK_CI_BUILD/* .
           mv TravisCI.image $PROJECT_NAME.image
           mv TravisCI.changes $PROJECT_NAME.changes
           echo ${${{ matrix.smalltalk }}} | sed -e 's/\.//g' > pharo.version
+        
+      - name: package
+        run: |
           zip -r $PROJECT_NAME.zip $PROJECT_NAME.image $PROJECT_NAME.changes *.sources pharo.version
           ls
 
