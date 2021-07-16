@@ -11,8 +11,7 @@ Class {
 BaselineOfMoose >> baseline: spec [
 
 	<baseline>
-	spec for: #common do: [ 
-		spec postLoadDoIt: #postload:package:.
+	spec for: #common do: [
 		self
 			famix: spec;
 			famixTagging: spec;
@@ -111,18 +110,6 @@ BaselineOfMoose >> neoCSV: spec [
 		with: [ spec
 				loads: 'core';
 				repository: 'github://svenvc/NeoCSV/repository' ]
-]
-
-{ #category : #actions }
-BaselineOfMoose >> postload: loader package: packageSpec [
-
-	"When loading Moose packages from a subproject's baseline, MooseWelcome may not be loaded."
-
-	(Smalltalk classNamed: 'MooseWelcome')
-		ifNil: [  ]
-		ifNotNil: [ :mooseWelcome | 
-			HelpBrowser allInstances do: #close.
-			mooseWelcome openForRelease ]
 ]
 
 { #category : #accessing }
