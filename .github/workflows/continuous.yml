@@ -16,7 +16,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      PROJECT_NAME: ${{ matrix.smalltalk }}-Moose
+      PROJECT_NAME: Moose9-development
     strategy:
       matrix:
         smalltalk: [ Pharo64-9.0 ]
