@@ -9,7 +9,7 @@ FamixTWithSourceLanguages >> formattedSourceText [
 
 { #category : #'*Moose-Finder' }
 FamixTWithSourceLanguages >> sourceLanguage [
-
 	"should be redefined"
-	^ nil
+
+	^ self sourceLanguageOr: FAMIXUnknownSourceLanguage
 ]
