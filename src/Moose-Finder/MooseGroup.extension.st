@@ -1,34 +1,6 @@
 Extension { #name : #MooseGroup }
 
 { #category : #'*moose-finder' }
-MooseGroup class >> gtExampleEmptyCollection [
-	<gtExample>
-	<label: 'Empty collection'>
-	
-	^ {  } asMooseGroup
-]
-
-{ #category : #'*moose-finder' }
-MooseGroup class >> gtExampleEmptyGroup [
-	<gtExample>
-	<label: 'Empty group'>
-	
-	^ self new
-]
-
-{ #category : #'*moose-finder' }
-MooseGroup class >> gtExampleGroupWithEmptyEntities [
-	<gtExample>
-	<label: 'Group with empty entities'>
-	
-	^ self new
-		add: MooseEntity new;
-		add: MooseEntity new;
-		add: MooseEntity new;
-		yourself
-]
-
-{ #category : #'*moose-finder' }
 MooseGroup >> mooseFinderNavigationIn: composite [
 	"it is not valid here"
 ]

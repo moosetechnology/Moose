@@ -29,54 +29,6 @@ MooseObject class >> formatForNavigationPresentation [
 ]
 
 { #category : #'*Moose-Finder' }
-MooseObject >> gtInspectorActionOpenInMoose [
-	<gtInspectorAction>
-	[ self mooseDescription ]
-		on: NotFound
-		do: [ ^ GLMGenericAction new
-				action: [ self inform: 'Moose description not initialized' ];
-				icon: (self iconNamed: #error);
-				title: 'Moose description not initialized' ].
-	^ GLMGenericAction new
-		action: [ self openInMoose ];
-		icon: MooseIcons mooseIcon asGrayScaleWithAlpha;
-		title: 'Open in Moose'
-]
-
-{ #category : #'*Moose-Finder' }
-MooseObject >> gtInspectorPresentationsIn: composite inContext: aGTInspector [
-	| pragmas acceptedPragmas |
-	[ self mooseDescription ]
-		on: NotFound
-		do: [ super gtInspectorPresentationsIn: composite inContext: aGTInspector.
-			^ self ].
-	pragmas := Pragma
-		allNamed: #moosePresentationOrder:
-		from: self mooseInterestingEntity class
-		to: Object
-		sortedUsing: [ :x :y | (x argumentAt: 1) < (y argumentAt: 1) ].
-	acceptedPragmas := OrderedCollection new.
-	pragmas
-		do: [ :pragma | 
-			(acceptedPragmas
-				anySatisfy:
-					[ :alreadyAcceptedPragma | alreadyAcceptedPragma method origin = pragma method origin and: [ alreadyAcceptedPragma method selector = pragma method selector ] ])
-				ifFalse: [ acceptedPragmas add: pragma ] ].
-	acceptedPragmas
-		do: [ :eachPragma | 
-			(eachPragma methodSelector findTokens: $:) size = 1
-				ifTrue: [ self mooseInterestingEntity
-						perform: eachPragma methodSelector
-						with: composite ].
-			(eachPragma methodSelector findTokens: $:) size = 2
-				ifTrue: [ self mooseInterestingEntity
-						perform: eachPragma methodSelector
-						with: composite
-						with: aGTInspector ] ].
-	super gtInspectorPresentationsIn: composite inContext: aGTInspector
-]
-
-{ #category : #'*Moose-Finder' }
 MooseObject >> mooseDescriptionsOfNumberProperties [
 	^ self mooseDescription allProperties select: [ :each | each type = FM3Number instance ]
 ]
