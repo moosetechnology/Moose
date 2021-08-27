@@ -9,14 +9,6 @@ MooseAbstractGroup >> displayStringOn: aStream [
 ]
 
 { #category : #'*moose-finder' }
-MooseAbstractGroup >> gtDisplayOn: aStream [
-	super gtDisplayOn: aStream.
-	aStream nextPut: $(.
-	aStream print: self size.
-	aStream nextPut: $)
-]
-
-{ #category : #'*moose-finder' }
 MooseAbstractGroup >> mooseFinderListIn: composite [
 
 	<moosePresentationOrder: 1>

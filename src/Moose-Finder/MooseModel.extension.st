@@ -78,45 +78,6 @@ MooseModel >> exportToMSE [
 ]
 
 { #category : #'*Moose-Finder' }
-MooseModel class >> gtExampleEmptyModel [
-	<gtExample>
-	<label: 'Empty Moose model'>
-	
-	^ self new
-]
-
-{ #category : #'*Moose-Finder' }
-MooseModel class >> gtExampleGTModel [
-	"<gtExample: 'GT-* model'> => tests run super slow "
-	| model importer |
-	model := self new.
-	model name: 'GT-*'.
-	importer := MoosePharoImporterTask new.
-	importer factory: SmalltalkMetamodelFactory.
-	importer importingContext mergeClassAndMetaclass.
-	importer runCandidateOperator.
-	importer model: model.
-	RPackageOrganizer default packages 
-		select: [ :each | each packageName beginsWith: 'GT-' ] 
-		thenDo: [ :package | importer addFromPackage: package ].
-	importer runWithProgress.
-	model install.
-	^ model
-]
-
-{ #category : #'*Moose-Finder' }
-MooseModel class >> gtExampleMorphModel [
-	"<gtExample: 'Morph model'> => tests run super slow "
-	^ MooseScripts createModelForMorphic
-]
-
-{ #category : #'*Moose-Finder' }
-MooseModel class >> gtExampleNetworkModel [
-	"<gtExample: 'Network model'> => tests run super slow "
-	^ MooseScripts createModelForNetwork
-]
-
-{ #category : #'*Moose-Finder' }
 MooseModel >> importFileStructure [
 	| directory |
 	directory := UITheme builder chooseDirectory: 'Import file structure from folder'.
