@@ -58,12 +58,19 @@ MooseWelcome class >> welcome [
 
 	^ HelpTopic
 		  title: 'Welcome to Moose ' , version major
-		  contents: (self heading: 'Moose ' , version versionNumber withSubtitle: 'commit: ', version commitHash printString) , 'Moose is a platform for software analysis.
+		  contents: (self
+				   heading: 'Moose ' , version versionNumber
+				   withSubtitle: 'commit: ' , version commitHash printString)
+			  , 'Moose is a platform for software analysis.
 
 It allows to represent software system in a model, to query, manipulate, transform, visualize this model.
 
 Moose based on Pharo and it''s open source under BSD/MIT.
 
-For more information, please visit here: ' , (self url: 'https://modularmoose.org/moose-wiki/') , (self subheading: 'Quick setup')
-			  , 'Create or load a model with the ' , (self doItFrom: 'MiModelRootBrowser runMe' text: 'model browser')
+For more information, please visit here: '
+			  , (self url: 'https://modularmoose.org/moose-wiki/')
+			  , (self subheading: 'Quick setup')
+			  , 'Create or load a model with the '
+			  ,
+			  (self doItFrom: 'MiModelRootBrowser open' text: 'model browser')
 ]
