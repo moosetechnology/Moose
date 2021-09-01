@@ -47,10 +47,8 @@ BaselineOfMoose >> baseline: spec [
 		spec for: #( #NewTools ) do: [ 
 			spec
 				package: 'Moose-Finder-Pharo8';
-				package: 'Moose-Finder2';
 				package: 'Moose-Finder'
-				with: [ spec includes: #( 'Moose-Finder-Pharo8'
-						   'Moose-Finder2' ) ] ] ]
+				with: [ spec includes: #( 'Moose-Finder-Pharo8' ) ] ] ]
 ]
 
 { #category : #baseline }
