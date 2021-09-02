@@ -13,15 +13,6 @@ MoosePlayground class >> initialize [
 ]
 
 { #category : #'world menu' }
-MoosePlayground class >> menuCommandOn: aBuilder [
-	<worldMenu>
-	^(MooseModel developerTool: self menuCommandOn: aBuilder)
-		order: 10 ; 
-		help: 'Playground enhanced for usage in Moose' ;
-		yourself
-]
-
-{ #category : #'world menu' }
 MoosePlayground class >> menuLabel [
 	^'Moose Playground'
 ]
