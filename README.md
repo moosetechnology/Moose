@@ -21,10 +21,12 @@ Please refer to the [moose wiki](https://moosetechnology.github.io/moose-wiki/) 
 **Latest version: Moose 9**
 
 ```smalltalk
-Metacello new
-  baseline: 'Moose';
-  repository: 'github://moosetechnology/Moose:development/src';
-  load.
+[ Metacello new
+    baseline: 'Moose';
+    repository: 'github://moosetechnology/Moose:development/src';
+    load ]
+    on: MCMergeOrLoadWarning
+    do: [ :warning | warning load ]
 ```
 
 **Stable version: Moose 8**
