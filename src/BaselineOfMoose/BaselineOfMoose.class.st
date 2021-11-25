@@ -89,7 +89,7 @@ BaselineOfMoose >> mooseAlgos: spec [
 
 { #category : #dependencies }
 BaselineOfMoose >> mooseEasy: spec [
-	spec baseline: 'MooseEasy' with: [ spec repository: 'github://moosetechnology/Moose-Easy:v1.x.x/src' ]
+	spec baseline: 'MooseEasy' with: [ spec repository: 'github://moosetechnology/Moose-Easy:v2/src' ]
 ]
 
 { #category : #dependencies }
