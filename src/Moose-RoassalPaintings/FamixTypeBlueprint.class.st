@@ -56,7 +56,7 @@ FamixTypeBlueprint >> buildEdges [
 	edges do: #pushBack.
 
 	"Invocations"
-	builder color: Color lightMagenta.
+	builder color: (Color r: 0 g: 0 b: 0.8 alpha: 0.6 ).
 	edges := (famixType queryOutgoing: FamixTInvocation)
 		flatCollect: [ :acc | builder connectFrom: acc source toAll: acc candidates ].
 	edges do: #pushBack
@@ -65,7 +65,7 @@ FamixTypeBlueprint >> buildEdges [
 { #category : #building }
 FamixTypeBlueprint >> buildLayerNamed: label withEntities: aGroup [
 	| layer |
-	layer := RSComposite new borderColor: Color gray.
+	layer := RSComposite new borderColor: Color gray translucent.
 	layer
 		addAll: (aGroup collect: [ :entity | entity shapeInBlueprint: self ]).
 	layer popupText: label.
@@ -89,7 +89,7 @@ FamixTypeBlueprint >> buildLegend [
 	legend text: 'From left to right:'.
 	legend
 		text:
-			'    Constructors, Public methods, Private methods, Accessors, Variables'.
+			'    Constructors, Public methods, Private methods, Accessors, Attributes'.
 	legend
 		text: 'Variable access'
 		withShape:
@@ -101,7 +101,7 @@ FamixTypeBlueprint >> buildLegend [
 		withShape:
 			(RSBox new
 				extent: 15 @ 5;
-				color: Color lightMagenta).
+				color: (Color r: 0 g: 0 b: 0.8 alpha: 0.6 )).
 	legend text: 'Setter' withBoxColor: Color red.
 	legend text: 'Getter' withBoxColor: Color orange.
 	legend text: 'Abstract' withBoxColor: Color cyan.
@@ -156,7 +156,7 @@ FamixTypeBlueprint >> layersEntities [
 				select: [ :method | method isInternalImplementation ])).
 	('Accessors'
 		-> (famixType methods select: [ :method | method isPureAccessor ])).
-	('Attributes' -> famixType attributes)} asDictionary
+	('Attributes' -> famixType attributes)} asOrderedDictionary
 ]
 
 { #category : #building }
@@ -180,7 +180,7 @@ FamixTypeBlueprint >> shapeForAttribute: anAttribute [
 	shape := RSBox new
 		model: anAttribute;
 		borderColor: Color lightGray;
-		color: Color lightBlue;
+		color: Color blue;
 		popup;
 		yourself.
 	shape @ RSDraggable.
