@@ -29,6 +29,8 @@ Please refer to the [moose wiki](https://moosetechnology.github.io/moose-wiki/) 
     do: [ :warning | warning load ]
 ```
 
+If all else fails, you should be able to get the last generated image from github : [https://github.com/moosetechnology/Moose/releases/download/continuous/Moose9-development.zip](https://github.com/moosetechnology/Moose/releases/download/continuous/Moose9-development.zip)
+
 **Stable version: Moose 8**
 
 ```smalltalk
