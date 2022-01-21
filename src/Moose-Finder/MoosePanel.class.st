@@ -39,7 +39,7 @@ MoosePanel >> browserActionsIn: aBrowser [
 		icon: GLMUIThemeExtraIcons glamorousRefresh
 		entitled: 'Update'.
 	aBrowser dynamicActions: [ :root | 
-		(MoosePanelCommand allCommands , MPImportCommand allSubclasses)
+		(MoosePanelCommand allCommands , MiImportCommand allSubclasses)
 			asOrderedCollection collect: [ :each | 
 			GLMGenericAction new
 				title: each defaultName;
