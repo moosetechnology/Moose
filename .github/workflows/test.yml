@@ -20,6 +20,11 @@ jobs:
         run: |
           PHAROVERSION=$(cat $GITHUB_WORKSPACE/.github/workflows/pharo-versions.json)
           echo "::set-output name=pharo-version::$PHAROVERSION"
+      - name: Get Moose image name
+        id: get-moose-name-from-json          
+        run: |
+          MOOSEVERSION=$(cat $GITHUB_WORKSPACE/.github/workflows/moose-version.json)
+          echo "::set-output name=moose-version::$MOOSEVERSION"
 
   print-matrix:
     runs-on: ubuntu-latest
