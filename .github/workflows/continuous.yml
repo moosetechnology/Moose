@@ -29,7 +29,7 @@ jobs:
       PROJECT_NAME: ${{ fromJSON(needs.get-data.outputs.versions).moose-name }}
     strategy:
       matrix:
-        smalltalk: ${{ fromJSON(needs.get-data.outputs.versions).versions }}
+        smalltalk: ${{ fromJSON(needs.get-data.outputs.versions).pharo-versions }}
     name: ${{ matrix.smalltalk }}
     steps:
       - uses: actions/checkout@v2
@@ -61,4 +61,4 @@ jobs:
         with:
           release: 'continuous'
           token: ${{ secrets.GITHUB_TOKEN }}
-          files: ${{ env.PROJECT_NAME }}.zip
+          files: ${{ env.PROJECT_NAME }}-${{ matrix.smalltalk }}.zip
