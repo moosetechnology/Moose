@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs: 
       pharo-version: ${{ steps.get-matrix-from-json.outputs.pharo-version }}
-      moose-version: ${{ steps.get-matrix-from-json.outputs.moose-version }}
+      moose-version: ${{ steps.get-moose-name-from-json.moose-version }}
     steps:
       - uses: actions/checkout@v2
       - name: Get Matrix
