@@ -26,10 +26,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: get-versions
     env:
-      PROJECT_NAME: ${{ fromJSON(needs.get-data.outputs.versions).moose-name }}
+      PROJECT_NAME: ${{ fromJSON(needs.get-versions.outputs.versions).moose-name }}
     strategy:
       matrix:
-        smalltalk: ${{ fromJSON(needs.get-data.outputs.versions).pharo-versions }}
+        smalltalk: ${{ fromJSON(needs.get-versions.outputs.versions).pharo-versions }}
     name: ${{ matrix.smalltalk }}
     steps:
       - uses: actions/checkout@v2
