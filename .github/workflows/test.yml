@@ -35,7 +35,7 @@ jobs:
       - get-versions
     strategy:
       matrix: 
-        smalltalk: ${{ fromJSON(needs.get-versions.outputs.versions.pharo-versions) }}
+        smalltalk: ${{ fromJSON(needs.get-versions.outputs.versions) }}.pharo-versions
     name: ${{ matrix.smalltalk }}
     steps:
       - uses: actions/checkout@v2
