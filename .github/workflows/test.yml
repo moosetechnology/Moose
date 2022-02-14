@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs: 
       pharo-version: ${{ steps.get-matrix-from-json.outputs.pharo-version }}
+      moose-version: ${{ steps.get-matrix-from-json.outputs.moose-version }}
     steps:
       - uses: actions/checkout@v2
       - name: Get Matrix
@@ -31,9 +32,8 @@ jobs:
     needs:
       - get-matrix
     steps:
-      - run: |
-          echo "${{ needs.get-matrix.outputs.pharo-version }}" 
-          echo "${{ needs.get-matrix.outputs.moose-version }}" 
+      - run: echo "${{ needs.get-matrix.outputs.pharo-version }}" 
+      - run: echo "${{ needs.get-matrix.outputs.moose-version }}" 
 
 
 # Run tests on pharo versions described in the file pharo-versions.json
