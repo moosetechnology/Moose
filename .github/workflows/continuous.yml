@@ -10,32 +10,26 @@ on:
 jobs:
 
 # Read the content of the files pharo-versions.json and moose-version.json. 
-  get-data:
+ get-versions:
     runs-on: ubuntu-latest
     outputs: 
-      pharo-version: ${{ steps.get-matrix-from-json.outputs.pharo-version }}
-      moose-version: ${{ steps.get-matrix-from-json.outputs.moose-version }}
+      versions: ${{ steps.read-file.outputs.versions }}
     steps:
       - uses: actions/checkout@v2
-      - name: Get Matrix
-        id: get-matrix-from-json          
+      - name: Read file
+        id: read-file
         run: |
-          PHAROVERSION=$(cat $GITHUB_WORKSPACE/.github/workflows/pharo-versions.json)
-          echo "::set-output name=pharo-version::$PHAROVERSION"
-      - name: Get Moose image name
-        id: get-moose-name-from-json          
-        run: |
-          MOOSEVERSION=$(cat $GITHUB_WORKSPACE/.github/workflows/moose-version.json)
-          echo "::set-output name=moose-version::$MOOSEVERSION"
+          VERSIONS=$(cat $GITHUB_WORKSPACE/.github/workflows/versions.json)
+          echo "::set-output name=versions::$VERSIONS"
 
-  build:
+ build:
     runs-on: ubuntu-latest
-    needs: get-data
+    needs: get-versions
     env:
-      PROJECT_NAME: ${{ fromJSON(needs.get-data.outputs.moose-version) }}
+      PROJECT_NAME: ${{ fromJSON(needs.get-data.outputs.versions).moose-name }}
     strategy:
       matrix:
-        smalltalk: ${{ fromJSON(needs.get-data.outputs.pharo-version) }}
+        smalltalk: ${{ fromJSON(needs.get-data.outputs.versions).versions }}
     name: ${{ matrix.smalltalk }}
     steps:
       - uses: actions/checkout@v2
