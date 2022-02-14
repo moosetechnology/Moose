@@ -1,4 +1,4 @@
-name: Pull-requests-Moose9
+name: Pull-request
 
 on:
   pull_request:
@@ -7,13 +7,28 @@ on:
       - v8
 
 jobs:
+
+# Read the content of the file pharo-versions.json. It is interpreted as a json matrix in the next job.
+  get-matrix:
+    runs-on: ubuntu-latest
+    outputs: 
+      pharo-version: ${{ steps.get-matrix-from-json.outputs.pharo-version }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Get Matrix
+        id: get-matrix-from-json          
+        run: |
+          PHAROVERSION=$(cat $GITHUB_WORKSPACE/.github/workflows/pharo-versions.json)
+          echo "::set-output name=pharo-version::$PHAROVERSION"
+
+# Run tests on pharo versions described in the file pharo-versions.json
   build:
     runs-on: ubuntu-latest
-    env:
-      PROJECT_NAME: Moose9
+    needs:
+      - get-matrix
     strategy:
-      matrix:
-        smalltalk: [ Pharo64-9.0 ]
+      matrix: 
+        smalltalk: ${{ fromJSON(needs.get-matrix.outputs.pharo-version) }}
     name: ${{ matrix.smalltalk }}
     steps:
       - uses: actions/checkout@v2
