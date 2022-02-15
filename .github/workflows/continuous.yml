@@ -5,6 +5,9 @@ on:
     branches:
       - development
       - v9
+  # This will be triggered only for development branch
+  schedule:
+    - cron:  '0 0 * * *'
 
 jobs:
 
