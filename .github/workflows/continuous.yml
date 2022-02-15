@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - development
+      - v9
 
 jobs:
 
