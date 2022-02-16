@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - development
+      - v9
+  # This will be triggered only for development branch
   schedule:
     - cron:  '0 0 * * *'
 
@@ -50,7 +52,9 @@ jobs:
           mv $SMALLTALK_CI_BUILD/* .
           mv TravisCI.image $PROJECT_NAME-${{ matrix.smalltalk }}.image
           mv TravisCI.changes $PROJECT_NAME-${{ matrix.smalltalk }}.changes
-          echo ${${{ matrix.smalltalk }}} | sed -e 's/\.//g' > pharo.version
+          echo ${${{ matrix.smalltalk }}} | sed -e 's/.*\-//g ; s/\..*//g ; s/$/0/' > pharo.version
+        # Remove every character before '-' ; Remove point and anything after it ; add a '0'.
+        # This pattern transforms as follow: 'Pharo64-9.0' --> '90' and 'Pharo64-10' --> '100'.
         
       - name: package
         run: |
@@ -59,6 +63,6 @@ jobs:
       - name: Update Release
         uses: johnwbyrd/update-release@v1.0.0
         with:
-          release: 'continuous'
+          release: ${{ fromJSON(needs.get-versions.outputs.versions).release-name }}
           token: ${{ secrets.GITHUB_TOKEN }}
           files: ${{ env.PROJECT_NAME }}-${{ matrix.smalltalk }}.zip
