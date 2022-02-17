@@ -23,13 +23,17 @@ BaselineOfMoose >> baseline: spec [
 				roassal2: spec.
 			spec
 				package: 'Moose-Finder'
-					with: [ spec requires: #('Famix' 'FamixTagging' 'FamixReplication' 'FamixPresentation' 'MooseAlgos' 'Moose-RoassalPaintings' 'NeoCSV' 'Merlin') ];
-				package: 'Moose-MenuBar' with: [ spec requires: #('Moose-Finder') ];
+					with: [ spec
+						requires:
+							#('Famix' 'FamixTagging' 'FamixReplication' 'FamixPresentation' 'MooseAlgos' 'Moose-RoassalPaintings' 'NeoCSV' 'Merlin') ];
+				package: 'Moose-MenuBar'
+					with: [ spec requires: #('Moose-Finder') ];
 				package: 'Moose-Configuration';
 				package: 'Glamour-Tools';
 				package: 'Glamour-Magritte-Presentations';
 				package: 'Moose-Help';
-				package: 'Moose-RoassalPaintings' with: [ spec requires: #('Roassal2') ];
+				package: 'Moose-RoassalPaintings'
+					with: [ spec requires: #('Roassal2') ];
 				package: 'Moose-Finder-Tests';
 				package: 'Moose-RoassalPaintings-Tests';
 				package: 'Merlin';
@@ -39,13 +43,16 @@ BaselineOfMoose >> baseline: spec [
 		for: #'pharo8.x'
 		do: [ spec
 				package: 'Moose-Finder-Pharo8';
-				package: 'Moose-Finder' with: [ spec includes: #('Moose-Finder-Pharo8') ].
+				package: 'Moose-Finder'
+					with: [ spec includes: #('Moose-Finder-Pharo8') ].
 			spec
 				for: #(#NewTools)
 				do: [ spec
 						package: 'Moose-Finder-Pharo8';
 						package: 'Moose-Finder2';
-						package: 'Moose-Finder' with: [ spec includes: #('Moose-Finder-Pharo8' 'Moose-Finder2') ] ] ]
+						package: 'Moose-Finder'
+							with: [ spec includes: #('Moose-Finder-Pharo8' 'Moose-Finder2') ] ].
+			spec preLoadDoIt: #updateTraitRequirements ]
 ]
 
 { #category : #baseline }
@@ -110,4 +117,17 @@ BaselineOfMoose >> roassal2: spec [
 		with: [ spec
 				loads: 'Minimal';
 				repository: 'github://ObjectProfile/Roassal2:614d7b80eebf6af33a777cec55ecc1c6a7a65482/src' ]
+]
+
+{ #category : #actions }
+BaselineOfMoose >> updateTraitRequirements [
+	MCTraitDefinition
+		compile:
+			'requirements
+	self hasTraitComposition
+		ifFalse: [ ^ Array new ].
+	^ (((RBParser parseExpression: self traitCompositionString)
+		allChildren select: [ :e | e isVariable ])
+		collect: [ :e | e name ]
+		as: Set) asArray'
 ]
