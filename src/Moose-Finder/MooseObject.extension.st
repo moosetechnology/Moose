@@ -15,9 +15,13 @@ MooseObject >> bookmarkEntity [
 { #category : #'*Moose-Finder' }
 MooseObject >> complexPropertyPragmas [
 	| navProps definedProps |
-	navProps := self navigationPragmas sorted: [ :pragma | pragma argumentNamed: #navigation ] ascending.
-	definedProps := (self allDeclaredProperties reject: [ :a | a type isPrimitive ])
-		flatCollect: [ :prop | prop compiledMethod pragmas select: [ :each | each selector beginsWith: 'FMProperty:' ] ].
+	navProps := self navigationPragmas
+		sorted: [ :pragma | pragma argumentNamed: #navigation ] ascending.
+	definedProps := (self allDeclaredProperties
+		reject: [ :a | a type isPrimitive or: [ a compiledMethod isDeprecated ] ])
+		flatCollect: [ :prop | 
+			prop compiledMethod pragmas
+				select: [ :each | each selector beginsWith: 'FMProperty:' ] ].
 	^ (OrderedCollection withAll: definedProps)
 		addAll: navProps;
 		yourself
@@ -162,12 +166,22 @@ MooseObject >> navigationItemsFromAttributes [
 	"returns associations in form name->object for navigation entities obtained from
 	the the meta-model attributes of the item"
 	entity := self mooseInterestingEntity.
-	attrs := entity allDeclaredProperties reject: [ :attribute | attribute type isPrimitive ].
-	assocs := attrs collect: [ :anAttribute | anAttribute -> (entity perform: anAttribute compiledMethod selector) ].
+	attrs := entity allDeclaredProperties
+		reject: [ :attribute | 
+			attribute type isPrimitive
+				or: [ attribute compiledMethod isDeprecated ] ].
+	assocs := attrs
+		collect:
+			[ :anAttribute | anAttribute -> (entity perform: anAttribute compiledMethod selector) ].
 
 	"filter out nils and empty collections, sort"
-	^ (assocs reject: [ :association | association value isNil or: [ association value isCollection and: [ association value isEmpty ] ] ])
-		sorted: [ :a | a key formatForNavigationPresentation asLowercase asString ] ascending
+	^ (assocs
+		reject: [ :association | 
+			association value isNil
+				or: [ association value isCollection and: [ association value isEmpty ] ] ])
+		sorted:
+			[ :a | a key formatForNavigationPresentation asLowercase asString ]
+				ascending
 ]
 
 { #category : #'*Moose-Finder' }
