@@ -61,3 +61,10 @@ jobs:
           asset_path: ./${{ env.PROJECT_NAME }}-${{ matrix.smalltalk }}.zip
           asset_name: ${{ env.PROJECT_NAME }}-${{ matrix.smalltalk }}.zip
           asset_content_type: application/zip
+
+      - name: Update Generic Release
+        uses: johnwbyrd/update-release@v1.0.0
+        with:
+          release: ${{ fromJSON(needs.get-versions.outputs.versions).release-name }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: ${{ env.PROJECT_NAME }}-${{ matrix.smalltalk }}.zip
