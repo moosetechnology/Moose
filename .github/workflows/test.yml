@@ -3,8 +3,6 @@ name: Pull-request
 on:
   pull_request:
     types: [assigned, opened, synchronize, reopened]
-    branches-ignore:
-      - v8
 
 jobs:
 
