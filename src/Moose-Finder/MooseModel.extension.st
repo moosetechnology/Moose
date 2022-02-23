@@ -90,11 +90,6 @@ MooseModel >> importFileStructure [
 ]
 
 { #category : #'*Moose-Finder' }
-MooseModel class >> isTestModel [
-	^ false
-]
-
-{ #category : #'*Moose-Finder' }
 MooseModel >> mooseFinderRootFolderIn: composite [
 	<moosePresentationOrder: 30>
 	self rootFolder asFileReference exists ifTrue: [ 
