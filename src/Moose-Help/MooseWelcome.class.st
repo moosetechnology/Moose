@@ -13,6 +13,35 @@ MooseWelcome class >> bookName [
 ]
 
 { #category : #accessing }
+MooseWelcome class >> mainTools [
+
+	^ HelpTopic
+		  title: 'Main tools'
+		  contents: (self heading: 'Main Moose tools')
+, 'Some suggestions on what you can do with Moose.'
+				
+, (self subheading: 'Starting')
+, '- First, use the ' , (self doItFrom: 'MiModelRootBrowser open' text: 'model browser') ,
+	' to create an internal model of a system.
+- You will need to ''Propagate'' this model to other tools.
+- Then, you can ' , (self doItFrom: 'MiInspectorBrowser open' text: 'inspect')
+, ' the content of your model.
+- Keep an eye on opened tools with the ' ,  (self doItFrom: 'MiOverviewBrowser open' text: 'Overview browser.')
+
+, (self subheading: 'Manipulating')
+, 'You can:
+- Select specific entities in a model with the ' , (self doItFrom: 'MiQueriesBrowser open' text: 'Query browser.')
+, '
+- Annotate entities with the '  , (self doItFrom: 'MiTagBrowser open' text: 'Tag browser')
+
+, (self subheading: 'Visualization')
+, 'There are various visualizations available on different kind of entities:
+- ' , (self doItFrom: 'MiHierarchicalVisualizationBrowser open' text: 'Architectural browser')
+, '
+- '  , (self doItFrom: 'MiCoUsageBrowser open' text: 'CoUsage map browser')
+]
+
+{ #category : #accessing }
 MooseWelcome class >> menuCommandOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #'Moose Help')
@@ -47,7 +76,7 @@ MooseWelcome class >> openForRelease [
 
 { #category : #accessing }
 MooseWelcome class >> pages [
-	^ #(welcome)
+	^ #(welcome mainTools)
 ]
 
 { #category : #accessing }
