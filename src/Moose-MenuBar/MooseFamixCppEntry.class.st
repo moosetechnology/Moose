@@ -10,13 +10,14 @@ Class {
 { #category : #'world menu' }
 MooseFamixCppEntry class >> menuCommandOn: aBuilder [
 	"method needed for the pragma"
+
 	<worldMenu>
 	^self toolEntryMenuCommandOn: aBuilder
 ]
 
 { #category : #'world menu' }
 MooseFamixCppEntry class >> menuPriority [
-	^ 60
+	^ -10
 ]
 
 { #category : #execution }
