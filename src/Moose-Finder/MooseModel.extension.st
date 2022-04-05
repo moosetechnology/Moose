@@ -78,45 +78,6 @@ MooseModel >> exportToMSE [
 ]
 
 { #category : #'*Moose-Finder' }
-MooseModel class >> gtExampleEmptyModel [
-	<gtExample>
-	<label: 'Empty Moose model'>
-	
-	^ self new
-]
-
-{ #category : #'*Moose-Finder' }
-MooseModel class >> gtExampleGTModel [
-	"<gtExample: 'GT-* model'> => tests run super slow "
-	| model importer |
-	model := self new.
-	model name: 'GT-*'.
-	importer := MoosePharoImporterTask new.
-	importer factory: SmalltalkMetamodelFactory.
-	importer importingContext mergeClassAndMetaclass.
-	importer runCandidateOperator.
-	importer model: model.
-	RPackageOrganizer default packages 
-		select: [ :each | each packageName beginsWith: 'GT-' ] 
-		thenDo: [ :package | importer addFromPackage: package ].
-	importer runWithProgress.
-	model install.
-	^ model
-]
-
-{ #category : #'*Moose-Finder' }
-MooseModel class >> gtExampleMorphModel [
-	"<gtExample: 'Morph model'> => tests run super slow "
-	^ MooseScripts createModelForMorphic
-]
-
-{ #category : #'*Moose-Finder' }
-MooseModel class >> gtExampleNetworkModel [
-	"<gtExample: 'Network model'> => tests run super slow "
-	^ MooseScripts createModelForNetwork
-]
-
-{ #category : #'*Moose-Finder' }
 MooseModel >> importFileStructure [
 	| directory |
 	directory := UITheme builder chooseDirectory: 'Import file structure from folder'.
@@ -129,27 +90,11 @@ MooseModel >> importFileStructure [
 ]
 
 { #category : #'*Moose-Finder' }
-MooseModel class >> isTestModel [
-	^ false
-]
-
-{ #category : #'*Moose-Finder' }
 MooseModel >> mooseFinderRootFolderIn: composite [
 	<moosePresentationOrder: 30>
 	self rootFolder asFileReference exists ifTrue: [ 
 		(self rootFolder asFileReference gtInspectorItemsIn: composite)
 			titleIcon: MooseIcons mooseFolder ]
-]
-
-{ #category : #'*Moose-Finder' }
-MooseModel >> mooseInterestingEntity [ 
-	"For a group with one element,  it returns that element, instead of the group, useful in the finder to remove extra step when navigating"
-	
-	"-- interestingEntity is called before UI actions, hence we optimize for runtime --" 
-	
-	self flag: 'The entity storage should not be changed here, but in the loader or somewhere else'.
-	self entityStorage forRuntime. 
-	^ self
 ]
 
 { #category : #'*Moose-Finder' }

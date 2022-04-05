@@ -12,27 +12,31 @@ Please refer to the [moose wiki](https://moosetechnology.github.io/moose-wiki/) 
 
 ## Installation
 
-### Get a built Moose Image from ![Pharo launcher](https://github.com/pharo-project/pharo-launcher)
+### Get a built Moose Image from [Pharo launcher](https://github.com/pharo-project/pharo-launcher)
 
 ![Download Moose gif](ressources/Moose-launcher.gif)
 
 ### Load Moose in a Pharo image
+
+**Latest version: Moose 9**
+
+```smalltalk
+[ Metacello new
+    baseline: 'Moose';
+    repository: 'github://moosetechnology/Moose:development/src';
+    load ]
+    on: MCMergeOrLoadWarning
+    do: [ :warning | warning load ]
+```
+
+If all else fails, you should be able to get the last generated image from github : [https://github.com/moosetechnology/Moose/releases/download/continuous/Moose9-development.zip](https://github.com/moosetechnology/Moose/releases/download/continuous/Moose9-development.zip)
 
 **Stable version: Moose 8**
 
 ```smalltalk
 Metacello new
   baseline: 'Moose';
-  repository: 'github://moosetechnology/Moose:v8.0.0/src';
-  load.
-```
-
-**Development version: Moose 9**
-
-```smalltalk
-Metacello new
-  baseline: 'Moose';
-  repository: 'github://moosetechnology/Moose:development/src';
+  repository: 'github://moosetechnology/Moose:v8.x.x/src';
   load.
 ```
 

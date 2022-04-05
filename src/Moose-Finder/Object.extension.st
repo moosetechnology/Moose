@@ -109,13 +109,6 @@ Object >> mooseInspect [
 ]
 
 { #category : #'*Moose-Finder' }
-Object >> mooseInterestingEntity [
-	"For a group with one element,  it returns that element, instead of the group, useful in the finder to remove extra step when navigating"
-	
-	^ self
-]
-
-{ #category : #'*Moose-Finder' }
 Object >> openInMoose [
 	<menuItem: 'In Moose Finder' category: 'Browse'>
 	^ MooseFinder new first openOn: self

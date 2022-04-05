@@ -1,12 +1,6 @@
 Extension { #name : #FamixNamespaceGroup }
 
 { #category : #'*Moose-Finder' }
-FamixNamespaceGroup >> mooseFinderWithinHierarchyIn: composite [
-	<moosePresentationOrder: 20>
-	^ self withinOverallHierarchy appearInPaneComposite: composite
-]
-
-{ #category : #'*Moose-Finder' }
 FamixNamespaceGroup >> mooseIcon [
 	^ MooseIcons famixNamespaceGroup 
 ]

@@ -13,13 +13,6 @@ FAMIXNamespace >> browseSource [
 ]
 
 { #category : #'*Moose-Finder' }
-FAMIXNamespace >> mooseFinderWithinHierarchyIn: composite [
-	<moosePresentationOrder: 20>
-	(self allWithScope: FamixTNamespace) asMooseGroup
-		withinOverallHierarchy appearInPaneComposite: composite
-]
-
-{ #category : #'*Moose-Finder' }
 FAMIXNamespace >> mooseIcon [ 
 	^ MooseIcons famixNamespace
 ]

@@ -12,6 +12,13 @@ FamixTType >> blueprint [
 ]
 
 { #category : #'*Moose-RoassalPaintings' }
+FamixTType >> inspectorShowBlueprint [
+
+	<inspectorPresentationOrder: 10 title: 'Blueprint'>
+	^ self blueprint asInspectorPresenter
+]
+
+{ #category : #'*Moose-RoassalPaintings' }
 FamixTType >> uml [
 	^ FamixTypeUML forType: self
 ]

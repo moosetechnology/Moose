@@ -30,15 +30,6 @@ MooseAbstractVisualization class >> icon [
 ]
 
 { #category : #display }
-MooseAbstractVisualization >> appearInPaneComposite: aGTComposite [
-	^ aGTComposite roassal3
-		title: self gtCompositeTitle;
-		titleIcon: self class icon;
-		initializeCanvas: [ self build.
-			self canvas ]
-]
-
-{ #category : #display }
 MooseAbstractVisualization >> asInspectorPresenter [
 
 	self build.
@@ -67,11 +58,6 @@ MooseAbstractVisualization >> buildLegend [
 { #category : #accessing }
 MooseAbstractVisualization >> canvas [
 	^ canvas
-]
-
-{ #category : #accessing }
-MooseAbstractVisualization >> gtCompositeTitle [
-	^ self class defaultTitle
 ]
 
 { #category : #initialization }

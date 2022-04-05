@@ -1,21 +1,32 @@
-name: Pull-requests-Moose9
+name: Pull-request
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the development branch
 on:
   pull_request:
     types: [assigned, opened, synchronize, reopened]
-    branches-ignore:
-      - v8
 
 jobs:
+
+# Read the content of the file versions.json. It is interpreted as a json data in the next job.
+  get-versions:
+    runs-on: ubuntu-latest
+    outputs: 
+      versions: ${{ steps.read-file.outputs.versions }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Read file
+        id: read-file
+        run: |
+          VERSIONS=$(cat $GITHUB_WORKSPACE/.github/workflows/versions.json)
+          echo "::set-output name=versions::$VERSIONS"
+
+# Run tests on pharo versions described in the file pharo-versions.json
   build:
     runs-on: ubuntu-latest
-    env:
-      PROJECT_NAME: Moose9
+    needs:
+      - get-versions
     strategy:
-      matrix:
-        smalltalk: [ Pharo64-9.0 ]
+      matrix: 
+        smalltalk: ${{ fromJSON(needs.get-versions.outputs.versions).pharo-versions }}
     name: ${{ matrix.smalltalk }}
     steps:
       - uses: actions/checkout@v2

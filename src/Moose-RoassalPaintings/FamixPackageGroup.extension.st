@@ -9,3 +9,17 @@ FamixPackageGroup >> complexity [
 FamixPackageGroup >> dependencies [
 	^ FamixContainerGroupDependencies forContainerGroup: self
 ]
+
+{ #category : #'*Moose-RoassalPaintings' }
+FamixPackageGroup >> inspectorShowComplexity [
+
+	<inspectorPresentationOrder: 10 title: 'Complexity'>
+	^ self complexity asInspectorPresenter
+]
+
+{ #category : #'*Moose-RoassalPaintings' }
+FamixPackageGroup >> inspectorShowDependencies [
+
+	<inspectorPresentationOrder: 10 title: 'Dependencies'>
+	^ self dependencies asInspectorPresenter
+]

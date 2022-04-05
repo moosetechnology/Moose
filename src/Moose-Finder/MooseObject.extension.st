@@ -24,62 +24,8 @@ MooseObject >> complexPropertyPragmas [
 ]
 
 { #category : #'*Moose-Finder' }
-MooseObject >> customNavigationItems [
-
-	^ {  }
-]
-
-{ #category : #'*Moose-Finder' }
 MooseObject class >> formatForNavigationPresentation [
 	^ 'All ', self name, ' - '
-]
-
-{ #category : #'*Moose-Finder' }
-MooseObject >> gtInspectorActionOpenInMoose [
-	<gtInspectorAction>
-	[ self mooseDescription ]
-		on: NotFound
-		do: [ ^ GLMGenericAction new
-				action: [ self inform: 'Moose description not initialized' ];
-				icon: (self iconNamed: #error);
-				title: 'Moose description not initialized' ].
-	^ GLMGenericAction new
-		action: [ self openInMoose ];
-		icon: MooseIcons mooseIcon asGrayScaleWithAlpha;
-		title: 'Open in Moose'
-]
-
-{ #category : #'*Moose-Finder' }
-MooseObject >> gtInspectorPresentationsIn: composite inContext: aGTInspector [
-	| pragmas acceptedPragmas |
-	[ self mooseDescription ]
-		on: NotFound
-		do: [ super gtInspectorPresentationsIn: composite inContext: aGTInspector.
-			^ self ].
-	pragmas := Pragma
-		allNamed: #moosePresentationOrder:
-		from: self mooseInterestingEntity class
-		to: Object
-		sortedUsing: [ :x :y | (x argumentAt: 1) < (y argumentAt: 1) ].
-	acceptedPragmas := OrderedCollection new.
-	pragmas
-		do: [ :pragma | 
-			(acceptedPragmas
-				anySatisfy:
-					[ :alreadyAcceptedPragma | alreadyAcceptedPragma method origin = pragma method origin and: [ alreadyAcceptedPragma method selector = pragma method selector ] ])
-				ifFalse: [ acceptedPragmas add: pragma ] ].
-	acceptedPragmas
-		do: [ :eachPragma | 
-			(eachPragma methodSelector findTokens: $:) size = 1
-				ifTrue: [ self mooseInterestingEntity
-						perform: eachPragma methodSelector
-						with: composite ].
-			(eachPragma methodSelector findTokens: $:) size = 2
-				ifTrue: [ self mooseInterestingEntity
-						perform: eachPragma methodSelector
-						with: composite
-						with: aGTInspector ] ].
-	super gtInspectorPresentationsIn: composite inContext: aGTInspector
 ]
 
 { #category : #'*Moose-Finder' }
@@ -154,32 +100,6 @@ MooseObject >> mooseSpecificSpotterProcessorsFor: aSpotterStep [
 			filter: GTFilterSubstring;
 			itemName: #displayString;
 			order: 1 ]
-]
-
-{ #category : #'*Moose-Finder' }
-MooseObject >> navigationItemsFromAttributes [
-	| entity assocs attrs |
-	"returns associations in form name->object for navigation entities obtained from
-	the the meta-model attributes of the item"
-	entity := self mooseInterestingEntity.
-	attrs := entity allDeclaredProperties reject: [ :attribute | attribute type isPrimitive ].
-	assocs := attrs collect: [ :anAttribute | anAttribute -> (entity perform: anAttribute compiledMethod selector) ].
-
-	"filter out nils and empty collections, sort"
-	^ (assocs reject: [ :association | association value isNil or: [ association value isCollection and: [ association value isEmpty ] ] ])
-		sorted: [ :a | a key formatForNavigationPresentation asLowercase asString ] ascending
-]
-
-{ #category : #'*Moose-Finder' }
-MooseObject >> navigationItemsFromPragmas [
-	| pragmaValueAssociations |
-	"returns associations in form name->object for navigation entities obtained from
-	the pragma #navigation:"
-	pragmaValueAssociations := (self mooseInterestingEntity navigationPragmas sorted: [ :pragma | pragma argumentNamed: #navigation ] ascending)
-		collect: [ :pragma | pragma -> ([ self mooseInterestingEntity perform: pragma methodSelector ] onErrorDo: [ nil ]) mooseInterestingEntity ].
-
-	"filter out nils and empty collections, sort"
-	^ pragmaValueAssociations reject: [ :entity | entity isNil or: [ entity isCollection and: [ entity isEmpty ] ] ]
 ]
 
 { #category : #'*Moose-Finder' }

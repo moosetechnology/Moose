@@ -132,7 +132,7 @@ MooseMetaExplorer >> propertiesIn: a [
 			icon: GLMUIThemeExtraIcons glamorousBrowse
 			on: $b
 			entitled: 'Browse implementation';
-		morphicSelectionAct: [ :list | list selection inspect ] icon: MooseIcons mooseInspect entitled: 'Inspect'
+		morphicSelectionAct: [ :list | list selection inspect ] icon: (self iconNamed: #glamorousInspect) entitled: 'Inspect'
 ]
 
 { #category : #private }

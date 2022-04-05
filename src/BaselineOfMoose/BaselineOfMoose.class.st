@@ -11,7 +11,7 @@ Class {
 BaselineOfMoose >> baseline: spec [
 
 	<baseline>
-	spec for: #common do: [ 
+	spec for: #common do: [
 		self
 			famix: spec;
 			famixTagging: spec;
@@ -19,14 +19,14 @@ BaselineOfMoose >> baseline: spec [
 			famixReplication: spec;
 			mooseAlgos: spec;
 			mooseEasy: spec;
-			midas: spec;
+			mooseIDE: spec;
 			neoCSV: spec.
 		spec
 			package: 'Moose-Finder' with: [ 
 				spec requires:
 						#( 'Famix' 'FamixTagging' 'FamixReplication' 'FamixPresentation'
 						   'MooseAlgos' 'Moose-RoassalPaintings'
-						   'NeoCSV' 'Merlin' ) ];
+						   'NeoCSV' 'Merlin' 'Glamour-Tools' 'MooseIDE' ) ];
 			package: 'Moose-MenuBar'
 			with: [ spec requires: #( 'Moose-Finder' ) ];
 			package: 'Moose-Configuration';
@@ -47,10 +47,8 @@ BaselineOfMoose >> baseline: spec [
 		spec for: #( #NewTools ) do: [ 
 			spec
 				package: 'Moose-Finder-Pharo8';
-				package: 'Moose-Finder2';
 				package: 'Moose-Finder'
-				with: [ spec includes: #( 'Moose-Finder-Pharo8'
-						   'Moose-Finder2' ) ] ] ]
+				with: [ spec includes: #( 'Moose-Finder-Pharo8' ) ] ] ]
 ]
 
 { #category : #baseline }
@@ -81,15 +79,6 @@ BaselineOfMoose >> famixTagging: spec [
 ]
 
 { #category : #dependencies }
-BaselineOfMoose >> midas: spec [
-
-	spec
-		baseline: 'Midas'
-		with: [ 
-		spec repository: 'github://moosetechnology/Midas:development/src' ]
-]
-
-{ #category : #dependencies }
 BaselineOfMoose >> mooseAlgos: spec [
 	spec
 		baseline: 'MooseAlgos'
@@ -100,7 +89,16 @@ BaselineOfMoose >> mooseAlgos: spec [
 
 { #category : #dependencies }
 BaselineOfMoose >> mooseEasy: spec [
-	spec baseline: 'MooseEasy' with: [ spec repository: 'github://moosetechnology/Moose-Easy:v1.x.x/src' ]
+	spec baseline: 'MooseEasy' with: [ spec repository: 'github://moosetechnology/Moose-Easy:v2/src' ]
+]
+
+{ #category : #dependencies }
+BaselineOfMoose >> mooseIDE: spec [
+
+	spec
+		baseline: 'MooseIDE'
+		with: [ 
+		spec repository: 'github://moosetechnology/MooseIDE:development/src' ]
 ]
 
 { #category : #dependencies }
