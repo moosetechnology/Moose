@@ -60,6 +60,12 @@ MooseAbstractVisualization >> canvas [
 	^ canvas
 ]
 
+{ #category : #accessing }
+MooseAbstractVisualization >> canvas: aRSCanvas [
+
+	canvas := aRSCanvas
+]
+
 { #category : #initialization }
 MooseAbstractVisualization >> initialize [
 	super initialize.
