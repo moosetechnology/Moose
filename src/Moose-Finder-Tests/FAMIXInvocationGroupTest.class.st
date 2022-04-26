@@ -12,60 +12,63 @@ Class {
 
 { #category : #running }
 FAMIXInvocationGroupTest >> setUp [
-	| fromMethod fromClass fromNamespace fromNamespaceNamespace invocation toMethod toClass toNamespace toNamespaceNamespace |
+
+	| fromMethod fromClass fromPackage toMethod toClass toPackage invocation |
 	super setUp.
 
-	fromNamespaceNamespace := FAMIXNamespace new
-		name: 'fr';
-		yourself.
-	fromNamespace := FAMIXNamespace new
-		name: 'from';
-		yourself.
-	fromClass := FAMIXClass new
-		name: 'Hello';
-		yourself.
-
-	fromMethod := FAMIXMethod new
-		signature: 'fromMethod()';
-		yourself.
+	fromMethod := FamixStMethod new
+		              signature: 'fromMethod()';
+		              yourself.
+	fromClass := FamixStClass new
+		             name: 'Hello';
+		             yourself.
 	fromClass addMethod: fromMethod.
-	fromClass container: fromNamespace.
-	fromNamespace parentScope: fromNamespaceNamespace.
+	fromPackage := FamixStPackage new
+		               name: 'from';
+		               yourself.
+	fromClass parentPackage: fromPackage.
 
-	toNamespaceNamespace := FAMIXNamespace new
-		name: 'com';
-		yourself.
-	toNamespace := FAMIXNamespace new
-		name: 'to';
-		yourself.
-	toClass := FAMIXClass new
-		name: 'World';
-		yourself.
-	toMethod := FAMIXMethod new
-		signature: 'toMethod()';
-		yourself.
+
+	toMethod := FamixStMethod new
+		            signature: 'toMethod()';
+		            yourself.
+	toClass := FamixStClass new
+		           name: 'World';
+		           yourself.
 	toClass addMethod: toMethod.
-	toClass container: toNamespace.
-	toNamespace parentScope: toNamespaceNamespace.
+	toPackage := FamixStPackage new
+		             name: 'to';
+		             yourself.
+	toClass parentPackage: toPackage.
 
-	invocation := FAMIXInvocation new.
+
+	invocation := FamixStInvocation new.
 	invocation source: fromMethod.
 	invocation addCandidate: toMethod.
 
-	model := FAMIXModel new
-		addAll: {fromMethod . fromClass . fromNamespace . fromNamespaceNamespace . invocation . toMethod . toClass . toNamespace . toNamespaceNamespace};
-		yourself
+
+	model := FamixStModel new
+		         addAll: { 
+				         fromMethod.
+				         fromClass.
+				         fromPackage.
+				         invocation.
+				         toMethod.
+				         toClass.
+				         toPackage };
+		         yourself
 ]
 
 { #category : #test }
 FAMIXInvocationGroupTest >> testExportToCsvStream [
-	| writeStream |
-	writeStream := WriteStream on: String new.
-	model allInvocations specialize exportToCsvStream: writeStream.
+
+	| csv |
+	csv := String streamContents: [ :s | 
+		       model allInvocations specialize exportToCsvStream: s ].
 	self
-		assert: writeStream contents
+		assert: csv
 		equals:
-			'FromNamespace,FromClass,FromMethod,ToNamespace,ToClass,ToMethod
-"fr::from","Hello","fromMethod()","com::to","World","toMethod()"
+			'FromPackage,FromClass,FromMethod,ToPackage,ToClass,ToMethod
+"from","Hello","fromMethod()","to","World","toMethod()"
 '
 ]
