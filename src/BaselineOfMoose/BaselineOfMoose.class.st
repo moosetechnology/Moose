@@ -65,12 +65,20 @@ BaselineOfMoose >> famix: spec [
 
 { #category : #dependencies }
 BaselineOfMoose >> famixPresentation: spec [
-	spec baseline: 'FamixPresentation' with: [ spec repository: 'github://moosetechnology/FamixPresentation:v1.x.x/src' ]
+
+	spec
+		baseline: 'FamixPresentation'
+		with: [ 
+		spec repository: 'github://moosetechnology/FamixPresentation' ]
 ]
 
 { #category : #dependencies }
 BaselineOfMoose >> famixReplication: spec [
-	spec baseline: 'FamixReplication' with: [ spec repository: 'github://moosetechnology/FamixReplication:v1.x.x/src' ]
+
+	spec
+		baseline: 'FamixReplication'
+		with: [ 
+		spec repository: 'github://moosetechnology/FamixReplication:' ]
 ]
 
 { #category : #dependencies }
