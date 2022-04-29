@@ -6,9 +6,10 @@ Class {
 
 { #category : #running }
 MooseFinderForSimpleNamespacesTest >> buildModel [
+
 	model := MooseModel new.
-	model 
-		add: (FAMIXNamespace new name: 'name1');
-		add: (FAMIXNamespace new name: 'name2');
-		add: (FAMIXNamespace new name: 'name3').
+	model
+		add: (FamixStNamespace new name: 'name1');
+		add: (FamixStNamespace new name: 'name2');
+		add: (FamixStNamespace new name: 'name3')
 ]

@@ -5,13 +5,13 @@ Class {
 }
 
 { #category : #running }
-MooseFinderForSimpleMethodsTest >> buildModel [ 
+MooseFinderForSimpleMethodsTest >> buildModel [
+
 	| class |
 	model := MooseModel new.
-	class := FAMIXClass new.
-	class 
-		addMethod: (FAMIXMethod new name: 'name1');
-		addMethod: (FAMIXMethod new name: 'name2');
-		addMethod: (FAMIXMethod new name: 'name3').
-
+	class := FamixStClass new.
+	class
+		addMethod: (FamixStMethod new name: 'name1');
+		addMethod: (FamixStMethod new name: 'name2');
+		addMethod: (FamixStMethod new name: 'name3')
 ]

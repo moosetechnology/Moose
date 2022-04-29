@@ -154,13 +154,15 @@ MooseFinderTest >> testMenuEntriesForPackages [
 
 { #category : #tests }
 MooseFinderTest >> testMooseIcon [
-	self assert: FAMIXEntity new mooseIcon isForm
+
+	self assert: MooseEntity new mooseIcon isForm
 ]
 
 { #category : #tests }
 MooseFinderTest >> testProperty [
+
 	| entity |
-	entity := FAMIXEntity new.
+	entity := MooseEntity new.
 	self assert: (entity propertyNamed: #aKey ifNil: [ 10 ]) equals: 10.
 	entity propertyNamed: #aKey ifAbsentPut: 20.
 	self assert: (entity propertyNamed: #aKey ifNil: [ 10 ]) equals: 20.

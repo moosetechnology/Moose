@@ -33,7 +33,8 @@ MooseFamixCppEntry >> label [
 	^ 'Famix-Cpp'
 ]
 
-{ #category : #execution }
+{ #category : #versions }
 MooseFamixCppEntry >> version [
+
 	^ 'main'
 ]
