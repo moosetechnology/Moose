@@ -29,8 +29,7 @@ BaselineOfMoose >> baseline: spec [
 						   'NeoCSV' 'MooseIDE' ) ];
 			package: 'Moose-Configuration';
 			package: 'Moose-Help';
-			package: 'Moose-RoassalPaintings';
-			package: 'Moose-RoassalPaintings-Tests' ]
+			package: 'Famix-Visualizations' ]
 ]
 
 { #category : #baseline }
