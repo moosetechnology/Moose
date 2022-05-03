@@ -116,11 +116,12 @@ OverviewPyramid class >> initializeSmalltalkTreesholds [
 
 { #category : #accessing }
 OverviewPyramid class >> treesholdForModel: aMooseModel [
+
 	"return the treeshold to use for aMooseModel (it can be Java, smalltalk, cpp treeshold according the source language of the model)"
 
-	^ aMooseModel isSmalltalk
-		ifTrue: [ SmalltalkTreesholds ]
-		ifFalse: [ JavaTreesholds ]
+	^ aMooseModel sourceLanguage isSmalltalk
+		  ifTrue: [ SmalltalkTreesholds ]
+		  ifFalse: [ JavaTreesholds ]
 ]
 
 { #category : #building }
