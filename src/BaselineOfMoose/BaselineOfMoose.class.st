@@ -26,7 +26,7 @@ BaselineOfMoose >> baseline: spec [
 				spec requires:
 						#( 'Famix' 'FamixTagging' 'FamixReplication' 'FamixPresentation'
 						   'MooseAlgos' 'Moose-RoassalPaintings'
-						   'NeoCSV' 'Merlin' 'Glamour-Tools' 'MooseIDE' ) ];
+						   'NeoCSV' 'MooseIDE' ) ];
 			package: 'Moose-Configuration';
 			package: 'Moose-Help';
 			package: 'Moose-RoassalPaintings';
