@@ -11,7 +11,7 @@ Class {
 BaselineOfMoose >> baseline: spec [
 
 	<baseline>
-	spec for: #common do: [
+	spec for: #common do: [ 
 		self
 			famix: spec;
 			famixTagging: spec;
@@ -22,33 +22,13 @@ BaselineOfMoose >> baseline: spec [
 			mooseIDE: spec;
 			neoCSV: spec.
 		spec
-			package: 'Moose-Finder' with: [ 
+			package: 'Moose-MenuBar' with: [ 
 				spec requires:
 						#( 'Famix' 'FamixTagging' 'FamixReplication' 'FamixPresentation'
-						   'MooseAlgos' 'Moose-RoassalPaintings'
-						   'NeoCSV' 'Merlin' 'Glamour-Tools' 'MooseIDE' ) ];
-			package: 'Moose-MenuBar'
-			with: [ spec requires: #( 'Moose-Finder' ) ];
+						   'MooseAlgos' 'NeoCSV' 'MooseIDE' ) ];
 			package: 'Moose-Configuration';
-			package: 'Glamour-Tools';
-			package: 'Glamour-Magritte-Presentations';
 			package: 'Moose-Help';
-			package: 'Moose-RoassalPaintings';
-			package: 'Moose-Finder-Tests';
-			package: 'Moose-RoassalPaintings-Tests';
-			package: 'Merlin';
-			package: 'Moose-DistributionMap';
-			package: 'Moose-DistributionMap-Tests' ].
-	spec for: #( #'pharo8.x' #'pharo9.x' ) do: [ 
-		spec
-			package: 'Moose-Finder-Pharo8';
-			package: 'Moose-Finder'
-			with: [ spec includes: #( 'Moose-Finder-Pharo8' ) ].
-		spec for: #( #NewTools ) do: [ 
-			spec
-				package: 'Moose-Finder-Pharo8';
-				package: 'Moose-Finder'
-				with: [ spec includes: #( 'Moose-Finder-Pharo8' ) ] ] ]
+			package: 'Famix-Visualizations' ]
 ]
 
 { #category : #baseline }

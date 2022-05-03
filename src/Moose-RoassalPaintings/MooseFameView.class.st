@@ -9,7 +9,7 @@ Class {
 
 { #category : #opening }
 MooseFameView >> open [
-	^ self openOn: FAMIXModel metamodel
+	^ self openOn: FamixStModel metamodel
 ]
 
 { #category : #opening }
@@ -52,7 +52,8 @@ MooseFameView >> viewFameClasses: classes [
 
 { #category : #opening }
 MooseFameView >> viewFamixCore [
+
 	" This method displays Famix core classes i.e., Famix classes declared in FAMIX package."
 
-	^ self viewFameClasses: FAMIXModel metamodel classes
+	^ self viewFameClasses: FamixStModel metamodel classes
 ]

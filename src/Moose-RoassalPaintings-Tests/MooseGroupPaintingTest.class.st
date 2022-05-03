@@ -24,10 +24,11 @@ MooseGroupPaintingTest >> testBasic [
 
 { #category : #tests }
 MooseGroupPaintingTest >> testBasic02 [
+
 	| m nameCloud |
 	m := MooseGroup new.
-	m add: (FAMIXClass new name: 'Hello').
-	m add: (FAMIXClass new name: 'World').
+	m add: (FamixStClass new name: 'Hello').
+	m add: (FamixStClass new name: 'World').
 	nameCloud := m nameCloud.
 	self assert: nameCloud keywordsInGroupEntitiesNames size equals: 1.
 	window := nameCloud open.
