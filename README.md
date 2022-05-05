@@ -23,12 +23,10 @@ Please refer to the [moose wiki](https://moosetechnology.github.io/moose-wiki/) 
 Execute this in a Pharo 10 image:
 
 ```smalltalk
-[ Metacello new
-    baseline: 'Moose';
-    repository: 'github://moosetechnology/Moose:development/src';
-    load ]
-    on: MCMergeOrLoadWarning
-    do: [ :warning | warning load ]
+Metacello new
+  baseline: 'Moose';
+  repository: 'github://moosetechnology/Moose:development/src';
+  load
 ```
 
 #### Stable version: Moose 9
