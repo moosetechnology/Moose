@@ -18,7 +18,9 @@ Please refer to the [moose wiki](https://moosetechnology.github.io/moose-wiki/) 
 
 ### Load Moose in a Pharo image
 
-**Latest version: Moose 9**
+#### Latest version: Moose 10
+
+Execute this in a Pharo 10 image:
 
 ```smalltalk
 [ Metacello new
@@ -29,9 +31,21 @@ Please refer to the [moose wiki](https://moosetechnology.github.io/moose-wiki/) 
     do: [ :warning | warning load ]
 ```
 
-If all else fails, you should be able to get the last generated image from github : [https://github.com/moosetechnology/Moose/releases/download/continuous/Moose9-development.zip](https://github.com/moosetechnology/Moose/releases/download/continuous/Moose9-development.zip)
+#### Stable version: Moose 9
 
-**Stable version: Moose 8**
+Execute this in a Pharo 9 image:
+```smalltalk
+[ Metacello new
+    baseline: 'Moose';
+    repository: 'github://moosetechnology/Moose:v9.x.x/src';
+    load ]
+    on: MCMergeOrLoadWarning
+    do: [ :warning | warning load ]
+```
+
+#### Old stable version: Moose 8
+
+Execute this in a Pharo 8 image:
 
 ```smalltalk
 Metacello new
