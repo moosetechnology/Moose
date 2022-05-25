@@ -20,7 +20,7 @@ Class {
 		'MoosePyramidResults',
 		'SmalltalkTreesholds'
 	],
-	#category : #'Moose-RoassalPaintings-OverviewPyramid'
+	#category : #'Famix-Visualizations-Overview-Pyramid'
 }
 
 { #category : #accessing }

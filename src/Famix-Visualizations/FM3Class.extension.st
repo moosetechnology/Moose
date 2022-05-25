@@ -1,6 +1,6 @@
 Extension { #name : #FM3Class }
 
-{ #category : #'*Moose-RoassalPaintings' }
+{ #category : #'*Famix-Visualizations' }
 FM3Class >> connections [
 	^ FameClassConnections forFameClass: self
 ]

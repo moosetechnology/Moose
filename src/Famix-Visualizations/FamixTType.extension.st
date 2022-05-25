@@ -1,24 +1,26 @@
 Extension { #name : #FamixTType }
 
-{ #category : #'*Moose-RoassalPaintings' }
+{ #category : #'*Famix-Visualizations' }
 FamixTType >> accessorMethods [
 	
 	^ self methods select: #isPureAccessor
 ]
 
-{ #category : #'*Moose-RoassalPaintings' }
+{ #category : #'*Famix-Visualizations' }
 FamixTType >> blueprint [
+
 	^ FamixTypeBlueprint forType: self
 ]
 
-{ #category : #'*Moose-RoassalPaintings' }
+{ #category : #'*Famix-Visualizations' }
 FamixTType >> inspectorShowBlueprint [
 
 	<inspectorPresentationOrder: 10 title: 'Blueprint'>
 	^ self blueprint asInspectorPresenter
 ]
 
-{ #category : #'*Moose-RoassalPaintings' }
+{ #category : #'*Famix-Visualizations' }
 FamixTType >> uml [
+
 	^ FamixTypeUML forType: self
 ]

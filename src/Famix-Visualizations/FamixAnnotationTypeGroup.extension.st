@@ -1,11 +1,11 @@
 Extension { #name : #FamixAnnotationTypeGroup }
 
-{ #category : #'*Moose-RoassalPaintings' }
+{ #category : #'*Famix-Visualizations' }
 FamixAnnotationTypeGroup >> annotationConstellation [
 	^ FamixAnnotationTypeGroupConstellation forAnnotationTypeGroup: self
 ]
 
-{ #category : #'*Moose-RoassalPaintings' }
+{ #category : #'*Famix-Visualizations' }
 FamixAnnotationTypeGroup >> inspectorShowAnnotationConstellation [
 
 	<inspectorPresentationOrder: 10 title: 'Annotation Constellation'>

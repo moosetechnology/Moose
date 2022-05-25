@@ -12,7 +12,7 @@ Class {
 		'andc',
 		'ahh'
 	],
-	#category : #'Moose-RoassalPaintings-OverviewPyramid'
+	#category : #'Famix-Visualizations-Overview-Pyramid'
 }
 
 { #category : #'instance creation' }
@@ -103,7 +103,7 @@ OverviewPyramidMetrics >> model: aMooseModel [
 		runWithProgress: [ :bar | 
 			allModelMethods := aMooseModel allMethods reject: [ :each | each isStub ].
 			bar increment.
-			allModelClasses := aMooseModel allModelTypes reject: #isAnonymousClass.
+			allModelClasses := aMooseModel allModelClasses reject: #isAnonymousClass.
 			bar increment.
 			nop := aMooseModel allModelPackages size.
 			bar increment.
