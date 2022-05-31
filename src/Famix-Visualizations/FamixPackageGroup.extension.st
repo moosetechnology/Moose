@@ -1,23 +1,25 @@
 Extension { #name : #FamixPackageGroup }
 
-{ #category : #'*Moose-RoassalPaintings' }
+{ #category : #'*Famix-Visualizations' }
 FamixPackageGroup >> complexity [
+
 	^ FamixPackageGroupComplexity forPackageGroup: self
 ]
 
-{ #category : #'*Moose-RoassalPaintings' }
+{ #category : #'*Famix-Visualizations' }
 FamixPackageGroup >> dependencies [
+
 	^ FamixContainerGroupDependencies forContainerGroup: self
 ]
 
-{ #category : #'*Moose-RoassalPaintings' }
+{ #category : #'*Famix-Visualizations' }
 FamixPackageGroup >> inspectorShowComplexity [
 
 	<inspectorPresentationOrder: 10 title: 'Complexity'>
 	^ self complexity asInspectorPresenter
 ]
 
-{ #category : #'*Moose-RoassalPaintings' }
+{ #category : #'*Famix-Visualizations' }
 FamixPackageGroup >> inspectorShowDependencies [
 
 	<inspectorPresentationOrder: 10 title: 'Dependencies'>

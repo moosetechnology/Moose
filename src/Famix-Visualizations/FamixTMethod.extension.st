@@ -1,6 +1,6 @@
 Extension { #name : #FamixTMethod }
 
-{ #category : #'*Moose-RoassalPaintings' }
+{ #category : #'*Famix-Visualizations' }
 FamixTMethod >> shapeInBlueprint: aFamixTypeBlueprint [
 	^ aFamixTypeBlueprint shapeForMethod: self
 ]

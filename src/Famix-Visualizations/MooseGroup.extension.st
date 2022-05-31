@@ -1,6 +1,7 @@
 Extension { #name : #MooseGroup }
 
-{ #category : #'*Moose-RoassalPaintings' }
+{ #category : #'*Famix-Visualizations' }
 MooseGroup >> nameCloud [
+
 	^ MooseGroupNameCloud forMooseGroup: self
 ]

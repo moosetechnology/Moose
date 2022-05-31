@@ -1,23 +1,25 @@
 Extension { #name : #FamixNamespaceGroup }
 
-{ #category : #'*Moose-RoassalPaintings' }
+{ #category : #'*Famix-Visualizations' }
 FamixNamespaceGroup >> dependencies [
+
 	^ FamixContainerGroupDependencies forContainerGroup: self
 ]
 
-{ #category : #'*Moose-RoassalPaintings' }
+{ #category : #'*Famix-Visualizations' }
 FamixNamespaceGroup >> hierarchy [
+
 	^ FamixNamespaceGroupHierarchy forNamespaceGroup: self
 ]
 
-{ #category : #'*Moose-RoassalPaintings' }
+{ #category : #'*Famix-Visualizations' }
 FamixNamespaceGroup >> inspectorShowInHierarchy [
 
 	<inspectorPresentationOrder: 10 title: 'Hierarchy'>
 	^ self withinOverallHierarchy asInspectorPresenter
 ]
 
-{ #category : #'*Moose-RoassalPaintings' }
+{ #category : #'*Famix-Visualizations' }
 FamixNamespaceGroup >> withinOverallHierarchy [
 	^ FamixNamespaceGroupOverallHierarchy forNamespaceGroup: self
 ]

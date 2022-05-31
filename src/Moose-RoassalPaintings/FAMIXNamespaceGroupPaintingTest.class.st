@@ -11,5 +11,5 @@ FAMIXNamespaceGroupPaintingTest >> testViewHierarchy [
 	group := FamixNamespaceGroup new.
 	group add: FamixStNamespace new.
 	group add: FamixStNamespace new.
-	group viewHierarchy delete
+	group hierarchy open delete
 ]

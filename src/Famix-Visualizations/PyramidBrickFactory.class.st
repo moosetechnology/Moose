@@ -9,7 +9,7 @@ Class {
 		'shape',
 		'label'
 	],
-	#category : #'Moose-RoassalPaintings-OverviewPyramid'
+	#category : #'Famix-Visualizations-Overview-Pyramid'
 }
 
 { #category : #'instance creation' }

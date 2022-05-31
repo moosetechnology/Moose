@@ -11,7 +11,7 @@ Class {
 	#instVars : [
 		'fameClass'
 	],
-	#category : #'Moose-RoassalPaintings-FameView'
+	#category : #'Famix-Visualizations-Fame'
 }
 
 { #category : #accessing }

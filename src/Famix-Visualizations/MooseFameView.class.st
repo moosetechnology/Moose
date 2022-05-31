@@ -4,7 +4,7 @@ self new open
 Class {
 	#name : #MooseFameView,
 	#superclass : #Object,
-	#category : #'Moose-RoassalPaintings-FameView'
+	#category : #'Famix-Visualizations-Fame'
 }
 
 { #category : #opening }
