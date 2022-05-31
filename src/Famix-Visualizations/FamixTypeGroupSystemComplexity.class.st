@@ -56,7 +56,7 @@ FamixTypeGroupSystemComplexity >> build [
 { #category : #building }
 FamixTypeGroupSystemComplexity >> buildEgdes [
 	RSEdgeBuilder line
-		shapes: canvas shapes;
+		shapes: canvas nodes;
 		withVerticalAttachPoint;
 		connectFromAll: #directSuperclasses.
 	canvas pushBackEdges
@@ -134,22 +134,23 @@ FamixTypeGroupSystemComplexity >> normalizeNodesColor [
 	RSNormalizer color
 		from: Color white;
 		to: Color black;
-		shapes: canvas shapes;
+		shapes: canvas nodes;
 		normalize: self colorBlock
 ]
 
 { #category : #normalizing }
 FamixTypeGroupSystemComplexity >> normalizeNodesHeight [
 	RSNormalizer height
-		shapes: canvas shapes;
+		shapes: canvas nodes;
 		scale: self shapesSizeScale;
 		normalize: self heightBlock
 ]
 
 { #category : #normalizing }
 FamixTypeGroupSystemComplexity >> normalizeNodesWidth [
+
 	RSNormalizer width
-		shapes: canvas shapes;
+		shapes: canvas nodes;
 		scale: self shapesSizeScale;
 		normalize: self widthBlock
 ]
