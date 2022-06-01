@@ -20,7 +20,9 @@ BaselineOfMoose >> baseline: spec [
 			mooseAlgos: spec;
 			mooseEasy: spec;
 			mooseIDE: spec;
-			neoCSV: spec.
+			neoCSV: spec;
+			mooseCritics: spec.
+
 		spec
 			package: 'Moose-MenuBar' with: [ 
 				spec requires:
@@ -73,6 +75,15 @@ BaselineOfMoose >> mooseAlgos: spec [
 		with: [ spec
 				loads: 'Core';
 				repository: 'github://moosetechnology/MooseAlgos:v1.x.x/src' ]
+]
+
+{ #category : #dependencies }
+BaselineOfMoose >> mooseCritics: spec [
+
+	spec
+		baseline: 'MooseCritics'
+		with: [ 
+		spec repository: 'github://moosetechnology/Moose-Critics/src' ]
 ]
 
 { #category : #dependencies }
