@@ -7,7 +7,7 @@ Class {
 	#category : #BaselineOfMoose
 }
 
-{ #category : #baseline }
+{ #category : #baselines }
 BaselineOfMoose >> baseline: spec [
 
 	<baseline>
@@ -15,7 +15,6 @@ BaselineOfMoose >> baseline: spec [
 		self
 			famix: spec;
 			famixTagging: spec;
-			famixPresentation: spec;
 			famixReplication: spec;
 			mooseAlgos: spec;
 			mooseEasy: spec;
@@ -26,8 +25,8 @@ BaselineOfMoose >> baseline: spec [
 		spec
 			package: 'Moose-MenuBar' with: [ 
 				spec requires:
-						#( 'Famix' 'FamixTagging' 'FamixReplication' 'FamixPresentation'
-						   'MooseAlgos' 'NeoCSV' 'MooseIDE' ) ];
+						#( 'Famix' 'FamixTagging' 'FamixReplication' 'MooseAlgos'
+						   'NeoCSV' 'MooseIDE' ) ];
 			package: 'Moose-Configuration';
 			package: 'Moose-Help';
 			package: 'Famix-Visualizations' ]
@@ -43,15 +42,6 @@ BaselineOfMoose >> customProjectAttributes [
 { #category : #dependencies }
 BaselineOfMoose >> famix: spec [
 	spec baseline: 'Famix' with: [ spec repository: 'github://moosetechnology/Famix:development/src' ]
-]
-
-{ #category : #dependencies }
-BaselineOfMoose >> famixPresentation: spec [
-
-	spec
-		baseline: 'FamixPresentation'
-		with: [ 
-		spec repository: 'github://moosetechnology/FamixPresentation' ]
 ]
 
 { #category : #dependencies }
