@@ -46,15 +46,6 @@ BaselineOfMoose >> famix: spec [
 ]
 
 { #category : #dependencies }
-BaselineOfMoose >> famixPresentation: spec [
-
-	spec
-		baseline: 'FamixPresentation'
-		with: [ 
-		spec repository: 'github://moosetechnology/FamixPresentation' ]
-]
-
-{ #category : #dependencies }
 BaselineOfMoose >> famixReplication: spec [
 
 	spec
