@@ -14,6 +14,7 @@ BaselineOfMoose >> baseline: spec [
 	spec for: #common do: [ 
 		self
 			famix: spec;
+			famixCpp: spec;
 			famixTagging: spec;
 			famixReplication: spec;
 			mooseAlgos: spec;
@@ -41,6 +42,15 @@ BaselineOfMoose >> customProjectAttributes [
 { #category : #dependencies }
 BaselineOfMoose >> famix: spec [
 	spec baseline: 'Famix' with: [ spec repository: 'github://moosetechnology/Famix:development/src' ]
+]
+
+{ #category : #dependencies }
+BaselineOfMoose >> famixCpp: spec [
+
+	spec
+		baseline: 'FamixCpp'
+		with: [ 
+		spec repository: 'github://moosetechnology/Famix-Cpp:main/src' ]
 ]
 
 { #category : #dependencies }
