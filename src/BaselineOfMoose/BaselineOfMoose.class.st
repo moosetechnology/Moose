@@ -48,7 +48,7 @@ BaselineOfMoose >> famix: spec [
 BaselineOfMoose >> famixCpp: spec [
 
 	spec
-		baseline: 'Famix'
+		baseline: 'FamixCpp'
 		with: [ 
 		spec repository: 'github://moosetechnology/Famix-Cpp:main/src' ]
 ]
