@@ -9,14 +9,17 @@ Class {
 
 { #category : #'world menu' }
 MooseFamixCppEntry class >> menuCommandOn: aBuilder [
-	"method needed for the pragma"
 
-	<worldMenu>
-	^self toolEntryMenuCommandOn: aBuilder
+	"<worldMenu>"
+
+	"Removed from the menu since Famix-Cpp is loaded by default"
+
+	^ self toolEntryMenuCommandOn: aBuilder
 ]
 
 { #category : #'world menu' }
 MooseFamixCppEntry class >> menuPriority [
+
 	^ -10
 ]
 

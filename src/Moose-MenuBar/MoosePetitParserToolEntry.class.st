@@ -6,14 +6,15 @@ Class {
 
 { #category : #'world menu' }
 MoosePetitParserToolEntry class >> menuCommandOn: aBuilder [
-	"method needed because for the pragma"
+
 	<worldMenu>
-	^self toolEntryMenuCommandOn: aBuilder
+	^ self toolEntryMenuCommandOn: aBuilder
 ]
 
 { #category : #'world menu' }
-MoosePetitParserToolEntry class >> menuPriority [ 
-	^super menuPriority + 1
+MoosePetitParserToolEntry class >> menuPriority [
+
+	^ super menuPriority + 1
 ]
 
 { #category : #execution }

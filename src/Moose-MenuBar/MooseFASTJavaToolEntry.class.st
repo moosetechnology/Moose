@@ -6,16 +6,17 @@ Class {
 
 { #category : #'world menu' }
 MooseFASTJavaToolEntry class >> menuCommandOn: aBuilder [
-	"method needed because for the pragma"
+
 	<worldMenu>
-	^(self toolEntryMenuCommandOn: aBuilder)
-		withSeparatorAfter ;
-		yourself
+	^ (self toolEntryMenuCommandOn: aBuilder)
+		  withSeparatorAfter;
+		  yourself
 ]
 
 { #category : #'world menu' }
-MooseFASTJavaToolEntry class >> menuPriority [ 
-	^super menuPriority + 2
+MooseFASTJavaToolEntry class >> menuPriority [
+
+	^ super menuPriority + 2
 ]
 
 { #category : #execution }

@@ -6,14 +6,15 @@ Class {
 
 { #category : #'world menu' }
 MooseAlgoToolEntry class >> menuCommandOn: aBuilder [
-	"method needed because for the pragma"
+
 	<worldMenu>
-	^self toolEntryMenuCommandOn: aBuilder
+	^ self toolEntryMenuCommandOn: aBuilder
 ]
 
 { #category : #'world menu' }
-MooseAlgoToolEntry class >> menuPriority [ 
-	^50
+MooseAlgoToolEntry class >> menuPriority [
+
+	^ 50
 ]
 
 { #category : #execution }

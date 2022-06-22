@@ -5,8 +5,9 @@ Class {
 }
 
 { #category : #'world menu' }
-MooseParserEntry class >> menuPriority [ 
-	^20
+MooseParserEntry class >> menuPriority [
+
+	^ 20
 ]
 
 { #category : #execution }

@@ -6,14 +6,15 @@ Class {
 
 { #category : #'world menu' }
 MooseFASTToolEntry class >> menuCommandOn: aBuilder [
-	"method needed because for the pragma"
+
 	<worldMenu>
-	^self toolEntryMenuCommandOn: aBuilder
+	^ self toolEntryMenuCommandOn: aBuilder
 ]
 
 { #category : #'world menu' }
-MooseFASTToolEntry class >> menuPriority [ 
-	^super menuPriority + 1
+MooseFASTToolEntry class >> menuPriority [
+
+	^ super menuPriority + 1
 ]
 
 { #category : #execution }

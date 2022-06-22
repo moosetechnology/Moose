@@ -7,8 +7,6 @@ Class {
 { #category : #'world menu' }
 MooseFamixCompatibilityEntry class >> menuCommandOn: aBuilder [
 
-	"method needed for the pragma"
-
 	<worldMenu>
 	^ self toolEntryMenuCommandOn: aBuilder
 ]

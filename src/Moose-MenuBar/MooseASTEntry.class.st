@@ -5,8 +5,9 @@ Class {
 }
 
 { #category : #'world menu' }
-MooseASTEntry class >> menuPriority [ 
-	^10
+MooseASTEntry class >> menuPriority [
+
+	^ 10
 ]
 
 { #category : #execution }
