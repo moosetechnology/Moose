@@ -2,25 +2,25 @@
 This class adds a menu item to load github://moosetechnology/Famix-CPP
 "
 Class {
-	#name : #MooseLoadFamixCppCommand,
-	#superclass : #MooseAbstractLoadModuleCommand,
+	#name : #MooseLoadFamixCppMenuCommand,
+	#superclass : #MooseAbstractLoadModuleMenuCommand,
 	#category : #'Moose-MenuBar-Commands'
 }
 
-{ #category : #'world menu' }
-MooseLoadFamixCppCommand class >> help [
+{ #category : #accessing }
+MooseLoadFamixCppMenuCommand class >> help [
 
 	^ 'Famix Metamodel for C++'
 ]
 
-{ #category : #'world menu' }
-MooseLoadFamixCppCommand class >> label [
+{ #category : #accessing }
+MooseLoadFamixCppMenuCommand class >> label [
 
 	^ 'Famix-Cpp'
 ]
 
 { #category : #'world menu' }
-MooseLoadFamixCppCommand class >> menuCommandOn: aBuilder [
+MooseLoadFamixCppMenuCommand class >> menuCommandOn: aBuilder [
 
 	"<worldMenu>"
 
@@ -29,26 +29,26 @@ MooseLoadFamixCppCommand class >> menuCommandOn: aBuilder [
 	^ self menuCommandOn: aBuilder forCommand: self
 ]
 
-{ #category : #'world menu' }
-MooseLoadFamixCppCommand class >> menuPriority [
+{ #category : #accessing }
+MooseLoadFamixCppMenuCommand class >> menuPriority [
 
 	^ 10
 ]
 
 { #category : #accessing }
-MooseLoadFamixCppCommand >> baselineName [
+MooseLoadFamixCppMenuCommand >> baselineName [
 
 	^ 'FamixCpp'
 ]
 
 { #category : #accessing }
-MooseLoadFamixCppCommand >> repositoryURL [
+MooseLoadFamixCppMenuCommand >> repositoryURL [
 
 	^ 'github://moosetechnology/Famix-CPP:' , self version , '/src'
 ]
 
 { #category : #accessing }
-MooseLoadFamixCppCommand >> version [
+MooseLoadFamixCppMenuCommand >> version [
 
 	^ 'main'
 ]

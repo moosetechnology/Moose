@@ -1,11 +1,11 @@
 Class {
-	#name : #MooseRegenerateAllMetamodelsCommand,
-	#superclass : #MooseAbstractMetamodelCommand,
+	#name : #MooseRegenerateAllMetamodelsMenuCommand,
+	#superclass : #MooseAbstractMetamodelMenuCommand,
 	#category : #'Moose-MenuBar-Commands'
 }
 
-{ #category : #'world menu' }
-MooseRegenerateAllMetamodelsCommand class >> help [
+{ #category : #accessing }
+MooseRegenerateAllMetamodelsMenuCommand class >> help [
 
 	^ 'Regenerate all metamodels in the system:
 - Reinitialize all relation slots.
@@ -15,27 +15,27 @@ Then for each metamodel:
 	-- In each subclass of MooseModel, reset the #metamodel instance variable to the newly generated metamodel.'
 ]
 
-{ #category : #'world menu' }
-MooseRegenerateAllMetamodelsCommand class >> label [
+{ #category : #accessing }
+MooseRegenerateAllMetamodelsMenuCommand class >> label [
 
 	^ 'Regenerate all metamodels'
 ]
 
 { #category : #'world menu' }
-MooseRegenerateAllMetamodelsCommand class >> menuCommandOn: aBuilder [
+MooseRegenerateAllMetamodelsMenuCommand class >> menuCommandOn: aBuilder [
 
 	<worldMenu>
 	^ self menuCommandOn: aBuilder forCommand: self
 ]
 
-{ #category : #'world menu' }
-MooseRegenerateAllMetamodelsCommand class >> menuPriority [
+{ #category : #accessing }
+MooseRegenerateAllMetamodelsMenuCommand class >> menuPriority [
 
 	^ 40
 ]
 
 { #category : #executing }
-MooseRegenerateAllMetamodelsCommand >> execute [
+MooseRegenerateAllMetamodelsMenuCommand >> execute [
 
 	FamixMetamodelGenerator generateAllMetamodels
 ]

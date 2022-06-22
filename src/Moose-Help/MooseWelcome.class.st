@@ -8,11 +8,12 @@ Class {
 }
 
 { #category : #accessing }
-MooseWelcome class >> bookName [ 
+MooseWelcome class >> bookName [
+
 	^ 'Moose Tutorial'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #pages }
 MooseWelcome class >> mainTools [
 
 	^ HelpTopic
@@ -41,45 +42,55 @@ MooseWelcome class >> mainTools [
 - '  , (self doItFrom: 'MiCoUsageBrowser open' text: 'CoUsage map browser')
 ]
 
-{ #category : #accessing }
+{ #category : #'world menu' }
 MooseWelcome class >> menuCommandOn: aBuilder [
+
 	<worldMenu>
 	(aBuilder item: #'Moose Help')
-			order: 998; 
-			parent: #Moose;
-			label: 'Moose help';
-			help: 'Open the Moose help documentation';
-			icon: (Smalltalk ui icons iconNamed: #smallHelp);
-			action: [ self open ]
+		order: -1;
+		parent: #Help;
+		label: 'Moose help';
+		help: 'Open the Moose help documentation';
+		icon: (Smalltalk ui icons iconNamed: #smallHelp);
+		action: [ self open ]
 ]
 
-{ #category : #accessing }
+{ #category : #opening }
 MooseWelcome class >> open [
+
 	<script>
-	^ (HelpBrowser openOn: self) next
+	| browser |
+	browser := (HelpBrowser openOn: self) next.
+
+	"Resize  browser"
+	browser window extent: 700 @ 500.
+
+	^ browser
 ]
 
-{ #category : #accessing }
+{ #category : #opening }
 MooseWelcome class >> openForRelease [
+
 	<script>
-	| browser window findBlock |
-	
-	findBlock := [ :each | (each isKindOf: SystemWindow) and: [ each label = self bookName ] ]. 
-	self currentWorld submorphs 
-		detect: findBlock 
+	| browser |
+	"Close existing MooseHelp if there is one"
+	self currentWorld systemWindows
+		detect: [ :each | each label = self bookName ]
 		ifFound: [ :oldWindow | oldWindow delete ].
+
 	browser := self open.
-	window := browser dependents detect: findBlock.
-	window extent: 700@500.
-	window center: Display extent / 2
+
+	"Position browser"
+	browser window center: Display extent / 2
 ]
 
-{ #category : #accessing }
+{ #category : #pages }
 MooseWelcome class >> pages [
-	^ #(welcome mainTools)
+
+	^ #( welcome mainTools )
 ]
 
-{ #category : #accessing }
+{ #category : #pages }
 MooseWelcome class >> welcome [
 
 	| version |

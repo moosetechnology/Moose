@@ -5,20 +5,39 @@ Class {
 }
 
 { #category : #'world menu' }
-MooseAbstractMenuCommand class >> famixMenuSymbol [
+MooseAbstractMenuCommand class >> famixMenuRoot [
 
 	^ #Famix
 ]
 
-{ #category : #'world menu' }
+{ #category : #accessing }
+MooseAbstractMenuCommand class >> help [
+
+	"Override if necessary"
+
+	^ ''
+]
+
+{ #category : #accessing }
+MooseAbstractMenuCommand class >> icon [
+
+	"Override if necessary"
+
+	^ MooseIcons mooseIcon
+]
+
+{ #category : #accessing }
 MooseAbstractMenuCommand class >> label [
+
 	self subclassResponsibility
 ]
 
-{ #category : #'world menu' }
+{ #category : #accessing }
 MooseAbstractMenuCommand class >> labelFor: aMooseCommand [
 
-	self subclassResponsibility
+	"Override if necessary"
+
+	^ aMooseCommand label
 ]
 
 { #category : #'world menu' }
@@ -28,13 +47,13 @@ MooseAbstractMenuCommand class >> menuCommandOn: aBuilder [
 	aBuilder
 		item: #Moose;
 		order: 6;
-		icon: MooseIcons mooseIcon.
+		icon: self icon.
 
 	^ aBuilder
-		  item: self famixMenuSymbol;
+		  item: self famixMenuRoot;
 		  order: 100;
 		  parent: #Tools;
-		  icon: MooseIcons mooseIcon;
+		  icon: self icon;
 		  withSeparatorAfter;
 		  yourself
 ]
@@ -46,17 +65,25 @@ MooseAbstractMenuCommand class >> menuCommandOn: aBuilder forCommand: aMooseComm
 
 	^ aBuilder
 		  item: aMooseCommand label;
-		  parent: self menuConfigurationSymbol;
+		  parent: aMooseCommand menuRoot;
 		  label: (self labelFor: aMooseCommand);
 		  help: aMooseCommand help;
-		  icon: MooseIcons mooseIcon;
+		  icon: aMooseCommand icon;
 		  order: aMooseCommand menuPriority;
 		  action: [ aMooseCommand new execute ];
 		  yourself
 ]
 
+{ #category : #accessing }
+MooseAbstractMenuCommand class >> menuPriority [
+
+	"Override if necessary"
+
+	^ 999
+]
+
 { #category : #'world menu' }
-MooseAbstractMenuCommand class >> menuConfigurationSymbol [
+MooseAbstractMenuCommand class >> menuRoot [
 
 	self subclassResponsibility
 ]
