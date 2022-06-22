@@ -5,6 +5,18 @@ Class {
 }
 
 { #category : #'world menu' }
+MooseFASTJavaToolEntry class >> help [
+
+	^ 'Famix representation of Java AST'
+]
+
+{ #category : #'world menu' }
+MooseFASTJavaToolEntry class >> label [
+
+	^ 'FAST Java'
+]
+
+{ #category : #'world menu' }
 MooseFASTJavaToolEntry class >> menuCommandOn: aBuilder [
 
 	<worldMenu>
