@@ -5,6 +5,18 @@ Class {
 }
 
 { #category : #'world menu' }
+MooseSmaCCToolEntry class >> help [
+
+	^ 'Smacc parser'
+]
+
+{ #category : #'world menu' }
+MooseSmaCCToolEntry class >> label [
+
+	^ 'SmaCC'
+]
+
+{ #category : #'world menu' }
 MooseSmaCCToolEntry class >> menuCommandOn: aBuilder [
 
 	<worldMenu>
@@ -19,20 +31,20 @@ MooseSmaCCToolEntry class >> menuPriority [
 	^ super menuPriority + 2
 ]
 
-{ #category : #execution }
-MooseSmaCCToolEntry >> execute [
-	Metacello new
-		baseline: 'SmaCC';
-		repository: 'github://j-brant/SmaCC:' , self version, '/src';
-		load
-]
-
 { #category : #accessing }
-MooseSmaCCToolEntry >> label [
+MooseSmaCCToolEntry >> baselineName [
+
 	^ 'SmaCC'
 ]
 
 { #category : #accessing }
+MooseSmaCCToolEntry >> repositoryURL [
+
+	^ 'github://j-brant/SmaCC:' , self version , '/src'
+]
+
+{ #category : #accessing }
 MooseSmaCCToolEntry >> version [
+
 	^ 'master'
 ]

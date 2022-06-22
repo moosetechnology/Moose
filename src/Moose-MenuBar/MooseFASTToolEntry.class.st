@@ -5,6 +5,18 @@ Class {
 }
 
 { #category : #'world menu' }
+MooseFASTToolEntry class >> help [
+
+	^ 'Famix AST Metamodel'
+]
+
+{ #category : #'world menu' }
+MooseFASTToolEntry class >> label [
+
+	^ 'FAST Core'
+]
+
+{ #category : #'world menu' }
 MooseFASTToolEntry class >> menuCommandOn: aBuilder [
 
 	<worldMenu>
@@ -17,20 +29,20 @@ MooseFASTToolEntry class >> menuPriority [
 	^ super menuPriority + 1
 ]
 
-{ #category : #execution }
-MooseFASTToolEntry >> execute [
-	Metacello new
-		baseline: 'FAST';
-		repository: 'github://moosetechnology/FAST:' , self version, '/src';
-		load
+{ #category : #accessing }
+MooseFASTToolEntry >> baselineName [
+
+	^ 'FAST'
 ]
 
 { #category : #accessing }
-MooseFASTToolEntry >> label [
-	^ 'FAST Core'
+MooseFASTToolEntry >> repositoryURL [
+
+	^ 'github://moosetechnology/FAST:' , self version , '/src'
 ]
 
 { #category : #accessing }
 MooseFASTToolEntry >> version [
+
 	^ 'v1.x.x'
 ]

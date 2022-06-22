@@ -19,20 +19,20 @@ MooseFASTJavaToolEntry class >> menuPriority [
 	^ super menuPriority + 2
 ]
 
-{ #category : #execution }
-MooseFASTJavaToolEntry >> execute [
-	Metacello new
-		baseline: 'FASTJava';
-		repository: 'github://moosetechnology/FAST-Java:' , self version, '/src';
-		load
+{ #category : #accessing }
+MooseFASTJavaToolEntry >> baselineName [
+
+	^ 'FASTJava'
 ]
 
 { #category : #accessing }
-MooseFASTJavaToolEntry >> label [
-	^ 'FAST Java'
+MooseFASTJavaToolEntry >> repositoryURL [
+
+	^ 'github://moosetechnology/FAST-Java:' , self version , '/src'
 ]
 
 { #category : #accessing }
 MooseFASTJavaToolEntry >> version [
+
 	^ 'v1.x.x'
 ]

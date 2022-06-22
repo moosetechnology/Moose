@@ -5,12 +5,13 @@ Class {
 }
 
 { #category : #'world menu' }
+MooseASTEntry class >> label [
+
+	^ 'AST representation'
+]
+
+{ #category : #'world menu' }
 MooseASTEntry class >> menuPriority [
 
 	^ 10
-]
-
-{ #category : #execution }
-MooseASTEntry >> label [
-	^ 'AST representation'
 ]

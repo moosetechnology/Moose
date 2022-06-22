@@ -5,6 +5,18 @@ Class {
 }
 
 { #category : #'world menu' }
+MoosePetitParserToolEntry class >> help [
+
+	^ 'Framework for parsers building'
+]
+
+{ #category : #'world menu' }
+MoosePetitParserToolEntry class >> label [
+
+	^ 'Petit Parser'
+]
+
+{ #category : #'world menu' }
 MoosePetitParserToolEntry class >> menuCommandOn: aBuilder [
 
 	<worldMenu>
@@ -17,18 +29,16 @@ MoosePetitParserToolEntry class >> menuPriority [
 	^ super menuPriority + 1
 ]
 
-{ #category : #execution }
-MoosePetitParserToolEntry >> execute [
-	Metacello new
-		baseline: 'PetitParser';
-		repository: 'github://moosetechnology/PetitParser:' , self version, '/src';
-		onConflictUseIncoming;
-		load
+{ #category : #accessing }
+MoosePetitParserToolEntry >> baselineName [
+
+	^ 'PetitParser'
 ]
 
 { #category : #accessing }
-MoosePetitParserToolEntry >> label [
-	^ 'Petit Parser'
+MoosePetitParserToolEntry >> repositoryURL [
+
+	^ 'github://moosetechnology/PetitParser:' , self version , '/src'
 ]
 
 { #category : #accessing }

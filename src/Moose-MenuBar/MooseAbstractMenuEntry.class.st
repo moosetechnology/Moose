@@ -11,6 +11,11 @@ MooseAbstractMenuEntry class >> famixToolsMenuSymbol [
 ]
 
 { #category : #'world menu' }
+MooseAbstractMenuEntry class >> label [
+	self subclassResponsibility
+]
+
+{ #category : #'world menu' }
 MooseAbstractMenuEntry class >> menuCommandOn: aBuilder [
 
 	<worldMenu>
@@ -26,11 +31,6 @@ MooseAbstractMenuEntry class >> menuCommandOn: aBuilder [
 { #category : #execution }
 MooseAbstractMenuEntry >> execute [
 	"Code to be executed"
-	self subclassResponsibility
-]
-
-{ #category : #execution }
-MooseAbstractMenuEntry >> label [
 	self subclassResponsibility
 ]
 

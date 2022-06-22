@@ -5,6 +5,18 @@ Class {
 }
 
 { #category : #'world menu' }
+MooseFamixCompatibilityEntry class >> help [
+
+	^ 'Old Famix Metamodel - Not maintained anymore'
+]
+
+{ #category : #'world menu' }
+MooseFamixCompatibilityEntry class >> label [
+
+	^ 'Famix-Compatibility'
+]
+
+{ #category : #'world menu' }
 MooseFamixCompatibilityEntry class >> menuCommandOn: aBuilder [
 
 	<worldMenu>
@@ -17,24 +29,20 @@ MooseFamixCompatibilityEntry class >> menuPriority [
 	^ super menuPriority - 1
 ]
 
-{ #category : #execution }
-MooseFamixCompatibilityEntry >> execute [
+{ #category : #accessing }
+MooseFamixCompatibilityEntry >> baselineName [
 
-	Metacello new
-		baseline: 'FamixCompatibility';
-		repository:
-			'github://moosetechnology/FAMIX-Compatibility:' , self version
-			, '/src';
-		load
+	^ 'FamixCompatibility'
 ]
 
 { #category : #accessing }
-MooseFamixCompatibilityEntry >> label [
+MooseFamixCompatibilityEntry >> repositoryURL [
 
-	^ 'Famix-Compatibility'
+	^ 'github://moosetechnology/FAMIX-Compatibility:' , self version
+	  , '/src'
 ]
 
-{ #category : #versions }
+{ #category : #accessing }
 MooseFamixCompatibilityEntry >> version [
 
 	^ 'main'

@@ -8,6 +8,18 @@ Class {
 }
 
 { #category : #'world menu' }
+MooseFamixCppEntry class >> help [
+
+	^ 'Famix Metamodel for C++'
+]
+
+{ #category : #'world menu' }
+MooseFamixCppEntry class >> label [
+
+	^ 'Famix-Cpp'
+]
+
+{ #category : #'world menu' }
 MooseFamixCppEntry class >> menuCommandOn: aBuilder [
 
 	"<worldMenu>"
@@ -23,20 +35,19 @@ MooseFamixCppEntry class >> menuPriority [
 	^ -10
 ]
 
-{ #category : #execution }
-MooseFamixCppEntry >> execute [
-	Metacello new
-    baseline: 'FamixCpp';
-    repository: 'github://moosetechnology/Famix-CPP:',self version, '/src';
-    load.
+{ #category : #accessing }
+MooseFamixCppEntry >> baselineName [
+
+	^ 'FamixCpp'
 ]
 
-{ #category : #execution }
-MooseFamixCppEntry >> label [
-	^ 'Famix-Cpp'
+{ #category : #accessing }
+MooseFamixCppEntry >> repositoryURL [
+
+	^ 'github://moosetechnology/Famix-CPP:' , self version , '/src'
 ]
 
-{ #category : #versions }
+{ #category : #accessing }
 MooseFamixCppEntry >> version [
 
 	^ 'main'

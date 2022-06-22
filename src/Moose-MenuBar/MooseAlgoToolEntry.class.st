@@ -5,6 +5,18 @@ Class {
 }
 
 { #category : #'world menu' }
+MooseAlgoToolEntry class >> help [
+
+	^ 'Algorithms for Moose'
+]
+
+{ #category : #'world menu' }
+MooseAlgoToolEntry class >> label [
+
+	^ 'Moose Algo'
+]
+
+{ #category : #'world menu' }
 MooseAlgoToolEntry class >> menuCommandOn: aBuilder [
 
 	<worldMenu>
@@ -17,20 +29,20 @@ MooseAlgoToolEntry class >> menuPriority [
 	^ 50
 ]
 
-{ #category : #execution }
-MooseAlgoToolEntry >> execute [
-	Metacello new
-		baseline: 'SmaCC';
-		repository: 'github://moosetechnology/MooseAlgos:' , self version, '/src';
-		load
+{ #category : #accessing }
+MooseAlgoToolEntry >> baselineName [
+
+	^ 'SmaCC'
 ]
 
 { #category : #accessing }
-MooseAlgoToolEntry >> label [
-	^ 'Moose Algo'
+MooseAlgoToolEntry >> repositoryURL [
+
+	^ 'github://moosetechnology/MooseAlgos:' , self version , '/src'
 ]
 
 { #category : #accessing }
 MooseAlgoToolEntry >> version [
+
 	^ 'v1.x.x'
 ]

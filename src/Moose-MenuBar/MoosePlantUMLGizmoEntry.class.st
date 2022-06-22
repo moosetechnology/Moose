@@ -5,6 +5,18 @@ Class {
 }
 
 { #category : #'world menu' }
+MoosePlantUMLGizmoEntry class >> help [
+
+	^ 'Pharo support for PlantUML'
+]
+
+{ #category : #'world menu' }
+MoosePlantUMLGizmoEntry class >> label [
+
+	^ 'PlantUML Gizmo'
+]
+
+{ #category : #'world menu' }
 MoosePlantUMLGizmoEntry class >> menuCommandOn: aBuilder [
 
 	<worldMenu>
@@ -17,20 +29,20 @@ MoosePlantUMLGizmoEntry class >> menuPriority [
 	^ 40
 ]
 
-{ #category : #execution }
-MoosePlantUMLGizmoEntry >> execute [
-	Metacello new
-		repository: 'github://fuhrmanator/PlantUMLPharoGizmo:' , self version, '/src';
-		baseline: 'PUGizmo';
-		load
+{ #category : #accessing }
+MoosePlantUMLGizmoEntry >> baselineName [
+
+	^ 'PUGizmo'
 ]
 
 { #category : #accessing }
-MoosePlantUMLGizmoEntry >> label [
-	^ 'PlantUML Gizmo'
+MoosePlantUMLGizmoEntry >> repositoryURL [
+
+	^ 'github://fuhrmanator/PlantUMLPharoGizmo:' , self version , '/src'
 ]
 
 { #category : #accessing }
 MoosePlantUMLGizmoEntry >> version [
+
 	^ 'master'
 ]
