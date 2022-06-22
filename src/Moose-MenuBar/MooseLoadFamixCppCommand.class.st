@@ -2,53 +2,53 @@
 This class adds a menu item to load github://moosetechnology/Famix-CPP
 "
 Class {
-	#name : #MooseFamixCppEntry,
-	#superclass : #MooseAbstractInstallToolEntry,
-	#category : #'Moose-MenuBar'
+	#name : #MooseLoadFamixCppCommand,
+	#superclass : #MooseAbstractLoadModuleCommand,
+	#category : #'Moose-MenuBar-Commands'
 }
 
 { #category : #'world menu' }
-MooseFamixCppEntry class >> help [
+MooseLoadFamixCppCommand class >> help [
 
 	^ 'Famix Metamodel for C++'
 ]
 
 { #category : #'world menu' }
-MooseFamixCppEntry class >> label [
+MooseLoadFamixCppCommand class >> label [
 
 	^ 'Famix-Cpp'
 ]
 
 { #category : #'world menu' }
-MooseFamixCppEntry class >> menuCommandOn: aBuilder [
+MooseLoadFamixCppCommand class >> menuCommandOn: aBuilder [
 
 	"<worldMenu>"
 
 	"Removed from the menu since Famix-Cpp is loaded by default"
 
-	^ self toolEntryMenuCommandOn: aBuilder
+	^ self menuCommandOn: aBuilder forCommand: self
 ]
 
 { #category : #'world menu' }
-MooseFamixCppEntry class >> menuPriority [
+MooseLoadFamixCppCommand class >> menuPriority [
 
-	^ -10
+	^ 10
 ]
 
 { #category : #accessing }
-MooseFamixCppEntry >> baselineName [
+MooseLoadFamixCppCommand >> baselineName [
 
 	^ 'FamixCpp'
 ]
 
 { #category : #accessing }
-MooseFamixCppEntry >> repositoryURL [
+MooseLoadFamixCppCommand >> repositoryURL [
 
 	^ 'github://moosetechnology/Famix-CPP:' , self version , '/src'
 ]
 
 { #category : #accessing }
-MooseFamixCppEntry >> version [
+MooseLoadFamixCppCommand >> version [
 
 	^ 'main'
 ]
