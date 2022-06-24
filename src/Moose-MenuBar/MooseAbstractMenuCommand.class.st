@@ -10,6 +10,17 @@ MooseAbstractMenuCommand class >> famixMenuRoot [
 	^ #Famix
 ]
 
+{ #category : #'world menu' }
+MooseAbstractMenuCommand class >> famixMenuRootOn: aBuilder [
+
+	aBuilder
+		item: self famixMenuRoot;
+		order: 100;
+		parent: #Tools;
+		icon: self icon;
+		withSeparatorAfter
+]
+
 { #category : #accessing }
 MooseAbstractMenuCommand class >> help [
 
@@ -44,18 +55,10 @@ MooseAbstractMenuCommand class >> labelFor: aMooseCommand [
 MooseAbstractMenuCommand class >> menuCommandOn: aBuilder [
 
 	<worldMenu>
-	aBuilder
-		item: #Moose;
-		order: 6;
-		icon: self icon.
-
+	self mooseMenuRootOn: aBuilder.
+	self famixMenuRootOn: aBuilder.
 	^ aBuilder
-		  item: self famixMenuRoot;
-		  order: 100;
-		  parent: #Tools;
-		  icon: self icon;
-		  withSeparatorAfter;
-		  yourself
+
 ]
 
 { #category : #'world menu' }
@@ -86,4 +89,13 @@ MooseAbstractMenuCommand class >> menuPriority [
 MooseAbstractMenuCommand class >> menuRoot [
 
 	self subclassResponsibility
+]
+
+{ #category : #'world menu' }
+MooseAbstractMenuCommand class >> mooseMenuRootOn: aBuilder [
+
+	aBuilder
+		item: #Moose;
+		order: 6;
+		icon: self icon
 ]

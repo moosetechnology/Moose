@@ -32,7 +32,7 @@ MooseAbstractLoadModuleMenuCommand class >> menuCommandOn: aBuilder [
 		  label: self label;
 		  help: self help;
 		  icon: self icon;
-		  order: 100;
+		  order: self menuPriority;
 		  withSeparatorAfter;
 		  yourself
 ]
