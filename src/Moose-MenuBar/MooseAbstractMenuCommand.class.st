@@ -58,6 +58,7 @@ MooseAbstractMenuCommand class >> menuCommandOn: aBuilder [
 	self mooseMenuRootOn: aBuilder.
 	self famixMenuRootOn: aBuilder.
 	^ aBuilder
+
 ]
 
 { #category : #'world menu' }
