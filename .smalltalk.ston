@@ -3,7 +3,9 @@ SmalltalkCISpec {
   #loading : [
     SCIMetacelloLoadSpec {
       #baseline : 'Moose',
-      #directory : 'src'
+      #directory : 'src',
+      #usernameEnvVar : 'GITHUB_USER',
+      #passwordEnvVar : 'GITHUB_TOKEN'
     }
   ],
   #testing : {
