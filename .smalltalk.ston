@@ -5,7 +5,8 @@ SmalltalkCISpec {
       #baseline : 'Moose',
       #directory : 'src',
       #usernameEnvVar : 'GITHUB_USER',
-      #passwordEnvVar : 'GITHUB_TOKEN'
+      #passwordEnvVar : 'GITHUB_TOKEN',
+      #useLatestMetacello : true
     }
   ],
   #testing : {
