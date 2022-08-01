@@ -1,11 +1,8 @@
 Iceberg remoteTypeSelector: #httpsUrl.
 
-Stdio stderr << 'User: ' << (Smalltalk os environment at: 'USER') << String crlf.
-
-
 IceCredentialStore current
 	storeCredential: (IceTokenCredentials new
-		username: (Smalltalk os environment at: 'USER');
-		token: (Smalltalk os environment at: 'TOKEN');
+		username: 'badetitou@gmail.com';
+		token: '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';
 		yourself) 
 	forHostname: 'github.com'.
