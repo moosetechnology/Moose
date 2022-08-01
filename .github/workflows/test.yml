@@ -25,9 +25,6 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       GITHUB_USER: ${{ secrets.GITHUB_USER }}
-      TOKEN: ${{ GitHub.TOKEN }}
-      USER: ${{ GitHub.USER }}
-    environment: GitHub
     needs:
       - get-versions
     strategy:
