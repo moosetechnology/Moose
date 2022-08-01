@@ -24,8 +24,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      TOKEN: ${{ secrets.TOKEN }}
-      USER: ${{ secrets.USER }}
+      GITHUB_USER: ${{ secrets.GITHUB_USER }}
+      TOKEN: ${{ GitHub.TOKEN }}
+      USER: ${{ GitHub.USER }}
     environment: GitHub
     needs:
       - get-versions
