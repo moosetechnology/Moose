@@ -1,4 +1,5 @@
-
+Iceberg remoteTypeSelector: #httpsUrl. 
+ 
 IceCredentialStore current
 	storeCredential: (IceTokenCredentials new
 		username: (Smalltalk os environment at: 'USER');
