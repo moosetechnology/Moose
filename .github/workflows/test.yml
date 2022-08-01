@@ -21,7 +21,7 @@ jobs:
 
 # Run tests on pharo versions described in the file pharo-versions.json
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu:18.04
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       GITHUB_USER: ${{ secrets.GITHUB_USER }}
