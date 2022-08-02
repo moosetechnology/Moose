@@ -2,5 +2,5 @@ Iceberg remoteTypeSelector: #httpsUrl.
 
 
 
-Stdio stdout << 'Pharo git version'.
-Stdio stdout << LGitLibrary uniqueInstance version printString.
+Stdio stderr << 'Pharo git version' << String crlf.
+Stdio stderr << LGitLibrary uniqueInstance version printString << String crlf.
