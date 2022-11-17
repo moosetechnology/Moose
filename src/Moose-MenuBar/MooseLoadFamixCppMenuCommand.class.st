@@ -41,7 +41,7 @@ MooseLoadFamixCppMenuCommand >> baselineName [
 { #category : #accessing }
 MooseLoadFamixCppMenuCommand >> repositoryURL [
 
-	^ 'github://moosetechnology/Famix-CPP:' , self version , '/src'
+	^ 'github://moosetechnology/Famix-Cpp:' , self version , '/src'
 ]
 
 { #category : #accessing }
