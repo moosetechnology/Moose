@@ -22,10 +22,7 @@ MooseLoadFamixCppMenuCommand class >> label [
 { #category : #'world menu' }
 MooseLoadFamixCppMenuCommand class >> menuCommandOn: aBuilder [
 
-	"<worldMenu>"
-
-	"Removed from the menu since Famix-Cpp is loaded by default"
-
+	<worldMenu>
 	^ self menuCommandOn: aBuilder forCommand: self
 ]
 
