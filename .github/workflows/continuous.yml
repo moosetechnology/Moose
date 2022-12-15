@@ -22,7 +22,7 @@ jobs:
         id: read-file
         run: |
           VERSIONS=$(cat $GITHUB_WORKSPACE/.github/workflows/versions.json)
-          echo "::set-output name=versions::$VERSIONS"
+          echo "versions=$VERSIONS" >> $GITHUB_OUTPUT
 
  build:
     runs-on: ubuntu-latest
