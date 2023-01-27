@@ -23,7 +23,7 @@ BaselineOfMoose >> baseline: spec [
 		spec
 			package: 'Moose-MenuBar' with: [ 
 				spec requires:
-						#( 'Famix' 'FamixTagging' 'FamixReplication' 'MooseAlgos'
+						#( 'Famix' 'FamixTagging' 'FamixReplication'
 						   'NeoCSV' 'MooseIDE' ) ];
 			package: 'Moose-Configuration';
 			package: 'Moose-Help';
