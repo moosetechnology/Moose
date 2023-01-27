@@ -15,8 +15,7 @@ BaselineOfMoose >> baseline: spec [
 		self
 			famix: spec;
 			famixTagging: spec;
-			famixReplication: spec;
-			mooseAlgos: spec;
+			famixReplication: spec; 
 			mooseEasy: spec;
 			mooseIDE: spec;
 			neoCSV: spec.
@@ -55,15 +54,6 @@ BaselineOfMoose >> famixReplication: spec [
 { #category : #dependencies }
 BaselineOfMoose >> famixTagging: spec [
 	spec baseline: 'FamixTagging' with: [ spec repository: 'github://moosetechnology/FamixTagging:v1.x.x/src' ]
-]
-
-{ #category : #dependencies }
-BaselineOfMoose >> mooseAlgos: spec [
-	spec
-		baseline: 'MooseAlgos'
-		with: [ spec
-				loads: 'Core';
-				repository: 'github://moosetechnology/MooseAlgos:v1.x.x/src' ]
 ]
 
 { #category : #dependencies }
