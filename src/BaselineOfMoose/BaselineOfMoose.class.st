@@ -15,8 +15,7 @@ BaselineOfMoose >> baseline: spec [
 		self
 			famix: spec;
 			famixTagging: spec;
-			famixReplication: spec;
-			mooseAlgos: spec;
+			famixReplication: spec; 
 			mooseEasy: spec;
 			mooseIDE: spec;
 			neoCSV: spec.
@@ -24,7 +23,7 @@ BaselineOfMoose >> baseline: spec [
 		spec
 			package: 'Moose-MenuBar' with: [ 
 				spec requires:
-						#( 'Famix' 'FamixTagging' 'FamixReplication' 'MooseAlgos'
+						#( 'Famix' 'FamixTagging' 'FamixReplication'
 						   'NeoCSV' 'MooseIDE' ) ];
 			package: 'Moose-Configuration';
 			package: 'Moose-Help';
@@ -55,15 +54,6 @@ BaselineOfMoose >> famixReplication: spec [
 { #category : #dependencies }
 BaselineOfMoose >> famixTagging: spec [
 	spec baseline: 'FamixTagging' with: [ spec repository: 'github://moosetechnology/FamixTagging:v1.x.x/src' ]
-]
-
-{ #category : #dependencies }
-BaselineOfMoose >> mooseAlgos: spec [
-	spec
-		baseline: 'MooseAlgos'
-		with: [ spec
-				loads: 'Core';
-				repository: 'github://moosetechnology/MooseAlgos:v1.x.x/src' ]
 ]
 
 { #category : #dependencies }

@@ -7,12 +7,6 @@ FamixPackageGroup >> complexity [
 ]
 
 { #category : #'*Famix-Visualizations' }
-FamixPackageGroup >> dependencies [
-
-	^ FamixContainerGroupDependencies forContainerGroup: self
-]
-
-{ #category : #'*Famix-Visualizations' }
 FamixPackageGroup >> inspectorShowComplexity [
 
 	<inspectorPresentationOrder: 10 title: 'Complexity'>

@@ -1,12 +1,6 @@
 Extension { #name : #FamixNamespaceGroup }
 
 { #category : #'*Famix-Visualizations' }
-FamixNamespaceGroup >> dependencies [
-
-	^ FamixContainerGroupDependencies forContainerGroup: self
-]
-
-{ #category : #'*Famix-Visualizations' }
 FamixNamespaceGroup >> hierarchy [
 
 	^ FamixNamespaceGroupHierarchy forNamespaceGroup: self
