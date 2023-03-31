@@ -15,16 +15,16 @@ BaselineOfMoose >> baseline: spec [
 		self
 			famix: spec;
 			famixTagging: spec;
-			famixReplication: spec; 
+			famixReplication: spec;
 			mooseEasy: spec;
 			mooseIDE: spec;
-			neoCSV: spec.
+			neoCSV: spec;
+			seeker: spec.
 
 		spec
 			package: 'Moose-MenuBar' with: [ 
 				spec requires:
-						#( 'Famix' 'FamixTagging' 'FamixReplication'
-						   'NeoCSV' 'MooseIDE' ) ];
+						#( 'Famix' 'FamixTagging' 'FamixReplication' 'NeoCSV' 'MooseIDE' ) ];
 			package: 'Moose-Configuration';
 			package: 'Moose-Help';
 			package: 'Famix-Visualizations' ]
@@ -82,4 +82,13 @@ BaselineOfMoose >> neoCSV: spec [
 { #category : #accessing }
 BaselineOfMoose >> projectClass [
 	^ MetacelloCypressBaselineProject
+]
+
+{ #category : #dependencies }
+BaselineOfMoose >> seeker: spec [
+
+	spec baseline: 'Seeker' with: [ 
+		spec
+			loads: #( 'Moose' );
+			repository: 'github://maxwills/SeekerDebugger:main' ]
 ]
