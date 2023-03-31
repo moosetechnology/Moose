@@ -39,7 +39,7 @@ BaselineOfMoose >> customProjectAttributes [
 
 { #category : #dependencies }
 BaselineOfMoose >> famix: spec [
-	spec baseline: 'Famix' with: [ spec repository: 'github://moosetechnology/Famix:development/src' ]
+	spec baseline: 'Famix' with: [ spec repository: 'github://moosetechnology/Famix:v1.0.6/src' ]
 ]
 
 { #category : #dependencies }
