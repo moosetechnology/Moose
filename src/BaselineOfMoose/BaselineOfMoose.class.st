@@ -67,7 +67,7 @@ BaselineOfMoose >> mooseIDE: spec [
 	spec
 		baseline: 'MooseIDE'
 		with: [ 
-		spec repository: 'github://moosetechnology/MooseIDE:development/src' ]
+		spec repository: 'github://moosetechnology/MooseIDE:v2.0.4/src' ]
 ]
 
 { #category : #dependencies }
