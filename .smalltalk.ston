@@ -2,7 +2,8 @@ SmalltalkCISpec {
   #loading : [
     SCIMetacelloLoadSpec {
       #baseline : 'Moose',
-      #directory : 'src'
+      #directory : 'src',
+      #registerInIceberg : true     
     }
   ],
   #testing : {
