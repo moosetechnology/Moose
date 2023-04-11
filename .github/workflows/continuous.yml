@@ -48,7 +48,7 @@ jobs:
       - name: set-version
         run: |
           ls -l $SMALLTALK_CI_VM
-          $SMALLTALK_CI_VM  $SMALLTALK_CI_IMAGE eval --save "MooseVersion current commitHash: '$GITHUB_SHA'. HelpBrowser allInstances do: #close. MooseWelcome openForRelease"
+          $SMALLTALK_CI_VM  $SMALLTALK_CI_IMAGE eval --save "MooseVersion current commitHash: '$GITHUB_SHA'. Smalltalk at: #HelpBrowser ifPresent: [ :helpClass | helpClass allInstances do: #close. MooseWelcome openForRelease ]"
           
       - name: rename
         run: |
