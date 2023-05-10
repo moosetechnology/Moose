@@ -63,9 +63,11 @@ jobs:
         run: |
           zip -r $PROJECT_NAME-${{ matrix.smalltalk }}.zip $PROJECT_NAME-${{ matrix.smalltalk }}.image $PROJECT_NAME-${{ matrix.smalltalk }}.changes *.sources pharo.version
           ls
-      - name: Update Release
-        uses: johnwbyrd/update-release@v1.0.0
+      - name: Update release
+        uses: Xotl/cool-github-releases@v1
         with:
-          release: ${{ fromJSON(needs.get-versions.outputs.versions).release-name }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          files: ${{ env.PROJECT_NAME }}-${{ matrix.smalltalk }}.zip
+          mode: update
+          replace_assets: true
+          tag_name: ${{ fromJSON(needs.get-versions.outputs.versions).release-name }}
+          assets: ${{ env.PROJECT_NAME }}-${{ matrix.smalltalk }}.zip
+          github_token: ${{ secrets.GITHUB_TOKEN }}
