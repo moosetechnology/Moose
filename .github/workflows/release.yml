@@ -45,7 +45,11 @@ jobs:
           mv /home/runner/.smalltalkCI/_builds/* .
           mv TravisCI.image $PROJECT_NAME-${{ matrix.smalltalk }}.image
           mv TravisCI.changes $PROJECT_NAME-${{ matrix.smalltalk }}.changes
-          echo ${${{ matrix.smalltalk }}} | sed -e 's/\.//g' > pharo.version
+          echo ${${{ matrix.smalltalk }}} | sed -e 's/.*\-//g ; s/\..*//g ; s/$/0/' > pharo.version
+        # Remove every character before '-' ; Remove point and anything after it ; add a '0'.
+        # This pattern transforms as follow: 'Pharo64-9.0' --> '90' and 'Pharo64-10' --> '100'.
+      - name: package
+        run: |
           zip -r $PROJECT_NAME-${{ matrix.smalltalk }}.zip $PROJECT_NAME-${{ matrix.smalltalk }}.image $PROJECT_NAME-${{ matrix.smalltalk }}.changes *.sources pharo.version
           ls
 
