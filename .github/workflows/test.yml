@@ -25,6 +25,7 @@ jobs:
     needs:
       - get-versions
     strategy:
+      fail-fast: false
       matrix: 
         smalltalk: ${{ fromJSON(needs.get-versions.outputs.versions).pharo-versions }}
     name: ${{ matrix.smalltalk }}
