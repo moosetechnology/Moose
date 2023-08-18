@@ -4,7 +4,7 @@ I am the welcome window that opens when a Moose image
 Class {
 	#name : #MooseWelcome,
 	#superclass : #CustomHelp,
-	#category : #'Moose-Help'
+	#category : #'Moose-Help-ToRemove'
 }
 
 { #category : #accessing }
