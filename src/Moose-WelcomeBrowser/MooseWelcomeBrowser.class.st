@@ -5,7 +5,7 @@ See superclass for more implementation details
 Class {
 	#name : #MooseWelcomeBrowser,
 	#superclass : #StWelcomeBrowser,
-	#category : #'Moose-Help'
+	#category : #'Moose-WelcomeBrowser'
 }
 
 { #category : #'instance creation' }
@@ -43,6 +43,22 @@ MooseWelcomeBrowser class >> openForRelease [
 		anAdapter widget
 			position: (((self environment classNamed: #OSWorldRenderer) defaultExtent - self windowExtent) / 2) asIntegerPoint;
 			extent: self windowExtent ]
+]
+
+{ #category : #finalization }
+MooseWelcomeBrowser class >> register [
+	"Add ourselves to registry. See [Smalltalk tools]" 
+	<script>
+
+	self registerToolsOn: Smalltalk tools
+]
+
+{ #category : #finalization }
+MooseWelcomeBrowser class >> registerToolsOn: registry [
+	"Add ourselves to registry. See [Smalltalk tools]" 
+
+	registry register: self as: #mooseWelcome
+
 ]
 
 { #category : #'accessing - labels' }

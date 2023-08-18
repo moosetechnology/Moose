@@ -11,7 +11,7 @@ Class {
 BaselineOfMoose >> baseline: spec [
 
 	<baseline>
-	spec for: #common do: [ 
+	spec for: #common do: [
 		self
 			famix: spec;
 			famixTagging: spec;
@@ -21,22 +21,19 @@ BaselineOfMoose >> baseline: spec [
 			neoCSV: spec.
 
 		spec
-			package: 'Moose-MenuBar' with: [ 
+			package: 'Moose-MenuBar' with: [
 				spec requires:
 						#( 'Famix' 'FamixTagging' 'FamixReplication' 'NeoCSV' 'MooseIDE' ) ];
 			package: 'Moose-Configuration';
-			package: 'Moose-Help';
 			package: 'Famix-Visualizations' ].
-	spec
-		for: #( #'pharo10.x' #'pharo9.x' #'pharo8.x' )
-		do: [ spec package: 'Moose-Help-ToRemove' ]
-]
 
-{ #category : #baseline }
-BaselineOfMoose >> customProjectAttributes [
-	^ (Smalltalk classNamed: 'StInspector')
-		  ifNotNil: [ #( #NewTools ) ]
-		  ifNil: [ #(  ) ]
+	spec for: #( #'pharo10.x' #'pharo9.x' #'pharo8.x' ) do: [
+		spec package: 'Moose-Help-ToRemove'.
+		spec postLoadDoIt: #registerMooseWelcome ].
+
+	spec for: #'pharo11.x' do: [
+		spec package: 'Moose-WelcomeBrowser'.
+		spec postLoadDoIt: #registerMooseWelcomeBrowser ]
 ]
 
 { #category : #dependencies }
@@ -84,4 +81,22 @@ BaselineOfMoose >> neoCSV: spec [
 { #category : #accessing }
 BaselineOfMoose >> projectClass [
 	^ MetacelloCypressBaselineProject
+]
+
+{ #category : #actions }
+BaselineOfMoose >> registerMooseWelcome [
+	"For Pharo 10 and before"
+
+	Smalltalk
+		at: #MooseWelcome
+		ifPresent: [ :mooseWelcome | mooseWelcome register ]
+]
+
+{ #category : #actions }
+BaselineOfMoose >> registerMooseWelcomeBrowser [
+	"For Pharo 11 and after"
+
+	Smalltalk
+		at: #MooseWelcomeBrowser
+		ifPresent: [ :mooseWelcome | mooseWelcome register ]
 ]
