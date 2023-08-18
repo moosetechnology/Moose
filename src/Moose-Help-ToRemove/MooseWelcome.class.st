@@ -98,6 +98,22 @@ MooseWelcome class >> pages [
 	^ #( welcome mainTools )
 ]
 
+{ #category : #'tools registry' }
+MooseWelcome class >> register [
+	"Add ourselves to registry. See [Smalltalk tools]" 
+	<script>
+
+	self registerToolsOn: Smalltalk tools
+]
+
+{ #category : #'tools registry' }
+MooseWelcome class >> registerToolsOn: registry [
+	"Add ourselves to registry. See [Smalltalk tools]" 
+
+	registry register: self as: #mooseWelcome
+
+]
+
 { #category : #pages }
 MooseWelcome class >> welcome [
 
