@@ -16,8 +16,7 @@ MooseWelcome class >> bookName [
 { #category : #'as yet unclassified' }
 MooseWelcome class >> closePharoWelcomeThenOpen [
 
-	HelpBrowser allInstancesDo: [ :browser | 
-		browser withWindowDo: #close ].
+	HelpBrowser allInstancesDo: [ :browser | browser close ].
 	self openForRelease
 ]
 
