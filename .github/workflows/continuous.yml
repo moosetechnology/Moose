@@ -49,7 +49,7 @@ jobs:
       - name: set-version
         run: |
           ls -l $SMALLTALK_CI_VM
-          $SMALLTALK_CI_VM  $SMALLTALK_CI_IMAGE eval --save "MooseVersion current commitHash: '$GITHUB_SHA'. (Smalltalk toolNamed: #mooseWelcome) closePharoWelcomeThenOpen"
+          $SMALLTALK_CI_VM  $SMALLTALK_CI_IMAGE eval --save "MooseVersion current commitHash: '$GITHUB_SHA'. (Smalltalk tools toolNamed: #mooseWelcome) closePharoWelcomeThenOpen"
           
       - name: rename
         run: |
