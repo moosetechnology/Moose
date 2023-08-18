@@ -13,6 +13,14 @@ MooseWelcome class >> bookName [
 	^ 'Moose Tutorial'
 ]
 
+{ #category : #'as yet unclassified' }
+MooseWelcome class >> closePharoWelcomeThenOpen [
+
+	HelpBrowser allInstancesDo: [ :browser | 
+		browser withWindowDo: #close ].
+	self openForRelease
+]
+
 { #category : #pages }
 MooseWelcome class >> mainTools [
 
