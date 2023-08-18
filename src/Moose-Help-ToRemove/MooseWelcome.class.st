@@ -4,13 +4,21 @@ I am the welcome window that opens when a Moose image
 Class {
 	#name : #MooseWelcome,
 	#superclass : #CustomHelp,
-	#category : #'Moose-Help'
+	#category : #'Moose-Help-ToRemove'
 }
 
 { #category : #accessing }
 MooseWelcome class >> bookName [
 
 	^ 'Moose Tutorial'
+]
+
+{ #category : #'as yet unclassified' }
+MooseWelcome class >> closePharoWelcomeThenOpen [
+
+	HelpBrowser allInstancesDo: [ :browser | 
+		browser withWindowDo: #close ].
+	self openForRelease
 ]
 
 { #category : #pages }
@@ -88,6 +96,22 @@ MooseWelcome class >> openForRelease [
 MooseWelcome class >> pages [
 
 	^ #( welcome mainTools )
+]
+
+{ #category : #'tools registry' }
+MooseWelcome class >> register [
+	"Add ourselves to registry. See [Smalltalk tools]" 
+	<script>
+
+	self registerToolsOn: Smalltalk tools
+]
+
+{ #category : #'tools registry' }
+MooseWelcome class >> registerToolsOn: registry [
+	"Add ourselves to registry. See [Smalltalk tools]" 
+
+	registry register: self as: #mooseWelcome
+
 ]
 
 { #category : #pages }

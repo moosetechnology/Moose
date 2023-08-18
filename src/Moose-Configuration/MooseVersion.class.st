@@ -13,7 +13,7 @@ Class {
 	#classInstVars : [
 		'current'
 	],
-	#category : #'Moose-Help'
+	#category : #'Moose-Configuration'
 }
 
 { #category : #accessing }
