@@ -52,6 +52,6 @@ jobs:
         with:
           mode: update
           replace_assets: true
-          tag_name: ${{ fromJSON(needs.get-versions.outputs.versions).release-name }}
+          release_name: ${{ fromJSON(needs.get-versions.outputs.versions).release-name }}
           assets: ${{ env.PROJECT_NAME }}-${{ matrix.smalltalk }}.zip
           github_token: ${{ secrets.GITHUB_TOKEN }}
