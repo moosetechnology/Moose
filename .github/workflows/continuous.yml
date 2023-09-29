@@ -1,4 +1,4 @@
-name: Continuous-development
+name: 'Moose 10'
 
 on:
   push:
