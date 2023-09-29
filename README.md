@@ -1,5 +1,5 @@
 [![Development](https://github.com/moosetechnology/Moose/actions/workflows/continuous.yml/badge.svg)](https://github.com/moosetechnology/Moose/actions/workflows/continuous.yml)
-[![Stable](https://github.com/moosetechnology/Moose/actions/workflows/release.yml/badge.svg)](https://github.com/moosetechnology/Moose/actions/workflows/release.yml)
+[![Stable](https://github.com/moosetechnology/Moose/actions/workflows/release.yml/badge.svg?branch=v10)](https://github.com/moosetechnology/Moose/actions/workflows/release.yml)
 
 Moose is an extensive platform for software and data analysis.
 
