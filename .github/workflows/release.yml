@@ -1,4 +1,4 @@
-name: Release-Moose
+name: Stable
 
 on:
   release:
