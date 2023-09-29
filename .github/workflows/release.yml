@@ -1,4 +1,4 @@
-name: Release-Moose
+name: Stable
 
 on:
   release:
@@ -52,6 +52,6 @@ jobs:
         with:
           mode: update
           replace_assets: true
-          release_name: ${{ fromJSON(needs.get-versions.outputs.versions).release-name }}
+          release_name: ${{ fromJSON(needs.get-versions.outputs.versions).release-tag }}
           assets: ${{ env.PROJECT_NAME }}-${{ matrix.smalltalk }}.zip
           github_token: ${{ secrets.GITHUB_TOKEN }}
