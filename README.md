@@ -1,5 +1,5 @@
-
-[![development](https://github.com/moosetechnology/Moose/actions/workflows/continuous.yml/badge.svg)](https://github.com/moosetechnology/Moose/actions/workflows/continuous.yml)
+[![Development](https://github.com/moosetechnology/Moose/actions/workflows/continuous.yml/badge.svg)](https://github.com/moosetechnology/Moose/actions/workflows/continuous.yml)
+[![Stable](https://github.com/moosetechnology/Moose/actions/workflows/release.yml/badge.svg)](https://github.com/moosetechnology/Moose/actions/workflows/release.yml)
 
 Moose is an extensive platform for software and data analysis.
 
@@ -17,9 +17,9 @@ Please refer to the [moose wiki](https://moosetechnology.github.io/moose-wiki/) 
 
 ### Load Moose in a Pharo image
 
-#### Latest version: Moose 10
+#### Latest version: Moose 11
 
-Execute this in a Pharo 10 image:
+Execute this in a Pharo 11 image:
 
 ```smalltalk
 Metacello new
@@ -29,9 +29,9 @@ Metacello new
     load
 ```
 
-#### Stable version: Moose 9
+#### Stable version: Moose 10
 
-Execute this in a Pharo 9 image:
+Execute this in a Pharo 10 image:
 ```smalltalk
 [ Metacello new
     baseline: 'Moose';
@@ -41,9 +41,9 @@ Execute this in a Pharo 9 image:
     do: [ :warning | warning load ]
 ```
 
-#### Old stable version: Moose 8
+#### Old stable version: Moose 9
 
-Execute this in a Pharo 8 image:
+Execute this in a Pharo 9 image:
 
 ```smalltalk
 Metacello new
