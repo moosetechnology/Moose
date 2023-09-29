@@ -64,6 +64,6 @@ jobs:
       - name: Update Release
         uses: johnwbyrd/update-release@v1.0.0
         with:
-          release: ${{ fromJSON(needs.get-versions.outputs.versions).release-name }}
+          release: ${{ fromJSON(needs.get-versions.outputs.versions).release-tag }}
           token: ${{ secrets.GITHUB_TOKEN }}
           files: ${{ env.PROJECT_NAME }}-${{ matrix.smalltalk }}.zip
