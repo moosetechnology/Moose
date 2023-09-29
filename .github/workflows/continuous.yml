@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - development
-      - v9
-      - v10
   # This will be triggered only for development branch
   schedule:
     - cron:  '0 0 * * *'
