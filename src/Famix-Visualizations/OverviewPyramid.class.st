@@ -30,7 +30,10 @@ OverviewPyramid class >> defaultTitle [
 
 { #category : #'instance creation' }
 OverviewPyramid class >> example [
+
 	<script>
+	MooseModel root allModels ifEmpty: [
+		^ self inform: 'Please provide a model' ].
 	(self forMooseModel: MooseModel root allModels anyOne) open
 ]
 
