@@ -32,7 +32,9 @@ BaselineOfMoose >> baseline: spec [
 		spec postLoadDoIt: #registerMooseWelcome ].
 
 	spec for: #'pharo11.x' do: [
-		spec package: 'Moose-WelcomeBrowser'.
+		spec
+			package: 'Moose-WelcomeBrowser'
+			with: [ spec requires: #( 'Moose-Configuration' ) ].
 		spec postLoadDoIt: #registerMooseWelcomeBrowser ]
 ]
 
