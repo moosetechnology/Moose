@@ -55,7 +55,7 @@ BaselineOfMoose >> famixTagging: spec [
 
 	spec baseline: 'FamixTagging' with: [
 		spec repository:
-			'github://moosetechnology/FamixTagging:development/src' ]
+			'github://moosetechnology/FamixTagging:master/src' ]
 ]
 
 { #category : #dependencies }
