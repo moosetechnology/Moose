@@ -17,15 +17,13 @@ BaselineOfMoose >> baseline: spec [
 			famixTagging: spec;
 			famixReplication: spec;
 			mooseEasy: spec;
-			mooseIDE: spec;
-			neoCSV: spec.
+			mooseIDE: spec.
 
 		spec
 			package: 'Moose-MenuBar' with: [
 				spec requires:
-						#( 'Famix' 'FamixTagging' 'FamixReplication' 'NeoCSV' 'MooseIDE' ) ];
-			package: 'Moose-Configuration';
-			package: 'Famix-Visualizations' ].
+						#( 'Famix' 'FamixTagging' 'FamixReplication' 'MooseIDE' ) ];
+			package: 'Moose-Configuration' ].
 
 	spec for: #( #'pharo10.x' #'pharo9.x' #'pharo8.x' ) do: [
 		spec package: 'Moose-Help-ToRemove'.
