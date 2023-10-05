@@ -26,7 +26,8 @@ BaselineOfMoose >> baseline: spec [
 			package: 'Moose-Configuration';
 			package: 'Moose-WelcomeBrowser'
 			with: [ spec requires: #( 'Moose-Configuration' ) ].
-
+		
+		self groups: spec.
 		spec postLoadDoIt: #registerMooseWelcomeBrowser ]
 ]
 
@@ -55,6 +56,12 @@ BaselineOfMoose >> famixTagging: spec [
 		baseline: 'FamixTagging'
 		with: [
 		spec repository: 'github://moosetechnology/FamixTagging/src' ]
+]
+
+{ #category : #baselines }
+BaselineOfMoose >> groups: spec [
+
+	spec group: 'Metamodel' with: #( 'Famix' )
 ]
 
 { #category : #dependencies }
