@@ -34,7 +34,7 @@ Execute this in a Pharo 10 image:
 ```smalltalk
 [ Metacello new
     baseline: 'Moose';
-    repository: 'github://moosetechnology/Moose:v9.x.x/src';
+    repository: 'github://moosetechnology/Moose:v10.x.x/src';
     load ]
     on: MCMergeOrLoadWarning
     do: [ :warning | warning load ]
@@ -45,10 +45,12 @@ Execute this in a Pharo 10 image:
 Execute this in a Pharo 9 image:
 
 ```smalltalk
-Metacello new
-  baseline: 'Moose';
-  repository: 'github://moosetechnology/Moose:v8.x.x/src';
-  load.
+[ Metacello new
+    baseline: 'Moose';
+    repository: 'github://moosetechnology/Moose:v9.x.x/src';
+    load ]
+    on: MCMergeOrLoadWarning
+    do: [ :warning | warning load ]
 ```
 
 ### Famix generators
