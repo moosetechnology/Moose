@@ -20,9 +20,7 @@ MooseLoadFASTJavaMenuCommand class >> label [
 MooseLoadFASTJavaMenuCommand class >> menuCommandOn: aBuilder [
 
 	<worldMenu>
-	^ (self menuCommandOn: aBuilder forCommand: self)
-		  withSeparatorAfter;
-		  yourself
+	^ (self menuCommandOn: aBuilder forCommand: self) yourself
 ]
 
 { #category : #accessing }

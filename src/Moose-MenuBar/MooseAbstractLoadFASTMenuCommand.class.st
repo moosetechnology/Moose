@@ -13,5 +13,5 @@ MooseAbstractLoadFASTMenuCommand class >> label [
 { #category : #accessing }
 MooseAbstractLoadFASTMenuCommand class >> menuPriority [
 
-	^ 10
+	^ 0
 ]

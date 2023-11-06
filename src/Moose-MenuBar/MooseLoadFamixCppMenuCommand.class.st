@@ -29,7 +29,7 @@ MooseLoadFamixCppMenuCommand class >> menuCommandOn: aBuilder [
 { #category : #accessing }
 MooseLoadFamixCppMenuCommand class >> menuPriority [
 
-	^ 10
+	^ 20
 ]
 
 { #category : #accessing }
