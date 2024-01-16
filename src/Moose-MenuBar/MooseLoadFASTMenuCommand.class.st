@@ -44,5 +44,5 @@ MooseLoadFASTMenuCommand >> repositoryURL [
 { #category : #accessing }
 MooseLoadFASTMenuCommand >> version [
 
-	^ 'v1.x.x'
+	^ 'v2.x.x'
 ]
