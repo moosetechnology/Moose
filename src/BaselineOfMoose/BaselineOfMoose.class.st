@@ -70,7 +70,7 @@ BaselineOfMoose >> mooseEasy: spec [
 	spec
 		baseline: 'MooseEasy'
 		with: [
-		spec repository: 'github://moosetechnology/Moose-Easy:v2/src' ]
+		spec repository: 'github://moosetechnology/Moose-Easy:v3/src' ]
 ]
 
 { #category : #dependencies }
