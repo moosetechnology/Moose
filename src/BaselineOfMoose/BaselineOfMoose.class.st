@@ -20,13 +20,9 @@ BaselineOfMoose >> baseline: spec [
 			mooseIDE: spec.
 
 		spec
-			package: 'Moose-MenuBar' with: [
-				spec requires:
-						#( 'Famix' 'FamixTagging' 'FamixReplication' 'MooseIDE' ) ];
-			package: 'Moose-Configuration';
-			package: 'Moose-WelcomeBrowser'
-			with: [ spec requires: #( 'Moose-Configuration' ) ].
-		
+			package: 'Moose-Configuration' with: [ spec requires: #( 'Famix' 'FamixTagging' 'FamixReplication' 'MooseIDE' ) ];
+			package: 'Moose-WelcomeBrowser' with: [ spec requires: #( 'Moose-Configuration' ) ].
+
 		self groups: spec.
 		spec postLoadDoIt: #registerMooseWelcomeBrowser ]
 ]
