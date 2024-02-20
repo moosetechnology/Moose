@@ -72,27 +72,27 @@ Some suggestions on what you can do with Moose.
 
 First, use the  model browser to create or load an internal model of a system: 
 ```pharoeval
-MiModelRootBrowser open
+{1} open
 ```
 You will need to ''Propagate'' this model to other tools.
 Then, you can inspect the content of your model: 
 ```pharoeval
-MiInspectorBrowser open
+{2} open
 ```
 Keep an eye on opened tools with the Overview browser: 
 ```pharoeval
-MiOverviewBrowser open
+{3} open
 ```
 
 ### Manipulating
 
 You can select specific entities in a model with the Query browser: 
 ```pharoeval
-MiQueriesBrowser open
+{4} open
 ```
 You can also annotate entities with the Tag browser: 
 ```pharoeval
-MiTagBrowser open
+{5} open
 ```
 
 ### Visualization
@@ -100,12 +100,19 @@ MiTagBrowser open
 There are various visualizations available on different kind of entities:
 Architectural browser: 
 ```pharoeval
-MiArchitecturalMapBrowser open
+{6} open
 ```
 CoUsage map browser: 
 ```pharoeval
-MiCoUsageMapBrowser open
-```'
+{7} open
+```' format: ({
+			   MiModelsBrowser.
+			   MiInspectorBrowser.
+			   MiOverviewBrowser.
+			   MiQueriesBrowser.
+			   MiTagBrowser.
+			   MiArchitecturalMapBrowser.
+			   MiCoUsageMapBrowser } collect: #name)
 ]
 
 { #category : #'accessing - labels' }
