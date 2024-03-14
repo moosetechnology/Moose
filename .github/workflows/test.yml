@@ -6,18 +6,11 @@ on:
 
 jobs:
 
-# Read the content of the file versions.json. It is interpreted as a json data in the next job.
+# Get the content of the file versions.json. It is interpreted as a json data in the next job.
   get-versions:
-    runs-on: ubuntu-latest
-    outputs: 
-      versions: ${{ steps.read-file.outputs.versions }}
-    steps:
-      - uses: actions/checkout@v3
-      - name: Read file
-        id: read-file
-        run: |
-          VERSIONS=$(cat $GITHUB_WORKSPACE/.github/workflows/versions.json)
-          echo "versions=$VERSIONS" >> $GITHUB_OUTPUT
+     uses: ./.github/workflows/get-versions.yml
+     with:
+       file-path: $GITHUB_WORKSPACE/.github/workflows/versions.json
 
 # Run tests on pharo versions described in the file pharo-versions.json
   build:
