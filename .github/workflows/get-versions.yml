@@ -1,0 +1,28 @@
+name: Get versions file contents
+
+# Read the content of the file versions.json. 
+# Output is a json string.
+
+on:
+  workflow_call:
+    inputs: 
+      file-path:
+        required: true
+        type: string
+    outputs:
+      versions:
+        description: "Versions informations as a Json string"
+        value: ${{ jobs.get-versions.outputs.versions }}
+
+jobs:
+  get-versions:
+    runs-on: ubuntu-latest
+    outputs: 
+      versions: ${{ steps.read-file.outputs.versions }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read file
+        id: read-file
+        run: |
+          VERSIONS=$(cat ${{ inputs.file-path }})
+          echo "versions=$VERSIONS" >> $GITHUB_OUTPUT
