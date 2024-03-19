@@ -24,4 +24,4 @@ jobs:
         run: |
           echo "versions=$VERSIONS" >> $GITHUB_OUTPUT
         env:
-          VERSIONS: ${{ vars.PHARO_VERSIONS }}
+          VERSIONS: fromJSON(${{ vars.PHARO_VERSIONS }}).development
