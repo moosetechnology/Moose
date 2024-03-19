@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix: 
-        smalltalk: ${{ fromJSON(vars.PHARO_VERSIONS_DEVELOPMENT }}
+        smalltalk: ${{ fromJSON(vars.PHARO_VERSIONS_DEVELOPMENT) }}
     name: ${{ matrix.smalltalk }}
     steps:
       - uses: actions/checkout@v4
