@@ -20,9 +20,8 @@ jobs:
     outputs: 
       versions: ${{ steps.read-file.outputs.versions }}
     steps:
-      - uses: actions/checkout@v4
-      - name: Read file
-        id: read-file
+      - name: Get pharo versions
         run: |
-          VERSIONS=$(cat ${{ inputs.file-path }})
           echo "versions=$VERSIONS" >> $GITHUB_OUTPUT
+        env:
+          VERSIONS: ${{ fromJSON(vars.PHARO_VERSIONS).development }}

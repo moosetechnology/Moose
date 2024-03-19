@@ -5,25 +5,15 @@ on:
     types: [assigned, opened, synchronize, reopened]
 
 jobs:
-
-# Get the content of the file versions.json. It is interpreted as a json data in the next job.
-  get-versions:
-     uses: ./.github/workflows/get-versions.yml
-     with:
-       file-path: $GITHUB_WORKSPACE/.github/workflows/versions.json
-
-# Run tests on pharo versions described in the file pharo-versions.json
   build:
     runs-on: ubuntu-latest
-    needs:
-      - get-versions
     strategy:
       fail-fast: false
       matrix: 
-        smalltalk: ${{ fromJSON(needs.get-versions.outputs.versions).pharo-versions }}
+        smalltalk: ${{ fromJSON(vars.PHARO_VERSIONS_DEVELOPMENT) }}
     name: ${{ matrix.smalltalk }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Option fetching all commits
       - uses: hpi-swa/setup-smalltalkCI@v1
