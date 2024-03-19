@@ -22,5 +22,6 @@ jobs:
     steps:
       - name: Get pharo versions
         run: |
-          VERSIONS=$(cat ${{ vars.PHARO_VERSIONS }})
           echo "versions=$VERSIONS" >> $GITHUB_OUTPUT
+        env:
+          VERSIONS: ${{ vars.PHARO_VERSIONS }}
