@@ -16,7 +16,6 @@ BaselineOfMoose >> baseline: spec [
 			famix: spec;
 			famixTagging: spec;
 			famixReplication: spec;
-			mooseEasy: spec;
 			mooseIDE: spec.
 
 		spec
@@ -58,15 +57,6 @@ BaselineOfMoose >> famixTagging: spec [
 BaselineOfMoose >> groups: spec [
 
 	spec group: 'Metamodel' with: #( 'Famix' )
-]
-
-{ #category : #dependencies }
-BaselineOfMoose >> mooseEasy: spec [
-
-	spec
-		baseline: 'MooseEasy'
-		with: [
-		spec repository: 'github://moosetechnology/Moose-Easy:v3/src' ]
 ]
 
 { #category : #dependencies }
