@@ -38,6 +38,11 @@ jobs:
         shell: bash
         timeout-minutes: 15
 
+      - name: set-version
+        run: |
+          ls -l $SMALLTALK_CI_VM
+          $SMALLTALK_CI_VM  $SMALLTALK_CI_IMAGE eval --save "MooseVersion current commitHash: '$GITHUB_SHA'. HelpBrowser allInstances do: #close. MooseWelcome openForRelease"
+
       - name: package
         run: |
           mv /home/runner/.smalltalkCI/_builds/* .
