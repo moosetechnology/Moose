@@ -1,0 +1,19 @@
+name: Run tests and update release
+
+on:
+  push:
+    branches:
+      - development
+  schedule:
+    - cron:  '0 0 * * *'
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  run-tests-and-update-release:
+    name: Run tests and update release
+    uses: moosetechnology/.github/.github/workflows/test-and-release.yml@main
+      with:
+        image-name: "Moose12-development"
+        pre-upload-script: "MooseVersion current commitHash: '$GITHUB_SHA'. (Smalltalk tools toolNamed: #mooseWelcome) closePharoWelcomeThenOpen"
+        release-tag: "continuous"
