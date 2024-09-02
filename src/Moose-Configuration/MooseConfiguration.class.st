@@ -31,3 +31,23 @@ MooseConfiguration class >> mooseSettingsOn: aBuilder [
 		label: 'Moose';
 		description: 'Moose settings'
 ]
+
+{ #category : #iceberg }
+MooseConfiguration class >> registerToIceberg [
+
+	Iceberg announcer
+		when: IceRepositoryCreated
+		send: #sortIcebergRepositories
+		to: self.
+
+	Iceberg announcer
+		when: IceRepositoryModified
+		send: #sortIcebergRepositories
+		to: self
+]
+
+{ #category : #iceberg }
+MooseConfiguration class >> sortIcebergRepositories [
+
+	IceRepository registry sort: #isMissing ascending , #name ascending
+]
