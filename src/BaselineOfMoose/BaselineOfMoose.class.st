@@ -95,7 +95,7 @@ BaselineOfMoose >> registerMooseWelcomeBrowser [
 BaselineOfMoose >> registerToIceberg [
 
 	Smalltalk
-		at: #MooseWelcomeBrowser
+		at: #MooseConfiguration
 		ifPresent: [ :mooseConfiguration |
 		mooseConfiguration registerToIceberg ]
 ]
