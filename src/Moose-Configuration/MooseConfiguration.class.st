@@ -43,7 +43,9 @@ MooseConfiguration class >> registerToIceberg [
 	Iceberg announcer
 		when: IceRepositoryModified
 		send: #sortIcebergRepositories
-		to: self
+		to: self.
+
+	self sortIcebergRepositories
 ]
 
 { #category : #iceberg }
