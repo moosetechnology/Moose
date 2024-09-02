@@ -19,11 +19,14 @@ BaselineOfMoose >> baseline: spec [
 			mooseIDE: spec.
 
 		spec
-			package: 'Moose-Configuration' with: [ spec requires: #( 'Famix' 'FamixTagging' 'FamixReplication' 'MooseIDE' ) ];
-			package: 'Moose-WelcomeBrowser' with: [ spec requires: #( 'Moose-Configuration' ) ].
+			package: 'Moose-Configuration' with: [
+				spec requires:
+						#( 'Famix' 'FamixTagging' 'FamixReplication' 'MooseIDE' ) ];
+			package: 'Moose-WelcomeBrowser'
+			with: [ spec requires: #( 'Moose-Configuration' ) ].
 
 		self groups: spec.
-		spec postLoadDoIt: #registerMooseWelcomeBrowser ]
+		spec postLoadDoIt: #installMooseConfigurations ]
 ]
 
 { #category : #dependencies }
@@ -59,6 +62,13 @@ BaselineOfMoose >> groups: spec [
 	spec group: 'Metamodel' with: #( 'Famix' )
 ]
 
+{ #category : #actions }
+BaselineOfMoose >> installMooseConfigurations [
+
+	self registerMooseWelcomeBrowser.
+	self registerToIceberg
+]
+
 { #category : #dependencies }
 BaselineOfMoose >> mooseIDE: spec [
 
@@ -75,9 +85,17 @@ BaselineOfMoose >> projectClass [
 
 { #category : #actions }
 BaselineOfMoose >> registerMooseWelcomeBrowser [
-	"For Pharo 11 and after"
 
 	Smalltalk
 		at: #MooseWelcomeBrowser
 		ifPresent: [ :mooseWelcome | mooseWelcome register ]
+]
+
+{ #category : #actions }
+BaselineOfMoose >> registerToIceberg [
+
+	Smalltalk
+		at: #MooseWelcomeBrowser
+		ifPresent: [ :mooseConfiguration |
+		mooseConfiguration registerToIceberg ]
 ]
