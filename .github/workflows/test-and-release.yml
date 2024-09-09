@@ -17,6 +17,4 @@ jobs:
     name: Run tests and update release
     uses: moosetechnology/.github/.github/workflows/test-and-release.yml@main
     with:
-      image-name: "Moose12-development"
       pre-upload-script: "MooseVersion current commitHash: '$GITHUB_SHA'. (Smalltalk tools toolNamed: #mooseWelcome) closePharoWelcomeThenOpen"
-      release-tag: "continuous"
