@@ -1,72 +1,24 @@
 name: Development
+run-name: >-
+  ${{ vars.BRANCHES_CONFIGURATION
+  && fromJSON(vars.BRANCHES_CONFIGURATION)[github.ref_name] 
+  && fromJSON(vars.BRANCHES_CONFIGURATION)[github.ref_name].run-name 
+  || github.ref_name }}
 
 on:
   push:
     branches:
       - development
-  # This will be triggered only for development branch
+      - v10
+      - v11
   schedule:
     - cron:  '0 0 * * *'
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
-
-# Read the content of the files pharo-versions.json and moose-version.json. 
- get-versions:
-    runs-on: ubuntu-latest
-    outputs: 
-      versions: ${{ steps.read-file.outputs.versions }}
-    steps:
-      - uses: actions/checkout@v3
-      - name: Read file
-        id: read-file
-        run: |
-          VERSIONS=$(cat $GITHUB_WORKSPACE/.github/workflows/versions.json)
-          echo "versions=$VERSIONS" >> $GITHUB_OUTPUT
-
- build:
-    runs-on: ubuntu-latest
-    needs: get-versions
-    env:
-      PROJECT_NAME: ${{ fromJSON(needs.get-versions.outputs.versions).moose-name }}
-    strategy:
-      fail-fast: false
-      matrix:
-        smalltalk: ${{ fromJSON(needs.get-versions.outputs.versions).pharo-versions }}
-    name: ${{ matrix.smalltalk }}
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0 # Option fetching all commits
-      - uses: hpi-swa/setup-smalltalkCI@v1
-        with:
-          smalltalk-image: ${{ matrix.smalltalk }}
-      - run: smalltalkci -s ${{ matrix.smalltalk }}
-        shell: bash
-        timeout-minutes: 15
-
-      - name: set-version
-        run: |
-          ls -l $SMALLTALK_CI_VM
-          $SMALLTALK_CI_VM  $SMALLTALK_CI_IMAGE eval --save "MooseVersion current commitHash: '$GITHUB_SHA'. (Smalltalk tools toolNamed: #mooseWelcome) closePharoWelcomeThenOpen"
-          
-      - name: rename
-        run: |
-          mv $SMALLTALK_CI_BUILD/* .
-          mv TravisCI.image $PROJECT_NAME-${{ matrix.smalltalk }}.image
-          mv TravisCI.changes $PROJECT_NAME-${{ matrix.smalltalk }}.changes
-          echo ${${{ matrix.smalltalk }}} | sed -e 's/.*\-//g ; s/\..*//g ; s/$/0/' > pharo.version
-        # Remove every character before '-' ; Remove point and anything after it ; add a '0'.
-        # This pattern transforms as follow: 'Pharo64-9.0' --> '90' and 'Pharo64-10' --> '100'.
-        
-      - name: package
-        run: |
-          zip -r $PROJECT_NAME-${{ matrix.smalltalk }}.zip $PROJECT_NAME-${{ matrix.smalltalk }}.image $PROJECT_NAME-${{ matrix.smalltalk }}.changes *.sources pharo.version
-          ls
-      - name: Update release
-        uses: Xotl/cool-github-releases@v1
-        with:
-          mode: update
-          replace_assets: true
-          tag_name: ${{ fromJSON(needs.get-versions.outputs.versions).release-tag }}
-          assets: ${{ env.PROJECT_NAME }}-${{ matrix.smalltalk }}.zip
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+  run-tests-and-update-release:
+    name: Run tests and update release
+    uses: moosetechnology/.github/.github/workflows/test-and-release.yml@main
+    with:
+      pre-upload-script: "MooseVersion current commitHash: '$GITHUB_SHA'. (Smalltalk tools toolNamed: #mooseWelcome) closePharoWelcomeThenOpen"
