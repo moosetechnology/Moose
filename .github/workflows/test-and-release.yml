@@ -3,7 +3,7 @@ run-name: >-
   ${{ vars.BRANCHES_CONFIGURATION
   && fromJSON(vars.BRANCHES_CONFIGURATION)[github.ref_name] 
   && fromJSON(vars.BRANCHES_CONFIGURATION)[github.ref_name].run-name 
-  || github.ref_name }} #Dedicated name in the Repository variable OR branch name
+  || github.ref_name }} 
 
 on:
   push:
