@@ -1,4 +1,5 @@
 name: Development
+run-name: ${{ github.ref }}
 
 on:
   push:
