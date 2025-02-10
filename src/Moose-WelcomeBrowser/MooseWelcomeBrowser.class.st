@@ -23,6 +23,19 @@ MooseWelcomeBrowser class >> logo [
 		  MooseConfiguration mooseLogoContents base64Decoded readStream
 ]
 
+{ #category : #'world menu' }
+MooseWelcomeBrowser class >> menuCommandOn: aBuilder [
+	<worldMenu>
+
+	(aBuilder item: #'Welcome to Moose')
+		parent: #Help;
+		order: 1;
+		action: [ self open ];
+		icon: ((self iconNamed: #mooseIcon) scaledToSize: (16@16) scaledByDisplayScaleFactor);
+		help: 'Welcome window for Moose';
+		withSeparatorAfter 
+]
+
 { #category : #'instance creation' }
 MooseWelcomeBrowser class >> open [
 
