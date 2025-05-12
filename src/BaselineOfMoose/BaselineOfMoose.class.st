@@ -35,7 +35,7 @@ BaselineOfMoose >> famix: spec [
 	spec
 		baseline: 'Famix'
 		with: [
-		spec repository: 'github://moosetechnology/Famix:development/src' ]
+		spec repository: 'github://moosetechnology/Famix:v1.1.2/src' ]
 ]
 
 { #category : #dependencies }
@@ -75,7 +75,7 @@ BaselineOfMoose >> mooseIDE: spec [
 	spec
 		baseline: 'MooseIDE'
 		with: [ 
-		spec repository: 'github://moosetechnology/MooseIDE:development/src' ]
+		spec repository: 'github://moosetechnology/MooseIDE:v2.0.6/src' ]
 ]
 
 { #category : #accessing }
