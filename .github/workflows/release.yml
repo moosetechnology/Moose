@@ -10,4 +10,3 @@ jobs:
     uses: moosetechnology/.github/.github/workflows/test-and-release.yml@main
     with:
        pre-upload-script: "MooseVersion current commitHash: '$GITHUB_SHA'. (Smalltalk tools toolNamed: #mooseWelcome) closePharoWelcomeThenOpen"
-       release-tag: ${{ github.ref }}
