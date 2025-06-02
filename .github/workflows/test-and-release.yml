@@ -1,4 +1,4 @@
-name: Development
+name: Test and update release
 
 on:
   push:
@@ -9,8 +9,9 @@ on:
       - v12
   schedule:
     - cron:  '0 0 * * *'
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  release:
+    types: [created, edited]
 
 jobs:
   run-tests-and-update-release:
