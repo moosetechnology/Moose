@@ -6,7 +6,7 @@ on:
       - development
       - v10
       - v11
-      -v12
+      - v12
   schedule:
     - cron:  '0 0 * * *'
   # Allows you to run this workflow manually from the Actions tab
