@@ -2,12 +2,13 @@
 rce: 22987863
 "
 Class {
-	#name : #BaselineOfMoose,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfMoose
+	#name : 'BaselineOfMoose',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfMoose',
+	#package : 'BaselineOfMoose'
 }
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfMoose >> baseline: spec [
 
 	<baseline>
@@ -29,7 +30,7 @@ BaselineOfMoose >> baseline: spec [
 		spec postLoadDoIt: #installMooseConfigurations ]
 ]
 
-{ #category : #dependencies }
+{ #category : 'dependencies' }
 BaselineOfMoose >> famix: spec [
 
 	spec
@@ -38,7 +39,7 @@ BaselineOfMoose >> famix: spec [
 		spec repository: 'github://moosetechnology/Famix:development/src' ]
 ]
 
-{ #category : #dependencies }
+{ #category : 'dependencies' }
 BaselineOfMoose >> famixReplication: spec [
 
 	spec
@@ -47,7 +48,7 @@ BaselineOfMoose >> famixReplication: spec [
 		spec repository: 'github://moosetechnology/FamixReplication:' ]
 ]
 
-{ #category : #dependencies }
+{ #category : 'dependencies' }
 BaselineOfMoose >> famixTagging: spec [
 
 	spec
@@ -56,20 +57,20 @@ BaselineOfMoose >> famixTagging: spec [
 		spec repository: 'github://moosetechnology/FamixTagging/src' ]
 ]
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfMoose >> groups: spec [
 
 	spec group: 'Metamodel' with: #( 'Famix' )
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 BaselineOfMoose >> installMooseConfigurations [
 
 	self registerMooseWelcomeBrowser.
 	self registerToIceberg
 ]
 
-{ #category : #dependencies }
+{ #category : 'dependencies' }
 BaselineOfMoose >> mooseIDE: spec [
 
 	spec
@@ -78,12 +79,12 @@ BaselineOfMoose >> mooseIDE: spec [
 		spec repository: 'github://moosetechnology/MooseIDE:development/src' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BaselineOfMoose >> projectClass [
 	^ MetacelloCypressBaselineProject
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 BaselineOfMoose >> registerMooseWelcomeBrowser [
 
 	Smalltalk
@@ -91,7 +92,7 @@ BaselineOfMoose >> registerMooseWelcomeBrowser [
 		ifPresent: [ :mooseWelcome | mooseWelcome register ]
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 BaselineOfMoose >> registerToIceberg [
 
 	Smalltalk

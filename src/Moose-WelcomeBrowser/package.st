@@ -1,1 +1,1 @@
-Package { #name : #'Moose-WelcomeBrowser' }
+Package { #name : 'Moose-WelcomeBrowser' }

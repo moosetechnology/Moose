@@ -3,12 +3,13 @@ A welcome browser for the Moose environment.
 See superclass for more implementation details
 "
 Class {
-	#name : #MooseWelcomeBrowser,
-	#superclass : #StWelcomeBrowser,
-	#category : #'Moose-WelcomeBrowser'
+	#name : 'MooseWelcomeBrowser',
+	#superclass : 'StWelcomeBrowser',
+	#category : 'Moose-WelcomeBrowser',
+	#package : 'Moose-WelcomeBrowser'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MooseWelcomeBrowser class >> closePharoWelcomeThenOpen [
 
 	self superclass allInstancesDo: [ :browser |
@@ -16,14 +17,14 @@ MooseWelcomeBrowser class >> closePharoWelcomeThenOpen [
 	self openForRelease
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MooseWelcomeBrowser class >> logo [
 
 	^ Form fromBinaryStream:
 		  MooseConfiguration mooseLogoContents base64Decoded readStream
 ]
 
-{ #category : #'world menu' }
+{ #category : 'world menu' }
 MooseWelcomeBrowser class >> menuCommandOn: aBuilder [
 	<worldMenu>
 
@@ -36,14 +37,14 @@ MooseWelcomeBrowser class >> menuCommandOn: aBuilder [
 		withSeparatorAfter 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MooseWelcomeBrowser class >> open [
 
 	<script>
 	self new open
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MooseWelcomeBrowser class >> openForRelease [
 	<script>
 	| window |
@@ -58,7 +59,7 @@ MooseWelcomeBrowser class >> openForRelease [
 			extent: self windowExtent ]
 ]
 
-{ #category : #finalization }
+{ #category : 'finalization' }
 MooseWelcomeBrowser class >> register [
 	"Add ourselves to registry. See [Smalltalk tools]" 
 	<script>
@@ -66,7 +67,7 @@ MooseWelcomeBrowser class >> register [
 	self registerToolsOn: Smalltalk tools
 ]
 
-{ #category : #finalization }
+{ #category : 'finalization' }
 MooseWelcomeBrowser class >> registerToolsOn: registry [
 	"Add ourselves to registry. See [Smalltalk tools]" 
 
@@ -74,7 +75,7 @@ MooseWelcomeBrowser class >> registerToolsOn: registry [
 
 ]
 
-{ #category : #'accessing - labels' }
+{ #category : 'accessing - labels' }
 MooseWelcomeBrowser >> mainToolsContent [
 
 	^ '# Main Moose tools
@@ -128,13 +129,13 @@ CoUsage map browser:
 			   MiCoUsageMapBrowser } collect: #name)
 ]
 
-{ #category : #'accessing - labels' }
+{ #category : 'accessing - labels' }
 MooseWelcomeBrowser >> mainToolsLabel [
 
 	^ 'Main tools'
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 MooseWelcomeBrowser >> topics [
 
 	^ {
@@ -146,7 +147,7 @@ MooseWelcomeBrowser >> topics [
 			   contents: self mainToolsContent) }
 ]
 
-{ #category : #'accessing - contents' }
+{ #category : 'accessing - contents' }
 MooseWelcomeBrowser >> welcomeContent [
 
 	| version |
@@ -173,7 +174,7 @@ Version {2}. Commit: [{3}](https://github.com/moosetechnology/Moose/commit/{4})'
 				  version commitHash }
 ]
 
-{ #category : #'accessing - labels' }
+{ #category : 'accessing - labels' }
 MooseWelcomeBrowser >> welcomeLabel [
 
 	^ 'Welcome to Moose ' , MooseVersion current major
