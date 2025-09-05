@@ -13,21 +13,16 @@ BaselineOfMoose >> baseline: spec [
 
 	<baseline>
 	spec for: #common do: [
-		self
-			famix: spec;
-			famixTagging: spec;
-			famixReplication: spec;
-			mooseIDE: spec.
+			self
+				famix: spec;
+				famixTagging: spec;
+				famixReplication: spec;
+				mooseIDE: spec.
 
-		spec
-			package: 'Moose-Configuration' with: [
-				spec requires:
-						#( 'Famix' 'FamixTagging' 'FamixReplication' 'MooseIDE' ) ];
-			package: 'Moose-WelcomeBrowser'
-			with: [ spec requires: #( 'Moose-Configuration' ) ].
+			spec package: 'Moose-Configuration' with: [ spec requires: #( 'Famix' 'FamixTagging' 'FamixReplication' 'MooseIDE' ) ].
 
-		self groups: spec.
-		spec postLoadDoIt: #installMooseConfigurations ]
+			self groups: spec.
+			spec postLoadDoIt: #installMooseConfigurations ]
 ]
 
 { #category : 'dependencies' }
@@ -66,8 +61,7 @@ BaselineOfMoose >> groups: spec [
 { #category : 'actions' }
 BaselineOfMoose >> installMooseConfigurations [
 
-	self registerMooseWelcomeBrowser.
-	self registerToIceberg
+	Smalltalk at: #MooseConfiguration ifPresent: [ :mooseConfiguration | mooseConfiguration registerToIceberg ]
 ]
 
 { #category : 'dependencies' }
@@ -82,21 +76,4 @@ BaselineOfMoose >> mooseIDE: spec [
 { #category : 'accessing' }
 BaselineOfMoose >> projectClass [
 	^ MetacelloCypressBaselineProject
-]
-
-{ #category : 'actions' }
-BaselineOfMoose >> registerMooseWelcomeBrowser [
-
-	Smalltalk
-		at: #MooseWelcomeBrowser
-		ifPresent: [ :mooseWelcome | mooseWelcome register ]
-]
-
-{ #category : 'actions' }
-BaselineOfMoose >> registerToIceberg [
-
-	Smalltalk
-		at: #MooseConfiguration
-		ifPresent: [ :mooseConfiguration |
-		mooseConfiguration registerToIceberg ]
 ]
