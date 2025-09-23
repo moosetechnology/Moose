@@ -7,7 +7,7 @@ Moose is an open-source software. It was started at the Software Composition Gro
 
 ## Documentation
 
-Please refer to the [moose wiki](https://moosetechnology.github.io/moose-wiki/) for the documentation.
+Please refer to the [moose wiki](https://modularmoose.org/beginners/install-moose/) for the documentation.
 
 ## Installation
 
@@ -55,9 +55,9 @@ Execute this in a Pharo 10 image:
 ```
 
 ### Famix generators
-- Java [VerveineJ](https://modularmoose.org/moose-wiki/Developers/Parsers/VerveineJ) / [JDT2Famix](https://github.com/feenkcom/jdt2famix) 
+- Java [VerveineJ](https://modularmoose.org/developers/parsers/verveinej/) / [JDT2Famix](https://github.com/feenkcom/jdt2famix) 
 - [C#](https://github.com/feenkcom/roslyn2famix) 
 - [.NET](http://www.sharpmetrics.net/index.php/famix-generator)
 - [SAP](https://github.com/RainerWinkler/Moose-FAMIX-SAP-Extractor)
 - [Fortran](https://github.com/NicolasAnquetil/VerveineF.git)
-- [C/C++](https://github.com/Synectique/VerveineC-Cpp.git)
+- [C/C++](https://modularmoose.org/developers/parsers/verveinec-cpp/)
