@@ -46,11 +46,19 @@ MooseConfiguration class >> registerToIceberg [
 		send: #sortIcebergRepositories
 		to: self.
 
-	self sortIcebergRepositories
+	self sortIcebergTabs.
+	self sortIcebergRepositories.
+	
 ]
 
 { #category : 'iceberg' }
 MooseConfiguration class >> sortIcebergRepositories [
 
 	IceRepository registry sort: #isMissing ascending , #name ascending
+]
+
+{ #category : 'sorting' }
+MooseConfiguration class >> sortIcebergTabs [
+
+	IceTipRepositoriesModel addTag: #Moose priority: -100
 ]
