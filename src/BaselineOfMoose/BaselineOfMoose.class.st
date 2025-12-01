@@ -53,7 +53,7 @@ BaselineOfMoose >> famixTagging: spec [
 	spec
 		baseline: 'FamixTagging'
 		with: [
-		spec repository: 'github://moosetechnology/FamixTagging/src' ]
+		spec repository: 'github://moosetechnology/FamixTagging:v1.3.7/src' ]
 ]
 
 { #category : #baselines }
