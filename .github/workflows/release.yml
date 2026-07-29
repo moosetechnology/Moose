@@ -3,6 +3,7 @@ name: Stable
 on:
   release:
     types: [created, edited]
+  workflow_dispatch: 
 
 jobs:
   run-tests-and-update-release:
