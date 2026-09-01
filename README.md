@@ -1,5 +1,5 @@
-[![Development](https://github.com/moosetechnology/Moose/actions/workflows/test-and-release.yml/badge.svg)](https://github.com/moosetechnology/Moose/actions/workflows/test-and-release.yml)
-[![Stable](https://github.com/moosetechnology/Moose/actions/workflows/release.yml/badge.svg)](https://github.com/moosetechnology/Moose/actions/workflows/release.yml)
+[![v12 - Stable](https://img.shields.io/github/actions/workflow/status/moosetechnology/Moose/test-and-release.yml?branch=v12&label=v12-stable)](https://github.com/moosetechnology/Moose/actions/workflows/test-and-release.yml?query=branch%3Av12)
+[![v13-development](https://img.shields.io/github/actions/workflow/status/moosetechnology/Moose/test-and-release.yml?branch=development&label=v13-development)](https://github.com/moosetechnology/Moose/actions/workflows/test-and-release.yml?query=branch%3Adevelopment)
 
 Moose is an extensive platform for software and data analysis.
 
@@ -17,9 +17,9 @@ Please refer to the [moose wiki](https://modularmoose.org/beginners/install-moos
 
 ### Load Moose in a Pharo image
 
-#### Latest version: Moose 12
+#### Latest version: Moose 13
 
-Execute this in a Pharo 12 or 13 image:
+Execute this in a Pharo 13 or 14 image:
 
 ```smalltalk
 Metacello new
@@ -29,26 +29,25 @@ Metacello new
     load
 ```
 
-#### Stable version: Moose 11
+#### Stable version: Moose 12
+
+Execute this in a Pharo 12 or 13 image:
+```smalltalk
+[ Metacello new
+    baseline: 'Moose';
+    repository: 'github://moosetechnology/Moose:v12.x.x/src';
+    load ]
+    on: MCMergeOrLoadWarning
+    do: [ :warning | warning load ]
+```
+
+#### Old stable version: Moose 11
 
 Execute this in a Pharo 11 or 12 image:
 ```smalltalk
 [ Metacello new
     baseline: 'Moose';
     repository: 'github://moosetechnology/Moose:v11.x.x/src';
-    load ]
-    on: MCMergeOrLoadWarning
-    do: [ :warning | warning load ]
-```
-
-#### Old stable version: Moose 10
-
-Execute this in a Pharo 10 image:
-
-```smalltalk
-[ Metacello new
-    baseline: 'Moose';
-    repository: 'github://moosetechnology/Moose:v10.x.x/src';
     load ]
     on: MCMergeOrLoadWarning
     do: [ :warning | warning load ]
