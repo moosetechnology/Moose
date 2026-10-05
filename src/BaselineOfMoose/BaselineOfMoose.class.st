@@ -31,7 +31,7 @@ BaselineOfMoose >> famix: spec [
 	spec
 		baseline: 'Famix'
 		with: [
-		spec repository: 'github://moosetechnology/Famix:development/src' ]
+		spec repository: 'github://moosetechnology/Famix:v1.2.1/src' ]
 ]
 
 { #category : 'dependencies' }
@@ -40,7 +40,7 @@ BaselineOfMoose >> famixReplication: spec [
 	spec
 		baseline: 'FamixReplication'
 		with: [ 
-		spec repository: 'github://moosetechnology/FamixReplication:' ]
+		spec repository: 'github://moosetechnology/FamixReplication:v1.1.6' ]
 ]
 
 { #category : 'dependencies' }
@@ -49,7 +49,7 @@ BaselineOfMoose >> famixTagging: spec [
 	spec
 		baseline: 'FamixTagging'
 		with: [
-		spec repository: 'github://moosetechnology/FamixTagging:development/src' ]
+		spec repository: 'github://moosetechnology/FamixTagging:v1.3.8/src' ]
 ]
 
 { #category : 'baselines' }
@@ -70,7 +70,7 @@ BaselineOfMoose >> mooseIDE: spec [
 	spec
 		baseline: 'MooseIDE'
 		with: [ 
-		spec repository: 'github://moosetechnology/MooseIDE:development/src' ]
+		spec repository: 'github://moosetechnology/MooseIDE:v2.0.7/src' ]
 ]
 
 { #category : 'accessing' }
