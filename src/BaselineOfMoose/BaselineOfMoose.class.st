@@ -70,7 +70,7 @@ BaselineOfMoose >> mooseIDE: spec [
 	spec
 		baseline: 'MooseIDE'
 		with: [ 
-		spec repository: 'github://moosetechnology/MooseIDE:v2.0.7/src' ]
+		spec repository: 'github://moosetechnology/MooseIDE:v2.0.8/src' ]
 ]
 
 { #category : 'accessing' }
