@@ -38,7 +38,7 @@ MooseVersion >> commitHash: anObject [
 MooseVersion >> initialize [
 	super initialize.
 	commitHash := '#0000'.
-	major := '13'.
+	major := '14'.
 	minor := '0'.
 	patch := '0'
 ]
